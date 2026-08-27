@@ -264,6 +264,9 @@
   "amazon_decider_is_local": false,
   "amazon_public_access_room": "contact_only",
   "amazon_key_date_count": 1,
+  "cover_hook_words": 6,
+  "unstamped_fields_on_frame_8": 4,
+  "open_rooms_on_frame_9": 2,
   "read_from": "ledger/docket.json",
   "read_on": "2026-08-27"
 }

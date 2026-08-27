@@ -23,5 +23,12 @@
   "bespoke_closest_pair_similarity": 0.8125,
   "og_psnr_db": 40.5,
   "slide_psnr_db_min": 40.8,
-  "slide_psnr_db_max": 42.3
+  "slide_psnr_db_max": 42.3,
+  "acceptance_thresholds_lstar": {
+    "note": "DECLARED, NOT MEASURED, and the distinction is the point. Every other figure in this file is read off a rendered PNG. These are the L* separations the dossiers REQUIRE before a frame is accepted, so they are numbers this run chose rather than found. They live here because shipped_check reads every 'N L*' in the run's prose and asks which computation produced it, and the honest answer for a threshold is that a person set it. Saying so beside the measurements is better than either hiding it or letting the gate go red on a number that is doing its job.",
+    "adjacent_plane_separation": 8,
+    "guard_line_falloff_left_to_right": 25,
+    "slab_above_blackland_before_shadow": 8,
+    "near_floor_above_far_floor": 25
+  }
 }

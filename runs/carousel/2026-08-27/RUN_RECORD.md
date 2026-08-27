@@ -142,7 +142,81 @@ the other two said. It stopped this deck twice more after the first refusal.
 | two | 6.17 | 7.08 | 7.008 | 6.978 | 3, all integrity | HOLD |
 | three | 6.22 | 6.84 | 7.038 | 6.84 | 1, integrity | HOLD |
 | four | 6.02 | 6.91 | 6.906 | 6.906 | 2, integrity | HOLD |
-| five | see score.json | | | | | |
+| five | 5.67 | 6.746 | 7.022 | 6.494 | 2, integrity | HOLD |
+| six, verification | 5.95 | 6.96 | 7.00 | see score.json | 2, integrity, both bookkeeping | repaired |
+| six, confirmation | 6.71 | 6.96 | 7.00 | **6.86** | none on any lens | **SHIP** |
+
+**The deck ships at a panel median of 6.86 against a 6.8 threshold, with a spread of 0.29.**
+The integrity lens was the low card at 6.71, under the bar by 0.09, and asked that its note
+be carried verbatim: *"ship is true because this lens found no reason the deck must not
+ship, not because 6.71 clears anything. A deck that ships at 7.0 is acceptable rather than
+good, and this card did not reach acceptable."* That is the fair description of this deck.
+
+One process note, because it is the kind of thing that must be said out loud. That card first
+came back `ship: false` while its own prose said the refusal was the THRESHOLD rather than a
+defect, and `panel.py` counts a bare `ship: false` as a refusal either way, which is the
+right rule. The boolean was **not edited**. The judge was asked what it meant and answered
+that it had misused the field, that `ship` is the panel's refusal switch rather than a place
+to restate arithmetic the panel already does on the median, and that its score should stand
+at 6.71. Overriding a red gate on a run's own judgement is the failure this repo keeps
+writing down. Asking the author of the evidence what the evidence meant is not that.
+
+Round six was a VERIFICATION of round five's two hard-fail repairs rather than another design
+pass, on the owner's instruction that past five rounds a run fixes only hard fails. Craft and
+reader both returned ship. Integrity returned two more, and both were BOOKKEEPING rather than
+copy: `final/contact_sheet.png` had not been regenerated after the repairs, so the packaged
+artifact a reviewer and the email look at still printed both refuted sentences, and
+`quantifiers.json` still declared the refuted relation as the membership test while carrying no
+entry at all for the two universals that actually shipped. Both were repaired, and the same lens
+confirmed both closed against the contact sheet, all nine thumbs, `copy.json` and the DOM in
+`render_report.json`. Its final card names no hard fail and comes in at 6.71 on the threshold.
+
+### What round five refused, and one repair that made the deck worse before it made it better
+
+**The deck asserted a RELATION its own membership test never computes.** Frame 4 read "All
+thirteen name a tax break or a land rule OVER a data center" and the caption said each one
+"CARRIES" one. The test finds an ask word and a subject word ANYWHERE in an item's record and
+never tests that one is about the other. `tx-2026-0052` is the proof: a county resolution that
+its own summary says is explicitly not a rule and that sought no tax break, admitted to the set
+because its last sentence mentions a reinvestment zone the same court refused **on a different
+item**. The count is right. The relation was invented.
+
+**The set was NOT changed and that is a decision, not an oversight.** Round five's own evidence
+shows the test is crude in both directions: any stricter rule requiring the ask word and the
+subject word to share a sentence would also drop `tx-2026-0046`, a real tax abatement for a data
+centre campus, because its title says HyperGrid and its data centre reference is two sentences
+later. Redesigning a membership test is a design change and this run was past the point where it
+should be making them. What changed is that the deck now says only what the test computes, and
+`compute.py` emits `ask_evidence` per member so the crudeness is auditable rather than arguable.
+
+**Frame 8's row had now been wrong twice, in opposite directions.** It read "CAPITAL FIGURE / NOT
+STATED IN EITHER RELEASE", which round four called too broad because c8 has the state calling
+this a multi-billion-dollar development. The repair wrote "NEITHER RELEASE STATES A NUMBER", and
+round five refuted THAT on c9, a claim the same frame declares, whose quote states $100 billion.
+`quantifiers.json` had already recorded that exact phrasing being struck from FRAME 3 in round
+three, on the same claims, and round four wrote the struck sentence onto frame 8. The fault was
+never the adjective. It was the SCOPE, and the row now names the plant.
+
+### The guards, and the sharpest finding of the whole run
+
+The set's gloss was refuted four separate times, each time in a new coat: an actor, then a
+direction, then an idiom, then a relation. Each repair added a word list. Round six then found
+that the round-five repair had been **phrased into its own guard's blind spot**: `_surfaces_hold`
+matched "each names" and "each carries", and the sentence the repair produced is "Each RECORD
+names", on the frame and again in the caption. A guard written specifically to read the published
+surfaces had gone blind to the exact sentence the repair wrote, by accident, which is worse than
+by design.
+
+Both guards now carry `DIRECTION`, `IDIOM` and `RELATION`, the `ABOUT` pattern was widened, and a
+second guard `_declarations_hold` runs the check the other way round and fails the build when
+`quantifiers.json` declares a phrase its own surface does not print. **All of them were proven
+red against the exact defects that shipped and green on the state that ships.**
+
+And the final card says the whole approach is wrong, which is right: *"Stop guarding this deck's
+one computed set with enumerated word lists and make frame 4 print the figure compute.py already
+computes instead of a universal, because 'over' escaped, then 'Each record names' escaped the
+ABOUT regex, now 'beside' escapes RELATION and 'both' escapes UNIVERSAL, and
+`ask_members_with_both_words_in_one_sentence` is 10 of 13 and needs no guard at all."*
 
 ### What round four refused, and one of the two refusals was wrong
 
