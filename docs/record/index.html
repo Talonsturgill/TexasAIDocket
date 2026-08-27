@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-Ljen/2mpApwUCOSb1RUhNkKW9UBr03ahcPcFqO2VWEw=' 'sha256-gDe31Rur1NPASAddCs65EeugEHTz0fLQ7E83HigjQHk=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-RD2uLId4863SNtiTWYKnPhbRzhZOH1AHpVaZFHDiCXY=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-Ljen/2mpApwUCOSb1RUhNkKW9UBr03ahcPcFqO2VWEw=' 'sha256-gDe31Rur1NPASAddCs65EeugEHTz0fLQ7E83HigjQHk=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-A8vfqAy9rNIH+z4ndhzLkotvwPpXX2i5PE64aPngyL0=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -1399,6 +1399,13 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
         dropStage();
         if (!started) {
           body.textContent = "That is this month's last written answer. The record itself is open at the link below and the answers already given are still here.";
+        }
+        return;
+      }
+      if (ev.limited) {
+        dropStage();
+        if (!started) {
+          body.textContent = "Written answers have reached today's allowance. The record itself is open at the link below and the answers already given are still here.";
         }
         return;
       }
