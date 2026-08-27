@@ -682,4 +682,25 @@
   "measured": "Run against the 2026-08-26 deck on its first invocation it found six stale dossiers, which is the drift two separate judges had reported by hand.",
   "not_in_scope": "It does not measure taste. Composition, story and voice are what the panel is for, and this gate exists so the panel spends itself on those."
  }
+, "2026-08-27": {
+  "what": "scripts/carousel/ship_images.py gained OG_QUALITY_LADDER, so the social card walks a quality ladder to the 40 dB floor the way the nine slides already did.",
+  "why": "The ladder above it exists because one fixed quality was the wrong instrument for a deck whose whole premise is that no two slides are drawn alike. That reasoning was applied to the slides and NOT to the JPEG cut from slide 1, which kept a single OG_QUALITY of 90 and was then measured against the same floor. On 2026-08-27 slide 1 was a dark high bay with long smooth gradients, JPEG's worst case, and the card encoded at 38.2 dB. The gate refused it correctly and the run had nothing to turn, because the only lever was a constant and a constant is not an instrument. The card now clears at 40.5 dB.",
+  "checks": [
+   "the recorded quality is one of the ladder's stops",
+   "a quality-1 encode still measures under the floor, so the gate can still go red"
+  ],
+  "self_test": "scripts/carousel/ship_images.py --self-test",
+  "the_floor_did_not_move": "40 dB is an EXTERNAL threshold and moving it to pass an encode is the one repair that file must never make. The ladder was added beneath the floor rather than the floor lowered onto the encode.",
+  "only_one_upgrade_this_run_and_why": "The owner's instruction, given mid-run after the fifth scoring round: past five rounds a run fixes only hard fails, and the real work is a dedicated session improving the agents that BUILD the deck rather than more machinery to catch them afterwards. Six scoring rounds and eighteen judge reports on one deck is the evidence for that instruction, not a counterexample to it. The guard work this run did do lives in the run's own compute.py under runs/carousel/2026-08-27/ rather than in this lane, because it is one run's scratch and generalising it is exactly the design work that belongs in the session the owner asked for.",
+  "proposals_for_that_session": [
+   "_surfaces_hold and _declarations_hold belong in scripts/carousel/ as one gate. A computed set may only be narrated by its own membership test, on every surface a reader meets, and a declaration may not name a sentence no surface prints. Both were proven red this run.",
+   "The word-list approach is wrong and the last judge said so: over escaped, then 'Each record names' escaped the ABOUT regex, then beside escaped RELATION and both escaped UNIVERSAL. compute.py already emits ask_evidence with same_sentence per member. Print the figure rather than a universal.",
+   "Make every acceptance item measurable off the 432px thumb. machine_qa already computes the focal AUC and reported frame 4 at 0.62, near chance, while the run recorded three panel repairs without checking one of them against a thumb.",
+   "A duplicate-id check for slide sources. One id collision meant frame 5's filter never executed in any round while the source read like a working filter chain.",
+   "A probe must be authored off the render, never from the plan's arithmetic. Three probes this run measured properties the defect left alone, and qa.py's own failure text says what to do.",
+   "Frame 5 wants feDiffuseLighting over a blurred glyph alpha lit at the deck's declared azimuth, and that azimuth wants to be an assertion the frame checks before renderReady resolves, so no frame can ship a relief lit from the wrong quadrant.",
+   "bootstrap.sh fails on PyYAML with 'Cannot uninstall PyYAML 6.0.1, RECORD file not found' and every run works around it with --break-system-packages --no-deps --ignore-installed.",
+   "docket_calendar's KIND_LABEL has no entry for expires. Either label it or state that the record does not use that kind. This run removed the three uses rather than widen a human-owned map from inside a routine."
+  ]
+ }
 }
