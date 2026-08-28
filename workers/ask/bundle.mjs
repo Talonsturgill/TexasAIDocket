@@ -39,6 +39,12 @@ const IMPORT_RE = /^\s*import\s[^;]*?from\s*["']\.\/[^"']+["'];?\s*$/gm;
 // `export default` is NOT touched: that one is the Worker's entry point.
 const REEXPORT_RE = /^\s*export\s*\{[^}]*\}\s*;?\s*$/gm;
 
+// GIT STORES THESE FILES WITH LF, WHILE A WINDOWS CHECKOUT MAY PRESENT CRLF. Comparing the
+// working-tree bytes directly made --check report a stale bundle even when Git's canonical
+// module and bundle blobs agreed exactly. Build and compare one canonical newline form so the
+// gate answers the same question on Windows, macOS and Linux.
+const canonicalText = (text) => String(text).replace(/\r\n?/g, "\n");
+
 function topLevelNames(src) {
   const names = new Set();
   const re = /^export\s+(?:async\s+)?(function|const|let|var|class)\s+([A-Za-z_$][\w$]*)/gm;
@@ -58,7 +64,7 @@ const parts = [];
 const collisions = [];
 
 for (const file of MODULES) {
-  let src = readFileSync(join(HERE, file), "utf8");
+  let src = canonicalText(readFileSync(join(HERE, file), "utf8"));
   src = src.replace(IMPORT_RE, "").replace(REEXPORT_RE, "");
 
   for (const [from, to] of Object.entries(RENAME[file] || {})) {
@@ -101,7 +107,7 @@ const built = header + parts.join("\n");
 // only one it could not catch.
 if (process.argv.includes("--check")) {
   let onDisk = "";
-  try { onDisk = readFileSync(out, "utf8"); } catch { /* absent counts as stale */ }
+  try { onDisk = canonicalText(readFileSync(out, "utf8")); } catch { /* absent counts as stale */ }
   if (onDisk !== built) {
     console.error("bundled.js is not what the modules produce. Run: node workers/ask/bundle.mjs");
     process.exit(1);
