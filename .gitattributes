@@ -1,3 +1,5 @@
-*.sh text eol=lf
-.githooks/* text eol=lf
-*.yml text eol=lf
+# The publication, its generators, vendored byte-pinned inputs, and generated
+# worker bundle must have identical bytes on Windows and Linux. Git still
+# detects binary files automatically; every detected text file is checked out
+# with the repository's canonical LF endings.
+* text=auto eol=lf

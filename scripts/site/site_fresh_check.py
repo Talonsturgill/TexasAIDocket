@@ -95,7 +95,10 @@ def built_with(docs: Path) -> str | None:
 
 def compare(committed: Path, fresh: Path) -> tuple[list, list, list]:
     def rel(root):
-        return {str(p.relative_to(root)) for p in root.rglob("*") if p.is_file()}
+        # These names are repository artifact paths. Returning host separators made the checker
+        # catch a hand edit on Windows and then fail its own assertion because it reported
+        # `services\\index.html` instead of the stable `services/index.html` contract.
+        return {p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file()}
 
     a, b = rel(committed), rel(fresh)
     missing = sorted(b - a)          # a fresh build produces these and the site lacks them
