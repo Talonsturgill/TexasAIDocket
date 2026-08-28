@@ -32,7 +32,7 @@
 </div>
 <div class="dekbox"><p>"it would result in a total curtailment of 525.5 MW"</p></div>
 <div class="scrim" data-decorative></div>
-<div class="foot"><span>ARMSTRONG COUNTY</span><span>c3 c12</span><span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
+<div class="foot"><span>ARMSTRONG COUNTY</span><span>c12</span><span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script>
@@ -103,10 +103,15 @@ window.renderReady = (async () => {
                       fill:CAL,'letter-spacing':'0.04em'});
   sl.textContent=SCALE_STEP; s.appendChild(sl);
 
-  // the commission's nameplate, a caliche hairline across the whole chart
-  const gy=yFor(GEN_MW);
-  s.appendChild(mk('line',{x1:AX,y1:gy,x2:1000,y2:gy,stroke:CAL,'stroke-width':3,
-                           'stroke-dasharray':'14 10'}));
+  // NO SUBTRACTABLE REFERENCE ON THIS FRAME.
+  //
+  // A caliche hairline sat here labelled "265.5 MW GOODNIT1 nameplate", and 525.5 minus
+  // 265.5 is 260, so the geometry handed a reader the exact decomposition compute.py spends
+  // twenty lines documenting as false and removing from the prose. The order does set the two
+  // side by side, but a reader cannot be given a subtraction and trusted not to do it.
+  // The frame states the contended total against a drawn zero and a printed rate, and nothing
+  // else, which is the one thing the record carries about this figure.
+  const gy = yFor(GEN_MW);   // retained only as the axis head reference for the label column
 
   // ONE PLOTTED MAGNITUDE, AND A LABELLED REFERENCE. NOT A QUANTITY AT TWO STATES.
   //
@@ -139,10 +144,6 @@ window.renderReady = (async () => {
   }
 
   // the labels. Both plates are MEASURED off their own laid out text, never typed.
-  const gt=mk('text',{x:1000,y:gy-26,'text-anchor':'end','font-family':'JetBrains Mono, monospace',
-                      'font-size':26,'font-weight':500,fill:CAL,'letter-spacing':'0.04em'});
-  gt.textContent='265.5 MW  GOODNIT1 nameplate'; s.appendChild(gt);
-
   // LAW 5: 525.5 is NEVER set larger than its attribution. The strap carrying "THE APPLICANTS'
   // FIGURE, AS THE ORDER RECORDS IT" is 34 px, and this was 38, so the deck's most contested
   // numeral was the larger of the two on the one frame the law exists for.
@@ -152,7 +153,6 @@ window.renderReady = (async () => {
 
 
   await document.fonts.ready;
-  TX.svgPlate(gt, {padX:14, padY:10, fill:DK});
   TX.svgPlate(at, {padX:16, padY:12, fill:DK});
   // The axis labels get the same knockout the value labels already had. Drawing the face's
   // grain as lit and shadowed PAIRS gave it the azimuth it was missing and also gave it real

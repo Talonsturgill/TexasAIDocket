@@ -229,3 +229,36 @@ be mistaken for provenance.
 and traces to a fetched source." A sum of two facts is a third fact. The lesson is that the law is
 easiest to break precisely when every ingredient is already sourced, because the result feels
 sourced too.
+
+## 12. `panel.py` cannot tell a threshold dissent from a named fault, so the cap can't fire
+
+`panel.py` synthesises a hard fail whenever a judge returns `ship: false` with an empty
+`hard_fails` list, worded "judge returned ship: false with no hard fail named, which is a refusal
+either way". That guard is right about the case it was written for: a judge that refuses without
+saying why has to be treated as refusing.
+
+It fired twice on this deck for a different case. In round 4 the craft judge returned 6.684 and
+said plainly "the refusal is the threshold, not a fault ... that is the named reason, so this
+round is not another unexplained hold". In the final pass the integrity judge returned 6.51 with
+`hard_fails: []` and wrote "I looked hard for one and I will not manufacture it". Both refusals
+named the threshold. Neither named a fault. The rubric defines a hard fail as a claim about a
+promise this product made in public, and a threshold dissent is not one.
+
+**The consequence is that the cap cannot do its job.** The rubric's cap rule says that past
+`max_rounds` a round may repair a hard fail and nothing else, and the run ships at whatever the
+median is with the number stated. But `score.json` carries a synthesized hard fail, and a hard
+fail stops the deck at any round. So a run at the cap reads its own gate as saying both ship and
+do not ship, and has to resolve it in prose. This run shipped at 6.806, over the threshold, and
+had to write four paragraphs of the run record explaining why the gate saying `ship: false` did
+not mean what it appeared to mean. That is the exact defect this repository keeps recording: a
+green or red banner measuring something narrower than the thing it appears to certify.
+
+**The change.** Give a judge a way to say WHICH kind of no it is, and have `panel.py` treat them
+differently. The scorer's contract already has the field: a refusal with a non-empty `hard_fails`
+is a fault refusal and stops the deck at any round. A refusal with an empty `hard_fails` is a
+threshold dissent, and past the cap it is information rather than a stop. Keep the current
+synthesized entry for the case it was written for by requiring the judge to state its reason in a
+`refusal_reason` field, and treat a missing one as a fault refusal, so silence still fails closed.
+
+The wider point is worth keeping even if the fix changes shape. **The cap is the one rule in this
+rubric that exists to end a loop, and it was the one rule the tooling could not express.**

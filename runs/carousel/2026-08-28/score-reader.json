@@ -1,0 +1,45 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 7.0,
+      "why": "Nine genuinely distinct materials: night gradient (1), dirt strata (3), diagonal veins (4), wood grain (6), layered strata with a fence line (7), pale caliche (9). Slide 4's veins now carry quantity at 432 px and that is a real craft gain a designer would ask about. Against it: slide 2 is a flat navy field with no light and no dark, wall to wall, and slide 5 is one speckled mid-tone with the same problem, which is the rubric's own 5-line. Slide 3 spends its whole middle third on undifferentiated dirt with nothing in it. Slide 6's chart is the weakest object in the deck: two floating squares, a dashed rule and a scale bracket rendered in the same plate treatment as the data labels."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.0,
+      "why": "All 28 claims are primary_official PUCT documents. Every numeral on all nine frames traces (265.5/265/260 to c3 and c5, 60/30/10 to c9 and c10, 525.5 to c12, Sept 17th to c24, 2026-08-18 to c26). Per-frame claim ids print in every footer, visible at 432. The rejected list refuses fourteen findings including one a prior judge proved false. Two soft spots I considered and did not fail: slide 6's decomposition of 525.5 into 260+265.5 is an inference the order does not state, though both components are sourced and the plate hedges the total as the applicants' figure; and 'Neither complex is energized' rests on c4's 'upon their completion and energization' rather than a direct statement."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.0,
+      "why": "Up from 5.5. Slide 6 now lets a reader derive that the curtailment duty is the whole wind farm plus the second data center, because the sum sits one line above the nameplate label. It is delivered in the frame's smallest type under two hedges. Everything else that cost points last round stands: the county is in a footer, the body is named, and the only deadline belongs to a different proceeding with no stated link to this one. The bill is never touched, in either direction. And 'Neither complex is energized' is on no slide, so nine frames read as a live facility when nothing has been built."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "The 5-to-6 turn is real and slide 6's fix strengthened it, since 5 now hands 6 its numbers. Cover earns the swipe. Against: 3 and 4 are both 'the condition' and 4 is the least consequential content given an unenergized load; slide 7's headline 'Decided above. Decided below. Not between.' is a riddle the frame never solves, since nothing on it says what above and below are; slide 8 introduces GOODNIT2 cold in a quote; and the close swerves to a different docket."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "Hooks are plain and good. 'Alike is not the same.' 'Thirty minutes, or ten if they say so' has real dryness in 'if they say so'. No boosterism, no doom, caption reads like a person. But the register is a court reporter's, not a Texan's: Armstrong County appears in a footer and a dek and never as a place, and the art is Panhandle caprock strata the copy never touches. 'QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM' is a case style pasted onto the call-to-action frame. Rubric's 7 exactly: clean, on register, a little flat."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.5,
+      "why": "Nine distinct treatments across navy, dirt brown, purple, aubergine, wood, red strata, dark soil and pale caliche. Slide 4's scaled diagonal veins and slide 9's caliche are new material. The cover form (night gradient, horizon strip, wordmark, dek, one figure) is the familiar move. I did not open the artwork ledger and am not asserting distinctness against the fortnight that I did not verify."
+    }
+  ],
+  "weighted_score": 7.01,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Put 'Neither complex is energized' on slide 1's dek, where it is already sourced through c4, because it turns nine slides about a running facility into nine slides about a decision made before anything was built, which is the frame the entire deck is missing.",
+  "judge": "reader"
+}

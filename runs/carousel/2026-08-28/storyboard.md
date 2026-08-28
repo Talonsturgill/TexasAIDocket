@@ -130,7 +130,7 @@ art:
 type:
   hook: "Approved. The question underneath is still open."
   dek: "Two AI data center complexes will sit behind one wind farm's own meter in Armstrong County."
-  labels: ["GOODNIT1", "265.5 MW", "ARMSTRONG COUNTY", "c2", "c3"]
+  labels: ["GOODNIT1", "265.5 MW", "ARMSTRONG COUNTY", "c3"]
 acceptance:
   - "a continuous horizon runs the full 1080 px width with its y between 1060 and 1120, and sky covers 74 percent or more of the frame area"
   - "a `rim_light` band at least 30 px tall runs unbroken across 60 percent or more of the horizon, and its median L* is at least 25 above the land beneath it, so the declared focal is still an area after the reduction to 432 px"
@@ -345,7 +345,7 @@ slide: 6
 job: >
   Carry the deck's one contested figure and make its attribution structural rather than a
   footnote, so a reader at feed size can't take the applicants' arithmetic for the commission's.
-claims: [c12, c3, c5]
+claims: [c12]
 numerals:
   - value_from: c12
   - value_from: c3
@@ -382,14 +382,14 @@ art:
 type:
   hook: "The applicants did the arithmetic."
   dek: "\"it would result in a total curtailment of 525.5 MW\""
-  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "265.5 MW  GOODNIT1 nameplate", "525.5 MW", "c12", "c3"]
+  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "525.5 MW", "0 MW", "100 MW", "c12"]
 acceptance:
   - "the attribution outranks the figure by every measure a reader uses. THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT is set at 34 px on a full width saturated ochre strap ABOVE the chart, and 525.5 is set at 32 px, so the numeral is never the larger of the two. The earlier form of this item demanded the two sit within 60 px and the render had them 157 apart, which is the plan describing a frame that was not built"
   - "525.5 is set in `#B4903F` and no `caliche_cap` value appears inside its block"
   - "the value axis includes zero, zero is drawn and carries a label, and no axis is truncated"
   - "the plotted total and the nameplate hairline both sit at y positions computed by compute.py at the deck's single px_per_mw rate, and that rate appears on the frame as a scale bar"
-  - "the nameplate hairline is drawn dashed in `caliche_cap` and is visually distinct in construction from the one plotted area, which is a filled block of 40 by 40 px or more, and NO line joins the two"
-  - 'the frame carries the strings "0 MW", "100 MW" and "265.5 MW  GOODNIT1 nameplate", and the hook reads exactly "The applicants did the arithmetic."'
+  - "the plotted total sits at a y position computed by compute.py at the deck's single px_per_mw rate, on an axis that includes a drawn and labelled zero, with that rate printed on the frame as a scale bar"
+  - 'the frame carries the strings "0 MW" and "100 MW", the hook reads exactly "The applicants did the arithmetic.", and NO second value appears anywhere on the frame that 525.5 could be subtracted from, because 525.5 minus 265.5 is 260 and that decomposition is refuted by the order''s own recital'
 risks:
   - "a reader at 432 px reads the headline figure and never reaches the attribution, which putting the attribution in the hook block at 32 px is the whole defence against"
   - "a chart on a lit face can read as pasted over scenery, which the shared sun and the recessed block are meant to prevent"

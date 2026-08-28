@@ -1,0 +1,45 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.2,
+      "why": "Real thinking present: slide 5's flatness is machine-verified at dE 0.1 and its argument IS the alignment; slide 9's red-on-caliche focal is the best in the deck; slide 2's diagram is legible at 432; the vein-width fix measures 108/55/18 clear of the plates and now reads. Against that: slides 1, 3, 7 and 8 are one construction at 432 (sky / crumb band / dark mass / plates) with 3 and 8 near-interchangeable; slide 8's declared camera 'looking up a slope from the floor' is absent from the render; slide 7's declared translucent film reads as a third stratum with no edge cue and its graphite words are on a plate below it, not on it; slide 7's declared focal is the square-block dither and reads as JPEG blocking; slides 6 and 7 read as varnished timber on a rock-section deck; slide 9's caliche plate carries a slab shadow the other two plates on the same frame lack, on a declared zero-relief plan view; 3 of 9 declared focals (2, 4, 6) are not met at 432."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.6,
+      "why": "Every frame carries claim ids in the footer and beside each quote; quotes are verbatim on opaque plates. Law 4 is now applied without exception (slide 8 ochre on the party quote and caliche on ordering paragraph 6, slide 4's ERCOT notice moved to caliche, slide 6's strap ochre and the sum caliche). Slide 6's 260 + 265.5 = 525.5 is asserted by compute.py before the build proceeds, and slide 9's date now cites c24 rather than c27. I traced every numeral on nine frames to a declared claim or computation and found none floating. I did NOT inspect the caption; out/2026-08-28/final/caption.txt does not exist at that path, so caption_check is outside what I verified."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.5,
+      "why": "Names the county (Armstrong), the body (PUCT, docket 59220), the condition, the timing, whose arithmetic 525.5 is, and a dated door on September 17th 2026 honestly scoped to a separate proceeding. Short of 9 because the close gives a date and a project number but no filing route, so a reader knows WHEN and not HOW, and slide 7 (the turn) correctly refuses to state what the unanswered question is, which leaves the turn abstract."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "Place, arrangement, condition, timing, the lookalike figures, the contested figure, the turn, the counter-image, the close. Real build, and the close lands hard on the red. But the turn at 7 is the frame that reads least, so understanding is meant to change exactly where the drawing gives least; and the storyboard itself names slide 3 as the cut with 'the content loss is close to nothing', which is the plan admitting a frame is cuttable."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.4,
+      "why": "'Alike is not the same.' is the best line in the deck. 'Thirty minutes, or ten if they say so.' carries a dry shrug; 'The applicants did the arithmetic.' is precise and quietly damning. No dashes, no colons in prose, no first person, straight quotes, 'September 17th, 2026' month-first with the ordinal. Flat spots: 'The condition is the whole load.' is opaque on first read and 'What the order left out.' is inert, and beyond naming Armstrong County nothing in the copy is of the Panhandle."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.0,
+      "why": "The section register and the attribution-by-colour law are genuinely new, and tecovas is a hue no deck has carried. But three palette tokens are deck no. 8's tokens renamed and are two runs old: #E4DCC6 vs #E5DECC, #F5F1E6 vs #F4F0E4, #241E22 vs #211E1A. Deck no. 8's own ledger entry records this exact defect ('granite returns at the identical hex... which no ledger field currently compares') and it recurred on three tokens. Deck no. 8's avoid_next forbids a ground tooth written as a single noise layer and this deck runs one across four frames. That is more than 'one familiar move'."
+    }
+  ],
+  "weighted_score": 6.934,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Make the declared focal a measured object rather than a sentence in the plan: emit each frame's focal region as coordinates from the code that draws it, then assert at 432 px that it is the largest connected region in the top decile of contrast, which would have caught slide 2's 12 px node, slide 4's veins buried under three opaque plates, and slide 6's two small separated blocks in one pass instead of over five rounds.",
+  "judge": "craft"
+}

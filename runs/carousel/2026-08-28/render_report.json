@@ -2123,28 +2123,6 @@
           "anc": []
         },
         {
-          "text": "265.5 MW GOODNIT1 nameplate",
-          "x": 551,
-          "y": 699,
-          "w": 449,
-          "h": 35,
-          "font_px": 26,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(228, 220, 198)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              551,
-              699,
-              449,
-              35
-            ]
-          ],
-          "anc": []
-        },
-        {
           "text": "525.5 MW",
           "x": 818,
           "y": 533,
@@ -2267,10 +2245,10 @@
           "anc": []
         },
         {
-          "text": "c3 c12",
-          "x": 398,
+          "text": "c12",
+          "x": 415,
           "y": 1219,
-          "w": 101,
+          "w": 50,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -2280,9 +2258,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              398,
+              415,
               1219,
-              101,
+              50,
               31
             ]
           ],
@@ -2290,7 +2268,7 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 548,
+          "x": 531,
           "y": 1219,
           "w": 286,
           "h": 31,
@@ -2302,7 +2280,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              548,
+              531,
               1219,
               286,
               31
@@ -2415,17 +2393,6 @@
           "skip": []
         },
         {
-          "kind": "svg",
-          "x": 224,
-          "y": 752.4,
-          "w": 776,
-          "h": 3,
-          "by": "line",
-          "color": "rgb(228, 220, 198)",
-          "decorative": false,
-          "skip": []
-        },
-        {
           "kind": "fill",
           "x": 708,
           "y": 458,
@@ -2493,17 +2460,6 @@
         },
         {
           "kind": "fill",
-          "x": 536.7,
-          "y": 689.4,
-          "w": 477.3,
-          "h": 55,
-          "by": "rect",
-          "color": "rgb(36, 30, 34)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
           "x": 802,
           "y": 521,
           "w": 185.6,
@@ -2528,7 +2484,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3731,
+      "render_ms": 3927,
       "ok": true,
       "canvases": [
         {

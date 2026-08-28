@@ -519,6 +519,48 @@
         "round two, reader: frame 9's two rooms now state what each is about, where it is and when it sits, from c20's note and c21, both already fetched and already cited on that frame"
       ],
       "bespoke_note": "Re-measured after round four. The median rose from 0.363 to 0.4633 and the closest pair moved from slides 1 and 9 to slides 2 and 8 at 0.8125, because the repairs added the same vocabulary to several frames at once: shade helpers, measured-from-type widths, and probes authored off the render. Both of those frames are a mid grey steel object photographed near frontally with mono type on it, which the deck's own risk note predicted and claimed inverted polarity would hold apart. It did not. This is above bespoke_check's 0.35 WARN band and is recorded rather than explained away."
+    },
+    {
+      "date": "2026-08-28",
+      "carousel_no": 10,
+      "register": "the Llano Estacado before sunrise and one measured section cut down through it. One low sun at one azimuth on every frame that carries drawn light, and the deck descends through the section from the caprock to the red floor before standing back up on the surface",
+      "techniques": [
+        "a heightfield plain under an 82 percent sky with a lit caprock rim drawn as a BAND, not an edge",
+        "a two layer ground tooth whose seed head tips take the rim light and whose bases fall to the dark",
+        "a single line diagram authored in SVG with real stroke weight, one saturated node and no ground plane",
+        "a settlement meter tapped OFF the generator leg so no rule crosses its own label",
+        "a relit ledge course running off both frame edges, its cast subtracted from a ground lit first",
+        "three fibrous gypsum veins cutting the bedding at one computed pixels per minute rate, each with a lit fibre body and a dark parting wall",
+        "the hedged vein drawn in the party colour because the order hedges the figure it carries",
+        "a dead flat mudstone field with real per pixel variance and no low frequency ramp anywhere",
+        "a slope chart on a raking sandstone face with a drawn and labelled zero and its rate printed as a scale bar",
+        "TWO RELIT COURSES MEETING ON A COMPUTED IRREGULAR CONTACT, with a thin drafting film over the lower course and a matte writing panel below it",
+        "bedding traces on a slope seen from below, thinning monotonically to a rim with nothing above it but sky",
+        "caliche hardpan in plan under one grazing key, with desiccation cracks and per stone casts"
+      ],
+      "palette": {
+        "source": "the Armstrong County section, Llano Estacado caprock to Permian red beds",
+        "sky_predawn": "#1A1C33 the Panhandle sky before sunrise, cold blue and deliberately not the house Big Bend violet",
+        "rim_light": "#F2D9B4 first direct sun on a caprock edge",
+        "caliche_cap": "#E4DCC6 the Ogallala caprock hardpan. THE COMMISSION'S VALUE",
+        "trujillo": "#C6A277 buff Triassic ledge sandstone",
+        "tecovas": "#8C8496 the lavender-gray mudstone slope, a hue no deck here had carried",
+        "ochre": "#B4903F the yellow band in that slope. A PARTY'S VALUE",
+        "quartermaster": "#7E3B2E the red-brown claystone that floors the section",
+        "satin_spar": "#F5F1E6 fibrous white gypsum, the deck's light and its type",
+        "ledge_shadow": "#241E22 the underside of a ledge lip"
+      },
+      "red_spent": true,
+      "red_note": "Spent once, slide 9, as #BF0A30 ink on the caliche plate carrying September 17th, 2026. That date belongs to a DIFFERENT proceeding and the frame says so in its own words, so the reserved colour marks the only dated door the record actually holds rather than a window on this docket.",
+      "camera": "nine constructions, no class twice. A long range landscape elevation, an isometric diagram with no ground plane, a level mid range course, a square close bedded face, a dead flat zero light field, a square raking lit face, a full bleed contact at reading distance under a translucent overlay, an upward look from a slope floor, and a plan view straight down",
+      "attribution_law": "CALICHE AND GYPSUM CARRY THE COMMISSION, OCHRE CARRIES A PARTY. The deck's sharpest trap is the applicants' 525.5 MW figure that the order only records, and colour disarms it in the drawing rather than in a footnote. This is the single idea most worth carrying forward.",
+      "palette_collisions_with_recent_decks": "THREE OF THESE TEN TOKENS ARE NEAR MISSES OF DECK NO. 8's, TWO RUNS AGO, and a craft judge found all three by eye. satin_spar #F5F1E6 against cut_face #F4F0E4 and caliche_cap #E4DCC6 against limestone #E5DECC are indistinguishable; ledge_shadow #241E22 against blackland #211E1A is close. satin_spar is this deck's declared light AND its type, so the most seen colour across nine frames is deck 8's light under a new name. Deck 8's own entry asked for a comparison of hexes; these are near misses, so even an equality check would have missed them. Proposal 9 asks for perceptual distance against the last N decks.",
+      "focal_primitive_reuse": "One granular crumb primitive carries the declared focal on slides 1, 3, 7 and 8, four of nine. bespoke_check passed at a median of 0.2081 because it compares FRAMES, and the repetition is in the technique each frame reaches for. Slides 1, 3 and 8 also resolve to one picture at feed size against a camera plan declaring three cameras.",
+      "round_4_repairs": "Slide 4's three duration labels were 303 px off the veins encoding them, because the veins are rotated about their own left edge and the labels were drawn at that anchor 750 px away; the label position is now derived from the same transform. Slide 6's blocks were drop shadows calling themselves recesses, inverting the frame's declared value structure. Slide 6's chart ran under its own hook plate, so compute.py's span went 560 to 490 px. Slide 2's node shadow sat close enough to ochre to invert the attribution law by eye. Every verbatim quotation in the deck gained straight quotation marks, on eight frames.",
+      "light_decks_used": 0,
+      "bespoke_median": 0.1841,
+      "bespoke_closest_pair": "slide-07.html and slide-08.html at 0.7046",
+      "slides": 9
     }
   ]
 }

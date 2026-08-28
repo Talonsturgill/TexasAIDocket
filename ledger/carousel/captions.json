@@ -19,12 +19,12 @@
     "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
   },
   "opening_moves_recent": [
-    "the two things",
-    "the plain question",
     "the before and after",
     "the deadline",
     "the quiet decision",
-    "the number that is wrong"
+    "the number that is wrong",
+    "the who",
+    "the pair that looks alike"
   ],
   "entries": [
     {
@@ -153,15 +153,47 @@
       ],
       "critic_note": "Two directors, opposed assignments, and the critic refused BOTH. Candidate A printed two numerals on neither the claims list nor the aggregates labels, stated an absence as a thing that did not happen, and asserted a general rule about Texas procedure that no claim supports. Candidate B was the better written caption and lost on the ledger, because it declared 'the correction' as its opening and that move was on the exclusion list the room was handed before it wrote. The one rewrite opens on 'the who', inverted, which nine runs have not spent.",
       "naming_call": "THE CLOSING MOVE IS RECORDED AS THE ONE THE LAST THREE RUNS ALSO USED, and the reason is a hard gate rather than a lapse. brand.yaml sets linkedin_post.ends_with to engagement_question and caption_check hard fails a caption that does not end on one, so the close is a question whatever CAPTION_CRAFT's rotation would prefer. The PHRASING is new and the question is the deck's own argument put back to the reader. A rotation rule and a hard gate disagree here, and the disagreement is written down rather than resolved by quietly breaking one of them."
+    },
+    {
+      "date": "2026-08-28",
+      "carousel_no": 10,
+      "opening_move": "the pair that looks alike",
+      "structure": "the two figures, then what the order did with them",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "Two numbers in this order look alike.",
+      "words": 149,
+      "commas": 4,
+      "commas_per_100w": 2.68,
+      "hashtags": [
+        "#ArmstrongCounty",
+        "#ERCOT",
+        "#Docket59220"
+      ],
+      "critic_note": "Two directors, opposed assignments, one rewrite demanded and taken. The winning caption opens on the pair of figures the fact-check separated, 265.5 MW of generation against a 265 MW data center, which is the same discovery slide 5 exists for. TWO SENTENCES CAME OUT AFTER SCORING AND BOTH WERE THE SAME DEFECT. 'Neither complex is energized.' was an inference from the order's future-tense language published as flat present-tense fact, with no claim behind it and, in the first comment, attributed to a claim that says only that ownership has not transferred. Every use of the word energiz in the fetched order is future or conditional. It now reads 'Ownership of the second load has not transferred yet.', which is c16's own words. The closing move repeats 2026-08-27's, which the room should have been told to avoid and was not, because the ledger's closing_moves_recent list is hand kept and disagreed with entries in both directions all run. That is proposal 1.",
+      "opening_moves_excluded_given": [
+        "the who",
+        "the correction",
+        "the number"
+      ],
+      "structures_excluded_given": [
+        "two columns",
+        "the ladder"
+      ]
     }
   ],
   "structures_recent": [
+    "clock",
     "zoom in",
     "zoom out",
-    "ledger"
+    "ledger",
+    "two columns",
+    "the two figures, then what the order did with them"
   ],
   "closing_moves_recent": [
+    "point at the record, plainly, without a call to action",
     "name what is still not public, and how big that is",
+    "ask the one question the decision leaves open",
+    "ask the one question the decision leaves open",
     "ask the one question the decision leaves open",
     "ask the one question the decision leaves open"
   ]
