@@ -283,7 +283,7 @@ type:
 acceptance:
   - 'exactly three vein bodies cross the face, each with a lit fibre body and a darker parting wall on one side, and each carries exactly one of the strings "60 minutes", "30 minutes", "10 minutes"'
   - "the three vein widths stand in the ratios compute.py emits from 10, 30 and 60, within 2 px each, and no width is typed into the frame"
-  - "the words \"When practicable\" appear on the sixty minute vein, which is drawn in `#B4903F` rather than `satin_spar` because the order hedges it"
+  - "the words \"When practicable\" appear on the sixty minute vein, which is drawn as a BROKEN vein rather than in a party colour rather than `satin_spar` because the order hedges it"
   - "the frame nowhere states that ten minutes is required, and the word \"may\" from c9 appears"
   - "each figure sits on a fully opaque knockout of its own vein and no bedding line crosses a glyph"
 risks:
@@ -379,10 +379,10 @@ art:
 type:
   hook: "The applicants did the arithmetic."
   dek: "\"it would result in a total curtailment of 525.5 MW\""
-  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "265.5 MW  GOODNIT1 nameplate", "c12", "c3", "c5"]
+  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "265.5 MW  GOODNIT1 nameplate", "525.5 MW", "260 MW load + 265.5 MW generation", "c12", "c3", "c5"]
 acceptance:
-  - "the literal string \"THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT\" appears within 60 px of the numeral 525.5 and is set at 32 px or larger"
-  - "525.5 is set in `#B4903F` and no `caliche_cap` value appears inside its block"
+  - "the attribution outranks the figure by every measure a reader uses. THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT is set at 34 px on a full width saturated ochre strap ABOVE the chart, and 525.5 is set at 32 px, so the numeral is never the larger of the two. The earlier form of this item demanded the two sit within 60 px and the render had them 157 apart, which is the plan describing a frame that was not built"
+  - "525.5 is set in `#B4903F`, and the only `caliche_cap` string near it is the sum 260 MW load + 265.5 MW generation, which is where the applicants' figure comes from and is the commission's own two findings added together, so it takes a commission value"
   - "the value axis includes zero, zero is drawn and carries a label, and no axis is truncated"
   - "both plotted values sit at y positions computed by compute.py at the deck's single px_per_mw rate, and that rate appears on the frame as a scale bar"
   - "the nameplate hairline is drawn in `caliche_cap` and is visually distinct in construction from the two plotted areas, which are filled blocks of 40 by 40 px or more"
@@ -532,7 +532,7 @@ art:
 type:
   hook: "The open door is in another proceeding."
   dek: "\"Ensign respectfully asks the Commission to grant rehearing and amend its Order to find that no conditions are necessary on Crusoe Two.\""
-  labels: ["PUCT PROJECT 59550, A SEPARATE PROCEEDING", "COMMENTS DUE", "September 17th, 2026", "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM", "DOCKET 59220", "Filed Date - 2026-08-18", "texasaidocket.com", "c22", "c24", "c26", "c27"]
+  labels: ["PUCT PROJECT 59550, A SEPARATE PROCEEDING", "COMMENTS DUE  c24", "September 17th, 2026", "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM", "DOCKET 59220", "Filed Date - 2026-08-18", "texasaidocket.com", "c22", "c24", "c26", "c27"]
 acceptance:
   - "\"September 17th, 2026\" is the only text in the whole deck set in `#BF0A30`, and it measures 4.5 to 1 or better at its worst point against `caliche_cap`"
   - 'the frame NAMES the proceeding the deadline belongs to, reading "PUCT PROJECT 59550, A SEPARATE PROCEEDING" directly above the date. It never says the calendar entry names no docket, because the feed this run fetched shows that entry reading "Project 59550"'

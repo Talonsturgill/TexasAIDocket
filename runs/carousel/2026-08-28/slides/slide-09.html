@@ -13,8 +13,8 @@
   .door .due{margin-top:18px;font-family:"JetBrains Mono",monospace;font-weight:700;
              font-size:28px;letter-spacing:.13em;color:#8C1F2E}
   .door .date{margin-top:6px;font-family:"JetBrains Mono",monospace;font-weight:700;
-              font-size:74px;line-height:1;color:#BF0A30;font-variant-numeric:tabular-nums;
-              letter-spacing:-.01em}
+              font-size:62px;line-height:1.05;color:#BF0A30;font-variant-numeric:tabular-nums;
+              letter-spacing:-.02em;white-space:nowrap}
   .door .scope{margin-top:18px;font-family:"JetBrains Mono",monospace;font-weight:500;
                font-size:24px;line-height:1.36;letter-spacing:.02em;color:#4A3A2E}
   .door .dek{margin-top:12px;font-family:Manrope,sans-serif;font-weight:500;font-size:26px;
@@ -33,7 +33,11 @@
         font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
         letter-spacing:.03em;color:#4A3728;font-variant-numeric:tabular-nums}
 </style></head>
-<body data-contacts='[{"what":"the dated plate on the hardpan","shadow":[[300,716,400,20]],"ground":[[1008,716,64,20]]}]'>
+<!-- The probe rects are MEASURED off the render, never carried over from an earlier layout.
+     The door grew a COMMENTS DUE line and its date dropped from 74px to 62px to stop wrapping,
+     so its cast moved and these still pointed at bare ground. The gate then reported the plate
+     floating, correctly, about a shadow that was there all along 78 px higher up. -->
+<body data-contacts='[{"what":"the dated plate on the hardpan","shadow":[[300,638,400,14]],"ground":[[1008,638,64,14]]}]'>
 <canvas id="pan"></canvas>
 <h1>The open door is in another proceeding.</h1>
 <div class="door">
@@ -43,7 +47,7 @@
        spellings. What the quote was doing was naming what the date IS, and a label does that
        without spending the date a second time. -->
   <div class="kicker">PUCT PROJECT 59550, A SEPARATE PROCEEDING</div>
-  <div class="due">COMMENTS DUE</div>
+  <div class="due">COMMENTS DUE&nbsp;&nbsp;c24</div>
   <div class="date">September 17th, 2026</div>
   <div class="scope">QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM&nbsp;&nbsp;c27</div>
 </div>

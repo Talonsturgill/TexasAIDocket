@@ -36,6 +36,23 @@ NOTICE_MIN        = int(quoted("c10", "60 minutes")[:2])
 def mw(v):   return f"{v:,.1f} MW" if v % 1 else f"{v:,.0f} MW"
 def mins(v): return f"{v} minutes"
 
+# --- THE ARITHMETIC SLIDE 6's HOOK PROMISES AND THE FRAME NEVER SHOWED --------------------
+#
+# Slide 6 reads "The applicants did the arithmetic." and then printed 525.5 and 265.5 on one
+# chart without ever saying they were related. A reader judge found it: the sum is the deck's
+# only available stake, it needed no new source, and it was sitting on the frame unsaid.
+#
+# The applicants' contention is that curtailing under Condition 1 takes the Crusoe Two Load
+# AND GOODNIT1's generation together. That is 260 plus 265.5, and it is where 525.5 comes from.
+#
+# ASSERTED, NOT ASSUMED. If the sum ever stops matching the quoted total, this file stops the
+# build rather than printing a relationship the record does not support.
+COMPONENT_SUM = LOAD_TWO_MW + GEN_MW
+if abs(COMPONENT_SUM - CONTENDED_MW) > 1e-9:
+    sys.exit(f"compute: {LOAD_TWO_MW} + {GEN_MW} is {COMPONENT_SUM}, not the quoted "
+             f"{CONTENDED_MW}. The applicants' total is not these two components. "
+             f"Refusing to publish the sum.")
+
 out = {
   # ---- the strings a frame may print -------------------------------------------------------
   "gen_mw":        mw(GEN_MW),
@@ -64,6 +81,10 @@ out = {
   # An axis that runs under the furniture is the same defect as a truncated one: the reader is
   # shown less of the quantity than the frame claims to be showing.
   "px_per_mw": 490.0 / CONTENDED_MW,
+
+  # ---- the sum, as the frame prints it. Both components and the total are quoted figures ----
+  "component_sum_expr": f"{mw(LOAD_TWO_MW)} load + {mw(GEN_MW)} generation",
+  "contended_over_gen": CONTENDED_MW / GEN_MW,
 
   # ---- attribution, carried beside the figure so a frame can't print one without the other -
   "contended_attribution": "the applicants' count, which the order records",

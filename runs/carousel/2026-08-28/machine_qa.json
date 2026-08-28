@@ -44,11 +44,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.313,
-        0.3866,
-        0.5165
+        0.3193,
+        0.3929,
+        0.511
       ],
-      "band_ratio": 1.2586
+      "band_ratio": 1.2391
     },
     {
       "file": "slide-05.html",
@@ -70,10 +70,10 @@
       "warns": [],
       "bands": [
         0.2059,
-        0.8761,
+        0.8319,
         0.6875
       ],
-      "band_ratio": 1.1569
+      "band_ratio": 1.1849
     },
     {
       "file": "slide-07.html",
@@ -105,13 +105,13 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.5273,
-        0.3655,
+        0.5315,
+        0.4328,
         0.6195
       ],
-      "band_ratio": 1.2162,
+      "band_ratio": 1.1643,
       "contacts": [
-        "'the dated plate on the hardpan': shadow L* 49.4 vs ground L* 77.9, dL 28.5 at 432w"
+        "'the dated plate on the hardpan': shadow L* 50.9 vs ground L* 76.7, dL 25.8 at 432w"
       ]
     }
   ],

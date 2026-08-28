@@ -1312,7 +1312,7 @@
           "font_px": 40,
           "weight": "700",
           "family": "JetBrains Mono",
-          "color": "rgb(180, 144, 63)",
+          "color": "rgb(228, 220, 198)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1334,7 +1334,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(198, 162, 119)",
+          "color": "rgb(228, 220, 198)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1378,7 +1378,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(198, 162, 119)",
+          "color": "rgb(228, 220, 198)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1422,7 +1422,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(198, 162, 119)",
+          "color": "rgb(228, 220, 198)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1528,7 +1528,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(198, 162, 119)",
+          "color": "rgb(228, 220, 198)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1671,7 +1671,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1089,
+      "render_ms": 1111,
       "ok": true,
       "canvases": [
         {
@@ -1684,8 +1684,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 54,
-          "variance": 284.8
+          "mean": 53.7,
+          "variance": 212.2
         }
       ],
       "breather": false,
@@ -2147,10 +2147,10 @@
         {
           "text": "525.5 MW",
           "x": 818,
-          "y": 527,
-          "w": 183,
-          "h": 50,
-          "font_px": 38,
+          "y": 533,
+          "w": 154,
+          "h": 43,
+          "font_px": 32,
           "weight": "700",
           "family": "JetBrains Mono",
           "color": "rgb(180, 144, 63)",
@@ -2159,9 +2159,31 @@
           "lines": [
             [
               818,
-              527,
-              183,
-              50
+              533,
+              154,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "260 MW load + 265.5 MW generation",
+          "x": 517,
+          "y": 610,
+          "w": 483,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              517,
+              610,
+              483,
+              31
             ]
           ],
           "anc": []
@@ -2582,9 +2604,20 @@
         {
           "kind": "fill",
           "x": 802,
-          "y": 515,
-          "w": 214.6,
-          "h": 74,
+          "y": 521,
+          "w": 185.6,
+          "h": 67,
+          "by": "rect",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 504.9,
+          "y": 601,
+          "w": 507.1,
+          "h": 49,
           "by": "rect",
           "color": "rgb(36, 30, 34)",
           "decorative": false,
@@ -2605,7 +2638,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3819,
+      "render_ms": 3473,
       "ok": true,
       "canvases": [
         {
@@ -3201,7 +3234,7 @@
           "anc": []
         },
         {
-          "text": "COMMENTS DUE",
+          "text": "COMMENTS DUE c24",
           "x": 114,
           "y": 434,
           "w": 852,
@@ -3216,7 +3249,7 @@
             [
               114,
               434,
-              245,
+              347,
               37
             ]
           ],
@@ -3227,8 +3260,8 @@
           "x": 114,
           "y": 477,
           "w": 852,
-          "h": 148,
-          "font_px": 74,
+          "h": 65,
+          "font_px": 62,
           "weight": "700",
           "family": "JetBrains Mono",
           "color": "rgb(191, 10, 48)",
@@ -3237,15 +3270,9 @@
           "lines": [
             [
               114,
-              465,
-              655,
-              97
-            ],
-            [
-              114,
-              539,
-              175,
-              97
+              468,
+              719,
+              82
             ]
           ],
           "anc": []
@@ -3253,7 +3280,7 @@
         {
           "text": "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM c27",
           "x": 114,
-          "y": 643,
+          "y": 560,
           "w": 852,
           "h": 33,
           "font_px": 24,
@@ -3265,7 +3292,7 @@
           "lines": [
             [
               114,
-              643,
+              560,
               848,
               31
             ]
@@ -3444,23 +3471,23 @@
           "shadow": [
             [
               300,
-              716,
+              638,
               400,
-              20
+              14
             ]
           ],
           "ground": [
             [
               1008,
-              716,
+              638,
               64,
-              20
+              14
             ]
           ]
         }
       ],
       "nondeterminism": [],
-      "render_ms": 5064,
+      "render_ms": 5555,
       "ok": true,
       "canvases": [
         {
