@@ -1,0 +1,10 @@
+# Shell entry points and workflows must stay executable by Git Bash on Windows.
+*.sh text eol=lf
+.githooks/* text eol=lf
+*.yml text eol=lf
+
+# These files participate in literal byte comparisons. Keep the rule narrow:
+# committed data archives may intentionally preserve historical line endings.
+vendor/scanner/scan.html text eol=lf
+workers/ask/*.js text eol=lf
+workers/ask/*.mjs text eol=lf

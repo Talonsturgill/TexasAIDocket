@@ -703,7 +703,10 @@ def check_parity(root: Path, refs: dict | None = None) -> Result:
             r.skip(f"reference {alaska} not on disk")
             continue
         checked += 1
-        rel = str(texas.relative_to(root))
+        # parity_map.yaml is repository data, so its path keys use repository separators even
+        # when this check runs on Windows. `str(Path)` made every written exemption invisible
+        # there because it produced `config\\brand.yaml` instead of `config/brand.yaml`.
+        rel = texas.relative_to(root).as_posix()
         entry = pmap.get(rel, {}) or {}
         renamed = entry.get("renamed", {}) or {}
         dropped = entry.get("dropped", {}) or {}

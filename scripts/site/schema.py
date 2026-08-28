@@ -777,7 +777,9 @@ def self_test() -> int:
 
     ctx = Ctx(site_url=sb.SITE_URL, site_name=sb.SITE_NAME, topic_label=sb.topic_label,
               room_label=sb.room_label, ordinal=sb.ordinal)
-    items = json.loads((REPO_ROOT / "ledger" / "docket.json").read_text())["items"]
+    # The ledger is committed UTF-8. Relying on the host code page made this self-test fail on
+    # Windows before it could judge any structured data.
+    items = json.loads((REPO_ROOT / "ledger" / "docket.json").read_text(encoding="utf-8"))["items"]
     today = "2026-08-15"
 
     ok("the record loads", len(items) > 10, str(len(items)))
