@@ -124,6 +124,34 @@ hard_fails:
   - "a placeholder, a lorem, or an unfinished frame"
   - "a source cited that was never fetched"
 
+# WHICH KIND OF NO A JUDGE IS SAYING. Added 2026-08-28, and it is what makes the cap above
+# expressible. `panel.py` is the code that reads this and its comment carries the incident.
+#
+# Deck no. 10 was refused twice by judges who wrote, in the same file, that the refusal was the
+# threshold and not a fault. One added "I looked hard for one and I will not manufacture it".
+# `panel.py` synthesized a hard fail from `ship: false` with an empty `hard_fails`, a hard fail
+# stops a deck at ANY round, and the run reached the cap reading its own gate as saying both ship
+# and do not ship. It resolved that in four paragraphs of prose, which is not a gate.
+refusal:
+  field: refusal_reason
+  when: "you set ship: false and your hard_fails list is empty"
+  values:
+    threshold: >
+      Your no is about the NUMBER. The deck has no fault you can name and you scored it under
+      the bar. Say this only when your own weighted score is under the threshold, because the
+      panel checks that and treats a dissent it cannot reconcile with your number as a fault
+      refusal. Your dissent is carried where it belongs, in the median, and it is written into
+      score.json by name.
+  omitted: >
+    A refusal with no hard fail and no refusal_reason is a FAULT refusal and stops the deck at
+    any round. So is any other word. Silence fails closed on purpose: a judge that refuses
+    without saying why has to be treated as refusing, which is the case the original rule was
+    written for and which has not changed.
+  never: >
+    This is not a way to ship a deck. A declared threshold dissent moves no verdict field. If
+    the panel's median is under the bar the deck still holds, and if you can name a fault it is
+    a hard fail and it still stops the deck whatever else you write.
+
 honesty:
   rule: >
     Do not round up. Not to reach the threshold, not because the run worked hard, not because
