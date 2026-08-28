@@ -1138,6 +1138,7 @@ def annotated() -> str:
   /* The phone's own bottom furniture, the home indicator strip. The ask box reads this
      when it parks the composer above the fold, so the field never sits under it. Zero
      everywhere that has no such strip. */
+  --safe-top:env(safe-area-inset-top, 0px);
   --safe-bottom:env(safe-area-inset-bottom, 0px);
   --shell:72rem;
 }}
@@ -3192,7 +3193,7 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    and the thing you type into stays under your thumb. Putting answers below the composer
    pushes the field down the page as the exchange grows, so the control a reader wants is the
    one that keeps moving away from them. */
-.askthread {{ margin:0 0 1.1rem; display:grid; gap:0; }}
+.askthread {{ margin:0 0 1.1rem; display:grid; gap:0; align-content:start; }}
 .askturn {{ margin:0 0 .7rem; padding-left:.85rem; font-size:var(--s0);
   line-height:1.5; color:var(--ink-mute);
   border-left:2px solid var(--rule-strong); }}
@@ -3206,16 +3207,33 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 /* WHAT IS HAPPENING, WHILE IT HAPPENS. Both halves of this line are true rather than
    decorative. The record really is being read, and every figure really is checked against it
    before it is allowed onto the page. */
-.askstage {{ display:flex; align-items:center; gap:.6rem;
-  font-size:var(--s-1); color:var(--ink-mute); }}
-.askstage::before {{ content:""; width:.4rem; height:.4rem; border-radius:50%; flex:none;
-  background:var(--accent); animation:askpulse 1.1s ease-in-out infinite; }}
-@keyframes askpulse {{ 0%,100% {{ opacity:.25; transform:scale(.8); }}
+.askstage {{ position:relative; display:grid; grid-template-columns:auto minmax(0,1fr);
+  align-items:center; gap:.55rem .65rem; overflow:hidden; margin:0 0 .9rem;
+  padding:.72rem .8rem .62rem; border-radius:.8rem;
+  border:var(--hair) solid color-mix(in srgb,var(--accent) 24%,var(--rule));
+  background:linear-gradient(110deg,
+    color-mix(in srgb,var(--accent) 8%,transparent),
+    color-mix(in srgb,var(--surface) 72%,transparent) 48%,
+    color-mix(in srgb,var(--accent) 5%,transparent));
+  font-size:var(--s-1); line-height:1.4; color:var(--ink-mute); }}
+.askstagelight {{ width:.48rem; height:.48rem; border-radius:50%;
+  background:var(--accent); animation:askpulse 1.25s ease-in-out infinite; }}
+/* A TWO PIXEL RAIL DOES THE MOVING. The whole translucent panel used to be the tempting
+   target, but repainting a blurred full width layer every frame is expensive on the exact
+   phones this is for. Transforming this small child stays on the compositor. */
+.askstagebar {{ position:relative; grid-column:1 / -1; height:2px; overflow:hidden;
+  background:color-mix(in srgb,var(--accent) 13%,transparent); }}
+.askstagebar::after {{ content:""; position:absolute; inset:0 auto 0 0; width:46%;
+  background:linear-gradient(90deg,transparent,
+    color-mix(in srgb,var(--accent) 72%,var(--ink-bright)),transparent);
+  transform:translateX(-115%); animation:askscan 1.45s cubic-bezier(.45,0,.55,1) infinite; }}
+@keyframes askpulse {{ 0%,100% {{ opacity:.45; transform:scale(.86); }}
                        50% {{ opacity:1; transform:scale(1); }} }}
+@keyframes askscan {{ to {{ transform:translateX(320%); }} }}
 /* Each verified sentence arrives on its own and fades rather than snapping in. The fade is
    not ornament: it marks the sentence as a unit, which is the unit the guard checks. */
-.askseg {{ animation:askfade .3s ease both; }}
-@keyframes askfade {{ from {{ opacity:0; }} to {{ opacity:1; }} }}
+.askseg {{ animation:askfade .28s ease-out both; }}
+@keyframes askfade {{ from {{ opacity:0; }} }}
 
 /* WHERE AN ANSWER STOPPED, AND WHY. A sentence that fails a check ends the answer there. The
    reader is told which check, in words, because "something went wrong" from a record product
@@ -3248,6 +3266,7 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
    aside, so the answer is the only thing being read. They come back with Start over. */
 .askbox.answering .chips,
 .askbox.answering .asknote {{ display:none; }}
+.askmobilehead {{ display:none; }}
 
 /* ---- THE BOX TAKES THE SCREEN ON A PHONE -----------------------------------------------
    Owner, after asking a question on a phone: "there's so much stuff on screen, your eyes
@@ -3273,16 +3292,46 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
   body.asking footer.site {{ display:none; }}
   body.asking .asksection {{ margin:0; }}
   body.asking main {{ padding:0; }}
-  /* The safe-area token keeps the field off the home indicator on a notched phone. */
-  body.asking #ask {{ position:fixed; inset:0; z-index:60; overflow-y:auto;
-    padding:.9rem var(--gap) calc(.9rem + var(--safe-bottom));
-    background:var(--bg); display:flex; flex-direction:column; justify-content:flex-end; }}
-  body.asking #ask .askthread {{ flex:1 1 auto; overflow-y:auto; }}
+  /* THE TRANSCRIPT OWNS THE SCROLL AND THE COMPOSER OWNS THE BOTTOM EDGE. Giving both the
+     window and the thread overflow produced two scroll systems and `park()` was driving the
+     one a phone could not move. A zero basis and min-height zero are both required for a flex
+     child to become smaller than its content rather than push the composer off screen. */
+  body.asking #ask {{ position:fixed; inset:0; z-index:60; height:100dvh; overflow:hidden;
+    padding:0 var(--gap) calc(.8rem + var(--safe-bottom));
+    background:var(--bg); display:flex; flex-direction:column; }}
+  body.asking #ask .askmobilehead {{ display:flex; flex:none; flex-direction:column;
+    justify-content:center; min-height:calc(3.8rem + var(--safe-top));
+    padding:var(--safe-top) 3.25rem 0 0; }}
+  .askmobilehead span {{ font-family:var(--mono); font-size:var(--s-2); line-height:1.3;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--ink-mute); }}
+  .askmobilehead strong {{ font:500 var(--s1)/1.25 var(--body); color:var(--ink-bright); }}
+  body.asking #ask .askthread {{ order:1; flex:1 1 0; min-height:0; overflow-y:auto;
+    margin:0; padding:.55rem .1rem 1rem 0; overscroll-behavior-y:contain; }}
+  body.asking #ask:not(.answering) .chips {{ order:2; display:grid; gap:.42rem;
+    margin:auto 0 .65rem; }}
+  body.asking #ask:not(.answering) .chips button {{ min-height:2.75rem;
+    padding:.62rem .78rem;
+    text-align:left; line-height:1.35; border-radius:.75rem;
+    background:color-mix(in srgb,var(--surface) 58%,transparent); }}
+  body.asking #ask #askts {{ order:3; }}
+  body.asking #ask .composer {{ order:4; flex:none; margin:0 0 .05rem; }}
+  body.asking #ask .asknote {{ order:5; margin-top:.48rem; }}
+  body.asking #ask .composer button[type="submit"] {{ width:2.75rem; height:2.75rem; }}
+  /* A QUESTION IS A COMPACT BUBBLE ON A PHONE, so a long thread can be scanned by speaker
+     without putting the answer into a second box. */
+  body.asking #ask .askturn {{ justify-self:end; max-width:88%;
+    padding:.62rem .78rem; border:0; border-radius:1rem 1rem .28rem 1rem;
+    background:color-mix(in srgb,var(--accent) 10%,var(--surface)); color:var(--ink); }}
+  body.asking #ask .askreply + .askturn {{ margin-top:1.35rem; }}
+  body.asking #ask .askfrom {{ gap:.45rem; align-items:center; }}
+  body.asking #ask .askagain {{ min-height:2.75rem; display:inline-flex; align-items:center;
+    padding:.35rem .68rem; border:var(--hair) solid color-mix(in srgb,var(--accent) 34%,transparent);
+    border-radius:999px; text-decoration:none; }}
   /* THE WAY OUT IS VISIBLE. A full screen mode with no exit is a trap, and Escape is not
      discoverable on a phone at all. */
   body.asking .askclose {{ display:flex; }}
 }}
-.askclose {{ display:none; position:absolute; top:.5rem; right:.5rem; z-index:61;
+.askclose {{ display:none; position:absolute; top:calc(.5rem + var(--safe-top)); right:.5rem; z-index:61;
   width:2.75rem; height:2.75rem; align-items:center; justify-content:center;
   border:0; border-radius:999px; background:transparent; color:var(--ink-mute);
   font-size:1.5rem; line-height:1; cursor:pointer; }}
@@ -3303,7 +3352,8 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
 #askts:not(:empty) {{ margin-top:.9rem; }}
 
 @media (prefers-reduced-motion:reduce) {{
-  .askstage::before {{ animation:none; opacity:1; }}
+  .askstagelight {{ animation:none; }}
+  .askstagebar::after {{ animation:none; transform:none; }}
   .askseg {{ animation:none; }}
   .askbox button[type="submit"][aria-busy="true"]::after {{ animation:none; }}
 }}

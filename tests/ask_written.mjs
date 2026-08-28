@@ -340,6 +340,33 @@ ok("the copy keeps the record open", /record itself is open/.test(limited), limi
 ok("and says nothing about an address or rate limiter", !/\b(?:IP|address|rate limit)\b/i.test(limited),
   limited);
 
+/* THE PHONE THREAD HAS ITS OWN SCROLLER. The live page kept `scrollTop` at zero while the
+   second answer streamed, because `park()` moved the window and the mobile stylesheet moved
+   the conversation into `#askthread`. A short answer cannot distinguish those two routes,
+   so this is measured only after the real sequence above has made the thread overflow. */
+const liveEnd = await page.evaluate(() => {
+  const t = document.getElementById("askthread");
+  return {
+    overflow: t.scrollHeight > t.clientHeight + 20,
+    remaining: Math.round(t.scrollHeight - t.clientHeight - t.scrollTop),
+    scrollTop: Math.round(t.scrollTop),
+  };
+});
+ok("the phone conversation is long enough to exercise its scroller", liveEnd.overflow,
+   JSON.stringify(liveEnd));
+ok("the streamed conversation follows its live end", liveEnd.overflow && liveEnd.remaining < 32,
+   JSON.stringify(liveEnd));
+
+/* EARN THE STATE THAT START OVER HAS TO CLEAR. Resetting after an answer with no offer proves
+   nothing about the stale accessible name, because the control already says Ask. */
+await page.fill("#askq", "why does it matter who decides it");
+await page.press("#askq", "Enter");
+await page.waitForFunction(() => document.querySelector('button[type="submit"]')
+  .getAttribute("aria-label") === "Use the suggested question", null, { timeout: 8000 });
+ok("the reset probe really has a suggested question",
+  (await page.getAttribute('button[type="submit"]', "aria-label")) ===
+    "Use the suggested question");
+
 // ------------------------------------------------------------------ reset
 head("I. start over puts it back");
 await page.click(".askagain");
@@ -350,6 +377,9 @@ ok("the starters are back", await page.locator(".chips").isVisible());
 ok("the placeholder is back",
   (await page.getAttribute("#askq", "placeholder")) === resting,
   await page.getAttribute("#askq", "placeholder"));
+ok("the submit control is named for a fresh question again",
+  (await page.getAttribute('button[type="submit"]', "aria-label")) === "Ask",
+  await page.getAttribute('button[type="submit"]', "aria-label"));
 ok("and the next question starts a fresh conversation",
   (await page.evaluate(() => document.querySelectorAll(".askturn").length)) === 0);
 
@@ -528,6 +558,11 @@ head("I2. on a phone the box takes the screen, and gives it back");
   await ph.waitForTimeout(400);
   await ph.evaluate(() => scrollTo(0, 600));
   await ph.waitForTimeout(150);
+  await ph.evaluate(() => {
+    document.getElementById("askq").addEventListener("pointerdown", () => {
+      window.__askTapY = window.pageYOffset;
+    }, { capture: true, once: true });
+  });
 
   /* TAPPED, NOT FOCUSED PROGRAMMATICALLY. `focus()` skips pointerdown, and a browser scrolls a
      focused input into view BEFORE the focus handler runs, so the position the box remembers
@@ -546,6 +581,21 @@ head("I2. on a phone the box takes the screen, and gives it back");
   });
   ok("focusing the field takes the screen", on.asking && on.covers, JSON.stringify(on));
   ok("the hero and the nav are gone", !on.hero && !on.nav, JSON.stringify(on));
+
+  const prompts = await ph.evaluate(() => {
+    const form = document.querySelector("#ask form").getBoundingClientRect();
+    const buttons = Array.from(document.querySelectorAll("#ask .chips button"))
+      .map((el) => el.getBoundingClientRect());
+    return {
+      count: buttons.length,
+      minHeight: Math.round(Math.min(...buttons.map((r) => r.height))),
+      aboveComposer: buttons.length > 0 && buttons[buttons.length - 1].bottom <= form.top - 4,
+    };
+  });
+  ok("the suggested questions are thumb sized", prompts.count > 0 && prompts.minHeight >= 43,
+     JSON.stringify(prompts));
+  ok("the suggestions sit above the composer they can fill", prompts.aboveComposer,
+     JSON.stringify(prompts));
 
   /* EVERY SELECTOR THE FULL SCREEN RULE HIDES MUST MATCH SOMETHING.
      The rule named `.sitefoot`, which matches nothing on any page here, so the footer stayed
@@ -577,13 +627,22 @@ head("I2. on a phone the box takes the screen, and gives it back");
       if (String(u).includes("/answer")) {
         const enc = new TextEncoder();
         return Promise.resolve(new Response(new ReadableStream({ start(c) {
-          c.enqueue(enc.encode(JSON.stringify({ stage: "Reading the record" }) + "\n")); } }),
+          c.enqueue(enc.encode(JSON.stringify({ stage: "Reading the record" }) + "\n"));
+          setTimeout(() => c.enqueue(enc.encode(JSON.stringify({
+            sentence: "The first checked sentence arrived."
+          }) + "\n")), 180);
+        } }),
           { status: 200, headers: { "content-type": "application/x-ndjson" } }));
       }
       return real(u, o);
     };
     window.turnstile = { render: (el, o) => { setTimeout(() => o.callback("t"), 5); return 1; },
                          reset: () => {} };
+    /* This page focused the field before the stub was installed, so the real loader has
+       already registered its callback and then been aborted. Invoke that registered path;
+       otherwise the assertion below is still looking at the pre-request token wait rather
+       than at a sentence arriving from the stream. */
+    if (window.askTurnstileReady) window.askTurnstileReady();
   });
   await ph.fill("#askq", "why does the deadline keep moving");
   await ph.press("#askq", "Enter");
@@ -591,11 +650,20 @@ head("I2. on a phone the box takes the screen, and gives it back");
   const mid = await ph.evaluate(() => {
     const vis = (s) => { const e = document.querySelector(s); return e ? e.offsetParent !== null : false; };
     return { stage: (document.querySelector(".askstage") || {}).textContent || "",
+             answer: (document.querySelector(".askreply p") || {}).textContent || "",
+             rail: !!document.querySelector(".askstagebar"),
              question: (document.querySelector(".askturn") || {}).textContent || "",
+             questionHeight: Math.round(document.querySelector(".askturn")
+               .getBoundingClientRect().height),
              chips: vis(".chips"), note: vis(".asknote"), hero: vis(".hero") };
   });
-  ok("while it works, it says what it is doing", mid.stage.trim().length > 0, JSON.stringify(mid));
+  ok("while verified sentences arrive, it keeps saying what it is doing",
+     /Checking each sentence against the record/.test(mid.stage) &&
+       /first checked sentence/.test(mid.answer), JSON.stringify(mid));
+  ok("the activity surface carries a progress rail", mid.rail, JSON.stringify(mid));
   ok("the question is still read back", mid.question.length > 0, JSON.stringify(mid));
+  ok("a one line question stays a compact message", mid.questionHeight < 96,
+     JSON.stringify(mid));
   ok("and nothing else is competing for the eye",
      !mid.chips && !mid.note && !mid.hero, JSON.stringify(mid));
 
@@ -607,9 +675,11 @@ head("I2. on a phone the box takes the screen, and gives it back");
   // an early scroll is clamped. Measuring inside that window reads a position still on its way.
   await ph.waitForTimeout(900);
   const off = await ph.evaluate(() => ({
-    asking: document.body.classList.contains("asking"), y: Math.round(scrollY) }));
+    asking: document.body.classList.contains("asking"), y: Math.round(scrollY),
+    expected: Math.round(window.__askTapY) }));
   ok("closing hands the screen back", !off.asking, JSON.stringify(off));
-  ok("...and puts them back where they were", Math.abs(off.y - 600) < 40, JSON.stringify(off));
+  ok("...and puts them back where they were", Math.abs(off.y - off.expected) < 40,
+     JSON.stringify(off));
 
   /* A STARTER TAKES THE SCREEN TOO, and this is the exact press the owner made.
      Immersion hung off the field's FOCUS, and a starter is a button that never focuses the
