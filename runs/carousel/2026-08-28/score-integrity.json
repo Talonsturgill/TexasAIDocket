@@ -1,0 +1,47 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.4,
+      "why": "Nine genuinely distinct technique classes and a palette derived from a real section (tecovas #8C8496 is new to this product). Slide 7 is a real image: I measured the film and the run is right, the mauve lower course retains its horizontal grain through the overlay and the film's top edge reads as a straight ruled line at y1078 (displayed) against the irregular contact at y700. Against that: the contact sheet makes slides 01, 03 and 08 one drawing at thumbnail scale, dark sky over light horizon band over dark brown ground with the hook top left, a third of the deck. Slide 6's declared focal is an 86x86 px block on a 1080 canvas (render_report rules, x717 y467) which is a 34 px chip at 432 w, and the frame reads as an empty brown field. Slide 01's own encoding probe returned 'visible 0%/0%, seen 0/0px' in machine_qa.json, which is a pass by vacancy rather than a measurement."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 6.3,
+      "why": "29 claims, every one primary_official, every one fetched 2026-08-28, and compute.py's quoted() refuses a figure absent from a quote. I verified the geometry against computed.json to the hundredth: the nameplate hairline sits at y752.4 on a baseline of y1000, a rise of 247.6 against computed gen_px 247.56; the 100 MW bracket spans y906.8 to y1000, 93.2 against scale_step_px 93.24; the 525.5 block centres at y510, 490 above baseline against contended_px 490.0. No numeral on any frame or in the caption traces to nothing. AGAINST that, see the slide 6 finding below, plus 'nameplate' on slide 6 for a figure c3 calls a 'wind generation resource' and slide 5 calls 'GOODNIT1's own rating'; c29's quote does not contain the token 'Project 59550' the frame prints; first_comment.txt lists c1 to c26 and omits c27, c28 and c29 entirely, so a reader following the colophon cannot reach the calendar feed slide 9 cites."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.6,
+      "why": "Names Armstrong County, the PUCT, the docket, both filing dates and a deadline, which is the rubric's 9 on paper. It is not a 9 because the only deadline is in Project 59550 and the deck honestly says so twice ('A SEPARATE PROCEEDING' on the frame, 'This is not docket 59220' in the first comment). A Texan finishes deck 10 able to act on a proceeding this deck is not about. Compounding it, law 8 in the storyboard forbids the deck from stating what the unanswered question is, so slide 1 promises a question and slide 7 confirms it exists and nothing ever names it."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.8,
+      "why": "There is a real turn at 7, and it is the deck's brightest frame and its one inversion, which is the right place to spend it. Slides 3, 4 and 5 are three consecutive expository frames and the storyboard itself nominates slide 3 as the cut. Slide 6's hook 'The applicants did the arithmetic.' sits over a frame that shows one block and one hairline and no arithmetic, which compute.py's own comment block explains as a deliberate refusal, leaving the hook writing a cheque the frame declines to cash."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.7,
+      "why": "'Alike is not the same.' and 'Decided above. Decided below. Not between.' are lines a person wrote. House rules clean on every surface I checked: no em or en dashes, no colons or semicolons outside verbatim quotes, ordinal month-first dates throughout ('July 24th, 2026', 'August 18th, 2026', 'September 17th, 2026'), no first person, no sentence opening And or But, and caption writer-chosen commas at 4 over roughly 150 words. Flat because the register is filing-room end to end. 'Armstrong County' appears in nine footers and inside exactly one sentence, so the place is a stamp rather than a setting."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.5,
+      "why": "No topic repeat: tx-2026-0108 appears nowhere in the 30 day window of ledger/carousel/topics.json, and the entity and keyword overlap with the nearest neighbour is PUCT and ERCOT, which half the ledger carries. But this is the third PUCT large-load proceeding in ten decks (no. 3 Batch Zero, no. 6 Project 58482, no. 10 Docket 59220), and closing on 'a comment window in a parallel proceeding closes on DATE' is the second use in six days, deck 6 having closed on September 4th. That is the exact defect the ledger's own 2026-08-26 angle_note describes, a gate reading topic and entities while the repeated thing is the move."
+    }
+  ],
+  "weighted_score": 6.51,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Slide 6 sets the applicants' 525.5 MW against a reference line labelled '265.5 MW GOODNIT1 nameplate', and 525.5 minus 265.5 is 260, so the frame's geometry hands the reader the exact decomposition compute.py spends 25 lines documenting as FALSE and removing from the prose: relabel the reference to the 265.5 that is actually inside their sum (the Crusoe One Load as they characterise it) or replace it with a reference that cannot be subtracted.",
+  "judge": "integrity",
+  "refusal_reason": "threshold",
+  "refusal_reason_source": "transcribed by the run from the judge's round-5 report, which returned hard_fails [] and wrote 'I looked hard for one and I will not manufacture it'. The field postdates the report by one commit."
+}

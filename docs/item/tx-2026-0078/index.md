@@ -9,7 +9,7 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-08-25
+- Last checked: 2026-08-28
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-21 · Admitted. The Legislature's own committee page carries the meeting and the Legislative Reference Library carries both charges in full. So the record has the data center charge and the 765 kV charge on the same August 19th agenda.
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-08-28 · Checked and unchanged. House State Affairs has published no interim report from the August 19th hearing. The committee's reading of the data center framework and the 765 kV lines is still only what was said in the room.
 
 ## Evidence
 

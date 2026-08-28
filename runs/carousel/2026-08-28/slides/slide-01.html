@@ -1,0 +1,111 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1A1C33}
+  #land{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#8C8496}
+  h1{position:absolute;top:414px;left:80px;width:884px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:104px;line-height:1.03;color:#F5F1E6;letter-spacing:-.015em}
+  .dek{position:absolute;top:866px;left:80px;width:840px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:34px;line-height:1.34;color:#E4DCC6}
+  .scrim{position:absolute;left:0;bottom:0;width:1080px;height:196px;
+         background:linear-gradient(to bottom,rgba(20,16,20,0) 0%,rgba(20,16,20,.72) 46%,rgba(20,16,20,.90) 100%)}
+  .foot{position:absolute;bottom:100px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.1em;color:#C6A277;font-variant-numeric:tabular-nums}
+  .np{color:#C6A277;font-weight:500;letter-spacing:.06em}
+  .nameplate{position:absolute;top:976px;left:80px;font-family:"JetBrains Mono",monospace;
+     font-weight:700;font-size:40px;color:#F2D9B4;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+</style></head>
+<body data-encodes='[{"claim":"the lit caprock rim is the light and the plain below it is not","reads":"differ","a":[[120,1070,840,16]],"b":[[120,1150,840,16]]}]'>
+<canvas id="land"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Approved. The question underneath is still open.</h1>
+  <div class="nameplate"><span class="np">GOODNIT1</span>&nbsp;&nbsp;265.5 MW</div>
+  <p class="dek">Two AI data center complexes will sit behind one wind farm's own meter in Armstrong County.</p>
+  <div class="scrim" data-decorative></div>
+  <div class="foot"><span>ARMSTRONG COUNTY</span><span>c3 c5 c28</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350,HZ=1092;
+  const c=document.getElementById('land');
+  c.width=W*2; c.height=H*2; const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260828); const R=TX.rng(20260828);
+
+  // ---- sky: cold pre-dawn, darkest at the top, never warm ----------------------------------
+  for(let y=0;y<HZ;y++){
+    const t=y/HZ;                      // 0 top .. 1 horizon
+    const L=10+Math.pow(t,2.1)*26;     // 10% .. 36% lightness, cold throughout
+    const S=30-t*12, Hh=232+t*6;       // hue stays blue. no warm stop anywhere
+    g.fillStyle=`hsl(${Hh},${S}%,${L}%)`; g.fillRect(0,y,W,1);
+  }
+
+  // ---- the lit caprock rim: the one thing the sun has reached ------------------------------
+  // A BAND WITH REAL HEIGHT, because the declared focal is an area and a hairline can not win
+  // an eye at 432px however well the frame around it is lit.
+  const rim=[];
+  for(let x=0;x<W;x++){
+    const h = 40 + TX.fbm2(x/260, 11.5, 3)*17 + TX.fbm2(x/58, 4.25, 2)*6;
+    rim.push(Math.max(32,h));
+  }
+  for(let x=0;x<W;x++){
+    const h=rim[x];
+    const gr=g.createLinearGradient(0,HZ-h,0,HZ);
+    gr.addColorStop(0,'#F2D9B4'); gr.addColorStop(0.30,'#EBCFA5');
+    gr.addColorStop(0.72,'#B9976E'); gr.addColorStop(1,'#5F4A38');
+    g.fillStyle=gr; g.fillRect(x,HZ-h,1,h);
+  }
+  // the caprock's own broken lip, catching the same sun on its upper facets
+  for(let i=0;i<7400;i++){
+    const x=R()*W, h=rim[Math.floor(x)];
+    const y=HZ-h+R()*h*0.78, w=2.0+R()*6.4;
+    g.fillStyle=`rgba(255,244,224,${0.10+R()*0.32})`; g.fillRect(x,y,w,1.7);
+  }
+
+  // ---- the plain below, in shadow: mounds, then tooth, then near-field weight ---------------
+  for(let y=HZ;y<H;y++){
+    const d=(y-HZ)/(H-HZ);
+    g.fillStyle=`hsl(${14-d*4},${30+d*10}%,${16-d*8}%)`; g.fillRect(0,y,W,1);
+  }
+  // low frequency mounds, each with a lit crown and a shaded flank, so the plain has form
+  for(let b=0;b<7;b++){
+    const yb = HZ + 10 + b*36;
+    const dd = (yb-HZ)/(H-HZ);
+    for(let x=0;x<W;x++){
+      const m = TX.fbm2(x/210 + b*3.1, 40.5+b, 3);
+      const top = yb + m*17;
+      g.fillStyle=`rgba(242,217,180,${(0.13-dd*0.09).toFixed(3)})`;
+      g.fillRect(x, top, 1, 2.2);
+      g.fillStyle=`rgba(30,22,26,${(0.16+dd*0.26).toFixed(3)})`;
+      g.fillRect(x, top+2.2, 1, 9+dd*16);
+    }
+  }
+  // cured seed-head tooth. tips take the rim light, bases fall to the deck's dark.
+  for(let i=0;i<78000;i++){
+    const x=R()*W;
+    const bias=Math.pow(R(),0.48);            // denser and heavier in the near field
+    const y=HZ+6+bias*(H-HZ-6);
+    const d=(y-HZ)/(H-HZ);
+    const hgt=1.6+d*9.5;
+    const w=0.7+d*0.9;
+    if(R()<0.46){ g.fillStyle=`rgba(242,217,180,${(0.05+d*0.26).toFixed(3)})`;
+                  g.fillRect(x,y-hgt,w,hgt*0.42); }
+    g.fillStyle=`rgba(26,18,22,${(0.20+d*0.44).toFixed(3)})`;
+    g.fillRect(x,y-hgt*0.55,w,hgt*0.55);
+  }
+  // distance haze lifting the far plain, so the NEAR field is the frame's darkest
+  const fg=g.createLinearGradient(0,HZ,0,HZ+96);
+  fg.addColorStop(0,'rgba(150,142,160,0.34)'); fg.addColorStop(1,'rgba(150,142,160,0)');
+  g.fillStyle=fg; g.fillRect(0,HZ,W,96);
+  const nf=g.createLinearGradient(0,H-150,0,H);
+  nf.addColorStop(0,'rgba(18,12,16,0)'); nf.addColorStop(1,'rgba(18,12,16,0.55)');
+  g.fillStyle=nf; g.fillRect(0,H-150,W,150);
+
+  await document.fonts.ready;
+})();
+</script></body></html>

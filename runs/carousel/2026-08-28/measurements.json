@@ -1,0 +1,34 @@
+{
+ "note": "Every L* figure this run's prose is allowed to print, MEASURED off the nine rendered PNGs at 216 by 270. A figure absent from this file is absent whatever wrote it.",
+ "measured_on": "2026-08-28",
+ "measured_from": "out/2026-08-28/render/slide-0N.png, resized to 216x270, median CIE L*",
+ "per_frame_median_lstar": [
+  12.9,
+  11.2,
+  15.0,
+  19.3,
+  30.2,
+  22.2,
+  48.7,
+  22.3,
+  80.9
+ ],
+ "deck_median_lstar": 22.2,
+ "mean_lstar": 29.2,
+ "sd_lstar": 21.2,
+ "min_lstar": 11.2,
+ "max_lstar": 80.9,
+ "range_lstar": 69.7,
+ "bespoke_median_similarity": 0.1788,
+ "bespoke_closest_pair_similarity": 0.7046,
+ "slide_psnr_db_min": 36.6,
+ "slide_psnr_db_max": 43.4,
+ "acceptance_thresholds_lstar": {
+  "note": "DECLARED, NOT MEASURED, and the distinction is the point. Every other figure in this file is read off a rendered PNG. These are the L* separations the dossiers REQUIRE.",
+  "values": [
+   2.0,
+   8.0,
+   12.0
+  ]
+ }
+}

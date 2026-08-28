@@ -1,0 +1,3357 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Approved. The question underneath is still open.",
+          "x": 80,
+          "y": 414,
+          "w": 884,
+          "h": 428,
+          "font_px": 104,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              403,
+              629,
+              129
+            ],
+            [
+              80,
+              510,
+              369,
+              129
+            ],
+            [
+              80,
+              617,
+              756,
+              129
+            ],
+            [
+              80,
+              724,
+              236,
+              129
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GOODNIT1 265.5 MW",
+          "x": 80,
+          "y": 976,
+          "w": 459,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 217, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              291,
+              976,
+              248,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GOODNIT1",
+          "x": 80,
+          "y": 976,
+          "w": 211,
+          "h": 53,
+          "font_px": 40,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              976,
+              211,
+              53
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "Two AI data center complexes will sit behind one wind farm's own meter in Armstrong County.",
+          "x": 80,
+          "y": 866,
+          "w": 840,
+          "h": 91,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              865,
+              763,
+              46
+            ],
+            [
+              80,
+              911,
+              697,
+              46
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c5 c28",
+          "x": 381,
+          "y": 1219,
+          "w": 151,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              381,
+              1219,
+              151,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 565,
+          "y": 1219,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              565,
+              1219,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 882,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1154,
+          "w": 1080,
+          "h": 196,
+          "by": "scrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the lit caprock rim is the light and the plain below it is not",
+          "reads": "differ",
+          "a": [
+            [
+              120,
+              1070,
+              840,
+              16
+            ]
+          ],
+          "b": [
+            [
+              120,
+              1150,
+              840,
+              16
+            ]
+          ],
+          "a_visible_frac": 0,
+          "b_visible_frac": 0
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1062,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 45.8,
+          "variance": 796.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "GOODNIT1",
+          "x": 469,
+          "y": 493,
+          "w": 141,
+          "h": 37,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              469,
+              493,
+              141,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "265.5 MW",
+          "x": 458,
+          "y": 527,
+          "w": 163,
+          "h": 45,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              458,
+              527,
+              163,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Crusoe One Load",
+          "x": 158,
+          "y": 893,
+          "w": 265,
+          "h": 37,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              158,
+              893,
+              265,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "265 MW",
+          "x": 229,
+          "y": 927,
+          "w": 122,
+          "h": 45,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              229,
+              927,
+              122,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Crusoe Two Load",
+          "x": 658,
+          "y": 893,
+          "w": 265,
+          "h": 37,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              658,
+              893,
+              265,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "260 MW",
+          "x": 729,
+          "y": 927,
+          "w": 122,
+          "h": 45,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              729,
+              927,
+              122,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "EPS",
+          "x": 719,
+          "y": 651,
+          "w": 51,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              719,
+              651,
+              51,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SHARED SETTLEMENT METER c28",
+          "x": 579,
+          "y": 714,
+          "w": 421,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              579,
+              714,
+              421,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "POINT OF INTERCONNECTION",
+          "x": 74,
+          "y": 743,
+          "w": 408,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 217, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              74,
+              743,
+              408,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUCT DOCKET 59220, ORDER",
+          "x": 80,
+          "y": 84,
+          "w": 438,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              438,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A 260 MW load behind one interconnection.",
+          "x": 80,
+          "y": 140,
+          "w": 840,
+          "h": 172,
+          "font_px": 82,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              132,
+              68,
+              101
+            ],
+            [
+              378,
+              132,
+              419,
+              101
+            ],
+            [
+              80,
+              218,
+              719,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "260 MW",
+          "x": 148,
+          "y": 141,
+          "w": 231,
+          "h": 92,
+          "font_px": 70,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              152,
+              141,
+              223,
+              92
+            ]
+          ],
+          "anc": [
+            10
+          ]
+        },
+        {
+          "text": "\"the Crusoe One and Crusoe Two loads will be co-located with GOODNIT1 and interconnected at the GOODNIT1 point of interconnection\"",
+          "x": 80,
+          "y": 1030,
+          "w": 920,
+          "h": 73,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1029,
+              915,
+              37
+            ],
+            [
+              80,
+              1065,
+              789,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 238,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 159, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              238,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c5 c6 c7 c28",
+          "x": 352,
+          "y": 1219,
+          "w": 223,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 159, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              352,
+              1219,
+              223,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 609,
+          "y": 1219,
+          "w": 253,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 159, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              609,
+              1219,
+              253,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 896,
+          "y": 1219,
+          "w": 104,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 159, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              896,
+              1219,
+              104,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 540,
+          "y": 580,
+          "w": 5,
+          "h": 180,
+          "by": "line",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 344,
+          "y": 480,
+          "w": 392,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 344,
+          "y": 576,
+          "w": 392,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 344,
+          "y": 480,
+          "w": 4,
+          "h": 100,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 732,
+          "y": 480,
+          "w": 4,
+          "h": 100,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 344,
+          "y": 480,
+          "w": 392,
+          "h": 100,
+          "by": "rect",
+          "color": "rgb(26, 28, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 118,
+          "y": 874,
+          "w": 344,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 118,
+          "y": 982,
+          "w": 344,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 118,
+          "y": 874,
+          "w": 4,
+          "h": 112,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 458,
+          "y": 874,
+          "w": 4,
+          "h": 112,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 118,
+          "y": 874,
+          "w": 344,
+          "h": 112,
+          "by": "rect",
+          "color": "rgb(26, 28, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 618,
+          "y": 874,
+          "w": 344,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 618,
+          "y": 982,
+          "w": 344,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 618,
+          "y": 874,
+          "w": 4,
+          "h": 112,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 958,
+          "y": 874,
+          "w": 4,
+          "h": 112,
+          "by": "rect",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 618,
+          "y": 874,
+          "w": 344,
+          "h": 112,
+          "by": "rect",
+          "color": "rgb(26, 28, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 540,
+          "y": 668,
+          "w": 146,
+          "h": 4,
+          "by": "line",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 686,
+          "y": 640,
+          "w": 118,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 686,
+          "y": 692,
+          "w": 118,
+          "h": 4,
+          "by": "rect",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 686,
+          "y": 640,
+          "w": 4,
+          "h": 56,
+          "by": "rect",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 800,
+          "y": 640,
+          "w": 4,
+          "h": 56,
+          "by": "rect",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 686,
+          "y": 640,
+          "w": 118,
+          "h": 56,
+          "by": "rect",
+          "color": "rgb(26, 28, 51)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1200,
+          "w": 1080,
+          "h": 150,
+          "by": "scrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 617,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 1160,
+          "w": 1080,
+          "h": 190,
+          "bw": 2160,
+          "bh": 380,
+          "area_frac": 0.141,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 37.5,
+          "variance": 87.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "CONDITION 1",
+          "x": 80,
+          "y": 84,
+          "w": 201,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              201,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The condition is the whole load.",
+          "x": 80,
+          "y": 150,
+          "w": 860,
+          "h": 196,
+          "font_px": 94,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              751,
+              116
+            ],
+            [
+              80,
+              238,
+              438,
+              116
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Crusoe and Ensign must ensure that the Crusoe Two Load fully curtails its consumption in the manner directed by ERCOT\"",
+          "x": 116,
+          "y": 840,
+          "w": 848,
+          "h": 126,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              116,
+              840,
+              786,
+              42
+            ],
+            [
+              116,
+              882,
+              848,
+              42
+            ],
+            [
+              116,
+              924,
+              156,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUCT DOCKET 59220, ORDER, ORDERING PARAGRAPH 1 c8",
+          "x": 116,
+          "y": 986,
+          "w": 848,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              116,
+              986,
+              816,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT, the grid operator the order names",
+          "x": 80,
+          "y": 1064,
+          "w": 920,
+          "h": 36,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(140, 132, 150)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1064,
+              504,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 194, 162)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c8",
+          "x": 403,
+          "y": 1219,
+          "w": 84,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 194, 162)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              403,
+              1219,
+              84,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 542,
+          "y": 1219,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 194, 162)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              542,
+              1219,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 882,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 194, 162)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1200,
+          "w": 1080,
+          "h": 150,
+          "by": "scrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the ledge lip over the shadow it throws",
+          "shadow": [
+            [
+              120,
+              712,
+              840,
+              34
+            ]
+          ],
+          "ground": [
+            [
+              120,
+              592,
+              840,
+              34
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 793,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 53.2,
+          "variance": 1489.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "When practicable",
+          "x": 578,
+          "y": 416,
+          "w": 235,
+          "h": 38,
+          "font_px": 28,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              416,
+              235,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "60 minutes",
+          "x": 578,
+          "y": 457,
+          "w": 240,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              457,
+              240,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT NOTICE",
+          "x": 578,
+          "y": 506,
+          "w": 190,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              506,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "30 minutes",
+          "x": 578,
+          "y": 602,
+          "w": 240,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              602,
+              240,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE REQUIREMENT",
+          "x": 578,
+          "y": 651,
+          "w": 238,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              651,
+              238,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "10 minutes",
+          "x": 578,
+          "y": 777,
+          "w": 240,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              777,
+              240,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BY WRITTEN CONFIRMATION",
+          "x": 578,
+          "y": 826,
+          "w": 364,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              578,
+              826,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUCT DOCKET 59220, ORDER, CONDITION 1",
+          "x": 80,
+          "y": 84,
+          "w": 675,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              675,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Thirty minutes, or ten if they say so.",
+          "x": 110,
+          "y": 158,
+          "w": 860,
+          "h": 175,
+          "font_px": 84,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              110,
+              150,
+              830,
+              103
+            ],
+            [
+              110,
+              237,
+              395,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Crusoe or Ensign may reduce the required time period from 30 minutes to 10 minutes by providing written confirmation to ERCOT of the Crusoe Two Load's capability to curtail within 10 minutes.\"",
+          "x": 112,
+          "y": 988,
+          "w": 856,
+          "h": 104,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              987,
+              775,
+              36
+            ],
+            [
+              112,
+              1022,
+              840,
+              36
+            ],
+            [
+              112,
+              1057,
+              762,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10",
+          "x": 112,
+          "y": 1108,
+          "w": 856,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              1108,
+              114,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10",
+          "x": 398,
+          "y": 1219,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              398,
+              1219,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 548,
+          "y": 1219,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              548,
+              1219,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 882,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 552,
+          "y": 400,
+          "w": 396,
+          "h": 140,
+          "by": "rect",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 552,
+          "y": 597,
+          "w": 396,
+          "h": 96,
+          "by": "rect",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 552,
+          "y": 772,
+          "w": 396,
+          "h": 96,
+          "by": "rect",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1111,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 53.7,
+          "variance": 212.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "PUCT DOCKET 59220, ORDER, FINDINGS OF FACT",
+          "x": 80,
+          "y": 84,
+          "w": 766,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              766,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Alike is not the same.",
+          "x": 80,
+          "y": 150,
+          "w": 860,
+          "h": 214,
+          "font_px": 104,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              617,
+              129
+            ],
+            [
+              80,
+              246,
+              249,
+              129
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "265.5 MW",
+          "x": 96,
+          "y": 486,
+          "w": 359,
+          "h": 76,
+          "font_px": 76,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              473,
+              359,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GOODNIT1's own rating",
+          "x": 500,
+          "y": 508,
+          "w": 480,
+          "h": 37,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              500,
+              506,
+              326,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "265 MW",
+          "x": 96,
+          "y": 614,
+          "w": 269,
+          "h": 76,
+          "font_px": 76,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              601,
+              269,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the first data center",
+          "x": 500,
+          "y": 636,
+          "w": 480,
+          "h": 37,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              500,
+              634,
+              285,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "260 MW",
+          "x": 96,
+          "y": 742,
+          "w": 269,
+          "h": 76,
+          "font_px": 76,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              729,
+              269,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "the second data center",
+          "x": 500,
+          "y": 764,
+          "w": 480,
+          "h": 37,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              500,
+              762,
+              331,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ALL THREE FROM THE COMMISSION'S OWN FINDINGS",
+          "x": 80,
+          "y": 874,
+          "w": 920,
+          "h": 66,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              890,
+              759,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Goodnight owns and operates GOODNIT1, a stand-alone 265.5-MW wind generation resource in Armstrong County.\"",
+          "x": 80,
+          "y": 962,
+          "w": 920,
+          "h": 73,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              961,
+              915,
+              37
+            ],
+            [
+              80,
+              998,
+              542,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c5",
+          "x": 403,
+          "y": 1219,
+          "w": 84,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              403,
+              1219,
+              84,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 542,
+          "y": 1219,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              542,
+              1219,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 882,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "this frame carries no drawn light, so its ground is one value everywhere",
+          "reads": "same",
+          "a": [
+            [
+              120,
+              1160,
+              300,
+              60
+            ]
+          ],
+          "b": [
+            [
+              660,
+              1160,
+              300,
+              60
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2212,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 77,
+          "variance": 88.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "0 MW",
+          "x": 127,
+          "y": 982,
+          "w": 67,
+          "h": 37,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              127,
+              982,
+              67,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "100 MW",
+          "x": 886,
+          "y": 938,
+          "w": 92,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              886,
+              938,
+              92,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "525.5 MW",
+          "x": 818,
+          "y": 533,
+          "w": 154,
+          "h": 43,
+          "font_px": 32,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(180, 144, 63)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              818,
+              533,
+              154,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The applicants did the arithmetic.",
+          "x": 114,
+          "y": 100,
+          "w": 852,
+          "h": 158,
+          "font_px": 76,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(180, 144, 63)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              93,
+              738,
+              93
+            ],
+            [
+              114,
+              172,
+              376,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT",
+          "x": 114,
+          "y": 280,
+          "w": 852,
+          "h": 115,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              293,
+              771,
+              45
+            ],
+            [
+              132,
+              337,
+              214,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"it would result in a total curtailment of 525.5 MW\"",
+          "x": 108,
+          "y": 1084,
+          "w": 864,
+          "h": 38,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(180, 144, 63)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              1082,
+              688,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12",
+          "x": 415,
+          "y": 1219,
+          "w": 50,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              415,
+              1219,
+              50,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 531,
+          "y": 1219,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              531,
+              1219,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 882,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 224,
+          "y": 452,
+          "w": 3,
+          "h": 548,
+          "by": "line",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 206,
+          "y": 1000,
+          "w": 794,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 114.8,
+          "y": 973,
+          "w": 91.4,
+          "h": 55,
+          "by": "rect",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1000,
+          "y": 906.8,
+          "w": 3,
+          "h": 93.2,
+          "by": "line",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 990,
+          "y": 1000,
+          "w": 10,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 990,
+          "y": 906.8,
+          "w": 10,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 873.8,
+          "y": 929.4,
+          "w": 116.2,
+          "h": 49,
+          "by": "rect",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 708,
+          "y": 458,
+          "w": 104,
+          "h": 104,
+          "by": "rect",
+          "color": "rgba(8, 5, 9, 0.74)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 708,
+          "y": 458,
+          "w": 104,
+          "h": 9,
+          "by": "rect",
+          "color": "rgba(4, 2, 5, 0.86)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 708,
+          "y": 458,
+          "w": 9,
+          "h": 104,
+          "by": "rect",
+          "color": "rgba(4, 2, 5, 0.86)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 803,
+          "y": 458,
+          "w": 9,
+          "h": 104,
+          "by": "rect",
+          "color": "rgba(255, 246, 226, 0.3)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 708,
+          "y": 553,
+          "w": 104,
+          "h": 9,
+          "by": "rect",
+          "color": "rgba(255, 246, 226, 0.22)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 717,
+          "y": 467,
+          "w": 86,
+          "h": 86,
+          "by": "rect",
+          "color": "rgb(180, 144, 63)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 802,
+          "y": 521,
+          "w": 185.6,
+          "h": 67,
+          "by": "rect",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1200,
+          "w": 1080,
+          "h": 150,
+          "by": "scrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3927,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 55.8,
+          "variance": 193.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "MOTION FOR REHEARING, DOCKET 59220",
+          "x": 80,
+          "y": 84,
+          "w": 684,
+          "h": 57,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              95,
+              95,
+              654,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Decided above. Decided below. Not between.",
+          "x": 114,
+          "y": 180,
+          "w": 852,
+          "h": 173,
+          "font_px": 84,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              171,
+              834,
+              103
+            ],
+            [
+              114,
+              258,
+              703,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Nor did the Order directly address the critical legal and policy issue of first impression that underlies this case\"",
+          "x": 80,
+          "y": 972,
+          "w": 920,
+          "h": 137,
+          "font_px": 35,
+          "weight": "700",
+          "family": "Manrope",
+          "color": "rgb(20, 15, 20)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              970,
+              867,
+              48
+            ],
+            [
+              80,
+              1016,
+              904,
+              48
+            ],
+            [
+              80,
+              1061,
+              96,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"the Order is excessive, arbitrary and capricious, unsupported by the evidentiary record, and not authorized by the language of PURA.\"",
+          "x": 80,
+          "y": 1118,
+          "w": 920,
+          "h": 69,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(42, 32, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1117,
+              844,
+              36
+            ],
+            [
+              80,
+              1151,
+              799,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 46, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c17 c18 c19",
+          "x": 370,
+          "y": 1219,
+          "w": 185,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 46, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              370,
+              1219,
+              185,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 576,
+          "y": 1219,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 46, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              576,
+              1219,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 882,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 46, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the two courses are different materials, each fully drawn, and the join is what nobody mar",
+          "reads": "differ",
+          "a": [
+            [
+              120,
+              700,
+              300,
+              50
+            ]
+          ],
+          "b": [
+            [
+              120,
+              250,
+              300,
+              50
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 0
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3056,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 134.6,
+          "variance": 4413.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "What the order left out.",
+          "x": 80,
+          "y": 104,
+          "w": 860,
+          "h": 91,
+          "font_px": 88,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(245, 241, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              95,
+              843,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"GOODNIT2 does not yet exist, is not a part of the application, and should not be considered in this proceeding.\"",
+          "x": 108,
+          "y": 620,
+          "w": 864,
+          "h": 71,
+          "font_px": 27,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              619,
+              840,
+              37
+            ],
+            [
+              108,
+              654,
+              582,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "commission staff and ERCOT, answering as parties c13",
+          "x": 108,
+          "y": 705,
+          "w": 864,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 42, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              705,
+              840,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"The Commission denies all other motions and any other requests for general or specific relief, if not expressly granted.\"",
+          "x": 108,
+          "y": 896,
+          "w": 864,
+          "h": 71,
+          "font_px": 27,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              895,
+              844,
+              37
+            ],
+            [
+              108,
+              930,
+              685,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUCT DOCKET 59220, ORDER, ORDERING PARAGRAPH 6 c15",
+          "x": 108,
+          "y": 981,
+          "w": 864,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 42, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              108,
+              981,
+              808,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 269,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              269,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 c15",
+          "x": 392,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              392,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 553,
+          "y": 1219,
+          "w": 286,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              553,
+              1219,
+              286,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 882,
+          "y": 1219,
+          "w": 118,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 162, 119)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              882,
+              1219,
+              118,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1200,
+          "w": 1080,
+          "h": 150,
+          "by": "scrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3438,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 42.4,
+          "variance": 596.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The open door is in another proceeding.",
+          "x": 80,
+          "y": 96,
+          "w": 880,
+          "h": 181,
+          "font_px": 88,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              87,
+              682,
+              108
+            ],
+            [
+              80,
+              178,
+              737,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUCT PROJECT 59550, A SEPARATE PROCEEDING c29",
+          "x": 114,
+          "y": 382,
+          "w": 852,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 74, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              382,
+              817,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "COMMENTS DUE c24",
+          "x": 114,
+          "y": 434,
+          "w": 852,
+          "h": 37,
+          "font_px": 28,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 31, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              434,
+              347,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 17th, 2026",
+          "x": 114,
+          "y": 477,
+          "w": 852,
+          "h": 65,
+          "font_px": 62,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(191, 10, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              468,
+              719,
+              82
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM c27",
+          "x": 114,
+          "y": 560,
+          "w": 852,
+          "h": 33,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 58, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              560,
+              848,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Ensign respectfully asks the Commission to grant rehearing and amend its Order to find that no conditions are necessary on Crusoe Two.\"",
+          "x": 80,
+          "y": 788,
+          "w": 920,
+          "h": 105,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(46, 38, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              805,
+              873,
+              36
+            ],
+            [
+              102,
+              839,
+              796,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DOCKET 59220",
+          "x": 80,
+          "y": 1012,
+          "w": 333,
+          "h": 56,
+          "font_px": 42,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 30, 34)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1012,
+              333,
+              56
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Motion for rehearing filed August 18th, 2026 c26",
+          "x": 80,
+          "y": 1074,
+          "w": 920,
+          "h": 66,
+          "font_px": 26,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(46, 38, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              1088,
+              600,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ARMSTRONG COUNTY",
+          "x": 80,
+          "y": 1219,
+          "w": 242,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 55, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1219,
+              242,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c22 c24 c26 c27 c29",
+          "x": 331,
+          "y": 1219,
+          "w": 287,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 55, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              331,
+              1219,
+              287,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 628,
+          "y": 1219,
+          "w": 257,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 55, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              628,
+              1219,
+              257,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 894,
+          "y": 1219,
+          "w": 106,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 55, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              894,
+              1219,
+              106,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the dated plate on the hardpan",
+          "shadow": [
+            [
+              300,
+              638,
+              400,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              1008,
+              638,
+              64,
+              14
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 5276,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 192.5,
+          "variance": 302.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

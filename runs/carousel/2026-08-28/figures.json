@@ -1,0 +1,24 @@
+{
+ "_note": "The counts this run computed, and where each came from. ledger_check reads this to decide which number WORDS the topic ledger's prose may use. This deck's topic and angle use none, so nothing here authorises anything, and the file still has to exist and be true: a gate that cannot find its artifact does not run, and a gate that does not run is not a gate.",
+ "loads_named_in_the_order": {
+  "value": 2,
+  "from_items": [
+   "tx-2026-0108"
+  ],
+  "note": "Counted by compute.py off c5's verbatim quote, which names the Crusoe One Load and the Crusoe Two Load. compute.py stops the build if it ever finds a different number, and it did stop once here, when the pattern missed the second because the order writes the closing period inside the quotation."
+ },
+ "curtailment_durations": {
+  "value": 3,
+  "from_items": [
+   "tx-2026-0108"
+  ],
+  "note": "The distinct minute values the order's Condition 1 carries, counted off c9 and c10: 60 minutes of notice when practicable, 30 minutes to curtail, 10 by written confirmation."
+ },
+ "days_order_to_rehearing": {
+  "value": 25,
+  "from_items": [
+   "tx-2026-0108"
+  ],
+  "note": "July 24th 2026 to August 18th 2026, computed from c25 and c26 rather than counted by hand."
+ }
+}

@@ -1,0 +1,364 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "The docket's official case style names the three applicants and what they asked for.",
+      "quote": "APPLICATION OF CRUSOE ENERGY SYSTEMS LLC, FGE GOODNIGHT I, LLC AND ENSIGN INFRASTRUCTURE LLC FOR APPROVAL OF A NET METERING ARRANGEMENT",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "source_title": "PUCT Interchange, Filings for 59220, Case Style",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c2",
+      "text": "The commission approved the arrangement and attached conditions to it.",
+      "quote": "The Commission approves the net metering arrangement, subject to the conditions imposed by this Order.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c3",
+      "text": "The commission's findings give the generator's capacity and the county it stands in.",
+      "quote": "Goodnight owns and operates GOODNIT1, a stand-alone 265.5-MW wind generation resource in Armstrong County.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Findings of Fact 3",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c4",
+      "text": "The commission found Ensign is the intended customer the applicants say will take over both loads once they are built.",
+      "quote": "Ensign is the intended large load customer that the applicants state will take over and operate both the Crusoe One and Crusoe Two loads upon their completion and energization.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c5",
+      "text": "The commission's findings give both data center complexes their size and put both in Armstrong County.",
+      "quote": "Crusoe is the current owner and developer of two AI data-center complexes located in Armstrong County: a 265-MW data center complex referred to as \"the Crusoe One Load\" and a 260-MW AI data-center complex referred to as \"the Crusoe Two Load.\"",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Findings of Fact 5",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c6",
+      "text": "The commission found both loads sit at the generator's own point of interconnection.",
+      "quote": "the Crusoe One and Crusoe Two loads will be co-located with GOODNIT1 and interconnected at the GOODNIT1 point of interconnection",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c7",
+      "text": "The commission gave its reason for weighing both loads together rather than only the new one.",
+      "quote": "it is appropriate to consider both loads when evaluating the net metering arrangement for the Crusoe Two load.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c8",
+      "text": "The order's first condition requires the second load to come off entirely when ERCOT instructs it.",
+      "quote": "Crusoe and Ensign must ensure that the Crusoe Two Load fully curtails its consumption in the manner directed by ERCOT",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Ordering Paragraph 1, Condition 1",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c9",
+      "text": "The order sets a 30 minute window and lets the operators cut it to 10 minutes by telling ERCOT in writing they can.",
+      "quote": "Crusoe or Ensign may reduce the required time period from 30 minutes to 10 minutes by providing written confirmation to ERCOT of the Crusoe Two Load's capability to curtail within 10 minutes.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Ordering Paragraph 1, Condition 1",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c10",
+      "text": "ERCOT gives notice ahead of the instruction where it can, as a floor rather than a fixed period.",
+      "quote": "When practicable, ERCOT must provide at least 60 minutes of notice in advance",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Ordering Paragraph 1, Condition 1",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c11",
+      "text": "The order bars the second load from every demand response program it names.",
+      "quote": "Crusoe and Ensign may not allow the Crusoe Two Load to be offered into or to participate in any ERCOT or transmission or distribution service provider (TDSP) demand response product, program, or service, including without limitation any Ancillary Service, ERCOT's Emergency Response Service, any ERCOT-procured contract for capacity, or any TDSP load management program.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Ordering Paragraph 1, Condition 3",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c12",
+      "text": "The order records the figure Ensign and Crusoe argued the two conditions add up to. It is their contention and the commission does not adopt it.",
+      "quote": "it would result in a total curtailment of 525.5 MW",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c13",
+      "text": "Commission staff and ERCOT answered that a second wind resource which has not been built should be left out of the case.",
+      "quote": "GOODNIT2 does not yet exist, is not a part of the application, and should not be considered in this proceeding.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c14",
+      "text": "The commission had imposed the same conditions once before, in the case the order calls the only other one to reach a final decision.",
+      "quote": "the Commission also imposed identical conditions in Docket No. 58872",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c15",
+      "text": "The order refused every request it did not expressly grant.",
+      "quote": "The Commission denies all other motions and any other requests for general or specific relief, if not expressly granted.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Ordering Paragraph 6",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c16",
+      "text": "The commission found the second load has not changed hands and that Ensign may yet not be the customer.",
+      "quote": "ownership and control of the Crusoe Two Load has not yet transferred to Ensign, making it less than certain that Ensign will replace Crusoe as the large load customer",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c17",
+      "text": "The company that will operate the load says the order goes beyond what the statute allows.",
+      "quote": "exceeds what is required or authorized under PURA § 39.169",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c18",
+      "text": "The motion says the order left the central legal question unanswered.",
+      "quote": "Nor did the Order directly address the critical legal and policy issue of first impression that underlies this case",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c19",
+      "text": "The motion states how it characterizes the order.",
+      "quote": "the Order is excessive, arbitrary and capricious, unsupported by the evidentiary record, and not authorized by the language of PURA.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c20",
+      "text": "The motion argues the duty should be sized to the existing generator the statute is about.",
+      "quote": "the curtailment obligation should be calibrated to the size of the existing generator that is subject to PURA",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c21",
+      "text": "The motion names the day it was served.",
+      "quote": "was served on all parties of record in this proceeding on this 18th day of August, 2026",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c22",
+      "text": "The motion asks the commission to delete the conditions rather than shrink them.",
+      "quote": "Ensign respectfully asks the Commission to grant rehearing and amend its Order to find that no conditions are necessary on Crusoe Two.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c23",
+      "text": "The motion names exactly what it is challenging.",
+      "quote": "Ensign respectfully raises points of error to Findings of Fact 57 and 58, Conclusions of Law 9 and 10, and Ordering Paragraph 1.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c24",
+      "text": "Comments in the commission's review of the system-wide offer cap programs are due September 17th, 2026.",
+      "quote": "Comments are due by September 17, 2026.",
+      "url": "https://interchange.puc.texas.gov/Documents/59550_2_1676119.PDF",
+      "source_title": "PUCT Interchange, control number 59550 item 2, Staff Questions for Comments, file stamp 8/20/2026",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c25",
+      "text": "The motion dates the order it is challenging.",
+      "quote": "July 24, 2026 Order (the \"Order\") exceeds what is required or authorized under PURA § 39.169.",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c26",
+      "text": "The commission's own filing receipt dates the motion for rehearing.",
+      "quote": "Filed Date - 2026-08-18",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+      "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73, filing receipt page",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c27",
+      "text": "The separate proceeding's own case style names what it is reviewing.",
+      "quote": "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM UNDER 16 TAC 25.509(d)",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "source_title": "PUCT Interchange, Filings for 59550, Case Style",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c28",
+      "text": "The order names the meter the loads share, and gives it the abbreviation the frame prints.",
+      "quote": "will share the existing ERCOT-polled settlement (EPS) meter used for GOODNIT1",
+      "url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+      "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69, Background",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    },
+    {
+      "id": "c29",
+      "text": "The commission's own calendar classifies 59550 as a Project, on the entry carrying the September 17th public comment deadline.",
+      "quote": "Project 59550 NA ( Open To Public )",
+      "url": "https://www.puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+      "source_title": "PUCT commission calendar feed, entry titled Public Comment Deadline - Thursday, September 17, 2026. Its description is HTML escaped in the feed and is quoted here unescaped with its markup tags stripped",
+      "source_type": "primary_official",
+      "retrieved": "2026-08-28",
+      "confidence": "high"
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "The case style read off the Interchange filing index",
+      "reason": "KEPT, against the fact-checker. It could not reach the index URL and judged the string against the two PDF captions, which punctuate differently. The index page was fetched and saved this run and carries the string exactly as quoted. The claim cites the index and nothing else."
+    },
+    {
+      "finding": "The Crusoe One data center is 265.5 MW",
+      "reason": "CUT. 265.5 MW is GOODNIT1's generating capacity in the commission's own finding. The commission's finding for the first load is 265 MW. The 265.5 MW version of the load belongs to the applicants' briefing and would put a figure on a slide the order itself contradicts."
+    },
+    {
+      "finding": "The commission refused to consider GOODNIT2",
+      "reason": "CUT AND REWRITTEN. Those words are commission staff and ERCOT answering as a party, summarized in the discussion. No finding of fact in the order mentions GOODNIT2 at all."
+    },
+    {
+      "finding": "Only one other net metering case has been decided",
+      "reason": "CUT. Docket 58881 was decided by the same commission on April 23rd, 2026 with the same parties, and Docket 58872 is the only other one beyond that. The quoted phrase can't carry a count of every case ever decided."
+    },
+    {
+      "finding": "The first condition requires Ensign to fully curtail its consumption",
+      "reason": "CUT. That string is the order reciting Docket 58881's condition on the FIRST load. The condition this order imposes names the Crusoe Two Load."
+    },
+    {
+      "finding": "Reuters reporting that ExxonMobil runs robotic drilling rigs in the Permian and will convert half its fleet by 2028",
+      "reason": "No ExxonMobil release, SEC filing or Helmerich and Payne release states any of it. One wire story read in a syndicated copy is a lead, not a citation."
+    },
+    {
+      "finding": "Xcel Energy has AI smoke detection cameras across eleven Texas Panhandle counties",
+      "reason": "The only release found is from December 2024 and its own words say the counties are currently being considered rather than installed."
+    },
+    {
+      "finding": "USDA is flying AI equipped drones over Texas livestock for screwworm",
+      "reason": "The APHIS page carrying the flight numbers never uses the words artificial intelligence, and trade coverage says USDA is still exploring AI analysis of the imagery."
+    },
+    {
+      "finding": "Katy ISD's grade band rules on generative AI",
+      "reason": "The rules are not on the district page that was fetched. District language is what a policy claim needs."
+    },
+    {
+      "finding": "Houston Methodist's operating room AI raised surgical case volume by seven percent",
+      "reason": "Neither journal article was fetched and the figure was read out of a vendor's own release."
+    },
+    {
+      "finding": "Austin City Council initiated data center land use rules on August 27th",
+      "reason": "The resolution text could not be read and the vote count is unconfirmed. The candidate stays in the seed until the operative text is read."
+    },
+    {
+      "finding": "Texas A&M's VISION supercomputer general availability slipped",
+      "reason": "Neither university page carries a date and nobody announced a slip, so a deck claiming one would assert a change the sources do not state."
+    },
+    {
+      "finding": "Two Texas cities let their Flock camera contracts lapse on the same Tuesday night",
+      "reason": "HELD, not disproved. Both agendas were fetched and quote cleanly, and the rejections rest on journalism because neither city's minutes were final. It is queued for the next run rather than published on reporting."
+    },
+    {
+      "finding": "The order date read off the Interchange filing index file stamp",
+      "reason": "The index row is three words and the gate refuses a quote that short, correctly, because a three word string can not be searched for in a source. Both dates are carried instead by the motion itself, which is a filed document and quotes them in running prose."
+    },
+    {
+      "finding": "The commission's calendar entry for September 17th names a date and no docket",
+      "reason": "CUT AS FALSE. A scoring judge called it and the feed this run fetched settles it. The entry's description reads 'Project 59550'. It names its project, and a frame saying otherwise was both unsourced and wrong. The frame now names the project instead of claiming the entry does not."
+    },
+    {
+      "finding": "Drawing the shared settlement meter on slide 2 with no claim behind it",
+      "reason": "CAUGHT BY TWO JUDGES AND FIXED RATHER THAN REMOVED. The meter IS in the order at Finding of Fact 13 and this run cut the clause when it shortened c6 to dodge a page break header in the text layer. The clause is restored as c28 and the frame now cites it. The fact was always true. The claims file had stopped carrying it, and the house law is that if it is not in the claims file it does not exist."
+    },
+    {
+      "finding": "c28's first repair, which quoted Finding of Fact 13 and stopped at 'will share the existing'",
+      "reason": "CUT. Two round two judges found it independently and both were right. The quote ended one word before the words slide 2 actually prints, and it ended there because the text layer injects a page header mid sentence at exactly that point, which is the SAME cut that cost c6 the meter clause in the first place. The claim now quotes the order's Background, which names the ERCOT-polled settlement (EPS) meter in one clean span."
+    }
+  ]
+}

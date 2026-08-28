@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-08-27
+- Last checked: 2026-08-28
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-26 · Checked and unchanged. The directive letter, the market notice and the commission's own filings still say what they said. The August 20th open meeting has come off the calendar feed now that it has been held, which is normal for that feed and not a change to the directive.
 - 2026-08-27 · Checked and unchanged. The audit is still running and no data center has been cleared to advance. The August 20th open meeting that granted the exception has been held. The next public step on the calendar is the December 17th open meeting, the one the audit's own filed schedule ends on.
+- 2026-08-28 · Checked and unchanged. The directive still requires the audit to finish before any data center project moves forward, and neither the commission nor ERCOT has published a result. Every project in the queue is still waiting on it.
 
 ## Evidence
 

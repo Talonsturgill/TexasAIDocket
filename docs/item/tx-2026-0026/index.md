@@ -12,7 +12,7 @@ The Temple Planning and Zoning Commission has three data center items on its Aug
 - Comment closes: 2026-08-17
 - Take part: https://www.templetx.gov/datacenters
 
-- Last checked: 2026-08-25
+- Last checked: 2026-08-28
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-19 · Whether the commission has acted is unconfirmed. The city's data center page carries no dated action by the Planning and Zoning Commission and its most recent item is a council briefing from May 7th.
 - 2026-08-22 · Whether the commission acted is still unconfirmed. The city's notice for the August 17th meeting still describes the Conditional Use Permit amendments as items the commission will consider, and no record of a vote appears on it. That meeting date has now passed.
 - 2026-08-25 · The comment window closed on August 17th.
+- 2026-08-28 · The hearing on Temple's Unified Development Code amendments was held on August 17th and the window to speak to it has closed. The city has published no adopted ordinance since, so whether a Conditional Use Permit will be required for every future data center is still undecided.
 
 ## Evidence
 

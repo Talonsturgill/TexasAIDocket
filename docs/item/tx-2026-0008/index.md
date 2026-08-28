@@ -8,7 +8,7 @@ Three separate acts of the 89th Legislature each added a Subchapter S to Governm
 - Status: open
 - Public access: Write to the decider
 
-- Last checked: 2026-08-25
+- Last checked: 2026-08-28
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-19 · Which Subchapter S governs remains unconfirmed. The published chapter text available this run runs only as far as Section 2054.0702. That stops short of the three Subchapter S enactments the item rests on.
 - 2026-08-22 · The three Subchapter S enactments are confirmed in the published chapter text. One runs Sections 2054.651 to 2054.654 on website modernization. Two more both begin at Section 2054.701, one creating an artificial intelligence division and one setting artificial intelligence duties. The codifier still flags the conflict rather than resolving it.
 - 2026-08-25 · Checked and unchanged. Still open, with no dated movement.
+- 2026-08-28 · Checked and unchanged. The codifier's conflict note is still sitting in the published text and the Legislature has not met to resolve it. A state agency reading its own AI duties still has three Subchapter S's to choose between.
 
 ## Evidence
 

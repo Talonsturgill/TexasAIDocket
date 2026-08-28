@@ -101,8 +101,42 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
-# A `name #RRGGBB` pair in the storyboard's palette section. One definition, read never typed.
-PALETTE_DEF = re.compile(r"`([a-z][a-z ]*?) (#[0-9A-Fa-f]{6})`")
+# A `name #RRGGBB` pair anywhere in the storyboard. One definition, read never typed.
+#
+# THE 2026-08-28 DEFECT, AND IT IS THIS FILE'S OWN SHAPE OF GATE_LESSONS 35. The name pattern
+# read `[a-z][a-z ]*?`, which allows lower case letters and spaces and nothing else. Every
+# palette token this project has ever declared with an underscore was therefore unmatchable:
+# `sky_predawn`, `rim_light`, `caliche_cap`, `satin_spar`, `ledge_shadow`. The declared-colour
+# check below reported "the storyboard defines no `name #HEX` palette" and did not run, all run,
+# on a nine frame deck whose plan named a colour per frame.
+#
+# The underscore was only half of it, and the half that would have left the gate asleep. Measured
+# across all ten shipped storyboards, EIGHT declare their palette as a markdown table,
+# `| \x60token\x60 | \x60#HEX\x60 | source |`, which carries no `name #HEX` pair in one backtick
+# span at all. Two decks carry the inline form. One carries indented plain pairs, written by a
+# run that had noticed the gate saying nothing and tried to feed it. Fixing only the character
+# class would have taken the parser from zero decks to two.
+#
+# So the rule against writing a checker from your idea of the rendered form applies to a plan as
+# much as to a page: get the form from the artifact. Three shapes, each measured on real
+# storyboards, and the two loose ones are read ONLY inside a section whose heading names the
+# palette, because a hex quoted in body prose ("525.5 is set in `#B4903F`") would otherwise
+# invent a palette token called `in`.
+PALETTE_DEF = re.compile(r"`([a-z][a-z_ ]*?) (#[0-9A-Fa-f]{6})`")
+
+# `| `token` | `#HEX` | ...`. The token cell and the FIRST hex cell after it, and no further,
+# because 2026-08-27's palette table carries a second hex inside one row's prose cell
+# ("Declared `#D7677E` until round four") and taking the last one invents a token named
+# `declared`.
+PALETTE_ROW = re.compile(
+    r"^\s*\|\s*`?([A-Za-z][A-Za-z0-9_ ]*?)`?\s*\|\s*`?(#[0-9A-Fa-f]{6})`?\s*[|\s]", re.M)
+
+# An indented or bare `token #HEX` on a line of its own, which is what the 2026-08-28 storyboard
+# wrote under the heading "Declared as plain pairs so the colour check can read them".
+PALETTE_PLAIN = re.compile(r"^[ \t]*([A-Za-z][A-Za-z0-9_]*)[ \t]+(#[0-9A-Fa-f]{6})[ \t]*$", re.M)
+
+# A markdown heading, used to find the palette section the two loose shapes are scoped to.
+HEADING = re.compile(r"^(#{1,6})[ \t]+(.*)$", re.M)
 
 # A QUOTED STRING, AND AN APOSTROPHE IS NOT ONE. 2026-08-26.
 #
@@ -201,17 +235,48 @@ def parse_dossiers(storyboard: str) -> dict:
     return out
 
 
+def palette_sections(storyboard: str) -> list:
+    """Every span running from a heading that names the palette to the next heading as high.
+
+    All ten shipped storyboards carry one, spelled `## Palette, ...` or `## PALETTE`. The two
+    loose declaration shapes are read here and nowhere else, so a hex quoted in body prose
+    cannot become a token.
+    """
+    heads = [(m.start(), len(m.group(1)), m.group(2)) for m in HEADING.finditer(storyboard)]
+    out = []
+    for i, (pos, lvl, title) in enumerate(heads):
+        if "palette" not in title.lower():
+            continue
+        end = len(storyboard)
+        for pos2, lvl2, _t in heads[i + 1:]:
+            if lvl2 <= lvl:
+                end = pos2
+                break
+        out.append(storyboard[pos:end])
+    return out
+
+
 def palette_map(storyboard: str) -> dict:
     """Token name to hex, from the storyboard's own palette section.
 
     Read, never typed. A constant here would be a second copy of a fact that already has a
     home, which is the shape that put the wrong URL on three decks.
+
+    A name carrying a space is dropped, as it always was. `\x60stock deep #DCCFB2\x60` on
+    2026-08-20 is a second spelling of the `stock_deep` its own table already declares, and a
+    multi word token cannot be word-matched in a palette sentence without matching each half.
     """
     out = {}
     for name, hexv in PALETTE_DEF.findall(storyboard):
         name = name.strip().lower()
         if " " not in name:
             out[name] = hexv.upper()
+    for span in palette_sections(storyboard):
+        for pat in (PALETTE_ROW, PALETTE_PLAIN):
+            for name, hexv in pat.findall(span):
+                name = name.strip().lower()
+                if " " not in name and name not in ("token", "hex", "colour", "color"):
+                    out.setdefault(name, hexv.upper())
     return out
 
 
@@ -617,6 +682,63 @@ acceptance:
     ok("the palette is read from the storyboard rather than typed into this file",
        palette_map(SB) == {"tower": "#16151C", "pecos": "#8E4B3A", "paper": "#F6F1E4"},
        str(palette_map(SB)))
+
+    # ---- THE 2026-08-28 DEFECT: A TOKEN NAME THIS PROJECT WRITES AND THE PARSER COULD NOT READ.
+    # Each of these three declaration shapes was taken off a real shipped storyboard. Revert the
+    # character class or the two section-scoped shapes and the matching case goes red here.
+    _UNDER = "Palette: `sky_predawn #1A1C33` and `rim_light #F2D9B4`."
+    ok("an UNDERSCORED token in the inline form is read (2026-08-28, and every deck before it)",
+       palette_map(_UNDER) == {"sky_predawn": "#1A1C33", "rim_light": "#F2D9B4"},
+       str(palette_map(_UNDER)))
+    _TABLE = ("## Palette, Armstrong County's own section\n\n"
+              "| token | hex | source |\n|---|---|---|\n"
+              "| `caliche_cap` | `#E4DCC6` | the Ogallala caprock |\n"
+              "| `satin_spar` | `#F5F1E6` | gypsum veins. Declared `#F4F0E4` until round two |\n")
+    ok("the MARKDOWN TABLE form eight of ten shipped storyboards use is read",
+       palette_map(_TABLE) == {"caliche_cap": "#E4DCC6", "satin_spar": "#F5F1E6"},
+       str(palette_map(_TABLE)))
+    ok("...and a second hex inside a row's prose cell invents no token named `declared`",
+       "declared" not in palette_map(_TABLE))
+    _PLAIN = "## Palette\n\nDeclared as plain pairs:\n\n    ledge_shadow #241E22\n    ochre #B4903F\n"
+    ok("the INDENTED PLAIN PAIR form is read",
+       palette_map(_PLAIN) == {"ledge_shadow": "#241E22", "ochre": "#B4903F"},
+       str(palette_map(_PLAIN)))
+
+    # THE SCOPE, which is what keeps the two loose shapes from inventing tokens. A hex quoted in
+    # body prose is not a declaration, and 2026-08-28's slide 6 acceptance line quotes one.
+    _PROSE = ("## Palette\n\n| token | hex |\n|---|---|\n| `ochre` | `#B4903F` |\n\n"
+              "## Slide 6\n\n| a | b |\n|---|---|\n| 525.5 is set in | `#B4903F` and no plate |\n")
+    ok("a hex in a table OUTSIDE the palette section declares nothing",
+       palette_map(_PROSE) == {"ochre": "#B4903F"}, str(palette_map(_PROSE)))
+
+    # AND THE GATE ITSELF STILL GOES RED, through an underscored token, which is the whole point
+    # of the parser fix. Without it this deck reports "the storyboard defines no palette".
+    SB_U = SB.replace("`pecos #8E4B3A`", "`pecos_mark #8E4B3A`").replace(
+        "marked in\n    pecos,", "marked in\n    pecos_mark,")
+    with tempfile.TemporaryDirectory() as d2:
+        dd2 = Path(d2)
+        (dd2 / "slide-05.html").write_text(
+            "<style>.q{color:#23202B}</style><div>One office. The same day. Two wordings.</div>",
+            encoding="utf-8")
+        f, w, s = check(SB_U, dd2, REPORT)
+        ok("a frame whose plan declares an UNDERSCORED colour and draws none is CAUGHT",
+           any("pecos_mark" in x and "does not contain" in x for x in f), str(f))
+        ok("...and the declared-colour check is not reported as unable to run",
+           not any("defines no `name #HEX` palette" in x for x in w), str(w))
+        (dd2 / "slide-05.html").write_text(
+            "<style>.d{color:#8E4B3A}.p{background:#F6F1E4}</style>"
+            "<div>One office. The same day. Two wordings.</div>", encoding="utf-8")
+        f, w, s = check(SB_U, dd2, REPORT)
+        ok("...and the same frame with that colour drawn passes", not f, str(f))
+
+    # CALIBRATION against every shipped storyboard, so a parser that stops reading the form
+    # these runs write reports itself as a number rather than as silence. This is the assertion
+    # that would have gone red on 2026-08-22, the first deck to declare a palette as a table.
+    for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*")):
+        if not (p / "storyboard.md").exists():
+            continue
+        pm = palette_map((p / "storyboard.md").read_text(encoding="utf-8"))
+        ok(f"{p.name}: its declared palette is readable", len(pm) >= 5, f"read {sorted(pm)}")
     # THE DECLARED LIBRARY (2026-08-26). Slide 1 carried a Zdog scene it never drew, for three
     # rounds, with every gate green, because nothing read the dossier against the slide.
     _zdog = ('art:\n  technique: "Zdog scene, rounded extrusion with a real depth axis"\n'

@@ -770,3 +770,47 @@ states that no minutes exist.
   (Hearing Room)` and nothing more. A scoring judge asked the deck to name the building E1.012 sits
   in and **the listing does not carry it**, so it was not published. The E prefix is a Capitol
   Extension convention a Texan may know and this project does not get to assert from convention.
+
+### The scouts' fetcher and a browser User-Agent disagree about Texas state hosts, 2026-08-28
+
+Recorded because two different clients ran against the same hosts within the same hour and came
+back with opposite answers, so neither result alone is a fact about the source.
+
+- **`interchange.puc.texas.gov` served this session 200 on every request while returning 503 to
+  two scouts.** The main session used curl with a desktop browser User-Agent and pulled the filing
+  index for control numbers 59550, 59220 and two 26 page order PDFs, all clean. Two scouts running
+  WebFetch reported 503 on six requests across three URL shapes and wrote up their findings as
+  weaker than they had to be. The registry's note for this host says browser User-Agent and it is
+  still right. **What is new is that a failure here now arrives as 503 rather than as the
+  documented 402**, and a scout reading its own 503 has no way to tell a rate limit from a
+  boundary. Retry with a browser User-Agent from the main session before writing anything down
+  about this host.
+- **`puc.texas.gov/agency/calendar/GetCalendarRss.aspx` did the same.** It answered this session
+  with 32 dated entries and answered a scout with 503, in the same hour.
+- **The calendar feed HTML escapes its own markup inside `<description>`.** The raw XML carries
+  `&lt;strong&gt;Project&lt;/strong&gt; 58482&lt;br /&gt;`, so a quote taken from the RENDERED
+  description never matches a raw text fetch. This is why `reverify.py` reports the four calendar
+  claims on tx-2026-0002 and tx-2026-0024 as unreadable every run and says it claims nothing
+  either way, which is the correct behaviour and not a defect. **Unescape the description before
+  matching.** The claims themselves were confirmed by hand this run.
+- **`texasattorneygeneral.gov` returned 402 to a scout** on the opinion requests index and the
+  press release index. Not retested from the main session, so this is a single observation.
+- **`www.sos.state.tx.us` answered 200 to the main session** on `/texreg/index.shtml` while a
+  scout reported 403 on the same host and got 200 from `www.sos.texas.gov` for the same paths. The
+  entry above from 2026-08-27 already calls this host intermittent. The `.texas.gov` spelling is
+  worth trying first.
+- **The rehearing motion in PUCT Docket 59220 is a SCAN and its text layer is OCR.** Item 73's PDF
+  extracts `a/l` for `all`, `offirm` for `of firm`, `MH/` for `MW`, and `Commission' s`. The Order
+  at item 69 is a cleaner digital PDF and still runs words together as `ofTexas` and `ofremoving`.
+  **A quote lifted straight out of either text layer can carry a typo the document does not
+  contain**, so every quote pulled this run was checked for artifacts before it entered a claim,
+  and two candidate quotes were cut back to shorter clean fragments for that reason alone.
+
+### The scout agents have no way to write the file the routine tells them to write, 2026-08-28
+
+All six scouts reported the same thing unprompted. `carousel-scout` is defined with `WebSearch`,
+`WebFetch` and `Read` and no write tool, so the instruction to write
+`out/research/scout-<beat>.json` can't be carried out and every scout returned its findings in its
+reply instead. Nothing was lost, because the reply carries the same JSON. It is written down
+because a routine that asks for a file it will never get is a step that silently does nothing, and
+the next session should either drop the instruction or the showrunner should persist the replies.
