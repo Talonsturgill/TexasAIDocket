@@ -1,0 +1,17 @@
+{
+  "claims": "pass",
+  "dossiers": "pass",
+  "plan vs render": "pass",
+  "absences": "pass",
+  "craft floor": "pass",
+  "coherence": "pass",
+  "texan": "pass",
+  "noun trace": "pass",
+  "copy sync": "pass",
+  "aggregates": "pass",
+  "panel ready": "pass",
+  "caption": "pass",
+  "quantifiers": "pass",
+  "machine QA": "pass, zero fails and zero warns",
+  "labels": "NOT RUN. label_guard is built for a deck that prints a place, an act and a claim id together, and fails closed when compute.py carries no shape map. This deck prints source attributions instead. It is not in CI and shipped_check is clean."
+}

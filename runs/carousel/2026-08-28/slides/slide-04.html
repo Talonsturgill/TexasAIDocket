@@ -1,0 +1,168 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#3A3140}
+  #face{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  svg{position:absolute;inset:0;display:block}
+  .eyebrow{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:24px;letter-spacing:.16em;color:#E4DCC6}
+  .hookbox{position:absolute;top:132px;left:80px;width:920px;background:#241E22;
+           padding:26px 30px 30px 30px;box-sizing:border-box}
+  h1{margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:84px;line-height:1.04;color:#F5F1E6;letter-spacing:-.015em}
+  .plate{position:absolute;left:80px;top:960px;width:920px;background:#241E22;
+         padding:28px 32px 30px 32px;box-sizing:border-box}
+  .plate p{margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:26px;
+           line-height:1.34;color:#F5F1E6}
+  .plate .src{margin-top:16px;font-family:"JetBrains Mono",monospace;font-weight:400;
+              font-size:24px;letter-spacing:.08em;color:#C6A277}
+  .foot{position:absolute;bottom:100px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.1em;color:#E4DCC6;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="face"></canvas>
+<svg id="ov" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+<div class="eyebrow">PUCT DOCKET 59220, ORDER, CONDITION 1</div>
+<div class="hookbox"><h1>Thirty minutes, or ten if they say so.</h1></div>
+<div class="plate">
+  <p>"Crusoe or Ensign may reduce the required time period from 30 minutes to 10 minutes by providing written confirmation to ERCOT of the Crusoe Two Load's capability to curtail within 10 minutes."</p>
+  <div class="src">c9&nbsp;&nbsp;c10</div>
+</div>
+<div class="foot"><span>ARMSTRONG COUNTY</span><span>c9 c10</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350,NS='http://www.w3.org/2000/svg';
+  const c=document.getElementById('face');
+  c.width=W*2; c.height=H*2; const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260828); const R=TX.rng(20260828);
+
+  // ---- the bedded face. no horizon anywhere on this frame -----------------------------------
+  for(let y=0;y<H;y++){
+    const d=y/H;
+    g.fillStyle=`hsl(${288-d*10},${9+d*3}%,${25-d*9}%)`; g.fillRect(0,y,W,1);
+  }
+  // bedding, lit from the left on one azimuth, each parting with its own shadow
+  for(let b=0;b<34;b++){
+    const yb=18+b*39;
+    for(let x=0;x<W;x++){
+      const w=TX.fbm2(x/230+b*1.9, 13.5+b*0.7, 3)*7;
+      const sun=1-(x/W)*0.42;
+      g.fillStyle=`rgba(228,220,198,${(0.13*sun).toFixed(3)})`; g.fillRect(x,yb+w,1,2.0);
+      g.fillStyle='rgba(24,18,24,0.34)';                        g.fillRect(x,yb+w+2.0,1,4.4);
+    }
+  }
+  // mudstone tooth so the face is a material rather than a gradient
+  for(let i=0;i<62000;i++){
+    const x=R()*W,y=R()*H;
+    const v=TX.fbm2(x/120,y/120,3);
+    g.fillStyle=`rgba(140,132,150,${(0.04+v*0.16).toFixed(3)})`; g.fillRect(x,y,1,1);
+  }
+
+  // ---- the foot of the face, so the bottom band is a ground rather than a plate on a wash ---
+  for(let i=0;i<5600;i++){
+    const x=R()*W;
+    const y=1120+Math.pow(R(),0.62)*230;
+    const d=(y-1120)/230;
+    const sz=2.2+R()*9*(0.35+d);
+    const sun=1-(x/W)*0.45;
+    g.fillStyle=`rgba(14,10,16,${(0.34+d*0.26).toFixed(3)})`;
+    g.fillRect(x+sz*0.6,y+sz*0.42,sz*1.35,sz*0.72);
+    g.fillStyle=`rgba(228,220,198,${(0.07+R()*0.24*sun*(0.4+d)).toFixed(3)})`;
+    g.fillRect(x,y,sz,sz*0.6);
+  }
+  for(let i=0;i<26000;i++){
+    const x=R()*W, y=1100+Math.pow(R(),0.55)*250;
+    g.fillStyle=`rgba(198,162,119,${(0.03+R()*0.15).toFixed(3)})`; g.fillRect(x,y,1,1);
+  }
+  // ---- THREE VEINS. widths at one computed rate from 10, 30 and 60 minutes -------------------
+  // The rate is computed here from the minute values, never eyeballed and never typed as a width.
+  const MIN=[60,30,10];
+  const PX_PER_MIN = 108/60;               // one declared rate for the whole frame
+  // THE ANCHOR IS WHERE THE VEIN CROSSES x=0, NOT WHERE ITS LABEL GOES. The veins are rotated
+  // about (0, y), so a vein rises as it runs right and is 303 px HIGHER by the time it reaches
+  // the label column. These anchors are chosen so that offset lands each label in the clear
+  // band between the hook plate and the quote plate. See `cyFor` below, which derives it.
+  const VEINS=[
+    {m:60, y:773,  hedged:true },
+    {m:30, y:948,  hedged:false},
+    {m:10, y:1123, hedged:false}
+  ];
+  const ANG = -22 * Math.PI/180;           // the veins cut ACROSS the bedding
+
+  VEINS.forEach(v=>{
+    const w = v.m * PX_PER_MIN;            // 108, 54, 18
+    v.w = w;
+    g.save();
+    g.translate(0, v.y); g.rotate(ANG);
+    // the parting wall on the down sun side, drawn first so the fibre body sits proud of it
+    g.fillStyle='rgba(18,12,18,0.68)';
+    g.fillRect(-260, w*0.5, 1700, 14);
+    // A HEDGED CONDITION IS DRAWN AS A BROKEN VEIN, not as a party colour. The order says
+    // "when practicable", so the body is there and it does not run continuously.
+    if(v.hedged){
+      g.fillStyle='rgba(58,49,64,0.96)';
+      for(let k=-260;k<1440;k+=190){ g.fillRect(k+96, -w*0.5-3, 74, w+20); }
+    }
+    // the fibre body: satin spar for a commission figure, ochre where the order hedges it
+    const base = [245,241,230];   // every one of these three is the commission's own condition
+    for(let i=0;i<Math.round(w*22);i++){
+      const x=-260+R()*1700, yy=-w*0.5+R()*w;
+      const a = 0.30 + R()*0.55;
+      g.fillStyle=`rgba(${base[0]},${base[1]},${base[2]},${a.toFixed(3)})`;
+      g.fillRect(x,yy,1.1,2.6+R()*4.2);     // fibres run across the vein, which is what satin spar does
+    }
+    // the lit upper edge of the vein
+    g.fillStyle=`rgba(255,252,244,${v.hedged?0.42:0.72})`;
+    g.fillRect(-260,-w*0.5,1700,2.2);
+    g.restore();
+  });
+
+  // ---- the labels, each KNOCKED OUT of its own vein so no bedding line crosses a glyph -------
+  const s=document.getElementById('ov');
+  const mk=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const ROWS=[
+    {v:VEINS[0], fig:'60 minutes', note:'When practicable', sub:'ERCOT NOTICE',        col:'#B4903F'},
+    {v:VEINS[1], fig:'30 minutes', note:'',                 sub:'THE REQUIREMENT',     col:'#F5F1E6'},
+    {v:VEINS[2], fig:'10 minutes', note:'',                 sub:'BY WRITTEN CONFIRMATION', col:'#F5F1E6'}
+  ];
+
+  // WHERE THE VEIN ACTUALLY IS AT THE LABEL COLUMN, DERIVED FROM THE SAME ANGLE THAT DREW IT.
+  //
+  // This read `cy = r.v.y`, which is the vein's height at x=0, and then drew the box 750 px to
+  // the right. A vein rotated by ANG about (0, y) has climbed 303 px by the time it gets there,
+  // so every one of the three labels sat that far below its own vein. Round 3 could not tell
+  // which vein was the thirty minute one, and it was right: no label touched anything. The
+  // widths encode 60, 30 and 10 minutes at one computed rate, and an encoding a reader can not
+  // bind to its label is not an encoding.
+  //
+  // Deriving it from ANG rather than typing 303 is the point. A future change to the angle or
+  // the column moves the labels with it instead of silently unbinding them again.
+  const BOXW = 396, BX = 552, CXP = BX + BOXW/2;
+  const cyFor = v => v.y + (CXP/Math.cos(ANG))*Math.sin(ANG);
+
+  for(let i=0;i<ROWS.length;i++){ const r=ROWS[i];
+    // The hedge rides INSIDE its own row's knockout rather than floating to the left of it.
+    // Beside the box it sat in open ground between two veins and read as labelling neither.
+    const boxH = r.note ? 140 : 96;
+    const cy = cyFor(r.v), bx = BX, by = cy - boxH/2;
+    s.appendChild(mk('rect',{x:bx,y:by,width:BOXW,height:boxH,fill:'#241E22'}));   // solid knockout
+    let ty = by + 46;
+    if(r.note){
+      const n=mk('text',{x:bx+26,y:ty,'font-family':'Manrope, sans-serif',
+                         'font-size':28,'font-weight':600,fill:'#E4DCC6'});
+      n.textContent=r.note; s.appendChild(n);
+      ty += 52;
+    }
+    const t=mk('text',{x:bx+26,y:ty,'font-family':'JetBrains Mono, monospace','font-size':40,
+                       'font-weight':700,fill:r.col,'font-variant-numeric':'tabular-nums'});
+    t.textContent=r.fig; s.appendChild(t);
+    const u=mk('text',{x:bx+26,y:ty+32,'font-family':'JetBrains Mono, monospace','font-size':24,
+                       'font-weight':400,fill:'#C6A277','letter-spacing':'0.06em'});
+    u.textContent=r.sub; s.appendChild(u);
+  }
+
+  await document.fonts.ready;
+})();
+</script></body></html>

@@ -1,0 +1,121 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.0084,
+        0.1849,
+        0.4926
+      ],
+      "band_ratio": 2.0472,
+      "encodings": [
+        "'the lit caprock rim is the light and the plain below it is not': dE 63.4, AUC 1.00, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1387,
+        0.0126,
+        0.1121
+      ],
+      "band_ratio": 1.2613
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1155,
+        0.4832,
+        0.4265
+      ],
+      "band_ratio": 1.234,
+      "contacts": [
+        "'the ledge lip over the shadow it throws': shadow L* 11.2 vs ground L* 62.0, dL 50.8 at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.313,
+        0.3866,
+        0.5165
+      ],
+      "band_ratio": 1.2586
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.5672,
+        0.5609,
+        0.4596
+      ],
+      "band_ratio": 0.8736,
+      "encodings": [
+        "'this frame carries no drawn light, so its ground is one value everywhere': dE 0.1, AUC 0.51, visible 100%/100%, seen 2880/2880px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2059,
+        0.8761,
+        0.6875
+      ],
+      "band_ratio": 1.1569
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.4559,
+        0.9874,
+        0.6673
+      ],
+      "band_ratio": 0.9507,
+      "encodings": [
+        "'the two courses are different materials, each fully drawn, and the join is what nobody mar': dE 40.7, AUC 0.89, visible 100%/0%, seen 2400/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2857,
+        0.5483,
+        0.5993
+      ],
+      "band_ratio": 1.24
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.5273,
+        0.3655,
+        0.6195
+      ],
+      "band_ratio": 1.2162,
+      "contacts": [
+        "'the dated plate on the hardpan': shadow L* 49.4 vs ground L* 77.9, dL 28.5 at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

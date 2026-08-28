@@ -11,7 +11,7 @@ The El Paso City Council approved and adopted a letter to Governor Greg Abbott s
 - Public access: Closed
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?LEGID=2572&GID=776&G=2431E662-8524-4328-8249-389E26A066A2
 
-- Last checked: 2026-08-25
+- Last checked: 2026-08-28
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-18 · Checked and unchanged. The matter reads Agenda Ready for the August 18th agenda with no passed date recorded.
 - 2026-08-21 · Decided. The El Paso City Council approved and adopted the letter to Governor Abbott at its August 18th, 2026 regular meeting, as agenda item 34, on a motion that carried. The matter record still reads Agenda Ready with no passed date, and the meeting's own item record and the matter's action history both record the approval.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
+- 2026-08-28 · Checked and unchanged. El Paso's letter to the Governor still stands as adopted and the city has published no reply to it. The jurisdictional question the letter asks is still unanswered.
 
 ## Evidence
 

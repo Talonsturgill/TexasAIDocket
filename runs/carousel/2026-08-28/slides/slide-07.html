@@ -1,0 +1,160 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#7E3B2E}
+  #rock{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .eyebrow{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:700;font-size:26px;letter-spacing:.14em;color:#241E22;
+        background:#B4903F;padding:11px 15px}
+  .hookbox{position:absolute;top:150px;left:80px;width:920px;background:#241E22;
+           padding:30px 34px 34px 34px;box-sizing:border-box}
+  .hookbox h1{margin:0;font-family:Fraunces,serif;font-weight:800;font-size:84px;
+     line-height:1.03;color:#F5F1E6;letter-spacing:-.015em}
+  .dek{position:absolute;left:80px;top:972px;width:920px;font-family:Manrope,sans-serif;
+       font-weight:700;font-size:35px;line-height:1.3;color:#140F14}
+  .q2{position:absolute;left:80px;top:1118px;width:920px;font-family:Manrope,sans-serif;
+      font-weight:600;font-size:26px;line-height:1.32;color:#2A2028}
+  .foot{position:absolute;bottom:100px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.1em;color:#3A2E28;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the two courses are different materials, each fully drawn, and the join is what nobody marked","reads":"differ","a":[[120,700,300,50]],"b":[[120,250,300,50]]}]'>
+<canvas id="rock"></canvas>
+<div class="eyebrow">MOTION FOR REHEARING, DOCKET 59220</div>
+<div class="hookbox"><h1>Decided above. Decided below. Not between.</h1></div>
+<div class="dek">"Nor did the Order directly address the critical legal and policy issue of first impression that underlies this case"</div>
+<div class="q2">"the Order is excessive, arbitrary and capricious, unsupported by the evidentiary record, and not authorized by the language of PURA."</div>
+<div class="foot"><span>ARMSTRONG COUNTY</span><span>c17 c18 c19</span><span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('rock');
+  c.width=W*2; c.height=H*2; const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260828); const R=TX.rng(20260828);
+
+  // A STEPPED contact, cut in risers and treads the way erosion works a hard course over a soft
+  // one. Slide 8's rim is a smooth silhouette, and drawing this one as steps is what keeps the
+  // two frames from being one construction twice.
+  const contact=[];
+  { let x=0, y=560;
+    while(x<W){
+      // TX.fbm2 is SIGNED. An unclamped run can come back negative, the inner loop then
+      // never advances x, and the page hangs until the renderer times out at 45 seconds.
+      const run = Math.max(28, 44 + Math.floor(TX.fbm2(x/210, 8.5, 3)*104));
+      y = Math.max(492, Math.min(664, y + (TX.fbm2(x/130, 21.5, 3) - 0.5) * 78));
+      for(let k=0;k<run && x<W;k++,x++) contact.push(y + TX.fbm2(x/23, 3.25, 2)*7);
+    }
+    while(contact.length < W) contact.push(y);
+  }
+
+  // ---- the UPPER course, buff sandstone, one low sun from the left --------------------------
+  for(let x=0;x<W;x++){
+    const cy=contact[x], rake=1-(x/W)*0.44;
+    for(let y=0;y<cy;y+=2){
+      const bed=TX.fbm2(x/300, y/26, 3);
+      g.fillStyle=`hsl(${33-bed*5},${30+bed*6}%,${(30+bed*22*rake+rake*8).toFixed(1)}%)`;
+      g.fillRect(x,y,1,2);
+    }
+  }
+  // CROSS BEDDING in sets that truncate one another, so the course reads as sandstone rather
+  // than as horizontal planking.
+  for(let set=0;set<5;set++){
+    const top=8+set*112, bot=top+104;
+    const dip=(TX.fbm2(set*7.3, 1.5, 2)-0.5)*0.58;
+    for(let b=0;b<10;b++){
+      const y0=top+b*10.2;
+      for(let x=0;x<W;x+=2){
+        const yy = y0 + (x-W/2)*dip + TX.fbm2(x/240+set*2.1, 31.5+b, 3)*3.4;
+        if(yy<top || yy>bot || yy>contact[x]-6) continue;
+        const rake=1-(x/W)*0.44;
+        g.fillStyle=`rgba(255,246,226,${(0.22*rake).toFixed(3)})`; g.fillRect(x,yy,2,1.7);
+        g.fillStyle='rgba(30,20,20,0.34)';                          g.fillRect(x,yy+1.7,2,2.9);
+      }
+    }
+    for(let x=0;x<W;x++){                       // the set boundary that truncates it
+      if(bot>contact[x]-6) continue;
+      g.fillStyle='rgba(22,14,16,0.46)';    g.fillRect(x,bot,1,2.8);
+      g.fillStyle='rgba(255,248,230,0.18)'; g.fillRect(x,bot+2.8,1,1.3);
+    }
+  }
+  for(let i=0;i<18000;i++){                      // fractures cutting the upper course
+    const x=R()*W, y=R()*520;
+    if(y>contact[Math.floor(x)]-8) continue;
+    g.fillStyle=`rgba(24,16,18,${(0.10+R()*0.26).toFixed(3)})`;
+    g.fillRect(x,y,0.9,2.2+R()*5);
+  }
+
+  // ---- the LOWER course, red-brown claystone, same sun, bedding just as complete ------------
+  for(let x=0;x<W;x++){
+    const cy=contact[x], rake=1-(x/W)*0.44;
+    for(let y=Math.floor(cy);y<H;y+=2){
+      const bed=TX.fbm2(x/280, y/22, 3);
+      g.fillStyle=`hsl(${Math.max(0,12-bed*3)},${40+bed*7}%,${(22+bed*16*rake+rake*6).toFixed(1)}%)`;
+      g.fillRect(x,y,1,2);
+    }
+  }
+  for(let b=0;b<30;b++){
+    const yb=600+b*26;
+    for(let x=0;x<W;x++){
+      if(yb<contact[x]+6) continue;
+      const w=TX.fbm2(x/230+b*2.2, 51.5+b, 3)*5;
+      const rake=1-(x/W)*0.44;
+      g.fillStyle=`rgba(246,226,208,${(0.17*rake).toFixed(3)})`; g.fillRect(x,yb+w,1,1.6);
+      g.fillStyle='rgba(20,10,12,0.36)';                          g.fillRect(x,yb+w+1.6,1,3.4);
+    }
+  }
+  for(let i=0;i<26000;i++){
+    const x=R()*W, y=520+R()*830;
+    if(y<contact[Math.floor(x)]+6) continue;
+    g.fillStyle=`rgba(246,226,208,${(0.04+R()*0.14).toFixed(3)})`; g.fillRect(x,y,1.2,1.2);
+  }
+
+  // ---- THE CONTACT: a band with a lit lip above and a shaded lip below, plus a clast lag ----
+  for(let x=0;x<W;x++){
+    const cy=contact[x], rake=1-(x/W)*0.44;
+    const gr=g.createLinearGradient(0,cy-11,0,cy+13);
+    gr.addColorStop(0,`rgba(255,248,230,${(0.70*rake).toFixed(3)})`);
+    gr.addColorStop(0.42,`rgba(255,248,230,${(0.24*rake).toFixed(3)})`);
+    gr.addColorStop(0.54,'rgba(18,8,10,0.68)');
+    gr.addColorStop(1,'rgba(18,8,10,0.10)');
+    g.fillStyle=gr; g.fillRect(x,cy-11,1,24);
+  }
+  for(let i=0;i<2600;i++){                       // broken upper course resting on the lower one
+    const x=R()*W, cy=contact[Math.floor(x)];
+    const y=cy+3+R()*18, s2=2.4+R()*8, rake=1-(x/W)*0.44;
+    g.fillStyle=`rgba(14,7,9,${(0.34+R()*0.24).toFixed(3)})`; g.fillRect(x+s2*0.55,y+s2*0.4,s2*1.3,s2*0.62);
+    g.fillStyle=`rgba(232,214,186,${(0.16+R()*0.34*rake).toFixed(3)})`; g.fillRect(x,y,s2,s2*0.58);
+  }
+
+  // ---- the drafting film over the LOWER course only, thin enough that the rock reads through -
+  const FT=700, PANEL=942;
+  g.fillStyle='rgba(238,234,222,0.34)'; g.fillRect(0,FT,W,PANEL-FT);
+  for(let i=0;i<12000;i++){
+    const x=R()*W, y=FT+R()*(PANEL-FT);
+    g.fillStyle=`rgba(255,255,252,${(0.02+R()*0.07).toFixed(3)})`; g.fillRect(x,y,1.2,1.2);
+  }
+  g.fillStyle='rgba(52,40,44,0.78)';    g.fillRect(0,FT,W,2.6);
+  g.fillStyle='rgba(255,255,250,0.46)'; g.fillRect(0,FT+2.6,W,1.6);
+
+  // the drafting mark for a contact, in graphite on the film
+  g.strokeStyle='rgba(28,20,26,0.94)'; g.lineWidth=2.6;
+  g.beginPath();
+  for(let x=80;x<=1000;x+=2){ const y=FT+96+Math.sin(x/54)*3.4; x===80?g.moveTo(x,y):g.lineTo(x,y); }
+  g.stroke();
+  for(let x=96;x<1000;x+=44){ g.beginPath(); g.moveTo(x,FT+96); g.lineTo(x-7,FT+83); g.stroke(); }
+
+  // the film's matte writing panel, where the drafter's words go
+  g.fillStyle='#EFEADC'; g.fillRect(0,PANEL,W,H-PANEL);
+  for(let i=0;i<34000;i++){
+    const x=R()*W, y=PANEL+R()*(H-PANEL);
+    g.fillStyle= R()<0.5 ? `rgba(255,255,250,${(0.05+R()*0.20).toFixed(3)})`
+                         : `rgba(120,102,86,${(0.03+R()*0.12).toFixed(3)})`;
+    g.fillRect(x,y,1.2,1.2);
+  }
+  g.fillStyle='rgba(52,40,44,0.66)';    g.fillRect(0,PANEL,W,2.2);
+  g.fillStyle='rgba(255,255,250,0.55)'; g.fillRect(0,PANEL+2.2,W,1.4);
+
+  await document.fonts.ready;
+})();
+</script></body></html>

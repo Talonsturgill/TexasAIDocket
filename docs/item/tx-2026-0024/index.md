@@ -1,6 +1,6 @@
 # PUCT open meeting calendar published as a live feed through mid 2027
 
-The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up. The August 21st open meeting names no hearing room and gives an off site address on University Avenue in Austin. The feed carries one public comment deadline, for Project 58482 on September 4th, 2026. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.
+The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up, and a meeting comes off the feed once it is held. The August 28th, 2026 open meeting is the next one listed and it sits at the Stephen F. Austin Building rather than the commissioners hearing room. The feed now carries two public comment deadlines, Project 58482 on September 4th, 2026 and Project 59550 on September 17th, 2026. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -9,13 +9,14 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-28
 
 ## Dates
 
 - 2026-08-20 · hearing: Open meeting in Commissioners Hearing Room 7-100
 - 2026-08-21 · hearing: Open meeting listed at an off site hotel and conference center
 - 2026-09-04 · comment closes: Public comment deadline for Project 58482
+- 2026-09-17 · comment closes: Public comment deadline for Project 59550
 
 ## How this decision moved
 
@@ -27,14 +28,15 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-21 · Checked and unchanged. The feed still runs through July 29th, 2027 and the September 4th public comment deadline for Project 58482 is still listed. The August 21st open meeting still stands at the off site hotel and conference center.
 - 2026-08-26 · The August 20th open meeting has come off the feed, which is what the feed does once a meeting is held. The August 28th open meeting is now the next one listed and it names the Stephen F. Austin Building rather than the commission hearing room. The one public comment deadline the feed carries is still Project 58482 on September 4th.
 - 2026-08-26 · Checked and unchanged. The agency calendar feed answers and carries 31 dated entries. They run from August 20th, 2026 to July 29th, 2027, so the live feed through mid 2027 still holds.
+- 2026-08-28 · The feed moved twice. A second public comment deadline has appeared, for Project 59550 on September 17th, 2026, so the record no longer says the feed carries only one. The August 20th and August 21st open meetings have come off the feed now that they have been held. The August 28th meeting the feed leads with sits at the Stephen F. Austin Building.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The August 21st open meeting is now listed away from the commission hearing room and names no docket.
+### The next open meeting on the feed sits away from the commissioners hearing room and names no docket.
 
-> NA ( Open To Public ) AT&T Hotel and Conference Center (1900 University Ave, Austin, TX  78705)
+> Stephen F. Austin Building, Room 170
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
@@ -44,9 +46,9 @@ Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-### The feed adds an open meeting on August 20th in the commission hearing room.
+### The feed dates its next open meeting in the entry title itself.
 
-> Open Meeting - Thursday, August 20, 2026
+> Open Meeting - Friday, August 28, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
@@ -61,4 +63,10 @@ Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.
 > Large Load Demand Management Service
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The feed now carries a second public comment deadline, on a different project.
+
+> Public Comment Deadline - Thursday, September 17, 2026
+
+Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 

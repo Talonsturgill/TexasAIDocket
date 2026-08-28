@@ -1,0 +1,123 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#100C12}
+  #slope{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  h1{position:absolute;top:104px;left:80px;width:860px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:88px;line-height:1.03;color:#F5F1E6;letter-spacing:-.015em}
+  .q{position:absolute;left:80px;width:920px;box-sizing:border-box;
+     padding:24px 28px 26px 28px}
+  /* Law 4. Caliche carries the commission, ochre carries a party. The GOODNIT2 sentence is
+     commission staff and ERCOT answering AS PARTIES, so it can not wear the commission's plate
+     directly above the commission's own ordering paragraph. */
+  #q1{background:#B4903F}
+  #q2{background:#E4DCC6}
+  .q p{margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:27px;line-height:1.31;
+       color:#241E22}
+  .q .who{margin-top:14px;font-family:"JetBrains Mono",monospace;font-weight:600;font-size:24px;
+          letter-spacing:.06em;color:#3A2A18}
+  #q1x{top:596px}
+  #q2x{top:872px}
+  .scrim{position:absolute;left:0;bottom:0;width:1080px;height:150px;
+         background:linear-gradient(to bottom,rgba(12,8,14,0) 0%,rgba(12,8,14,.90) 54%,rgba(12,8,14,.96) 100%)}
+  .foot{position:absolute;bottom:100px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.1em;color:#C6A277;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="slope"></canvas>
+<h1>What the order left out.</h1>
+<div class="q" id="q1" style="top:596px">
+  <p>"GOODNIT2 does not yet exist, is not a part of the application, and should not be considered in this proceeding."</p>
+  <div class="who">commission staff and ERCOT, answering as parties&nbsp;&nbsp;c13</div>
+</div>
+<div class="q" id="q2" style="top:872px">
+  <p>"The Commission denies all other motions and any other requests for general or specific relief, if not expressly granted."</p>
+  <div class="who">PUCT DOCKET 59220, ORDER, ORDERING PARAGRAPH 6&nbsp;&nbsp;c15</div>
+</div>
+<div class="scrim" data-decorative></div>
+<div class="foot"><span>ARMSTRONG COUNTY</span><span>c13 c15</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('slope');
+  c.width=W*2; c.height=H*2; const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260828); const R=TX.rng(20260828);
+
+  // THE ONE UPWARD CAMERA IN THE DECK. What is above the reader is what was considered, and the
+  // frame refuses to draw a thing that does not exist by putting nothing above the rim but sky.
+  const rim=[];
+  for(let x=0;x<W;x++){
+    rim.push(392 + TX.fbm2(x/300, 9.5, 4)*46 + TX.fbm2(x/62, 3.25, 2)*9);
+  }
+
+  // ---- sky above the rim. the frame's only light, and it is genuinely empty ------------------
+  for(let y=0;y<470;y++){
+    const t=y/470;
+    g.fillStyle=`hsl(${228+t*5},${26-t*5}%,${34-t*13}%)`; g.fillRect(0,y,W,1);
+  }
+
+  // ---- the slope, seen from the floor. red beds falling away toward the reader ---------------
+  for(let x=0;x<W;x++){
+    const r=rim[x];
+    for(let y=Math.floor(r);y<H;y++){
+      const d=(y-r)/(H-r);
+      const bed=TX.fbm2(x/240, y/30, 3);
+      const L=Math.max(3, 17 - d*11 + bed*8*(1-d*0.5));
+      g.fillStyle=`hsl(${13-bed*3},${38+bed*8}%,${L.toFixed(1)}%)`; g.fillRect(x,y,1,1);
+    }
+  }
+
+  // ---- BEDDING TRACES, thinning MONOTONICALLY toward the rim ---------------------------------
+  // Spacing is computed from the trace index so the thinning is a rule rather than a hand feel.
+  let y0 = H - 26, gap = 26, n = 0;
+  const traces = [];
+  while(y0 > 0 && n < 40){
+    traces.push({y:y0, gap:gap});
+    n++; gap *= 1.145;                       // each gap wider than the last, all the way up
+    y0 -= gap;
+  }
+  traces.forEach((t,i)=>{
+    const strength = 1 - i/traces.length;    // heavier in the near field, fainter up the slope
+    for(let x=0;x<W;x++){
+      const r=rim[x];
+      const wob = TX.fbm2(x/220 + i*1.7, 61.5+i, 3)*7;
+      const yy = t.y + wob;
+      if(yy < r + 8) continue;               // a trace stops AT the rim. nothing is drawn above it.
+      const rake = 1-(x/W)*0.4;
+      g.fillStyle=`rgba(240,220,200,${(0.10+0.22*strength*rake).toFixed(3)})`;
+      g.fillRect(x,yy,1,1.4+strength*1.8);
+      g.fillStyle=`rgba(10,4,8,${(0.16+0.30*strength).toFixed(3)})`;
+      g.fillRect(x,yy+1.4+strength*1.8,1,2.4+strength*3.6);
+    }
+  });
+
+  // near field talus with its own casts, so the bottom band is the deck's deepest value
+  for(let i=0;i<4200;i++){
+    const x=R()*W, y=980+Math.pow(R(),0.6)*370;
+    const d=(y-980)/370, s2=2.4+R()*9*(0.4+d), rake=1-(x/W)*0.4;
+    g.fillStyle=`rgba(6,2,6,${(0.36+d*0.30).toFixed(3)})`; g.fillRect(x+s2*0.6,y+s2*0.45,s2*1.4,s2*0.7);
+    g.fillStyle=`rgba(214,178,150,${(0.05+R()*0.17*rake*(0.3+d)).toFixed(3)})`; g.fillRect(x,y,s2,s2*0.6);
+  }
+
+  // ---- the rim's own lit crest, the boundary between the frame's only light and all its dark --
+  // A BAND, not a thread. A declared focal that is a line can not win an eye at 432 px.
+  for(let x=0;x<W;x++){
+    const r=rim[x], rake=1-(x/W)*0.4;
+    const gr=g.createLinearGradient(0,r-6,0,r+34);
+    gr.addColorStop(0,`rgba(206,214,230,${(0.76*rake).toFixed(3)})`);
+    gr.addColorStop(0.16,`rgba(184,194,214,${(0.64*rake).toFixed(3)})`);
+    gr.addColorStop(0.52,`rgba(126,136,158,${(0.38*rake).toFixed(3)})`);
+    gr.addColorStop(1,'rgba(10,4,8,0.42)');
+    g.fillStyle=gr; g.fillRect(x,r-6,1,40);
+  }
+  for(let i=0;i<5200;i++){                     // the crest's own broken stone, catching the sky
+    const x=R()*W, r=rim[Math.floor(x)];
+    const y=r-4+R()*26, s2=1.6+R()*5, rake=1-(x/W)*0.4;
+    g.fillStyle=`rgba(222,232,248,${(0.09+R()*0.32*rake).toFixed(3)})`; g.fillRect(x,y,s2,s2*0.6);
+    g.fillStyle=`rgba(12,6,10,${(0.20+R()*0.22).toFixed(3)})`; g.fillRect(x+s2*0.6,y+s2*0.45,s2*1.1,s2*0.5);
+  }
+  await document.fonts.ready;
+})();
+</script></body></html>
