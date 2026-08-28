@@ -122,6 +122,17 @@ out["comment_date"]   = ordinal(COMMENT_DATE)
 out["days_order_to_rehearing"] = (REHEARING_DATE - ORDER_DATE).days
 out["docket"] = "59220"
 
+# --- COUNTS THE DOSSIERS STATE, computed here so they trace like every other figure -------
+#
+# `shipped_check`'s freshness gate requires any count word in a dossier's `job:` field to be an
+# integer this file computed, and it is right to. "two AI data center complexes" and "three
+# durations" are claims about the record, not layout, and a run that types them is typing a
+# figure. Both are counted from the claims rather than asserted.
+out["n_loads"] = len(re.findall(r'referred to as "the Crusoe \w+ Load\.?"', BY["c5"]["quote"]))
+out["n_durations"] = len({WINDOW_MIN, ELECTED_MIN, NOTICE_MIN})
+if out["n_loads"] != 2:
+    sys.exit(f"compute: c5's quote names {out['n_loads']} load(s), not the two the deck draws.")
+
 # The one column every figure on slide 5 is set against, so three rows align without three
 # separately typed x positions drifting apart.
 SAFE_L = 80.0

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-fqZBZFfUEgJtAAwyIU6bMtu8ysy2jk8ccUs2UxwZe5s=' 'sha256-c3S268pb1COX6/bbfSaN6z+8/ErcywKoXagyKu25OkM=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-A8vfqAy9rNIH+z4ndhzLkotvwPpXX2i5PE64aPngyL0=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-fqZBZFfUEgJtAAwyIU6bMtu8ysy2jk8ccUs2UxwZe5s=' 'sha256-c3S268pb1COX6/bbfSaN6z+8/ErcywKoXagyKu25OkM=' 'sha256-VcadWbz1Dv96Dtva6/g3j2rjIra+p5oIwlKvHAcpiOo=' 'sha256-A8vfqAy9rNIH+z4ndhzLkotvwPpXX2i5PE64aPngyL0=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -288,7 +288,7 @@ function askFuse(lists) {
   function best(query) {
     var qw = words(query);
     if (!qw.length) return null;
-    var top = null;
+    var top = null, topView = null;
     CAT.forEach(function (c) {
       var cw = words(c.q), score = 0, hitTerms = 0;
       qw.forEach(function (w) {
@@ -319,6 +319,9 @@ function askFuse(lists) {
         if (stemmed) { score += idf(stemmed) * 0.5; hitTerms += 1; }
       });
       if (!top || score > top.score) top = { c: c, score: score, terms: hitTerms };
+      /* THE BEST NON-ITEM CANDIDATE, kept so the two-term rule below can fall back to it. */
+      if (c.route && c.route.view !== "item" && (!topView || score > topView.score))
+        topView = { c: c, score: score, terms: hitTerms };
     });
     /* A direct mention of a county, a topic word or a decider outranks a fuzzy catalogue
        match, because it is what the reader actually said. */
@@ -372,7 +375,8 @@ function askFuse(lists) {
        something broad, and one decisive word is enough for it. */
     var names_one = top && top.c.route && top.c.route.view === "item";
     var chosen = top && top.score >= FLOOR && (!names_one || top.terms >= 2)
-      ? top.c.route : direct;
+      ? top.c.route
+      : (topView && topView.score >= FLOOR ? topView.c.route : direct);
     if (chosen) return chosen;
 
     /* NOTHING MATCHED THE CATALOGUE, SO SEARCH THE DECISIONS THEMSELVES.

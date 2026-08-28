@@ -237,8 +237,9 @@ whose quote stopped one word short.
 **One plan was corrected rather than the art, and it is worth saying which.** Slide 7 was declared
 the deck's lightest frame. It is not and could not be, because the reserved red only clears
 contrast as ink on caliche, which fixes slide 9 as the pale frame. The dossier now declares slide
-7 an inversion against its neighbours, which is what it is, and the measurement backs it at 44.8
-against 21.8 and 20.7. Correcting a plan that was wrong about its own deck is not the same as
+7 an inversion against its neighbours, which is what it is, and the measurement backs it at 48.7
+against 22.2 and 22.3, read off THIS deck's renders after round 5 rather than the round 3 ones
+the earlier draft of this paragraph still quoted. Correcting a plan that was wrong about its own deck is not the same as
 rewriting an acceptance item to describe a render, and the difference is that this one was checked.
 
 **An engine defect, found the expensive way.** Slide 7 failed to render twice with nothing but

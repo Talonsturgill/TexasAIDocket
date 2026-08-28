@@ -62,23 +62,26 @@
    ]
   }
  },
- "hard_fails": [
-  "judge returned ship: false with no hard fail named, which is a refusal either way"
- ],
- "hard_fails_by_judge": [
-  {
-   "judge": 1,
-   "fail": "judge returned ship: false with no hard fail named, which is a refusal either way"
-  }
- ],
- "ship": false,
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
  "threshold": 6.8,
  "over_threshold": true,
  "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.51 against a 6.8 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.51,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.51 against a 6.8 bar. That dissent is carried in the median"
+  }
+ ],
  "contested": [
   "claim_integrity",
   "story_and_stakes",
   "variety"
  ],
- "rounds": 4
+ "rounds": 6
 }

@@ -41,5 +41,7 @@
   "hard_fails": [],
   "ship": false,
   "one_sentence_fix": "Slide 6 sets the applicants' 525.5 MW against a reference line labelled '265.5 MW GOODNIT1 nameplate', and 525.5 minus 265.5 is 260, so the frame's geometry hands the reader the exact decomposition compute.py spends 25 lines documenting as FALSE and removing from the prose: relabel the reference to the 265.5 that is actually inside their sum (the Crusoe One Load as they characterise it) or replace it with a reference that cannot be subtracted.",
-  "judge": "integrity"
+  "judge": "integrity",
+  "refusal_reason": "threshold",
+  "refusal_reason_source": "transcribed by the run from the judge's round-5 report, which returned hard_fails [] and wrote 'I looked hard for one and I will not manufacture it'. The field postdates the report by one commit."
 }
