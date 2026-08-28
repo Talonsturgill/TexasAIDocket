@@ -306,7 +306,7 @@ __RETRIEVER__
   function best(query) {
     var qw = words(query);
     if (!qw.length) return null;
-    var top = null;
+    var top = null, topView = null;
     CAT.forEach(function (c) {
       var cw = words(c.q), score = 0, hitTerms = 0;
       qw.forEach(function (w) {
@@ -337,6 +337,9 @@ __RETRIEVER__
         if (stemmed) { score += idf(stemmed) * 0.5; hitTerms += 1; }
       });
       if (!top || score > top.score) top = { c: c, score: score, terms: hitTerms };
+      /* THE BEST NON-ITEM CANDIDATE, kept so the two-term rule below can fall back to it. */
+      if (c.route && c.route.view !== "item" && (!topView || score > topView.score))
+        topView = { c: c, score: score, terms: hitTerms };
     });
     /* A direct mention of a county, a topic word or a decider outranks a fuzzy catalogue
        match, because it is what the reader actually said. */
@@ -390,7 +393,8 @@ __RETRIEVER__
        something broad, and one decisive word is enough for it. */
     var names_one = top && top.c.route && top.c.route.view === "item";
     var chosen = top && top.score >= FLOOR && (!names_one || top.terms >= 2)
-      ? top.c.route : direct;
+      ? top.c.route
+      : (topView && topView.score >= FLOOR ? topView.c.route : direct);
     if (chosen) return chosen;
 
     /* NOTHING MATCHED THE CATALOGUE, SO SEARCH THE DECISIONS THEMSELVES.
