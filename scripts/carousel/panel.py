@@ -57,9 +57,8 @@ SCORE_KEYS = ("weighted_score", "score", "weighted_total", "total", "weighted")
 # Judges disagreeing by more than this are not looking at the same deck yet.
 SPREAD_NOTE = 0.75
 
-# The one value of `refusal_reason` that says a no is about the NUMBER rather than about a fault.
-# Anything else, including nothing, is a fault refusal and stops the deck. Spelled once here and
-# published to the judges through the rubric, so a judge and this module cannot mean two things.
+# The name this module gives a no that is about the NUMBER rather than about a fault. It is a
+# label this module DERIVES and reports, never a value it reads off a judge. See `combine`.
 THRESHOLD_DISSENT = "threshold"
 
 # The lenses. Three judges reading identically are one judge with more tokens, which is the
@@ -166,29 +165,53 @@ def combine(judges: list, bar: float | None = None) -> tuple:
         # is exactly how the gate ended up contradicting itself. If the panel's median is under
         # the bar the deck still holds, through `hold_reason` below.
         #
-        # THREE THINGS STILL FAIL CLOSED, and they are why this is not a widening.
-        #   silence               no refusal_reason at all, which is the original case
-        #   any other reason      a word this module does not recognise is a fault refusal
-        #   an incoherent one     a judge claiming a threshold dissent while its OWN score
-        #                         clears the bar has not described its own number
+        # THE KIND OF NO IS DERIVED, NEVER DECLARED, AND THAT IS THE SECOND FIX. 2026-08-28.
+        #
+        # The first version of this read a `refusal_reason` field off the judge and treated the
+        # word "threshold" as the thing that made a dissent a dissent. Within the same run that
+        # shipped it, the hole opened exactly where it was always going to: the integrity judge
+        # scored 6.51 and explained itself in prose, the field did not exist when it scored, and
+        # THE RUN WROTE THE FIELD ONTO THE JUDGE'S FILE ITSELF. The panel went from HOLD to SHIP
+        # on a word the run had typed on the judge's behalf. The run labelled it honestly, in a
+        # `refusal_reason_source` key saying the field postdated the report by one commit, and
+        # honest labelling is not a control. A gate whose input the graded party can author is
+        # not a gate, it is a formality with a good comment on it.
+        #
+        # SO THE FIELD IS NOT CONSULTED. The `s < bar` half of the old test was already derived
+        # from the judge's own number, and it carries the whole meaning on its own. A judge that
+        # returns ship:false, names NO fault, and scores UNDER the bar has described a threshold
+        # dissent, because there is nothing else it can be: the rubric gives a fault its own
+        # list, and this judge left that list empty. The word added no information and one
+        # forgery surface, so the word is gone and there is nothing left to transcribe.
+        #
+        # WHAT STILL FAILS CLOSED is now stronger, not weaker, because none of it is declarable:
+        #   a fault refusal       any non-empty hard_fails still stops the deck at any round,
+        #                         which is the judges' real veto and is untouched here
+        #   an incoherent one     ship:false, no fault named, and a score that CLEARS the bar
+        #                         describes nothing at all, and fails closed
+        #   a written field       a `refusal_reason` in the file that disagrees with what the
+        #                         judge's own numbers say now fails closed, because after this
+        #                         change no judge emits one and its presence means a hand
         if j.get("ship") is False and not (j.get("hard_fails") or []):
-            reason = str(j.get("refusal_reason") or "").strip().lower()
-            coherent = reason == THRESHOLD_DISSENT and s is not None and s < bar
-            if coherent:
+            derived = THRESHOLD_DISSENT if (s is not None and s < bar) else None
+            written = str(j.get("refusal_reason") or "").strip().lower() or None
+            if written and written != derived:
+                fails.append({"judge": i + 1, "fail":
+                              f"judge returned ship: false carrying refusal_reason "
+                              f"{written!r}, which its own numbers do not support. This panel "
+                              f"derives the kind of a refusal from the judge's score and its "
+                              f"hard_fails list and never from a written field, because a field "
+                              f"the graded party can author is not evidence"})
+            elif derived:
                 dissents.append({"judge": i + 1, "score": round(s, 3),
                                  "reason": f"judge {i + 1} refused on the threshold, not on a "
                                            f"fault, and scored {round(s, 3)} against a {bar} bar. "
                                            f"That dissent is carried in the median"})
             else:
-                why = ("with no hard fail named and no refusal_reason, which is a refusal "
-                       "either way" if not reason else
-                       f"with no hard fail named and refusal_reason {reason!r}, which this "
-                       f"panel does not recognise as a threshold dissent"
-                       if reason != THRESHOLD_DISSENT else
-                       f"claiming a threshold dissent while its own score {s} does not sit "
-                       f"under the {bar} bar, so the refusal is not the number it names")
-                fails.append({"judge": i + 1,
-                              "fail": f"judge returned ship: false {why}"})
+                fails.append({"judge": i + 1, "fail":
+                              f"judge returned ship: false with no hard fail named while its own "
+                              f"score {s} clears the {bar} bar, so the refusal describes neither "
+                              f"a fault nor the number. A refusal either way"})
     if not scores:
         return {}, (probs or ["no judge returned a usable score"])
     if len(scores) < 3:
@@ -385,13 +408,14 @@ def self_test() -> int:
     v, _ = combine([j(7.4), j(7.5), j(9.9)])
     ok("one generous judge does not carry a deck", v["weighted_score"] == 7.5, str(v))
 
-    # A refusal with no hard fail named is still a refusal.
+    # A refusal with no hard fail named, from a judge whose own score CLEARS the bar, describes
+    # neither a fault nor the number, and is still a refusal.
     v, _ = combine([j(7.5), j(7.5), j(7.5, ship=False)])
     ok("a judge returning ship:false with no hard fail still stops the deck",
        v["ship"] is False, str(v))
 
     # ---- WHICH KIND OF NO IT IS (2026-08-28) -------------------------------------------
-    # SILENCE STILL FAILS CLOSED, and the assertion directly above is the load-bearing one.
+    # THE INCOHERENT REFUSAL STILL FAILS CLOSED, and this is the load-bearing assertion.
     ok("...and that refusal is still recorded as a hard fail rather than a dissent",
        len(v["hard_fails"]) == 1 and "threshold_dissents" not in v, str(v))
 
@@ -406,13 +430,40 @@ def self_test() -> int:
     # 6.8 bar, on a deck whose median was 6.806. Under the old rule this synthesized a hard fail,
     # a hard fail stops a deck at any round, and the run had to argue in prose that its own gate
     # did not mean what it said.
-    v, _ = combine([j(6.95), j(6.96), jd(6.51, "threshold")], bar=6.8)
-    ok("a DECLARED threshold dissent is not a hard fail", v["hard_fails"] == [], str(v))
+    v, _ = combine([j(6.95), j(6.96), jd(6.51)], bar=6.8)
+    ok("a threshold dissent DERIVED from the judge's own numbers is not a hard fail",
+       v["hard_fails"] == [], str(v))
     ok("...and it is never silent, it is stated in the verdict",
        len(v.get("threshold_dissents") or []) == 1, str(v.get("threshold_dissents")))
     ok("...and the dissenting judge's own number is still in the median",
        6.51 in v["judges"] and v["weighted_score"] == 6.95, str(v))
     ok("...and a deck whose median clears the bar ships", v["ship"] is True, str(v))
+
+    # ---- AND THE RUN CANNOT WRITE ITS WAY PAST THE GATE (2026-08-28, second pass) --------
+    # THE HOLE THIS CLOSES OPENED INSIDE THE RUN THAT SHIPPED THE FIRST VERSION. The rule above
+    # used to turn on a `refusal_reason` field read off the judge. The integrity judge scored
+    # 6.51 and explained itself in prose; the field did not exist when it scored; and the RUN
+    # wrote the field onto the judge's file itself, moving this panel from HOLD to SHIP on a word
+    # the graded party had typed. It was labelled honestly and honest labelling is not a control.
+    #
+    # These four assertions are the control. A written field can no longer buy anything, and one
+    # that disagrees with the judge's own numbers now stops the deck.
+    ok("a threshold dissent needs NO written field at all",
+       combine([j(6.95), j(6.96), jd(6.51)], bar=6.8)[0]["hard_fails"] == [], "derived")
+
+    forged = combine([j(6.95), j(6.96), jd(7.9, "threshold")], bar=6.8)[0]
+    ok("a refusal_reason a judge's own score does not support is CAUGHT",
+       forged["ship"] is False and len(forged["hard_fails"]) == 1, str(forged))
+    ok("...and the verdict says the field was the problem",
+       "refusal_reason" in forged["hard_fails"][0], str(forged["hard_fails"]))
+
+    # Writing the word onto a judge that already qualifies changes NOTHING, which is the point:
+    # the field is inert, so there is no longer anything a run can gain by touching it.
+    with_field = combine([j(6.95), j(6.96), jd(6.51, "threshold")], bar=6.8)[0]
+    without    = combine([j(6.95), j(6.96), jd(6.51)], bar=6.8)[0]
+    ok("...and writing it onto a judge that already qualifies buys nothing",
+       with_field["ship"] == without["ship"]
+       and with_field["hard_fails"] == without["hard_fails"], str(with_field))
 
     # ...AND THE DISSENT DOES NOT BUY A DECK ANYTHING. This is the assertion that proves the
     # change is not a widening: when the panel's own median is under the bar, a declared
@@ -424,7 +475,7 @@ def self_test() -> int:
 
     # AN UNRECOGNISED REASON IS A FAULT REFUSAL. A judge cannot invent a word to get past this.
     v, _ = combine([j(9.0), j(9.0), jd(6.5, "taste")], bar=6.8)
-    ok("a refusal_reason this panel does not recognise still stops the deck",
+    ok("a refusal_reason this panel cannot derive still stops the deck",
        v["ship"] is False and len(v["hard_fails"]) == 1, str(v))
     ok("...and the message names the word the judge used",
        "'taste'" in v["hard_fails"][0], str(v["hard_fails"]))
@@ -434,8 +485,8 @@ def self_test() -> int:
     v, _ = combine([j(9.0), j(9.0), jd(8.9, "threshold")], bar=6.8)
     ok("a threshold dissent from a judge whose own score clears the bar is NOT accepted",
        v["ship"] is False and len(v["hard_fails"]) == 1, str(v))
-    ok("...and says the refusal is not the number it names",
-       "not the number it names" in v["hard_fails"][0], str(v["hard_fails"]))
+    ok("...and says the judge's own numbers do not support the field",
+       "own numbers do not support" in v["hard_fails"][0], str(v["hard_fails"]))
 
     # AND A NAMED FAULT IS UNTOUCHED BY ANY OF THIS. A judge that names a hard fail AND calls its
     # refusal a threshold dissent is still stopped by the fault.
@@ -488,12 +539,14 @@ def self_test() -> int:
     import yaml
     _doc = yaml.safe_load(RUBRIC.read_text(encoding="utf-8"))
     _ref = (_doc or {}).get("refusal") or {}
-    ok("the rubric names the refusal field this module reads",
-       _ref.get("field") == "refusal_reason", str(_ref.get("field")))
-    ok("...and publishes the one value that is a threshold dissent",
-       THRESHOLD_DISSENT in (_ref.get("values") or {}), str(list(_ref.get("values") or {})))
-    ok("...and says out loud that omitting it fails closed",
-       "stops the deck" in str(_ref.get("omitted", "")), str(_ref.get("omitted"))[:80])
+    ok("the rubric says the refusal kind is DERIVED, not declared",
+       _ref.get("derived") is True, str(_ref.get("derived")))
+    ok("...and tells a judge not to emit the field at all",
+       "do not" in str(_ref.get("field", "")).lower(), str(_ref.get("field"))[:90])
+    ok("...and says out loud that a written one which disagrees stops the deck",
+       "stops the deck" in str(_ref.get("written", "")), str(_ref.get("written"))[:90])
+    ok("...and states what a fault refusal is, which is the judges' real veto",
+       "hard_fails" in str(_ref.get("fault", "")), str(_ref.get("fault"))[:90])
 
     print("\npanel self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0
