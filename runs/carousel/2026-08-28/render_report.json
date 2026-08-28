@@ -2267,10 +2267,10 @@
           "anc": []
         },
         {
-          "text": "c3 c5 c12",
-          "x": 381,
+          "text": "c3 c12",
+          "x": 398,
           "y": 1219,
-          "w": 151,
+          "w": 101,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -2280,9 +2280,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              381,
+              398,
               1219,
-              151,
+              101,
               31
             ]
           ],
@@ -2290,7 +2290,7 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 565,
+          "x": 548,
           "y": 1219,
           "w": 286,
           "h": 31,
@@ -2302,7 +2302,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              565,
+              548,
               1219,
               286,
               31
@@ -2528,7 +2528,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3589,
+      "render_ms": 3731,
       "ok": true,
       "canvases": [
         {
@@ -3102,7 +3102,7 @@
           "anc": []
         },
         {
-          "text": "PUCT PROJECT 59550, A SEPARATE PROCEEDING",
+          "text": "PUCT PROJECT 59550, A SEPARATE PROCEEDING c29",
           "x": 114,
           "y": 382,
           "w": 852,
@@ -3117,7 +3117,7 @@
             [
               114,
               382,
-              728,
+              817,
               34
             ]
           ],
@@ -3284,10 +3284,10 @@
           "anc": []
         },
         {
-          "text": "c22 c24 c26 c27",
-          "x": 351,
+          "text": "c22 c24 c26 c27 c29",
+          "x": 331,
           "y": 1219,
-          "w": 227,
+          "w": 287,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -3297,9 +3297,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              351,
+              331,
               1219,
-              227,
+              287,
               31
             ]
           ],
@@ -3307,7 +3307,7 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 608,
+          "x": 628,
           "y": 1219,
           "w": 257,
           "h": 31,
@@ -3319,7 +3319,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              608,
+              628,
               1219,
               257,
               31
@@ -3377,7 +3377,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 5250,
+      "render_ms": 5276,
       "ok": true,
       "canvases": [
         {

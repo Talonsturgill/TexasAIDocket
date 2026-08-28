@@ -104,7 +104,6 @@
       ],
       "claims": [
         "c3",
-        "c5",
         "c12"
       ]
     },
@@ -139,7 +138,7 @@
       "hook": "The open door is in another proceeding.",
       "dek": "\"Ensign respectfully asks the Commission to grant rehearing and amend its Order to find that no conditions are necessary on Crusoe Two.\"",
       "labels": [
-        "PUCT PROJECT 59550, A SEPARATE PROCEEDING",
+        "PUCT PROJECT 59550, A SEPARATE PROCEEDING  c29",
         "COMMENTS DUE  c24",
         "September 17th, 2026",
         "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM",
@@ -151,7 +150,8 @@
         "c22",
         "c24",
         "c26",
-        "c27"
+        "c27",
+        "c29"
       ]
     }
   }

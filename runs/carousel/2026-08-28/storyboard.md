@@ -353,43 +353,46 @@ numerals:
 composition:
   structure: >
     One magnitude is plotted against a labelled reference on an untruncated axis that includes a drawn and
-    labelled zero, because the claim is a comparison rather than a change, which is how the order itself sets them, and the eye reads a change
-    as an angle before it reads either endpoint.
+    labelled zero, because the claim is a comparison rather than a change, which is how the order
+    itself sets them side by side.
   bands: >
     The top third carries the hook and, in the same block, the attribution strap naming the
-    applicants, set no smaller than the figure's own caption. The middle third carries the two
-    plotted states as filled seated blocks with the slope between them and a full width hairline
-    at the resource's nameplate. The bottom third carries the drawn zero, the axis foot with its
+    applicants, set no smaller than the figure's own caption. The middle third carries the
+    contended total as ONE filled seated block, with a full width dashed hairline at the
+    resource's nameplate as a labelled reference and nothing joining the two. The bottom third carries the drawn zero, the axis foot with its
     ticks, the megawatt per pixel rate printed as a scale bar, and a raking `trujillo` face
     beneath it whose lit grain runs out of the frame, with the claim ids and the counter on it.
   focal: >
-    The pair of filled seated blocks in the middle band, read as one mass, which the eye finds
-    because they are the only filled areas on a face that is otherwise line work.
+    The single filled seated block carrying the contended total, which the eye finds because it
+    is the only filled area on a face that is otherwise line work.
 art:
-  technique: "slope chart, untruncated, with a drawn zero, mounted on a raking lit sandstone face"
+  technique: "one plotted magnitude against a labelled reference, untruncated, with a drawn zero, mounted on a raking lit sandstone face"
   why_this_technique: >
-    The bar pair shipped six days ago and the residual bar at true ratio is spent. A slope is
-    neither, and it is the honest figure for a claim about how an obligation changed rather than
-    how big it is. Mounting it on a lit face keeps the frame inside the deck's own section.
+    The bar pair shipped six days ago and the residual bar at true ratio is spent. This frame
+    drew a slope until an integrity judge read the geometry rather than the copy: a slope means a
+    change, no claim states one, and the change it drew was contradicted by the order's own
+    recital, which reaches 525.5 by adding two loads. A magnitude against a labelled reference
+    says the one thing the record supports. Mounting it on a lit face keeps the frame inside the
+    deck's own section.
   palette: "trujillo face, ochre on the applicants' plotted state, caliche_cap on the nameplate hairline"
   value_structure: >
-    Lightest is the raking sandstone face across the middle and lower bands where the sun crosses
-    the grain. Darkest is the recess the seated blocks sit in, which is what gives them an edge.
-  motion: "up the slope from the first state to the second, then down to the labelled zero"
+    Lightest is the ochre block and the caliche line work. Darkest is the recess the block sits
+    in, which is what gives it an edge, on a mid dark raking sandstone face.
+  motion: "down from the attribution to the plotted total, then across to the nameplate reference and down to the labelled zero"
 type:
   hook: "The applicants did the arithmetic."
   dek: "\"it would result in a total curtailment of 525.5 MW\""
-  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "265.5 MW  GOODNIT1 nameplate", "525.5 MW", "c12", "c3", "c5"]
+  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "265.5 MW  GOODNIT1 nameplate", "525.5 MW", "c12", "c3"]
 acceptance:
   - "the attribution outranks the figure by every measure a reader uses. THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT is set at 34 px on a full width saturated ochre strap ABOVE the chart, and 525.5 is set at 32 px, so the numeral is never the larger of the two. The earlier form of this item demanded the two sit within 60 px and the render had them 157 apart, which is the plan describing a frame that was not built"
   - "525.5 is set in `#B4903F` and no `caliche_cap` value appears inside its block"
   - "the value axis includes zero, zero is drawn and carries a label, and no axis is truncated"
-  - "both plotted values sit at y positions computed by compute.py at the deck's single px_per_mw rate, and that rate appears on the frame as a scale bar"
-  - "the nameplate hairline is drawn in `caliche_cap` and is visually distinct in construction from the two plotted areas, which are filled blocks of 40 by 40 px or more"
+  - "the plotted total and the nameplate hairline both sit at y positions computed by compute.py at the deck's single px_per_mw rate, and that rate appears on the frame as a scale bar"
+  - "the nameplate hairline is drawn dashed in `caliche_cap` and is visually distinct in construction from the one plotted area, which is a filled block of 40 by 40 px or more, and NO line joins the two"
   - 'the frame carries the strings "0 MW", "100 MW" and "265.5 MW  GOODNIT1 nameplate", and the hook reads exactly "The applicants did the arithmetic."'
 risks:
   - "a reader at 432 px reads the headline figure and never reaches the attribution, which putting the attribution in the hook block at 32 px is the whole defence against"
-  - "a slope chart on a lit face can read as a chart pasted over scenery, which the shared sun and the recessed blocks are meant to prevent"
+  - "a chart on a lit face can read as pasted over scenery, which the shared sun and the recessed block are meant to prevent"
 ```
 
 ```yaml
@@ -504,7 +507,7 @@ slide: 9
 job: >
   Close on the surface the deck opened on, hand the reader the docket number and the one dated
   door the record actually holds, and scope that door honestly to the calendar it came off.
-claims: [c22, c24, c26, c27]
+claims: [c22, c24, c26, c27, c29]
 numerals:
   - value_from: c24
   - computed_by: "out/2026-08-28/compute.py, comment_date rendered month first with the ordinal"
@@ -537,7 +540,7 @@ art:
 type:
   hook: "The open door is in another proceeding."
   dek: "\"Ensign respectfully asks the Commission to grant rehearing and amend its Order to find that no conditions are necessary on Crusoe Two.\""
-  labels: ["PUCT PROJECT 59550, A SEPARATE PROCEEDING", "COMMENTS DUE  c24", "September 17th, 2026", "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM", "DOCKET 59220", "Motion for rehearing filed August 18th, 2026", "texasaidocket.com", "c22", "c24", "c26", "c27"]
+  labels: ["PUCT PROJECT 59550, A SEPARATE PROCEEDING  c29", "COMMENTS DUE  c24", "September 17th, 2026", "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM", "DOCKET 59220", "Motion for rehearing filed August 18th, 2026", "texasaidocket.com", "c22", "c24", "c26", "c27"]
 acceptance:
   - "\"September 17th, 2026\" is the only text in the whole deck set in `#BF0A30`, and it measures 4.5 to 1 or better at its worst point against `caliche_cap`"
   - 'the frame NAMES the proceeding the deadline belongs to, reading "PUCT PROJECT 59550, A SEPARATE PROCEEDING" directly above the date. It never says the calendar entry names no docket, because the feed this run fetched shows that entry reading "Project 59550"'
