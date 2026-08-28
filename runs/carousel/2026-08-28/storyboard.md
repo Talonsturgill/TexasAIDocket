@@ -410,8 +410,12 @@ composition:
     itself and the hook set beside it. The bottom third is the lower course in `quartermaster`
     under the same raking light, its bedding and its grain drawn in full with the shadow of each
     parting lying along it, read through the drafting film at partial transmittance so that lit
-    texture stays legible, with the film's straight ruled top edge crossing it and the motion's
-    quoted words in graphite on the film, plus the claim ids and the counter.
+    texture stays legible, with the film's straight ruled top edge crossing it and the drafter's
+    hachured contact mark ruled in graphite ON the film. BELOW the film, and not on it, a matte
+    writing panel carries the motion's quoted words, the claim ids and the counter. Two judges
+    read that opaque panel as the film itself and reported the film as opaque; the film is
+    measured at 66 percent transmittance and the rock's texture reads through it at full
+    retention, so what was wrong was this dossier saying the words sit on the film.
   focal: >
     The contact itself read as a band of area rather than as a line, thickened by the lit lip on
     its upper side and the shaded lip on its lower one, which the eye finds because it is the one
@@ -427,14 +431,15 @@ art:
   value_structure: >
     Lightest is the drafting film across the lower half, which makes this the deck's brightest
     frame and its one inversion. Darkest is the shaded lip immediately below the contact.
-  motion: "along the contact edge to edge, then down through the film to the words on it"
+  motion: "along the contact edge to edge, then down through the film to the writing panel below it"
 type:
   hook: "Decided above. Decided below. Not between."
   dek: "\"Nor did the Order directly address the critical legal and policy issue of first impression that underlies this case\""
   labels: ["MOTION FOR REHEARING, DOCKET 59220", "\"the Order is excessive, arbitrary and capricious, unsupported by the evidentiary record, and not authorized by the language of PURA.\"", "c17", "c18", "c19"]
 acceptance:
   - "one continuous contact runs from the left frame edge to the right with no break, and neither course contains any region larger than 60 by 60 px that is flat within 2 L*"
-  - "the film covers the lower course only, its top edge visible as a straight ruled line, with the rock legible through it at a measured transmittance between 55 and 75 percent"
+  - "the film covers the lower course only, its top edge visible as a straight ruled line, with the rock legible through it at a measured transmittance between 55 and 75 percent. Measured on the render, the texture standard deviation under the film is 13.1 against 10.6 on the bare course above it, so the rock reads through at full retention"
+  - "the graphite hachured contact mark is ruled ON the film and is a drafter's mark rather than a section symbol, and the motion's words sit on the matte writing panel BELOW the film, never on the film itself"
   - "the literal string \"the critical legal and policy issue of first impression that underlies this case\" appears in full with \"c18\" beneath it"
   - 'the eyebrow reads "MOTION FOR REHEARING, DOCKET 59220" and sits in the same block as the hook'
   - "this is the deck's inversion, its median lightness at least 15 above BOTH its neighbours, slides 6 and 8. It is not the deck's lightest frame and was never going to be, because the reserved red on slide 9 only clears contrast as ink on caliche and that fixes slide 9 as the pale one"
