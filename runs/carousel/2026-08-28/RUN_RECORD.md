@@ -117,3 +117,25 @@ returns nothing for the `texas-ai-scanner` project, so the query in the routine 
 all. That is the third of the three outcomes the phase names and it does not block the run, but it
 is worth saying plainly rather than folding into a list. The ceiling nobody is notified about is
 still unwatched today, and a requester who hit it was told the day was full and nobody heard.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 26 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | PASS   | 9 slide(s), zero fails, zero warns |
+| aggregates     | PASS   | 7 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.2 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| dossiers       | PASS   | 36,570 chars planned |
+| caption        | PASS   | 143 words |
+| craft floor    | PASS   | 9 frame(s), median 253, floor 60 |
+| plan vs render | WARN   | 8 of 49 acceptance item(s) checkable |
+| texan          | PASS   | places Armstrong County / body yes / deadline yes / next step yes |
+| absences       | PASS   | 7 of 7 scoped to a named document |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
