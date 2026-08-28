@@ -2427,72 +2427,6 @@
         },
         {
           "kind": "fill",
-          "x": 352,
-          "y": 700.4,
-          "w": 104,
-          "h": 104,
-          "by": "rect",
-          "color": "rgba(8, 5, 9, 0.74)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 352,
-          "y": 700.4,
-          "w": 104,
-          "h": 9,
-          "by": "rect",
-          "color": "rgba(4, 2, 5, 0.86)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 352,
-          "y": 700.4,
-          "w": 9,
-          "h": 104,
-          "by": "rect",
-          "color": "rgba(4, 2, 5, 0.86)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 447,
-          "y": 700.4,
-          "w": 9,
-          "h": 104,
-          "by": "rect",
-          "color": "rgba(255, 246, 226, 0.3)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 352,
-          "y": 795.4,
-          "w": 104,
-          "h": 9,
-          "by": "rect",
-          "color": "rgba(255, 246, 226, 0.22)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 361,
-          "y": 709.4,
-          "w": 86,
-          "h": 86,
-          "by": "rect",
-          "color": "rgb(228, 220, 198)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
           "x": 708,
           "y": 458,
           "w": 104,
@@ -2558,17 +2492,6 @@
           "skip": []
         },
         {
-          "kind": "svg",
-          "x": 456,
-          "y": 540,
-          "w": 252,
-          "h": 182.4,
-          "by": "line",
-          "color": "rgb(180, 144, 63)",
-          "decorative": false,
-          "skip": []
-        },
-        {
           "kind": "fill",
           "x": 536.7,
           "y": 689.4,
@@ -2605,7 +2528,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3683,
+      "render_ms": 3589,
       "ok": true,
       "canvases": [
         {
@@ -2618,8 +2541,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 57.8,
-          "variance": 271.9
+          "mean": 55.8,
+          "variance": 193.8
         }
       ],
       "breather": false,
@@ -3317,7 +3240,7 @@
           "anc": []
         },
         {
-          "text": "Filed Date - 2026-08-18 c26",
+          "text": "Motion for rehearing filed August 18th, 2026 c26",
           "x": 80,
           "y": 1074,
           "w": 920,
@@ -3332,7 +3255,7 @@
             [
               100,
               1088,
-              344,
+              600,
               36
             ]
           ],
@@ -3454,7 +3377,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 5555,
+      "render_ms": 5250,
       "ok": true,
       "canvases": [
         {

@@ -352,8 +352,8 @@ numerals:
   - computed_by: "out/2026-08-28/compute.py, px_per_mw and contended_px"
 composition:
   structure: >
-    One quantity is plotted at two states on an untruncated axis that includes a drawn and
-    labelled zero, because the claim is a change rather than a level, and the eye reads a change
+    One magnitude is plotted against a labelled reference on an untruncated axis that includes a drawn and
+    labelled zero, because the claim is a comparison rather than a change, which is how the order itself sets them, and the eye reads a change
     as an angle before it reads either endpoint.
   bands: >
     The top third carries the hook and, in the same block, the attribution strap naming the
@@ -532,7 +532,7 @@ art:
 type:
   hook: "The open door is in another proceeding."
   dek: "\"Ensign respectfully asks the Commission to grant rehearing and amend its Order to find that no conditions are necessary on Crusoe Two.\""
-  labels: ["PUCT PROJECT 59550, A SEPARATE PROCEEDING", "COMMENTS DUE  c24", "September 17th, 2026", "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM", "DOCKET 59220", "Filed Date - 2026-08-18", "texasaidocket.com", "c22", "c24", "c26", "c27"]
+  labels: ["PUCT PROJECT 59550, A SEPARATE PROCEEDING", "COMMENTS DUE  c24", "September 17th, 2026", "QUINQUENNIAL REVIEW OF SYSTEM-WIDE OFFER CAP PROGRAM", "DOCKET 59220", "Motion for rehearing filed August 18th, 2026", "texasaidocket.com", "c22", "c24", "c26", "c27"]
 acceptance:
   - "\"September 17th, 2026\" is the only text in the whole deck set in `#BF0A30`, and it measures 4.5 to 1 or better at its worst point against `caliche_cap`"
   - 'the frame NAMES the proceeding the deadline belongs to, reading "PUCT PROJECT 59550, A SEPARATE PROCEEDING" directly above the date. It never says the calendar entry names no docket, because the feed this run fetched shows that entry reading "Project 59550"'
