@@ -139,3 +139,54 @@ still unwatched today, and a requester who hit it was told the day was full and 
 | absences       | PASS   | 7 of 7 scoped to a named document |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
+
+## The deck, and how it was made
+
+**Story.** PUCT Docket 59220, `tx-2026-0108`, admitted this run. The commission approved a net
+metering arrangement letting a second AI data center complex share the point of interconnection
+and the settlement meter of GOODNIT1, a wind resource in Armstrong County, and attached
+curtailment conditions. Ensign Infrastructure moved for rehearing on August 18th.
+
+**Why this story and not the others.** Six scouts came back with strong material and most of it
+was not usable, for one reason each. The UT Austin core curriculum making Computer Science and AI
+a requirement for every undergraduate is the best story nobody ran, and it is not in the record.
+Kodiak's driverless triple trailers in the Permian are the best picture nobody drew, and driverless
+trucking shipped eight days ago as deck no. 5. Apple's Houston AI server plant and the Siemens
+split are company releases with no Texas decision behind them. What Docket 59220 has that none of
+them has is that it is a DECISION THE RECORD NOW HOLDS, resting on two primary documents this run
+read in full, and it is settled and unsettled at the same time.
+
+**Three directors, three lenses, and all three independently chose the Llano Estacado.** After
+nine consecutive decks of an object or an interior at arm's length, land at distance was the one
+register the ledger left open, and Armstrong County is the only place the record names. The
+concept came from the unanswered-question room and it is the best idea any of the three had. Every
+obvious drawing of an absence is spent here and every one of them was a hole. This story is not a
+subtraction, so the deck draws it as a CONTACT between two fully present courses. The attribution
+law came from the place room. Caliche and gypsum carry the commission, ochre carries a party, so a
+reader is told who is speaking before they read a word.
+
+**The fact-checker earned the phase.** Six of nineteen claims passed unchanged. The failures were
+not quotes, they were VOICE. Three claims took words the order was merely reporting from a party
+and presented them as the commission's own act, and one of those did it by quoting the order's
+recitation of a DIFFERENT docket's condition. It also found that 265.5 MW is GOODNIT1's rating
+while the commission's finding for the first data center is 265 MW, which two of the three
+directors had planned a whole frame around getting backwards. Slide 5 is now about exactly that
+distinction, which is a truer frame than the one that was planned.
+
+**The caption room produced no winner and the critic was right about both.** Candidate A wrote
+that the commission approved a data center. It approved an ARRANGEMENT, and on a record whose
+audience is agency staff that is a sentence about what a state agency has the power to do.
+Candidate B's opening was two verbless count fragments split by a period, which is the same
+skeleton as the stored first line from 2026-08-19. One rewrite was taken, against the critic's
+brief, and it opens on the correction the fact-check produced.
+
+**The critic read a stale exclusion list and was still right.** `opening_moves_recent` in
+`ledger/carousel/captions.json` reads `["the two things", ... "the number that is wrong"]` while
+the last six shipped moves computed from `entries` are `["the plain question", "the before and
+after", "the deadline", "the quiet decision", "the number that is wrong", "the who"]`. The stored
+list carries a move that is seven runs back and omits the one from yesterday. `structures_recent`
+is wrong the same way, reading `["zoom in", "zoom out", "ledger"]` where the entries give
+`["zoom out", "ledger", "two columns"]`. The ledger's own `recent_lists_note` predicted this
+exactly and the fix was written down as a proposal on 2026-08-20 and has not been made. This run
+handed the room the COMPUTED lists and the critic judged against the STORED ones, so the two rooms
+were working from different exclusion sets all evening.
