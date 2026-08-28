@@ -35,10 +35,12 @@ const LAUNCH = fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : 
 const SITE = path.resolve(process.env.SITE || "docs");
 const argv = process.argv.slice(2);
 const flag = (name) => { const i = argv.indexOf(name); return i < 0 ? null : argv[i + 1]; };
+const PYTHON = process.env.TEXAS_AI_DOCKET_PYTHON
+  || (process.platform === "win32" ? "python" : "python3");
 
 // The set, generated now from the record rather than read from a file somebody last touched
 // months ago. Shelling out keeps ONE implementation of what a case is.
-const GOLD = JSON.parse(execFileSync("python3",
+const GOLD = JSON.parse(execFileSync(PYTHON,
   ["scripts/site/ask_eval.py"], { encoding: "utf-8", maxBuffer: 32 << 20 }));
 // THIS LANE SCORES THE CASES THIS LANE CAN ANSWER, which is every case that existed before
 // the record grew past the decisions. The gold set now also carries data center, construction
