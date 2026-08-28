@@ -80,6 +80,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -351,14 +352,48 @@ def hook_installed() -> bool:
     except OSError:
         return False
     root = (REPO_ROOT / path) if path else (REPO_ROOT / ".git" / "hooks")
-    return all((root / name).exists() and (root / name).stat().st_mode & 0o111 != 0
-               for name in ("pre-commit", "commit-msg"))
+
+    def runnable(hook: Path) -> bool:
+        if not hook.is_file():
+            return False
+        # NTFS has no POSIX executable bit. Git for Windows uses the executable bit stored
+        # in the index and runs extensionless hooks through its shell, while Python reports
+        # every checked-out hook as mode 0666. Requiring stat().st_mode & 0111 therefore says
+        # a working Windows hook is absent. Syntax and execution are exercised below.
+        return sys.platform == "win32" or hook.stat().st_mode & 0o111 != 0
+
+    return all(runnable(root / name) for name in ("pre-commit", "commit-msg"))
+
+
+def bash_executable() -> str:
+    """Use Git Bash on Windows; the WSL launcher named bash corrupts native argv scripts."""
+    if sys.platform == "win32":
+        git = shutil.which("git")
+        if git:
+            git_exe = Path(git).resolve()
+            candidates = (
+                git_exe.parent / "bash.exe",
+                git_exe.parent.parent / "bin" / "bash.exe",
+                git_exe.parent.parent / "usr" / "bin" / "bash.exe",
+            )
+            for candidate in candidates:
+                if candidate.is_file():
+                    return str(candidate)
+    return shutil.which("bash") or "bash"
 
 
 def run_step(step: Step) -> tuple[int, str, float]:
     """Execute one step exactly as the workflow shell would, and judge it by exit code."""
     t0 = time.monotonic()
-    proc = subprocess.run(["bash", "-e", "-c", step.run], cwd=REPO_ROOT,
+    script = step.run
+    if sys.platform == "win32":
+        # GitHub's Linux runner calls the interpreter `python3`; a standard Windows venv
+        # calls the same interpreter `python.exe`, while WindowsApps may expose a broken
+        # Store launcher named python3. A shell function preserves the workflow command and
+        # sends it to the exact interpreter running this harness.
+        python = Path(sys.executable).as_posix().replace('"', '\\"')
+        script = f'python3() {{ "{python}" "$@"; }}\n' + script
+    proc = subprocess.run([bash_executable(), "-e", "-c", script], cwd=REPO_ROOT,
                           capture_output=True, text=True)
     return proc.returncode, (proc.stdout + proc.stderr), time.monotonic() - t0
 

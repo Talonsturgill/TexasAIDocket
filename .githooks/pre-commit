@@ -29,7 +29,27 @@ actor="human"
 [ -f "$gitdir/ACTOR" ] && actor="$(tr -d '[:space:]' < "$gitdir/ACTOR")"
 [ -n "$actor" ] || actor="human"
 
-if ! python3 "$checker" --actor "$actor" --staged; then
+# Prefer the checkout's pinned environment. On Windows, `python3` can resolve to the
+# Microsoft Store launcher even when a real Python is installed, so prove each fallback
+# before trusting it. The array keeps `py -3` as one command without an eval.
+python_cmd=()
+if [ -x "$root/.venv/bin/python" ]; then
+  python_cmd=("$root/.venv/bin/python")
+elif [ -x "$root/.venv/Scripts/python.exe" ]; then
+  python_cmd=("$root/.venv/Scripts/python.exe")
+elif command -v python3 >/dev/null 2>&1 && python3 -c 'import sys' >/dev/null 2>&1; then
+  python_cmd=(python3)
+elif command -v python >/dev/null 2>&1 && python -c 'import sys' >/dev/null 2>&1; then
+  python_cmd=(python)
+elif command -v py >/dev/null 2>&1 && py -3 -c 'import sys' >/dev/null 2>&1; then
+  python_cmd=(py -3)
+else
+  echo "pre-commit: Python 3 is required to run the ownership guard." >&2
+  echo "  Create the project environment first:  python -m venv .venv" >&2
+  exit 1
+fi
+
+if ! "${python_cmd[@]}" "$checker" --actor "$actor" --staged; then
   echo ""
   echo "pre-commit: refused. The staged change writes outside the '$actor' lane."
   echo "  If you are a maintainer, clear the stamp:  rm .git/ACTOR"
