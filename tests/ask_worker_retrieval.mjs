@@ -27,6 +27,8 @@ import { askIndex } from "../workers/ask/retriever.js";
 
 const argv = process.argv.slice(2);
 const flag = (n) => { const i = argv.indexOf(n); return i < 0 ? null : argv[i + 1]; };
+const PYTHON = process.env.TEXAS_AI_DOCKET_PYTHON
+  || (process.platform === "win32" ? "python" : "python3");
 
 let fail = 0, pass = 0;
 const ok = (label, cond, detail = "") => {
@@ -38,11 +40,11 @@ const head = (t) => console.log("\n" + t);
 
 // Built now from the record, never read from a file somebody last touched months ago. Same
 // reason ask_eval.mjs shells out for its cases: one implementation of what the pack is.
-const PACK = JSON.parse(execFileSync("python3",
+const PACK = JSON.parse(execFileSync(PYTHON,
   ["-c", "import sys,json; sys.path.insert(0,'scripts/site'); import ask_pack; " +
          "p=ask_pack.build(); json.dump(p, sys.stdout)"],
   { encoding: "utf-8", maxBuffer: 64 << 20 }));
-const GOLD = JSON.parse(execFileSync("python3", ["scripts/site/ask_eval.py"],
+const GOLD = JSON.parse(execFileSync(PYTHON, ["scripts/site/ask_eval.py"],
   { encoding: "utf-8", maxBuffer: 32 << 20 }));
 const LEDGER = JSON.parse(fs.readFileSync("ledger/docket.json", "utf-8"));
 const ITEMS_RAW = Array.isArray(LEDGER) ? LEDGER : LEDGER.items;

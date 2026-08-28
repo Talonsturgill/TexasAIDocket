@@ -386,6 +386,11 @@ def run_step(step: Step) -> tuple[int, str, float]:
     """Execute one step exactly as the workflow shell would, and judge it by exit code."""
     t0 = time.monotonic()
     script = step.run
+    env = os.environ.copy()
+    # Node-based gates occasionally need to regenerate a fixture with Python. Passing the
+    # exact interpreter running this harness avoids the Windows Store `python3` alias and keeps
+    # those child processes inside the project's verified environment.
+    env["TEXAS_AI_DOCKET_PYTHON"] = sys.executable
     if sys.platform == "win32":
         # GitHub's Linux runner calls the interpreter `python3`; a standard Windows venv
         # calls the same interpreter `python.exe`, while WindowsApps may expose a broken
@@ -394,7 +399,7 @@ def run_step(step: Step) -> tuple[int, str, float]:
         python = Path(sys.executable).as_posix().replace('"', '\\"')
         script = f'python3() {{ "{python}" "$@"; }}\n' + script
     proc = subprocess.run([bash_executable(), "-e", "-c", script], cwd=REPO_ROOT,
-                          capture_output=True, text=True)
+                          capture_output=True, text=True, env=env)
     return proc.returncode, (proc.stdout + proc.stderr), time.monotonic() - t0
 
 

@@ -686,16 +686,22 @@ jobs:
           # learn to skip, which is how the shallow-clone property would have stopped being
           # checked at all.
           #
-          # RE-RUNNABLE TOO. `git clone` into a non-empty directory exits 128, so a reused
-          # workspace failed the second run with a git error rather than a finding.
-          rm -rf /tmp/shallow /tmp/full /tmp/shallowsite /tmp/fullsite
-          git clone --depth 1 --quiet "file://$PWD" /tmp/shallow
-          git clone --quiet "file://$PWD" /tmp/full
-          echo "shallow has $(cd /tmp/shallow && git log --oneline | wc -l) commit(s), full has $(cd /tmp/full && git log --oneline | wc -l)"
+          # RE-RUNNABLE AND CONCURRENCY-SAFE. A fixed /tmp path let two local Codex tasks
+          # delete or compare each other's clones. `mktemp` gives this invocation sole
+          # ownership, and the trap removes only the directory it just created.
+          scratch="$(mktemp -d /tmp/texas-ai-docket-guards.XXXXXX)"
+          trap 'rm -rf "$scratch"' EXIT
+          shallow="$scratch/shallow"
+          full="$scratch/full"
+          shallowsite="$scratch/shallowsite"
+          fullsite="$scratch/fullsite"
+          git clone --depth 1 --quiet "file://$PWD" "$shallow"
+          git clone --quiet "file://$PWD" "$full"
+          echo "shallow has $(cd "$shallow" && git log --oneline | wc -l) commit(s), full has $(cd "$full" && git log --oneline | wc -l)"
           DAY="$(date -u +%F)"
-          (cd /tmp/shallow && python3 scripts/site/site_build.py --out /tmp/shallowsite --today "$DAY")
-          (cd /tmp/full    && python3 scripts/site/site_build.py --out /tmp/fullsite    --today "$DAY")
-          diff -r /tmp/shallowsite /tmp/fullsite
+          (cd "$shallow" && python3 scripts/site/site_build.py --out "$shallowsite" --today "$DAY")
+          (cd "$full"    && python3 scripts/site/site_build.py --out "$fullsite"    --today "$DAY")
+          diff -r "$shallowsite" "$fullsite"
 
       - name: Ask engine self-test (routes not cached answers, and it phones nobody)
         run: python3 scripts/site/ask_answers.py --self-test
