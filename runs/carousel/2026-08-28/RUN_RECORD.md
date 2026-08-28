@@ -109,3 +109,11 @@ rather than on either journal article.
 and Wylie, both on August 25th. Both agendas were fetched and quote cleanly. It is held rather than
 published because the rejections themselves rest on reporting while neither city's minutes are
 final, and it is queued as the strongest lead for the next run.
+
+## The scanner's daily ceiling
+
+**Not checked this run, because there is no Supabase connector in this session.** The tool search
+returns nothing for the `texas-ai-scanner` project, so the query in the routine could not be run at
+all. That is the third of the three outcomes the phase names and it does not block the run, but it
+is worth saying plainly rather than folding into a list. The ceiling nobody is notified about is
+still unwatched today, and a requester who hit it was told the day was full and nobody heard.
