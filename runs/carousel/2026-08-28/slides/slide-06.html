@@ -142,24 +142,10 @@ window.renderReady = (async () => {
                       'font-weight':700,fill:OCH,'font-variant-numeric':'tabular-nums'});
   at.textContent='525.5 MW'; s.appendChild(at);
 
-  // THE ARITHMETIC THE HOOK PROMISES. The frame read "The applicants did the arithmetic." and
-  // then showed 525.5 and 265.5 on one chart without ever saying they were related. A reader
-  // judge found it and was right: this sum is the deck's only available stake, it needed no new
-  // source, and it was sitting on the frame unsaid. Emitted by compute.py as component_sum_expr,
-  // which refuses to publish the sum unless the two quoted components equal the quoted total.
-  const SUM_EXPR = '260 MW load + 265.5 MW generation';
-  // Right aligned to the chart's own right edge. Set left of the figure it explains, it ran
-  // 250 px off the frame and its knockout plate landed on top of "525.5 MW".
-  const sx=mk('text',{x:1000,y:B2[1]+124,'text-anchor':'end',
-                      'font-family':'JetBrains Mono, monospace','font-size':24,
-                      'font-weight':500,fill:CAL,'letter-spacing':'0.01em',
-                      'font-variant-numeric':'tabular-nums'});
-  sx.textContent=SUM_EXPR; s.appendChild(sx);
 
   await document.fonts.ready;
   TX.svgPlate(gt, {padX:14, padY:10, fill:DK});
   TX.svgPlate(at, {padX:16, padY:12, fill:DK});
-  TX.svgPlate(sx, {padX:12, padY:9,  fill:DK});
   // The axis labels get the same knockout the value labels already had. Drawing the face's
   // grain as lit and shadowed PAIRS gave it the azimuth it was missing and also gave it real
   // horizontal edges, and one of them ran through '0 MW' at 1.5:1, which reads as a

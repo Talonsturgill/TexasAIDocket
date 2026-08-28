@@ -192,3 +192,40 @@ section, exhibit, item, followed by a number or standing as a named heading) mus
 claim's `source_title`, `quote` or `text`. Fail the build otherwise. That is the same shape as
 `numeral_lint` and the same shape as `compute.quoted()`, applied to the one class of assertion
 that currently has no route.
+
+## 11. An assertion about arithmetic is not an assertion about a source
+
+Round 5's reader judge asked slide 6 to show the arithmetic its own hook promises. It looked free:
+260 and 265.5 were already quoted figures and they sum to the quoted 525.5 exactly. So `compute.py`
+emitted `260 MW load + 265.5 MW generation`, guarded by an assertion that the components equal the
+total, and the frame printed it. Every gate passed. `numeral_lint` passed, because both numerals
+trace. `copy_sync_check` passed. `aggregate_check` passed. `plan_render_check` passed.
+
+**The guard passed and the sentence was false.** The order's recital of the contention, page 7,
+reads that Docket 58881 already requires the Crusoe One Load "(which is 265.5 MW)" to curtail, and
+that if the Crusoe Two Load "(which is 260 MW) is also obligated to curtail, it would result in a
+total curtailment of 525.5 MW". The applicants added TWO LOADS. The 265.5 in their total is the
+Crusoe One Load as they characterise it, not GOODNIT1's generation. The frame said generation.
+
+The defect is exact and it generalises. `quoted()` works because it asks a CLAIM a question: is
+this string in that source's words. The sum guard asked ARITHMETIC a question, and arithmetic
+answers the same way for the wrong components as for the right ones, because 260 + 265.5 = 525.5
+either way. **A tautology cannot fail, so it certifies nothing.** It is a green check measuring
+something narrower than the thing it appears to certify, which is GATE_LESSONS' own recurring
+shape, this time built deliberately and in good faith by a run trying to be rigorous.
+
+It is worth recording HOW it was caught, because no machine caught it. An integrity judge asked
+which claim stated the decomposition, found none, and refused. That question, not the arithmetic,
+is the check.
+
+**The change.** A relationship between figures is a CLAIM and needs a claim id like any other. If
+the deck states that A plus B is C, some claim's quote must say so. `compute.py` should offer no
+way to publish a derived relationship without naming the claim that establishes it, in the same
+shape `quoted()` already has: `related(cid, "...")` that reads the claim's own words. The
+arithmetic check can stay as a second belt, but it must never be the only one, and it must never
+be mistaken for provenance.
+
+**The house law already said this and the run still got it wrong.** "Every fact carries a claim-id
+and traces to a fetched source." A sum of two facts is a third fact. The lesson is that the law is
+easiest to break precisely when every ingredient is already sourced, because the result feels
+sourced too.

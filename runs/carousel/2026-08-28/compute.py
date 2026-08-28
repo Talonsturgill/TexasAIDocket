@@ -36,22 +36,29 @@ NOTICE_MIN        = int(quoted("c10", "60 minutes")[:2])
 def mw(v):   return f"{v:,.1f} MW" if v % 1 else f"{v:,.0f} MW"
 def mins(v): return f"{v} minutes"
 
-# --- THE ARITHMETIC SLIDE 6's HOOK PROMISES AND THE FRAME NEVER SHOWED --------------------
+# --- WHY THIS FILE DOES NOT DECOMPOSE 525.5, AND THE MISTAKE THAT PUT THE LESSON HERE -----
 #
-# Slide 6 reads "The applicants did the arithmetic." and then printed 525.5 and 265.5 on one
-# chart without ever saying they were related. A reader judge found it: the sum is the deck's
-# only available stake, it needed no new source, and it was sitting on the frame unsaid.
+# A reader judge pointed out that slide 6's hook says "The applicants did the arithmetic." over
+# a chart that never shows the arithmetic, and asked for the sum. It looked free: 260 and 265.5
+# were both already quoted figures and they add to the quoted 525.5 exactly. So this file
+# emitted "260 MW load + 265.5 MW generation", guarded by an assertion that the two components
+# equalled the total, and the frame printed it.
 #
-# The applicants' contention is that curtailing under Condition 1 takes the Crusoe Two Load
-# AND GOODNIT1's generation together. That is 260 plus 265.5, and it is where 525.5 comes from.
+# **THE GUARD PASSED AND THE SENTENCE WAS FALSE.** The order's own recital of the contention,
+# at page 7, is that Docket 58881 already requires the Crusoe One Load "(which is 265.5 MW)" to
+# curtail, and that if the Crusoe Two Load "(which is 260 MW) is also obligated to curtail, it
+# would result in a total curtailment of 525.5 MW". The applicants added TWO LOADS. The 265.5 in
+# their total is the Crusoe One Load as they characterise it, not GOODNIT1's generation, and the
+# deck had it as generation.
 #
-# ASSERTED, NOT ASSUMED. If the sum ever stops matching the quoted total, this file stops the
-# build rather than printing a relationship the record does not support.
-COMPONENT_SUM = LOAD_TWO_MW + GEN_MW
-if abs(COMPONENT_SUM - CONTENDED_MW) > 1e-9:
-    sys.exit(f"compute: {LOAD_TWO_MW} + {GEN_MW} is {COMPONENT_SUM}, not the quoted "
-             f"{CONTENDED_MW}. The applicants' total is not these two components. "
-             f"Refusing to publish the sum.")
+# An arithmetic identity between three quoted figures is a tautology, not a source. 260 + 265.5
+# = 525.5 is true of the wrong components as readily as the right ones, so the assertion could
+# never have caught this and a second integrity judge caught it by asking which claim said so.
+# None did. `quoted()` above works because it asks a claim a question. The guard here asked
+# arithmetic a question and got the answer arithmetic always gives.
+#
+# The decomposition is not published. The deck prints 525.5 attributed to the applicants and
+# stops there, which is what the record actually carries.
 
 out = {
   # ---- the strings a frame may print -------------------------------------------------------
@@ -81,10 +88,6 @@ out = {
   # An axis that runs under the furniture is the same defect as a truncated one: the reader is
   # shown less of the quantity than the frame claims to be showing.
   "px_per_mw": 490.0 / CONTENDED_MW,
-
-  # ---- the sum, as the frame prints it. Both components and the total are quoted figures ----
-  "component_sum_expr": f"{mw(LOAD_TWO_MW)} load + {mw(GEN_MW)} generation",
-  "contended_over_gen": CONTENDED_MW / GEN_MW,
 
   # ---- attribution, carried beside the figure so a frame can't print one without the other -
   "contended_attribution": "the applicants' count, which the order records",

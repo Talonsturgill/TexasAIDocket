@@ -379,10 +379,10 @@ art:
 type:
   hook: "The applicants did the arithmetic."
   dek: "\"it would result in a total curtailment of 525.5 MW\""
-  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "265.5 MW  GOODNIT1 nameplate", "525.5 MW", "260 MW load + 265.5 MW generation", "c12", "c3", "c5"]
+  labels: ["THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT", "265.5 MW  GOODNIT1 nameplate", "525.5 MW", "c12", "c3", "c5"]
 acceptance:
   - "the attribution outranks the figure by every measure a reader uses. THE APPLICANTS' FIGURE, AS THE ORDER RECORDS IT is set at 34 px on a full width saturated ochre strap ABOVE the chart, and 525.5 is set at 32 px, so the numeral is never the larger of the two. The earlier form of this item demanded the two sit within 60 px and the render had them 157 apart, which is the plan describing a frame that was not built"
-  - "525.5 is set in `#B4903F`, and the only `caliche_cap` string near it is the sum 260 MW load + 265.5 MW generation, which is where the applicants' figure comes from and is the commission's own two findings added together, so it takes a commission value"
+  - "525.5 is set in `#B4903F` and no `caliche_cap` value appears inside its block"
   - "the value axis includes zero, zero is drawn and carries a label, and no axis is truncated"
   - "both plotted values sit at y positions computed by compute.py at the deck's single px_per_mw rate, and that rate appears on the frame as a scale bar"
   - "the nameplate hairline is drawn in `caliche_cap` and is visually distinct in construction from the two plotted areas, which are filled blocks of 40 by 40 px or more"
