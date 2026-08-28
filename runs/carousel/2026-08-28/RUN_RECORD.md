@@ -190,3 +190,59 @@ is wrong the same way, reading `["zoom in", "zoom out", "ledger"]` where the ent
 exactly and the fix was written down as a proposal on 2026-08-20 and has not been made. This run
 handed the room the COMPUTED lists and the critic judged against the STORED ones, so the two rooms
 were working from different exclusion sets all evening.
+
+## The panel, and what three rounds cost
+
+**Round 1 refused the deck three ways and every one was real.**
+
+- The reader judge found slide 9 asserting "ON THE COMMISSION'S CALENDAR" and "The entry names a
+  date and no docket." with no claim behind either. **The second sentence was also FALSE.** The
+  feed this run fetched carries that entry reading "Project 59550", so it names its project. The
+  frame now names the proceeding instead of denying it, cited to a new claim carrying that
+  project's case style.
+- The craft judge found slide 2 drawing a settlement meter no claim carried. The clause is in the
+  order at Finding of Fact 13 and this run had cut it from c6 to dodge a page break header the
+  text layer injects mid sentence.
+- The integrity judge found "0 MW" and "100 MW" on slide 6 tracing to nothing. `compute.py` now
+  emits the axis furniture, and the scale bar's drawn height is `scale_step_px`.
+
+**Round 2 refused it again on the SAME two frames, and that is the finding worth keeping.** The
+meter clause had been restored as c28 and the quote was cut at exactly the same page break, one
+word before the words the frame prints. Slide 9's unsourced sentence had been swapped for a
+different unsourced sentence, "The commission has published no ruling on it", which is an absence
+claim nothing in the file supports.
+
+**A repair that satisfies the judge's sentence without re-running the check against the artifact
+it just changed is not a repair.** Both round two failures were the same mechanism as round one's,
+on the same two frames, and the claims file's own rejected list already said each was fixed. The
+integrity judge's proposed gate is the right one and it is in the proposals: for every claim id
+rendered on a frame, assert that each noun phrase printed inside that id's own block appears in
+that claim's quote. No existing check reads frame text against quote text, which is why
+`numeral_lint`, `dossier_check`, `copy_sync_check` and `machine_qa` all came back clean on a claim
+whose quote stopped one word short.
+
+**What else the panel bought that no measurement would have.**
+
+- The word AI appeared nowhere on nine frames, on an account called Texas AI Docket, while claim
+  c5's own quote reads "AI data-center complexes". The commission handed the deck the word and the
+  deck declined it. Slide 1's dek now says what a Texan already owns.
+- The deck broke three of its own written laws in the pixels. Ochre is reserved for a party and it
+  was carrying the interconnection node, the ERCOT notice vein and half the footers. Every figure
+  is meant to be JetBrains Mono and two hooks set theirs in Fraunces, one of them the deck's single
+  contested numeral on the frame built to keep it from being misread.
+- Three of nine declared focals won the eye at feed size in round one and six did in round two,
+  and the three that still lose all lose the same way, by declaring a superlative the render does
+  not satisfy.
+
+**One plan was corrected rather than the art, and it is worth saying which.** Slide 7 was declared
+the deck's lightest frame. It is not and could not be, because the reserved red only clears
+contrast as ink on caliche, which fixes slide 9 as the pale frame. The dossier now declares slide
+7 an inversion against its neighbours, which is what it is, and the measurement backs it at 44.8
+against 21.8 and 20.7. Correcting a plan that was wrong about its own deck is not the same as
+rewriting an acceptance item to describe a render, and the difference is that this one was checked.
+
+**An engine defect, found the expensive way.** Slide 7 failed to render twice with nothing but
+`Page.goto: Timeout 45000ms exceeded`. `TX.fbm2` is SIGNED, the stepped contact computed its run
+length as a positive base plus a signed sample, a negative sample made the run negative, and the
+loop that advanced x never advanced. A hang inside `renderReady` reaches the report only as a page
+timeout that names no line.
