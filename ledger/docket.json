@@ -1091,8 +1091,8 @@
      "id": "tx-2026-0015-c1",
      "text": "The NRC is revising its reactor licensing, oversight and siting rules under an executive order.",
      "verbatim_quote": "Consistent with Executive Order 14300, \"Ordering the Reform of the Nuclear Regulatory Commission,\" the U.S. Nuclear Regulatory Commission (NRC) is conducting a review and wholesale revision of its regulations. This proposed rule aims to modernize reactor licensing, safety oversight, and siting practices",
-     "source_url": "https://www.federalregister.gov/api/v1/documents/2026-14341.json",
-     "source_title": "Federal Register API, document 2026-14341, abstract",
+     "source_url": "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices",
+     "source_title": "Federal Register, Modernizing Reactor Licensing, Safety Oversight, and Siting Practices, abstract",
      "source_type": "primary_official",
      "fetched": "2026-08-28"
     },
@@ -9180,6 +9180,168 @@
     {
      "date": "2026-08-28",
      "note": "Admitted on the staff memorandum filed August 20th and the commission's own calendar entry. The comment window is open and closes September 17th."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0108",
+   "title": "PUCT approved an Armstrong County AI data center behind a wind farm and required it to shed load, and the data center has asked for a rehearing",
+   "summary": "The Public Utility Commission of Texas approved a net metering arrangement in Docket 59220 on July 24th, 2026. It lets a second AI data center complex sit behind the point of interconnection of GOODNIT1, a stand-alone wind resource in Armstrong County, and share its meter. The commission attached conditions. The load must fully curtail when ERCOT says a transmission emergency is happening or is coming, and it may not be offered into demand response programs. The applicants argued the conditions oblige them to curtail more than the wind farm can generate. Ensign Infrastructure filed a motion for rehearing on August 18th, 2026 and the commission has not ruled on it.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "Public Utility Commission of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Armstrong"
+    ],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-01-09",
+     "kind": "filed",
+     "note": "Joint application for net metering approval"
+    },
+    {
+     "date": "2026-03-26",
+     "kind": "filed",
+     "note": "Amended application naming Ensign as the large load customer"
+    },
+    {
+     "date": "2026-05-29",
+     "kind": "filed",
+     "note": "ERCOT files its study results and recommendations"
+    },
+    {
+     "date": "2026-07-24",
+     "kind": "ordered",
+     "note": "Commission order approving the arrangement with conditions"
+    },
+    {
+     "date": "2026-08-18",
+     "kind": "filed",
+     "note": "Ensign Infrastructure files a motion for rehearing"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The whole docket is public and readable on the commission's Interchange under control number 59220, including the order, the ERCOT study filing and the motion for rehearing. The intervention deadline has passed, so a member of the public can't join this case as a party. The commission itself is reachable through Central Records in Austin and its open meetings are the room where a rehearing motion is taken up.",
+    "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+    "closes": null
+   },
+   "claims": [
+    {
+     "id": "tx-2026-0108-c1",
+     "text": "The docket's official case style names the applicants and what they asked for.",
+     "verbatim_quote": "APPLICATION OF CRUSOE ENERGY SYSTEMS LLC, FGE GOODNIGHT I, LLC AND ENSIGN INFRASTRUCTURE LLC FOR APPROVAL OF A NET METERING ARRANGEMENT",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+     "source_title": "PUCT Interchange, Filings for 59220, Case Style",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c2",
+     "text": "The order states what the commission decided.",
+     "verbatim_quote": "The Commission approves the net metering arrangement, subject to the conditions imposed by this Order.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+     "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c3",
+     "text": "The order's findings of fact state the generator's size and the county it stands in.",
+     "verbatim_quote": "Goodnight owns and operates GOODNIT1, a stand-alone 265.5-MW wind generation resource in Armstrong County.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+     "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c4",
+     "text": "The order names what the load is and who runs it.",
+     "verbatim_quote": "Ensign is the large load customer that plans to operate the AI data-center complexes developed by Crusoe.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+     "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c5",
+     "text": "The order states the size of the load in this docket.",
+     "verbatim_quote": "Crusoe is developing a second AI data-center, with a 260-MW",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+     "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c6",
+     "text": "The order records the applicants' own figure for what the two conditions add up to.",
+     "verbatim_quote": "it would result in a total curtailment of 525.5 MW",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+     "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c7",
+     "text": "The commission refused to weigh a second wind resource that has not been built.",
+     "verbatim_quote": "GOODNIT2 does not yet exist, is not a part of the application, and should not be considered in this proceeding.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+     "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c8",
+     "text": "The order sets how fast the load has to be able to come off.",
+     "verbatim_quote": "Crusoe or Ensign may reduce the required time period from 30 minutes to 10 minutes",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_69_1668205.PDF",
+     "source_title": "PUCT Docket 59220, Order issued July 24th 2026, filed as item 69",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c9",
+     "text": "The motion for rehearing states what it says the order got wrong.",
+     "verbatim_quote": "exceeds what is required or authorized under PURA",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+     "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c10",
+     "text": "The motion says the order left the central legal question unanswered.",
+     "verbatim_quote": "the critical legal and policy issue of first impression that underlies this case",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+     "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    },
+    {
+     "id": "tx-2026-0108-c11",
+     "text": "The motion states how it characterizes the order.",
+     "verbatim_quote": "the Order is excessive, arbitrary and capricious, unsupported by the evidentiary record, and not authorized by the language of PURA.",
+     "source_url": "https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF",
+     "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-08-28"
+    }
+   ],
+   "last_verified": "2026-08-28",
+   "confidence": "high",
+   "notes_for_editor": "Armstrong County is named in the order's own findings of fact rather than inferred. Status is pending rather than decided because the motion for rehearing filed August 18th is undecided, so what curtailment condition finally applies is still open. The order and the motion for rehearing were both read as filed documents on the Interchange this run.",
+   "history": [
+    {
+     "date": "2026-08-28",
+     "note": "Admitted on the commission's own order and the motion for rehearing, both read as filed documents. The arrangement is approved and the conditions stand while the rehearing motion is undecided."
     }
    ]
   }
