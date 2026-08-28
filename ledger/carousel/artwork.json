@@ -560,7 +560,19 @@
       "light_decks_used": 0,
       "bespoke_median": 0.1841,
       "bespoke_closest_pair": "slide-07.html and slide-08.html at 0.7046",
-      "slides": 9
+      "slides": 9,
+      "deck_median_lstar": 22.2,
+      "per_frame_median_lstar": [
+        12.9,
+        11.2,
+        15.0,
+        19.3,
+        30.2,
+        22.2,
+        48.7,
+        22.3,
+        80.9
+      ]
     }
   ]
 }

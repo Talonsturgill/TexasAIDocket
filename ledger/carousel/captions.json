@@ -19,12 +19,12 @@
     "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
   },
   "opening_moves_recent": [
+    "the plain question",
     "the before and after",
     "the deadline",
     "the quiet decision",
     "the number that is wrong",
-    "the who",
-    "the two things"
+    "the who"
   ],
   "entries": [
     {
@@ -182,17 +182,11 @@
     }
   ],
   "structures_recent": [
-    "clock",
-    "zoom in",
     "zoom out",
     "ledger",
-    "two columns",
-    "Clock"
+    "two columns"
   ],
   "closing_moves_recent": [
-    "point at the record, plainly, without a call to action",
-    "name what is still not public, and how big that is",
-    "ask the one question the decision leaves open",
     "ask the one question the decision leaves open",
     "ask the one question the decision leaves open",
     "ask the one question the decision leaves open"
