@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-UxlbtQdnXqT6JMRZjBANcT5e2jK2pVr7F8HuJhYlfq8=' 'sha256-sF4CSd8OnkC3aQZrF0uT/6I6tmRWR+9nDI5Te0FW+MI=' 'sha256-1IWdjsKX8lnfgPDtl3NTmiRTzTjPOfvBo/P1QZ9GDfI=' 'sha256-A8vfqAy9rNIH+z4ndhzLkotvwPpXX2i5PE64aPngyL0=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-UxlbtQdnXqT6JMRZjBANcT5e2jK2pVr7F8HuJhYlfq8=' 'sha256-sF4CSd8OnkC3aQZrF0uT/6I6tmRWR+9nDI5Te0FW+MI=' 'sha256-VcadWbz1Dv96Dtva6/g3j2rjIra+p5oIwlKvHAcpiOo=' 'sha256-A8vfqAy9rNIH+z4ndhzLkotvwPpXX2i5PE64aPngyL0=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-eAen8T4O8pfBp3CJGFTcr2AfHKEky06NoHfEJVd9yeE=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -287,7 +287,7 @@ function askFuse(lists) {
   function best(query) {
     var qw = words(query);
     if (!qw.length) return null;
-    var top = null;
+    var top = null, topView = null;
     CAT.forEach(function (c) {
       var cw = words(c.q), score = 0, hitTerms = 0;
       qw.forEach(function (w) {
@@ -318,6 +318,9 @@ function askFuse(lists) {
         if (stemmed) { score += idf(stemmed) * 0.5; hitTerms += 1; }
       });
       if (!top || score > top.score) top = { c: c, score: score, terms: hitTerms };
+      /* THE BEST NON-ITEM CANDIDATE, kept so the two-term rule below can fall back to it. */
+      if (c.route && c.route.view !== "item" && (!topView || score > topView.score))
+        topView = { c: c, score: score, terms: hitTerms };
     });
     /* A direct mention of a county, a topic word or a decider outranks a fuzzy catalogue
        match, because it is what the reader actually said. */
@@ -371,7 +374,8 @@ function askFuse(lists) {
        something broad, and one decisive word is enough for it. */
     var names_one = top && top.c.route && top.c.route.view === "item";
     var chosen = top && top.score >= FLOOR && (!names_one || top.terms >= 2)
-      ? top.c.route : direct;
+      ? top.c.route
+      : (topView && topView.score >= FLOOR ? topView.c.route : direct);
     if (chosen) return chosen;
 
     /* NOTHING MATCHED THE CATALOGUE, SO SEARCH THE DECISIONS THEMSELVES.
