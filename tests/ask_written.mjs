@@ -18,9 +18,12 @@ const URL_ = "file://" + path.resolve(SITE) + "/index.html";
 
 const b = await chromium.launch(fs.existsSync(exe) ? { executablePath: exe } : {});
 let fail = 0, pass = 0;
+const failed = [];
 const ok = (l, c, d = "") => {
   if (c) { pass++; return; }
-  fail++; console.log(`  FAIL  ${l}${d ? "  " + d : ""}`);
+  fail++;
+  failed.push(`${l}${d ? "  " + d : ""}`);
+  console.log(`  FAIL  ${failed[failed.length - 1]}`);
 };
 const head = (t) => console.log("\n" + t);
 
@@ -234,14 +237,26 @@ await page.waitForFunction(() => {
 }, null, { timeout: 4000, polling: 120 });
 
 const seat = await page.evaluate(() => {
+  const box = document.querySelector("#ask");
   const f = document.querySelector("#ask form");
   const t = document.querySelector("#askthread");
+  const br = box.getBoundingClientRect();
   const fr = f.getBoundingClientRect();
+  const tr = t.getBoundingClientRect();
+  const bs = getComputedStyle(box);
+  const ts = getComputedStyle(t);
   return {
+    asking: document.body.classList.contains("asking"),
+    phone: matchMedia("(max-width:37.5rem)").matches,
     fromBottom: Math.round(innerHeight - fr.bottom),
     onScreen: fr.top > 0 && fr.bottom <= innerHeight + 2,
-    threadAbove: t.getBoundingClientRect().bottom <= fr.top + 4,
+    threadAbove: tr.bottom <= fr.top + 4,
     threadHasText: t.textContent.trim().length > 0,
+    box: { top: Math.round(br.top), bottom: Math.round(br.bottom),
+           display: bs.display, position: bs.position },
+    thread: { top: Math.round(tr.top), bottom: Math.round(tr.bottom), hidden: t.hidden,
+              display: ts.display, overflowY: ts.overflowY, flex: ts.flex },
+    form: { top: Math.round(fr.top), bottom: Math.round(fr.bottom) },
   };
 });
 ok(`the field is parked near the bottom, ${seat.fromBottom}px up from it`,
@@ -936,6 +951,12 @@ head("J2. a token that lands after the ceiling may not blank the page");
   await slow.close();
 }
 
+if (fail) {
+  /* guards_local prints only a failed step's tail. Repeat the exact assertions here so a
+     failure near the beginning cannot be hidden by the later section headings. */
+  console.log("\nFailed assertions:");
+  failed.forEach((line) => console.log(`  FAIL  ${line}`));
+}
 console.log(fail === 0 ? `ask_written: all passed, ${pass} checks`
                        : `ask_written: FAILED, ${fail} of ${pass + fail}`);
 await b.close();

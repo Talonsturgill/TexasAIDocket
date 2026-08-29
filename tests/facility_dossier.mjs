@@ -199,7 +199,10 @@ const browser = await chromium.launch(LAUNCH);
     await p.keyboard.up("Control");
   }
   const second = await popupPromise;
-  await second.waitForLoadState("domcontentloaded");
+  /* A popup begins life as about:blank. `waitForLoadState` can therefore resolve against that
+     first document while the destination navigation is still in flight; reading the URL or
+     opener in that gap races the context teardown. Wait for the resolved company itself. */
+  await second.waitForURL(destination, { waitUntil: "domcontentloaded" });
   ok("a modified point click opens the resolved company in a second page",
     second.url() === destination, second.url());
   ok("...and leaves the registry on its original page", p.url() === registry, p.url());
@@ -330,7 +333,7 @@ const browser = await chromium.launch(LAUNCH);
   const backgroundPromise = p.context().waitForEvent("page");
   await p.mouse.click(overlap.x, overlap.y, { button: "middle" });
   const background = await backgroundPromise;
-  await background.waitForLoadState("domcontentloaded");
+  await background.waitForURL(middleSelection.href, { waitUntil: "domcontentloaded" });
   ok("a middle click in an overlap opens the resolved company",
     background.url() === middleSelection.href,
     `${background.url()} instead of ${middleSelection.name} at ${middleSelection.href}`);

@@ -3402,7 +3402,12 @@ caption {{ caption-side:bottom; text-align:left; padding-top:.75rem; font-size:v
      rather than quietly passing. */
   body.asking .sky, body.asking .masthead, body.asking main > *:not(.asksection),
   body.asking footer.site {{ display:none; }}
-  body.asking .asksection {{ margin:0; }}
+  /* THE REVEAL TRANSFORM MUST END BEFORE A DESCENDANT CAN BE VIEWPORT-FIXED. The Ask section
+     enters with a short translate animation. If a reader focuses the field during those
+     seven tenths of a second, that transform becomes the fixed box's containing block and
+     the whole full-screen conversation is offset by the page scroll. Immersion wins
+     immediately: no fade, no transform, and therefore the viewport is the containing block. */
+  body.asking .asksection {{ margin:0; opacity:1; transform:none; transition:none; }}
   body.asking main {{ padding:0; }}
   /* THE TRANSCRIPT OWNS THE SCROLL AND THE COMPOSER OWNS THE BOTTOM EDGE. Giving both the
      window and the thread overflow produced two scroll systems and `park()` was driving the
@@ -3714,6 +3719,9 @@ def self_test() -> int:
           and ".rtwrap { overflow:visible; max-height:none; border:0; }" in sheet)
     check("...and filtering never overrides the hidden state",
           ".rtable tr[hidden] { display:none !important; }" in sheet)
+    check("the phone Ask layer escapes its section's reveal containing block",
+          "body.asking .asksection { margin:0; opacity:1; transform:none; transition:none; }"
+          in sheet)
     check("...and each label is pinned to the height of its own bar",
           ".qbv { position:absolute; bottom:var(--h);" in sheet)
 
