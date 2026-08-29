@@ -1166,45 +1166,57 @@ def home(items: list, today: str) -> str:
     runs = load_runs()
     n_videos = video_count()
 
-    # WHAT STANDS IN FOR THE DEADLINE CARDS WHEN THERE ARE NONE.
+    # THE LIVE ACTION RAIL. The old deadline cards were complete but arrived after the ask box
+    # and the map, more than a phone screen below the headline. That made the page advertise a
+    # count of open doors before it showed any of them. The same verified projection now supplies
+    # a compact rail inside the hero, ordered by the date arithmetic in `dk.project`, so the most
+    # perishable public opportunity is the first useful thing a reader meets.
     #
-    # This was a pair. A clock widget for when something is open, and this line for when
-    # nothing is, and the clock could never render: the cards below are built from the same
-    # `act` list, so they are there whenever it is non-empty, and the template reaches for
-    # this only when they are not. It was a second copy of `clock()` that had drifted, missing
-    # both the singular and the closes-today wording, so it was also one day from reading "1
-    # days left" if anything had ever shown it. One list, one branch, no ghost widget.
-    lede = ('<div class="gap"><strong>No comment window on this record is open today.</strong>'
-            ' Windows are checked every day, and one appears here the moment it opens.</div>')
+    # THREE ROWS IS A PREVIEW, NOT A SECOND RECORD. It keeps the hero finite if many agencies open
+    # windows at once. The participation guide below the rows is the route to the full record.
+    # Every date remains a `<time>` with its ISO value, every figure is computed, and the full
+    # docket title stays in the document even though the visual treatment clamps it on small
+    # screens. `data-prose="data"` narrows punctuation-density checks around those official titles
+    # without weakening the date or forbidden-character checks.
+    action_rows = []
+    for a in act[:3]:
+        days = a["days_left"]
+        remaining = ("Closes today" if days == 0 else
+                     f'{days} {"day" if days == 1 else "days"} left')
+        state = "open" if days > 7 else "soon"
+        state_label = "Open to you" if days > 7 else "Closing soon"
+        action_rows.append(
+            f'<li><a class="open-now-item {state}" href="item/{e(a["id"])}/">'
+            f'<span class="open-now-date">'
+            f'<time datetime="{e(a["closes"])}">{e(short_date(a["closes"]))}</time>'
+            f'<span>{e(remaining)}</span></span>'
+            f'<span class="open-now-copy"><span class="open-now-state">{state_label}</span>'
+            f'<span class="open-now-title">{e(a["title"])}</span></span>'
+            f'<span class="open-now-go" aria-hidden="true"></span></a></li>')
+    action_rows_html = "".join(action_rows)
 
-    # THE DEADLINE CARDS. A date at display size, a status word that is also a colour, and a
-    # live count of what is left. Somebody should be able to find what is open to them without
-    # reading a sentence.
-    #
-    # MARKED AS DATA, and that is a measurement fix rather than a formality. A card is a badge, a
-    # date, a count and a docket title, none of which is running prose, and a docket title reads
-    # "PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for
-    # comment", where both commas are structural. Three of those on the front page were being read
-    # as sentences by the comma density rule, which is exactly what `data-prose="data"` exists to
-    # stop. It narrows the density scope only, never the construction rules, so an em dash or a
-    # bare date inside a card is still a violation.
-    rows = "".join(
-        f'<li data-prose="data">'
-        f'<a class="dcard{" open" if a["days_left"] > 7 else ""}" href="item/{e(a["id"])}/">'
-        f'<span class="badge {"open" if a["days_left"] > 7 else "soon"}">'
-        f'{"Open to you" if a["days_left"] > 7 else "Closing soon"}</span>'
-        # A `<time>`, NOT A SPAN. The tile reads "SEP 8" at display size, which is a date
-        # abbreviated the way a calendar abbreviates one and not the way this project writes a
-        # date in a sentence. Carrying the ISO value in the element that shows it is what makes
-        # that legitimate rather than an exception: the machine-readable date is right there,
-        # the house style checker verifies the visible text renders it, and a search engine or
-        # a screen reader gets the unambiguous value instead of three shouted letters.
-        f'<time class="big" datetime="{e(a["closes"])}">{e(short_date(a["closes"]))}</time>'
-        f'<span class="left">{a["days_left"]} '
-        f'{"day" if a["days_left"] == 1 else "days"} left</span>'
-        f'<h3>{e(a["title"])}</h3>'
-        f'<span class="note">Public comment closes</span></a></li>'
-        for a in act[:3])
+    if action_rows_html:
+        open_now = f"""
+  <aside class="open-now" id="open-now" aria-labelledby="open-now-title" data-prose="data">
+    <div class="open-now-head">
+      <p class="open-now-kicker"><span aria-hidden="true"></span>Open now</p>
+      <p class="open-now-total"><span class="num">{len(act):02d}</span> verified</p>
+    </div>
+    <h2 id="open-now-title">Deadlines you can still meet</h2>
+    <p class="open-now-intro">The closest verified public comment deadlines in the record.</p>
+    <ol class="open-now-list">{action_rows_html}</ol>
+    <a class="open-now-more" href="questions/taking-part/">See every way to take part</a>
+  </aside>"""
+    else:
+        open_now = """
+  <aside class="open-now empty" id="open-now" aria-labelledby="open-now-title">
+    <div class="open-now-head">
+      <p class="open-now-kicker checked"><span aria-hidden="true"></span>Checked today</p>
+    </div>
+    <h2 id="open-now-title">No comment window is open</h2>
+    <p class="open-now-intro">Windows are checked every day. The next verified opening will appear here.</p>
+    <a class="open-now-more" href="record/">Browse the full docket</a>
+  </aside>"""
 
     # THE STAT ROW COUNTS WHAT THIS PROJECT HAS PUBLISHED, plus the one number a reader can
     # act on. It used to count quoted sources and counties touched, which are facts about the
@@ -1240,17 +1252,20 @@ def home(items: list, today: str) -> str:
     # other: sixty four decisions is a size, and sixty four decisions behind two hundred and
     # eighty three quoted sources is an argument.
     candidates = [
-        (len(runs), "Articles written", False, ""),
-        (n_videos, "Videos published", False, ' id="vidstat"'),
-        (n_items, "Decisions tracked", False, ""),
-        (n_claims, "Sources cited", False, ""),
-        (len(act), "Doors open to you", True, ""),
-        (n_counties, "Counties named", False, ""),
+        (len(runs), "Articles written", False, "", ""),
+        (n_videos, "Videos published", False, ' id="vidstat"', ""),
+        (n_items, "Decisions tracked", False, "", ""),
+        (n_claims, "Sources cited", False, "", ""),
+        (len(act), "Doors open to you", True, "", "#open-now"),
+        (n_counties, "Counties named", False, "", ""),
     ]
-    stats = "".join(
-        f'<div class="stat"{attrs}><span class="n{" hot" if hot else ""}">{v:02d}</span>'
-        f'<span class="l">{e(label)}</span></div>'
-        for v, label, hot, attrs in [c for c in candidates if c[0]][:5])
+    stat_parts = []
+    for v, label, hot, attrs, href in [c for c in candidates if c[0]][:5]:
+        content = (f'<span class="n{" hot" if hot else ""}">{v:02d}</span>'
+                   f'<span class="l">{e(label)}</span>')
+        stat_parts.append(f'<a class="stat" href="{href}"{attrs}>{content}</a>' if href else
+                          f'<div class="stat"{attrs}>{content}</div>')
+    stats = "".join(stat_parts)
 
     body = f"""
 <section class="hero rise">
@@ -1261,6 +1276,7 @@ def home(items: list, today: str) -> str:
     <a class="cta solid" href="record/">The docket</a>
     <a class="cta ghost" href="grid/">The grid</a>
   </div>
+{open_now}
   <div class="statrow">{stats}</div>
 </section>
 
@@ -1275,13 +1291,6 @@ def home(items: list, today: str) -> str:
   <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 </section>
-
-{'<section data-reveal><h2>Closing next</h2><ul class="deck">' + rows + '</ul>'
-   '<p class="meta" data-prose="data"><a href="record/">See all ' + str(n_items) + ' decisions</a></p>'
-   '</section>' if rows else
-   '<section data-reveal>' + lede + '<p class="meta" data-prose="data"><a href="record/">See all '
-   + str(n_items) + ' decisions</a></p></section>'}
-
 
 {covers_html}
 
@@ -1301,6 +1310,7 @@ def home(items: list, today: str) -> str:
                 desc=("A fact-checked record of AI decisions in Texas. Who decided, by when, "
                       "and whether you can still comment."),
                 body=body, today=today, canonical="",
+                extra_css="home.css",
                 # THE DATASET NODE THE WHOLE RECORD HANGS OFF. Every one of the 58 Reports says
                 # it `isPartOf` this `@id`, so the node has to exist somewhere or all 58
                 # references dangle. It is emitted here AND on `/record/`, which is legal and

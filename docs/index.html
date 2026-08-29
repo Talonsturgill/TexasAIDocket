@@ -24,6 +24,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
 <link rel="stylesheet" href="site.css?v=14029f5ced">
+<link rel="stylesheet" href="home.css?v=9f5f625f30">
 <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket","https://www.instagram.com/texasaidocket","https://www.youtube.com/@TexasAIDocket","https://x.com/TexasAIDocket","https://www.tiktok.com/@texas.ai.docket"]},{"@context":"https://schema.org","@type":"Dataset","@id":"https://texasaidocket.com/record/#dataset","name":"Texas AI Docket, the tracked record","description":"Every tracked decision about artificial intelligence in Texas, with the body that decides, the dates that matter, whether the public has a way in, and a fetched source behind every fact.","url":"https://texasaidocket.com/record/","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"inLanguage":"en-US","creator":{"@id":"https://texasaidocket.com/#org"},"publisher":{"@id":"https://texasaidocket.com/#org"},"dateModified":"2026-08-29","keywords":["Texas","artificial intelligence","data centers","ERCOT","public records","state policy"],"spatialCoverage":{"@type":"State","name":"Texas"},"variableMeasured":[{"@type":"PropertyValue","name":"status","description":"Whether the decision is pending, decided or withdrawn."},{"@type":"PropertyValue","name":"public_access","description":"Whether a member of the public has a dated way to take part."},{"@type":"PropertyValue","name":"claims","description":"Each fact with its verbatim quote and the source it was fetched from."}],"temporalCoverage":"2021-06-08/2027-09-01"}]</script>
@@ -48,7 +49,18 @@
     <a class="cta solid" href="record/">The docket</a>
     <a class="cta ghost" href="grid/">The grid</a>
   </div>
-  <div class="statrow"><div class="stat"><span class="n">10</span><span class="l">Articles written</span></div><div class="stat" id="vidstat"><span class="n">02</span><span class="l">Videos published</span></div><div class="stat"><span class="n">93</span><span class="l">Decisions tracked</span></div><div class="stat"><span class="n">464</span><span class="l">Sources cited</span></div><div class="stat"><span class="n hot">05</span><span class="l">Doors open to you</span></div></div>
+
+  <aside class="open-now" id="open-now" aria-labelledby="open-now-title" data-prose="data">
+    <div class="open-now-head">
+      <p class="open-now-kicker"><span aria-hidden="true"></span>Open now</p>
+      <p class="open-now-total"><span class="num">05</span> verified</p>
+    </div>
+    <h2 id="open-now-title">Deadlines you can still meet</h2>
+    <p class="open-now-intro">The closest verified public comment deadlines in the record.</p>
+    <ol class="open-now-list"><li><a class="open-now-item soon" href="item/tx-2026-0015/"><span class="open-now-date"><time datetime="2026-08-31">AUG 31</time><span>2 days left</span></span><span class="open-now-copy"><span class="open-now-state">Closing soon</span><span class="open-now-title">Federal comment window open on NRC reactor licensing and siting modernization</span></span><span class="open-now-go" aria-hidden="true"></span></a></li><li><a class="open-now-item soon" href="item/tx-2026-0002/"><span class="open-now-date"><time datetime="2026-09-04">SEP 4</time><span>6 days left</span></span><span class="open-now-copy"><span class="open-now-state">Closing soon</span><span class="open-now-title">PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for comment</span></span><span class="open-now-go" aria-hidden="true"></span></a></li><li><a class="open-now-item open" href="item/tx-2026-0016/"><span class="open-now-date"><time datetime="2026-09-08">SEP 8</time><span>10 days left</span></span><span class="open-now-copy"><span class="open-now-state">Open to you</span><span class="open-now-title">Federal comment window open on adding AI questions to the American Time Use Survey</span></span><span class="open-now-go" aria-hidden="true"></span></a></li></ol>
+    <a class="open-now-more" href="questions/taking-part/">See every way to take part</a>
+  </aside>
+  <div class="statrow"><div class="stat"><span class="n">10</span><span class="l">Articles written</span></div><div class="stat" id="vidstat"><span class="n">02</span><span class="l">Videos published</span></div><div class="stat"><span class="n">93</span><span class="l">Decisions tracked</span></div><div class="stat"><span class="n">464</span><span class="l">Sources cited</span></div><a class="stat" href="#open-now"><span class="n hot">05</span><span class="l">Doors open to you</span></a></div>
 </section>
 
 
@@ -1781,9 +1793,6 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
   <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
 </section>
-
-<section data-reveal><h2>Closing next</h2><ul class="deck"><li data-prose="data"><a class="dcard" href="item/tx-2026-0015/"><span class="badge soon">Closing soon</span><time class="big" datetime="2026-08-31">AUG 31</time><span class="left">2 days left</span><h3>Federal comment window open on NRC reactor licensing and siting modernization</h3><span class="note">Public comment closes</span></a></li><li data-prose="data"><a class="dcard" href="item/tx-2026-0002/"><span class="badge soon">Closing soon</span><time class="big" datetime="2026-09-04">SEP 4</time><span class="left">6 days left</span><h3>PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for comment</h3><span class="note">Public comment closes</span></a></li><li data-prose="data"><a class="dcard open" href="item/tx-2026-0016/"><span class="badge open">Open to you</span><time class="big" datetime="2026-09-08">SEP 8</time><span class="left">10 days left</span><h3>Federal comment window open on adding AI questions to the American Time Use Survey</h3><span class="note">Public comment closes</span></a></li></ul><p class="meta" data-prose="data"><a href="record/">See all 93 decisions</a></p></section>
-
 
 <section data-reveal>
   <h2><a href="topic/">What this record covers</a></h2>
