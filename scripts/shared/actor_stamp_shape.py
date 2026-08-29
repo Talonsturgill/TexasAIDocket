@@ -77,19 +77,42 @@ SHELL_WRITE = re.compile(
 # The one phrasing that is correct, so a file can say what to do instead without tripping itself.
 SANCTIONED = "Write tool"
 
+# A markdown heading, for the section scope below.
+HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.*)$")
+
 
 def offending_lines(text: str) -> list[tuple[int, str]]:
-    """Every line that tells somebody to redirect a shell stream into the stamp.
+    """Every line that TELLS somebody to redirect a shell stream into the stamp.
 
-    A line is exempt only if it also names the Write tool, which is how the cure is allowed to be
-    written down beside the mistake it replaces. That exemption is narrow on purpose: it takes the
-    literal words, so a file cannot wave it away with a synonym.
+    Two exemptions, and the second one exists because this gate went red on its first CI run
+    against the very file that documents it.
+
+    ONE, a line naming the `Write tool`, which is how the cure is written down beside the mistake
+    it replaces. Narrow on purpose: it takes the literal words, so a file cannot wave it away with
+    a synonym.
+
+    TWO, any line inside the SECTION whose own heading names the `Write tool`. CLAUDE.md's rule
+    for this stamp has to quote `echo upgrade > .git/ACTOR && cat .git/ACTOR` in order to explain
+    why an allow list could never match it, and the first version of this checker read that
+    sentence as an instruction and failed the build. It was not wrong that a redirect was present.
+    It could not tell TEACHING from TELLING.
+
+    The section is the right unit for that distinction rather than the line, because the paragraph
+    explaining a mistake is necessarily several lines long and the quote lands on only one of them.
+    Scoping it to a heading keeps the gate strict everywhere else: a redirect under any other
+    heading, in any of these files, is still caught. The exemption ends at the next heading of any
+    level, so it cannot leak down the document, and the self-test asserts exactly that.
     """
     out: list[tuple[int, str]] = []
+    in_rule_section = False
     for i, line in enumerate(text.splitlines(), 1):
+        head = HEADING.match(line)
+        if head:
+            in_rule_section = SANCTIONED in head.group(1)
+            continue
         if not SHELL_WRITE.search(line):
             continue
-        if SANCTIONED in line:
+        if SANCTIONED in line or in_rule_section:
             continue
         out.append((i, line.strip()))
     return out
@@ -143,6 +166,31 @@ def self_test() -> int:
     excuse = "`echo daily > .git/ACTOR` is fine here because it is a special case"
     checks.append(("a line cannot excuse itself without naming the Write tool",
                    bool(offending_lines(excuse))))
+
+    # THE SECTION SCOPE, which is the half this checker did not have when CI first ran it and it
+    # failed the build against CLAUDE.md's own explanation of the rule.
+    teaching = ("## Write the actor stamp with the Write tool, never a shell command\n"
+                "An allow entry matches ONE command, so `echo upgrade > .git/ACTOR && cat .git/ACTOR`\n"
+                "matched nothing and went to approval.\n")
+    checks.append(("a redirect QUOTED inside the rule's own section is exempt",
+                   not offending_lines(teaching)))
+
+    telling = ("## Phase 0, wake\n"
+               "2. Stamp the actor: `echo daily > .git/ACTOR`.\n")
+    checks.append(("...but the same line under any other heading is still CAUGHT",
+                   bool(offending_lines(telling))))
+
+    leaks = (teaching + "\n## Scratch never leaves the working tree\n"
+             "Then run `echo daily > .git/ACTOR` before you commit.\n")
+    found = offending_lines(leaks)
+    checks.append(("...and the exemption does NOT leak past the next heading",
+                   len(found) == 1 and "Scratch" not in found[0][1]))
+
+    # The real file, which is the case that actually went red in CI.
+    claude_md = REPO_ROOT / "CLAUDE.md"
+    if claude_md.exists():
+        checks.append(("CLAUDE.md's own rule section scans clean",
+                       not offending_lines(claude_md.read_text(encoding="utf-8"))))
 
     with tempfile.TemporaryDirectory() as td:
         root = Path(td)
