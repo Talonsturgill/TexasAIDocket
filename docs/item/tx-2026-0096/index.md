@@ -10,7 +10,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs carries an interim 
 - Comment closes: 2026-09-02
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-08-28
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Admitted. The committee's own charge names data centers and the Legislature's upcoming listing carries the date and the room.
 - 2026-08-27 · Checked, and the committee has added a day. The Legislature's listing now carries a second public hearing of the same committee on September 2nd. It sits in the same room as the first.
 - 2026-08-28 · The Senate committee still sits on September 1st in hearing room E1.012 at the Capitol, and the second sitting the next day is still listed. The charge on how much water high consumption cooling uses is still the reason it meets, and a Texan can still show up.
+- 2026-08-29 · The comment window is still open, closing September 2nd. The committee still meets on the interim charge that names data center cooling water, and the notice still says it hears public as well as invited testimony.
 
 ## Evidence
 

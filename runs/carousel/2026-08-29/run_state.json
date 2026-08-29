@@ -1,0 +1,48 @@
+{
+ "run_date": "2026-08-29",
+ "_resume_note": "The scheduler fired the routine a second time while this run was still in flight. The routine's RUN STATE section says a new context resumes from this file rather than starting over, so it did. Starting over would have discarded a finished record pass, a finished deck and three judges mid-flight, and re-fetched every source for no gain.",
+ "phases": {
+  "wake": "done",
+  "craft": "done",
+  "sweep": "done",
+  "reverify": "done 50 due items re-verified",
+  "discover": "done",
+  "admit": "done tx-2026-0109",
+  "claims": "done out/2026-08-29/claims.json, 34 verified",
+  "instrument": "done both page checks exit 0",
+  "selection": "done tx-2026-0104",
+  "directors": "done",
+  "copy": "done out/2026-08-29/copy.json",
+  "art": "done out/2026-08-29/slides, 9 frames",
+  "pixel": "done render 9/9 clean, machine QA fails=0",
+  "aggregate": "done 8 computed figures, all re-derived",
+  "assembly": "done out/2026-08-29/final",
+  "scoring": "in_progress round 3, three judges spawned on the current deck",
+  "ship": "pending",
+  "retro": "pending",
+  "email": "pending"
+ },
+ "artifacts": {
+  "run_record": "runs/carousel/2026-08-29/RUN_RECORD.md",
+  "claims": "out/2026-08-29/claims.json",
+  "research": "out/research/2026-08-29-batch.json",
+  "story": "tx-2026-0104",
+  "final": "out/2026-08-29/final",
+  "panel_rounds": "out/2026-08-29/panel_rounds.jsonl"
+ },
+ "commits": [
+  "19d0bb4 record: re-verify 50 due items, two PUCT 765 kV dockets decided",
+  "d8a5943 record: admit the Senate Economic Development AI workforce hearing",
+  "add2ada record: the robotics center's own account names the rooms it runs in",
+  "3c75b8b run record: the record's account for August 29th, plus the discoverability signoff",
+  "c8f1e38 record: split five over-long sentences, rebuild the site",
+  "3fb4fec upgrade: the sources block's evidence noun has to be true of the document",
+  "1f400e8 the actor stamp is written with the Write tool, and a guard keeps it that way"
+ ],
+ "panel": {
+  "round_1": {"integrity": 5.93, "craft": 6.81, "reader": 6.56, "median": 6.426, "spread": 0.88, "verdict": "HOLD", "hard_fails": 2},
+  "round_2": {"integrity": 6.28, "craft": null, "reader": 6.398, "verdict": "HOLD", "hard_fails": 1,
+              "note": "the craft judge ended without returning a report and the run did not wait it out"},
+  "round_3": "in flight"
+ }
+}

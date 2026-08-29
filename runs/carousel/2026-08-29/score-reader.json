@@ -1,0 +1,41 @@
+{
+ "judge": "reader",
+ "round": 5,
+ "date": "2026-08-29",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 5.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 6.64,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Name Travis County on the frames and give slide 9 one real way in."
+}

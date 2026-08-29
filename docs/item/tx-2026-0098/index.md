@@ -1,6 +1,6 @@
 # NSF funds a Rice laboratory where a model designs the experiment and a robot runs it, bookable from anywhere
 
-The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials. AI plans the experiments and the equipment executes them. The University of Texas at Austin is a collaborating institution. Rice describes the point as access rather than speed, putting capability that existed in a handful of laboratories behind a login a researcher anywhere in the country can use. The university's own framing is unusually careful about the limit, saying responsible AI should complement a researcher's judgement rather than replace it.
+The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials. AI plans the experiments and the equipment executes them. The University of Texas at Austin is a collaborating institution. Rice describes the point as access rather than speed, putting capability that existed in a handful of laboratories behind a login a researcher anywhere in the country can use. The university's own framing is unusually careful about the limit, saying responsible AI should complement a researcher's judgment rather than replace it.
 
 - Topic: research-and-science
 - Decided by: National Science Foundation (federal)
@@ -12,7 +12,7 @@ The National Science Foundation award to William Marsh Rice University funds REA
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2607553.json
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -23,6 +23,7 @@ The National Science Foundation award to William Marsh Rice University funds REA
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-26 · Admitted. The award record and the university's own account agree on what the platform is and who may use it.
+- 2026-08-29 · Checked and unchanged. The award to Rice still funds a laboratory where a model proposes the next experiment and a robot runs it. The university still frames the machine as complementing a researcher's judgment rather than replacing it. The platform is still described as one researchers elsewhere will be able to reach.
 
 ## Evidence
 

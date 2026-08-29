@@ -1,0 +1,380 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "text": "The National Science Foundation award record for award number 2535195 titles the project a Science and Technology Center for Human and Robot Co-Adaptation.",
+   "quote": "\"title\":\"STC: Center for Human and Robot Co-Adaptation\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c2",
+   "text": "The agency names the University of Texas at Austin as the awardee.",
+   "quote": "\"awardeeName\":\"University of Texas at Austin\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c3",
+   "text": "The agency award record carries an estimated total amount of 29999998.",
+   "quote": "\"estimatedTotalAmt\":\"29999998\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c4",
+   "text": "The agency award record carries funds obligated of 5999999.",
+   "quote": "\"fundsObligatedAmt\":\"5999999\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c5",
+   "text": "The award record lists the obligation against fiscal year 2026.",
+   "quote": "\"fundsObligated\":[\"FY 2026 = $5,999,999.00\"]",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c6",
+   "text": "The award record gives a start date of 09/01/2026.",
+   "quote": "\"startDate\":\"09/01/2026\",\"title\":\"STC: Center for Human and Robot Co-Adaptation\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c7",
+   "text": "The award record gives an expiration date of 08/31/2031.",
+   "quote": "\"estimatedTotalAmt\":\"29999998\",\"expDate\":\"08/31/2031\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c8",
+   "text": "The award record is dated 08/25/2026 and carries the estimated total beside it.",
+   "quote": "\"date\":\"08/25/2026\",\"dirAbbr\":\"O/D\",\"divAbbr\":\"OIA\",\"estimatedTotalAmt\":\"29999998\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c9",
+   "text": "The award record lists the initial amendment date and the latest amendment date as the same day.",
+   "quote": "\"initAmendmentDate\":\"08/25/2026\",\"latestAmendmentDate\":\"08/25/2026\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c10",
+   "text": "The instrument is a cooperative agreement rather than a grant.",
+   "quote": "\"transType\":\"Cooperative Agreement\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c11",
+   "text": "The award sits in the agency's 2026 class of Science and Technology Centers.",
+   "quote": "\"fundProgramName\":\"STCs - 2026 Class\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c12",
+   "text": "The principal investigator on the award record is Joydeep Biswas, and the performance address is on the Austin campus.",
+   "quote": "\"pdPIName\":\"Joydeep Biswas\",\"perfAddress\":\"110 INNER CAMPUS DR\",\"perfCity\":\"AUSTIN\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c13",
+   "text": "The performance location on the award record is in Texas.",
+   "quote": "\"perfLocation\":\"University of Texas at Austin\",\"perfStateCode\":\"TX\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c14",
+   "text": "The award abstract frames the work as moving robots out of research laboratories and into homes, hospitals, workplaces and public spaces.",
+   "quote": "For robots to transition from research laboratories to effective collaborators in homes, hospitals, workplaces, and public spaces, they must be able to understand, interact with, and adapt to people over time.",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c15",
+   "text": "The award abstract describes the research sites as always on, participatory living laboratories inside residential, commercial and healthcare facilities.",
+   "quote": "Research activities will be grounded, tested, and refined through the Human Environment with Robots (HERO) Facility Network, an ecologically valid testing ground comprising always-on, participatory living laboratories in residential, commercial, and healthcare facilities across the partner institution network.",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c16",
+   "text": "The award abstract says the deployments will grow more complex over the life of the center.",
+   "quote": "These deployments will increase in complexity over the Center's duration, supporting the development of generalizable principles, algorithms, and evaluation methods for long-term human-robot co-adaptation.",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  },
+  {
+   "id": "c17",
+   "text": "The university's own account says the center will bring together 39 researchers from six universities and multiple industry partners.",
+   "quote": "The forthcoming Center for Human and Robot Co-Adaptation will bring together 39 researchers from six universities and multiple industry partners",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c18",
+   "text": "The university names five partner universities outside Texas.",
+   "quote": "Partner universities are the Massachusetts Institute of Technology, Yale University, Indiana University Bloomington, the University of Utah, and Tufts University.",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c19",
+   "text": "The university names eight industry collaborators.",
+   "quote": "Industry collaborators include Amazon, Apptronik, Diligent Robotics, Google DeepMind, Hello Robot, MassRobotics, NVIDIA and Robust AI.",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c20",
+   "text": "The university describes the award in its own account as a five-year, $30 million award.",
+   "quote": "The five-year, $30 million award will bring together researchers from disciplines spanning artificial intelligence, robotics, cognitive science and social science",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c21",
+   "text": "The university lists the real world deployment sites as houses, dorms, cafes, a public museum, a rehabilitation hospital, and elder-care and assisted-living residences.",
+   "quote": "The research will be grounded in findings from the Human Environment with Robots (HERO) Facility Network, a set of real-world deployment sites hosted at UT and the partner institutions: houses, dorms, cafés, a public museum, a rehabilitation hospital, and elder-care and assisted-living residences.",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c22",
+   "text": "The university states that an internal ethics board will develop the consent and opt-out procedures.",
+   "quote": "An internal ethics board will oversee the research and develop consent and opt-out procedures.",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c23",
+   "text": "The university says community members will get an opportunity to influence how, when and where robots are deployed.",
+   "quote": "Every step of the way, community members will have an opportunity to influence how, when and where robots get deployed",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c24",
+   "text": "The university's release describes the work as enabling robots to understand the needs and preferences and values and constraints of the people around them. It says people adapt their behavior too. The fetched span carries no speaker, so this deck attributes the sentence to the document rather than to a person.",
+   "quote": "It is enabling robots to understand the people around them: their needs, preferences, values and constraints, while recognizing that people also adapt their behavior when they integrate robots into their environment.",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c25",
+   "text": "The university names Joydeep Biswas an associate professor of computer science.",
+   "quote": "Joydeep Biswas, an associate professor of computer science",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c26",
+   "text": "The university traces the center back to Good Systems, its research grand challenge on ethical artificial intelligence.",
+   "quote": "The center grew from a core project of Good Systems",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c27",
+   "text": "The university says the Texas Advanced Computing Center will run simulation, machine learning, data storage and digital twins of the deployment sites.",
+   "quote": "will provide the computational muscle for the simulation, machine learning, data storage and digital twins of HERO sites",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c28",
+   "text": "The university states the award is one of three center grants recently announced by the agency.",
+   "quote": "It is one of three center grants recently announced by NSF.",
+   "url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "UT News, UT to lead NSF center that will study how robots and people learn to live and work together"
+  },
+  {
+   "id": "c29",
+   "text": "The agency announced three new Science and Technology Centers in one release.",
+   "quote": "NSF launches three new Science and Technology Centers with $90M investment in transformative research",
+   "url": "https://www.nsf.gov/news/nsf-launches-three-new-science-technology-centers-90m",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, NSF launches three new Science and Technology Centers"
+  },
+  {
+   "id": "c30",
+   "text": "The agency puts $90 million over five years behind the three centers together.",
+   "quote": "The U.S. National Science Foundation is investing $90 million over five years to support three new NSF Science and Technology Centers (NSF STC).",
+   "url": "https://www.nsf.gov/news/nsf-launches-three-new-science-technology-centers-90m",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, NSF launches three new Science and Technology Centers"
+  },
+  {
+   "id": "c31",
+   "text": "The agency says each center gets approximately $6 million annually for an initial five-year period and may compete for up to five more years.",
+   "quote": "Each center will receive approximately $6 million annually for an initial five-year period, with the opportunity to compete for up to five additional years of support.",
+   "url": "https://www.nsf.gov/news/nsf-launches-three-new-science-technology-centers-90m",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, NSF launches three new Science and Technology Centers"
+  },
+  {
+   "id": "c32",
+   "text": "The agency release says the Texas center will study how people and robots can securely and effectively adapt to one another.",
+   "quote": "led by The University of Texas at Austin, will study how people and robots can securely and effectively adapt to one another",
+   "url": "https://www.nsf.gov/news/nsf-launches-three-new-science-technology-centers-90m",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, NSF launches three new Science and Technology Centers"
+  },
+  {
+   "id": "c33",
+   "text": "The only settings the agency release names for the Texas center are homes, hospitals, workplaces and public spaces.",
+   "quote": "service and assistive robots become more common in homes, hospitals, workplaces, and public spaces",
+   "url": "https://www.nsf.gov/news/nsf-launches-three-new-science-technology-centers-90m",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, NSF launches three new Science and Technology Centers"
+  },
+  {
+   "id": "c34",
+   "text": "The agency release describes the method as combining robotics, artificial intelligence and human factors so robots learn from people.",
+   "quote": "Researchers will combine robotics, AI, and human factors to develop new methods that help robots with embodied intelligence learn from people, understand their needs and preferences",
+   "url": "https://www.nsf.gov/news/nsf-launches-three-new-science-technology-centers-90m",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, NSF launches three new Science and Technology Centers"
+  },
+  {
+   "id": "c35",
+   "text": "The award record's own id field carries the award number 2535195. Its initial and latest amendment dates are both 08/25/2026.",
+   "quote": "\"id\":\"2535195\",\"initAmendmentDate\":\"08/25/2026\",\"latestAmendmentDate\":\"08/25/2026\"",
+   "url": "https://api.nsf.gov/services/v1/awards/2535195.json",
+   "source_type": "primary_official",
+   "retrieved": "2026-08-29",
+   "confidence": "high",
+   "document": "National Science Foundation, award record 2535195, Center for Human and Robot Co-Adaptation"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "The university's page carries a displayed publication date of August 27th, 2026.",
+   "reason": "The date is real and observed, and the URL path itself is /2026/08/27/. The fetched rendering exposed it only as a converter-inserted label, so no contiguous span on the page proves it character for character. Recorded here rather than as a claim. The deck dates the award from the award record instead."
+  },
+  {
+   "finding": "The agency release is dated August 26th, 2026.",
+   "reason": "Same failure mode. The standalone line under the headline cannot be extended into a provable contiguous span. This is the day after the award record's own date of 08/25/2026, which is verified as c8, so the deck dates the award from the award record and not from the release."
+  },
+  {
+   "finding": "The agency's release does not name the HERO Facility Network or the specific deployment sites such as dorms, cafes, a public museum or a rehabilitation hospital.",
+   "reason": "The absence was confirmed by reading the full release and it is correct, but a verbatim quote cannot prove a negative. c33 carries the provable positive half, that the only settings the release names are homes, hospitals, workplaces and public spaces. The agency's own award abstract at c15 sits between the two in specificity, naming residential, commercial and healthcare facilities."
+  },
+  {
+   "finding": "Any comparison, difference or characterisation between the university's $30 million and the agency record's 29999998.",
+   "reason": "Not computed and not characterised. Both strings are proven independently and verbatim, at c20 and at c3. Neither is described as rounded, approximate or exact. Anything placing them side by side must do so from those two claims and must not perform arithmetic on them."
+  },
+  {
+   "finding": "The scout's report of a Cornyn office release on the same award.",
+   "reason": "A political reaction to a decision rather than the decision, and not needed by any frame. Not fetched in this pass and not carried."
+  },
+  {
+   "finding": "news.utexas.edu labelled primary_official as the awardee's account of a federal award.",
+   "reason": "Labelled primary_corporate instead. The page is the recipient institution's own announcement about itself. The award decision is documented at api.nsf.gov and nsf.gov, which are the primary_official sources. The $30 million figure, the 39 researchers and the deployment site list exist only in the university's telling and carry that weight."
+  }
+ ]
+}

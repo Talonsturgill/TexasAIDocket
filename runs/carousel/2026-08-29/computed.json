@@ -1,0 +1,73 @@
+{
+  "n_release_settings": 4,
+  "release_settings": [
+    "homes",
+    "hospitals",
+    "workplaces",
+    "public spaces"
+  ],
+  "n_abstract_facilities": 3,
+  "abstract_facilities": [
+    "residential",
+    "commercial",
+    "healthcare"
+  ],
+  "n_university_places": 6,
+  "university_places": [
+    "houses",
+    "dorms",
+    "cafés",
+    "a public museum",
+    "a rehabilitation hospital",
+    "elder-care and assisted-living residences"
+  ],
+  "release_set_name": "the settings the agency's release names",
+  "abstract_set_name": "the facility types the agency's abstract names",
+  "places_set_name": "the places the university names",
+  "rehab_only_in_university_list": true,
+  "agency_total_raw": "29999998",
+  "agency_obligated_raw": "5999999",
+  "agency_fy_string": "FY 2026 = $5,999,999.00",
+  "university_award": "five-year, $30 million award",
+  "agency_three_centers": "$90 million over five years",
+  "agency_per_center": "approximately $6 million annually",
+  "no_gap": "The agency record's 29999998 and the university's $30 million are set side by side as quotations. No difference between them is computed, and neither is described as rounded, exact or approximate, because no source says so.",
+  "award_date": "August 25th, 2026",
+  "start_date": "September 1st, 2026",
+  "end_date": "August 31st, 2031",
+  "award_date_raw": "08/25/2026",
+  "start_raw": "09/01/2026",
+  "end_raw": "08/31/2031",
+  "partner_universities": [
+    "the Massachusetts Institute of Technology",
+    "Yale University",
+    "Indiana University Bloomington",
+    "the University of Utah",
+    "Tufts University"
+  ],
+  "n_partner_universities": 5,
+  "industry_collaborators": [
+    "Amazon",
+    "Apptronik",
+    "Diligent Robotics",
+    "Google DeepMind",
+    "Hello Robot",
+    "MassRobotics",
+    "NVIDIA and Robust AI"
+  ],
+  "researchers_phrase": "39 researchers from six universities",
+  "centers_announced_phrase": "three new Science and Technology Centers",
+  "bar_field_px": 760.0,
+  "px_per_item": 126.6667,
+  "bar_release_px": 506.67,
+  "bar_abstract_px": 380.0,
+  "bar_places_px": 760.0,
+  "cell_pitch_px": 126.67,
+  "acted": {
+    "tx-2026-0104": [
+      "Austin",
+      "cooperative agreement",
+      "c10"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+ "date": "2026-08-29",
+ "aggregates": [
+  {
+   "phrase": "4 settings",
+   "kind": "count",
+   "value": 4,
+   "slide": 2,
+   "computed_from": [
+    "c33"
+   ],
+   "computed_by": "out/2026-08-29/compute.py, n_release_settings, and re-derived inside the frame's own script",
+   "note": "len() of the list split at commas out of c33's own quote, which is homes, hospitals, workplaces, and public spaces. The frame prints the count beside the document it counted and throws rather than rendering if the printed count disagrees with its own re-derivation."
+  },
+  {
+   "phrase": "3 types",
+   "kind": "count",
+   "value": 3,
+   "slide": 2,
+   "computed_from": [
+    "c15"
+   ],
+   "computed_by": "out/2026-08-29/compute.py, n_abstract_facilities, and re-derived inside the frame's own script",
+   "note": "len() of the list split at commas out of c15's own quote, which is residential, commercial, and healthcare facilities. Same splitting rule as the other two, stated on the frame."
+  },
+  {
+   "phrase": "6 places",
+   "kind": "count",
+   "value": 6,
+   "slide": 2,
+   "computed_from": [
+    "c21"
+   ],
+   "computed_by": "out/2026-08-29/compute.py, n_university_places, and re-derived inside the frame's own script",
+   "note": "len() of the list split at commas out of c21's own quote. Six rather than seven, because elder-care and assisted-living residences is one comma delimited member and splitting it would need a claim about licensure categories no fetched source makes. The industry collaborator list is deliberately NOT counted anywhere in this deck, because its final and is a list separator where c21's is not, and no single rule reads both correctly."
+  },
+  {
+   "phrase": "Three grains",
+   "kind": "count",
+   "value": 3,
+   "slide": 2,
+   "computed_from": [
+    "c33",
+    "c15",
+    "c21"
+   ],
+   "computed_by": "the number of documents this frame sets side by side, one per band",
+   "note": "Three because the frame carries exactly three bands and each band is one document's own description of the same deployment. The agency's release at c33, the agency's award abstract at c15, and the university's account at c21. Not three of anything in the world, three descriptions on this frame."
+  },
+  {
+   "phrase": "two official records",
+   "kind": "count",
+   "value": 2,
+   "slide": 0,
+   "computed_from": [
+    "c3",
+    "c33"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, one per distinct document whose source_type is primary_official",
+   "note": "Printed in the first comment rather than on a frame. The agency's award record and the agency's release. The third document, the university's own account, is typed primary_corporate and is counted separately by that generator."
+  },
+  {
+   "phrase": "110 INNER CAMPUS",
+   "kind": "quoted",
+   "slide": 9,
+   "quoted_from": "c12",
+   "quote": "\"pdPIName\":\"Joydeep Biswas\",\"perfAddress\":\"110 INNER CAMPUS DR\",\"perfCity\":\"AUSTIN\"",
+   "note": "Not a count and not computed. It is the performance address on the award record, printed as the record's own field so a reader can see it is lifted rather than looked up. Frame 9 carries it because the deck's one imperative had no addressee, which two judges named across two rounds.",
+   "value": 110
+  }
+ ]
+}

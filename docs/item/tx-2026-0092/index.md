@@ -11,7 +11,7 @@ The National Science Foundation made two matched standard grants on August 14th,
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2619079.json
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-23 · Admitted. Both award records were read directly and carry the same title, the same obligated amount and the same term.
 - 2026-08-26 · Checked and unchanged. The decision still stands as decided.
+- 2026-08-29 · Checked and unchanged. Both matched grants still stand, one at the University of Texas at San Antonio and one at Texas A and M. The stated problem is still reaching the accuracy of full parameter fine tuning on machines that can't carry it.
 
 ## Evidence
 

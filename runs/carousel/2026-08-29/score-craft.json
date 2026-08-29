@@ -1,0 +1,41 @@
+{
+ "judge": "craft",
+ "round": 5,
+ "date": "2026-08-29",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.2
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_score": 7.224,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Replace the blanket washes that answer contrast by deleting the region under the type, starting with slide 9's underwash, with washes clipped to follow the art's own light."
+}

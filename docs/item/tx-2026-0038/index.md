@@ -11,7 +11,7 @@ The City of Harlingen Waterworks System board of directors approved a water supp
 - Public access: Public meeting
 - Take part: https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-19 · Whether the agreement has changed is unconfirmed. The board publishes the minutes of that meeting only as a scanned document with no readable text.
 - 2026-08-22 · Whether the agreement has changed is still unconfirmed. The effluent water supply agreement for the proposed data center still stands as approved. The board still publishes the minutes of that meeting only as a scanned document with no readable text.
 - 2026-08-26 · Checked and unchanged. The board's effluent water supply agreement still stands and the utility's position that the plant will not draw drinking water is still the one on the record.
+- 2026-08-29 · Checked and unchanged. The water supply agreement the board approved still stands, and the water it sells is still effluent from the wastewater plant rather than drinking water. The volume parameters the board set are unchanged.
 
 ## Evidence
 
