@@ -77,7 +77,25 @@
     "scripts/shared/actor_stamp_shape.py FAILS THE BUILD if any instruction file goes back to a",
     "shell redirect. Prose was what the last four fixes were, and prose is what the session read",
     "and contradicted. The allow entries below are kept as belt and braces for a session that has",
-    "not read any of this, and they are no longer the mechanism. Owner instruction, 2026-08-29."
+    "not read any of this, and they are no longer the mechanism. Owner instruction, 2026-08-29.",
+    "",
+    "THE MCP TOOLS WERE NEVER ON THE LIST AT ALL, and that is a SECOND interruption with a",
+    "different cause, found on 2026-08-29 after the owner was interrupted again in the same run",
+    "that had just fixed the actor stamp. Everything above this block is a BUILT IN tool name.",
+    "Not one entry named an MCP tool, so `mcp__github__create_pull_request` at Phase 16 and",
+    "`mcp__Gmail__create_draft` at Phase 19 were unlisted, and both are the outward facing calls",
+    "a host is most likely to gate. `bypassPermissions` covers them until a host overrides the",
+    "mode, which the note above already records that the cloud runner may do, and on the day it",
+    "does the run stops at the two steps that end it.",
+    "",
+    "`mcp__github` is listed server wide because this routine reads checks, opens a pull request",
+    "and merges it, and the useful set is not enumerable in advance.",
+    "",
+    "GMAIL IS LISTED TOOL BY TOOL AND `send_message` IS DELIBERATELY ABSENT. These routines DRAFT",
+    "ONLY and never send, which CLAUDE.md states twice and the routine states again at Phase 19.",
+    "A server wide Gmail entry would quietly hand a run the ability to send mail on the owner's",
+    "behalf, and the one rule this project will not risk to save four lines of config is that one.",
+    "The absence is the point. Do not replace these four entries with `mcp__Gmail`."
   ],
   "permissions": {
     "defaultMode": "bypassPermissions",
@@ -107,7 +125,29 @@
       "Bash(echo gridwatch > .git/ACTOR && cat .git/ACTOR)",
       "Bash(echo ask > .git/ACTOR && cat .git/ACTOR)",
       "Bash(printf daily > .git/ACTOR)",
-      "Bash(printf upgrade > .git/ACTOR)"
+      "Bash(printf upgrade > .git/ACTOR)",
+
+      "mcp__github",
+      "mcp__github__create_pull_request",
+      "mcp__github__update_pull_request",
+      "mcp__github__merge_pull_request",
+      "mcp__github__pull_request_read",
+      "mcp__github__list_pull_requests",
+      "mcp__github__get_check_run",
+      "mcp__github__actions_get",
+      "mcp__github__actions_list",
+      "mcp__github__get_job_logs",
+      "mcp__github__get_commit",
+      "mcp__github__list_commits",
+      "mcp__github__get_file_contents",
+      "mcp__github__add_issue_comment",
+      "mcp__github__subscribe_pr_activity",
+      "mcp__github__unsubscribe_pr_activity",
+
+      "mcp__Gmail__create_draft",
+      "mcp__Gmail__update_draft",
+      "mcp__Gmail__get_draft",
+      "mcp__Gmail__list_drafts"
     ]
   },
   "hooks": {
