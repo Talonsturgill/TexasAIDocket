@@ -321,6 +321,39 @@ time: a rule stated in config, a surface that keeps its own copy, and nothing in
 they agree. `coherence_check.py` now asserts the rendered site line equals the brand.yaml value on
 every frame, so a fourth one fails the build instead of shipping.
 
+## Write the actor stamp with the Write tool, never a shell command (AUTHORITATIVE)
+
+**`.git/ACTOR` is written with the Write tool. Never `echo`, never `printf`, never `tee`, never a
+redirect, and never inside a compound command.** Reading it back with `cat` is fine, because a
+read is not a write.
+
+This one instruction wedged an unattended run on August 20th, 26th, 27th, 28th and 29th, and the
+owner was interrupted every one of those days. It is worth knowing why four earlier fixes failed,
+because each was right about something and none of them held.
+
+`.git/` is inside the working tree and outside what the Bash sandbox will write to. A sandboxed
+redirect there cannot complete, so the tool asks to re-run unsandboxed. **That prompt is a
+different mechanism from the permission mode**, `bypassPermissions` does not reach it, and the
+scratch rule below does not help because the stamp has nowhere else to live: `.githooks/commit-msg`
+reads exactly that path.
+
+So `.claude/settings.json` got an allow list of the exact command strings. **An allow entry matches
+ONE command**, and a session writes compounds, so `echo upgrade > .git/ACTOR && cat .git/ACTOR`
+matched nothing and went to approval. Adding the compound forms bought two days. Then the file
+stated the rule in prose: never join the stamp to another command. The next session read that
+paragraph, understood it, and wrote the stamp inside a six line script anyway.
+
+**Every one of those four fixes tried to make a shell command safe. The cure is not to use a shell
+command.** The Write tool takes no shell, so the sandbox never sees it, and produces no command
+string, so there is nothing to match and nothing to chain. It cannot prompt no matter what else
+shares the turn.
+
+`scripts/shared/actor_stamp_shape.py` reads `CLAUDE.md`, `prompts/*.md` and the skill and agent
+files and **fails the build** if any of them tells a session to shell the stamp. That is the
+difference between this fix and the four before it. Those were prose, and prose is what the
+session read and then contradicted. GATE_LESSONS' oldest shape is a rule stated in config with
+nothing in between checking it.
+
 ## Scratch never leaves the working tree (AUTHORITATIVE)
 
 **Every temporary file a run writes goes in `out/<run>/tmp/`. Never `/tmp`, never a system
