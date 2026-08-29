@@ -144,8 +144,9 @@ def build(out: Path, today: str) -> dict:
          "normals": frontchip.normals(),
          "readings": frontchip.load()}, indent=2, ensure_ascii=False) + "\n")
 
-    # SERVED TO THE ONE PAGE THAT HAS A CALENDAR. See theme.record_css for why it is not in
-    # the sheet every other page waits on.
+    # PAGE-SPECIFIC INSTRUMENTS. Each stays out of the sheet every other page waits on. See the
+    # corresponding function in theme.py for the measured reason behind each split.
+    w("home.css", theme.home_css())
     w("record.css", theme.record_css())
     w("facility.css", theme.facility_css())
 
@@ -741,8 +742,14 @@ def self_test() -> int:
         # of ways in, marked hot so it reads first, and with the sentence that teaches what the
         # green means. Both of those are structural and survive a rewrite. A quoted fragment of
         # a headline is a copy of the copy, and it only ever fails for the wrong reason.
-        check("the home page counts the ways a reader can still act",
-              'class="n hot"' in idx and "Doors open to you" in idx)
+        hero_html = idx.split('<section class="hero rise">', 1)[1].split("</section>", 1)[0]
+        check("the home page shows the ways a reader can still act inside the hero",
+              'class="n hot"' in hero_html and "Doors open to you" in hero_html
+              and 'href="#open-now"' in hero_html
+              and '<aside class="open-now" id="open-now"' in hero_html
+              and 'class="open-now-item' in hero_html)
+        check("...and does not repeat the same deadlines further down the page",
+              "Closing next" not in idx)
         # THE SENTENCE THIS USED TO CHECK IS GONE, on the owner's call that every word has to
         # earn its space. It read "Green means a door is open to you", and the check asserted the
         # page taught the signal. The counted, hot-marked figure above is what carries the answer
