@@ -67,6 +67,7 @@ const pages = [
   "record/index.html",      // the long list
   "grid/index.html",        // chart and figures
   "water/index.html",       // the widest table on the site
+  "construction/index.html", // dense year axis and filing tables
   "about/index.html",       // plain prose
   "services/index.html",    // marketing layout
   "data/index.html",        // link list
@@ -252,7 +253,8 @@ check("the mark is shown at every width and lands on nothing",
 const CHARTS = [["grid/index.html", "svg.loadshape"],
                 ["water/index.html", "svg.waterviz.trend"],
                 ["water/index.html", "svg.waterviz.dist"],
-                ["water/index.html", "svg.waterviz.resmap"]];
+                ["water/index.html", "svg.waterviz.resmap"],
+                ["construction/index.html", "svg.cysvg"]];
 
 const tiny = [];
 for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440])
@@ -271,7 +273,9 @@ for (const [pageRel, sel] of CHARTS) {
     let data = Infinity, unit = Infinity;
     for (const t of svg.querySelectorAll("text")) {
       if (!t.textContent.trim()) continue;
-      const px = parseFloat(getComputedStyle(t).fontSize) * k;
+      const style = getComputedStyle(t);
+      if (style.display === "none" || style.visibility === "hidden") continue;
+      const px = parseFloat(style.fontSize) * k;
       if (t.classList.contains("unit")) unit = Math.min(unit, px);
       else data = Math.min(data, px);
     }
@@ -315,7 +319,10 @@ for (const [pageRel, sel] of CHARTS) {
     const svg = document.querySelector(sel);
     if (!svg) return null;
     const vb = svg.viewBox.baseVal;
-    const T = [...svg.querySelectorAll("text")].filter((t) => t.textContent.trim());
+    const T = [...svg.querySelectorAll("text")].filter((t) => {
+      const style = getComputedStyle(t);
+      return t.textContent.trim() && style.display !== "none" && style.visibility !== "hidden";
+    });
     const out = [];
     for (const t of T) {
       const b = t.getBBox();

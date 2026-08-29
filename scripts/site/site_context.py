@@ -605,6 +605,7 @@ def _sheet_version(name: str) -> str:
     return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
 
 
+@functools.lru_cache(maxsize=1)
 def _css_version() -> str:
     """A content hash on the stylesheet URL, because shipping is not the same as being seen.
 
@@ -621,6 +622,10 @@ def _css_version() -> str:
 
     theme.css() is deterministic, which its own self-test asserts by building twice and
     comparing bytes, so this is stable within a build and identical across identical builds.
+
+    A full build calls page once for every page. The hash is shared by all of them, so computing
+    the same generated stylesheet again on every call only repeats YAML parsing and colour work.
+    Keep the result for this process, which is the lifetime of a normal build and its inputs.
     """
     return hashlib.sha256(theme.css().encode("utf-8")).hexdigest()[:10]
 

@@ -446,7 +446,10 @@ def facility_panel(recs: list[dict], e) -> str:
 
 # ---------------------------------------------------------------- the drawing
 CW, CH = 1000.0, 300.0     # the field, in user units. The svg scales to its container.
-CPAD_L, CPAD_B, CPAD_T = 8.0, 34.0, 14.0
+# The bottom field holds the largest narrow screen label below the axis. It used to hold only
+# the desktop type, so enlarging the years for a phone put the rule through the glyphs.
+CPAD_L, CPAD_B, CPAD_T = 8.0, 54.0, 14.0
+CLABEL_B = 12.0
 
 
 def columns(rows: list[dict], key: str) -> str:
@@ -467,11 +470,29 @@ def columns(rows: list[dict], key: str) -> str:
     for i, r in enumerate(rows):
         x = CPAD_L + i * (w + gap)
         h = (r[key] / hi) * (floor - CPAD_T)
-        bars += (f'<g class="cyr"><rect class="cybar" x="{x:.2f}" y="{floor - h:.2f}" '
+        # THE BARS NEVER DISAPPEAR. On a narrow screen the axis shows fewer ticks instead.
+        # Classes mark two honest sampling intervals while keeping both ends available to the
+        # stylesheet. A tick next to the final year is left out so the last two labels cannot
+        # collide simply because the span has an odd length.
+        tick_classes = ["cyr"]
+        remaining = n - 1 - i
+        if i == 0:
+            tick_classes.append("cyfirst")
+        if i == n - 1:
+            tick_classes.append("cylast")
+        if i % 2 == 0 and (i == 0 or remaining >= 2):
+            tick_classes.append("cytick2")
+        if i % 3 == 0 and (i == 0 or remaining >= 3):
+            tick_classes.append("cytick3")
+        bars += (f'<g class="{" ".join(tick_classes)}">'
+                 f'<rect class="cybar" x="{x:.2f}" y="{floor - h:.2f}" '
                  f'width="{w:.2f}" height="{max(h, 1.0):.2f}" rx="2"/>'
-                 f'<text class="cylab" x="{x + w / 2:.2f}" y="{CH - 10:.2f}">{r["year"]}</text>'
+                 f'<text class="cylab" x="{x + w / 2:.2f}" '
+                 f'y="{CH - CLABEL_B:.2f}">{r["year"]}</text>'
                  f'<title>{r["year"]}</title></g>')
-    return (f'<svg class="cysvg" viewBox="0 0 {int(CW)} {int(CH)}" role="img" '
+    density = " cycrowded" if n >= 16 else ""
+    density += " cytight" if n >= 11 else ""
+    return (f'<svg class="cysvg{density}" viewBox="0 0 {int(CW)} {int(CH)}" role="img" '
             f'aria-labelledby="cyttl" preserveAspectRatio="none">'
             f'<title id="cyttl">Construction capital filed per year, by the year each project '
             f'was scheduled to start.</title>'
@@ -634,6 +655,12 @@ def self_test() -> int:
        'height="1.00"' in svg, [x for x in svg.split() if x.startswith("height")])
     ok("...and it is deterministic", columns(yrs, "cost") == svg)
     ok("nothing to draw is an empty string, not a broken svg", columns([], "cost") == "")
+    dense_svg = columns([{"year": y, "cost": y - 2007} for y in range(2008, 2028)], "cost")
+    ok("a dense year axis carries narrow screen tick intervals",
+       'class="cysvg cycrowded cytight"' in dense_svg
+       and "cytick2" in dense_svg and "cytick3" in dense_svg)
+    ok("...and keeps both ends available at every interval",
+       "cyfirst" in dense_svg and "cylast" in dense_svg)
 
     # THE JOIN, and the overclaim it refuses. A parent company name is not a building.
     facs = [{"a-corp", "vantage-tx304"}, {"a-corp", "vantage-tx305"}, {"a-corp"}]
