@@ -627,48 +627,6 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
                "ERCOT forecast low" if isinstance(err, (int, float)) and err < 0 else
                "forecast minus measured")
 
-    acc = f["accuracy"]
-    acc_block = ""
-    if acc:
-        acc_block = f"""
-<h3>Forecast accuracy</h3>
-<div class="prose">
-  <p>Across <strong class="num">{n0(acc['days'])}</strong>
-  {plural(acc['days'], 'day', 'days')} its day ahead peak forecast missed by
-  <strong class="num">{n0(acc['mean_abs_peak_error_mw'])} MW</strong> on average, or
-  <strong class="num">{pct(acc['mean_abs_peak_error_pct'])}%</strong> of peak. Worst so far
-  <strong class="num">{n0(acc['worst_mw'])} MW</strong>.</p>
-</div>"""
-
-    trend_block = ""
-    t = f["trend"]
-    # TWO SENTENCES, AND THE SPLIT IS LOAD BEARING. This was one sentence ending in a comma
-    # and "comparing the most recent N days against the first N", which ran to 32 words and
-    # tripped the 30 word backstop the moment it first rendered. It had never rendered before:
-    # the branch needs 14 settled days and the record only reached them on 2026-08-24, so the
-    # copy sat unexercised from the day it was written and took the site's deploy down with it
-    # when the data finally arrived. A gate a page cannot reach yet is a gate that has not run.
-    if t and t.get("trough_change_mw") is not None:
-        trend_block = f"""
-<h3>The fingerprint</h3>
-<div class="prose">
-  <p>Over the <strong class="num">{n0(t['window_days'])}</strong> days held, the overnight
-  trough moved by <strong class="num">{n0(t['trough_change_mw'])} MW</strong> and the daily
-  peak moved by <strong class="num">{n0(t['peak_change_mw'])} MW</strong>. That compares the
-  most recent <strong class="num">{n0(t['half_days'])}</strong> days against the first
-  <strong class="num">{n0(t['half_days'])}</strong>.</p>
-  <p>A trough rising faster than a peak is what constant load looks like from outside.</p>
-</div>"""
-    elif f["days_verified"] < 14:
-        trend_block = f"""
-<h3>The fingerprint</h3>
-<div class="prose">
-  <div class="gap"><strong>Not yet.</strong> Comparing the trough against the peak needs at
-  least <strong class="num">14</strong> settled days, so that a weekday and weekend pattern has
-  repeated twice. The record holds <strong class="num">{n0(f['days_verified'])}</strong>.
-  Nothing is drawn from fewer, because a line through two points is noise with a slope.</div>
-</div>"""
-
     # THE QUEUE GAP LEADS. It is the question every other one on this beat resolves to, and
     # the daily reading below is the measured answer to "and what is actually happening".
     # Ordered that way rather than by cadence: the reader's question comes first.
@@ -698,22 +656,8 @@ def body(records: list[dict], today: str, queue_data: dict | None = None) -> str
   <h3>What served it</h3>
   {fuel_bar(L)}
 
-  {trend_block}
-  {acc_block}
 </section>
 
-
-<div class="prose gridnote">
-  <div class="gap">
-    <p><strong>Nobody outside ERCOT can say what any single data center drew.</strong> Per site
-    metering is confidential. This page publishes the system total and never an attribution.</p>
-  </div>
-  <p><strong class="num">{n0(f['days_held'])}</strong>
-  {plural(f['days_held'], 'day', 'days')} held,
-  <strong class="num">{n0(f['days_unverified'])}</strong> unverified. An unverified day carries
-  no numbers rather than yesterday's. Everything here recomputes from
-  <a href="../gridwatch.json">the open data</a>.</p>
-</div>
 """
 
 
@@ -727,7 +671,18 @@ def authorised(f: dict) -> set[str]:
     acc = numeral_lint.Authorised()
     add = acc.add
 
-    add(n0(f["days_held"]), n0(f["days_verified"]), n0(f["days_unverified"]), "14")
+    # THE ALLOWLIST NARROWED WITH THE PAGE, 2026-08-26. `days_held`, `days_verified`,
+    # `days_unverified`, the 14 day trend floor, the trend deltas and the forecast error all
+    # left this page when their prose did. An allowlist is a promise that every numeral a reader
+    # sees was computed, and one carrying figures nothing prints is a hole rather than a
+    # courtesy: it would authorise those exact numbers anywhere else on the page, typed.
+    # The figures themselves are unchanged and still published in `gridwatch.json`.
+    #
+    # `days_verified` STAYS, and finding out why is the point of narrowing an allowlist rather
+    # than leaving it wide. `live_strip` prints it too, as the "N days held" beside the reading,
+    # and that survived the cut. Removing it turned the build red on the numeral it authorises,
+    # which is the gate telling the truth about which figures the page still shows.
+    add(n0(f["days_verified"]))
     L = f.get("latest")
     if L:
         # The next reading's date is computed the same way live_strip computes it, from the
@@ -752,13 +707,6 @@ def authorised(f: dict) -> set[str]:
                 add(n0(v))
                 if served and v > 0:
                     add(share(v / served * 100.0))
-    for blk, keys in ((f.get("trend"), ("window_days", "half_days", "trough_change_mw",
-                                        "peak_change_mw")),
-                      (f.get("accuracy"), ("days", "mean_abs_peak_error_mw", "worst_mw"))):
-        if blk:
-            add(*(n0(blk[k]) for k in keys if blk.get(k) is not None))
-    if f.get("accuracy"):
-        add(pct(f["accuracy"]["mean_abs_peak_error_pct"]))
     # THE QUEUE PANEL AUTHORISES ITS OWN FIGURES, and the union is taken HERE rather than in
     # lint(), because site_build reads this function directly through `_watch_numerals` to
     # build the page's scoped set. A union that lived only in lint() would pass the page's own
@@ -825,8 +773,6 @@ def self_test() -> int:
     check("...and not enough to publish a trend", f["trend"] is None)
     b = body(one, "2026-08-11", NO_QUEUE)
     check("the page renders from a single record", "<h1>Texas Grid Watch</h1>" in b)
-    check("...and says plainly that the trend is not available yet",
-          "Not yet." in b and "14" in b)
 
     # THE NUMERAL GATE. This is the hard rule for this page, so it is tested hardest.
     viol = lint(b, f)
@@ -872,8 +818,13 @@ def self_test() -> int:
           fm["trend"]["trough_change_mw"] > fm["trend"]["peak_change_mw"],
           f"{fm['trend']['trough_change_mw']} vs {fm['trend']['peak_change_mw']}")
     bm = body(many, "2026-08-11", NO_QUEUE)
-    check("the trend block renders", "The fingerprint" in bm and "Not yet." not in bm)
-    check("the trend page also passes the numeral gate", not lint(bm, fm),
+    # THE TREND AND THE ACCURACY CHECK ARE STILL COMPUTED AND STILL PUBLISHED, in
+    # `gridwatch.json`, which is the open data this page's claims rest on. What was removed on
+    # 2026-08-26, on the owner's instruction, is the PROSE that narrated them on the page. So
+    # the assertions below moved with it: the figures are still asserted above, and what is
+    # asserted here is that the long record renders and lints, not that it explains itself.
+    check("a long record still renders", "<h1>Texas Grid Watch</h1>" in bm)
+    check("...and still says nothing the numeral gate did not compute", not lint(bm, fm),
           str(lint(bm, fm)[:8]))
 
     check("the accuracy check is computed across every day held",
