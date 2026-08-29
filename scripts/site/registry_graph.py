@@ -265,7 +265,7 @@ def payload(g: dict) -> str:
     return json.dumps({
         "w": W, "h": H,
         "nodes": [{"k": n["key"], "n": n["name"], "s": n["slug"], "x": n["x"], "y": n["y"],
-                   "r": n["r"], "c": n["reach"]} for n in g["nodes"]],
+                   "r": n["r"], "c": n["reach"], "o": n["roles"]} for n in g["nodes"]],
         "edges": [{"a": e["a"], "b": e["b"], "w": e["w"]} for e in g["edges"]],
     }, separators=(",", ":"), sort_keys=True)
 
@@ -360,6 +360,7 @@ def svg(g: dict, base: str = "") -> str:
         roles = " ".join(f'{k} {v}' for k, v in n["roles"].items())
         put = stand.get(n["key"])
         lx, ly, anchor = put or (round(n["r"] + 7, 2), 4, "start")
+        hit_r = max(16, n["r"] + 9)
         nodes += (
             f'<a class="gnode{" gnamed" if put else ""}" data-k="{e(n["key"])}" '
             f'href="{e(base)}{e(n["slug"])}/" transform="translate({n["x"]},{n["y"]})" '
@@ -367,7 +368,7 @@ def svg(g: dict, base: str = "") -> str:
             f'<circle class="ghalo" r="{round(n["r"] * 2.15, 2)}"/>'
             f'<circle class="gring" r="{round(n["r"] + 3.2, 2)}"/>'
             f'<circle class="gdot" r="{n["r"]}"/>'
-            f'<circle class="ghit" r="{max(16, n["r"] + 9)}"/>'
+            f'<circle class="ghit" r="{hit_r}" data-base-r="{hit_r}"/>'
             f'<text class="glabel" x="{lx}" y="{ly}" text-anchor="{anchor}">'
             f'{e(n["name"])}</text>'
             f'<title>{e(n["name"])}. {e(roles)}.</title></a>')
@@ -420,13 +421,21 @@ SCRIPT = """
   var edges = [].slice.call(svg.querySelectorAll('.gedge'));
   var lamp = svg.querySelector('#gcursor');
   var sheet = svg.querySelector('.ggrids');
+  var readName = document.getElementById('grname');
+  var readMeta = document.getElementById('grmeta');
+  var readLink = document.getElementById('grlink');
+  var readHome = readLink ? readLink.getAttribute('href') : '';
+  var readNameHome = readName ? readName.textContent : '';
+  var readMetaHome = readMeta ? readMeta.textContent : '';
   var byKey = {};
   G.nodes.forEach(function (n) { byKey[n.k] = n; });
 
   // Every node remembers where the BUILD put it and springs back to it. The drawing on disk
   // stays the resting state, so motion never becomes the source of truth.
-  var P = G.nodes.map(function (n) {
-    return { k: n.k, hx: n.x, hy: n.y, x: n.x, y: n.y, vx: 0, vy: 0, r: n.r };
+  var P = G.nodes.map(function (n, i) {
+    var hit = nodes[i] && nodes[i].querySelector('.ghit');
+    return { k: n.k, hx: n.x, hy: n.y, x: n.x, y: n.y, vx: 0, vy: 0, r: n.r,
+      hr: hit ? Number(hit.getAttribute('data-base-r')) : 16 };
   });
   var pi = {};
   P.forEach(function (p, i) { pi[p.k] = i; });
@@ -438,12 +447,45 @@ SCRIPT = """
     (neigh[l.b] = neigh[l.b] || {})[l.a] = 1;
   });
 
-  var mx = -1e5, my = -1e5, near = false, held = null, raf = 0, calm = 0;
+  var mx = -1e5, my = -1e5, near = false, held = null, hot = null, press = null;
+  var suppressMiddleAux = false;
+  var raf = 0, calm = 0;
+  // The visible point stays on the data scale. Its transparent control does not. A phone needs
+  // a forty four CSS pixel target even though the viewBox compresses one thousand units into a
+  // few hundred screen pixels. Recompute only the transparent radius when the drawing resizes.
+  var MIN_TARGET_PX = 44;
+  function sizeTargets() {
+    var matrix = svg.getScreenCTM();
+    if (!matrix) return;
+    var scale = Math.hypot(matrix.a, matrix.b);
+    if (!scale) return;
+    for (var i = 0; i < nodes.length; i++) {
+      var hit = nodes[i].querySelector('.ghit');
+      if (!hit) continue;
+      var base = Number(hit.getAttribute('data-base-r')) || 16;
+      var radius = Math.max(base, MIN_TARGET_PX / (2 * scale));
+      hit.setAttribute('r', radius.toFixed(2));
+      P[i].hr = radius;
+    }
+  }
+  sizeTargets();
+  if (window.ResizeObserver) new ResizeObserver(sizeTargets).observe(svg);
+  else window.addEventListener('resize', sizeTargets);
+
+  // Letting a point roam twenty six units meant it could leave the entire target a reader had
+  // just aimed at. Twelve keeps the field alive while the original position remains inside it.
+  var MAX_DRIFT = 12;
 
   function toField(ev) {
-    var b = svg.getBoundingClientRect();
-    var sx = G.w / b.width, sy = G.h / b.height;
-    return [(ev.clientX - b.left) * sx, (ev.clientY - b.top) * sy];
+    // The SVG preserves its aspect ratio and can letterbox inside its CSS box. Scaling against
+    // the box width and height treats that empty inset as drawing space and chooses the wrong
+    // point where targets overlap. The browser's own screen matrix is the field it painted.
+    var matrix = svg.getScreenCTM();
+    if (!matrix) return [-1e5, -1e5];
+    var point = svg.createSVGPoint();
+    point.x = ev.clientX; point.y = ev.clientY;
+    var field = point.matrixTransform(matrix.inverse());
+    return [field.x, field.y];
   }
 
   function step() {
@@ -451,7 +493,9 @@ SCRIPT = """
     var moved = 0;
     for (var i = 0; i < P.length; i++) {
       var p = P[i];
-      if (held === i) continue;
+      // A point under a pointer or keyboard focus is an interface control first and a particle
+      // second. Hold it still until the reader leaves it. The rest of the field can keep moving.
+      if (held === i || hot === i) { p.vx = p.vy = 0; continue; }
       // Spring home.
       p.vx += (p.hx - p.x) * 0.012;
       p.vy += (p.hy - p.y) * 0.012;
@@ -475,6 +519,15 @@ SCRIPT = """
       }
       p.vx *= 0.86; p.vy *= 0.86;
       p.x += p.vx; p.y += p.vy;
+      // Motion shows that the network is connected, but a point may never wander so far from
+      // its surveyed position that the reader loses the control they were approaching.
+      var ox = p.x - p.hx, oy = p.y - p.hy;
+      var od = Math.sqrt(ox * ox + oy * oy);
+      if (od > MAX_DRIFT) {
+        p.x = p.hx + ox / od * MAX_DRIFT;
+        p.y = p.hy + oy / od * MAX_DRIFT;
+        p.vx *= 0.35; p.vy *= 0.35;
+      }
       moved += Math.abs(p.vx) + Math.abs(p.vy);
     }
     // A dragged node drags its links, which is the whole point of a web.
@@ -513,6 +566,7 @@ SCRIPT = """
     var near1 = key ? (neigh[key] || {}) : {};
     nodes.forEach(function (el) {
       var k = el.getAttribute('data-k');
+      el.classList.toggle('focus', !!key && k === key);
       el.classList.toggle('on', !!key && (k === key || !!near1[k]));
       el.classList.toggle('off', !!key && k !== key && !near1[k]);
     });
@@ -523,9 +577,70 @@ SCRIPT = """
     });
   }
 
+  function readOut(key, href) {
+    if (!readName || !readMeta || !readLink) return;
+    if (!key || !byKey[key]) {
+      readName.textContent = readNameHome;
+      readMeta.textContent = readMetaHome;
+      readLink.setAttribute('href', readHome);
+      readLink.textContent = 'Browse every company';
+      return;
+    }
+    var n = byKey[key];
+    var labels = { owner: 'owner', occupant: 'occupant', operator: 'operator' };
+    var roles = Object.keys(n.o || {}).sort().map(function (role) {
+      return labels[role] + ' on ' + n.o[role];
+    });
+    readName.textContent = n.n;
+    readMeta.textContent = n.c + ' certified facilities' + (roles.length ? '  ·  ' + roles.join('  ·  ') : '');
+    readLink.setAttribute('href', href);
+    readLink.textContent = 'Open company page';
+  }
+
+  // Catch the approach, not only the final pixel. A mouse reaches a moving point through the
+  // field around it, so the point settles as soon as the pointer enters that approach radius.
+  // The visible dot and its 32 unit hit circle remain the actual link.
+  function pointAt(x, y) {
+    var found = null, best = Infinity;
+    for (var i = 0; i < P.length; i++) {
+      var dx = P[i].x - x, dy = P[i].y - y, d2 = dx * dx + dy * dy;
+      if (d2 <= P[i].hr * P[i].hr && d2 <= best) { best = d2; found = i; }
+    }
+    return found;
+  }
+
+  function holdPoint(i) {
+    if (i === null || i === undefined || !P[i]) return;
+    hot = i; P[i].vx = P[i].vy = 0;
+    var el = nodes[i], k = el.getAttribute('data-k');
+    lightUp(k); readOut(k, el.getAttribute('href'));
+  }
+
+  function releasePoint(i) {
+    // Enlarged controls can overlap. Leaving one while the pointer remains inside another must
+    // transfer the readout instead of clearing it and waiting for an enter event that already
+    // happened underneath the first control.
+    if (near) {
+      var next = pointAt(mx, my);
+      if (next !== null) {
+        if (next !== hot) holdPoint(next);
+        return;
+      }
+    }
+    if (i !== null && i !== undefined && hot !== i) return;
+    hot = null; lightUp(null); readOut(null, ''); kick();
+  }
+
   if (!(still && still.matches)) {
     svg.addEventListener('pointermove', function (ev) {
       var f = toField(ev); mx = f[0]; my = f[1]; near = true;
+      if (held === null) {
+        var next = pointAt(mx, my);
+        if (next !== hot) {
+          if (next === null) releasePoint(hot);
+          else holdPoint(next);
+        }
+      }
       // The light goes where the pointer is. Moving a gradient beats adding an element: the
       // paint is one attribute pair per frame and nothing enters the interactive layer.
       if (lamp) { lamp.setAttribute('cx', mx.toFixed(1)); lamp.setAttribute('cy', my.toFixed(1)); }
@@ -538,40 +653,84 @@ SCRIPT = """
       kick();
     });
     svg.addEventListener('pointerleave', function () {
-      near = false; held = null; root.classList.remove('near');
+      near = false; held = null; hot = null; root.classList.remove('near');
       if (sheet) sheet.removeAttribute('transform');
+      lightUp(null); readOut(null, '');
       kick();
     });
     svg.addEventListener('pointerdown', function (ev) {
-      var a = ev.target.closest && ev.target.closest('.gnode');
-      if (!a) return;
-      var i = pi[a.getAttribute('data-k')];
-      if (i === undefined) return;
-      held = i; root.classList.add('dragging');
+      var button = ev.button === undefined ? 0 : ev.button;
+      if (button !== 0 && button !== 1) return;
+      var f = toField(ev); mx = f[0]; my = f[1]; near = true;
+      // SVG paint order decides which overlapping anchor receives the event. The drawing's own
+      // nearest point rule decides what the reader selected, so readout, drag and navigation all
+      // start from this one result instead of from the incidental element under the pointer.
+      var i = pointAt(mx, my);
+      if (i === null) return;
+      ev.preventDefault();
+      if (button === 1) suppressMiddleAux = true;
+      held = i; press = { i: i, x: ev.clientX, y: ev.clientY, id: ev.pointerId,
+                          button: button };
+      holdPoint(i); root.classList.add('dragging');
       try { svg.setPointerCapture(ev.pointerId); } catch (e2) {}
     });
-    var drop = function () { held = null; root.classList.remove('dragging'); kick(); };
-    svg.addEventListener('pointerup', drop);
-    svg.addEventListener('pointercancel', drop);
+    svg.addEventListener('pointerup', function (ev) {
+      if (!press) return;
+      var f = toField(ev); mx = f[0]; my = f[1];
+      var moved = Math.abs(ev.clientX - press.x) + Math.abs(ev.clientY - press.y);
+      var chosen = pointAt(mx, my);
+      var pointerId = press.id, button = press.button;
+      held = null; press = null; root.classList.remove('dragging');
+      try { svg.releasePointerCapture(pointerId); } catch (e2) {}
+      if (chosen !== null) holdPoint(chosen);
+      if (moved <= 6 && chosen !== null) {
+        ev.preventDefault();
+        var href = nodes[chosen].getAttribute('href');
+        var activation = new CustomEvent('companyactivate', {
+          bubbles: true, cancelable: true, detail: { key: P[chosen].k, href: href }
+        });
+        if (root.dispatchEvent(activation)) {
+          // Pointer capture means the resolved company can differ from the painted anchor that
+          // first received the press. Preserve browser modifier intent using that resolved href.
+          // A features string containing only noopener keeps Ctrl or Meta in tab territory. The
+          // popup hint gives Shift the separate-window style readers expect from a native link.
+          if (button === 1) {
+            window.open(href, '_blank', 'noopener');
+            window.focus();
+          }
+          else if (ev.ctrlKey || ev.metaKey) window.open(href, '_blank', 'noopener');
+          else if (ev.shiftKey) window.open(href, '_blank', 'noopener,popup=yes');
+          else window.location.assign(href);
+        }
+      }
+      kick();
+    });
+    svg.addEventListener('pointercancel', function (ev) {
+      held = null; press = null; suppressMiddleAux = false; root.classList.remove('dragging');
+      try { svg.releasePointerCapture(ev.pointerId); } catch (e2) {}
+      kick();
+    });
   }
 
-  // Hover and focus both light the neighborhood, so a keyboard reaches it too.
+  // Keyboard focus keeps using the real anchors. Pointer selection belongs to the field level
+  // resolver above because transparent targets can overlap.
   nodes.forEach(function (el) {
     var k = el.getAttribute('data-k');
-    el.addEventListener('pointerenter', function () { lightUp(k); });
-    el.addEventListener('focus', function () { lightUp(k); });
-    el.addEventListener('blur', function () { lightUp(null); });
+    var i = pi[k];
+    el.addEventListener('focus', function () { holdPoint(i); });
+    el.addEventListener('blur', function () { releasePoint(i); });
   });
-  svg.addEventListener('pointerleave', function () { lightUp(null); });
 
-  // A drag should not also follow the link.
-  nodes.forEach(function (el) {
-    var sx = 0, sy = 0;
-    el.addEventListener('pointerdown', function (ev) { sx = ev.clientX; sy = ev.clientY; });
-    el.addEventListener('click', function (ev) {
-      if (Math.abs(ev.clientX - sx) + Math.abs(ev.clientY - sy) > 6) ev.preventDefault();
-    });
-  });
+  // Pointer navigation is resolved above. A keyboard-generated anchor click has detail zero and
+  // keeps the native link behavior, including the destination when scripts are unavailable.
+  svg.addEventListener('click', function (ev) {
+    if (ev.detail > 0) ev.preventDefault();
+  }, true);
+  svg.addEventListener('auxclick', function (ev) {
+    if (ev.button === 1 && suppressMiddleAux) {
+      ev.preventDefault(); suppressMiddleAux = false;
+    }
+  }, true);
 
   root.classList.add('live');
 })();
@@ -630,6 +789,17 @@ def self_test() -> int:
     ok("a node outside the field is reported", problems(bad))
     ok("an edge to a node that is not drawn is reported",
        problems({"nodes": [], "edges": [{"a": "x", "b": "y", "w": 1}]}))
+
+    ok("field activation preserves tab modifiers with noopener",
+       "ev.ctrlKey || ev.metaKey" in SCRIPT and
+       "window.open(href, '_blank', 'noopener')" in SCRIPT)
+    ok("field activation preserves a Shift window with noopener",
+       "ev.shiftKey" in SCRIPT and
+       "window.open(href, '_blank', 'noopener,popup=yes')" in SCRIPT)
+    ok("middle click uses the field resolver and a noopener tab",
+       "button !== 0 && button !== 1" in SCRIPT and
+       "button === 1" in SCRIPT and "suppressMiddleAux" in SCRIPT and
+       "window.open(href, '_blank', 'noopener')" in SCRIPT)
 
     passed = sum(checks)
     print(f"\nregistry_graph self-test: {passed}/{len(checks)} passed")

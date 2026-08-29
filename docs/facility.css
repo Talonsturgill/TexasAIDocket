@@ -92,7 +92,7 @@
 .ghalo { fill:var(--sig-link); opacity:.11; transition:opacity .2s ease, fill .2s ease; }
 .gring { fill:none; stroke:var(--sig-link); stroke-width:1; opacity:.3;
   transition:opacity .2s ease, stroke .2s ease; }
-.ghit { fill:transparent; }
+.ghit { fill:transparent; pointer-events:all; }
 .gnode { cursor:pointer; }
 .gnode:hover .ghalo, .gnode:focus .ghalo { opacity:.4; fill:var(--gold); }
 .gnode:hover .gring, .gnode:focus .gring { opacity:.9; stroke:var(--gold); }
@@ -109,8 +109,20 @@
   opacity:0; pointer-events:none; transition:opacity .16s ease; paint-order:stroke;
   stroke:var(--night); stroke-width:3.5px; stroke-linejoin:round; }
 .gnamed .glabel { opacity:.62; }
-.gnode:hover .glabel, .gnode:focus .glabel, .gnode.on .glabel { opacity:1; }
+.gnode:hover .glabel, .gnode:focus .glabel, .gnode.focus .glabel { opacity:1; }
+.gfield.lit .gnode.on:not(.focus) .glabel { opacity:0; }
 .gfield.lit .gnode.off .glabel { opacity:0; }
+.greadout { display:grid; grid-template-columns:minmax(12rem,.9fr) minmax(18rem,1.6fr) auto;
+  gap:.7rem 1.2rem; align-items:center; padding:.8rem 1rem;
+  border-top:var(--hair) solid #3B3468; background:rgba(5,4,11,.82);
+  font-family:var(--mono); font-size:var(--s-2); }
+.greadout p { margin:0; max-width:none; }
+.greadout p:first-child { display:grid; gap:.12rem; }
+.grk { color:var(--ink-mute); font-size:.78em; letter-spacing:.12em; text-transform:uppercase; }
+.greadout strong { color:var(--caliche); font-weight:550; }
+.greadout #grmeta { color:var(--ink-mute); line-height:1.45; }
+.greadout a { justify-self:end; color:var(--accent); text-decoration:underline;
+  text-underline-offset:.16em; white-space:nowrap; }
 .gkey { display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin:.7rem 0 0;
   font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
   letter-spacing:.05em; }
@@ -121,8 +133,16 @@
   .gedge, .gdot, .ghalo, .gring, .glabel, .gcursorlight { transition:none; }
   .gcursorlight { display:none; }
 }
+@media (max-width:46rem) {
+  .greadout { grid-template-columns:1fr auto; }
+  .greadout #grmeta { grid-column:1 / -1; grid-row:2; }
+}
 @media (max-width:34rem) { .glabel { font-size:17px; } .ggrid { opacity:.3; }
-  .gnamed .glabel { opacity:0; } }
+  .gnamed .glabel { opacity:0; }
+  .greadout { grid-template-columns:1fr; padding:.75rem .8rem; }
+  .greadout #grmeta { grid-column:auto; grid-row:auto; }
+  .greadout a { justify-self:start; white-space:normal; }
+}
 .cywrap { margin:1.2rem 0 .4rem; }
 .cysvg { display:block; width:100%; height:clamp(140px,22vw,260px); }
 .cyaxis { stroke:var(--rule); stroke-width:1; }

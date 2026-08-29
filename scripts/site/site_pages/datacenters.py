@@ -86,7 +86,7 @@ def contradicted_gaps(dossiers: list, filings: dict) -> list[str]:
         # address, on a page that then prints the address out of the construction filing, is
         # provenance rather than a hole, and reads that way. The fault is a gap that sends a
         # reader away from something no other line on the page gives them.
-        supplied = " ".join(str(f.get("text") or "") + " " + str(f.get("label") or "")
+        supplied = " ".join(facility_dossier.show(f) + " " + str(f.get("label") or "")
                             for f in d.get("facts") or []).lower()
         for gap in d.get("gaps") or []:
             if not NOT_PUBLIC.search(gap):
@@ -163,7 +163,13 @@ def _registry_field(data: dict, base: str = "") -> str:
     n0 = entities.n0
     return (
         f'<div class="gwrap">'
-        f'<div class="gfield" id="gfield">{registry_graph.svg(g, base)}</div>'
+        f'<div class="gfield" id="gfield">{registry_graph.svg(g, base)}'
+        f'<div class="greadout" aria-live="polite">'
+        f'<p><span class="grk">Company in focus</span>'
+        f'<strong id="grname">Choose a point</strong></p>'
+        f'<p id="grmeta">Point at the field or move through it with the keyboard.</p>'
+        f'<a id="grlink" href="{e(base)}">Browse every company</a>'
+        f'</div></div>'
         # A LEGEND, not running prose. Four labelled chips with no full stop between them read as
         # one thirty word sentence to the length backstop, which is the measurement narrowing this
         # marker exists for. The construction rules still read every word of it.
@@ -173,9 +179,8 @@ def _registry_field(data: dict, base: str = "") -> str:
         f'<span><b>Line</b> a facility two of them share</span>'
         f'<span><b>Thickness</b> how many they share</span></p>'
         # "Hover" is a verb a phone cannot perform, and this line is read on a phone.
-        f'<p class="ghint">A pointer lights a company\'s neighborhood and can drag it across the '
-        f'field. Every point is a link to that company, and the same information is listed '
-        f'below.</p>'
+        f'<p class="ghint">A pointer lights a company\'s neighborhood. Hold and drag to move '
+        f'a point. Every point and the readout beneath the field link to that company.</p>'
         f'<script type="application/json" id="gdata">{registry_graph.payload(g)}</script>'
         f'<script>{registry_graph.SCRIPT}</script>'
         f'</div>')

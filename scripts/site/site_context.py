@@ -332,7 +332,7 @@ def contact_dialog() -> str:
 # area weighted centroid for Travis County now, so the sentence and the data cannot drift.
 MADE_AT_LEDE = "Built on the Balcones Escarpment"
 
-# The one script the shell carries, and the three things it does. All three are progressive:
+# The one script the shell carries, and the four things it does. All four are progressive:
 # with script off the page keeps its atmosphere, its content and its layout, and loses only the
 # arrival animations and the glass on the bar.
 SHELL_JS = """<script>
@@ -340,6 +340,25 @@ document.documentElement.classList.add('js');
 addEventListener('scroll',function(){
   document.querySelector('.masthead').classList.toggle('scrolled',scrollY>8);
 },{passive:true});
+// A CLIPPED LABEL IS USUALLY THE PHONE NAV'S SCROLL CUE, but an edge can land exactly in the
+// gap between two labels. In that narrow band the remaining sections are reachable and still
+// look absent. The cue follows actual scroll state, so it never points past the final section
+// and never appears merely because the small-screen layout rule is active.
+(function(){
+  var nav=document.querySelector('nav.main'), cue=document.querySelector('.navcue');
+  if(!nav||!cue) return;
+  function edge(){
+    cue.hidden=!(nav.scrollLeft+nav.clientWidth<nav.scrollWidth-1);
+  }
+  cue.addEventListener('click',function(){
+    nav.scrollBy({left:nav.clientWidth,
+      behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  });
+  nav.addEventListener('scroll',edge,{passive:true});
+  addEventListener('resize',edge,{passive:true});
+  edge();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(edge);
+})();
 if('IntersectionObserver' in window){
   var els=document.querySelectorAll('[data-reveal]');
   var io=new IntersectionObserver(function(es){
@@ -707,6 +726,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <header class="masthead">
   <div class="wrap">
     <a class="wordmark" href="{p or './'}">{HOIST}<span>{e(SITE_NAME)}</span></a>
+    <button class="navcue" type="button" aria-label="More sections" hidden></button>
     <nav class="main" aria-label="Sections">{nav}</nav>
   </div>
 </header>

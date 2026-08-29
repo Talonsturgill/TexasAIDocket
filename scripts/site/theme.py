@@ -459,7 +459,7 @@ def facility_css() -> str:
    two objects, and forty companies on one field need to stay countable. */
 .gring { fill:none; stroke:var(--sig-link); stroke-width:1; opacity:.3;
   transition:opacity .2s ease, stroke .2s ease; }
-.ghit { fill:transparent; }
+.ghit { fill:transparent; pointer-events:all; }
 .gnode { cursor:pointer; }
 .gnode:hover .ghalo, .gnode:focus .ghalo { opacity:.4; fill:var(--gold); }
 .gnode:hover .gring, .gnode:focus .gring { opacity:.9; stroke:var(--gold); }
@@ -479,8 +479,27 @@ def facility_css() -> str:
   opacity:0; pointer-events:none; transition:opacity .16s ease; paint-order:stroke;
   stroke:var(--night); stroke-width:3.5px; stroke-linejoin:round; }
 .gnamed .glabel { opacity:.62; }
-.gnode:hover .glabel, .gnode:focus .glabel, .gnode.on .glabel { opacity:1; }
+.gnode:hover .glabel, .gnode:focus .glabel, .gnode.focus .glabel { opacity:1; }
+/* The glowing lines already identify the focused neighborhood. Naming every connected point
+   turns the dense clusters into a pile of overlapping type, so one stable name leads the eye
+   while the readout below carries its role counts. Pointing at a neighbor makes it the name. */
+.gfield.lit .gnode.on:not(.focus) .glabel { opacity:0; }
 .gfield.lit .gnode.off .glabel { opacity:0; }
+
+/* A point is no longer the only way through the field. The readout turns the relationship
+   under the pointer into a stable target and makes the role counts legible without opening a
+   second page. It is part of the instrument rather than a tooltip, so it never chases a dot. */
+.greadout { display:grid; grid-template-columns:minmax(12rem,.9fr) minmax(18rem,1.6fr) auto;
+  gap:.7rem 1.2rem; align-items:center; padding:.8rem 1rem;
+  border-top:var(--hair) solid #3B3468; background:rgba(5,4,11,.82);
+  font-family:var(--mono); font-size:var(--s-2); }
+.greadout p { margin:0; max-width:none; }
+.greadout p:first-child { display:grid; gap:.12rem; }
+.grk { color:var(--ink-mute); font-size:.78em; letter-spacing:.12em; text-transform:uppercase; }
+.greadout strong { color:var(--caliche); font-weight:550; }
+.greadout #grmeta { color:var(--ink-mute); line-height:1.45; }
+.greadout a { justify-self:end; color:var(--accent); text-decoration:underline;
+  text-underline-offset:.16em; white-space:nowrap; }
 
 .gkey { display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin:.7rem 0 0;
   font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute);
@@ -493,8 +512,16 @@ def facility_css() -> str:
   .gedge, .gdot, .ghalo, .gring, .glabel, .gcursorlight { transition:none; }
   .gcursorlight { display:none; }
 }
+@media (max-width:46rem) {
+  .greadout { grid-template-columns:1fr auto; }
+  .greadout #grmeta { grid-column:1 / -1; grid-row:2; }
+}
 @media (max-width:34rem) { .glabel { font-size:17px; } .ggrid { opacity:.3; }
-  .gnamed .glabel { opacity:0; } }
+  .gnamed .glabel { opacity:0; }
+  .greadout { grid-template-columns:1fr; padding:.75rem .8rem; }
+  .greadout #grmeta { grid-column:auto; grid-row:auto; }
+  .greadout a { justify-self:start; white-space:normal; }
+}
 
 /* CAPITAL FILED PER YEAR. One hue at one intensity on every column, for the same reason the grid
    watch bar carries no severity ramp: a colour ramp is a verdict and the height is the whole
@@ -1571,16 +1598,24 @@ nav.main a[aria-current]::after {{ right:0; }}
    32.5rem is 520, which covers the band and leaves fourteen pixels for the moment a web font
    swaps in and every label gets fractionally wider. */
 @media (max-width:32.5rem) {{
+  .masthead .wrap {{ position:relative; }}
   nav.main {{ flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch; scrollbar-width:none; -ms-overflow-style:none;
-    margin-inline:calc(var(--gap) * -1); padding-inline:var(--gap); }}
-/* NO EDGE FADE, AND THAT IS THE SECOND ANSWER TO THE QUESTION. The first was a mask that
-   dissolved the last 2.4rem of the row, which reads well while the row overflows and is a
-   defect the moment it does not: near the top of this range the eight labels fit, and the mask
-   went on dimming a link that was entirely visible. A mask cannot ask whether there is
-   anything to scroll to. What can answer that is the row itself: it bleeds to both screen
-   edges, so when there is more, the next label is visibly cut by the edge of the phone, and
-   when there is not, nothing is cut and nothing is dimmed. The affordance is the overflow. */
+    margin-inline:calc(var(--gap) * -1); padding-inline:var(--gap); column-gap:.55rem; }}
+/* THE EDGE CUE ANSWERS THE GAP. Usually the next label is visibly cut by the phone edge. At a
+   handful of exact widths that edge lands in the blank column gap instead, and the row looks
+   finished even though three sections remain. Script gives the cue actual scroll state, so it
+   disappears at the end rather than dimming a fully visible final link. Without script the
+   clipped-label affordance remains the progressive fallback. */
+  .navcue:not([hidden]) {{ position:absolute; right:calc(var(--gap) * -1); bottom:.9rem; z-index:2;
+    display:grid; place-items:center; width:1.65rem; height:1.65rem; padding:0; cursor:pointer;
+    color:var(--accent); border:var(--hair) solid var(--rule-strong); border-radius:50%;
+    background:color-mix(in srgb,var(--surface) 96%,transparent);
+    box-shadow:-.65rem 0 .9rem .1rem var(--bg);
+    font-size:var(--s-1); line-height:1; }}
+  .navcue::before {{ content:">"; }}
+  .navcue:hover {{ color:var(--ink-bright); border-color:var(--accent); }}
+  .navcue:focus-visible {{ outline:2px solid var(--accent); outline-offset:2px; }}
   nav.main::-webkit-scrollbar {{ display:none; }}
   /* Without this the links shrink to fit instead of overflowing, and the row silently becomes
      eight squeezed columns rather than a strip that scrolls. */
@@ -1629,11 +1664,11 @@ nav.main a[aria-current]::after {{ right:0; }}
    two numbers for one event, and they promptly disagreed at their own boundary: at 460 the
    hero rule read narrow and the mark rule read wide, and the mark landed on the telemetry
    strip in the eleven pixel band between them. That band was the scrollbar.
-   THE PLACE IS THE ONE THE NAV VACATED. Tightening the bar to a single row opened 65 pixels
-   between the masthead at 97 and the telemetry strip at 162, and it is the same 65 pixels at
-   every width down to 300 because both edges are set by content rather than by proportion. A
-   54 pixel mark sits in it with eight to spare, which is why it is small here and not because
-   small looks better: it is the size the clear field is. */
+   THE PLACE IS THE ONE THE NAV VACATED. With the bar on one row, its links end around 82 pixels
+   and the earliest telemetry position is around 144. A 54 pixel mark from 88 to 142 sits in that
+   measured field with a small but real gap at both edges. The earlier 101 pixel top crossed the
+   telemetry whenever its text fit one fewer line, which is why the position follows the earliest
+   observed strip rather than one screenshot. */
 /* AND THIS EDGE MOVED FOR THE SAME REASON, on the same day. The big mark is placed from the
    right, so the nav's last link and the mark's left edge approach each other as the viewport
    narrows, and a longer bar meets it sooner. Measured with the mark forced on and every nav
@@ -1641,7 +1676,7 @@ nav.main a[aria-current]::after {{ right:0; }}
    left edge sat at 480 against a last link ending at 478, which is to say this cleared by two
    pixels and nothing said so. 42rem is 672, which clears 658 by fourteen. */
 @media (max-width:42rem) {{
-  .home .sky .lonestar {{ top:6.3rem; right:5vw; width:min(16vw,54px); }}
+  .home .sky .lonestar {{ top:5.5rem; right:5vw; width:min(16vw,54px); }}
 }}
 /* AND THE TELEMETRY PILL STOPS RUNNING UNDER IT. Measured with the mark forced on and its box
    compared against the hero's, the mark never touches the headline at any width down to 360px.
@@ -2553,30 +2588,31 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 @media (prefers-reduced-motion:reduce) {{
   .watch .watchchain li[data-state="live"]::before {{ animation:none; }}
 }}
-/* THE HIDDEN HALF ANNOUNCES ITSELF. At 390px the table is 704px wide inside a 356px box, so
-   exactly half of it, the operator and the date, was off screen with nothing at the right edge
-   saying so: the last column simply stopped mid word and read as the end of the table.
-
-   THE FADE IS A SIBLING, NOT AN ANCESTOR, and that is the whole engineering of it. The first
-   version put the gradient on the scroll box itself, which works and looks right and cost
-   1,482 runs of text: tests/text_contrast composites the ANCESTOR stack and declines to
-   measure a run whose ground is a gradient rather than guess at it, so a gradient on the
-   scroller made the roster, the largest block of text on the page, invisible to the gate that
-   checks whether text is legible. Declines went 126 to 1,608 and guards still went green,
-   which is the point. A pseudo element on the wrapper paints over the same pixels without
-   entering any cell's ancestor chain, so every cell stays measured.
-
-   A scrollbar was tried first and does not work here: overlay scrollbars reserve no space and
-   appear only while scrolling, which is exactly when the reader no longer needs telling.
-   Measured, the gutter is 2px with or without `scrollbar-gutter: stable`, and that 2px is the
-   border. */
+/* THE FULL ROSTER. Search reduces a long public register without making any row depend on
+   script for access. On a phone the columns become labelled cards, which removes both nested
+   scroll directions and keeps the browser page as the only vertical scroll surface. */
+.rtools {{ display:none; }}
+.rtools.live {{ display:grid; grid-template-columns:minmax(15rem,1fr) auto auto auto;
+  gap:.65rem 1rem; align-items:end; margin:1rem 0 .8rem; }}
+.rfind {{ display:grid; gap:.3rem; font-family:var(--mono); font-size:var(--s-2);
+  color:var(--ink-mute); }}
+.rfind input {{ min-width:0; min-height:44px; width:100%; padding:.55rem .7rem;
+  font:400 var(--s0)/1.4 var(--body); color:var(--ink-bright); caret-color:var(--accent);
+  background:var(--panel); border:var(--hair) solid var(--rule-strong); border-radius:.35rem; }}
+.rfind input:focus {{ outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent); }}
+.rcheck {{ min-height:44px; display:flex; align-items:center; gap:.45rem;
+  font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute); cursor:pointer; }}
+.rcheck input {{ width:1rem; height:1rem; accent-color:var(--accent); }}
+.rresult {{ min-height:44px; display:flex; align-items:center; gap:.35rem; margin:0;
+  font-family:var(--mono); font-size:var(--s-2); color:var(--ink-mute); white-space:nowrap; }}
+.rclear {{ min-height:44px; padding:.45rem .75rem; font-family:var(--mono);
+  font-size:var(--s-2); color:var(--caliche); background:transparent;
+  border:var(--hair) solid var(--rule); border-radius:.35rem; cursor:pointer; }}
+.rclear:hover:not(:disabled) {{ border-color:var(--accent); color:var(--limestone); }}
+.rclear:disabled {{ opacity:.38; cursor:default; }}
+.rempty {{ padding:1rem; border:var(--hair) solid var(--rule); color:var(--ink-mute); }}
 .rtfield {{ position:relative; }}
-.rtfield::after {{ content:""; position:absolute; top:1px; right:1px; bottom:1px; width:2.2rem;
-  pointer-events:none; border-radius:0 3px 3px 0;
-  background:linear-gradient(to left, var(--night), transparent); }}
-@media (min-width:46.01rem) {{
-  .rtfield::after {{ display:none; }}
-}}
 .rtwrap {{ overflow-x:auto; overflow-y:auto; max-height:32rem; margin:.5rem 0 0;
   border:var(--hair) solid var(--rule); border-radius:3px;
   scrollbar-width:thin; scrollbar-color:var(--dust) transparent; }}
@@ -2603,6 +2639,30 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
 .rtable td.num {{ font-family:var(--mono); font-size:var(--s-2); white-space:nowrap;
   color:var(--dust); }}
 .rtable tbody tr:hover {{ background:color-mix(in srgb, var(--dust) 8%, transparent); }}
+.rtable tr[hidden] {{ display:none !important; }}
+@media (max-width:46rem) {{
+  .rtools.live {{ grid-template-columns:1fr auto auto; align-items:center; }}
+  .rfind {{ grid-column:1 / -1; }}
+  .rtwrap {{ overflow:visible; max-height:none; border:0; }}
+  .rtable {{ display:block; min-width:0; table-layout:auto; }}
+  .rtable colgroup {{ display:none; }}
+  .rtable thead {{ position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }}
+  .rtable tbody {{ display:grid; gap:.7rem; }}
+  .rtable tbody tr {{ display:block; border:var(--hair) solid var(--rule);
+    border-radius:.35rem; overflow:hidden; background:var(--panel); }}
+  .rtable th, .rtable td {{ position:static; display:grid;
+    grid-template-columns:5.7rem minmax(0,1fr); gap:.75rem; padding:.5rem .7rem; }}
+  .rtable td::before {{ content:attr(data-label); font-family:var(--mono);
+    font-size:var(--s-2); letter-spacing:.06em; text-transform:uppercase; color:var(--dust); }}
+  .rtable td:first-child {{ padding-top:.7rem; }}
+  .rtable td:last-child {{ padding-bottom:.7rem; border-bottom:0; }}
+}}
+@media (max-width:28rem) {{
+  .rtools.live {{ grid-template-columns:1fr auto; }}
+  .rresult {{ grid-column:1; }}
+  .rtable th, .rtable td {{ grid-template-columns:5rem minmax(0,1fr); gap:.55rem; }}
+}}
 .ops {{ list-style:none; padding:0; margin:0 0 .6rem; max-width:none;
   display:grid; grid-template-columns:repeat(auto-fit,minmax(16rem,1fr)); gap:0 1.6rem; }}
 .ops li {{ display:grid; grid-template-columns:1fr auto; gap:.6rem; align-items:baseline;
@@ -3545,21 +3605,13 @@ def self_test() -> int:
     check("...and the column contributes no box of its own to get mis-sized",
           ".qb { display:contents; }" in sheet)
 
-    # THE HIDDEN HALF OF THE ROSTER HAS TO ANNOUNCE ITSELF. Half the table is off screen at
-    # phone width, and the shadows are what say so. `local` on two of the four layers is the
-    # whole mechanism: without it they are a static fade that lies at the end of the travel.
-    # The affordance must not be a gradient under the text. A gradient ground is one
-    # tests/text_contrast declines to measure, and putting one on the roster hid 1,482 runs
-    # from the gate that checks legibility without turning anything red.
-    # The fade must be a SIBLING of the table, never a background on one of its ancestors.
-    # A gradient ancestor is a ground tests/text_contrast declines to measure, and putting one
-    # on the scroll box hid 1,482 runs from the gate that checks legibility while guards stayed
-    # green. This asserts the shape that keeps them measured.
-    check("the roster's edge fade is painted by a sibling, not by the scroll box",
-          ".rtfield::after { content:\"\";" in sheet
-          and "background" not in sheet.split(".rtwrap {")[1].split("}")[0])
-    check("...and the words appear at the widths where it actually overflows",
-          ".rthint { display:none; }" in sheet and ".rthint { display:block; }" in sheet)
+    # The phone roster must use the page's scroll rather than nesting two scroll directions.
+    # Filtering must retain the semantic `hidden` state after card layout changes display.
+    check("the phone roster becomes labelled cards instead of a sideways table",
+          ".rtable td::before { content:attr(data-label);" in sheet
+          and ".rtwrap { overflow:visible; max-height:none; border:0; }" in sheet)
+    check("...and filtering never overrides the hidden state",
+          ".rtable tr[hidden] { display:none !important; }" in sheet)
     check("...and each label is pinned to the height of its own bar",
           ".qbv { position:absolute; bottom:var(--h);" in sheet)
 
