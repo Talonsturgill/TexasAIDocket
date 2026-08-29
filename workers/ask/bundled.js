@@ -441,6 +441,20 @@ export function splitPack(packText) {
 }
 
 /**
+ * Cut every published body field with one parser.
+ *
+ * Facility dossiers moved beside the bounded core once the complete registry no longer fit
+ * inside the retrieval-off context. Normal retrieval still needs one item list, and an older
+ * pack without the sibling field must keep working during a site and worker rollout.
+ */
+export function splitRecord(pack) {
+  const core = splitPack(pack?.pack);
+  const facilities = splitPack(pack?.facility_pack);
+  return { preamble: core.preamble, coreItems: core.items,
+    items: [...core.items, ...facilities.items] };
+}
+
+/**
  * The question, as the retriever should read it.
  *
  * ALL THE RECENT USER TURNS, NOT ONLY THE LAST. "What about the dates?" retrieves nothing on
@@ -934,7 +948,7 @@ export async function rerank(query, cands, env) {
  * hands the result back to `assemble` as an order.
  */
 export function candidates(pack, turns, env) {
-  const { items } = splitPack(pack.pack);
+  const { items } = splitRecord(pack);
   if (!items.length || !pack.index) return [];
   const byId = new Map(items.map((it) => [it.id, it]));
   const query = queryOf(turns);
@@ -963,20 +977,24 @@ export function candidates(pack, turns, env) {
  */
 export function assemble(pack, turns, env, order) {
   const off = String(env?.ASK_RETRIEVAL ?? "").trim().toLowerCase() === "off";
-  const { preamble, items } = splitPack(pack.pack);
+  const { preamble, coreItems, items } = splitRecord(pack);
   const bodies = items.reduce((n, it) => n + it.chars, 0);
   const index = pack.index || "";
+  const hasFacilityField = !!String(pack.facility_pack || "").trim();
 
   // NO INDEX MEANS AN OLDER PACK. A worker deployed ahead of a site rebuild would otherwise
   // send a slice with nothing standing in for the rest, which is the exact failure the index
   // exists to prevent. Send everything instead, and say why in the mode.
+  const wholeText = pack.pack + (hasFacilityField && index ? "\n\n" + index : "");
+  const sentWholeItems = hasFacilityField ? coreItems : items;
   const sendWhole = (why) => ({
     blocks: [
       { type: "text", text: pack.system },
-      { type: "text", text: pack.pack, cache_control: { type: "ephemeral" } },
+      { type: "text", text: wholeText, cache_control: { type: "ephemeral" } },
     ],
-    mode: `whole (${why})`, chosen: items.map((it) => it.id), shown: items.length,
-    of: items.length, chars: pack.system.length + pack.pack.length,
+    mode: `whole (${why})`, chosen: sentWholeItems.map((it) => it.id),
+    shown: sentWholeItems.length, of: items.length,
+    chars: pack.system.length + wholeText.length,
   });
 
   if (off) return sendWhole("off");
@@ -1053,7 +1071,8 @@ export function assemble(pack, turns, env, order) {
   // is unconditional and makes the guarantee one nobody has to keep two thresholds apart to
   // maintain.
   const assembled = pack.system.length + preamble.length + index.length + slice.length;
-  if (assembled >= pack.system.length + pack.pack.length) return sendWhole("slice is no smaller");
+  const allBodies = pack.pack.length + String(pack.facility_pack || "").length;
+  if (assembled >= pack.system.length + allBodies) return sendWhole("slice is no smaller");
 
   return {
     blocks: [
@@ -1467,7 +1486,8 @@ export async function packInfo(env) {
       shown: `${sample.shown} of ${sample.of}`,
       // Tokens, roughly, at four characters each. Both numbers or neither: the saving is the
       // only reason retrieval is here and a number without its comparison is decoration.
-      whole_tokens: t(pack.system.length + pack.pack.length),
+      whole_tokens: t(pack.system.length + pack.pack.length
+        + String(pack.facility_pack || "").length),
       question_tokens: t(sample.chars),
       cached_tokens: t(sample.blocks.filter((b) => b.cache_control || b === sample.blocks[0])
         .reduce((n, b) => n + b.text.length, 0)),

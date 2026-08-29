@@ -33,6 +33,8 @@ WHAT IT REFUSES TO DO QUIETLY
   `tail -1` before, because a report that prints advice on failure and one clean line on success
   looks reassuring either way.
 
+DO NOT READ THIS RUNNER'S LOG TO LEARN WHETHER IT PASSED. Ask `--verdict`. See below.
+
 WHAT IT CANNOT SEE. Whether `guards.yml` checks the right things. It is a runner, not a gate.
 It also cannot reproduce the runner image: a step needing a browser or a network fetch behaves
 here the way this machine behaves, not the way GitHub's does.
@@ -42,14 +44,43 @@ here the way this machine behaves, not the way GitHub's does.
     guards_local.py --only house     only steps whose name or command matches
     guards_local.py --list           print the steps and run nothing
     guards_local.py --strict         a skipped step is a failure
+    guards_local.py --verdict        did the last full run pass, on THIS tree? fail-closed
     guards_local.py --self-test
 
 Exit 0 all green, 1 something failed, 2 the runner could not run.
+
+THE VERDICT FILE, and the run that paid for it (GATE_LESSONS 69, August 27th 2026)
+----------------------------------------------------------------------------------
+A run piped this script to a file, read the file, saw a wall of `ok` with no `FAIL`, and
+recorded a pass. It had read line 84 of an eventual 269. The first `FAIL` was at line 100 and
+ten of 120 steps failed. Two CI jobs then went red on a branch the run believed was clean.
+
+**Nothing in the log could have prevented that, and reading it more carefully would not have
+helped.** At line 84 the output of a run that will fail at step 100 is byte for byte identical
+to the output of a run that will pass. The signal is not in the content. It is in whether the
+writer has stopped writing, and a reader looking at content cannot see that.
+
+So the verdict stopped living in the log. `--verdict` reads `out/gates/verdict.json`, which:
+
+  - is DELETED at startup, so while a run is in flight there is no verdict to find and the
+    reader fails closed rather than reporting the last run's answer,
+  - is written ONCE, at the end, by an atomic rename, so it never exists half-written,
+  - records the tree it judged (`HEAD` plus a digest of the working tree), so a verdict earned
+    on another branch or before an edit is refused rather than reused,
+  - records the invocation, so a `--fast` or `--only` run can never answer for a full one.
+
+The reader exits 0 only when a complete, current, full-coverage, all-passed verdict is there.
+Every other state, including every state a half-finished run can be in, exits non-zero and says
+which one. A log is advice to a person. This is the answer to a machine.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
+import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -78,6 +109,123 @@ SETUP_MARKERS = ("pip install", "npm install", "npm ci", "playwright install", "
 # family rather than named individually, because a list of which suite needs a browser would be
 # a second source of truth about the tests, and it would be wrong the first time one changed.
 NODE_SUITE_MARKERS = ("node tests/",)
+
+# WHERE THE ANSWER LIVES. Under out/, which is gitignored and inside the tree, per the scratch
+# rule in CLAUDE.md. Never beside the log, so that "the log" and "the verdict" cannot be
+# confused for one another by a reader in a hurry.
+VERDICT = REPO_ROOT / "out" / "gates" / "verdict.json"
+VERDICT_VERSION = 1
+
+
+def _tree_state() -> dict:
+    """What tree this verdict is about, so a stale one cannot be spent on a changed tree.
+
+    HEAD alone is not enough and that is not hypothetical. The run this mechanism comes from
+    ran the suite on one branch, switched branches, and still had the first branch's log on
+    disk under a name that said nothing about either. `git status --porcelain` folded in
+    catches the other half, an edit made after the suite ran, which is the more common way a
+    verdict goes stale on one branch.
+
+    A checkout with no git at all returns nulls and `--verdict` then refuses, because a
+    verdict that cannot say what it judged is not a verdict.
+    """
+    def git(*a: str) -> str | None:
+        try:
+            r = subprocess.run(("git", *a), cwd=REPO_ROOT, capture_output=True,
+                               text=True, timeout=30)
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return r.stdout if r.returncode == 0 else None
+
+    head = git("rev-parse", "HEAD")
+    # --porcelain rather than a diff: it names untracked files too, and a new file is exactly
+    # the kind of change that turns a green suite red.
+    dirty = git("status", "--porcelain")
+    if head is None or dirty is None:
+        return {"head": None, "tree": None}
+    return {"head": head.strip(),
+            "tree": hashlib.sha256(dirty.encode("utf-8")).hexdigest()[:16]}
+
+
+def _clear_verdict() -> None:
+    """FAIL CLOSED WHILE RUNNING. Called before the first step, so the window in which a
+    reader could find a stale answer is closed before any new work begins."""
+    try:
+        VERDICT.unlink()
+    except FileNotFoundError:
+        pass
+    except OSError:
+        pass
+
+
+def _write_verdict(payload: dict) -> None:
+    """One atomic rename. The file is complete the instant it is visible, or it is absent."""
+    try:
+        VERDICT.parent.mkdir(parents=True, exist_ok=True)
+        tmp = VERDICT.with_suffix(".json.partial")
+        tmp.write_text(json.dumps(payload, indent=1) + "\n", encoding="utf-8")
+        os.replace(tmp, VERDICT)
+    except OSError as exc:                                                # pragma: no cover
+        print(f"guards_local: could not write the verdict ({exc}). The run's result is in the "
+              f"exit code above and `--verdict` will refuse.", file=sys.stderr)
+
+
+def read_verdict() -> int:
+    """`--verdict`. Exit 0 only for a complete, current, full-coverage, all-passed run.
+
+    Every branch below is a REFUSAL with a reason. There is deliberately no output that a
+    caller could mistake for a pass, and no path that returns 0 on a missing or partial file.
+    """
+    if not VERDICT.exists():
+        print("guards_local: NO VERDICT. The suite has not finished on this tree.\n"
+              "  Either it never ran, or it is running right now, or it died part way.\n"
+              "  This is not a pass. Run `python3 scripts/shared/guards_local.py` and wait "
+              "for it to exit.", file=sys.stderr)
+        return 2
+    try:
+        v = json.loads(VERDICT.read_text("utf-8"))
+    except (OSError, ValueError) as exc:
+        print(f"guards_local: the verdict is unreadable ({exc}). Refusing.", file=sys.stderr)
+        return 2
+
+    if v.get("version") != VERDICT_VERSION:
+        print(f"guards_local: the verdict was written by another version of this runner "
+              f"({v.get('version')!r}). Refusing. Re-run the suite.", file=sys.stderr)
+        return 2
+
+    now, was = _tree_state(), v.get("state") or {}
+    if now["head"] is None:
+        print("guards_local: cannot read this tree's git state, so a verdict cannot be "
+              "matched to it. Refusing.", file=sys.stderr)
+        return 2
+    if now != was:
+        what = ("a different commit" if now["head"] != was.get("head")
+                else "edits made since the suite ran")
+        print(f"guards_local: the verdict is STALE. It judged {what}.\n"
+              f"  verdict: {was.get('head', '?')[:12]} tree {was.get('tree')}\n"
+              f"  now:     {now['head'][:12]} tree {now['tree']}\n"
+              f"  A suite that passed on other bytes says nothing about these. Re-run it.",
+              file=sys.stderr)
+        return 2
+
+    inv = v.get("invocation") or {}
+    if inv.get("fast") or inv.get("only"):
+        narrow = "--fast" if inv.get("fast") else f"--only {inv['only']}"
+        print(f"guards_local: the verdict covers a NARROWED run ({narrow}), so it cannot "
+              f"answer for the whole suite. Re-run without it.", file=sys.stderr)
+        return 2
+
+    if v.get("exit") != 0:
+        names = v.get("failed") or []
+        print(f"guards_local: the last full run FAILED, {len(names)} step(s).", file=sys.stderr)
+        for nm in names:
+            print(f"  FAIL  {nm}", file=sys.stderr)
+        return 1
+
+    print(f"guards_local: verdict GREEN. {v.get('passed')} step(s) passed"
+          + (f", {len(v.get('skipped') or [])} skipped" if v.get("skipped") else "")
+          + f", on {now['head'][:12]}.")
+    return 0
 
 
 class Step:
@@ -204,15 +352,54 @@ def hook_installed() -> bool:
     except OSError:
         return False
     root = (REPO_ROOT / path) if path else (REPO_ROOT / ".git" / "hooks")
-    return all((root / name).exists() and (root / name).stat().st_mode & 0o111 != 0
-               for name in ("pre-commit", "commit-msg"))
+
+    def runnable(hook: Path) -> bool:
+        if not hook.is_file():
+            return False
+        # NTFS has no POSIX executable bit. Git for Windows uses the executable bit stored
+        # in the index and runs extensionless hooks through its shell, while Python reports
+        # every checked-out hook as mode 0666. Requiring stat().st_mode & 0111 therefore says
+        # a working Windows hook is absent. Syntax and execution are exercised below.
+        return sys.platform == "win32" or hook.stat().st_mode & 0o111 != 0
+
+    return all(runnable(root / name) for name in ("pre-commit", "commit-msg"))
+
+
+def bash_executable() -> str:
+    """Use Git Bash on Windows; the WSL launcher named bash corrupts native argv scripts."""
+    if sys.platform == "win32":
+        git = shutil.which("git")
+        if git:
+            git_exe = Path(git).resolve()
+            candidates = (
+                git_exe.parent / "bash.exe",
+                git_exe.parent.parent / "bin" / "bash.exe",
+                git_exe.parent.parent / "usr" / "bin" / "bash.exe",
+            )
+            for candidate in candidates:
+                if candidate.is_file():
+                    return str(candidate)
+    return shutil.which("bash") or "bash"
 
 
 def run_step(step: Step) -> tuple[int, str, float]:
     """Execute one step exactly as the workflow shell would, and judge it by exit code."""
     t0 = time.monotonic()
-    proc = subprocess.run(["bash", "-e", "-c", step.run], cwd=REPO_ROOT,
-                          capture_output=True, text=True)
+    script = step.run
+    env = os.environ.copy()
+    # Node-based gates occasionally need to regenerate a fixture with Python. Passing the
+    # exact interpreter running this harness avoids the Windows Store `python3` alias and keeps
+    # those child processes inside the project's verified environment.
+    env["TEXAS_AI_DOCKET_PYTHON"] = sys.executable
+    if sys.platform == "win32":
+        # GitHub's Linux runner calls the interpreter `python3`; a standard Windows venv
+        # calls the same interpreter `python.exe`, while WindowsApps may expose a broken
+        # Store launcher named python3. A shell function preserves the workflow command and
+        # sends it to the exact interpreter running this harness.
+        python = Path(sys.executable).as_posix().replace('"', '\\"')
+        script = f'python3() {{ "{python}" "$@"; }}\n' + script
+    proc = subprocess.run([bash_executable(), "-e", "-c", script], cwd=REPO_ROOT,
+                          capture_output=True, text=True, env=env)
     return proc.returncode, (proc.stdout + proc.stderr), time.monotonic() - t0
 
 
@@ -222,11 +409,15 @@ def main() -> int:
     ap.add_argument("--only", metavar="TEXT", help="only steps whose name or command matches")
     ap.add_argument("--list", action="store_true", help="print the steps and run nothing")
     ap.add_argument("--strict", action="store_true", help="a skipped step is a failure")
+    ap.add_argument("--verdict", action="store_true",
+                    help="did the last FULL run pass on THIS tree? never reads the log")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
     if args.self_test:
         return self_test()
+    if args.verdict:
+        return read_verdict()
 
     if not WORKFLOW.exists():
         print(f"guards_local: no workflow at {WORKFLOW}", file=sys.stderr)
@@ -252,6 +443,11 @@ def main() -> int:
             print(f"  {tag:8}  {s.name}")
         print(f"\n{len(all_steps)} step(s) in {WORKFLOW.name}")
         return 0
+
+    # THE OLD ANSWER GOES FIRST, before a single step runs. From here until this process
+    # writes a new one there is no verdict on disk, so `--verdict` refuses rather than handing
+    # back the previous run's result for a tree it no longer describes.
+    _clear_verdict()
 
     failed: list[tuple[Step, str]] = []
     skipped: list[tuple[Step, str]] = []
@@ -309,6 +505,24 @@ def main() -> int:
             print(f"  -  {s.name}: {why}")
         print()
 
+    # EVERY EXIT FROM HERE DOWN GOES THROUGH `finish`, so there is no way to leave this
+    # function having run the suite and written nothing. A path that returned a code without
+    # recording it would leave the last run's verdict deleted and no new one in its place,
+    # which `--verdict` reads as "did not finish". That is the safe direction, and it is still
+    # worth not having: a green run that reports nothing is a green run nobody can spend.
+    def finish(code: int) -> int:
+        _write_verdict({
+            "version": VERDICT_VERSION,
+            "exit": code,
+            "state": _tree_state(),
+            "invocation": {"fast": bool(args.fast), "only": args.only,
+                           "strict": bool(args.strict)},
+            "passed": ran,
+            "failed": [s.name for s, _ in failed],
+            "skipped": [s.name for s, _ in skipped],
+        })
+        return code
+
     # A LAW WITH NO MECHANISM IS A FAILURE. See NO_LOCAL_MECHANISM above for the run this cost.
     unenforced = [s for s, why in skipped if NO_LOCAL_MECHANISM in why]
     if unenforced:
@@ -319,19 +533,19 @@ def main() -> int:
               "unstamped.\n\n      git config core.hooksPath .githooks\n", file=sys.stderr)
         print("  This is a FAILURE and not a skip. A skip is what a check looks like when it is "
               "not\n  needed. This is a check that cannot run.", file=sys.stderr)
-        return 1
+        return finish(1)
 
     if failed:
         print(f"guards_local: {len(failed)} of {ran} step(s) FAILED", file=sys.stderr)
-        return 1
+        return finish(1)
     if args.strict and skipped:
         print(f"guards_local: {ran} passed, but --strict and {len(skipped)} skipped",
               file=sys.stderr)
-        return 1
+        return finish(1)
     print(f"guards_local: {ran} step(s) passed"
           + (f", {len(skipped)} skipped" if skipped else "")
           + ". CI runs the skipped ones.")
-    return 0
+    return finish(0)
 
 
 # ---------------------------------------------------------------- self-test
@@ -499,6 +713,76 @@ jobs:
     ok("...and the house style CHECK is one of the steps found, not just its self-test",
        any("house_style_check.py" in s.run and "--self-test" not in s.run for s in steps()),
        "the step that caught the defect this file exists for is missing from the run list")
+
+    # ---------------------------------------------------------- the verdict, fail-closed
+    #
+    # EVERY CASE BELOW IS A STATE A HALF-FINISHED RUN CAN LEAVE ON DISK, and the assertion is
+    # always the same: `--verdict` does NOT say green. The August 27th run had to distinguish
+    # "no FAIL yet" from "no FAIL", and could not, because both look identical in a log. These
+    # prove that question is now answerable without reading one.
+    #
+    # The real VERDICT path is swapped for a temp file so a self-test can never eat the answer
+    # a suite running in another terminal just earned.
+    global VERDICT
+    real_verdict = VERDICT
+    with tempfile.TemporaryDirectory() as td:
+        VERDICT = Path(td) / "verdict.json"
+        here = _tree_state()
+        green = {"version": VERDICT_VERSION, "exit": 0, "state": here,
+                 "invocation": {"fast": False, "only": None, "strict": False},
+                 "passed": 120, "failed": [], "skipped": []}
+
+        def verdict_of(payload: dict | None) -> int:
+            if payload is None:
+                _clear_verdict()
+            else:
+                _write_verdict(payload)
+            return read_verdict()
+
+        ok("a verdict that was never written is not a pass", verdict_of(None) != 0)
+
+        # THE ONE THIS EXISTS FOR. Mid-run there is no file, because the runner deletes it
+        # before its first step. The reader cannot be handed a stale green, and it cannot be
+        # handed a partial one either, because the write is a rename.
+        _write_verdict(green)
+        _clear_verdict()
+        ok("a run in flight has deleted the old verdict and written no new one",
+           verdict_of(None) != 0)
+
+        ok("a complete green verdict on this exact tree passes", verdict_of(green) == 0)
+
+        # THE FIXTURE'S STEP NAME IS DELIBERATELY NOT A REAL ONE. `read_verdict` prints the
+        # failed steps it is refusing, so a plausible name here puts a line reading
+        # `FAIL  Site build self-test` into the output of a self-test that passed. Anyone
+        # grepping this suite for FAIL would find it, which is the same confusion between a
+        # log line and a verdict that the whole mechanism exists to end.
+        ok("a verdict recording a failure is not a pass",
+           verdict_of({**green, "exit": 1,
+                       "failed": ["<fixture, no such step>"]}) != 0)
+
+        # STALENESS, both halves. A suite that passed on other bytes says nothing about these.
+        ok("a verdict from another commit is refused",
+           verdict_of({**green, "state": {"head": "0" * 40, "tree": here["tree"]}}) != 0)
+        ok("a verdict from the same commit with a different working tree is refused",
+           verdict_of({**green, "state": {**here, "tree": "deadbeefdeadbeef"}}) != 0)
+
+        # NARROWING. --fast defers the node suites, which is exactly where two of this repo's
+        # CI failures have lived. A fast run answering for a full one would reinstate the bug.
+        ok("a --fast verdict cannot answer for the whole suite",
+           verdict_of({**green, "invocation": {"fast": True, "only": None, "strict": False}}) != 0)
+        ok("an --only verdict cannot answer for the whole suite",
+           verdict_of({**green, "invocation":
+                       {"fast": False, "only": "house", "strict": False}}) != 0)
+
+        ok("a verdict from a future version of this runner is refused",
+           verdict_of({**green, "version": VERDICT_VERSION + 1}) != 0)
+
+        # A corrupt or truncated file is the one case where the atomic rename could in theory
+        # be defeated, by something outside this script. It still must not read as green.
+        VERDICT.write_text('{"version": 1, "exit": 0, "sta', encoding="utf-8")
+        ok("a truncated verdict is refused rather than parsed optimistically",
+           read_verdict() != 0)
+    VERDICT = real_verdict
 
     print("\nguards_local self-test: " + ("all passed" if not failures else f"{failures} FAILED"))
     return 0 if not failures else 1

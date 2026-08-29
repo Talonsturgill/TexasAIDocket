@@ -615,6 +615,7 @@ def build(out: Path, today: str) -> dict:
 
 def self_test() -> int:
     import tempfile
+    import site_context as _context
     failures = 0
 
     def check(label, cond, extra=""):
@@ -622,6 +623,18 @@ def self_test() -> int:
         print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
         if not cond:
             failures += 1
+
+    # EVERY PAGE WEARS THE SAME STYLESHEET HASH. A 510 page profile found that page() rebuilt
+    # the generated theme 510 times only to produce the same ten characters. This assertion
+    # keeps the hash process local and proves repeated pages pay for the theme once.
+    _context._css_version.cache_clear()
+    _first_css_version = _context._css_version()
+    _second_css_version = _context._css_version()
+    _css_cache = _context._css_version.cache_info()
+    check("the main stylesheet hash is computed once for a whole build",
+          _first_css_version == _second_css_version
+          and _css_cache.misses == 1 and _css_cache.hits == 1,
+          repr(_css_cache))
 
     # THE TOPIC VOCABULARY LIVES IN TWO FILES AND THEY HAVE TO AGREE.
     #

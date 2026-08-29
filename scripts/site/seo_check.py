@@ -83,7 +83,9 @@ def findings(site: Path) -> list[str]:
         if len(mods) > 8 and len(set(mods)) == 1:
             bad.append(f"sitemap.xml: all {len(mods)} urls share one lastmod ({mods[0]}), "
                        "which is a build date rather than a revision date")
-        built = {"" if p.parent == site else str(p.parent.relative_to(site)) + "/"
+        # Sitemap paths are URL paths, never host filesystem paths. Keeping them POSIX-shaped
+        # also makes planted article fixtures exercise the intended checks on Windows.
+        built = {"" if p.parent == site else p.parent.relative_to(site).as_posix() + "/"
                  for p in pages}
         listed = {u.split("/", 3)[3] if u.count("/") > 2 else "" for u in locs}
         for missing in sorted(built - listed):
@@ -104,7 +106,8 @@ def findings(site: Path) -> list[str]:
 
     # ---------------------------------------------------------------- every page
     for p in pages:
-        rel = "/" + (str(p.parent.relative_to(site)) + "/" if p.parent != site else "")
+        rel = "/" + (p.parent.relative_to(site).as_posix() + "/"
+                     if p.parent != site else "")
         html = p.read_text(encoding="utf-8")
         titles, descs, canons = TITLE.findall(html), DESC.findall(html), CANON.findall(html)
         if len(titles) < 1:

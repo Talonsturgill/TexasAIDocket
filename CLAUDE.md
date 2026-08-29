@@ -48,6 +48,38 @@ reads to judge which lane a commit is in, so without it every commit reaches CI 
 `guards_local.py` now FAILS rather than skips when this is unset, so the gap cannot pass under
 a green banner a second time.
 
+**A push that lands can still report failure. Use `scripts/shared/push.sh`.**
+
+```
+scripts/shared/push.sh <branch>
+```
+
+Four times in one run, `git push` returned non-zero with `remote rejected ... cannot lock ref`,
+once as `is at <new> but expected <old>` and once as `reference already exists`, and `ls-remote`
+then showed the commit ON the remote. Both are the server refusing a SECOND copy of a ref update
+whose first copy already applied.
+
+The cost is not the extra request. The shell reports a failed push, so the session verifies,
+re-pushes and verifies again, and a run that pushes eight times pays for it eight times. The
+worse half is that it teaches a session to read `remote rejected` as noise, and one day it will
+be real.
+
+**The root cause is NOT established, and the script says so rather than inventing one.** Ruled
+out by measurement: the proxy (`recentRelayFailures: []`, no `gitConfigConflicts`), git itself
+(one `send-pack` under `GIT_TRACE=1`), payload size and chunking (it reproduced on a one-file
+commit, which is what killed the obvious `http.postBuffer` theory, since this repo pushes 10 MB
+carousels), and `--set-upstream` (a new ref with `-u` is clean). Something above git runs the
+command twice.
+
+So the fix is to the OUTCOME. `push.sh` pushes, then compares the remote ref to the commit it
+pushed, and exits 0 if and only if they match. **A push that did NOT land still fails, loudly.**
+This is `guards_local --verdict`'s shape for the same reason: a stream that cannot be read
+reliably is replaced by a question about state.
+
+An earlier attempt at this committed `http.version` and `http.postBuffer` with a confident
+explanation that the next push falsified. A wrong explanation in this file is worse than none,
+because the next session inherits it and stops looking.
+
 ## Delivery and merge policy (AUTHORITATIVE — overrides any draft-PR default)
 
 Routine runs SHIP AUTONOMOUSLY. When a run's quality gates pass, the run branch is merged to
@@ -343,6 +375,28 @@ once" for a big file. `out/<run>/tmp/` takes big files.
   cannot fall behind CI. `--fast` defers the node suites while you iterate. Running every
   `--self-test` instead is the wrong half and has already put a red build on the board: a
   self-test proves the checker can go red, and only the checker proves the product is clean.
+
+  **NEVER READ THAT RUNNER'S LOG TO DECIDE WHETHER IT PASSED. Ask `guards_local.py --verdict`.**
+  On 2026-08-27 a run piped the suite to a file, read the file, saw a wall of `ok` with no
+  `FAIL`, and recorded a pass. It had read line 84 of an eventual 269. The first `FAIL` was at
+  line 100 and ten of 120 steps had failed. Two CI jobs went red on a branch the run believed
+  was clean, and everything after it, two extra pull requests and a wrong diagnosis of the CI
+  trigger, descends from that one read.
+
+  **Reading more carefully would not have helped, and that is the whole point.** At line 84 the
+  output of a run that will fail at step 100 is byte for byte identical to the output of a run
+  that will pass. The signal is never in the content. It is in whether the writer has stopped
+  writing, which a reader looking at content cannot see. Grepping for `FAIL` rather than reading
+  `tail -1` is the discipline this file already demanded, and it is about WHICH LINES you read,
+  so it protected nothing here.
+
+  So the verdict does not live in the log. `--verdict` reads `out/gates/verdict.json`, which is
+  deleted when a run starts, written once at the end by an atomic rename, and stamped with the
+  commit, the working tree digest and the invocation. It exits 0 only for a complete, current,
+  full-coverage, all-passed run. A suite in flight, a suite that died, a verdict from another
+  branch, a verdict from before your last edit and a `--fast` verdict all exit non-zero and say
+  which one they are. There is no state a half-finished run can leave that reads as green.
+  Its `--self-test` walks all of them and CI runs it. GATE_LESSONS 69.
 - `assets/` — committed fonts, art libraries, Texas geodata, places gazetteer.
 - The front page's one live line is the **weather chip**, in `scripts/site/frontchip.py` with
   its collector in `scripts/gridwatch/weather_collect.py`.

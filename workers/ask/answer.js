@@ -394,7 +394,8 @@ export async function packInfo(env) {
       shown: `${sample.shown} of ${sample.of}`,
       // Tokens, roughly, at four characters each. Both numbers or neither: the saving is the
       // only reason retrieval is here and a number without its comparison is decoration.
-      whole_tokens: t(pack.system.length + pack.pack.length),
+      whole_tokens: t(pack.system.length + pack.pack.length
+        + String(pack.facility_pack || "").length),
       question_tokens: t(sample.chars),
       cached_tokens: t(sample.blocks.filter((b) => b.cache_control || b === sample.blocks[0])
         .reduce((n, b) => n + b.text.length, 0)),

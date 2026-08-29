@@ -342,7 +342,7 @@ def self_test() -> int:
     # THE PAYLOAD IS A SHIPPED ARTIFACT. It defaulted under gitignored `out/`, so no run has
     # ever committed the email it produced and no gate could read one.
     ok("the payload's home is the run directory, not scratch",
-       "runs" in str(run_dir(REAL)) and "out" not in run_dir(REAL).parts)
+       run_dir(REAL).resolve().parent == (REPO_ROOT / "runs" / "carousel").resolve())
 
     # THE POST IS ACTIONABLE FROM THE EMAIL ALONE. This is the whole complaint that opened
     # this file's second draft: an email that describes the run and does not carry the post is

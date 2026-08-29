@@ -332,7 +332,7 @@ def contact_dialog() -> str:
 # area weighted centroid for Travis County now, so the sentence and the data cannot drift.
 MADE_AT_LEDE = "Built on the Balcones Escarpment"
 
-# The one script the shell carries, and the three things it does. All three are progressive:
+# The one script the shell carries, and the four things it does. All four are progressive:
 # with script off the page keeps its atmosphere, its content and its layout, and loses only the
 # arrival animations and the glass on the bar.
 SHELL_JS = """<script>
@@ -340,6 +340,25 @@ document.documentElement.classList.add('js');
 addEventListener('scroll',function(){
   document.querySelector('.masthead').classList.toggle('scrolled',scrollY>8);
 },{passive:true});
+// A CLIPPED LABEL IS USUALLY THE PHONE NAV'S SCROLL CUE, but an edge can land exactly in the
+// gap between two labels. In that narrow band the remaining sections are reachable and still
+// look absent. The cue follows actual scroll state, so it never points past the final section
+// and never appears merely because the small-screen layout rule is active.
+(function(){
+  var nav=document.querySelector('nav.main'), cue=document.querySelector('.navcue');
+  if(!nav||!cue) return;
+  function edge(){
+    cue.hidden=!(nav.scrollLeft+nav.clientWidth<nav.scrollWidth-1);
+  }
+  cue.addEventListener('click',function(){
+    nav.scrollBy({left:nav.clientWidth,
+      behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  });
+  nav.addEventListener('scroll',edge,{passive:true});
+  addEventListener('resize',edge,{passive:true});
+  edge();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(edge);
+})();
 if('IntersectionObserver' in window){
   var els=document.querySelectorAll('[data-reveal]');
   var io=new IntersectionObserver(function(es){
@@ -586,6 +605,7 @@ def _sheet_version(name: str) -> str:
     return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
 
 
+@functools.lru_cache(maxsize=1)
 def _css_version() -> str:
     """A content hash on the stylesheet URL, because shipping is not the same as being seen.
 
@@ -602,6 +622,10 @@ def _css_version() -> str:
 
     theme.css() is deterministic, which its own self-test asserts by building twice and
     comparing bytes, so this is stable within a build and identical across identical builds.
+
+    A full build calls page once for every page. The hash is shared by all of them, so computing
+    the same generated stylesheet again on every call only repeats YAML parsing and colour work.
+    Keep the result for this process, which is the lifetime of a normal build and its inputs.
     """
     return hashlib.sha256(theme.css().encode("utf-8")).hexdigest()[:10]
 
@@ -707,6 +731,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 <header class="masthead">
   <div class="wrap">
     <a class="wordmark" href="{p or './'}">{HOIST}<span>{e(SITE_NAME)}</span></a>
+    <button class="navcue" type="button" aria-label="More sections" hidden></button>
     <nav class="main" aria-label="Sections">{nav}</nav>
   </div>
 </header>
@@ -973,26 +998,22 @@ def load_runs() -> list:
         #
         # PROSE ONLY. A slide's labels ("10,000 FT A SIDE") are furniture and read as noise in
         # running text, so the same shape test the copy gate uses picks sentences out of them.
-        prose = []
-        for key in sorted(normalise_slide_keys(planned), key=lambda k: k[0]):
-            said = [_CLAIM_STAMP.sub(" ", " ".join(s.split())).strip()
-                    for s in _slide_strings(key[1]) if _reads_as_prose(s)]
-            # A QUOTATION IS MARKED AS ONE. A slide that prints a source's own words keeps them,
-            # so they arrive here still wearing their quotation marks, and rendering them as
-            # this project's prose would put somebody else's sentence under this project's
-            # house rules. `house_style_check` exempts `blockquote` for exactly that reason and
-            # says so in its own docstring: house style governs our prose and stops at the
-            # quotation mark.
-            said = [{"quote": s.startswith('"'), "text": s} for s in said if s]
-            if said:
-                prose.append(said)
-
+        # THE CLAIMS COME FIRST NOW, because the prose loop below needs them to tell a
+        # quotation from this project's own sentence. See `_is_quotation`.
         claims = []
         try:
             cj = json.loads((d / "claims.json").read_text("utf-8"))
             claims = [c for c in (cj.get("claims") or []) if isinstance(c, dict)]
         except Exception:                                            # noqa: BLE001
             pass
+
+        prose = []
+        for key in sorted(normalise_slide_keys(planned), key=lambda k: k[0]):
+            said = [_CLAIM_STAMP.sub(" ", " ".join(s.split())).strip()
+                    for s in _slide_strings(key[1]) if _reads_as_prose(s)]
+            said = [{"quote": _is_quotation(s, claims), "text": s} for s in said if s]
+            if said:
+                prose.append(said)
 
         # THE TEASE. One sentence, the deck's own, so a card says what the article is about
         # rather than only what it is called. A title is a name and a name is not a summary.
@@ -1036,6 +1057,46 @@ def normalise_slide_keys(planned) -> list:
 # only has to avoid printing citations and drawing instructions as prose.
 _SLIDE_META = frozenset({"claims", "claim_id", "claim_ids", "cid", "n", "slide", "index", "id",
                          "technique", "file", "path", "art", "palette", "notes", "todo"})
+
+
+def _is_quotation(said: str, claims: list) -> bool:
+    """Is this slide string a SOURCE'S OWN WORDS, checked against the run's own claims file.
+
+    THIS USED TO BE `said.startswith('"')`, AND THE PUNCTUATION MARK WAS THE WHOLE TEST.
+
+    House style governs this project's prose and stops at the quotation mark, which is why the
+    article page sets a quotation in `<blockquote>` and why `house_style_check` exempts that
+    element. Both halves of that are right. What was wrong was HOW a quotation got recognised:
+    a deck whose design attributes a quote with a plate and an attribution line rather than with
+    quotation marks handed the article page a verbatim sentence wearing no mark, and the page
+    published the Public Utility Commission's own sentence as a paragraph this project wrote.
+
+    On 2026-08-28 that put three violations on the board at once, in copy nobody here composed:
+    a bare "September 17" against the ordinal rule, a 32 word sentence and a 39 word sentence
+    against the backstop. The gate was correct every time and the sentences were unfixable,
+    because rewriting them would have been falsifying a quotation.
+
+    **The three it caught were the tip.** Every verbatim dek in that deck arrived unmarked. The
+    others passed only because they happened to be short and carried no bare date, so the same
+    defect was shipping in silence on the frames that did not trip a rule. Rebuilding the site
+    with this fix changes four already-published article pages, 2026-08-20, 08-22, 08-25 and
+    08-26, which is the measure of how long it had been live.
+
+    So the test is no longer a mark on the string. `claims.json` holds the quote each fact was
+    checked against, the deck may print a source's words only from there, and a string that
+    appears inside a claim's quote IS that source's words no matter how the frame dressed it.
+    Derived from the fetched source rather than declared by whoever typed the slide, which is
+    the same standard every number on this site is held to. A leading quotation mark still
+    counts, because a deck that does mark its quotes is not made a liar by this, and a short
+    string is excluded so a label is never mistaken for a quotation.
+    """
+    if said.startswith('"'):
+        return True
+    body = said.strip().rstrip(".").casefold()
+    if len(body) < 24:                    # too short to identify anything. a label, not a quote.
+        return False
+    return any(body in " ".join(str(c.get("quote") or "").split()).casefold()
+               for c in claims)
 
 
 def _slide_strings(node) -> list:

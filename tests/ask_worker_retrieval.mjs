@@ -21,12 +21,14 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
-import { assemble, familyOf, pickItems, splitPack, queryOf, wantsBreadth, pinnedIds, strangeness }
+import { assemble, familyOf, pickItems, splitPack, splitRecord, queryOf, wantsBreadth, pinnedIds, strangeness }
   from "../workers/ask/retrieve.js";
 import { askIndex } from "../workers/ask/retriever.js";
 
 const argv = process.argv.slice(2);
 const flag = (n) => { const i = argv.indexOf(n); return i < 0 ? null : argv[i + 1]; };
+const PYTHON = process.env.TEXAS_AI_DOCKET_PYTHON
+  || (process.platform === "win32" ? "python" : "python3");
 
 let fail = 0, pass = 0;
 const ok = (label, cond, detail = "") => {
@@ -38,11 +40,11 @@ const head = (t) => console.log("\n" + t);
 
 // Built now from the record, never read from a file somebody last touched months ago. Same
 // reason ask_eval.mjs shells out for its cases: one implementation of what the pack is.
-const PACK = JSON.parse(execFileSync("python3",
+const PACK = JSON.parse(execFileSync(PYTHON,
   ["-c", "import sys,json; sys.path.insert(0,'scripts/site'); import ask_pack; " +
          "p=ask_pack.build(); json.dump(p, sys.stdout)"],
   { encoding: "utf-8", maxBuffer: 64 << 20 }));
-const GOLD = JSON.parse(execFileSync("python3", ["scripts/site/ask_eval.py"],
+const GOLD = JSON.parse(execFileSync(PYTHON, ["scripts/site/ask_eval.py"],
   { encoding: "utf-8", maxBuffer: 32 << 20 }));
 const LEDGER = JSON.parse(fs.readFileSync("ledger/docket.json", "utf-8"));
 const ITEMS_RAW = Array.isArray(LEDGER) ? LEDGER : LEDGER.items;
@@ -50,7 +52,7 @@ const byId = new Map(ITEMS_RAW.map((it) => [it.id, it]));
 
 // ---------------------------------------------------------------- the split contract
 head("A. the pack cuts back into its parts, which is the whole of the plumbing");
-const { preamble, items } = splitPack(PACK.pack);
+const { preamble, items } = splitRecord(PACK);
 // THE PACK IS FOUR FAMILIES NOW AND THIS SECTION ASSERTED IT WAS ONE. `PACK.items` still
 // counts decisions, because a live worker reads it and a field vanishing under one is the
 // failure this repo is most careful about, so the count of everything is `PACK.blocks`.
@@ -67,9 +69,9 @@ ok("the decisions come out first, in the record's own order",
 // sides cannot drift into disagreeing about what a family is.
 const cut = {};
 for (const it of items) cut[familyOf(it.id)] = (cut[familyOf(it.id)] || 0) + 1;
+const declaredFamilies = Object.fromEntries(Object.entries(PACK.families).filter(([, n]) => n));
 ok("and every family the builder declared is present in the count it declared",
-  JSON.stringify(cut) === JSON.stringify(
-    Object.fromEntries(Object.entries(PACK.families).filter(([, n]) => n))),
+  JSON.stringify(Object.entries(cut).sort()) === JSON.stringify(Object.entries(declaredFamilies).sort()),
   `${JSON.stringify(cut)} against ${JSON.stringify(PACK.families)}`);
 // A RESERVOIR BLOCK IS 175 CHARACTERS AND A DECISION IS 2,708, so one floor across both is
 // either useless or wrong. What this is really guarding is a block arriving empty, which is
@@ -124,19 +126,21 @@ ok("two different questions share the cached prefix byte for byte",
 ok("...and differ in the block after it", asm.blocks[2].text !== asm2.blocks[2].text);
 
 // ---------------------------------------------------------------- the escape hatches
-head("D. the ways it goes back to sending everything");
+head("D. the bounded whole-record fallbacks");
 const off = assemble(PACK, [{ role: "user", content: "anything" }], { ASK_RETRIEVAL: "off" });
-ok("ASK_RETRIEVAL=off sends the whole pack, one dashboard variable and no deploy",
+ok("ASK_RETRIEVAL=off sends the bounded core, one dashboard variable and no deploy",
   off.mode === "whole (off)" && off.blocks.length === 2, off.mode);
-ok("...and it is the whole pack, not a large slice of it",
-  off.blocks[1].text === PACK.pack);
+ok("...and keeps the complete index in place of the separated facility bodies",
+  off.blocks[1].text === PACK.pack + "\n\n" + PACK.index
+  && off.shown < off.of && off.of === PACK.blocks,
+  `${off.shown} of ${off.of}`);
 // A WORKER DEPLOYED AHEAD OF A SITE REBUILD reads yesterday's pack, which has no index. A
 // slice with nothing standing in for the rest is the one shape this design must never take.
 const noIndex = assemble({ ...PACK, index: "" }, [{ role: "user", content: "water" }], {});
 ok("a pack with no index sends everything rather than a slice with no safety net",
   noIndex.mode === "whole (no index)", noIndex.mode);
 const cutAt = PACK.pack.indexOf("\n\n[[", PACK.pack.indexOf("\n\nTHE DECISIONS.\n\n") + 20);
-const tiny = { ...PACK, pack: PACK.pack.slice(0, cutAt) };
+const tiny = { ...PACK, pack: PACK.pack.slice(0, cutAt), facility_pack: "" };
 ok("a record small enough not to need retrieving is not retrieved",
   assemble(tiny, [{ role: "user", content: "water" }], {}).mode === "whole (fits)",
   assemble(tiny, [{ role: "user", content: "water" }], {}).mode);
@@ -147,7 +151,8 @@ ok("a record small enough not to need retrieving is not retrieved",
 // is a slice of. Comparing the two assembled sizes closes that without anybody keeping two
 // numbers in step.
 const gapPack = { ...PACK,
-  pack: PACK.pack.slice(0, PACK.pack.indexOf("\n\n[[", PACK.chars / 3)) };
+  pack: PACK.pack.slice(0, PACK.pack.indexOf("\n\n[[", PACK.pack.length / 3)),
+  facility_pack: "" };
 const gap = assemble(gapPack, [{ role: "user", content: "how many decisions involve water" }], {});
 ok("a slice that would not be smaller than the whole record is not sent",
   gap.chars <= gapPack.system.length + gapPack.pack.length,

@@ -124,6 +124,51 @@ hard_fails:
   - "a placeholder, a lorem, or an unfinished frame"
   - "a source cited that was never fetched"
 
+# WHICH KIND OF NO A JUDGE IS SAYING. Added 2026-08-28, and it is what makes the cap above
+# expressible. `panel.py` is the code that reads this and its comment carries the incident.
+#
+# Deck no. 10 was refused twice by judges who wrote, in the same file, that the refusal was the
+# threshold and not a fault. One added "I looked hard for one and I will not manufacture it".
+# `panel.py` synthesized a hard fail from `ship: false` with an empty `hard_fails`, a hard fail
+# stops a deck at ANY round, and the run reached the cap reading its own gate as saying both ship
+# and do not ship. It resolved that in four paragraphs of prose, which is not a gate.
+refusal:
+  # THE KIND OF A REFUSAL IS DERIVED FROM YOUR OWN NUMBERS. YOU DO NOT DECLARE IT.
+  #
+  # An earlier version of this contract asked a judge to write `refusal_reason: threshold`, and
+  # the hole opened inside the very run that shipped it. A judge scored 6.51 and explained itself
+  # in prose. The field did not exist when it scored. THE RUN WROTE THE FIELD ONTO THE JUDGE'S
+  # FILE, and the panel moved from HOLD to SHIP on a word the graded party had typed. The run
+  # labelled what it had done, honestly, in a key beside it. Honest labelling is not a control.
+  #
+  # So there is nothing left to write. The panel reads your score and your hard_fails list, which
+  # are the two things you were always going to produce, and works the rest out.
+  derived: true
+  field: >
+    Do not emit refusal_reason. The panel derives the kind of a refusal and ignores a written
+    field except to check it, so writing one can only hurt you.
+  when: "you set ship: false and your hard_fails list is empty"
+  threshold_dissent: >
+    Your no is about the NUMBER when your own weighted score is under the bar. You do not say so
+    and you do not need to: scoring 6.51 against a 6.8 bar has already said it. The panel records
+    the dissent in score.json by name and carries it where it belongs, in the median. If the
+    median is under the bar the deck still holds.
+  fault: >
+    Your no is about a FAULT when you put one in hard_fails. That is your real veto, it stops the
+    deck at any round whatever the other two judges said and whatever the median is, and nothing
+    about this change touches it. If you mean to stop the deck, name the fault.
+  written: >
+    A refusal_reason in your file that your own numbers do not support stops the deck. After this
+    change no judge emits one, so its presence means a hand reached in.
+  incoherent: >
+    ship: false, an empty hard_fails list, and a score that CLEARS the bar describes neither a
+    fault nor the number. That fails closed, which is the case the original rule was written for
+    and which has not changed.
+  never: >
+    This is not a way to ship a deck. A declared threshold dissent moves no verdict field. If
+    the panel's median is under the bar the deck still holds, and if you can name a fault it is
+    a hard fail and it still stops the deck whatever else you write.
+
 honesty:
   rule: >
     Do not round up. Not to reach the threshold, not because the run worked hard, not because

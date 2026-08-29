@@ -1,0 +1,39 @@
+{
+  "run_date": "2026-08-28",
+  "phases": {
+    "wake": "done",
+    "craft": "done",
+    "sweep": "done",
+    "reverify": "done",
+    "discover": "done",
+    "admit": "done",
+    "claims": "done",
+    "instrument": "done",
+    "selection": "done",
+    "directors": "done",
+    "copy": "done",
+    "art": "done",
+    "pixel": "done",
+    "aggregate": "done",
+    "assembly": "done",
+    "scoring": "in_progress",
+    "ship": "pending",
+    "retro": "pending",
+    "email": "pending"
+  },
+  "artifacts": {
+    "claims": "out/2026-08-28/claims.json",
+    "run_record": "runs/carousel/2026-08-28/RUN_RECORD.md",
+    "order_text": "out/2026-08-28/tmp/59220_order.txt",
+    "rehearing_text": "out/2026-08-28/tmp/59220_rehearing.txt",
+    "storyboard": "out/2026-08-28/storyboard.md",
+    "copy": "out/2026-08-28/copy.json",
+    "caption": "out/2026-08-28/caption.txt",
+    "first_comment": "out/2026-08-28/first_comment.txt",
+    "aggregates": "out/2026-08-28/aggregates.json",
+    "render": "out/2026-08-28/render",
+    "final": "out/2026-08-28/final",
+    "compute": "out/2026-08-28/compute.py"
+  },
+  "story": "tx-2026-0108, PUCT Docket 59220"
+}

@@ -67,6 +67,7 @@ const pages = [
   "record/index.html",      // the long list
   "grid/index.html",        // chart and figures
   "water/index.html",       // the widest table on the site
+  "construction/index.html", // dense year axis and filing tables
   "about/index.html",       // plain prose
   "services/index.html",    // marketing layout
   "data/index.html",        // link list
@@ -156,17 +157,42 @@ for (const w of [...new Set([1440, 1024, 768, 600, 500, 460, 440, 412, 390, 360,
   const r = await pg.evaluate(async () => {
     const nav = document.querySelector("nav.main");
     const as = [...nav.querySelectorAll("a")];
+    // Chromium restores an element's scroll position when the same local URL is reloaded. This
+    // sweep moves the row to its end on every pass, so without an explicit reset the next width
+    // measures the END state and calls the untouched start state undiscoverable.
+    nav.scrollLeft = 0;
+    await new Promise((r) => requestAnimationFrame(r));
     const rows = new Set(as.map((a) => Math.round(a.getBoundingClientRect().top))).size;
+    const initialBox = nav.getBoundingClientRect();
+    // Scroll width includes the trailing gutter, which can remain scrollable after every link
+    // is already visible. The unfinished thing that needs an affordance is a LINK beyond the
+    // edge, not empty padding beyond it.
+    const overflows = as.some((a) => a.getBoundingClientRect().right > initialBox.right + 1);
+    const showsNext = as.some((a) => {
+      const b = a.getBoundingClientRect();
+      return b.left < initialBox.right && b.right > initialBox.right + 1;
+    });
+    const cue = document.querySelector('.navcue');
+    const signalsNext = showsNext || (cue && !cue.hidden);
     nav.scrollLeft = nav.scrollWidth;
     await new Promise((r) => requestAnimationFrame(r));
     const last = as[as.length - 1].getBoundingClientRect();
     const box = nav.getBoundingClientRect();
-    return { rows, n: as.length, reached: last.right <= box.right + 1 && last.left >= box.left - 1 };
+    return {
+      rows,
+      n: as.length,
+      reached: last.right <= box.right + 1 && last.left >= box.left - 1,
+      overflows,
+      showsNext: signalsNext,
+    };
   });
   if (r.rows > 1) navRow.push(`${w}px wraps to ${r.rows} rows`);
   if (!r.reached) navRow.push(`${w}px cannot scroll to the last of ${r.n} links`);
+  if (w <= 520 && r.overflows && !r.showsNext) {
+    navRow.push(`${w}px hides every unfinished link beyond the phone edge`);
+  }
 }
-check("the nav is one row at every width, and every section can be reached",
+check("the nav is one row, exposes its overflow, and every section can be reached",
       navRow.length === 0, navRow.slice(0, 4).join(" | "));
 
 // THE MARK IS ASSERTED BY COLLISION, NOT BY A CHOSEN NUMBER. Forced on, its box is compared
@@ -227,7 +253,8 @@ check("the mark is shown at every width and lands on nothing",
 const CHARTS = [["grid/index.html", "svg.loadshape"],
                 ["water/index.html", "svg.waterviz.trend"],
                 ["water/index.html", "svg.waterviz.dist"],
-                ["water/index.html", "svg.waterviz.resmap"]];
+                ["water/index.html", "svg.waterviz.resmap"],
+                ["construction/index.html", "svg.cysvg"]];
 
 const tiny = [];
 for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440])
@@ -246,7 +273,9 @@ for (const [pageRel, sel] of CHARTS) {
     let data = Infinity, unit = Infinity;
     for (const t of svg.querySelectorAll("text")) {
       if (!t.textContent.trim()) continue;
-      const px = parseFloat(getComputedStyle(t).fontSize) * k;
+      const style = getComputedStyle(t);
+      if (style.display === "none" || style.visibility === "hidden") continue;
+      const px = parseFloat(style.fontSize) * k;
       if (t.classList.contains("unit")) unit = Math.min(unit, px);
       else data = Math.min(data, px);
     }
@@ -290,7 +319,10 @@ for (const [pageRel, sel] of CHARTS) {
     const svg = document.querySelector(sel);
     if (!svg) return null;
     const vb = svg.viewBox.baseVal;
-    const T = [...svg.querySelectorAll("text")].filter((t) => t.textContent.trim());
+    const T = [...svg.querySelectorAll("text")].filter((t) => {
+      const style = getComputedStyle(t);
+      return t.textContent.trim() && style.display !== "none" && style.visibility !== "hidden";
+    });
     const out = [];
     for (const t of T) {
       const b = t.getBBox();

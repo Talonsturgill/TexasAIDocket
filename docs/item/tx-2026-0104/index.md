@@ -11,7 +11,7 @@ The National Science Foundation made award 2535195 to the University of Texas at
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/show-award?AWD_ID=2535195
 
-- Last checked: 2026-08-27
+- Last checked: 2026-08-28
 
 ## Dates
 
@@ -23,6 +23,7 @@ The National Science Foundation made award 2535195 to the University of Texas at
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-27 · Admitted. The agency's award record carries the center, the institution, the dates and the money, and the abstract states what the work is for.
+- 2026-08-28 · Checked and unchanged. The award for the human and robot co adaptation center still stands on the agency's record, with the same fiscal year obligation and the same project period.
 
 ## Evidence
 

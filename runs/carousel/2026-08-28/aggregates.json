@@ -1,0 +1,70 @@
+{
+ "date": "2026-08-28",
+ "aggregates": [
+  {
+   "phrase": "One and Crusoe Two loads",
+   "kind": "count",
+   "value": 2,
+   "slide": 2,
+   "quoted_from": "c6",
+   "quote": "the Crusoe One and Crusoe Two loads will be co-located with GOODNIT1",
+   "note": "Not a count the deck made. It is the commission's own naming of the two loads, printed verbatim."
+  },
+  {
+   "phrase": "Two Load fully curtails",
+   "kind": "count",
+   "value": 2,
+   "slide": 3,
+   "quoted_from": "c8",
+   "quote": "the Crusoe Two Load fully curtails its consumption",
+   "note": "The order's own name for the second load, printed verbatim inside the quoted condition."
+  },
+  {
+   "phrase": "60 minutes",
+   "kind": "duration",
+   "value": 60,
+   "slide": 4,
+   "quoted_from": "c10",
+   "quote": "at least 60 minutes of notice in advance",
+   "note": "The notice period the order adopts, hedged in its own words by When practicable."
+  },
+  {
+   "phrase": "30 minutes",
+   "kind": "duration",
+   "value": 30,
+   "slide": 4,
+   "quoted_from": "c9",
+   "quote": "from 30 minutes to 10 minutes",
+   "note": "The curtailment window the order requires."
+  },
+  {
+   "phrase": "10 minutes",
+   "kind": "duration",
+   "value": 10,
+   "slide": 4,
+   "quoted_from": "c9",
+   "quote": "from 30 minutes to 10 minutes",
+   "note": "The shorter window the operators may elect by written confirmation. Never a requirement."
+  },
+  {
+   "phrase": "Two numbers",
+   "kind": "count",
+   "value": 2,
+   "slide": "caption",
+   "from_claims": [
+    "c3",
+    "c5"
+   ],
+   "note": "The two figures that look alike, 265.5 from the commission's finding on GOODNIT1 and 265 from its finding on the first data center. One claim id per figure counted."
+  },
+  {
+   "phrase": "30 minutes when ERCOT directs",
+   "kind": "duration",
+   "value": 30,
+   "slide": "caption",
+   "quoted_from": "c9",
+   "quote": "from 30 minutes to 10 minutes",
+   "note": "The same required window, in the caption."
+  }
+ ]
+}

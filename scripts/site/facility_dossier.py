@@ -69,6 +69,51 @@ PROSE_FIELDS = ("summary",)
 NAME_MAX_WORDS = 8
 NAME_BANNED = ":;"
 
+# A text fact may transcribe a street number, a project code or a date. It may not carry a
+# measurement, count, duration, order or proportion. These patterns stay structural. They look
+# for a quantity word beside the noun it measures and leave identifiers alone when the same word
+# is part of a company, phase, model, legal code or calendar phrase.
+CARDINAL = (r"zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|"
+            r"thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|"
+            r"thirty|forty|fifty|sixty|seventy|eighty|ninety|"
+            r"single|both|pair|dozens?")
+MULTIPLICITY = rf"(?:{CARDINAL}|several|multiple|hundreds?)"
+COUNT_NOUN = (r"years?|months?|roles?|renewals?|options?|reactors?|entities|tenants?|"
+              r"utility\s+feeds?|feeds?|"
+              r"siblings?|filings?|sites?|stories|story|warehouses?|offices?|data\s+halls?|"
+              r"data\s+centers?|servers?|workers?|jobs?|units?|buildings?|facilities?")
+QUANTITY_TEXT = re.compile(r"""
+    \b(?:
+        \d(?:[\d,]*\d)?(?:\.\d+)?\s*(?:million\s+)?
+        (?:MW|GW|MVA|kV|gpm|kWh|acres?|sq\s*ft|square\s+feet|miles?|feet|foot|
+           gallons?(?:\s+per\s+day)?|years?|months?|workers?|jobs?|buildings?|
+           units?|facilities?|roles?|options?|reactors?|entities|tenants?|utility\s+feeds?|
+           percent|exahashes?\s+per\s+second)
+      | (?:MULTIPLICITY)(?:\s+of)?[ -]+(?:\w+[ -]+){0,3}(?:COUNT_NOUN)
+      | no[ -]+(?:\w+[ -]+){0,3}(?:COUNT_NOUN)
+      | (?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth)\s+
+        (?:\w+[ -]+){0,2}(?:buildings?|facilities?)
+      | (?:majority|minority)
+      | (?:half|(?:a|one|three)\s+quarters?)
+      | near\s+zero\s+(?:water|power|energy|use|utilization|consumption)
+      | no\s+(?:daily\s+)?(?:makeup\s+process\s+water|cooling\s+water(?:\s+use)?|
+           independent\s+onsite\s+power\s+generation)
+    )\b
+""".replace("MULTIPLICITY", MULTIPLICITY).replace("COUNT_NOUN", COUNT_NOUN),
+    re.IGNORECASE | re.VERBOSE)
+
+
+def quantity_in_text(text: str):
+    """Return the first unstructured quantity match after narrow identifier exemptions."""
+    cleaned = re.sub(r"\bsingle purpose entit(?:y|ies)\b", "", str(text), flags=re.IGNORECASE)
+    cleaned = re.sub(
+        r"\b(?:first|second)\s+half\s+of\s+(?:the\s+year|(?:19|20)\d{2})\b",
+        "",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    return QUANTITY_TEXT.search(cleaned)
+
 
 # ---------------------------------------------------------------- formatting
 def commas(n) -> str:
@@ -95,30 +140,176 @@ def plain(v) -> str:
     return commas(v) if v == int(v) else f"{v:g}"
 
 
+def scaled(v) -> str:
+    """A large whole quantity in the words a reader can scan.
+
+    This is deliberately narrower than ``money``. Gallon ranges in public filings are often
+    stated in whole millions, while smaller daily flows need their exact thousands separator.
+    The formatter makes that decision from the value rather than from prose in the ledger.
+    """
+    v = float(v)
+    if abs(v) >= 1_000_000 and v % 1_000_000 == 0:
+        return f"{plain(v / 1_000_000)} million"
+    return plain(v)
+
+
+def counted(v, singular: str, plural: str | None = None, *, attributive=False) -> str:
+    """A count with grammar derived from the value.
+
+    ``attributive`` keeps the singular noun in phrases such as ``2 story data center``. The
+    number remains a field and the surrounding description remains ordinary text.
+    """
+    plural = plural or singular + "s"
+    word = singular if attributive or float(v) == 1 else plural
+    return f"{plain(v)} {word}"
+
+
+def ordered(v, noun: str) -> str:
+    n = int(v)
+    suffix = "th" if 11 <= n % 100 <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix} {noun}"
+
+
+# Every formatter accepts the attributive flag even when the unit cannot use it. One call shape
+# keeps scalar facts, ranges, alternatives and composite counts on the same rendering path.
 UNITS = {
-    "MW": lambda v: f"{plain(v)} MW",
-    "GW": lambda v: f"{plain(v)} GW",
-    "acres": lambda v: f"{plain(v)} acres",
-    "sqft": lambda v: f"{plain(v)} sq ft",
-    "usd": money,
-    "percent": lambda v: f"{plain(v)} percent",
-    "jobs": lambda v: f"{plain(v)} jobs",
-    "workers": lambda v: f"{plain(v)} workers",
-    "buildings": lambda v: f"{plain(v)} buildings",
-    "units": lambda v: f"{plain(v)} units",
-    "facilities": lambda v: f"{plain(v)} facilities",
+    "MW": lambda v, attributive=False: f"{plain(v)} MW",
+    "GW": lambda v, attributive=False: f"{plain(v)} GW",
+    "MVA": lambda v, attributive=False: f"{plain(v)} MVA",
+    "kV": lambda v, attributive=False: f"{plain(v)} kV",
+    "acres": lambda v, attributive=False: counted(v, "acre"),
+    "miles": lambda v, attributive=False: counted(v, "mile"),
+    "feet": lambda v, attributive=False: counted(v, "foot", "feet"),
+    "sqft": lambda v, attributive=False: f"{plain(v)} sq ft",
+    "usd": lambda v, attributive=False: money(v),
+    "percent": lambda v, attributive=False: f"{plain(v)} percent",
+    "jobs": lambda v, attributive=False: counted(v, "job"),
+    "workers": lambda v, attributive=False: counted(v, "worker"),
+    "buildings": lambda v, attributive=False: counted(v, "building", attributive=attributive),
+    "warehouses": lambda v, attributive=False: counted(v, "warehouse"),
+    "offices": lambda v, attributive=False: counted(v, "office"),
+    "stories": lambda v, attributive=False: counted(v, "story", "stories",
+                                                       attributive=attributive),
+    "data_halls": lambda v, attributive=False: counted(v, "data hall"),
+    "units": lambda v, attributive=False: counted(v, "unit"),
+    "facilities": lambda v, attributive=False: counted(v, "facility", "facilities"),
+    "roles": lambda v, attributive=False: counted(v, "role"),
+    "options": lambda v, attributive=False: counted(v, "option"),
+    "reactors": lambda v, attributive=False: counted(v, "reactor"),
+    "entities": lambda v, attributive=False: counted(v, "entity", "entities"),
+    "tenants": lambda v, attributive=False: counted(v, "tenant", attributive=attributive),
+    "utility_feeds": lambda v, attributive=False: counted(v, "utility feed"),
+    "building_order": lambda v, attributive=False: ordered(v, "building"),
+    "facility_order": lambda v, attributive=False: ordered(v, "facility"),
+    "years": lambda v, attributive=False: counted(v, "year"),
+    "months": lambda v, attributive=False: counted(v, "month"),
+    "gallons": lambda v, attributive=False: f"{scaled(v)} gallons",
+    "gallons_per_day": lambda v, attributive=False: f"{scaled(v)} gallons per day",
+    "gpm": lambda v, attributive=False: f"{plain(v)} gallons per minute",
+    "exahashes_per_second": lambda v, attributive=False: (
+        f"{plain(v)} exahashes per second"),
+    "usd_per_kwh": lambda v, attributive=False: f"${plain(v)} per kWh",
 }
+
+QUALIFIERS = {"about": "about", "less_than": "less than"}
+DATE_INTROS = {"for", "in"}
+SEASONS = {"spring", "summer", "fall", "winter"}
+
+
+def numeric_shape(fact: dict) -> str:
+    """Name the one structured quantity shape a fact carries, or return an empty string."""
+    shapes = []
+    if "value" in fact:
+        shapes.append("value")
+    if "minimum" in fact or "maximum" in fact:
+        shapes.append("range")
+    if "alternatives" in fact:
+        shapes.append("alternatives")
+    if "quantities" in fact:
+        shapes.append("quantities")
+    return shapes[0] if len(shapes) == 1 else ("mixed" if shapes else "")
+
+
+def one_quantity(value, unit: str, *, attributive=False) -> str:
+    fn = UNITS.get(unit)
+    if fn is None:
+        raise KeyError(f"no formatter for unit {unit!r}")
+    return fn(value, attributive)
+
+
+def date_context(value: dict) -> str:
+    """A month or season with its year, kept as data rather than a sentence fragment."""
+    year = int(value["year"])
+    if value.get("month") is not None:
+        return f"{MONTHS[int(value['month']) - 1]} {year}"
+    return f"{value['season']} {year}"
 
 
 def show(fact: dict) -> str:
     """The one place a fact becomes a string. `authorised()` calls this too, which is the whole
     reason a displayed figure and an authorised figure can never drift apart."""
-    if "value" in fact:
-        fn = UNITS.get(fact.get("unit"))
-        if fn is None:
-            raise KeyError(f"no formatter for unit {fact.get('unit')!r}")
-        return fn(fact["value"])
-    return str(fact.get("text", ""))
+    shape = numeric_shape(fact)
+    if not shape:
+        return str(fact.get("text", ""))
+    if shape == "mixed":
+        raise ValueError("a fact carries more than one numeric shape")
+
+    unit = fact.get("unit")
+    if shape == "value":
+        core = one_quantity(fact["value"], unit, attributive=bool(fact.get("attributive")))
+    elif shape == "range":
+        # Repeating MW is useful in a list of alternatives. A range reads more cleanly with
+        # the shared unit once, and this wave uses ranges only for gallons.
+        if unit == "gallons":
+            core = f"{scaled(fact['minimum'])} to {scaled(fact['maximum'])} gallons"
+        else:
+            core = (f"{one_quantity(fact['minimum'], unit)} to "
+                    f"{one_quantity(fact['maximum'], unit)}")
+    elif shape == "alternatives":
+        shown = [one_quantity(v, unit) for v in fact["alternatives"]]
+        core = shown[0] if len(shown) == 1 else ", ".join(shown[:-1]) + ", or " + shown[-1]
+    else:
+        shown = [one_quantity(q["value"], q["unit"],
+                              attributive=bool(q.get("attributive")))
+                 for q in fact["quantities"]]
+        core = shown[0] if len(shown) == 1 else ", ".join(shown[:-1]) + " and " + shown[-1]
+
+    qualifier = QUALIFIERS.get(fact.get("qualifier"), "")
+    bits = [str(fact.get("prefix") or "").strip(), qualifier, core,
+            str(fact.get("suffix") or "").strip()]
+    out = " ".join(x for x in bits if x)
+    if fact.get("date"):
+        out += f" {fact.get('date_intro', 'in')} {date_context(fact['date'])}"
+    return out
+
+
+REGISTRY_PUBLISHER = "Texas Comptroller of Public Accounts"
+REGISTRY_ROLE_LABELS = {
+    "Owner of record",
+    "Occupant of record",
+    "Operator of record",
+    "Additional owner of record",
+    "Additional occupant of record",
+    "Additional operator of record",
+}
+
+
+def fact_stamp(fact: dict, sources: dict[str, dict]) -> tuple[str, str]:
+    """Return the label and date that the reader should see beside a fact.
+
+    Registry parties are the parties on the latest reading. The effective date belongs to the
+    certification and cannot date those parties because the Comptroller edits rows in place.
+    Older dossiers stored the certification date in ``as_of`` on role facts. The renderer uses
+    the source reading date for that narrow class so it cannot turn a current row into history.
+    """
+    source = sources.get(fact.get("source")) or {}
+    if (fact.get("label") in REGISTRY_ROLE_LABELS
+            and source.get("publisher") == REGISTRY_PUBLISHER
+            and source.get("retrieved")):
+        return "registry read", str(source["retrieved"])
+    if fact.get("as_of"):
+        return "as of", str(fact["as_of"])
+    return "", ""
 
 
 # ---------------------------------------------------------------- loading
@@ -146,7 +337,7 @@ def name_problems(fct: dict) -> list[str]:
     The flag buys one thing, an exemption from the sentence rules, so it has to be impossible to
     point at a sentence. A name is text, it is short, it does not end a thought and it carries no
     clause punctuation."""
-    if "value" in fct:
+    if numeric_shape(fct):
         return ["declares proper_name on a computed value, where the formatter owns the string"]
     text = str(fct.get("text", "")).strip()
     out = []
@@ -160,6 +351,89 @@ def name_problems(fct: dict) -> list[str]:
     if len(text.split()) > NAME_MAX_WORDS:
         out.append(f"declares proper_name on {len(text.split())} words, "
                    f"and a name runs to {NAME_MAX_WORDS}")
+    return out
+
+
+def is_number(value) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def quantity_problems(fct: dict) -> list[str]:
+    """Validate one fact's quantity shape without confusing identifiers for measurements."""
+    out = []
+    shape = numeric_shape(fct)
+    label = fct.get("label")
+
+    if not shape:
+        text = str(fct.get("text") or "")
+        if text and quantity_in_text(text):
+            out.append(f"fact {label!r} carries a quantity in text, which must be structured")
+        return out
+    if shape == "mixed":
+        return [f"fact {label!r} carries more than one numeric shape"]
+    if fct.get("text"):
+        out.append(f"fact {label!r} mixes text with a structured quantity")
+
+    unit = fct.get("unit")
+    if shape in {"value", "range", "alternatives"} and unit not in UNITS:
+        out.append(f"fact {label!r} has unknown unit {unit!r}")
+
+    if shape == "value" and not is_number(fct.get("value")):
+        out.append(f"fact {label!r} has a non numeric value")
+    elif (shape == "value" and unit in {"building_order", "facility_order"}
+          and (float(fct["value"]) < 1 or not float(fct["value"]).is_integer())):
+        out.append(f"fact {label!r} has an order that is not a positive whole number")
+    elif shape == "range":
+        lo, hi = fct.get("minimum"), fct.get("maximum")
+        if not is_number(lo) or not is_number(hi):
+            out.append(f"fact {label!r} has a non numeric range bound")
+        elif lo > hi:
+            out.append(f"fact {label!r} has a range whose minimum exceeds its maximum")
+    elif shape == "alternatives":
+        values = fct.get("alternatives")
+        if not isinstance(values, list) or len(values) < 2 or not all(is_number(v) for v in values):
+            out.append(f"fact {label!r} needs at least two numeric alternatives")
+    elif shape == "quantities":
+        quantities = fct.get("quantities")
+        if not isinstance(quantities, list) or len(quantities) < 2:
+            out.append(f"fact {label!r} needs at least two component quantities")
+        else:
+            for i, quantity in enumerate(quantities):
+                if not isinstance(quantity, dict) or not is_number(quantity.get("value")):
+                    out.append(f"fact {label!r} component {i} has a non numeric value")
+                elif quantity.get("unit") not in UNITS:
+                    out.append(f"fact {label!r} component {i} has unknown unit "
+                               f"{quantity.get('unit')!r}")
+                if quantity.get("attributive") not in (None, True, False):
+                    out.append(f"fact {label!r} component {i} has a non boolean attributive flag")
+
+    if fct.get("qualifier") not in (None, *QUALIFIERS):
+        out.append(f"fact {label!r} has unknown qualifier {fct.get('qualifier')!r}")
+    if fct.get("attributive") not in (None, True, False):
+        out.append(f"fact {label!r} has a non boolean attributive flag")
+    for field in ("prefix", "suffix"):
+        if fct.get(field) is not None and not isinstance(fct[field], str):
+            out.append(f"fact {label!r} has a non text {field}")
+        elif fct.get(field) and quantity_in_text(fct[field]):
+            out.append(f"fact {label!r} carries another quantity in its {field}")
+
+    date = fct.get("date")
+    if date is not None:
+        if not isinstance(date, dict) or not isinstance(date.get("year"), int):
+            out.append(f"fact {label!r} has a date without a numeric year")
+        else:
+            month, season = date.get("month"), date.get("season")
+            if (month is None) == (season is None):
+                out.append(f"fact {label!r} date needs exactly one month or season")
+            elif month is not None and (not isinstance(month, int) or not 1 <= month <= 12):
+                out.append(f"fact {label!r} has an invalid date month")
+            elif season is not None and season not in SEASONS:
+                out.append(f"fact {label!r} has an invalid date season")
+        if fct.get("date_intro") not in DATE_INTROS:
+            out.append(f"fact {label!r} date needs a supported introduction")
+    elif fct.get("date_intro") is not None:
+        out.append(f"fact {label!r} has a date introduction without a date")
+
     return out
 
 
@@ -198,13 +472,8 @@ def problems(doc: dict, names: set[str]) -> list[str]:
             if fct.get("source") not in ids:
                 out.append(f"{where} fact {fct.get('label')!r} cites unknown source "
                            f"{fct.get('source')!r}")
-            if "value" in fct:
-                if fct.get("unit") not in UNITS:
-                    out.append(f"{where} fact {fct.get('label')!r} has unknown unit "
-                               f"{fct.get('unit')!r}")
-                elif not isinstance(fct["value"], (int, float)):
-                    out.append(f"{where} fact {fct.get('label')!r} has a non numeric value")
-            elif not fct.get("text"):
+            out.extend(f"{where} {why}" for why in quantity_problems(fct))
+            if not numeric_shape(fct) and not fct.get("text"):
                 out.append(f"{where} fact {fct.get('label')!r} has neither a value nor text")
             if fct.get("proper_name"):
                 out.extend(f"{where} fact {fct.get('label')!r} {why}"
@@ -264,14 +533,16 @@ def authorised(doc: dict) -> set[str]:
         return set(_NUMERAL.findall(str(text)))
 
     for d in doc.get("dossiers") or []:
+        sources = {s.get("id"): s for s in d.get("sources") or []}
         out |= tokens(d.get("name", ""))
         for fct in d.get("facts") or []:
-            if "value" in fct:
+            if numeric_shape(fct):
                 out.add(show(fct))
             else:
                 out |= tokens(fct.get("text", ""))
-            if fct.get("as_of"):
-                out.add(ordinal(fct["as_of"]))
+            _, stamp = fact_stamp(fct, sources)
+            if stamp:
+                out.add(ordinal(stamp))
         for note in d.get("notes") or []:
             if note.get("as_of"):
                 out.add(ordinal(note["as_of"]))
@@ -315,6 +586,7 @@ def panel(d: dict, *, heading: int = 3) -> str:
     drift into showing a reader different things about one facility."""
     h = f"h{heading}"
     src_n = {s["id"]: i + 1 for i, s in enumerate(d.get("sources") or [])}
+    sources_by_id = {s.get("id"): s for s in d.get("sources") or []}
 
     def cite(sid):
         n = src_n.get(sid)
@@ -323,8 +595,9 @@ def panel(d: dict, *, heading: int = 3) -> str:
 
     rows = []
     for f in d.get("facts") or []:
-        when = (f'<span class="dwhen">as of {e(ordinal(f["as_of"]))}</span>'
-                if f.get("as_of") else "")
+        stamp_label, stamp_date = fact_stamp(f, sources_by_id)
+        when = (f'<span class="dwhen">{e(stamp_label)} {e(ordinal(stamp_date))}</span>'
+                if stamp_date else "")
         # The declaration travels with the value, so the exemption is visible in the markup at
         # the point of use rather than asserted somewhere a reader of the page would not find it.
         mark = f' data-proper-name="{e(show(f))}"' if f.get("proper_name") else ""
@@ -398,6 +671,74 @@ def self_test() -> int:
           one(lambda d: d["notes"].__setitem__(0, {"text": "Google put up $1.4 billion.",
                                                    "sources": ["s1"]})) != [])
     check("a numeral in a gap fails", one(lambda d: d.update(gaps=["2 things unknown"])) != [])
+    quantity_texts = (
+        "Direct 345 kV transmission connection",
+        "State Highway 211 about 800 feet south of Lambda Drive",
+        "Approximately 11.6 exahashes per second",
+        "Between 1 million and 2 million gallons",
+        "One warehouse and one office",
+        "New two story data center with site improvements",
+        "Six data halls and a project substation",
+        "Amazon Data Services, Inc. in all three roles",
+        "Ten year triple net lease with Nscale",
+        "Two five year extension options",
+        "The fourth Red Oak building",
+        "Four AP1000 nuclear reactors under federal application",
+        "Both registry entities are IREN subsidiaries",
+        "Near zero water utilization efficiency",
+        "No daily makeup process water",
+        "Single utility feed",
+        "One prospective tenant",
+        "Majority clean with a minority of onsite gas",
+        "Thirty facilities are planned",
+        "Several buildings share the campus",
+        "Multiple data halls are planned",
+        "Hundreds of facilities could be built",
+        "No facilities are operating",
+        "Half of the campus load is reserved",
+        "A quarter of the buildings are operating",
+    )
+    missed = [text for text in quantity_texts
+              if not quantity_problems({"label": "Test", "text": text})]
+    check("quantity shaped text facts fail", not missed, missed)
+    check("a street number remains an identifier",
+          not quantity_problems({"label": "Address", "text": "5150 Rogers Road"}))
+    check("a project code remains an identifier",
+          not quantity_problems({"label": "Company", "text": "RPI AUS01-0H DC LLC"}))
+    check("a month and year remain a date",
+          not quantity_problems({"label": "Target", "text": "December 2028"}))
+    allowed_identifiers = (
+        "CyrusOne", "Cyrus One Allen", "AP1000", "LBB-01", "DFW III",
+        "Phase One", "Phase Two", "Freebird Phase One", "Sweetwater One",
+        "Horizons One through Four", "Tier 3", "N plus one", "Chapter 312",
+        "First quarter of 2027", "Second half of the year", "Second half of 2026",
+        "Triple net lease",
+        "A single purpose entity", "This one", "The one", "All parties",
+        "None is listed", "No final order", "No City supply", "Around the clock",
+    )
+    false_positives = [text for text in allowed_identifiers
+                       if quantity_problems({"label": "Identifier", "text": text})]
+    check("identifiers, calendar language and evidence absence stay prose",
+          not false_positives, false_positives)
+    check("a second quantity hidden in a prefix fails",
+          bool(quantity_problems({"label": "Buildings", "value": 2, "unit": "buildings",
+                                  "prefix": "and 99 buildings"})))
+    check("a second quantity hidden in a suffix fails",
+          bool(quantity_problems({"label": "Buildings", "value": 2, "unit": "buildings",
+                                  "suffix": "plus six facilities"})))
+    fragment_quantities = (
+        "with thirty facilities", "across several buildings", "beside multiple data halls",
+        "among hundreds of facilities", "with no facilities operating", "covering half the site",
+        "and a quarter of the campus",
+    )
+    missed_prefixes = [text for text in fragment_quantities
+                       if not quantity_problems({"label": "Buildings", "value": 2,
+                                                 "unit": "buildings", "prefix": text})]
+    missed_suffixes = [text for text in fragment_quantities
+                       if not quantity_problems({"label": "Buildings", "value": 2,
+                                                 "unit": "buildings", "suffix": text})]
+    check("expanded quantity forms fail in prefixes", not missed_prefixes, missed_prefixes)
+    check("expanded quantity forms fail in suffixes", not missed_suffixes, missed_suffixes)
 
     check("a fact citing an unknown source fails",
           one(lambda d: d["facts"][0].update(source="nope")) != [])
@@ -439,6 +780,39 @@ def self_test() -> int:
     check("a percentage keeps its decimal",
           show({"value": 50.1, "unit": "percent"}) == "50.1 percent",
           show({"value": 50.1, "unit": "percent"}))
+    check("an approximate rate keeps its qualifier",
+          show({"value": 11.6, "unit": "exahashes_per_second", "qualifier": "about"})
+          == "about 11.6 exahashes per second")
+    check("a less than daily flow keeps its bound and context",
+          show({"value": 4_000, "unit": "gallons_per_day", "qualifier": "less_than",
+                "suffix": "for drinking and toilets"})
+          == "less than 4,000 gallons per day for drinking and toilets")
+    check("a gallon range keeps both structured bounds",
+          show({"minimum": 1_000_000, "maximum": 2_000_000, "unit": "gallons"})
+          == "1 million to 2 million gallons")
+    check("alternatives keep every structured value",
+          show({"alternatives": [25, 45, 65], "unit": "MW"})
+          == "25 MW, 45 MW, or 65 MW")
+    check("component quantities keep their separate nouns",
+          show({"quantities": [{"value": 1, "unit": "warehouses"},
+                               {"value": 1, "unit": "offices"}]})
+          == "1 warehouse and 1 office")
+    check("an attributive count keeps its surrounding description",
+          show({"value": 2, "unit": "stories", "attributive": True,
+                "prefix": "New", "suffix": "data center with site improvements"})
+          == "New 2 story data center with site improvements")
+    check("a month target is assembled from structured date fields",
+          show({"value": 150, "unit": "MVA", "date": {"year": 2028, "month": 12},
+                "date_intro": "for"}) == "150 MVA for December 2028")
+    check("a season target is assembled from structured date fields",
+          show({"value": 2, "unit": "buildings", "suffix": "approved",
+                "date": {"year": 2026, "season": "winter"}, "date_intro": "in"})
+          == "2 buildings approved in winter 2026")
+    check("building order is computed",
+          show({"value": 4, "unit": "building_order"}) == "4th building")
+    check("a fractional building order fails",
+          bool(quantity_problems({"label": "Order", "value": 1.5,
+                                  "unit": "building_order"})))
 
     # The authorisation path is the display path.
     a = authorised({"dossiers": [good]})
@@ -467,6 +841,24 @@ def self_test() -> int:
                                   "source": "s1", "proper_name": True}]}))
     check("an undeclared value carries no marker",
           "data-proper-name" not in panel(good))
+
+    registry = {
+        **good,
+        "facts": [{"label": "Owner of record", "text": "Example Owner LLC",
+                   "source": "s1", "as_of": "2022-02-07"}],
+        "sources": [{"id": "s1", "url": "https://e.x", "title": "Data Center Lists",
+                     "publisher": REGISTRY_PUBLISHER, "rung": 1,
+                     "retrieved": "2026-08-27"}],
+    }
+    registry_html = panel(registry)
+    check("a registry role carries the reading date",
+          "registry read August 27th, 2026" in registry_html, registry_html)
+    check("a registry role does not turn certification into party history",
+          "as of February 7th, 2022" not in registry_html, registry_html)
+    dated_html = panel({**good, "facts": [{"label": "Company update", "text": "Current",
+                                            "source": "s1", "as_of": "2022-02-07"}]})
+    check("a non registry fact keeps its own date",
+          "as of February 7th, 2022" in dated_html, dated_html)
 
     passed = sum(checks)
     print(f"\nfacility_dossier self-test: {passed}/{len(checks)} passed")

@@ -40,7 +40,24 @@
     "This GRANTS NOTHING the ownership map does not already govern. The stamp is a label a commit",
     "wears, not a permission: writing 'upgrade' into it does not widen what may be written, it",
     "NARROWS it, and ownership_check and the pre-commit hook both read the map rather than the",
-    "stamp. A run that stamped itself 'human' would still be refused on every human-owned path."
+    "stamp. A run that stamped itself 'human' would still be refused on every human-owned path.",
+    "",
+    "AND IT PROMPTED ANYWAY, TWO RUNS RUNNING, WITH ALL FOUR STRINGS SITTING RIGHT THERE. The",
+    "owner was interrupted on 2026-08-27 and again on 2026-08-28 by the same stamp on the same",
+    "phase. Nothing above is wrong. What is wrong is the shape of the command the run sent.",
+    "",
+    "An allow entry matches a COMMAND, and `echo upgrade > .git/ACTOR && cat .git/ACTOR` is not",
+    "the command `echo upgrade > .git/ACTOR`. It is a compound, and no entry names it, so the",
+    "whole thing goes to approval. The run had chained a read onto the write to confirm the stamp",
+    "landed, which is a good instinct and the wrong way to spend it.",
+    "",
+    "THE CURE IS THE COMMAND SHAPE, NOT A LONGER LIST. Chaining is unbounded and an allow list",
+    "cannot enumerate it. **Write the actor stamp as its own command, never joined to another with",
+    "&& or ; or a pipe, and read it back as its own command if you need to.** The compound forms",
+    "below are belt and braces for the two shapes already seen; the rule is what actually holds.",
+    "Owner instruction, 2026-08-28, after being interrupted by this twice: an autonomous run does",
+    "not get to ask a human anything, so a run that shapes a command it knows will prompt has",
+    "broken the autonomy before the permission system ever sees it."
   ],
   "permissions": {
     "defaultMode": "bypassPermissions",
@@ -64,7 +81,13 @@
       "Bash(echo gridwatch > .git/ACTOR:*)",
       "Bash(echo ask > .git/ACTOR:*)",
       "Bash(cat .git/ACTOR)",
-      "Bash(cat .git/ACTOR:*)"
+      "Bash(cat .git/ACTOR:*)",
+      "Bash(echo daily > .git/ACTOR && cat .git/ACTOR)",
+      "Bash(echo upgrade > .git/ACTOR && cat .git/ACTOR)",
+      "Bash(echo gridwatch > .git/ACTOR && cat .git/ACTOR)",
+      "Bash(echo ask > .git/ACTOR && cat .git/ACTOR)",
+      "Bash(printf daily > .git/ACTOR)",
+      "Bash(printf upgrade > .git/ACTOR)"
     ]
   },
   "hooks": {

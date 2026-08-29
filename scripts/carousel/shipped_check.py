@@ -187,6 +187,23 @@ def g_nouns(d: Path):
     return fails
 
 
+def g_locators(d: Path):
+    """A named place in a document, on a frame, against the claims that deck declared.
+
+    Registered CURRENT for the reason written under `aggregates` below. Run into history it
+    finds 2026-08-22's caption saying `Item 33` and 2026-08-27's sources block calling a Brazos
+    County notice a `Section 312.207` notice, and both are real. Both are also published, and a
+    gate written on 2026-08-28 turning two shipped decks red is how a suite teaches a run to
+    scroll past it. They are notes, and the newest deck is fatal.
+    """
+    import locator_trace as m
+    claims = _load(d / "claims.json")
+    if not (claims and (d / "render_report.json").exists()):
+        return None
+    fails, _w, _s = m.check(m.frame_strings(d), claims)
+    return fails
+
+
 def g_shipped_fresh(d: Path):
     """Every artifact in a shipped run must describe the deck beside it.
 
@@ -395,6 +412,7 @@ GATES = [
     ("plan vs render", g_plan_render, CURRENT),
     ("absences", g_absences, HISTORY),
     ("nouns", g_nouns, HISTORY),
+    ("locators", g_locators, CURRENT),
     ("sources block", g_sources, HISTORY),
     # CURRENT, for the reason already written above about `aggregates`. Run into history this
     # finds 2026-08-19, whose assemble_report titles the PDF "Texas AI Docket, August 19th 2026"

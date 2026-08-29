@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -94,6 +95,23 @@ case "$code" in
 esac"""
 
 
+def bash_executable() -> str:
+    """Use Git Bash on Windows; the WSL launcher named bash corrupts native argv scripts."""
+    if sys.platform == "win32":
+        git = shutil.which("git")
+        if git:
+            git_exe = Path(git).resolve()
+            candidates = (
+                git_exe.parent / "bash.exe",
+                git_exe.parent.parent / "bin" / "bash.exe",
+                git_exe.parent.parent / "usr" / "bin" / "bash.exe",
+            )
+            for candidate in candidates:
+                if candidate.is_file():
+                    return str(candidate)
+    return shutil.which("bash") or "bash"
+
+
 def severity_problems(doc: dict) -> list[str]:
     """Run each page check step's own shell against a stubbed checker and grade the mapping.
 
@@ -117,7 +135,8 @@ def severity_problems(doc: dict) -> list[str]:
             # is tested under. A block that only works without -e is a block that breaks the
             # day somebody sets a shell explicitly.
             script = PAGECHECK.sub(f"( exit {code} )", st["run"])
-            r = subprocess.run(["bash", "-e", "-c", script], capture_output=True, text=True)
+            r = subprocess.run([bash_executable(), "-e", "-c", script],
+                               capture_output=True, text=True)
             if r.returncode != want:
                 out.append(f"{job}/{name!r} maps checker exit {code} to step exit "
                            f"{r.returncode}, and it must be {want}"

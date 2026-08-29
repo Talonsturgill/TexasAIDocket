@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to the Texas A
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2534344
 
-- Last checked: 2026-08-27
+- Last checked: 2026-08-28
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-22 · The National Science Foundation award record and the university's announcement both name the platform. The award record carries the start and end dates and the estimated total.
 - 2026-08-27 · Checked and unchanged. The award still stands and the platform is still described as open to researchers outside the university that hosts it.
+- 2026-08-28 · Checked and unchanged. The Texas A and M user facility award still stands with its stated term and start date. The agency still describes it as open access rather than reserved to the university.
 
 ## Evidence
 

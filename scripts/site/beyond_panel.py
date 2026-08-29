@@ -253,7 +253,8 @@ def _dossiers() -> dict:
 
 def _dossier_attrs(name: str) -> str:
     d = _dossiers().get(name)
-    return f' class="hasdoss" data-slug="{e(d["slug"])}"' if d else ""
+    return (f' class="hasdoss" data-slug="{e(d["slug"])}" data-researched="true"'
+            if d else ' data-researched="false"')
 
 
 def _facility_cell(name: str) -> str:
@@ -298,13 +299,20 @@ def registry_panel(f: dict) -> str:
         f'<span class="nwo">{"".join(f"<cite>{e(o)}</cite>" for o in x["occupants"][:1])}</span>'
         f'</li>' for x in d.get("newest") or [])
 
-    rows = "".join(
-        f'<tr{_dossier_attrs(x["name"])}><td>{_facility_cell(x["name"])}</td>'
-        f'<td><cite>{e(", ".join(x["owners"]))}</cite></td>'
-        f'<td><cite>{e(", ".join(x["occupants"]))}</cite></td>'
-        f'<td><cite>{e(", ".join(x["operators"]))}</cite></td>'
-        f'<td class="num"><time datetime="{e(x["effective"])}">'
-        f'{ordinal_date(x["effective"])}</time></td></tr>' for x in d.get("roster") or [])
+    roster = d.get("roster") or []
+    def roster_row(x: dict) -> str:
+        hay = " ".join([x["name"]] + x["owners"] + x["occupants"] + x["operators"]).lower()
+        return (
+            f'<tr{_dossier_attrs(x["name"])} data-registry-search="{e(hay)}">'
+            f'<td data-label="Facility">{_facility_cell(x["name"])}</td>'
+            f'<td data-label="Owner"><cite>{e(", ".join(x["owners"]))}</cite></td>'
+            f'<td data-label="Occupant"><cite>{e(", ".join(x["occupants"]))}</cite></td>'
+            f'<td data-label="Operator"><cite>{e(", ".join(x["operators"]))}</cite></td>'
+            f'<td data-label="Took effect" class="num">'
+            f'<time datetime="{e(x["effective"])}">{ordinal_date(x["effective"])}</time>'
+            f'</td></tr>')
+
+    rows = "".join(roster_row(x) for x in roster)
 
     return f"""<section class="beyond" data-reveal>
   <h2>Who is here</h2>
@@ -332,13 +340,26 @@ def registry_panel(f: dict) -> str:
   <ul class="newest" data-prose="data">{newest}</ul>
 
   <h3>Every registered facility</h3>
-  <p class="qnote rthint">Scroll the table sideways to reach the operator and the date.
+  <p class="qnote">Search by a facility name or any company in the state filing.
   A facility whose name is a link has a researched dossier behind it.
   <a href="../company/">Read the registry by company instead</a>,
   see <a href="../registry-changes/">what the state has changed</a> since anyone started looking,
   or read <a href="../construction/">what the builders told a different agency</a>.</p>
+  <div class="rtools" id="rtools" role="search">
+    <label class="rfind" for="rsearch"><span>Find a facility</span>
+      <input id="rsearch" type="search" autocomplete="off" placeholder="Facility or company"
+        aria-controls="registry-roster"></label>
+    <label class="rcheck"><input id="rresearched" type="checkbox"
+      aria-controls="registry-roster"> <span>Researched only</span></label>
+    <p class="rresult" id="rresult" aria-live="polite">
+      <strong class="num" id="rcount">{n0(len(roster))}</strong> shown</p>
+    <button class="rclear" id="rclear" type="button" disabled>Clear</button>
+  </div>
+  <p class="qnote rthint">On a phone every facility becomes a card, so the page remains the
+  only vertical scroll.</p>
+  <p class="rempty" id="rempty" hidden>No facility matches that search.</p>
   <div class="rtfield"><div class="rtwrap">
-  <table class="rtable" data-prose="data">
+  <table class="rtable" id="registry-roster" data-prose="data">
     <colgroup><col class="cf"><col class="co"><col class="cu"><col class="cp"><col class="cd">
     </colgroup>
     <thead><tr><th>Facility</th><th>Owner</th><th>Occupant</th><th>Operator</th>
@@ -346,8 +367,56 @@ def registry_panel(f: dict) -> str:
     <tbody>{rows}</tbody>
   </table>
   </div></div>
+  {_roster_filter()}
   {_dossier_dialog()}
 </section>"""
+
+
+def _roster_filter() -> str:
+    """Progressive filtering for the full registry.
+
+    The controls stay hidden until this script runs. With script unavailable the complete table
+    remains in the document and no dead control is presented to the reader.
+    """
+    return """<script>
+(function () {
+  var tools = document.getElementById('rtools');
+  var search = document.getElementById('rsearch');
+  var researched = document.getElementById('rresearched');
+  var clear = document.getElementById('rclear');
+  var count = document.getElementById('rcount');
+  var empty = document.getElementById('rempty');
+  var table = document.getElementById('registry-roster');
+  if (!tools || !search || !researched || !clear || !count || !empty || !table) return;
+  var rows = [].slice.call(table.querySelectorAll('tbody tr'));
+
+  function apply() {
+    var q = search.value.trim().toLowerCase();
+    var only = researched.checked;
+    var shown = 0;
+    rows.forEach(function (row) {
+      var match = (!q || row.getAttribute('data-registry-search').indexOf(q) !== -1) &&
+        (!only || row.getAttribute('data-researched') === 'true');
+      row.hidden = !match;
+      if (match) shown++;
+    });
+    count.textContent = String(shown);
+    empty.hidden = shown !== 0;
+    clear.disabled = !q && !only;
+  }
+
+  search.addEventListener('input', apply);
+  researched.addEventListener('change', apply);
+  clear.addEventListener('click', function () {
+    search.value = '';
+    researched.checked = false;
+    apply();
+    search.focus();
+  });
+  tools.classList.add('live');
+  apply();
+})();
+</script>"""
 
 
 
@@ -617,8 +686,12 @@ def self_test() -> int:
     check("...and two genuinely different filers are not merged",
           {x["name"] for x in r["top"]} >= {"Vantage Data Centers",
                                             "Vantage Data Centers Management"})
-    check("the roster says how to reach the columns a narrow screen hides",
-          'class="qnote rthint"' in html and "sideways" in html)
+    check("the roster explains the phone card layout",
+          'class="qnote rthint"' in html and "phone" in html and "card" in html
+          and "only vertical scroll" in html)
+    check("...and every phone card field carries its visible label",
+          all(f'data-label="{label}"' in html for label in
+              ("Facility", "Owner", "Occupant", "Operator", "Took effect")))
     check("...and the label shown is a spelling the registry actually uses",
           all(any(x["name"] in (fac.get("occupants") or []) for fac in fixture)
               for x in r["top"]))
