@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality had scheduled a public meeting for
 - Public access: Public meeting
 - Take part: https://www.tceq.texas.gov/agency/decisions/hearings/public-meeting-fermi-equipment-holdco-llc-183462-psdtx1704-and-ghgpsdtx271
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The cancelation notice still stands and still says the meeting will be rescheduled for a later date. No replacement date appears, so the date a Texan in Panhandle could speak is still unset, and the originally scheduled August 24th date is now two days away.
 - 2026-08-23 · Checked and unchanged. The cancelation notice for the Carson County meeting on Fermi Equipment Holdco's air permits still stands and still says the meeting will be rescheduled for a later date. No new date is posted, and the originally scheduled evening is tomorrow.
 - 2026-08-26 · Still canceled and still not rescheduled. The cancellation has come off the agency's calendar of upcoming meetings, which lists what is ahead rather than what was called off. The notice itself is still published on the case's own page. No replacement date is anywhere on the record.
+- 2026-08-29 · Checked and unchanged. The cancellation of the Carson County public meeting still stands on the agency's own page for the case. The permit application it was called for is still live, and no replacement meeting is set.
 
 ## Evidence
 

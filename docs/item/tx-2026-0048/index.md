@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-20 · The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street. That agenda is posted final. None of its items names an automated license plate reader, Flock or a camera, and public comment there may be general in nature. The proposition itself is on the November 3rd ballot and the published wording says the result does not bind the council.
 - 2026-08-23 · Checked and unchanged. The council's legislative record still shows Ordinance No. 2026-27 approved on first and final reading on August 11th and carries no action after it. The special election is still set for November 3rd and the proposition still carries the word the council voted to add.
 - 2026-08-26 · Checked and unchanged. The city's own notice still carries the ballot wording, which still opens by telling the voter the result is a nonbinding statement of preference. The election is still set for November 3rd.
+- 2026-08-29 · The August 25th meeting has been held and the city's record of it now reads as minutes rather than as a notice. No item on it names an automated license plate reader. The special election is still set for November 3rd and the published wording still tells the voter the result does not bind the council.
 
 ## Evidence
 
@@ -53,9 +54,9 @@ Source (primary_official): https://webapi.legistar.com/v1/leaguecity/matters/138
 
 Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318
 
-### The council's next regular meeting is August 25th, 2026 at 6:00 PM in Council Chambers at 200 West Walker Street, and that agenda is posted final with no item naming automated license plate readers.
+### The August 25th meeting was held, its record names no automated license plate reader item, and the city's calendar carries no council meeting after it.
 
-> The physical meeting space shall be the following location:  Council Chambers - 200 West Walker Street, League City, Texas.
+> The City Council of the City of League City, Texas, met in a regular meeting in the Council Chambers at 200 West Walker Street on the above date at 6:00 p.m.
 
 Source (primary_official): https://webapi.legistar.com/v1/leaguecity/events/2222/eventitems
 

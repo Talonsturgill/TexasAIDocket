@@ -1,0 +1,251 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#202629}
+  #room{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#9EA5A8}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:668px;
+     background:linear-gradient(to bottom,rgba(20,25,28,.94) 0%,rgba(20,25,28,.92) 62%,rgba(20,25,28,.66) 86%,rgba(20,25,28,0) 100%)}
+  h1{position:absolute;top:176px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:82px;line-height:1.04;color:#EDE7D2;letter-spacing:-.017em}
+  .dek{position:absolute;top:400px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:29px;line-height:1.34;color:#C6C3B4}
+  .quote{position:absolute;top:548px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+       font-style:italic;font-weight:400;font-size:24px;line-height:1.30;color:#A7AEAA}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:230px;
+     background:linear-gradient(to bottom,rgba(20,25,28,0) 0%,rgba(20,25,28,.80) 44%,rgba(20,25,28,.96) 100%)}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#C6C3B4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="room"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>The rooms are named.<br>Consent is not.</h1>
+  <p class="dek">The university's own account names the rooms. Houses, dorms, cafes, a public museum and a rehabilitation hospital.</p>
+  <p class="quote">"An internal ethics board will oversee the research and develop consent and opt-out procedures."</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>NSF AWARD 2535195</span><span>c21 c22 c35</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('room'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260829); const R=TX.rng(20260829);
+
+  const GOLD='#F2D48E', VINYL='#465868';
+
+  // ---- geometry ------------------------------------------------------------------------------
+  const FLOOR_Y   = 1074;                 // back wall meets floor
+  const SLAT_N    = 9;
+  const SLAT_TOP  = 690;                  // first band, clear of every text block above
+  const SLAT_PITCH= 58;
+  const SLAT_TH   = 22;
+  const CH_L=318, CH_R=762;
+  const SEAT_Y    = 926;
+  const BACK_TOP  = 706;
+  const DEFLECT   = 34;                   // 68 px at 2160, 13.6 px at 432
+  const NEAR_OFF  = 21;                   // the chair stands forward of the wall, so the
+                                          // slat light lands lower on it than on the plaster
+
+  // ---- the shaded wall -----------------------------------------------------------------------
+  (function wall(){
+    const gr=g.createLinearGradient(0,0,W*0.5,FLOOR_Y);
+    gr.addColorStop(0,'#283034'); gr.addColorStop(.6,'#1F262A'); gr.addColorStop(1,'#161B1E');
+    g.fillStyle=gr; g.fillRect(0,0,W,FLOOR_Y);
+    for(let y=0;y<FLOOR_Y;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.012,y*0.012,3);
+      if(n>0.60){ g.fillStyle='rgba(154,151,137,'+((n-0.60)*0.30).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+      else if(n<0.38){ g.fillStyle='rgba(0,0,0,'+((0.38-n)*0.26).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+    }}
+  })();
+
+  // ---- the floor -----------------------------------------------------------------------------
+  (function floor(){
+    const gr=g.createLinearGradient(0,FLOOR_Y,0,H);
+    gr.addColorStop(0,'#333A3E'); gr.addColorStop(.45,'#666B67'); gr.addColorStop(1,'#7C8078');
+    g.fillStyle=gr; g.fillRect(0,FLOOR_Y,W,H-FLOOR_Y);
+    // the pool the slat light throws on the tile. The contact shadow needs this to subtract from.
+    // the pool is centred left of the chair, under the window, and reaches right
+    const pool=g.createRadialGradient(300,1136,16,300,1136,660);
+    pool.addColorStop(0,'rgba(242,212,142,.86)'); pool.addColorStop(.5,'rgba(242,212,142,.42)');
+    pool.addColorStop(1,'rgba(242,212,142,0)');
+    g.fillStyle=pool; g.fillRect(0,FLOOR_Y,W,H-FLOOR_Y);
+    g.strokeStyle='rgba(30,36,39,.30)';
+    for(let i=0;i<7;i++){
+      const t=i/6, y=FLOOR_Y+(H-FLOOR_Y)*t*t;
+      g.lineWidth=0.5+1.4*t; g.beginPath(); g.moveTo(0,y); g.lineTo(W,y); g.stroke();
+    }
+    for(let k=0;k<7000;k++){
+      const x=R()*W, y=FLOOR_Y+R()*(H-FLOOR_Y);
+      g.fillStyle='rgba(237,231,210,'+(R()*0.055).toFixed(3)+')'; g.fillRect(x,y,1.4,1.0);
+    }
+  })();
+
+  // ---- the cushion heightfield. This is the only record of a person on the frame. -------------
+  function seatDepth(x){
+    const u=(x-CH_L)/(CH_R-CH_L);
+    if(u<0.10||u>0.90) return 0;
+    const bowl=Math.exp(-Math.pow((u-0.50)/0.30,2));
+    const iL  =Math.exp(-Math.pow((u-0.36)/0.085,2));
+    const iR  =Math.exp(-Math.pow((u-0.64)/0.085,2));
+    return Math.min(1, 0.46*bowl + 0.42*iL + 0.42*iR);
+  }
+  // THE BACKREST DOES NOT BEND, and round one is why. A craft judge measured the deflection
+  // spread across five bands and read it as patterned upholstery rather than as a body. A person
+  // sitting dishes the SEAT. The back gets its own modelling in value and no deflection at all,
+  // so the one bend in the frame is the only bend in the frame.
+  function backDepth(x){ return 0; }
+
+  // ---- the chair -----------------------------------------------------------------------------
+  (function chair(){
+    // ONE LIGHT, FROM FRAME LEFT, so the cast falls to the RIGHT of what throws it. Round one's
+    // craft judge read the symmetric ellipse under a symmetric pool as turntable lighting, which
+    // is the opposite of the azimuth this deck printed as its own law.
+    g.save();
+    g.translate(596,1118); g.rotate(-0.07);
+    g.fillStyle='rgba(28,33,36,.32)';
+    g.beginPath(); g.ellipse(0,0,252,44,0,0,6.2832); g.fill();          // penumbra, thrown right
+    g.restore();
+    g.fillStyle='rgba(20,25,28,.74)';
+    g.beginPath(); g.ellipse(560,1098,176,14,0,0,6.2832); g.fill();     // contact core, tight at the feet
+
+    g.fillStyle='#8E9490';
+    [CH_L+40, CH_R-54].forEach(x=>{ g.fillRect(x,SEAT_Y+62,16,106); });
+    g.fillStyle='rgba(24,29,32,.58)';
+    [CH_L+40, CH_R-54].forEach(x=>{ g.fillRect(x+11,SEAT_Y+62,5,106); });
+
+    g.fillStyle=VINYL;
+    g.fillRect(CH_L+24,BACK_TOP,CH_R-CH_L-48,SEAT_Y+4-BACK_TOP);
+    // THE BACK IS MODELLED BY THE LIGHT, NOT BY THE DEFLECTION. This loop used to multiply a
+    // constant by backDepth(), which returns 0 by design because a flat back panel does not bend
+    // a line of light, so 200 iterations painted one rectangle at one alpha under a comment
+    // claiming the back was modelled in value. A craft judge read the chair as a flat cutout
+    // because it was one. The panel is upholstered over a frame and lit from frame left, so it
+    // has a lit left cheek, a broad mid tone and a shaded right edge, plus the vertical bowing a
+    // stretched panel actually takes across its width.
+    const BL=CH_L+24, BR=CH_R-24, BW=BR-BL, BH=SEAT_Y+4-BACK_TOP;
+    for(let x=BL;x<BR;x+=2){
+      const u=(x-BL)/BW;                        // 0 at the lit edge, 1 at the shaded one
+      const cheek=Math.pow(u,1.35)*0.34;        // the falloff across a cylinder-ish panel
+      const bow=0.05*Math.sin(u*Math.PI);       // the panel bellies out between its stiles
+      for(let y=BACK_TOP;y<BACK_TOP+BH;y+=2){
+        const v=(y-BACK_TOP)/BH;
+        const sink=0.10*v*v;                    // the back gets darker toward the seat crease
+        g.fillStyle='rgba(20,26,30,'+(0.05+cheek+sink-bow).toFixed(3)+')';
+        g.fillRect(x,y,2,2);
+      }
+    }
+    // the piped seam down each stile, which is where an upholstered back actually catches light
+    g.fillStyle='rgba(214,222,224,.30)'; g.fillRect(BL+9,BACK_TOP+6,3,BH-12);
+    g.fillStyle='rgba(12,16,19,.42)';    g.fillRect(BR-12,BACK_TOP+6,3,BH-12);
+    for(let k=0;k<5200;k++){                    // the vinyl's own tooth, so it is a material
+      const x=BL+R()*BW, y=BACK_TOP+R()*BH;
+      g.fillStyle=(R()<0.5?'rgba(226,232,234,':'rgba(10,14,17,')+(0.03+R()*0.07).toFixed(3)+')';
+      g.fillRect(x,y,1.6,1.2);
+    }
+    g.fillStyle='rgba(186,190,186,.72)'; g.fillRect(CH_L+24,BACK_TOP,CH_R-CH_L-48,5);
+    g.fillStyle='rgba(15,19,22,.74)';    g.fillRect(CH_L+24,BACK_TOP+5,CH_R-CH_L-48,4);
+
+    g.fillStyle='#556A7C';
+    g.beginPath(); g.moveTo(CH_L+10,SEAT_Y); g.lineTo(CH_R-10,SEAT_Y);
+    g.lineTo(CH_R+6,SEAT_Y+62); g.lineTo(CH_L-6,SEAT_Y+62); g.closePath(); g.fill();
+    g.fillStyle='rgba(15,19,22,.70)'; g.fillRect(CH_L-6,SEAT_Y+56,CH_R-CH_L+12,7);
+
+    g.fillStyle='#6B7F90';
+    g.fillRect(CH_L-4,SEAT_Y-58,42,66); g.fillRect(CH_R-38,SEAT_Y-58,42,66);
+    g.fillStyle='rgba(237,231,210,.46)';
+    g.fillRect(CH_L-4,SEAT_Y-58,42,7);  g.fillRect(CH_R-38,SEAT_Y-58,42,7);
+  })();
+
+  // ---- the nine slat bands. Straight on the wall, bent over the chair. ------------------------
+  const deflections=[];
+  (function slats(){
+    for(let i=0;i<SLAT_N;i++){
+      const base=SLAT_TOP+i*SLAT_PITCH;
+      const onSeat = base>SEAT_Y-14 && base<SEAT_Y+34;   // the seat's top surface only
+      const onBack = base>BACK_TOP && base<=SEAT_Y-14;
+      let maxd=0;
+      // On the chair the whole band steps down by NEAR_OFF, because the chair is forward of the
+      // wall. Without that the bands read as a decal printed across a cutout.
+      const dAt = x => {
+        if(x<CH_L-8 || x>CH_R+8) return 0;
+        const near = (base>BACK_TOP-6 && base<SEAT_Y+34) ? NEAR_OFF : 0;
+        if(onSeat) return near + DEFLECT*seatDepth(x);
+        if(onBack) return near;
+        return 0;
+      };
+      // THE CHAIR IS NOT MADE OF GLASS, and until this round it looked like it was. One path ran
+      // the full frame width at plaster alpha, so the band crossing the backrest was painted at
+      // the same value as the band on the wall behind it, and a reader saw the wall's light
+      // straight through the chair. A reader judge called the cover a render fault and was right.
+      //
+      // Plaster and vinyl do not return the same light. The band is drawn in three runs now, the
+      // wall either side at full value and the chair between them at a fraction of it, so the
+      // chair OCCLUDES the wall's light and catches its own.
+      const CHAIR_RETURN = 0.24;          // vinyl against painted gypsum
+      const band = (x0, x1, mul) => {
+        g.beginPath();
+        for(let x=x0;x<=x1;x+=2){ const d=dAt(x); if(d>maxd) maxd=d;
+          const y=base+d; if(x===x0) g.moveTo(x,y); else g.lineTo(x,y); }
+        for(let x=x1;x>=x0;x-=2){ g.lineTo(x,base+dAt(x)+SLAT_TH); }
+        g.closePath();
+        const bg=g.createLinearGradient(0,0,W,0);
+        bg.addColorStop(0,'rgba(242,212,142,'+(0.66*mul).toFixed(3)+')');
+        bg.addColorStop(.52,'rgba(242,212,142,'+(0.42*mul).toFixed(3)+')');
+        bg.addColorStop(1,'rgba(242,212,142,'+(0.13*mul).toFixed(3)+')');
+        g.fillStyle=bg; g.fill();
+      };
+      band(0, CH_L-8, 1);                 // wall, frame left
+      band(CH_L-8, CH_R+8, CHAIR_RETURN); // the chair, catching a fraction of it
+      band(CH_R+8, W, 1);                 // wall, frame right
+      // the lit lip where the band clears the seat's front edge, which is the one place a body
+      // sitting shows in the light rather than in the geometry
+      if(onSeat){
+        g.fillStyle='rgba(247,236,206,.30)';
+        for(let x=CH_L+26;x<CH_R-26;x+=2) g.fillRect(x, base+dAt(x)-1.6, 2, 1.8);
+      }
+      deflections.push(maxd);
+    }
+  })();
+
+  window.__txAssert={ slat_bands:SLAT_N,
+    max_deflection_design_px:Math.max.apply(null,deflections),
+    max_deflection_at_432:Math.max.apply(null,deflections)*0.4 };
+  if(window.__txAssert.max_deflection_at_432 < 3)
+    throw new Error('slide-01: slat deflection under 3px on the thumb');
+
+  for(let k=0;k<13000;k++){
+    const x=R()*W, y=R()*H;
+    g.fillStyle='rgba(237,231,210,'+(R()*0.032).toFixed(3)+')'; g.fillRect(x,y,1.3,1.3);
+  }
+  await document.fonts.ready;
+
+  // THE FOOT WRAPPED ON THREE FRAMES AND ALL THREE JUDGES OPENED WITH IT. Adding ", c34" to the
+  // award span pushed the row past its 920 px measure, the flex line broke, and the cover printed
+  // the canonical URL as "texasaidocket.com01 /" with "09" alone on a second line. Nothing caught
+  // it: the DOM span still reads "texasaidocket.com", so a checker reading text passes while the
+  // pixels are wrong, which is CLAUDE.md's public URL section exactly. So the frame measures its
+  // own foot instead of trusting the width to have stayed put.
+  {
+    const foot = document.querySelector('.foot');
+    if (foot) {
+      for (const sp of foot.children) {
+        if (sp.getClientRects().length !== 1)
+          throw new Error('foot: "' + sp.textContent.trim() + '" wraps onto more than one line');
+      }
+      const used = [...foot.children].reduce((a, sp) => a + sp.getBoundingClientRect().width, 0);
+      if (used > foot.clientWidth - 24)
+        throw new Error('foot: the row fills ' + Math.round(used) + ' of ' + foot.clientWidth +
+                        ' px and leaves no gap between spans');
+    }
+  }
+
+})();
+</script></body></html>

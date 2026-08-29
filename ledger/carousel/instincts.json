@@ -338,6 +338,46 @@
       "evidence": "Deck no. 10 printed six locators and none traced. All six were true when checked against the fetched order, which is why nothing caught them: a figure passes compute.quoted(), and a locator reaches a frame by being typed into slide HTML with nothing in between.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "text-is-not-evidence",
+      "learned": "2026-08-29",
+      "instinct": "A claim's text field is the run's own prose and only its quote is evidence, so a frame may print nothing the quote does not carry.",
+      "evidence": "Round 3 hard failed frame 8 for printing JOYDEEP BISWAS, THE CENTER'S DIRECTOR. Both halves came from the text fields of c24 and c25, which read the fetched page correctly, and neither quote contains the word director. The frame was repaired to attribute to the document. Nothing mechanical caught it, because both ids resolved and both claims existed.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-checker-reading-text-cannot-see-pixels",
+      "learned": "2026-08-29",
+      "instinct": "When a rule is about what a reader SEES, assert it on the laid out geometry and never on the DOM string, because the string can be right while the render is wrong.",
+      "evidence": "Adding one citation to the foot pushed the row past its 920 px measure, the flex line broke, and the cover printed texasaidocket.com01 with the counter on a second line. All three judges opened with it. coherence_check reads the span and found texasaidocket.com, so it passed. Every frame now measures its own foot spans for wrap and gap.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-guarded-append-that-skips-is-silent",
+      "learned": "2026-08-29",
+      "instinct": "An idempotence guard on an append must fail loudly when it skips, because a guard that quietly does nothing turns a repair into a false report.",
+      "evidence": "The award number claim was appended under if c34 not in ids. c34 already existed as the NSF release claim, the write was skipped, and six frames spent a round citing a document that does not contain the number. Worse than the bug, the run reported the repair as done. The id is now read off the file with max plus one.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-plate-deletes-the-frame-it-is-laid-on",
+      "learned": "2026-08-29",
+      "instinct": "Answer a contrast or strikethrough failure by darkening the art under the type in place, never by laying an opaque rectangle or a full strength wash over it.",
+      "evidence": "Four plates went on in two rounds to answer QA findings. Slide 5 became 48 percent stacked black bars whose dek and foot plates shared a left origin and a right edge, rebuilding the shared axis that frame's law forbids. The replacement wash on slide 9 then covered the spill wedge and the two part contact shadow, so the cure reproduced the plate.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-declared-dimension-that-is-never-used-is-a-lie",
+      "learned": "2026-08-29",
+      "instinct": "If a frame declares a real world dimension, derive the scale from it, because a typed pixel beside an unused constant is code describing work it does not do.",
+      "evidence": "Frame 6 typed PX_PER_IN 6.0 and RAIL_Y 640 against BASE_Y 1188, putting a handrail 91 inches above the floor, while RAIL_H_IN 34 sat declared and exported into the assert bag and used nowhere. A craft judge found it in the source twice. The scale is derived now and the rail diameter, the cove and the bracket count all fall out of it.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

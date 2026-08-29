@@ -204,6 +204,25 @@ def g_locators(d: Path):
     return fails
 
 
+def g_numerals(d: Path):
+    """A numeral on a frame, against the claims that frame cites.
+
+    Registered CURRENT for the reason written under `aggregates` above, and the measurement is
+    the argument. Run into history it finds fifteen across eight decks and every one is real:
+    2026-08-22 prints PROJECT 58482 on three frames while fourteen claims carry that number and
+    none of the three frames declares one of them, 2026-08-28 prints 265.5 MW citing five claims
+    with the figure in a sixth, and 2026-08-28 prints 100 MW, which no claim in that run carries
+    at all. They are also published, and a gate written on 2026-08-29 turning eight shipped decks
+    red is how a suite teaches a run to scroll past it. Notes for those, fatal for the newest.
+    """
+    import numeral_trace as m
+    cp, cl = _load(d / "copy.json"), _load(d / "claims.json")
+    if not (cp and cl and (d / "render_report.json").exists()):
+        return None
+    probs, _stats = m.check(cp, _load(d / "render_report.json"), cl, _load(d / "aggregates.json"))
+    return probs
+
+
 def g_shipped_fresh(d: Path):
     """Every artifact in a shipped run must describe the deck beside it.
 
@@ -413,6 +432,7 @@ GATES = [
     ("absences", g_absences, HISTORY),
     ("nouns", g_nouns, HISTORY),
     ("locators", g_locators, CURRENT),
+    ("numerals", g_numerals, CURRENT),
     ("sources block", g_sources, HISTORY),
     # CURRENT, for the reason already written above about `aggregates`. Run into history this
     # finds 2026-08-19, whose assemble_report titles the PDF "Texas AI Docket, August 19th 2026"

@@ -289,9 +289,103 @@ def check_site_line(slides_dir: Path) -> tuple:
     return bad, []
 
 
+# ------------------------------------------------------------------ the constellation register
+#
+# THE DEFECT (2026-08-29, deck no. 11). `config/brand.yaml` lists seven elements under
+# `visual.constellation` and calls them FIXED on every deck. Two of the panel's judges found,
+# independently, that the five-pointed star mark and the county-first coordinates footer appeared
+# on none of the nine frames. Nothing in the build could have caught it: `check_site_line` above
+# asserts ONE of the seven against the config, and nothing asserts the other six or notices that
+# they are unasserted.
+#
+# The fault is not that six rules were unenforced. It is that NOTHING SAID SO. A file that carries
+# one enforced element beside six silent ones reads, to anyone auditing it, exactly like a file
+# that enforces the constellation. GATE_LESSONS 49 is the entry for this: a checker covering four
+# tenths of what it appears to cover is more dangerous than no checker, because the missing six
+# produce confidence rather than doubt.
+#
+# So this does not check the deck. It checks the COVERAGE, against `config/carousel/constellation.yaml`,
+# and it goes red on five states:
+#
+#   1. brand.yaml names a fixed element the register does not
+#   2. the register names an element brand.yaml no longer has
+#   3. an entry takes neither route
+#   4. an entry's `enforced_by` names a function that does not exist in this module
+#   5. an `unenforced` entry carries no reason or no date
+#
+# State 1 is the one it exists for: brand.yaml grows an eighth fixed element, nobody decides what
+# to do about it, and the build says so on the next run instead of two judges saying so in round 5.
+# State 4 is GATE_LESSONS 56, a marker check being only as good as its marker: `enforced_by` is a
+# name somebody typed, and a name that resolves to nothing is a promise with no code behind it.
+REGISTER = Path(__file__).resolve().parents[2] / "config" / "carousel" / "constellation.yaml"
+
+
+def check_constellation() -> tuple:
+    """Every element brand.yaml fixes is either enforced here or recorded as a dated debt."""
+    try:
+        import yaml  # type: ignore
+    except ImportError:
+        # NEVER A SKIP. A check that cannot run is the opposite of a check that is not needed,
+        # and they must not share a report line. GATE_LESSONS 37.
+        return (["the constellation register needs PyYAML and it is not installed, so the "
+                 "coverage of brand.yaml's fixed elements was NOT checked"], [])
+    if not BRAND_YAML.exists():
+        return ([f"{BRAND_YAML} is missing, so nothing could be compared"], [])
+    if not REGISTER.exists():
+        return ([f"{REGISTER} is missing. It is the record of which of brand.yaml's fixed "
+                 f"constellation elements this repo actually enforces"], [])
+    brand = yaml.safe_load(BRAND_YAML.read_text(encoding="utf-8")) or {}
+    fixed = ((brand.get("visual") or {}).get("constellation") or {})
+    reg = (yaml.safe_load(REGISTER.read_text(encoding="utf-8")) or {}).get("elements") or {}
+    if not fixed:
+        return (["brand.yaml names no visual.constellation elements, so this gate is reading the "
+                 "wrong file rather than finding nothing"], [])
+
+    fails = []
+    for key in sorted(set(fixed) - set(reg)):
+        fails.append(
+            f"config/brand.yaml fixes '{key}' on every deck and config/carousel/constellation.yaml "
+            f"does not mention it, so nothing in this repo either enforces it or admits that it "
+            f"does not. That is how the star mark and the coordinates footer reached round 5 of "
+            f"2026-08-29 with two judges finding them by eye. Add an entry with enforced_by or "
+            f"unenforced")
+    for key in sorted(set(reg) - set(fixed)):
+        fails.append(
+            f"config/carousel/constellation.yaml carries '{key}' and brand.yaml no longer fixes "
+            f"it. A register entry for a rule that was repealed reads exactly like coverage")
+    for key in sorted(set(reg) & set(fixed)):
+        entry = reg[key] if isinstance(reg[key], dict) else {}
+        fn, un = entry.get("enforced_by"), entry.get("unenforced")
+        if fn and un:
+            fails.append(f"'{key}' claims both enforced_by and unenforced. It is one or the other")
+        elif fn:
+            if not callable(globals().get(str(fn))):
+                fails.append(
+                    f"'{key}' says it is enforced by {fn!r} and this module has no such function. "
+                    f"A name nobody resolved is a promise with no code behind it")
+        elif un:
+            if not str(un).strip():
+                fails.append(f"'{key}' is recorded unenforced with no reason. An unenforced "
+                             f"element is a debt, and a debt with no reason is not recorded")
+            if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(entry.get("since") or "")):
+                fails.append(f"'{key}' is recorded unenforced with no `since` date. A debt with "
+                             f"no date cannot be reviewed")
+        else:
+            fails.append(
+                f"'{key}' has an entry with neither enforced_by nor unenforced. Silence in the "
+                f"register is the same silence the register exists to end")
+    return fails, []
+
+
 def run(copy_path: Path, slides_dir: Path | None, *, quiet: bool = False) -> int:
     copy = json.loads(copy_path.read_text(encoding="utf-8"))
     fails, warns = check_copy(copy)
+    # The register runs whether or not there is a render, because its subject is the config pair
+    # and not the deck. A run that has not drawn anything yet can still be told that brand.yaml
+    # grew an element nobody decided about.
+    f0, w0 = check_constellation()
+    fails += f0
+    warns += w0
     if slides_dir and slides_dir.exists():
         f2, w2 = check_type_spine(slides_dir)
         fails += f2
@@ -431,6 +525,84 @@ def self_test() -> int:
         bad, _ = check_site_line(dd)
         ok("a frame printing no site line at all is CAUGHT", len(bad) == 2, str(bad))
 
+    # ---- THE CONSTELLATION REGISTER ----------------------------------------------------
+    #
+    # The shipped pair first, because a gate that cannot go green on the real files is not
+    # measuring the real files. Then each of the five red states, forced against the SHIPPED
+    # brand.yaml rather than an invented one, by swapping the register for a temporary copy. A
+    # fixture written on both sides would agree with itself, which is GATE_LESSONS 16.
+    global REGISTER
+    _real_register = REGISTER
+    ok("the shipped brand.yaml and constellation.yaml agree",
+       check_constellation()[0] == [], str(check_constellation()[0])[:400])
+    try:
+        import yaml as _yaml  # type: ignore
+    except ImportError:
+        _yaml = None
+    ok("PyYAML is available, so the register was really parsed rather than skipped",
+       _yaml is not None)
+    if _yaml is not None:
+        _brand_keys = sorted(((_yaml.safe_load(BRAND_YAML.read_text(encoding="utf-8")) or {})
+                              .get("visual") or {}).get("constellation") or {})
+        ok("brand.yaml still declares the constellation this register answers for",
+           len(_brand_keys) >= 5, str(_brand_keys))
+        _base = _yaml.safe_load(_real_register.read_text(encoding="utf-8"))
+
+        def _with(elements):
+            import tempfile as _tf
+            fh = _tf.NamedTemporaryFile("w", suffix=".yaml", delete=False, encoding="utf-8")
+            fh.write(_yaml.safe_dump({"elements": elements}))
+            fh.close()
+            return Path(fh.name)
+
+        def _red(label, elements, needle):
+            global REGISTER
+            p = _with(elements)
+            REGISTER = p
+            try:
+                f = check_constellation()[0]
+            finally:
+                REGISTER = _real_register
+                p.unlink()
+            ok(label, any(needle in m for m in f), str(f)[:300])
+
+        # 1. THE STATE THIS EXISTS FOR. brand.yaml fixes an element and nobody decided about it.
+        _short = {k: v for k, v in _base["elements"].items() if k != _brand_keys[0]}
+        _red(f"an element brand.yaml fixes with no register entry is CAUGHT ({_brand_keys[0]})",
+             _short, "does not mention it")
+        # 2. A register entry for a rule that was repealed reads exactly like coverage.
+        _red("a register entry for an element brand.yaml no longer fixes is CAUGHT",
+             dict(_base["elements"], made_up_element={"unenforced": "x", "since": "2026-08-29"}),
+             "no longer fixes it")
+        # 3. An entry that takes neither route.
+        _red("an entry with neither enforced_by nor unenforced is CAUGHT",
+             dict(_base["elements"], site={"note": "looks like an entry"}),
+             "neither enforced_by nor unenforced")
+        # 4. GATE_LESSONS 56. A name nobody resolved passes on a product without the feature.
+        _red("an enforced_by naming a function this module does not have is CAUGHT",
+             dict(_base["elements"], site={"enforced_by": "check_the_thing_i_wish_existed"}),
+             "no such function")
+        # 5. A debt with no date cannot be reviewed.
+        _red("an unenforced entry with no since date is CAUGHT",
+             dict(_base["elements"], mark={"unenforced": "a reason"}), "no `since` date")
+        _red("...and one with an empty reason is CAUGHT",
+             dict(_base["elements"], mark={"unenforced": "   ", "since": "2026-08-29"}),
+             "no reason")
+        # AND THE GREEN CASE ONE MORE TIME, through the same temporary-file path the red cases
+        # use, so a pass cannot come from the swap machinery failing to take effect.
+        _p = _with(_base["elements"])
+        REGISTER = _p
+        _f = check_constellation()[0]
+        REGISTER = _real_register
+        _p.unlink()
+        ok("...and the unaltered register through the same path is still clean", _f == [], str(_f))
+        # THE ENFORCED ROUTE POINTS AT REAL CODE, checked directly rather than inferred from the
+        # green above, because "no entry used it" and "every entry resolved" look identical.
+        _named = [v.get("enforced_by") for v in _base["elements"].values()
+                  if isinstance(v, dict) and v.get("enforced_by")]
+        ok("the register names at least one real enforcing function", len(_named) >= 2, str(_named))
+        ok("...and every one of them resolves in this module",
+           all(callable(globals().get(str(n))) for n in _named), str(_named))
 
     print(f"\ncoherence_check self-test: "
           + ("all passed" if not failures else f"{failures} FAILED"))

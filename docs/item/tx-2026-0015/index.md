@@ -10,7 +10,7 @@ The Nuclear Regulatory Commission has proposed a wholesale revision of its react
 - Comment closes: 2026-08-31
 - Take part: https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices
 
-- Last checked: 2026-08-28
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The Nuclear Regulatory Commission's proposed rule still carries the Executive Order 14300 framing and the comment window still closes August 31st. Five days are left on it.
 - 2026-08-27 · Checked and unchanged. The proposed rule still opens on the Executive Order 14300 framing and the comment window still closes August 31st. Four days are left to file.
 - 2026-08-28 · Checked and unchanged. The proposed rule still opens on the Executive Order 14300 framing and the Federal Register still gives August 31st, 2026 as the day comments close. Three days are left to file under docket NRC-2025-0975.
+- 2026-08-29 · The comment window is still open, closing August 31st. The proposal to revise the reactor licensing, oversight and siting rules is unchanged, and the docket still takes comment from anyone.
 
 ## Evidence
 

@@ -10,7 +10,7 @@ The House Committee on State Affairs met on August 19th, 2026 on a charge coveri
 - Comment closes: 2026-08-20
 - Take part: https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-20 · Both hearings are confirmed against the Legislature's own notices. The State Affairs notice of August 19th carries a second charge. It covers the regulatory and planning processes for the proposed 765 kV transmission lines, which the earlier record did not name. It took invited and public testimony, limited to two minutes a witness, with registration closing at 10:00 am that day. The Public Health notice for August 20th takes invited testimony only. The written comment is the one route a Texan has on the artificial intelligence in health care charge, and it stays open until the hearing is adjourned.
 - 2026-08-23 · Checked and unchanged. The Legislative Reference Library's posting for that week still lists the State Affairs hearing on August 19th and the Public Health hearing on August 20th. Both dates have now passed.
 - 2026-08-26 · The comment window closed on August 20th.
+- 2026-08-29 · The comment window closed on August 20th. Both charges are unchanged, one on data center development and the grid operator's large load study process, and one on artificial intelligence in health care.
 
 ## Evidence
 

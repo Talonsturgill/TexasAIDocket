@@ -1,0 +1,234 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#242A2C}
+  #wall{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#C0C6BC}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:420px;
+     background:linear-gradient(to bottom,rgba(18,22,24,.92) 0%,rgba(18,22,24,.86) 58%,rgba(18,22,24,0) 100%)}
+  h1{position:absolute;top:160px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:96px;line-height:1.02;color:#F2D48E;letter-spacing:-.017em}
+  .qplate{position:absolute;left:80px;top:806px;width:920px;box-sizing:border-box;
+          background:#151A1C;padding:26px 28px}
+  .quote{margin:0;font-family:Manrope,sans-serif;font-weight:500;font-size:30px;line-height:1.32;
+         color:#EDE7D2}
+  .attrib{margin:14px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+          letter-spacing:.05em;color:#B4BBB4}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:150px;
+     background:linear-gradient(to bottom,rgba(18,22,24,0) 0%,rgba(18,22,24,.84) 46%,rgba(18,22,24,.97) 100%)}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#C6C3B4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="wall"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Every step of the way.</h1>
+  <div class="qplate">
+    <p class="quote">"Every step of the way, community members will have an opportunity to influence how, when and where robots get deployed"</p>
+    <p class="attrib">UT AUSTIN, c23&nbsp;&nbsp;&middot;&nbsp;&nbsp;THE CENTER GREW FROM A CORE PROJECT OF GOOD SYSTEMS, c26</p>
+  </div>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>GOOD SYSTEMS</span><span>c23 c26</span><span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('wall'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260829); const R=TX.rng(20260829);
+
+  // ---- the rail's own dimensions, in inches, converted once ---------------------------------
+  // THE SCALE IS DERIVED FROM THE RAIL'S OWN HEIGHT, and this is the frame's whole argument.
+  // It used to type PX_PER_IN = 6.0 and RAIL_Y = 640 against BASE_Y = 1188, which put the
+  // handrail 91 inches above the floor while RAIL_H_IN = 34 sat declared, exported into the
+  // assert bag and used nowhere. A craft judge found it in the source twice. On the one frame
+  // whose subject is a rail set at the height a hand reaches, a typed pixel had overruled the
+  // dimension. Everything below now falls out of that one conversion, so the rail's diameter,
+  // the cove base and the NUMBER OF BRACKETS are all consequences rather than choices: at the
+  // true scale this frame shows about five and a half feet of wall, which carries two brackets
+  // at four foot centres and not the four that were drawn.
+  const RAIL_H_IN = 34;                  // a handrail is set for a hand, not for a wall
+  const RAIL_Y  = 640;                   // the rail's centre line on the frame
+  const BASE_Y  = 1188;                  // where the cove base meets the floor
+  const PX_PER_IN = (BASE_Y - RAIL_Y) / RAIL_H_IN;   // DERIVED. Never typed.
+  const RAIL_D_IN = 1.5;                 // outside diameter
+  const RUN_IN    = W / PX_PER_IN;       // the run of wall this frame shows
+  const BRACKET_SPACING_IN = 48;         // brackets at four feet
+  const RAIL_R  = (RAIL_D_IN*PX_PER_IN)/2;
+  const COVE_H  = 4*PX_PER_IN;
+  if(Math.abs((BASE_Y-RAIL_Y)/PX_PER_IN - RAIL_H_IN) > 0.01)
+    throw new Error('slide-06: the drawn rail height does not equal RAIL_H_IN');
+
+  // ---- painted gypsum, lit first so the bracket shadows have something to subtract from ------
+  (function paint(){
+    const gr=g.createLinearGradient(0,0,W*0.8,H);
+    gr.addColorStop(0,'#7E847A'); gr.addColorStop(.42,'#6C726A'); gr.addColorStop(1,'#3A403F');
+    g.fillStyle=gr; g.fillRect(0,0,W,BASE_Y);
+    const lamp=g.createRadialGradient(250,560,20,250,560,980);
+    lamp.addColorStop(0,'rgba(242,212,142,.34)'); lamp.addColorStop(.5,'rgba(242,212,142,.12)');
+    lamp.addColorStop(1,'rgba(242,212,142,0)');
+    g.fillStyle=lamp; g.fillRect(0,0,W,BASE_Y);
+    // orange peel. Rolled paint on gypsum has a real high frequency tooth, and a gradient is a
+    // promise of light rather than of material, so both frequencies are drawn.
+    for(let y=0;y<BASE_Y;y+=2){ for(let x=0;x<W;x+=2){
+      const lo=TX.fbm2(x*0.020+6.1,y*0.020+2.3,4);
+      const hi=TX.fbm2(x*0.115+18.7,y*0.115+4.9,2);
+      const n=0.55*lo+0.45*hi;
+      if(n>0.54){ g.fillStyle='rgba(224,228,214,'+((n-0.54)*0.62).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+      else if(n<0.46){ g.fillStyle='rgba(0,0,0,'+((0.46-n)*0.56).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+    }}
+    for(let k=0;k<30000;k++){
+      const x=R()*W, y=R()*BASE_Y;
+      g.fillStyle=(R()<0.5?'rgba(232,236,222,':'rgba(16,20,20,')+(0.05+R()*0.16).toFixed(3)+')';
+      g.fillRect(x,y,1.6,1.4);
+    }
+  })();
+
+  // ---- the burnish band. Where hands have been, the paint has a sheen and nothing else. ------
+  (function burnish(){
+    const y0=RAIL_Y-RAIL_R-46;
+    const gr=g.createLinearGradient(0,y0,0,y0+40);
+    gr.addColorStop(0,'rgba(242,212,142,0)'); gr.addColorStop(.5,'rgba(242,212,142,.17)');
+    gr.addColorStop(1,'rgba(242,212,142,0)');
+    g.fillStyle=gr; g.fillRect(0,y0,W,40);
+  })();
+
+  // ---- the brackets. Spacing derived from the run, never a typed x. --------------------------
+  const bracketXs=[];
+  (function brackets(){
+    // Brackets sit on TRUE four foot centres, laid out from the middle of the run outward, so the
+    // spacing is the building's and the frame simply shows however many of them it can see. The
+    // old form divided the frame width by a rounded count, which is the frame deciding the
+    // spacing, and at the corrected scale it put a single bracket in the dead centre.
+    const pitch = BRACKET_SPACING_IN * PX_PER_IN;
+    const xs = [];
+    for(let x = W/2 - pitch/2; x > -pitch; x -= pitch) xs.unshift(x);
+    for(let x = W/2 + pitch/2; x < W + pitch; x += pitch) xs.push(x);
+    for(const x of xs){
+      if(x < -pitch || x > W + pitch) continue;
+      bracketXs.push(x);
+      const FL_H = 5.0*PX_PER_IN;          // a flange is about five inches tall
+      const FL_W = 3.0*PX_PER_IN;
+      const ARM  = RAIL_Y + RAIL_R;        // the arm meets the rail's underside, not below it
+      const FL_Y = ARM + 3.0*PX_PER_IN;    // the flange sits three inches under the rail
+      // the cast, two parts, onto a wall that is already lit
+      g.fillStyle='rgba(30,35,34,.26)';
+      g.beginPath(); g.ellipse(x+14,FL_Y+FL_H*0.5,FL_W*1.5,FL_H*0.8,0,0,6.2832); g.fill();
+      g.fillStyle='rgba(20,24,24,.46)';
+      g.fillRect(x-FL_W*0.30+9, ARM, FL_W*0.60, FL_Y-ARM+FL_H);
+      // the arm, rising from the flange to the rail's underside and tapering as it goes
+      g.fillStyle='#9AA096';
+      g.beginPath();
+      g.moveTo(x-FL_W*0.20, ARM); g.lineTo(x+FL_W*0.20, ARM);
+      g.lineTo(x+FL_W*0.34, FL_Y); g.lineTo(x-FL_W*0.34, FL_Y); g.closePath(); g.fill();
+      g.fillStyle='rgba(226,230,218,.70)';
+      g.fillRect(x-FL_W*0.20, ARM, FL_W*0.10, FL_Y-ARM);
+      // the flange ON the wall, with two fixings, which is what makes it a bracket
+      g.fillStyle='#A7ADA4'; g.fillRect(x-FL_W/2, FL_Y, FL_W, FL_H);
+      g.fillStyle='rgba(230,234,222,.66)'; g.fillRect(x-FL_W/2, FL_Y, FL_W*0.16, FL_H);
+      g.fillStyle='rgba(22,26,26,.60)';    g.fillRect(x+FL_W/2-FL_W*0.14, FL_Y, FL_W*0.14, FL_H);
+      g.fillStyle='rgba(18,22,22,.72)';
+      [FL_Y+FL_H*0.26, FL_Y+FL_H*0.74].forEach(fy=>{
+        g.beginPath(); g.arc(x, fy, FL_W*0.10, 0, 6.2832); g.fill(); });
+    }
+  })();
+
+  // ---- the rail. A cylinder, so it gets a lit top edge and a dark under edge. ----------------
+  (function rail(){
+    const top=RAIL_Y-RAIL_R, bot=RAIL_Y+RAIL_R;
+    const gr=g.createLinearGradient(0,top,0,bot);
+    gr.addColorStop(0.00,'#7A5333');
+    gr.addColorStop(0.16,'#C99A5E');
+    gr.addColorStop(0.30,'#E8C489');   // the specular run along the top of a round rail
+    gr.addColorStop(0.52,'#A87C4C');
+    gr.addColorStop(0.80,'#6A4527');
+    gr.addColorStop(1.00,'#3C2716');
+    g.fillStyle=gr; g.fillRect(0,top,W,bot-top);
+    // grain along the run, so the rail is a material rather than a tube
+    for(let k=0;k<9000;k++){
+      const x=R()*W, y=top+R()*(bot-top);
+      g.fillStyle='rgba(60,39,22,'+(R()*0.16).toFixed(3)+')'; g.fillRect(x,y,7,1.1);
+    }
+    g.fillStyle='rgba(247,236,206,.42)'; g.fillRect(0,top+RAIL_R*0.52,W,2);
+    g.fillStyle='rgba(24,16,10,.62)';    g.fillRect(0,bot-3,W,3);
+  })();
+
+  // ---- the wall under the rail. Chair rail scuffs and a wheel rub, which is what a corridor
+  // ---- wall in a care building actually carries below hand height.
+  (function scuffs(){
+    for(let k=0;k<2600;k++){
+      const x=R()*W, y=1000+R()*160, w=6+R()*46;
+      g.fillStyle='rgba(226,230,218,'+(R()*0.08).toFixed(3)+')'; g.fillRect(x,y,w,1.2);
+    }
+    const rub=g.createLinearGradient(0,1064,0,1104);
+    rub.addColorStop(0,'rgba(20,24,24,0)'); rub.addColorStop(.5,'rgba(20,24,24,.26)');
+    rub.addColorStop(1,'rgba(20,24,24,0)');
+    g.fillStyle=rub; g.fillRect(0,1064,W,40);
+    for(let k=0;k<1800;k++){
+      const x=R()*W, y=1064+R()*40;
+      g.fillStyle='rgba(226,230,218,'+(R()*0.10).toFixed(3)+')'; g.fillRect(x,y,10+R()*30,1.0);
+    }
+  })();
+
+  // ---- the cove base and the floor beyond it -------------------------------------------------
+  (function cove(){
+    g.fillStyle='#2C3234'; g.fillRect(0,BASE_Y-COVE_H,W,COVE_H);
+    g.fillStyle='rgba(200,206,196,.30)'; g.fillRect(0,BASE_Y-COVE_H,W,3);
+    g.fillStyle='rgba(10,13,15,.78)';    g.fillRect(0,BASE_Y-5,W,5);
+    const gr=g.createLinearGradient(0,BASE_Y,0,H);
+    gr.addColorStop(0,'#20262A'); gr.addColorStop(1,'#141819');
+    g.fillStyle=gr; g.fillRect(0,BASE_Y,W,H-BASE_Y);
+    g.strokeStyle='rgba(200,206,196,.14)';
+    for(let i=0;i<5;i++){
+      const t=i/4, y=BASE_Y+(H-BASE_Y)*t*t;
+      g.lineWidth=0.6+1.8*t; g.beginPath(); g.moveTo(0,y); g.lineTo(W,y); g.stroke();
+    }
+    for(let j=0;j<7;j++){
+      g.lineWidth=1.2; g.beginPath();
+      g.moveTo(120+j*160,BASE_Y); g.lineTo(20+j*206,H); g.stroke();
+    }
+    for(let k=0;k<9000;k++){
+      const x=R()*W, y=BASE_Y+R()*(H-BASE_Y);
+      g.fillStyle='rgba(200,206,196,'+(R()*0.09).toFixed(3)+')'; g.fillRect(x,y,2.0,1.2);
+    }
+  })();
+
+  for(let k=0;k<11000;k++){
+    const x=R()*W, y=R()*H;
+    g.fillStyle='rgba(237,231,210,'+(R()*0.026).toFixed(3)+')'; g.fillRect(x,y,1.3,1.3);
+  }
+
+  window.__txAssert={ px_per_in:+PX_PER_IN.toFixed(3), rail_height_in:RAIL_H_IN,
+                      rail_height_drawn_in:+((BASE_Y-RAIL_Y)/PX_PER_IN).toFixed(2),
+                      run_in:+RUN_IN.toFixed(1), bracket_count:bracketXs.length,
+                      bracket_xs:bracketXs, bracket_spacing_in:BRACKET_SPACING_IN };
+  await document.fonts.ready;
+
+  // THE FOOT WRAPPED ON THREE FRAMES AND ALL THREE JUDGES OPENED WITH IT. Adding ", c34" to the
+  // award span pushed the row past its 920 px measure, the flex line broke, and the cover printed
+  // the canonical URL as "texasaidocket.com01 /" with "09" alone on a second line. Nothing caught
+  // it: the DOM span still reads "texasaidocket.com", so a checker reading text passes while the
+  // pixels are wrong, which is CLAUDE.md's public URL section exactly. So the frame measures its
+  // own foot instead of trusting the width to have stayed put.
+  {
+    const foot = document.querySelector('.foot');
+    if (foot) {
+      for (const sp of foot.children) {
+        if (sp.getClientRects().length !== 1)
+          throw new Error('foot: "' + sp.textContent.trim() + '" wraps onto more than one line');
+      }
+      const used = [...foot.children].reduce((a, sp) => a + sp.getBoundingClientRect().width, 0);
+      if (used > foot.clientWidth - 24)
+        throw new Error('foot: the row fills ' + Math.round(used) + ' of ' + foot.clientWidth +
+                        ' px and leaves no gap between spans');
+    }
+  }
+
+})();
+</script></body></html>

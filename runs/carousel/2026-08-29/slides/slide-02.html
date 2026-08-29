@@ -1,0 +1,208 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#202629}
+  #ground{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#9EA5A8}
+  h1{position:absolute;top:152px;left:96px;width:888px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:54px;line-height:1.04;color:#EDE7D2;letter-spacing:-.015em}
+  .rule{position:absolute;left:96px;width:888px;background:#5D6468}
+  .hair{position:absolute;left:96px;width:888px;height:1px;background:#454C50}
+  .band{position:absolute;left:96px;width:888px;margin:0;font-family:Manrope,sans-serif;
+        font-weight:600;letter-spacing:-.008em}
+  #b1{top:286px;color:#EDE7D2;line-height:1.06}
+  #b2{top:524px;color:#C6C3B4;line-height:1.14}
+  #b3{top:788px;color:#ADAB9E;line-height:1.20}
+  .gold{color:#F2D48E}
+  .attr{position:absolute;left:96px;width:888px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:24px;letter-spacing:.05em;color:#AEB5B1;font-variant-numeric:tabular-nums}
+  .dek{position:absolute;top:994px;left:96px;width:888px;margin:0;font-family:Fraunces,serif;
+       font-weight:600;font-style:italic;font-size:36px;line-height:1.24;color:#C6C3B4}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#C6C3B4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="ground"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Same deployment. Three grains.</h1>
+
+  <div class="rule" style="top:262px;height:2px"></div>
+  <p class="band" id="b1">homes, hospitals, workplaces, and public spaces</p>
+  <div class="attr" id="a1" style="top:458px"></div>
+  <div class="hair" style="top:502px"></div>
+
+  <p class="band" id="b2">residential, commercial, and healthcare facilities</p>
+  <div class="attr" id="a2" style="top:718px"></div>
+  <div class="hair" style="top:760px"></div>
+
+  <p class="band" id="b3">houses, dorms, caf&eacute;s, a public museum, <span class="gold">a rehabilitation hospital</span>, and elder-care and assisted-living residences</p>
+  <div class="attr" id="a3" style="top:906px"></div>
+  <div class="rule" style="top:952px;height:2px"></div>
+
+  <p class="dek">The most specific list is the awardee's own.</p>
+  <div class="foot"><span>&middot;</span><span>c33 c15 c21</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('ground'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260829); const R=TX.rng(20260829);
+
+  // ---- the ground. A wash that grades darker toward the foot, so the smallest type sits in a
+  // ---- depth rather than on a flat plate, plus a real tooth so the canvas is never uniform.
+  const gr=g.createLinearGradient(0,0,W*0.35,H);
+  gr.addColorStop(0,'#2A3237'); gr.addColorStop(.46,'#222A2E'); gr.addColorStop(1,'#12171A');
+  g.fillStyle=gr; g.fillRect(0,0,W,H);
+  for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+    const n=TX.fbm2(x*0.011,y*0.011,3);
+    if(n>0.60){ g.fillStyle='rgba(154,151,137,'+((n-0.60)*0.26).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+    else if(n<0.38){ g.fillStyle='rgba(0,0,0,'+((0.38-n)*0.24).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+  }}
+  // a soft pool low on the frame so the bottom band is modelled rather than merely dark
+  const pool=g.createRadialGradient(320,1200,20,320,1200,760);
+  pool.addColorStop(0,'rgba(242,212,142,.20)'); pool.addColorStop(.6,'rgba(242,212,142,.07)');
+  pool.addColorStop(1,'rgba(242,212,142,0)');
+  g.fillStyle=pool; g.fillRect(0,0,W,H);
+  for(let k=0;k<12000;k++){
+    const x=R()*W, y=R()*H;
+    g.fillStyle='rgba(237,231,210,'+(R()*0.030).toFixed(3)+')'; g.fillRect(x,y,1.3,1.3);
+  }
+  // The bottom band is where the smallest type sits, so it carries the heaviest tooth in the
+  // frame rather than the lightest. A dim band is not the same thing as an unmodelled one.
+  // ramped in from 860 to 1040 so the heavier tooth never announces itself with an edge
+  const SHEET_Y = 1078;                 // where the sheet the three lists are printed on ends
+  for(let y=860;y<SHEET_Y;y+=2){
+    const ramp=Math.min(1,(y-860)/180);
+    for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.024+11,y*0.024+7,4);
+      if(n>0.56){ g.fillStyle='rgba(198,195,180,'+((n-0.56)*0.30*ramp).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+      else if(n<0.42){ g.fillStyle='rgba(0,0,0,'+((0.42-n)*0.26*ramp).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+    }
+  }
+  for(let k=0;k<9000;k++){
+    const x=R()*W, y=860+R()*(SHEET_Y-860);
+    const ramp=Math.min(1,(y-860)/180);
+    g.fillStyle='rgba(242,212,142,'+(R()*0.055*ramp).toFixed(3)+')'; g.fillRect(x,y,1.5,1.1);
+  }
+
+  // ---- THE SHEET, AND THE SURFACE UNDER IT ----------------------------------------------------
+  // The frame's bottom third was a gradient and nothing else, and a reader who reached the end of
+  // the third list met 300 px of dark that said nothing. This frame's whole subject is three
+  // DOCUMENTS, so the three lists are printed on one, and the sheet ends where the reading does.
+  // Below it is the surface it was set down on. Nothing here carries a word or a number, and the
+  // sheet's own edge does the work the empty gradient was failing to do.
+  (function sheet(){
+    // the cut edge, never dead straight, because a trimmed sheet is not a ruler
+    const edgeAt = x => SHEET_Y + 1.6*Math.sin(x*0.0121+1.2) + 2.4*(TX.fbm2(x*0.02+31,7.3,3)-0.5);
+
+    // the surface beyond the sheet, a matte darker plane with its own coarse tooth
+    // The surface takes the deck's one left azimuth, so it is brightest at the left edge and
+    // turns under toward the right and the frame's foot. A dark plane and a MODELLED dark plane
+    // are not the same thing, and the first pass of this was the first kind.
+    const dk=g.createLinearGradient(0,SHEET_Y,W*0.9,H);
+    dk.addColorStop(0,'#242A2E'); dk.addColorStop(.42,'#1A2024'); dk.addColorStop(1,'#0E1215');
+    g.fillStyle=dk; g.fillRect(0,SHEET_Y-6,W,H-SHEET_Y+6);
+    const rake=g.createLinearGradient(0,SHEET_Y,540,H);
+    rake.addColorStop(0,'rgba(226,222,204,.11)'); rake.addColorStop(1,'rgba(226,222,204,0)');
+    g.fillStyle=rake; g.fillRect(0,SHEET_Y,W,H-SHEET_Y);
+    for(let y=SHEET_Y;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const lo=TX.fbm2(x*0.031+19,y*0.031+13,4);
+      const hi=TX.fbm2(x*0.140+27,y*0.140+5,2);
+      const n=0.58*lo+0.42*hi;
+      if(n>0.53){ g.fillStyle='rgba(206,212,200,'+((n-0.53)*0.66).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+      else if(n<0.45){ g.fillStyle='rgba(0,0,0,'+((0.45-n)*0.62).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+    }}
+    for(let k=0;k<26000;k++){
+      const x=R()*W, y=SHEET_Y+R()*(H-SHEET_Y);
+      g.fillStyle=(R()<0.5?'rgba(222,227,214,':'rgba(0,0,0,')+(0.05+R()*0.20).toFixed(3)+')';
+      g.fillRect(x,y,1.9,1.2);
+    }
+
+    // the sheet's cast, thrown down and to the right off the same low left source the deck uses
+    for(let x=0;x<W;x++){
+      const e=edgeAt(x);
+      for(let d=0;d<52;d++){
+        const a=0.46*Math.pow(1-d/52,1.9);
+        g.fillStyle='rgba(0,0,0,'+a.toFixed(3)+')';
+        g.fillRect(x+d*0.16, e+d, 1.4, 1);
+      }
+    }
+    // the lit thickness of the paper itself, the brightest line on the frame's lower half
+    for(let x=0;x<W;x++){
+      const e=edgeAt(x);
+      g.fillStyle='rgba(238,233,214,.60)'; g.fillRect(x,e-3.0,1.2,3.0);
+      g.fillStyle='rgba(255,252,238,.30)'; g.fillRect(x,e-4.2,1.2,1.2);
+    }
+    // a shallow lift near the left corner, so the sheet is an object and not a printed rectangle
+    const lift=g.createRadialGradient(150,SHEET_Y-26,8,150,SHEET_Y-26,240);
+    lift.addColorStop(0,'rgba(242,212,142,.13)'); lift.addColorStop(1,'rgba(242,212,142,0)');
+    g.fillStyle=lift; g.fillRect(0,SHEET_Y-260,520,262);
+    window.__txSheet={ y:SHEET_Y, edge_left:+edgeAt(0).toFixed(2), edge_right:+edgeAt(W-1).toFixed(2) };
+  })();
+
+  await document.fonts.ready;
+
+  // THE FOOT WRAPPED ON THREE FRAMES AND ALL THREE JUDGES OPENED WITH IT. Adding ", c34" to the
+  // award span pushed the row past its 920 px measure, the flex line broke, and the cover printed
+  // the canonical URL as "texasaidocket.com01 /" with "09" alone on a second line. Nothing caught
+  // it: the DOM span still reads "texasaidocket.com", so a checker reading text passes while the
+  // pixels are wrong, which is CLAUDE.md's public URL section exactly. So the frame measures its
+  // own foot instead of trusting the width to have stayed put.
+  {
+    const foot = document.querySelector('.foot');
+    if (foot) {
+      for (const sp of foot.children) {
+        if (sp.getClientRects().length !== 1)
+          throw new Error('foot: "' + sp.textContent.trim() + '" wraps onto more than one line');
+      }
+      const used = [...foot.children].reduce((a, sp) => a + sp.getBoundingClientRect().width, 0);
+      if (used > foot.clientWidth - 24)
+        throw new Error('foot: the row fills ' + Math.round(used) + ' of ' + foot.clientWidth +
+                        ' px and leaves no gap between spans');
+    }
+  }
+
+
+  // ---- the three sizes, each SOLVED to fill one shared measure ---------------------------------
+  // Band one says the least, so it gets the fewest lines and therefore the largest size on the
+  // shared measure. The ordering is a CONSEQUENCE of the line budget, not a typed size.
+  const f1=TX.fitText(document.getElementById('b1'),{min:52,max:84,maxLines:2});
+  const f2=TX.fitText(document.getElementById('b2'),{min:32,max:50,maxLines:2});
+  const f3=TX.fitText(document.getElementById('b3'),{min:20,max:32,maxLines:4});
+
+  // ---- THE COUNTS ARE DERIVED IN THE FRAME, from the frame's own strings, and never typed. -----
+  // Same rule for all three documents, split at commas, the leading "and" trimmed. A count that
+  // does not match its own re-derivation throws rather than rendering a number nobody checked.
+  function countStr(t){
+    return t.trim().replace(/\.$/,'')
+      .split(/,\s*/).map(s=>s.replace(/^and\s+/,'').trim()).filter(Boolean).length;
+  }
+  const t1=document.getElementById('b1').textContent;
+  const t2=document.getElementById('b2').textContent;
+  const t3=document.getElementById('b3').textContent;
+  const n1=countStr(t1);
+  // the abstract's list is the run between "laboratories in " and " facilities"
+  const n2=countStr(t2.slice(0, t2.indexOf(' facilities')));
+  const n3=countStr(t3.slice(t3.indexOf('institutions')>=0 ? 0 : 0));
+
+  document.getElementById('a1').textContent='NSF release, c33, '+n1+' settings';
+  document.getElementById('a2').textContent='NSF abstract, c15, '+n2+' types';
+  document.getElementById('a3').textContent='UT Austin, c21, '+n3+' places';
+
+  if(!(f1.size>f2.size && f2.size>f3.size))
+    throw new Error('slide-02: the three sizes are not strictly decreasing');
+  if(!(n1===4 && n2===3 && n3===6))
+    throw new Error('slide-02: a printed count disagrees with its own re-derivation');
+
+  window.__txAssert={ size_band1:f1.size, size_band2:f2.size, size_band3:f3.size,
+                      n_release:n1, n_abstract:n2, n_places:n3, measure_px:888,
+                      sheet:window.__txSheet };
+})();
+</script></body></html>

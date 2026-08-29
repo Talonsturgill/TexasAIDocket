@@ -1,0 +1,234 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#202629}
+  #ceil{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#D5DAD2}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:196px;
+     background:linear-gradient(to bottom,rgba(16,20,22,.95) 0%,rgba(16,20,22,.90) 54%,rgba(16,20,22,.42) 82%,rgba(16,20,22,0) 100%)}
+  h1{position:absolute;top:392px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:78px;line-height:1.04;color:#EDE7D2;letter-spacing:-.016em}
+  .hplate{position:absolute;left:56px;top:364px;width:952px;height:200px;background:#161B1D;
+          border-top:3px solid #9AA098;border-bottom:3px solid #0C1012}
+  .dek{position:absolute;top:600px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:28px;line-height:1.36;color:#C6C3B4}
+  .dplate{position:absolute;left:56px;top:576px;width:952px;height:232px;background:#161B1D;
+          border-top:3px solid #9AA098;border-bottom:3px solid #0C1012}
+  .note{position:absolute;top:726px;left:80px;width:900px;margin:0;font-family:"JetBrains Mono",monospace;
+       font-weight:500;font-size:24px;letter-spacing:.03em;line-height:1.30;color:#9AA29B}
+  .callout{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+           letter-spacing:.08em;color:#DDE2DC;background:#151A1C;padding:6px 12px}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:148px;
+     background:linear-gradient(to bottom,rgba(18,22,24,0) 0%,rgba(18,22,24,.82) 46%,rgba(18,22,24,.96) 100%)}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#C6C3B4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="ceil"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <div class="hplate" data-decorative></div>
+  <h1>Always on. Increasing in complexity.</h1>
+  <div class="dplate" data-decorative></div>
+  <p class="dek">The agency's own abstract calls the sites "always-on, participatory living laboratories", and says the deployments "will increase in complexity over the Center's duration".</p>
+  <p class="note">THESE THREE ARE THE BUILDING'S OWN FIXTURES, DRAWN HERE AND NOT CITED.</p>
+  <div class="callout" id="cSprink">SPRINKLER</div>
+  <div class="callout" id="cDiff">DIFFUSER</div>
+  <div class="callout" id="cSmoke">SMOKE DETECTOR</div>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>NSF AWARD 2535195</span><span>c15 c16 c35</span><span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('ceil'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260829); const R=TX.rng(20260829);
+
+  // ---- the room's own module. Every grid line lands on this, nothing is a typed pitch. --------
+  const TILE_W_IN = 24, TILE_L_IN = 48;      // a standard lay in tile, in inches
+  const ROOM_W_IN = 12*12;                   // a twelve foot room across the frame
+  const PX_PER_IN = W / ROOM_W_IN;           // one scale, derived
+  const CELL_W    = TILE_W_IN * PX_PER_IN;   // tile width in design px
+  const CELL_L    = TILE_L_IN * PX_PER_IN;
+  const VPX = 540, VPY = -1180;              // looking up, the ceiling recedes toward the head wall
+  const HEAD_Y = 96;                         // the blind head rail line at the top of the frame
+
+  // ---- the tile face --------------------------------------------------------------------------
+  (function face(){
+    const gr=g.createLinearGradient(0,HEAD_Y,W*0.85,H);
+    gr.addColorStop(0,'#8F958B'); gr.addColorStop(.34,'#6E746D'); gr.addColorStop(1,'#2C3235');
+    g.fillStyle=gr; g.fillRect(0,0,W,H);
+    // the bounce off the floor, one soft source, dying into the far corner
+    const b=g.createRadialGradient(210,300,20,210,300,1180);
+    b.addColorStop(0,'rgba(242,212,142,.30)'); b.addColorStop(.55,'rgba(242,212,142,.09)');
+    b.addColorStop(1,'rgba(242,212,142,0)');
+    g.fillStyle=b; g.fillRect(0,0,W,H);
+  })();
+
+  // ---- mineral fibre fissures. The texture IS the material, not a treatment over it. -----------
+  (function fissures(){
+    // The ramp is the whole point of a ceiling seen in perspective, and the first pass ran it
+    // from 0.34 to 0.86, which is a third of a stop across the frame and reads as flat. A tile
+    // two feet from the lens and a tile twelve feet away do not carry the same texture.
+    const densAt = y => 0.30 + 0.72*Math.pow(y/H, 1.30);
+    const target=[];
+    for(let y=0;y<H;y+=2){
+      const dens = densAt(y);                  // coarser toward the reader, per the dossier
+      // the fissure itself also gets LONGER toward the reader, because it is nearer
+      const fw = 2 + Math.round(2.2*(y/H));
+      for(let x=0;x<W;x+=2){
+        const n=TX.fbm2(x*0.030+3.1, y*0.030+8.7, 4);
+        const w=TX.warp2 ? TX.warp2(x*0.014, y*0.014, 0.9) : n;
+        const v=0.62*n+0.38*(typeof w==='number'?w:n);
+        if(v>0.62){ g.fillStyle='rgba(28,33,36,'+Math.min(0.40,(v-0.62)*1.45*dens).toFixed(3)+')'; g.fillRect(x,y,fw,2); }
+        else if(v<0.36){ g.fillStyle='rgba(224,226,214,'+Math.min(0.34,(0.36-v)*0.88*dens).toFixed(3)+')'; g.fillRect(x,y,fw,2); }
+      }
+      if(y%200===0) target.push(dens);
+    }
+    // pinholes, the other half of a tile face. Weighted toward the reader on the same ramp, so
+    // the near tiles carry more holes and larger ones, which is what foreshortening does.
+    for(let k=0;k<30000;k++){
+      const x=R()*W, y=Math.pow(R(),0.62)*H;
+      const t=y/H;
+      g.fillStyle='rgba(24,29,32,'+(0.03+R()*0.13*(0.4+t)).toFixed(3)+')';
+      g.fillRect(x,y,1.0+1.4*t,1.0+1.2*t);
+    }
+    window.__txRamp={ near:densAt(H-2), far:densAt(0), ratio:+(densAt(H-2)/densAt(0)).toFixed(2) };
+  })();
+
+  // ---- the lay in grid, converging on the head wall --------------------------------------------
+  const rowY=[];
+  (function grid(){
+    g.lineCap='butt';
+    // cross tees, spacing derived from the tile length under a perspective divide
+    let d=0;
+    for(let i=0;i<11;i++){
+      const t=i/10;
+      const y = HEAD_Y + (H-HEAD_Y) * (t*t*0.86 + t*0.14);
+      rowY.push(y);
+      // The nearest tees to the head wall crossed the frame at full strength under a scrim that
+      // was already dark, and the third one landed a hard full width edge at y=246 with nothing
+      // above or below it to explain the jump. A tee that far away is a hairline, so it fades in.
+      const fade = Math.min(1, Math.max(0.06, (y-HEAD_Y)/420));
+      g.strokeStyle='rgba(216,220,210,'+((0.20+0.34*t)*fade).toFixed(3)+')';
+      g.lineWidth=1.0+2.6*t;
+      g.beginPath(); g.moveTo(0,y); g.lineTo(W,y); g.stroke();
+      g.strokeStyle='rgba(22,27,30,'+((0.18+0.30*t)*fade).toFixed(3)+')';
+      g.lineWidth=1.0+2.0*t;
+      g.beginPath(); g.moveTo(0,y+2.2+2.4*t); g.lineTo(W,y+2.2+2.4*t); g.stroke();
+    }
+    // main runners, converging toward the head wall
+    for(let j=-4;j<=10;j++){
+      const xAt = y => VPX + (j*CELL_W + CELL_W/2 - VPX + 540) * (y-VPY)/(H-VPY) - 540 + (VPX-VPX);
+      g.strokeStyle='rgba(216,220,210,.22)'; g.lineWidth=2.0;
+      g.beginPath();
+      for(let y=HEAD_Y;y<=H;y+=8){
+        const s=(y-VPY)/(H-VPY);
+        const x=VPX + (j*CELL_W + CELL_W/2 - VPX)*s;
+        if(y===HEAD_Y) g.moveTo(x,y); else g.lineTo(x,y);
+      }
+      g.stroke();
+      g.strokeStyle='rgba(22,27,30,.24)'; g.lineWidth=1.6;
+      g.beginPath();
+      for(let y=HEAD_Y;y<=H;y+=8){
+        const s=(y-VPY)/(H-VPY);
+        const x=VPX + (j*CELL_W + CELL_W/2 - VPX)*s + 2.6;
+        if(y===HEAD_Y) g.moveTo(x,y); else g.lineTo(x,y);
+      }
+      g.stroke();
+    }
+  })();
+
+  // ---- the head rail line. The only daylight that reaches this ceiling. ------------------------
+  (function headrail(){
+    const gr=g.createLinearGradient(0,HEAD_Y-30,0,HEAD_Y+64);
+    gr.addColorStop(0,'rgba(242,212,142,0)'); gr.addColorStop(.34,'rgba(242,212,142,.78)');
+    gr.addColorStop(1,'rgba(242,212,142,0)');
+    g.fillStyle=gr; g.fillRect(0,HEAD_Y-30,W,94);
+    g.fillStyle='rgba(247,236,206,.86)'; g.fillRect(0,HEAD_Y+4,W,5);
+  })();
+
+  // ---- the three things in a building that are already always on -------------------------------
+  const FIX = [
+    {id:'cSprink', at:[268, 866],  r:19, lx:120, ly:944},
+    {id:'cDiff',   at:[762, 992],  r:52, lx:598, ly:1104},
+    {id:'cSmoke',  at:[398, 1032], r:26, lx:150, ly:1120}
+  ];
+  (function fixtures(){
+    // sprinkler: an escutcheon ring with a pendant, with its own soft cast on the tile
+    const s=FIX[0];
+    g.fillStyle='rgba(20,25,28,.34)'; g.beginPath(); g.ellipse(s.at[0]+8,s.at[1]+9,s.r*1.25,s.r*0.7,0,0,6.2832); g.fill();
+    g.fillStyle='#8E948E'; g.beginPath(); g.arc(s.at[0],s.at[1],s.r,0,6.2832); g.fill();
+    g.fillStyle='#2A3033'; g.beginPath(); g.arc(s.at[0],s.at[1],s.r*0.56,0,6.2832); g.fill();
+    g.fillStyle='#C3C8C0'; g.beginPath(); g.arc(s.at[0]-4,s.at[1]-5,s.r*0.26,0,6.2832); g.fill();
+
+    // diffuser: a four cone lay in supply, square, stepped
+    const d=FIX[1];
+    g.fillStyle='rgba(20,25,28,.32)'; g.fillRect(d.at[0]-d.r+10,d.at[1]-d.r+12,d.r*2,d.r*2);
+    for(let i=0;i<4;i++){
+      const k=d.r*(1-i*0.19);
+      g.fillStyle= i%2 ? '#767C76' : '#9AA098';
+      g.fillRect(d.at[0]-k,d.at[1]-k,k*2,k*2);
+      g.fillStyle='rgba(22,27,30,.42)';
+      g.fillRect(d.at[0]-k,d.at[1]+k-3,k*2,3);
+    }
+    g.fillStyle='#2B3134'; g.fillRect(d.at[0]-d.r*0.24,d.at[1]-d.r*0.24,d.r*0.48,d.r*0.48);
+
+    // smoke detector: a low disc with a lit lip
+    const m=FIX[2];
+    g.fillStyle='rgba(20,25,28,.36)'; g.beginPath(); g.ellipse(m.at[0]+9,m.at[1]+10,m.r*1.2,m.r*0.72,0,0,6.2832); g.fill();
+    g.fillStyle='#A6ABA2'; g.beginPath(); g.arc(m.at[0],m.at[1],m.r,0,6.2832); g.fill();
+    g.fillStyle='#6E746E'; g.beginPath(); g.arc(m.at[0],m.at[1],m.r*0.62,0,6.2832); g.fill();
+    g.fillStyle='rgba(237,231,210,.66)'; g.beginPath(); g.arc(m.at[0]-3,m.at[1]-4,m.r*0.90,3.6,5.3); g.stroke();
+  })();
+
+  // ---- leaders, authored to land on each fixture's own coordinates -----------------------------
+  const leaders=[];
+  FIX.forEach(f=>{
+    const el=document.getElementById(f.id);
+    el.style.left=f.lx+'px'; el.style.top=f.ly+'px';
+    const start=[f.lx+el.offsetWidth+10, f.ly+el.offsetHeight/2];
+    g.strokeStyle='rgba(226,230,220,.78)'; g.lineWidth=2;
+    g.beginPath(); g.moveTo(start[0],start[1]);
+    g.lineTo((start[0]+f.at[0])/2, start[1]);
+    g.lineTo(f.at[0], f.at[1]);
+    g.stroke();
+    g.fillStyle='rgba(226,230,220,.92)';
+    g.beginPath(); g.arc(f.at[0],f.at[1],4,0,6.2832); g.fill();
+    leaders.push({target:f.id, at:f.at, to:[f.at[0],f.at[1]]});
+  });
+  window.__txLeaders=leaders;
+
+  window.__txAssert={ cell_w:CELL_W, cell_l:CELL_L, px_per_in:PX_PER_IN, rows:rowY.length,
+                      density_ramp:window.__txRamp };
+  if(window.__txRamp.ratio < 2.6) throw new Error('slide-03: the density ramp is too shallow to read');
+  await document.fonts.ready;
+
+  // THE FOOT WRAPPED ON THREE FRAMES AND ALL THREE JUDGES OPENED WITH IT. Adding ", c34" to the
+  // award span pushed the row past its 920 px measure, the flex line broke, and the cover printed
+  // the canonical URL as "texasaidocket.com01 /" with "09" alone on a second line. Nothing caught
+  // it: the DOM span still reads "texasaidocket.com", so a checker reading text passes while the
+  // pixels are wrong, which is CLAUDE.md's public URL section exactly. So the frame measures its
+  // own foot instead of trusting the width to have stayed put.
+  {
+    const foot = document.querySelector('.foot');
+    if (foot) {
+      for (const sp of foot.children) {
+        if (sp.getClientRects().length !== 1)
+          throw new Error('foot: "' + sp.textContent.trim() + '" wraps onto more than one line');
+      }
+      const used = [...foot.children].reduce((a, sp) => a + sp.getBoundingClientRect().width, 0);
+      if (used > foot.clientWidth - 24)
+        throw new Error('foot: the row fills ' + Math.round(used) + ' of ' + foot.clientWidth +
+                        ' px and leaves no gap between spans');
+    }
+  }
+
+})();
+</script></body></html>

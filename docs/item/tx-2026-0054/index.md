@@ -11,7 +11,7 @@ HGACBuy is the cooperative purchasing program run by the Houston-Galveston Area 
 - Public access: Write to the decider
 - Take part: https://www.hgacbuy.org/products-and-services/view-contract?contractid=3147
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-19 · Checked and unchanged. The cooperative contract for artificial intelligence consulting runs from May 1st, 2026 to April 30th, 2030 and remains active, with 27 qualified contractors listed against it.
 - 2026-08-22 · Checked and unchanged. The cooperative contract for artificial intelligence consulting services still runs from May 1st, 2026 to April 30th, 2030 and is still listed as active on the purchasing catalog.
 - 2026-08-26 · Checked and unchanged. Contract AI05-26 for AI consulting services still runs from May 1st, 2026 to April 30th, 2030 and the product listing still carries the same service description. The cooperative has changed how it prints the contract term and the quote is corrected to the form the page shows now.
+- 2026-08-29 · Checked and unchanged. The contract is still live on the cooperative purchasing site and artificial intelligence consulting is still listed among the services a member government may buy through it. The suppliers offering it are unchanged.
 
 ## Evidence
 

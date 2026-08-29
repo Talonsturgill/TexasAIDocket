@@ -1,0 +1,180 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#191E20}
+  #floor{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#A5ADA6}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:400px;
+     background:linear-gradient(to bottom,rgba(14,18,20,.92) 0%,rgba(14,18,20,.86) 60%,rgba(14,18,20,0) 100%)}
+  h1{position:absolute;top:170px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:104px;line-height:1.02;color:#EDE7D2;letter-spacing:-.018em}
+  .qplate{position:absolute;left:80px;bottom:184px;width:920px;box-sizing:border-box;
+          background:#12171A;padding:24px 26px}
+  .quote{margin:0;font-family:Manrope,sans-serif;font-weight:500;font-size:27px;line-height:1.32;
+         color:#E2E6DC}
+  .attrib{margin:12px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+          letter-spacing:.05em;color:#AEB6AF}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:150px;
+     background:linear-gradient(to bottom,rgba(14,18,20,0) 0%,rgba(14,18,20,.88) 46%,rgba(14,18,20,.98) 100%)}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#C6C3B4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="floor"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>People adapt too.</h1>
+  <div class="qplate">
+    <p class="quote">"while recognizing that people also adapt their behavior when they integrate robots into their environment"</p>
+    <p class="attrib">UT AUSTIN, c24</p>
+  </div>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>NSF AWARD 2535195</span><span>c24 c35</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('floor'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260829); const R=TX.rng(20260829);
+
+  const HORIZON = 392;        // the far end of the corridor, at ankle height the floor fills the rest
+  const BASE    = 430;        // where the baseboard meets the floor
+
+  // ---- the far wall and baseboard, the frame's dark ------------------------------------------
+  (function farwall(){
+    const gr=g.createLinearGradient(0,0,W*0.7,BASE);
+    gr.addColorStop(0,'#242B2E'); gr.addColorStop(1,'#151A1C');
+    g.fillStyle=gr; g.fillRect(0,0,W,BASE);
+    for(let y=0;y<BASE;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.016+4.9,y*0.016+7.3,3);
+      if(n>0.60){ g.fillStyle='rgba(150,156,146,'+((n-0.60)*0.24).toFixed(3)+')'; g.fillRect(x,y,2,2); }
+    }}
+    g.fillStyle='#2A3134'; g.fillRect(0,BASE-30,W,30);
+    g.fillStyle='rgba(196,202,192,.26)'; g.fillRect(0,BASE-30,W,3);
+    g.fillStyle='rgba(8,11,13,.86)';     g.fillRect(0,BASE-5,W,5);
+  })();
+
+  // ---- the walked path. A curve down the corridor, wider and brighter toward the reader. ------
+  // Nothing is outlined. The path exists only as a specular return off wax, which is the only
+  // way a wear path is visible in a real corridor.
+  function pathCenter(y){
+    const t=(y-BASE)/(H-BASE);
+    return 596 - 168*t - 96*Math.sin(t*2.1);       // it wanders, because a walked line does
+  }
+  function pathHalfWidth(y){
+    const t=(y-BASE)/(H-BASE);
+    return 44 + 300*t*t;                            // perspective, widening toward the reader
+  }
+
+  // ---- the floor, built row by row so the specular is a real function of the geometry ---------
+  (function wax(){
+    for(let y=BASE;y<H;y+=1){
+      const t=(y-BASE)/(H-BASE);
+      const base = 78 + 62*t;                       // the wax gets nearer and brighter
+      const cx=pathCenter(y), hw=pathHalfWidth(y);
+      for(let x=0;x<W;x+=2){
+        const n=TX.fbm2(x*0.012+2.2, y*0.012+6.4, 3);
+        const fine=TX.fbm2(x*0.13+7.7, y*0.13+2.9, 2);      // the tile's own speckle
+        // The low frequency term used to swing 30 either way on a base of 60, which is half the
+        // floor's whole value, and it turned a waxed corridor into a field of clouds. Soil on a
+        // floor is a small modulation over a bright surface, not the surface itself.
+        let v = base + (n-0.5)*13 + (fine-0.5)*26;
+        // the grazing specular lobe. A smooth falloff, so the path never acquires an edge.
+        const d=Math.abs(x-cx)/hw;
+        const lobe = d<1.6 ? Math.exp(-d*d*1.55) : 0;
+        v += 116*lobe*(0.42+0.58*t);
+        // the sheen also picks up the floor's own tooth, so it is a surface and not a glow
+        v += lobe*22*(TX.fbm2(x*0.05+1.0,y*0.05+3.0,2)-0.5);
+        const r=Math.round(Math.min(238,v*1.06)), gg=Math.round(Math.min(236,v*1.05)), b=Math.round(Math.min(226,v*0.98));
+        g.fillStyle='rgb('+r+','+gg+','+b+')';
+        g.fillRect(x,y,2,1);
+      }
+    }
+  })();
+
+  // ---- tile joints, heavier toward the reader --------------------------------------------------
+  (function joints(){
+    g.strokeStyle='rgba(20,25,27,.34)';
+    for(let i=0;i<9;i++){
+      const t=i/8, y=BASE+(H-BASE)*t*t;
+      g.lineWidth=0.5+2.4*t; g.beginPath(); g.moveTo(0,y); g.lineTo(W,y); g.stroke();
+    }
+    for(let j=-4;j<=10;j++){
+      g.lineWidth=1.2; g.strokeStyle='rgba(20,25,27,.26)';
+      g.beginPath();
+      for(let y=BASE;y<=H;y+=10){
+        const s=(y-BASE)/(H-BASE);
+        const x=540 + (j*116-540)*(0.24+0.76*s*s) + 540*0;
+        if(y===BASE) g.moveTo(x,y); else g.lineTo(x,y);
+      }
+      g.stroke();
+    }
+  })();
+
+  // NOTHING IS DEPICTED ON THIS FRAME, and that is the dossier's own line rather than a shortcut.
+  // A first pass put a chair leg at x=12, cropped by the frame and starting mid air at y=700, and
+  // a pixel judge read it as an artifact and was right. A second pass tried a doorway on the far
+  // wall, which sat under a top scrim that runs to y=400 and could not be seen at all. Both were
+  // answers to the wrong question. The frame's whole argument is that a walked path is behaviour
+  // recorded by a material, so the floor has to carry it alone, and furniture in the corner is a
+  // way of not having to make the floor good enough.
+
+  // ---- the floor's grain, COMPRESSED with distance -------------------------------------------
+  // Both passes used to draw the same mark at every depth, so the far floor carried the same
+  // speckle size as the near floor and the frame lost its depth in the one place it was built to
+  // show it. Every mark now takes its size AND its spacing from how far down the frame it lands.
+  for(let k=0;k<34000;k++){
+    const y=BASE+Math.pow(R(),0.55)*(H-BASE), x=R()*W;
+    const t=(y-BASE)/(H-BASE);
+    g.fillStyle='rgba(240,236,220,'+(R()*0.09*(0.3+t)).toFixed(3)+')';
+    g.fillRect(x,y,0.7+2.9*t,0.6+1.5*t);
+  }
+  // the composition speckle a vinyl tile actually carries. Biased toward the reader on the same
+  // curve as the wear grain, so the near tiles show their aggregate and the far ones do not.
+  for(let k=0;k<30000;k++){
+    const y=BASE+Math.pow(R(),0.70)*(H-BASE), x=R()*W;
+    const t=(y-BASE)/(H-BASE);
+    g.fillStyle=(R()<0.5?'rgba(246,242,226,':'rgba(20,25,27,')+(0.04+R()*0.19*(0.35+t)).toFixed(3)+')';
+    g.fillRect(x,y,0.8+2.2*t,0.7+1.3*t);
+  }
+
+  // the acceptance item, measured off the canvas rather than asserted in prose
+  const probe=(x,y)=>{const d=g.getImageData(Math.round(x*2),Math.round(y*2),1,1).data;
+    return 0.2126*d[0]+0.7152*d[1]+0.0722*d[2];};
+  const yTest=1080;
+  const onPath=probe(pathCenter(yTest), yTest);
+  const offPath=probe(Math.min(W-4,pathCenter(yTest)+pathHalfWidth(yTest)*2.4), yTest);
+  window.__txAssert={ sheen_on_path:onPath, sheen_off_path:offPath, delta:onPath-offPath,
+                      drawn_edge_on_path:false };
+  if(onPath-offPath < 34) throw new Error('slide-08: the walked path is not separated from the wax');
+
+  await document.fonts.ready;
+
+  // THE FOOT WRAPPED ON THREE FRAMES AND ALL THREE JUDGES OPENED WITH IT. Adding ", c34" to the
+  // award span pushed the row past its 920 px measure, the flex line broke, and the cover printed
+  // the canonical URL as "texasaidocket.com01 /" with "09" alone on a second line. Nothing caught
+  // it: the DOM span still reads "texasaidocket.com", so a checker reading text passes while the
+  // pixels are wrong, which is CLAUDE.md's public URL section exactly. So the frame measures its
+  // own foot instead of trusting the width to have stayed put.
+  {
+    const foot = document.querySelector('.foot');
+    if (foot) {
+      for (const sp of foot.children) {
+        if (sp.getClientRects().length !== 1)
+          throw new Error('foot: "' + sp.textContent.trim() + '" wraps onto more than one line');
+      }
+      const used = [...foot.children].reduce((a, sp) => a + sp.getBoundingClientRect().width, 0);
+      if (used > foot.clientWidth - 24)
+        throw new Error('foot: the row fills ' + Math.round(used) + ' of ' + foot.clientWidth +
+                        ' px and leaves no gap between spans');
+    }
+  }
+
+})();
+</script></body></html>

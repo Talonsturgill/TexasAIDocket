@@ -1,0 +1,24 @@
+{
+ "_why": "The keys a quantifier or an aggregate names, so a universal on a frame ranges over something a reader can find rather than over a feeling.",
+ "quoted_universal_c23": {
+  "value": 1,
+  "rule": "the one universal this deck prints, which sits inside a verbatim quotation and belongs to the university rather than to the deck",
+  "from_items": [
+   "tx-2026-0104"
+  ]
+ },
+ "documents_official": {
+  "value": 2,
+  "rule": "distinct documents this deck cites whose source_type is primary_official",
+  "from_items": [
+   "tx-2026-0104"
+  ]
+ },
+ "documents_party": {
+  "value": 1,
+  "rule": "distinct documents this deck cites that are the awardee's own account of itself",
+  "from_items": [
+   "tx-2026-0104"
+  ]
+ }
+}

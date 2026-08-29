@@ -1,335 +1,366 @@
 {
-  "_spec": {
-    "version": 1,
-    "purpose": "The dedupe ledger. No topic repeats within 30 days.",
-    "why": "A daily record that returns to the same story every week stops being a record and becomes a feed. The window is enforced in code, not remembered, because the run that most wants to repeat a topic is the run that found nothing else.",
-    "law": "No other product's ledger memory is ever copied in here. The dedupe gate compares against recent history, and a sibling product's history would poison it.",
-    "written_by": "carousel"
+ "_spec": {
+  "version": 1,
+  "purpose": "The dedupe ledger. No topic repeats within 30 days.",
+  "why": "A daily record that returns to the same story every week stops being a record and becomes a feed. The window is enforced in code, not remembered, because the run that most wants to repeat a topic is the run that found nothing else.",
+  "law": "No other product's ledger memory is ever copied in here. The dedupe gate compares against recent history, and a sibling product's history would poison it.",
+  "written_by": "carousel"
+ },
+ "window_days": 30,
+ "entries": [
+  {
+   "date": "2026-08-16",
+   "carousel_no": 1,
+   "docket_item": "tx-2026-0071",
+   "topic": "a state funded semiconductor plant in Grimes County, and the interconnection queue it is reported to sit outside",
+   "angle": "the manufacturing end of the application layer, and the queue this plant is reported not to join",
+   "entities": [
+    "SpaceX",
+    "Terafab",
+    "TeraFab AI, LLC",
+    "Office of the Texas Governor",
+    "Grimes County",
+    "Iola ISD",
+    "Anderson-Shiro CISD",
+    "ERCOT",
+    "Public Utility Commission of Texas"
+   ],
+   "keywords": [
+    "semiconductor",
+    "fab",
+    "AI chips",
+    "Texas Enterprise Fund",
+    "JETI",
+    "interconnection queue",
+    "data center audit",
+    "Post Oak Savannah",
+    "Navasota River"
+   ]
   },
-  "window_days": 30,
-  "entries": [
-    {
-      "date": "2026-08-16",
-      "carousel_no": 1,
-      "docket_item": "tx-2026-0071",
-      "topic": "a state funded semiconductor plant in Grimes County, and the interconnection queue it is reported to sit outside",
-      "angle": "the manufacturing end of the application layer, and the queue this plant is reported not to join",
-      "entities": [
-        "SpaceX",
-        "Terafab",
-        "TeraFab AI, LLC",
-        "Office of the Texas Governor",
-        "Grimes County",
-        "Iola ISD",
-        "Anderson-Shiro CISD",
-        "ERCOT",
-        "Public Utility Commission of Texas"
-      ],
-      "keywords": [
-        "semiconductor",
-        "fab",
-        "AI chips",
-        "Texas Enterprise Fund",
-        "JETI",
-        "interconnection queue",
-        "data center audit",
-        "Post Oak Savannah",
-        "Navasota River"
-      ]
-    },
-    {
-      "date": "2026-08-18",
-      "carousel_no": 2,
-      "docket_item": "tx-2026-0053",
-      "topic": "Houston ISD's Future 2 school model, whose afternoon experiences the district states are screen-free, and the board AI policy that shows no recorded action",
-      "angle": "the application layer inside a classroom, and the gap between a model already running and the rule that would govern it",
-      "entities": [
-        "Houston Independent School District",
-        "Mike Miles",
-        "C. Martinez Elementary",
-        "Gregg Elementary",
-        "Houston ISD School Board",
-        "Katy Independent School District",
-        "The Texan",
-        "Harris County"
-      ],
-      "keywords": [
-        "Future 2",
-        "AI literacy",
-        "screen-free",
-        "CQD(LOCAL)",
-        "board policy",
-        "second reading",
-        "MAP",
-        "NES curriculum",
-        "pre-K-8",
-        "school day"
-      ]
-    },
-    {
-      "date": "2026-08-19",
-      "carousel_no": 3,
-      "docket_item": "tx-2026-0072",
-      "topic": "the Governor's data center audit directive and the ERCOT Batch Zero classification deadline it stopped",
-      "angle": "the schedule the directive broke, rather than the policy it announced, and the two different wordings one office gave the same instruction on one day",
-      "entities": [
-        "Office of the Texas Governor",
-        "Greg Abbott",
-        "Public Utility Commission of Texas",
-        "ERCOT",
-        "Data Center Coalition",
-        "Thomas Gleeson",
-        "Pablo Vegas"
-      ],
-      "keywords": [
-        "Batch Zero",
-        "interconnection",
-        "large load",
-        "good cause exception",
-        "Planning Guide Sections 5 and 9",
-        "open meeting",
-        "474 gigawatts",
-        "data center audit",
-        "guardrails",
-        "market notice"
-      ]
-    },
-    {
-      "date": "2026-08-20",
-      "carousel_no": 4,
-      "docket_item": "tx-2026-0048",
-      "topic": "League City's November ballot on its police license plate reader cameras, whose first clause tells the voter the result is nonbinding",
-      "angle": "the instrument rather than the technology, and the gap between a vote that looks like the decision and the room the decision actually sits in",
-      "entities": [
-        "League City",
-        "League City City Council",
-        "League City Police Department",
-        "Flock Group, Inc.",
-        "Nick Long",
-        "Pflugerville",
-        "Pflugerville City Council",
-        "2026 Pflugerville Charter Review Commission",
-        "Lago Vista"
-      ],
-      "keywords": [
-        "automated license plate reader",
-        "ALPR",
-        "Flock",
-        "nonbinding",
-        "statement of voter preference",
-        "referendum",
-        "Ordinance No. 2026-27",
-        "home rule charter",
-        "Section 2.03",
-        "Artificial Intelligence Protections",
-        "special election",
-        "surveillance",
-        "open meeting"
-      ],
-      "entities_note": "Three counties were listed here and NOT ONE claim in this run names a county. The deck cut its cartographic frame for exactly that reason and says so in its own storyboard, and the variety ledger went on carrying the counties anyway, where the dedupe gate would have compared future runs against entities this record never established. Dropped: Galveston County, Travis County, Williamson County. The fifth panel then found the same defect two names further down the same list. 'Courtney Chadwell' is dropped because c16 quotes only 'Mr. Chadwell' and no fetched record gives the first name, and 'Flock Safety' is corrected to 'Flock Group, Inc.', which is the name c14's quoted item title uses. A list written from memory rather than from the claims file gets the well-known name right and the record's name wrong."
-    },
-    {
-      "date": "2026-08-21",
-      "carousel_no": 5,
-      "docket_item": "tx-2026-0077",
-      "topic": "Texas authorized commercial driverless operation 392 days after the Dallas to Houston lane opened, and the Senate Committee on Transportation meets August 25th to study the deployment and quantify the impact on traffic related collisions",
-      "angle": "the sequence rather than the technology, and the gap between what the machines measure continuously and what the state publishes a crash count for",
-      "entities": [
-        "Aurora Innovation",
-        "Kodiak",
-        "Atlas Energy Solutions",
-        "Waymo",
-        "Texas Department of Motor Vehicles",
-        "Texas Department of Public Safety",
-        "Texas Department of Transportation",
-        "Texas Senate Committee on Transportation",
-        "National Federation for the Blind of Texas",
-        "Raul Gallegos",
-        "NHTSA"
-      ],
-      "entities_note": "Written from claims.json rather than from memory. Every name here appears in a fetched quote or its dateline. No county is listed, because no claim in this run names one and the previous run's entry recorded three counties its own deck had refused to draw.",
-      "keywords": [
-        "driverless",
-        "autonomous vehicle",
-        "SB 2807",
-        "robotaxi",
-        "driverless trucking",
-        "triple trailers",
-        "Permian Basin",
-        "Dune Express",
-        "authorization",
-        "traffic related collisions",
-        "crash records",
-        "interim charge",
-        "public hearing"
-      ]
-    },
-    {
-      "date": "2026-08-22",
-      "carousel_no": 6,
-      "docket_item": "tx-2026-0002",
-      "topic": "PUCT Project 58482, the proposed Large Load Demand Management Service rule, whose text never uses the words data center and which draws its line at 75 megawatts at a single site instead",
-      "angle": "the threshold doing the work a name would do, and the industry recognising itself in a number and filing anyway, against a comment window that closes September 4th",
-      "entities": [
-        "Public Utility Commission of Texas",
-        "Electric Reliability Council of Texas",
-        "Data Center Coalition",
-        "CyrusOne, LP",
-        "Modern Tex Consulting LLC",
-        "Texas A&M University Energy Institute",
-        "EnerShield AI",
-        "Blind Mice Labs"
-      ],
-      "keywords": [
-        "Project 58482",
-        "16 TAC 25.521",
-        "Large Load Demand Management Service",
-        "large load customer",
-        "75 megawatts",
-        "non-coincident peak demand",
-        "single site",
-        "demand reduction",
-        "comment deadline",
-        "filing index",
-        "Texas Register"
-      ]
-    },
-    {
-      "date": "2026-08-25",
-      "carousel_no": 7,
-      "docket_item": "tx-2026-0062",
-      "topic": "the fifteen actions twelve Texas local governments took on a data center between March 10th and August 13th 2026, taken as a PATTERN rather than as any one of them, and read for the shape of each instrument rather than the fact of it",
-      "angle": "the shape of an action decides whether anything stops. The record splits the fifteen evenly: five say in their own sources that they stop nothing, five carry an effective date or an observed consequence, and on the other five the record says nothing either way, which the deck publishes rather than rounding into a proportion",
-      "entities": [
-        "Archer County",
-        "Brazoria County",
-        "Corpus Christi",
-        "El Paso",
-        "Fort Worth",
-        "Hays County",
-        "Killeen",
-        "Lubbock County",
-        "San Angelo",
-        "San Marcos",
-        "Wichita Falls",
-        "Williamson County",
-        "Tom Green County",
-        "Laredo",
-        "Old Ocean Datacenter LLC",
-        "Hill County",
-        "Compal USA Technology"
-      ],
-      "keywords": [
-        "reinvestment zone",
-        "tax abatement",
-        "moratorium",
-        "data center",
-        "water ordinance",
-        "public hearing",
-        "resolution",
-        "no action taken",
-        "binding"
-      ],
-      "rejected": {
-        "tx-2026-0072": "LIKELY REPEAT 0.70 against carousel No. 3 on 2026-08-19, same docket item, six days inside the thirty day window"
-      }
-    },
-    {
-      "date": "2026-08-26",
-      "carousel_no": 8,
-      "docket_item": "tx-2026-0095",
-      "topic": "a university system board adding a billion dollar hospital phase to its capital program",
-      "angle": "the committee's own twenty pages never use the word AI while the university's release about the same building does",
-      "entities": [
-        "UT System Board of Regents",
-        "UT Austin",
-        "MD Anderson",
-        "UTMB Galveston",
-        "Qualified Health",
-        "Dell Medical Center"
-      ],
-      "keywords": [
-        "capital improvement program",
-        "Revenue Financing System bond proceeds",
-        "agenda book",
-        "clinical revenues",
-        "site preparation",
-        "Pickle Research Campus"
-      ],
-      "rejected": [
-        "that the regents never write AI anywhere in the August agenda book, which the run's own count of 24 matches on 16 pages of the combined book refutes"
-      ],
-      "angle_note": "TWO PANELS AND THREE JUDGES FLAGGED THIS ANGLE AS A REPEAT and none could fail it, because the dedupe gate compares topic, entities and keywords and never reads this field. 08-22 was 'whose text never uses the words data center' and 08-19 was 'the two different wordings one office gave the same instruction on one day'. Both are this deck's turn and the frame after it. The gate is measuring the wrong field, and that is an upgrade lane proposal rather than a reason to have stopped this deck."
-    },
-    {
-      "date": "2026-08-27",
-      "carousel_no": 9,
-      "docket_item": "tx-2026-0084",
-      "topic": "Amazon's Austin robotics manufacturing siting, and the fact that a company asking for no public money also faces no public proceeding",
-      "angle": "the instrument rather than the company. Neither release names a vote, a hearing or an acting public body, and thirteen items on the record do name a local decider, so the deck sets this siting beside those thirteen. The earlier wording of this field asserted that a request for public money is what opens a hearing, which the run's own membership test never tested and the panel refused. A ledger field is memory, so a refuted reading left in it becomes the next run's premise.",
-      "entities": [
-        "Amazon.com, Inc.",
-        "Office of the Texas Governor",
-        "Greg Abbott",
-        "City of Austin",
-        "Kirk Watson",
-        "Travis County",
-        "Archer County",
-        "Brazoria County",
-        "Brazos County",
-        "City of Denton",
-        "City of Taylor",
-        "Senate Committee on Water, Agriculture and Rural Affairs",
-        "Public Utility Commission of Texas"
-      ],
-      "keywords": [
-        "robotics manufacturing",
-        "fulfillment robots",
-        "no economic incentives",
-        "no public money",
-        "tax abatement",
-        "reinvestment zone",
-        "moratorium",
-        "public hearing",
-        "Project 58482",
-        "300 to 500 jobs",
-        "multi billion dollar"
-      ],
-      "corrections": [
-        "2026-08-27, on the panel's refusal: the angle field asserted a direction of request over the counted set. Rewritten to what compute.py actually computes."
-      ]
-    },
-    {
-      "date": "2026-08-28",
-      "carousel_no": 10,
-      "docket_item": "tx-2026-0108",
-      "topic": "PUCT Docket 59220, the net metering order that let an AI data center share a wind farm's point of interconnection in Armstrong County and told it to shed its whole load, and the motion for rehearing filed against it",
-      "angle": "the deck is about a case that is settled and unsettled at once. The order stands and its conditions are in force, and the party that will run the load says the order never reached the legal question of first impression the case turns on. The deck quotes that characterisation and never states what the question is, because no claim states it",
-      "entities": [
-        "Public Utility Commission of Texas",
-        "Crusoe Energy Systems LLC",
-        "Ensign Infrastructure LLC",
-        "FGE Goodnight I, LLC",
-        "GOODNIT1",
-        "Electric Reliability Council of Texas",
-        "Armstrong County",
-        "Greenbelt Electric Cooperative",
-        "Golden Spread Electric Cooperative"
-      ],
-      "keywords": [
-        "Docket 59220",
-        "net metering",
-        "PURA 39.169",
-        "point of interconnection",
-        "ERCOT-polled settlement meter",
-        "curtailment",
-        "Condition 1",
-        "demand response",
-        "motion for rehearing",
-        "issue of first impression",
-        "Docket 58872",
-        "Docket 58881"
-      ]
-    }
-  ]
+  {
+   "date": "2026-08-18",
+   "carousel_no": 2,
+   "docket_item": "tx-2026-0053",
+   "topic": "Houston ISD's Future 2 school model, whose afternoon experiences the district states are screen-free, and the board AI policy that shows no recorded action",
+   "angle": "the application layer inside a classroom, and the gap between a model already running and the rule that would govern it",
+   "entities": [
+    "Houston Independent School District",
+    "Mike Miles",
+    "C. Martinez Elementary",
+    "Gregg Elementary",
+    "Houston ISD School Board",
+    "Katy Independent School District",
+    "The Texan",
+    "Harris County"
+   ],
+   "keywords": [
+    "Future 2",
+    "AI literacy",
+    "screen-free",
+    "CQD(LOCAL)",
+    "board policy",
+    "second reading",
+    "MAP",
+    "NES curriculum",
+    "pre-K-8",
+    "school day"
+   ]
+  },
+  {
+   "date": "2026-08-19",
+   "carousel_no": 3,
+   "docket_item": "tx-2026-0072",
+   "topic": "the Governor's data center audit directive and the ERCOT Batch Zero classification deadline it stopped",
+   "angle": "the schedule the directive broke, rather than the policy it announced, and the two different wordings one office gave the same instruction on one day",
+   "entities": [
+    "Office of the Texas Governor",
+    "Greg Abbott",
+    "Public Utility Commission of Texas",
+    "ERCOT",
+    "Data Center Coalition",
+    "Thomas Gleeson",
+    "Pablo Vegas"
+   ],
+   "keywords": [
+    "Batch Zero",
+    "interconnection",
+    "large load",
+    "good cause exception",
+    "Planning Guide Sections 5 and 9",
+    "open meeting",
+    "474 gigawatts",
+    "data center audit",
+    "guardrails",
+    "market notice"
+   ]
+  },
+  {
+   "date": "2026-08-20",
+   "carousel_no": 4,
+   "docket_item": "tx-2026-0048",
+   "topic": "League City's November ballot on its police license plate reader cameras, whose first clause tells the voter the result is nonbinding",
+   "angle": "the instrument rather than the technology, and the gap between a vote that looks like the decision and the room the decision actually sits in",
+   "entities": [
+    "League City",
+    "League City City Council",
+    "League City Police Department",
+    "Flock Group, Inc.",
+    "Nick Long",
+    "Pflugerville",
+    "Pflugerville City Council",
+    "2026 Pflugerville Charter Review Commission",
+    "Lago Vista"
+   ],
+   "keywords": [
+    "automated license plate reader",
+    "ALPR",
+    "Flock",
+    "nonbinding",
+    "statement of voter preference",
+    "referendum",
+    "Ordinance No. 2026-27",
+    "home rule charter",
+    "Section 2.03",
+    "Artificial Intelligence Protections",
+    "special election",
+    "surveillance",
+    "open meeting"
+   ],
+   "entities_note": "Three counties were listed here and NOT ONE claim in this run names a county. The deck cut its cartographic frame for exactly that reason and says so in its own storyboard, and the variety ledger went on carrying the counties anyway, where the dedupe gate would have compared future runs against entities this record never established. Dropped: Galveston County, Travis County, Williamson County. The fifth panel then found the same defect two names further down the same list. 'Courtney Chadwell' is dropped because c16 quotes only 'Mr. Chadwell' and no fetched record gives the first name, and 'Flock Safety' is corrected to 'Flock Group, Inc.', which is the name c14's quoted item title uses. A list written from memory rather than from the claims file gets the well-known name right and the record's name wrong."
+  },
+  {
+   "date": "2026-08-21",
+   "carousel_no": 5,
+   "docket_item": "tx-2026-0077",
+   "topic": "Texas authorized commercial driverless operation 392 days after the Dallas to Houston lane opened, and the Senate Committee on Transportation meets August 25th to study the deployment and quantify the impact on traffic related collisions",
+   "angle": "the sequence rather than the technology, and the gap between what the machines measure continuously and what the state publishes a crash count for",
+   "entities": [
+    "Aurora Innovation",
+    "Kodiak",
+    "Atlas Energy Solutions",
+    "Waymo",
+    "Texas Department of Motor Vehicles",
+    "Texas Department of Public Safety",
+    "Texas Department of Transportation",
+    "Texas Senate Committee on Transportation",
+    "National Federation for the Blind of Texas",
+    "Raul Gallegos",
+    "NHTSA"
+   ],
+   "entities_note": "Written from claims.json rather than from memory. Every name here appears in a fetched quote or its dateline. No county is listed, because no claim in this run names one and the previous run's entry recorded three counties its own deck had refused to draw.",
+   "keywords": [
+    "driverless",
+    "autonomous vehicle",
+    "SB 2807",
+    "robotaxi",
+    "driverless trucking",
+    "triple trailers",
+    "Permian Basin",
+    "Dune Express",
+    "authorization",
+    "traffic related collisions",
+    "crash records",
+    "interim charge",
+    "public hearing"
+   ]
+  },
+  {
+   "date": "2026-08-22",
+   "carousel_no": 6,
+   "docket_item": "tx-2026-0002",
+   "topic": "PUCT Project 58482, the proposed Large Load Demand Management Service rule, whose text never uses the words data center and which draws its line at 75 megawatts at a single site instead",
+   "angle": "the threshold doing the work a name would do, and the industry recognising itself in a number and filing anyway, against a comment window that closes September 4th",
+   "entities": [
+    "Public Utility Commission of Texas",
+    "Electric Reliability Council of Texas",
+    "Data Center Coalition",
+    "CyrusOne, LP",
+    "Modern Tex Consulting LLC",
+    "Texas A&M University Energy Institute",
+    "EnerShield AI",
+    "Blind Mice Labs"
+   ],
+   "keywords": [
+    "Project 58482",
+    "16 TAC 25.521",
+    "Large Load Demand Management Service",
+    "large load customer",
+    "75 megawatts",
+    "non-coincident peak demand",
+    "single site",
+    "demand reduction",
+    "comment deadline",
+    "filing index",
+    "Texas Register"
+   ]
+  },
+  {
+   "date": "2026-08-25",
+   "carousel_no": 7,
+   "docket_item": "tx-2026-0062",
+   "topic": "the fifteen actions twelve Texas local governments took on a data center between March 10th and August 13th 2026, taken as a PATTERN rather than as any one of them, and read for the shape of each instrument rather than the fact of it",
+   "angle": "the shape of an action decides whether anything stops. The record splits the fifteen evenly: five say in their own sources that they stop nothing, five carry an effective date or an observed consequence, and on the other five the record says nothing either way, which the deck publishes rather than rounding into a proportion",
+   "entities": [
+    "Archer County",
+    "Brazoria County",
+    "Corpus Christi",
+    "El Paso",
+    "Fort Worth",
+    "Hays County",
+    "Killeen",
+    "Lubbock County",
+    "San Angelo",
+    "San Marcos",
+    "Wichita Falls",
+    "Williamson County",
+    "Tom Green County",
+    "Laredo",
+    "Old Ocean Datacenter LLC",
+    "Hill County",
+    "Compal USA Technology"
+   ],
+   "keywords": [
+    "reinvestment zone",
+    "tax abatement",
+    "moratorium",
+    "data center",
+    "water ordinance",
+    "public hearing",
+    "resolution",
+    "no action taken",
+    "binding"
+   ],
+   "rejected": {
+    "tx-2026-0072": "LIKELY REPEAT 0.70 against carousel No. 3 on 2026-08-19, same docket item, six days inside the thirty day window"
+   }
+  },
+  {
+   "date": "2026-08-26",
+   "carousel_no": 8,
+   "docket_item": "tx-2026-0095",
+   "topic": "a university system board adding a billion dollar hospital phase to its capital program",
+   "angle": "the committee's own twenty pages never use the word AI while the university's release about the same building does",
+   "entities": [
+    "UT System Board of Regents",
+    "UT Austin",
+    "MD Anderson",
+    "UTMB Galveston",
+    "Qualified Health",
+    "Dell Medical Center"
+   ],
+   "keywords": [
+    "capital improvement program",
+    "Revenue Financing System bond proceeds",
+    "agenda book",
+    "clinical revenues",
+    "site preparation",
+    "Pickle Research Campus"
+   ],
+   "rejected": [
+    "that the regents never write AI anywhere in the August agenda book, which the run's own count of 24 matches on 16 pages of the combined book refutes"
+   ],
+   "angle_note": "TWO PANELS AND THREE JUDGES FLAGGED THIS ANGLE AS A REPEAT and none could fail it, because the dedupe gate compares topic, entities and keywords and never reads this field. 08-22 was 'whose text never uses the words data center' and 08-19 was 'the two different wordings one office gave the same instruction on one day'. Both are this deck's turn and the frame after it. The gate is measuring the wrong field, and that is an upgrade lane proposal rather than a reason to have stopped this deck."
+  },
+  {
+   "date": "2026-08-27",
+   "carousel_no": 9,
+   "docket_item": "tx-2026-0084",
+   "topic": "Amazon's Austin robotics manufacturing siting, and the fact that a company asking for no public money also faces no public proceeding",
+   "angle": "the instrument rather than the company. Neither release names a vote, a hearing or an acting public body, and thirteen items on the record do name a local decider, so the deck sets this siting beside those thirteen. The earlier wording of this field asserted that a request for public money is what opens a hearing, which the run's own membership test never tested and the panel refused. A ledger field is memory, so a refuted reading left in it becomes the next run's premise.",
+   "entities": [
+    "Amazon.com, Inc.",
+    "Office of the Texas Governor",
+    "Greg Abbott",
+    "City of Austin",
+    "Kirk Watson",
+    "Travis County",
+    "Archer County",
+    "Brazoria County",
+    "Brazos County",
+    "City of Denton",
+    "City of Taylor",
+    "Senate Committee on Water, Agriculture and Rural Affairs",
+    "Public Utility Commission of Texas"
+   ],
+   "keywords": [
+    "robotics manufacturing",
+    "fulfillment robots",
+    "no economic incentives",
+    "no public money",
+    "tax abatement",
+    "reinvestment zone",
+    "moratorium",
+    "public hearing",
+    "Project 58482",
+    "300 to 500 jobs",
+    "multi billion dollar"
+   ],
+   "corrections": [
+    "2026-08-27, on the panel's refusal: the angle field asserted a direction of request over the counted set. Rewritten to what compute.py actually computes."
+   ]
+  },
+  {
+   "date": "2026-08-28",
+   "carousel_no": 10,
+   "docket_item": "tx-2026-0108",
+   "topic": "PUCT Docket 59220, the net metering order that let an AI data center share a wind farm's point of interconnection in Armstrong County and told it to shed its whole load, and the motion for rehearing filed against it",
+   "angle": "the deck is about a case that is settled and unsettled at once. The order stands and its conditions are in force, and the party that will run the load says the order never reached the legal question of first impression the case turns on. The deck quotes that characterisation and never states what the question is, because no claim states it",
+   "entities": [
+    "Public Utility Commission of Texas",
+    "Crusoe Energy Systems LLC",
+    "Ensign Infrastructure LLC",
+    "FGE Goodnight I, LLC",
+    "GOODNIT1",
+    "Electric Reliability Council of Texas",
+    "Armstrong County",
+    "Greenbelt Electric Cooperative",
+    "Golden Spread Electric Cooperative"
+   ],
+   "keywords": [
+    "Docket 59220",
+    "net metering",
+    "PURA 39.169",
+    "point of interconnection",
+    "ERCOT-polled settlement meter",
+    "curtailment",
+    "Condition 1",
+    "demand response",
+    "motion for rehearing",
+    "issue of first impression",
+    "Docket 58872",
+    "Docket 58881"
+   ]
+  },
+  {
+   "date": "2026-08-29",
+   "carousel_no": 11,
+   "docket_item": "tx-2026-0104",
+   "topic": "NSF award 2535195, the Science and Technology Center for Human and Robot Co-Adaptation led by UT Austin, whose award abstract and university announcement name the rooms robots will be deployed into while the consent and opt-out procedures are still to be developed",
+   "angle": "the deck sets each document's description of the same deployment side by side and shows the most specific list is the awardee's own. It never says the record is silent on consent, because the university states an internal ethics board will develop the procedures, so the gap is a sequence and not an omission",
+   "entities": [
+    "National Science Foundation",
+    "University of Texas at Austin",
+    "Joydeep Biswas",
+    "Good Systems",
+    "Human Environment with Robots (HERO) Facility Network",
+    "Massachusetts Institute of Technology",
+    "Yale University",
+    "Indiana University Bloomington",
+    "University of Utah",
+    "Tufts University",
+    "Austin",
+    "Travis County"
+   ],
+   "keywords": [
+    "robotics",
+    "cooperative agreement",
+    "Science and Technology Center",
+    "consent",
+    "opt-out",
+    "deployment sites",
+    "co-adaptation"
+   ],
+   "angle_note": "FOURTH DECK OF ELEVEN BUILT ON WHAT A DOCUMENT DOES NOT SAY, named by the integrity judge in rounds 4 and 5 and by the reader judge in round 5. dedupe_check cannot see this because it compares topics and keywords and never reads this field. The absence hook is now the house habit rather than a choice, and the next run should spend an opening move that is not an absence."
+  }
+ ]
 }

@@ -11,7 +11,7 @@ The Killeen Planning and Zoning Commission voted against a conditional use permi
 - Public access: Public meeting
 - Take part: https://www.kwtx.com/2026/04/28/killeen-planning-commission-denies-permit-proposed-data-center/
 
-- Last checked: 2026-08-26
+- Last checked: 2026-08-29
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-21 · Corrected. The commission's own agenda dates the hearing to April 27th, 2026. It files the request as Case Z26-07, a conditional use permit for a data center at 6509 South Fort Hood Street on land zoned University District. The applicant of record is Belton Engineering, Inc. on behalf of 4 Lazy J Properties, LLC. No Killeen agenda posted through August 27th, 2026 carries the case, so the council decision the commission's vote feeds into has not been scheduled.
 - 2026-08-26 · Checked and unchanged. The commission's vote against the conditional use permit still stands and the agenda item is still the one quoted here. Nothing has been refiled.
 - 2026-08-26 · Checked and unchanged. The Texas Scorecard account still reports the commission voting against the permit with an abstention. It still says the City Council makes the final decision, using that vote as a recommendation.
+- 2026-08-29 · Checked and unchanged. The commission's denial still stands as a recommendation rather than as the decision, and the final zoning call still belongs to the Killeen City Council. Nothing on the record shows the council has taken it up.
 
 ## Evidence
 
