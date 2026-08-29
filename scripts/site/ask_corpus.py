@@ -96,8 +96,10 @@ def build(today: str = None, docs_dir=None) -> dict:
         # same reason the numerals are: the pack is what the model was shown, and the ledger is
         # only one of the four things now in it.
         "slugs": sorted(ask_pack.block_ids(pack)),
-        # Read off the pack's text, which is the exact thing the model is handed.
-        "authorised_numerals": sorted(numerals(pack["pack"])),
+        # Read off both body fields. Normal retrieval may hand the model a facility body even
+        # though the bounded retrieval-off fallback carries only the core field.
+        "authorised_numerals": sorted(numerals(
+            pack["pack"] + "\n" + (pack.get("facility_pack") or ""))),
         "pack_chars": pack["chars"],
     }
 
@@ -145,7 +147,8 @@ def self_test() -> int:
     allowed = set(c["authorised_numerals"])
 
     print("the allow-list covers what the model is shown")
-    pack = ask_pack.build()["pack"]
+    built = ask_pack.build()
+    pack = built["pack"] + "\n" + (built.get("facility_pack") or "")
     missing = [t for t in numerals(pack) if t not in allowed]
     check("every numeral in the pack is authorised", not missing, str(missing[:3]))
 

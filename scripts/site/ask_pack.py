@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """ask_pack.py — the published record, rendered as prose for one prompt.
 
-WHAT THIS IS. The written answer lane puts the WHOLE record in front of the model and asks it
-to answer from that. This file is that record. There is no retrieval, no embedding step, no
-chunking and no similarity threshold, because the record fits in one context with room over.
-The largest single source of wrong answers in a retrieval chatbot is retrieving the wrong
-passage, and a record this size lets that failure mode be deleted rather than managed.
+WHAT THIS IS. The written answer lane publishes the whole record, plus a complete index of what
+it holds. The worker always sends the index and retrieves only the bodies a question needs. The
+data center bodies live in a sibling field so the bounded retrieval-off fallback cannot overflow
+one context. Normal retrieval still sees every body and every sourced facility fact.
 
 WHY PROSE AND NOT THE JSON. Three reasons, and the third is the one that keeps being
 rediscovered.
@@ -23,8 +22,8 @@ rediscovered.
      model's own reply. Same for dates. The pack writes "July 9th, 2026" because a pack full
      of ISO stamps produces answers full of ISO stamps.
 
-SIZE IS A HARD GATE, NOT A WARNING. Every token here is paid on every question asked, forever.
-Raising the ceiling is a decision with a bill attached and never a fix for a red build.
+SIZE IS A HARD GATE, NOT A WARNING. The index is paid on every question. The core pack is the
+bounded retrieval-off fallback. Raising either ceiling is never a fix for a red build.
 
 The authorised numeral list is derived FROM THIS TEXT by ask_corpus, so the guard's promise is
 exact: the model may state a number only if that number was in what it was shown. Feeds are
@@ -45,6 +44,7 @@ REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, HERE)
 
 import docket_build as dk                                          # noqa: E402
+import facility_dossier as fd                                      # noqa: E402
 
 LEDGER = Path(REPO) / "ledger" / "docket.json"
 DOCS = Path(REPO) / "docs"
@@ -78,6 +78,11 @@ MAX_CHARS = 420_000
 # construction register and the reservoirs already do, and what a family arriving later should
 # do before this number is touched.
 MAX_INDEX_CHARS = 40_000
+
+# The facility bodies remain complete for normal retrieval. They are carried beside the core
+# pack because one hundred fifty dossiers no longer fit inside its retrieval-off context bound.
+# A second field costs no model tokens until the retriever chooses one of its blocks.
+FACILITY_PACK_MARK = "THE DATA CENTER DOSSIERS."
 
 MONTHS = ("January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December")
@@ -502,9 +507,40 @@ PROJECTS = Path(REPO) / "ledger" / "facilities" / "projects.json"
 # unit falls through as itself, which is the safe direction, and the self-test fails if the
 # ledger starts using one nothing here has a word for.
 UNIT_WORDS = {
-    "MW": "megawatts", "GW": "gigawatts", "sqft": "square feet", "acres": "acres",
-    "buildings": "buildings", "workers": "workers", "units": "units",
-    "facilities": "facilities", "percent": "percent", "jobs": "jobs",
+    "MW": ("megawatt", "megawatts"),
+    "GW": ("gigawatt", "gigawatts"),
+    "MVA": ("megavolt ampere", "megavolt amperes"),
+    "kV": ("kilovolt", "kilovolts"),
+    "sqft": ("square foot", "square feet"),
+    "acres": ("acre", "acres"),
+    "miles": ("mile", "miles"),
+    "feet": ("foot", "feet"),
+    "buildings": ("building", "buildings"),
+    "warehouses": ("warehouse", "warehouses"),
+    "offices": ("office", "offices"),
+    "stories": ("story", "stories"),
+    "data_halls": ("data hall", "data halls"),
+    "workers": ("worker", "workers"),
+    "units": ("unit", "units"),
+    "facilities": ("facility", "facilities"),
+    "roles": ("role", "roles"),
+    "options": ("option", "options"),
+    "reactors": ("reactor", "reactors"),
+    "entities": ("entity", "entities"),
+    "tenants": ("tenant", "tenants"),
+    "utility_feeds": ("utility feed", "utility feeds"),
+    "building_order": ("building", "buildings"),
+    "facility_order": ("facility", "facilities"),
+    "percent": ("percent", "percent"),
+    "jobs": ("job", "jobs"),
+    "years": ("year", "years"),
+    "months": ("month", "months"),
+    "gallons": ("gallon", "gallons"),
+    "gallons_per_day": ("gallon per day", "gallons per day"),
+    "gpm": ("gallon per minute", "gallons per minute"),
+    "exahashes_per_second": ("exahash per second", "exahashes per second"),
+    "usd": ("dollar", "dollars"),
+    "usd_per_kwh": ("dollar per kilowatt hour", "dollars per kilowatt hour"),
 }
 
 
@@ -533,32 +569,63 @@ def money(n) -> str:
     record had the figure. Writing it the way it should be read authorises the reading.
     """
     try:
-        n = float(n)
+        return fd.money(n)
     except (TypeError, ValueError):
         return ""
-    if n >= 1e9:
-        return f"${n / 1e9:,.2f} billion".replace(".00 billion", " billion")
-    if n >= 1e6:
-        return f"${n / 1e6:,.1f} million".replace(".0 million", " million")
-    return f"${n:,.0f}"
+
+
+def _shown_number(value, unit: str) -> str:
+    if unit in {"gallons", "gallons_per_day"}:
+        return fd.scaled(value)
+    return f"{value:,.0f}" if isinstance(value, (int, float)) and float(value).is_integer() \
+        else f"{value:,}"
+
+
+def _quantity(value, unit: str, *, attributive=False) -> str:
+    """One quantity in the plain words the answer engine should copy."""
+    if unit == "usd":
+        return fd.money(value)
+    if unit in {"building_order", "facility_order"}:
+        return fd.one_quantity(value, unit)
+    shown = _shown_number(value, unit)
+    if unit == "usd_per_kwh":
+        return f"${shown} per kilowatt hour"
+    singular, plural = UNIT_WORDS[unit]
+    word = singular if attributive or float(value) == 1 else plural
+    return f"{shown} {word}"
 
 
 def _fact(f: dict) -> str:
-    """One dossier fact, as a sentence."""
+    """One dossier fact, as a sentence assembled from its structured quantity fields."""
     label = (f.get("label") or "").strip().rstrip(".")
     if not label:
         return ""
     if f.get("text"):
         return f"{label} is {str(f['text']).strip().rstrip('.')}"
-    if f.get("value") is None:
+    shape = fd.numeric_shape(f)
+    if not shape or shape == "mixed":
         return ""
     unit = f.get("unit") or ""
-    if unit == "usd":
-        return f"{label} is {money(f['value'])}"
-    v = f["value"]
-    shown = f"{v:,.0f}" if isinstance(v, (int, float)) and float(v).is_integer() else f"{v:,}"
-    word = UNIT_WORDS.get(unit, unit)
-    return f"{label} is {shown} {word}".strip()
+    if shape == "value":
+        core = _quantity(f["value"], unit, attributive=bool(f.get("attributive")))
+    elif shape == "range":
+        singular, plural = UNIT_WORDS[unit]
+        core = (f"{_shown_number(f['minimum'], unit)} to "
+                f"{_shown_number(f['maximum'], unit)} {plural}")
+    elif shape == "alternatives":
+        shown = [_quantity(value, unit) for value in f["alternatives"]]
+        core = shown[0] if len(shown) == 1 else ", ".join(shown[:-1]) + ", or " + shown[-1]
+    else:
+        shown = [_quantity(q["value"], q["unit"], attributive=bool(q.get("attributive")))
+                 for q in f["quantities"]]
+        core = shown[0] if len(shown) == 1 else ", ".join(shown[:-1]) + " and " + shown[-1]
+
+    bits = [str(f.get("prefix") or "").strip(), fd.QUALIFIERS.get(f.get("qualifier"), ""),
+            core, str(f.get("suffix") or "").strip()]
+    shown = " ".join(x for x in bits if x)
+    if f.get("date"):
+        shown += f" {f.get('date_intro', 'in')} {fd.date_context(f['date'])}"
+    return f"{label} is {shown}".strip()
 
 
 def facility_prose(d: dict) -> str:
@@ -589,21 +656,21 @@ def facility_prose(d: dict) -> str:
 def facility_index_line(d: dict) -> str:
     """One dossier, compressed to what tells a reader whether it is the one they mean.
 
-    Its name, where it is, who occupies it, and the id to cite it by. A dossier earns a line of
-    its own because it is a place a reader can be hunting by name, which is the same test the
-    decisions pass and the same test the rolled up families below fail.
+    Its name, one identifying detail, and the id to cite it by. The section already says every
+    row is a data center, so repeating that phrase one hundred fifty times spends the index
+    budget without helping retrieval. One detail keeps the town or the party a reader half
+    remembers while leaving the complete body available to the retriever.
     """
     facts = {(f.get("label") or "").strip(): f for f in (d.get("facts") or [])}
-    bits = []
+    detail = ""
     for label in ("Location", "Occupant of record", "Operator of record",
                   "Owner and operator of record", "Owner of record"):
         f = facts.get(label)
         if f and f.get("text") and f["text"] != "None is listed":
-            bits.append(str(f["text"]).strip().rstrip("."))
-            if len(bits) == 2:
-                break
-    return (f"{(d.get('name') or '').strip().rstrip('.')}, a data center"
-            + (". " + ", ".join(bits) if bits else "")
+            detail = str(f["text"]).strip().rstrip(".")
+            break
+    return (f"{(d.get('name') or '').strip().rstrip('.')}"
+            + (". " + detail if detail else "")
             + f". [[facility-{d['slug']}]]")
 
 
@@ -974,11 +1041,14 @@ def build(today: str = None, docs_dir=None) -> dict:
 
     parts.append("THE DECISIONS.")
     parts.extend(item_prose(it, today) for it in items)
-    parts.extend(facility_prose(d) for d in dossiers)
     parts.extend(county_blocks)
     parts.extend(water_blocks)
 
     pack = "\n\n".join(parts)
+    facility_pack = ("\n\n".join(
+        [FACILITY_PACK_MARK, DECISIONS_MARK]
+        + [facility_prose(d) for d in dossiers]
+    ) if dossiers else "")
     idx = index(items, today, extra=[
         ("THE DATA CENTER DOSSIERS. One line each, in the same shape as the decisions above, "
          "and the full dossier for the ones this question needs is below.\n"
@@ -993,16 +1063,20 @@ def build(today: str = None, docs_dir=None) -> dict:
         # now sends a slice of it. This file is fetched by a worker that is deployed by hand,
         # by pasting, and the site rebuilds itself every day without asking anybody. Dropping a
         # field the live worker reads would take the ask box down the morning after a run, with
-        # nothing in this repo to show for it. It is also the escape hatch: ASK_RETRIEVAL=off
-        # sends this instead of a slice, one dashboard variable away, no deploy.
+        # nothing in this repo to show for it. ASK_RETRIEVAL=off sends this bounded core plus
+        # the complete index. Facility bodies stay available to normal retrieval below.
         "pack": pack,
+        # THE COMPLETE FACILITY BODIES. Kept beside the core rather than inside it so the
+        # retrieval-off escape hatch remains bounded. The worker indexes both fields and can
+        # still send any full dossier body a normal question retrieves.
+        "facility_pack": facility_pack,
         # THE INDEX, which is what makes sending a slice safe rather than merely cheaper. Every
         # decision gets a line whatever the retriever thinks, so the model always knows what
         # EXISTS and the retrieval failure that a reader cannot see, answering as though the
         # missing item is not there, is designed out instead of managed.
         "index": idx,
         "index_chars": len(idx),
-        "chars": len(pack),
+        "chars": len(pack) + len(facility_pack),
         "items": len(items),
         # WHAT THE PACK ACTUALLY HOLDS, BY FAMILY. `items` counts decisions and used to count
         # everything, because for two years the two were the same number. They are not any
@@ -1031,7 +1105,7 @@ def build(today: str = None, docs_dir=None) -> dict:
         # A digest of what the model is actually shown. Change the instructions, the index or a
         # decision, and the key moves with it.
         "version": __import__("hashlib").sha256(
-            (SYSTEM + idx + pack).encode("utf-8")).hexdigest()[:16],
+            (SYSTEM + idx + pack + facility_pack).encode("utf-8")).hexdigest()[:16],
     }
 
 
@@ -1199,23 +1273,24 @@ def _places() -> set:
 def block_ids(pack: dict) -> list:
     """Every id the pack can be cited by, cut the way the worker cuts it.
 
-    ONE CUT, NOT TWO. The worker splits the pack on the same fence to decide what to send, and
-    ask_corpus needs the same list to decide what may be cited. Deriving it a second way, from
-    the ledgers, is how a family ends up in the pack, in the index, and refused at the check,
-    which the reader sees as a true sentence being cut for naming their own reservoir.
+    The worker splits both published body fields on the same fence to decide what to send, and
+    ask_corpus needs the same list to decide what may be cited. Deriving it a second way from
+    the ledgers is how a family ends up indexed and then refused at the answer checker.
     """
     fence = "\n\n" + DECISIONS_MARK + "\n\n"
-    text = pack.get("pack") or ""
-    if fence not in text:
-        return []
+    texts = [pack.get("pack") or "", pack.get("facility_pack") or ""]
     # THE INSTRUMENTS ARE CITABLE AND HAVE NO BLOCK, so a cut that only reads below the fence
     # misses them and the worker refuses a true citation to the grid watch. They are listed
     # here rather than derived, because there is nothing below the fence to derive them from.
-    out = [k for k in INSTRUMENT_CITES if "[[" + k + "]]" in text]
-    for block in text.split(fence, 1)[1].split("\n\n"):
-        b = block.strip()
-        if b.startswith("[[") and "]]" in b:
-            out.append(b[2:b.index("]]")])
+    joined = "\n".join(texts)
+    out = [k for k in INSTRUMENT_CITES if "[[" + k + "]]" in joined]
+    for text in texts:
+        if fence not in text:
+            continue
+        for block in text.split(fence, 1)[1].split("\n\n"):
+            b = block.strip()
+            if b.startswith("[[") and "]]" in b:
+                out.append(b[2:b.index("]]")])
     return out
 
 
@@ -1237,13 +1312,48 @@ def self_test() -> int:
                       ("2026-08-13", "August 13th, 2026"), ("2026-08-21", "August 21st, 2026")):
         check(f"{iso} reads {want}", longdate(iso) == want, longdate(iso))
 
+    print("data center units")
+    dossier_doc = _ledger(FACILITIES) or {}
+    ledger_units = set()
+    for dossier in dossier_doc.get("dossiers") or []:
+        for fact in dossier.get("facts") or []:
+            if fact.get("unit"):
+                ledger_units.add(fact["unit"])
+            ledger_units.update(q.get("unit") for q in (fact.get("quantities") or [])
+                                if q.get("unit"))
+    unmapped_units = sorted(ledger_units - set(UNIT_WORDS))
+    check("every dossier unit has plain Ask wording", not unmapped_units, str(unmapped_units))
+    check("gpm reads as gallons per minute",
+          _quantity(1200, "gpm") == "1,200 gallons per minute",
+          _quantity(1200, "gpm"))
+    check("a power price reads as dollars per kilowatt hour",
+          _quantity(0.047, "usd_per_kwh") == "$0.047 per kilowatt hour",
+          _quantity(0.047, "usd_per_kwh"))
+    money_values = (1_234, 9_500_000, 450_000_000, 3_000_000_000, 9_100_000_000)
+    money_mismatches = [(value, _quantity(value, "usd"), fd.money(value))
+                        for value in money_values
+                        if _quantity(value, "usd") != fd.money(value)]
+    check("Ask dollar formatting matches the facility formatter",
+          not money_mismatches, str(money_mismatches))
+    check("facility order keeps its ordinal in Ask",
+          _quantity(1, "facility_order") == "1st facility",
+          _quantity(1, "facility_order"))
+    check("range, alternatives and context stay in facility prose",
+          _fact({"label": "Cooling water", "minimum": 1_000_000,
+                 "maximum": 2_000_000, "unit": "gallons"})
+          == "Cooling water is 1 million to 2 million gallons"
+          and _fact({"label": "Density", "alternatives": [25, 45, 65], "unit": "MW"})
+          == "Density is 25 megawatts, 45 megawatts, or 65 megawatts")
+
     p = build()
-    text = p["pack"]
+    main_text = p["pack"]
+    facility_text = p.get("facility_pack") or ""
+    text = main_text + ("\n\n" + facility_text if facility_text else "")
 
     print("the record is all there")
     items = dk.load(LEDGER)
     check("every decision is in the pack", p["items"] == len(items), f"{p['items']} items")
-    missing = [it["id"] for it in items if f"[[{it['id']}]]" not in text]
+    missing = [it["id"] for it in items if f"[[{it['id']}]]" not in main_text]
     check("every decision is citable by id", not missing, str(missing[:3]))
 
     print("the house voice, because the model writes what it reads")
@@ -1343,16 +1453,22 @@ def self_test() -> int:
           f"{p['index_chars']} against {p['chars']}")
 
     print("the split contract, which the worker cuts on")
-    # The worker cuts the pack back into a preamble and one block per decision rather than
-    # being handed the bodies a second time in the same JSON. That cut is only safe while this
-    # shape holds. workers/ask/test.js asserts the same thing from the other side.
+    # The worker cuts both body fields on the same fence. That cut is only safe while each
+    # field keeps its preamble above the fence and whole blocks below it.
     fence = "\n\n" + DECISIONS_MARK + "\n\n"
-    check(f"the pack carries the {DECISIONS_MARK!r} mark once, fenced by blank lines",
-          text.count(fence) == 1, str(text.count(fence)))
-    pre, _, rest = text.partition(fence)
-    check("nothing above the mark could be mistaken for a decision block",
-          not any(l.startswith("[[") for l in pre.splitlines()))
-    blocks = [b for b in rest.split("\n\n") if b.strip()]
+    sections = [("core", main_text), ("facility", facility_text)]
+    blocks = []
+    ids_by_section = {}
+    for label, section in sections:
+        check(f"the {label} pack carries the {DECISIONS_MARK!r} mark once",
+              section.count(fence) == 1, str(section.count(fence)))
+        pre, _, rest = section.partition(fence)
+        check(f"nothing above the {label} mark could be mistaken for a block",
+              not any(line.startswith("[[") for line in pre.splitlines()))
+        cut = [b for b in rest.split("\n\n") if b.strip()]
+        ids_by_section[label] = [b[2:b.index("]]")] for b in cut
+                                 if b.startswith("[[") and "]]" in b]
+        blocks.extend(cut)
     check("every block below the mark starts with an id at the start of a line",
           all(b.startswith("[[") for b in blocks),
           str([b[:40] for b in blocks if not b.startswith("[[")][:2]))
@@ -1365,7 +1481,10 @@ def self_test() -> int:
           len(blocks) == p["blocks"], f"{len(blocks)} blocks, {p['blocks']} declared")
     ids = [b[2:b.index("]]")] for b in blocks]
     check("the decisions come out first, in the record's own order",
-          ids[:len(items)] == [it["id"] for it in items])
+          ids_by_section["core"][:len(items)] == [it["id"] for it in items])
+    check("every facility body is in the facility field",
+          len(ids_by_section["facility"]) == p["families"]["facility"],
+          str(len(ids_by_section["facility"])))
     check("every id is unique", len(set(ids)) == len(ids),
           f"{len(ids) - len(set(ids))} repeated")
     check("every id is one the page's citation pattern can render",
@@ -1403,12 +1522,13 @@ def self_test() -> int:
           all(none[k][0] == one[k][0] for k in none))
 
     print("size, which is a bill and not a warning")
-    approx = round(len(text) / 4)
+    approx = round(len(main_text) / 4)
     check(f"the index is under its ceiling of {MAX_INDEX_CHARS} chars, which is the one "
           f"every question pays for", len(p["index"]) <= MAX_INDEX_CHARS,
           f"{p['index_chars']:,}")
-    check(f"the pack is under its ceiling of {MAX_CHARS} chars", len(text) <= MAX_CHARS,
-          f"{len(text)} chars, roughly {approx} tokens")
+    check(f"the core pack is under its ceiling of {MAX_CHARS} chars",
+          len(main_text) <= MAX_CHARS,
+          f"{len(main_text)} chars, roughly {approx} tokens")
 
     print()
     print("ask_pack self-test clean" if ok[0] else "ask_pack self-test FAILED")
@@ -1419,7 +1539,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--date", help="ISO date")
-    ap.add_argument("--print", action="store_true", help="write the pack to stdout")
+    ap.add_argument("--print", action="store_true", help="write every body field to stdout")
     args = ap.parse_args()
 
     if args.self_test:
@@ -1428,9 +1548,13 @@ def main() -> int:
     p = build(args.date)
     if args.print:
         print(p["pack"])
+        if p.get("facility_pack"):
+            print("\n\n" + p["facility_pack"])
         return 0
-    print(f"ask pack: {p['items']} decisions, {p['chars']} chars, "
-          f"roughly {round(p['chars'] / 4)} tokens, ceiling {MAX_CHARS}")
+    print(f"ask pack: {p['items']} decisions, {len(p['pack'])} core chars, "
+          f"roughly {round(len(p['pack']) / 4)} tokens, ceiling {MAX_CHARS}")
+    print(f"  facility bodies {len(p.get('facility_pack') or ''):,} chars, "
+          f"total published bodies {p['chars']:,}")
     print(f"  index {p['index_chars']:,} chars, roughly {round(p['index_chars'] / 4)} tokens "
           f"on EVERY question, ceiling {MAX_INDEX_CHARS:,}")
     print("  blocks " + ", ".join(f"{k} {v}" for k, v in sorted(p["families"].items())))
