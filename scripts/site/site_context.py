@@ -601,7 +601,8 @@ def _extra_sheet(name: str, p: str) -> str:
 
 @functools.lru_cache(maxsize=4)
 def _sheet_version(name: str) -> str:
-    body = {"record.css": theme.record_css, "facility.css": theme.facility_css}[name]()
+    body = {"home.css": theme.home_css, "record.css": theme.record_css,
+            "facility.css": theme.facility_css}[name]()
     return hashlib.sha256(body.encode("utf-8")).hexdigest()[:10]
 
 
