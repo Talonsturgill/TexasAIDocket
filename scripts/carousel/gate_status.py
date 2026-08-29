@@ -72,7 +72,7 @@ BAD = (FAIL, STALE)
 # gap. Everything self-tested green while a run with no claims file and no score could have
 # printed a clean block on its way out the door.
 STRICT_REQUIRED = ("claims", "render", "qa", "assembly", "score", "dossiers", "caption",
-                   "craft floor", "plan vs render", "absences", "completion")
+                   "craft floor", "plan vs render", "absences", "numerals", "completion")
 
 # WHICH ROWS THE STALENESS RULE APPLIES TO, and the end-to-end proof is what forced this list to
 # exist. The rule was applied to every artifact, and it is only true of artifacts that DESCRIBE
@@ -267,6 +267,37 @@ def rows_for(d: Path) -> list[Row]:
                            f"named document" + (f", {len(aw)} unscoped" if aw else "")))
         except Exception as exc:                       # noqa: BLE001
             out.append(Row("absences", FAIL, f"could not be measured ({exc})"))
+
+    # EVERY NUMERAL ON A FRAME IS REACHABLE FROM A CLAIM THAT FRAME CITES. Added 2026-08-29.
+    #
+    # Computed here rather than read from a receipt file, which is the difference between this
+    # row and the `labels` row above. A receipt can be ABSENT, and an ABSENT row is a gate that
+    # did not run wearing the colour of a gate that is not needed yet. Once copy.json, claims.json
+    # and a render exist there is nothing to forget, so the row is PASS or FAIL and never a
+    # question about whether somebody remembered a command.
+    #
+    # THE DEFECT: round 4 of this run hard failed for printing an award number on six frames over
+    # a claim whose document does not contain it. See numeral_trace.py's own header for why every
+    # other gate was green on that.
+    cj2 = d / "copy.json"
+    clj = d / "claims.json"
+    if not (cj2.exists() and clj.exists() and rr.exists()):
+        out.append(Row("numerals", ABSENT, "no copy, claims or render yet"))
+    else:
+        try:
+            import numeral_trace
+            ag = d / "aggregates.json"
+            nprobs, nst = numeral_trace.check(
+                json.loads(cj2.read_text(encoding="utf-8")),
+                json.loads(rr.read_text(encoding="utf-8")),
+                json.loads(clj.read_text(encoding="utf-8")),
+                json.loads(ag.read_text(encoding="utf-8")) if ag.exists() else None)
+            out.append(Row("numerals", FAIL if nprobs else PASS,
+                           f"{nst['examined']} numeral(s) over {nst['frames']} frame(s)" +
+                           (f", {len(nprobs)} the cited claims do not reach: {nprobs[0][:90]}"
+                            if nprobs else ", every one reachable")))
+        except Exception as exc:                       # noqa: BLE001
+            out.append(Row("numerals", FAIL, f"could not be measured ({exc})"))
 
     # ABSENT UNTIL THERE IS A SCORE TO JUDGE, for the reason stated at the top of this file: a row
     # that is red at Phase 8 for not having a Phase 16 artifact is a row every later phase learns

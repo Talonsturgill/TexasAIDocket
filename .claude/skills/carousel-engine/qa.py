@@ -840,6 +840,110 @@ OCC_WARN_W = 12      # the tripwire band below the FAIL, for the critics' eyes
 OCC_WARN_H = 4
 
 
+# --------------------------------------------------------------------------- standing furniture
+#
+# THE DEFECT (2026-08-29, deck no. 11, and all three judges opened with it).
+#
+# The cover's foot is one flex row: an eyebrow, a cite line, the site address and the progress
+# counter, inside a 920px measure. Round 3 added one more claim id to the cite. The row went past
+# its measure, the flex line broke, and the cover printed the canonical URL as
+# "texasaidocket.com01 /" with "09" alone on a second line, on three frames.
+#
+# NOTHING COULD SEE IT. coherence_check.check_site_line reads the span's TEXT, finds
+# `texasaidocket.com`, and passes, which is correct and is the whole of GATE_LESSONS' recurring
+# sentence: a checker sees what it reads and the product is what a reader receives. The DOM was
+# right. The pixels were wrong. CLAUDE.md's public URL section is specifically about that string
+# and the gate written for it is blind to the one way it can be rendered wrong.
+#
+# The run's repair was a per-frame assertion pasted into all nine slides, measuring the foot's own
+# client rects. That is the right measurement in the wrong place: it works for one deck and every
+# future deck has to remember to paste it.
+#
+# WHAT IS ASSERTED HERE, AND WHY IT NEEDS NO THRESHOLD.
+#
+# The deck's STANDING FURNITURE is the text that appears on every frame: the wordmark, the site
+# address, the progress counter. `coherence_check` already calls that the frame that does not
+# vary. So the assertion is a comparison rather than an absolute, which is entry 10's rule for
+# exactly this situation: where two renderings are meant to agree, compare them instead of holding
+# each to a number somebody typed.
+#
+#     A piece of standing furniture lays out on the SAME NUMBER OF LINES on every frame.
+#
+# Six frames gave the counter one line and three gave it two. That is the finding, and it needs no
+# opinion about how many lines a counter ought to have.
+#
+# MEASURED on all ten decks shipped before this one, 86 frames: every standing item is one line on
+# every frame of its deck. Zero false positives. It also cannot fire on a deck whose repeated
+# furniture is legitimately two lines, because two lines everywhere is agreement.
+#
+# THE BLIND SPOT, stated rather than implied. If a row breaks on EVERY frame the counts agree and
+# this says nothing. Catching that would need a number for how many lines furniture may have, and
+# a typed number is what this project's own law forbids. The frame-level assertion the run wrote,
+# which measures the row against its own container, is the honest way to close it, and it belongs
+# in the frame contract rather than here.
+_COUNTER_TEXT = re.compile(r"^\d{1,3}\s*/\s*\d{1,3}$")
+
+
+def _furniture_key(text):
+    """One key for a piece of standing furniture, whatever it says on this frame.
+
+    The progress counter reads 01 / 09 on one frame and 02 / 09 on the next. Those are the same
+    object and a comparison keyed on the literal string would never find it on any frame twice.
+    Everything else is keyed on itself.
+    """
+    t = " ".join(str(text).split())
+    return "NN / NN" if _COUNTER_TEXT.match(t) else t
+
+
+def standing_furniture(report):
+    """{furniture text: {slide file: line count}} for text that stands on EVERY frame.
+
+    Returns ({}, reason) when the report cannot answer, which is not the same event as finding
+    nothing wrong and must not print the same colour. GATE_LESSONS 37.
+    """
+    slides = report.get("slides") or []
+    if len(slides) < 2:
+        return {}, "a deck of one frame has no frames to compare"
+    per = []
+    for rec in slides:
+        seen = {}
+        for nd in rec.get("text_nodes") or []:
+            t = _furniture_key(nd.get("text", ""))
+            if not t:
+                continue
+            lines = nd.get("lines")
+            if lines is None:
+                return {}, "this render report predates per-node line boxes, so nothing was compared"
+            seen[t] = max(seen.get(t, 0), len(lines) or 1)
+        per.append((rec.get("file", "?"), seen))
+    common = set.intersection(*[set(s) for _, s in per]) if per else set()
+    return {t: {f: s[t] for f, s in per} for t in sorted(common)}, ""
+
+
+def furniture_breaks(report):
+    """[(slide file, message)] for standing furniture that wraps on some frames and not others."""
+    table, why = standing_furniture(report)
+    out = []
+    for text, per_file in table.items():
+        counts = set(per_file.values())
+        if len(counts) < 2:
+            continue
+        least = min(counts)
+        for f, n in per_file.items():
+            if n == least:
+                continue
+            good = sorted(x for x, c in per_file.items() if c == least)
+            out.append((f, (
+                f"standing furniture wrapped: '{text}' lays out on {n} lines here and on "
+                f"{least} on {len(good)} other frame(s) ({', '.join(good[:4])}"
+                f"{'...' if len(good) > 4 else ''}). The row it sits in ran past its measure and "
+                f"the line broke. A checker reading DOM text cannot see this: on 2026-08-29 the "
+                f"cover printed 'texasaidocket.com01 /' with the counter on a second line while "
+                f"coherence_check read the span and passed. Shorten the row or give it more "
+                f"measure; never let the frame decide by wrapping")))
+    return out, why
+
+
 def text_collisions(nodes, min_overlap=0.30, min_px=8):
     """Detect text-on-text overprint between distinct elements.
 
@@ -1419,6 +1523,78 @@ def self_test():
             ok("the real slide 5 register lines are found on the shipped render",
                len(_found) >= 1, f"found {len(_found)}")
 
+    # ---------------------------------------------------------------- STANDING FURNITURE
+    #
+    # The 2026-08-29 foot wrap, replayed against REAL COMMITTED RENDER REPORTS rather than a
+    # hand-written fixture, for entry 16's reason: a fixture written beside a detector agrees
+    # with it, and only a real artifact carries the shapes nobody thought to write down.
+    #
+    # A MISSING CORPUS IS A FAILURE HERE, NOT A SKIP. Entry 37.
+    _decks = sorted((_root / "runs" / "carousel").glob("*/render_report.json"))
+    ok("committed render reports are present to calibrate the furniture check against",
+       len(_decks) >= 8, f"found {len(_decks)}")
+    _clean, _items = 0, 0
+    for _p in _decks:
+        _rep = json.loads(_p.read_text(encoding="utf-8"))
+        _br, _why = furniture_breaks(_rep)
+        _tab, _ = standing_furniture(_rep)
+        _items += len(_tab)
+        if not _br and not _why:
+            _clean += 1
+        else:
+            ok(f"{_p.parent.name}: standing furniture agrees across the deck", False,
+               str(_br or _why)[:200])
+    ok("every shipped deck's standing furniture agrees across its own frames",
+       _clean == len(_decks), f"{_clean} of {len(_decks)}")
+    ok("...and the comparison had furniture to compare rather than passing on an empty set",
+       _items >= len(_decks), str(_items))
+
+    # THE DEFECT, injected into a real report: the progress counter takes a second line on three
+    # frames and one line on the rest, which is exactly what the flex row did on 2026-08-29.
+    _base = json.loads(_decks[-1].read_text(encoding="utf-8"))
+    _hit = 0
+    for _rec in _base["slides"][:3]:
+        for _nd in _rec.get("text_nodes") or []:
+            if _COUNTER_TEXT.match(" ".join(str(_nd.get("text", "")).split())):
+                _ln = _nd.get("lines") or [[_nd["x"], _nd["y"], _nd["w"], _nd["h"]]]
+                _nd["lines"] = [list(_ln[0]), [80, _ln[0][1] + 31, 40, 31]]
+                _hit += 1
+    ok("the counter was found on the fixture, so the injection reached the code under test",
+       _hit == 3, f"mutated {_hit} node(s)")
+    _br, _ = furniture_breaks(_base)
+    ok("a counter that wraps on three frames and not the rest is CAUGHT", len(_br) == 3, str(_br))
+    ok("...and it names the frames that disagree",
+       len({f for f, _ in _br}) == 3, str(sorted(f for f, _ in _br)))
+    ok("...and the message says the row ran past its measure",
+       bool(_br) and "ran past its measure" in _br[0][1], str(_br[:1]))
+
+    # AGREEMENT IS AGREEMENT, in both directions. Two lines on EVERY frame is a deck whose
+    # furniture is two lines, and this check has no opinion about that. Stated in the header as
+    # the blind spot; asserted here so nobody later mistakes it for a bug and adds a threshold.
+    _all = json.loads(_decks[-1].read_text(encoding="utf-8"))
+    for _rec in _all["slides"]:
+        for _nd in _rec.get("text_nodes") or []:
+            if _COUNTER_TEXT.match(" ".join(str(_nd.get("text", "")).split())):
+                _ln = _nd.get("lines") or [[_nd["x"], _nd["y"], _nd["w"], _nd["h"]]]
+                _nd["lines"] = [list(_ln[0]), [80, _ln[0][1] + 31, 40, 31]]
+    ok("furniture that is two lines on EVERY frame is agreement, which is the stated blind spot",
+       furniture_breaks(_all)[0] == [], str(furniture_breaks(_all)[0]))
+
+    # A report with no line boxes cannot answer, and that is not the same event as finding
+    # nothing. It has to say so rather than print the colour of a clean run.
+    _old = {"slides": [{"file": "slide-01.html", "text_nodes": [{"text": "TEXAS AI DOCKET"}]},
+                       {"file": "slide-02.html", "text_nodes": [{"text": "TEXAS AI DOCKET"}]}]}
+    ok("a report with no per-node line boxes reports that it could not compare",
+       furniture_breaks(_old) == ([], "this render report predates per-node line boxes, "
+                                      "so nothing was compared"), str(furniture_breaks(_old)))
+
+    # The counter reads a different string on every frame and is one object. A comparison keyed
+    # on the literal text would never see it twice and the check would cover nothing.
+    ok("the progress counter is one piece of furniture across the deck",
+       _furniture_key("01 / 09") == _furniture_key("07 / 09") == "NN / NN")
+    ok("...and ordinary copy is keyed on itself",
+       _furniture_key("  TEXAS  AI DOCKET ") == "TEXAS AI DOCKET")
+
     if failures:
         print(f"\nqa self-test: {failures} FAILED", file=sys.stderr)
         return 1
@@ -1446,8 +1622,20 @@ def main():
     design_w, design_h = report["canvas"]["width"], report["canvas"]["height"]
 
     out = {"slides": [], "fails": 0, "warns": 0}
+
+    # STANDING FURNITURE, measured across the deck rather than within a frame. This is the one
+    # check here whose subject is the deck, so it is computed once and attributed to the frames
+    # that disagree with the rest. See standing_furniture() for the 2026-08-29 defect.
+    fbreaks, fwhy = furniture_breaks(report)
+    by_file = {}
+    for f, msg in fbreaks:
+        by_file.setdefault(f, []).append(msg)
+    if fwhy:
+        print(f"qa: standing furniture NOT compared: {fwhy}", file=sys.stderr)
+
     for rec in report["slides"]:
         res = {"file": rec["file"], "fails": [], "warns": []}
+        res["fails"].extend(by_file.get(rec["file"], []))
         png = rdir / rec["png"]
         if not png.exists():
             res["fails"].append("png missing")

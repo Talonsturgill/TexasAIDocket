@@ -1,0 +1,94 @@
+# Which of brand.yaml's FIXED constellation elements this repo actually checks.
+#
+# WHY THIS FILE EXISTS. 2026-08-29, deck no. 11.
+#
+# `config/brand.yaml` lists seven things under `visual.constellation` and says of them: "FIXED on
+# every deck. Everything else about a deck rotates; these do not, because the recognition comes
+# from the parts that never move." Two of the panel's judges, independently, found that the star
+# mark and the county-first coordinates footer appeared on none of the nine frames. Nothing in the
+# build could have caught that, because `coherence_check.check_site_line` asserts the rendered site
+# line against brand.yaml and nothing else asserts anything.
+#
+# That is CLAUDE.md's own recurring shape for the fifth time: a rule stated in config, a surface
+# that keeps its own copy, and nothing in between checking they agree. The other four each got a
+# checker. This is the checker, and what it checks is COVERAGE.
+#
+# THE RULE. Every key under `visual.constellation` in brand.yaml has an entry here, and every entry
+# takes exactly one of two routes.
+#
+#   enforced_by   the name of a function in scripts/carousel/coherence_check.py that reads the
+#                 rendered deck and can fail it. The name is resolved against the module, so a
+#                 function that is renamed or deleted turns this file red instead of leaving a
+#                 promise behind. GATE_LESSONS 56: a marker check is only as good as its marker,
+#                 and a name nobody verified passes on a product that does not have the feature.
+#
+#   unenforced    a sentence saying what is NOT checked and why, plus the date it was recorded.
+#                 GATE_LESSONS 49: when a gate approximates a spec, count the spec, and state the
+#                 coverage where the checker is defined so the next reader gets a boundary instead
+#                 of inferring a guarantee.
+#
+# A key with neither, a key brand.yaml has and this file does not, and an entry naming a function
+# that no longer exists are all failures. That is the whole gate: it goes red when brand.yaml grows
+# an eighth fixed element and nobody decides what to do about it, which is exactly how the mark and
+# the coordinates footer arrived here unnoticed.
+#
+# WHAT THIS FILE IS NOT. It is not permission to leave something unchecked. An `unenforced` entry
+# is a debt with a date on it, and the two below are debts, not decisions.
+
+elements:
+
+  site:
+    enforced_by: check_site_line
+    note: >
+      Every frame's footer prints the string brand.yaml names and no other host. Written after
+      three published decks carried the owner's personal GitHub Pages host on all eight frames.
+
+  progress_counter:
+    enforced_by: check_copy
+    note: >
+      The counter spine. All frames numbered or none, the total honest, and the sequence without
+      a gap or a repeat. Written after one deck shipped numbered and the next did not.
+
+  wordmark:
+    unenforced: >
+      Not checked, and this is the one entry here that is a live question rather than a known
+      limit. MEASURED on 2026-08-29 over the eleven decks this repo has rendered, counting the
+      exact string in each frame's HTML. Five decks carry it on no frame at all, 2026-08-25 and
+      2026-08-28 carry it on one, 2026-08-26 on two, and 2026-08-16, 2026-08-19 and 2026-08-29
+      carry it on every frame. So half the corpus disagrees with the word FIXED, and a gate
+      written here today would fail work that has already shipped. Whether the decks are wrong or
+      the line in brand.yaml is is a design ruling, and brand.yaml belongs to the human actor.
+      Raised as a proposal in ledger/carousel/upgrades.json for 2026-08-29.
+    since: 2026-08-29
+
+  mark:
+    unenforced: >
+      The Lone Star is a DRAWING and not a string. It can arrive as an SVG polygon, a canvas path,
+      a CSS clip-path or a glyph, so any check written from this side would be grepping for a name
+      somebody invented rather than one the renderer emits, which is GATE_LESSONS 56 and passes on
+      a product that does not have the feature. Closing it needs the FRAME to declare the mark the
+      way it already declares `data-decorative`, and the frame contract is not this actor's file.
+    since: 2026-08-29
+
+  coordinates_footer:
+    unenforced: >
+      MEASURED on 2026-08-29: no deck this repo has ever rendered carries one. Zero of eleven, on
+      a search for a degrees-and-minutes form across every frame's HTML. 2026-08-16 printed
+      "GRIMES COUNTY 30.545 N 95.985 W", which is the county-first idea in decimal rather than the
+      form brand.yaml writes out. So the element is either unimplemented or its description is
+      stale, and deciding which is a ruling on a file this actor does not own.
+    since: 2026-08-29
+
+  red_is_reserved:
+    unenforced: >
+      A rule about WHERE a colour may appear, which needs the semantics of the thing it is painted
+      on. "Genuinely urgent to the reader" is not a property of a pixel, and a checker that fired
+      on the presence of the hue would fire on every correct urgent frame and on nothing else.
+    since: 2026-08-29
+
+  base_register:
+    unenforced: >
+      The dark register with a light deck allowed at most once per eight runs. The count is
+      already the artwork ledger's job, not this gate's, and duplicating it here would be a second
+      definition of one rule, which is the failure GATE_LESSONS 44 records.
+    since: 2026-08-29

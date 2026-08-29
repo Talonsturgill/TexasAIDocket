@@ -137,8 +137,24 @@ def provenance_line(docs: list[dict], fetched: "str | list[str]") -> str:
     # assumption a deck cites more than one of each kind, and the first deck to cite exactly one
     # news report published the disagreement on the surface whose whole job is looking careful.
     # The self-test below asserts both halves, which is why the one/two case is in it.
+    #
+    # THE NOUN HAS TO BE TRUE OF THE DOCUMENT, not merely of the type code, and on 2026-08-29
+    # two of three panel judges independently opened with the same hard fail. The deck cited
+    # `news.utexas.edu`, the recipient university's own news release, which the run's fact
+    # checker had correctly typed `primary_corporate` because the site list, the thirty million
+    # dollars and the researcher count exist only in that telling. This table then told the
+    # reader a COMPANY FILING had been fetched. A public university is not a company and a news
+    # release is not a filing, so the one line whose job is grading the evidence overstated the
+    # grade of the deck's least independently verifiable document, which is the third time this
+    # sentence has done its exact opposite and the second time about the word for a kind.
+    #
+    # The type code means one thing across every document it covers, and it is not the filer's
+    # legal form. It means the document's subject wrote it. A company press release, a corporate
+    # filing and a university announcement are all that, so the noun is that and nothing narrower.
+    # `figures.json` had already computed the right words for the same set, "the awardee's own
+    # account of itself", which is the tell: the run knew and the published surface did not.
     NAME = {"primary_official": ("official record", "official records"),
-            "primary_corporate": ("company filing", "company filings"),
+            "primary_corporate": ("first party account", "first party accounts"),
             "secondary_reported": ("news report", "news reports"),
             "data": ("published dataset", "published data"),
             "unstated": ("document of unstated type", "documents of unstated type")}
