@@ -1645,7 +1645,10 @@ def body(records: list[dict], today: str) -> str:
     # WHAT IS NOT LOST. `coverage()` still computes the crosswalk, because `metro_bars` needs
     # the walk for the federal names, and `waterwatch.json` still publishes the exclusions per
     # reservoir. The facts are in the open data. They are no longer in the copy.
-    gap = ""
+    #
+    # The `gap` slot went with the closing block on 2026-08-29, on the owner's instruction, and
+    # so did the surface water caveat, the low bar caveat and the line about the record's length.
+    # `days_held` is still printed, by the Record chip in the readout, so it stays authorised.
 
     # THE STAGE TRAVELS WITH THE PAGE. Emitted here rather than linked, so the drawings and the
     # rules that style them arrive in one response and there is no width at which a reader sees
@@ -1667,18 +1670,6 @@ def body(records: list[dict], today: str) -> str:
 
 <div data-reveal>{distribution_svg(f)}</div>
 
-<div class="prose">
-  <div class="gap">
-    <p><strong>Surface water in reservoirs only.</strong> A city also runs on groundwater and
-    reuse and purchased water.</p>{gap}
-    <p>A low bar is not a verdict on a city's supply. Some reservoirs are drawn down on purpose
-    and some refill in a week from one storm.</p>
-  </div>
-  <p>The record holds <strong class="num">{af(f['days_held'])}</strong>
-  {plural(f['days_held'], 'day', 'days')} so far.
-  <a href="../waterwatch.json">The data is open</a> per reservoir per day and every roll up
-  above can be recomputed without refetching anything.</p>
-</div>
 """
 
 
