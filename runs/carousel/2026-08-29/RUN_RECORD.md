@@ -263,6 +263,31 @@ than a window up to one line. Derive a short index title separately from the rec
 so the record is never edited to fit a budget again. Or raise the cap deliberately, with the per
 question token cost stated beside it.
 
+## The county footer, and the trap under it
+
+Two judges found that `config/brand.yaml` declares a county first coordinates footer FIXED on
+every deck and that none of the nine frames carries one. The reader judge called it the single
+largest reader loss in the deck, because it is the one thing that answers whether this is near
+the person reading. `coherence_check` asserted the rendered site line and nothing else, so no
+gate could have caught it. `config/carousel/constellation.yaml` now records it as a dated debt.
+
+**It was NOT added in this run, and the reason is worth writing down rather than the decision.**
+
+The obvious implementation is to resolve the county from the record's `perfCity`, which is
+`AUSTIN`. `assets/geo/tx-places.json` resolves the name Austin to `county-austin`, FIPS 48015,
+which is **Austin County**, a rural county between Houston and San Antonio. The city of Austin
+is in **Travis County**. A deck built that way would have printed the wrong county on nine
+frames, on the one line whose whole job is telling a Texan where the story is.
+
+`scripts/shared/places.py` warns about exactly this in its own source: a metro name is not a
+county alias, and Texas is emphatic about it, because a Texas county frequently shares a name
+with a city that sits in a different county.
+
+The correct source is the record's own `geography.counties`, which for `tx-2026-0104` already
+reads `["Travis"]` and is verified data rather than a lookup. Whoever implements the footer
+should read that field and nothing else, and should treat an item whose `counties` is empty as
+a frame that carries no county rather than one that guesses.
+
 ## Gate status
 
 <!-- gate-status:begin -->
