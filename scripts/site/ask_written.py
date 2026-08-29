@@ -83,6 +83,11 @@ COPY = {
     # is the one thing they cannot help with. From where they sit the whole operation is this
     # box reading the record, and every step of it now says so.
     "stage_read":   "Reading the record",
+    # THE MODEL'S PRIVATE REASONING IS NOT A PRODUCT SURFACE. This line names the observable
+    # operation instead. Every sentence reaches the page only after the worker has checked it
+    # against the published record, so the activity can stay visible while the answer grows
+    # without pretending to reveal thoughts the page does not receive.
+    "stage_check":  "Checking each sentence against the record",
     # WHAT THIS SAYS AND WHY IT NO LONGER BLAMES THE RECORD.
     #
     # It read "The record does not answer that." and the PAGE prints it, not the model. It
@@ -527,10 +532,17 @@ _CLIENT = r"""
     turns = [];
     pending = null;
     thread.textContent = "";
+    thread.scrollTop = 0;
     thread.hidden = true;
     box.classList.remove("answering");
     input.value = "";
     input.placeholder = "%%placeholder%%";
+    /* A suggested follow-up changes the control's ACCESSIBLE name. Clearing the visible
+       field without clearing that name left a fresh arrow announcing a suggestion that no
+       longer existed after Start over. */
+    send.setAttribute("aria-label", "%%send%%");
+    following = true;
+    parking = 0;
     input.focus();
     /* Give the engine back its live list for whatever is in the field now. */
     input.dispatchEvent(new Event("input", { bubbles: true }));
@@ -553,11 +565,33 @@ _CLIENT = r"""
     return form.getBoundingClientRect().top - last.getBoundingClientRect().bottom;
   }
 
-  addEventListener("scroll", function () {
+  /* THE PHONE HAS A REAL CONVERSATION SCROLLER. The full screen stylesheet keeps the composer
+     under the thumb and gives the growing transcript the remaining height. `park()` used to
+     scroll the WINDOW anyway, which is held still in that mode, so follow-up answers streamed
+     below the fold while `#askthread.scrollTop` stayed at zero. Ask the computed layout which
+     object owns scrolling instead of duplicating the breakpoint here. */
+  function threadScroller() {
+    var overflow = "";
+    try { overflow = getComputedStyle(thread).overflowY; } catch (e) {}
+    return thread.clientHeight > 0 && /^(?:auto|scroll)$/.test(overflow) ? thread : null;
+  }
+
+  function noteFollowing() {
     if (parking) return;
+    var scroller = threadScroller();
+    if (scroller) {
+      /* A little room above the exact end still means the reader is following. More than
+         eighteen percent of the glass means they have deliberately gone back to read. */
+      var slack = Math.max(48, Math.min(160, scroller.clientHeight * 0.18));
+      following = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < slack;
+      return;
+    }
     /* Anything under a screenful means they are still reading the live end of it. */
     following = bottomGapNow() < innerHeight * 0.6;
-  }, { passive: true });
+  }
+
+  addEventListener("scroll", noteFollowing, { passive: true });
+  thread.addEventListener("scroll", noteFollowing, { passive: true });
 
   var parking = 0;
   // Where the last park asked the page to be. Null when nothing is pending, so a genuine
@@ -565,6 +599,15 @@ _CLIENT = r"""
   function park() {
     if (!following) return;
     var calm = matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
+    var scroller = threadScroller();
+    if (scroller) {
+      var end = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+      if (Math.abs(scroller.scrollTop - end) < 2) return;
+      parking++;
+      scroller.scrollTo({ top: end, behavior: calm ? "instant" : "smooth" });
+      setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
+      return;
+    }
     var r = form.getBoundingClientRect();
     var safe = 0;
     try {
@@ -581,7 +624,7 @@ _CLIENT = r"""
     scrollBy({ top: delta, behavior: calm ? "instant" : "smooth" });
     /* The flag is dropped a beat later so the smooth scroll's own events are not read as the
        reader taking over, which would switch following off on the very first press. */
-setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
+    setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
   }
 
   /* ---- asking ------------------------------------------------------------ */
@@ -801,7 +844,7 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        and typing included, leaves the page alone. */
     armTurnstile();
 
-    var stageEl = null, started = false, para = null, said = [];
+    var stageEl = null, stageCopy = null, started = false, para = null, said = [];
     var stopStream = null;
 
     /* THE STAGE LINE MAY NOT DESTROY AN ANSWER, AND IT COULD.
@@ -815,6 +858,23 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        It clears only what it is entitled to clear, which is nothing once the answer has begun,
        and it refuses to speak at all after that: a stage line under a finished sentence is
        noise even when it is harmless. */
+    function makeStage() {
+      if (stageEl) return;
+      stageEl = document.createElement("div");
+      stageEl.className = "askstage";
+      var light = document.createElement("span");
+      light.className = "askstagelight";
+      light.setAttribute("aria-hidden", "true");
+      stageCopy = document.createElement("span");
+      stageCopy.className = "askstagecopy";
+      var rail = document.createElement("span");
+      rail.className = "askstagebar";
+      rail.setAttribute("aria-hidden", "true");
+      stageEl.appendChild(light);
+      stageEl.appendChild(stageCopy);
+      stageEl.appendChild(rail);
+      body.insertBefore(stageEl, body.firstChild);
+    }
     function stage(text) {
       /* NOTHING MAY WRITE TO THE BODY ONCE AN ENDING HAS WRITTEN TO IT, and this guard was
          half built. It already refused to speak over an answer in progress, which was the fix
@@ -832,19 +892,26 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       if (started || said.length || ended) return;
       if (!stageEl) {
         body.textContent = "";
-        stageEl = document.createElement("div");
-        stageEl.className = "askstage";
-        body.appendChild(stageEl);
+        makeStage();
       }
-      stageEl.textContent = text;
+      stageEl.dataset.phase = "read";
+      stageCopy.textContent = text;
       park();
     }
     function dropStage() {
-      if (stageEl) { stageEl.remove(); stageEl = null; }
+      if (stageEl) { stageEl.remove(); stageEl = null; stageCopy = null; }
     }
     function sentence(t) {
+      /* KEEP THE OBSERVABLE WORK VISIBLE WHILE THE ANSWER GROWS. Removing the status on the
+         first sentence made the page look finished while the model was still returning and
+         the guard was still checking later sentences. This names only what the worker really
+         does and never exposes or invents private reasoning. */
+      if (!started && !ended) {
+        makeStage();
+        stageEl.dataset.phase = "check";
+        stageCopy.textContent = "%%stage_check%%";
+      }
       said.push(t);
-      dropStage();
       if (!started) { started = true; para = document.createElement("p"); body.appendChild(para); }
       var span = document.createElement("span");
       span.className = "askseg";

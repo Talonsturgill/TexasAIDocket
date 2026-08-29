@@ -80,6 +80,16 @@ VALUE_RE = re.compile(r"<input\b[^>]*\bname=\"{name}\"[^>]*\bvalue=\"([^\"]*)\""
 TAGS_RE = re.compile(r"<(script|style)\b.*?</\1>|<!--.*?-->|<[^>]+>", re.S | re.I)
 
 
+def canonical_bytes(raw: bytes) -> bytes:
+    """The vendored Git blob's bytes, independent of checkout newline policy.
+
+    The pin records the LF bytes Git stores. A Windows checkout created before the repository's
+    ``eol=lf`` attribute arrived can still present the same blob with CRLF until the file is
+    checked out again. Hashing that presentation reported a hand edit where none existed.
+    """
+    return raw.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+
+
 # THE SCAN FORM, NOT THE WHOLE DOCUMENT.
 #
 # This read every field on the page, which was right for exactly as long as the scan form was
@@ -198,7 +208,7 @@ def check(verbose: bool = True) -> list[str]:
         return [f"{PUBLISHED.relative_to(REPO)} is missing. The scan page is not built, so the "
                 f"front door this checks does not exist."]
 
-    raw = VENDORED.read_bytes()
+    raw = canonical_bytes(VENDORED.read_bytes())
     want = pinned_sha()
     got = hashlib.sha256(raw).hexdigest()
     if want is None:
@@ -296,13 +306,16 @@ def self_test() -> int:
 
     ok("normalise flattens punctuation but keeps the words",
        normalise("<p>One report, to one address!</p>") == "one report to one address")
+    ok("the pin is stable across checkout newline policies",
+       canonical_bytes(b"one\r\ntwo\r\n") == canonical_bytes(b"one\ntwo\n"))
 
     # THE REAL FILES. A fixture proves the checker works and says nothing about this repo.
     real = check(verbose=False)
     ok("the vendored contract and the published page agree", not real,
        "\n      " + "\n      ".join(real))
     ok("...and the vendored file matches the sha256 its README pins",
-       VENDORED.is_file() and pinned_sha() == hashlib.sha256(VENDORED.read_bytes()).hexdigest())
+       VENDORED.is_file()
+       and pinned_sha() == hashlib.sha256(canonical_bytes(VENDORED.read_bytes())).hexdigest())
 
     if failures:
         print(f"\nscanner_sync_check self-test: {failures} FAILED", file=sys.stderr)

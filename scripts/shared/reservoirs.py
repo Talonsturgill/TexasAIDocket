@@ -64,6 +64,11 @@ TX_BBOX = (-107.0, 25.5, -93.0, 36.8)
 PRECISION = 5
 
 
+def write_text_lf(path: Path, text: str) -> None:
+    """Write generated JSON with the same bytes on Windows and Linux."""
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
 def _spec(rec: dict) -> dict | None:
     """One reservoir's permanent facts, or None when the payload carries no usable position."""
     g = (rec.get("gauge_location") or {}).get("coordinates")
@@ -157,7 +162,7 @@ def build(write: bool = True) -> tuple[str, list[str]]:
     text = document(merged)
     if write and not conflicts:
         ASSET.parent.mkdir(parents=True, exist_ok=True)
-        ASSET.write_text(text, encoding="utf-8")
+        write_text_lf(ASSET, text)
     return text, conflicts
 
 
@@ -170,6 +175,13 @@ def self_test() -> int:
         print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
         if not cond:
             failures += 1
+
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as td:
+        probe = Path(td) / "probe.json"
+        write_text_lf(probe, "one\ntwo\n")
+        check("generated JSON uses LF bytes on every host", probe.read_bytes() == b"one\ntwo\n")
 
     held = load()
     check("the asset is committed and holds reservoirs", bool(held), f"{len(held)} entries")

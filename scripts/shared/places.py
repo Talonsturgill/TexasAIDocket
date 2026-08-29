@@ -54,6 +54,11 @@ SOURCE_OMB = {
 }
 
 
+def write_text_lf(path: Path, text: str) -> None:
+    """Write generated JSON with the same bytes on Windows and Linux."""
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
 # --------------------------------------------------------------------------- topojson
 def decode_arcs(topo: dict) -> list[list[tuple[float, float]]]:
     """TopoJSON stores arcs delta-encoded against a quantized grid. Undo both."""
@@ -266,7 +271,7 @@ def extract_cbsa(xlsx: Path, out: Path) -> int:
         "county_to": dict(sorted(county_to.items())),
     }
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    write_text_lf(out, json.dumps(doc, indent=1, ensure_ascii=False) + "\n")
     c = doc["counts"]
     print(f"places: {c['metropolitan']} metro + {c['micropolitan']} micro areas, "
           f"{c['divisions']} divisions, {c['combined']} combined, covering "
@@ -423,7 +428,7 @@ def build(src: Path, out: Path) -> int:
     }
 
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    write_text_lf(out, json.dumps(doc, indent=1, ensure_ascii=False) + "\n")
     print(f"places: wrote {len(counties)} counties -> {out.relative_to(REPO_ROOT)}")
     if len(counties) != 254:
         print(f"  WARNING: expected 254 Texas counties, got {len(counties)}", file=sys.stderr)
@@ -591,6 +596,13 @@ def self_test() -> int:
         if not ok:
             failures += 1
             print(f"        got {got!r} want {want!r}", file=sys.stderr)
+
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as td:
+        probe = Path(td) / "probe.json"
+        write_text_lf(probe, "one\ntwo\n")
+        check("generated JSON uses LF bytes on every host", probe.read_bytes(), b"one\ntwo\n")
 
     # Normalization is the whole defense against entity drift, so test it hardest.
     check("norm folds 'City of Houston'", norm("City of Houston"), "houston")

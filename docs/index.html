@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-a0UrkLYzXCb7WBHusn2biD4k3suu/qDZVsd+gNa6JiM=' 'sha256-rzkWf2rne57yTUsTXfBQg4xd7VLzASGa/ibD4hw+X40=' 'sha256-VcadWbz1Dv96Dtva6/g3j2rjIra+p5oIwlKvHAcpiOo=' 'sha256-A8vfqAy9rNIH+z4ndhzLkotvwPpXX2i5PE64aPngyL0=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-a0UrkLYzXCb7WBHusn2biD4k3suu/qDZVsd+gNa6JiM=' 'sha256-rzkWf2rne57yTUsTXfBQg4xd7VLzASGa/ibD4hw+X40=' 'sha256-VcadWbz1Dv96Dtva6/g3j2rjIra+p5oIwlKvHAcpiOo=' 'sha256-H+XreuTJ0n64OmXDWkGU2npIm8/LQn2f5tNtAuPnp+Q=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -23,7 +23,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
-<link rel="stylesheet" href="site.css?v=14029f5ced">
+<link rel="stylesheet" href="site.css?v=1e537124ac">
 <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket","https://www.instagram.com/texasaidocket","https://www.youtube.com/@TexasAIDocket","https://x.com/TexasAIDocket","https://www.tiktok.com/@texas.ai.docket"]},{"@context":"https://schema.org","@type":"Dataset","@id":"https://texasaidocket.com/record/#dataset","name":"Texas AI Docket, the tracked record","description":"Every tracked decision about artificial intelligence in Texas, with the body that decides, the dates that matter, whether the public has a way in, and a fetched source behind every fact.","url":"https://texasaidocket.com/record/","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"inLanguage":"en-US","creator":{"@id":"https://texasaidocket.com/#org"},"publisher":{"@id":"https://texasaidocket.com/#org"},"dateModified":"2026-08-29","keywords":["Texas","artificial intelligence","data centers","ERCOT","public records","state policy"],"spatialCoverage":{"@type":"State","name":"Texas"},"variableMeasured":[{"@type":"PropertyValue","name":"status","description":"Whether the decision is pending, decided or withdrawn."},{"@type":"PropertyValue","name":"public_access","description":"Whether a member of the public has a dated way to take part."},{"@type":"PropertyValue","name":"claims","description":"Each fact with its verbatim quote and the source it was fetched from."}],"temporalCoverage":"2021-06-08/2027-09-01"}]</script>
@@ -64,6 +64,12 @@
     <button type="button" class="askclose" id="askclose" aria-label="Close the search">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
+    <!-- A PHONE NEEDS AN ANCHOR WHEN THE REST OF THE SITE STEPS ASIDE. Hidden from assistive
+         technology because the field already carries the useful label and repeating it would
+         announce furniture rather than help. -->
+    <div class="askmobilehead" aria-hidden="true">
+      <span>Texas AI Docket</span><strong>Ask the record</strong>
+    </div>
     <div class="askthread" id="askthread" hidden aria-live="polite" aria-atomic="false"></div>
     <form class="composer" role="search">
       <label class="vh" for="askq">Ask the record a question</label>
@@ -978,10 +984,17 @@ function askFuse(lists) {
     turns = [];
     pending = null;
     thread.textContent = "";
+    thread.scrollTop = 0;
     thread.hidden = true;
     box.classList.remove("answering");
     input.value = "";
     input.placeholder = "Ask the record anything";
+    /* A suggested follow-up changes the control's ACCESSIBLE name. Clearing the visible
+       field without clearing that name left a fresh arrow announcing a suggestion that no
+       longer existed after Start over. */
+    send.setAttribute("aria-label", "Ask");
+    following = true;
+    parking = 0;
     input.focus();
     /* Give the engine back its live list for whatever is in the field now. */
     input.dispatchEvent(new Event("input", { bubbles: true }));
@@ -1004,11 +1017,33 @@ function askFuse(lists) {
     return form.getBoundingClientRect().top - last.getBoundingClientRect().bottom;
   }
 
-  addEventListener("scroll", function () {
+  /* THE PHONE HAS A REAL CONVERSATION SCROLLER. The full screen stylesheet keeps the composer
+     under the thumb and gives the growing transcript the remaining height. `park()` used to
+     scroll the WINDOW anyway, which is held still in that mode, so follow-up answers streamed
+     below the fold while `#askthread.scrollTop` stayed at zero. Ask the computed layout which
+     object owns scrolling instead of duplicating the breakpoint here. */
+  function threadScroller() {
+    var overflow = "";
+    try { overflow = getComputedStyle(thread).overflowY; } catch (e) {}
+    return thread.clientHeight > 0 && /^(?:auto|scroll)$/.test(overflow) ? thread : null;
+  }
+
+  function noteFollowing() {
     if (parking) return;
+    var scroller = threadScroller();
+    if (scroller) {
+      /* A little room above the exact end still means the reader is following. More than
+         eighteen percent of the glass means they have deliberately gone back to read. */
+      var slack = Math.max(48, Math.min(160, scroller.clientHeight * 0.18));
+      following = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < slack;
+      return;
+    }
     /* Anything under a screenful means they are still reading the live end of it. */
     following = bottomGapNow() < innerHeight * 0.6;
-  }, { passive: true });
+  }
+
+  addEventListener("scroll", noteFollowing, { passive: true });
+  thread.addEventListener("scroll", noteFollowing, { passive: true });
 
   var parking = 0;
   // Where the last park asked the page to be. Null when nothing is pending, so a genuine
@@ -1016,6 +1051,15 @@ function askFuse(lists) {
   function park() {
     if (!following) return;
     var calm = matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
+    var scroller = threadScroller();
+    if (scroller) {
+      var end = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+      if (Math.abs(scroller.scrollTop - end) < 2) return;
+      parking++;
+      scroller.scrollTo({ top: end, behavior: calm ? "instant" : "smooth" });
+      setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
+      return;
+    }
     var r = form.getBoundingClientRect();
     var safe = 0;
     try {
@@ -1032,7 +1076,7 @@ function askFuse(lists) {
     scrollBy({ top: delta, behavior: calm ? "instant" : "smooth" });
     /* The flag is dropped a beat later so the smooth scroll's own events are not read as the
        reader taking over, which would switch following off on the very first press. */
-setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
+    setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
   }
 
   /* ---- asking ------------------------------------------------------------ */
@@ -1252,7 +1296,7 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        and typing included, leaves the page alone. */
     armTurnstile();
 
-    var stageEl = null, started = false, para = null, said = [];
+    var stageEl = null, stageCopy = null, started = false, para = null, said = [];
     var stopStream = null;
 
     /* THE STAGE LINE MAY NOT DESTROY AN ANSWER, AND IT COULD.
@@ -1266,6 +1310,23 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
        It clears only what it is entitled to clear, which is nothing once the answer has begun,
        and it refuses to speak at all after that: a stage line under a finished sentence is
        noise even when it is harmless. */
+    function makeStage() {
+      if (stageEl) return;
+      stageEl = document.createElement("div");
+      stageEl.className = "askstage";
+      var light = document.createElement("span");
+      light.className = "askstagelight";
+      light.setAttribute("aria-hidden", "true");
+      stageCopy = document.createElement("span");
+      stageCopy.className = "askstagecopy";
+      var rail = document.createElement("span");
+      rail.className = "askstagebar";
+      rail.setAttribute("aria-hidden", "true");
+      stageEl.appendChild(light);
+      stageEl.appendChild(stageCopy);
+      stageEl.appendChild(rail);
+      body.insertBefore(stageEl, body.firstChild);
+    }
     function stage(text) {
       /* NOTHING MAY WRITE TO THE BODY ONCE AN ENDING HAS WRITTEN TO IT, and this guard was
          half built. It already refused to speak over an answer in progress, which was the fix
@@ -1283,19 +1344,26 @@ setTimeout(function () { parking = Math.max(0, parking - 1); }, calm ? 0 : 420);
       if (started || said.length || ended) return;
       if (!stageEl) {
         body.textContent = "";
-        stageEl = document.createElement("div");
-        stageEl.className = "askstage";
-        body.appendChild(stageEl);
+        makeStage();
       }
-      stageEl.textContent = text;
+      stageEl.dataset.phase = "read";
+      stageCopy.textContent = text;
       park();
     }
     function dropStage() {
-      if (stageEl) { stageEl.remove(); stageEl = null; }
+      if (stageEl) { stageEl.remove(); stageEl = null; stageCopy = null; }
     }
     function sentence(t) {
+      /* KEEP THE OBSERVABLE WORK VISIBLE WHILE THE ANSWER GROWS. Removing the status on the
+         first sentence made the page look finished while the model was still returning and
+         the guard was still checking later sentences. This names only what the worker really
+         does and never exposes or invents private reasoning. */
+      if (!started && !ended) {
+        makeStage();
+        stageEl.dataset.phase = "check";
+        stageCopy.textContent = "Checking each sentence against the record";
+      }
       said.push(t);
-      dropStage();
       if (!started) { started = true; para = document.createElement("p"); body.appendChild(para); }
       var span = document.createElement("span");
       span.className = "askseg";

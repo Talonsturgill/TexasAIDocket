@@ -8,3 +8,5 @@
 vendor/scanner/scan.html text eol=lf
 workers/ask/*.js text eol=lf
 workers/ask/*.mjs text eol=lf
+assets/geo/tx-places.json text eol=lf
+assets/geo/tx-reservoirs.json text eol=lf
