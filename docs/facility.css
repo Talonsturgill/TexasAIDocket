@@ -149,7 +149,25 @@
 .cybar { fill:var(--accent); opacity:.62; transition:opacity .16s ease; }
 .cyr:hover .cybar { opacity:1; }
 .cylab { font-family:var(--mono); font-size:15px; fill:var(--ink-mute); text-anchor:middle; }
-@media (max-width:44rem) { .cylab { font-size:24px; } }
+@media (max-width:44rem) {
+  .cylab { font-size:24px; }
+  .cycrowded .cylab { display:none; }
+  .cycrowded .cytick2 .cylab,
+  .cycrowded .cyfirst .cylab,
+  .cycrowded .cylast .cylab { display:block; }
+  .cycrowded .cyfirst .cylab { text-anchor:start; }
+  .cycrowded .cylast .cylab { text-anchor:end; }
+}
+@media (max-width:30rem) {
+  .cylab { font-size:36px; }
+  .cytight .cylab,
+  .cytight .cytick2 .cylab { display:none; }
+  .cytight .cytick3 .cylab,
+  .cytight .cyfirst .cylab,
+  .cytight .cylast .cylab { display:block; }
+  .cytight .cyfirst .cylab { text-anchor:start; }
+  .cytight .cylast .cylab { text-anchor:end; }
+}
 .cbtable { margin:1rem 0 0; border-top:var(--hair) solid var(--rule); }
 .cbfile { width:min(46rem,calc(100vw - 4rem)); min-width:100%; }
 .cbfile .cbrow { grid-template-columns:2.2rem 6.6rem 7.4rem 1fr 5.2rem; }

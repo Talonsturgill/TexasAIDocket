@@ -534,7 +534,28 @@ def facility_css() -> str:
 .cybar { fill:var(--accent); opacity:.62; transition:opacity .16s ease; }
 .cyr:hover .cybar { opacity:1; }
 .cylab { font-family:var(--mono); font-size:15px; fill:var(--ink-mute); text-anchor:middle; }
-@media (max-width:44rem) { .cylab { font-size:24px; } }
+/* A DENSE AXIS GETS FEWER TICKS, NOT SMALLER TYPE. The 20 year construction span used to
+   enlarge every label on a phone, which joined 2008 through 2027 into one unreadable line.
+   Every bar remains in place. Only the printed tick interval changes, with both ends kept. */
+@media (max-width:44rem) {
+  .cylab { font-size:24px; }
+  .cycrowded .cylab { display:none; }
+  .cycrowded .cytick2 .cylab,
+  .cycrowded .cyfirst .cylab,
+  .cycrowded .cylast .cylab { display:block; }
+  .cycrowded .cyfirst .cylab { text-anchor:start; }
+  .cycrowded .cylast .cylab { text-anchor:end; }
+}
+@media (max-width:30rem) {
+  .cylab { font-size:36px; }
+  .cytight .cylab,
+  .cytight .cytick2 .cylab { display:none; }
+  .cytight .cytick3 .cylab,
+  .cytight .cyfirst .cylab,
+  .cytight .cylast .cylab { display:block; }
+  .cytight .cyfirst .cylab { text-anchor:start; }
+  .cytight .cylast .cylab { text-anchor:end; }
+}
 
 /* THE CONSTRUCTION REGISTER. A row per designation, money and size on their own baselines so a
    reader compares down a column rather than reading across a sentence. Mono throughout, because
