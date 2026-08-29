@@ -106,6 +106,17 @@ jobs:
       - name: Port audit self-test (prove every gate can go red)
         run: python3 scripts/shared/port_audit.py --self-test
 
+      # THE ACTOR STAMP'S OWN INSTRUCTION. A shell redirect into .git/ACTOR wedged an unattended
+      # run on five separate days, because .git/ is inside the tree and outside what the Bash
+      # sandbox writes to, so the redirect asks to re-run unsandboxed and nobody is there to
+      # answer. Four fixes tried to make the command safe and each one failed. The stamp is
+      # written with the Write tool now, and this is what stops the instruction coming back.
+      - name: Actor stamp shape self-test (prove it can go red)
+        run: python3 scripts/shared/actor_stamp_shape.py --self-test
+
+      - name: No instruction file tells a session to shell the actor stamp
+        run: python3 scripts/shared/actor_stamp_shape.py
+
       # THE WORKFLOW'S OWN WIRING. This file is six jobs behind one required check now, and a
       # job nobody waits on is a gate connected to nothing. Self-tests first, same rule as the
       # two above.

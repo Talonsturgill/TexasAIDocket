@@ -199,9 +199,21 @@ ephemeral container has destroyed finished work before.
    below enforces anything: `git config core.hooksPath .githooks`. Confirm with
    `python3 scripts/shared/guards_local.py --fast --only Ownership`, which now FAILS rather
    than skips when the hooks are not wired up.
-2. Stamp the actor so both checkers enforce your lane: `echo daily > .git/ACTOR`. The
-   pre-commit hook reads it to refuse an out-of-lane write, and the commit-msg hook copies it
-   into each commit as an `Actor:` trailer, which is what CI reads to judge that commit's lane.
+2. Stamp the actor so both checkers enforce your lane. **Use the Write tool to put `daily` in
+   `.git/ACTOR`. Never a shell command.** The pre-commit hook reads it to refuse an out-of-lane
+   write, and the commit-msg hook copies it into each commit as an `Actor:` trailer, which is what
+   CI reads to judge that commit's lane.
+
+   **A shell redirect into that path is how five unattended runs wedged, and the tool choice is
+   the whole cure.** `.git/` is inside the working tree and outside what the Bash sandbox will
+   write to, so a redirect there cannot complete and Bash asks to re-run unsandboxed. That prompt
+   is a different mechanism from the permission mode, `bypassPermissions` does not cover it, and
+   an unattended run has nobody to answer it. Four fixes were tried on the command: an allow list
+   of exact strings, then more strings, then compound forms, then a written rule never to chain
+   the stamp onto another command. Every one of them failed, because an allow entry matches ONE
+   command string and a session writes compounds, and chaining is unbounded. The Write tool takes
+   no shell and produces no command string, so there is nothing to sandbox, match or chain.
+   `scripts/shared/actor_stamp_shape.py` fails the build if this instruction ever goes back.
 3. `git fetch origin main && git checkout -B claude/daily-<date> origin/main`.
 4. Read `prompts/NEXT_RUN.md` if it exists: a story queued by the previous run. Archive it into
    the run directory at ship time.
@@ -1224,9 +1236,10 @@ the next run's directors room. **Go back and confirm or contradict the instincts
 in Phase 9**, because an instinct nobody ever revisits is one that will sit in the prompt forever
 on the strength of the day it was written.
 
-**The machine.** `echo upgrade > .git/ACTOR`, then spawn 1 `carousel-upgrade-engineer`. Zero to
-three bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. **Commit this
-phase's work before you restore the stamp**, then `echo daily > .git/ACTOR`.
+**The machine.** Write `upgrade` into `.git/ACTOR` **with the Write tool, never a shell command,
+for the reason set out in Phase 0**, then spawn 1 `carousel-upgrade-engineer`. Zero to three
+bounded, verified upgrades, logged to `ledger/carousel/upgrades.json`. **Commit this phase's work
+before you restore the stamp**, then write `daily` back into `.git/ACTOR` the same way.
 
 The commit order matters and it is the whole mechanism. The commit-msg hook copies whatever is in
 `.git/ACTOR` at commit time into the message as an `Actor:` trailer, and CI judges each commit by
