@@ -619,8 +619,8 @@
         "TXGeo Albers separated on VALUE with no stroke of any width, two lit ends and a span that fades to nothing between them, because the source names two ends and names no route",
         "a control joint sawn the full height of a sunlit apron, separating two counts of different kinds so they can never be read as a ratio",
         "a norther front as a value break computed at 0.38 of frame height and asserted by the frame",
-        "three receding BANDS OF AIR at three declared value steps, carrying no countable marks, after the first pass drew rows of glowing circles that broke the deck's own no-lens law",
-        "a doorway built out of light alone, a stack of soft ellipses with a threshold and a ground pool, with no path, no clip and no rectangle anywhere in it"
+        "three standing slabs at three depths, each with its own ground contact and its own lit lip, overlapping so occlusion carries the depth, after a draft on one common baseline turned out to be a bar chart encoding a trend no claim states",
+        "a doorway drawn as the SHAPE LIGHT MAKES, a bright slot with two jambs and a trapezoid thrown across the floor widening toward the reader, after two rounds scored a stack of soft ellipses as fog at the deck's lowest encoding AUC"
       ],
       "palette": {
         "source": "galvanized hardware and a caliche field at last light, with one daylight frame on poured concrete",
@@ -645,48 +645,48 @@
         "canvas_mean": {
           "measured_off": "render_report.json canvases[0].mean, the DRAWING with no type over it",
           "values": [
-            56.5,
+            56.6,
             44.3,
             63.0,
             60.3,
             56.6,
             174.9,
-            65.6,
+            57.1,
             55.7,
-            44.8
+            37.3
           ]
         },
         "png_mean": {
           "measured_off": "the nine shipped PNGs whole, type included, which is what a reader sees",
           "values": [
-            57.7,
+            57.8,
             46.7,
             64.6,
-            65.2,
-            55.5,
-            171.9,
-            68.0,
+            65.0,
             55.3,
-            50.7
+            171.9,
+            59.7,
+            55.3,
+            44.1
           ]
         },
         "median_lstar": {
           "measured_off": "the nine shipped PNGs whole",
           "values": [
-            21.2,
+            21.3,
             16.3,
             24.1,
-            24.0,
+            23.9,
             20.7,
             71.9,
-            20.9,
+            21.2,
             18.3,
-            16.5
+            14.4
           ]
         },
-        "deck_median_L": 20.9,
+        "deck_median_L": 21.2,
         "brightest": "slide 6",
-        "darkest": "slide 2",
+        "darkest": "slide 9",
         "priors": {
           "2026-08-28": 22.2,
           "2026-08-29": 15.6,
