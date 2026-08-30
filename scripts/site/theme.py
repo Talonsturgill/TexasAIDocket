@@ -1027,7 +1027,7 @@ def facility_css() -> str:
 /* THE CAMPUS TABLE carries a project name in the first column, a name the filer wrote
    rather than one this project chose, so it is the longest string on the page and the
    flexible track belongs to it. */
-.cbcamp .cbrow { grid-template-columns:minmax(20.3rem,1fr) 6.6rem 7.1rem 5.6rem 7.1rem;
+.cbcamp .cbrow { grid-template-columns:minmax(21.1rem,1fr) 6.6rem 7.1rem 5.6rem 7.1rem;
   column-gap:.35rem; }
 /* A COLUMN OF MAGNITUDES ALIGNS ON ITS LAST DIGIT. Left aligned, $5,000,000 and
    $15,000,000 are the same shape and $100,000,000 is the only row that looks bigger than
