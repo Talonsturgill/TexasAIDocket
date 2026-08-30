@@ -78,6 +78,32 @@ REFUSED = [
             "with no shared axis, baseline or unit."},
 ]
 
+# ---------------------------------------------------------------------------------------------
+# THE SHAPE MAP. `label_guard` reads this, and it exists because a label beside a drawn mark is a
+# CLAIM ABOUT WHAT THAT MARK IS. Two marks are placed on this deck, both on slide 5's Albers
+# outline, and both are named ends of the span c14 states verbatim. Nothing else in this deck is
+# placed anywhere, which is the whole point of that frame's printed refusal.
+#
+# The key is the mark's own id, then the place, then the SHAPE WORDS a label beside it may use,
+# then the claim that proves it.
+ACTED = {
+    "tx-48-141": ("EL PASO",             "EL PASO",             "c14"),
+    "tx-48-361": ("THE LOUISIANA BORDER", "LOUISIANA BORDER",   "c14"),
+}
+
+# The stem table, so a label may inflect a word the claim uses without the gate firing on the
+# inflection. It is read by brace matching rather than by a line regex, so it closes here.
+_STEM = {"BORDERS": "BORDER", "CAMERAS": "CAMERA", "PLACED": "PLACE", "PLACING": "PLACE",
+         "DEVOTED": "DEVOTE", "SEARCHES": "SEARCH", "SEARCHED": "SEARCH", "GRANTS": "GRANT",
+         "CLEARED": "CLEAR", "COVERED": "COVER", "VOTED": "VOTE", "PAUSED": "PAUSE",
+         "INSTALLS": "INSTALL", "LISTS": "LIST", "LISTED": "LIST", "READS": "READ"}
+
+for _mid, (_place, _shape, _cid) in ACTED.items():
+    _q = (BY[_cid].get("quote", "") + " " + BY[_cid].get("text", "")).upper()
+    for _w in _shape.split():
+        assert _w in _q or _STEM.get(_w, _w) in _q, (
+            f"{_mid}: the shape word {_w!r} is in no part of {_cid}'s own words")
+
 out = {"run": "2026-08-30", "figures": [], "refused": REFUSED}
 for slide, cid, s, names in FIGURES:
     out["figures"].append({

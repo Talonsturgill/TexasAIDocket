@@ -1,0 +1,46 @@
+{
+  "lens": "reader",
+  "round": 5,
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.5,
+      "why": "Nine genuinely different drawings across a real value range, not one mid band. The slide 6 repair is confirmed at feed size: the control joint is a sawn channel with a lit lip and a dark floor running the full height. Slide 4's three figures are measurably at three sizes and three left edges with the warm origin now sitting at the $1. Slide 7's inversion is fixed. Against that: slide 7 still reads as three translucent panels a reader takes nothing from, slide 9's doorway collapses to a dim triangle, slide 2's drape reads as an ambiguous hooded form, and slide 1's bodies read as ball bearings on asphalt. Three good frames, four competent, two weak."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.0,
+      "why": "Every numeral on all nine frames traces with the claim id printed beside it. The rejected list is unusually disciplined and $81 million is deliberately kept off slide 4. Deductions: the money spine is all secondary reporting and the MVCPA report carrying the deck's turn was never fetched, so slide 6 is a newspaper's account of a document. Slide 3's kicker names a document the deck does not hold, and slide 8 prints where the absence was looked for and never where the order itself came from."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.0,
+      "why": "The $1 on every Texan's insurance bill is the best stake this deck could have found and the spine is a real story. The criterion asks whether a reader can act, and it fails in the same place it failed in rounds 2, 3 and 4: the fee is universal and the network statewide, and nothing on nine frames tells a reader in Lubbock or Corpus how to find whether their own city has these cameras. The caption's closer is addressed to councils rather than to the person holding the phone."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "There is a real turn and it is now visible, and the drop from that brightness into slide 8's quote is the deck's best two frame move. But two of nine frames are cuttable: slide 2 spends a whole frame on a single adjective when the reader's live question is what happens in their own town, and slide 7 adds nothing usable after slide 5. The deck peaks at slide 8 and closes on its softest picture."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "Three plain lines with no boosterism and no doom, and spending the brightest frame on the program's own best number is the voice doing real work. House rules hold throughout. Against that the kicker system reads like a filing clerk, regional specificity dies after slide 1, and the caption ends on a rhetorical question, which is the flattest available close."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 5.5,
+      "why": "Nine distinct techniques and a palette the storyboard argues for from measurement, with slide 6 the first genuinely light frame in twelve runs. But carousel no. 4 ten days ago carries the same entities and keywords, and a Texan who saw both sees the plate camera story twice in eleven days with Pflugerville promoted from a comparison case to the opening city. Yesterday's ledger note was honoured in the opening move, yet three of nine frames still close on an absence."
+    }
+  ],
+  "weighted_score": 6.41,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Make the fetch this run skipped: pull the MVCPA's own grant award list from txdmv.gov, the domain slide 9 already cites, and spend slide 2 or slide 7 on a frame that names the reader's own city among the grant recipients or states the exact records request Pflugerville filed and where any Texan files the same one."
+}

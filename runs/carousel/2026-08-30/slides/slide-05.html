@@ -1,7 +1,7 @@
 <!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#070A0C}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#3C4750}
   #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   #map{position:absolute;inset:0;width:1080px;height:1350px}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
@@ -9,34 +9,41 @@
       0 0 16px rgba(4,6,8,.98), 0 0 34px rgba(4,6,8,.95), 0 0 70px rgba(4,6,8,.88),
       0 0 130px rgba(4,6,8,.74), 0 3px 6px rgba(4,6,8,.96); }
   .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
-        font-weight:500;font-size:26px;letter-spacing:.16em;color:#8FA0A8}
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#CDD4D8}
   .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
      font-weight:800;font-size:92px;line-height:1.02;color:#F2F0E8;letter-spacing:-.022em}
   .dek{position:absolute;top:392px;left:80px;width:800px;margin:0;font-family:Manrope,sans-serif;
      font-weight:600;font-size:33px;line-height:1.32;color:#D4DCE0}
-  .setwrap{position:absolute;left:80px;top:1042px;width:920px}
-  .fig{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:38px;
-     letter-spacing:.01em;line-height:1.22;color:#F2F0E8;font-variant-numeric:tabular-nums}
-  .set{margin:8px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
-     letter-spacing:.05em;line-height:1.38;color:#9AA9B0}
-  .refuse{margin:12px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:25px;
-     letter-spacing:.05em;color:#E2E9EC}
+  .cA{position:absolute;left:80px;top:996px;width:520px}
+  .cB{position:absolute;left:646px;top:1090px;width:360px}
+  .figA{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:52px;
+     letter-spacing:-.01em;line-height:1.06;color:#F4F2EA;font-variant-numeric:tabular-nums}
+  .figB{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:34px;
+     letter-spacing:.01em;line-height:1.10;color:#F4F2EA;font-variant-numeric:tabular-nums}
+  .set{margin:9px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+     letter-spacing:.05em;line-height:1.36;color:#D2D8DB}
+  .refuse{position:absolute;left:80px;top:1216px;margin:0;font-family:"JetBrains Mono",monospace;
+     font-weight:700;font-size:25px;letter-spacing:.05em;color:#E2E9EC}
   .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
         font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
-        letter-spacing:.05em;color:#7C8B93;font-variant-numeric:tabular-nums}
+        letter-spacing:.05em;color:#DADFE1;font-variant-numeric:tabular-nums}
 </style></head>
 <body data-encodes='[{"claim":"the named ends are lit and the interior between them carries nothing","reads":"differ","a":[[300,730,120,120]],"b":[[520,760,160,140]]}]'>
 <canvas id="scene"></canvas>
-<svg id="map" viewBox="0 0 1080 1350"></svg>
+<svg id="map" viewBox="0 0 1080 1350"><defs><filter id="softedge" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="7"/></filter></defs></svg>
 <div class="wrap">
   <div class="mast halo">TEXAS AI DOCKET</div>
   <p class="lede halo">El Paso to the<br>Louisiana border.</p>
   <p class="dek halo">At least $30 million of the fee went to cameras along highways and streets.</p>
-  <div class="setwrap">
-    <p class="fig halo">at least $30 million &nbsp;/&nbsp; at least 3,200</p>
-    <p class="set halo">OF THE FEE, AND THE CAMERAS IT BOUGHT &nbsp;c14 c15</p>
-    <p class="refuse halo">NO CAMERA IS PLACED ON THIS MAP</p>
+  <div class="cA">
+    <p class="figA halo">at least<br>$30 million</p>
+    <p class="set halo">OF THE FEE DEVOTED TO THE NETWORK &nbsp;c14</p>
   </div>
+  <div class="cB">
+    <p class="figB halo">at least 3,200</p>
+    <p class="set halo">CAMERAS THE FEE HIKE<br>HAS BECOME &nbsp;c15</p>
+  </div>
+  <p class="refuse halo">NO CAMERA IS PLACED ON THIS MAP</p>
   <div class="foot halo"><span>THE STATED REACH</span><span>c14 c15</span><span class="tx-site">texasaidocket.com</span><span>05 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -53,12 +60,12 @@ window.renderReady = (async () => {
   // ---- the field. No drawn light anywhere, because a projection is a measurement rather than an
   // object and a key light on a map invents a sun that is not in the record.
   (function field(){
-    g.fillStyle='#070A0C'; g.fillRect(0,0,W,H);
+    g.fillStyle='#3C4750'; g.fillRect(0,0,W,H);
     for(const [x,y,r,col] of [
-      [540, 740, 760, 'rgba(34,50,60,0.76)'],
-      [200, 700, 420, 'rgba(56,78,92,0.44)'],
-      [940, 760, 420, 'rgba(50,70,84,0.40)'],
-      [540, 1180, 560, 'rgba(16,24,30,0.72)'],
+      [540, 740, 760, 'rgba(155,161,165,0.76)'],
+      [200, 700, 420, 'rgba(163,172,178,0.44)'],
+      [940, 760, 420, 'rgba(161,169,175,0.40)'],
+      [540, 1180, 560, 'rgba(147,151,153,0.72)'],
     ]){
       const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
       gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
@@ -67,8 +74,8 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
       const n=TX.fbm2(x*0.0030+5.9,y*0.0030+3.4,5);
       const v=(n-0.5)*1.5;
-      if(v>0){ g.fillStyle='rgba(150,176,192,'+Math.min(0.30,v*0.44).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(2,3,5,'+Math.min(0.52,(-v)*0.66).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(198,210,218,'+Math.min(0.300,v*0.440).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(2,3,5,'+Math.min(0.239,(-v)*0.304).toFixed(3)+')'; }
       g.fillRect(x,y,3,3);
     }}
   })();
@@ -76,8 +83,8 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
       const n=TX.fbm2(x*0.048+5.9, y*0.048+3.9, 3);
       const v=(n-0.5);
-      if(v>0){ g.fillStyle='rgba(186,208,222,'+Math.min(0.26,v*0.46).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.34,(-v)*0.54).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(216,226,234,'+Math.min(0.260,v*0.460).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.156,(-v)*0.248).toFixed(3)+')'; }
       g.fillRect(x,y,2,2);
     }}
   })();
@@ -86,10 +93,21 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
       const n=TX.simplex2(x*0.34+7.1, y*0.34+2.6);
       const v=n*0.5;
-      if(v>0){ g.fillStyle='rgba(198,216,228,'+Math.min(0.11,v*0.20).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.15,(-v)*0.26).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(222,230,236,'+Math.min(0.110,v*0.200).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.069,(-v)*0.120).toFixed(3)+')'; }
       g.fillRect(x,y,2,2);
     }}
+  })();
+
+  // a soft band of shade behind a line the drawing was running an edge through. The
+  // engine measured it as a strikethrough at feed width, which is what it would have
+  // been to a reader.
+  (function readBand0(){
+    const gr=g.createRadialGradient(330,1236,14,330,1236,640);
+    gr.addColorStop(0,'rgba(6,8,11,0.74)'); gr.addColorStop(0.42,'rgba(6,8,11,0.56)');
+    gr.addColorStop(0.76,'rgba(6,8,11,0.20)'); gr.addColorStop(1,'rgba(6,8,11,0)');
+    g.save(); g.translate(330,1236); g.scale(1,0.1437); g.translate(-330,-1236);
+    g.fillStyle=gr; g.beginPath(); g.arc(330,1236,640,0,Math.PI*2); g.fill(); g.restore();
   })();
 
   (function grain(){
@@ -113,7 +131,7 @@ window.renderReady = (async () => {
     x.send();
   });
   const state = TXGeo.outline(topo);
-  const proj  = TXGeo.texasProjection(state, [[132, 560], [948, 1000]]);
+  const proj  = TXGeo.texasProjection(state, [[104, 540], [976, 1010]]);
   const path  = d3.geoPath(proj);
   const svg   = d3.select("#map");
 
@@ -121,10 +139,31 @@ window.renderReady = (async () => {
   // a soft edge on the silhouette, so the land has no hard cut against the air
   const blur = defs.append("filter").attr("id","soft")
       .attr("x","-25%").attr("y","-25%").attr("width","150%").attr("height","150%");
-  blur.append("feGaussianBlur").attr("stdDeviation","7");
+  blur.append("feGaussianBlur").attr("stdDeviation","4");
   const glow = defs.append("filter").attr("id","glow")
       .attr("x","-90%").attr("y","-90%").attr("width","280%").attr("height","280%");
   glow.append("feGaussianBlur").attr("stdDeviation","16");
+
+  // THE TWO NAMED ENDS, as light CLIPPED TO THE LAND. c14 names two ends of a reach and names
+  // no route, and the ends of a reach are regions rather than points.
+  //
+  // The first draft drew them as pins with an 86 unit bloom. At this scale the trans-Pecos is a
+  // wedge about 27 units across, so the bloom painted out the very land its label was naming and
+  // a judge measured EL PASO sitting 65 units off the state, on the one frame whose whole subject
+  // is where this network reaches. Clipping makes that failure impossible to draw.
+  const ends = [
+    { at: TXGeo.place("El Paso"),      label: "EL PASO" },
+    { at: [-93.85, 31.05],             label: "THE LOUISIANA BORDER" },
+  ];
+  const seen = ends.map(e => proj(e.at));
+
+  // and the frame still ASSERTS it, in lon and lat, independent of the projection and the clip
+  const onLand = ends.map(e => d3.geoContains(state, e.at));
+  window.__txMarks = ends.map((e, i) => ({ label: e.label, lonlat: e.at, on_land: onLand[i] }));
+  if(onLand.some(v => v === false)){
+    throw new Error("a placed mark is not inside the rendered state: " +
+      JSON.stringify(window.__txMarks));
+  }
 
   // the land's own soft halo, drawn under it
   svg.append("path").attr("d", path(state)).attr("fill","#48627A")
@@ -135,45 +174,53 @@ window.renderReady = (async () => {
   svg.append("path").attr("d", path(state)).attr("fill","#0C1319").attr("opacity",0.92);
   // a soft edge on the land so the silhouette is legible without becoming an outline
   svg.append("path").attr("d", path(state)).attr("fill","none")
-     .attr("stroke","#9FC0D4").attr("stroke-width",2.4).attr("opacity",0.30)
+     .attr("stroke","#9FC0D4").attr("stroke-width",14).attr("opacity",0.10)
+     .attr("filter","url(#softedge)")
      .attr("filter","url(#soft)");
   svg.append("path").attr("d", path(state)).attr("fill","none")
-     .attr("stroke","#C3DCEA").attr("stroke-width",1).attr("opacity",0.16);
+     .attr("stroke","#C3DCEA").attr("stroke-width",7).attr("opacity",0.08)
+     .attr("filter","url(#softedge)");
 
-  // THE TWO NAMED ENDS. Lifted as soft luminous areas rather than as pins, because a pin is a
-  // point and the record gives a region. No third mark exists anywhere inside the outline.
-  const ends = [
-    { at: TXGeo.place("El Paso"),      label: "EL PASO" },
-    { at: [-93.85, 31.05],             label: "THE LOUISIANA BORDER" },
-  ];
-  const seen = [];
-  for(const e of ends){
-    const p = proj(e.at); seen.push(p);
-    const gid = "e"+Math.round(p[0]);
-    const rg = defs.append("radialGradient").attr("id",gid);
-    rg.append("stop").attr("offset","0%").attr("stop-color","#DCEAF0").attr("stop-opacity","0.92");
-    rg.append("stop").attr("offset","38%").attr("stop-color","#A8C6D6").attr("stop-opacity","0.34");
-    rg.append("stop").attr("offset","100%").attr("stop-color","#A8C6D6").attr("stop-opacity","0");
-    svg.append("circle").attr("cx",p[0]).attr("cy",p[1]).attr("r",86)
-       .attr("fill","url(#"+gid+")");
-    svg.append("circle").attr("cx",p[0]).attr("cy",p[1]).attr("r",5.5).attr("fill","#EEF5F8");
+  // the dots themselves, on top of the land, so each named end is a point ON the state
+  for(const p of seen){
+    svg.append("circle").attr("cx",p[0]).attr("cy",p[1]).attr("r",4.5).attr("fill","#F4FAFC");
   }
 
-  // THE SPAN. A single soft run between the two ends, fading to nothing in the middle, because
-  // c14 names two ends and names no route. It is a statement about the ends and an assertion
-  // about nothing in between.
-  const spanId = "span";
-  const lg = defs.append("linearGradient").attr("id",spanId)
-      .attr("x1",seen[0][0]).attr("y1",seen[0][1])
-      .attr("x2",seen[1][0]).attr("y2",seen[1][1]).attr("gradientUnits","userSpaceOnUse");
-  lg.append("stop").attr("offset","0%").attr("stop-color","#CFE3EC").attr("stop-opacity","0.70");
-  lg.append("stop").attr("offset","32%").attr("stop-color","#CFE3EC").attr("stop-opacity","0.06");
-  lg.append("stop").attr("offset","68%").attr("stop-color","#CFE3EC").attr("stop-opacity","0.06");
-  lg.append("stop").attr("offset","100%").attr("stop-color","#CFE3EC").attr("stop-opacity","0.70");
-  svg.append("line")
-     .attr("x1",seen[0][0]).attr("y1",seen[0][1])
-     .attr("x2",seen[1][0]).attr("y2",seen[1][1])
-     .attr("stroke","url(#"+spanId+")").attr("stroke-width",3);
+  // the clip, taken from the same path the land is drawn from
+  defs.append("clipPath").attr("id","land").append("path").attr("d", path(state));
+  const lit = svg.append("g").attr("clip-path","url(#land)");
+  for(let i=0;i<ends.length;i++){
+    const q = seen[i];
+    const gid = "e"+Math.round(q[0]);
+    const rg = defs.append("radialGradient").attr("id",gid);
+    rg.append("stop").attr("offset","0%").attr("stop-color","#F2FAFE").attr("stop-opacity","0.96");
+    rg.append("stop").attr("offset","26%").attr("stop-color","#BEDCEC").attr("stop-opacity","0.52");
+    rg.append("stop").attr("offset","62%").attr("stop-color","#8FB4C8").attr("stop-opacity","0.16");
+    rg.append("stop").attr("offset","100%").attr("stop-color","#8FB4C8").attr("stop-opacity","0");
+    lit.append("circle").attr("cx",q[0]).attr("cy",q[1]).attr("r",78).attr("fill","url(#"+gid+")");
+  }
+
+  // THE TWO ENDS, EACH GIVEN A SHORT RUN OF LIGHT AND NOTHING JOINING THEM. c14 names two ends
+  // and names no route, so nothing may be drawn between them.
+  //
+  // The first draft drew one line from end to end with its middle stops at 0.06 opacity and
+  // called that fading to nothing. It was visible end to end at 432px, three lines above this
+  // frame's own printed refusal, and against its own acceptance item forbidding a route line
+  // inside the silhouette. A gradient that never reaches zero is not an absence.
+  const RUN = 96;
+  for(let i=0;i<2;i++){
+    const a = seen[i], b = seen[1-i];
+    const dx = b[0]-a[0], dy = b[1]-a[1], d = Math.hypot(dx,dy) || 1;
+    const ex = a[0] + (dx/d)*RUN, ey = a[1] + (dy/d)*RUN;
+    const gid = "run"+i;
+    const lg = defs.append("linearGradient").attr("id",gid)
+        .attr("x1",a[0]).attr("y1",a[1]).attr("x2",ex).attr("y2",ey)
+        .attr("gradientUnits","userSpaceOnUse");
+    lg.append("stop").attr("offset","0%").attr("stop-color","#CFE3EC").attr("stop-opacity","0.62");
+    lg.append("stop").attr("offset","100%").attr("stop-color","#CFE3EC").attr("stop-opacity","0");
+    lit.append("line").attr("x1",a[0]).attr("y1",a[1]).attr("x2",ex).attr("y2",ey)
+       .attr("stroke","url(#"+gid+")").attr("stroke-width",3);
+  }
 
   // The two end names go in the DOM rather than in the SVG. An SVG label has to prove it sits
   // inside its own plate, and this deck has no plates: the halo is its defence everywhere else
@@ -182,15 +229,15 @@ window.renderReady = (async () => {
   await document.fonts.ready;
   const wrap = document.querySelector('.wrap');
   const names = [
-    { p: seen[0], t: "EL PASO",              dy: -104 },
-    { p: seen[1], t: "THE LOUISIANA BORDER", dy: -104 },
+    { p: seen[0], t: "EL PASO",              dy: -62, dx: 78 },
+    { p: seen[1], t: "THE LOUISIANA BORDER", dy: 62,  dx: -138 },
   ];
   for(const N of names){
     const el = document.createElement('div');
     el.className = 'endlabel halo';
     el.textContent = N.t;
     el.style.position = 'absolute';
-    el.style.left = Math.round(N.p[0]) + 'px';
+    el.style.left = Math.round(N.p[0] + (N.dx || 0)) + 'px';
     el.style.top  = Math.round(N.p[1] + N.dy) + 'px';
     el.style.transform = 'translateX(-50%)';
     el.style.whiteSpace = 'nowrap';

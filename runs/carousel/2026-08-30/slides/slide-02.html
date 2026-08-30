@@ -1,37 +1,35 @@
 <!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#090B0D}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#28323A}
   #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .halo{ text-shadow:
       0 0 16px rgba(5,7,8,.98), 0 0 34px rgba(5,7,8,.94), 0 0 70px rgba(5,7,8,.86),
       0 0 130px rgba(5,7,8,.72), 0 3px 6px rgba(5,7,8,.96); }
   .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
-        font-weight:500;font-size:26px;letter-spacing:.16em;color:#93A2AA}
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#CED5D9}
   .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
      font-weight:800;font-size:106px;line-height:1.00;color:#F2F0E8;letter-spacing:-.022em}
   .dek{position:absolute;top:400px;left:80px;width:720px;margin:0;font-family:Manrope,sans-serif;
      font-weight:600;font-size:35px;line-height:1.32;color:#D8DEE0}
   .setwrap{position:absolute;left:80px;top:1046px;width:900px}
   .set{margin:0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
-     letter-spacing:.05em;line-height:1.40;color:#A2AEB4}
+     letter-spacing:.05em;line-height:1.40;color:#D5DBDD}
   .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
         font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
-        letter-spacing:.05em;color:#84919A;font-variant-numeric:tabular-nums}
+        letter-spacing:.05em;color:#DDE0E3;font-variant-numeric:tabular-nums}
 </style></head>
 <body data-encodes='[{"claim":"the covered mass is darker than the lit ground it stands in","reads":"differ","a":[[478,706,124,150]],"b":[[330,980,240,90]]}]'>
 <canvas id="scene"></canvas>
 <div class="wrap">
   <div class="mast halo">TEXAS AI DOCKET</div>
-  <p class="lede halo">Then they<br>covered them.</p>
-  <p class="dek halo">All 28 cameras will be turned off and covered.</p>
+  <p class="lede halo">Then a cover<br>goes on.</p>
+  <p class="dek halo">All 28 automated license plate reader cameras in the contract will be turned off and covered.</p>
   <div class="setwrap">
-    <p class="set halo">28 &nbsp;CAMERAS IN THE CITY CONTRACT &nbsp;c20<br>
-      WHAT IS UNDER THE COVER IS NOT DRAWN HERE.<br>
-      THE RECORD DOES NOT DESCRIBE IT.</p>
+    <p class="set halo">28 &nbsp;CAMERAS IN THE CITY CONTRACT, AND THE RECORD SAYS<br>THEY WILL BE COVERED RATHER THAN TAKEN DOWN &nbsp;c20</p>
   </div>
-  <div class="foot halo"><span>THE COVER, AS RECORDED</span><span>c20</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+  <div class="foot halo"><span>THE DISPOSITION</span><span>c20</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script>
@@ -44,12 +42,12 @@ window.renderReady = (async () => {
   // ---- the field. Colder and emptier than frame 1, with the light coming from BEHIND the mass,
   // so the cover is read as an occlusion rather than as an object sitting in front of a wall.
   (function field(){
-    g.fillStyle='#090B0D'; g.fillRect(0,0,W,H);
+    g.fillStyle='#28323A'; g.fillRect(0,0,W,H);
     const washes=[
-      [540, 690, 700, 'rgba(74,98,112,0.92)'],
-      [540, 640, 430, 'rgba(120,150,166,0.68)'],
-      [300, 1020, 640, 'rgba(30,42,50,0.70)'],
-      [880, 380, 520, 'rgba(24,34,42,0.62)'],
+      [540, 690, 700, 'rgba(138,153,161,0.92)'],
+      [540, 640, 430, 'rgba(166,184,194,0.68)'],
+      [300, 1020, 640, 'rgba(112,119,124,0.70)'],
+      [880, 380, 520, 'rgba(108,114,119,0.62)'],
     ];
     for(const [x,y,r,col] of washes){
       const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
@@ -61,8 +59,8 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
       const n=TX.fbm2(x*0.0036+2.7,y*0.0036+8.1,5);
       const v=(n-0.5)*1.5;
-      if(v>0){ g.fillStyle='rgba(160,182,194,'+Math.min(0.30,v*0.44).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(3,4,6,'+Math.min(0.52,(-v)*0.66).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(202,214,220,'+Math.min(0.300,v*0.440).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(3,4,6,'+Math.min(0.239,(-v)*0.304).toFixed(3)+')'; }
       g.fillRect(x,y,3,3);
     }}
   })();
@@ -102,15 +100,30 @@ window.renderReady = (async () => {
       const fg=g.createLinearGradient(x1-26,0,x1+26,0);
       fg.addColorStop(0,'rgba(2,3,4,0)'); fg.addColorStop(0.5,'rgba(2,3,4,0.55)');
       fg.addColorStop(1,'rgba(2,3,4,0)');
+      // a vertical falloff too, so the band dies inside the mass rather than being cut by it
       g.fillStyle=fg;
+      g.save();
+      const vf=g.createLinearGradient(0,TOP-90,0,TOP+CH+120);
+      vf.addColorStop(0,'rgba(0,0,0,0)'); vf.addColorStop(0.22,'rgba(0,0,0,1)');
+      vf.addColorStop(0.74,'rgba(0,0,0,1)'); vf.addColorStop(1,'rgba(0,0,0,0)');
       g.beginPath(); g.moveTo(x0-18,TOP-90); g.lineTo(x0+18,TOP-90);
-      g.lineTo(x1+28,TOP+CH+120); g.lineTo(x1-28,TOP+CH+120); g.closePath(); g.fill();
+      g.lineTo(x1+28,TOP+CH+120); g.lineTo(x1-28,TOP+CH+120); g.closePath();
+      g.clip(); g.fillStyle=fg; g.fillRect(0,TOP-90,W,CH+210);
+      g.globalCompositeOperation='destination-in'; g.fillStyle=vf;
+      g.fillRect(0,TOP-90,W,CH+210); g.restore();
       const lg=g.createLinearGradient(x1-30,0,x1-6,0);
       lg.addColorStop(0,'rgba(158,182,196,0)'); lg.addColorStop(0.6,'rgba(158,182,196,0.13)');
       lg.addColorStop(1,'rgba(158,182,196,0)');
       g.fillStyle=lg;
+      g.save();
+      const vl=g.createLinearGradient(0,TOP-90,0,TOP+CH+120);
+      vl.addColorStop(0,'rgba(0,0,0,0)'); vl.addColorStop(0.26,'rgba(0,0,0,1)');
+      vl.addColorStop(0.70,'rgba(0,0,0,1)'); vl.addColorStop(1,'rgba(0,0,0,0)');
       g.beginPath(); g.moveTo(x0-26,TOP-90); g.lineTo(x0-6,TOP-90);
-      g.lineTo(x1-4,TOP+CH+120); g.lineTo(x1-34,TOP+CH+120); g.closePath(); g.fill();
+      g.lineTo(x1-4,TOP+CH+120); g.lineTo(x1-34,TOP+CH+120); g.closePath();
+      g.clip(); g.fillStyle=lg; g.fillRect(0,TOP-90,W,CH+210);
+      g.globalCompositeOperation='destination-in'; g.fillStyle=vl;
+      g.fillRect(0,TOP-90,W,CH+210); g.restore();
     }
     // the crown, only just caught, so the mass has a top without becoming a light source
     const crown=g.createRadialGradient(CX-34,TOP+26,6,CX-34,TOP+26,150);
@@ -158,8 +171,8 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
       const n=TX.fbm2(x*0.048+2.7, y*0.048+3.9, 3);
       const v=(n-0.5);
-      if(v>0){ g.fillStyle='rgba(186,208,222,'+Math.min(0.26,v*0.46).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.34,(-v)*0.54).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(216,226,234,'+Math.min(0.260,v*0.460).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.156,(-v)*0.248).toFixed(3)+')'; }
       g.fillRect(x,y,2,2);
     }}
   })();
@@ -168,8 +181,8 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
       const n=TX.simplex2(x*0.34+7.1, y*0.34+2.6);
       const v=n*0.5;
-      if(v>0){ g.fillStyle='rgba(198,216,228,'+Math.min(0.11,v*0.20).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.15,(-v)*0.26).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(222,230,236,'+Math.min(0.110,v*0.200).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.069,(-v)*0.120).toFixed(3)+')'; }
       g.fillRect(x,y,2,2);
     }}
   })();

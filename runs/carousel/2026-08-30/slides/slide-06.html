@@ -25,7 +25,7 @@
      line-height:1.02;color:#1A1A17;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
   .mid{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:58px;
      line-height:1.04;color:#1A1A17;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-  .u{margin:10px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:23px;
+  .u{margin:10px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
      letter-spacing:.05em;line-height:1.36;color:#2A281F}
   .attrib{position:absolute;left:80px;top:1132px;width:920px;margin:0;
      font-family:"JetBrains Mono",monospace;font-weight:700;font-size:25px;letter-spacing:.05em;
@@ -113,27 +113,85 @@ window.renderReady = (async () => {
   // ---- THE CONTROL JOINT. One saw cut running the full height, dividing the frame so the two
   // counts can never be read against each other. They count different things and putting them on
   // one scale would be the ratio this deck refuses to publish.
+  //
+  // The first draft drew it as a 3.4px stroke with a soft shadow and it read as a thread at feed
+  // size, so the frame's whole argument was invisible at the size a reader gets. A sawn joint in
+  // a slab is a CHANNEL: a wide shallow trough, a dark gap at its floor, a chamfer catching sun
+  // on the near side and a lip of raised laitance on both, and it is 14 units across.
   (function joint(){
     const JX=534;
-    // the cut's own soft shadow, widest at the bottom where the sun is highest behind
-    const sh=g.createLinearGradient(JX-16,0,JX+16,0);
-    sh.addColorStop(0,'rgba(92,86,72,0)'); sh.addColorStop(0.44,'rgba(92,86,72,0.30)');
-    sh.addColorStop(0.56,'rgba(92,86,72,0.30)'); sh.addColorStop(1,'rgba(92,86,72,0)');
-    g.fillStyle=sh; g.fillRect(JX-16,0,32,H);
-    // the cut, a dark line with a lit chamfer on the sun side, wandering by a pixel or two
-    g.lineCap='round';
-    g.beginPath();
-    for(let y=-10;y<=H+10;y+=8){
-      const x=JX+TX.simplex2(y*0.004,2.2)*2.4;
-      y===-10?g.moveTo(x,y):g.lineTo(x,y);
+    const wob = y => JX + TX.simplex2(y*0.0035, 2.2)*3.2 + TX.simplex2(y*0.014, 5.1)*1.1;
+
+    // the trough. The slab dishes into the cut before it reaches it, which is what makes it sawn
+    // rather than drawn, and it is the widest part of the mark.
+    for(let y=0;y<=H;y+=2){
+      const x = wob(y);
+      const tg=g.createLinearGradient(x-34,0,x+34,0);
+      tg.addColorStop(0,'rgba(120,112,94,0)');
+      tg.addColorStop(0.34,'rgba(120,112,94,0.20)');
+      tg.addColorStop(0.5,'rgba(104,96,80,0.30)');
+      tg.addColorStop(0.66,'rgba(120,112,94,0.20)');
+      tg.addColorStop(1,'rgba(120,112,94,0)');
+      g.fillStyle=tg; g.fillRect(x-34,y,68,2);
     }
-    g.strokeStyle='rgba(58,54,44,0.62)'; g.lineWidth=3.4; g.stroke();
-    g.beginPath();
-    for(let y=-10;y<=H+10;y+=8){
-      const x=JX+TX.simplex2(y*0.004,2.2)*2.4;
-      y===-10?g.moveTo(x-3.2,y):g.lineTo(x-3.2,y);
+    // the lip of raised laitance either side, catching the sun
+    for(const dir of [-1,1]){
+      g.beginPath();
+      for(let y=-8;y<=H+8;y+=6){ const x=wob(y)+dir*10.5; y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+      g.strokeStyle='rgba(255,253,246,0.50)'; g.lineWidth=3.0; g.stroke();
     }
-    g.strokeStyle='rgba(255,253,246,0.42)'; g.lineWidth=1.8; g.stroke();
+    // the cut itself, a real channel with a floor a reader cannot see into
+    g.beginPath();
+    for(let y=-8;y<=H+8;y+=6){ const x=wob(y); y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+    g.strokeStyle='rgba(74,68,56,0.82)'; g.lineWidth=13.5; g.lineCap='round'; g.stroke();
+    g.beginPath();
+    for(let y=-8;y<=H+8;y+=6){ const x=wob(y); y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+    g.strokeStyle='rgba(38,34,26,0.88)'; g.lineWidth=6.0; g.stroke();
+    // the chamfer on the sun side, the one bright mark on the cut
+    g.beginPath();
+    for(let y=-8;y<=H+8;y+=6){ const x=wob(y)-6.4; y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+    g.strokeStyle='rgba(255,254,250,0.86)'; g.lineWidth=2.6; g.stroke();
+    // and the grit that collects in a joint, which is what stops it being a ruled line
+    for(let i=0;i<260;i++){
+      const y=R()*H, x=wob(y)+(R()-0.5)*15;
+      g.fillStyle='rgba(56,50,40,'+(0.20+R()*0.42).toFixed(3)+')';
+      g.beginPath(); g.ellipse(x,y,0.8+R()*1.9,0.6+R()*1.3,0,0,Math.PI*2); g.fill();
+    }
+  })();
+
+  // ---- THE FLOAT MARKS. A slab is finished by hand and the arcs a float leaves are the only
+  // thing that tells a reader this is a poured surface rather than paper. The first draft carried
+  // them as a stretched noise field at a contrast a thumbnail could not hold.
+  (function floatMarks(){
+    g.save(); g.globalCompositeOperation='overlay';
+    for(let i=0;i<58;i++){
+      const cx = -260 + R()*1700, cy = 200 + R()*1100;
+      const r  = 300 + R()*700;
+      const a0 = -0.5 + R()*0.7, a1 = a0 + 0.5 + R()*0.8;
+      g.beginPath(); g.arc(cx, cy, r, a0, a1);
+      g.strokeStyle='rgba(255,255,255,'+(0.030+R()*0.045).toFixed(3)+')';
+      g.lineWidth = 6 + R()*22; g.stroke();
+      g.beginPath(); g.arc(cx, cy+3, r, a0, a1);
+      g.strokeStyle='rgba(96,88,72,'+(0.024+R()*0.036).toFixed(3)+')';
+      g.lineWidth = 4 + R()*14; g.stroke();
+    }
+    g.restore();
+  })();
+
+  // ---- THE AGGREGATE, budgeted PER REGION rather than sprinkled. It is dense where the sun
+  // rakes across the lower right and nearly absent under the type, so the frame has somewhere to
+  // look and somewhere to read.
+  (function aggregate(){
+    for(let i=0;i<2200;i++){
+      const x=R()*W, y=R()*H;
+      const d = Math.hypot((x-760)/620, (y-1120)/520);
+      if(R() > Math.max(0.04, 1.0 - d*0.85)) continue;
+      const r = 0.7 + R()*2.4;
+      g.fillStyle='rgba(92,85,70,'+(0.10+R()*0.26).toFixed(3)+')';
+      g.beginPath(); g.ellipse(x+r*0.55, y+r*0.5, r*1.1, r*0.7, 0, 0, Math.PI*2); g.fill();
+      g.fillStyle='rgba(255,253,246,'+(0.16+R()*0.34).toFixed(3)+')';
+      g.beginPath(); g.ellipse(x, y, r, r*0.66, 0, 0, Math.PI*2); g.fill();
+    }
   })();
 
   // ---- the far edge, where the apron runs out into caliche haze. It gives the bottom band its

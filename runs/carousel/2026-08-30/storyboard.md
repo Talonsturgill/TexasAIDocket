@@ -65,59 +65,56 @@ numerals:
   - value_from: c20        # 28
 composition:
   structure: >
-    Plan view straight down on vertisol clay, no horizon, so the frame is a piece of ground rather
-    than a landscape. The 28 sit inside one bounded enclosure left of centre at 0.42 frame width,
-    because a boundary drawn off centre leaves the outer field asymmetric and stops the enclosure
-    reading as a target. This content wants plan view because the deck's whole subject is who is
-    inside a boundary, and plan is the only camera where a boundary is unambiguous.
+    Plan view straight down on a caliche field at a MID value, no horizon, so the frame is a piece
+    of ground rather than a landscape. The 28 drift across the whole art band on a noise walked
+    spiral with no axis to read, because a grid would make the count a table and a cluster would
+    make it a stain. Plan view is the only camera on which a set is unambiguously a set.
   bands: >
-    Top third, the hook reversed out of clay. Middle third, the enclosure and the counted bodies.
-    Bottom third, the clay field carries on to the frame edge as modeled ground, its vertisol
-    cracking picked out by the same high key, with the two nearest bodies' casts falling across it
-    so the bottom carries real relief rather than a caption. The mono set line and the furniture sit
-    ON that modeled ground, not on a flat band.
+    Top third, the hook and dek set in the field behind a halo. Middle third, the drift of bodies.
+    Bottom third, one body at near scale carries modeled tone under the mono set line, so the
+    furniture sits on worked ground rather than on a flat band.
   focal: >
-    The lit interior of the enclosure, an area at spangle carrying the frame's light extreme. Not
-    the fence wire, which is a line and would lose at 432px.
+    The raking light falling across the ground from the upper left. It is
+    an AREA OF GROUND rather than an object, because every object on this frame is one of 28
+    identical things and none of them may be brighter than another.
 
 art:
-  technique: "stipple field used as a countable body field, per TECHNIQUE_LIBRARY"
+  technique: "a counted body field on a lit ground, every member identical, each taking a lit crest and a cast from one raking light"
   why_this_technique: >
-    c20's force is that the count is small and exact, a thing a council can act on. At 28 every
-    body stays individually resolvable with ground between it and its neighbour, which is the
-    difference between a count a reader can verify by looking and a wash. A bar would encode 28 as
-    a length and invite comparison with a number on another frame.
+    c20's force is that the count is small and exact, a thing a council can act on. The first pass
+    drew all 28 as cold blooms on a near black field and measured at canvas mean 17.1, which is a
+    black rectangle at feed size. On a lit ground each body can be drawn as what the record makes
+    it, one of 28 identical things, and the light can be a property of the GROUND instead.
   palette: >
-    Source, the Blackland Prairie right of way north of Austin at last dark and the galvanized
-    hardware standing in it. clay #6A5544 vertisol, galv #8E9694 hot dip galvanized in open shade,
-    spangle #C6CCC7 the crystalline spangle catching first light, hood #1C1F20 the inside of a
-    cover, lint #E9E7DA cotton lint on a wire as type.
+    Source, the Blackland Prairie right of way north of Austin at last light. field #4A555C the
+    caliche ground, body #0B0F13 one of the 28, crest #E8F4F8 the lit top the raking light gives
+    each of them, lint #F2F0E8 the display type. THERE IS NO LIVE TOKEN. The record gives no per
+    camera state, so the palette carries no colour for one.
   value_structure: >
-    Lightest, the enclosure interior at spangle, which is the focal. Darkest, the two part cast
-    falling from each body onto the clay at hood. The clay field holds the middle so the enclosure
-    is the only place the light collects.
+    Lightest, the ground under the raking light at upper left, which is an AREA and not an object.
+    Darkest, the 28 bodies, all at body. The field holds the middle so both extremes read.
   motion: >
-    The eye lands in the lit enclosure, counts without being asked to, then falls to the mono line
-    naming what was counted.
+    The eye enters where the light rakes the ground, crosses the drift counting as it goes, then
+    falls to the mono line naming what was counted.
 
 type:
-  hook: "A town turned off 28 cameras."
-  dek: "The council voted unanimously to end its agreement with Flock."
+  hook: "A town voted 28 cameras off."
+  dek: "The council voted unanimously to end its agreement with Flock. Its cameras read license plates."
   labels:
     - "28 cameras in the city contract c20"
     - "01 / 09"
 
 acceptance:
-  - "exactly 28 bodies are drawn inside the enclosure, the count asserted by the frame's own script and written to render_report.json"
-  - "the string 'unanimously' appears exactly once as DOM text with 'c19' beside it"
-  - "the enclosure interior is the lightest region on the frame, filled spangle #C6CCC7, and measures at least 25 L* above the clay field median"
-  - "every body carries a lit crest and a two part cast, so it reads as an object on ground rather than a dot printed on it"
+  - "the frame carries 'CAMERAS IN THE CITY CONTRACT' as DOM text with 'c20' beside it"
+  - "the frame carries 'THE VOTE WAS UNANIMOUS' with 'c19' beside it"
+  - "no body on this frame is drawn as powered or as unpowered, because c20 speaks of all 28 at once and the record gives no per camera state"
+  - "exactly 28 bodies are drawn and NONE is distinguished from another, both asserted by the frame's own script into window.__txCount, because c20 puts all 28 in one state"
   - "the numeral 459 appears nowhere on this frame"
   - "no circular aperture, lens, pole or mount is drawn anywhere on the frame"
 
 risks:
-  - "a plan view of small bodies can read as a texture at 432px. The lit crest and the cast are the whole defence and if they do not survive the thumbnail this frame is wallpaper"
-  - "an enclosure with things inside it is one stroke from a target or a pen. The fence is drawn as engineering, wire under tension on posts at a computed spacing, and it never closes into a circle"
+  - "a drift of small bodies can read as a texture at 432px. The lit crest and the cast on every body are the whole defence, and no body may be given a second scale to carry tone with, because three judges read a body at 2.8 scale as a 29th camera still lit"
+  - "one warm point on a cool field is one step from a lens flare, which is the deck's first law. It is drawn as a filament with a body, never as a star with rays"
 ```
 
 ```yaml
@@ -131,54 +128,52 @@ numerals:
   - value_from: c20        # 28
 composition:
   structure: >
-    Near frontal, 30 degrees off axis, one covered mount filling 0.55 of frame width at near range.
-    The claim is a physical act rather than a quantity, so the frame is one object at conversational
-    distance instead of a field. This is the deck's darkest frame because a hood interior is the
-    darkest thing in the register and the deck needs its floor established early.
+    A single draped mass standing centre frame with the light coming from BEHIND it, so the cover
+    is read as an occlusion rather than as an object sitting in front of a wall. This is the
+    deck's darkest frame and the only one built around a silhouette.
   bands: >
-    Top third, hook over the open field. Middle third, the covered mount and its hood interior.
-    Bottom third, the drawn ground the mount stands on, modeled with the two part contact shadow
-    spreading left and the clay's own grain lit across it, so the object is seen to sit on
-    something. The dek and the furniture sit on that ground.
+    Top third, hook and dek. Middle third, the mass and the light it blocks. Bottom third, the
+    field carries the mono line naming the disposition.
+  focus_note: >
+    The frame states a DIFFERENT fact from slide 1. Slide 1 carries the vote, this one carries what
+    the record says happens to the hardware, which is that it is covered rather than taken down.
   focal: >
-    The hood's lit crest and shoulder, an area at spangle sitting directly above the frame's
-    darkest region, so the focal is the one place the light dies.
+    The lit crest where the field wraps the top of the mass, the one place light survives the
+    occlusion.
 
 art:
-  technique: "canvas drape built in strict light order, a feathered silhouette with an internal fall of value and a rim where the field wraps it"
+  technique: "canvas drape built in strict light order, a feathered bezier silhouette with an internal fall of value and a rim where the field wraps it"
   why_this_technique: >
-    The claim is a physical act rather than a quantity, and the honest drawing of it is a mass
-    that OCCLUDES the light behind it rather than an object lit from the front. Built in strict
-    light order, cast first, then body, then folds, then the rim, so the cover reads as a thing in
-    front of a source. Nothing under it is drawn, because the record does not describe it.
+    c20 says covered, and a cover is the only object in this deck the record actually describes.
+    A drape is drawn rather than diagrammed, which is what stops the frame being a label.
   palette: >
-    Same right of way source. galv #8E9694 the cover in open shade, spangle #C6CCC7 its lit crest,
-    hood #1C1F20 the interior, shade #4A504F the bracket in shadow, clay #6A5544 the ground.
+    field #28323A the lit ground behind, body #0E1418 the mass, crest #9EB6C4 where the field
+    wraps it, lint #F2F0E8 the display type.
   value_structure: >
-    Lightest, the cover's crest at spangle. Darkest, the hood interior at hood, which carries at
-    least two values on its inner wall so it reads as an inside rather than a black shape. Frame
-    median planned at L* 22, the deck's floor.
+    Lightest, the ground behind the mass. Darkest, the mass's own interior. This is among the
+    deck's two darkest frames and it is NOT the minimum: the closing frame is darker. The figures
+    live in `ledger/carousel/artwork.json` under `value`, measured, rather than repeated here
+    where a second copy would go stale.
   motion: >
-    Down the lit crest, into the dark interior, then out along the ground to the ruled line.
+    The eye reads the shape as a thing put over something, then falls to the line that says so.
 
 type:
-  hook: "Then they covered them."
-  dek: "All 28 cameras will be turned off and covered."
+  hook: "Then a cover goes on."
+  dek: "All 28 automated license plate reader cameras in the contract will be turned off and covered."
   labels:
     - "c20"
     - "02 / 09"
 
 acceptance:
-  - "the drawn object shows no lens, no aperture, no glass and no circular opening anywhere on the frame"
-  - "the hood interior is the darkest region on the frame and carries at least two distinct values on its inner wall"
-  - "the object sits on a drawn ground with a two part contact shadow, a core under 6px and a body over 20px at 2160"
-  - "the numeral 28 appears exactly once on the frame"
-  - "every mark on the frame is a stroke or a fill, with no photographic or scanned texture anywhere"
-  - "the frame's measured median L* is the minimum of the nine rendered PNGs"
+  - "the frame carries 'THEY WILL BE COVERED RATHER THAN TAKEN DOWN' as DOM text with 'c20' beside it"
+  - "the dek reads 'All 28 automated license plate reader cameras in the contract will be turned off and covered.', which is c20's own tense"
+  - "the string 'covered them' appears nowhere, because the record puts the act in the future"
+  - "this frame is among the two darkest of the nine, and it is NOT asserted as the minimum: the closing frame is darker, and an acceptance item that names a rank the run does not control is a claim the render decides rather than the plan"
+  - "no circular aperture, lens, pole or mount is drawn anywhere on the frame"
 
 risks:
-  - "a covered object is close to an ominous image, and this project does not publish verdicts. One key, no rim light, no vignette, and the copy stays flat"
-  - "Zdog has never shipped here, so its stroke weight at 432px is unmeasured. If the rounded strokes fatten into mush the frame is rebuilt flat rather than defended"
+  - "a dark mass on a lit ground is one step from a hole. The crest and the internal fall of value are what give it a body"
+  - "the frame must not repeat slide 1's fact. It carries the disposition, and its label says so"
 ```
 
 ```yaml
@@ -192,35 +187,27 @@ numerals:
   - value_from: c21        # 459, nearly 1.6 million, six months
 composition:
   structure: >
-    Level, one point perspective down a fence line, posts receding to the right. A fence is the
-    most direct drawing of an access boundary there is, and every post being blank is the frame's
-    argument. This content wants recession rather than plan because the claim is about reach
-    through a boundary rather than about what sits inside one.
+    A population of 459 identical anonymous marks on a jittered lattice filling the art band, with
+    no mark larger, brighter or nearer than any other, because the record gives a count and gives
+    no name.
   bands: >
-    Top third, hook against last light. Middle third, the wire run and the receding posts.
-    Bottom third, the nearest post's base and the ground it stands in, modeled, with the post's
-    shadow pooling toward the reader and the clay's grain running out to the frame edge. The two
-    figures and their set line sit on that modeled ground.
+    Top third, hook and dek. Middle third, the population. Bottom third, the count, the set it
+    counted, and the printed refusal.
   focal: >
-    The lit wire run where it crosses the nearest post's sunward face, an area of spangle against
-    the frame's darker ground. The posts themselves are darker and carry nothing.
+    The densest region of the lattice, which is an AREA rather than any one mark. Nothing in the
+    population is allowed to be the focal, which is the frame's argument.
 
 art:
-  technique: "line and node, inverted so no node carries a label"
+  technique: "an anonymous population, each member a hard bright core over a soft bloom so it stays resolvable at 432px instead of greying out"
   why_this_technique: >
-    The claim is a path with nodes on it and the fact that every node is anonymous. Line and node
-    is the library's grammar for exactly that, and inverting it, drawing the nodes and refusing to
-    label a single one, is the only honest way to draw a count of parties the record does not name.
-    The recorded failure is the line reading as a crack in the ground, answered here by lifting the
-    wire in value above its ground rather than shadowing it.
+    c21 gives 459 and names none of them. A population where one mark could be picked out would be
+    a claim the record does not support.
   palette: >
-    galv #8E9694 the wire and posts, spangle #C6CCC7 the lit run, shade #4A504F posts in shadow,
-    clay #6A5544 the ground at last dark, lint #E9E7DA type.
+    field #3B454C the ground, mark #DCE8EE a member, lint #F2F0E8 the display type.
   value_structure: >
-    Lightest, the lit wire run. Darkest, the ground beneath the furthest posts. The value falls
-    with distance so the recession is carried by light rather than by size alone.
+    Lightest, the marks. Darkest, the ground between them. The frame's whole structure is one step.
   motion: >
-    Along the wire into depth, then back down to the ruled line where the counts sit.
+    The eye tries to pick one out, cannot, and lands on the line that says the record names none.
 
 type:
   hook: "459 counted. None named."
@@ -231,16 +218,16 @@ type:
     - "03 / 09"
 
 acceptance:
-  - "no post carries a label, a number, a badge or a mark of any kind"
-  - "the string 'the fetched record names none of them' appears as DOM text with 'c21' beside it"
-  - "the wire's brightest point measures at least 18 L* above the ground immediately beneath it"
-  - "no black rectangle, bar, box or strike appears anywhere on the frame, because the absence is a sentence and never a shape"
-  - "the only search count on the frame is 'nearly 1.6 million', in c21's own wording, and the word 'nearly' is set at the same size as the numeral"
-  - "the post count is printed nowhere on the frame"
+  - "the frame carries 'NONE OF THEM IS NAMED' as DOM text"
+  - "the absence names the source it looked in, as 'LOOKED FOR IN fox7austin.com' with 'c21' beside it. It carries no retrieval YEAR, because this frame cites only c21 and c21 states no year: a numeral beside a claim id says the id is where the number came from, and adding a second id to license a date would be inventing a reason to satisfy a gate"
+  - "the frame carries 'PFLUGERVILLE' S CAMERA NETWORK' with 'c21' beside it"
+  - "no organization is named anywhere on the frame"
+  - "the numeral 28 appears nowhere on this frame"
+  - "no circular aperture, lens, pole or mount is drawn anywhere on the frame"
 
 risks:
-  - "a fence line at last dark is one wrong stroke from western kitsch. No barbed wire, no leaning cedar, no warm sunset. Galvanized wire under tension, posts at a computed spacing, cold light"
-  - "459 with no names attached could read as an accusation of concealment rather than as a statement about a fetched record. The frame names the record and says what it does not contain"
+  - "459 marks can grey out into a wash at 432px. Each carries a hard core over its bloom so the population stays a population"
+  - "a lattice is one step from a grid, and a grid implies an order the record does not have. It is jittered by noise"
 ```
 
 ```yaml
@@ -255,51 +242,48 @@ numerals:
   - value_from: c16        # $50.8 million, 234
 composition:
   structure: >
-    Dead flat, zero perspective, three ruled entries on one measure on a single lit panel. The
-    claim is an accounting fact and accounting is set flat. This is the deck's one frame with no
-    depth at all, which is what makes it read as a document rather than a place.
+    A sheet under raking light seen close, with the money's whole path set on one lit plane and
+    the ground falling away above and below it. There is no chart and no bar, because encoding any
+    of these three figures as a length would invite the ratio between them.
   bands: >
-    Top third, the hook and the year. Middle third, the lit panel carrying the three entries.
-    Bottom third, the contour ground running out under the panel, plus furniture.
+    Top third, hook and dek. Middle and lower, the three entries on the lit plane. The crease runs
+    the full height and falls off on BOTH sides, so it is a fold rather than an edge.
   focal: >
-    The lit panel itself, an area carrying the frame's light extreme, with the contour ground at
-    least 25 L* darker behind it.
+    The origin point, a small warm area where the dollar enters the sheet, and the frame's light
+    extreme.
 
 art:
-  technique: "contour set as a ground carrying texture without value"
+  technique: "a lit plane with a falloff on every side, carrying a laid pattern that fades out across the type band"
   why_this_technique: >
-    A large flat field needs material or it is a slab, and the contour set is the one ground in the
-    library that gives texture without introducing a second quantity a reader could mistake for
-    data. Its recorded failure is moire below 3px spacing at 2x, checked here on the 432px thumb.
+    c13 and c16 are a path rather than a comparison. A plane says the three figures are stages of
+    one thing without saying how they divide.
   palette: >
-    clay_lit #94795F the contour ground where first light reaches it, lint #E9E7DA the lit panel,
-    galv #8E9694 the ruled measures, hood #1C1F20 the type.
+    sheet #4A4034 the warm ground, plane #FFF0D0 the lit panel, origin #FFF4D6 the dollar's entry,
+    lint #F2F0E8 the display type.
   value_structure: >
-    Lightest, the lit panel at lint, the second brightest frame in the deck. Darkest, the contour
-    ground's densest quarter at the frame edge. The panel is the only flat area in a textured
-    field, which is what makes it read as a posted notice.
+    Lightest, the origin. Darkest, the ground at the top and bottom edges. The entries sit in a
+    soft reading shade so light type keeps a ground it clears on.
   motion: >
-    Down the three entries in order, one dollar, then the grants, then the set that was counted.
+    The eye enters at the dollar and runs down the three entries in the order the money moved.
 
 type:
   hook: "It started as one dollar."
-  dek: "In 2023 the Legislature unanimously raised auto insurance costs for Texans by $1 to combat catalytic converter theft."
+  dek: "In 2023 the Legislature unanimously raised auto insurance costs by $1 to combat catalytic converter theft."
   labels:
     - "$50.8 million into 234 grants c16"
     - "grants made by the authority"
     - "04 / 09"
 
 acceptance:
-  - "all figures on the frame are set at one identical size in JetBrains Mono with tabular numerals, and a render where any two differ in size fails"
-  - "each figure is followed by a phrase naming the set it counts and its claim id, 'c13' or 'c16'"
-  - "the word 'unanimously' appears once with 'c13' beside it"
-  - "no two contour lines are closer than 3 device pixels at 432px, asserted by the frame's own spacing computation"
-  - "nothing on the frame encodes any figure as a length, an area or a position"
-  - "the numeral 81 appears nowhere on this frame or anywhere in the deck"
+  - "the frame carries 'GRANTS BY THE MOTOR VEHICLE CRIME PREVENTION AUTHORITY' as DOM text, which names the actor five frames before the closing card"
+  - "the frame carries 'OF THE FEE PAID OUT IN GRANTS' with 'c16' beside it"
+  - "the string 'funnelled' appears nowhere, because it is a British doubling the source does not use"
+  - "the numeral 81 appears nowhere on this frame, so no remainder is invited"
+  - "no bar, axis, tick or gridline is drawn anywhere on the frame"
 
 risks:
-  - "a flat frame of ruled type is the easiest frame here to make and the flattest. The contour ground has to be visible at 432px or this is a slide of text"
-  - "three figures in a column invites a reader to relate them. Each carries its own set name and none shares a unit with another"
+  - "three figures stacked vertically read as a chart even without a bar. Their type sizes differ and none is set against a shared baseline"
+  - "a crease that stops at a non-zero value is a hard vertical edge, which this deck's register forbids. It falls off on both sides"
 ```
 
 ```yaml
@@ -314,36 +298,27 @@ numerals:
   - value_from: c15        # at least 3,200
 composition:
   structure: >
-    Flat, unlit Albers projection. The state as one filled silhouette with no county seams, because
-    no claim in this run states a county level fact and a seam invites a reader to look for their
-    own. One drawn span between two terminator blocks, and nothing at all between them, because
-    c14 names two ends and names no route.
+    A TXGeo Albers silhouette of the state with two lit terminators and nothing between them,
+    because c14 names two ends and names no route. The silhouette separates from the field on
+    VALUE alone and carries no stroke of any width.
   bands: >
-    Top third, hook in the record's own words. Middle third, the silhouette and the span.
-    Bottom third, the state's southern extent carries down into it, so the silhouette itself
-    occupies the lower band with its own modeled edge and the Gulf boundary's soft falloff, rather
-    than the band being furniture under a picture. The two hedged figures and the printed refusal
-    sit beside that mass, not under a rule.
+    Top third, hook and dek. Middle, the silhouette and its two named ends. Bottom, the two counts
+    on separate baselines and the printed refusal.
   focal: >
-    The western terminator block, an area of spangle at the silhouette's west edge, which is the
-    frame's light extreme and pulls the eye left before the span carries it right.
+    The western terminator, an area of light at the silhouette's west edge.
 
 art:
-  technique: "TXGeo Albers cartography, single silhouette with an open span"
+  technique: "TXGeo Albers cartography, a single silhouette with an open span and a blurred falloff in place of an outline"
   why_this_technique: >
-    TXGeo is required so a slide and the site agree about where a place is. A choropleth would
-    invent a distribution, a dot density would invent locations and a line across the land would
-    read as a route, so the span is drawn as a dimension between two named ends and an assertion
-    about nothing in between, which is the exact shape of c14.
+    The record gives two endpoints of a reach and no interior detail. A map with counties or a
+    route drawn between the ends would be an invention.
   palette: >
-    hood #1C1F20 the silhouette interior, spangle #C6CCC7 the two terminator blocks, galv #8E9694
-    the neatline and graticule ticks, lint #E9E7DA type.
+    field #3C4750 the ground, interior #101619 the silhouette, lit #CFE6F2 the two terminators,
+    lint #F2F0E8 the display type.
   value_structure: >
-    No drawn light, because a projection is a measurement rather than an object. Lightest, the two
-    terminator blocks. Darkest, the silhouette interior, a large unbroken area that carries the
-    frame's emptiness as its argument.
+    Lightest, the two terminators. Darkest, the silhouette's interior, which is empty on purpose.
   motion: >
-    West terminator, along the span, east terminator, then down to the refusal line.
+    The eye reads west to east across the span, finds nothing in between, and lands on the refusal.
 
 type:
   hook: "El Paso to the Louisiana border."
@@ -354,16 +329,17 @@ type:
     - "05 / 09"
 
 acceptance:
-  - "the outline is drawn through TXGeo's Albers projection and no county seam appears anywhere on it"
-  - "the span terminates at exactly two drawn terminator blocks and nowhere else, and zero marks of any kind appear inside the silhouette between them"
-  - "the only place names on the frame are 'El Paso' and 'the Louisiana border', in c14's own wording, and no county name appears"
-  - "the frame carries the line 'no camera is placed on this map' as DOM text"
-  - "both hedged figures carry the words 'at least' set at the same size as the numeral, never as a superscript"
-  - "no scale bar and no coordinate pair appears anywhere on the frame"
+  - "the frame carries 'NO CAMERA IS PLACED ON THIS MAP' as DOM text"
+  - "the frame carries 'EL PASO' and 'THE LOUISIANA BORDER' as its only two place labels"
+  - "both named ends are asserted INSIDE the state with d3.geoContains, in lon and lat, and the frame throws rather than renders if either is not"
+  - "the light at both ends is clipped to the state path, so a named end cannot be drawn off the land at all"
+  - "the two counts are set at two sizes on two baselines with two set lines and two claim ids, so no per camera figure is invited"
+  - "no county seam, route line or third mark is drawn anywhere inside the silhouette"
+  - "the silhouette carries no stroke of any width, and separates on value alone"
 
 risks:
-  - "a filled silhouette with two lit ends is close to deck no. 2's single county spotlight, which is inside the window. The differentiators are no county lift, a span rather than a point, and a terminator on a boundary"
-  - "an empty state interior could read as an error rather than as a refusal. The printed line is what makes the emptiness deliberate"
+  - "a silhouette with a stroke is a drawn outline, which this deck's register forbids. The edge is a blurred falloff"
+  - "two counts near each other invite a ratio. They share no size, no baseline and no set line"
 ```
 
 ```yaml
@@ -377,38 +353,31 @@ numerals:
   - value_from: c18        # 62,000, about 1,660, 2025
 composition:
   structure: >
-    Plan view straight down onto a sunlit concrete apron, the deck's only lit ground and its only
-    daylight. One unmarked control joint runs the full frame height and divides it, with exactly
-    one figure on each side. The two counts are of different kinds, searches and cleared cases, and
-    putting them on one scale would be the ratio this deck refuses to publish, so the joint is a
-    fence between them rather than a comparison.
+    Plan view straight down on poured concrete in full sun, with one control joint sawn the full
+    height of the frame. This is the deck's only daylight and its only lit ground.
   bands: >
-    Top third, hook and the attribution over the apron's far edge where the caliche haze lifts it.
-    Middle third, the control joint with one figure on each side at two deliberately different
-    scales. Bottom third, the apron continues as the frame's most modeled surface, float marks,
-    aggregate shadow and the joint's own chamfer running to the frame edge, because this is the
-    deck's one lit ground and the bottom is where its relief is strongest. The two set lines are
-    cut into that surface.
+    Top, hook and dek in dark type on the slab. Left of the joint, the search count. Right of it
+    and lower, the cleared cases. Bottom, the attribution.
   focal: >
-    The sunlit apron itself, an area carrying the deck's light extreme at lint, with the two
-    figures cut dark into it.
+    The sunlit apron itself, which is the light extreme of the whole deck by a wide margin. The
+    figures live in artwork.json under `value` rather than here, after a judge found this dossier
+    quoting png means under the name canvas mean.
 
 art:
-  technique: "wire relief, TX.reliefShade over a shallow heightfield, under caliche haze at the far edge"
+  technique: "a poured slab under sun with a directional trowel pattern, aggregate shadow and one sawn control joint"
   why_this_technique: >
-    A poured apron has real surface, float marks and aggregate shadow, and relief is what gives a
-    flat plan view material without a horizon. This frame is the deck's inversion and it needs the
-    one ground that can carry light honestly, because a bright frame drawn without surface is a
-    slab with numbers on it.
+    The turn is the program's own best number and the deck must not read as an argument against
+    the cameras. Spending the brightest frame in the deck on it is the argument that it is not.
   palette: >
-    lint #E9E7DA the sunlit apron, clay_lit #94795F the haze at the far edge, hood #1C1F20 the
-    figures and the joint, galv #8E9694 the hairline rule under the attribution.
+    apron #C9C2B0 the slab, sun #FCF9EE the lit pools, joint #3A362C the saw cut, ink #1A1A17 the
+    type, which is DARK on this frame and light on every other.
   value_structure: >
-    The deck's brightest frame, planned median L* 71. Lightest, the apron. Darkest, the 62,000
-    figure's own strokes, which is the largest dark mass on the deck's brightest ground. Focal is
-    the apron area rather than either figure.
+    Lightest, the sun pools. Darkest, the channel floor of the saw cut. The halo INVERTS here: it
+    is a light glow around dark type rather than a dark glow around light type. This frame is the
+    deck's brightest by a wide margin and the figures are in `ledger/carousel/artwork.json` under
+    `value`, measured, rather than repeated here where a second copy would go stale.
   motion: >
-    Across the apron left to right, stopped by the joint, then down to the two set lines.
+    The eye reads the big count, crosses the joint, and finds the second count at another scale.
 
 type:
   hook: "This is what the fee was for."
@@ -419,16 +388,15 @@ type:
     - "06 / 09"
 
 acceptance:
-  - "THIS FRAME'S MEASURED MEDIAN L* IS THE HIGHEST OF ALL NINE RENDERED PNGs, and at least 15 L* above the second brightest. This is a deck level item graded against the whole strip, because a previous deck planned its turn as the lightest frame and shipped it fourth brightest with every per frame item passing"
-  - "one control joint is drawn running the full frame height, with exactly one figure on each side of it"
-  - "neither figure's baseline, axis or unit is shared with the other, and no connecting rule, arrow or leader crosses the joint"
-  - "the string 'according to a report from the authority' renders on the frame, so the attribution is on the picture and not only in the caption"
-  - "the word 'about' appears at full size beside 1,660, and its set line reads 'cleared catalytic converter theft cases'"
-  - "no numeral appears on this frame other than 62,000, 1,660, 2025, 06 and 09"
+  - "the frame carries 'ACCORDING TO A REPORT FROM THE AUTHORITY' with 'c18' beside it"
+  - "the frame carries 'SEARCHES OF LICENSE PLATE READER DATA IN 2025' as DOM text, set at 25px, over the 24px mobile floor"
+  - "this frame's canvas mean is the maximum of the nine rendered PNGs"
+  - "the two counts sit on opposite sides of a joint that runs the full frame height, at two sizes and on two baselines"
+  - "no bar, axis, tick or gridline is drawn anywhere on the frame"
 
 risks:
-  - "a bright frame with two big numbers is the easiest frame in the deck to make flat. The relief has to be visible at 432px or this is a poster"
-  - "placed at 6, so if attention has sagged the turn arrives late. The compensation is that 6 to 7 is the deck's biggest value junction at 41 points"
+  - "a bright frame with two numbers on it is one step from a comparison. The joint is what makes the comparison impossible to read"
+  - "a lit slab can read as a blank page. The trowel pattern and the aggregate shadow are what make it a surface"
 ```
 
 ```yaml
@@ -442,55 +410,56 @@ numerals:
   - value_from: c17        # $15.9 million, 1,183, three years, 2025
 composition:
   structure: >
-    Steep oblique down onto a near bracket at lower left, with a rank of forms behind it at mid
-    depth and empty ground beyond. The record gives a three year total and never a yearly figure,
-    so the sum sits on the near bracket in front of everything rather than divided across the rank.
-    The rank carries no count and the frame says so.
+    Three standing masses at three depths, seen at a shallow oblique. Height is COMPUTED from each
+    mass's own ground contact against a stated horizon, so a nearer mass is taller and its top is
+    higher while its base is lower. The record gives a three year total
+    and never a yearly figure, so the sum is not divided across the bands.
   bands: >
-    Top third, hook and the year. Middle third, the near bracket and the receding rank.
-    Bottom third, the ground plane the bracket stands on, modeled, carrying the bracket's own cast
-    shadow across it toward the reader and the clay's grain to the frame edge. The two figures and
-    their sets sit on that ground.
+    Top third, hook and dek. Middle, the three slabs and the ground they stand on. Lower, the sum
+    and the camera count on a soft reading shade, at two sizes on two baselines.
   focal: >
-    The near bracket's lit upper face, an area at spangle carrying the frame's light extreme,
-    which is also the plane the sum is set on.
+    The near slab's lit face and the lip along its top, the brightest of the three at a declared
+    value of 1.00 against 0.58 and 0.30.
 
 art:
-  technique: "parallax planes, three declared values"
+  technique: "three standing slabs at three depths, each with its own ground contact and its own lit lip, overlapping so occlusion carries the depth"
   why_this_technique: >
-    c17 is a fleet bought under one contract, and parallax planes say many at depth without
-    placing a single one, which is the only honest option when the record gives no locations. Its
-    recorded failure is layers sharing a value, answered by three declared L* steps the frame
-    asserts about itself.
+    c17 is one contract over three years. Three masses at three depths say depth without saying
+    quantity. Two earlier passes failed here and both failures are worth keeping. The first drew
+    two receding rows of glowing circles, which encoded a count the record does not give and put
+    apertures on a deck whose first law is that no lens appears anywhere. The second drew three
+    bands of lit air, which at 432px is one grey smear and which two rounds of judges called a
+    light leak. A third draft put three slabs of decreasing height on one common ground line,
+    which is a BAR CHART and encodes a quantity declining over three years that no claim states.
+    Depth is not height: each slab has its own ground contact, higher up the frame the further
+    back it stands, and they overlap, because occlusion cannot be read as a quantity.
   palette: >
-    spangle #C6CCC7 the near bracket's lit face, galv #8E9694 the mid rank, shade #4A504F the far
-    rank, clay #6A5544 the ground, lint #E9E7DA type.
+    field #333D45 the ground, far #768C9C, mid #B0C8D6, near #ECF8FC the three slabs, lip #FAFEFF
+    the crisp mark along each slab's top, lint #F2F0E8 the display type.
   value_structure: >
-    Lightest, the near bracket's upper face. Darkest, the gap between the second and third planes.
-    Each plane steps down in value with depth so recession is carried by light, and the three steps
-    are asserted rather than eyeballed.
+    Lightest, the near slab's lip. Darkest, the cast each slab throws to its right.
   motion: >
-    From the near lit face back along the rank into the empty ground, then down to the ruled line.
+    The eye reads forward out of the three years and falls to the sum beneath them.
 
 type:
   hook: "One contract, three years."
   dek: "In 2025 the authority signed a three year contract with the Department of Public Safety."
   labels:
-    - "the ranks here carry no count"
     - "c17"
     - "07 / 09"
 
 acceptance:
-  - "the three planes carry three declared values with at least 18 L* between adjacent planes, measured on the rendered PNG"
-  - "'1,183', '$15.9 million' and '2025' each appear exactly once, each with 'c17' beside it"
-  - "the frame carries the line 'the ranks here carry no count' as DOM text"
-  - "the near bracket is a different drawn form from the rank's members, not the same silhouette at another scale"
-  - "no figure on the frame is divided by three, and no per year numeral appears anywhere"
-  - "'three years' is set as words and never as a numeral with a unit"
+  - "the frame carries 'THE THREE YEAR CONTRACT WITH THE' and 'DEPARTMENT OF PUBLIC SAFETY' with 'c17' beside it"
+  - "the sum and the camera count sit at two sizes on two baselines with two set lines, so no per camera figure is invited"
+  - "the three slabs carry NO countable marks and share NO baseline, so neither a number nor a trend can be read off the drawing"
+  - "no two slabs stand on the same ground line, because three masses on one baseline at three heights is a bar chart"
+  - "the numeral 3200 appears nowhere on this frame"
+  - "no circular aperture, lens, pole or mount is drawn anywhere on the frame"
+  - "no rounded rectangle, pill or plate of any radius is drawn anywhere on the frame"
 
 risks:
-  - "slides 1 and 7 are both many identical objects and are this deck's predictable closest pair. They are separated by camera, by primitive and by 13 planned L*, and this is the pair to measure first on the contact sheet"
-  - "a receding rank invites counting. The printed line is the defence and it must survive any composition fix"
+  - "three horizontal bands are one step from three ruled stripes. Each thins and thickens across the frame, walked with noise"
+  - "three masses of decreasing height read as a chart the moment they share a baseline. They do not share one, and they overlap"
 ```
 
 ```yaml
@@ -503,37 +472,32 @@ claims: [c11, c12, c41]
 numerals: []
 composition:
   structure: >
-    Square on to a blank galvanized panel with no perspective at all, and a hard horizontal value
-    break across it at 0.38 of frame height. A norther is the Texas weather event that arrives in
-    an hour and changes everything, and this is the deck's only frame with no object in it, because
-    an order that reached the public as spoken words has no object.
+    A norther arrives as a hard edge across the sky and changes everything in an hour, which is the
+    shape of this frame's subject. The break is COMPUTED at 0.38 of frame height and asserted by
+    the frame, never eyeballed, because the library's recorded failure is a break landing on the
+    vertical centre and cutting the slide in half.
   bands: >
-    Top third, above the break, the hook and cold empty panel. Middle third, the break itself and
-    the verbatim quote on a measured plate. Bottom third, the absence sentence as the frame's
-    largest lit quiet, plus furniture.
+    Above the break, cold high air. Immediately beneath it, the lit band running the full frame
+    width. Below, the field falls away and carries the quote, the attribution and the absence.
   focal: >
-    The lit band immediately beneath the break, an area running the full frame width, which is the
-    frame's light extreme and the place the eye lands before it reads either block.
+    The lit band under the break, an area running the full frame width.
 
 art:
-  technique: "norther front, a hard horizontal value break with a soft gradient beneath"
+  technique: "a weather front as a value break at a computed height, softened over nine passes so it is weather rather than a drawn rule"
   why_this_technique: >
-    The frame carries an order that stops something, and this is the library's one atmosphere with
-    a real edge in it, so the stop is drawn as a value break rather than asserted in type. Its
-    recorded failure is the break landing on the vertical centre and cutting the slide in half, so
-    the break is computed at 0.38 height by the frame's own script.
+    An order that reached the public as a spokesperson's sentence has no object to draw. The only
+    honest picture is the change itself.
   palette: >
-    shade #4A504F the cold panel above the break, spangle #C6CCC7 the lit band beneath it, galv
-    #8E9694 the panel below, hood #1C1F20 the bottom edge, lint #E9E7DA type.
+    high #1E2A34 the cold air above, lit #CFE0EA the band under the break, fall #151D25 the ground
+    below, lint #F2F0E8 the display type.
   value_structure: >
-    Lightest, the thin lit band under the break. Darkest, the bottom edge. Planned median L* 47,
-    which places the frame mid deck rather than at either extreme, because the reversal is a change
-    of direction rather than a climax.
+    Lightest, the lit band. Darkest, the bottom of the fall. This frame carries the deck's widest
+    single step.
   motion: >
-    Across the break left to right, down into the quote, then into the absence sentence.
+    The eye crosses the break, reads the quote in the shade beneath it, and lands on the absence.
 
 type:
-  hook: "Then the money stopped."
+  hook: "Then an order to pause."
   dek: >-
     "To the extent any funding comes from Texas agencies, those agencies are clarifying that those
     funds cannot be used for Flock cameras"
@@ -544,16 +508,15 @@ type:
     - "08 / 09"
 
 acceptance:
-  - "the value break lands between 0.34 and 0.42 of frame height and never within 0.06 of the vertical centre, computed by the frame's own script"
-  - "the quote renders inside straight quotation marks, verbatim, including the word 'cannot', and the frame is exempt from the contractions rule as a verbatim passage"
-  - "the absence sentence contains the literal strings 'gov.texas.gov/news' and 'August 30th, 2026'"
-  - "no black rectangle, bar, box or strike appears anywhere on the frame, because the absence is a sentence and never a shape"
-  - "the region beneath the break is the largest unbroken area on the frame, at least 40 percent of frame area"
-  - "total word count on the frame is 70 or fewer, counted on DOM text"
+  - "the frame carries 'ANDREW MAHALERIS, FOR THE GOVERNOR' S OFFICE' with 'c12' beside it"
+  - "the frame carries 'RETRIEVED AUGUST 30TH, 2026' beside 'gov.texas.gov/news', which is where the absence was looked for"
+  - "the hook reads 'Then an order to pause.', because c11 says ordered to pause and c12 says agencies are clarifying, both of which are in progress rather than done"
+  - "the string 'money was paused' appears nowhere on this frame, because it states as done what the record has in progress"
+  - "the break is asserted into window.__txBreak at a fraction the frame computes rather than a value typed in"
 
 risks:
-  - "this is the deck's heaviest frame for words and it carries three claims. If it runs long it becomes a paragraph set large, which the readability section names as the commonest way a deck fails"
-  - "an atmosphere with no object risks becoming the subject. The quote plate and the computed break are what keep it structural"
+  - "a value break on the vertical centre cuts the slide in half. It is computed at 0.38 and asserted"
+  - "a quote frame with no drawing is a pull quote. The break is the drawing, and it has to survive the thumbnail"
 ```
 
 ```yaml
@@ -566,38 +529,47 @@ numerals:
   - value_from: c40        # October 13, 2026
 composition:
   structure: >
-    Close crop at reading distance on a gate latch with a dated tab hung on it. After eight frames
-    of fields, spans and panels the deck closes on one object a reader could put a hand on, and the
-    tab is the only thing on it with writing.
+    A doorway built out of light alone standing at the lower right of a dark field, with the date
+    set on a band of shade that runs the full frame width. There is no path, no clip and no
+    rectangle anywhere in the drawing.
   bands: >
-    Top third, the label naming what this is. Middle third, the latch and the dated tab.
-    Bottom third, the gate stile carries down through it, modeled, with the latch bar's shadow
-    falling across the galvanized surface and the grain of the metal running to the frame edge, so
-    the close has an object in its lower band. The source line, the wordmark, texasaidocket.com and
-    the counter sit on that surface.
+    Top third, hook and dek. Middle, the shade band carrying the date and the meeting line. Lower
+    right, the doorway and the light lying on the ground in front of it. Bottom, the footer on a
+    ground taken down so the furniture clears the contrast floor.
   focal: >
-    The tab, an area at lint carrying the frame's light extreme, with the reserved red set on it.
+    The sill at the foot of the slot, an area and the frame's light extreme, with the floor
+    trapezoid carrying its light down to the near edge of the frame.
 
 art:
-  technique: "knockout label via TX.canvasLabel on a latch, with the reserved red derived in code"
+  technique: "a doorway drawn as the SHAPE LIGHT MAKES: a bright slot with two jambs and a trapezoid of light thrown across the floor, widening toward the reader"
   why_this_technique: >
-    A closing frame owes a reader a dated way in, and the deck's object language is galvanized
-    hardware, so the door is a literal latch. The knockout's recorded failure is a plate opaque
-    enough to become furniture, so the plate is measured from the laid out text by TX.svgPlate
-    rather than typed.
+    The closing frame's job is a dated door. An object would be a picture of a building, and light
+    through an opening is the thing itself. Two rounds of judges scored the previous draft as fog:
+    it was a stack of soft ellipses and a ground pool, and it carried the deck's lowest encoding
+    AUC at 0.66. A doorway is not a glow. It is a bright slot with two sides and a trapezoid on
+    the floor that gets wider as it comes toward you, and that trapezoid is the one shape a reader
+    recognises instantly at any size.
   palette: >
-    galv #8E9694 the latch, spangle #C6CCC7 its lit edge, lint #E9E7DA the tab, hood #1C1F20 the
-    shadow behind the latch, urgent the derived register red on the date only.
+    field #2E3840 the ground, shade #02030 5 the band under the date, throw #D6EEFA the light out
+    of the opening, lint #F4F2EA the display type, which carries the date.
   value_structure: >
-    Lightest, the tab. Darkest, the shadow behind the latch bar. Planned median L* 26, so the deck
-    closes dark with one lit object, which is the inverse of slide 6 and the widest junction into
-    the close.
+    Lightest, the sill. Darkest, the shade band under the date and the source line. The date
+    reads on scale.
   motion: >
-    Onto the tab, across the date, then down to the source line.
+    The eye reads the date, then the meeting line, then follows the trapezoid back up to the
+    opening it came out of.
+
+  reserved_red_withdrawn: >
+    THE RESERVED RED #BF0A30 IS NOT ON THIS FRAME AND THE REASON IS ARITHMETIC. Its relative
+    luminance is 0.1149, so against any ground DARKER than itself its contrast ceiling is
+    (0.1149 + 0.05) / 0.05, which is 3.30, and the rubric's floor is 4.5. There is no ground on
+    this frame that clears it. The earlier derivation could only reach the floor by walking the
+    colour toward white until it stopped being red, which is the pink defect deck no. 9's own
+    ledger entry records. The date is set in the display cream and carries its emphasis by scale.
 
 type:
   hook: "The board meets October 13th."
-  dek: "The Motor Vehicle Crime Prevention Authority posts its agenda for the meeting."
+  dek: "The state motor vehicles department lists the meeting and what it will publish from it."
   labels:
     - "Listed on the state motor vehicles department's own page c40"
     - "TEXAS AI DOCKET"
@@ -605,14 +577,13 @@ type:
     - "09 / 09"
 
 acceptance:
-  - "the frame carries the exact strings 'agenda' and 'October 13' as DOM text, which is what the closing frame gate reads"
-  - "the reserved red appears on the date string and on no other frame in the deck, a whole deck scan finding it exactly once"
-  - "the red's rendered contrast against the surface beneath it is computed in the frame's own script and measures at least 4.5 to 1, the value walked toward the light in 8 bit steps until it clears, and the achieved ratio printed to render_report.json"
-  - "the tab's plate width is within 8 pixels of the laid out width of its own longest line, proving it was measured by TX.svgPlate and not typed"
-  - "the wordmark, the site line read from config/brand.yaml, and the counter '09 / 09' are all present as DOM text"
-  - "no lens, aperture, pole or camera is drawn on this frame"
+  - "the frame carries 'AGENDA' and 'MATERIALS' and 'VIDEO' and 'TRANSCRIPT', which is all four of the link labels c40's re-fetched listing carries, rather than the two that sound most like proof"
+  - "the frame carries 'txdmv.gov/about-us/MVCPA', the path c40 was actually fetched from, rather than a bare domain"
+  - "the date reads 'October 13th, 2026' and takes the ordinal, the house form"
+  - "the string 'October 13, 2026' appears nowhere on this frame"
+  - "no latch, tab, stile or plate is drawn anywhere on this frame, and no colour on it is #BF0A30"
 
 risks:
-  - "the reserved red on a mid value galvanized surface is the exact case the design doctrine records failing at 2.94 to 1. The value is derived in the frame's own script, and if it can only clear by becoming pink the frame inverts to a red ground with lint type on it"
-  - "a latch at close crop could read as stock hardware. The tab is what makes it a door somebody can walk through on a stated date"
+  - "a doorway of light is one step from a lens, which is the deck's first law. It is a slot with two straight jambs and a trapezoid on the floor, never a disc"
+  - "a shade band under one line reads as a stain if it is an ellipse. It runs the full frame width"
 ```

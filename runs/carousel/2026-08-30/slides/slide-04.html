@@ -1,45 +1,50 @@
 <!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0E0C0A}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#4A4034}
   #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .halo{ text-shadow:
       0 0 16px rgba(10,8,6,.98), 0 0 34px rgba(10,8,6,.95), 0 0 70px rgba(10,8,6,.88),
       0 0 130px rgba(10,8,6,.74), 0 3px 6px rgba(10,8,6,.96); }
   .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
-        font-weight:500;font-size:26px;letter-spacing:.16em;color:#B7A88E}
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#DFD8CC}
   .lede{position:absolute;top:150px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
      font-weight:800;font-size:104px;line-height:1.00;color:#F6F1E4;letter-spacing:-.022em}
   .dek{position:absolute;top:398px;left:80px;width:840px;margin:0;font-family:Manrope,sans-serif;
-     font-weight:600;font-size:34px;line-height:1.32;color:#E0D8C6}
+     font-weight:600;font-size:34px;line-height:1.32;color:#F1EDE5}
   /* THE LEDGER. Three entries at ONE type size, because the claim is an accounting fact and the
      deck may not encode any of them as a length, an area or a position. */
-  .entry{position:absolute;left:80px;width:920px}
+  .entry{position:absolute;width:900px}
   .entry .amt{display:block}
   .entry .of{display:block;margin-top:8px}
-  .e1{top:702px} .e2{top:850px} .e3{top:998px}
+  /* three sizes, three left edges, no constant pitch. c13 and c16 are two sources and
+     nothing here may be read down a column. */
+  .e1{top:668px;left:80px;width:900px}
+  .e2{top:842px;left:222px;width:760px}
+  .e3{top:1006px;left:462px;width:520px}
+  .e1 .amt{font-size:66px} .e2 .amt{font-size:46px} .e3 .amt{font-size:34px}
   .amt{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:52px;letter-spacing:.005em;
        color:#F6F1E4;font-variant-numeric:tabular-nums;white-space:nowrap}
   .of{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.05em;
-      line-height:1.34;color:#B7A88E}
+      line-height:1.34;color:#DFD8CC}
   .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
         font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
-        letter-spacing:.05em;color:#9C8F78;font-variant-numeric:tabular-nums}
+        letter-spacing:.05em;color:#E3E0D9;font-variant-numeric:tabular-nums}
 </style></head>
-<body data-encodes='[{"claim":"the lit register band is brighter than the field above it","reads":"differ","a":[[120,700,300,180]],"b":[[120,250,300,120]]}]'>
+<body data-encodes='[{"claim":"the lit origin where the dollar enters the sheet is brighter than the ground at the far corner","reads":"differ","a":[[120,570,220,180]],"b":[[760,1160,240,140]]}]'>
 <canvas id="scene"></canvas>
 <div class="wrap">
   <div class="mast halo">TEXAS AI DOCKET</div>
   <p class="lede halo">It started as<br>one dollar.</p>
-  <p class="dek halo">In 2023 the Legislature unanimously raised auto insurance costs for Texans by $1 to combat catalytic converter theft.</p>
+  <p class="dek halo">In 2023 the Legislature unanimously raised auto insurance costs by $1 to combat catalytic converter theft.</p>
 
   <div class="entry e1"><span class="amt halo">$1</span>
     <span class="of halo">ADDED TO AUTO INSURANCE COSTS FOR TEXANS,<br>PASSED UNANIMOUSLY IN 2023 &nbsp;c13</span></div>
   <div class="entry e2"><span class="amt halo">$50.8 million</span>
-    <span class="of halo">OF THE FEE FUNNELLED INTO GRANTS &nbsp;c16</span></div>
+    <span class="of halo">OF THE FEE PAID OUT IN GRANTS &nbsp;c16</span></div>
   <div class="entry e3"><span class="amt halo">234</span>
-    <span class="of halo">GRANTS MADE BY THE AUTHORITY &nbsp;c16</span></div>
+    <span class="of halo">GRANTS BY THE MOTOR VEHICLE CRIME PREVENTION AUTHORITY &nbsp;c16</span></div>
 
   <div class="foot halo"><span>THE FEE</span><span>c13 c16</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
 </div>
@@ -54,12 +59,12 @@ window.renderReady = (async () => {
   // ---- the field. This is the deck's DOCUMENT frame, so the light is even and frontal rather
   // than raking, and the surface is a laid sheet under it. Warm, because a fee is paid on paper.
   (function field(){
-    g.fillStyle='#0E0C0A'; g.fillRect(0,0,W,H);
+    g.fillStyle='#4A4034'; g.fillRect(0,0,W,H);
     const washes=[
-      [480, 900, 820, 'rgba(96,78,54,0.82)'],
-      [400, 870, 440, 'rgba(140,116,80,0.54)'],
-      [900, 300, 560, 'rgba(40,32,24,0.70)'],
-      [140, 1180, 520, 'rgba(34,27,20,0.72)'],
+      [480, 900, 820, 'rgba(179,172,163,0.82)'],
+      [400, 870, 440, 'rgba(197,187,173,0.54)'],
+      [900, 300, 560, 'rgba(157,154,151,0.70)'],
+      [140, 1180, 520, 'rgba(155,152,149,0.72)'],
     ];
     for(const [x,y,r,col] of washes){
       const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
@@ -79,7 +84,10 @@ window.renderReady = (async () => {
         x===0?g.moveTo(x,yy):g.lineTo(x,yy);
       }
       const d=Math.hypot(500-540, 800-y)/900;
-      g.strokeStyle='rgba(214,190,150,'+Math.max(0.012,0.055-d*0.05).toFixed(3)+')';
+      // the entries are set between 720 and 1080, and a 1px rule through a 23px label reads as
+      // a strikethrough, so the laid pattern fades out across that band rather than stopping
+      const inType=Math.max(0, 1-Math.abs(y-900)/230);
+      g.strokeStyle='rgba(214,190,150,'+Math.max(0.004,(0.055-d*0.05)*(1-inType*0.88)).toFixed(3)+')';
       g.lineWidth=1; g.stroke();
     }
   })();
@@ -87,8 +95,8 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
       const n=TX.fbm2(x*0.010+4.1,y*0.010+6.6,4);
       const v=(n-0.5);
-      if(v>0){ g.fillStyle='rgba(226,204,166,'+Math.min(0.10,v*0.16).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(6,5,4,'+Math.min(0.28,(-v)*0.34).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(236,224,206,'+Math.min(0.100,v*0.160).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(6,5,4,'+Math.min(0.129,(-v)*0.156).toFixed(3)+')'; }
       g.fillRect(x,y,3,3);
     }}
   })();
@@ -110,22 +118,66 @@ window.renderReady = (async () => {
   // enters, with the light spreading down the sheet from it. It is the frame's light extreme and
   // it is an AREA rather than the hairline.
   (function origin(){
-    const gr=g.createRadialGradient(150,724,4,150,724,320);
-    gr.addColorStop(0,'rgba(255,226,168,0.42)'); gr.addColorStop(0.28,'rgba(240,204,140,0.16)');
+    const gr=g.createRadialGradient(196,652,3,196,652,250);
+    gr.addColorStop(0,'rgba(255,244,214,0.86)'); gr.addColorStop(0.16,'rgba(252,224,166,0.34)');
     gr.addColorStop(1,'rgba(240,204,140,0)');
-    g.fillStyle=gr; g.beginPath(); g.arc(150,724,320,0,Math.PI*2); g.fill();
+    g.fillStyle=gr; g.beginPath(); g.arc(196,652,250,0,Math.PI*2); g.fill();
   })();
 
   // ---- the fold. One soft crease running the height of the sheet, so the bottom band carries
   // modeled tone rather than flat furniture and the surface is a real thing that was handled.
   (function fold(){
-    const fx=790;
-    const dark=g.createLinearGradient(fx-52,0,fx+8,0);
-    dark.addColorStop(0,'rgba(8,6,4,0)'); dark.addColorStop(1,'rgba(8,6,4,0.44)');
-    g.fillStyle=dark; g.fillRect(fx-52,0,60,H);
-    const lit=g.createLinearGradient(fx+4,0,fx+70,0);
-    lit.addColorStop(0,'rgba(240,214,168,0.20)'); lit.addColorStop(1,'rgba(240,214,168,0)');
-    g.fillStyle=lit; g.fillRect(fx+4,0,66,H);
+    // a crease with a falloff on BOTH sides. Its first draft stopped one gradient at 0.44 alpha
+    // and started the next four pixels later, which put two hard vertical edges down a frame
+    // whose own register line says no frame carries a visible edge anywhere.
+    const fx=812;
+    const dark=g.createLinearGradient(fx-86,0,fx+18,0);
+    dark.addColorStop(0,'rgba(10,8,6,0)'); dark.addColorStop(0.72,'rgba(10,8,6,0.30)');
+    dark.addColorStop(1,'rgba(10,8,6,0)');
+    g.fillStyle=dark; g.fillRect(fx-86,0,104,H);
+    const lit=g.createLinearGradient(fx-6,0,fx+108,0);
+    lit.addColorStop(0,'rgba(250,230,190,0)'); lit.addColorStop(0.24,'rgba(250,230,190,0.24)');
+    lit.addColorStop(1,'rgba(250,230,190,0)');
+    g.fillStyle=lit; g.fillRect(fx-6,0,114,H);
+  })();
+
+  // ---- THE LIT PANEL, which this frame declared as its focal and did not draw. The sheet lifts
+  // under the three entries and falls away everywhere else, so the money's whole path sits on one
+  // plane of light with no plate, no corner and no edge to it.
+  (function panel(){
+    const PX=430, PY=812, RX=560, RY=320;
+    const gr=g.createRadialGradient(PX,PY,20,PX,PY,RX);
+    gr.addColorStop(0,'rgba(255,240,208,0.20)'); gr.addColorStop(0.40,'rgba(248,226,186,0.11)');
+    gr.addColorStop(0.74,'rgba(236,210,168,0.04)'); gr.addColorStop(1,'rgba(236,210,168,0)');
+    g.save(); g.translate(PX,PY); g.scale(1,RY/RX); g.translate(-PX,-PY);
+    g.fillStyle=gr; g.beginPath(); g.arc(PX,PY,RX,0,Math.PI*2); g.fill(); g.restore();
+    // and the ground falls away from it, top and bottom, so the panel is a plane and not a stain
+    for(const [y0,y1,a] of [[0,430,0.26],[1090,H,0.52]]){
+      const fg=g.createLinearGradient(0,y1,0,y0);
+      fg.addColorStop(0,'rgba(12,10,8,0)'); fg.addColorStop(1,'rgba(12,10,8,'+a+')');
+      g.fillStyle=fg; g.fillRect(0,Math.min(y0,y1),W,Math.abs(y1-y0));
+    }
+  })();
+
+  // the entries are light type, so the sheet is taken DOWN under them. A lifted ground that
+  // reaches the type it carries is a legibility failure, not a brighter frame.
+  (function readingShade(){
+    const gr=g.createRadialGradient(300,900,20,300,900,660);
+    gr.addColorStop(0,'rgba(8,7,5,0.62)'); gr.addColorStop(0.50,'rgba(8,7,5,0.44)');
+    gr.addColorStop(1,'rgba(10,9,7,0)');
+    g.save(); g.translate(300,900); g.scale(1,0.52); g.translate(-300,-900);
+    g.fillStyle=gr; g.beginPath(); g.arc(300,900,660,0,Math.PI*2); g.fill(); g.restore();
+  })();
+
+  // a soft band of shade behind a line the drawing was running an edge through. The
+  // engine measured it as a strikethrough at feed width, which is what it would have
+  // been to a reader.
+  (function readBand0(){
+    const gr=g.createRadialGradient(330,804,14,330,804,720);
+    gr.addColorStop(0,'rgba(6,8,11,0.74)'); gr.addColorStop(0.42,'rgba(6,8,11,0.56)');
+    gr.addColorStop(0.76,'rgba(6,8,11,0.20)'); gr.addColorStop(1,'rgba(6,8,11,0)');
+    g.save(); g.translate(330,804); g.scale(1,0.1833); g.translate(-330,-804);
+    g.fillStyle=gr; g.beginPath(); g.arc(330,804,720,0,Math.PI*2); g.fill(); g.restore();
   })();
 
   (function grain(){
