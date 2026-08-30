@@ -106,15 +106,16 @@ jobs:
       - name: Port audit self-test (prove every gate can go red)
         run: python3 scripts/shared/port_audit.py --self-test
 
-      # THE ACTOR STAMP'S OWN INSTRUCTION. A shell redirect into .git/ACTOR wedged an unattended
-      # run on five separate days, because .git/ is inside the tree and outside what the Bash
-      # sandbox writes to, so the redirect asks to re-run unsandboxed and nobody is there to
-      # answer. Four fixes tried to make the command safe and each one failed. The stamp is
-      # written with the Write tool now, and this is what stops the instruction coming back.
+      # THE ACTOR STAMP'S OWN INSTRUCTION. Writing a lane stamp stopped an unattended run on six
+      # separate days. Five fixes aimed at HOW the file was written, ending with the Write tool,
+      # and every one failed: in the scheduled runner this repo's permission grant is inert, so
+      # EVERY write prompts a human who is not there, whatever tool makes it. Nothing is written
+      # now, the lane is resolved from the branch, and this is what stops the instruction coming
+      # back. The gate used to bless the Write tool, so it carried the fifth failed fix itself.
       - name: Actor stamp shape self-test (prove it can go red)
         run: python3 scripts/shared/actor_stamp_shape.py --self-test
 
-      - name: No instruction file tells a session to shell the actor stamp
+      - name: No instruction file tells a session to write the actor stamp
         run: python3 scripts/shared/actor_stamp_shape.py
 
       # THE WORKFLOW'S OWN WIRING. This file is six jobs behind one required check now, and a
