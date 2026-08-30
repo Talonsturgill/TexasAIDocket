@@ -1,0 +1,135 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#080A0C}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(4,6,8,.98), 0 0 34px rgba(4,6,8,.95), 0 0 70px rgba(4,6,8,.88),
+      0 0 130px rgba(4,6,8,.74), 0 3px 6px rgba(4,6,8,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#8E9DA6}
+  .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:104px;line-height:1.00;color:#F2F0E8;letter-spacing:-.022em}
+  .dek{position:absolute;top:398px;left:80px;width:800px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:34px;line-height:1.32;color:#D6DDE0}
+  .setwrap{position:absolute;left:80px;top:1036px;width:920px}
+  .fig{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:46px;
+     letter-spacing:.01em;line-height:1.12;color:#F2F0E8;font-variant-numeric:tabular-nums}
+  .set{margin:10px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+     letter-spacing:.05em;line-height:1.40;color:#9FADB4}
+  .named{margin:12px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:26px;
+     letter-spacing:.05em;line-height:1.32;color:#E4EAEC}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#7F8D96;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the counted field is denser and brighter than the empty ground beside it","reads":"differ","a":[[430,640,220,220]],"b":[[96,900,180,150]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">459 counted.<br>None named.</p>
+  <p class="dek halo">459 outside organizations ran nearly 1.6 million searches that included this network.</p>
+  <div class="setwrap">
+    <p class="fig halo">459</p>
+    <p class="set halo">OUTSIDE ORGANIZATIONS THAT RAN SEARCHES INCLUDING<br>
+      PFLUGERVILLE'S CAMERA NETWORK, LAST SIX MONTHS &nbsp;c21</p>
+    <p class="named halo">THE FETCHED RECORD NAMES NONE OF THEM</p>
+  </div>
+  <div class="foot halo"><span>THE ACCESS LOG</span><span>c21</span><span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260833);
+
+  // ---- the field. A cold body of air with the light diffused through it rather than coming
+  // from a point, because nothing in this claim has a location and a key light would invent one.
+  (function field(){
+    g.fillStyle='#080A0C'; g.fillRect(0,0,W,H);
+    const washes=[
+      [560, 760, 720, 'rgba(44,62,74,0.82)'],
+      [560, 700, 400, 'rgba(72,96,112,0.50)'],
+      [880, 1080, 520, 'rgba(26,38,48,0.66)'],
+      [180, 520, 520, 'rgba(20,30,38,0.70)'],
+    ];
+    for(const [x,y,r,col] of washes){
+      const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+  })();
+  (function haze(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.0032+7.3,y*0.0032+1.6,5);
+      const v=(n-0.5)*1.5;
+      if(v>0){ g.fillStyle='rgba(150,176,192,'+Math.min(0.14,v*0.19).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(2,3,5,'+Math.min(0.36,(-v)*0.44).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // ---- THE 459. Every one identical, every one anonymous, and not one of them carries a mark
+  // that distinguishes it, because the record names none of them. The count is asserted by this
+  // script and printed nowhere in the drawing.
+  //
+  // At 432px wide a field this dense will grey out unless each member keeps a hard bright core
+  // over its own soft bloom, so each is drawn as a two part mark rather than as a dot.
+  const COUNT=459;
+  (function marks(){
+    let drawn=0;
+    // a blue noise-ish scatter: a jittered lattice, which keeps spacing even without a visible
+    // grid, so the set reads as a population rather than as a pattern
+    const CX=560, CY=744, RX=396, RY=286;
+    const cols=31, rows=18;
+    const pts=[];
+    for(let r=0;r<rows;r++) for(let k=0;k<cols;k++){
+      const u=(k+0.5)/cols, v=(r+0.5)/rows;
+      const jx=(TX.simplex2(k*0.9+r*0.31, 4.2))*0.60/cols;
+      const jy=(TX.simplex2(k*0.37+r*0.9, 9.1))*0.60/rows;
+      const px=(u+jx-0.5)*2, py=(v+jy-0.5)*2;
+      if(px*px+py*py>1.02) continue;                  // trim to a soft elliptical body
+      pts.push([CX+px*RX, CY+py*RY, Math.hypot(px,py)]);
+    }
+    // keep exactly COUNT of them, nearest the centre first, so the edge is where the trim shows
+    pts.sort((a,b)=>a[2]-b[2]);
+    for(const [x,y,d] of pts.slice(0,COUNT)){
+      const fade=Math.max(0.20, 1-d*0.72);            // the population thins into the air
+      const bl=g.createRadialGradient(x,y,0.5,x,y,13);
+      bl.addColorStop(0,'rgba(158,190,206,'+(0.30*fade).toFixed(3)+')');
+      bl.addColorStop(1,'rgba(158,190,206,0)');
+      g.fillStyle=bl; g.beginPath(); g.arc(x,y,13,0,Math.PI*2); g.fill();
+      g.fillStyle='rgba(216,232,240,'+(0.80*fade).toFixed(3)+')';
+      g.beginPath(); g.arc(x,y,1.7,0,Math.PI*2); g.fill();
+      drawn++;
+    }
+    window.__txCount={marks:drawn};
+  })();
+
+  // ---- the empty ground. The lower left is deliberately unpopulated, so the frame has somewhere
+  // that is NOT the set and the counted body has an edge to be read against.
+  (function empty(){
+    const gr=g.createRadialGradient(150,1080,20,150,1080,460);
+    gr.addColorStop(0,'rgba(2,3,5,0.62)'); gr.addColorStop(1,'rgba(2,3,5,0)');
+    g.fillStyle=gr; g.fillRect(0,0,W,H);
+  })();
+
+  // ---- the drafting register. Two hairline ticks, the only precise marks on the frame.
+  (function ticks(){
+    g.strokeStyle='rgba(150,176,192,0.18)'; g.lineWidth=1;
+    for(const y of [620,880]){ g.beginPath(); g.moveTo(1000,y); g.lineTo(1032,y); g.stroke(); }
+  })();
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

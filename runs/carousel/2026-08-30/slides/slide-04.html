@@ -1,0 +1,141 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0E0C0A}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(10,8,6,.98), 0 0 34px rgba(10,8,6,.95), 0 0 70px rgba(10,8,6,.88),
+      0 0 130px rgba(10,8,6,.74), 0 3px 6px rgba(10,8,6,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#B7A88E}
+  .lede{position:absolute;top:150px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:104px;line-height:1.00;color:#F6F1E4;letter-spacing:-.022em}
+  .dek{position:absolute;top:398px;left:80px;width:840px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:34px;line-height:1.32;color:#E0D8C6}
+  /* THE LEDGER. Three entries at ONE type size, because the claim is an accounting fact and the
+     deck may not encode any of them as a length, an area or a position. */
+  .entry{position:absolute;left:80px;width:920px}
+  .entry .amt{display:block}
+  .entry .of{display:block;margin-top:8px}
+  .e1{top:702px} .e2{top:850px} .e3{top:998px}
+  .amt{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:52px;letter-spacing:.005em;
+       color:#F6F1E4;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .of{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.05em;
+      line-height:1.34;color:#B7A88E}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#9C8F78;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the lit register band is brighter than the field above it","reads":"differ","a":[[120,700,300,180]],"b":[[120,250,300,120]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">It started as<br>one dollar.</p>
+  <p class="dek halo">In 2023 the Legislature unanimously raised auto insurance costs for Texans by $1 to combat catalytic converter theft.</p>
+
+  <div class="entry e1"><span class="amt halo">$1</span>
+    <span class="of halo">ADDED TO AUTO INSURANCE COSTS FOR TEXANS,<br>PASSED UNANIMOUSLY IN 2023 &nbsp;c13</span></div>
+  <div class="entry e2"><span class="amt halo">$50.8 million</span>
+    <span class="of halo">OF THE FEE FUNNELLED INTO GRANTS &nbsp;c16</span></div>
+  <div class="entry e3"><span class="amt halo">234</span>
+    <span class="of halo">GRANTS MADE BY THE AUTHORITY &nbsp;c16</span></div>
+
+  <div class="foot halo"><span>THE FEE</span><span>c13 c16</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260834);
+
+  // ---- the field. This is the deck's DOCUMENT frame, so the light is even and frontal rather
+  // than raking, and the surface is a laid sheet under it. Warm, because a fee is paid on paper.
+  (function field(){
+    g.fillStyle='#0E0C0A'; g.fillRect(0,0,W,H);
+    const washes=[
+      [480, 900, 820, 'rgba(96,78,54,0.82)'],
+      [400, 870, 440, 'rgba(140,116,80,0.54)'],
+      [900, 300, 560, 'rgba(40,32,24,0.70)'],
+      [140, 1180, 520, 'rgba(34,27,20,0.72)'],
+    ];
+    for(const [x,y,r,col] of washes){
+      const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+  })();
+
+  // ---- the laid lines. A sheet under raking light shows its own manufacture, and this is the
+  // frame's only texture. Very low contrast, slightly wandering, so it never becomes a ruling.
+  (function laid(){
+    for(let y=0;y<H;y+=7){
+      const amp=1.4+TX.simplex2(y*0.01,3.3)*1.2;
+      g.beginPath();
+      for(let x=0;x<=W;x+=12){
+        const yy=y+Math.sin(x*0.006+y*0.02)*amp+TX.simplex2(x*0.004,y*0.02)*1.6;
+        x===0?g.moveTo(x,yy):g.lineTo(x,yy);
+      }
+      const d=Math.hypot(500-540, 800-y)/900;
+      g.strokeStyle='rgba(214,190,150,'+Math.max(0.012,0.055-d*0.05).toFixed(3)+')';
+      g.lineWidth=1; g.stroke();
+    }
+  })();
+  (function tooth(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.010+4.1,y*0.010+6.6,4);
+      const v=(n-0.5);
+      if(v>0){ g.fillStyle='rgba(226,204,166,'+Math.min(0.10,v*0.16).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(6,5,4,'+Math.min(0.28,(-v)*0.34).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // ---- the register. Three soft luminous bands, one behind each entry, lifting the sheet where
+  // a figure sits. They carry NO quantity: all three are the same length and the same intensity,
+  // because encoding any of these figures as a length is the one thing this frame may not do.
+  (function bands(){
+    for(const y of [742, 890, 1038]){
+      const gr=g.createLinearGradient(0,y-56,0,y+56);
+      gr.addColorStop(0,'rgba(232,208,166,0)');
+      gr.addColorStop(0.5,'rgba(232,208,166,0.085)');
+      gr.addColorStop(1,'rgba(232,208,166,0)');
+      g.fillStyle=gr; g.fillRect(0,y-56,W,112);
+    }
+  })();
+
+  // ---- the fee itself. A single small warm point at the top of the register, where the dollar
+  // enters, with the light spreading down the sheet from it. It is the frame's light extreme and
+  // it is an AREA rather than the hairline.
+  (function origin(){
+    const gr=g.createRadialGradient(150,724,4,150,724,320);
+    gr.addColorStop(0,'rgba(255,226,168,0.42)'); gr.addColorStop(0.28,'rgba(240,204,140,0.16)');
+    gr.addColorStop(1,'rgba(240,204,140,0)');
+    g.fillStyle=gr; g.beginPath(); g.arc(150,724,320,0,Math.PI*2); g.fill();
+  })();
+
+  // ---- the fold. One soft crease running the height of the sheet, so the bottom band carries
+  // modeled tone rather than flat furniture and the surface is a real thing that was handled.
+  (function fold(){
+    const fx=790;
+    const dark=g.createLinearGradient(fx-52,0,fx+8,0);
+    dark.addColorStop(0,'rgba(8,6,4,0)'); dark.addColorStop(1,'rgba(8,6,4,0.44)');
+    g.fillStyle=dark; g.fillRect(fx-52,0,60,H);
+    const lit=g.createLinearGradient(fx+4,0,fx+70,0);
+    lit.addColorStop(0,'rgba(240,214,168,0.20)'); lit.addColorStop(1,'rgba(240,214,168,0)');
+    g.fillStyle=lit; g.fillRect(fx+4,0,66,H);
+  })();
+
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  await document.fonts.ready;
+})();
+</script>
+</body></html>
