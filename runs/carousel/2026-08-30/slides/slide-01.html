@@ -1,0 +1,151 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* THE DECK'S ART DIRECTION, set here and carried by all nine frames.
+     Type is the primary structure and it sits IN the field, defended by a halo rather than by an
+     opaque plate, because the engine's contract makes a halo the one defence that never trips the
+     art-crossing-glyphs gate. Every form is a luminous field with a soft falloff. Nothing on any
+     frame has a drawn outline, a hard-edged plate or a rectangle with a visible corner. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B0D10}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(6,8,10,.98), 0 0 34px rgba(6,8,10,.94), 0 0 70px rgba(6,8,10,.86),
+      0 0 130px rgba(6,8,10,.72), 0 3px 6px rgba(6,8,10,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#9FB0BA}
+  .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:102px;line-height:1.01;color:#F2F0E8;letter-spacing:-.022em}
+  .dek{position:absolute;top:404px;left:80px;width:740px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:35px;line-height:1.32;color:#DCE2E4}
+  .setwrap{position:absolute;left:80px;top:1040px;width:900px}
+  .fig{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:46px;
+     letter-spacing:.01em;line-height:1.10;color:#F2F0E8;font-variant-numeric:tabular-nums}
+  .set{margin:10px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
+     letter-spacing:.05em;line-height:1.38;color:#A8B4BA}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#8B98A0;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the extinguished field is darker than the one node still warm","reads":"differ","a":[[300,760,180,180]],"b":[[742,596,150,150]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">A town turned off<br>28 cameras.</p>
+  <p class="dek halo">The council voted unanimously to end its agreement with Flock.</p>
+  <div class="setwrap">
+    <p class="fig halo">28</p>
+    <p class="set halo">CAMERAS IN THE CITY CONTRACT &nbsp;c20<br>THE VOTE WAS UNANIMOUS &nbsp;c19</p>
+  </div>
+  <div class="foot halo"><span>PFLUGERVILLE, TEXAS</span><span>c19 c20</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260830);
+
+  // ---- the field. A cold deep ground with one slow warm current through it, laid down as
+  // overlapping soft washes so there is no band, no horizon and no edge anywhere.
+  (function field(){
+    g.fillStyle='#0B0D10'; g.fillRect(0,0,W,H);
+    const washes=[
+      [430, 900, 900, 'rgba(38,54,64,0.85)'],
+      [760, 520, 700, 'rgba(28,40,50,0.70)'],
+      [220, 400, 620, 'rgba(20,28,36,0.80)'],
+      [560, 860, 420, 'rgba(74,86,86,0.34)'],
+    ];
+    for(const [x,y,r,col] of washes){
+      const gr=g.createRadialGradient(x,y,r*0.04,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+    // a slow drift of warmth low and left, the last of the light off the caliche
+    const warm=g.createRadialGradient(300,1090,20,300,1090,760);
+    warm.addColorStop(0,'rgba(122,96,66,0.34)'); warm.addColorStop(0.55,'rgba(90,70,50,0.14)');
+    warm.addColorStop(1,'rgba(0,0,0,0)');
+    g.fillStyle=warm; g.fillRect(0,0,W,H);
+  })();
+
+  // ---- the ground haze. Two octaves of very low frequency noise, rendered as a soft luminance
+  // modulation rather than as speckle, which is what keeps the field from reading as a gradient.
+  (function haze(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.0034+11.7,y*0.0034+4.3,5);
+      const v=(n-0.5)*1.5;
+      if(v>0){ g.fillStyle='rgba(150,168,178,'+Math.min(0.16,v*0.22).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(4,6,8,'+Math.min(0.34,(-v)*0.42).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // ---- the 28. Each is a NODE THAT HAS GONE OUT: a wide cold residual bloom with a small dark
+  // core at its centre, so the set reads as something switched off rather than as objects placed
+  // on a surface. One node still holds a little warmth, and it is the frame's light extreme.
+  // The count is asserted here and printed nowhere in the drawing.
+  const COUNT=28;
+  function node(x,y,warmth,scale){
+    const s=scale||1;
+    // the outer bloom, very wide and very soft, which is what merges it into the field
+    const b=g.createRadialGradient(x,y,1,x,y,64*s);
+    const tint = warmth>0.5 ? '196,158,104' : '150,176,188';
+    b.addColorStop(0,'rgba('+tint+','+(0.30*warmth+0.10).toFixed(3)+')');
+    b.addColorStop(0.35,'rgba('+tint+','+(0.10*warmth+0.035).toFixed(3)+')');
+    b.addColorStop(1,'rgba('+tint+',0)');
+    g.fillStyle=b; g.beginPath(); g.arc(x,y,64*s,0,Math.PI*2); g.fill();
+    // the inner ring, a thin luminous edge, which gives the node a body without an outline
+    const rg=g.createRadialGradient(x,y,7*s,x,y,15*s);
+    rg.addColorStop(0,'rgba('+tint+',0)');
+    rg.addColorStop(0.45,'rgba('+tint+','+(0.46*warmth+0.16).toFixed(3)+')');
+    rg.addColorStop(1,'rgba('+tint+',0)');
+    g.fillStyle=rg; g.beginPath(); g.arc(x,y,15*s,0,Math.PI*2); g.fill();
+    // the dark core. The thing is off, and this is the whole point of the frame.
+    const cg=g.createRadialGradient(x,y,0.5,x,y,8*s);
+    cg.addColorStop(0,'rgba(3,5,7,0.94)'); cg.addColorStop(0.7,'rgba(3,5,7,0.72)');
+    cg.addColorStop(1,'rgba(3,5,7,0)');
+    g.fillStyle=cg; g.beginPath(); g.arc(x,y,8*s,0,Math.PI*2); g.fill();
+  }
+  (function nodes(){
+    // a loose drift rather than a grid, walked with noise so the set has no axis to read
+    let drawn=0;
+    const CX=470, CY=800;
+    for(let i=0;i<COUNT;i++){
+      const t=i/COUNT;
+      const a=t*Math.PI*2.6+0.9;
+      const rad=54+t*196;
+      const jx=TX.simplex2(i*0.55+3.1, 1.7)*54;
+      const jy=TX.simplex2(i*0.55+9.4, 5.2)*54;
+      const x=CX+Math.cos(a)*rad*1.02+jx;
+      const y=CY+Math.sin(a)*rad*0.80+jy;
+      node(x, y, i===6?1.0:0.0, 1);
+      drawn++;
+    }
+    window.__txCount={nodes:drawn};
+  })();
+
+  // ---- one node at near scale in the lower band, so the bottom third carries modeled tone under
+  // the type rather than flat furniture, its bloom running off toward the frame edge.
+  (function near(){ node(866, 1156, 0.0, 2.4); })();
+
+  // ---- the drafting register. Three hairline ticks at the right margin, the only precise marks
+  // on the frame, so the field has a measured surface under it. Decorative by declaration.
+  (function ticks(){
+    g.strokeStyle='rgba(150,176,188,0.20)'; g.lineWidth=1;
+    for(const y of [640,800,960]){
+      g.beginPath(); g.moveTo(1000,y); g.lineTo(1032,y); g.stroke();
+    }
+  })();
+
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

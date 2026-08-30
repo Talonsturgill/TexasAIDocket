@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""Every numeral this deck prints, asserted out of claims.json and nowhere else.
+
+The law is in CLAUDE.md. No numeral on a frame is typed by a person or produced by a model. A
+figure reaches a slide as a string this file proved was already in a source's own words, or it
+does not reach a slide.
+
+WHAT IS DANGEROUS ON THIS DECK IS NOT ARITHMETIC. IT IS SUBTRACTION THE READER DOES.
+
+Three pairs on this story look like they want to be related, and not one of them may be:
+
+  $81 million raised  against  $50.8 million granted   -> a remainder
+  459 organizations   against  28 cameras              -> a part and a whole
+  62,000 searches     against  about 1,660 cases       -> a hit rate
+
+Every one of those would be a fresh factual assertion in the largest type on the page, about a
+relationship no source states. So this file emits NO derived figure at all. It only proves that
+each string it hands the slides is already present, character for character, inside the verbatim
+quote of the claim that carries it.
+
+`$81 million` is deliberately absent from the output. It is quotable from c16 and it is the one
+figure whose presence beside $50.8 million would invite the subtraction. The omission is a
+decision, recorded here so a later pass does not add it back as a helpful detail.
+
+    python3 out/2026-08-30/compute.py
+"""
+import json
+import pathlib
+import sys
+
+RUN = pathlib.Path(__file__).resolve().parent
+CLAIMS = json.loads((RUN / "claims.json").read_text(encoding="utf-8"))["claims"]
+BY = {c["id"]: c for c in CLAIMS}
+
+
+def quoted(cid: str, needle: str) -> str:
+    """Return the string only if it is really inside that claim's verbatim quote."""
+    q = BY[cid]["quote"]
+    if needle not in q:
+        sys.exit(f"compute: {needle!r} is not in claim {cid}'s quote. Refusing to invent it.")
+    return needle
+
+
+# Each entry is (slide, claim, the exact substring the frame prints, what set it counts).
+# The set line is not decoration. Instinct `count-names-its-set` says a bare count over a partly
+# quoted index asserts a number nothing checked, so every count here carries the words the frame
+# must print beside it.
+FIGURES = [
+    (1, "c20", "28", "cameras in the city contract"),
+    (3, "c21", "459", "outside organizations that ran searches including this network"),
+    (3, "c21", "nearly 1.6 million", "searches that included Pflugerville's camera network"),
+    (3, "c21", "the last six months", "the window the city pulled records for"),
+    (4, "c13", "2023", "the year the Legislature passed it"),
+    (4, "c13", "$1", "added to auto insurance costs for Texans"),
+    (4, "c16", "$50.8 million", "of the fee funnelled into grants"),
+    (4, "c16", "234", "grants made by the authority"),
+    (5, "c14", "at least $30 million", "of the fee devoted to the network"),
+    (5, "c15", "at least 3,200", "Flock cameras the fee has been turned into"),
+    (6, "c18", "62,000", "searches of license plate reader data in 2025"),
+    (6, "c18", "about 1,660", "cleared catalytic converter theft cases"),
+    (6, "c18", "2025", "the year the authority reported on"),
+    (7, "c17", "$15.9 million", "the contract with the Department of Public Safety"),
+    (7, "c17", "1,183", "cameras the contract installs"),
+    (7, "c17", "three-year", "the contract term, set as words on the frame"),
+    (7, "c17", "2025", "the year the contract was signed"),
+    (9, "c40", "October 13, 2026", "the next board meeting the department's page lists"),
+]
+
+# The three relationships this deck refuses to publish, named so the refusal is auditable.
+REFUSED = [
+    {"pair": ["$81 million (c16)", "$50.8 million (c16)"],
+     "why": "a remainder no source states. $81 million is on no frame in this deck."},
+    {"pair": ["459 (c21)", "28 (c20)"],
+     "why": "a part and a whole. They count different things and they are on different frames, "
+            "with nothing drawn between them anywhere in the deck."},
+    {"pair": ["62,000 (c18)", "about 1,660 (c18)"],
+     "why": "a hit rate. Both are printed on slide 6 and a drawn control joint separates them, "
+            "with no shared axis, baseline or unit."},
+]
+
+out = {"run": "2026-08-30", "figures": [], "refused": REFUSED}
+for slide, cid, s, names in FIGURES:
+    out["figures"].append({
+        "slide": slide, "claim": cid, "string": quoted(cid, s), "names_the_set": names,
+        "source_url": BY[cid]["url"],
+    })
+
+# Nothing here is computed, so there is nothing to round and no unit to convert. Assert that,
+# rather than leaving it to be assumed by whoever reads the output next.
+out["derived_figures"] = []
+out["note"] = ("No figure in this deck is derived. Every string above was proved present in its "
+               "claim's own verbatim quote before it reached a frame.")
+
+(RUN / "computed.json").write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n",
+                                   encoding="utf-8")
+print(f"compute: {len(out['figures'])} figure(s) proved against their claims, "
+      f"0 derived, {len(REFUSED)} relationship(s) refused by name")

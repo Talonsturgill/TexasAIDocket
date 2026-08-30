@@ -1,0 +1,105 @@
+{
+  "beat": "what-texas-makes",
+  "run_date": "2026-08-30",
+  "findings": [
+    {
+      "id": "wtm-1",
+      "headline": "All eight TeraFab AI, LLC semiconductor agreements now sit on the Comptroller's list of current JETI agreements, each requiring a minimum of 10 jobs.",
+      "what_happened": "The Texas Comptroller's Current Agreements table for the Jobs, Energy, Technology and Innovation Act lists eight active agreements filed by TeraFab AI, LLC, four with Anderson-Shiro CISD and four with Iola ISD, all classed as Semiconductor Manufacturing. The Anderson-Shiro phases carry proposed investment cells of $10 Billion, $24 Billion, $24 Billion and $16 Billion. The Iola phases carry $6 Billion, $15 Billion, $15 Billion and $10 Billion. Every one of the eight rows shows a Limitation Percentage of 50% and a Minimum Required Jobs value of 10.",
+      "who_decided": "Texas Comptroller of Public Accounts, with Anderson-Shiro CISD, Iola ISD and the Office of the Governor as the signing parties",
+      "when": "2026-08-21",
+      "where": {"counties": ["Grimes"], "statewide": false, "ercot": true},
+      "quote": "TeraFab AI, LLC (Phase 2)",
+      "url": "https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "The August 21st signing date comes from a Houston Business Journal item republished by KHOU that returned HTTP 503 on fetch. The Comptroller's table itself carries no dates.",
+        "The executed agreement PDFs could not be opened. assets.comptroller.texas.gov returned HTTP 403 on guessed filenames, the J0035 application PDF exceeded the fetcher's 10 MB limit, and a J0037 supplement could not be rendered.",
+        "The quote is a single table cell rather than a sentence. A fact checker should confirm the cell values against the live table, which appears to be dynamically rendered.",
+        "The table does not name a county. Grimes County comes from the school districts and from prior coverage.",
+        "The relationship between TeraFab AI, LLC and SpaceX or Tesla is not stated on the Comptroller page."
+      ]
+    },
+    {
+      "id": "wtm-2",
+      "headline": "Apple opened a training center inside the Houston plant that is already building and shipping its AI servers.",
+      "what_happened": "Apple opened an Advanced Manufacturing Center in Houston on August 13th, inside the same facility that builds and ships its advanced AI servers, and said Mac mini manufacturing begins there this year. The center is 20,000 square feet and runs free training sessions for small and medium businesses.",
+      "who_decided": "Apple Inc.",
+      "when": "2026-08-13",
+      "where": {"counties": ["Harris"], "statewide": false, "ercot": true},
+      "quote": "The AMC is located within the same Houston facility that builds and ships Apple's advanced AI servers and will begin manufacturing Mac mini this year.",
+      "url": "https://www.apple.com/newsroom/2026/08/apple-opens-advanced-manufacturing-center-in-houston/",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "unverified": [
+        "The release does not name Foxconn as the operator of the assembly lines.",
+        "The release gives no dollar figure for the Houston investment and no employment number.",
+        "Date is 17 days back, slightly outside the 14 day window."
+      ]
+    },
+    {
+      "id": "wtm-3",
+      "headline": "Fort Worth put a tax abatement on the table for a Carrier plant next door to the Wistron data center plant, with a council vote set for September 15th.",
+      "what_happened": "Fort Worth's economic development staff briefed the City Council on August 25th on a seven year tax abatement valued at $10.9 million to land a Carrier Corp. HVAC manufacturing plant at Alliance Westport 12 in AllianceTexas. Carrier would commit to a minimum capital investment of $433.8 million by the end of 2028 and a minimum of 495 jobs by the end of 2029 at a minimum average salary of $75,000.",
+      "who_decided": "Fort Worth City Council, which has not yet voted. Carrier Corporation has not yet chosen the site.",
+      "when": "2026-08-25",
+      "where": {"counties": ["Tarrant"], "statewide": false, "ercot": true},
+      "quote": "The proposed location, Alliance Westport 12, at 1501 Distribution Drive in AllianceTexas, is next to the recently opened Wistron plant, which manufactures components for data centers.",
+      "url": "https://fortworthreport.org/2026/08/25/fort-worth-competing-for-a-433-8m-hvac-manufacturing-plant-from-carrier-corp/",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "unverified": [
+        "The City of Fort Worth's own record could not be retrieved. www.fortworthtexas.gov returned HTTP 403 on both the city secretary agendas page and the 2026 tax abatement public notice page.",
+        "No Carrier Corporation press release naming Fort Worth was found.",
+        "The claim that Carrier plans to decide in the third quarter of 2026 was not confirmed in a fetched contiguous sentence.",
+        "The article does not state a reinvestment zone number."
+      ]
+    },
+    {
+      "id": "wtm-4",
+      "headline": "Abbott announced a $3.36 million Texas Enterprise Fund grant to a switchgear maker building in San Antonio.",
+      "what_happened": "Governor Greg Abbott announced on August 25th that Industrial Electric Mfg. is establishing an advanced manufacturing facility in San Antonio with a capital investment of $200 million and up to 3,000 new jobs. A Texas Enterprise Fund grant of $3.36 million was extended to IEM for 448 of the new jobs.",
+      "who_decided": "Office of the Texas Governor, Greg Abbott",
+      "when": "2026-08-25",
+      "where": {"counties": ["Bexar"], "statewide": false, "ercot": true},
+      "quote": "Texas leads America's manufacturing resurgence. This investment by IEM in San Antonio will create new, good-paying jobs and generate a significant economic impact for Bexar County.",
+      "url": "https://gov.texas.gov/news/post/governor-abbott-announces-iem-expansion-in-bexar-county",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "THE AI CONNECTION IS NOT IN THE SOURCE. The press release does not mention data centers, AI or compute anywhere. The switchgear-to-data-center link is inference and must not be presented as the Governor's or IEM's claim.",
+        "The gap between 'up to 3,000 new jobs' and the 448 jobs the grant is tied to is stated in the release and is not reconciled by it."
+      ]
+    },
+    {
+      "id": "wtm-5",
+      "headline": "Space Forge signed a master research agreement with the Texas A and M University System for its first US semiconductor materials plant.",
+      "what_happened": "Space Forge Inc., a UK-founded company that grows semiconductor substrates in orbit, announced on August 17th that it signed a master research agreement with The Texas A and M University System. The work starts with terrestrial material growth using the Texas A and M Semiconductor Institute and the AggieFab Nanofabrication Facility.",
+      "who_decided": "Space Forge Inc. and The Texas A and M University System",
+      "when": "2026-08-17",
+      "where": {"counties": ["Brazos"], "statewide": false, "ercot": true},
+      "quote": "This agreement is an important first step in establishing our manufacturing presence in the United States.",
+      "url": "https://www.spaceforge.com/press-releases/building-us-capacity-in-advanced-semiconductor-materials-space-forge-selects-texas-am-university-system-as-manufacturing-base",
+      "source_type": "primary_corporate",
+      "confidence": "medium",
+      "unverified": [
+        "THE AI CONNECTION IS NOT IN THE SOURCE. The fetched release contains none of the terms artificial intelligence, AI, data center or power electronics.",
+        "The release names no county and no city. Brazos County is inferred and was not confirmed against the release.",
+        "No dollar figure, job count or facility size is given anywhere in the release."
+      ]
+    }
+  ],
+  "dropped_leads": [
+    "Soulbrain Texas LLC, $85.8 million semiconductor materials plant, Taylor (Williamson County), filed ~August 18th. Primary record is a TDLR project registration; tdlr.texas.gov/TABS/Search/Projects is a login portal for this client.",
+    "Tesla, three new semiconductor facilities at Giga Texas (Travis County), reported August 27th. Same TDLR problem, no primary reached.",
+    "NASA named the Texas Space Commission one of seven Aerospace Skilled Technical Workforce Hubs, August 21st. Release carries no date line, no attributed quote and no AI content.",
+    "Firefly Aerospace (Cedar Park, Williamson County) had three in-window items. investors.fireflyspace.com and the GlobeNewswire mirror both returned HTTP 503."
+  ],
+  "source_field_log": [
+    "www.fortworthtexas.gov returned HTTP 403 to this client on the city secretary agendas page and the 2026 tax abatement public notice page.",
+    "assets.comptroller.texas.gov serves JETI application PDFs that exceed the fetcher's 10 MB limit, the same size-limit trap the registry already records for UT System agenda books.",
+    "tdlr.texas.gov/TABS/Search/Projects is a login portal to this client, so TDLR project registrations cannot be read.",
+    "comptroller.texas.gov JETI current-agreements.php appears to be dynamically rendered, so table cells need confirming against the live table."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "beat": "power-and-compute",
+  "run_date": "2026-08-30",
+  "findings": [
+    {
+      "id": "pc-1",
+      "headline": "The Public Utility Commission of Texas approved Oncor's Dinosaur Switch to Longshore Switch 765 kV transmission line on August 28th.",
+      "what_happened": "Oncor filed Docket No. 59315 on February 19, 2026 to amend its certificate of convenience and necessity for a new 765 kilovolt line running from a proposed Dinosaur Switch near Glen Rose in Somervell County to the existing Longshore Switch near Forsan in Howard County. Oncor's project page records the outcome as approved on August 28, 2026. It is one of the first Permian Basin Reliability Plan import paths to clear regulatory approval, and 765 kV is a voltage class new to Texas.",
+      "who_decided": "Public Utility Commission of Texas (applicant: Oncor Electric Delivery Company LLC)",
+      "when": "2026-08-28",
+      "where": {"counties": ["Somervell", "Howard"], "statewide": false, "ercot": true},
+      "quote": "For Oncor Electric Delivery Company LLC (\"Oncor\") to continue to provide safe and reliable electric service in the area, it proposes to construct a new 765 kilovolt (kV) transmission line from Oncor's proposed Dinosaur Switch, located approximately 3 miles north of the City of Glen Rose in Somervell County, to Oncor's existing Longshore Switch located approximately 4.5 miles west of the City of Forsan in Howard County, Texas (Project). The proposed transmission line project will be approximately 235-270 miles long depending on the route if approved by the Public Utility Commission of Texas (\"PUCT\"). The Proposed Transmission Line Project is currently planned for completion in 2028.",
+      "url": "https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "unverified": [
+        "The PUCT order document itself. interchange.puc.texas.gov and ftp.puc.texas.gov both returned HTTP 503 to every request this run, so no PUCT-hosted primary was retrieved.",
+        "The full 22 county case style appeared only in a search result describing the August 28 agenda and was NOT fetched. Only Somervell and Howard are confirmed from the page above.",
+        "The second approved CCN. Docket No. 59182 (Oncor and LCRA TSC, Big Hill Substation to Sand Lake Switch) is the likely second, but both project pages still show an unresolved status.",
+        "Any cost figure. No cost was stated on the page fetched, and none is asserted here."
+      ]
+    },
+    {
+      "id": "pc-2",
+      "headline": "The commission tabled the Howard Solstice line the same day it approved the other two.",
+      "what_happened": "At the August 28, 2026 hearing the five-member commission voted unanimously to approve amendments to two Oncor certificates covering more than 400 miles of 765 kilovolt line, and declined to decide on the Howard Solstice project. Howard Solstice is CPS Energy and AEP Texas' proposed roughly 370 mile line from the CPS Energy Howard Road Station in Bexar County to the AEP Texas Solstice Station in Pecos County, PUCT Docket No. 59336.",
+      "who_decided": "Public Utility Commission of Texas",
+      "when": "2026-08-28",
+      "where": {"counties": ["Bexar", "Pecos"], "statewide": false, "ercot": true},
+      "quote": "The five-panel commission voted unanimously to approve amendments to two Certificates of Convenience and Necessity (CCN) filed by Oncor, contrary to calls from the Texas Senate and certain House members to delay approvals until the Legislature could reform the process. Commissioners tabled a decision on the Howard Solstice transmission line, which would run through South Texas, to conduct further deliberations.",
+      "url": "https://www.texastribune.org/2026/08/28/transmission-lines-texas-energy/",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "unverified": [
+        "The tabling is not confirmed by any PUCT document or by CPS Energy.",
+        "Whether the tabled item will return to a specific future open meeting date.",
+        "The counties between Bexar and Pecos that the route would cross."
+      ]
+    },
+    {
+      "id": "pc-3",
+      "headline": "A revision request pending at ERCOT would give data center cooling equipment 365 days after startup to meet the grid ride-through standard.",
+      "what_happened": "NOGRR289, sponsored by SB Energy and posted July 21, 2026, would let a Large Computational Load come into compliance with ERCOT's ride-through requirements up to 365 days after its in-service date when the cooling load cannot meet them on day one. It amends Nodal Operating Guide sections 2.6.4 and 2.15 and is flagged urgent, with the Reliability and Operations Subcommittee as the next group.",
+      "who_decided": "Electric Reliability Council of Texas, Nodal Operating Guide Revision Request process (sponsor: SB Energy)",
+      "when": "2026-07-21",
+      "where": {"counties": [], "statewide": true, "ercot": true},
+      "quote": "This Nodal Operating Guide Revision Request (NOGRR) permits a Large Computational Load (LCL) to achieve compliance with the applicable ride-through requirements within 365 days after its in-service date where the LCL's cooling load is unable to satisfy such requirements as of the in-service date due to ongoing design and manufacturing limitations, including constraints associated with vendors' continued adaptation of chiller and Variable Frequency Drive (VFD) equipment to the applicable standards.",
+      "url": "https://www.ercot.com/mktrules/issues/NOGRR289",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "The August 6, 2026 subcommittee action. A verbatim pass returned only Status: Pending and Next Group: ROS, so the ballot outcome is not confirmed.",
+        "The contents of the four posted documents (289NOGRR-01 through 289NOGRR-04). All are .docx and could not be read as text this run.",
+        "How many facilities would use the extension, and whether ERCOT staff support it."
+      ]
+    },
+    {
+      "id": "pc-4",
+      "headline": "ERCOT told the commission it is aiming to file its data center verification report on December 10 and will not finish the Batch Zero study by April 9, 2027.",
+      "what_happened": "At a Public Utility Commission of Texas meeting reported August 21, 2026, ERCOT's senior vice president of regulatory policy and general counsel described the timeline for the data center verification work. He also said the Batch Zero interconnection study will not be complete by its April 9, 2027 date and that a new timeline is still being worked out.",
+      "who_decided": "Electric Reliability Council of Texas, before the Public Utility Commission of Texas",
+      "when": "2026-08-21",
+      "where": {"counties": [], "statewide": true, "ercot": true},
+      "quote": "We will not have the study done by April 9, 2027. I think what we're saying is, we're still working on what that new timeline might be,",
+      "url": "https://www.utilitydive.com/news/ercot-texas-puc-data-center-audit/828472/",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "unverified": [
+        "No ERCOT or PUCT primary document was retrieved for this.",
+        "The figure 'about 157 medium data center and crypto facilities, representing almost 8,800 MW' is the article's rendering and was not checked against an ERCOT filing.",
+        "The count of roughly 300 data centers at 75 MW or larger, and the 25 MW community impact review threshold, both come from the same article rather than from ERCOT."
+      ]
+    }
+  ],
+  "source_field_log": [
+    "interchange.puc.texas.gov and ftp.puc.texas.gov returned HTTP 503 on every attempt this run, including agenda PDFs 082826OM.pdf, 082826Final.pdf, 081426OM.pdf, and the calendar RSS at www.puc.texas.gov/agency/calendar/getcalendarrss.aspx. Client-or-host failure, not a robots decision. Retest with a second client before writing PUCT off.",
+    "ERCOT .docx attachments (the four NOGRR289 documents) download but cannot be read as text by a leaf worker's tools."
+  ]
+}

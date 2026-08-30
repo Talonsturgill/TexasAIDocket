@@ -1,0 +1,167 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#090B0D}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(5,7,8,.98), 0 0 34px rgba(5,7,8,.94), 0 0 70px rgba(5,7,8,.86),
+      0 0 130px rgba(5,7,8,.72), 0 3px 6px rgba(5,7,8,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#93A2AA}
+  .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:106px;line-height:1.00;color:#F2F0E8;letter-spacing:-.022em}
+  .dek{position:absolute;top:400px;left:80px;width:720px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:35px;line-height:1.32;color:#D8DEE0}
+  .setwrap{position:absolute;left:80px;top:1046px;width:900px}
+  .set{margin:0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
+     letter-spacing:.05em;line-height:1.40;color:#A2AEB4}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#84919A;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the covered mass is darker than the light wrapping its edge","reads":"differ","a":[[478,706,124,150]],"b":[[404,566,86,86]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">Then they<br>covered them.</p>
+  <p class="dek halo">All 28 cameras will be turned off and covered.</p>
+  <div class="setwrap">
+    <p class="set halo">28 &nbsp;CAMERAS IN THE CITY CONTRACT &nbsp;c20<br>
+      WHAT IS UNDER THE COVER IS NOT DRAWN HERE.<br>
+      THE RECORD DOES NOT DESCRIBE IT.</p>
+  </div>
+  <div class="foot halo"><span>THE COVER, AS RECORDED</span><span>c20</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260831);
+
+  // ---- the field. Colder and emptier than frame 1, with the light coming from BEHIND the mass,
+  // so the cover is read as an occlusion rather than as an object sitting in front of a wall.
+  (function field(){
+    g.fillStyle='#090B0D'; g.fillRect(0,0,W,H);
+    const washes=[
+      [540, 690, 700, 'rgba(74,98,112,0.92)'],
+      [540, 640, 430, 'rgba(120,150,166,0.68)'],
+      [300, 1020, 640, 'rgba(30,42,50,0.70)'],
+      [880, 380, 520, 'rgba(24,34,42,0.62)'],
+    ];
+    for(const [x,y,r,col] of washes){
+      const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+  })();
+  (function haze(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.0036+2.7,y*0.0036+8.1,5);
+      const v=(n-0.5)*1.5;
+      if(v>0){ g.fillStyle='rgba(160,182,194,'+Math.min(0.15,v*0.20).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(3,4,6,'+Math.min(0.36,(-v)*0.44).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // ---- THE COVER. A DARK draped mass that occludes the light behind it, with light only where
+  // it wraps the silhouette. The first pass filled the body lighter than its field and the form
+  // read as a glowing shard, which is the opposite of a thing put over something to switch it off.
+  const CX=540, TOP=548, CW=250, CH=352;
+  function hood(inset){
+    const w=(CW/2)-inset, h=CH-inset*2, top=TOP+inset;
+    g.beginPath();
+    g.moveTo(CX-w*0.52, top+h);                       // hem, left
+    g.bezierCurveTo(CX-w*1.02, top+h*0.66, CX-w*0.96, top+h*0.20, CX-w*0.30, top+h*0.045);
+    g.bezierCurveTo(CX-w*0.10, top-h*0.012, CX+w*0.16, top-h*0.006, CX+w*0.34, top+h*0.060);
+    g.bezierCurveTo(CX+w*0.92, top+h*0.24, CX+w*1.00, top+h*0.68, CX+w*0.56, top+h);
+    // the hem itself, sagging between two gather points
+    g.bezierCurveTo(CX+w*0.30, top+h*1.055, CX-w*0.26, top+h*1.055, CX-w*0.52, top+h);
+    g.closePath();
+  }
+  (function cover(){
+    // the shadow the mass throws INTO the field behind it, wide and soft
+    for(let i=16;i>=0;i--){
+      g.fillStyle='rgba(4,6,8,'+(0.055).toFixed(3)+')';
+      hood(-i*4.0); g.fill();
+    }
+    // the body. Dark throughout, a little open at the crown where the field wraps it.
+    g.save(); hood(0); g.clip();
+    const cg=g.createLinearGradient(CX-CW*0.30,TOP,CX+CW*0.30,TOP+CH);
+    cg.addColorStop(0,'#161D22'); cg.addColorStop(0.28,'#0E1418');
+    cg.addColorStop(0.64,'#070B0D'); cg.addColorStop(1,'#030405');
+    g.fillStyle=cg; g.fillRect(CX-CW,TOP-60,CW*2,CH+140);
+    // folds, as soft vertical bands of shadow with a thin lift on the key side of each
+    for(let i=0;i<7;i++){
+      const t=(i+0.6)/7;
+      const x0=CX-CW*0.10+(TX.simplex2(i*0.9,2.2))*30;
+      const x1=CX-CW*0.46+CW*0.92*t;
+      const fg=g.createLinearGradient(x1-26,0,x1+26,0);
+      fg.addColorStop(0,'rgba(2,3,4,0)'); fg.addColorStop(0.5,'rgba(2,3,4,0.55)');
+      fg.addColorStop(1,'rgba(2,3,4,0)');
+      g.fillStyle=fg;
+      g.beginPath(); g.moveTo(x0-18,TOP-90); g.lineTo(x0+18,TOP-90);
+      g.lineTo(x1+28,TOP+CH+120); g.lineTo(x1-28,TOP+CH+120); g.closePath(); g.fill();
+      const lg=g.createLinearGradient(x1-30,0,x1-6,0);
+      lg.addColorStop(0,'rgba(158,182,196,0)'); lg.addColorStop(0.6,'rgba(158,182,196,0.13)');
+      lg.addColorStop(1,'rgba(158,182,196,0)');
+      g.fillStyle=lg;
+      g.beginPath(); g.moveTo(x0-26,TOP-90); g.lineTo(x0-6,TOP-90);
+      g.lineTo(x1-4,TOP+CH+120); g.lineTo(x1-34,TOP+CH+120); g.closePath(); g.fill();
+    }
+    // the crown, only just caught, so the mass has a top without becoming a light source
+    const crown=g.createRadialGradient(CX-34,TOP+26,6,CX-34,TOP+26,150);
+    crown.addColorStop(0,'rgba(180,204,216,0.16)'); crown.addColorStop(1,'rgba(180,204,216,0)');
+    g.fillStyle=crown; g.fillRect(CX-CW,TOP-50,CW*2,240);
+    g.restore();
+    // THE RIM. Light from behind wrapping the silhouette, brightest on the upper left, dying by
+    // the hem. Drawn outside the clip in many soft passes so it bleeds into the field.
+    for(let i=0;i<12;i++){
+      g.save();
+      g.beginPath(); g.rect(CX-CW*1.2, TOP-70, CW*1.35, CH*0.86); g.clip();
+      g.strokeStyle='rgba(198,220,232,'+(0.10-i*0.008).toFixed(3)+')'; g.lineWidth=1.6+i*2.1;
+      hood(i*1.1); g.stroke();
+      g.restore();
+    }
+    for(let i=0;i<8;i++){
+      g.save();
+      g.beginPath(); g.rect(CX+CW*0.06, TOP-40, CW*0.9, CH*0.60); g.clip();
+      g.strokeStyle='rgba(198,220,232,'+(0.045-i*0.005).toFixed(3)+')'; g.lineWidth=1.4+i*1.9;
+      hood(i*1.1); g.stroke();
+      g.restore();
+    }
+  })();
+
+  // ---- the ground. One radial pool over the WHOLE canvas so there is no rectangle edge, with a
+  // tight contact sitting inside it, which is where the bottom band gets its modeled tone.
+  (function ground(){
+    const gp=g.createRadialGradient(CX-30,TOP+CH+70,20,CX-30,TOP+CH+70,620);
+    gp.addColorStop(0,'rgba(104,120,128,0.30)'); gp.addColorStop(0.40,'rgba(52,62,68,0.15)');
+    gp.addColorStop(1,'rgba(0,0,0,0)');
+    g.fillStyle=gp; g.fillRect(0,0,W,H);
+    const ct=g.createRadialGradient(CX,TOP+CH+26,4,CX,TOP+CH+26,220);
+    ct.addColorStop(0,'rgba(2,3,4,0.86)'); ct.addColorStop(0.42,'rgba(2,3,4,0.38)');
+    ct.addColorStop(1,'rgba(2,3,4,0)');
+    g.save(); g.translate(0,0); g.scale(1,0.30);
+    g.fillStyle=ct; g.beginPath(); g.arc(CX,(TOP+CH+26)/0.30,230,0,Math.PI*2); g.fill();
+    g.restore();
+  })();
+
+  (function ticks(){
+    g.strokeStyle='rgba(150,176,188,0.18)'; g.lineWidth=1;
+    for(const y of [640,800,960]){ g.beginPath(); g.moveTo(48,y); g.lineTo(80,y); g.stroke(); }
+  })();
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  await document.fonts.ready;
+})();
+</script>
+</body></html>
