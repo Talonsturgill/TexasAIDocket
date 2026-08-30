@@ -1,0 +1,60 @@
+# DIR must run an AI regulatory sandbox letting state agencies test systems outside normal rules
+
+The Department of Information Resources is required to establish a program letting eligible public entities contract with registered vendors to test AI systems before deployment. That testing is expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year. That makes November 30th, 2026 the first reporting date.
+
+- Topic: state-policy
+- Decided by: Texas Department of Information Resources (state-agency)
+- Where: Statewide
+- Status: pending
+- Public access: Write to the decider
+
+- Last checked: 2026-08-28
+
+## Dates
+
+- 2025-09-01 · effective: SB 1964 took effect
+- 2026-11-30 · statutory deadline: Department report to the Legislature due, per Sec. 2054.706(g)
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-08-18 · Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026.
+- 2026-08-21 · Checked and unchanged. The sandbox program stands required of the Department of Information Resources and the report to the Legislature is still due November 30th, 2026.
+- 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-08-28 · Checked and unchanged. The Department of Information Resources has published nothing establishing the sandbox, and no vendor register has appeared. The report the statute requires is still ahead of the department.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The sandbox is defined as testing without full regulatory compliance.
+
+> "Program" means the program established by this section that is designed to allow temporary testing of an artificial intelligence system in a controlled, limited manner without requiring full compliance with otherwise applicable regulations.
+
+Source (primary_official): https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm
+
+### The department must establish and administer the program.
+
+> (b) The department shall establish and administer a program to support eligible entities in contracting with vendors to engage in research, development, training, testing, and other pre-deployment activities related to artificial intelligence systems
+
+Source (primary_official): https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm
+
+### Vendor applications must include a public risk assessment and a mitigation plan.
+
+> (2) a risk assessment of the system that addresses potential impacts on the public; and (3) a plan for mitigating any adverse consequences discovered during the system's testing phase.
+
+Source (primary_official): https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm
+
+### The department owes the Legislature a report on a fixed recurring date.
+
+> (g) Not later than November 30 of each even-numbered year, the department shall produce an annual report and submit the report to the legislature summarizing:
+
+Source (primary_official): https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm
+
+### The sandbox was created by SB 1964, effective September 1st, 2025.
+
+> Added by Acts 2025, 89th Leg., R.S., Ch. 1148 (S.B.  1964 ), Sec. 5, eff. September 1, 2025.
+
+Source (primary_official): https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm
+

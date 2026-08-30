@@ -113,6 +113,16 @@ for slide, cid, s, names in FIGURES:
 
 # Nothing here is computed, so there is nothing to round and no unit to convert. Assert that,
 # rather than leaving it to be assumed by whoever reads the output next.
+# THE RUN'S OWN COUNTS. The article page prints how many claims were verified, and that numeral
+# is COMPUTED by this run rather than quoted from any source, so it has to be computed HERE and
+# not by the page that prints it. numeral_lint refused the build until it was, which is the law
+# working: a figure a reader sees traces to a computation or it does not publish.
+out["counts"] = {
+    "claims_verified": len(CLAIMS),
+    "figures_proved": len(out["figures"]),
+    "relationships_refused": len(REFUSED),
+}
+
 out["derived_figures"] = []
 out["note"] = ("No figure in this deck is derived. Every string above was proved present in its "
                "claim's own verbatim quote before it reached a frame.")

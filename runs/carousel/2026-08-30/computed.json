@@ -151,6 +151,11 @@
       "why": "a hit rate. Both are printed on slide 6 and a drawn control joint separates them, with no shared axis, baseline or unit."
     }
   ],
+  "counts": {
+    "claims_verified": 41,
+    "figures_proved": 18,
+    "relationships_refused": 3
+  },
   "derived_figures": [],
   "note": "No figure in this deck is derived. Every string above was proved present in its claim's own verbatim quote before it reached a frame."
 }
