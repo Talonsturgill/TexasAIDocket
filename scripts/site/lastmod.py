@@ -42,8 +42,8 @@ ledger field says when their words last changed, and the build date is not that.
 credibility. This is the compute-not-generate law in its usual form: where we cannot compute
 something, we say nothing rather than publish an estimate dressed as a measurement.
 
-`/about/` was on this list until 2026-08-22, when it folded into `/services/` and the route
-went away. Its stamp exemption was the owner's separate call on 2026-08-19, and it agreed.
+`/about/` returned on 2026-08-30 as the stable explanation of the publication. Like the other
+prose pages, no ledger field dates its words, so it carries no stamp.
 
     lastmod.py --self-test
 """
@@ -64,7 +64,7 @@ HUB_PREFIXES = ("index.html", "record/", "topic/", "place/", "sources/", "questi
                 "articles/index.html")
 
 # Prose about the project. No ledger field dates these, so they make no claim.
-UNDATED_PREFIXES = ("services/", "scan/", "videos/", "404.html",
+UNDATED_PREFIXES = ("about/", "services/", "scan/", "videos/", "404.html",
                     "grid/", "water/", "facility/", "company/", "registry-changes/",
                     "datacenters/")
 
@@ -125,7 +125,7 @@ def self_test() -> int:
     items = [{"id": "tx-2026-0001", "last_verified": "2026-08-12"},
              {"id": "tx-2026-0002", "last_verified": "2026-08-18"}]
     runs = [{"date": "2026-08-19"}, {"date": "2026-08-16"}]
-    paths = ["index.html", "record/index.html", "datacenters/index.html",
+    paths = ["index.html", "record/index.html", "datacenters/index.html", "about/index.html",
              "services/index.html",
              "item/tx-2026-0001/index.html", "item/tx-2026-0002/index.html",
              "articles/index.html", "articles/2026-08-16/index.html",
@@ -150,7 +150,7 @@ def self_test() -> int:
           got["articles/index.html"] == "2026-08-19", got.get("articles/index.html"))
 
     print("\nand prose about the project makes no claim at all")
-    for p in ("datacenters/index.html", "services/index.html", "data/index.html",
+    for p in ("about/index.html", "datacenters/index.html", "services/index.html", "data/index.html",
               "404.html"):
         check(f"{p} carries no date", p not in got, got.get(p, ""))
 

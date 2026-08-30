@@ -143,7 +143,7 @@ NAV = [("", "Home"), ("record/", "Docket"), ("datacenters/", "Data centers"),
 # `questions/` was built as one of these generated views and left out of this list, so it shipped
 # with nothing on the site linking to it. It was in the sitemap and reachable by URL, which is
 # exactly enough to look fine and to be unread. `link_check.py` is what found it.
-FOOTNAV = NAV[1:] + [("topic/", "Beats"), ("place/", "Places"), ("sources/", "Sources"),
+FOOTNAV = NAV[1:] + [("about/", "About"), ("topic/", "Beats"), ("place/", "Places"), ("sources/", "Sources"),
                      ("questions/", "Questions"), ("scan/", "Scan")]
 
 # WHERE THIS RECORD IS, ELSEWHERE ON THE WEB.
@@ -1186,6 +1186,33 @@ def video_feed() -> dict:
         return d if isinstance(d, dict) else {"videos": d}
     except Exception:                                                # noqa: BLE001
         return {}
+
+
+def video_media_url(feed: dict, value: str) -> str:
+    """Resolve one media path against the feed's declared base.
+
+    The page, VideoObject graph and video sitemap all publish these addresses. One resolver
+    keeps the three surfaces from disagreeing when Dispatch changes hosts or switches from
+    root relative paths to absolute ones.
+    """
+    value = str(value or "")
+    if re.match(r"^https?://", value):
+        return value
+    base = str(feed.get("media_base") or "").rstrip("/")
+    return f"{base}/{value.lstrip('/')}" if base and value else value
+
+
+def video_description(video: dict) -> str:
+    """A concise crawl description from fields the Dispatch manifest actually carries.
+
+    The full caption belongs over the film. Search descriptions need a shorter sentence and
+    cannot inherit a long caption's punctuation or spelling unchecked. This names the film and
+    its Texas location without inventing a second account of what happens in it.
+    """
+    title = " ".join(str(video.get("title") or "Texas AI film").split()).rstrip(".!?")
+    county = " ".join(str(video.get("county") or "").split())
+    where = f" from {county} County" if county else ""
+    return f"{title}. A sourced Texas AI Docket film{where}."
 
 
 def video_count() -> int:

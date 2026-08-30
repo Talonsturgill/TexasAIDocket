@@ -368,6 +368,13 @@ def home_css() -> str:
 .home .hero > .statrow { grid-area:stats; }
 html.js .home .rise > *:nth-child(6) { animation-delay:.5s; }
 
+/* The publication names itself in the page's primary heading. Set as a quiet register line so
+   the campaign phrase keeps the visual weight while a crawler, a screen reader and a pasted
+   text view all receive the same unambiguous subject. */
+.home .hero h1 .brandline { display:block; margin:0 0 .75rem; font-family:var(--mono);
+  font-size:clamp(.72rem,1.15vw,.9rem); font-weight:500; line-height:1.25;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+
 /* The computed door count is a route now, not only a readout. */
 a.stat { display:block; color:inherit; text-decoration:none; border-radius:.35rem;
   padding:.45rem .55rem; margin:-.45rem -.55rem;

@@ -477,6 +477,7 @@ def build(out: Path, today: str) -> dict:
     w("scan/index.html", scan_page(today))
     w("scan/watch/index.html", watch_page(today))
     w("services/index.html", services_page(items, today))
+    w("about/index.html", about_page(today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
 
     # THE ANSWERING RECORD, published as two files beside the site.
@@ -550,7 +551,9 @@ def build(out: Path, today: str) -> dict:
       "# The Markdown twins are for machine readers, not for the index. They duplicate the\n"
       "# HTML page they sit beside and cannot declare a canonical, so search skips them.\n"
       "User-agent: Googlebot\nAllow: /\nDisallow: /*.md$\n\n"
-      f"Sitemap: {SITE_URL}/sitemap.xml\n")
+      f"Sitemap: {SITE_URL}/sitemap.xml\n"
+      f"Sitemap: {SITE_URL}/sitemap-news.xml\n"
+      f"Sitemap: {SITE_URL}/sitemap-video.xml\n")
 
     # EVERY PAGE'S OWN REVISION DATE, computed once and spent twice.
     #
@@ -599,6 +602,12 @@ def build(out: Path, today: str) -> dict:
     w("sitemap.xml",
       f'<?xml version="1.0" encoding="UTF-8"?>'
       f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{locs}</urlset>')
+    # Specialist sitemaps do not replace the complete map. They give the two media families
+    # fields the ordinary urlset cannot carry, at stable addresses named in robots.txt. News
+    # rolls off after its documented recent window. Video entries stay as long as the manifest
+    # does, with the media URLs resolved by the same function the page schema uses.
+    w("sitemap-news.xml", news_sitemap(runs, today))
+    w("sitemap-video.xml", video_sitemap(video_feed()))
 
     # AND THE OTHER DIRECTION, which needs every page and so cannot live in a per-page audit.
     # A declared origin nothing targets widens the policy for free. The entry for the scan
@@ -661,6 +670,29 @@ def self_test() -> int:
           _first_css_version == _second_css_version
           and _css_cache.misses == 1 and _css_cache.hits == 1,
           repr(_css_cache))
+
+    # THE SPECIALIST SITEMAPS ARE FILTERS, not merely files with namespaces. Plant one recent
+    # article, one old one and one future one so the rolling news window has to discriminate.
+    _news = news_sitemap([
+        {"date": "2026-08-11", "title": "Recent"},
+        {"date": "2026-08-08", "title": "Old"},
+        {"date": "2026-08-12", "title": "Future"},
+    ], "2026-08-11")
+    check("the news sitemap carries reporting inside its recent window",
+          "/articles/2026-08-11/" in _news, _news)
+    check("...and drops both old and future reporting",
+          "2026-08-08" not in _news and "2026-08-12" not in _news, _news)
+    _vf = {"media_base": "https://media.example/base", "videos": [{
+        "id": "one", "title": "One film", "caption": "Long player caption.",
+        "video": "/film.mp4", "poster": "/poster.png", "date": "2026-08-11",
+        "county": "Travis",
+    }]}
+    _video = video_sitemap(_vf)
+    check("the video sitemap resolves media against the manifest's own base",
+          "https://media.example/base/film.mp4" in _video
+          and "https://media.example/base/poster.png" in _video, _video)
+    check("...and carries one complete video entry",
+          _video.count("<video:video>") == 1, _video)
 
     # THE TOPIC VOCABULARY LIVES IN TWO FILES AND THEY HAVE TO AGREE.
     #
