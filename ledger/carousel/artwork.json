@@ -610,7 +610,7 @@
     {
       "date": "2026-08-30",
       "carousel_no": 12,
-      "register": "a caliche field at a MID value with light in it, eight frames on a worked cool ground and one, the turn, a poured concrete apron in full sun. No frame carries a drawn outline, a hard-edged plate or a visible corner anywhere",
+      "register": "a caliche field with light IN it, eight frames on a worked cool ground and one, the turn, a poured concrete apron in full sun. Type is set in the field behind a halo rather than on a plate",
       "techniques": [
         "type set IN the field behind a multi-radius halo rather than on an opaque plate, which is the engine's one defence that never trips the art-crossing-glyphs gate, so art runs under every text block on all nine frames",
         "27 extinguished bodies and one still carrying current, drawn as dark forms on a LIT ground rather than as blooms on a black one, so a count reads as something switched off",
@@ -642,44 +642,66 @@
       "arc_note": "PLANNED 34, 22, 40, 58, 44, 71, 30, 47, 26. MEASURED 54.8, 46.7, 64.6, 66.3, 56.9, 171.9, 69.6, 55.7, 50.6. The first render of this deck came in at 17.1, 16.1, 14.5, 26.2, 11.3, 174.9, 15.8, 18.3, 12.4, which is eight frames inside a seven point band and BELOW every prior deck, against a storyboard that chose this register to occupy a mid band its own ledger had unoccupied. All three judges measured it independently and all three put artwork_craft at 4.5 to 5.2. The ground was rebuilt rather than the note reworded.",
       "avoid_next": "the halo is now spent on a whole deck and a second consecutive halo deck would be one drawing twice. The soft luminous field is also spent, and this run proved its failure mode: a field with no edges anywhere gives a reader nothing to hold at 432px, and every frame that worked here worked because it had ONE hard thing in it, the drape, the silhouette, the control joint or the norther break. Next run should reach for a worked surface with real edges.",
       "value": {
-        "measured_off": "the nine rendered PNGs in out/2026-08-30/render at ship",
-        "canvas_mean": [
-          54.8,
-          46.7,
-          64.6,
-          66.3,
-          56.9,
-          171.9,
-          69.6,
-          55.7,
-          50.6
-        ],
-        "median_lstar": [
-          19.9,
-          16.3,
-          24.1,
-          23.9,
-          21.2,
-          71.9,
-          22.1,
-          18.3,
-          16.6
-        ],
-        "deck_median_L": 21.2,
-        "brightest": "slide 6 at 171.9",
-        "darkest": "slide 2 at 46.7",
+        "canvas_mean": {
+          "measured_off": "render_report.json canvases[0].mean, the DRAWING with no type over it",
+          "values": [
+            56.5,
+            44.3,
+            63.0,
+            60.3,
+            56.6,
+            174.9,
+            65.6,
+            55.7,
+            44.8
+          ]
+        },
+        "png_mean": {
+          "measured_off": "the nine shipped PNGs whole, type included, which is what a reader sees",
+          "values": [
+            57.7,
+            46.7,
+            64.6,
+            65.2,
+            55.5,
+            171.9,
+            68.0,
+            55.3,
+            50.7
+          ]
+        },
+        "median_lstar": {
+          "measured_off": "the nine shipped PNGs whole",
+          "values": [
+            21.2,
+            16.3,
+            24.1,
+            24.0,
+            20.7,
+            71.9,
+            20.9,
+            18.3,
+            16.5
+          ]
+        },
+        "deck_median_L": 20.9,
+        "brightest": "slide 6",
+        "darkest": "slide 2",
         "priors": {
           "2026-08-28": 22.2,
           "2026-08-29": 15.6,
           "earlier": 27.7
-        }
+        },
+        "note": "Two arrays because there are two subjects. The first round recorded one array under a label that fitted neither, and a judge measured the disagreement."
       },
-      "bespoke_median": 0.1894,
+      "bespoke_median": 0.1812,
       "bespoke_closest_pair": {
         "a": "slide-04.html",
         "b": "slide-06.html",
-        "similarity": 0.6573
-      }
+        "similarity": 0.6626
+      },
+      "register_caveat": "The register line for this deck previously claimed no frame carries a drawn outline, a hard edged plate or a visible corner anywhere. A judge measured a hard vertical seam on slide 4 and hard edged fold slabs on slide 2, so the absolute claim is withdrawn: what holds is that no frame carries a drawn OUTLINE around an object and no frame carries a rectangular plate behind type. The seams are drawn edges inside the picture and they are not the same thing.",
+      "deck_median_note": "The storyboard chose this register to occupy a mid band the ledger had unoccupied against priors of 27.7, 22.2 and 15.6, and the deck shipped at 20.9, which sits on top of 22.2 rather than in the gap. The register did not do the thing it was chosen for, and saying so is worth more to the next run than the claim would have been."
     }
   ]
 }
