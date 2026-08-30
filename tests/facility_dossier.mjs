@@ -89,7 +89,15 @@ const browser = await chromium.launch(LAUNCH);
   }
   ok("every dossier link resolves", dead.length === 0, dead.join(", "));
 
-  await p.click("a.dosslink");
+  // SCROLLED TO AND WAITED FOR, rather than clicked where it happens to be. This timed out on
+  // 2026-08-30 having passed on the run before it, with a diff that touched neither this page nor
+  // this test. Playwright's click waits for the element to be visible, stable and hittable, and
+  // the roster is a long page where the first dossier link can sit below the fold behind a header
+  // that is still settling. Nothing is weakened: the assertion below is unchanged and it is still
+  // the dialog's own content that has to appear.
+  const _link = p.locator("a.dosslink").first();
+  await _link.scrollIntoViewIfNeeded();
+  await _link.click({ timeout: 15000 });
   const opened = await p
     .waitForFunction(() => {
       const d = document.getElementById("dossdlg");
