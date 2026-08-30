@@ -135,6 +135,10 @@ PALETTE_ROW = re.compile(
 # wrote under the heading "Declared as plain pairs so the colour check can read them".
 PALETTE_PLAIN = re.compile(r"^[ \t]*([A-Za-z][A-Za-z0-9_]*)[ \t]+(#[0-9A-Fa-f]{6})[ \t]*$", re.M)
 
+# `field #333D45 the ground, far #768C9C, mid #B0C8D6` inside a dossier's `palette: >` prose.
+# Scoped to that field alone, so a hex quoted anywhere else in a dossier cannot become a token.
+PALETTE_PROSE = re.compile(r"\b([a-z][a-z0-9_]*)[ \t]+(#[0-9A-Fa-f]{6})")
+
 # A markdown heading, used to find the palette section the two loose shapes are scoped to.
 HEADING = re.compile(r"^(#{1,6})[ \t]+(.*)$", re.M)
 
@@ -277,7 +281,43 @@ def palette_map(storyboard: str) -> dict:
                 name = name.strip().lower()
                 if " " not in name and name not in ("token", "hex", "colour", "color"):
                     out.setdefault(name, hexv.upper())
+    # THE FOURTH SHAPE: `name #HEX` inside a dossier's own `palette: >` prose, which is what
+    # 2026-08-30 wrote and what made this parser read ZERO tokens on that deck. Ten storyboards
+    # had a `## Palette` heading, the eleventh put the same pairs where the spec asks for them
+    # and the calibration assertion below caught the silence as a number. Read last, so a deck
+    # that declares a token in BOTH places keeps the section's value.
+    for body in parse_dossiers(storyboard).values():
+        for name, hexv in PALETTE_PROSE.findall(section(body, "palette")):
+            name = name.strip().lower()
+            if " " not in name:
+                out.setdefault(name, hexv.upper())
     return out
+
+
+def rgb(hexv: str) -> tuple:
+    """The three channels of a `#RRGGBB`."""
+    h = hexv.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def drawn(hexv: str, html_upper: str) -> bool:
+    """Is this colour anywhere in the frame's source, in ANY of the forms a frame writes it?
+
+    A HEX LITERAL IS NOT THE ONLY WAY TO DRAW A COLOUR, and assuming it was made this check
+    blind to exactly the decks it most needed to read. 2026-08-30 drew its three slabs as
+    canvas gradients over `tint:'176,200,214'`, which is `#B0C8D6` to the pixel and is the
+    colour its dossier declares. Ten earlier decks passed this check on hex literals alone, so
+    the assumption held every time it was tested and was wrong the first time a deck computed
+    its ramps instead of writing them.
+
+    Reported as a miss, that would have been a false failure naming the plan as the liar. The
+    frame was drawing precisely what it said it would.
+    """
+    if hexv.upper() in html_upper:
+        return True
+    r, g, b = rgb(hexv)
+    # `rgb(176,200,214)`, `rgba(176, 200, 214, .4)` and a bare `'176,200,214'` gradient tint.
+    return re.search(rf"(?<!\d){r}\s*,\s*{g}\s*,\s*{b}(?!\d)", html_upper) is not None
 
 
 def section(body: str, key: str) -> str:
@@ -389,15 +429,29 @@ def check(storyboard: str, slides_dir: Path, report: dict) -> tuple:
 
         # ---- PALETTE: a colour the plan names must be somewhere on the frame ----------
         prose = section(body, "palette").lower()
-        for token, hexv in pal.items():
+        # THIS FRAME'S OWN DECLARATION WINS over the deck-wide map, and getting that backwards
+        # turned one real question into twenty false ones. Where a storyboard declares its
+        # palette per dossier, `field` is a different colour on frame 2 than on frame 7 and the
+        # deck-wide map holds only the first. Checking every frame against that one value asks
+        # whether frame 7 drew frame 1's grey, which no plan ever promised.
+        #
+        # And where a frame declares its OWN palette, that is the whole of its palette. The
+        # deck-wide map otherwise leaks a token into every frame whose prose happens to use the
+        # word: `lit` is declared by frames 5 and 8, and frames 1, 2, 4 and 6 all say "lit" of
+        # a chamfer or a crest without claiming frame 8's particular blue. Four false failures
+        # out of twelve, every one of them the gate reading a plan that says something else.
+        local = {k.lower(): v.upper() for k, v in PALETTE_PROSE.findall(section(body, "palette"))}
+        for token, hexv in (local or pal).items():
             if not re.search(rf"\b{re.escape(token)}\b", prose):
                 continue
-            if html and hexv not in html:
+            if html and not drawn(hexv, html):
                 fails.append(
-                    f"slide {n}: the dossier's palette names {token} ({hexv}) and the frame "
-                    f"does not contain that colour anywhere. A declared colour that was never "
-                    f"drawn is the 2026-08-19 slide 5 defect, where the plan said the differing "
-                    f"words are marked in pecos and five passes shipped uniform ink")
+                    f"slide {n}: the dossier's palette names {token} ({hexv}, "
+                    f"rgb {','.join(str(c) for c in rgb(hexv))}) and the frame does not contain "
+                    f"that colour anywhere, as a hex literal or as an rgb triplet. A declared "
+                    f"colour that was never drawn is the 2026-08-19 slide 5 defect, where the "
+                    f"plan said the differing words are marked in pecos and five passes shipped "
+                    f"uniform ink")
 
         # ---- DECLARED: the words the plan says will be on the frame -------------------
         # THE 2026-08-21 DEFECT. A refused build left the previous build's HTML on disk, the
