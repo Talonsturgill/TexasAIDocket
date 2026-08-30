@@ -210,11 +210,15 @@ for (const w of [320, 390, 768, 1024, 1440]) {
     const actions = hero?.querySelector(".ctarow");
     const stats = hero?.querySelector(".statrow");
     const rows = panel ? [...panel.querySelectorAll("a.open-now-item")] : [];
+    const more = panel?.querySelector("a.open-now-more");
+    const moreLabel = more?.querySelector(":scope > span");
     const door = [...document.querySelectorAll(".stat")]
       .find((el) => el.textContent.includes("Doors open to you"));
     const follows = (a, b) => !!(a && b &&
       (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING));
     const box = panel?.getBoundingClientRect();
+    const moreBox = more?.getBoundingClientRect();
+    const labelBox = moreLabel?.getBoundingClientRect();
     return {
       inHero: !!(hero && panel && hero.contains(panel)),
       ordered: follows(actions, panel) && follows(panel, stats),
@@ -224,6 +228,10 @@ for (const w of [320, 390, 768, 1024, 1440]) {
         !!a.querySelector('time[datetime^="20"]')),
       countLinks: rows.length === 0 ||
         !!(door && door.matches('a[href="#open-now"]')),
+      moreFits: !!(moreBox && labelBox && box &&
+        labelBox.top >= moreBox.top - .5 && labelBox.bottom <= moreBox.bottom + .5 &&
+        labelBox.left >= moreBox.left - .5 && labelBox.right <= moreBox.right + .5 &&
+        labelBox.bottom <= box.bottom + .5 && more.scrollHeight <= more.clientHeight + 1),
       duplicated: document.body.textContent.includes("Closing next"),
     };
   });
@@ -232,6 +240,7 @@ for (const w of [320, 390, 768, 1024, 1440]) {
   if (!r.firstScreen) actionRail.push(`${w}px panel begins below the first screen`);
   if (!r.datedLinks) actionRail.push(`${w}px a deadline is not a dated link`);
   if (!r.countLinks) actionRail.push(`${w}px the open-door count does not reach the panel`);
+  if (!r.moreFits) actionRail.push(`${w}px the participation link label is clipped`);
   if (r.duplicated) actionRail.push(`${w}px repeats the deadline block below the hero`);
 }
 check("the live deadline rail is useful in the first screen at every layout",
