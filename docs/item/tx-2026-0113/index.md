@@ -1,6 +1,6 @@
 # State technology agency publishes how it is implementing the four AI laws of the 89th Legislature
 
-The Texas Department of Information Resources published an account on August 14th, 2026 of how it is implementing the artificial intelligence laws passed by the 89th Legislature, naming Senate Bill 1964, House Bill 3512 and House Bill 149. One of them puts an annual artificial intelligence awareness training obligation on certain state and local government employees and officials, and the agency offers a free training video. Another established the state's AI governance framework and directed the agency to develop a public sector sandbox. A third requires governmental entities to disclose their use of AI and creates the Texas Artificial Intelligence Council.
+The Texas Department of Information Resources published an account on August 14th, 2026 of how it is implementing the artificial intelligence laws passed by the 89th Legislature. Senate Bill 1964, House Bill 3512 and House Bill 149 are named in it. One of them puts an annual artificial intelligence awareness training obligation on certain state and local government employees and officials, and the agency offers a free training video. Another established the state's AI governance framework and directed the agency to develop a public sector sandbox. A third requires governmental entities to disclose their use of AI and creates the Texas Artificial Intelligence Council.
 
 - Topic: state-policy
 - Decided by: Texas Department of Information Resources (state-agency)

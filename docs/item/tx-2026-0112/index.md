@@ -1,6 +1,6 @@
 # Utility commission approves a 765 kilovolt line from Somervell County to Howard County
 
-The Public Utility Commission of Texas approved an amendment to Oncor's certificate of convenience and necessity for a new 765 kilovolt transmission line, and the company's own project page records the decision as approved on August 28th, 2026. The line runs from a proposed switch about 3 miles north of Glen Rose in Somervell County to an existing switch about 4.5 miles west of Forsan in Howard County. Oncor filed the application on February 19th, 2026 under Docket No. 59315 and states the route will run approximately 235 to 270 miles depending on the route chosen, planned for completion in 2028. It is a voltage class new to the Texas grid.
+The Public Utility Commission of Texas approved an amendment to Oncor's certificate of convenience and necessity for a new 765 kilovolt transmission line. The company's own project page records the decision as approved on August 28th, 2026. The line runs from a proposed switch about 3 miles north of Glen Rose in Somervell County to an existing switch about 4.5 miles west of Forsan in Howard County. Oncor filed the application on February 19th, 2026 under Docket No. 59315. It states the route will run approximately 235 to 270 miles depending on the route chosen, and is planned for completion in 2028. It is a voltage class new to the Texas grid.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
