@@ -260,7 +260,10 @@ const browser = await chromium.launch(LAUNCH);
 // readout and for the navigation request. Aborting the request keeps the field loaded so the
 // test can exercise the entire drawing rather than proving one convenient point.
 {
-  const p = await browser.newPage({ viewport: { width: 390, height: 1200 }, isMobile: true });
+  // The nearest-point resolver now belongs only to the desktop spatial field. Phone readers
+  // receive named relationship controls below, so geometry is exercised at the field's actual
+  // desktop size rather than forcing the hidden canvas back into a narrow viewport for a test.
+  const p = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   // The samples are geometry captured once and then walked. Freeze only this page's animation
   // clock so a later overlap is still the overlap the test measured at the start.
   await p.addInitScript(() => {
@@ -338,7 +341,7 @@ const browser = await chromium.launch(LAUNCH);
   });
   ok("every visible company dot has a centre sample", samples.centers.length > 0,
     String(samples.centers.length));
-  ok("the phone field contains overlapping target regions", samples.overlaps.length > 0,
+  ok("the desktop field contains overlapping target regions", samples.overlaps.length > 0,
     String(samples.overlaps.length));
   const disagreements = [];
   for (const sample of [...samples.centers, ...samples.overlaps]) {
@@ -438,53 +441,69 @@ const browser = await chromium.launch(LAUNCH);
   const p = await browser.newPage({ viewport: { width: 390, height: 780 },
                                     isMobile: true, hasTouch: true });
   await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "load" });
-  await p.locator("#gfield").scrollIntoViewIfNeeded();
-  const targetSizes = await p.$$eval(".ghit", (hits) => hits.map((hit) => {
-    const box = hit.getBoundingClientRect();
-    return { width: box.width, height: box.height };
-  }));
-  const tooSmall = targetSizes.filter((box) => box.width < 43.5 || box.height < 43.5);
-  ok("every company point has a forty four pixel phone target",
-    targetSizes.length > 0 && tooSmall.length === 0,
-    JSON.stringify(tooSmall.slice(0, 3)));
+  await p.locator("#gmobile").scrollIntoViewIfNeeded();
 
-  const phoneField = await p.$eval(".gfield", (field) => ({
-    client: field.clientWidth,
-    scroll: field.scrollWidth,
-    overflow: getComputedStyle(field).overflowX,
-    touch: getComputedStyle(field).touchAction,
+  const phoneSurface = await p.evaluate(() => ({
+    navigator: getComputedStyle(document.getElementById("gmobile")).display,
+    desktopField: getComputedStyle(document.querySelector(".gworkspace")).display,
+    pageWide: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    cards: [...document.querySelectorAll(".gmrelationship")].map((card) => ({
+      names: [...card.querySelectorAll(".gmcompany")].map((name) => name.textContent.trim()),
+      height: card.querySelector(".gmtrigger").getBoundingClientRect().height,
+      edge: card.getAttribute("data-edge"),
+    })),
   }));
-  ok("the zoomed phone field pans sideways instead of clipping unreachable points",
-    phoneField.scroll > phoneField.client && phoneField.overflow === "auto" &&
-    phoneField.touch.includes("pan-x"), JSON.stringify(phoneField));
+  ok("the phone replaces the mystery-dot canvas with a named relationship navigator",
+    phoneSurface.navigator !== "none" && phoneSurface.desktopField === "none" &&
+    phoneSurface.cards.length >= 4 &&
+    phoneSurface.cards.every((card) => card.names.length === 2 && card.names.every(Boolean)),
+    JSON.stringify(phoneSurface));
+  ok("the mobile relationship navigator needs no horizontal page or nested pan",
+    phoneSurface.pageWide <= 0, JSON.stringify(phoneSurface));
+  ok("every named relationship is a generous phone control",
+    phoneSurface.cards.every((card) => card.height >= 63.5), JSON.stringify(phoneSurface.cards));
 
-  // Tap transparent target area beyond the visible dot. A centre tap would prove only that
-  // the dot works, while the reader benefit here is the larger invisible control around it.
-  const tap = await p.evaluate(() => {
-    for (const node of document.querySelectorAll(".gnode")) {
-      const hit = node.querySelector(".ghit").getBoundingClientRect();
-      const dot = node.querySelector(".gdot").getBoundingClientRect();
-      const cx = hit.x + hit.width / 2;
-      const cy = hit.y + hit.height / 2;
-      const radius = Math.min(hit.width, hit.height) / 2 - 2;
-      for (let step = 0; step < 12; step++) {
-        const angle = step * Math.PI / 6;
-        const x = cx + Math.cos(angle) * radius;
-        const y = cy + Math.sin(angle) * radius;
-        const owns = document.elementFromPoint(x, y)?.closest(".gnode") === node;
-        const outsideDot = x < dot.left || x > dot.right || y < dot.top || y > dot.bottom;
-        if (owns && outsideDot) return { x, y, href: node.getAttribute("href") };
-      }
-    }
-    return null;
-  });
-  ok("the enlarged phone target has tappable area beyond the visible point", !!tap,
-    JSON.stringify(tap));
-  if (tap) {
-    const destination = new URL(tap.href, p.url()).href;
-    await Promise.all([p.waitForURL(destination), p.touchscreen.tap(tap.x, tap.y)]);
-    ok("a phone tap opens the company", p.url() === destination, p.url());
-  }
+  const graph = await p.$eval("#gdata", (el) => JSON.parse(el.textContent));
+  const first = graph.edges[0];
+  await p.locator('.gmrelationship[data-edge="0"] .gmtrigger').click();
+  const selected = await p.$eval('.gmrelationship[data-edge="0"]', (card) => ({
+    expanded: card.classList.contains("selected") &&
+      card.querySelector(".gmtrigger").getAttribute("aria-expanded") === "true",
+    facilities: [...card.querySelectorAll(".gmevidence .grfacilities li")]
+      .map((row) => row.textContent.trim()),
+    hrefs: [...card.querySelectorAll(".gmevidence .grfacilities a")]
+      .map((link) => link.getAttribute("href")),
+    evidenceInside: card.contains(card.querySelector(".gmevidence")),
+  }));
+  ok("one phone tap expands the exact evidence inside the chosen relationship",
+    selected.expanded && selected.evidenceInside &&
+    selected.facilities.length === first.f.length &&
+    first.f.every((facility) => selected.facilities.includes(facility.n)),
+    JSON.stringify(selected));
+  ok("every researched shared row remains a direct dossier route on a phone",
+    first.f.filter((facility) => facility.u).every((facility) =>
+      selected.hrefs.includes(facility.u)), JSON.stringify(selected.hrefs));
+
+  await p.fill("#gsearch", "Amazon");
+  const searched = await p.evaluate(() => ({
+    status: document.getElementById("gmstatus").textContent.trim(),
+    cards: [...document.querySelectorAll(".gmrelationship")].map((card) =>
+      card.textContent.replace(/\s+/g, " ").trim()),
+  }));
+  ok("company search redraws the phone navigator around that named company",
+    searched.status.includes("Amazon Data Services") && searched.cards.length > 0 &&
+    searched.cards.every((card) => card.includes("Amazon Data Services")),
+    JSON.stringify(searched));
+
+  await p.selectOption("#grole", "owner");
+  const ownerEdges = await p.$$eval(".gmrelationship", (cards) =>
+    cards.map((card) => Number(card.getAttribute("data-edge"))));
+  const byKey = Object.fromEntries(graph.nodes.map((node) => [node.k, node]));
+  ok("role emphasis also filters the named phone relationships",
+    ownerEdges.length > 0 && ownerEdges.every((index) => {
+      const edge = graph.edges[index];
+      return byKey[edge.a].o.owner && byKey[edge.b].o.owner;
+    }), JSON.stringify(ownerEdges));
   await p.close();
 }
 
@@ -493,26 +512,31 @@ const browser = await chromium.launch(LAUNCH);
   const p = await browser.newPage({ viewport: { width: 390, height: 780 }, isMobile: true, hasTouch: true });
   await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "domcontentloaded" });
   const atlasFit = await p.evaluate(() => {
-    const field = document.querySelector(".gfield").getBoundingClientRect();
-    const lens = document.querySelector(".glens").getBoundingClientRect();
+    const mobile = document.getElementById("gmobile").getBoundingClientRect();
     const search = document.getElementById("gsearch").getBoundingClientRect();
     const role = document.getElementById("grole").getBoundingClientRect();
     const tiles = [...document.querySelectorAll(".dctile")].map((el) => el.getBoundingClientRect());
+    const plate = document.querySelector(".dcmobileplate").getBoundingClientRect();
     return {
-      fieldBottom: field.bottom,
-      lensTop: lens.top,
+      mobileHeight: mobile.height,
+      plateHeight: plate.height,
+      plateImage: getComputedStyle(document.querySelector(".dcmobileplate"), "::before")
+        .backgroundImage,
       searchBottom: search.bottom,
       roleTop: role.top,
       tileLefts: tiles.map((r) => Math.round(r.left)),
       tileWidths: tiles.map((r) => Math.round(r.width)),
     };
   });
-  ok("the relationship lens stacks below the field on a phone",
-    atlasFit.lensTop >= atlasFit.fieldBottom - 1, JSON.stringify(atlasFit));
+  ok("the mobile relationship navigator has a real rendered surface",
+    atlasFit.mobileHeight > 200, JSON.stringify(atlasFit));
+  ok("the atlas art gets a distinct visible phone composition",
+    atlasFit.plateHeight >= 220 && atlasFit.plateImage.includes("datacenter-atlas-relief"),
+    JSON.stringify(atlasFit));
   ok("the graph controls stack instead of shrinking side by side",
     atlasFit.roleTop >= atlasFit.searchBottom - 1, JSON.stringify(atlasFit));
-  ok("the four atlas figures become one readable column",
-    new Set(atlasFit.tileLefts).size === 1 && new Set(atlasFit.tileWidths).size === 1,
+  ok("the four atlas figures form a compact two by two phone summary",
+    new Set(atlasFit.tileLefts).size === 2 && new Set(atlasFit.tileWidths).size === 1,
     JSON.stringify(atlasFit));
   const rosterFit = await p.evaluate(() => {
     const wrap = document.querySelector(".rtwrap");
