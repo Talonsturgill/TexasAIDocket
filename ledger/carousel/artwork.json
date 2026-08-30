@@ -646,13 +646,13 @@
           "measured_off": "render_report.json canvases[0].mean, the DRAWING with no type over it",
           "values": [
             56.6,
-            44.3,
+            44.4,
             63.0,
-            60.3,
+            59.8,
             56.6,
-            174.9,
-            57.1,
-            55.7,
+            175.3,
+            60.1,
+            56.2,
             37.3
           ]
         },
@@ -660,14 +660,14 @@
           "measured_off": "the nine shipped PNGs whole, type included, which is what a reader sees",
           "values": [
             57.8,
-            46.7,
+            46.8,
             64.6,
-            65.0,
+            64.2,
             55.3,
-            171.9,
-            59.7,
-            55.3,
-            44.1
+            171.6,
+            62.7,
+            56.0,
+            44.2
           ]
         },
         "median_lstar": {
@@ -675,13 +675,13 @@
           "values": [
             21.3,
             16.3,
-            24.1,
+            24.2,
             23.9,
             20.7,
-            71.9,
+            72.0,
             21.2,
             18.3,
-            14.4
+            14.5
           ]
         },
         "deck_median_L": 21.2,
