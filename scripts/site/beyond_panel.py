@@ -292,13 +292,6 @@ def registry_panel(f: dict) -> str:
                 f'<p class="qnote"><strong class="num">{n0(r["distinct"])}</strong> {noun} in '
                 f'all. A site with more than one counts for each.</p></div>')
 
-    newest = "".join(
-        f'<li><span class="nwd"><time datetime="{e(x["effective"])}">'
-        f'{ordinal_date(x["effective"])}</time></span>'
-        f'<span class="nwn"><cite>{e(x["name"])}</cite></span>'
-        f'<span class="nwo">{"".join(f"<cite>{e(o)}</cite>" for o in x["occupants"][:1])}</span>'
-        f'</li>' for x in d.get("newest") or [])
-
     roster = d.get("roster") or []
     def roster_row(x: dict) -> str:
         hay = " ".join([x["name"]] + x["owners"] + x["occupants"] + x["operators"]).lower()
@@ -323,23 +316,26 @@ def registry_panel(f: dict) -> str:
   in Texas. <strong class="num">{n0(d['latest_year_count'])}</strong> of them took effect
   this year.</p>
 
-  <h3>By the year each took effect</h3>
-  <ul class="ryears" data-prose="data">{bars}</ul>
-  <p class="qnote">{e(d['latest_year'])} is a part year and is not finished.</p>
-
-  <h3>Who owns them, who uses them, who runs them</h3>
-  <p class="qnote">The registry records three parties for each site and they are often three
-  different companies. Which one matters depends on the question.</p>
-  <div class="rroles">
-    {role_block("owners", "Who owns them", "owners")}
-    {role_block("occupants", "Who uses them", "occupants")}
-    {role_block("operator_roles", "Who runs them", "operators")}
+  <div class="registryoverview">
+    <section class="registryyears">
+      <h3>By the year each took effect</h3>
+      <ul class="ryears" data-prose="data">{bars}</ul>
+      <p class="qnote">{e(d['latest_year'])} is a part year and is not finished.</p>
+    </section>
+    <section class="registryroles">
+      <h3>Who owns them, who uses them, who runs them</h3>
+      <p class="qnote">The registry records three parties for each site. Which one matters
+      depends on the question.</p>
+      <div class="rroles">
+        {role_block("owners", "Owner", "owners")}
+        {role_block("occupants", "Occupant", "occupants")}
+        {role_block("operator_roles", "Operator", "operators")}
+      </div>
+    </section>
   </div>
 
-  <h3>Most recently registered</h3>
-  <ul class="newest" data-prose="data">{newest}</ul>
-
-  <h3>Every registered facility</h3>
+  <section class="registryroster" aria-labelledby="registry-roster-title">
+  <h3 id="registry-roster-title">Every registered facility</h3>
   <p class="qnote">Search by a facility name or any company in the state filing.
   A facility whose name is a link has a researched dossier behind it.
   <a href="../company/">Read the registry by company instead</a>,
@@ -355,8 +351,6 @@ def registry_panel(f: dict) -> str:
       <strong class="num" id="rcount">{n0(len(roster))}</strong> shown</p>
     <button class="rclear" id="rclear" type="button" disabled>Clear</button>
   </div>
-  <p class="qnote rthint">On a phone every facility becomes a card, so the page remains the
-  only vertical scroll.</p>
   <p class="rempty" id="rempty" hidden>No facility matches that search.</p>
   <div class="rtfield"><div class="rtwrap">
   <table class="rtable" id="registry-roster" data-prose="data">
@@ -369,6 +363,7 @@ def registry_panel(f: dict) -> str:
   </div></div>
   {_roster_filter()}
   {_dossier_dialog()}
+  </section>
 </section>"""
 
 
@@ -686,9 +681,10 @@ def self_test() -> int:
     check("...and two genuinely different filers are not merged",
           {x["name"] for x in r["top"]} >= {"Vantage Data Centers",
                                             "Vantage Data Centers Management"})
-    check("the roster explains the phone card layout",
-          'class="qnote rthint"' in html and "phone" in html and "card" in html
-          and "only vertical scroll" in html)
+    check("the roster leads with a reader task rather than layout instructions",
+          'id="registry-roster-title"' in html and 'id="rsearch"' in html
+          and "Search by a facility name or any company" in html
+          and 'class="qnote rthint"' not in html)
     check("...and every phone card field carries its visible label",
           all(f'data-label="{label}"' in html for label in
               ("Facility", "Owner", "Occupant", "Operator", "Took effect")))

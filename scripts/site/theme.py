@@ -613,7 +613,7 @@ def facility_css() -> str:
    two objects, and forty companies on one field need to stay countable. */
 .gring { fill:none; stroke:var(--sig-link); stroke-width:1; opacity:.3;
   transition:opacity .2s ease, stroke .2s ease; }
-.ghit { fill:transparent; pointer-events:all; }
+.ghit { fill:transparent; }
 .gnode { cursor:pointer; }
 .gnode:hover .ghalo, .gnode:focus .ghalo { opacity:.4; fill:var(--gold); }
 .gnode:hover .gring, .gnode:focus .gring { opacity:.9; stroke:var(--gold); }
@@ -677,6 +677,296 @@ def facility_css() -> str:
   .greadout a { justify-self:start; white-space:normal; }
 }
 
+/* THE ATLAS HAS ONE VISUAL GRAMMAR FROM THE LANDING VIEW TO A SOURCE ROW. The hero is a
+   decorative survey plate, never facility photography. Every interface layer above it remains
+   literal, selectable and grounded in the two public registers. */
+.sectioneyebrow, .entityeyebrow { display:block; font-family:var(--mono);
+  font-size:var(--s-2); line-height:1.35; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); }
+.dchero { position:relative; isolation:isolate; display:grid;
+  grid-template-rows:minmax(20rem,1fr) auto; min-height:min(48rem,82vh);
+  margin:0 0 clamp(3rem,8vw,6.5rem); overflow:hidden;
+  border-bottom:var(--hair) solid var(--rule);
+  background:#08060f url("datacenter-atlas-relief.webp") center / cover no-repeat; }
+.dchero::before { content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(90deg,rgba(8,6,15,.94) 0%,rgba(8,6,15,.7) 45%,rgba(8,6,15,.18) 78%),
+    linear-gradient(0deg,rgba(8,6,15,.92) 0%,transparent 52%,rgba(8,6,15,.32) 100%); }
+.dchero::after { content:"Decorative survey plate"; position:absolute; top:1rem; right:1rem;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(237,230,214,.56); }
+.dchero-copy { width:min(72rem,calc(100% - 2.4rem)); margin:auto;
+  align-self:center; padding:clamp(4rem,10vw,8rem) 0 3rem; }
+.dchero h1 { max-width:9ch; margin:.35rem 0 .8rem; font-size:clamp(3.2rem,9vw,8.2rem);
+  line-height:.84; letter-spacing:-.055em; text-wrap:balance; }
+.dchero .dclede { max-width:39rem; margin:0; font-size:clamp(1.1rem,2.2vw,1.55rem);
+  line-height:1.48; color:var(--caliche); }
+.dcjump { display:flex; flex-wrap:wrap; gap:.7rem; margin:1.8rem 0 0; }
+.dcjump a { display:inline-flex; align-items:center; min-height:2.7rem; padding:.55rem .85rem;
+  border:var(--hair) solid rgba(224,149,106,.55); border-radius:.28rem;
+  background:rgba(8,6,15,.54); color:var(--limestone); font-family:var(--mono);
+  font-size:var(--s-2); letter-spacing:.04em; text-decoration:none; }
+.dcjump a:first-child { background:var(--accent); border-color:var(--accent); color:var(--night); }
+.dcjump a:hover, .dcjump a:focus-visible { border-color:var(--limestone); }
+.dchero .dctiles { position:relative; z-index:1; display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr)); width:min(72rem,calc(100% - 2.4rem));
+  margin:0 auto 1.2rem; gap:var(--hair); padding:var(--hair);
+  border:var(--hair) solid rgba(228,216,195,.28); border-radius:.4rem;
+  background:rgba(8,6,15,.82); backdrop-filter:blur(12px); }
+.dchero .dctile { display:grid; align-content:end; min-height:7rem; padding:1rem 1.1rem;
+  border:0; background:rgba(18,16,42,.52); }
+.dchero .dcn { font-size:clamp(1.45rem,2.7vw,2.35rem); line-height:1.05;
+  color:var(--limestone); }
+.dchero .dck { margin-top:.35rem; color:var(--ink-mute); font-family:var(--mono);
+  font-size:var(--s-2); line-height:1.35; letter-spacing:.05em; text-transform:uppercase; }
+
+/* THE RECORD MODEL. A line from the certified row to the three filed roles is the ontology,
+   while the separate research strip makes the source boundary visible before a reader filters
+   the roster. */
+.dcontology { width:min(72rem,calc(100% - 2.4rem)); margin:clamp(3rem,7vw,6rem) auto;
+  padding:clamp(1.3rem,3vw,2.4rem); border:var(--hair) solid var(--rule);
+  border-radius:.55rem; background:linear-gradient(145deg,rgba(18,16,42,.76),rgba(8,6,15,.7)); }
+.ontohead { display:grid; grid-template-columns:minmax(14rem,.65fr) minmax(20rem,1fr);
+  gap:.35rem 2rem; align-items:end; }
+.ontohead .sectioneyebrow { grid-column:1 / -1; }
+.ontohead h2 { margin:.25rem 0 0; font-size:clamp(2rem,4.4vw,3.7rem); line-height:.96;
+  letter-spacing:-.035em; text-wrap:balance; }
+.ontohead p { margin:0; max-width:39rem; color:var(--ink-mute); }
+.ontoflow { position:relative; display:grid; grid-template-columns:minmax(13rem,.72fr) minmax(0,1.5fr);
+  gap:clamp(2rem,7vw,6rem); align-items:center; margin:2.5rem 0 1.2rem; }
+.ontoflow::before { content:""; position:absolute; left:27%; right:63%; top:50%;
+  border-top:var(--hair) solid var(--sig-link); opacity:.75; }
+.ontocore { position:relative; z-index:1; padding:1.2rem; border:var(--hair) solid var(--accent);
+  border-radius:50%; aspect-ratio:1; display:grid; align-content:center; text-align:center;
+  background:radial-gradient(circle,rgba(224,149,106,.16),rgba(8,6,15,.92) 68%); }
+.ontok { font-family:var(--mono); font-size:var(--s-2); color:var(--accent);
+  text-transform:uppercase; letter-spacing:.08em; }
+.ontocore h3, .ontoroles h3 { margin:.35rem 0; font-size:var(--s1); }
+.ontocore p, .ontoroles p { margin:0; color:var(--ink-mute); font-size:var(--s-1); }
+.ontoroles { position:relative; display:grid; gap:.55rem; }
+.ontoroles::before { content:""; position:absolute; left:-1.5rem; top:16%; bottom:16%;
+  border-left:var(--hair) solid var(--sig-link); }
+.ontoroles article { display:grid; grid-template-columns:auto 1fr; gap:.8rem; align-items:center;
+  padding:.85rem 1rem; border:var(--hair) solid var(--rule); border-radius:.35rem;
+  background:rgba(8,6,15,.7); }
+.ontomark { display:grid; place-items:center; width:2rem; height:2rem; border-radius:50%;
+  border:var(--hair) solid var(--sig-link); font-family:var(--mono); color:var(--caliche); }
+.ontolayers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.55rem;
+  padding-top:1.2rem; border-top:var(--hair) solid var(--rule); }
+.ontolayers article { display:grid; gap:.2rem; padding:.85rem; border-left:.15rem solid var(--rule);
+  background:rgba(8,6,15,.45); }
+.ontolayers span { font-family:var(--mono); font-size:.65rem; color:var(--ink-mute);
+  letter-spacing:.08em; text-transform:uppercase; }
+.ontolayers strong { color:var(--limestone); font-weight:550; }
+.ontolayers small { color:var(--ink-mute); line-height:1.45; }
+
+/* THE RELATIONSHIP FIELD IS A TWO-PANE INSTRUMENT. The drawing locates a relationship. The
+   lens names the parties and links the exact rows that caused it. */
+.gwrap { width:min(92rem,calc(100% - 2.4rem)); margin:0 auto clamp(3rem,8vw,7rem); }
+.ghead { display:grid; grid-template-columns:minmax(18rem,.8fr) minmax(20rem,1fr);
+  gap:.4rem 2rem; align-items:end; margin:0 0 1.2rem; }
+.ghead .sectioneyebrow { grid-column:1 / -1; }
+.ghead h2 { margin:.25rem 0 0; font-size:clamp(2.2rem,5.4vw,4.8rem); line-height:.92;
+  letter-spacing:-.045em; text-wrap:balance; }
+.ghead p { margin:0; max-width:38rem; color:var(--ink-mute); font-size:var(--s1); }
+.gcontrols { display:grid; grid-template-columns:minmax(16rem,1.3fr) minmax(12rem,.75fr) auto;
+  gap:.55rem; align-items:end; margin:0 0 .65rem; }
+.gcontrols label { display:grid; gap:.3rem; font-family:var(--mono); font-size:var(--s-2);
+  color:var(--ink-mute); }
+.gcontrols input, .gcontrols select, .gcontrols button { width:100%; min-height:2.75rem;
+  padding:.55rem .7rem; border:var(--hair) solid var(--rule); border-radius:.28rem;
+  background:var(--panel); color:var(--limestone); font:inherit; }
+.gcontrols button { width:auto; cursor:pointer; color:var(--caliche); }
+.gcontrols input:focus-visible, .gcontrols select:focus-visible, .gcontrols button:focus-visible {
+  outline:.12rem solid var(--accent); outline-offset:.12rem; }
+.gworkspace { display:grid; grid-template-columns:minmax(0,2.25fr) minmax(20rem,.75fr);
+  height:clamp(32rem,38vw,42rem); min-height:0; overflow:hidden;
+  border:var(--hair) solid var(--rule); border-radius:.55rem;
+  background:var(--panel); box-shadow:0 2rem 6rem rgba(0,0,0,.22); }
+.gworkspace .gfield { min-width:0; border:0; border-right:var(--hair) solid #3b3468;
+  border-radius:0; height:100%; }
+.gworkspace .gsvg { width:100%; height:100%; }
+.gfield.live .gsvg { cursor:default; }
+.gedgehit { fill:none; stroke:transparent; stroke-width:16; pointer-events:stroke; cursor:help; }
+.gedgehit:focus { outline:none; }
+.gedgehit:focus-visible { stroke:rgba(224,149,106,.13); }
+.gnode.filtered, .gedge.filtered, .gedgehit.filtered { opacity:.06; pointer-events:none; }
+.glens { display:flex; flex-direction:column; min-width:0; overflow-y:auto; padding:1.25rem 1.15rem;
+  background:linear-gradient(180deg,rgba(18,16,42,.92),rgba(8,6,15,.98)); }
+.glens h3 { margin:.3rem 0 .55rem; color:var(--limestone); font-size:clamp(1.25rem,2vw,1.8rem);
+  line-height:1.12; overflow-wrap:anywhere; }
+.glens > p { margin:0; color:var(--ink-mute); font-size:var(--s-1); line-height:1.5; }
+.grroles { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.35rem;
+  margin:1rem 0; }
+.grrole { display:grid; gap:.15rem; padding:.55rem; border:var(--hair) solid var(--rule);
+  color:var(--ink-mute); font-family:var(--mono); font-size:.66rem; line-height:1.3; }
+.grrole b { color:var(--caliche); font-weight:500; text-transform:uppercase; letter-spacing:.06em; }
+.grconnections { display:grid; gap:.55rem; margin:.45rem 0 1rem; }
+.grsection { margin:.2rem 0 0; font-family:var(--mono); font-size:.68rem; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-mute); }
+.grconnection { padding:.7rem .75rem; border:var(--hair) solid var(--rule); border-radius:.3rem;
+  background:rgba(8,6,15,.58); }
+.grpair { display:flex; flex-wrap:wrap; gap:.25rem .45rem; align-items:baseline; margin:0; line-height:1.35; }
+.grpair a, .grcompany { color:var(--limestone); text-decoration:underline;
+  text-decoration-color:rgba(224,149,106,.55); text-underline-offset:.16em; }
+.grpair span { color:var(--ink-mute); }
+.grcount { display:block; margin:.3rem 0 .15rem; color:var(--ink-mute); font-size:var(--s-2); }
+.grcount strong { color:var(--accent); }
+.grfacilities { margin:.25rem 0 0; padding:0; list-style:none; }
+.grfacilities li { padding:.18rem 0; font-size:var(--s-2); line-height:1.4; }
+.grfacilities a { color:var(--caliche); }
+.grquiet { margin:.4rem 0; padding:.8rem; border:var(--hair) dashed var(--rule);
+  color:var(--ink-mute); font-size:var(--s-1); }
+.grmore { margin:.15rem 0 0; color:var(--ink-mute); font-family:var(--mono); font-size:.68rem; }
+.grinspect { margin:.55rem 0 0; padding:.35rem .5rem; border:var(--hair) solid var(--rule);
+  border-radius:.22rem; background:transparent; color:var(--caliche); cursor:pointer;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.05em; }
+.grinspect:hover, .grinspect:focus-visible { border-color:var(--accent); color:var(--limestone); }
+.grlink { margin-top:auto; align-self:flex-start; padding-top:.8rem; color:var(--accent);
+  font-family:var(--mono); font-size:var(--s-2); text-underline-offset:.18em; }
+.gkey { padding:.65rem 0 0; border-top:var(--hair) solid transparent; }
+
+/* FACILITY AND COMPANY PAGES BEGIN AS ATLAS ENTRIES, THEN QUICKLY BECOME READING TOOLS. */
+.companypage, .facilitypage, .dcpage { width:min(72rem,100%); }
+.entityhero { position:relative; isolation:isolate; display:grid; align-content:end;
+  min-height:clamp(13rem,30vw,23rem); margin:.6rem 0 2rem; padding:clamp(1.2rem,4vw,2.4rem);
+  overflow:hidden; border:var(--hair) solid var(--rule); border-radius:.55rem;
+  background:#08060f url("datacenter-atlas-relief.webp") center 64% / cover no-repeat; }
+.entityhero::before { content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(0deg,rgba(8,6,15,.97),rgba(8,6,15,.18) 80%),
+    linear-gradient(90deg,rgba(8,6,15,.72),transparent); }
+.entityhero h1 { max-width:18ch; margin:.4rem 0 0; font-size:clamp(2.25rem,6vw,5rem);
+  line-height:.94; letter-spacing:-.04em; text-wrap:balance; }
+.entityhero cite { font-style:normal; }
+.dossierlead { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(15rem,.75fr);
+  gap:1.2rem 2rem; align-items:start; margin:0 0 2.4rem; }
+.dossierlead .dsum { margin:0; font-size:clamp(1.1rem,2vw,1.35rem); }
+.devidence { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.35rem; }
+.devidence span { display:grid; align-content:start; min-height:4.8rem; padding:.65rem;
+  border:var(--hair) solid var(--rule); background:rgba(18,16,42,.48);
+  color:var(--ink-mute); font-family:var(--mono); font-size:.64rem; line-height:1.35;
+  letter-spacing:.04em; text-transform:uppercase; }
+.devidence strong { color:var(--limestone); font-size:var(--s0); line-height:1.1; font-weight:500; }
+.dsection { margin:clamp(2rem,5vw,4rem) 0; }
+.dossier .dsection h2, .dossier .dsection h3 { margin:0 0 1rem; }
+.dfacts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; }
+.drow { display:block; min-width:0; padding:1rem; border:var(--hair) solid var(--rule);
+  border-radius:.3rem; background:rgba(18,16,42,.35); }
+.drow dt { margin:0 0 .4rem; font-family:var(--mono); font-size:.68rem; line-height:1.35;
+  letter-spacing:.07em; text-transform:uppercase; }
+.drow dd { line-height:1.45; overflow-wrap:anywhere; }
+.drow.dmetric .dval { display:block; color:var(--limestone); font-size:clamp(1.18rem,2.6vw,1.75rem);
+  line-height:1.12; letter-spacing:-.025em; }
+.drow.drole { border-top-color:var(--accent); }
+.drow.drecord { background:rgba(8,6,15,.48); }
+.dnotes, .dgaps { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem;
+  max-width:none; margin:0; padding:0; list-style:none; }
+.dnotes li, .dgaps li { margin:0; padding:.9rem 1rem; border:var(--hair) solid var(--rule);
+  border-radius:.3rem; line-height:1.55; }
+.dnotes li { background:rgba(18,16,42,.35); }
+.dgaps li { border-style:dashed; color:var(--ink-mute); background:rgba(8,6,15,.35); }
+.dsources { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem;
+  max-width:none; margin:0; padding:0; list-style:none; counter-reset:source; }
+.dsource { position:relative; display:grid; gap:.5rem; min-width:0; margin:0; padding:.9rem 1rem .9rem 2.6rem;
+  border:var(--hair) solid var(--rule); border-radius:.3rem; background:rgba(8,6,15,.38);
+  counter-increment:source; font-size:var(--s-1); }
+.dsource::before { content:counter(source); position:absolute; top:.9rem; left:.9rem;
+  font-family:var(--mono); color:var(--accent); }
+.dsource-main { display:grid; gap:.12rem; min-width:0; line-height:1.45; overflow-wrap:anywhere; }
+.dsource-main a { color:var(--caliche); }
+.dsource-meta { display:flex; flex-wrap:wrap; gap:.35rem .55rem; align-items:center; }
+.dsource .dpub, .dsource .dwhen { margin:0; font-size:.68rem; }
+.dossdlg { width:min(64rem,calc(100vw - 2rem)); }
+
+.cstats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.5rem; margin:0 0 1.5rem; }
+.cstat { display:grid; min-height:6.6rem; align-content:end; padding:.8rem;
+  border:var(--hair) solid var(--rule); border-radius:.3rem; background:rgba(18,16,42,.4); }
+.cstat strong { color:var(--limestone); font-family:var(--mono); font-size:clamp(1.4rem,3vw,2.2rem);
+  line-height:1; font-weight:500; }
+.cstat small { margin-top:.35rem; color:var(--ink-mute); font-family:var(--mono);
+  font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; }
+.cidentity { margin:1.5rem 0 3rem; padding:1rem 1.1rem; border-left:.18rem solid var(--accent);
+  background:rgba(18,16,42,.42); }
+.cidentity .ckind { margin:0; }
+.cidentity details { margin:.75rem 0 0; }
+.cidentity summary { color:var(--caliche); cursor:pointer; font-family:var(--mono); font-size:var(--s-2); }
+.cidentity p, .cidentity ul { color:var(--ink-mute); font-size:var(--s-1); }
+.cportfolio { margin:2.5rem 0 4rem; }
+.cportfolio > h2, .crelations > h2 { margin-bottom:.55rem; }
+.cportfolio > p, .crelations > p { color:var(--ink-mute); }
+.cfacs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; }
+.cfac { display:flex; flex-direction:column; min-width:0; padding:1rem;
+  border:var(--hair) solid var(--rule); border-radius:.3rem; background:rgba(18,16,42,.3); }
+.cfacmain { display:grid; gap:.35rem; }
+.cfacmain a { color:var(--limestone); font-size:var(--s1); line-height:1.25; }
+.cfac .cwhen { margin:0; }
+.cfacroles { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:1rem; }
+.cfacrole { padding:.2rem .4rem; border:var(--hair) solid var(--rule); border-radius:999px;
+  color:var(--ink-mute); font-family:var(--mono); font-size:.65rem; letter-spacing:.04em;
+  text-transform:uppercase; }
+.crelations { margin:4rem 0; }
+.crelationgrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; }
+.crelation { min-width:0; padding:1rem; border:var(--hair) solid var(--rule);
+  border-radius:.3rem; background:linear-gradient(145deg,rgba(18,16,42,.45),rgba(8,6,15,.38)); }
+.crelation h3 { margin:0 0 .35rem; font-size:var(--s1); line-height:1.25; }
+.crelation > p { margin:.2rem 0 .65rem; color:var(--ink-mute); font-size:var(--s-1); }
+.crelation ul { margin:.4rem 0 0; padding-left:1.1rem; }
+.crelation li { margin:.35rem 0; font-size:var(--s-1); line-height:1.4; }
+.crelmore { color:var(--ink-mute); font-family:var(--mono); font-size:.68rem; }
+.cempty { padding:1rem; border:var(--hair) dashed var(--rule); color:var(--ink-mute); }
+
+/* THE SUMMARY AND THE ROSTER HAVE DIFFERENT JOBS. The first compares the shape of the record.
+   The second is a finder, so it receives the stable anchor used by the hero. */
+.registryoverview { display:grid; grid-template-columns:minmax(15rem,.7fr) minmax(0,1.3fr);
+  gap:.75rem; margin:2.5rem 0 4rem; }
+.registryyears, .registryroles { min-width:0; padding:1.1rem;
+  border:var(--hair) solid var(--rule); border-radius:.35rem; background:rgba(18,16,42,.3); }
+.registryoverview h2 { margin-top:0; }
+.registryroles .rroles { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.registryroster { scroll-margin-top:5rem; margin-top:4rem; }
+
+@media (max-width:68rem) {
+  .gworkspace { grid-template-columns:1fr; height:auto; }
+  .gworkspace .gfield { height:auto; aspect-ratio:1000 / 620;
+    border-right:0; border-bottom:var(--hair) solid #3b3468; }
+  .gworkspace .gsvg { height:auto; }
+  .glens { min-height:24rem; overflow:visible; }
+  .grlink { margin-top:1rem; }
+  .ontohead, .ghead { grid-template-columns:1fr; align-items:start; }
+  .ontohead .sectioneyebrow, .ghead .sectioneyebrow { grid-column:auto; }
+  .ontoflow::before { left:31%; right:56%; }
+  .dossierlead { grid-template-columns:1fr; }
+  .registryoverview { grid-template-columns:1fr; }
+}
+@media (max-width:48rem) {
+  .dchero { min-height:44rem; }
+  .dchero::before { background:linear-gradient(0deg,rgba(8,6,15,.96),rgba(8,6,15,.4) 75%); }
+  .dchero::after { display:none; }
+  .dchero .dctiles { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .dchero .dctile { min-height:5.8rem; }
+  .gcontrols { grid-template-columns:1fr; }
+  .gcontrols button { width:100%; }
+  .gworkspace { min-height:0; }
+  .gworkspace .gfield { min-height:25rem; }
+  .gworkspace .gsvg { width:auto; min-width:100%; height:25rem; margin-left:50%; transform:translateX(-50%); }
+  .ontoflow { grid-template-columns:1fr; }
+  .ontoflow::before { left:50%; right:auto; top:27%; bottom:56%; border-top:0;
+    border-left:var(--hair) solid var(--sig-link); }
+  .ontocore { width:min(16rem,82%); margin:auto; }
+  .ontoroles::before { display:none; }
+  .ontolayers, .dfacts, .dnotes, .dgaps, .dsources, .cfacs, .crelationgrid {
+    grid-template-columns:1fr; }
+  .cstats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .registryroles .rroles { grid-template-columns:1fr; }
+}
+@media (max-width:30rem) {
+  .dchero-copy, .dchero .dctiles, .dcontology, .gwrap { width:calc(100% - 1.2rem); }
+  .dchero .dctiles { grid-template-columns:1fr; }
+  .dchero .dctile { min-height:4.7rem; }
+  .dchero h1 { font-size:3.25rem; }
+  .grroles { grid-template-columns:1fr; }
+  .entityhero { margin-left:-.2rem; margin-right:-.2rem; }
+}
+
 /* CAPITAL FILED PER YEAR. One hue at one intensity on every column, for the same reason the grid
    watch bar carries no severity ramp: a colour ramp is a verdict and the height is the whole
    message. No gridlines behind it either, because a reader compares lengths here and a rule
@@ -737,7 +1027,8 @@ def facility_css() -> str:
 /* THE CAMPUS TABLE carries a project name in the first column, a name the filer wrote
    rather than one this project chose, so it is the longest string on the page and the
    flexible track belongs to it. */
-.cbcamp .cbrow { grid-template-columns:1fr 7rem 7.4rem 6rem 7rem; }
+.cbcamp .cbrow { grid-template-columns:minmax(21.1rem,1fr) 6.6rem 7.1rem 5.6rem 7.1rem;
+  column-gap:.35rem; }
 /* A COLUMN OF MAGNITUDES ALIGNS ON ITS LAST DIGIT. Left aligned, $5,000,000 and
    $15,000,000 are the same shape and $100,000,000 is the only row that looks bigger than
    it is, so the reader has to parse every string to rank them. Right aligned in mono, the
@@ -758,6 +1049,11 @@ def facility_css() -> str:
 .ctwo h3 { font-family:var(--mono); font-size:var(--s-2); letter-spacing:.1em;
   text-transform:uppercase; color:var(--ink-mute); margin:1rem 0 .4rem; font-weight:600; }
 .construction .rcl li { font-family:var(--mono); font-size:var(--s-2); }
+
+@media (max-width:49.75rem) {
+  .cbcamp .cbrow { grid-template-columns:1fr; }
+  .cbcamp .cbd { grid-row:auto; }
+}
 
 @media (max-width:44rem) {
   .cbrow { grid-template-columns:6.5rem 1fr; gap:.1rem .8rem; }
@@ -3836,8 +4132,12 @@ def self_test() -> int:
     check("...and the column contributes no box of its own to get mis-sized",
           ".qb { display:contents; }" in sheet)
 
-    # The phone roster must use the page's scroll rather than nesting two scroll directions.
-    # Filtering must retain the semantic `hidden` state after card layout changes display.
+    # THE HIDDEN HALF OF THE ROSTER HAS TO ANNOUNCE ITSELF. Half the table is off screen at
+    # phone width, and the shadows are what say so. `local` on two of the four layers is the
+    # whole mechanism: without it they are a static fade that lies at the end of the travel.
+    # The affordance must not be a gradient under the text. A gradient ground is one
+    # tests/text_contrast declines to measure, and putting one on the roster hid 1,482 runs
+    # from the gate that checks legibility without turning anything red.
     check("the phone roster becomes labelled cards instead of a sideways table",
           ".rtable td::before { content:attr(data-label);" in sheet
           and ".rtwrap { overflow:visible; max-height:none; border:0; }" in sheet)

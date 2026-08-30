@@ -31,16 +31,10 @@ const ok = (label, cond, extra = "") => {
 
 // OVER HTTP, not file://. The record page links a second stylesheet and the month anchors are
 // real urls; file:// resolves both differently and would test a page nobody is served.
-const TYPES = { ".css": "text/css", ".png": "image/png", ".svg": "image/svg+xml",
+const TYPES = { ".css": "text/css", ".png": "image/png", ".webp": "image/webp", ".svg": "image/svg+xml",
                 ".woff2": "font/woff2", ".json": "application/json", ".xml": "application/xml" };
 const server = http.createServer((rq, rs) => {
-  const requestPath = decodeURIComponent(rq.url.split("?")[0]);
-  if (requestPath === "/__test__/glabel-no-transition.css") {
-    rs.writeHead(200, { "content-type": "text/css" });
-    rs.end(".glabel { transition: none !important; }");
-    return;
-  }
-  let f = path.join(SITE, requestPath);
+  let f = path.join(SITE, decodeURIComponent(rq.url.split("?")[0]));
   if (!f.startsWith(SITE)) { rs.writeHead(403).end(); return; }
   try { if (fs.statSync(f).isDirectory()) f = path.join(f, "index.html"); fs.statSync(f); }
   catch { rs.writeHead(404).end("no"); return; }
@@ -155,11 +149,12 @@ const browser = await chromium.launch(LAUNCH);
   // This block measures rendered motion and label opacity, so the stylesheet is part of the
   // thing under test. A DOM-ready page can still be waiting on that file in a slow workspace.
   await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "load" });
-  // The assertion is about the focused opacity state, not the transition's scheduler. Removing
-  // only label transitions in this block makes the computed style immediate and deterministic.
-  await p.addStyleTag({ url: `${ORIGIN}/__test__/glabel-no-transition.css` });
   const node = p.locator(".gnode").first();
   const point = node.locator(".ghit");
+  // The atlas hero now earns the first screen, so the relationship field begins below it.
+  // A bounding box does not scroll a locator into view. Move the same point a reader is about
+  // to use onto the screen before measuring or the mouse would be aimed outside the viewport.
+  await node.scrollIntoViewIfNeeded();
   const key = await node.getAttribute("data-k");
   const href = await node.getAttribute("href");
   // The link also contains a standing company label, so its full bounding box can be much
@@ -210,11 +205,36 @@ const browser = await chromium.launch(LAUNCH);
     await second.evaluate(() => window.opener === null));
   await second.close();
 
+  // A line is evidence, not decoration. Keyboard focus has to reveal the exact certified rows
+  // that caused the relationship, including routes to the dossiers already in this build.
+  const graphData = await p.$eval("#gdata", (el) => JSON.parse(el.textContent));
+  const firstEdge = graphData.edges[0];
+  await p.locator('.gedgehit[data-i="0"]').focus();
+  const edgeReadout = await p.evaluate(() => ({
+    name: document.getElementById("grname").textContent,
+    facilities: [...document.querySelectorAll("#grconnections .grfacilities li")]
+      .map((li) => li.textContent.trim()),
+    hrefs: [...document.querySelectorAll("#grconnections .grfacilities a")]
+      .map((a) => a.getAttribute("href")),
+  }));
+  ok("a network line names both companies",
+    edgeReadout.name.includes(graphData.nodes.find((n) => n.k === firstEdge.a).n) &&
+    edgeReadout.name.includes(graphData.nodes.find((n) => n.k === firstEdge.b).n),
+    edgeReadout.name);
+  ok("...and reveals every certified row behind it",
+    edgeReadout.facilities.length === firstEdge.f.length &&
+    firstEdge.f.every((f) => edgeReadout.facilities.includes(f.n)),
+    JSON.stringify(edgeReadout));
+  ok("...with every researched row linked to its dossier",
+    firstEdge.f.filter((f) => f.u).every((f) => edgeReadout.hrefs.includes(f.u)),
+    JSON.stringify(edgeReadout.hrefs));
+
+  const finalDestination = new URL(href, p.url()).href;
   await Promise.all([
-    p.waitForURL(destination),
+    p.waitForURL(finalDestination),
     p.mouse.click(x, y),
   ]);
-  ok("the point can be clicked without chasing it", p.url() === destination, p.url());
+  ok("the point can be clicked without chasing it", p.url() === finalDestination, p.url());
   await p.close();
 }
 
@@ -231,6 +251,11 @@ const browser = await chromium.launch(LAUNCH);
     window.cancelAnimationFrame = () => {};
   });
   await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "load" });
+  // The redesigned atlas has a real opening act above the graph. Bring the live field into the
+  // viewport before sampling screen coordinates; otherwise every valid point is correctly below
+  // the phone screen and the geometry test would be measuring the hero instead of the graph.
+  await p.locator("#gfield").scrollIntoViewIfNeeded();
+  const fieldScrollY = await p.evaluate(() => scrollY);
   await p.evaluate(() => {
     window.__companyActivations = [];
     window.__captureCompanyActivation = (event) => {
@@ -261,7 +286,13 @@ const browser = await chromium.launch(LAUNCH);
       if (d > row.r || (best && d > best.d)) return best;
       return { ...row, d };
     }, null);
-    const visible = (x, y) => x >= 0 && y >= 0 && x < innerWidth && y < innerHeight;
+    const field = document.getElementById("gfield").getBoundingClientRect();
+    const visible = (x, y) => {
+      const painted = document.elementFromPoint(x, y);
+      return x >= Math.max(0, field.left) && y >= Math.max(0, field.top) &&
+        x < Math.min(document.documentElement.clientWidth, field.right) &&
+        y < Math.min(innerHeight, field.bottom) && !!painted?.closest("#gfield");
+    };
     const centers = rows.filter((row) => visible(row.x, row.y)).map((row) => {
       const expected = nearest(row.x, row.y);
       return { x: row.x, y: row.y, key: expected.key, name: expected.name,
@@ -294,6 +325,13 @@ const browser = await chromium.launch(LAUNCH);
     String(samples.overlaps.length));
   const disagreements = [];
   for (const sample of [...samples.centers, ...samples.overlaps]) {
+    // A pointer click can focus a partly clipped SVG anchor and let the browser reveal it. Restore
+    // the sampled field position so every subsequent screen coordinate still names the geometry
+    // captured above; the production resolver itself remains responsible for the chosen node.
+    await p.evaluate((y) => {
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, y);
+    }, fieldScrollY);
     await p.mouse.move(sample.x, sample.y);
     const selected = await p.evaluate(() => ({
       name: document.getElementById("grname").textContent.trim(),
@@ -324,23 +362,28 @@ const browser = await chromium.launch(LAUNCH);
   await p.evaluate(() => document.getElementById("gfield").removeEventListener(
     "companyactivate", window.__captureCompanyActivation));
   const overlap = samples.overlaps[0];
-  await p.mouse.move(overlap.x, overlap.y);
+  if (overlap) {
+    await p.evaluate((y) => window.scrollTo(0, y), fieldScrollY);
+    await p.mouse.move(overlap.x, overlap.y);
+  }
   const middleSelection = await p.evaluate(() => ({
     name: document.getElementById("grname").textContent.trim(),
     href: new URL(document.getElementById("grlink").getAttribute("href"), location.href).href,
   }));
-  const registry = p.url();
-  const backgroundPromise = p.context().waitForEvent("page");
-  await p.mouse.click(overlap.x, overlap.y, { button: "middle" });
-  const background = await backgroundPromise;
-  await background.waitForURL(middleSelection.href, { waitUntil: "domcontentloaded" });
-  ok("a middle click in an overlap opens the resolved company",
-    background.url() === middleSelection.href,
-    `${background.url()} instead of ${middleSelection.name} at ${middleSelection.href}`);
-  ok("...and leaves the registry open", p.url() === registry, p.url());
-  ok("the middle-click destination has no opener",
-    await background.evaluate(() => window.opener === null));
-  await background.close();
+  if (overlap) {
+    const registry = p.url();
+    const backgroundPromise = p.context().waitForEvent("page");
+    await p.mouse.click(overlap.x, overlap.y, { button: "middle" });
+    const background = await backgroundPromise;
+    await background.waitForURL(middleSelection.href, { waitUntil: "domcontentloaded" });
+    ok("a middle click in an overlap opens the resolved company",
+      background.url() === middleSelection.href,
+      `${background.url()} instead of ${middleSelection.name} at ${middleSelection.href}`);
+    ok("...and leaves the registry open", p.url() === registry, p.url());
+    ok("the middle-click destination has no opener",
+      await background.evaluate(() => window.opener === null));
+    await background.close();
+  }
   await p.close();
 }
 
@@ -378,6 +421,7 @@ const browser = await chromium.launch(LAUNCH);
   const p = await browser.newPage({ viewport: { width: 390, height: 780 },
                                     isMobile: true, hasTouch: true });
   await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "load" });
+  await p.locator("#gfield").scrollIntoViewIfNeeded();
   const targetSizes = await p.$$eval(".ghit", (hits) => hits.map((hit) => {
     const box = hit.getBoundingClientRect();
     return { width: box.width, height: box.height };
@@ -421,6 +465,28 @@ const browser = await chromium.launch(LAUNCH);
 {
   const p = await browser.newPage({ viewport: { width: 390, height: 780 }, isMobile: true, hasTouch: true });
   await p.goto(`${ORIGIN}${ROSTER}`, { waitUntil: "domcontentloaded" });
+  const atlasFit = await p.evaluate(() => {
+    const field = document.querySelector(".gfield").getBoundingClientRect();
+    const lens = document.querySelector(".glens").getBoundingClientRect();
+    const search = document.getElementById("gsearch").getBoundingClientRect();
+    const role = document.getElementById("grole").getBoundingClientRect();
+    const tiles = [...document.querySelectorAll(".dctile")].map((el) => el.getBoundingClientRect());
+    return {
+      fieldBottom: field.bottom,
+      lensTop: lens.top,
+      searchBottom: search.bottom,
+      roleTop: role.top,
+      tileLefts: tiles.map((r) => Math.round(r.left)),
+      tileWidths: tiles.map((r) => Math.round(r.width)),
+    };
+  });
+  ok("the relationship lens stacks below the field on a phone",
+    atlasFit.lensTop >= atlasFit.fieldBottom - 1, JSON.stringify(atlasFit));
+  ok("the graph controls stack instead of shrinking side by side",
+    atlasFit.roleTop >= atlasFit.searchBottom - 1, JSON.stringify(atlasFit));
+  ok("the four atlas figures become one readable column",
+    new Set(atlasFit.tileLefts).size === 1 && new Set(atlasFit.tileWidths).size === 1,
+    JSON.stringify(atlasFit));
   const rosterFit = await p.evaluate(() => {
     const wrap = document.querySelector(".rtwrap");
     const row = document.querySelector(".rtable tbody tr");

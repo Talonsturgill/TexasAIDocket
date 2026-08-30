@@ -28,7 +28,7 @@ const MULTI=[...reach.values()].filter(v=>v.size>=2).length;
 const SPLIT=[...spell.values()].filter(v=>v.size>1).length;
 const PAGES=MULTI+GRP.length;
 const ok=(n,c,x="")=>{console.log(`  ${c?"ok  ":"FAIL"}  ${n}${c?"":"  "+x}`); if(!c)fails++;};
-const T={".css":"text/css",".png":"image/png",".svg":"image/svg+xml",".woff2":"font/woff2",".json":"application/json",".xml":"application/xml"};
+const T={".css":"text/css",".png":"image/png",".webp":"image/webp",".svg":"image/svg+xml",".woff2":"font/woff2",".json":"application/json",".xml":"application/xml"};
 const srv=http.createServer((rq,rs)=>{let f=path.join(SITE,decodeURIComponent(rq.url.split("?")[0]));
   if(!f.startsWith(SITE)){rs.writeHead(403).end();return;}
   try{if(fs.statSync(f).isDirectory())f=path.join(f,"index.html");fs.statSync(f);}catch{rs.writeHead(404).end("no");return;}
@@ -52,16 +52,23 @@ const b=await chromium.launch(L);
   ok("the Oracle page serves", r.status()===200);
   const d=await p.evaluate(()=>({
     h1:(document.querySelector("h1")||{}).textContent,
-    reach:(document.querySelector(".creach")||{}).textContent,
-    facs:document.querySelectorAll(".cfacs li").length,
-    linked:document.querySelectorAll(".cfacs li a").length,
-    vars:document.querySelectorAll(".cvars li").length}));
+    reach:(document.querySelector(".cstat:first-child strong")||{}).textContent,
+    stats:document.querySelectorAll(".cstat").length,
+    facs:document.querySelectorAll(".cfac").length,
+    linked:document.querySelectorAll(".cfac a").length,
+    vars:document.querySelectorAll(".cvars li").length,
+    relations:document.querySelectorAll(".crelation").length,
+    relationCopy:(document.querySelector(".crelations")||{}).textContent}));
   ok("it names Oracle", (d.h1||"").includes("Oracle"), d.h1);
   const ORACLE=reach.get(norm("Oracle America Cloud Services, LLC")).size;
   ok("it reports the computed facility count", (d.reach||"").includes(String(ORACLE)), d.reach);
   ok("it lists all of them", d.facs===ORACLE, `${d.facs} of ${ORACLE}`);
+  ok("it separates reach from the three filed roles", d.stats===4, String(d.stats));
   ok("it shows both spellings the state used", d.vars===2, String(d.vars));
   ok("dossiered facilities link through", d.linked>=1, String(d.linked));
+  ok("it explains graph lines with exact shared-row cards",
+    d.relations>0 && (d.relationCopy||"").includes("It is a registry relationship"),
+    `${d.relations} relationship cards`);
   await p.close();
 }
 {

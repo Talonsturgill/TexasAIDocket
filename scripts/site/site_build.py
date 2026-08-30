@@ -28,6 +28,8 @@ THREE RULES THIS FILE OBEYS
 """
 from __future__ import annotations
 
+import time
+
 # This module remains the compatibility façade and the one build orchestrator. Shared page
 # chrome and write-time gates live in site_context; renderer bodies live by page family. The
 # wildcard imports are deliberate here only: schema checks and maintenance scripts historically
@@ -38,6 +40,20 @@ from site_pages.docket import *
 from site_pages.feeds import *
 from site_pages.editorial import *
 from site_pages.datacenters import *
+
+
+def _remove_output_tree(out: Path) -> None:
+    """Remove a generated tree even when a sync client briefly repopulates it."""
+    delay = 0.1
+    for attempt in range(6):
+        try:
+            shutil.rmtree(out)
+            return
+        except OSError:
+            if attempt == 5:
+                raise
+            time.sleep(delay)
+            delay *= 2
 
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
@@ -77,7 +93,7 @@ def build(out: Path, today: str) -> dict:
             carried[rel] = src.read_bytes()
 
     if out.exists():
-        shutil.rmtree(out)
+        _remove_output_tree(out)
     out.mkdir(parents=True)
 
     for rel, blob in carried.items():
@@ -149,6 +165,15 @@ def build(out: Path, today: str) -> dict:
     w("home.css", theme.home_css())
     w("record.css", theme.record_css())
     w("facility.css", theme.facility_css())
+
+    # THE DATA CENTER PLATE IS DECORATIVE AND DECLARED AS SUCH IN THE MARKUP. It is committed
+    # under assets rather than generated during a build because the selected image is an art
+    # input. Copying the exact bytes keeps the publication rebuild deterministic.
+    datacenter_plate = REPO_ROOT / "assets" / "site" / "datacenter-atlas-relief.webp"
+    if not datacenter_plate.is_file():
+        raise SystemExit("site_build: the data center atlas plate is missing")
+    shutil.copyfile(datacenter_plate, out / "datacenter-atlas-relief.webp")
+    written.append("datacenter-atlas-relief.webp")
 
     # THE CUSTOM DOMAIN, told to GitHub Pages. Derived from SITE_URL rather than typed, so the
     # domain the pages claim as canonical and the domain Pages actually serves cannot disagree.

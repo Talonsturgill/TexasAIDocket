@@ -54,6 +54,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 REGISTRY = ROOT / "ledger" / "gridwatch" / "datacenters.json"
 GROUPS = ROOT / "config" / "entity_groups.json"
 ROLES = ("owners", "occupants", "operators")
+MONTHS = ("January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December")
 
 try:
     from numeral_lint import NUMERAL as _NUMERAL
@@ -198,6 +200,13 @@ def n0(v) -> str:
     return f"{int(v):,}"
 
 
+def ordinal_date(iso: str) -> str:
+    """The house date for a registry effective date."""
+    y, m, d = (int(x) for x in str(iso).split("-"))
+    suffix = "th" if 11 <= d <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(d % 10, "th")
+    return f"{MONTHS[m - 1]} {d}{suffix}, {y}"
+
+
 def published(data: dict) -> tuple[list, list]:
     """Who gets a page. Entities on more than one facility, and every curated group.
 
@@ -220,40 +229,111 @@ def _facility_list(names, dossiers, facilities) -> str:
     return "".join(out)
 
 
-def panel(item: dict, data: dict, dossiers: dict, *, is_group: bool) -> str:
-    """One company, and every facility the state puts it on."""
-    facilities = {f["name"]: f for f in data["facilities"]}
-    rows = []
-    for role in ("owner", "occupant", "operator"):
-        names = item["roles"].get(role) or []
-        if not names:
+def relationships(item: dict, data: dict, *, is_group: bool = False) -> list[dict]:
+    """Other repeat entities that share at least one certified facility with ``item``.
+
+    This is the prose answer to what a line on the registry field means. Parent groups are not
+    nodes in that field and therefore do not acquire relationships from their members here.
+    """
+    if is_group:
+        return []
+    target = set(item.get("facilities") or [])
+    out = []
+    for other in data.get("entities") or []:
+        if other.get("key") == item.get("key") or other.get("reach", 0) < MIN_REACH:
             continue
-        rows.append(
-            f'<section class="crole"><h2>{e(role.title())} of record on '
-            f'<strong class="num">{n0(len(names))}</strong></h2>'
-            f'<ul class="cfacs" data-prose="data">{_facility_list(names, dossiers, facilities)}</ul></section>')
+        shared = sorted(target & set(other.get("facilities") or []))
+        if shared:
+            out.append({"name": other["name"], "slug": other["slug"], "shared": shared})
+    return sorted(out, key=lambda row: (-len(row["shared"]), row["name"].lower()))
+
+
+def panel(item: dict, data: dict, dossiers: dict, *, is_group: bool) -> str:
+    """One company, each facility once, and the certified rows behind its graph lines."""
+    facilities = {f["name"]: f for f in data["facilities"]}
+
+    by_facility: dict[str, list[str]] = defaultdict(list)
+    for role in ("owner", "occupant", "operator"):
+        for name in item["roles"].get(role) or []:
+            by_facility[name].append(role)
+
+    def facility_link(name: str) -> str:
+        dossier = dossiers.get(name)
+        return (f'<a href="../../facility/{e(dossier["slug"])}/"><cite>{e(name)}</cite></a>'
+                if dossier else f'<cite>{e(name)}</cite>')
+
+    facility_rows = []
+    order = sorted(by_facility, key=lambda name: (
+        (facilities.get(name) or {}).get("effective", ""), name.lower()), reverse=True)
+    for name in order:
+        effective = (facilities.get(name) or {}).get("effective", "")
+        when = (f'<time datetime="{e(effective)}" class="cwhen">'
+                f'{e(ordinal_date(effective))}</time>' if effective else "")
+        role_chips = "".join(
+            f'<span class="cfacrole">{e(role.title())}</span>'
+            for role in ("owner", "occupant", "operator") if role in by_facility[name])
+        facility_rows.append(
+            f'<li class="cfac"><div class="cfacmain">{facility_link(name)}{when}</div>'
+            f'<div class="cfacroles">{role_chips}</div></li>')
+
+    stat_rows = [("Certified facilities", item["reach"])] + [
+        (f'{role.title()} of record', len(item["roles"].get(role) or []))
+        for role in ("owner", "occupant", "operator")]
+    stats = "".join(
+        f'<span class="cstat"><strong class="num">{n0(value)}</strong>'
+        f'<small>{e(label)}</small></span>' for label, value in stat_rows)
 
     if is_group:
-        head = (f'<p class="csum">A curated grouping of '
+        head = (f'<div class="cidentity"><p class="csum">A curated grouping of '
                 f'<strong class="num">{n0(len(item["members"]))}</strong> entities that file '
                 f'separately in the registry. {e(item["note"])}</p>'
-                f'<details class="fold"><summary>The entities in this group</summary>'
+                f'<details class="fold"><summary>Entities in this parent grouping</summary>'
                 f'<ul class="cvars" data-prose="data">'
                 + "".join(f"<li><cite>{e(m)}</cite></li>" for m in sorted(item["members"]))
-                + "</ul></details>")
+                + "</ul></details></div>")
     else:
         v = item["variants"]
         head = ""
         if len(v) > 1:
-            head = (f'<p class="csum">The state filed this company under '
+            head = (f'<div class="cidentity"><p class="csum">The state filed this company under '
                     f'<strong class="num">{n0(len(v))}</strong> different spellings. They differ '
                     f'only by punctuation or capitalisation, so they are counted as one here.</p>'
+                    f'<details class="fold"><summary>State spelling variants</summary>'
                     f'<ul class="cvars" data-prose="data">'
-                    + "".join(f"<li><cite>{e(x)}</cite></li>" for x in v) + "</ul>")
+                    + "".join(f"<li><cite>{e(x)}</cite></li>" for x in v)
+                    + "</ul></details></div>")
 
-    return (f'<div class="company">{head}'
-            f'<p class="creach">On <strong class="num">{n0(item["reach"])}</strong> '
-            f'certified facilities.</p>' + "".join(rows) + "</div>")
+    relation_rows = []
+    for relation in relationships(item, data, is_group=is_group):
+        shared = "".join(
+            f'<li>{facility_link(name)}</li>' for name in relation["shared"][:3])
+        more = len(relation["shared"]) - min(3, len(relation["shared"]))
+        if more:
+            shared += f'<li class="crelmore">{n0(more)} more</li>'
+        noun = "facility record" if len(relation["shared"]) == 1 else "facility records"
+        relation_rows.append(
+            f'<article class="crelation"><h3><a href="../{e(relation["slug"])}/">'
+            f'<cite>{e(relation["name"])}</cite></a></h3>'
+            f'<p><strong class="num">{n0(len(relation["shared"]))}</strong> shared {noun}.</p>'
+            f'<ul data-prose="data">{shared}</ul></article>')
+
+    relations = ""
+    if not is_group:
+        relations = (
+            f'<section class="crelations"><h2>Why this company has lines</h2>'
+            f'<p>A line on the relationship field means two repeat companies appear on the '
+            f'same certified facility row. It is a registry relationship. It is not a claim '
+            f'about ownership between the companies.</p>'
+            + (f'<div class="crelationgrid">{"".join(relation_rows)}</div>' if relation_rows
+               else '<p class="cempty">This company repeats across the registry without '
+                    'sharing a row with another company that also repeats.</p>')
+            + '</section>')
+
+    return (f'<div class="company"><div class="cstats" data-prose="data">{stats}</div>{head}'
+            f'<section class="cportfolio"><h2>Every certified facility</h2>'
+            f'<p>Each facility appears once. The badges show every role this company holds on '
+            f'that row.</p><ul class="cfacs" data-prose="data">'
+            f'{"".join(facility_rows)}</ul></section>{relations}</div>')
 
 
 def authorised(data: dict) -> set:
@@ -262,15 +342,21 @@ def authorised(data: dict) -> set:
     ents, groups = published(data)
     for item in ents + groups:
         out.add(n0(item["reach"]))
-        for names in item["roles"].values():
-            out.add(n0(len(names)))
+        for role in ("owner", "occupant", "operator"):
+            out.add(n0(len(item["roles"].get(role) or [])))
         if "members" in item:
             out.add(n0(len(item["members"])))
         if "variants" in item:
             out.add(n0(len(item["variants"])))
+        for relation in relationships(item, data, is_group="members" in item):
+            shared = len(relation["shared"])
+            out.add(n0(shared))
+            if shared > 3:
+                out.add(n0(shared - 3))
     for f in data["facilities"]:
         if f.get("effective"):
             out.add(str(f["effective"]))
+            out.add(ordinal_date(f["effective"]))
     for v in (len(ents), len(groups), len(data["entities"]), len(data["facilities"]),
               len(split_by_punctuation(data["entities"])),
               sum(1 for x in data["entities"] if x["reach"] > 1)):
