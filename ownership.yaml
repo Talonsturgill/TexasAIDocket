@@ -74,7 +74,23 @@ branch_actors:
 # routine that switched the map off from inside a commit message. `actors_allowed_on_branch`
 # drops it rather than trusting this comment to be obeyed.
 branch_also_allows:
-  "claude/daily-": [upgrade]      # Phase 17, the retro that edits the machine. Nothing else.
+  # `human` is here on the owner's instruction, 2026-08-30, and it is a real grant rather than a
+  # formality, so it is worth knowing what it does before anybody widens it.
+  #
+  # A commit stamped `Actor: human` owns EVERY path, this file and `.github/workflows/**`
+  # included. The checker used to refuse that stamp on a routine branch no matter what the map
+  # said. The rule was right about the risk and wrong about where the decision lives: it stopped
+  # unattended runs seven times in eleven days, every time on a file the run had itself broken,
+  # and a hardcoded refusal is one no map edit can answer at 3am with nobody watching. A run that
+  # halts on a permission it cannot resolve has failed at the one thing it is for.
+  #
+  # The protection that mattered is intact. A routine still cannot declare itself `human` out of
+  # thin air, because the grant lives in a file the routine does not own. What changed is that
+  # the grant now exists and is written down here.
+  #
+  # A run that uses it should say so in its run record, and the per commit report names every
+  # commit that did.
+  "claude/daily-": [upgrade, human]   # Phase 17 edits the machine. `human` is the escape hatch.
 
 rules:
 
