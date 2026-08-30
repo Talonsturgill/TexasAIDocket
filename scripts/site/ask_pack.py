@@ -825,15 +825,29 @@ def reservoirs(feed: dict):
                 f"{name} holds {sto:,.0f} acre feet against a conservation capacity of "
                 f"{cap:,.0f} acre feet, which is {pct} percent full",
                 f"Measured for {day}"]))
-        pool_lines.append(f"{name} {pct} percent")
+        pool_lines.append((name, pct))
 
     head = [f"RESERVOIR STORAGE, measured for {day} and read off the same statewide reading "
             f"above. Percent full is storage over conservation capacity. Every metro and every "
             f"reservoir has a block of its own below, cited as its own id."]
     if metro_lines:
         head.append("By metro, " + ", ".join(metro_lines) + ".")
+    # ROLLED UP RATHER THAN INDEXED LINE BY LINE, which is what the ceiling note at the top of
+    # this file says to do before the ceiling itself is touched. Naming all 119 reservoirs WITH
+    # a percentage each cost 2,947 characters of an index every question pays for, and the same
+    # figures sit in each reservoir's own retrievable block and roll up into the metro line
+    # directly above. The NAMES stay, in full, because a name is what makes a block findable and
+    # dropping those would leave 119 ids nothing points at.
+    #
+    # The extremes stay too, with their figures. They are the one comparison the enumeration
+    # actually bought, they cannot be recovered from the metro roll-up, and answering "which is
+    # lowest" should not cost 119 retrievals.
     if pool_lines:
-        head.append("Reservoir by reservoir, " + ", ".join(pool_lines) + ".")
+        head.append("Reservoir by reservoir, " + ", ".join(n for n, _ in pool_lines) + ".")
+        ranked = sorted(pool_lines, key=lambda x: x[1])
+        head.append("Lowest, " + ", ".join(f"{n} {v} percent" for n, v in ranked[:3])
+                    + ". Fullest, "
+                    + ", ".join(f"{n} {v} percent" for n, v in reversed(ranked[-3:])) + ".")
     return blocks, " ".join(head)
 
 
