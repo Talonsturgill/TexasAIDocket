@@ -1205,7 +1205,7 @@ def home(items: list, today: str) -> str:
     <h2 id="open-now-title">Deadlines you can still meet</h2>
     <p class="open-now-intro">The closest verified public comment deadlines in the record.</p>
     <ol class="open-now-list">{action_rows_html}</ol>
-    <a class="open-now-more" href="questions/taking-part/">See every way to take part</a>
+    <a class="open-now-more" href="questions/taking-part/"><span>See every way to take part</span></a>
   </aside>"""
     else:
         open_now = """
@@ -1215,7 +1215,7 @@ def home(items: list, today: str) -> str:
     </div>
     <h2 id="open-now-title">No comment window is open</h2>
     <p class="open-now-intro">Windows are checked every day. The next verified opening will appear here.</p>
-    <a class="open-now-more" href="record/">Browse the full docket</a>
+    <a class="open-now-more" href="record/"><span>Browse the full docket</span></a>
   </aside>"""
 
     # THE STAT ROW COUNTS WHAT THIS PROJECT HAS PUBLISHED, plus the one number a reader can
@@ -1325,4 +1325,3 @@ def home(items: list, today: str) -> str:
 
 
 __all__ = ['videos_page', 'articles_page', 'article_page', 'deck_preview', 'latest_article', 'latest_video', 'scan_teaser', 'home']
-

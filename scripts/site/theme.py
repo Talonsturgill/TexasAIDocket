@@ -437,9 +437,14 @@ a.stat:hover { background:color-mix(in srgb,var(--accent) 8%,transparent);
   clip-path:polygon(0 42%,62% 42%,62% 10%,100% 50%,62% 90%,62% 58%,0 58%);
   transform:rotate(-45deg); }
 .open-now-item:hover .open-now-go { color:var(--accent); transform:translate(2px,-2px); }
+/* THE LABEL GETS A REAL LINE BOX. Android's mobile compositor clipped the lower edge of the
+   anonymous flex text at the panel boundary even though the link's padding was present. A
+   child box with an explicit line height makes that painted area part of layout, and the
+   small block padding leaves room for the mono face's own low metrics after its webfont swap. */
 .open-now-more { display:flex; justify-content:space-between; align-items:center; gap:1rem;
-  min-height:44px; padding:.85rem 1.2rem; font-family:var(--mono); font-size:var(--s-2);
+  min-height:48px; padding:.85rem 1.2rem; font-family:var(--mono); font-size:var(--s-2);
   letter-spacing:.08em; text-transform:uppercase; color:var(--accent); text-decoration:none; }
+.open-now-more > span { display:block; min-width:0; padding-block:.08em; line-height:1.45; }
 .open-now-more::after { content:""; width:1rem; height:.6rem; flex:none; background:currentColor;
   clip-path:polygon(0 42%,65% 42%,65% 12%,100% 50%,65% 88%,65% 58%,0 58%);
   transition:transform .2s; }
