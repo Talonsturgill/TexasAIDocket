@@ -293,6 +293,28 @@ def registry_panel(f: dict) -> str:
                 f'all. A site with more than one counts for each.</p></div>')
 
     roster = d.get("roster") or []
+    dossier_map = _dossiers()
+    researched_rows = sum(x["name"] in dossier_map for x in roster)
+    researched_names = {x["name"] for x in roster if x["name"] in dossier_map}
+    repeated_researched_names = sum(
+        count > 1 for count in collections.Counter(
+            x["name"] for x in roster if x["name"] in dossier_map).values())
+    complete_research = bool(roster) and researched_rows == len(roster)
+
+    if complete_research:
+        research_note = (
+            f'<strong class="num">{n0(len(researched_names))}</strong> researched facility '
+            f'dossiers cover all <strong class="num">{n0(researched_rows)}</strong> '
+            f'certification rows below. <strong class="num">{n0(repeated_researched_names)}'
+            f'</strong> facility names appear twice because the state certified them more '
+            f'than once.')
+        research_control = ""
+    else:
+        research_note = "A facility whose name is a link has a researched dossier behind it."
+        research_control = (
+            '<label class="rcheck"><input id="rresearched" type="checkbox" '
+            'aria-controls="registry-roster"> <span>Has dossier</span></label>')
+
     def roster_row(x: dict) -> str:
         hay = " ".join([x["name"]] + x["owners"] + x["occupants"] + x["operators"]).lower()
         return (
@@ -337,7 +359,7 @@ def registry_panel(f: dict) -> str:
   <section class="registryroster" aria-labelledby="registry-roster-title">
   <h3 id="registry-roster-title">Every registered facility</h3>
   <p class="qnote">Search by a facility name or any company in the state filing.
-  A facility whose name is a link has a researched dossier behind it.
+  {research_note}
   <a href="../company/">Read the registry by company instead</a>,
   see <a href="../registry-changes/">what the state has changed</a> since anyone started looking,
   or read <a href="../construction/">what the builders told a different agency</a>.</p>
@@ -345,8 +367,7 @@ def registry_panel(f: dict) -> str:
     <label class="rfind" for="rsearch"><span>Find a facility</span>
       <input id="rsearch" type="search" autocomplete="off" placeholder="Facility or company"
         aria-controls="registry-roster"></label>
-    <label class="rcheck"><input id="rresearched" type="checkbox"
-      aria-controls="registry-roster"> <span>Researched only</span></label>
+{research_control}
     <p class="rresult" id="rresult" aria-live="polite">
       <strong class="num" id="rcount">{n0(len(roster))}</strong> shown</p>
     <button class="rclear" id="rclear" type="button" disabled>Clear</button>
@@ -382,12 +403,12 @@ def _roster_filter() -> str:
   var count = document.getElementById('rcount');
   var empty = document.getElementById('rempty');
   var table = document.getElementById('registry-roster');
-  if (!tools || !search || !researched || !clear || !count || !empty || !table) return;
+  if (!tools || !search || !clear || !count || !empty || !table) return;
   var rows = [].slice.call(table.querySelectorAll('tbody tr'));
 
   function apply() {
     var q = search.value.trim().toLowerCase();
-    var only = researched.checked;
+    var only = researched && researched.checked;
     var shown = 0;
     rows.forEach(function (row) {
       var match = (!q || row.getAttribute('data-registry-search').indexOf(q) !== -1) &&
@@ -401,10 +422,10 @@ def _roster_filter() -> str:
   }
 
   search.addEventListener('input', apply);
-  researched.addEventListener('change', apply);
+  if (researched) researched.addEventListener('change', apply);
   clear.addEventListener('click', function () {
     search.value = '';
-    researched.checked = false;
+    if (researched) researched.checked = false;
     apply();
     search.focus();
   });
@@ -575,6 +596,14 @@ def authorised(f: dict) -> set[str]:
         # Every date the roster and the newest list print, in the form they print it.
         for x in (d.get("roster") or []) + (d.get("newest") or []):
             add(ordinal_date(x["effective"]), x["effective"])
+        # When every certification row has a dossier, the finder replaces a no-op filter with
+        # a coverage explanation. These figures come from the same dossier map and roster that
+        # render that sentence; authorising them here keeps the display and the gate together.
+        dossier_map = _dossiers()
+        researched = [x["name"] for x in (d.get("roster") or [])
+                      if x["name"] in dossier_map]
+        add(n0(len(set(researched))), n0(len(researched)),
+            n0(sum(count > 1 for count in collections.Counter(researched).values())))
     g = f.get("gen")
     if g:
         add(gw(g["operating_mw"]), gw(g["planned_mw"]), gw(g["canceled_mw"]),

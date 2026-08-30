@@ -213,6 +213,7 @@ def _registry_field(data: dict, base: str = "") -> str:
         f'<option value="operator">Operator</option></select></label>'
         f'<button id="greset" type="button">Reset field</button>'
         f'</div>'
+        f'<p class="gmobilehint">Swipe the field side to side to reach every point.</p>'
         f'<div class="gworkspace">'
         f'<div class="gfield" id="gfield">{registry_graph.svg(g, base)}</div>'
         f'<aside class="glens" aria-live="polite">'
