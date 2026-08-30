@@ -706,6 +706,7 @@ def facility_css() -> str:
 .dchero::after { content:"Decorative survey plate"; position:absolute; top:1rem; right:1rem;
   font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase;
   color:rgba(237,230,214,.56); }
+.dcmobileplate { display:none; }
 .dchero-copy { width:min(72rem,calc(100% - 2.4rem)); margin:auto;
   align-self:center; padding:clamp(4rem,10vw,8rem) 0 3rem; }
 .dchero h1 { max-width:9ch; margin:.35rem 0 .8rem; font-size:clamp(3.2rem,9vw,8.2rem);
@@ -780,6 +781,7 @@ def facility_css() -> str:
 .ghead h2 { margin:.25rem 0 0; font-size:clamp(2.2rem,5.4vw,4.8rem); line-height:.92;
   letter-spacing:-.045em; text-wrap:balance; }
 .ghead p { margin:0; max-width:38rem; color:var(--ink-mute); font-size:var(--s1); }
+.ghead .gmobileintro { display:none; }
 .gcontrols { display:grid; grid-template-columns:minmax(16rem,1.3fr) minmax(12rem,.75fr) auto;
   gap:.55rem; align-items:end; margin:0 0 .65rem; }
 .gcontrols label { display:grid; gap:.3rem; font-family:var(--mono); font-size:var(--s-2);
@@ -792,6 +794,59 @@ def facility_css() -> str:
   outline:.12rem solid var(--accent); outline-offset:.12rem; }
 .gmobilehint { display:none; margin:.2rem 0 .6rem; color:var(--dust);
   font-family:var(--mono); font-size:var(--s-2); letter-spacing:.04em; }
+.gmobile { display:none; }
+.gmhead { padding:1.15rem 1rem 1rem; border-bottom:var(--hair) solid var(--rule);
+  background:linear-gradient(135deg,rgba(224,149,106,.11),rgba(18,16,42,.72)); }
+.gmhead h3 { margin:.3rem 0 .4rem; color:var(--limestone); font-size:1.55rem;
+  line-height:1.02; letter-spacing:-.025em; }
+.gmhead > p { margin:0; color:var(--ink-mute); font-size:var(--s-1); line-height:1.5; }
+.gmhead .gmstatus { margin-top:.85rem; color:var(--accent); font-family:var(--mono);
+  font-size:.68rem; line-height:1.35; letter-spacing:.08em; text-transform:uppercase; }
+.gmlist { display:grid; gap:.55rem; padding:.65rem; }
+.gmrelationship { min-width:0; overflow:hidden; border:var(--hair) solid var(--rule);
+  border-radius:.4rem; background:rgba(8,6,15,.6);
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease; }
+.gmrelationship.selected { border-color:rgba(224,149,106,.78);
+  box-shadow:0 1rem 2.8rem rgba(0,0,0,.24),inset .18rem 0 0 var(--accent); }
+.gmtrigger { display:grid; gap:.75rem; width:100%; min-height:6.8rem; padding:.9rem;
+  border:0; background:transparent; color:inherit; text-align:left; cursor:pointer; }
+.gmtrigger:focus-visible { outline:.12rem solid var(--accent); outline-offset:-.18rem; }
+.gmnames { display:grid; grid-template-columns:minmax(0,1fr) 4.7rem minmax(0,1fr);
+  gap:.45rem; align-items:center; }
+.gmcompany { color:var(--limestone); font-size:.91rem; line-height:1.2;
+  overflow-wrap:anywhere; }
+.gmcompany:last-child { text-align:right; }
+.gmbridge { --gm-strength:.16; display:grid; grid-template-rows:auto auto auto; justify-items:center; gap:.18rem;
+  color:var(--ink-mute); font-family:var(--mono); }
+.gmtrack { position:relative; display:block; width:100%; height:.6rem; }
+.gmtrack::before { content:""; position:absolute; left:.32rem; right:.32rem; top:50%;
+  height:calc(1px + (var(--gm-strength) * 3px)); transform:translateY(-50%);
+  border-radius:999px; background:linear-gradient(90deg,var(--sig-link),var(--gold));
+  box-shadow:0 0 .75rem rgba(127,178,217,.34); }
+.gmtrack::after { content:""; position:absolute; inset:50% .08rem auto;
+  height:.48rem; transform:translateY(-50%);
+  background:radial-gradient(circle at left,var(--limestone) 0 .16rem,transparent .18rem),
+    radial-gradient(circle at right,var(--limestone) 0 .16rem,transparent .18rem); }
+.gmcount { color:var(--accent); font-size:1rem; line-height:1; }
+.gmunit { color:var(--ink-mute); font-size:.58rem; line-height:1.2; text-align:center;
+  text-transform:uppercase; letter-spacing:.04em; }
+.gmcta { justify-self:start; color:var(--caliche); font-family:var(--mono);
+  font-size:.66rem; letter-spacing:.05em; text-decoration:underline;
+  text-decoration-color:rgba(224,149,106,.55); text-underline-offset:.18em; }
+.gmevidence { padding:.85rem .9rem 1rem; border-top:var(--hair) solid var(--rule);
+  background:linear-gradient(180deg,rgba(18,16,42,.68),rgba(8,6,15,.88)); }
+.gmevidence .grfacilities { display:grid; gap:.15rem; margin:.55rem 0 0; }
+.gmevidence .grfacilities li { padding:.35rem 0; border-top:var(--hair) solid rgba(228,216,195,.12); }
+.gmprofiles { display:grid; gap:.35rem; margin:.9rem 0 0; padding-top:.75rem;
+  border-top:var(--hair) solid var(--rule); }
+.gmprofiles span { color:var(--ink-mute); font-family:var(--mono); font-size:.62rem;
+  letter-spacing:.08em; text-transform:uppercase; }
+.gmprofiles a { color:var(--caliche); font-size:var(--s-1); }
+.gmempty { margin:0; padding:1.2rem; border:var(--hair) dashed var(--rule);
+  color:var(--ink-mute); }
+.gmmore { min-height:3.2rem; margin:0 .65rem .65rem; border:var(--hair) solid var(--rule);
+  border-radius:.3rem; background:var(--panel); color:var(--caliche); font-family:var(--mono);
+  font-size:var(--s-2); cursor:pointer; }
 .gworkspace { display:grid; grid-template-columns:minmax(0,2.25fr) minmax(20rem,.75fr);
   height:clamp(32rem,38vw,42rem); min-height:0; overflow:hidden;
   border:var(--hair) solid var(--rule); border-radius:.55rem;
@@ -956,23 +1011,32 @@ def facility_css() -> str:
   .registryoverview { grid-template-columns:1fr; }
 }
 @media (max-width:48rem) {
-  .dchero { min-height:44rem; }
-  .dchero::before { background:linear-gradient(0deg,rgba(8,6,15,.96),rgba(8,6,15,.4) 75%); }
-  .dchero::after { display:none; }
+  .dchero { grid-template-rows:auto auto auto; min-height:0; background:#08060f; }
+  .dchero::before, .dchero::after { display:none; }
+  .dcmobileplate { position:relative; display:block; min-height:18rem; overflow:hidden;
+    border-bottom:var(--hair) solid var(--rule); background:#08060f; }
+  .dcmobileplate::before { content:""; position:absolute; inset:-7%;
+    background:url("datacenter-atlas-relief.webp") 50% 72% / auto 155% no-repeat;
+    filter:brightness(1.32) contrast(1.09) saturate(1.12); transform:scale(1.025); }
+  .dcmobileplate::after { content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg,rgba(8,6,15,.05) 28%,rgba(8,6,15,.35) 66%,#08060f 100%),
+      linear-gradient(90deg,rgba(8,6,15,.4),transparent 56%,rgba(8,6,15,.1)); }
+  .dcmobileplate span { position:absolute; z-index:1; top:.85rem; right:.85rem;
+    max-width:14rem; color:rgba(237,230,214,.72); font-family:var(--mono);
+    font-size:.62rem; line-height:1.35; letter-spacing:.08em; text-align:right;
+    text-transform:uppercase; }
+  .dchero-copy { position:relative; z-index:2; margin:-5.2rem auto 0; padding:0 0 2.4rem; }
   .dchero .dctiles { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .dchero .dctile { min-height:5.8rem; }
+  .dchero .dcn { font-size:clamp(1.15rem,5.6vw,1.45rem); }
   .gcontrols { grid-template-columns:1fr; }
   .gcontrols button { width:100%; }
-  .gworkspace { min-height:0; }
-  /* The phone view stays zoomed enough for a point to be usable, but no longer clips the two
-     sides of the field. It becomes one horizontal instrument inside a vertically scrolling
-     page, with the cue immediately above it and a real pan gesture declared for touch engines. */
-  .gworkspace .gfield { width:100%; min-height:25rem; aspect-ratio:auto; overflow-x:auto;
-    overflow-y:hidden; overscroll-behavior-x:contain; touch-action:pan-x pan-y;
-    scrollbar-width:thin; scrollbar-color:var(--dust) transparent; }
-  .gworkspace .gsvg { width:40rem; min-width:40rem; max-width:none; height:25rem;
-    margin-left:0; transform:none; }
-  .gmobilehint { display:block; }
+  .ghead .gdesktopintro { display:none; }
+  .ghead .gmobileintro { display:block; }
+  .gmobile.live { display:grid; border:var(--hair) solid var(--rule); border-radius:.55rem;
+    overflow:hidden; background:var(--panel); box-shadow:0 2rem 6rem rgba(0,0,0,.22); }
+  .gmobile.live + .gworkspace { display:none; }
+  .gwrap .gkey, .gwrap .ghint { display:none; }
   .ontoflow { grid-template-columns:1fr; }
   .ontoflow::before { left:50%; right:auto; top:27%; bottom:56%; border-top:0;
     border-left:var(--hair) solid var(--sig-link); }
@@ -985,8 +1049,7 @@ def facility_css() -> str:
 }
 @media (max-width:30rem) {
   .dchero-copy, .dchero .dctiles, .dcontology, .gwrap { width:calc(100% - 1.2rem); }
-  .dchero .dctiles { grid-template-columns:1fr; }
-  .dchero .dctile { min-height:4.7rem; }
+  .dchero .dctile { min-height:5.4rem; padding:.8rem; }
   .dchero h1 { font-size:3.25rem; }
   .grroles { grid-template-columns:1fr; }
   .entityhero { margin-left:-.2rem; margin-right:-.2rem; }

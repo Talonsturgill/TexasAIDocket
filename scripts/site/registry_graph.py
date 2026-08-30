@@ -452,6 +452,10 @@ SCRIPT = """
   var readRoles = document.getElementById('grroles');
   var readConnections = document.getElementById('grconnections');
   var readLink = document.getElementById('grlink');
+  var mobile = document.getElementById('gmobile');
+  var mobileStatus = document.getElementById('gmstatus');
+  var mobileList = document.getElementById('gmlist');
+  var mobileMore = document.getElementById('gmmore');
   if (!readName || !readMeta || !readRoles || !readConnections || !readLink) return;
   var home = {
     name: readName.textContent, meta: readMeta.textContent,
@@ -739,6 +743,125 @@ SCRIPT = """
     } else readLink.hidden = true;
   }
 
+  // THE PHONE DOES NOT PRETEND THE DESKTOP FIELD FITS. A relationship is a named comparison
+  // first and a spatial pattern second on a narrow screen. Render the same computed edges as
+  // generous connection controls, then keep the exact certified rows inside the chosen card.
+  var MOBILE_PAGE = 6;
+  var mobileLimit = MOBILE_PAGE;
+  var mobileRows = [];
+  function roleName(value) {
+    return { owner: 'Owner', occupant: 'Occupant', operator: 'Operator' }[value] || '';
+  }
+  function filteredMobileEdges() {
+    var chosen = role ? role.value : '';
+    var match = findMatch();
+    return G.edges.map(function (edge, index) { return { edge: edge, index: index }; })
+      .filter(function (row) {
+        if (chosen && (!(byKey[row.edge.a].o || {})[chosen] ||
+          !(byKey[row.edge.b].o || {})[chosen])) return false;
+        return !match || row.edge.a === match.k || row.edge.b === match.k;
+      })
+      .sort(function (a, b) {
+        if (b.edge.w !== a.edge.w) return b.edge.w - a.edge.w;
+        var an = byKey[a.edge.a].n + byKey[a.edge.b].n;
+        var bn = byKey[b.edge.a].n + byKey[b.edge.b].n;
+        return an.localeCompare(bn);
+      });
+  }
+  function mobileCard(row, strongest) {
+    var edge = row.edge, a = byKey[edge.a], b = byKey[edge.b];
+    var card = make('article', 'gmrelationship');
+    card.setAttribute('data-edge', String(row.index));
+    var trigger = make('button', 'gmtrigger');
+    trigger.setAttribute('type', 'button');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.setAttribute('aria-controls', 'gmevidence-' + row.index);
+    trigger.setAttribute('aria-label', a.n + ' and ' + b.n + '. ' + edge.w +
+      ' shared certified ' + noun(edge.w, 'facility record', 'facility records') + '.');
+    var names = make('span', 'gmnames');
+    names.appendChild(make('span', 'gmcompany', a.n));
+    var bridge = make('span', 'gmbridge');
+    bridge.style.setProperty('--gm-strength', String(Math.max(.16, edge.w / strongest)));
+    bridge.appendChild(make('span', 'gmtrack'));
+    bridge.appendChild(make('strong', 'gmcount', String(edge.w)));
+    bridge.appendChild(make('span', 'gmunit', noun(edge.w, 'shared row', 'shared rows')));
+    names.appendChild(bridge);
+    names.appendChild(make('span', 'gmcompany', b.n));
+    trigger.appendChild(names);
+    trigger.appendChild(make('span', 'gmcta', 'View certified rows'));
+    card.appendChild(trigger);
+    var evidence = make('div', 'gmevidence');
+    evidence.id = 'gmevidence-' + row.index;
+    evidence.hidden = true;
+    card.appendChild(evidence);
+    return card;
+  }
+  function renderMobile() {
+    if (!mobile || !mobileList || !mobileStatus) return;
+    mobile.classList.add('live');
+    clear(mobileList);
+    mobileRows = filteredMobileEdges();
+    var match = findMatch();
+    var query = search ? search.value.trim() : '';
+    var chosen = role ? role.value : '';
+    if (query && !match) mobileStatus.textContent = 'No company matches this search';
+    else if (match && chosen) mobileStatus.textContent = match.n + ' in the ' +
+      roleName(chosen).toLowerCase() + ' view';
+    else if (match) mobileStatus.textContent = match.n + ' and its shared rows';
+    else if (chosen) mobileStatus.textContent = roleName(chosen) + ' relationships';
+    else mobileStatus.textContent = 'Strongest shared rows';
+    if (!mobileRows.length) {
+      mobileList.appendChild(make('p', 'gmempty',
+        'No shared certified row matches this view.'));
+    } else {
+      var strongest = mobileRows[0].edge.w || 1;
+      mobileRows.slice(0, mobileLimit).forEach(function (row) {
+        mobileList.appendChild(mobileCard(row, strongest));
+      });
+    }
+    if (mobileMore) mobileMore.hidden = mobileRows.length <= mobileLimit;
+  }
+  function selectMobile(card, index) {
+    var wasOpen = card.classList.contains('selected');
+    [].slice.call(mobileList.querySelectorAll('.gmrelationship')).forEach(function (row) {
+      row.classList.remove('selected');
+      var button = row.querySelector('.gmtrigger');
+      var detail = row.querySelector('.gmevidence');
+      if (button) button.setAttribute('aria-expanded', 'false');
+      if (detail) { detail.hidden = true; clear(detail); }
+      var call = row.querySelector('.gmcta');
+      if (call) call.textContent = 'View certified rows';
+    });
+    if (wasOpen) { lightUp(null); readOut(null, ''); return; }
+    var edge = G.edges[index];
+    if (!edge) return;
+    var a = byKey[edge.a], b = byKey[edge.b];
+    card.classList.add('selected');
+    var trigger = card.querySelector('.gmtrigger');
+    var evidence = card.querySelector('.gmevidence');
+    trigger.setAttribute('aria-expanded', 'true');
+    card.querySelector('.gmcta').textContent = 'Hide certified rows';
+    evidence.appendChild(make('p', 'grsection', 'The certified rows behind this connection'));
+    evidence.appendChild(facilityList(edge.f));
+    var profiles = make('p', 'gmprofiles');
+    profiles.appendChild(make('span', '', 'Company profiles'));
+    var aLink = make('a', '', a.n); aLink.setAttribute('href', a.u);
+    var bLink = make('a', '', b.n); bLink.setAttribute('href', b.u);
+    profiles.appendChild(aLink); profiles.appendChild(bLink);
+    evidence.appendChild(profiles);
+    evidence.hidden = false;
+    showEdge(index);
+  }
+  if (mobileList) mobileList.addEventListener('click', function (ev) {
+    var trigger = ev.target.closest ? ev.target.closest('.gmtrigger') : null;
+    if (!trigger) return;
+    var card = trigger.closest('.gmrelationship');
+    selectMobile(card, Number(card.getAttribute('data-edge')));
+  });
+  if (mobileMore) mobileMore.addEventListener('click', function () {
+    mobileLimit += MOBILE_PAGE; renderMobile();
+  });
+
   // Catch the approach, not only the final pixel. A mouse reaches a moving point through the
   // field around it, so the point settles as soon as the pointer enters that approach radius.
   // The visible dot and its 32 unit hit circle remain the actual link.
@@ -902,6 +1025,7 @@ SCRIPT = """
       var match = findMatch();
       if (match) { lightUp(match.k); readOut(match.k, match.u); }
       else { lightUp(null); readOut(null, ''); }
+      mobileLimit = MOBILE_PAGE; renderMobile();
     });
     search.addEventListener('keydown', function (ev) {
       var match = findMatch();
@@ -923,7 +1047,7 @@ SCRIPT = """
       el.classList.toggle('filtered', hidden);
       if (edgeHits[i]) edgeHits[i].classList.toggle('filtered', hidden);
     });
-    lightUp(null); readOut(null, '');
+    lightUp(null); readOut(null, ''); mobileLimit = MOBILE_PAGE; renderMobile();
   }
   if (role) role.addEventListener('change', emphasizeRole);
   if (reset) reset.addEventListener('click', function () {
@@ -945,6 +1069,7 @@ SCRIPT = """
   }, true);
 
   if (controls) controls.hidden = false;
+  renderMobile();
   root.classList.add('live');
 })();
 """
