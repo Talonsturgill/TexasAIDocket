@@ -156,6 +156,19 @@
     "figures_proved": 18,
     "relationships_refused": 3
   },
+  "sources": {
+    "news_reports": 3,
+    "official_records": 2,
+    "news_urls": [
+      "https://www.texastribune.org/2026/08/28/texas-greg-abbott-flock-cameras-order-state-money/",
+      "https://www.texastribune.org/2026/08/28/texas-flock-cameras-auto-insurance-fee-mvcpa-grants/",
+      "https://www.fox7austin.com/news/flock-cameras-pflugerville-texas-update"
+    ],
+    "official_urls": [
+      "https://www.txdmv.gov/about-us/MVCPA",
+      "https://gov.texas.gov/news"
+    ]
+  },
   "derived_figures": [],
   "note": "No figure in this deck is derived. Every string above was proved present in its claim's own verbatim quote before it reached a frame."
 }

@@ -123,6 +123,36 @@ out["counts"] = {
     "relationships_refused": len(REFUSED),
 }
 
+# THE SOURCES BLOCK'S OWN TWO NUMERALS. The first comment opens "three news reports and two
+# official records", and both are tallies this run made rather than anything a source says. They
+# were typed. Counted here instead, over the DISTINCT source urls behind the claims the deck
+# actually cites, split on whether the host is a government domain. A `.gov` host is the whole
+# test, which is why the split is stated as code and not as an editor's judgement about which
+# outlets count as official.
+#
+# The input is the deck's OWN per frame claim lists in copy.json, not the figures table. The
+# first draft counted over FIGURES and ACTED and returned 2 and 1, because the Abbott order and
+# the governor's news index carry no numeral on any frame and so appear in neither. The comment
+# names the sources the DECK cites, which is the union of what the nine frames cite.
+_COPY = json.loads((RUN / "copy.json").read_text(encoding="utf-8"))
+CITED = sorted({c for _f in _COPY["slides"].values() for c in (_f.get("claims") or [])})
+# DEDUPED BY URL, CLASSIFIED BY HOST, and those are two different keys on purpose. Deduping by
+# host returned 3 where the comment says 5, because texastribune.org published TWO of these
+# reports and a host key counts them once. A report is a document, so the document is the unit.
+_DOCS = []
+for _cid in CITED:
+    _u = BY[_cid]["url"]
+    if _u not in [u for u, _ in _DOCS]:
+        _DOCS.append((_u, _u.split("//", 1)[-1].split("/", 1)[0].lower()))
+_OFFICIAL = [u for u, h in _DOCS if h.endswith(".gov") or ".gov." in h]
+_NEWS = [u for u, h in _DOCS if not (h.endswith(".gov") or ".gov." in h)]
+out["sources"] = {
+    "news_reports": len(_NEWS),
+    "official_records": len(_OFFICIAL),
+    "news_urls": _NEWS,
+    "official_urls": _OFFICIAL,
+}
+
 out["derived_figures"] = []
 out["note"] = ("No figure in this deck is derived. Every string above was proved present in its "
                "claim's own verbatim quote before it reached a frame.")

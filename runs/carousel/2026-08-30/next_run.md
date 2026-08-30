@@ -106,3 +106,45 @@ Recorded rather than repaired, because round 5 is the cap. Each was measured off
 Five scoring rounds, fifteen judge reports, and the single measurement that would have answered
 the question the deck kept failing on was dead the whole time. Two judges found it independently.
 Fix `a_visible_frac` and `b_visible_frac` before the next deck is planned, not after it is drawn.
+
+## Found after the branch was pushed, when `shipped_check` first ran on this deck
+
+- **`measurements.json` had never been written by any run in this repo.** `shipped_check`'s
+  `measured figures` gate reads it, and with the file absent the gate returned None on every deck
+  it has ever seen. It is written now, by `measure.py`, off the rendered PNGs. The lesson is the
+  registry's own: a gate whose artifact never exists reports clean forever, and only the
+  reachability assertion in the self-test can see it. Every new gate needs one.
+
+- **`ledgers` was unreachable for the same reason and found five decks of drift the moment it
+  ran.** `captions.json`'s `opening_moves_recent` and `structures_recent` had disagreed with
+  their own entries since 2026-08-25, and the disagreement sat in the shipped_check notes for
+  five consecutive runs where nothing was reading it. Both lists are pure derivations. **Nothing
+  should be hand-maintaining a value that is a function of the entries beside it**, which is
+  CLAUDE.md's oldest recurring shape, and the durable fix is for the caption phase to write them
+  by derivation rather than by hand.
+
+- **`dossier_check` never runs during a run, only afterwards through `shipped_check`.** Eleven
+  problems in the storyboard's `bands` fields reached a shipped deck, one of them describing a
+  body that round 2 had deleted. Run it in the planning phase, before the first render, where a
+  band plan can still shape the drawing instead of being corrected against it.
+
+- **`compute.py` is written fresh each run and forgets what the last one learned.** The sources
+  tally, the run's own counts and the figures file were all things a previous run had already
+  worked out and this one had to rediscover, twice getting the wrong answer first. A small shared
+  helper for the figures every deck needs would have cost nothing and saved both wrong answers.
+
+## The near miss worth carrying forward
+
+**A gate that ten decks passed was not a gate that worked.** `plan_render_check`'s colour test
+matched hex literals only, and ten storyboards had written their colours as hex, so it had never
+once been asked a question it could get wrong. The first deck to compute its gradients would have
+been reported as declaring colours it never drew, and the wrong verdict was one commit from being
+written into this run's record as a finding about the deck.
+
+What saved it was reading slide 7's source instead of trusting the gate's output. **A gate's
+green history says how it has been exercised, not whether it is correct.** Before trusting any
+gate on a deck that does something new, check that the gate can SEE the new thing.
+
+The same question is open on three other checks and should be asked of each before the next deck:
+`craft_floor`, `bespoke` and `coherence` all read the frame source, and none has been tested
+against a frame that computes what it draws.

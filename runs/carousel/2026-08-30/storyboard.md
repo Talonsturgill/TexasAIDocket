@@ -71,8 +71,9 @@ composition:
     make it a stain. Plan view is the only camera on which a set is unambiguously a set.
   bands: >
     Top third, the hook and dek set in the field behind a halo. Middle third, the drift of bodies.
-    Bottom third, one body at near scale carries modeled tone under the mono set line, so the
-    furniture sits on worked ground rather than on a flat band.
+    Bottom third, the nearest bodies in the drift keep their lit crests and cast shadows down to
+    the counter, and the field's grain runs under the mono set line, so the furniture sits on
+    worked ground rather than on a flat band.
   focal: >
     The raking light falling across the ground from the upper left. It is
     an AREA OF GROUND rather than an object, because every object on this frame is one of 28
@@ -133,7 +134,8 @@ composition:
     deck's darkest frame and the only one built around a silhouette.
   bands: >
     Top third, hook and dek. Middle third, the mass and the light it blocks. Bottom third, the
-    field carries the mono line naming the disposition.
+    field's own grain under the mono line naming the disposition, graded down out of the shadow
+    the mass casts above it so the type sits on worked ground.
   focus_note: >
     The frame states a DIFFERENT fact from slide 1. Slide 1 carries the vote, this one carries what
     the record says happens to the hardware, which is that it is covered rather than taken down.
@@ -191,8 +193,9 @@ composition:
     no mark larger, brighter or nearer than any other, because the record gives a count and gives
     no name.
   bands: >
-    Top third, hook and dek. Middle third, the population. Bottom third, the count, the set it
-    counted, and the printed refusal.
+    Top third, hook and dek. Middle third, the population. Bottom third, the count and the set it
+    counted, with the population's scatter still falling through the upper half of the band and a
+    soft haze off the right edge behind the printed refusal.
   focal: >
     The densest region of the lattice, which is an AREA rather than any one mark. Nothing in the
     population is allowed to be the focal, which is the frame's argument.
@@ -203,7 +206,7 @@ art:
     c21 gives 459 and names none of them. A population where one mark could be picked out would be
     a claim the record does not support.
   palette: >
-    field #3B454C the ground, mark #DCE8EE a member, lint #F2F0E8 the display type.
+    field #3B454C the ground, mark #D8E8F0 a member, lint #F2F0E8 the display type.
   value_structure: >
     Lightest, the marks. Darkest, the ground between them. The frame's whole structure is one step.
   motion: >
@@ -246,8 +249,9 @@ composition:
     the ground falling away above and below it. There is no chart and no bar, because encoding any
     of these three figures as a length would invite the ratio between them.
   bands: >
-    Top third, hook and dek. Middle and lower, the three entries on the lit plane. The crease runs
-    the full height and falls off on BOTH sides, so it is a fold rather than an edge.
+    Top third, hook and dek. Middle, the first two entries on the lit plane. Lower, the third
+    entry and the fee line, where the crease runs the full height and falls off on BOTH sides so
+    it is a fold rather than an edge, and the plane is graded down toward the footer.
   focal: >
     The origin point, a small warm area where the dollar enters the sheet, and the frame's light
     extreme.
@@ -259,7 +263,7 @@ art:
     one thing without saying how they divide.
   palette: >
     sheet #4A4034 the warm ground, plane #FFF0D0 the lit panel, origin #FFF4D6 the dollar's entry,
-    lint #F2F0E8 the display type.
+    lint #F1EDE5 the display type.
   value_structure: >
     Lightest, the origin. Darkest, the ground at the top and bottom edges. The entries sit in a
     soft reading shade so light type keeps a ground it clears on.
@@ -303,7 +307,8 @@ composition:
     VALUE alone and carries no stroke of any width.
   bands: >
     Top third, hook and dek. Middle, the silhouette and its two named ends. Bottom, the two counts
-    on separate baselines and the printed refusal.
+    on separate baselines beneath the silhouette's southern tip, on a wash of light falling off
+    toward the frame edge, with the printed refusal set into the grain.
   focal: >
     The western terminator, an area of light at the silhouette's west edge.
 
@@ -313,7 +318,7 @@ art:
     The record gives two endpoints of a reach and no interior detail. A map with counties or a
     route drawn between the ends would be an invention.
   palette: >
-    field #3C4750 the ground, interior #101619 the silhouette, lit #CFE6F2 the two terminators,
+    field #3C4750 the ground, interior #0C1319 the silhouette, lit #CFE3EC the two terminators,
     lint #F2F0E8 the display type.
   value_structure: >
     Lightest, the two terminators. Darkest, the silhouette's interior, which is empty on purpose.
@@ -356,8 +361,10 @@ composition:
     Plan view straight down on poured concrete in full sun, with one control joint sawn the full
     height of the frame. This is the deck's only daylight and its only lit ground.
   bands: >
-    Top, hook and dek in dark type on the slab. Left of the joint, the search count. Right of it
-    and lower, the cleared cases. Bottom, the attribution.
+    Top, hook and dek in dark type on the slab. Middle, the sawn joint running the full height
+    with the search count to its left and the cleared cases to its right. Bottom, the attribution
+    on the slab's lower surface, where the joint's lit chamfer and the aggregate texture carry the
+    tone down to the footer.
   focal: >
     The sunlit apron itself, which is the light extreme of the whole deck by a wide margin. The
     figures live in artwork.json under `value` rather than here, after a judge found this dossier
@@ -369,7 +376,7 @@ art:
     The turn is the program's own best number and the deck must not read as an argument against
     the cameras. Spending the brightest frame in the deck on it is the argument that it is not.
   palette: >
-    apron #C9C2B0 the slab, sun #FCF9EE the lit pools, joint #3A362C the saw cut, ink #1A1A17 the
+    apron #C9C2B0 the slab, sun #FCF9EE the lit pools, joint #3A382F the saw cut, ink #1A1A17 the
     type, which is DARK on this frame and light on every other.
   value_structure: >
     Lightest, the sun pools. Darkest, the channel floor of the saw cut. The halo INVERTS here: it
@@ -416,7 +423,8 @@ composition:
     and never a yearly figure, so the sum is not divided across the bands.
   bands: >
     Top third, hook and dek. Middle, the three slabs and the ground they stand on. Lower, the sum
-    and the camera count on a soft reading shade, at two sizes on two baselines.
+    and the camera count at two sizes on two baselines, over the near slab's base and its cast
+    shadow, on a soft reading wash that lifts the type off the field's grain.
   focal: >
     The near slab's lit face and the lip along its top, the brightest of the three at a declared
     value of 1.00 against 0.58 and 0.30.
@@ -434,7 +442,7 @@ art:
     Depth is not height: each slab has its own ground contact, higher up the frame the further
     back it stands, and they overlap, because occlusion cannot be read as a quantity.
   palette: >
-    field #333D45 the ground, far #768C9C, mid #B0C8D6, near #ECF8FC the three slabs, lip #FAFEFF
+    field #333D45 the ground, far #708696, mid #B0C8D6, near #ECF8FC the three slabs, lip #FAFEFF
     the crisp mark along each slab's top, lint #F2F0E8 the display type.
   value_structure: >
     Lightest, the near slab's lip. Darkest, the cast each slab throws to its right.
@@ -477,8 +485,10 @@ composition:
     the frame, never eyeballed, because the library's recorded failure is a break landing on the
     vertical centre and cutting the slide in half.
   bands: >
-    Above the break, cold high air. Immediately beneath it, the lit band running the full frame
-    width. Below, the field falls away and carries the quote, the attribution and the absence.
+    Top third, the cold high air above the computed break. Middle, the lit band running the full
+    frame width immediately beneath the break. Bottom third, the field falls away into shadow and
+    carries the quote, the attribution and the absence, its own grain holding tone under the
+    footer.
   focal: >
     The lit band under the break, an area running the full frame width.
 
@@ -550,7 +560,7 @@ art:
     the floor that gets wider as it comes toward you, and that trapezoid is the one shape a reader
     recognises instantly at any size.
   palette: >
-    field #2E3840 the ground, shade #02030 5 the band under the date, throw #D6EEFA the light out
+    field #2E3840 the ground, shade #02030 5 the band under the date, throw #D2ECFA the light out
     of the opening, lint #F4F2EA the display type, which carries the date.
   value_structure: >
     Lightest, the sill. Darkest, the shade band under the date and the source line. The date
