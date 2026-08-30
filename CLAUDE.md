@@ -350,23 +350,42 @@ of them assumed the Bash sandbox was refusing a write into `.git/`, and that `by
 in `.claude/settings.json` was otherwise carrying the run. What is actually true, measured on
 2026-08-30 rather than reasoned about:
 
-- **This repo's permission grant is inert in the scheduled runner.** The file is loaded, and a
-  cloned repository is not permitted to grant itself `bypassPermissions`. If it were, cloning any
-  repository would be arbitrary privilege escalation. The only grant in force came from the
-  host's own launcher settings, which allowed one tool.
-- **So every write prompts, by any means, at any path.** A shell redirect into `.git/ACTOR`, a
-  Write call to the same place, and an ordinary file in the working tree all prompted identically
-  when this was tested. The tool never mattered and the path never mattered.
+- **This repo's permission grant is inert in the scheduled runner.** The file is loaded, and the
+  diagnostics log confirms it: four settings sources, no errors. A cloned repository is simply not
+  permitted to grant itself `bypassPermissions`. If it were, cloning any repository would be
+  arbitrary privilege escalation, so this is a security property rather than a bug to route
+  around. The only grant in force came from the host's own launcher settings, which allowed one
+  tool.
+- **The tool does not matter and the path does not matter.** Four writes were tested side by side
+  in one scheduled session and all four prompted: a shell redirect into `.git/ACTOR`, a Write call
+  to the same path, a Write call to an ordinary new file in the working tree, and a shell redirect
+  to that same ordinary file. Every fix before this one assumed the Bash sandbox and the `.git/`
+  path were the cause. Neither is.
 - **A session cannot see that it prompted.** The tool result reads `File created successfully`
   whether it was auto-approved or a human tapped approve on a phone an hour later. That is the
   second half of why this recurred five times: each run verified its own fix, honestly, and was
   wrong. Treat any claim that a run "did not prompt" as unevidenced, because no run can know.
 
-The lesson generalises past this stamp, and it is the one worth carrying: **a rule that makes an
-unattended run depend on a permission it cannot grant itself is not fixable by rewording the
-rule.** Remove the dependency. Here the dependency was a file nobody needed, because the branch
-carried the same information the whole time and CI had been reading it that way since
-2026-08-16.
+**WHAT IS NOT ESTABLISHED, and do not write it down as though it were.** Whether EVERY write
+prompts, or only the first of its kind in a session, or only until a human approves one. Runs have
+shipped here with hundreds of writes, so it is plainly not true that each one stops the run. The
+pattern fitting all six wedged days is that the Phase 0 stamp was the FIRST write each run made,
+and the first gated call is what stops a session with nobody in it. **That is a hypothesis and it
+has not been tested.** The push defect above is the precedent: an earlier attempt committed a
+confident explanation that the next push falsified, and a wrong explanation in this file is worse
+than none, because the next session inherits it and stops looking.
+
+**So this fix is necessary and it may not be sufficient.** It removes two to three writes from
+every run, and the branch already carried what they encoded, so it is right on its own terms. But
+if the first-gated-write hypothesis holds, a run will stop at whatever write comes next, and **the
+durable fix is host-side rather than in this repo**: the environment the schedule runs in has to
+be configured to allow the run's tools. Nothing in `.claude/settings.json` can do it, and a sixth
+attempt in that file would be the fifth mistake again.
+
+The lesson that does generalise: **a rule that makes an unattended run depend on a permission it
+cannot grant itself is not fixable by rewording the rule**, by enumerating command strings, or by
+changing which tool makes the call. Remove the dependency where one exists. Here it was a file
+nobody needed, because CI had been reading the lane off the branch since 2026-08-16.
 
 `scripts/shared/actor_stamp_shape.py` reads `CLAUDE.md`, `prompts/*.md` and the skill and agent
 files and **fails the build** if any of them tells a session to write the stamp by any means, the

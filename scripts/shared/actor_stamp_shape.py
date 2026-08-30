@@ -29,9 +29,15 @@ permission grant is INERT. A cloned repository is not permitted to grant itself
 `bypassPermissions`; if it were, cloning any repo would be arbitrary privilege escalation. The
 only grant actually in force came from the host's launcher settings, which allowed one tool.
 
-So it was never the sandbox, never the command shape, and never the choice of tool. Every write
-prompted, by any means, at any path. A `Write` call to `.git/ACTOR` and a shell redirect to the
-same place and a write to an ordinary file in the working tree all prompted identically.
+So it was never the sandbox, never the command shape, and never the choice of tool. Four writes
+were tested side by side and all four prompted: a shell redirect into `.git/ACTOR`, a `Write` call
+to the same path, a `Write` call to an ordinary new file in the working tree, and a shell redirect
+to that same ordinary file.
+
+What is NOT established is whether every write prompts, or only the first of its kind in a
+session. Runs have shipped here with hundreds of writes, so it is not the former. CLAUDE.md
+carries that as a labelled hypothesis and this gate does not depend on which answer is right:
+removing a required write is correct either way.
 
 AND A SESSION CANNOT SEE THAT IT PROMPTED. The tool result reads `File created successfully`
 whether it was auto-approved or a human tapped approve on a phone an hour later. That is the
