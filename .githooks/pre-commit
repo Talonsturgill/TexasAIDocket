@@ -16,7 +16,7 @@ root="$(git rev-parse --show-toplevel 2>/dev/null || echo .)"
 checker="$root/scripts/shared/ownership_check.py"
 [ -f "$checker" ] || exit 0                       # not built yet, nothing to enforce
 
-# THE STAMP IS FOUND THROUGH git rev-parse AND NEVER BY JOINING "$root/.git".
+# THE GIT DIR IS FOUND THROUGH git rev-parse AND NEVER BY JOINING "$root/.git".
 # In a linked WORKTREE, $root/.git is a FILE holding a gitdir pointer, so $root/.git/ACTOR is a
 # path under a file and the test for it is simply false. Both hooks read the stamp that way
 # until 2026-08-20, which meant a session working in a worktree got NO ownership check on any
@@ -24,10 +24,7 @@ checker="$root/scripts/shared/ownership_check.py"
 # because the run reports a clean commit either way. --git-dir resolves in a plain clone and in
 # a worktree alike.
 gitdir="$(git rev-parse --git-dir 2>/dev/null || echo "$root/.git")"
-
-actor="human"
-[ -f "$gitdir/ACTOR" ] && actor="$(tr -d '[:space:]' < "$gitdir/ACTOR")"
-[ -n "$actor" ] || actor="human"
+branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')"
 
 # Prefer the checkout's pinned environment. On Windows, `python3` can resolve to the
 # Microsoft Store launcher even when a real Python is installed, so prove each fallback
@@ -49,10 +46,24 @@ else
   exit 1
 fi
 
+# THE LANE IS RESOLVED, NEVER REQUIRED TO HAVE BEEN WRITTEN. See resolve_actor() in the checker
+# for the whole account. In short: the routine used to declare its lane by writing .git/ACTOR at
+# Phase 0, and that single write stopped six unattended runs, because in the scheduled cloud
+# runner the repo's own permission grant is inert and every write prompts a human who is not
+# there. The branch already says which lane is acting and CI has judged commits that way since
+# 2026-08-16, so nothing needs writing. TXDOCKET_ACTOR in the environment still narrows a lane
+# for one command, which is how the retro phase gets its narrower `upgrade` lane.
+actor="$("${python_cmd[@]}" "$checker" --print-actor --branch "$branch" --gitdir "$gitdir" \
+         2>/dev/null || echo human)"
+actor="$(printf '%s' "$actor" | tr -d '[:space:]')"
+[ -n "$actor" ] || actor="human"
+
 if ! "${python_cmd[@]}" "$checker" --actor "$actor" --staged; then
   echo ""
   echo "pre-commit: refused. The staged change writes outside the '$actor' lane."
-  echo "  If you are a maintainer, clear the stamp:  rm .git/ACTOR"
+  echo "  That lane came from TXDOCKET_ACTOR, or a stamp file, or the branch name '$branch'."
+  echo "  If you are a maintainer, commit from a branch matching no prefix in ownership.yaml,"
+  echo "  or run:  TXDOCKET_ACTOR=human git commit ..."
   echo "  If you are a routine, record the change as a proposal in the run record instead."
   exit 1
 fi

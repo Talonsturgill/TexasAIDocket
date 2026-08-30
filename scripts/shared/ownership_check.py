@@ -52,6 +52,7 @@ EXIT CODES
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import subprocess
 import sys
@@ -815,11 +816,74 @@ rules:
     return 0
 
 
+# --------------------------------------------------------------------------- actor resolution
+ACTOR_ENV = "TXDOCKET_ACTOR"
+
+
+def resolve_actor(omap: "OwnershipMap", branch: str | None = None,
+                  gitdir: Path | None = None,
+                  env: dict[str, str] | None = None) -> tuple[str, str]:
+    """The acting lane, resolved WITHOUT requiring anything to be WRITTEN first.
+
+    THE STAMP FILE IS NO LONGER THE MECHANISM, and this function is why. Until 2026-08-30 a
+    routine declared its lane by writing `.git/ACTOR` at Phase 0, and that one write stopped an
+    unattended run on 08-20, 08-26, 08-27, 08-28, 08-29 and 08-30. Six interruptions, five fixes,
+    every one of them aimed at HOW the file was written: exact allow-list strings, then more
+    strings, then compound forms, then a prose rule about command shape, then the Write tool.
+
+    The measured cause is none of those. In the scheduled cloud runner the project's own
+    `.claude/settings.json` is loaded and its permission grant is INERT, because a cloned repo is
+    not allowed to grant itself `bypassPermissions`. Every tool call that writes prompts a human
+    who is not there, and a session cannot observe that it prompted, so each run certified its
+    own fix and shipped the same defect.
+
+    A write that cannot be made safe should not be required. The branch already says which lane
+    is acting, CI has judged commits that way since 2026-08-16, and `check_per_commit` already
+    falls back to the branch actor for an unstamped commit. So the ladder is:
+
+      1. `TXDOCKET_ACTOR` in the environment. This is how a phase NARROWS its own lane, and it
+         costs no extra tool call because it rides the commit it is already making:
+         `TXDOCKET_ACTOR=upgrade git commit -m ...`. Git exports it to both hooks.
+      2. The `ACTOR` file in the git dir, if some other process left one. The gridwatch workflow
+         still writes it on a runner, where nothing prompts, so it keeps working unchanged.
+      3. The branch prefix, via `branch_actors`. This is the ordinary path and it needs nothing.
+      4. `human`. A maintainer on an unprefixed branch owns everything, as before.
+
+    Returns the actor and a short account of where it came from, so a hook can print it and a
+    person can see which rung answered.
+    """
+    env = os.environ if env is None else env
+
+    named = (env.get(ACTOR_ENV) or "").strip()
+    if named:
+        return named, f"{ACTOR_ENV} in the environment"
+
+    if gitdir is not None:
+        stamp = Path(gitdir) / "ACTOR"
+        try:
+            written = stamp.read_text(encoding="utf-8").strip()
+        except OSError:
+            written = ""
+        if written:
+            return written, f"the stamp file at {stamp}"
+
+    if branch:
+        inferred = omap.actor_for_branch(branch)
+        if inferred:
+            return inferred, f"the '{branch}' branch prefix"
+
+    return "human", "no lane declared, so a maintainer session"
+
+
 # --------------------------------------------------------------------------- cli
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--actor", help="daily | upgrade | gridwatch | ask | dispatch | human")
+    ap.add_argument("--print-actor", action="store_true",
+                    help="resolve the acting lane and print it. The hooks use this so that "
+                         "neither of them reimplements the ladder and drifts from the other.")
+    ap.add_argument("--gitdir", help="git dir to look for a legacy ACTOR stamp in")
     ap.add_argument("--diff", help="git range, e.g. origin/main...HEAD")
     ap.add_argument("--diff-per-commit", metavar="RANGE",
                     help="walk the range one commit at a time, judging each against the "
@@ -839,6 +903,13 @@ def main() -> int:
     except Exception as exc:
         print(f"ownership: cannot read {args.map}: {exc}", file=sys.stderr)
         return 2
+
+    if args.print_actor:
+        actor, how = resolve_actor(
+            omap, args.branch, Path(args.gitdir) if args.gitdir else None)
+        print(actor)
+        print(f"ownership: acting as '{actor}', from {how}", file=sys.stderr)
+        return 0
 
     if args.diff_per_commit:
         if not args.branch:

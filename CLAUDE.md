@@ -176,8 +176,8 @@ be able to edit the public record.**
 
 - `python3 scripts/shared/ownership_check.py --actor <a> --diff <range>` fails on any
   out-of-lane write. Run it before you commit.
-- The `pre-commit` hook runs it automatically off the actor stamp each routine writes at
-  Phase 0 (`.git/ACTOR`).
+- The `pre-commit` hook runs it automatically off the lane it resolves from the branch. Nothing
+  is written to declare that lane. See the rule further down.
 - CI runs it on every PR, inferring the actor from the branch prefix.
 
 **A routine's self-upgrade phase is bound by the same map.** An upgrade that needs to touch
@@ -321,36 +321,57 @@ time: a rule stated in config, a surface that keeps its own copy, and nothing in
 they agree. `coherence_check.py` now asserts the rendered site line equals the brand.yaml value on
 every frame, so a fourth one fails the build instead of shipping.
 
-## Write the actor stamp with the Write tool, never a shell command (AUTHORITATIVE)
+## The actor stamp is never written (AUTHORITATIVE, 2026-08-30)
 
-**`.git/ACTOR` is written with the Write tool. Never `echo`, never `printf`, never `tee`, never a
-redirect, and never inside a compound command.** Reading it back with `cat` is fine, because a
-read is not a write.
+**No routine writes a lane stamp. Nothing is written to declare an actor, by any tool, at any
+path.** The branch already says which lane is acting, and `resolve_actor()` in
+`scripts/shared/ownership_check.py` is what both hooks ask.
 
-This one instruction wedged an unattended run on August 20th, 26th, 27th, 28th and 29th, and the
-owner was interrupted every one of those days. It is worth knowing why four earlier fixes failed,
-because each was right about something and none of them held.
+    TXDOCKET_ACTOR in the environment   a phase narrowing its own lane for one command
+    an ACTOR file in the git dir        honoured if some other process left one
+    the branch prefix                   `claude/daily-` is `daily`. The ordinary path
+    human                               a maintainer on an unprefixed branch, as before
 
-`.git/` is inside the working tree and outside what the Bash sandbox will write to. A sandboxed
-redirect there cannot complete, so the tool asks to re-run unsandboxed. **That prompt is a
-different mechanism from the permission mode**, `bypassPermissions` does not reach it, and the
-scratch rule below does not help because the stamp has nowhere else to live: `.githooks/commit-msg`
-reads exactly that path.
+A phase needing a NARROWER lane than its branch declares it on the commit it is already making,
+which costs no extra tool call at all. Git exports the variable to both hooks.
 
-So `.claude/settings.json` got an allow list of the exact command strings. **An allow entry matches
-ONE command**, and a session writes compounds, so `echo upgrade > .git/ACTOR && cat .git/ACTOR`
-matched nothing and went to approval. Adding the compound forms bought two days. Then the file
-stated the rule in prose: never join the stamp to another command. The next session read that
-paragraph, understood it, and wrote the stamp inside a six line script anyway.
+```
+TXDOCKET_ACTOR=upgrade git commit -m "..."
+```
 
-**Every one of those four fixes tried to make a shell command safe. The cure is not to use a shell
-command.** The Write tool takes no shell, so the sandbox never sees it, and produces no command
-string, so there is nothing to match and nothing to chain. It cannot prompt no matter what else
-shares the turn.
+**This replaced a file write that stopped six unattended runs**, on August 20th, 26th, 27th,
+28th, 29th and 30th, and the owner was interrupted every one of those days. Five fixes were tried
+and all five aimed at HOW the file was written: an allow list of exact command strings, then more
+strings, then the compound forms, then a prose rule against chaining, then the Write tool. The
+last of those was still wrong on the day after it shipped.
+
+**The diagnosis under all five was wrong, and it was wrong in the same way each time.** Every one
+of them assumed the Bash sandbox was refusing a write into `.git/`, and that `bypassPermissions`
+in `.claude/settings.json` was otherwise carrying the run. What is actually true, measured on
+2026-08-30 rather than reasoned about:
+
+- **This repo's permission grant is inert in the scheduled runner.** The file is loaded, and a
+  cloned repository is not permitted to grant itself `bypassPermissions`. If it were, cloning any
+  repository would be arbitrary privilege escalation. The only grant in force came from the
+  host's own launcher settings, which allowed one tool.
+- **So every write prompts, by any means, at any path.** A shell redirect into `.git/ACTOR`, a
+  Write call to the same place, and an ordinary file in the working tree all prompted identically
+  when this was tested. The tool never mattered and the path never mattered.
+- **A session cannot see that it prompted.** The tool result reads `File created successfully`
+  whether it was auto-approved or a human tapped approve on a phone an hour later. That is the
+  second half of why this recurred five times: each run verified its own fix, honestly, and was
+  wrong. Treat any claim that a run "did not prompt" as unevidenced, because no run can know.
+
+The lesson generalises past this stamp, and it is the one worth carrying: **a rule that makes an
+unattended run depend on a permission it cannot grant itself is not fixable by rewording the
+rule.** Remove the dependency. Here the dependency was a file nobody needed, because the branch
+carried the same information the whole time and CI had been reading it that way since
+2026-08-16.
 
 `scripts/shared/actor_stamp_shape.py` reads `CLAUDE.md`, `prompts/*.md` and the skill and agent
-files and **fails the build** if any of them tells a session to shell the stamp. That is the
-difference between this fix and the four before it. Those were prose, and prose is what the
+files and **fails the build** if any of them tells a session to write the stamp by any means, the
+Write tool now included. That gate used to bless the Write tool, which is to say the gate itself
+carried the fifth failed fix. Prose is what the earlier attempts were, and prose is what the
 session read and then contradicted. GATE_LESSONS' oldest shape is a rule stated in config with
 nothing in between checking it.
 
