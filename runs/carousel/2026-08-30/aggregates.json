@@ -1,0 +1,110 @@
+{
+ "date": "2026-08-30",
+ "aggregates": [
+  {
+   "phrase": "28 cameras",
+   "kind": "count",
+   "slide": 1,
+   "quoted_from": "c20",
+   "quote": "All 28 automated license plate reader cameras included in the contract will be turned off and covered.",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 28
+  },
+  {
+   "phrase": "459 outside organizations",
+   "kind": "count",
+   "slide": 3,
+   "quoted_from": "c21",
+   "quote": "Those records showed that 459 outside organizations conducted nearly 1.6 million searches",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 459
+  },
+  {
+   "phrase": "1.6 million searches",
+   "kind": "count",
+   "slide": 3,
+   "quoted_from": "c21",
+   "quote": "conducted nearly 1.6 million searches",
+   "note": "Quoted as the source wrote it, 'nearly 1.6 million'. The value is 1.6 and not 1600000, because expanding the unit would be the conversion the compute law forbids, and the hedge 'nearly' is carried on every surface that prints it.",
+   "value": 1.6
+  },
+  {
+   "phrase": "SIX MONTHS",
+   "kind": "duration",
+   "slide": 3,
+   "quoted_from": "c21",
+   "quote": "over the last six months",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 6
+  },
+  {
+   "phrase": "six months",
+   "kind": "duration",
+   "slide": 3,
+   "quoted_from": "c21",
+   "quote": "over the last six months",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 6
+  },
+  {
+   "phrase": "62,000 times",
+   "kind": "count",
+   "slide": 6,
+   "quoted_from": "c18",
+   "quote": "was searched 62,000 times in 2025",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 62000
+  },
+  {
+   "phrase": "62,000 plate searches",
+   "kind": "count",
+   "slide": 6,
+   "quoted_from": "c18",
+   "quote": "was searched 62,000 times in 2025",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 62000
+  },
+  {
+   "phrase": "three years",
+   "kind": "duration",
+   "slide": 7,
+   "quoted_from": "c17",
+   "quote": "a three-year, $15.9 million contract with DPS",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 3
+  },
+  {
+   "phrase": "three year",
+   "kind": "duration",
+   "slide": 7,
+   "quoted_from": "c17",
+   "quote": "a three-year, $15.9 million contract with DPS",
+   "note": "Quoted in the source's own wording. No arithmetic, no unit change, no hedge dropped.",
+   "value": 3
+  }
+ ],
+ "derived": [],
+ "refused": [
+  {
+   "pair": [
+    "$81 million (c16)",
+    "$50.8 million (c16)"
+   ],
+   "why": "a remainder no source states. $81 million is on no frame in this deck."
+  },
+  {
+   "pair": [
+    "459 (c21)",
+    "28 (c20)"
+   ],
+   "why": "a part and a whole. They count different things and they are on different frames, with nothing drawn between them anywhere in the deck."
+  },
+  {
+   "pair": [
+    "62,000 (c18)",
+    "about 1,660 (c18)"
+   ],
+   "why": "a hit rate. Both are printed on slide 6 and a drawn control joint separates them, with no shared axis, baseline or unit."
+  }
+ ]
+}

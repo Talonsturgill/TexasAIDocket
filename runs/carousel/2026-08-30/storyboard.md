@@ -109,7 +109,7 @@ type:
 
 acceptance:
   - "exactly 28 bodies are drawn inside the enclosure, the count asserted by the frame's own script and written to render_report.json"
-  - "the string \"unanimously\" appears exactly once as DOM text with \"c19\" beside it"
+  - "the string 'unanimously' appears exactly once as DOM text with 'c19' beside it"
   - "the enclosure interior is the lightest region on the frame, filled spangle #C6CCC7, and measures at least 25 L* above the clay field median"
   - "every body carries a lit crest and a two part cast, so it reads as an object on ground rather than a dot printed on it"
   - "the numeral 459 appears nowhere on this frame"
@@ -145,11 +145,12 @@ composition:
     darkest region, so the focal is the one place the light dies.
 
 art:
-  technique: "Zdog scene, vector 3D with rounded strokes"
+  technique: "canvas drape built in strict light order, a feathered silhouette with an internal fall of value and a rim where the field wraps it"
   why_this_technique: >
-    Zdog draws a diagrammatic object with no photographic pretense, which lets the deck show the
-    act of covering without illustrating a surveillance device. Its recorded failure mode is being
-    used for terrain, and this frame contains none. It has never shipped in eleven decks.
+    The claim is a physical act rather than a quantity, and the honest drawing of it is a mass
+    that OCCLUDES the light behind it rather than an object lit from the front. Built in strict
+    light order, cast first, then body, then folds, then the rim, so the cover reads as a thing in
+    front of a source. Nothing under it is drawn, because the record does not describe it.
   palette: >
     Same right of way source. galv #8E9694 the cover in open shade, spangle #C6CCC7 its lit crest,
     hood #1C1F20 the interior, shade #4A504F the bracket in shadow, clay #6A5544 the ground.
@@ -231,10 +232,10 @@ type:
 
 acceptance:
   - "no post carries a label, a number, a badge or a mark of any kind"
-  - "the string \"the fetched record names none of them\" appears as DOM text with \"c21\" beside it"
+  - "the string 'the fetched record names none of them' appears as DOM text with 'c21' beside it"
   - "the wire's brightest point measures at least 18 L* above the ground immediately beneath it"
   - "no black rectangle, bar, box or strike appears anywhere on the frame, because the absence is a sentence and never a shape"
-  - "the only search count on the frame is \"nearly 1.6 million\", in c21's own wording, and the word \"nearly\" is set at the same size as the numeral"
+  - "the only search count on the frame is 'nearly 1.6 million', in c21's own wording, and the word 'nearly' is set at the same size as the numeral"
   - "the post count is printed nowhere on the frame"
 
 risks:
@@ -290,8 +291,8 @@ type:
 
 acceptance:
   - "all figures on the frame are set at one identical size in JetBrains Mono with tabular numerals, and a render where any two differ in size fails"
-  - "each figure is followed by a phrase naming the set it counts and its claim id, \"c13\" or \"c16\""
-  - "the word \"unanimously\" appears once with \"c13\" beside it"
+  - "each figure is followed by a phrase naming the set it counts and its claim id, 'c13' or 'c16'"
+  - "the word 'unanimously' appears once with 'c13' beside it"
   - "no two contour lines are closer than 3 device pixels at 432px, asserted by the frame's own spacing computation"
   - "nothing on the frame encodes any figure as a length, an area or a position"
   - "the numeral 81 appears nowhere on this frame or anywhere in the deck"
@@ -355,9 +356,9 @@ type:
 acceptance:
   - "the outline is drawn through TXGeo's Albers projection and no county seam appears anywhere on it"
   - "the span terminates at exactly two drawn terminator blocks and nowhere else, and zero marks of any kind appear inside the silhouette between them"
-  - "the only place names on the frame are \"El Paso\" and \"the Louisiana border\", in c14's own wording, and no county name appears"
-  - "the frame carries the line \"no camera is placed on this map\" as DOM text"
-  - "both hedged figures carry the words \"at least\" set at the same size as the numeral, never as a superscript"
+  - "the only place names on the frame are 'El Paso' and 'the Louisiana border', in c14's own wording, and no county name appears"
+  - "the frame carries the line 'no camera is placed on this map' as DOM text"
+  - "both hedged figures carry the words 'at least' set at the same size as the numeral, never as a superscript"
   - "no scale bar and no coordinate pair appears anywhere on the frame"
 
 risks:
@@ -421,8 +422,8 @@ acceptance:
   - "THIS FRAME'S MEASURED MEDIAN L* IS THE HIGHEST OF ALL NINE RENDERED PNGs, and at least 15 L* above the second brightest. This is a deck level item graded against the whole strip, because a previous deck planned its turn as the lightest frame and shipped it fourth brightest with every per frame item passing"
   - "one control joint is drawn running the full frame height, with exactly one figure on each side of it"
   - "neither figure's baseline, axis or unit is shared with the other, and no connecting rule, arrow or leader crosses the joint"
-  - "the string \"according to a report from the authority\" renders on the frame, so the attribution is on the picture and not only in the caption"
-  - "the word \"about\" appears at full size beside 1,660, and its set line reads \"cleared catalytic converter theft cases\""
+  - "the string 'according to a report from the authority' renders on the frame, so the attribution is on the picture and not only in the caption"
+  - "the word 'about' appears at full size beside 1,660, and its set line reads 'cleared catalytic converter theft cases'"
   - "no numeral appears on this frame other than 62,000, 1,660, 2025, 06 and 09"
 
 risks:
@@ -473,7 +474,7 @@ art:
 
 type:
   hook: "One contract, three years."
-  dek: "In 2025 the authority signed a three year, $15.9 million contract with the Department of Public Safety to install 1,183 cameras."
+  dek: "In 2025 the authority signed a three year contract with the Department of Public Safety."
   labels:
     - "the ranks here carry no count"
     - "c17"
@@ -481,11 +482,11 @@ type:
 
 acceptance:
   - "the three planes carry three declared values with at least 18 L* between adjacent planes, measured on the rendered PNG"
-  - "\"1,183\", \"$15.9 million\" and \"2025\" each appear exactly once, each with \"c17\" beside it"
-  - "the frame carries the line \"the ranks here carry no count\" as DOM text"
+  - "'1,183', '$15.9 million' and '2025' each appear exactly once, each with 'c17' beside it"
+  - "the frame carries the line 'the ranks here carry no count' as DOM text"
   - "the near bracket is a different drawn form from the rank's members, not the same silhouette at another scale"
   - "no figure on the frame is divided by three, and no per year numeral appears anywhere"
-  - "\"three years\" is set as words and never as a numeral with a unit"
+  - "'three years' is set as words and never as a numeral with a unit"
 
 risks:
   - "slides 1 and 7 are both many identical objects and are this deck's predictable closest pair. They are separated by camera, by primitive and by 13 planned L*, and this is the pair to measure first on the contact sheet"
@@ -533,7 +534,9 @@ art:
 
 type:
   hook: "Then the money stopped."
-  dek: "\"To the extent any funding comes from Texas agencies, those agencies are clarifying that those funds cannot be used for Flock cameras\""
+  dek: >-
+    "To the extent any funding comes from Texas agencies, those agencies are clarifying that those
+    funds cannot be used for Flock cameras"
   labels:
     - "Andrew Mahaleris, spokesperson for the Office of the Texas Governor c12"
     - "The Governor's own news index carries no release on the order, on Flock, on cameras or on license plate readers. Retrieved August 30th, 2026. c41"
@@ -542,8 +545,8 @@ type:
 
 acceptance:
   - "the value break lands between 0.34 and 0.42 of frame height and never within 0.06 of the vertical centre, computed by the frame's own script"
-  - "the quote renders inside straight quotation marks, verbatim, including the word \"cannot\", and the frame is exempt from the contractions rule as a verbatim passage"
-  - "the absence sentence contains the literal strings \"gov.texas.gov/news\" and \"August 30th, 2026\""
+  - "the quote renders inside straight quotation marks, verbatim, including the word 'cannot', and the frame is exempt from the contractions rule as a verbatim passage"
+  - "the absence sentence contains the literal strings 'gov.texas.gov/news' and 'August 30th, 2026'"
   - "no black rectangle, bar, box or strike appears anywhere on the frame, because the absence is a sentence and never a shape"
   - "the region beneath the break is the largest unbroken area on the frame, at least 40 percent of frame area"
   - "total word count on the frame is 70 or fewer, counted on DOM text"
@@ -594,7 +597,7 @@ art:
 
 type:
   hook: "The board meets October 13th."
-  dek: "The Motor Vehicle Crime Prevention Authority posts its agenda for October 13th, 2026."
+  dek: "The Motor Vehicle Crime Prevention Authority posts its agenda for the meeting."
   labels:
     - "Listed on the state motor vehicles department's own page c40"
     - "TEXAS AI DOCKET"
@@ -602,11 +605,11 @@ type:
     - "09 / 09"
 
 acceptance:
-  - "the frame carries the exact strings \"agenda\" and \"October 13\" as DOM text, which is what the closing frame gate reads"
+  - "the frame carries the exact strings 'agenda' and 'October 13' as DOM text, which is what the closing frame gate reads"
   - "the reserved red appears on the date string and on no other frame in the deck, a whole deck scan finding it exactly once"
   - "the red's rendered contrast against the surface beneath it is computed in the frame's own script and measures at least 4.5 to 1, the value walked toward the light in 8 bit steps until it clears, and the achieved ratio printed to render_report.json"
   - "the tab's plate width is within 8 pixels of the laid out width of its own longest line, proving it was measured by TX.svgPlate and not typed"
-  - "the wordmark, the site line read from config/brand.yaml, and the counter \"09 / 09\" are all present as DOM text"
+  - "the wordmark, the site line read from config/brand.yaml, and the counter '09 / 09' are all present as DOM text"
   - "no lens, aperture, pole or camera is drawn on this frame"
 
 risks:

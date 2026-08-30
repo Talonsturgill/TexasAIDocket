@@ -1,0 +1,154 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0A0D10}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(5,7,9,.98), 0 0 34px rgba(5,7,9,.95), 0 0 70px rgba(5,7,9,.88),
+      0 0 130px rgba(5,7,9,.74), 0 3px 6px rgba(5,7,9,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#8A99A2}
+  .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:100px;line-height:1.01;color:#F2F0E8;letter-spacing:-.022em}
+  .dek{position:absolute;top:394px;left:80px;width:840px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:33px;line-height:1.32;color:#D4DBDE}
+  .setwrap{position:absolute;left:80px;top:1006px;width:920px}
+  .fig{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:44px;
+     letter-spacing:.01em;line-height:1.18;color:#F2F0E8;font-variant-numeric:tabular-nums}
+  .set{margin:10px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+     letter-spacing:.05em;line-height:1.38;color:#9AA7AE}
+  .nocount{margin:12px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:25px;
+     letter-spacing:.05em;color:#E2E8EA}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#7B8993;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the near plane is lit and the far planes fall away in value","reads":"differ","a":[[120,700,220,120]],"b":[[700,560,220,120]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">One contract,<br>three years.</p>
+  <p class="dek halo">In 2025 the authority signed a three year contract with the Department of Public Safety.</p>
+  <div class="setwrap">
+    <p class="fig halo">$15.9 million &nbsp;/&nbsp; 1,183</p>
+    <p class="set halo">THE CONTRACT WITH THE DEPARTMENT OF PUBLIC SAFETY, AND THE<br>
+      CAMERAS IT INSTALLS &nbsp;c17</p>
+    <p class="nocount halo">THE RANKS HERE CARRY NO COUNT</p>
+  </div>
+  <div class="foot halo"><span>THE PURCHASE</span><span>c17</span><span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260837);
+
+  (function field(){
+    g.fillStyle='#0A0D10'; g.fillRect(0,0,W,H);
+    for(const [x,y,r,col] of [
+      [300, 740, 700, 'rgba(48,66,78,0.80)'],
+      [180, 700, 360, 'rgba(84,110,126,0.56)'],
+      [900, 560, 560, 'rgba(22,32,40,0.72)'],
+      [640, 1240, 560, 'rgba(16,24,30,0.70)'],
+    ]){
+      const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.0032+8.3,y*0.0032+2.9,5);
+      const v=(n-0.5)*1.5;
+      if(v>0){ g.fillStyle='rgba(150,176,192,'+Math.min(0.30,v*0.44).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(2,3,5,'+Math.min(0.52,(-v)*0.66).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // ---- THREE RANKS AT DEPTH. The record gives a three year total and never a yearly figure, so
+  // the sum is not divided across them. Each rank is a soft band of luminous marks at a declared
+  // value step, and NONE of them carries a count: the number of marks drawn is a product of the
+  // geometry and the frame says so in type.
+  //
+  // Parallax planes fail when the layers share a value, so the three steps are explicit.
+  const RANKS=[
+    { y: 566, n: 26, a: 0.16, r: 3.2, tint:'104,126,140' },   // far
+    { y: 664, n: 18, a: 0.34, r: 5.0, tint:'150,176,192' },   // mid
+    { y: 792, n: 11, a: 0.72, r: 8.6, tint:'214,232,240' },   // near, the frame's light extreme
+  ];
+  (function ranks(){
+    for(const rk of RANKS){
+      // the rank's own band of air, so each plane sits IN something
+      const bg=g.createLinearGradient(0,rk.y-70,0,rk.y+70);
+      bg.addColorStop(0,'rgba('+rk.tint+',0)');
+      bg.addColorStop(0.5,'rgba('+rk.tint+','+(rk.a*0.10).toFixed(3)+')');
+      bg.addColorStop(1,'rgba('+rk.tint+',0)');
+      g.fillStyle=bg; g.fillRect(0,rk.y-70,W,140);
+      for(let i=0;i<rk.n;i++){
+        const t=(i+0.5)/rk.n;
+        const x=40+t*(W-80)+TX.simplex2(i*0.7+rk.y*0.01, 3.3)*18;
+        const y=rk.y+TX.simplex2(i*0.5+rk.y*0.02, 8.8)*10;
+        const bl=g.createRadialGradient(x,y,0.5,x,y,rk.r*5.2);
+        bl.addColorStop(0,'rgba('+rk.tint+','+(rk.a*0.62).toFixed(3)+')');
+        bl.addColorStop(1,'rgba('+rk.tint+',0)');
+        g.fillStyle=bl; g.beginPath(); g.arc(x,y,rk.r*5.2,0,Math.PI*2); g.fill();
+        g.fillStyle='rgba('+rk.tint+','+rk.a.toFixed(3)+')';
+        g.beginPath(); g.ellipse(x,y,rk.r*0.92,rk.r*1.06,0,0,Math.PI*2); g.fill();
+      }
+    }
+  })();
+
+  // ---- THE NEAR PLATE. One form standing in front of all three ranks, carrying the sum, because
+  // the contract is one thing rather than a thing divided by three. It is a DIFFERENT drawn form
+  // from the rank members, not the same silhouette at another scale.
+  (function plate(){
+    const PX=196, PY=902, PW=250, PH=112;
+    for(let i=12;i>=0;i--){
+      g.fillStyle='rgba(3,5,7,0.06)';
+      g.beginPath(); g.roundRect(PX-i*3, PY-i*2, PW+i*6, PH+i*4, 56); g.fill();
+    }
+    const pg=g.createLinearGradient(PX,PY,PX+PW,PY+PH);
+    pg.addColorStop(0,'rgba(226,240,246,0.86)'); pg.addColorStop(0.45,'rgba(160,190,204,0.42)');
+    pg.addColorStop(1,'rgba(70,96,112,0.16)');
+    g.fillStyle=pg;
+    g.beginPath(); g.roundRect(PX,PY,PW,PH,56); g.fill();
+    // the lit lip along its upper edge, so it reads as a plane and not a pill
+    const lip=g.createLinearGradient(0,PY,0,PY+26);
+    lip.addColorStop(0,'rgba(244,250,252,0.70)'); lip.addColorStop(1,'rgba(244,250,252,0)');
+    g.save(); g.beginPath(); g.roundRect(PX,PY,PW,PH,56); g.clip();
+    g.fillStyle=lip; g.fillRect(PX,PY,PW,30); g.restore();
+  })();
+
+  (function tooth(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.048+8.3, y*0.048+3.9, 3);
+      const v=(n-0.5);
+      if(v>0){ g.fillStyle='rgba(186,208,222,'+Math.min(0.26,v*0.46).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.34,(-v)*0.54).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  (function fines(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.simplex2(x*0.34+7.1, y*0.34+2.6);
+      const v=n*0.5;
+      if(v>0){ g.fillStyle='rgba(198,216,228,'+Math.min(0.11,v*0.20).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.15,(-v)*0.26).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

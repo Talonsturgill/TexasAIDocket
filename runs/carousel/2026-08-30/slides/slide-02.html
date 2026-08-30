@@ -20,7 +20,7 @@
         font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
         letter-spacing:.05em;color:#84919A;font-variant-numeric:tabular-nums}
 </style></head>
-<body data-encodes='[{"claim":"the covered mass is darker than the light wrapping its edge","reads":"differ","a":[[478,706,124,150]],"b":[[404,566,86,86]]}]'>
+<body data-encodes='[{"claim":"the covered mass is darker than the lit ground it stands in","reads":"differ","a":[[478,706,124,150]],"b":[[330,980,240,90]]}]'>
 <canvas id="scene"></canvas>
 <div class="wrap">
   <div class="mast halo">TEXAS AI DOCKET</div>
@@ -61,8 +61,8 @@ window.renderReady = (async () => {
     for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
       const n=TX.fbm2(x*0.0036+2.7,y*0.0036+8.1,5);
       const v=(n-0.5)*1.5;
-      if(v>0){ g.fillStyle='rgba(160,182,194,'+Math.min(0.15,v*0.20).toFixed(3)+')'; }
-      else   { g.fillStyle='rgba(3,4,6,'+Math.min(0.36,(-v)*0.44).toFixed(3)+')'; }
+      if(v>0){ g.fillStyle='rgba(160,182,194,'+Math.min(0.30,v*0.44).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(3,4,6,'+Math.min(0.52,(-v)*0.66).toFixed(3)+')'; }
       g.fillRect(x,y,3,3);
     }}
   })();
@@ -154,6 +154,26 @@ window.renderReady = (async () => {
     g.strokeStyle='rgba(150,176,188,0.18)'; g.lineWidth=1;
     for(const y of [640,800,960]){ g.beginPath(); g.moveTo(48,y); g.lineTo(80,y); g.stroke(); }
   })();
+  (function tooth(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.048+2.7, y*0.048+3.9, 3);
+      const v=(n-0.5);
+      if(v>0){ g.fillStyle='rgba(186,208,222,'+Math.min(0.26,v*0.46).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.34,(-v)*0.54).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  (function fines(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.simplex2(x*0.34+7.1, y*0.34+2.6);
+      const v=n*0.5;
+      if(v>0){ g.fillStyle='rgba(198,216,228,'+Math.min(0.11,v*0.20).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.15,(-v)*0.26).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
   (function grain(){
     for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
       const v=(R()-0.5)*0.030;
