@@ -292,19 +292,41 @@ def g_shipped_fresh(d: Path):
         # spent eight frames" are correct and have no business in a figures file. The first
         # version of this read the whole block and fired on both of those, which is a gate that
         # would teach a run to stop writing down how a frame is built.
+        # THE THIRD ORIGIN, one layer up, and `aggregate_check` had already paid for this lesson
+        # in its own file: a figure can be neither counted nor computed, it can be QUOTED. A
+        # `numerals:` entry reads `value_from: c21  # 459, nearly 1.6 million, six months`, and
+        # "six months" is c21's own wording, not something this run calculated. Refusing it says
+        # the honest route fails, which is the exact shape aggregate_check fixed with
+        # `quoted_from` and the exact thing that file warns the next gate author about.
+        #
+        # So a word-number clears if the CLAIMS THE SAME BLOCK CITES contain it in their own
+        # words. That is narrower than "any claim", so a dossier cannot clear a stale figure by
+        # citing something unrelated, and it is checked against the fetched text rather than
+        # against prose nobody reads.
+        cl = _load(d / "claims.json") or {}
+        cl = cl.get("claims") if isinstance(cl, dict) else cl
+        by = {c["id"]: (str(c.get("quote", "")) + " " + str(c.get("text", ""))).lower()
+              for c in (cl or []) if isinstance(c, dict) and c.get("id")}
         claimy = []
         for blk in re.findall(r"```yaml\n(.*?)```", text, re.S):
+            cites = set(re.findall(r"\bc\d+\b", blk))
             for fm in re.finditer(r"^(job|numerals):(.*?)(?=^\S|\Z)", blk, re.S | re.M):
-                claimy.append(fm.group(0))
-        for blk in claimy:
+                claimy.append((fm.group(0), cites))
+        for blk, cites in claimy:
+            said = " ".join(by.get(c, "") for c in cites)
             for m in re.finditer(r"\b(" + "|".join(words) + r")\b", blk, re.I):
-                val = value_of[m.group(1).lower()]
-                if val not in allowed:
-                    problems.append(
-                        f"storyboard.md, a dossier job or numerals field, says {m.group(1)!r} "
-                        f"and the run computed {sorted(allowed)}. A plan nobody regenerates is a "
-                        f"plan that describes the last deck")
-                    break
+                word = m.group(1).lower()
+                if value_of[word] in allowed:
+                    continue
+                # Hyphenated in the source and spaced in the plan is the same figure.
+                if re.search(rf"(?<![a-z]){word}[ -]", said):
+                    continue
+                problems.append(
+                    f"storyboard.md, a dossier job or numerals field, says {m.group(1)!r} "
+                    f"and the run computed {sorted(allowed)}, while none of the claims that "
+                    f"block cites ({', '.join(sorted(cites)) or 'none'}) uses the word either. "
+                    f"A plan nobody regenerates is a plan that describes the last deck")
+                break
 
     ar = _load(d / "assemble_report.json")
     if ar and cp.get("document_title") and ar.get("title") != cp["document_title"]:
@@ -408,10 +430,22 @@ def g_ledgers(d: Path):
 
 
 def g_completion(d: Path):
+    """`check(run_dir, bar, cap)`, and the cap is the whole point of the third argument.
+
+    This called `check(d, m.threshold())` and let `cap` default to None, which makes the ONE
+    path in run_complete that is under the bar and not a failure unreachable from here. A deck
+    shipped on the round cap with no hard fail, exactly what the rubric licenses and what
+    run_complete's own CLI passes the cap to allow, was reported by this gate as never having
+    shipped. Two gates reading one rubric and disagreeing about it, because one of them was
+    only asking half the question.
+
+    GATE_LESSONS' recurring shape, from the other side: not a green banner measuring something
+    narrower than it claimed, but a red one. The verdict was still wrong for the same reason.
+    """
     import run_complete as m
     if not (d / "score.json").exists():
         return None
-    return list(m.check(d, m.threshold()) or [])
+    return list(m.check(d, m.threshold(), m.max_rounds()) or [])
 
 
 GATES = [

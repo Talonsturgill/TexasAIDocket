@@ -1,0 +1,126 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* THE REVERSAL, and the deck's DARKEST frame. No object at all, because an order that reached
+     the public as a spokesperson's sentence has no object to draw. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1B242C}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(6,10,14,.99), 0 0 40px rgba(6,10,14,.97), 0 0 84px rgba(6,10,14,.92),
+      0 0 150px rgba(6,10,14,.82), 0 3px 6px rgba(6,10,14,.99); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#DADFE2}
+  .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:106px;line-height:1.00;color:#F2F0E8;letter-spacing:-.022em}
+  .quote{position:absolute;top:600px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:500;font-style:italic;font-size:38px;line-height:1.34;color:#E4EAEC}
+  .who{position:absolute;top:836px;left:80px;width:900px;margin:0;
+     font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.05em;
+     line-height:1.36;color:#CED5DA}
+  .absence{position:absolute;top:946px;left:80px;width:880px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:31px;line-height:1.34;color:#CFD8DC}
+  .src{position:absolute;top:1116px;left:80px;width:880px;margin:0;
+     font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.05em;
+     color:#CBD2D6}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#D8DCDF;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the band under the break is lit and the field below it falls to the deck floor","reads":"differ","a":[[120,530,300,60]],"b":[[120,1220,300,80]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">Then an order<br>to pause.</p>
+  <p class="quote halo">"To the extent any funding comes from Texas agencies, those agencies are clarifying that those funds cannot be used for Flock cameras"</p>
+  <p class="who halo">ANDREW MAHALERIS, FOR THE GOVERNOR'S OFFICE &nbsp;c12</p>
+  <p class="absence halo">The Governor's own news index carries no release on it.</p>
+  <p class="src halo">gov.texas.gov/news &nbsp;&middot;&nbsp; RETRIEVED AUGUST 30TH, 2026 &nbsp;c41</p>
+  <div class="foot halo"><span>THE PAUSE</span><span>c11 c12 c41</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260838);
+
+  // THE BREAK. A norther arrives as a hard edge across the sky and changes everything in an hour,
+  // which is the shape of this frame's subject. The library's recorded failure is the break
+  // landing on the vertical centre and cutting the slide in half, so it is COMPUTED at 0.38 of
+  // frame height and asserted, never eyeballed.
+  const BREAK = Math.round(H * 0.38);
+
+  (function sky(){
+    // above the break: cold, high, empty
+    const up=g.createLinearGradient(0,0,0,BREAK);
+    up.addColorStop(0,'#1E2A34'); up.addColorStop(0.62,'#33475A'); up.addColorStop(1,'#4A657C');
+    g.fillStyle=up; g.fillRect(0,0,W,BREAK);
+    // the lit band immediately beneath it. THE FOCAL, an area running the full frame width.
+    const lit=g.createLinearGradient(0,BREAK,0,BREAK+120);
+    lit.addColorStop(0,'#CFE0EA'); lit.addColorStop(0.20,'#8CA6B8');
+    lit.addColorStop(1,'rgba(60,80,96,0)');
+    g.fillStyle=lit; g.fillRect(0,BREAK,W,140);
+    // below: the field falls away to the deck's floor
+    const dn=g.createLinearGradient(0,BREAK,0,H);
+    dn.addColorStop(0,'rgba(40,56,68,0.10)'); dn.addColorStop(0.34,'#31414E');
+    dn.addColorStop(1,'#151D25');
+    g.fillStyle=dn; g.fillRect(0,BREAK,W,H-BREAK);
+  })();
+
+  // the edge itself, softened by a few passes so it is weather rather than a drawn rule
+  (function edge(){
+    // A norther has a ragged shelf, not a rule. The passes spread over 70 units rather than 14,
+    // each carries its own noise so no two share a path, and the topmost is the only crisp one.
+    for(let i=0;i<14;i++){
+      const t=i/13;
+      g.beginPath();
+      for(let x=-10;x<=W+10;x+=8){
+        const y = BREAK
+          + TX.simplex2(x*0.0022+3.1, 5.5)*13
+          + TX.simplex2(x*0.010+1.4, 2.2)*3.6
+          + TX.simplex2(x*0.030+i*2.7, 7.3)*(2.0+t*9.0)
+          - t*70;
+        x===-10?g.moveTo(x,y):g.lineTo(x,y);
+      }
+      g.strokeStyle='rgba(236,246,252,'+(0.13*(1-t)+0.012).toFixed(3)+')';
+      g.lineWidth=2.0+t*26; g.stroke();
+    }
+  })();
+
+  // the cloud body dragging under the front, which is the only structure in the frame
+  (function drag(){
+    for(let i=0;i<20;i++){
+      const x=R()*W, y=BREAK+18+R()*230, rx=120+R()*260, ry=16+R()*40;
+      const gr=g.createRadialGradient(x,y,4,x,y,rx);
+      gr.addColorStop(0,'rgba(206,226,240,'+(0.07+R()*0.07).toFixed(3)+')');
+      gr.addColorStop(1,'rgba(150,178,196,0)');
+      g.save(); g.translate(x,y); g.scale(1,ry/rx); g.translate(-x,-y);
+      g.fillStyle=gr; g.beginPath(); g.arc(x,y,rx,0,Math.PI*2); g.fill(); g.restore();
+    }
+  })();
+
+  (function haze(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.0030+2.2,y*0.0030+7.7,5);
+      const v=(n-0.5)*1.5;
+      if(v>0){ g.fillStyle='rgba(214,232,244,'+Math.min(0.20,v*0.28).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(10,16,22,'+Math.min(0.20,(-v)*0.26).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // the frame asserts its own break position, so the gate is reading a computed value
+  window.__txBreak = { y: BREAK, fraction: +(BREAK/H).toFixed(4) };
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

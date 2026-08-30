@@ -9,7 +9,7 @@ The Senate Committee on Economic Development carries an interim charge on prepar
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-08-29
+- Last checked: 2026-08-30
 
 ## Dates
 
@@ -20,6 +20,7 @@ The Senate Committee on Economic Development carries an interim charge on prepar
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-29 · Admitted. The committee's own page carries the interim charge on preparing the Texas workforce for artificial intelligence. The Legislature's upcoming meetings listing sets the hearing for September 3rd in hearing room E1.016. The listing marks it a public hearing rather than a work session.
+- 2026-08-30 · The September 3rd hearing on artificial intelligence and the Texas workforce is still on the calendar, with nothing filed against it since.
 
 ## Evidence
 

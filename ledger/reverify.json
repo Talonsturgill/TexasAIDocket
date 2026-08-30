@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-08-29",
+    "generated": "2026-08-30",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -42,6 +42,17 @@
         "tx-2026-0086-c2",
         "tx-2026-0086-c3",
         "tx-2026-0086-c4"
+      ]
+    },
+    "https://api.nsf.gov/services/v1/awards.json?id=2607553&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "a1e7ff08b3bf152d3071123b0c2bbc7c6de39bda63505328551ac68bfa2331c1",
+      "proven": [
+        "tx-2026-0085-c1",
+        "tx-2026-0085-c2",
+        "tx-2026-0085-c3",
+        "tx-2026-0085-c4"
       ]
     },
     "https://api.nsf.gov/services/v1/awards/2534344.json": {
@@ -176,7 +187,8 @@
         "tx-2026-0096-c3",
         "tx-2026-0096-c4",
         "tx-2026-0096-c5",
-        "tx-2026-0096-c6"
+        "tx-2026-0096-c6",
+        "tx-2026-0109-c4"
       ]
     },
     "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm": {
@@ -259,6 +271,22 @@
         "tx-2026-0069-c3"
       ]
     },
+    "https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "86f7fced96c15280e700d08245f0c6e7ec80a016552804e6ed217485a93f2d6f",
+      "proven": [
+        "tx-2026-0087-c1"
+      ]
+    },
+    "https://denton-tx.legistar.com/MeetingDetail.aspx?ID=1356104&GUID=2C80918D-F58E-4522-A845-6B78CAC3DB44": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "9bcf78993309501bf9792026a5a18372f071224739e59624fd3f7c80cf5e878f",
+      "proven": [
+        "tx-2026-0087-c2"
+      ]
+    },
     "https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf": {
       "etag": "\"a174b351330dd1:0\"",
       "last_modified": "Wed, 19 Aug 2026 19:44:54 GMT",
@@ -270,6 +298,15 @@
       "last_modified": "Thu, 13 Aug 2026 22:19:18 GMT",
       "hash": "5d5e7365aa3ba2b02f6ac6e50f756497da99e8881b7d1c4a3fca0b4b67cf284c",
       "proven": []
+    },
+    "https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "3d996331b69c6ee3822e6e0df0451797a1773c48633cf9c630acf9f0a22e287f",
+      "proven": [
+        "tx-2026-0084-c3",
+        "tx-2026-0084-c4"
+      ]
     },
     "https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county": {
       "etag": null,
@@ -466,8 +503,8 @@
     },
     "https://news.engineering.tamu.edu/news/2026/08/03/texas-am-to-build-first-national-self-driving-laboratory-for-metals-open-to-researchers-nationwide/": {
       "etag": null,
-      "last_modified": "Sat, 29 Aug 2026 06:10:52 GMT",
-      "hash": "37bf0f6777d295d934ebc84ca7b20879ca94d3ed6f4dd3a249c7706a7401bc89",
+      "last_modified": "Sun, 30 Aug 2026 12:57:37 GMT",
+      "hash": "d0d329e74d6bc726faad6010bea8394062366be2c5bc9e69c12744dfb18602a6",
       "proven": [
         "tx-2026-0086-c5"
       ]
@@ -508,6 +545,19 @@
         "tx-2026-0100-c2"
       ]
     },
+    "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "90c021687be4f386b2d45f0f6359d6a3d4b342dfe58f35d285e96fb4e81344eb",
+      "proven": [
+        "tx-2026-0104-c10",
+        "tx-2026-0104-c11",
+        "tx-2026-0104-c12",
+        "tx-2026-0104-c13",
+        "tx-2026-0104-c14",
+        "tx-2026-0104-c9"
+      ]
+    },
     "https://news.utsa.edu/2026/05/ut-system-investments-of-over-470-million-accelerate-ut-san-antonios-rise-as-a-world-class-research-university/": {
       "etag": null,
       "last_modified": "Fri, 28 Aug 2026 06:22:30 GMT",
@@ -517,6 +567,15 @@
         "tx-2026-0040-c2",
         "tx-2026-0040-c3",
         "tx-2026-0040-c4"
+      ]
+    },
+    "https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "43a59758d0b9f3096b81d1bc603d13ce0e97b493deda738b847df5e9f30fefb7",
+      "proven": [
+        "tx-2026-0084-c1",
+        "tx-2026-0084-c2"
       ]
     },
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
@@ -551,6 +610,17 @@
       "hash": "063b34a2ba586f6cd634b005ed146cb822a81d213aa4246af4d0b78f58060a53",
       "proven": []
     },
+    "https://senate.texas.gov/cmte.php?c=525": {
+      "etag": null,
+      "last_modified": "Sat, 29 Aug 2026 12:00:00 GMT",
+      "hash": "559a6e41b059a87297fef69ccc7d98a320daf29818199771f3d844c365556bca",
+      "proven": [
+        "tx-2026-0109-c1",
+        "tx-2026-0109-c2",
+        "tx-2026-0109-c3",
+        "tx-2026-0109-c5"
+      ]
+    },
     "https://senate.texas.gov/cmte.php?c=640": {
       "etag": null,
       "last_modified": "Fri, 28 Aug 2026 12:00:00 GMT",
@@ -561,7 +631,7 @@
     },
     "https://senate.texas.gov/cmte.php?c=700": {
       "etag": null,
-      "last_modified": "Fri, 28 Aug 2026 12:00:00 GMT",
+      "last_modified": "Sat, 29 Aug 2026 12:00:00 GMT",
       "hash": "a666082e2fa971017e689443a1d7f27b74c55d8cb9ac9a26ec320d68675298d2",
       "proven": [
         "tx-2026-0096-c1",
@@ -612,6 +682,16 @@
         "tx-2026-0007-c1",
         "tx-2026-0007-c2",
         "tx-2026-0007-c3"
+      ]
+    },
+    "https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "52d328bc4368dc01fd9d9b48ca97e1c5387f9026924db1dd418cd750edcdeb68",
+      "proven": [
+        "tx-2026-0105-c1",
+        "tx-2026-0105-c2",
+        "tx-2026-0105-c3"
       ]
     },
     "https://texasscorecard.com/local/killeen-planning-zoning-votes-data-center-down/": {
@@ -874,6 +954,16 @@
         "tx-2026-0030-c2"
       ]
     },
+    "https://www.austintexas.gov/council/2026/20260827-reg": {
+      "etag": "\"1788095011-gzip\"",
+      "last_modified": "Sun, 30 Aug 2026 13:03:31 GMT",
+      "hash": "edbf0c18313074fb2f910deea44e54c23e27ef14d5836cd21c605115ab6e2d46",
+      "proven": [
+        "tx-2026-0106-c1",
+        "tx-2026-0106-c2",
+        "tx-2026-0106-c3"
+      ]
+    },
     "https://www.blancogroundwatertx.gov/2026-04-16-district-meeting": {
       "etag": "W/\"43312442d25963c2c2c3be76be6a5bf0\"",
       "last_modified": null,
@@ -881,6 +971,15 @@
       "proven": [
         "tx-2026-0060-c1",
         "tx-2026-0060-c2"
+      ]
+    },
+    "https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "21321b58135889191a64210d99f023487cd54cca5084633149f8cfc798a771a8",
+      "proven": [
+        "tx-2026-0088-c2",
+        "tx-2026-0088-c3"
       ]
     },
     "https://www.click2houston.com/news/local/2026/05/29/'y'all-are-playing-games':-discussion-over-harris-county's-flock-camera-contract-renewal-turns-tense/": {
@@ -917,7 +1016,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-14341.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "6baae264a95e4c1752ec9666a5d9a3b7abe056adef8c822824fd860bc5ac8cbf",
+      "hash": "e776ef10f8909a84d3054f0b9fda957f7492f734c71501df8321abc9856f9a49",
       "proven": [
         "tx-2026-0015-c2"
       ]
@@ -931,7 +1030,7 @@
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
       "etag": null,
       "last_modified": null,
-      "hash": "f17154a1c50064543593109aa6876142e3a0b14027c2af770a0145f807fa9c1c",
+      "hash": "526ad07e2a9de6008a41afc2a71adf128bbb44ff4bba5f84c67194c2ebdcc219",
       "proven": []
     },
     "https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards": {
@@ -960,6 +1059,12 @@
       "hash": "017c214395e56d4de15cbff2385ced35d54ce5d0c71a6a0684bba97389223f87",
       "proven": []
     },
+    "https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf": {
+      "etag": "\"441e2aa3abddc1:0\"",
+      "last_modified": "Thu, 26 Mar 2026 16:03:09 GMT",
+      "hash": "e5d5364981c2eecdfdce18f74f9035923f0678909bafa67f90c14ecac576a467",
+      "proven": []
+    },
     "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/jun/houston-methodist-launches-systemwide-ai-platform-to-transform-imaging-emergency-response-care/": {
       "etag": null,
       "last_modified": null,
@@ -967,6 +1072,14 @@
       "proven": [
         "tx-2026-0101-c1",
         "tx-2026-0101-c2"
+      ]
+    },
+    "https://www.kbtx.com/2026/08/18/brazos-county-commissioners-approve-new-owner-rellis-data-center-heres-what-it-means-your-wallet/": {
+      "etag": "W/\"2a56e-HkYf699Zz54hEkatixFj9xTQgUs\"",
+      "last_modified": "Sun, 30 Aug 2026 13:04:38 GMT",
+      "hash": "7d91debea47c646cdc83c0dc56fb2174649a24dc320163e884f930c78ae22b42",
+      "proven": [
+        "tx-2026-0088-c4"
       ]
     },
     "https://www.kcbd.com/2026/08/10/lubbock-county-commissioners-pass-resolution-regarding-large-scale-industrial-development-texas/": {
@@ -1101,9 +1214,9 @@
       ]
     },
     "https://www.nsf.gov/news/nsf-stands-2-materials-innovation-platforms-50m-investment": {
-      "etag": "\"1787965241\"",
-      "last_modified": "Sat, 29 Aug 2026 01:00:41 GMT",
-      "hash": "b6000f1b0a0f4d2cd65468c37f0d54b48bd8ca1c4f0d7e8cbd4a36e22790d823",
+      "etag": "\"1788094645\"",
+      "last_modified": "Sun, 30 Aug 2026 12:57:25 GMT",
+      "hash": "e49d3f7ba3ab5ad974182c5128af44a974bc54a6054c014cafaf7e96f7460ad8",
       "proven": [
         "tx-2026-0090-c7"
       ]
@@ -1256,6 +1369,15 @@
         "tx-2026-0082-c1",
         "tx-2026-0082-c2",
         "tx-2026-0082-c3"
+      ]
+    },
+    "https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html": {
+      "etag": "W/\"0a2957b90665ae4f6039356990e65ce99\"",
+      "last_modified": "Sun, 30 Aug 2026 13:04:39 GMT",
+      "hash": "4adbcb60b6ee1373b76397f6d7fd084bcd555be39138751f1281f28463b08211",
+      "proven": [
+        "tx-2026-0102-c1",
+        "tx-2026-0102-c2"
       ]
     },
     "https://www.utsystem.edu/board-of-regents/meetings/board-meeting-2026-08-12": {

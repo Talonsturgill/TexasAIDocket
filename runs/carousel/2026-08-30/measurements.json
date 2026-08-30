@@ -1,0 +1,93 @@
+{
+  "run": "2026-08-30",
+  "note": "Measured off the rendered PNGs by measure.py. L* from sRGB grey through the linear-light step. Sampled on a fixed 270 by 338 grid so the figure does not move with the render's resolution.",
+  "frames": [
+    {
+      "frame": 1,
+      "median_lstar": 21.2,
+      "mean_lstar": 24.0,
+      "stdev_lstar": 12.7,
+      "bottom_third_median_lstar": 20.3,
+      "bottom_third_stdev_lstar": 7.7
+    },
+    {
+      "frame": 2,
+      "median_lstar": 16.6,
+      "mean_lstar": 19.0,
+      "stdev_lstar": 12.2,
+      "bottom_third_median_lstar": 16.6,
+      "bottom_third_stdev_lstar": 8.4
+    },
+    {
+      "frame": 3,
+      "median_lstar": 24.4,
+      "mean_lstar": 26.9,
+      "stdev_lstar": 13.8,
+      "bottom_third_median_lstar": 23.5,
+      "bottom_third_stdev_lstar": 11.4
+    },
+    {
+      "frame": 4,
+      "median_lstar": 24.4,
+      "mean_lstar": 26.7,
+      "stdev_lstar": 13.8,
+      "bottom_third_median_lstar": 24.0,
+      "bottom_third_stdev_lstar": 8.1
+    },
+    {
+      "frame": 5,
+      "median_lstar": 20.8,
+      "mean_lstar": 22.8,
+      "stdev_lstar": 14.1,
+      "bottom_third_median_lstar": 20.3,
+      "bottom_third_stdev_lstar": 12.2
+    },
+    {
+      "frame": 6,
+      "median_lstar": 71.5,
+      "mean_lstar": 70.0,
+      "stdev_lstar": 13.6,
+      "bottom_third_median_lstar": 70.0,
+      "bottom_third_stdev_lstar": 9.6
+    },
+    {
+      "frame": 7,
+      "median_lstar": 21.7,
+      "mean_lstar": 25.9,
+      "stdev_lstar": 16.4,
+      "bottom_third_median_lstar": 20.3,
+      "bottom_third_stdev_lstar": 12.6
+    },
+    {
+      "frame": 8,
+      "median_lstar": 18.5,
+      "mean_lstar": 22.9,
+      "stdev_lstar": 15.3,
+      "bottom_third_median_lstar": 13.7,
+      "bottom_third_stdev_lstar": 8.8
+    },
+    {
+      "frame": 9,
+      "median_lstar": 15.6,
+      "mean_lstar": 17.7,
+      "stdev_lstar": 17.7,
+      "bottom_third_median_lstar": 11.3,
+      "bottom_third_stdev_lstar": 13.4
+    }
+  ],
+  "per_frame_median_lstar": [
+    21.2,
+    16.6,
+    24.4,
+    24.4,
+    20.8,
+    71.5,
+    21.7,
+    18.5,
+    15.6
+  ],
+  "deck_median_lstar": 21.2,
+  "value_range_lstar": 55.9,
+  "darkest_frame": 9,
+  "lightest_frame": 6
+}

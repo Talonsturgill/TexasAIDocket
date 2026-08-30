@@ -11,7 +11,7 @@ Amazon announced a new manufacturing facility in Austin that will produce the ro
 - Public access: Write to the decider
 - Take part: https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas
 
-- Last checked: 2026-08-27
+- Last checked: 2026-08-30
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-22 · Amazon's release and the Office of the Governor's announcement both name the Austin siting. The mayor is quoted in Amazon's release saying no incentives were requested.
 - 2026-08-27 · Checked and unchanged. Both announcements still stand as issued and neither has been amended. The mayor's statement that the company asked for no economic incentives and no public money is still carried inside the company's own release. No local body has posted an item on the site.
+- 2026-08-30 · The siting still stands and the account given of it has not changed. No public proceeding has been noticed against the factory.
 
 ## Evidence
 

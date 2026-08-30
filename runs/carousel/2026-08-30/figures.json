@@ -1,0 +1,33 @@
+{
+  "claims_verified": {
+    "value": 41,
+    "from_items": [],
+    "note": "Claims this run fetched and verified, counted by compute.py over claims.json."
+  },
+  "figures_proved": {
+    "value": 18,
+    "from_items": [],
+    "note": "Frame figures proved present in their claim's own verbatim quote before reaching a slide."
+  },
+  "relationships_refused": {
+    "value": 3,
+    "from_items": [],
+    "note": "Relationships the story invites that no claim licenses. Named in aggregates.json rather than left implicit."
+  },
+  "news_reports": {
+    "value": 3,
+    "from_items": [],
+    "note": "Distinct non .gov source urls behind the claims the nine frames cite."
+  },
+  "official_records": {
+    "value": 2,
+    "from_items": [],
+    "note": "Distinct .gov source urls behind the claims the nine frames cite."
+  },
+  "slides": {
+    "value": 9,
+    "from_items": [],
+    "note": "Frames rendered and shipped."
+  },
+  "_computed_by": "out/2026-08-30/compute.py over out/2026-08-30/claims.json and copy.json. Every value here is written by that script and none is typed."
+}

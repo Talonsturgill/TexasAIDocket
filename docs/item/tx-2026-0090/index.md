@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2534344.json
 
-- Last checked: 2026-08-29
+- Last checked: 2026-08-30
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-27 · Checked and unchanged. The award still stands and the laboratory is still described by the agency as equipment researchers anywhere in the country should be able to get their hands on.
 - 2026-08-28 · Checked and unchanged. The cooperative agreement for the autonomous alloy laboratory still stands, and the facility still begins on September 1st. The open access promise the award record makes has not been narrowed.
 - 2026-08-29 · Checked and unchanged. The cooperative agreement for the autonomous alloy laboratory still stands, and the award record still describes a national user facility rather than a laboratory one campus keeps to itself. The robotics and the artificial intelligence are still joined to simulation in the same building.
+- 2026-08-30 · The award still stands. The alloy laboratory remains open access, and outside researchers can still put work on it.
 
 ## Evidence
 

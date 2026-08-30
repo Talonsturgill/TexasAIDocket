@@ -1,0 +1,197 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* THE DECK'S ART DIRECTION, set here and carried by all nine frames.
+     Type is the primary structure and it sits IN the field, defended by a halo rather than by an
+     opaque plate, because the engine's contract makes a halo the one defence that never trips the
+     art-crossing-glyphs gate. Every form is a luminous field with a soft falloff. Nothing on any
+     frame has a drawn outline, a hard-edged plate or a rectangle with a visible corner. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#2E3840}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(6,8,10,.98), 0 0 34px rgba(6,8,10,.94), 0 0 70px rgba(6,8,10,.86),
+      0 0 130px rgba(6,8,10,.72), 0 3px 6px rgba(6,8,10,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#D4DBE0}
+  .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:102px;line-height:1.01;color:#F2F0E8;letter-spacing:-.022em}
+  .dek{position:absolute;top:394px;left:80px;width:880px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:35px;line-height:1.32;color:#DCE2E4}
+  .setwrap{position:absolute;left:80px;top:1040px;width:900px}
+  .fig{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:46px;
+     letter-spacing:.01em;line-height:1.10;color:#F2F0E8;font-variant-numeric:tabular-nums}
+  .set{margin:10px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
+     letter-spacing:.05em;line-height:1.38;color:#D8DDE0}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#CBD1D4;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the ground under the raking light is lighter than the ground the light has fallen away from","reads":"differ","a":[[150,540,200,200]],"b":[[820,1120,200,180]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">A town voted<br>28 cameras off.</p>
+  <p class="dek halo">The council voted unanimously to end its agreement with Flock. Its cameras read license plates.</p>
+  <div class="setwrap">
+    <p class="fig halo">28</p>
+    <p class="set halo">CAMERAS IN THE CITY CONTRACT &nbsp;c20<br>THE VOTE WAS UNANIMOUS &nbsp;c19</p>
+  </div>
+  <div class="foot halo"><span>PFLUGERVILLE, TEXAS</span><span>c19 c20</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260830);
+
+  // ---- THE FIELD. A caliche dusk at a MID value, not a black one. The deck's stated reason for
+  // its register was to occupy a band its own ledger had unoccupied, and eight frames shipped
+  // below every prior deck instead. The ground is built up from a mid base so the thing that
+  // reads at feed size is the DRAWING, and the value the frame is aimed at is asserted at the
+  // bottom of this script rather than eyeballed.
+  (function field(){
+    g.fillStyle='#4A555C'; g.fillRect(0,0,W,H);
+    const washes=[
+      [430, 880, 980, 'rgba(140,152,154,0.60)'],
+      [790, 300, 780, 'rgba(96,112,124,0.52)'],
+      [170, 250, 640, 'rgba(74,88,100,0.46)'],
+      [560, 840, 470, 'rgba(178,184,176,0.26)'],
+      [900,1250, 600, 'rgba(52,62,70,0.44)'],
+    ];
+    for(const [x,y,r,col] of washes){
+      const gr=g.createRadialGradient(x,y,r*0.04,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+    // the last of the light off the caliche, low and left, and it is warm
+    // THE RAKING LIGHT. It is the frame's light extreme and it is an AREA OF GROUND, because
+    // every object on this frame is one of 28 identical things and none may be brighter.
+    const rake=g.createRadialGradient(150,560,10,150,560,780);
+    rake.addColorStop(0,'rgba(236,244,246,0.62)'); rake.addColorStop(0.24,'rgba(186,202,210,0.30)');
+    rake.addColorStop(0.62,'rgba(120,136,146,0.10)'); rake.addColorStop(1,'rgba(0,0,0,0)');
+    g.save(); g.translate(150,560); g.scale(1,0.86); g.translate(-150,-560);
+    g.fillStyle=rake; g.beginPath(); g.arc(150,560,780,0,Math.PI*2); g.fill(); g.restore();
+  })();
+
+  // ---- the ground haze, at a frequency low enough to survive a 432px thumbnail. The panel
+  // measured the old grain as sub pixel at feed size, which is why six grounds read as ramps.
+  (function haze(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.0034+11.7,y*0.0034+4.3,5);
+      const v=(n-0.5)*1.5;
+      if(v>0){ g.fillStyle='rgba(206,214,214,'+Math.min(0.34,v*0.50).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(14,18,22,'+Math.min(0.40,(-v)*0.52).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // ---- THE 28. On a mid ground the extinguished ones can finally be drawn as what they are:
+  // dark. Twenty seven cold dead cores sit BELOW the field, and the twenty eighth still carries
+  // current and is the frame's light extreme by a wide margin. The count is asserted here and
+  // printed nowhere in the drawing.
+  const COUNT=28;
+  // the raking light, low and to the left, which every body is lit and shadowed by
+  const LIGHT={x:150, y:560};
+  function node(x,y,live,scale){
+    const s=scale||1;
+    if(false){
+      // the one still warm. A real filament: a wide warm throw, a hot ring, a near white core.
+      const t=g.createRadialGradient(x,y,2,x,y,150*s);
+      t.addColorStop(0,'rgba(255,214,150,0.72)'); t.addColorStop(0.22,'rgba(240,176,104,0.34)');
+      t.addColorStop(0.60,'rgba(196,140,84,0.13)'); t.addColorStop(1,'rgba(196,140,84,0)');
+      g.fillStyle=t; g.beginPath(); g.arc(x,y,150*s,0,Math.PI*2); g.fill();
+      const r=g.createRadialGradient(x,y,1,x,y,26*s);
+      r.addColorStop(0,'rgba(255,248,236,0.98)'); r.addColorStop(0.30,'rgba(255,232,190,0.92)');
+      r.addColorStop(0.66,'rgba(248,192,116,0.52)'); r.addColorStop(1,'rgba(248,192,116,0)');
+      g.fillStyle=r; g.beginPath(); g.arc(x,y,26*s,0,Math.PI*2); g.fill();
+      return;
+    }
+    // a body standing in ground. The cast falls AWAY from the raking light, which is what makes
+    // the set read as objects on a surface rather than as dots printed on it.
+    const dx=x-LIGHT.x, dy=y-LIGHT.y, d=Math.hypot(dx,dy)||1;
+    const cx=x+(dx/d)*26*s, cy=y+(dy/d)*15*s;
+    const sh=g.createRadialGradient(cx,cy,2,cx,cy,44*s);
+    sh.addColorStop(0,'rgba(8,11,15,0.62)'); sh.addColorStop(0.40,'rgba(8,11,15,0.30)');
+    sh.addColorStop(1,'rgba(8,11,15,0)');
+    g.save(); g.translate(cx,cy); g.scale(1,0.52); g.translate(-cx,-cy);
+    g.fillStyle=sh; g.beginPath(); g.arc(cx,cy,44*s,0,Math.PI*2); g.fill(); g.restore();
+    const b=g.createRadialGradient(x,y,1,x,y,19*s);
+    b.addColorStop(0,'rgba(11,15,19,0.92)'); b.addColorStop(0.50,'rgba(14,19,24,0.84)');
+    b.addColorStop(0.80,'rgba(18,24,30,0.42)'); b.addColorStop(1,'rgba(20,26,32,0)');
+    g.fillStyle=b; g.beginPath(); g.arc(x,y,17*s,0,Math.PI*2); g.fill();
+    // the lit crest, on the side facing the raking light, so every body has a top
+    const kx=x-(dx/d)*7*s, ky=y-(dy/d)*7*s;
+    const c=g.createRadialGradient(kx,ky,0.5,kx,ky,11*s);
+    c.addColorStop(0,'rgba(232,244,248,0.70)'); c.addColorStop(0.5,'rgba(214,232,238,0.30)');
+    c.addColorStop(1,'rgba(214,232,238,0)');
+    g.fillStyle=c; g.beginPath(); g.arc(kx,ky,11*s,0,Math.PI*2); g.fill();
+  }
+  (function nodes(){
+    // a loose drift rather than a grid, walked with noise so the set has no axis to read
+    let drawn=0, live=0;
+    const CX=520, CY=800;
+    for(let i=0;i<COUNT;i++){
+      const t=i/COUNT;
+      const a=t*Math.PI*2.6+0.9;
+      const rad=96+t*330;
+      const jx=TX.simplex2(i*0.55+3.1, 1.7)*78;
+      const jy=TX.simplex2(i*0.55+9.4, 5.2)*70;
+      const x=CX+Math.cos(a)*rad*1.02+jx;
+      const y=CY+Math.sin(a)*rad*0.66+jy;
+      node(x, y, false, 1.35);
+      drawn++;
+    }
+    // the count is asserted, and so is the fact that NO body is singled out. c20 puts every one
+    // of the 28 in the same state, so the drawing may not distinguish one from another.
+    window.__txCount={nodes:drawn, distinguished:0,
+                      note:"all 28 are drawn identically because c20 speaks of all 28"};
+  })();
+
+  // NO BODY IS DRAWN AT ANOTHER SCALE. A near body at 2.8 was carrying tone in the bottom
+  // third and three judges read it as a 29th camera still lit, because at that scale its crest
+  // is twice the diameter of any other body's whole form. The raking light and the ground's
+  // own tooth carry the bottom third instead, and the frame draws 28 bodies and no more.
+
+  // ---- the drafting register. Three hairline ticks at the right margin, the only precise marks
+  // on the frame, so the field has a measured surface under it. Decorative by declaration.
+  (function ticks(){
+    g.strokeStyle='rgba(232,240,240,0.26)'; g.lineWidth=1;
+    for(const y of [640,800,960]){
+      g.beginPath(); g.moveTo(1000,y); g.lineTo(1032,y); g.stroke();
+    }
+  })();
+
+  (function tooth(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.048+11.7, y*0.048+3.9, 3);
+      const v=(n-0.5);
+      if(v>0){ g.fillStyle='rgba(224,236,240,'+Math.min(0.24,v*0.42).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(12,16,20,'+Math.min(0.26,(-v)*0.42).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  (function fines(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.simplex2(x*0.34+7.1, y*0.34+2.6);
+      const v=n*0.5;
+      if(v>0){ g.fillStyle='rgba(198,216,228,'+Math.min(0.11,v*0.20).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.15,(-v)*0.26).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

@@ -1,0 +1,84 @@
+{
+  "beat": "ai-in-the-field",
+  "run_date": "2026-08-30",
+  "findings": [
+    {
+      "id": "af-1",
+      "headline": "Kodiak AI says its driverless trucks now haul triple sand trailers for Atlas Energy Solutions in the Permian Basin.",
+      "what_happened": "Kodiak AI published a technical post describing driverless triple-trailer operation launched with its customer Atlas Energy Solutions in the West Texas and eastern New Mexico oilfield. The company states the full vehicle stretches 50 meters, can weigh 275,000 pounds loaded, and runs as part of a fleet of 35 driverless trucks with no humans in the cab as of June 30, 2026.",
+      "who_decided": "Kodiak AI, Inc., operating for Atlas Energy Solutions Inc.",
+      "when": "2026-08-20",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "These triple-trailer trucks are now plying routes as part of a fleet of 35 driverless trucks with no humans in the cab as of June 30, 2026, and they're owned and operated by Atlas in the oil fields of the Permian Basin.",
+      "url": "https://kodiak.ai/news/driverless-triple-trailers-permian-basin",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "unverified": [
+        "The post names only the Permian Basin and West Texas and does not name a single Texas county, city or road, so NO COUNTY COULD BE ASSIGNED from the source.",
+        "The post does not state how many of the 35 trucks are triples.",
+        "Kodiak gives no baseline load figure to support the 50 percent more sand claim.",
+        "No independent safety record, incident log or regulator filing was located. Kodiak's July 31st release says the companies expect the fleet operating on public roads in early 2027, which implies current operation is on private lease roads, but the August 20th post does not say so."
+      ]
+    },
+    {
+      "id": "af-2",
+      "headline": "ExxonMobil told Reuters it plans to convert half its Permian drilling fleet to automated rigs by 2028.",
+      "what_happened": "In an interview on a rig near Midland, Exxon senior vice president of unconventionals Bart Cahir described automated drilling rigs on which a contractor operates robotic machinery from a screen. Reuters reports Exxon operates more than 30 drilling rigs in the Permian Basin, two of which are automated, and aims to transition half of its fleet by 2028.",
+      "who_decided": "Exxon Mobil Corporation",
+      "when": "2026-08-24",
+      "where": {"counties": ["Midland"], "statewide": false, "ercot": false},
+      "quote": "This is the productivity play.",
+      "url": "https://kfgo.com/2026/08/24/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output/",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "unverified": [
+        "NO PRIMARY CORPORATE RECORD FOUND. No ExxonMobil release, 8-K or investor page carrying this plan was located. The page fetched is a syndicated reprint, not reuters.com.",
+        "The source describes ROBOTICS AND REMOTE OPERATION, not machine learning. The words artificial intelligence and AI do not appear in the fetched text. Treating this as an AI story would overstate what the source says.",
+        "The reprint injects zero-width unicode into body text, so longer quotes could not be copied cleanly.",
+        "County assigned from the Reuters dateline MIDLAND, Texas. The article does not itself name a county."
+      ]
+    },
+    {
+      "id": "af-3",
+      "headline": "USDA and DHS signed a memorandum of understanding at Moore Air Base in Texas putting unmanned aircraft and AI into the New World screwworm response.",
+      "what_happened": "Agriculture Secretary Brooke L. Rollins hosted an event at Moore Air Base in Texas on August 10th to announce a memorandum of understanding with DHS. USDA released it on August 11th, 2026.",
+      "who_decided": "U.S. Department of Agriculture and U.S. Department of Homeland Security",
+      "when": "2026-08-11",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "The MOU leverages advanced technologies, including unmanned aircraft systems and artificial intelligence, to enhance screening, detection, and interdiction at and between ports of entry and within border enforcement zones.",
+      "url": "https://www.oklahomafarmreport.com/2026/08/11/secretary-rollins-visits-moore-air-base-to-announce-new-memorandum-of-understanding-between-usda-and-dhs/",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "unverified": [
+        "THE URL CITED IS A REPRINT. usda.gov's own press release page returned HTTP 403 to this client. Retry with a browser User-Agent before publication.",
+        "The APHIS copy WAS fetched and is genuinely primary, but it truncates after the first paragraph and does NOT contain the unmanned aircraft and artificial intelligence sentence quoted above.",
+        "The release says Moore Air Base in Texas and names no county. Moore Air Base is in Hidalgo County, which is NOT stated by the source.",
+        "The MOU document itself was not located or read.",
+        "Operational figures from secondary outlets NOT confirmed against a USDA page: more than 1,000 drone surveillance flights in Texas since June 3 2026, more than 20,000 animals observed. Do not publish without a primary source.",
+        "19 days old, outside the 14 day window."
+      ]
+    },
+    {
+      "id": "af-4",
+      "headline": "Kodiak AI said it will put AMD EPYC processors in its seventh-generation driverless truck.",
+      "what_happened": "Kodiak AI announced a collaboration with AMD to use AMD EPYC Series processors in its seventh-generation autonomous truck platform, aggregating and preprocessing data from lidars, cameras and radars.",
+      "who_decided": "Kodiak AI, Inc., with Advanced Micro Devices, Inc.",
+      "when": "2026-08-26",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "This approach is increasingly important as Kodiak grows its driverless fleet in the Permian Basin that already operates with no humans in the cab today.",
+      "url": "https://kodiak.ai/news/kodiak-amd-collaborate-on-driverless-truck-compute",
+      "source_type": "primary_corporate",
+      "confidence": "medium",
+      "unverified": [
+        "The dateline is MOUNTAIN VIEW, Calif. This is a corporate supplier announcement, not a Texas deployment decision, and should not be dressed as one.",
+        "No number of trucks, no timetable for the platform reaching Texas, no dollar value.",
+        "The first-to-deploy claim is the company's own and was not independently checked."
+      ]
+    }
+  ],
+  "no_dated_next_step": "No finding on this beat has a live comment window or a scheduled vote. The closest dated next steps are all company forecasts rather than public process: Kodiak's early 2027 for public roads, Kodiak's later in 2026 for highway launch, and Exxon's 2028 fleet target. FAA Part 108 sat at OIRA as of July 10th 2026 with no published final rule.",
+  "source_field_log": [
+    "usda.gov press release pages returned HTTP 403 to this client; the APHIS mirror serves but truncates.",
+    "kfgo.com injects zero-width unicode characters into body text as an anti-scraping measure, which breaks character-for-character quoting."
+  ]
+}

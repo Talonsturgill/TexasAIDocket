@@ -1,0 +1,224 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* THE TURN, and the deck's BRIGHTEST frame. Everything else in this deck is a dark field with
+     light in it. This one is daylight, because the claim is what the network actually produced
+     and the deck must not be readable as an argument against the cameras. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#C9C2B0}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  /* the halo inverts on a light frame: the defence is a LIGHT glow around dark type */
+  .halo{ text-shadow:
+      0 0 16px rgba(238,234,222,.98), 0 0 34px rgba(238,234,222,.94), 0 0 70px rgba(238,234,222,.86),
+      0 0 130px rgba(238,234,222,.70), 0 2px 4px rgba(238,234,222,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#1C1B17}
+  .lede{position:absolute;top:150px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:98px;line-height:1.01;color:#20201C;letter-spacing:-.022em}
+  .dek{position:absolute;top:372px;left:80px;width:800px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:34px;line-height:1.32;color:#3A382F}
+  /* the two counts, one on each side of a drawn joint, at two deliberately different scales and
+     sharing no baseline, no axis and no unit */
+  .left{position:absolute;left:80px;top:604px;width:390px}
+  .right{position:absolute;left:604px;top:846px;width:400px}
+  .big{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:96px;
+     line-height:1.02;color:#1A1A17;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .mid{margin:0;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:58px;
+     line-height:1.04;color:#1A1A17;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .u{margin:10px 0 0 0;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
+     letter-spacing:.05em;line-height:1.36;color:#2A281F}
+  .attrib{position:absolute;left:80px;top:1132px;width:920px;margin:0;
+     font-family:"JetBrains Mono",monospace;font-weight:700;font-size:25px;letter-spacing:.05em;
+     color:#2E2C25}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#1C1B17;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the sunlit apron is the light extreme of the whole deck","reads":"differ","a":[[560,560,180,160]],"b":[[120,1180,180,120]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">This is what<br>the fee was for.</p>
+  <p class="dek halo">Plate reader data was searched 62,000 times in 2025.</p>
+
+  <div class="left">
+    <p class="big halo">62,000</p>
+    <p class="u halo">SEARCHES OF LICENSE PLATE READER DATA IN 2025 &nbsp;c18</p>
+  </div>
+  <div class="right">
+    <p class="mid halo">about 1,660</p>
+    <p class="u halo">CLEARED CATALYTIC CONVERTER THEFT CASES &nbsp;c18</p>
+  </div>
+
+  <p class="attrib halo">ACCORDING TO A REPORT FROM THE AUTHORITY &nbsp;c18</p>
+  <div class="foot halo"><span>THE RETURN</span><span>c18</span><span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260836);
+
+  // ---- the apron. Plan view straight down on poured concrete in full sun. This is the deck's
+  // only lit ground and its only daylight, and it is the frame's light extreme.
+  (function apron(){
+    g.fillStyle='#C9C2B0'; g.fillRect(0,0,W,H);
+    for(const [x,y,r,col] of [
+      [520, 620, 900, 'rgba(244,240,226,0.92)'],
+      [700, 420, 520, 'rgba(252,249,238,0.66)'],
+      [180, 1220, 700, 'rgba(150,142,124,0.50)'],
+      [980, 1180, 520, 'rgba(160,152,132,0.42)'],
+    ]){
+      const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+  })();
+
+  // ---- the float marks and the aggregate. A poured slab under sun has a directional trowel
+  // pattern and a fine shadow under every stone. This is what stops a bright frame being a slab.
+  (function surface(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const t=TX.fbm2(x*0.0026+3.7, y*0.0090+8.2, 4);      // stretched, so it reads as troweling
+      const a=TX.fbm2(x*0.070+1.1, y*0.070+5.5, 3);        // aggregate
+      const v=(t-0.5)*0.42+(a-0.5)*0.26;
+      if(v>0){ g.fillStyle='rgba(255,253,246,'+Math.min(0.16,v*0.24).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(120,113,96,'+Math.min(0.11,(-v)*0.16).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  // ---- the sun pools. Soft lifts of the ground under each block of type, so dark type has
+  // clean paper beneath it without a plate anywhere on the frame.
+  (function pools(){
+    for(const [x,y,rx,ry,a] of [
+      [430, 300, 620, 320, 0.85],   // the headline and dek
+      [250, 700, 420, 240, 0.70],   // the 62,000 block
+      [790, 950, 400, 220, 0.66],   // the 1,660 block
+      [520, 1160, 620, 190, 0.72],  // the attribution and foot
+      [150, 120, 420, 170, 0.70],   // the masthead corner
+      [900, 1250, 420, 150, 0.62],  // the counter corner
+    ]){
+      const gr=g.createRadialGradient(x,y,10,x,y,Math.max(rx,ry));
+      gr.addColorStop(0,'rgba(252,250,242,'+a+')');
+      gr.addColorStop(0.55,'rgba(252,250,242,'+(a*0.42).toFixed(3)+')');
+      gr.addColorStop(1,'rgba(252,250,242,0)');
+      g.save(); g.translate(x,y); g.scale(1,ry/rx); g.translate(-x,-y);
+      g.fillStyle=gr; g.beginPath(); g.arc(x,y,rx,0,Math.PI*2); g.fill(); g.restore();
+    }
+  })();
+
+  // ---- THE CONTROL JOINT. One saw cut running the full height, dividing the frame so the two
+  // counts can never be read against each other. They count different things and putting them on
+  // one scale would be the ratio this deck refuses to publish.
+  //
+  // The first draft drew it as a 3.4px stroke with a soft shadow and it read as a thread at feed
+  // size, so the frame's whole argument was invisible at the size a reader gets. A sawn joint in
+  // a slab is a CHANNEL: a wide shallow trough, a dark gap at its floor, a chamfer catching sun
+  // on the near side and a lip of raised laitance on both, and it is 14 units across.
+  (function joint(){
+    const JX=534;
+    const wob = y => JX + TX.simplex2(y*0.0035, 2.2)*3.2 + TX.simplex2(y*0.014, 5.1)*1.1;
+
+    // the trough. The slab dishes into the cut before it reaches it, which is what makes it sawn
+    // rather than drawn, and it is the widest part of the mark.
+    for(let y=0;y<=H;y+=2){
+      const x = wob(y);
+      const tg=g.createLinearGradient(x-34,0,x+34,0);
+      tg.addColorStop(0,'rgba(120,112,94,0)');
+      tg.addColorStop(0.34,'rgba(120,112,94,0.20)');
+      tg.addColorStop(0.5,'rgba(104,96,80,0.30)');
+      tg.addColorStop(0.66,'rgba(120,112,94,0.20)');
+      tg.addColorStop(1,'rgba(120,112,94,0)');
+      g.fillStyle=tg; g.fillRect(x-34,y,68,2);
+    }
+    // the lip of raised laitance either side, catching the sun
+    for(const dir of [-1,1]){
+      g.beginPath();
+      for(let y=-8;y<=H+8;y+=6){ const x=wob(y)+dir*10.5; y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+      g.strokeStyle='rgba(255,253,246,0.50)'; g.lineWidth=3.0; g.stroke();
+    }
+    // the cut itself, a real channel with a floor a reader cannot see into
+    g.beginPath();
+    for(let y=-8;y<=H+8;y+=6){ const x=wob(y); y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+    g.strokeStyle='rgba(74,68,56,0.82)'; g.lineWidth=13.5; g.lineCap='round'; g.stroke();
+    g.beginPath();
+    for(let y=-8;y<=H+8;y+=6){ const x=wob(y); y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+    g.strokeStyle='rgba(38,34,26,0.88)'; g.lineWidth=6.0; g.stroke();
+    // the chamfer on the sun side, the one bright mark on the cut
+    g.beginPath();
+    for(let y=-8;y<=H+8;y+=6){ const x=wob(y)-6.4; y===-8?g.moveTo(x,y):g.lineTo(x,y); }
+    g.strokeStyle='rgba(255,254,250,0.86)'; g.lineWidth=2.6; g.stroke();
+    // and the grit that collects in a joint, which is what stops it being a ruled line
+    for(let i=0;i<260;i++){
+      const y=R()*H, x=wob(y)+(R()-0.5)*15;
+      g.fillStyle='rgba(56,50,40,'+(0.20+R()*0.42).toFixed(3)+')';
+      g.beginPath(); g.ellipse(x,y,0.8+R()*1.9,0.6+R()*1.3,0,0,Math.PI*2); g.fill();
+    }
+  })();
+
+  // ---- THE FLOAT MARKS. A slab is finished by hand and the arcs a float leaves are the only
+  // thing that tells a reader this is a poured surface rather than paper. The first draft carried
+  // them as a stretched noise field at a contrast a thumbnail could not hold.
+  (function floatMarks(){
+    g.save(); g.globalCompositeOperation='overlay';
+    for(let i=0;i<58;i++){
+      const cx = -260 + R()*1700, cy = 200 + R()*1100;
+      const r  = 300 + R()*700;
+      const a0 = -0.5 + R()*0.7, a1 = a0 + 0.5 + R()*0.8;
+      g.beginPath(); g.arc(cx, cy, r, a0, a1);
+      g.strokeStyle='rgba(255,255,255,'+(0.030+R()*0.045).toFixed(3)+')';
+      g.lineWidth = 6 + R()*22; g.stroke();
+      g.beginPath(); g.arc(cx, cy+3, r, a0, a1);
+      g.strokeStyle='rgba(96,88,72,'+(0.024+R()*0.036).toFixed(3)+')';
+      g.lineWidth = 4 + R()*14; g.stroke();
+    }
+    g.restore();
+  })();
+
+  // ---- THE AGGREGATE, budgeted PER REGION rather than sprinkled. It is dense where the sun
+  // rakes across the lower right and nearly absent under the type, so the frame has somewhere to
+  // look and somewhere to read.
+  (function aggregate(){
+    for(let i=0;i<2200;i++){
+      const x=R()*W, y=R()*H;
+      const d = Math.hypot((x-760)/620, (y-1120)/520);
+      if(R() > Math.max(0.04, 1.0 - d*0.85)) continue;
+      const r = 0.7 + R()*2.4;
+      g.fillStyle='rgba(92,85,70,'+(0.10+R()*0.26).toFixed(3)+')';
+      g.beginPath(); g.ellipse(x+r*0.55, y+r*0.5, r*1.1, r*0.7, 0, 0, Math.PI*2); g.fill();
+      g.fillStyle='rgba(255,253,246,'+(0.16+R()*0.34).toFixed(3)+')';
+      g.beginPath(); g.ellipse(x, y, r, r*0.66, 0, 0, Math.PI*2); g.fill();
+    }
+  })();
+
+  // ---- the far edge, where the apron runs out into caliche haze. It gives the bottom band its
+  // modeled tone and stops the frame reading as an infinite plane.
+  (function haze(){
+    const hz=g.createLinearGradient(0,1140,0,H);
+    hz.addColorStop(0,'rgba(150,140,118,0)'); hz.addColorStop(0.6,'rgba(150,140,118,0.22)');
+    hz.addColorStop(1,'rgba(128,118,98,0.40)');
+    g.fillStyle=hz; g.fillRect(0,1140,W,H-1140);
+    // a few coarse stones catching the sun at the near edge, each with its own small shadow
+    for(let i=0;i<26;i++){
+      const x=R()*W, y=1160+R()*170, r=2+R()*4.6;
+      g.fillStyle='rgba(84,78,64,0.34)';
+      g.beginPath(); g.ellipse(x+r*0.5,y+r*0.45,r*1.15,r*0.72,0,0,Math.PI*2); g.fill();
+      g.fillStyle='rgba(255,252,244,0.46)';
+      g.beginPath(); g.ellipse(x,y,r,r*0.66,0,0,Math.PI*2); g.fill();
+    }
+  })();
+
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.028;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

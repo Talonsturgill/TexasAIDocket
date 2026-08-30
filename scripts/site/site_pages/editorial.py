@@ -1,6 +1,8 @@
 """Home, article, and video page renderers."""
 from __future__ import annotations
 
+import re
+
 from site_context import (
     HOIST, NAV, RAW, SCHEMA_CTX, SITE_NAME, SITE_URL, _dt, csp, dk, e, favicon,
     js_feed_date, json, load_runs, og, ordinal, page, re, schema, short_date,
@@ -837,9 +839,39 @@ def article_page(r: dict, today: str, items: list) -> str:
         for i, name in enumerate(r["files"], start=1))
 
     def say(block):
+        # AN ADDRESS IS A CITATION, NOT PROSE, and each line ends.
+        #
+        # A slide's citation line names the state motor vehicles department's own page and prints
+        # the path claim c40 was fetched from. house_style_check read the `about-us` segment of
+        # that path as the first person plural, and then ran the line into the two paragraphs
+        # beside it, because a slide's set lines carry no terminal punctuation and the sentence
+        # splitter had nothing to stop on. Three short labels were reported as one 36 word
+        # sentence. Nobody here wrote that address.
+        #
+        # TWO WRONG INSTRUMENTS WERE TRIED FIRST and both are worth recording, because both look
+        # like exemptions and neither is. `data-prose="data"` exempts ONLY the comma density
+        # rule, in `our_sentences`; every other rule reads the page through `our_prose`, which
+        # never consults it. And `<code>` is not what the checker's CODE pattern means: that
+        # pattern is `script` and `style`, the two elements whose CONTENT would otherwise be
+        # linted as prose. A mark that looks like an exemption and is not one is worse than no
+        # mark, because it reads as handled.
+        #
+        # `<cite>` is the mechanism, because `_stripped` removes QUOTED, which is blockquote and
+        # cite. Only the address is wrapped, never the sentence around it, so every word the deck
+        # wrote is still checked.
+        addr = re.compile(r"(?<![\w/])((?:https?://|www\.)?[\w.-]+\.(?:gov|com|org|net|edu)"
+                          r"(?:/[\w./%-]*)?)")
+
+        def mark(t):
+            return addr.sub(lambda m: f"<cite>{m.group(1)}</cite>", e(t))
+
+        def stopped(t):
+            t = t.rstrip()
+            return t if (not t or t[-1] in ".!?:;") else t + "."
+
         return "".join(
             f"<blockquote>{e(s['text'])}</blockquote>" if s["quote"]
-            else f"<p>{e(s['text'])}</p>" for s in block)
+            else f"<p>{mark(stopped(str(s['text'])))}</p>" for s in block)
 
     story = "".join(say(b) for b in r.get("prose") or [])
     if not story:

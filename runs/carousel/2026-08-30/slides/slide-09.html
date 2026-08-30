@@ -1,0 +1,204 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#2E3840}
+  #scene{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .halo{ text-shadow:
+      0 0 16px rgba(4,6,9,.98), 0 0 34px rgba(4,6,9,.95), 0 0 70px rgba(4,6,9,.88),
+      0 0 130px rgba(4,6,9,.74), 0 3px 6px rgba(4,6,9,.96); }
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#CBD2D6}
+  .lede{position:absolute;top:150px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:100px;line-height:1.01;color:#F2F0E8;letter-spacing:-.022em}
+  .dek{position:absolute;top:394px;left:80px;width:840px;margin:0;font-family:Manrope,sans-serif;
+     font-weight:600;font-size:34px;line-height:1.32;color:#D6DDE0}
+  /* THE DATE. The deck's one saturated colour, and its value is DERIVED against the surface it
+     lands on rather than authored, then printed to the render report. */
+  .date{position:absolute;top:742px;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:88px;line-height:1.04;letter-spacing:-.02em;color:#F4F2EA}
+  .what{position:absolute;top:876px;left:80px;width:920px;margin:0;
+     font-family:"JetBrains Mono",monospace;font-weight:700;font-size:28px;letter-spacing:.05em;
+     line-height:1.34;color:#EDF2F4}
+  .src{position:absolute;top:962px;left:80px;width:900px;margin:0;
+     font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.05em;
+     line-height:1.38;color:#FBFDFE}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#DBDFE2;font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the light coming through the opening is the light extreme and the field beside it is the deck floor","reads":"differ","a":[[762,860,120,200]],"b":[[110,1150,180,140]]}]'>
+<canvas id="scene"></canvas>
+<div class="wrap">
+  <div class="mast halo">TEXAS AI DOCKET</div>
+  <p class="lede halo">The board meets<br>October 13th.</p>
+  <p class="dek halo">The state motor vehicles department lists the meeting and what it will publish from it.</p>
+  <p class="date halo">October 13th, 2026</p>
+  <p class="what halo">MVCPA BOARD MEETING &nbsp;&middot;&nbsp; AGENDA &nbsp;&middot;&nbsp; MATERIALS &nbsp;&middot;&nbsp; VIDEO &nbsp;&middot;&nbsp; TRANSCRIPT</p>
+  <p class="src halo">LISTED ON THE STATE MOTOR VEHICLES DEPARTMENT'S OWN PAGE<br>txdmv.gov/about-us/MVCPA &nbsp;&middot;&nbsp; c40</p>
+  <div class="foot halo"><span>TEXAS AI DOCKET</span><span>c40</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('scene'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260830); const R=TX.rng(20260839);
+
+  // ---- the field. The deck closes dark with one way through it, so the frame is a body of air
+  // with a single opening standing in it. No object, no outline, no edge.
+  (function field(){
+    g.fillStyle='#2E3840'; g.fillRect(0,0,W,H);
+    for(const [x,y,r,col] of [
+      [712, 760, 620, 'rgba(133,143,150,0.82)'],
+      [712, 760, 300, 'rgba(160,175,185,0.58)'],
+      [180, 1160, 620, 'rgba(118,122,126,0.74)'],
+      [200, 380, 540, 'rgba(119,124,129,0.70)'],
+    ]){
+      const gr=g.createRadialGradient(x,y,r*0.03,x,y,r);
+      gr.addColorStop(0,col); gr.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=gr; g.fillRect(0,0,W,H);
+    }
+  })();
+
+  // ---- THE OPENING, drawn as the SHAPE LIGHT MAKES coming through a door.
+  //
+  // Two rounds named this frame and both times the run changed its words. The drawing was a
+  // stack of soft ellipses and a ground pool, which at 432px is fog with type on it and which
+  // the engine scored at the lowest encoding AUC in the deck. A doorway is not a glow. It is a
+  // bright slot with two sides, and a trapezoid of light thrown across the floor in front of it
+  // that gets wider as it comes toward you. The trapezoid is the hard thing this frame lacked,
+  // and it is the one shape a reader recognises instantly at any size.
+  const DX = 812, DTOP = 726, DW = 104, DH = 300;
+  const SILL = DTOP + DH;
+  (function opening(){
+    // the throw, which is the light in the air rather than on the floor
+    const sp=g.createRadialGradient(DX,SILL-40,10,DX,SILL-40,520);
+    sp.addColorStop(0,'rgba(210,236,250,0.30)'); sp.addColorStop(0.40,'rgba(150,186,210,0.10)');
+    sp.addColorStop(1,'rgba(150,186,210,0)');
+    g.fillStyle=sp; g.fillRect(0,0,W,H);
+
+    // THE FLOOR TRAPEZOID. Narrow at the sill, wide at the near edge of the frame.
+    const NEAR = 1252, SPREAD = 210;
+    const tg=g.createLinearGradient(0,SILL,0,NEAR);
+    tg.addColorStop(0,'rgba(238,250,255,0.60)'); tg.addColorStop(0.34,'rgba(206,232,246,0.30)');
+    tg.addColorStop(1,'rgba(170,200,220,0.03)');
+    g.fillStyle=tg;
+    g.beginPath();
+    g.moveTo(DX-DW/2, SILL);
+    g.lineTo(DX+DW/2, SILL);
+    g.lineTo(DX+DW/2+SPREAD, NEAR);
+    g.lineTo(DX-DW/2-SPREAD, NEAR);
+    g.closePath(); g.fill();
+    // its two edges, soft but real, because a cast of light has edges and a glow does not
+    for(const dir of [-1, 1]){
+      g.beginPath();
+      g.moveTo(DX+dir*DW/2, SILL);
+      g.lineTo(DX+dir*(DW/2+SPREAD), NEAR);
+      g.strokeStyle='rgba(228,246,255,0.30)'; g.lineWidth=2.4; g.stroke();
+    }
+
+    // THE SLOT. Brightest at the sill and dying toward its head, with two soft jambs.
+    const dg=g.createLinearGradient(0,SILL,0,DTOP);
+    dg.addColorStop(0,'rgba(255,255,255,0.99)'); dg.addColorStop(0.30,'rgba(244,252,255,0.86)');
+    dg.addColorStop(0.66,'rgba(224,244,254,0.54)'); dg.addColorStop(1,'rgba(198,226,242,0.16)');
+    g.fillStyle=dg; g.fillRect(DX-DW/2, DTOP, DW, DH);
+    for(const dir of [-1, 1]){
+      const jg=g.createLinearGradient(DX+dir*DW/2, 0, DX+dir*(DW/2+46), 0);
+      jg.addColorStop(0,'rgba(226,244,252,0.34)'); jg.addColorStop(1,'rgba(226,244,252,0)');
+      g.fillStyle=jg;
+      g.fillRect(Math.min(DX+dir*DW/2, DX+dir*(DW/2+46)), DTOP-20, 46, DH+20);
+    }
+    // the sill itself, the frame's light extreme, an area rather than a line
+    const sg=g.createRadialGradient(DX,SILL,2,DX,SILL,96);
+    sg.addColorStop(0,'rgba(255,255,255,0.99)'); sg.addColorStop(0.36,'rgba(240,251,255,0.44)');
+    sg.addColorStop(1,'rgba(240,251,255,0)');
+    g.save(); g.translate(DX,SILL); g.scale(1,0.42); g.translate(-DX,-SILL);
+    g.fillStyle=sg; g.beginPath(); g.arc(DX,SILL,96,0,Math.PI*2); g.fill(); g.restore();
+  })();
+
+  (function haze(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const n=TX.fbm2(x*0.0031+4.4,y*0.0031+6.1,5);
+      const v=(n-0.5)*1.5;
+      if(v>0){ g.fillStyle='rgba(198,212,222,'+Math.min(0.300,v*0.440).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(1,3,5,'+Math.min(0.239,(-v)*0.304).toFixed(3)+')'; }
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+  (function tooth(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.048+4.4, y*0.048+3.9, 3);
+      const v=(n-0.5);
+      if(v>0){ g.fillStyle='rgba(216,226,234,'+Math.min(0.260,v*0.460).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.156,(-v)*0.248).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  (function fines(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.simplex2(x*0.34+7.1, y*0.34+2.6);
+      const v=n*0.5;
+      if(v>0){ g.fillStyle='rgba(222,230,236,'+Math.min(0.110,v*0.200).toFixed(3)+')'; }
+      else   { g.fillStyle='rgba(0,0,0,'+Math.min(0.069,(-v)*0.120).toFixed(3)+')'; }
+      g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  (function grain(){
+    for(let y=0;y<H;y+=3){ for(let x=0;x<W;x+=3){
+      const v=(R()-0.5)*0.030;
+      g.fillStyle=(v>0?'rgba(255,255,255,':'rgba(0,0,0,')+Math.abs(v).toFixed(3)+')';
+      g.fillRect(x,y,3,3);
+    }}
+  })();
+
+  // The ground under the date is taken down so the reserved red clears at its own hue rather
+  // than being walked toward white until it is pink. It is a BAND running the full width, because
+  // the first draft used an ellipse and a dark ellipse on a lit field is a stain, not a shadow.
+  (function dateShade(){
+    const gr=g.createLinearGradient(0,660,0,1092);
+    gr.addColorStop(0.00,'rgba(3,5,8,0)');
+    gr.addColorStop(0.20,'rgba(3,5,8,0.88)');
+    gr.addColorStop(0.36,'rgba(2,3,5,0.985)');
+    gr.addColorStop(0.62,'rgba(2,3,5,0.94)');
+    gr.addColorStop(0.86,'rgba(3,5,8,0.62)');
+    gr.addColorStop(1.00,'rgba(4,7,10,0)');
+    g.fillStyle=gr; g.fillRect(0,660,W,432);
+  })();
+
+  // the frame's own bottom edge falls away, which keeps the footer on a ground the furniture
+  // can clear. A light pool that reaches the furniture is a legibility failure, not atmosphere.
+  (function footShade(){
+    const gr=g.createLinearGradient(0,1178,0,H);
+    gr.addColorStop(0,'rgba(4,7,10,0)'); gr.addColorStop(0.52,'rgba(4,7,10,0.72)');
+    gr.addColorStop(1,'rgba(3,5,8,0.90)');
+    g.fillStyle=gr; g.fillRect(0,1178,W,H-1178);
+  })();
+
+  // ---- THE RESERVED RED IS WITHDRAWN FROM THIS FRAME, and the reason is arithmetic.
+  //
+  // #BF0A30 has a relative luminance of 0.1149. Against any ground DARKER than itself its
+  // contrast ceiling is therefore (0.1149 + 0.05) / 0.05, which is 3.30, and the rubric's floor
+  // is 4.5. There is no ground on this frame that clears it, so the earlier derivation could
+  // only ever reach the floor by walking the colour toward white until it stopped being red.
+  // That is exactly the defect the artwork ledger recorded one deck earlier, and a derivation
+  // that cannot fail is not a check.
+  //
+  // The date is set in the deck's display cream and carries its emphasis by SCALE, at 88px,
+  // the way every other display line in this deck does. The frame reports the ceiling it
+  // measured rather than a colour it could not justify.
+  (function redWithdrawn(){
+    const lin=v=>{v/=255; return v<=0.03928? v/12.92 : Math.pow((v+0.055)/1.055,2.4);};
+    const L=c=>0.2126*lin(c[0])+0.7152*lin(c[1])+0.0722*lin(c[2]);
+    const base=[0xBF,0x0A,0x30];
+    window.__txRed={ withdrawn:true, base:'#BF0A30',
+                     ceiling_on_any_darker_ground:+(((L(base)+0.05)/0.05)).toFixed(2),
+                     rubric_floor:4.5,
+                     reason:'the colour cannot clear the floor without ceasing to be red' };
+  })();
+})();
+</script>
+</body></html>
