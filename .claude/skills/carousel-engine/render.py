@@ -626,13 +626,37 @@ IN_PAGE_QA_JS = """
                 // knockout rect is furniture
                 const f = (e.getAttribute("fill") || "").trim();
                 const m = f.match(/rgba?\(([^)]+)\)/);
-                const al = m ? (parseFloat(m[1].split(",")[3]) || 1) : (f && f !== "none" ? 1 : 0);
+                // ALPHA 0 IS A VALUE, NOT A MISSING ONE. `parseFloat(...) || 1` reads a
+                // legitimate 0 as absent and falls back to fully opaque. See the note below.
+                const mp = m ? m[1].split(",") : null;
+                const al = mp ? (mp.length > 3 ? parseFloat(mp[3]) : 1)
+                              : (f && f !== "none" ? 1 : 0);
                 if (al >= 0.5 && tag === "rect") { blocked = true; break; }
                 continue;
               }
               const bg = getComputedStyle(e).backgroundColor || "";
               const mm = bg.match(/rgba?\(([^)]+)\)/);
-              const a2 = mm ? (parseFloat(mm[1].split(",")[3]) || 1) : 0;
+              /* ALPHA 0 IS A VALUE, NOT A MISSING ONE, and this one line reported
+                 `visible 0%/0%, seen 0/0px` on every frame of every deck for as long as the
+                 probe has existed. Two scoring judges found the constant independently on
+                 2026-08-30 and neither could be told what it meant, because it never meant
+                 anything.
+
+                 `parseFloat(mm[1].split(",")[3]) || 1` is correct for `rgb(r,g,b)`, where there
+                 is no fourth component and opaque is the right answer. It is WRONG for
+                 `rgba(r,g,b,0)`, where the fourth component parses to 0, and `0 || 1` then
+                 reports the transparent element as fully opaque. Every frame in this engine
+                 carries `.wrap`, an absolutely positioned box at inset 0 with no background,
+                 which computes to `rgba(0, 0, 0, 0)` and therefore blocked every sample point on
+                 every slide.
+
+                 So the probe has never measured occlusion. It measured the presence of a
+                 transparent div, found one every time, and printed a zero that read as a
+                 measurement. This is GATE_LESSONS' oldest shape: a gate reporting a constant.
+
+                 The length of the component list is what says whether an alpha was given. */
+              const mp2 = mm ? mm[1].split(",") : null;
+              const a2 = mp2 ? (mp2.length > 3 ? parseFloat(mp2[3]) : 1) : 0;
               if (a2 >= 0.5) { blocked = true; break; }
             }
             if (!blocked) hit++;
