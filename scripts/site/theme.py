@@ -368,6 +368,13 @@ def home_css() -> str:
 .home .hero > .statrow { grid-area:stats; }
 html.js .home .rise > *:nth-child(6) { animation-delay:.5s; }
 
+/* The publication names itself in the page's primary heading. Set as a quiet register line so
+   the campaign phrase keeps the visual weight while a crawler, a screen reader and a pasted
+   text view all receive the same unambiguous subject. */
+.home .hero h1 .brandline { display:block; margin:0 0 .75rem; font-family:var(--mono);
+  font-size:clamp(.72rem,1.15vw,.9rem); font-weight:500; line-height:1.25;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+
 /* The computed door count is a route now, not only a readout. */
 a.stat { display:block; color:inherit; text-decoration:none; border-radius:.35rem;
   padding:.45rem .55rem; margin:-.45rem -.55rem;
@@ -1845,7 +1852,8 @@ main, .masthead, footer.site {{ position:relative; z-index:1; }}
    overhead at this hour anyway. Long, uneven periods so the two never visibly cycle together. */
 .sky .v4, .sky .v5 {{ position:absolute; border-radius:50%; filter:blur(58px);
   mix-blend-mode:screen; }}
-/* THE OPACITIES ARE .78 AND .68 BECAUSE THAT IS THE MOST THE NIGHT GROUND WILL CARRY.
+/* THE OPACITIES ARE .74 AND .64 BECAUSE THAT IS THE MOST THE NIGHT GROUND WILL CARRY
+   ACROSS RENDERERS.
    The owner reported the background did not appear to move, and measuring the rendered
    frames rather than the DOM proved it: over fifteen seconds the page changed by a mean of
    2.6 parts in 255, which is about one percent of luminance delivered slowly enough for the
@@ -1854,7 +1862,9 @@ main, .masthead, footer.site {{ position:relative; z-index:1; }}
    the periods came down by about a third and the translate ranges roughly doubled. Opacity
    costs brightness directly, and brightness is capped by the swept ground ceiling that earns
    the star field. At .9 and .8 the sweep put five points over it, peaking at 8.2 against a
-   7.5 limit. At .78 and .68 it holds. These are measured limits, not chosen values, and
+   7.5 limit. At .74 and .64 it holds on both the local Chromium build and the GitHub runner;
+   the former .78 and .68 reached 7.8 percent on the runner even while passing locally. These
+   are measured limits, not chosen values, and
    tests/page_ground.mjs is what measures them.
    SMALLER AND BRIGHTER RATHER THAN BIGGER AND BRIGHTER, and the rendered check is what forced
    the distinction. At 78vw these spanned the whole page, so raising their opacity to make the
@@ -1862,10 +1872,10 @@ main, .masthead, footer.site {{ position:relative; z-index:1; }}
    a 7.5 ceiling, and the ceiling is the argument that the star field is earned. A wash that
    covers everything is not a cloud, it is a tint, and tinting the page is not the same as moving
    it. Narrower and brighter reads as something PASSING, which is the thing that was missing. */
-.sky .v4 {{ width:44vw; height:38vh; left:14vw; top:4vh; opacity:.78;
+.sky .v4 {{ width:44vw; height:38vh; left:14vw; top:4vh; opacity:.74;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--flag-blue) 62%,transparent),
     transparent 72%); animation:drift4 17s ease-in-out infinite alternate; }}
-.sky .v5 {{ width:38vw; height:30vh; right:12vw; top:26vh; opacity:.68;
+.sky .v5 {{ width:38vw; height:30vh; right:12vw; top:26vh; opacity:.64;
   background:radial-gradient(closest-side,color-mix(in srgb,var(--panel) 88%,transparent),
     transparent 70%); animation:drift5 21s ease-in-out infinite alternate; }}
 @keyframes drift4 {{ from {{ transform:translate(-20vw,-6vh) scale(1); }}

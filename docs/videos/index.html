@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-IO82NWqTLwkdIYe0ZKFNABnP4Af8crA5sg85wiO6JIE=' 'sha256-2xBiOG56z4RwEStJpKWXS5+K5lB1uquXHK8V5Ts+bLk=' https://challenges.cloudflare.com; style-src 'self' 'sha256-vywVZjGhZZBeFHgeme8ncDL6Gjx5zshbIJ00q/T1qZo='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-+3kthFs8e0YCldxuNJYsDd4Cbem0bRWqugqfMQh5J0I=' 'sha256-u472K+rsZz1c9Kf39fti0utuMCTkK2PRZrdzxxE7BTA=' https://challenges.cloudflare.com; style-src 'self' 'sha256-bqYH/dnN83L6T+0muMdPP8sjlKVpkh8RwX5Ac7jlx1Q='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Videos · Texas AI Docket</title>
@@ -28,7 +28,7 @@
 <link rel="preload" href="../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/jetbrainsmono.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://texasaidocket.com/videos/#page","name":"Videos \u00b7 Texas AI Docket","url":"https://texasaidocket.com/videos/","description":"One short film a day on artificial intelligence in Texas. Narrated, sourced, and built by the same machine that keeps the docket.","inLanguage":"en-US","isPartOf":{"@id":"https://texasaidocket.com/#website"},"publisher":{"@id":"https://texasaidocket.com/#org"}}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://texasaidocket.com/videos/#page","name":"Videos \u00b7 Texas AI Docket","url":"https://texasaidocket.com/videos/","description":"One short film a day on artificial intelligence in Texas. Narrated, sourced, and built by the same machine that keeps the docket.","inLanguage":"en-US","isPartOf":{"@id":"https://texasaidocket.com/#website"},"publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"VideoObject","@id":"https://texasaidocket.com/videos/#2026-08-28-the-grade-the-machine-had-to-clear","name":"The grade the machine had to clear","description":"The grade the machine had to clear. A sourced Texas AI Docket film from Midland County.","thumbnailUrl":"https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main/runs/2026-08-28/poster.png","uploadDate":"2026-08-28","contentUrl":"https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main/runs/2026-08-28/dispatch.mp4","url":"https://texasaidocket.com/videos/#2026-08-28-the-grade-the-machine-had-to-clear","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"VideoObject","@id":"https://texasaidocket.com/videos/#2026-08-18-the-only-machine-you-can-check","name":"The only machine you can check","description":"The only machine you can check. A sourced Texas AI Docket film from Williamson County.","thumbnailUrl":"https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main/runs/2026-08-18/poster.png","uploadDate":"2026-08-18","contentUrl":"https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main/runs/2026-08-18/dispatch.mp4","url":"https://texasaidocket.com/videos/#2026-08-18-the-only-machine-you-can-check","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}}]</script>
 <style>
 @font-face{font-family:Fraunces;src:url(../fonts/fraunces.woff2) format("woff2");
 font-weight:100 900;font-display:swap}
@@ -178,7 +178,25 @@ background:rgba(25,21,48,.72);color:var(--snow);font-size:16px;cursor:pointer}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .notice{height:100dvh;display:flex;align-items:center;justify-content:center;text-align:center;
 padding:0 24px;font-family:var(--mono-face);font-size:12px;letter-spacing:.14em;
-line-height:2;color:var(--mute)}
+line-height:2;color:var(--mute);flex-direction:column;gap:8px}
+.notice strong{font-family:var(--display-face);font-size:clamp(28px,7vw,54px);font-weight:600;
+letter-spacing:-.02em;line-height:1.05;color:var(--snow)}
+.notice span{max-width:42ch}
+.archive{min-height:100dvh;scroll-snap-align:start;padding:calc(96px + env(safe-area-inset-top))
+20px calc(54px + env(safe-area-inset-bottom));display:flex;align-items:center;
+background:var(--night)}
+.archive-inner{width:min(100%,720px);margin:auto}
+.archive-kicker{font-family:var(--mono-face);font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--accent)}
+.archive h2{margin:8px 0 24px;font-family:var(--display-face);font-size:clamp(42px,9vw,78px);
+font-weight:600;line-height:1;color:var(--snow)}
+.archive ol{list-style:none;border-top:1px solid var(--line)}
+.archive li{border-bottom:1px solid var(--line)}
+.archive a{display:block;padding:20px 0;text-decoration:none}
+.archive h3{font-family:var(--display-face);font-size:clamp(21px,4vw,30px);font-weight:600;
+line-height:1.15;color:var(--snow)}
+.archive p{margin-top:8px;max-width:62ch;font-size:14px;line-height:1.55;color:var(--body)}
+.archive a:hover h3{color:var(--accent)}
 noscript div{padding:40vh 22px 0;text-align:center;font-family:var(--mono-face);
 font-size:12px;line-height:2;color:var(--mute)}
 
@@ -210,16 +228,18 @@ font-size:12px;line-height:2;color:var(--mute)}
 
 <h1 class="sr">Videos</h1>
 <main class="feed" id="feed" tabindex="0" aria-label="Video feed">
-  <div class="notice" id="notice">LOADING THE FEED</div>
+  <div class="notice" id="notice"><strong>Texas AI Docket videos</strong>
+    <span>Short, sourced films about artificial intelligence in Texas.</span></div>
+  <section class="archive" id="archive" aria-labelledby="archive-title"><div class="archive-inner"><p class="archive-kicker">Texas AI Docket</p><h2 id="archive-title">Every film</h2><ol><li><a href="#2026-08-28-the-grade-the-machine-had-to-clear"><h3>The grade the machine had to clear</h3><p>The grade the machine had to clear. A sourced Texas AI Docket film from Midland County.</p></a></li><li><a href="#2026-08-18-the-only-machine-you-can-check"><h3>The only machine you can check</h3><p>The only machine you can check. A sourced Texas AI Docket film from Williamson County.</p></a></li></ol></div></section>
 </main>
 
-<noscript><div>The feed needs JavaScript. Every film is also linked from
-<a href="../">the front page</a>.</div></noscript>
+<noscript><div>The film archive stays readable here. Playback controls need JavaScript.</div></noscript>
 
 <script>
 (async function(){
   var feed = document.getElementById('feed');
   var notice = document.getElementById('notice');
+  var archive = document.getElementById('archive');
   var calm = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   var manifest;
@@ -315,7 +335,12 @@ font-size:12px;line-height:2;color:var(--mute)}
     frag.appendChild(card);
   });
   notice.remove();
-  feed.appendChild(frag);
+  if(archive) feed.insertBefore(frag, archive); else feed.appendChild(frag);
+  /* The archive exists before the runtime cards, so scroll anchoring tries to preserve its
+     screen position when those cards are inserted ahead of it. That made a fresh visit open on
+     the archive instead of the first film. Reset only an unlinked visit. A fragment is handled
+     below after the cards exist. */
+  if(!location.hash) feed.scrollTop = 0;
   /* THE CONTROLS ARE GATED ON A FEED THAT LOADED. The sound pill and the desktop stepper are
      in the markup so they need no layout shift to appear, and their listeners are attached at
      the bottom of this function. Between those two facts is a window where a failed fetch

@@ -147,8 +147,8 @@ def prose_of(node) -> list:
             out.append(("question", n["name"]))
         elif t == "Answer" and n.get("text"):
             out.append(("answer", n["text"]))
-        elif t in ("Report", "Dataset", "CollectionPage"):
-            for k in ("headline", "description"):
+        elif t in ("Report", "Dataset", "CollectionPage", "VideoObject"):
+            for k in ("name", "headline", "description"):
                 if n.get(k):
                     out.append((f"{t}.{k}", n[k]))
 
@@ -287,6 +287,10 @@ def self_test() -> int:
        sorted(w for w, _ in prose_of(q)) == ["answer", "question"], str(prose_of(q)))
     ok("a citation's name is NOT linted, since a title is quoted material",
        prose_of({"@type": "CreativeWork", "name": "A; title"}) == [])
+    ok("a video's name and description are both published prose",
+       sorted(w for w, _ in prose_of({"@type": "VideoObject", "name": "A film",
+                                      "description": "What the film shows."})) ==
+       ["VideoObject.description", "VideoObject.name"])
 
     # EVERY RULE GOES RED ON A PLANTED VIOLATION. A gate that has never failed is a decoration.
     def one(node):

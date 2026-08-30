@@ -120,7 +120,7 @@ def facility_page(d: dict, today: str, filings: list | None = None) -> str:
         f'of who runs the building.</p>'
         f'</article>')
     return page(
-        title=f"{name} · {SITE_NAME}",
+        title=f"{name} data center · {SITE_NAME}",
         desc=_facility_desc(d.get("summary") or ""),
         body=body, depth=2, active=None, today=today,
         canonical=f"facility/{d['slug']}/",
@@ -662,4 +662,3 @@ def registry_changes_page(data: dict, today: str) -> str:
 
 
 __all__ = ['_facility_desc', 'facility_filings', 'NOT_PUBLIC', 'GAP_FIELDS', 'contradicted_gaps', 'facility_page', 'company_page', '_registry_field', 'companies_index', 'datacenters_page', 'construction_page', 'registry_changes_page']
-

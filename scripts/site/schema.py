@@ -272,6 +272,18 @@ def org_node(ctx: Ctx) -> dict:
         "url": ctx.url(),
         "description": "A public, fact-checked record of decisions about artificial "
                        "intelligence in Texas.",
+        # The square hoist mark already ships for saved home screens and clears Google's
+        # published minimum for an Organization logo. Naming that exact asset here joins the
+        # visual identity to the entity instead of leaving a crawler to infer one from a tab
+        # icon or the social card.
+        "logo": {
+            "@type": "ImageObject",
+            "@id": ctx.url("#logo"),
+            "url": ctx.url("apple-touch-icon.png"),
+            "contentUrl": ctx.url("apple-touch-icon.png"),
+            "width": 180,
+            "height": 180,
+        },
     }
     # `sameAs` IS THE ENTITY CLAIM, and it is the whole reason the social row is worth more
     # than decoration. It tells a search engine and an answer engine that this site and those
