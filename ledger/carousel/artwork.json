@@ -606,6 +606,36 @@
    ],
    "deck_median_L": 15.6,
    "note": "Frame 7 inverts the deck's ground on bond and declares no light source at all. Frame 9 spends the reserved red once, on the date."
+  },
+  {
+   "date": "2026-08-30",
+   "carousel_no": 12,
+   "register": "a cold body of air at last dark with light IN it rather than on it. Eight frames are luminous fields with soft falloff and one, the turn, is a poured concrete apron in full sun. No frame carries a drawn outline, a hard-edged plate or a visible corner anywhere",
+   "techniques": [
+    "type set IN the field behind a multi-radius halo rather than on an opaque plate, which is the engine's one defence that never trips the art-crossing-glyphs gate, so art runs under every text block on all nine frames",
+    "28 extinguished nodes, each a wide cold bloom with a small dark core, so a count reads as something switched OFF rather than as objects placed on a surface",
+    "459 identical anonymous marks on a jittered lattice, each a hard bright core over a soft bloom so the population stays resolvable at 432px instead of greying out",
+    "a dark draped mass that OCCLUDES the field behind it, with light only where it wraps the silhouette, built as a feathered bezier hood in strict light order",
+    "TXGeo Albers with no county seams, two lit ends and a span that fades to nothing between them, because the source names two ends and names no route",
+    "a control joint sawn the full height of a sunlit apron, separating two counts of different kinds so they can never be read as a ratio",
+    "a norther front as a value break computed at 0.38 of frame height and asserted by the frame",
+    "three layers of tooth at three frequencies under every dark frame, so the quiet ground measures as material rather than as a gradient"
+   ],
+   "palette": {
+    "source": "galvanized hardware and a cold body of air at last dark, with one daylight frame on poured concrete",
+    "tokens": [
+     "field #0B0D10",
+     "air #26363E",
+     "spangle #C6CCC7",
+     "lint #E9E7DA",
+     "clay #2A211A",
+     "apron #C9C2B0",
+     "sun #F4F0E2",
+     "red #BF0A30 derived against its own ground, spent once"
+    ]
+   },
+   "arc_note": "PLANNED 34, 22, 40, 58, 44, 71, 30, 47, 26 and MEASURED off the rendered PNGs at ship. panel_ready confirms slide 6 is the brightest of the nine, which is the deck level check a previous deck failed while every per frame item passed",
+   "avoid_next": "the halo is now spent on a whole deck and a second consecutive halo deck would be one drawing twice. The luminous-field register is also spent. Next run should reach for a worked surface with real edges rather than another field of soft blooms"
   }
  ]
 }
