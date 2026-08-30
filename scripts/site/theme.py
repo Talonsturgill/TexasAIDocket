@@ -778,6 +778,8 @@ def facility_css() -> str:
 .gcontrols button { width:auto; cursor:pointer; color:var(--caliche); }
 .gcontrols input:focus-visible, .gcontrols select:focus-visible, .gcontrols button:focus-visible {
   outline:.12rem solid var(--accent); outline-offset:.12rem; }
+.gmobilehint { display:none; margin:.2rem 0 .6rem; color:var(--dust);
+  font-family:var(--mono); font-size:var(--s-2); letter-spacing:.04em; }
 .gworkspace { display:grid; grid-template-columns:minmax(0,2.25fr) minmax(20rem,.75fr);
   height:clamp(32rem,38vw,42rem); min-height:0; overflow:hidden;
   border:var(--hair) solid var(--rule); border-radius:.55rem;
@@ -922,6 +924,10 @@ def facility_css() -> str:
   border:var(--hair) solid var(--rule); border-radius:.35rem; background:rgba(18,16,42,.3); }
 .registryoverview h2 { margin-top:0; }
 .registryroles .rroles { grid-template-columns:repeat(3,minmax(0,1fr)); }
+/* `.ops` is shared with full-width leaderboards and carries a sixteen-rem track floor there.
+   Inside the three registry roles that floor made each list wider than its own grid column,
+   putting one role's count into the next role's name. Here the column is the floor. */
+.registryroles .rrole .ops { grid-template-columns:minmax(0,1fr); }
 .registryroster { scroll-margin-top:5rem; margin-top:4rem; }
 
 @media (max-width:68rem) {
@@ -946,8 +952,15 @@ def facility_css() -> str:
   .gcontrols { grid-template-columns:1fr; }
   .gcontrols button { width:100%; }
   .gworkspace { min-height:0; }
-  .gworkspace .gfield { min-height:25rem; }
-  .gworkspace .gsvg { width:auto; min-width:100%; height:25rem; margin-left:50%; transform:translateX(-50%); }
+  /* The phone view stays zoomed enough for a point to be usable, but no longer clips the two
+     sides of the field. It becomes one horizontal instrument inside a vertically scrolling
+     page, with the cue immediately above it and a real pan gesture declared for touch engines. */
+  .gworkspace .gfield { width:100%; min-height:25rem; aspect-ratio:auto; overflow-x:auto;
+    overflow-y:hidden; overscroll-behavior-x:contain; touch-action:pan-x pan-y;
+    scrollbar-width:thin; scrollbar-color:var(--dust) transparent; }
+  .gworkspace .gsvg { width:40rem; min-width:40rem; max-width:none; height:25rem;
+    margin-left:0; transform:none; }
+  .gmobilehint { display:block; }
   .ontoflow { grid-template-columns:1fr; }
   .ontoflow::before { left:50%; right:auto; top:27%; bottom:56%; border-top:0;
     border-left:var(--hair) solid var(--sig-link); }

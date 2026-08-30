@@ -137,9 +137,26 @@ const browser = await chromium.launch(LAUNCH);
   ok("clear restores the full registry",
     await p.$$eval("#registry-roster tbody tr:not([hidden])", (rows) => rows.length) === reg.length);
 
-  await p.check("#rresearched");
-  ok("the researched filter keeps exactly the dossier rows",
-    await p.$$eval("#registry-roster tbody tr:not([hidden])", (rows) => rows.length) === EXPECT);
+  if (EXPECT < reg.length) {
+    await p.check("#rresearched");
+    ok("the dossier filter keeps exactly the researched rows",
+      await p.$$eval("#registry-roster tbody tr:not([hidden])", (rows) => rows.length) === EXPECT);
+  } else {
+    const coverage = await p.locator(".registryroster > .qnote").innerText();
+    ok("complete dossier coverage is explained instead of presenting a no-op filter",
+      await p.locator("#rresearched").count() === 0 &&
+      coverage.includes(String(doss.length)) && coverage.includes(String(reg.length)), coverage);
+  }
+
+  const roleSpill = await p.$$eval(".registryroles .rrole", (roles) => roles.flatMap((role) => {
+    const column = role.getBoundingClientRect();
+    return [...role.querySelectorAll(".ops li")].map((row) => {
+      const item = row.getBoundingClientRect();
+      return { text: row.textContent.trim(), right: item.right, columnRight: column.right };
+    }).filter((row) => row.right > row.columnRight + 1);
+  }));
+  ok("each registry role list stays inside its own column", roleSpill.length === 0,
+    JSON.stringify(roleSpill.slice(0, 3)));
   await p.close();
 }
 
@@ -430,6 +447,16 @@ const browser = await chromium.launch(LAUNCH);
   ok("every company point has a forty four pixel phone target",
     targetSizes.length > 0 && tooSmall.length === 0,
     JSON.stringify(tooSmall.slice(0, 3)));
+
+  const phoneField = await p.$eval(".gfield", (field) => ({
+    client: field.clientWidth,
+    scroll: field.scrollWidth,
+    overflow: getComputedStyle(field).overflowX,
+    touch: getComputedStyle(field).touchAction,
+  }));
+  ok("the zoomed phone field pans sideways instead of clipping unreachable points",
+    phoneField.scroll > phoneField.client && phoneField.overflow === "auto" &&
+    phoneField.touch.includes("pan-x"), JSON.stringify(phoneField));
 
   // Tap transparent target area beyond the visible dot. A centre tap would prove only that
   // the dot works, while the reader benefit here is the larger invisible control around it.
