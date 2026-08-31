@@ -1,10 +1,12 @@
 """Home, article, and video page renderers."""
 from __future__ import annotations
 
+import re
+
 from site_context import (
     HOIST, NAV, RAW, SCHEMA_CTX, SITE_NAME, SITE_URL, _dt, csp, dk, e, favicon,
     js_feed_date, json, load_runs, og, ordinal, page, re, schema, short_date,
-    telemetry, texas_map, theme, video_count, video_feed,
+    telemetry, texas_map, theme, video_count, video_description, video_feed, video_media_url,
 )
 from site_pages.docket import _place_facts, covers_section
 from site_pages.watch import ask_box, county_links
@@ -91,6 +93,27 @@ def videos_page(today: str) -> str:
     desc = ("One short film a day on artificial intelligence in Texas. Narrated, sourced, and "
             "built by the same machine that keeps the docket.")
 
+    # THE INDEXABLE ARCHIVE IS THE SAME FEED THE PLAYER READS. The first feed shell left every
+    # title and caption behind a runtime fetch, so a crawler that read the delivered HTML saw
+    # only "LOADING THE FEED". These rows stay visible as the final screen after the films and
+    # remain useful when script is unavailable. They are generated from the external manifest,
+    # never maintained as a second list.
+    manifest = video_feed()
+    videos = [v for v in (manifest.get("videos") or [])
+              if isinstance(v, dict) and v.get("video")]
+
+    def archive_row(v: dict) -> str:
+        caption = f'<p>{e(video_description(v))}</p>'
+        return (f'<li><a href="#{e(v.get("id") or "")}">'
+                f'<h3>{e(v.get("title") or "Texas AI film")}</h3>'
+                f'{caption}</a></li>')
+
+    archive_rows = "".join(archive_row(v) for v in videos if v.get("id"))
+    archive = (f'<section class="archive" id="archive" aria-labelledby="archive-title">'
+               f'<div class="archive-inner"><p class="archive-kicker">Texas AI Docket</p>'
+               f'<h2 id="archive-title">Every film</h2><ol>{archive_rows}</ol></div></section>'
+               if archive_rows else "")
+
     # THE MEDIA HOST, READ OUT OF THE FEED RATHER THAN TYPED. The films are served from
     # wherever `videos.json` says, which is a field `TexasAIDispatch` owns and this build only
     # reads. A preconnect saves the reader the TLS handshake on the first film, and getting it
@@ -98,7 +121,7 @@ def videos_page(today: str) -> str:
     # a relative `media_base`, and there is simply no hint, which is correct rather than a
     # fallback: a preconnect to a host nothing is fetched from is a wasted connection.
     preconnect = ""
-    host = str(video_feed().get("media_base") or "")
+    host = str(manifest.get("media_base") or "")
     m = re.match(r"(https://[^/]+)", host)
     if m:
         preconnect = f'<link rel="preconnect" href="{e(m.group(1))}" crossorigin>\n'
@@ -241,7 +264,25 @@ background:rgba(25,21,48,.72);color:var(--snow);font-size:16px;cursor:pointer}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .notice{height:100dvh;display:flex;align-items:center;justify-content:center;text-align:center;
 padding:0 24px;font-family:var(--mono-face);font-size:12px;letter-spacing:.14em;
-line-height:2;color:var(--mute)}
+line-height:2;color:var(--mute);flex-direction:column;gap:8px}
+.notice strong{font-family:var(--display-face);font-size:clamp(28px,7vw,54px);font-weight:600;
+letter-spacing:-.02em;line-height:1.05;color:var(--snow)}
+.notice span{max-width:42ch}
+.archive{min-height:100dvh;scroll-snap-align:start;padding:calc(96px + env(safe-area-inset-top))
+20px calc(54px + env(safe-area-inset-bottom));display:flex;align-items:center;
+background:var(--night)}
+.archive-inner{width:min(100%,720px);margin:auto}
+.archive-kicker{font-family:var(--mono-face);font-size:10px;letter-spacing:.16em;
+text-transform:uppercase;color:var(--accent)}
+.archive h2{margin:8px 0 24px;font-family:var(--display-face);font-size:clamp(42px,9vw,78px);
+font-weight:600;line-height:1;color:var(--snow)}
+.archive ol{list-style:none;border-top:1px solid var(--line)}
+.archive li{border-bottom:1px solid var(--line)}
+.archive a{display:block;padding:20px 0;text-decoration:none}
+.archive h3{font-family:var(--display-face);font-size:clamp(21px,4vw,30px);font-weight:600;
+line-height:1.15;color:var(--snow)}
+.archive p{margin-top:8px;max-width:62ch;font-size:14px;line-height:1.55;color:var(--body)}
+.archive a:hover h3{color:var(--accent)}
 noscript div{padding:40vh 22px 0;text-align:center;font-family:var(--mono-face);
 font-size:12px;line-height:2;color:var(--mute)}
 
@@ -258,6 +299,7 @@ font-size:12px;line-height:2;color:var(--mute)}
 (async function(){
   var feed = document.getElementById('feed');
   var notice = document.getElementById('notice');
+  var archive = document.getElementById('archive');
   var calm = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   var manifest;
@@ -342,7 +384,12 @@ font-size:12px;line-height:2;color:var(--mute)}
     frag.appendChild(card);
   });
   notice.remove();
-  feed.appendChild(frag);
+  if(archive) feed.insertBefore(frag, archive); else feed.appendChild(frag);
+  /* The archive exists before the runtime cards, so scroll anchoring tries to preserve its
+     screen position when those cards are inserted ahead of it. That made a fresh visit open on
+     the archive instead of the first film. Reset only an unlinked visit. A fragment is handled
+     below after the cards exist. */
+  if(!location.hash) feed.scrollTop = 0;
   /* THE CONTROLS ARE GATED ON A FEED THAT LOADED. The sound pill and the desktop stepper are
      in the markup so they need no layout shift to appear, and their listeners are attached at
      the bottom of this function. Between those two facts is a window where a failed fetch
@@ -653,6 +700,22 @@ font-size:12px;line-height:2;color:var(--mute)}
         "isPartOf": {"@id": f"{SITE_URL}/#website"},
         "publisher": {"@id": f"{SITE_URL}/#org"},
     }]
+    for v in videos:
+        if not (v.get("id") and v.get("title") and v.get("poster") and v.get("date")):
+            continue
+        ld.append({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "@id": f'{SITE_URL}/videos/#{v["id"]}',
+            "name": str(v["title"]),
+            "description": video_description(v),
+            "thumbnailUrl": video_media_url(manifest, v["poster"]),
+            "uploadDate": str(v["date"]),
+            "contentUrl": video_media_url(manifest, v["video"]),
+            "url": f'{SITE_URL}/videos/#{v["id"]}',
+            "inLanguage": "en-US",
+            "publisher": {"@id": f"{SITE_URL}/#org"},
+        })
 
     # ITS OWN SHELL MEANS ITS OWN POLICY. This page does not go through `page()`, so the
     # CSP that every other page inherits there has to be applied here too. It carries the
@@ -708,11 +771,12 @@ font-weight:400 600;font-display:swap}}
 
 <h1 class="sr">Videos</h1>
 <main class="feed" id="feed" tabindex="0" aria-label="Video feed">
-  <div class="notice" id="notice">LOADING THE FEED</div>
+  <div class="notice" id="notice"><strong>Texas AI Docket videos</strong>
+    <span>Short, sourced films about artificial intelligence in Texas.</span></div>
+  {archive}
 </main>
 
-<noscript><div>The feed needs JavaScript. Every film is also linked from
-<a href="../">the front page</a>.</div></noscript>
+<noscript><div>The film archive stays readable here. Playback controls need JavaScript.</div></noscript>
 
 <script>{script}</script>
 </body>
@@ -775,9 +839,39 @@ def article_page(r: dict, today: str, items: list) -> str:
         for i, name in enumerate(r["files"], start=1))
 
     def say(block):
+        # AN ADDRESS IS A CITATION, NOT PROSE, and each line ends.
+        #
+        # A slide's citation line names the state motor vehicles department's own page and prints
+        # the path claim c40 was fetched from. house_style_check read the `about-us` segment of
+        # that path as the first person plural, and then ran the line into the two paragraphs
+        # beside it, because a slide's set lines carry no terminal punctuation and the sentence
+        # splitter had nothing to stop on. Three short labels were reported as one 36 word
+        # sentence. Nobody here wrote that address.
+        #
+        # TWO WRONG INSTRUMENTS WERE TRIED FIRST and both are worth recording, because both look
+        # like exemptions and neither is. `data-prose="data"` exempts ONLY the comma density
+        # rule, in `our_sentences`; every other rule reads the page through `our_prose`, which
+        # never consults it. And `<code>` is not what the checker's CODE pattern means: that
+        # pattern is `script` and `style`, the two elements whose CONTENT would otherwise be
+        # linted as prose. A mark that looks like an exemption and is not one is worse than no
+        # mark, because it reads as handled.
+        #
+        # `<cite>` is the mechanism, because `_stripped` removes QUOTED, which is blockquote and
+        # cite. Only the address is wrapped, never the sentence around it, so every word the deck
+        # wrote is still checked.
+        addr = re.compile(r"(?<![\w/])((?:https?://|www\.)?[\w.-]+\.(?:gov|com|org|net|edu)"
+                          r"(?:/[\w./%-]*)?)")
+
+        def mark(t):
+            return addr.sub(lambda m: f"<cite>{m.group(1)}</cite>", e(t))
+
+        def stopped(t):
+            t = t.rstrip()
+            return t if (not t or t[-1] in ".!?:;") else t + "."
+
         return "".join(
             f"<blockquote>{e(s['text'])}</blockquote>" if s["quote"]
-            else f"<p>{e(s['text'])}</p>" for s in block)
+            else f"<p>{mark(stopped(str(s['text'])))}</p>" for s in block)
 
     story = "".join(say(b) for b in r.get("prose") or [])
     if not story:
@@ -1205,7 +1299,7 @@ def home(items: list, today: str) -> str:
     <h2 id="open-now-title">Deadlines you can still meet</h2>
     <p class="open-now-intro">The closest verified public comment deadlines in the record.</p>
     <ol class="open-now-list">{action_rows_html}</ol>
-    <a class="open-now-more" href="questions/taking-part/">See every way to take part</a>
+    <a class="open-now-more" href="questions/taking-part/"><span>See every way to take part</span></a>
   </aside>"""
     else:
         open_now = """
@@ -1215,7 +1309,7 @@ def home(items: list, today: str) -> str:
     </div>
     <h2 id="open-now-title">No comment window is open</h2>
     <p class="open-now-intro">Windows are checked every day. The next verified opening will appear here.</p>
-    <a class="open-now-more" href="record/">Browse the full docket</a>
+    <a class="open-now-more" href="record/"><span>Browse the full docket</span></a>
   </aside>"""
 
     # THE STAT ROW COUNTS WHAT THIS PROJECT HAS PUBLISHED, plus the one number a reader can
@@ -1270,7 +1364,7 @@ def home(items: list, today: str) -> str:
     body = f"""
 <section class="hero rise">
   {telemetry(today)}
-  <h1>AI is coming <em>South</em>.</h1>
+  <h1><span class="brandline">Texas AI Docket</span>AI is coming <em>South</em>.</h1>
   <p class="herolede">Every AI decision in Texas and the source behind it.</p>
   <div class="ctarow">
     <a class="cta solid" href="record/">The docket</a>
@@ -1325,4 +1419,3 @@ def home(items: list, today: str) -> str:
 
 
 __all__ = ['videos_page', 'articles_page', 'article_page', 'deck_preview', 'latest_article', 'latest_video', 'scan_teaser', 'home']
-

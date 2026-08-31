@@ -5,7 +5,7 @@ from site_context import (
     LICENCE, REPO_ROOT, SCHEMA_CTX, SITE_NAME, SITE_URL, _dt, _host_slug,
     _made_at_numerals, _place_facts, dk, e, frontchip, json, load_runs,
     next_door, numeral_lint, ordinal, page, room_label, schema, topic_label,
-    video_count,
+    video_count, video_description, video_feed, video_media_url,
 )
 from site_pages.docket import _item_metros
 
@@ -757,6 +757,59 @@ def feed_xml(items: list, today: str) -> str:
             f"{rows}</channel></rss>")
 
 
+def news_sitemap(runs: list, today: str) -> str:
+    """The rolling Google News sitemap, restricted to the recent publication window.
+
+    The ordinary sitemap keeps every article. This smaller lane names only recent reporting,
+    which is the shape Google's news crawler documents. An empty urlset is honest on a day
+    when nothing recent shipped and keeps the stable submitted address alive.
+    """
+    now = _dt.date.fromisoformat(today)
+    cutoff = now - _dt.timedelta(days=2)
+    recent = []
+    for run in runs:
+        try:
+            published = _dt.date.fromisoformat(str(run.get("date") or ""))
+        except ValueError:
+            continue
+        if cutoff <= published <= now:
+            recent.append(run)
+    rows = "".join(
+        f"<url><loc>{SITE_URL}/articles/{e(run['date'])}/</loc>"
+        f"<news:news><news:publication><news:name>{e(SITE_NAME)}</news:name>"
+        f"<news:language>en</news:language></news:publication>"
+        f"<news:publication_date>{e(run['date'])}</news:publication_date>"
+        f"<news:title>{e(run['title'])}</news:title></news:news></url>"
+        for run in recent)
+    return ('<?xml version="1.0" encoding="UTF-8"?>'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+            'xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">'
+            f'{rows}</urlset>')
+
+
+def video_sitemap(feed: dict | None = None) -> str:
+    """Every complete film in the Dispatch manifest, on its one playback page."""
+    feed = feed if feed is not None else video_feed()
+    videos = [v for v in (feed.get("videos") or []) if isinstance(v, dict)]
+    blocks = []
+    for v in videos:
+        if not all(v.get(k) for k in ("title", "video", "poster", "date")):
+            continue
+        blocks.append(
+            "<video:video>"
+            f"<video:thumbnail_loc>{e(video_media_url(feed, v['poster']))}</video:thumbnail_loc>"
+            f"<video:title>{e(v['title'])}</video:title>"
+            f"<video:description>{e(video_description(v))}</video:description>"
+            f"<video:content_loc>{e(video_media_url(feed, v['video']))}</video:content_loc>"
+            f"<video:publication_date>{e(v['date'])}</video:publication_date>"
+            "</video:video>")
+    row = f"<url><loc>{SITE_URL}/videos/</loc>{''.join(blocks)}</url>" if blocks else ""
+    return ('<?xml version="1.0" encoding="UTF-8"?>'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+            'xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">'
+            f'{row}</urlset>')
+
+
 def docket_dataset_ld(items: list, today: str) -> dict:
     """Dataset is the one structured-data type with a documented, currently operating consumer.
     FAQPage was retired in May 2026 and SpecialAnnouncement deprecated in July 2025."""
@@ -1011,5 +1064,4 @@ def _watch_numerals(mod) -> set:
 
 
 
-__all__ = ['item_markdown', 'atom', 'feed_json', '_first_sentence', 'not_found_page', '_cite_titles', '_quoted_numerals', '_run_numerals', 'question_groups', 'questions_check', '_qa_rows', 'questions_hub', 'questions_kind_page', '_src_stat', 'source_pages', 'sources_page', 'llms_txt', 'llms_full_txt', 'feed_xml', 'docket_dataset_ld', '_identifier_numerals', '_item_numerals', '_home_numerals', '_authorised_numerals', '_watch_numerals']
-
+__all__ = ['item_markdown', 'atom', 'feed_json', '_first_sentence', 'not_found_page', '_cite_titles', '_quoted_numerals', '_run_numerals', 'question_groups', 'questions_check', '_qa_rows', 'questions_hub', 'questions_kind_page', '_src_stat', 'source_pages', 'sources_page', 'llms_txt', 'llms_full_txt', 'feed_xml', 'news_sitemap', 'video_sitemap', 'docket_dataset_ld', '_identifier_numerals', '_item_numerals', '_home_numerals', '_authorised_numerals', '_watch_numerals']

@@ -1,0 +1,103 @@
+{
+  "beat": "clinic-and-classroom",
+  "run_date": "2026-08-30",
+  "findings": [
+    {
+      "id": "cc-1",
+      "headline": "Eight Texas school districts are now on OpenAI's ChatGPT for Teachers, and Northside ISD turns it on districtwide in October.",
+      "what_happened": "OpenAI expanded its ChatGPT for Teachers program to 55 more K-12 systems on Wednesday, August 26th, and eight Texas districts are on the list. Northside ISD in San Antonio plans a systemwide launch in October. Students do not get accounts, the tool is for teachers, staff and administrators.",
+      "who_decided": "OpenAI, with Northside ISD, Houston ISD, Fort Worth ISD, Dallas ISD, Frisco ISD, Killeen ISD, Abilene ISD and Humble ISD",
+      "when": "2026-08-26",
+      "where": {"counties": ["Bexar", "Harris", "Tarrant", "Dallas", "Collin", "Bell", "Taylor"], "statewide": false, "ercot": false},
+      "quote": "In Texas, these now include NISD in San Antonio, Houston ISD, Fort Worth ISD, Dallas ISD, Frisco ISD, Killeen ISD, Abilene ISD and Humble ISD, which have all either implemented ChatGPT for Teachers districtwide or are in the process of doing so.",
+      "url": "https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai",
+      "source_type": "journalism",
+      "confidence": "high",
+      "unverified": [
+        "OpenAI's own announcement page returned HTTP 403 on three fetch attempts, so the primary corporate record was not retrieved and the district list rests on the TPR page.",
+        "The county names are the researcher's mapping of district to county. The source names districts, not counties. Frisco ISD spans Collin and Denton counties.",
+        "TPR states the tool is free until June of 2028. Houston ISD's own post about ChatGPT Edu states June 2027. Different product names, discrepancy unresolved.",
+        "No board agenda item or vote was located for any of the eight districts. Whether this was administrative or a board action is unconfirmed.",
+        "Northside ISD figures 97,600 students, 133 schools, 13,000 employees are from district technology staff and are not character-verified."
+      ]
+    },
+    {
+      "id": "cc-2",
+      "headline": "Nurses marched in Austin to demand hospitals drop Palantir's nurse-scheduling software.",
+      "what_happened": "National Nurses United announced a nationwide day of action on August 27th, with Austin as the only Texas site, targeting Palantir's role inside hospitals. The union's objection is Timpani, also called HCA Inspire, an AI-assisted system used to schedule and assign nursing staff.",
+      "who_decided": "National Nurses United",
+      "when": "2026-08-24",
+      "where": {"counties": ["Travis"], "statewide": false, "ercot": false},
+      "quote": "Timpani, otherwise known as HCA Inspire, is used for nursing staff scheduling, removing hospitals' local managers from staffing decisions and replacing them with an anonymous office in Nashville.",
+      "url": "https://www.nationalnursesunited.org/press/nnu-nurses-to-participate-in-nationwide-protests-against-palantir",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "unverified": [
+        "The union release does not name a specific Austin hospital. KUT coverage names HCA Healthcare and says it operates St. David's hospitals in Central Texas.",
+        "Palantir's response, via KUT, was returned by a page summarizer rather than copied from a primary document. Medium fidelity.",
+        "HCA Healthcare did not respond to KUT. No HCA or St. David's statement was located.",
+        "Crowd size is not stated as a figure in either source. KUT says dozens."
+      ]
+    },
+    {
+      "id": "cc-3",
+      "headline": "Rice University and MD Anderson will build an AI microscope to read breast biopsies in rural Texas.",
+      "what_happened": "Rice University announced Access BreastDX on August 25th, a point-of-care system built around an AI-enabled digital microscope that scans breast cell and tissue samples, judges whether the sample is adequate, and helps route images to a pathologist for remote review. Funded by an ad hoc Hill Prizes grant from TAMEST and Lyda Hill Philanthropies.",
+      "who_decided": "Rice360 Institute for Global Health Technologies at Rice University, with the Hill Prizes program",
+      "when": "2026-08-25",
+      "where": {"counties": ["Harris"], "statewide": true, "ercot": false},
+      "quote": "Too often, where a patient lives determines how quickly she can access the diagnostic care she needs.",
+      "url": "https://news.rice.edu/news/2026/rice360-project-aims-bring-faster-breast-cancer-diagnosis-rural-texas",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "The quote is attributed to Rebecca Richards-Kortum and was returned by a page summarizer. Re-copy before publication.",
+        "Figures on the page that must be quoted exactly if used: microscope expected to cost less than $5,000; six Texas research efforts share $1 million in additional 2026 funding; Hill Prizes provide $3.5 million annually at $500,000 in each of seven categories; total 2026 investment $4.5 million. The amount awarded to Access BreastDX alone was not stated.",
+        "No Texas county is named. The source says rural and medically underserved communities across Texas.",
+        "This is a funded project, not a deployed system. No patients scanned, no start date, trial site or regulatory pathway."
+      ]
+    },
+    {
+      "id": "cc-4",
+      "headline": "A Texas appeals court found four fabricated case citations in a brief filed against San Antonio ISD.",
+      "what_happened": "The Fourth Court of Appeals decided San Antonio Independent School District v. Laura Becerra, cause number 04-25-00724-CV, on August 5th, reversing and rendering. Justice Lori Valenzuela wrote that four of the eight cases cited in the family's appellate brief appeared to be AI hallucinations.",
+      "who_decided": "The Fourth Court of Appeals of Texas, San Antonio",
+      "when": "2026-08-05",
+      "where": {"counties": ["Bexar"], "statewide": false, "ercot": false},
+      "quote": "appeared to be hallucinations created by AI",
+      "url": "https://www.ksat.com/news/local/2026/08/17/appeals-court-flags-ai-generated-fake-cases-in-san-antonio-isd-lawsuit/",
+      "source_type": "journalism",
+      "confidence": "low",
+      "unverified": [
+        "THE QUOTE IS SECOND HAND. The memorandum opinion PDF was fetched but its text layer could not be extracted, so the phrase is taken from KSAT rather than from the opinion. Do not publish it as a quote of the court until the PDF is read.",
+        "The docket page at search.txcourts.gov WAS fetched and confirms the case style, the August 5th 2026 opinion date and the disposition Reversed and Rendered.",
+        "The opinion date is outside the 14 day window. The coverage is August 17th.",
+        "Whether the court sanctioned or only admonished the attorney is reported inconsistently and was not confirmed from the opinion."
+      ]
+    },
+    {
+      "id": "cc-5",
+      "headline": "Katy ISD's AI framework took effect this month and bars generative AI through sixth grade.",
+      "what_happened": "Katy ISD published its Artificial Intelligence Framework on July 20th, governing the 2026-27 school year. Kindergarten through sixth grade may not use generative AI tools, seventh graders only when a teacher directs it, eighth through twelfth graders may use district-approved tools with teacher permission and must disclose and cite the use.",
+      "who_decided": "Katy Independent School District",
+      "when": "2026-07-20",
+      "where": {"counties": ["Harris", "Fort Bend", "Waller"], "statewide": false, "ercot": false},
+      "quote": "The framework ensures AI strengthens teaching and learning while preserving the critical thinking, creativity and meaningful relationships that only educators can provide.",
+      "url": "https://www.katyisd.org/news-details/~board/news-headlines-katy-independent-school-district-100/post/katy-isd-strikes-a-balance-with-technology-and-ai-in-the-classroom",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "Publication date July 20th 2026 is outside the 14 day window.",
+        "The quote is attributed to Dr. Sanee Bell and was returned by a page summarizer. Re-copy before publication.",
+        "This was a work study presentation to the board, Item 9.2. No board vote adopting the framework was located.",
+        "The county list is the researcher's mapping of the district footprint, not stated by the source."
+      ]
+    }
+  ],
+  "source_field_log": [
+    "openai.com returned HTTP 403 on every path tried (three attempts).",
+    "cprit.texas.gov, law.justia.com, courtlistener.com plain search URL, texarkanagazette.com all returned HTTP 403.",
+    "houstonisd.org news listing returned 403 while an individual post URL served fine.",
+    "search.txcourts.gov opinion PDFs download but the text layer could not be extracted by available tools."
+  ]
+}

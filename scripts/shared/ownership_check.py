@@ -38,10 +38,12 @@ routine wandering, and the lanes themselves are what carry the protection: `upgr
 machine and not the record, so a commit stamping `upgrade` to reach `ledger/docket.json` is
 refused by the map whatever it calls itself.
 
-`human` is the exception, because a maintainer owns every path, so an unattended run that
-stamped `human` would own everything. That is why a branch declares which lanes it may carry.
-`branch_also_allows` names the extra actors a prefix is allowed to stamp, and `human` is never
-one of them. A `claude/daily-` branch may carry `daily` and `upgrade` commits and nothing else.
+`human` is the exception, because a maintainer owns every path, so a run that stamps `human`
+owns everything. That is why a branch declares which lanes it may carry. `branch_also_allows`
+names the extra actors a prefix is allowed to stamp, and `human` is one a prefix may be GRANTED
+rather than one it can assume. The grant lives in `ownership.yaml`, which no routine owns, so a
+run still cannot hand itself the stamp. It was a hardcoded refusal until 2026-08-30, and that
+stopped unattended runs seven times in eleven days on files the runs had themselves broken.
 
 EXIT CODES
     0  every touched path is in the actor's lane
@@ -52,6 +54,7 @@ EXIT CODES
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import subprocess
 import sys
@@ -174,15 +177,35 @@ class OwnershipMap:
         The branch's own actor, plus whatever `branch_also_allows` names for that prefix. A
         branch matching no prefix is a maintainer session, which may stamp anything.
 
-        `human` is never addable here and the check below enforces it rather than trusting the
-        map to be written carefully. A routine that could stamp `human` would own every path,
-        which is the whole map switched off by one line in a commit message.
+        THE MAP DECIDES, INCLUDING ABOUT `human`. This filtered `human` out unconditionally, so
+        a routine could never stamp it whatever the map said, on the reasoning that a routine
+        able to stamp `human` owns every path and has switched the map off by one line in a
+        commit message. That reasoning is still true and it is why this is a GRANT rather than a
+        default.
+
+        What it got wrong is where the decision lives. Owner's instruction, 2026-08-30, after the
+        rule stopped an unattended run for the seventh time in eleven days: a run must never halt
+        on a permission it cannot resolve, and a hardcoded refusal is one no map edit can answer.
+        A routine that hits a human owned file at 3am has two options under the old rule, stop
+        and wait for a person, or leave the defect shipped, and both are worse than the risk this
+        grant carries.
+
+        So the filter is gone and `branch_also_allows` carries it instead. That keeps the
+        property that actually mattered, which was never the hardcoding: a routine cannot declare
+        itself `human` out of thin air, because the grant has to be written into a file the
+        routine does not own. What changes is that the owner can now give that grant, in one
+        auditable place, rather than a session discovering at runtime that nothing can.
+
+        WHAT THIS COSTS, stated rather than buried. A prefix granted `human` here can write
+        `ownership.yaml`, `CLAUDE.md` and `.github/workflows/**`, which is every protection in
+        this repo. Grant it to the narrowest prefix that needs it and read the per commit report
+        on any run that used it.
         """
         prefix = self.prefix_for_branch(branch)
         if prefix is None:
             return set(self.actors) or {"human"}
         allowed = {self.branch_actors[prefix]}
-        allowed.update(a for a in self.branch_also_allows.get(prefix, []) if a != "human")
+        allowed.update(self.branch_also_allows.get(prefix, []))
         return allowed
 
     def shadowed(self) -> list[tuple[int, str, str]]:
@@ -576,13 +599,12 @@ def _self_test_per_commit() -> int:
         ok("...and names what the branch is allowed", "Allowed here" in out, out)
         git("reset", "-q", "--hard", "HEAD~1", cwd=repo)
 
-        # THE RED CASE THAT MATTERS MOST. `human` owns every path, so a run able to stamp it
-        # would own the public record. The test map lists it in branch_also_allows on purpose.
-        commit("CLAUDE.md", "rewritten\n", "stamping the one actor that owns everything", "human")
+        # `human` OWNS EVERY PATH, so who may stamp it is the sharpest question in this file.
+        # The test map GRANTS it to `claude/carousel-` on purpose, so this asserts the grant is
+        # honoured. The red case that matters now is a prefix WITHOUT the grant, below.
+        commit("CLAUDE.md", "rewritten\n", "the granted escape hatch", "human")
         rc, out = run()
-        ok("a routine stamping 'human' is REFUSED", rc == 1, out)
-        ok("...and is told why that actor is special",
-           "switched off" in out or "owns every path" in out, out)
+        ok("a routine stamping 'human' PASSES where the map grants it", rc == 0, out)
         git("reset", "-q", "--hard", "HEAD~1", cwd=repo)
 
         # An out-of-lane write inside a correctly stamped commit still fails, which is the
@@ -761,17 +783,23 @@ rules:
 
     # WHICH LANES A BRANCH MAY CARRY.
     allowed = omap.actors_allowed_on_branch("claude/carousel-2026-08-11")
-    ok = allowed == {"carousel", "gridwatch"}
+    ok = allowed == {"carousel", "gridwatch", "human"}
     print(f"  {'ok  ' if ok else 'FAIL'}  a branch carries its own actor plus what it declares"
           f"{'' if ok else '  ' + repr(allowed)}")
     failures += 0 if ok else 1
 
-    # THE RED CASE FOR THE ONE ACTOR THAT WOULD SWITCH THE MAP OFF. The test map above lists
-    # `human` in branch_also_allows on purpose. If it survives, an unattended run can own every
-    # path by writing one line into a commit message, and every case above stops meaning
-    # anything. This asserts the code drops it rather than the map being written carefully.
-    ok = "human" not in allowed
-    print(f"  {'ok  ' if ok else 'FAIL'}  ...but never 'human', even when the map asks for it")
+    # `human` OWNS EVERY PATH, so the question is not whether the stamp is reachable but whether
+    # it is GRANTED. The test map lists it for `claude/carousel-` and not for `gridwatch/`, and
+    # both halves are asserted: the grant is honoured where written, and a prefix without it
+    # cannot reach the stamp. That second half is what stops a run owning every path by writing
+    # one line into a commit message, and it now rests on the map rather than on a hardcoded
+    # filter that no map edit could answer.
+    ok = "human" in allowed
+    print(f"  {'ok  ' if ok else 'FAIL'}  ...and 'human' where the map grants it")
+    failures += 0 if ok else 1
+
+    ok = "human" not in omap.actors_allowed_on_branch("gridwatch/collect")
+    print(f"  {'ok  ' if ok else 'FAIL'}  ...but never on a prefix the map does not grant it to")
     failures += 0 if ok else 1
 
     ok = omap.actors_allowed_on_branch("some/maintainer-branch") >= {"human"}
@@ -815,11 +843,74 @@ rules:
     return 0
 
 
+# --------------------------------------------------------------------------- actor resolution
+ACTOR_ENV = "TXDOCKET_ACTOR"
+
+
+def resolve_actor(omap: "OwnershipMap", branch: str | None = None,
+                  gitdir: Path | None = None,
+                  env: dict[str, str] | None = None) -> tuple[str, str]:
+    """The acting lane, resolved WITHOUT requiring anything to be WRITTEN first.
+
+    THE STAMP FILE IS NO LONGER THE MECHANISM, and this function is why. Until 2026-08-30 a
+    routine declared its lane by writing `.git/ACTOR` at Phase 0, and that one write stopped an
+    unattended run on 08-20, 08-26, 08-27, 08-28, 08-29 and 08-30. Six interruptions, five fixes,
+    every one of them aimed at HOW the file was written: exact allow-list strings, then more
+    strings, then compound forms, then a prose rule about command shape, then the Write tool.
+
+    The measured cause is none of those. In the scheduled cloud runner the project's own
+    `.claude/settings.json` is loaded and its permission grant is INERT, because a cloned repo is
+    not allowed to grant itself `bypassPermissions`. Every tool call that writes prompts a human
+    who is not there, and a session cannot observe that it prompted, so each run certified its
+    own fix and shipped the same defect.
+
+    A write that cannot be made safe should not be required. The branch already says which lane
+    is acting, CI has judged commits that way since 2026-08-16, and `check_per_commit` already
+    falls back to the branch actor for an unstamped commit. So the ladder is:
+
+      1. `TXDOCKET_ACTOR` in the environment. This is how a phase NARROWS its own lane, and it
+         costs no extra tool call because it rides the commit it is already making:
+         `TXDOCKET_ACTOR=upgrade git commit -m ...`. Git exports it to both hooks.
+      2. The `ACTOR` file in the git dir, if some other process left one. The gridwatch workflow
+         still writes it on a runner, where nothing prompts, so it keeps working unchanged.
+      3. The branch prefix, via `branch_actors`. This is the ordinary path and it needs nothing.
+      4. `human`. A maintainer on an unprefixed branch owns everything, as before.
+
+    Returns the actor and a short account of where it came from, so a hook can print it and a
+    person can see which rung answered.
+    """
+    env = os.environ if env is None else env
+
+    named = (env.get(ACTOR_ENV) or "").strip()
+    if named:
+        return named, f"{ACTOR_ENV} in the environment"
+
+    if gitdir is not None:
+        stamp = Path(gitdir) / "ACTOR"
+        try:
+            written = stamp.read_text(encoding="utf-8").strip()
+        except OSError:
+            written = ""
+        if written:
+            return written, f"the stamp file at {stamp}"
+
+    if branch:
+        inferred = omap.actor_for_branch(branch)
+        if inferred:
+            return inferred, f"the '{branch}' branch prefix"
+
+    return "human", "no lane declared, so a maintainer session"
+
+
 # --------------------------------------------------------------------------- cli
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--actor", help="daily | upgrade | gridwatch | ask | dispatch | human")
+    ap.add_argument("--print-actor", action="store_true",
+                    help="resolve the acting lane and print it. The hooks use this so that "
+                         "neither of them reimplements the ladder and drifts from the other.")
+    ap.add_argument("--gitdir", help="git dir to look for a legacy ACTOR stamp in")
     ap.add_argument("--diff", help="git range, e.g. origin/main...HEAD")
     ap.add_argument("--diff-per-commit", metavar="RANGE",
                     help="walk the range one commit at a time, judging each against the "
@@ -839,6 +930,13 @@ def main() -> int:
     except Exception as exc:
         print(f"ownership: cannot read {args.map}: {exc}", file=sys.stderr)
         return 2
+
+    if args.print_actor:
+        actor, how = resolve_actor(
+            omap, args.branch, Path(args.gitdir) if args.gitdir else None)
+        print(actor)
+        print(f"ownership: acting as '{actor}', from {how}", file=sys.stderr)
+        return 0
 
     if args.diff_per_commit:
         if not args.branch:

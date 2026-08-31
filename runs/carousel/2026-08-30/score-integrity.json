@@ -1,0 +1,46 @@
+{
+  "lens": "integrity",
+  "round": 5,
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 5.8,
+      "why": "VERIFIED FIXED: slide 6's joint is a real sawn channel and reads at 432px; slide 4 has three left edges at three sizes and its probe now covers the origin glow; slide 5's labels sit on the terminators they name; slide 7's perspective is genuinely corrected, tops descending while bases ascend. NOT FIXED, four frames miss their own declared drawing. Slide 7's slabs are TRANSLUCENT, so nothing occludes anything and the one cue the frame was rebuilt around is absent. Slide 8's raggedness was added ABOVE the rule and the highest contrast edge is still a dead straight full width horizontal. Slide 9 renders as a dim soft wedge with no bright slot and its encoding is LOWER than the draft it replaced. Slide 4 carries a hard full width step cutting between two lines of a label. bespoke_median 0.1812 is the best in this ledger's history and the nine are genuinely nine drawings, which is what holds this above a 5."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 6.0,
+      "why": "The slide and caption layer is close to exemplary. All eighteen strings in computed.json check character for character against their claims' verbatim quotes, derived_figures is empty, and the three tempting relationships are refused by name in three files. claims.json carries nineteen rejected findings with reasons. What refutes the run's own report: storyboard prose still claiming slide 2 is the minimum when artwork.json says slide 9 is; a dossier quoting png means as canvas means; and artwork.json value.canvas_mean naming render_report as its source and disagreeing with that file on five of nine values. Also slide 8 excerpts c12 and drops the clause bounding how far a state pause reaches, and c21 is one speaker's account presented as what records showed. None is a numeral on a slide or in the caption, so none is a hard fail."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.2,
+      "why": "Names the town, the body, the counterparty, the spokesperson and a dated door, and slide 9 prints the four things the department publishes from that meeting plus the exact path it was fetched from. The money arc is the deck's real achievement. Slide 6 spending the only daylight frame crediting the program with the cases its own report claims is an honest move most decks would not make. Held down because the reader's only action is a board meeting six weeks out the deck never says how to attend."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "Vote, cover, log, fee, reach, turn, purchase, reversal, door is a real order and slide 6 is a real turn with the light key inverted to carry it. But slides 1 and 2 both print 28 and both cite only c20, and slide 7 restates a purchase slide 5 has already made while being the deck's weakest drawing, so the sequence loses altitude where it should be climbing."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.6,
+      "why": "Three plain Texan sentences with no press release in them, and the regional specificity is concrete. Against that the mono set lines go stilted where a person would not, and the caption opens abstract where the cover opens concrete. House rules all hold: no colons or semicolons, no dashes, ordinal dates on both surfaces, cannot only inside the verbatim quote, three hashtags alone on the last line."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 5.5,
+      "why": "bespoke_median 0.1812 is the lowest this ledger records and nine distinct constructions is real. But carousel no. 4 ten days ago shares three keywords exactly, two entities and the hashtag. Different docket item, city, body and instrument, so not a topic repeat, but a reader meets Flock ALPR twice inside a fortnight. Worse, captions.json recorded an opening_move and a structure that are on neither of CAPTION_CRAFT.md's menus, which is the third recurrence of a defect this ledger has already recorded twice."
+    }
+  ],
+  "weighted_score": 6.242,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Render and read every frame at 432px against its own declared focal BEFORE it reaches a panel, because slide 7's occlusion, slide 8's ragged break and slide 9's doorway all exist somewhere in the 2160px file and not one survives to the size a reader actually meets."
+}

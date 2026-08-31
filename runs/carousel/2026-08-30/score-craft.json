@@ -1,0 +1,46 @@
+{
+  "lens": "craft",
+  "round": 5,
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.3,
+      "why": "The round 4 fix landed on slide 6: the joint is a real sawn channel with a dark floor, a lit chamfer, raised laitance lips and grit, and it reads as a form at 432px. Slide 1's 28 bodies each carry a crest and a cast. Slide 5's silhouette separates on value alone with no stroke, which is hard. But three frames are still under drawn. Slide 7's heights compute correctly now and the bases ascend as they recede, but the near mass has no internal value gradient and the mid and far masses ABUT rather than overlap, so the second occlusion pair is a tangent. Slide 6's aggregate renders as spherical beads, so it reads as condensation on brushed metal rather than a sunlit slab. Slide 8's lower boundary is a razor straight full width step, so the defect moved rather than went. Slide 2 keeps two hard rectangular fold terminations."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5,
+      "why": "Every numeral on every frame carries a claim id beside it and I found no bare numeral. The absence frames are exemplary: both name the document searched rather than drawing a black rectangle. Two craft into integrity frictions: slide 5's two terminators are horizontal streaks aimed inward at each other and a reader completes the line between them, which is the corridor inference the printed refusal exists to prevent; and the eastern label is set inside the interior the deck law declares empty. Held off 9 because c21 and the council vote lean on journalism where a portal or minutes would be primary."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.8,
+      "why": "Names the city, the vendor, the body, the counterparty, the spokesperson and a dated door, and slide 9 tells a reader exactly what that door will publish, all four labels, with the fetched path. That is well above a topic rather than a story. Short of 9 because it names a city rather than a county, and October 13th is a meeting date rather than a deadline a reader can act into."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "The spine is genuinely good and the turn is real, and spending the only daylight frame on it is the right structural argument. But the value arc collapsed in the render: six of nine frames sit inside a 6.8 point band, so what ships is one flat dark grey, one blowout and one darker close. Slides 1 and 2 both carry the 28 on near identical grounds."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.5,
+      "why": "Two lines of real writing, and the deck's best lines are the two where a publication states what it refuses to draw. House rules hold on every frame read. Held at 7.5 because the mono set lines are all one clipped register and there is no Texan idiom anywhere: it reads like a careful national desk that happens to be reporting from Texas."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.0,
+      "why": "Nine distinct techniques inside the deck and the mid value register is a defensible read of the ledger's own gap. One familiar move and it is now a habit rather than an inversion: exactly one bright frame planted in an otherwise dark deck is the same gesture decks 1 and 3 both used, so this is its third outing in twelve. Cartography also returns."
+    }
+  ],
+  "weighted_score": 7.108,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Wire the encoding probe's downsample check, because a_visible_frac and b_visible_frac are literally 0 on all eighteen sample regions across all nine slides, so the 432px figure is a constant printed by a dead instrument rather than a measurement."
+}

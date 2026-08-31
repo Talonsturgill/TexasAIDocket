@@ -1,0 +1,14 @@
+[
+  {
+    "what": "Fixed the occlusion probe in the carousel engine. a_visible_frac and b_visible_frac have reported 0 on every frame of every deck for as long as the probe existed.",
+    "why": "parseFloat(alpha) || 1 reads a legitimate 0 as absent and falls back to opaque, so .wrap, a transparent full frame box on every slide, blocked every sample point. Two judges found the constant independently. It is the one number that says whether a declared focal survives to the size a reader gets."
+  },
+  {
+    "what": "The artwork ledger's measured block is now derived by a script that asserts its output against render_report.json before writing.",
+    "why": "The committed array named render_report as its source and disagreed with it on five of nine values. Nothing typed a wrong number: it was derived once while the inputs kept moving."
+  },
+  {
+    "what": "compute.py now counts its own claims, proved figures and refused relationships.",
+    "why": "numeral_lint refused the build over the article page's claim count, which was being produced by the template that rendered it rather than the run that earned it."
+  }
+]

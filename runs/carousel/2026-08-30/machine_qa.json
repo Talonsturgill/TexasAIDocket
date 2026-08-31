@@ -1,0 +1,154 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (3% of the ring around 'The council voted unanimously to end its', spanning 16%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.8235,
+        0.9958,
+        0.9743
+      ],
+      "band_ratio": 1.0441,
+      "encodings": [
+        "'the ground under the raking light is lighter than the ground the light has fallen away fro': dE 13.0, AUC 0.93, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around 'All 28 automated license plate reader ca', spanning 21%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.8845,
+        0.9727,
+        0.9743
+      ],
+      "band_ratio": 1.0308,
+      "encodings": [
+        "'the covered mass is darker than the lit ground it stands in': dE 19.0, AUC 0.98, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (3% of the ring around '459 outside organizations ran nearly 1.6', spanning 18%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (3% of the ring around 'OUTSIDE ORGANIZATIONS THAT RAN SEARCHES ', spanning 21%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (3% of the ring around 'LOOKED FOR IN fox7austin.com c21', spanning 32%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.8466,
+        0.8361,
+        0.7868
+      ],
+      "band_ratio": 0.9577,
+      "encodings": [
+        "'the counted field is denser and brighter than the empty ground beside it': dE 33.8, AUC 0.99, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around 'It started as one dollar.', spanning 20%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (3% of the ring around 'In 2023 the Legislature unanimously rais', spanning 20%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (2% of the ring around 'ADDED TO AUTO INSURANCE COSTS FOR TEXANS', spanning 28%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.8361,
+        0.9034,
+        0.9044
+      ],
+      "band_ratio": 1.025,
+      "encodings": [
+        "'the lit origin where the dollar enters the sheet is brighter than the ground at the far co': dE 21.2, AUC 0.82, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around 'El Paso to the Louisiana border.', spanning 23%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (8% of the ring around 'at least $30 million', spanning 28%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (4% of the ring around 'NO CAMERA IS PLACED ON THIS MAP', spanning 19%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.8634,
+        0.8277,
+        0.8419
+      ],
+      "band_ratio": 0.9972,
+      "encodings": [
+        "'the named ends are lit and the interior between them carries nothing': dE 16.9, AUC 0.89, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.7332,
+        0.8571,
+        0.8897
+      ],
+      "band_ratio": 1.0725,
+      "encodings": [
+        "'the sunlit apron is the light extreme of the whole deck': dE 4.9, AUC 0.87, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (3% of the ring around 'In 2025 the authority signed a three yea', spanning 17%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.8382,
+        0.9916,
+        0.8713
+      ],
+      "band_ratio": 0.9691,
+      "encodings": [
+        "'the near slab is lit and the far slab falls away in value': dE 33.2, AUC 1.00, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.9265,
+        0.8908,
+        0.8327
+      ],
+      "band_ratio": 0.9452,
+      "encodings": [
+        "'the band under the break is lit and the field below it falls to the deck floor': dE 26.4, AUC 0.95, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (4% of the ring around 'The board meets October 13th.', spanning 20%) -- pixel critic verify the label is not crossed",
+        "art touching glyphs (3% of the ring around 'The state motor vehicles department list', spanning 18%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.7941,
+        0.8256,
+        0.6507
+      ],
+      "band_ratio": 0.8653,
+      "encodings": [
+        "'the light coming through the opening is the light extreme and the field beside it is the d': dE 9.6, AUC 0.62, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 14,
+  "verdict": "WARN"
+}

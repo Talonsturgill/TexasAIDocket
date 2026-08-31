@@ -316,7 +316,7 @@ def ci_note(step: Step) -> str:
         # core.hooksPath. Saying it anyway would be a comforting sentence with nothing under it.
         if hook_installed():
             return (base + ". Covered here by the pre-commit hook, which runs the same check "
-                    "off .git/ACTOR on every commit")
+                    "on every commit, against the lane it resolves from the branch")
         return base + ". " + NO_LOCAL_MECHANISM
     return base
 

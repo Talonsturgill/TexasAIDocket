@@ -1,0 +1,12 @@
+{
+  "quantifiers": [
+    {
+      "phrase": "none of them",
+      "figures_key": "outside_organizations_c21",
+      "about": "the fetched record's own naming of the 459 organizations",
+      "from_items": [],
+      "set": "The 459 outside organizations that ran searches including Pflugerville's camera network over the last six months, as counted in c21.",
+      "why": "c21's verbatim quote gives the COUNT and gives no name. The frame prints the universal to say the record stops at the count, which is a claim about what the fetched document contains rather than a claim about the organizations. The set it ranges over is c21's own 459, and no other claim in this run's claims.json speaks to that item, so nothing here is contradicted by a name the deck already had."
+    }
+  ]
+}

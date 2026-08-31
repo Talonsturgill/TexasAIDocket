@@ -535,6 +535,10 @@ def authorised(doc: dict) -> set[str]:
     for d in doc.get("dossiers") or []:
         sources = {s.get("id"): s for s in d.get("sources") or []}
         out |= tokens(d.get("name", ""))
+        # The evidence rail is computed from the dossier it accompanies. These counts are
+        # published figures too, so they enter through the same authorisation path as a fact.
+        out |= {commas(len(d.get("facts") or [])), commas(len(d.get("sources") or [])),
+                commas(len(d.get("gaps") or []))}
         for fct in d.get("facts") or []:
             if numeric_shape(fct):
                 out.add(show(fct))
@@ -546,7 +550,8 @@ def authorised(doc: dict) -> set[str]:
         for note in d.get("notes") or []:
             if note.get("as_of"):
                 out.add(ordinal(note["as_of"]))
-        for s in d.get("sources") or []:
+        for i, s in enumerate(d.get("sources") or []):
+            out.add(commas(i + 1))
             if s.get("retrieved"):
                 out.add(ordinal(s["retrieved"]))
             # A SOURCE TITLE IS THE MOST VERBATIM STRING ON THE PAGE. One of these documents is
@@ -601,7 +606,10 @@ def panel(d: dict, *, heading: int = 3) -> str:
         # The declaration travels with the value, so the exemption is visible in the markup at
         # the point of use rather than asserted somewhere a reader of the page would not find it.
         mark = f' data-proper-name="{e(show(f))}"' if f.get("proper_name") else ""
-        rows.append(f'<div class="drow"><dt>{e(f.get("label", ""))}</dt>'
+        label = str(f.get("label", ""))
+        kind = ("role" if label in REGISTRY_ROLE_LABELS or "of record" in label.lower()
+                else "metric" if numeric_shape(f) else "record")
+        rows.append(f'<div class="drow d{kind}"><dt>{e(label)}</dt>'
                     f'<dd><span class="dval"{mark}>{e(show(f))}</span>{cite(f.get("source"))}'
                     f'{when}</dd></div>')
 
@@ -619,21 +627,36 @@ def panel(d: dict, *, heading: int = 3) -> str:
     gaps = "".join(f"<li>{e(stop(g))}</li>" for g in d.get("gaps") or [])
 
     sources = "".join(
-        f'<li id="dsrc-{e(d["slug"])}-{i + 1}">'
+        f'<li class="dsource" id="dsrc-{e(d["slug"])}-{i + 1}">'
+        f'<span class="dsource-main">'
         f'<a href="{e(s["url"])}" rel="nofollow noopener">'
-        f'<cite>{e(s["title"])}</cite></a>. '
-        f'<span class="dpub"><cite>{e(s["publisher"])}</cite></span>. '
-        f'<span class="drung">{e(RUNGS.get(s.get("rung"), "other"))}</span>. '
-        f'<span class="dwhen">Read {e(ordinal(s["retrieved"]))}.</span></li>'
+        f'<cite>{e(s["title"])}</cite></a>'
+        f'<span class="dpub"><cite>{e(s["publisher"])}</cite></span></span>'
+        f'<span class="dsource-meta"><span class="drung">'
+        f'{e(RUNGS.get(s.get("rung"), "other"))}</span>'
+        f'<span class="dwhen">Read {e(ordinal(s["retrieved"]))}.</span></span></li>'
         for i, s in enumerate(d.get("sources") or []))
+
+    fact_count = commas(len(d.get("facts") or []))
+    source_count = commas(len(d.get("sources") or []))
+    gap_count = commas(len(d.get("gaps") or []))
 
     return (
         f'<div class="dossier">'
-        f'<p class="dsum">{e(d.get("summary", ""))}</p>'
-        f'<{h}>What is known</{h}><dl class="dfacts">{"".join(rows)}</dl>'
-        + (f'<{h}>Worth knowing</{h}><ul class="dnotes">{notes}</ul>' if notes else "")
-        + (f'<{h}>What is not public</{h}><ul class="dgaps">{gaps}</ul>' if gaps else "")
-        + f'<{h}>Sources</{h}><ol class="dsources">{sources}</ol>'
+        f'<header class="dossierlead"><p class="dsum">{e(d.get("summary", ""))}</p>'
+        f'<div class="devidence" data-prose="data">'
+        f'<span><strong class="num">{fact_count}</strong><small>Sourced facts</small></span>'
+        f'<span><strong class="num">{source_count}</strong><small>Source records</small></span>'
+        f'<span><strong class="num">{gap_count}</strong><small>Open gaps</small></span>'
+        f'</div></header>'
+        f'<section class="dsection dfactsection"><{h}>What the record establishes</{h}>'
+        f'<dl class="dfacts">{"".join(rows)}</dl></section>'
+        + (f'<section class="dsection dnotesection"><{h}>What changes the reading</{h}>'
+           f'<ul class="dnotes">{notes}</ul></section>' if notes else "")
+        + (f'<section class="dsection dgapsection"><{h}>Still not public</{h}>'
+           f'<ul class="dgaps">{gaps}</ul></section>' if gaps else "")
+        + f'<section class="dsection dsourcesection"><{h}>Source trail</{h}>'
+        f'<ol class="dsources">{sources}</ol></section>'
         f'</div>')
 
 

@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 from site_context import (
-    FORM_ACTION, SITE_NAME, SITE_URL, _place_slug, all_places, ask_answers,
+    FORM_ACTION, SCHEMA_CTX, SITE_NAME, SITE_URL, _place_slug, all_places, ask_answers,
     ask_pack, ask_written, csp, dk, e, gridwatch_page, json, page, rel,
-    watch_stage, waterwatch_page,
+    schema, watch_stage, waterwatch_page,
 )
 
 def county_links(items: list, today: str, depth: int) -> dict:
@@ -633,4 +633,75 @@ def services_page(items: list, today: str) -> str:
 
 
 
-__all__ = ['county_links', 'grid_page', 'ask_box', 'water_page', 'BOOKING_URL', 'SCAN_WORKER', 'SCAN_ENDPOINT', 'TURNSTILE_SITE_KEY', '_SCAN_JS', 'field', 'scan_page', 'SCAN_RESULT_URL', 'watch_page', 'services_page']
+def about_page(today: str) -> str:
+    """The stable entity page for the publication and the method behind it.
+
+    This route existed before the studio and publication story folded into Services. Search
+    engines kept the old address in their results, where it became a branded dead end. The
+    route returns as a focused description of the record and stays out of the crowded top bar.
+    It is linked from every footer, which makes it both a reader route and a site-wide entity
+    signal without undoing the measured phone navigation.
+    """
+    body = """
+<article>
+<section class="hero rise">
+  <h1>Texas AI Docket</h1>
+  <p class="herolede">A public, fact-checked record of artificial intelligence decisions
+  across Texas and the source behind each one.</p>
+  <div class="ctarow">
+    <a class="cta solid" href="../record/">Read the docket</a>
+    <a class="cta ghost" href="../sources/">Open the sources</a>
+  </div>
+</section>
+
+<section data-reveal>
+  <h2>What belongs here</h2>
+  <div class="prose">
+    <p>Texas AI Docket follows the decisions that shape how artificial intelligence reaches
+    the state. Agency rules and local votes belong. Court filings and public contracts belong.
+    Data centers belong too. Electric load and water belong when a public document connects
+    them to the record.</p>
+    <p>The point is not to predict what might happen. It is to show what was filed and decided.
+    It also shows what is open for public action and makes the evidence easy to inspect.</p>
+  </div>
+</section>
+
+<section data-reveal>
+  <h2>How the record earns trust</h2>
+  <div class="prose">
+    <p>Every entry carries the words of a source that was fetched and checked. At least one
+    source has to be primary. Dates and counts come from the record rather than from promotional
+    copy. Deadlines do too. When a fact is not public the page names the gap instead of filling
+    it with an estimate.</p>
+    <p>The docket is rebuilt from its ledgers and tested before publication. That keeps the
+    article and source trail tied to the same evidence. The machine-readable version stays tied
+    to it too.</p>
+  </div>
+</section>
+
+<section data-reveal>
+  <h2>Where to begin</h2>
+  <ul class="plainlist">
+    <li><a href="../record/">The docket</a> shows every tracked decision and whether a public
+    door is still open.</li>
+    <li><a href="../articles/">Articles</a> turn one verified Texas and AI story into a visual
+    report.</li>
+    <li><a href="../datacenters/">Data centers</a> follows the buildout. <a href="../grid/">The
+    grid</a> and <a href="../water/">water</a> show the physical systems behind it.</li>
+    <li><a href="../sources/">Sources</a> shows the documents the record rests on, grouped by
+    publisher.</li>
+  </ul>
+</section>
+</article>
+"""
+    return page(
+        title=f"About {SITE_NAME}", depth=1, active=None,
+        desc="How Texas AI Docket tracks artificial intelligence decisions across Texas and "
+             "ties every entry to evidence a reader can inspect.",
+        body=body, today=today, canonical="about/", revised=False,
+        extra_ld=[schema.breadcrumbs(SCHEMA_CTX, [(SITE_NAME, ""),
+                                                   ("About", "about/")])])
+
+
+
+__all__ = ['county_links', 'grid_page', 'ask_box', 'water_page', 'BOOKING_URL', 'SCAN_WORKER', 'SCAN_ENDPOINT', 'TURNSTILE_SITE_KEY', '_SCAN_JS', 'field', 'scan_page', 'SCAN_RESULT_URL', 'watch_page', 'services_page', 'about_page']

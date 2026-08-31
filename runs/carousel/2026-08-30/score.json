@@ -1,0 +1,95 @@
+{
+ "weighted_score": 6.582,
+ "judges": [
+  6.242,
+  7.108,
+  6.41
+ ],
+ "spread": 0.866,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.28,
+   "judges": [
+    5.8,
+    6.3,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.0,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    7.5,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.2,
+   "weight": 0.18,
+   "judges": [
+    7.2,
+    7.8,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.6,
+   "weight": 0.12,
+   "judges": [
+    6.6,
+    7.5,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    7.0,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.242 against a 6.8 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.41 against a 6.8 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.242,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.242 against a 6.8 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.41,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.41 against a 6.8 bar. That dissent is carried in the median"
+  }
+ ],
+ "hold_reason": "no judge found a hard fail, and the median 6.582 is under the rubric's 6.8 bar. This is a HOLD. Keep working the deck",
+ "note": "the judges disagree by 0.87, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity",
+  "story_and_stakes",
+  "variety"
+ ],
+ "rounds": 5
+}

@@ -195,6 +195,17 @@ def summarise(items: list, today: str) -> dict:
 
 
 # --------------------------------------------------------------------------- self-test
+def _empty_months_in_window(items: list, today: str) -> list:
+    """Months inside the window that carry no event at all, in order.
+
+    Used only by the self-test, and it exists because the alternative is naming a month in
+    source and having the record grow into it. See the note at its call site.
+    """
+    s = summarise(items, today)
+    live = s.get("by_month") or {}
+    return [k for k in (s.get("month_keys") or []) if not live.get(k)]
+
+
 def _self_test() -> int:
     fails = []
 
@@ -277,10 +288,25 @@ def _self_test() -> int:
         ok("...and it still reports today's month, so a caller has something to say",
            far["current"] == "2031-01", far["current"])
         # And inside the window, a today with no events of its own opens on the busiest month.
-        mid = summarise(real, "2026-10-01")
-        ok("a quiet month opens on the busiest one instead of on nothing",
-           mid["current"] == mid["busiest"] and mid["current"] != "2026-10", mid["current"])
-        ok("every event carries a link target", all(e["item_id"] for e in s["events"]))
+        #
+        # THE QUIET MONTH IS FOUND, NEVER NAMED. This ran against a hardcoded 2026-10 until
+        # 2026-08-30, when the record admitted tx-2026-0111 with a key date of 2026-10-13, the
+        # MVCPA board meeting. October stopped being quiet and a self-test asserting a property
+        # of the LIVE record from a month name in source went red on correct data. The routine
+        # that admitted the item had no way to know, and the honest reading is that the test was
+        # wrong rather than the item: removing a real key date to green a self-test is the same
+        # move as deleting the test.
+        #
+        # A test that reads the live record may not hardcode a fact about the live record.
+        quiet = next(iter(_empty_months_in_window(real, "2026-08-20")), None)
+        if quiet is None:
+            ok("no month in the window is quiet, so there is nothing to assert here", True,
+               "every month in the window carries at least one event")
+        else:
+            mid = summarise(real, quiet + "-01")
+            ok("a quiet month opens on the busiest one instead of on nothing",
+               mid["current"] == mid["busiest"] and mid["current"] != quiet,
+               f"quiet={quiet} current={mid['current']} busiest={mid['busiest']}")
         ok("the calendar reaches back two whole years and no further",
            s["horizon"] == "2024-01-01", s["horizon"])
         ok("...so the lone 2021 date is outside it, and counted rather than dropped silently",

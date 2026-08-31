@@ -1,0 +1,120 @@
+{
+  "beat": "policy-and-money",
+  "run_date": "2026-08-30",
+  "findings": [
+    {
+      "id": "pm-1",
+      "headline": "Governor Greg Abbott ordered every Texas state agency to stop funding Flock automated license plate reader cameras.",
+      "what_happened": "Abbott gave the order on the night of Thursday, August 27th, 2026, and his office confirmed it on Friday, August 28th. The Motor Vehicle Crime Prevention Authority, whose board is mostly appointed by Abbott, is the agency that distributed the grants.",
+      "who_decided": "Office of the Governor of Texas, Greg Abbott",
+      "when": "2026-08-28",
+      "where": {"counties": [], "statewide": true, "ercot": false},
+      "quote": "To the extent that cities get any funding for those cameras, most of it comes from the federal government. To the extent any funding comes from Texas agencies, those agencies are clarifying that those funds cannot be used for Flock cameras.",
+      "url": "https://www.texastribune.org/2026/08/28/texas-greg-abbott-flock-cameras-order-state-money/",
+      "source_type": "journalism",
+      "confidence": "high",
+      "unverified": [
+        "No press release or signed directive on gov.texas.gov. The Governor's news index was fetched 2026-08-30 and carried nothing on Flock for August 27th or 28th, so the order exists in the record only as a spokesperson statement to a newsroom.",
+        "The exact legal form of the order is not stated by any source fetched.",
+        "Which specific agencies beyond the MVCPA are covered is not stated.",
+        "The attributed speaker is Abbott spokesperson Andrew Mahaleris. The quote is the spokesperson's, not Abbott's own."
+      ]
+    },
+    {
+      "id": "pm-2",
+      "headline": "A one dollar auto insurance fee passed in 2023 to fight catalytic converter theft paid for a statewide Flock camera network.",
+      "what_happened": "The Motor Vehicle Crime Prevention Authority turned grant money from the 2023 fee into Flock automated license plate reader cameras for state and local agencies. The authority's next public board meeting is October 13th, 2026.",
+      "who_decided": "Motor Vehicle Crime Prevention Authority, Texas Department of Motor Vehicles",
+      "when": "2026-08-28",
+      "where": {"counties": ["Dallas", "McLennan"], "statewide": true, "ercot": false},
+      "quote": "The Motor Vehicle Crime Prevention Authority, led by a board mostly appointed by Abbott, has helped state and local agencies install at least 3,200 Flock cameras since 2023.",
+      "url": "https://www.texastribune.org/2026/08/28/texas-flock-cameras-auto-insurance-fee-mvcpa-grants/",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "unverified": [
+        "Figures reported by the Tribune came back through a summarizing fetch and were NOT character-verified: at least $30 million devoted to the network, a $15.9 million three year DPS contract covering 1,183 cameras, an estimated $81 million raised by the fee, $3 million approved in early August for 583 additional tollway cameras, grants from $7,000 in Bellmead to almost $1.7 million in Dallas, 62,000 plate reader searches in 2025, roughly 1,660 cleared catalytic converter theft cases. None may be published without a re-fetch.",
+        "Bellmead is in McLennan County and Dallas is in Dallas County. The article names the cities, not the counties.",
+        "txdmv.gov/about-us/MVCPA displayed the notice that MVCPA Is Currently Offline, and no agenda for the October 13th meeting was retrievable.",
+        "The FY2027 MVCPA grant request for application PDF could not be read, so whether the next grant cycle still allows plate readers is unconfirmed."
+      ]
+    },
+    {
+      "id": "pm-3",
+      "headline": "Pflugerville's city council voted unanimously to end its Flock Safety contract and shut off all 28 of its plate reader cameras.",
+      "what_happened": "The council voted on Tuesday, August 25th, 2026, after a resident's public records request showed how widely outside agencies had queried the city's camera data. The city manager had already ordered staff to cover the camera lenses before the vote.",
+      "who_decided": "Pflugerville City Council",
+      "when": "2026-08-25",
+      "where": {"counties": ["Travis"], "statewide": false, "ercot": false},
+      "quote": "Public safety and public trust have to go hand in hand, and recent revelations about the Flock system have fueled concerns throughout the community; we can't engage with organizations we can't trust.",
+      "url": "https://www.fox7austin.com/news/flock-cameras-pflugerville-texas-update",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "unverified": [
+        "The quote is attributed to Mayor Doug Weiss, returned by a single fetch of one outlet, not cross-checked against the city's own minutes.",
+        "The figures 28 cameras, 459 outside organizations and nearly 1.6 million searches over the last six months are not character-verified.",
+        "The city's own agenda, minutes or resolution text was not retrieved. This finding rests on journalism only.",
+        "Pflugerville extends into Williamson County. The sources name the city, not the county.",
+        "ADJACENCY WARNING: a League City license plate reader item is on the 30 day exclusion list. Different city, different decision, same lane."
+      ]
+    },
+    {
+      "id": "pm-4",
+      "headline": "The Texas Department of Information Resources published how it is implementing the four AI laws passed by the 89th Legislature.",
+      "what_happened": "DIR posted a page on August 14th, 2026 naming Senate Bill 1964, House Bill 2818, House Bill 3512 and House Bill 149 and describing what each one made the agency build. It says DIR is adopting Texas Administrative Code Chapter 219, including an AI Systems Code of Ethics, and advancing a Public Sector AI Sandbox.",
+      "who_decided": "Texas Department of Information Resources",
+      "when": "2026-08-14",
+      "where": {"counties": [], "statewide": true, "ercot": false},
+      "quote": "House Bill 3512 requires annual AI Awareness Training for certain state and local government employees and officials. DIR also offers a free AI Awareness Training video that is available online.",
+      "url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "The page carries no deadline for the annual training and no count of employees covered.",
+        "The effective date of Texas Administrative Code Chapter 219 was not established this run.",
+        "Whether the Public Sector AI Sandbox is open for applications, and on what date, is not stated on the page fetched."
+      ]
+    },
+    {
+      "id": "pm-5",
+      "headline": "The Texas Senate committee that holds the data center interim charge has a hearing set for September 30th.",
+      "what_happened": "The Senate Committee on Business and Commerce carries ten interim charges, one on managing data center growth and one on monitoring implementation of Senate Bill 1964 and House Bill 149. The Legislature's upcoming meetings calendar lists the committee for Wednesday, September 30th, 2026 at 9:00 AM in room E1.012.",
+      "who_decided": "Texas Senate Committee on Business and Commerce",
+      "when": "2026-09-30",
+      "where": {"counties": ["Travis"], "statewide": true, "ercot": true},
+      "quote": "Managing Data Center Growth: Study the adequacy of current statutory, regulatory, and infrastructure frameworks to meet the rapidly increasing demand from large electric loads, such as data centers.",
+      "url": "https://senate.texas.gov/cmte.php?c=510",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "The hearing NOTICE lives under capitol.texas.gov/TLODOCS/, which robots.txt disallows for all agents, so the AGENDA was not read and it is NOT established that data centers or AI are on it.",
+        "The committee's meeting could be cancelled.",
+        "The charge text was returned by a summarizing fetch and has not been byte-checked.",
+        "Travis County is assigned because the Capitol is in Austin. The source does not state a county."
+      ]
+    },
+    {
+      "id": "pm-6",
+      "headline": "The Commodity Futures Trading Commission opened a comment period on derivatives contracts written on compute.",
+      "what_happened": "The CFTC published a Request for Comment on August 21st, 2026 seeking public responses to inform its oversight of derivatives markets in compute. Comments close October 20th, 2026.",
+      "who_decided": "Commodity Futures Trading Commission",
+      "when": "2026-08-21",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "Comments must be received on or before October 20, 2026.",
+      "url": "https://www.federalregister.gov/api/v1/documents/2026-17163.json",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "The document does not state a place and makes no confirmed reference to Texas or ERCOT. The Texas relevance is inference.",
+        "Only the Federal Register API JSON was fetched. The full rule text redirected to an unblock page.",
+        "docket_ids came back as an empty list, so there is no docket number to cite."
+      ]
+    }
+  ],
+  "source_field_log": [
+    "PUCT unreachable for the whole run. www.puc.texas.gov and interchange.puc.texas.gov returned HTTP 503 on every attempt, including the calendar RSS the registry calls the highest value poll. Tool-level result, not a policy change.",
+    "texasattorneygeneral.gov returned HTTP 402 to this client on both the release index and a named release, so the Attorney General half of the beat is unexamined rather than empty.",
+    "texreg.sos.state.tx.us has MOVED. The Texas Register now serves from www.sos.texas.gov/texreg/. Registry says texreg.sos.state.tx.us.",
+    "capitol.texas.gov/TLODOCS/ is robots-disallowed for all agents, so committee hearing notices cannot be read.",
+    "houstonpublicmedia.org and kxan.com returned HTTP 403."
+  ]
+}
