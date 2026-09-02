@@ -9,7 +9,7 @@ The Texas Jobs, Energy, Technology and Innovation Act is the state's school dist
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -22,7 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-21 · Checked and unchanged. The Comptroller's current JETI agreements list still names no data center project, and no entry on it is a data center, a semiconductor plant or a battery plant.
 - 2026-08-26 · Checked and unchanged in substance. The comptroller's current agreements table still lists no data center among its project types. Those run to jet fuel and aircraft parts at one end and to semiconductors at the other. The table has been reformatted since it was first quoted here and the quote is corrected to the wording it carries now.
 - 2026-08-29 · Checked and unchanged. The Comptroller's published list of executed agreements still contains no data center. Every project type on it is still manufacturing, power generation or extraction.
-- 2026-09-02 · Data centers remain absent from the Comptroller's published list of executed JETI agreements.
+- 2026-09-01 · Data centers remain absent from the Comptroller's published list of executed JETI agreements.
 
 ## Evidence
 

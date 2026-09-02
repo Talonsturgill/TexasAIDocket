@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved a net metering arrangement in Do
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -28,7 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-28 · Admitted on the commission's own order and the motion for rehearing, both read as filed documents. The arrangement is approved and the conditions stand while the rehearing motion is undecided.
 - 2026-08-28 · What the commission ordered reaches the second load and names it. An earlier order on the first load carries its own curtailment condition and is a separate proceeding. The two are quoted separately here because the difference is the whole of what the rehearing motion disputes.
-- 2026-09-02 · The rehearing path moved. Commission Advising records that the commission voted not to place Ensign's motion on an open meeting agenda, so the curtailment conditions remain.
+- 2026-09-01 · The rehearing path moved. Commission Advising records that the commission voted not to place Ensign's motion on an open meeting agenda, so the curtailment conditions remain.
 
 ## Evidence
 

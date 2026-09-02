@@ -11,7 +11,7 @@ The Tom Green County Commissioners Court voted not to pursue a temporary morator
 - Public access: Public meeting
 - Take part: https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -25,7 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The court still declines to pursue a temporary moratorium on large scale energy and data center development in Precinct 4. The reasoning given is still the limits of county authority.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-28 · Checked and unchanged. Tom Green County still has no moratorium in Precinct 4, so the Westline site at Dove Creek is still subject only to the rules a county already holds.
-- 2026-09-02 · Tom Green County's decision not to impose the proposed moratorium remains in effect.
+- 2026-09-01 · Tom Green County's decision not to impose the proposed moratorium remains in effect.
 
 ## Evidence
 

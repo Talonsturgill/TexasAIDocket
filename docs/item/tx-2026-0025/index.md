@@ -8,7 +8,7 @@ Every state agency and local government that deploys a public facing AI system m
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -22,7 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · The posting duty is confirmed. Section 2054.711 requires each state agency and local government deploying a public facing artificial intelligence system to post a standardized notice. It goes on all related applications and websites and public computer systems. That section also lets a hospital or an academic medical center satisfy the duty inside a patient consent form.
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-28 · Checked and unchanged. The notice duty is still in force and the Department of Information Resources has still not published the standardized form the statute tells it to develop. Agencies owe a notice whose shape nobody has issued.
-- 2026-09-02 · The standardized-notice duty still stands, while DIR has not published the required form.
+- 2026-09-01 · The standardized-notice duty still stands, while DIR has not published the required form.
 
 ## Evidence
 

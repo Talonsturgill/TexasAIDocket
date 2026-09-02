@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality's executive director finished tech
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-napd-english.pdf
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -27,7 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-25 · Checked and unchanged. Still open, with no dated movement.
 - 2026-08-26 · Checked and unchanged. Still open, with no dated movement.
 - 2026-08-29 · Checked and unchanged. The executive director's preliminary decision on the gas plant at the Abilene campus still stands and the comment period on it is still open. The three permits it covers are unaltered.
-- 2026-09-02 · TCEQ's preliminary decision on the Abilene campus power plant remains open to public comment.
+- 2026-09-01 · TCEQ's preliminary decision on the Abilene campus power plant remains open to public comment.
 
 ## Evidence
 

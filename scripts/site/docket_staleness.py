@@ -70,9 +70,11 @@ import datetime as _dt
 import json
 import sys
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
+TEXAS_TIME = ZoneInfo("America/Chicago")
 
 # ONE LEASH, EVERY ITEM, WHATEVER ITS STATUS. Owner's call on 2026-08-18. See the docstring:
 # a per-status table meant that the items nobody was worried about were the items nobody
@@ -94,6 +96,20 @@ LIVE = {"open", "pending", "unknown"}
 # The unscheduled-decision leash. Equal to the flat leash now, so it tightens nothing and is
 # kept only so the reason for it stays readable beside the rule it used to carry.
 UNSCHEDULED_LEASH = LEASH_DAYS
+
+
+def texas_today(now: _dt.datetime | None = None) -> _dt.date:
+    """Return today's date where this Texas record is published.
+
+    Hosted runners keep their operating-system clock in UTC. Using ``date.today()`` there
+    advances this gate at 7 p.m. Central during daylight time, so a September 1 record is
+    judged as September 2 while every Texas reader is still on September 1. Start from an
+    aware UTC instant and convert it explicitly so laptops and CI share the same day boundary.
+    """
+    instant = now if now is not None else _dt.datetime.now(_dt.timezone.utc)
+    if instant.tzinfo is None:
+        raise ValueError("texas_today requires an aware datetime")
+    return instant.astimezone(TEXAS_TIME).date()
 
 
 def parse_date(s) -> _dt.date:
@@ -179,7 +195,7 @@ def select(items: list, today: _dt.date, budget: int | None) -> tuple[list, list
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--today", default=_dt.date.today().isoformat())
+    ap.add_argument("--today", default=texas_today().isoformat())
     ap.add_argument("--budget", type=int, default=None,
                     help="OPTIONAL cap, for a run that is deliberately doing less. There is no "
                          "cap by default: everything due is work. A capped run prints what it "
@@ -251,6 +267,13 @@ def self_test() -> int:
         if not ok:
             failures += 1
             print(f"        got {got!r}, wanted {want!r}", file=sys.stderr)
+
+    expect("UTC midnight is still the prior calendar day in Texas",
+           texas_today(_dt.datetime(2026, 9, 2, 1, 35, tzinfo=_dt.timezone.utc)),
+           _dt.date(2026, 9, 1))
+    expect("the calendar advances after midnight in Texas",
+           texas_today(_dt.datetime(2026, 9, 2, 5, 1, tzinfo=_dt.timezone.utc)),
+           _dt.date(2026, 9, 2))
 
     # The core regression: an item with NO future key date, awaiting an unscheduled decision.
     a = assess(item(last_verified="2026-08-07"), today)          # 4 days, no future date

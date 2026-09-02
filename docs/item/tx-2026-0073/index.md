@@ -10,7 +10,7 @@ The House Committee on State Affairs met on August 19th, 2026 on a charge coveri
 - Comment closes: 2026-08-20
 - Take part: https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -26,7 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-23 · Checked and unchanged. The Legislative Reference Library's posting for that week still lists the State Affairs hearing on August 19th and the Public Health hearing on August 20th. Both dates have now passed.
 - 2026-08-26 · The comment window closed on August 20th.
 - 2026-08-29 · The comment window closed on August 20th. Both charges are unchanged, one on data center development and the grid operator's large load study process, and one on artificial intelligence in health care.
-- 2026-09-02 · The paired House hearings on data centers and artificial intelligence in health care have concluded.
+- 2026-09-01 · The paired House hearings on data centers and artificial intelligence in health care have concluded.
 
 ## Evidence
 

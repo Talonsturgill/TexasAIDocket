@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to William Mar
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2607553
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -25,7 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · The National Science Foundation award record carries the estimated total and the award dates. Its abstract describes a self driving laboratory and names Houston as the performance site.
 - 2026-08-27 · Checked and unchanged. The award still stands and the laboratory is still described as one that designs and runs its own experiments.
 - 2026-08-30 · The cooperative agreement is unchanged. The self driving laboratory it pays for is still described the same way.
-- 2026-09-02 · Rice's cooperative agreement for an autonomous semiconductor laboratory remains in the federal award record.
+- 2026-09-01 · Rice's cooperative agreement for an autonomous semiconductor laboratory remains in the federal award record.
 
 ## Evidence
 

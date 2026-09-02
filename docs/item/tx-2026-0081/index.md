@@ -11,7 +11,7 @@ The National Science Foundation made an award to the University of Texas at Aust
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -24,7 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-21 · Admitted. The award record names the University of Texas at Austin, states the obligation and dates the award to August 13th, 2026.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-28 · Checked and unchanged. The UT Austin robotics safety award still stands on the agency's own record with its stated obligation and project period unaltered.
-- 2026-09-02 · UT Austin's award for learning robot-safety constraints from demonstrations remains in the federal record.
+- 2026-09-01 · UT Austin's award for learning robot-safety constraints from demonstrations remains in the federal record.
 
 ## Evidence
 
