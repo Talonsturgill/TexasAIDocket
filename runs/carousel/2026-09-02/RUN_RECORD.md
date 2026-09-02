@@ -92,7 +92,7 @@ Both are real and neither is repairable by another copy pass.
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 5.71 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | FAIL   | 6.562, below threshold |
 | labels         | PASS   | 0 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 72 published string(s) read from one list, every universal names its set |
 | dossiers       | PASS   | 43,896 chars planned |
