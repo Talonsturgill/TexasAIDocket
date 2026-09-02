@@ -11,7 +11,7 @@ The National Science Foundation announced the first awards under its CyberAICorp
 - Public access: Write to the decider
 - Take part: https://www.utep.edu/cs/opportunities/sfs_program.html
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The federal award announcement still names the university in the first round of CyberAICorps Scholarship for Service awards. The attribution against the university's own program page is still unconfirmed.
 - 2026-08-26 · Checked and unchanged. The award to UT El Paso still stands in the first round of the program. The senator's statement about training students in cybersecurity and artificial intelligence skills is still published.
 - 2026-08-29 · Checked and unchanged. The award to the University of Texas at El Paso still stands in the agency's first round. The training it funds is still cybersecurity and artificial intelligence together rather than either alone.
+- 2026-09-02 · The award stands and the agency's announcement still names the university among the first round of this scholarship program.
 
 ## Evidence
 

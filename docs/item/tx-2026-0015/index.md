@@ -1,16 +1,16 @@
-# Federal comment window open on NRC reactor licensing and siting modernization
+# Federal comment window has closed on NRC reactor licensing and siting modernization
 
 The Nuclear Regulatory Commission has proposed a wholesale revision of its reactor licensing, safety oversight and siting rules. The revision is being carried out under an executive order directing reform of the agency. Comments close August 31st, 2026. Siting rules bear directly on the new nuclear generation being proposed to serve large electrical loads in Texas.
 
 - Topic: defense-and-federal
 - Decided by: United States Nuclear Regulatory Commission (federal)
 - Where: Statewide
-- Status: open
+- Status: pending
 - Public access: Comment window open
 - Comment closes: 2026-08-31
 - Take part: https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices
 
-- Last checked: 2026-08-30
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The proposed rule still opens on the Executive Order 14300 framing and the Federal Register still gives August 31st, 2026 as the day comments close. Three days are left to file under docket NRC-2025-0975.
 - 2026-08-29 · The comment window is still open, closing August 31st. The proposal to revise the reactor licensing, oversight and siting rules is unchanged, and the docket still takes comment from anyone.
 - 2026-08-30 · The federal window is nearly shut. Comments on the reactor licensing and siting rewrite close August 31st, which leaves a single day to file.
+- 2026-09-02 · The comment window has closed. The proposed rule on reactor licensing, safety oversight and siting stays before the agency and no final rule has been published.
 
 ## Evidence
 
@@ -43,6 +44,12 @@ Source (primary_official): https://www.federalregister.gov/documents/2026/07/16/
 ### The Federal Register API records the date the comment window closes.
 
 > "comments_close_on":"2026-08-31"
+
+Source (primary_official): https://www.federalregister.gov/api/v1/documents/2026-14341.json
+
+### The federal register record gives the date comments closed.
+
+> 2026-08-31
 
 Source (primary_official): https://www.federalregister.gov/api/v1/documents/2026-14341.json
 

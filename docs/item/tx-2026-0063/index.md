@@ -9,7 +9,7 @@ TCEQ's pending new source review page lists air permit applications whose notice
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The pending notice list still carries all four data center applications. They are Aligned at ADC Plano, Amazon at TXZ5 and Crusoe at both the Longhorn and Goodnight campuses, each with its published notices.
 - 2026-08-26 · Checked and unchanged. The four applications are still posted with published notices and the agency still requires an applicant to publish notice and a plain language summary.
 - 2026-08-29 · Checked and unchanged. The pending applications list still carries the four data center air permits with their published notices. The requirement that an applicant publish notice and provide a plain language summary is unchanged.
+- 2026-09-02 · The applications are still posted with published public notices and none has been withdrawn.
 
 ## Evidence
 

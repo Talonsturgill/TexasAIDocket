@@ -11,7 +11,7 @@ Carson County Commissioners Court approved a tax abatement agreement with Fermi 
 - Public access: Public meeting
 - Take part: https://www.newschannel10.com/2025/10/28/carson-county-approves-tax-abatement-fermi-america-development/
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · The abatement agreement itself is unconfirmed this run. What is confirmed is the electrical geography the item rests on. The Panhandle sits in the Southwest Power Pool rather than in ERCOT, which is why a plant here does not join the ERCOT queue.
 - 2026-08-26 · Checked and unchanged. The phased tax abatement agreement still stands and nothing later has been recorded against it.
 - 2026-08-29 · Checked and unchanged. The phased abatement agreement the court approved still stands and its phases still turn on buildings and generation being completed. No later court action alters it.
+- 2026-09-02 · The phased abatement stands as approved and the county has recorded no amendment to it.
 
 ## Evidence
 

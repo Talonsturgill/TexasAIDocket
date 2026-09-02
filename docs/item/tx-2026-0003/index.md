@@ -17,7 +17,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · The filing index moved from 5797 to 5810, so the docket took new filings over the weekend. The case style is unchanged and the application is still pending before the commission. The landowner protests and the Comanche County resolution are still on the record.
 - 2026-08-26 · Checked and unchanged. The interchange filing list for Docket 59315 answers and its newest filing is still dated March 17th, 2026. No final order has been entered.
 - 2026-08-29 · The commission decided this on August 28th, 2026. It amended the certificate to include the line and approved route 559 across the twenty two counties the application named. The administrative law judges had found the utility did not hold a further public meeting for links it added afterwards. The commission approved the line anyway, on a reading that the rule requires only one meeting before filing.
+- 2026-09-02 · The route application is still the largest file the commission holds on this line and the record shows no change to the approved route. Landowner interventions and protests remain on it.
 
 ## Evidence
 

@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Comment closes: 2026-09-04
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-30
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The commission's calendar feed still carries the September 4th, 2026 public comment deadline for Project 58482 in the commissioners hearing room, and the window is still open. Anyone may still file under the control number.
 - 2026-08-29 · The comment window is still open, closing September 4th. The commission's own calendar feed still carries that deadline as a dated entry naming the project. The proposed rule still draws its line at a demand threshold rather than at the words data center.
 - 2026-08-30 · The rule is still out for comment. The proposal for publication of new section 25.521 stands as filed, and the deadline the Texas Register acknowledged is September 4th.
+- 2026-09-02 · The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments from consultants and from members of the public have been filed since the proposal was published for comment.
 
 ## Evidence
 
@@ -94,4 +95,10 @@ Source (primary_official): https://tcss.legis.texas.gov/resources/UT/htm/UT.39.h
 > develop a reliability service to competitively procure demand reductions from large load customers with a demand of at least 75 megawatts to be deployed in the event of an anticipated emergency condition
 
 Source (primary_official): https://tcss.legis.texas.gov/resources/UT/htm/UT.39.htm
+
+### The Texas Register acknowledgement on the project sets the comment deadline.
+
+> Texas Register Acknowledgement of Receipt - Comment Deadline 09/04/2026
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 

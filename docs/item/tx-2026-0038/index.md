@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Whether the agreement has changed is still unconfirmed. The effluent water supply agreement for the proposed data center still stands as approved. The board still publishes the minutes of that meeting only as a scanned document with no readable text.
 - 2026-08-26 · Checked and unchanged. The board's effluent water supply agreement still stands and the utility's position that the plant will not draw drinking water is still the one on the record.
 - 2026-08-29 · Checked and unchanged. The water supply agreement the board approved still stands, and the water it sells is still effluent from the wastewater plant rather than drinking water. The volume parameters the board set are unchanged.
+- 2026-09-02 · The waterworks board has published nothing further and the current standing of the effluent supply agreement is unconfirmed.
 
 ## Evidence
 
