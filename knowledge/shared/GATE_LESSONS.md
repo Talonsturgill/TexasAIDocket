@@ -1745,17 +1745,22 @@ project actually ships. Judging a system family would have failed the videos pag
 triangle in Arial, which every reader has and a headless container does not.
 
 **And its self check went red on CI while passing locally, which is the whole reason it has one.**
-The measurement compared a character drawn in the asked-for family against the same character
-drawn in a family that does not exist, on the theory that both fall back to the same face. They do
-not always. A missing glyph can draw as the LAST RESORT BOX, and the box carries the asked-for
-family's own metrics, so it does not match the plain fallback and the comparison reads a missing
-glyph as CARRIED. Locally the runner had a CJK font and drew the control character properly, so
-the flaw was invisible; the container had none and drew the box. One measurement, two
-environments, opposite answers, and the reassuring one was the wrong one.
+The first measurement compared a character drawn in the asked-for family against the same
+character drawn in a family that does not exist, on the theory that both fall back to the same
+face. They do not always. A missing glyph can draw as the LAST RESORT BOX, and the box carries the
+asked-for family's own metrics, so it does not match the plain fallback and the comparison reads a
+missing glyph as CARRIED. Locally the runner had a CJK font and drew the character properly, so the
+flaw was invisible. The container had none and drew the box. One measurement, two environments,
+opposite answers, and the reassuring one was the wrong one.
 
-The fix is a second comparison against a codepoint no font carries, drawn in the same family, so
-the family's own box is recognised as a box. **A gate whose instrument is only checked on the
-machine that wrote it has been checked in the easy case.**
+The first repair compared that box against the box for a private-use codepoint in the same family.
+That too was machine dependent. Chromium can print the codepoint inside its last-resort box, so two
+missing characters produce different pixels even though neither glyph exists. It failed on macOS
+with every real site character covered. The durable comparison names the fallback instead of
+guessing it. The character is drawn in the requested face followed by each of three explicit
+generic fallbacks, then in that exact generic alone. A missing glyph makes the pair identical on
+mono, serif or sans regardless of which system faces are installed. **A gate whose instrument is
+only checked on the machine that wrote it has been checked in the easy case.**
 
 ---
 

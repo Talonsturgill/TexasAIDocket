@@ -34,13 +34,10 @@
  * A character is drawn on a canvas three ways, and it is MISSING from the asked-for family if
  * either comparison says so.
  *
- *   Asked-for family versus a family that does not exist. Both fall back to the same system face
- *   when the asked-for family has no glyph, so identical pixels mean it supplied nothing.
- *
- *   Asked-for family versus a codepoint no font on earth carries, in that same family. A missing
- *   glyph can draw as the LAST RESORT BOX, and the box is drawn with the asked-for family's own
- *   metrics, so it does not match the plain fallback and the first comparison alone reads it as
- *   carried.
+ *   Asked-for family plus an explicit generic fallback versus that same generic fallback alone.
+ *   The comparison is repeated with mono, serif and sans. If the asked-for face has no glyph,
+ *   both sides resolve through the same explicit fallback and produce identical pixels. This
+ *   also covers the last-resort codepoint box on a machine with no CJK fallback at all.
  *
  * The second half is here because the first half's control assertion failed on a CI runner and
  * passed on a developer machine. A container with no CJK font at all draws the box; a machine
@@ -127,10 +124,7 @@ for (const file of all) {
 // The instrument, and its own proof. `drawn` reports whether the named family supplied the glyph.
 await page.goto(pathToFileURL(join(process.cwd(), all[0])).href);
 await page.evaluate(() => document.fonts.ready);
-// A codepoint in the last private use plane. Nothing carries it, so whatever a family draws for
-// it IS that family's last resort box.
-const NOTDEF = '\u{10FFFD}';
-const drawn = (family, ch) => page.evaluate(([family, ch, notdef]) => {
+const drawn = (family, ch) => page.evaluate(([family, ch]) => {
   const shot = (fam, text) => {
     const c = document.createElement('canvas');
     c.width = 96; c.height = 96;
@@ -140,12 +134,9 @@ const drawn = (family, ch) => page.evaluate(([family, ch, notdef]) => {
     x.fillText(text, 8, 72);
     return c.toDataURL();
   };
-  const asked = `"${family}", "__no_such_family__"`;
-  const mine = shot(asked, ch);
-  if (mine === shot('"__no_such_family__"', ch)) return false;   // the fallback drew it, not us
-  if (mine === shot(asked, notdef)) return false;                // our own last resort box
-  return true;
-}, [family, ch, NOTDEF]);
+  return ['monospace', 'serif', 'sans-serif'].every((fallback) =>
+    shot(`"${family}", ${fallback}`, ch) !== shot(fallback, ch));
+}, [family, ch]);
 
 console.log('=== no control character reached the copy ===');
 ok('published copy carries no control character', control.length === 0,

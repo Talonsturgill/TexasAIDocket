@@ -137,7 +137,15 @@ def queue_findings(rows: list[dict], today: str,
     if behind > QUEUE_STALE_MONTHS:
         stop(f"the newest verified queue month is {newest_ok}, which is {behind} months "
              f"back; the large load reading may have stopped arriving")
-    if newest > newest_ok:
+    # An unverified row means two different things. Before ERCOT publishes the next monthly
+    # overview it is the collector honestly recording "not here yet". Once a source URL exists,
+    # an unverified row means the report arrived but the collector could no longer understand
+    # it. Only the second condition is immediate parser drift. Publication delay is already
+    # bounded by the verified-month staleness rule above.
+    newest_rows = [r for r in rows if r.get("month") == newest]
+    report_arrived_unverified = any(
+        not r.get("verified") and bool(r.get("source_url")) for r in newest_rows)
+    if newest > newest_ok and report_arrived_unverified:
         stop(f"the newest queue reading ({newest}) is unverified while the newest "
              f"verified one is {newest_ok}; the report's sentence may have moved and the "
              f"page is publishing an older month")
@@ -406,7 +414,16 @@ def self_test() -> int:
               for x in queue_findings(healthy, "2026-11-20")),
           str(queue_findings(healthy, "2026-11-20")))
 
-    moved = healthy + [{"month": "2026-08", "verified": False}]
+    waiting = healthy + [{"month": "2026-08", "verified": False,
+                          "source_url": None,
+                          "note": "no Monthly Operational Overview published for this month yet"}]
+    check("a not-yet-published report uses the verified-month grace window",
+          queue_findings(waiting, "2026-09-01") == [],
+          str(queue_findings(waiting, "2026-09-01")))
+
+    moved = healthy + [{"month": "2026-08", "verified": False,
+                        "source_url": "https://www.ercot.com/report.pdf",
+                        "note": "the Approval to Energize sentence did not match"}]
     check("a fresh unverified reading over a stale verified one is CAUGHT",
           any("sentence may have moved" in x for x in queue_findings(moved, "2026-08-20")),
           str(queue_findings(moved, "2026-08-20")))
@@ -506,7 +523,8 @@ def self_test() -> int:
     # THE QUEUE, WHOSE EVERY FINDING IS HALTING. It publishes one figure a month and nothing
     # about it is presentation, so there is no advisory half to get wrong.
     stalled = [{"month": "2026-01", "verified": True}]
-    drifted = healthy + [{"month": "2026-08", "verified": False}]
+    drifted = healthy + [{"month": "2026-08", "verified": False,
+                          "source_url": "https://www.ercot.com/report.pdf"}]
     virgin = [{"month": "2026-08", "verified": False}]
     for label, months in (("a queue that stopped arriving", stalled),
                           ("a queue that no longer verifies", drifted),
