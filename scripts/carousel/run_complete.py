@@ -120,14 +120,32 @@ def check(run_dir: Path, bar: float, cap: int | None = None) -> list[str]:
     except json.JSONDecodeError as exc:
         return [f"{run_dir.name}: score.json is not JSON ({exc})"]
 
-    bad = []
+    # THE OWNER MAY END THE SEARCH, AND THE MACHINE RECORDS WHO DID (2026-09-02).
+    #
+    # Until today there was exactly one path under the bar: rounds >= cap. That is right about
+    # the STANDARD and it was missing a fact about the world, which is that the bar is the
+    # owner's and the owner can spend it. Deck 13 held at 6.562 in 3 rounds and the owner said
+    # ship it. With no path for that instruction, a session wanting to obey has one move left:
+    # write a round count it did not do. A gate that leaves lying as the only way to comply is a
+    # gate that will eventually be lied to.
+    #
+    # So the override is a PATH rather than a hole. It demands the instruction in the owner's own
+    # words and a date, it is refused when the deck carries a hard fail, and every surface that
+    # reads this file keeps reporting the real score. It does not lower the bar. It records that
+    # somebody with the authority to lower it did, and what they said.
+    ov = d.get("owner_override") or {}
+    overridden = bool(ov.get("instruction") and ov.get("date"))
     got = score_of(d)
+    bad = []
     if got is None:
         bad.append(f"{run_dir.name}: score.json states no weighted score under any name this "
                    f"repo has used ({', '.join(SCORE_KEYS)})")
     elif float(got) < bar:
         n = rounds_of(d)
-        if cap is not None and n is not None and n >= cap:
+        if overridden:
+            # under the bar, shipped on the owner's instruction, and saying so
+            pass
+        elif cap is not None and n is not None and n >= cap:
             # SHIPPED UNDER THE BAR, ON THE CAP, AND SAYING SO. This is the one path that is
             # under the threshold and not a failure, and it is only that because the run did the
             # work: `cap` rounds of it. The shortfall is stated rather than rounded away.
@@ -143,6 +161,10 @@ def check(run_dir: Path, bar: float, cap: int | None = None) -> list[str]:
                           f"so keep working the deck"))
 
     hard = d.get("hard_fails") or []
+    if hard and overridden:
+        bad.append(f"{run_dir.name}: an owner override does not reach a hard fail. "
+                   f"{len(hard)} stand(s), and a hard fail is a claim about a promise this "
+                   f"product made in public. The override spends the THRESHOLD and nothing else")
     if hard:
         bad.append(f"{run_dir.name}: {len(hard)} hard fail(s) stand, and any one of them makes "
                    f"the deck unshippable whatever the weighted score says. "
@@ -154,13 +176,25 @@ def check(run_dir: Path, bar: float, cap: int | None = None) -> list[str]:
     # already accepted, and reading it as a hold would put the loop straight back.
     on_cap = (cap is not None and (rounds_of(d) or 0) >= cap
               and score_of(d) is not None and float(score_of(d)) < bar)
-    if d.get("ship") is False and not bad and not on_cap:
+    under_bar = score_of(d) is not None and float(score_of(d)) < bar
+    if d.get("ship") is False and not bad and not on_cap and not (overridden and under_bar):
         bad.append(f"{run_dir.name}: the scorer set ship: false. A held deck has not shipped even "
                    f"when its weighted score clears the bar")
     return bad
 
 
+def _check_dict(d: dict, bar: float, cap: int | None):
+    """`check` against a score dict, for the self-test. Same code path, no temp dir."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        p = Path(td) / "r"
+        p.mkdir()
+        (p / "score.json").write_text(json.dumps(d), encoding="utf-8")
+        return check(p, bar, cap)
+
+
 def self_test() -> int:
+    check_d = _check_dict
     fails = 0
 
     def ok(label, cond, extra=""):
@@ -243,6 +277,22 @@ def self_test() -> int:
 
         # THE 2026-08-25 DEFECT, replayed: fifteen rounds, never shipped, no deck for a reader.
         write({"weighted_score": 6.68, "ship": False, "hard_fails": [], "rounds": 15})
+        # THE OVERRIDE, and every way it must NOT work.
+        base = {"weighted_score": 6.562, "rounds": 3, "hard_fails": [], "ship": False}
+        ok("a deck under the bar below the cap is a failure without an override",
+           check_d(base, 6.8, 5) != [])
+        ov = dict(base, owner_override={"instruction": "ship the deck as is", "date": "2026-09-02"})
+        ok("...and the owner's instruction, recorded, ends the search",
+           check_d(ov, 6.8, 5) == [], str(check_d(ov, 6.8, 5)))
+        ok("an override with no instruction is not an override",
+           check_d(dict(base, owner_override={"date": "2026-09-02"}), 6.8, 5) != [])
+        ok("an override with no date is not an override",
+           check_d(dict(base, owner_override={"instruction": "ship it"}), 6.8, 5) != [])
+        ok("AN OVERRIDE DOES NOT REACH A HARD FAIL",
+           check_d(dict(ov, hard_fails=["a numeral that traces to nothing"]), 6.8, 5) != [])
+        ok("...and the deck still reports its real score, never the bar",
+           "6.562" in " ".join(check_d(dict(base), 6.8, 5)))
+
         ok("a deck under the bar ON the round cap is a finished run",
            check(d, 6.8, 5) == [], str(check(d, 6.8, 5)))
         ok("...and with no cap in force it is still a failure", check(d, 6.8, None) != [])
@@ -309,12 +359,26 @@ def main() -> int:
               "looks like.\n  Keep working the deck, or say plainly that it failed and why.",
               file=sys.stderr)
         return 1
-    under = [d.name for d in dirs
-             if (p := d / "score.json").exists()
-             and (sc := score_of(json.loads(p.read_text(encoding="utf-8")))) is not None
-             and float(sc) < bar]
-    note = (f", {len(under)} of them on the {cap} round cap and under the bar ({', '.join(under)})"
-            if under else "")
+    # NAME WHICH PATH EACH UNDER-THE-BAR RUN TOOK. There are two now, and reporting an owner's
+    # instruction as "on the round cap" is the summary line telling a reader the wrong reason.
+    on_cap, by_owner = [], []
+    for d in dirs:
+        sp = d / "score.json"
+        if not sp.exists():
+            continue
+        sd = json.loads(sp.read_text(encoding="utf-8"))
+        sc = score_of(sd)
+        if sc is None or float(sc) >= bar:
+            continue
+        ov = sd.get("owner_override") or {}
+        (by_owner if (ov.get("instruction") and ov.get("date")) else on_cap).append(d.name)
+    parts = []
+    if on_cap:
+        parts.append(f"{len(on_cap)} under the bar on the {cap} round cap ({', '.join(on_cap)})")
+    if by_owner:
+        parts.append(f"{len(by_owner)} under the bar on the owner's instruction "
+                     f"({', '.join(by_owner)})")
+    note = (", " + ", ".join(parts)) if parts else ""
     print(f"run complete: {len(dirs)} run(s) shipped against a {bar} threshold{note}")
     return 0
 
