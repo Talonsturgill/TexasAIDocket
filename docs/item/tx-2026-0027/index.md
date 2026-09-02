@@ -12,7 +12,7 @@ The City of Taylor published a public notice for its City Council. The council w
 - Comment closes: 2026-08-13
 - Take part: https://www.taylortx.gov/m/newsflash/Home/Detail/2066
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-21 · Checked. The city's notice of consideration still stands and still names the amended and restated abatement with Compal and the Taylor Port Building renovation. What the council did with it on August 13th is unconfirmed, because the city posts no minutes for that meeting.
 - 2026-08-25 · The comment window closed on August 13th.
 - 2026-08-28 · Taylor's council took the amended abatement agreement with Compal Technology on August 13th and the notice period has run out. The city has published nothing since recording what the council did with it.
+- 2026-09-02 · Taylor still publishes the amended Compal abatement notice, while the council's action remains absent from the city's published record.
 
 ## Evidence
 

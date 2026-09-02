@@ -1,17 +1,17 @@
-# PUCT told an Armstrong County AI data center to shed its whole load, and the data center asked for a rehearing
+# PUCT told an Armstrong County AI data center to shed its whole load, then left those conditions in place
 
-The Public Utility Commission of Texas approved a net metering arrangement in Docket 59220 on July 24th, 2026. It lets a second AI data center complex share the point of interconnection and the settlement meter of GOODNIT1, a stand-alone wind resource in Armstrong County. The commission attached conditions. The second load has to curtail fully when ERCOT instructs, and it may not be offered into any demand response program the order names. Neither complex is running yet and the commission found ownership of the second load has not transferred to the company expected to operate it. Ensign Infrastructure filed a motion for rehearing on August 18th, 2026 asking the commission to find that no conditions are necessary, and the commission has not ruled on it.
+The Public Utility Commission of Texas approved a net metering arrangement in Docket 59220 on July 24th, 2026. It lets a second AI data center complex share the point of interconnection and the settlement meter of GOODNIT1, a stand-alone wind resource in Armstrong County. The commission attached conditions. The second load has to curtail fully when ERCOT instructs, and it may not be offered into any demand response program the order names. Neither complex is running yet and the commission found ownership of the second load has not transferred to the company expected to operate it. Ensign Infrastructure asked the commission to remove the conditions on rehearing. The commission voted not to put that motion on any open meeting agenda, leaving the order in place.
 
 - Topic: data-centers
 - Decided by: Public Utility Commission of Texas (state-agency)
 - Where: Armstrong
 - Statistical areas:
   - Amarillo, TX
-- Status: pending
+- Status: decided
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -20,6 +20,7 @@ The Public Utility Commission of Texas approved a net metering arrangement in Do
 - 2026-05-29 · filed: ERCOT files its study results and recommendations
 - 2026-07-24 · ordered: Commission order approving the arrangement with conditions
 - 2026-08-18 · filed: Ensign Infrastructure files a motion for rehearing
+- 2026-08-31 · decided: Commission votes not to add the rehearing motion to an open meeting agenda
 
 ## How this decision moved
 
@@ -27,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-28 · Admitted on the commission's own order and the motion for rehearing, both read as filed documents. The arrangement is approved and the conditions stand while the rehearing motion is undecided.
 - 2026-08-28 · What the commission ordered reaches the second load and names it. An earlier order on the first load carries its own curtailment condition and is a separate proceeding. The two are quoted separately here because the difference is the whole of what the rehearing motion disputes.
+- 2026-09-02 · The rehearing path moved. Commission Advising records that the commission voted not to place Ensign's motion on an open meeting agenda, so the curtailment conditions remain.
 
 ## Evidence
 
@@ -169,4 +171,10 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/59220_73_
 > Ensign respectfully raises points of error to Findings of Fact 57 and 58, Conclusions of Law 9 and 10, and Ordering Paragraph 1.
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF
+
+### The commission voted not to put Ensign's rehearing motion on any open meeting agenda.
+
+> The Commission voted to not add the motion for rehearing of the Commission's Order for Movant - Ensign Infrastructure to any open meeting agenda.
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59220_74_1678681.PDF
 

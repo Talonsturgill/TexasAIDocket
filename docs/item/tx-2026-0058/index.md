@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality had set a notice and comment heari
 - Public access: Public meeting
 - Take part: https://www.tceq.texas.gov/agency/decisions/hearings/notice-and-comment-hearing-vantage-data-centers-tx11-llc-o4791
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The cancelation notice still says the hearing will be rescheduled for a later date and gives no new date. The originally scheduled August 17th date has now passed with no replacement.
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-28 · Checked and unchanged. The San Antonio hearing on Vantage Data Centers TX11's air permit is still canceled and TCEQ has not posted a new date for it. Written comments to the Office of the Chief Clerk are still the only route in.
+- 2026-09-02 · TCEQ's San Antonio hearing cancellation still stands, while the Vantage air-permit proceeding remains unresolved.
 
 ## Evidence
 

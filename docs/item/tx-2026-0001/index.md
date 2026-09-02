@@ -10,7 +10,7 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 - Comment closes: 2026-08-11
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The filing index for control number 58000 still stands at 67 filings and the most recent entry is still the August 11th comment. The proposal is still awaiting an open meeting.
 - 2026-08-25 · The comment window closed on August 11th.
 - 2026-08-28 · The comment window on Project 58000 closed on August 11th and has not reopened. The commission has not yet published an order adopting the amended transmission cost recovery rules. What utilities and data center developers filed on the deadline day is still the last word in the project.
+- 2026-09-02 · The transmission-cost rulemaking remains unresolved after comments closed. The commission still has not published an adopting order.
 
 ## Evidence
 

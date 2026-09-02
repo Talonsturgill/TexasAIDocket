@@ -11,7 +11,7 @@ The National Science Foundation made an award to Prairie View A and M University
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-21 · Admitted. The award record names Prairie View A and M, states the obligation and dates the award to August 11th, 2026.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-28 · Checked and unchanged. The Prairie View A and M award still stands on the agency's own record, with the same obligation and the same project period. No amendment has been posted.
+- 2026-09-02 · Prairie View A and M's grid-optimization research award remains active in the federal record.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved the creation of a Schoo
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The regents' approval still unites computer science and information and statistics and data sciences into one school within the College of Natural Sciences. The school is still slated to open in Fall 2026 and that term has now begun.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-28 · Checked and unchanged. The School of Computing still stands as approved by the regents, and it still sits inside the College of Natural Sciences rather than as a free standing college.
+- 2026-09-02 · The regents' approval of UT Austin's School of Computing remains intact inside the College of Natural Sciences.
 
 ## Evidence
 

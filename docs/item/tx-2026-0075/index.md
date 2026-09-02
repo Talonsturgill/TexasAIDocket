@@ -12,7 +12,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-23 · Checked and unchanged. The city's own legislative record shows the ordinance ordering the charter election approved on second reading on August 11th, with all members voting in favor. No later action is recorded on it. The election is still set for November 3rd.
 - 2026-08-26 · The comment window is still open, closing November 3rd.
 - 2026-08-29 · The comment window is still open, closing November 3rd. The charter amendment adding a section on the city's use of artificial intelligence is still one of those the voters decide, and the council has not withdrawn it.
+- 2026-09-02 · Pflugerville's charter amendment governing city use of artificial intelligence remains headed to voters.
 
 ## Evidence
 

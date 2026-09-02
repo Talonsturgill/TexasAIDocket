@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has opened Project 59550, the quinquennia
 - Comment closes: 2026-09-17
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -23,6 +23,7 @@ The Public Utility Commission of Texas has opened Project 59550, the quinquennia
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-28 · Admitted on the staff memorandum filed August 20th and the commission's own calendar entry. The comment window is open and closes September 17th.
+- 2026-09-02 · The offer-cap review still contains only the opening request and staff memorandum, so its public comment window remains open.
 
 ## Evidence
 

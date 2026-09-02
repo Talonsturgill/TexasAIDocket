@@ -11,7 +11,7 @@ Harris County Commissioners Court approved a renewal option with Flock Group, In
 - Public access: Public meeting
 - Take part: https://agenda.harriscountytx.gov/
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The county's own record still marks the Flock Group renewal passed on May 28th, for the period June 6th, 2026 to June 5th, 2027, at a cost of 868,975 dollars.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-28 · Checked and unchanged. The Flock renewal still runs on its stated term and the county-wide amendment still stands. Nothing has been posted narrowing where the cameras and sound detection may operate.
+- 2026-09-02 · Harris County's amended countywide Flock contract remains approved.
 
 ## Evidence
 

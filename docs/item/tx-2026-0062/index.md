@@ -11,7 +11,7 @@ The Fort Worth City Council took three data center votes on August 11th, 2026. M
 - Public access: Public meeting
 - Take part: https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The council's August 11th votes still stand. They include the requirement that a data center application carry proof that the Public Utility Commission of Texas and ERCOT have approved its grid connection.
 - 2026-08-25 · Checked and unchanged. Still open, with no dated movement.
 - 2026-08-28 · Checked and unchanged. Fort Worth's moratorium on accepting and processing new data center applications is still running, and the grid filing requirements adopted with it still apply. The city has posted no early lift.
+- 2026-09-02 · Fort Worth's moratorium and grid-filing direction remain active while permanent data-center rules are still in development.
 
 ## Evidence
 
