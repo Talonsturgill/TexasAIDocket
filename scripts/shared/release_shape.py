@@ -5,10 +5,12 @@ The release chain has two kinds of main writer. A user-token push starts guards.
 push trigger. A collector push uses GITHUB_TOKEN, which deliberately does not start another
 workflow, so each collector dispatches guards.yml explicitly after its push succeeds.
 
-The success-only release job downstream of the aggregate `guards` check dispatches Pages. Pages
-never listens directly to a push or collector, and checks that the exact main SHA it is about to
-publish has a successful check named `guards`. The scheduled backstop uses the same proof, so it
-can recover a missed deploy without becoming a validation bypass.
+The success-only release job downstream of the aggregate `guards` check dispatches Pages with its
+exact SHA. Pages never listens directly to a push or collector. It exits cleanly if main has moved,
+and otherwise checks that the exact SHA it is about to publish has a successful check named
+`guards`. The deploy job checks out that verified SHA rather than a branch name. The scheduled
+backstop uses the same proof, so it can recover a missed deploy without becoming a validation
+bypass.
 
 This checker refuses any break in that chain and self-tests the ways it can fail.
 """
@@ -32,7 +34,8 @@ GUARDS = WORKFLOWS / "guards.yml"
 PUSH = re.compile(r"\bgit\s+push\b")
 GUARDED_PUSH = "git push origin HEAD:main"
 DISPATCH = "gh workflow run guards.yml --ref main"
-PAGES_DISPATCH = 'gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main'
+PAGES_DISPATCH = ('gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main '
+                  '--field guarded_sha="${GITHUB_SHA}"')
 
 
 def triggers(doc: dict) -> dict:
@@ -58,6 +61,9 @@ def pages_problems(doc: dict) -> list[str]:
         out.append("pages still uses workflow_run, which is suppressed after token-dispatched guards")
     if "workflow_dispatch" not in on:
         out.append("pages has no explicit dispatch trigger for the post-guard release job")
+    dispatch = on.get("workflow_dispatch") or {}
+    if not isinstance(dispatch, dict) or "guarded_sha" not in (dispatch.get("inputs") or {}):
+        out.append("pages dispatch does not accept the exact guarded SHA")
     if "schedule" not in on:
         out.append("pages has no scheduled recovery path for a missed deployment")
 
@@ -74,9 +80,19 @@ def pages_problems(doc: dict) -> list[str]:
     if not checkout_main:
         out.append("pages verify does not check out main by name")
 
+    outputs = verify.get("outputs") or {}
+    if outputs.get("deploy") != "${{ steps.target.outputs.deploy }}":
+        out.append("pages verify does not expose the stale-dispatch decision to deploy")
+    if outputs.get("sha") != "${{ steps.target.outputs.sha }}":
+        out.append("pages verify does not expose the exact checked SHA to deploy")
+
     shell = "\n".join(run for _name, run in run_steps({"jobs": {"verify": verify}}))
     for required, problem in (
         ("git rev-parse HEAD", "pages does not identify the exact commit it checked out"),
+        ("GUARDED_SHA", "pages does not compare a release dispatch with current main"),
+        ("deploy=false", "pages cannot skip a stale release dispatch cleanly"),
+        ("deploy=true", "pages cannot authorize a matching or recovery dispatch"),
+        ("sha=${SHA}", "pages does not record the exact checked SHA for deploy"),
         ("commits/${SHA}/check-runs", "pages does not query checks for that exact commit"),
         ("check_name=guards", "pages does not require the aggregate guard check by name"),
         ('[ "$conclusion" != "success" ]', "pages does not reject a non-success guard result"),
@@ -90,6 +106,14 @@ def pages_problems(doc: dict) -> list[str]:
         needs = [needs]
     if "verify" not in needs:
         out.append("the deploy job does not wait on release verification")
+    if "needs.verify.outputs.deploy == 'true'" not in str(deploy.get("if") or ""):
+        out.append("the deploy job does not skip a stale guarded SHA")
+    pinned_checkout = any(step.get("uses", "").startswith("actions/checkout@")
+                          and (step.get("with") or {}).get("ref") ==
+                          "${{ needs.verify.outputs.sha }}"
+                          for step in (deploy.get("steps") or []))
+    if not pinned_checkout:
+        out.append("the deploy job does not package the exact SHA the verify job checked")
     return out
 
 
@@ -186,16 +210,29 @@ def self_test() -> int:
         failures += int(not condition)
 
     good_pages = {
-        "on": {"workflow_dispatch": {}, "schedule": [{"cron": "0 */2 * * *"}]},
+        "on": {"workflow_dispatch": {"inputs": {"guarded_sha": {"required": False}}},
+               "schedule": [{"cron": "0 */2 * * *"}]},
         "permissions": {"checks": "read"},
         "jobs": {
             "verify": {
+                "outputs": {"deploy": "${{ steps.target.outputs.deploy }}",
+                            "sha": "${{ steps.target.outputs.sha }}"},
                 "steps": [
                     {"uses": "actions/checkout@v4", "with": {"ref": "main"}},
+                    {"id": "target", "run": "SHA=$(git rev-parse HEAD)\n"
+                            "echo sha=${SHA}\n"
+                            "if [ -n \"$GUARDED_SHA\" ] && [ \"$GUARDED_SHA\" != \"$SHA\" ]; then\n"
+                            "  echo deploy=false\n"
+                            "fi\n"
+                            "echo deploy=true"},
                     {"run": "SHA=$(git rev-parse HEAD)\n"
                             "gh api repos/x/commits/${SHA}/check-runs?check_name=guards\n"
                             'if [ "$conclusion" != "success" ]; then exit 1; fi'}]},
-            "deploy": {"needs": "verify", "steps": [{"run": "true"}]}}}
+            "deploy": {"needs": "verify",
+                       "if": "needs.verify.outputs.deploy == 'true'",
+                       "steps": [{"uses": "actions/checkout@v4",
+                                  "with": {"ref": "${{ needs.verify.outputs.sha }}"}},
+                                 {"run": "true"}]}}}
     good_writer = {
         "permissions": {"actions": "write"},
         "jobs": {"write": {"steps": [
@@ -234,6 +271,23 @@ def self_test() -> int:
     check("a deployment with no exact-SHA guard query is caught",
           any("exact commit" in p or "aggregate guard" in p for p in
               pages_problems(wrong_check)), str(pages_problems(wrong_check)))
+
+    no_stale_skip = {**good_pages, "jobs": {**good_pages["jobs"], "verify": {
+        **good_pages["jobs"]["verify"],
+        "steps": [{"uses": "actions/checkout@v4", "with": {"ref": "main"}},
+                  {"run": "SHA=$(git rev-parse HEAD)\n"
+                          "gh api repos/x/commits/${SHA}/check-runs?check_name=guards\n"
+                          'if [ "$conclusion" != "success" ]; then exit 1; fi'}]}}}
+    check("a release that turns a stale dispatch red is caught",
+          any("stale release" in p or "compare a release" in p for p in
+              pages_problems(no_stale_skip)), str(pages_problems(no_stale_skip)))
+
+    moving_deploy = {**good_pages, "jobs": {**good_pages["jobs"], "deploy": {
+        **good_pages["jobs"]["deploy"],
+        "steps": [{"uses": "actions/checkout@v4", "with": {"ref": "main"}}]}}}
+    check("a deploy that re-reads a moving main branch is caught",
+          any("exact SHA" in p for p in pages_problems(moving_deploy)),
+          str(pages_problems(moving_deploy)))
 
     no_permission = {**good_writer, "permissions": {}}
     check("a writer unable to dispatch guards is caught",

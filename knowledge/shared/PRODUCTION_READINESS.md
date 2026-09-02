@@ -72,7 +72,7 @@ at the keyboard.
 | Clock skew | UTC everywhere, and the collector trusts the payload's own timestamp over HTTP freshness |
 | Infrastructure as code | Workflows, site configuration, and Worker source are committed. DNS, Pages settings, Worker deployment, bindings, and secrets remain external state documented in `HANDOFF.md` |
 | Dependency control | Playwright is pinned in CI and workflows install their Python packages explicitly. Python packages are not centrally declared or locked |
-| Postmortems | `GATE_LESSONS.md`, 69 entries, each naming what to check instead |
+| Postmortems | `GATE_LESSONS.md`, 70 entries, each naming what to check instead |
 | Chaos engineering, lightly | Gates are proved by planting the real defect and watching them go red, and the build is proved against a one-commit shallow clone |
 | Observability | `livecheck.py` opens the public site every six hours; the grid and water page checks distinguish a stopped instrument from an advisory presentation fault |
 
