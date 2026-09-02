@@ -195,34 +195,32 @@ for (const w of [...new Set([1440, 1024, 768, 600, 500, 460, 440, 412, 390, 360,
 check("the nav is one row, exposes its overflow, and every section can be reached",
       navRow.length === 0, navRow.slice(0, 4).join(" | "));
 
-// THE ACTIONABLE ANSWER BELONGS IN THE OPENING GLANCE. The front page has long carried a
-// computed count of comment windows, but the corresponding deadlines began after the ask box
-// and the map. At phone width that was more than a screen away, so the count promised an answer
-// the first screen did not deliver. Structure, order and actual viewport position are all checked
-// here because any one of them alone can be green while the panel is still functionally buried.
+// ASK IS THE FLAGSHIP. The deadline panel follows the county map, on the owner's product-priority
+// call. Structure and order are checked at every layout so CSS cannot quietly pull the panel back
+// into the hero while the document still looks correct in source.
 const actionRail = [];
 for (const w of [320, 390, 768, 1024, 1440]) {
   await pg.setViewportSize({ width: w, height: 900 });
   await pg.goto("file://" + path.join(SITE, "index.html"));
   const r = await pg.evaluate(() => {
     const hero = document.querySelector(".hero");
+    const ask = document.querySelector(".asksection");
+    const map = document.querySelector(".txmap")?.closest("section");
+    const deadlineSection = document.querySelector(".deadline-section");
     const panel = document.querySelector("#open-now");
-    const actions = hero?.querySelector(".ctarow");
-    const stats = hero?.querySelector(".statrow");
     const rows = panel ? [...panel.querySelectorAll("a.open-now-item")] : [];
     const more = panel?.querySelector("a.open-now-more");
     const moreLabel = more?.querySelector(":scope > span");
     const door = [...document.querySelectorAll(".stat")]
       .find((el) => el.textContent.includes("Doors open to you"));
-    const follows = (a, b) => !!(a && b &&
-      (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING));
     const box = panel?.getBoundingClientRect();
     const moreBox = more?.getBoundingClientRect();
     const labelBox = moreLabel?.getBoundingClientRect();
     return {
-      inHero: !!(hero && panel && hero.contains(panel)),
-      ordered: follows(actions, panel) && follows(panel, stats),
-      firstScreen: !!(box && box.bottom > 0 && box.top < innerHeight),
+      outsideHero: !!(hero && panel && !hero.contains(panel)),
+      ordered: !!(ask && map && deadlineSection &&
+        (ask.compareDocumentPosition(map) & Node.DOCUMENT_POSITION_FOLLOWING) &&
+        map.nextElementSibling === deadlineSection && deadlineSection.contains(panel)),
       rows: rows.length,
       datedLinks: rows.every((a) => !!a.getAttribute("href") &&
         !!a.querySelector('time[datetime^="20"]')),
@@ -235,15 +233,14 @@ for (const w of [320, 390, 768, 1024, 1440]) {
       duplicated: document.body.textContent.includes("Closing next"),
     };
   });
-  if (!r.inHero) actionRail.push(`${w}px panel is not inside the hero`);
-  if (!r.ordered) actionRail.push(`${w}px panel is not between actions and stats`);
-  if (!r.firstScreen) actionRail.push(`${w}px panel begins below the first screen`);
+  if (!r.outsideHero) actionRail.push(`${w}px panel is still inside the hero`);
+  if (!r.ordered) actionRail.push(`${w}px Ask, map and deadlines are out of order`);
   if (!r.datedLinks) actionRail.push(`${w}px a deadline is not a dated link`);
   if (!r.countLinks) actionRail.push(`${w}px the open-door count does not reach the panel`);
   if (!r.moreFits) actionRail.push(`${w}px the participation link label is clipped`);
   if (r.duplicated) actionRail.push(`${w}px repeats the deadline block below the hero`);
 }
-check("the live deadline rail is useful in the first screen at every layout",
+check("the deadline panel follows Ask and the map at every layout",
       actionRail.length === 0, actionRail.slice(0, 5).join(" | "));
 
 // THE MARK IS ASSERTED BY COLLISION, NOT BY A CHOSEN NUMBER. Forced on, its box is compared
