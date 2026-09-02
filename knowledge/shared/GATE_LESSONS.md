@@ -2223,3 +2223,26 @@ The general form, worth more than the file. **When a check's result is read by a
 result belongs in an artifact that does not exist until it is true, not in the output stream the
 check happens to produce for a person.** A log is advice. A verdict is an answer. Give a reader
 the log and every partial state is indistinguishable from success.
+
+## 70. The release was green for the commit that asked, and red for the commit that answered
+
+September 2nd. A complete guard run dispatched Pages with permission to publish `main`. Between
+those two events another pull request moved `main`. Pages correctly checked out the newer head,
+found no completed aggregate guard for it yet, and failed. Nothing unsafe deployed. The red run
+was still a machine defect: normal concurrency had been encoded as an error, so every busy release
+could leave a failed workflow that required a person to decide whether it mattered.
+
+The dispatch carried a branch name when the fact it had earned was about a commit. Those are not
+the same capability. A branch is a moving pointer, and a green result for its old value does not
+become evidence for its new one merely because the name stayed put.
+
+The release now carries the exact guarded SHA. Pages compares it with current `main`; if main has
+moved, the stale request exits green without deploying because the newer head's own guards own the
+next release. If it still matches, verification records that SHA and the deploy job checks out that
+recorded value rather than reading `main` a second time. Scheduled recovery may select current main,
+but it must prove the aggregate guard attached to that exact commit before publishing.
+
+**Generalises to.** Any handoff from validation to mutation. Pass the immutable object that was
+validated, not the mutable label used to find it. A stale request is often neither success nor
+failure of the product; when a newer request supersedes it, encode that as a clean no-op. Red should
+mean broken, not merely overtaken.

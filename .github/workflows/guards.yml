@@ -1304,8 +1304,9 @@ jobs:
   # GITHUB_TOKEN suppresses ordinary workflow-to-workflow events. Collector pushes therefore
   # dispatch this workflow explicitly, and a workflow_run listener does not reliably continue
   # that token-created chain. This job starts Pages with the one event GitHub explicitly allows
-  # a workflow token to create. It is downstream of the aggregate check, so the required
-  # `guards` result is already green before Pages begins its exact-SHA verification.
+  # a workflow token to create. It is downstream of the aggregate check and passes that exact
+  # SHA to Pages. If main has moved by the time Pages starts, that stale dispatch exits green and
+  # the newer head's own guard run owns the release.
   release:
     needs: guards
     if: github.ref == 'refs/heads/main'
@@ -1317,4 +1318,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         # This job needs no checkout, so gh cannot infer a repository from a .git directory.
-        run: gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main
+        run: gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main --field guarded_sha="${GITHUB_SHA}"
