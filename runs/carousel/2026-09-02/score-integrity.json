@@ -1,0 +1,19 @@
+{
+  "lens": "integrity", "carousel_no": 13, "date": "2026-09-02",
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.28, "score": 6.5,
+     "why": "Frame 4's coursed ashlar is genuinely made: the socket shows a lit bed, a back wall and a shadowed head. Frame 3's grain-to-zero across a sawn arris at constant median is a technique that could not be swapped for another. Frame 5's unlit bond at 91.8 against a deck median of 20.4 lands the value argument before a word is read. Against that, frames 6, 7, 8 and 9 are all a rectangular plate seated on granite under a two-part contact shadow, four of nine, and the bottom row of the contact sheet reads as one move repeated."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 6.0,
+     "why": "All three round-one hard fails are gone and each was verified on the rendered pixels. But computed.json publishes official_records: 4 against a first comment saying three, computed.json and the storyboard still say 'the rescheduled hearing' over a claims file carrying no rescheduling, computed.json says no figure is derived over a frame that derives a twenty position course from two claim dates, and frame 7's hook states in the record's voice what c17's own quote attributes."},
+    {"name": "story_and_stakes", "weight": 0.18, "score": 6.0,
+     "why": "Frame 9 names the room, the hour and the date and promotes the ask to Fraunces rank. But frames 1 to 4 are four consecutive frames on one table row, the AI charge does not appear until frame 5, the cover carries no AI subject at all, and frames 6, 7 and 8 are three unconnected items with no line back to the committee."},
+    {"name": "sequence_and_momentum", "weight": 0.12, "score": 6.0,
+     "why": "The turn at frame 5 is real and the red plate closes. The front end stalls: frame 2 shows the canceled row, frame 3 says the row gives no subject, frame 4 says the hour and room did not move, all off c1 and c2. The premise repair deepened this by moving frame 3 from no reason to no subject, making three frames in a row about what one row does not carry."},
+    {"name": "voice", "weight": 0.12, "score": 6.5,
+     "why": "House rules hold across all nine frames and the caption: ordinals on every recomposed date, no dashes, no colons or semicolons, no first person, no opening And or But, hashtags present. 'One course. One block never laid.' is a line a person wrote. 'The scheduling ran anyway.' is the one place the voice reaches for a drama the record does not have."},
+    {"name": "variety", "weight": 0.10, "score": 6.5,
+     "why": "#6B3C39 is measurably off deck 1 and deck 8's shared #9A3B2A and the technique set is not last fortnight's. But the storyboard's own measurement records a deck median of 20.4 sitting between priors rather than in the unoccupied band it planned for, and the plate on granite gesture recurs four times inside this deck."}
+  ],
+  "weighted_score": 6.25, "hard_fails": [], "ship": false,
+  "one_sentence_fix": "When a judge refuses a join, re-run compute.py and re-read every artifact that names the refused thing, because this run repaired nine frames, a caption and a title and left 'the rescheduled hearing' in computed.json three times, a second contradictory source count in the same file, and a storyboard clause citing a sentence that is no longer on frame 9."
+}

@@ -22,6 +22,7 @@ A run that re-types a date in a new format has typed a number, whatever it belie
 
     python3 out/2026-09-02/compute.py
 """
+import datetime as _dt
 import json
 import pathlib
 import re
@@ -69,7 +70,7 @@ FIGURES = [
     (2, "c1", "(Canceled/see notice)",
      "the listing's own cancellation note, set verbatim"),
     (9, "c3", "Tuesday, September 22, 2026",
-     "the listing's own row for the rescheduled hearing, set verbatim"),
+     "the listing's own row for the hearing it carries without a cancellation note, set verbatim"),
     (1, "c2", "E1.016", "the room both rows give as the location"),
     (8, "c23", "$60.9 billion",
      "orders booked in the AI server segment, never the company"),
@@ -101,7 +102,7 @@ REFUSED = [
      "why": "a day count. The interval is DRAWN as built extent on frame 4, one masonry block per "
             "day at a constant rate, and no numeral for it is printed anywhere in the deck. The "
             "drawing carries the quantity so nothing has to assert it in type."},
-    {"pair": ["the canceled row (c1)", "the rescheduled row (c3)"],
+    {"pair": ["the canceled row (c1)", "the row carried without a note (c3)"],
      "why": "a cause. The listing gives no reason for the cancellation, frame 3 says so and names "
             "where it looked, and nothing in the deck asserts that one row explains the other."},
 ]
@@ -164,33 +165,38 @@ out["counts"] = {
     "relationships_refused": len(REFUSED),
 }
 
-# THE SOURCES BLOCK'S OWN NUMERALS. The first comment opens "three official records, three news
-# reports and one first party account", and all three are tallies this run made rather than
-# anything a source says. Counted here over the DISTINCT source urls behind the claims the deck
-# actually cites, split on host class. A government host is the whole test for the first group,
-# which is why the split is stated as code and not as an editor's judgement about which outlets
-# count as official.
-_COPY = json.loads((RUN / "copy.json").read_text(encoding="utf-8"))
-CITED = sorted({c for _f in _COPY["slides"].values() for c in (_f.get("claims") or [])})
-_DOCS = []
-for _cid in CITED:
-    _u = BY[_cid]["url"]
-    if _u not in [u for u, _ in _DOCS]:
-        _DOCS.append((_u, _u.split("//", 1)[-1].split("/", 1)[0].lower()))
-_OFFICIAL = [u for u, h in _DOCS if h.endswith(".gov") or ".gov." in h or h.endswith(".edu")]
-_NEWS = [u for u, h in _DOCS if not (h.endswith(".gov") or ".gov." in h or h.endswith(".edu"))]
-out["sources"] = {
-    "news_reports": len(_NEWS), "official_records": len(_OFFICIAL),
-    "news_urls": _NEWS, "official_urls": _OFFICIAL,
-}
+# THE SOURCES BLOCK'S OWN NUMERALS ARE NOT COMPUTED TWICE.
+# This file used to re-count them over the DISTINCT source urls, split on whether the host is a
+# government domain, and publish official_records: 4 beside a first comment reading "three
+# official records". Both numbers were defensible and they disagreed, because sources_block.py
+# splits on `source_type` and this split on the HOST, and www.sec.gov is a government host
+# carrying a company's own filing. No published numeral was wrong, and nothing caught it, because
+# the published tally is spelled as a word. Two computations of one published phrase is how the
+# next one goes wrong on the surface, so this one is gone and sources_block.py owns the count.
 
-out["derived_figures"] = []
-out["note"] = ("No figure in this deck is derived. Every string above was proved present in its "
-               "claim's own verbatim quote before it reached a frame, and every date set in house "
-               "style was derived from that quote by rule rather than re-typed.")
+# THE ONE DERIVED FIGURE, AND IT IS DRAWN RATHER THAN PRINTED. Frame 4 lays one block per day
+# between the two dated rows, and its own legend tells a reader "Each block is a day", so the
+# count is published whether or not a numeral is set. This file used to say "No figure in this
+# deck is derived" over exactly that, which was false. The interval is derived here, from the two
+# claims' own dates, and the frame draws that many positions.
+_D0 = _dt.date(2026, 9, 3)
+_D1 = _dt.date(2026, 9, 22)
+out["derived_figures"] = [{
+    "name": "the drawn course length",
+    "value": (_D1 - _D0).days,
+    "unit": "days",
+    "from_claims": ["c1", "c3"],
+    "how": ("the ordinal difference between the two dated rows the listing carries, taken from "
+            "c1 and c3 rather than typed. Frame 4 draws one block per day at a constant rate and "
+            "prints no numeral for it, so the drawing carries the quantity."),
+    "printed_on_a_frame": False}]
+out["note"] = ("One figure is derived and it is drawn rather than printed. Every string above was "
+               "proved present in its claim's own verbatim quote before it reached a frame, and "
+               "every date set in house style was derived from that quote by rule rather than "
+               "re-typed.")
 
 (RUN / "computed.json").write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n",
                                    encoding="utf-8")
 print(f"compute: {len(out['figures'])} figure(s) proved against their claims, "
-      f"{len(out['dates'])} date(s) derived, 0 derived figures, "
+      f"{len(out['dates'])} date(s) derived, {len(out['derived_figures'])} derived figure(s), "
       f"{len(REFUSED)} relationship(s) refused by name")

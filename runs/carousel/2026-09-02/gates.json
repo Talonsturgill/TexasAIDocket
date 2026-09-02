@@ -1,0 +1,66 @@
+{
+  "claims": {
+    "status": "PASS",
+    "detail": "25 verified claim(s)"
+  },
+  "render": {
+    "status": "PASS",
+    "detail": "9 slide(s)"
+  },
+  "qa": {
+    "status": "PASS",
+    "detail": "9 slide(s), zero fails, zero warns"
+  },
+  "aggregates": {
+    "status": "PASS",
+    "detail": "6 declaration(s), 6 numeric phrase(s) in the render, all re-derived"
+  },
+  "assembly": {
+    "status": "PASS",
+    "detail": "9 slide(s), 5.71 MB, vector"
+  },
+  "score": {
+    "status": "STALE",
+    "detail": "score.json predates the newest render, so it describes a deck that no longer exists. Re-run it"
+  },
+  "labels": {
+    "status": "PASS",
+    "detail": "0 claim id(s) checked, every label beside one traces to the shape its claim proves"
+  },
+  "quantifiers": {
+    "status": "PASS",
+    "detail": "72 published string(s) read from one list, every universal names its set"
+  },
+  "dossiers": {
+    "status": "PASS",
+    "detail": "43,896 chars planned"
+  },
+  "caption": {
+    "status": "PASS",
+    "detail": "136 words"
+  },
+  "craft floor": {
+    "status": "WARN",
+    "detail": "9 frame(s), median 531, floor 96, 1 quiet"
+  },
+  "plan vs render": {
+    "status": "PASS",
+    "detail": "13 of 69 acceptance item(s) checkable"
+  },
+  "texan": {
+    "status": "PASS",
+    "detail": "places NORTHSIDE ISD, WORTH ISD / body yes / deadline yes / next step yes"
+  },
+  "absences": {
+    "status": "WARN",
+    "detail": "5 of 11 scoped to a named document, 6 unscoped"
+  },
+  "numerals": {
+    "status": "PASS",
+    "detail": "11 numeral(s) over 9 frame(s), every one reachable"
+  },
+  "completion": {
+    "status": "FAIL",
+    "detail": "THE DECK DID NOT SHIP, so this run is not done"
+  }
+}

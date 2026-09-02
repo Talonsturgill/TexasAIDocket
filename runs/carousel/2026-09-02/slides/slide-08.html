@@ -116,14 +116,14 @@ window.renderReady = new Promise(function (resolve) {
     cx.fillRect(x0, y0, fw, y1 - y0);
     /* white line intaglio: the density carries the tone, and it stops well
        clear of every glyph so the engraving never fights the message */
-    for (var ln = 0; ln < 190; ln++) {
-      var yy = y0 + (ln / 190) * (y1 - y0);
+    for (var ln = 0; ln < 460; ln++) {
+      var yy = y0 + (ln / 460) * (y1 - y0);
       /* ENGRAVE THE GROUND, NOT THE MESSAGE. The library's named failure for
          intaglio is line density fighting the type, and the dossier's own
          acceptance asks for 24px of clearance around every glyph. */
-      if (yy > y0 + 20 && yy < y1 - 46) continue;
+      if (yy > y0 + 38 && yy < y1 - 64) continue;
       var amp = 3 + R() * 5;
-      cx.strokeStyle = "rgba(242,220,203," + (0.10 + R() * 0.16) + ")";
+      cx.strokeStyle = "rgba(242,220,203," + (0.17 + R() * 0.26) + ")";
       cx.lineWidth = 0.5 + R() * 0.8;
       cx.beginPath();
       cx.moveTo(x0, yy);

@@ -62,14 +62,6 @@
       "value": 3,
       "computed_by": "sources_block.py counts the DISTINCT source urls behind the claims the nine frames cite in copy.json, deduped by url, and split on host class: https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai; https://www.govtech.com/education/k-12/fort-worth-isd-to-launch-chatgpt-for-teachers-district-wide; https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
       "note": "The first comment's sources line. Counted from the claims file, never typed."
-    },
-    {
-      "phrase": "Two documents",
-      "kind": "count",
-      "slide": 3,
-      "value": 2,
-      "computed_by": "the count of documents this run fetched looking for a reason for the cancellation, taken from the run's own fetch log: the upcoming Senate meetings listing at capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S, which is c1's source, and the committee's own page at senate.texas.gov/cmte.php?c=525, which is c4's source. The third, the notice the row links, is disallowed by robots.txt and was not fetched",
-      "note": "It cannot be a from_claims tally, because a document that yields nothing quotable produces no claim, and the whole point of the frame is that one of the two said nothing about a reason."
     }
   ],
   "derived": [],

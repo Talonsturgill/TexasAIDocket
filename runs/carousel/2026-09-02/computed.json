@@ -19,7 +19,7 @@
       "slide": 9,
       "claim": "c3",
       "string": "Tuesday, September 22, 2026",
-      "names_the_set": "the listing's own row for the rescheduled hearing, set verbatim",
+      "names_the_set": "the listing's own row for the hearing it carries without a cancellation note, set verbatim",
       "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
     },
     {
@@ -69,7 +69,7 @@
     {
       "pair": [
         "the canceled row (c1)",
-        "the rescheduled row (c3)"
+        "the row carried without a note (c3)"
       ],
       "why": "a cause. The listing gives no reason for the cancellation, frame 3 says so and names where it looked, and nothing in the deck asserts that one row explains the other."
     }
@@ -91,26 +91,23 @@
     }
   ],
   "counts": {
-    "claims_verified": 24,
+    "claims_verified": 25,
     "figures_proved": 6,
     "dates_derived": 2,
     "relationships_refused": 4
   },
-  "sources": {
-    "news_reports": 3,
-    "official_records": 4,
-    "news_urls": [
-      "https://www.govtech.com/education/k-12/fort-worth-isd-to-launch-chatgpt-for-teachers-district-wide",
-      "https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
-      "https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai"
-    ],
-    "official_urls": [
-      "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
-      "https://www.depts.ttu.edu/tlpdc/AI-Syllabus-Statements.php",
-      "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm",
-      "https://senate.texas.gov/cmte.php?c=525"
-    ]
-  },
-  "derived_figures": [],
-  "note": "No figure in this deck is derived. Every string above was proved present in its claim's own verbatim quote before it reached a frame, and every date set in house style was derived from that quote by rule rather than re-typed."
+  "derived_figures": [
+    {
+      "name": "the drawn course length",
+      "value": 19,
+      "unit": "days",
+      "from_claims": [
+        "c1",
+        "c3"
+      ],
+      "how": "the ordinal difference between the two dated rows the listing carries, taken from c1 and c3 rather than typed. Frame 4 draws one block per day at a constant rate and prints no numeral for it, so the drawing carries the quantity.",
+      "printed_on_a_frame": false
+    }
+  ],
+  "note": "One figure is derived and it is drawn rather than printed. Every string above was proved present in its claim's own verbatim quote before it reached a frame, and every date set in house style was derived from that quote by rule rather than re-typed."
 }

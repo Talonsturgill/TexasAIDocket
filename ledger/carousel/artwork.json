@@ -702,6 +702,86 @@
       },
       "register_caveat": "The register line for this deck previously claimed no frame carries a drawn outline, a hard edged plate or a visible corner anywhere. A judge measured a hard vertical seam on slide 4 and hard edged fold slabs on slide 2, so the absolute claim is withdrawn: what holds is that no frame carries a drawn OUTLINE around an object and no frame carries a rectangular plate behind type. The seams are drawn edges inside the picture and they are not the same thing.",
       "deck_median_note": "The storyboard chose this register to occupy a mid band the ledger had unoccupied against priors of 27.7, 22.2 and 15.6, and the deck shipped on top of 22.2 rather than in the gap. The figure is `value.deck_median_L` and it is DELIBERATELY NOT REPEATED HERE. A prose figure beside a measured array is a second copy of a number and the second copy is the one that goes stale, which the 2026-08-27 entry warns about and which this entry did twice before a judge measured 20.9 in the prose against 21.2 in the array above it."
+    },
+    {
+      "date": "2026-09-02",
+      "carousel_no": 13,
+      "register": "Granite Mountain sunset red granite as the Capitol is actually faced in, lit by ONE grazing key at azimuth 118 and 8 degrees elevation that only ever catches an edge. One machined thing per frame seated on that stone, and the frame's brightest pixels always on that thing's edges and never on its face. Frame 9 is the one declared break, where a working light lands on a face.",
+      "techniques": [
+        "a gooseneck relit across its cross section as five continuous offset shells rather than per segment, after stroking each segment separately put a miter spike at every vertex and both silhouettes read as a saw blade at 432px",
+        "grain going to zero across a sawn arris at CONSTANT median value, with the frame publishing both medians and the variance ratio to window.__txProbe so the claim is a number rather than an opinion",
+        "coursed ashlar drawn as built extent, one block per day at a constant rate, with a socket where the canceled date was and no numeral for the interval printed anywhere",
+        "a full bleed sheet of bond with NO drawn light of any kind, the deck's brightest frame at 91.8 against a median of 20.4, which carries the value argument before a word is read",
+        "three plates identical by construction, asserted by the frame's own script, because the record does not rank three institutions and nothing about the objects may differ",
+        "two engraved fields sharing no edge and no alignment, with a deep uncut gutter and each gutter wall belonging to the field it was cut from, because two identically bounded panels stacked with matching alignment IS a comparison table",
+        "the reserved red as a filled GROUND with mono reversed out, seated with a measured contact shadow read off getBoundingClientRect rather than a literal height"
+      ],
+      "palette": {
+        "source": "Granite Mountain sunset red granite, dark stained hardwood, machined stainless and one sheet of bond",
+        "tokens": [
+          "mountain #6B3C39",
+          "quarry #33211F",
+          "biotite #141013",
+          "feldspar #F2DCCB",
+          "quartz #9E958C",
+          "pecan #4A3527",
+          "stainless #9FA6A8",
+          "bond #EFE9DC",
+          "toner #201C1A",
+          "flag_red #BF0A30"
+        ]
+      },
+      "value": {
+        "planned": [
+          26,
+          20,
+          16,
+          34,
+          86,
+          30,
+          22,
+          33,
+          44
+        ],
+        "planned_deck_median": 30,
+        "median_lstar": [
+          17.8,
+          33.4,
+          14.6,
+          20.4,
+          91.8,
+          21.0,
+          18.2,
+          16.7,
+          31.2
+        ],
+        "deck_median_L": 20.4,
+        "brightest": {
+          "frame": 5,
+          "L": 91.8
+        },
+        "darkest": {
+          "frame": 3,
+          "L": 14.6
+        },
+        "priors": [
+          27.7,
+          22.2,
+          15.6,
+          21.2
+        ],
+        "note": "Measured off the rendered PNGs at 432px after the pixel review, not planned. 20.4 sits between priors rather than in the unoccupied band near 30 the plan aimed at, and it is recorded as measured rather than rounded toward the plan."
+      },
+      "arc_note": "The deck came in about ten points under its own plan and the ORDERING survived, which is the half that mattered: frame 3 is the darkest of the nine and frame 5 the brightest, so what the state did not publish and what it did are separable before a word is read. That ordering was NOT true when the frames were first built. Frame 3 rendered as a mid at 20.0 while frames 1, 4 and 8 sat in the low teens, the deck's best single idea was inverted in the pixels, and every gate was green. A pixel critic reading two frames side by side is what caught it.",
+      "avoid_next": [
+        "ONE PRIMITIVE CARRIED FIVE OF NINE FRAMES. A lighter rectangle holding type, seated on stone with a lit bevel and a contact shadow, is frames 2, 6, 7, 8 and 9. The craft judge scored artwork_craft at 5.5 for it and named it the deck's real problem: the detail budget is front loaded exactly opposite to the argument, which ends on 7 to 9. Next deck spends its invention on the frames the argument ends on.",
+        "A DECLARED TECHNIQUE THAT DID NOT REACH A READER. Frame 8 declares white line intaglio and its engraved bands were 190 low alpha lines confined to a 20px and a 46px strip, so a judge reading the render said the frame carries no engraving at all. The acceptance item 'the engraved line density stops at least 24px clear of every glyph' is VACUOUSLY SATISFIED by a frame with no engraved line, which is worth a gate.",
+        "THE KEY IS DECLARED AT 8 DEGREES AND DID NOT RENDER AT 8 DEGREES. Every cast shadow in the deck is a short soft offset consistent with a key well above 45. The elevation is in the dossier and in no drawing step, so nothing measured it."
+      ],
+      "bespoke_median": "0.3926",
+      "bespoke_closest_pair": "closest pair: slide-06.html and slide-07.html at 0.7702",
+      "register_caveat": "Material carries attribution across eight frames and frame 9 buys a DECLARED exemption with a sentence, setting a room number on stainless where the same listing's rows sit on dressed stone. The exemption is written into THE PALETTE rather than discovered by a judge. One frame in nine may buy one. A second may not.",
+      "deck_median_note": "20.4 sits between priors of 27.7, 22.2, 15.6 and 21.2 rather than in the unoccupied band near 30 the plan aimed at. Recorded as measured rather than rounded toward the plan."
     }
   ]
 }

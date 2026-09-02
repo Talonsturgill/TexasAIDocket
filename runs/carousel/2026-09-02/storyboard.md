@@ -77,9 +77,12 @@ dark stained hardwood, machined stainless and one sheet of bond.
 discovered.** Frame 9 sets `E1.016` on machined stainless while the same listing's own rows sit on
 dressed stone on frames 2 and 4, so the material crosses. It crosses on purpose. Frame 9 is
 already the deck's one light break and the one place the reserved red is spent, and a reader
-arriving at a room number wants a door plate rather than a quarry face. The frame says so in
-words, "The red row is the listing's own", which is the job the material law usually does without
-them. One frame in nine may buy an exception with a sentence. A second one may not.
+arriving at a room number wants a door plate rather than a quarry face. The frame said so in words until the integrity judge hard-failed that sentence: the listing
+renders its OWN cancellation note in class="redText", so the source's red marks the CANCELED row
+while this deck's reserved red marks the OPEN one, and "the red row is the listing's own" read as
+a provenance claim about a colour nobody fetched. The exception is bought HERE instead, in the
+doctrine, which is the more honest place for it. One frame in nine may buy an exception by
+declaring it. A second one may not.
 
 ## THE RESERVED RED
 
@@ -97,7 +100,7 @@ on.
     planned deck median           30
 
     MEASURED off the rendered PNGs at 432px, after the pixel review:
-    measured per frame median L*  17.8, 33.4, 14.6, 20.4, 91.8, 21.0, 17.9, 16.7, 31.3
+    measured per frame median L*  17.8, 33.4, 14.6, 20.4, 91.8, 21.0, 18.2, 16.7, 31.2
     measured deck median          20.4
 
 Priors are 27.7, 22.2, 15.6 and 21.2, so a median near 30 is an unoccupied band and still
@@ -252,18 +255,23 @@ job: >
   State that no reason for the cancellation is published in either document this record looked in,
   and name both of them, so the absence is evidenced rather than asserted.
 
-claims: [c1, c3]
+claims: [c1, c2]
 numerals:
   - value_from: c1
 
 type:
-  # AMENDED AFTER THE FLOW REVIEW. The hook read "The reason is not published
-  # here.", which restates what frame 2 already showed a reader in the listing's
-  # own parenthetical. Two frames on one beat. This frame's real contribution is
-  # the integrity move, so the hook carries it.
-  hook: "Two documents looked in. A third is off limits."
-  dek: "The row carries the cancellation and gives no reason for it."
-  labels: ["03 / 09", "robots.txt disallows that path"]
+  # AMENDED TWICE. The flow review found the hook restating what frame 2 already
+  # showed. Then the integrity judge hard-failed the deck's PREMISE: nothing in
+  # the record joins the September 3rd meeting to the AI interim charge, because
+  # the listing row gives a committee, an hour, a type and a room and NO subject,
+  # the committee page lists no meeting against the charge, and the notice that
+  # would join them is behind a robots-disallowed path. So this frame stops being
+  # about a missing reason and becomes the frame that says the listing gives no
+  # subject, which is the strongest thing the deck has and is true.
+  kicker: "What the row does not say"
+  hook: "The listing gives no subject."
+  dek: "The row carries the committee, the hour, the type and the room, and no agenda."
+  labels: ["03 / 09", "behind a path this record does not crawl"]
 
 composition:
   structure: >
@@ -302,9 +310,9 @@ acceptance:
   - "the two regions' per pixel variance differ by a factor of at least 8, measured at 432px"
   - "the smooth region is never darker than the textured region at the thumb"
   - "the frame publishes both medians to window.__txProbe, which is a console assertion and never a numeral in type"
-  - "the frame names both documents it looked in, the listing and the committee's own page"
+  - "the frame states what the row DOES carry before what it does not, so the absence is scoped to one document"
   - "nothing on this frame is struck through, torn, spalled or knocked out"
-  - "the frame prints 'robots.txt disallows that path' and names the notice it did not fetch"
+  - "the frame prints 'no agenda' and names where the subject would be"
   - "the phrase 'lists no upcoming meetings' appears nowhere, because verification rejected that reading"
 
 risks:
@@ -318,7 +326,7 @@ job: >
   Show that the hour and the room did not move and only the date did, by drawing the interval as
   built extent rather than printing it as a figure.
 
-claims: [c1, c2, c3]
+claims: [c1, c2, c3, c25]
 numerals:
   - value_from: c1
   - value_from: c3
@@ -343,7 +351,7 @@ composition:
   structure: >
     A coursed ashlar wall elevation running off both frame edges, one block per day at a constant
     rate, with the block at the canceled date drawn as a socket that was never filled and the block
-    at the rescheduled date dressed and present. This content wants that organisation because time
+    at the date the listing carries without a note dressed and present. This content wants that organisation because time
     drawn as extent is honest where a bar pair would invite a comparison nothing in the record
     supports, and a course of stone can carry a block that was never laid.
   bands: >
@@ -365,7 +373,7 @@ art:
     frame is the deck's second exposure to the redaction trap.
   palette: "mountain granite for the dressed blocks, quarry in the joints, feldspar on the lit bed, biotite in the socket floor"
   value_structure: >
-    Lightest is the lit bed joint of the socket and the dressed face of the rescheduled block.
+    Lightest is the lit bed joint of the socket and the dressed face of the dressed block.
     Darkest is the socket's shadowed head. The blocks between are the stone's own shadow at one
     hue and one intensity, so no block between the two dates is ranked against another.
   motion: "the eye runs along the course from the socket to the dressed block, which is the direction the story moves"
@@ -460,7 +468,11 @@ type:
   # and c9 is conditional and about immediacy. The plate carries c9's own words.
   # Nothing on the frame named the SUBJECT either, so a reader meeting frame 6
   # alone was told three institutions gave three answers and never told to what.
-  dek: "Each institution's own words. Nothing ranks them."
+  # AMENDED. house_style_check refused c9's verbatim on the plate, because the
+  # district's own words carry "we" and the article page renders a slide string as
+  # prose rather than as a blockquote. Two plates quote and one reports now, so the
+  # legend says ANSWER rather than own words.
+  dek: "Each plate is that institution's answer. Nothing ranks them."
   kicker: "ChatGPT in Texas"
   labels: ["06 / 09", "NORTHSIDE ISD", "FORT WORTH ISD", "TEXAS TECH"]
 
@@ -519,7 +531,11 @@ job: >
 claims: [c16, c17, c19]
 
 type:
-  hook: "The scheduling ran anyway."
+  # AMENDED AFTER THE PANEL. "The scheduling ran anyway." stated in the frame's
+  # largest type, in the record's own voice, a thing c17's quote attributes to one
+  # speaker, and "anyway" claimed a chronology the record reverses: the report is
+  # August 27th and the canceled hearing is September 3rd, which had not happened.
+  hook: "A union member says it makes the assignments."
   # AMENDED IN BUILD. c19 reads "Dozens of protesters gathered". "Nurses picketed"
   # is a stronger word and it asserts a labour action at a workplace, which no
   # claim carries.
@@ -641,7 +657,7 @@ job: >
   Hand the reader the room, the hour and the date they can still act on, and be the only frame in
   nine where the light lands on a face.
 
-claims: [c2, c3]
+claims: [c2, c3, c25]
 numerals:
   - value_from: c2
   - value_from: c3

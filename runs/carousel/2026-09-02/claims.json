@@ -12,8 +12,8 @@
     },
     {
       "id": "c2",
-      "text": "Both the canceled September 3rd meeting and the rescheduled one are listed as public hearings in the same room, E1.016, at 9:00 AM.",
-      "quote": "Location: E1.016 (Hearing Room)",
+      "text": "The canceled row is a public hearing of the Economic Development committee in room E1.016, and the listing carries the committee, the type and the room in one cell.",
+      "quote": "Economic Development (Canceled/see notice) Type: Public Hearing Location: E1.016 (Hearing Room)",
       "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
       "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
       "source_type": "primary_official",
@@ -241,6 +241,17 @@
       "source_type": "primary_corporate",
       "retrieved": "2026-09-02",
       "confidence": "high"
+    },
+    {
+      "id": "c25",
+      "text": "The row the listing carries without a cancellation note is a public hearing of the same committee in the same room.",
+      "quote": "Economic Development Type: Public Hearing Location: E1.016 (Hearing Room)",
+      "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+      "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high",
+      "note": "This binds to September 22nd across TWO quotes, c3's dated row and this cell, which is the shape the run refused three times in the same file. It is allowed here and the three were not, for a reason the refusals name: the chair join asked a HEADING to bind a LIST ITEM in a different structural element, and this asks a TABLE ROW to bind its own cells, which is what a table is. The listing carries exactly two Economic Development rows and one of them carries the cancellation note in the same cell as its room."
     }
   ],
   "rejected": [
@@ -299,6 +310,11 @@
     {
       "finding": "the Dell dateline as a claim",
       "reason": "The dateline string in the filing carries an em dash, which is the character the filing uses. It is dropped rather than quoted, because the Round Rock location is not load bearing for this deck and a quote carrying a dash invites a lint argument that changes nothing about the story."
+    },
+    {
+      "finding": "The September 3rd meeting was the hearing on the AI interim charge.",
+      "reason": "REFUSED BY THE INTEGRITY JUDGE AS A HARD FAIL, and it was the deck's premise. The listing's row gives a committee name, an hour, a type and a room, and no subject. The committee's own page carries the interim charge and lists no meeting against it. The document that would join them is the hearing notice the row links, at capitol.texas.gov/tlodocs/, which robots.txt disallows and this record does not crawl. So the join is an inference and the deck asserted it as fact in its title, its caption and its opening frame. What IS supported is that the committee carrying the charge lost a public hearing and has another one listed, and that the listing gives no subject for either. The deck says that now.",
+      "source": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
     }
   ]
 }

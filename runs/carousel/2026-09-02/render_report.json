@@ -176,7 +176,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2333,
+      "render_ms": 2402,
       "ok": true,
       "canvases": [
         {
@@ -390,7 +390,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1958,
+      "render_ms": 1995,
       "ok": true,
       "canvases": [
         {
@@ -419,10 +419,10 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "What is not published",
+          "text": "What the row does not say",
           "x": 80,
           "y": 96,
-          "w": 389,
+          "w": 463,
           "h": 30,
           "font_px": 25,
           "weight": "500",
@@ -434,19 +434,19 @@
             [
               80,
               94,
-              389,
+              463,
               34
             ]
           ],
           "anc": []
         },
         {
-          "text": "Two documents looked in. A third is off limits.",
+          "text": "The listing gives no subject.",
           "x": 80,
           "y": 200,
           "w": 700,
           "h": 260,
-          "font_px": 80,
+          "font_px": 103.5,
           "weight": "600",
           "family": "Fraunces",
           "color": "rgb(242, 220, 203)",
@@ -455,31 +455,25 @@
           "lines": [
             [
               80,
-              193,
-              521,
-              98
+              191,
+              633,
+              127
             ],
             [
               80,
-              278,
-              620,
-              98
-            ],
-            [
-              80,
-              363,
               301,
-              98
+              421,
+              127
             ]
           ],
           "anc": []
         },
         {
-          "text": "The row carries the cancellation and gives no reason for it. This record looked in the listing and the committee's own page. It does not fetch the notice the row links, because robots.txt disallows that path. c1",
+          "text": "The row carries the committee, the hour, the type and the room, and no agenda. The notice that would carry an agenda sits behind a path this record does not crawl. c1 c2",
           "x": 80,
           "y": 1010,
           "w": 792,
-          "h": 167,
+          "h": 125,
           "font_px": 29,
           "weight": "400",
           "family": "Manrope",
@@ -490,25 +484,19 @@
             [
               80,
               1010,
-              771,
+              763,
               40
             ],
             [
               80,
               1052,
-              752,
+              696,
               40
             ],
             [
               80,
               1094,
-              743,
-              40
-            ],
-            [
-              80,
-              1135,
-              433,
+              772,
               40
             ]
           ],
@@ -578,7 +566,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1585,
+      "render_ms": 1733,
       "ok": true,
       "canvases": [
         {
@@ -725,7 +713,7 @@
           "anc": []
         },
         {
-          "text": "Each block is a day. The course runs from the canceled hearing to the date the listing carries now. c1 c2 c3",
+          "text": "Each block is a day. The course runs from the canceled hearing to the date the listing carries now. c1 c2 c3 c25",
           "x": 80,
           "y": 1136,
           "w": 860,
@@ -746,7 +734,7 @@
             [
               80,
               1172,
-              351,
+              398,
               35
             ]
           ],
@@ -816,7 +804,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1588,
+      "render_ms": 1539,
       "ok": true,
       "canvases": [
         {
@@ -1126,7 +1114,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2065,
+      "render_ms": 2131,
       "ok": true,
       "canvases": [
         {
@@ -1227,7 +1215,7 @@
           "anc": []
         },
         {
-          "text": "ChatGPT for all staff in October. Student access \"wouldn't be something that we would immediately allow.\"",
+          "text": "ChatGPT for Teachers for all staff in October. Student access would not follow yet.",
           "x": 104,
           "y": 470,
           "w": 848,
@@ -1242,13 +1230,13 @@
             [
               104,
               469,
-              721,
+              845,
               36
             ],
             [
               104,
               505,
-              534,
+              122,
               36
             ]
           ],
@@ -1327,7 +1315,7 @@
           "anc": []
         },
         {
-          "text": "Each instructor may \"permit, partially permit, or prohibit\" generative AI.",
+          "text": "Instructors may \"permit, partially permit, or prohibit\" generative AI.",
           "x": 104,
           "y": 950,
           "w": 848,
@@ -1342,14 +1330,14 @@
             [
               104,
               949,
-              838,
+              786,
               36
             ]
           ],
           "anc": []
         },
         {
-          "text": "Each institution's own words. Nothing ranks them. c8 c9 c12 c14",
+          "text": "Each plate is that institution's answer. Nothing ranks them. c8 c9 c12 c14",
           "x": 80,
           "y": 1146,
           "w": 900,
@@ -1364,7 +1352,7 @@
             [
               80,
               1146,
-              723,
+              822,
               35
             ]
           ],
@@ -1434,7 +1422,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2031,
+      "render_ms": 2620,
       "ok": true,
       "canvases": [
         {
@@ -1485,7 +1473,7 @@
           "anc": []
         },
         {
-          "text": "The scheduling ran anyway.",
+          "text": "A union member says it makes the assignments.",
           "x": 80,
           "y": 164,
           "w": 760,
@@ -1500,13 +1488,13 @@
             [
               80,
               158,
-              568,
+              690,
               84
             ],
             [
               80,
               231,
-              242,
+              702,
               84
             ]
           ],
@@ -1581,7 +1569,7 @@
           "anc": []
         },
         {
-          "text": "Protesters gathered near Riverside Drive and South Congress Avenue in Austin. The report ties the tool to HCA Healthcare and names no hospital where it runs. c17 c19",
+          "text": "Protesters gathered near Riverside Drive and South Congress Avenue in Austin. The report ties the tool to HCA Healthcare and names no hospital. c17 c19",
           "x": 80,
           "y": 1064,
           "w": 900,
@@ -1602,13 +1590,13 @@
             [
               80,
               1101,
-              863,
+              870,
               36
             ],
             [
               80,
               1139,
-              251,
+              83,
               36
             ]
           ],
@@ -1689,7 +1677,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1640,
+      "render_ms": 1829,
       "ok": true,
       "canvases": [
         {
@@ -1702,8 +1690,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 78.6,
-          "variance": 3626.5
+          "mean": 75.9,
+          "variance": 3500.8
         }
       ],
       "breather": false,
@@ -1985,7 +1973,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 993,
+      "render_ms": 1096,
       "ok": true,
       "canvases": [
         {
@@ -1998,8 +1986,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 44.4,
-          "variance": 240.9
+          "mean": 47.3,
+          "variance": 531.1
         }
       ],
       "breather": false,
@@ -2114,7 +2102,7 @@
           "anc": []
         },
         {
-          "text": "The listing gives the location as \"E1.016 (Hearing Room)\" and puts no cancellation note on the row.",
+          "text": "The listing gives it as a public hearing in E1.016, and puts no cancellation note on the row.",
           "x": 148,
           "y": 886,
           "w": 784,
@@ -2129,13 +2117,13 @@
             [
               148,
               886,
-              778,
+              699,
               36
             ],
             [
               148,
               923,
-              380,
+              344,
               36
             ]
           ],
@@ -2170,7 +2158,7 @@
           "anc": []
         },
         {
-          "text": "The red row is the listing's own. Texas Legislature Online. Retrieved September 2nd, 2026. c2 c3",
+          "text": "Texas Legislature Online lists it as a public hearing. Retrieved September 2nd, 2026. c3 c25",
           "x": 80,
           "y": 1092,
           "w": 900,
@@ -2185,13 +2173,13 @@
             [
               80,
               1092,
-              894,
+              883,
               35
             ],
             [
               80,
               1128,
-              187,
+              146,
               35
             ]
           ],
@@ -2261,7 +2249,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2742,
+      "render_ms": 2925,
       "ok": true,
       "canvases": [
         {

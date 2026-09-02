@@ -54,12 +54,12 @@
 
 <div class="layer">
   <div class="kicker">On a street corner</div>
-  <div id="hookbox">The scheduling ran anyway.</div>
+  <div id="hookbox">A union member says it makes the assignments.</div>
   <div id="quotebox">"Timpani is used for making patient assignments, staffing, and to the detriment of the nurses, sometimes they short-staff them."</div>
   <div class="saidline"></div>
   <div class="saidby">says a National Nurses Union member &middot; c16</div>
   <div class="whereline"></div>
-  <div class="where">Protesters gathered near Riverside Drive and South Congress Avenue in Austin. The report ties the tool to HCA Healthcare and names no hospital where it runs. c17 c19</div>
+  <div class="where">Protesters gathered near Riverside Drive and South Congress Avenue in Austin. The report ties the tool to HCA Healthcare and names no hospital. c17 c19</div>
   <div class="foot-l">07 / 09</div>
   <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
 </div>
@@ -129,8 +129,14 @@ window.renderReady = new Promise(function (resolve) {
      human voice getting the same object as a school district and an earnings
      figure. The board runs off the left frame edge and up past the hook now, so
      a reader is standing in front of it rather than looking at a plate on a
-     wall. Nothing about the light changes: the deck has one key. */
-  var PX = -60, PY = 356, PW = 1000, PH = 560;
+     wall. Nothing about the light changes: the deck has one key.
+
+     IT DOES NOT BLEED. The first cut of this ran the board off the left frame
+     edge, which deleted the lit left edge the deck's one law lives on and left
+     the flat face as the frame's brightest AREA, on a frame that declares no
+     exemption. Frame 9 is the deck's only declared break. Scale is what breaks
+     the plate repetition here, and the edge stays on the frame. */
+  var PX = 88, PY = 356, PW = 880, PH = 560;
 
   /* A 320px lens centred under a 762px board is the library's DROP shadow, and
      it is what made the panel float. The core spans the whole base and the body
@@ -188,7 +194,7 @@ window.renderReady = new Promise(function (resolve) {
 
   /* THE LIT LEFT EDGE, the frame's brightest thing */
   cx.fillStyle = "rgba(255,252,246,0.94)";
-  cx.fillRect(PX, PY, 6.0, PH);
+  cx.fillRect(PX, PY, 7.0, PH);
   cx.fillStyle = "rgba(255,252,246,0.60)";
   cx.fillRect(PX, PY, PW, 2.2);
   /* A RETURN FACE AND A SEATED FOOT. A 2.6px border is not an edge, it is a

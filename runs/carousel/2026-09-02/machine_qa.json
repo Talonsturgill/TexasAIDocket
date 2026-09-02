@@ -27,11 +27,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1071,
+        0.1239,
         0.2878,
-        0.5515
+        0.5441
       ],
-      "band_ratio": 1.6906
+      "band_ratio": 1.6545
     },
     {
       "file": "slide-04.html",
@@ -61,32 +61,32 @@
       "warns": [],
       "bands": [
         0.6744,
-        0.6597,
-        0.6379
+        0.6429,
+        0.636
       ],
-      "band_ratio": 0.9717
+      "band_ratio": 0.9779
     },
     {
       "file": "slide-07.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.3908,
-        0.2584,
-        0.5074
+        0.3571,
+        0.2395,
+        0.5533
       ],
-      "band_ratio": 1.2974
+      "band_ratio": 1.415
     },
     {
       "file": "slide-08.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.1345,
-        0.3466,
-        0.307
+        0.2017,
+        0.3992,
+        0.3787
       ],
-      "band_ratio": 1.1597
+      "band_ratio": 1.1514
     },
     {
       "file": "slide-09.html",
@@ -95,9 +95,9 @@
       "bands": [
         0.7353,
         0.4517,
-        0.7151
+        0.7279
       ],
-      "band_ratio": 1.1213
+      "band_ratio": 1.1332
     }
   ],
   "fails": 0,
