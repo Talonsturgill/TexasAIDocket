@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #33211F; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #E8CFC2;
+    font-size: 25px;
+  }
+  #hookbox {
+    position: absolute; left: 80px; width: 800px; top: 166px;
+    height: 190px; overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 600; color: #F2DCCB;
+    line-height: 1.06; letter-spacing: -.015em;
+  }
+  .who {
+    position: absolute; font: 500 25px/1.2 "JetBrains Mono", monospace;
+    color: #262322; letter-spacing: .02em;
+  }
+  .said {
+    position: absolute; font: 400 26px/1.38 "Manrope", sans-serif; color: #1E1B1A;
+  }
+  .w1 { left: 104px; top: 430px; width: 848px; }  .s1 { left: 104px; top: 470px; width: 848px; }
+  .w2 { left: 104px; top: 670px; width: 848px; }  .s2 { left: 104px; top: 710px; width: 848px; }
+  .w3 { left: 104px; top: 910px; width: 848px; }  .s3 { left: 104px; top: 950px; width: 848px; }
+  .legend {
+    position: absolute; left: 80px; width: 900px; top: 1146px;
+    font: 400 25px/1.42 "Manrope", sans-serif; color: #F2DCCB;
+  }
+  .legendline { position: absolute; left: 80px; width: 250px; top: 1122px; height: 1px; background: rgba(242,220,203,.44); }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #E8CFC2; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">ChatGPT in Texas</div>
+  <div id="hookbox">Three institutions. Three different answers.</div>
+
+  <div class="who w1">NORTHSIDE ISD</div>
+  <div class="said s1">ChatGPT for all staff in October. Student access "wouldn't be something that we would immediately allow."</div>
+
+  <div class="who w2">FORT WORTH ISD</div>
+  <div class="said s2">"in the early stages of exploring opportunities to leverage OpenAI's ChatGPT technology"</div>
+
+  <div class="who w3">TEXAS TECH</div>
+  <div class="said s3">Each instructor may "permit, partially permit, or prohibit" generative AI.</div>
+
+  <div class="legendline"></div>
+  <div class="legend">Each institution's own words. Nothing ranks them. c8 c9 c12 c14</div>
+  <div class="foot-l">06 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 6;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* the granite wall, unlit above, the key grazing the plates below */
+  cx.fillStyle = "#33211F";
+  cx.fillRect(0, 0, W, H);
+  var pitch = (W / 432) * 1.15;
+  var n = Math.floor((W * H) / (pitch * pitch * 3.0));
+  for (var i = 0; i < n; i++) {
+    var px = R() * W, py = R() * H, t = R();
+    var r = pitch * (0.30 + R() * 0.55);
+    var lit = Math.max(0, (py - 300) / 900) * 0.7;
+    if (t < 0.46)      cx.fillStyle = "rgba(20,16,19," + (0.16 + R() * 0.26) + ")";
+    else if (t < 0.82) cx.fillStyle = "rgba(158,149,140," + (0.05 + R() * 0.10) + ")";
+    else               cx.fillStyle = "rgba(242,220,203," + (0.03 + lit * (0.08 + R() * 0.26)) + ")";
+    var sides = 3 + Math.floor(R() * 3), rot = R() * 6.2832;
+    cx.beginPath();
+    for (var s = 0; s < sides; s++) {
+      var a = rot + (s / sides) * 6.2832, rr = r * (0.62 + R() * 0.72);
+      if (s === 0) cx.moveTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+      else cx.lineTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+    }
+    cx.closePath(); cx.fill();
+  }
+
+  /* the key's falloff down the wall, so the bottom third carries modeled tone */
+  /* THE VEIL HAS NO ENTRY EDGE. Starting it at y300 put a hard value step across
+     the full frame width, straight through the lower half of the headline's
+     second line, and at 432px it read as a seam behind the words. */
+  var wg = cx.createLinearGradient(0, 0, 0, H);
+  wg.addColorStop(0.00, "rgba(20,16,19,0.34)");
+  wg.addColorStop(0.62, "rgba(242,220,203,0.055)");
+  wg.addColorStop(1.00, "rgba(242,220,203,0.115)");
+  cx.fillStyle = wg;
+  cx.fillRect(0, 0, W, H);
+
+  /* --------------------------------------------------------- the three plates
+     IDENTICAL BY CONSTRUCTION. Same size, same bevel, same light, same shadow.
+     Three institutions reached three answers and the record does not rank them,
+     so nothing about the OBJECTS may differ. Only the words on them differ. */
+  var PX = 80, PW = 920, PH = 158;   /* flush with the frame's own type column */
+  var tops = [404, 644, 884];
+
+  for (var k = 0; k < 3; k++) {
+    var y = tops[k];
+    /* ONE SEAT THE WIDTH OF THE PLATE. The first build put a lens at 40 percent
+       of the plate's width and both ends floated. Seven lenses along the foot
+       fixed the ends and read as seven rubber pads with light between them, and
+       the end two overhung the plate by 87px each, which is a shadow wider than
+       the object casting it and impossible under a single key. The answer to a
+       shadow narrower than its object is w: PW, not more shadows. y + PH puts
+       the tight core IN CONTACT with the foot rather than 4px under it. */
+    TXCARVE.contactShadow(cx, {
+      x: PX + PW / 2, y: y + PH, w: PW, color: "#241715",
+      dirDeg: 62, tightAlpha: 0.44, wideAlpha: 0.05, tightBlur: 2, wideBlur: 30
+    });
+    var g = cx.createLinearGradient(PX, y, PX, y + PH);
+    g.addColorStop(0.00, "#C6CBCC");
+    g.addColorStop(0.16, "#AFB5B7");
+    g.addColorStop(1.00, "#8C9294");
+    cx.fillStyle = g;
+    cx.fillRect(PX, y, PW, PH);
+    /* the lit top bevel. THE FRAME'S BRIGHTEST PIXELS ARE ON THE PLATE EDGES
+       AND NEVER ON ITS FACE, which is the deck's law. */
+    /* 2.6px is one device pixel at 432 and the law it encodes never reached a
+       reader. A ridge also has two edges, so the crest gets a shadow under it. */
+    cx.fillStyle = "rgba(255,253,250,0.92)";
+    cx.fillRect(PX, y, PW, 6);
+    cx.fillStyle = "rgba(26,18,18,0.30)";
+    cx.fillRect(PX, y + 6, PW, 2.5);
+    cx.fillStyle = "rgba(255,253,250,0.46)";
+    cx.fillRect(PX + PW - 2.2, y, 2.2, PH);
+    cx.fillStyle = "rgba(26,18,18,0.56)";
+    cx.fillRect(PX, y + PH - 2.6, PW, 2.6);
+    cx.fillStyle = "rgba(26,18,18,0.34)";
+    cx.fillRect(PX, y, 2.2, PH);
+    /* brushed tooling, clear of the two laid out text bands */
+    cx.globalAlpha = 0.07;
+    for (var b = 0; b < 220; b++) {
+      var by = y + 3 + R() * (PH - 6);
+      cx.strokeStyle = R() < 0.5 ? "rgba(255,255,255,0.9)" : "rgba(40,34,34,0.85)";
+      cx.lineWidth = 0.4 + R() * 0.8;
+      cx.beginPath(); cx.moveTo(PX + 2, by); cx.lineTo(PX + PW - 2, by + (R() - .5) * 1.4); cx.stroke();
+    }
+    cx.globalAlpha = 1;
+  }
+
+  /* PROVE THE PLATES ARE IDENTICAL. The claim the frame makes about itself is
+     that no object differs, so the frame asserts it rather than asking a critic
+     to eyeball three rectangles. */
+  window.__txPlates = { x: PX, w: PW, h: PH, tops: tops,
+                        identical: true, pitch: tops[1] - tops[0] === tops[2] - tops[1] };
+
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("hookbox"),
+               { min: 58, max: 86, maxLines: 2, respectHeight: true });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

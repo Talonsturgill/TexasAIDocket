@@ -1,0 +1,134 @@
+{
+  "date": "2026-09-02",
+  "carousel_no": 13,
+  "docket_item": "tx-2026-0109",
+  "document_title": "The hearing came off. The work did not.",
+  "slides": {
+    "S1": {
+      "kicker": "Texas AI Docket",
+      "hook": "Nine in the morning. No hearing.",
+      "labels": [
+        "Thursday September 3rd, 2026. Room E1.016.",
+        "c1 c2"
+      ],
+      "claims": [
+        "c1",
+        "c2"
+      ]
+    },
+    "S2": {
+      "kicker": "The row",
+      "hook": "The listing puts it in parentheses.",
+      "labels": [
+        "Thursday, September 3, 2026 9:00 AM Economic Development",
+        "(Canceled/see notice)",
+        "Texas Legislature Online, upcoming Senate committee meetings. Retrieved September 2nd, 2026. c1"
+      ],
+      "claims": [
+        "c1"
+      ]
+    },
+    "S3": {
+      "kicker": "What is not published",
+      "hook": "Two documents looked in. A third is off limits.",
+      "labels": [
+        "The row carries the cancellation and gives no reason for it. This record looked in the listing and the committee's own page. It does not fetch the notice the row links, because robots.txt disallows that path. c1"
+      ],
+      "claims": [
+        "c1"
+      ]
+    },
+    "S4": {
+      "kicker": "Same hour, same room",
+      "hook": "One course. One block never laid.",
+      "labels": [
+        "9:00 AM · E1.016 Thursday September 3rd, 2026 canceled",
+        "9:00 AM · E1.016 the listing carries one more no cancellation note",
+        "Each block is a day. The course runs from the canceled hearing to the date the listing carries now. c1 c2 c3"
+      ],
+      "claims": [
+        "c1",
+        "c2",
+        "c3"
+      ]
+    },
+    "S5": {
+      "kicker": "The interim charge",
+      "hook": "Senate Committee on Economic Development. Titled \"Preparing the Texas Workforce for AI (Artificial Intelligence)\".",
+      "labels": [
+        "\"Study the impact of AI on the Texas workforce and its implications for economic competitiveness.\"",
+        "The charge closes by asking the committee to \"Make recommendations to ensure the Texas labor market remains a national leader in growth and opportunity.\"",
+        "senate.texas.gov · c4 c7"
+      ],
+      "claims": [
+        "c4",
+        "c7"
+      ]
+    },
+    "S6": {
+      "kicker": "ChatGPT in Texas",
+      "hook": "Three institutions. Three different answers.",
+      "labels": [
+        "NORTHSIDE ISD",
+        "ChatGPT for all staff in October. Student access \"wouldn't be something that we would immediately allow.\"",
+        "FORT WORTH ISD",
+        "\"in the early stages of exploring opportunities to leverage OpenAI's ChatGPT technology\"",
+        "TEXAS TECH",
+        "Each instructor may \"permit, partially permit, or prohibit\" generative AI.",
+        "Each institution's own words. Nothing ranks them. c8 c9 c12 c14"
+      ],
+      "claims": [
+        "c8",
+        "c9",
+        "c12",
+        "c14"
+      ]
+    },
+    "S7": {
+      "kicker": "On a street corner",
+      "hook": "The scheduling ran anyway.",
+      "labels": [
+        "\"Timpani is used for making patient assignments, staffing, and to the detriment of the nurses, sometimes they short-staff them.\"",
+        "says a National Nurses Union member · c16",
+        "Protesters gathered near Riverside Drive and South Congress Avenue in Austin. The report ties the tool to HCA Healthcare and names no hospital where it runs. c17 c19"
+      ],
+      "claims": [
+        "c16",
+        "c17",
+        "c19"
+      ]
+    },
+    "S8": {
+      "kicker": "Two figures, two books",
+      "hook": "The AI servers had a record quarter.",
+      "labels": [
+        "Dell · AI server business",
+        "$60.9 billion",
+        "booked in orders. A segment figure, not the company. c23",
+        "Dell · the company",
+        "$47.0 billion",
+        "record revenue for the quarter. c24",
+        "One figure is orders booked in one segment. The other is revenue across the whole company. Exhibit 99.1 to Form 8-K."
+      ],
+      "claims": [
+        "c23",
+        "c24"
+      ]
+    },
+    "S9": {
+      "kicker": "What a reader can do",
+      "hook": "The room is booked again.",
+      "labels": [
+        "E1.016",
+        "Tuesday, September 22, 2026 9:00 AM · Economic Development",
+        "The listing gives the location as \"E1.016 (Hearing Room)\" and puts no cancellation note on the row.",
+        "What should the committee hear on September 22nd?",
+        "The red row is the listing's own. Texas Legislature Online. Retrieved September 2nd, 2026. c2 c3"
+      ],
+      "claims": [
+        "c2",
+        "c3"
+      ]
+    }
+  }
+}

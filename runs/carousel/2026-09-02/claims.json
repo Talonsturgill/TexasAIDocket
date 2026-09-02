@@ -1,0 +1,304 @@
+{
+  "claims": [
+    {
+      "id": "c1",
+      "text": "The Legislature's own upcoming Senate meetings listing carries the September 3rd Economic Development hearing with a cancellation note on its row.",
+      "quote": "Thursday, September 3, 2026 9:00 AM Economic Development (Canceled/see notice)",
+      "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+      "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c2",
+      "text": "Both the canceled September 3rd meeting and the rescheduled one are listed as public hearings in the same room, E1.016, at 9:00 AM.",
+      "quote": "Location: E1.016 (Hearing Room)",
+      "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+      "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c3",
+      "text": "The same listing carries the committee again on September 22nd at the same hour, and that row has no cancellation note.",
+      "quote": "Tuesday, September 22, 2026 9:00 AM Economic Development",
+      "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+      "source_title": "Upcoming Senate Committee Meetings, Texas Legislature Online",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c4",
+      "text": "The committee carries an interim charge to study how artificial intelligence affects the Texas workforce and what that means for economic competitiveness.",
+      "quote": "Preparing the Texas Workforce for AI (Artificial Intelligence): Study the impact of AI on the Texas workforce and its implications for economic competitiveness.",
+      "url": "https://senate.texas.gov/cmte.php?c=525",
+      "source_title": "Senate Committee on Economic Development",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c5",
+      "text": "The same charge directs the committee to weigh workforce resiliency, educational pathways and private sector innovation.",
+      "quote": "Evaluate strategies to enhance workforce resiliency, align educational pathways with evolving employer needs, and promote private-sector-led innovation.",
+      "url": "https://senate.texas.gov/cmte.php?c=525",
+      "source_title": "Senate Committee on Economic Development",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c6",
+      "text": "The charge also asks the committee to find upskilling opportunities and responsible adoption of emerging technologies.",
+      "quote": "Identify opportunities for upskilling and the responsible adoption of emerging technologies to maximize employment opportunities.",
+      "url": "https://senate.texas.gov/cmte.php?c=525",
+      "source_title": "Senate Committee on Economic Development",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c7",
+      "text": "The charge closes by asking the committee to recommend how to keep the Texas labor market a national leader.",
+      "quote": "Make recommendations to ensure the Texas labor market remains a national leader in growth and opportunity.",
+      "url": "https://senate.texas.gov/cmte.php?c=525",
+      "source_title": "Senate Committee on Economic Development",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c8",
+      "text": "Northside ISD plans a systemwide rollout of ChatGPT for Teachers in October, reaching all staff.",
+      "quote": "a systemwide ChatGPT for Teachers would launch in October, making the tool accessible to all staff",
+      "url": "https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai",
+      "source_title": "Northside ISD joins list of school districts partnering with OpenAI, Texas Public Radio",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c9",
+      "text": "Northside ISD's executive director of technology services said the district would not immediately allow student access even if the product offered it.",
+      "quote": "Even if ChatGPT did have student access available, that wouldn't be something that we would immediately allow",
+      "url": "https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai",
+      "source_title": "Northside ISD joins list of school districts partnering with OpenAI, Texas Public Radio",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c10",
+      "text": "OpenAI's vice president of education is quoted in the report describing the tool as one that is not for students.",
+      "quote": "It is not a student product",
+      "url": "https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai",
+      "source_title": "Northside ISD joins list of school districts partnering with OpenAI, Texas Public Radio",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "medium",
+      "note": "The sentence itself reads 'she said'. The name is established in the preceding paragraph. Attribution is by adjacency, not inside the quoted sentence."
+    },
+    {
+      "id": "c11",
+      "text": "GovTech republished a Fort Worth Star-Telegram report headlined as a district wide launch of ChatGPT for Teachers at Fort Worth ISD.",
+      "quote": "Fort Worth ISD to Launch ChatGPT for Teachers District-Wide",
+      "url": "https://www.govtech.com/education/k-12/fort-worth-isd-to-launch-chatgpt-for-teachers-district-wide",
+      "source_title": "Fort Worth ISD to Launch ChatGPT for Teachers District-Wide, GovTech",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c12",
+      "text": "Fort Worth ISD's own statement in that article describes an evaluation rather than a launch.",
+      "quote": "in the early stages of exploring opportunities to leverage OpenAI's ChatGPT technology",
+      "url": "https://www.govtech.com/education/k-12/fort-worth-isd-to-launch-chatgpt-for-teachers-district-wide",
+      "source_title": "Fort Worth ISD to Launch ChatGPT for Teachers District-Wide, GovTech",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c13",
+      "text": "Fort Worth ISD said its focus is on evaluating use cases and setting governance, security, privacy and instructional guardrails.",
+      "quote": "our focus is on evaluating potential use cases and establishing the appropriate governance, security, privacy, and instructional guardrails",
+      "url": "https://www.govtech.com/education/k-12/fort-worth-isd-to-launch-chatgpt-for-teachers-district-wide",
+      "source_title": "Fort Worth ISD to Launch ChatGPT for Teachers District-Wide, GovTech",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c14",
+      "text": "Texas Tech University's teaching guidance leaves the generative AI rule to each instructor.",
+      "quote": "Faculty have the discretion to permit, partially permit, or prohibit the use of generative AI in their courses.",
+      "url": "https://www.depts.ttu.edu/tlpdc/AI-Syllabus-Statements.php",
+      "source_title": "Generative AI in Teaching and Learning, Texas Tech University",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c15",
+      "text": "That Texas Tech guidance page carries a fall 2026 update stamp.",
+      "quote": "Updated in Fall 2026",
+      "url": "https://www.depts.ttu.edu/tlpdc/AI-Syllabus-Statements.php",
+      "source_title": "Generative AI in Teaching and Learning, Texas Tech University",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-02",
+      "confidence": "medium",
+      "note": "Returned as a subtitle on one fetch. Not re-confirmed on a second pass."
+    },
+    {
+      "id": "c16",
+      "text": "A member of the National Nurses Union said at an Austin protest that the Timpani tool drives patient assignments and staffing and sometimes leaves nurses short staffed.",
+      "quote": "Timpani is used for making patient assignments, staffing, and to the detriment of the nurses, sometimes they short-staff them.",
+      "url": "https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
+      "source_title": "Nurses in Austin join nationwide protest against AI firm Palantir's role in healthcare, KUT",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c17",
+      "text": "The report ties the Palantir scheduling tool to HCA Healthcare and to no named Central Texas hospital.",
+      "quote": "which she said is now being used by HCA Healthcare through Timpani, a scheduling app",
+      "url": "https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
+      "source_title": "Nurses in Austin join nationwide protest against AI firm Palantir's role in healthcare, KUT",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c18",
+      "text": "The same report notes that HCA Healthcare also operates St. David's hospitals and health centers in Central Texas, without saying the tool is used at any of them.",
+      "quote": "It also operates St. David's hospitals and health centers in Central Texas.",
+      "url": "https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
+      "source_title": "Nurses in Austin join nationwide protest against AI firm Palantir's role in healthcare, KUT",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c19",
+      "text": "The protest gathered near Riverside Drive and South Congress Avenue in Austin.",
+      "quote": "Dozens of protesters gathered near Riverside Drive and South Congress Avenue",
+      "url": "https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
+      "source_title": "Nurses in Austin join nationwide protest against AI firm Palantir's role in healthcare, KUT",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c20",
+      "text": "The Texas State Board of Education turned down Alpha School's charter application, according to a ProPublica report co-published with The Texas Tribune.",
+      "quote": "which had approved most charter applications over the last decade, rejected Alpha's pitch last summer",
+      "url": "https://www.propublica.org/article/alpha-school-texas-vouchers-ai",
+      "source_title": "Texas Rejected an AI-Driven School's Bid to Open a Charter, ProPublica",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c21",
+      "text": "Alpha School went to the Texas comptroller's office for voucher approval rather than back to the state education board.",
+      "quote": "Alpha leaders didn't apply again to the state education board but to the Texas comptroller's office",
+      "url": "https://www.propublica.org/article/alpha-school-texas-vouchers-ai",
+      "source_title": "Texas Rejected an AI-Driven School's Bid to Open a Charter, ProPublica",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c22",
+      "text": "At Alpha School the software delivers the lessons and the adults in the room are called guides.",
+      "quote": "AI software teaches the lessons. The human teachers, referred to as guides, focus on motivation and emotional support.",
+      "url": "https://www.propublica.org/article/alpha-school-texas-vouchers-ai",
+      "source_title": "Texas Rejected an AI-Driven School's Bid to Open a Charter, ProPublica",
+      "source_type": "secondary_reported",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c23",
+      "text": "Dell reported record orders, record revenue and a record backlog in its AI server business specifically, not across the company.",
+      "quote": "our AI server business where we booked a record $60.9 billion in orders, recognized a record $16.4 billion in revenue and exited the quarter with a record $95 billion backlog",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm",
+      "source_title": "Dell Technologies earnings press release, Exhibit 99.1 to Form 8-K",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    },
+    {
+      "id": "c24",
+      "text": "Dell's record total company revenue for the quarter was stated separately and is far larger than the AI server segment figure.",
+      "quote": "Record revenue of $47.0 billion, up 58% year over year",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm",
+      "source_title": "Dell Technologies earnings press release, Exhibit 99.1 to Form 8-K",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-02",
+      "confidence": "high"
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "Angela Paxton chairs the committee and Kevin Sparks is vice chair",
+      "reason": "Both names are on the committee page and two fetches agree, but the labels and the names sit in separate structural elements. CHAIR is a heading and the name is a linked list item beneath it, so no contiguous string on the page joins a label to a name. A quote would have to be assembled, which is the thing this file exists to prevent."
+    },
+    {
+      "finding": "a reason the September 3rd hearing was canceled",
+      "reason": "No reason is published in either document looked in. The listing says only Canceled see notice, and the committee page lists no upcoming meetings at all. The notice it points to lives under a robots-disallowed path and was not fetched. The absence is real in these two pages and is not evidence of the absence of a stated reason anywhere."
+    },
+    {
+      "finding": "the interim charge is an 89th Legislature interim charge",
+      "reason": "The committee page carries the charge text but the 89th designation did not appear in either fetch. Dropped rather than carried over from the scout's framing."
+    },
+    {
+      "finding": "Dell recognized a record $16.4 billion in revenue",
+      "reason": "The figure is the AI server business, not the company. The full sentence opens That's clearest in our AI server business where. Company revenue for the quarter is stated separately as Record revenue of $47.0 billion. Presenting $16.4 billion as Dell's revenue would be wrong by roughly a factor of three, so the segment words are welded into c23's quote."
+    },
+    {
+      "finding": "Dell's figures are for the second quarter of fiscal 2027, ended July 31, 2026",
+      "reason": "Both fetches report this and the filename says q2fy27, but no contiguous verbatim span of four or more words carrying it was returned. The fiscal period is therefore kept out of every claim text rather than asserted on a quote that does not carry it."
+    },
+    {
+      "finding": "the Fort Worth ISD statement ends across the district with a comma",
+      "reason": "The page renders it as a sentence ending in a period. The trailing comma in the lead is not what the page shows, so c12 quotes a substring that avoids the terminal punctuation entirely."
+    },
+    {
+      "finding": "the interim charge ends at promote private-sector-led innovation",
+      "reason": "Not an error, a truncation. The lead's text is an exact prefix. The charge continues with two more sentences about upskilling and about recommendations, which are now c6 and c7. Any deck line implying the charge stops there would understate it."
+    },
+    {
+      "finding": "Palantir's Timpani is used at St. David's in Central Texas",
+      "reason": "The article does not join them. It joins Timpani to HCA Healthcare, then separately notes that HCA also operates St. David's. The connection is corporate ownership, not deployment. c17 and c18 keep the two apart deliberately and the deck must not close the gap."
+    },
+    {
+      "finding": "Monica Gonzalez is a nurse at a Central Texas hospital",
+      "reason": "The article describes her as a member of the National Nurses Union and does not name an employer in the sentences returned."
+    },
+    {
+      "finding": "dates for the SBOE rejection and the comptroller's voucher approval",
+      "reason": "The article gives neither. Last summer is the only temporal marker for the rejection and no date at all attaches to the voucher acceptance. No vote counts appear either. Both remain unverified and must not be dated on a slide."
+    },
+    {
+      "finding": "Northside ISD is in San Antonio",
+      "reason": "True by common knowledge and supported by the outlet and byline, but it is not inside any string pulled from the page. Kept out of c8's text rather than asserted on a quote that does not carry it."
+    },
+    {
+      "finding": "a count of Northside ISD teachers or staff receiving the tool",
+      "reason": "The article gives no count. The only quantity is about prior use rather than about this rollout, and more than half is not a figure this project publishes as a number."
+    },
+    {
+      "finding": "OpenAI's own announcement of the district expansion",
+      "reason": "openai.com returns 403 to this client. Never fetched, so nothing from it is in the file. Every OpenAI-side fact here is reported secondhand and labeled secondary_reported."
+    },
+    {
+      "finding": "the Dell dateline as a claim",
+      "reason": "The dateline string in the filing carries an em dash, which is the character the filing uses. It is dropped rather than quoted, because the Round Rock location is not load bearing for this deck and a quote carrying a dash invites a lint argument that changes nothing about the story."
+    }
+  ]
+}

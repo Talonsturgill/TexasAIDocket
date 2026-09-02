@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #6B3C39; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #F6E7DE;
+    font-size: 25px;
+  }
+  #hookbox {
+    position: absolute; left: 80px; width: 720px; top: 170px;
+    height: 200px; overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 600; color: #FCEFE6;
+    line-height: 1.06; letter-spacing: -.015em;
+  }
+  /* the machined room plate */
+  .roomplate {
+    position: absolute; left: 148px; top: 500px; width: 500px;
+    font: 500 60px/1 "JetBrains Mono", monospace; color: #23201F;
+    letter-spacing: .04em; text-align: center;
+  }
+  /* THE RESERVED RED. A filled GROUND with mono reversed out, never ink. */
+  .redplate {
+    position: absolute; left: 148px; top: 646px; width: 784px;
+    padding: 34px 40px 38px 40px; box-sizing: border-box;
+    background: #BF0A30;
+    font-family: "JetBrains Mono", monospace; font-weight: 500;
+    color: #FFF6EF; font-size: 36px; line-height: 1.34; letter-spacing: -.005em;
+    font-variant-numeric: tabular-nums;
+  }
+  /* the plate carries the listing's row verbatim, so the frame says so. Without
+     this the row read as the deck's own date style and broke against the ordinal
+     the reading type two lines below it uses. */
+  .listinglabel {
+    position: absolute; left: 148px; top: 604px; width: 784px;
+    font: 500 22px/1.2 "JetBrains Mono", monospace; color: #F6E7DE;
+    letter-spacing: .14em; text-transform: uppercase;
+    font-size: 22px;
+  }
+  .past {
+    position: absolute; left: 148px; top: 886px; width: 784px;
+    font: 400 26px/1.42 "Manrope", sans-serif; color: #E4CDBE;
+  }
+  /* THE ASK GETS THE SLOT THE KICKER PROMISES IT. It was the third sentence of a
+     body paragraph in the frame's smallest type, so the closing frame gave a
+     reader the room, the hour and the date well and then whispered the one thing
+     it wanted them to do. */
+  .ask {
+    position: absolute; left: 148px; top: 966px; width: 784px;
+    font-family: "Fraunces", serif; font-weight: 500; font-size: 40px;
+    line-height: 1.16; letter-spacing: -.012em; color: #FCEFE6;
+  }
+  .attr {
+    position: absolute; left: 80px; width: 900px; top: 1092px;
+    font: 400 25px/1.44 "Manrope", sans-serif; color: #F6E7DE;
+  }
+  .attrline { position: absolute; left: 80px; width: 250px; top: 1068px; height: 1px; background: rgba(252,239,230,.46); }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #F6E7DE; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">What a reader can do</div>
+  <div id="hookbox">The room is booked again.</div>
+  <div class="roomplate">E1.016</div>
+  <div class="redplate">Tuesday, September 22, 2026<br>9:00 AM &middot; Economic Development</div>
+  <div class="past">The listing gives the location as "E1.016 (Hearing Room)" and puts no cancellation note on the row.</div>
+  <div class="ask">What should the committee hear on September 22nd?</div>
+  <div class="attrline"></div>
+  <div class="attr">The red row is the listing's own. Texas Legislature Online. Retrieved September 2nd, 2026. c2 c3</div>
+  <div class="foot-l">09 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 9;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* THE DECK'S ONE LIGHT BREAK. Eight frames are lit by one grazing key at 118
+     degrees that only ever catches an EDGE. Here the room's own working light is
+     on, so this is the only frame in nine where light lands on a FACE, and it
+     lands where the reader is given something to do. */
+  cx.fillStyle = "#6B3C39";
+  cx.fillRect(0, 0, W, H);
+
+  /* THE POOL LANDS ON OPEN WALL, and that correction is the whole of this frame.
+     Centred at 560 it peaked BEHIND the two plates, which cover x148 to x932, so
+     what a reader saw at 432px was a halo ringing two rectangles. A halo around
+     an object is a vignette, which is the default treatment of a flat field, and
+     it is the opposite of the claim this frame makes. Raised to 500 by 620, the
+     pool clears the room plate's top edge and spreads onto open granite above
+     and beside it, so there is a region of lit stone reading across an open
+     face. That region is the light break.
+
+     ITS CENTRE STAYS ON THE FRAME'S OWN CENTRELINE, and that is a constraint
+     rather than an aesthetic. Moved off centre, the tonal ramp across a full
+     width line of type ran steep enough that qa read the dark end of the ramp
+     as a RULE running through the headline, six times. A ramp that steep under
+     type is a band whatever it was drawn for, which is the same correction
+     frame 7's panel face needed. */
+  var LX = 560, LY = 620, LR = 880;
+  var lamp = cx.createRadialGradient(LX, 500, 60, LX, LY, LR);
+  lamp.addColorStop(0.00, "rgba(255,242,232,0.40)");
+  lamp.addColorStop(0.42, "rgba(255,238,226,0.17)");
+  /* the lamp only ADDS light. Ending it on a dark stop darkened all four
+     corners around a centred bright core, which is the construction of a lens
+     vignette rather than of a working light. The foot settles on `fall`. */
+  lamp.addColorStop(1.00, "rgba(255,238,226,0.00)");
+  cx.fillStyle = lamp;
+  cx.fillRect(0, 0, W, H);
+
+  /* the crystal, now legible across a lit face rather than only on an edge */
+  var pitch = (W / 432) * 1.15;
+  var n = Math.floor((W * H) / (pitch * pitch * 2.7));
+  for (var i = 0; i < n; i++) {
+    var px = R() * W, py = R() * H, t = R();
+    var r = pitch * (0.30 + R() * 0.56);
+    /* the crystal takes the lamp: brighter near the pool, quieter at the edges */
+    var d = Math.hypot(px - LX, py - LY) / LR;
+    var lit = Math.max(0, 1 - d);
+    if (t < 0.44)      cx.fillStyle = "rgba(20,14,16," + (0.14 + R() * 0.24) + ")";
+    else if (t < 0.80) cx.fillStyle = "rgba(158,149,140," + (0.05 + R() * 0.10) + ")";
+    else               cx.fillStyle = "rgba(255,240,230," + (0.04 + lit * (0.10 + R() * 0.32)) + ")";
+    var sides = 3 + Math.floor(R() * 3), rot = R() * 6.2832;
+    cx.beginPath();
+    for (var s = 0; s < sides; s++) {
+      var a = rot + (s / sides) * 6.2832, rr = r * (0.62 + R() * 0.72);
+      if (s === 0) cx.moveTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+      else cx.lineTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+    }
+    cx.closePath(); cx.fill();
+  }
+
+  /* THE POOL HAS AN EDGE AND THE EDGE IS NOT VISIBLE. A working light over a
+     door does not carry to the floor. The first build began the falloff on a
+     level line at y852 in open wall, which at 432px read as a seam. Its onset
+     now sits BEHIND the red plate and the ramp runs from there to the frame
+     foot, so there is no line for a reader to find. The alternative, an arc
+     concentric with the lamp, was built and measured and rejected: it puts a
+     horizontal tonal ramp under every line of reading type in the lower third,
+     which is the band-under-type defect again.
+
+     IT IS DRAWN BEFORE THE PLATES. Cast into last, it painted over the contact
+     shadow of the object beneath it, which is how the reserved red ended up
+     sitting on the wall with no seating at all. Doctrine's order is light the
+     ground, then cast into it. */
+  var fall = cx.createLinearGradient(0, 690, 0, H);
+  fall.addColorStop(0.00, "rgba(22,12,14,0.00)");
+  fall.addColorStop(0.50, "rgba(22,12,14,0.26)");
+  fall.addColorStop(1.00, "rgba(22,12,14,0.52)");
+  cx.fillStyle = fall;
+  cx.fillRect(0, 690, W, H - 690);
+
+  /* THE JAMB, and it is two edges rather than one stroke. Drawn at 2px and 30
+     percent it was invisible at both sizes, so the arris read as a single line,
+     which the doctrine names as the failure that turns a ridge into a scratch.
+     It runs the full height because a jamb that stops in mid wall is not
+     architecture. */
+  cx.fillStyle = "rgba(255,246,238,0.62)";
+  cx.fillRect(46, 0, 4.0, H);
+  cx.fillStyle = "rgba(24,14,16,0.50)";
+  cx.fillRect(50, 0, 7.0, H);
+
+  /* ------------------------------------------------- the machined room plate */
+  (function () {
+    var x = 148, y = 476, w = 500, h = 104;
+    TXCARVE.contactShadow(cx, {
+      x: x + w / 2, y: y + h, w: w, color: "#140D0C",
+      dirDeg: 118 - 180, tightAlpha: 0.56, wideAlpha: 0.0, tightBlur: 2, wideBlur: 2
+    });
+    TXCARVE.contactShadow(cx, {
+      x: x + w / 2, y: y + h + 6, w: w * 1.08, color: "#2A1614",
+      dirDeg: 118 - 180, tightAlpha: 0.42, wideAlpha: 0.12, tightBlur: 4, wideBlur: 28
+    });
+    var g = cx.createLinearGradient(x, y, x, y + h);
+    g.addColorStop(0.00, "#C3C8C9");
+    g.addColorStop(0.18, "#AAB1B3");
+    g.addColorStop(1.00, "#8E9496");
+    cx.fillStyle = g;
+    cx.fillRect(x, y, w, h);
+    cx.fillStyle = "rgba(255,252,248,0.86)";      // the lit top bevel
+    cx.fillRect(x, y, w, 2.4);
+    cx.fillStyle = "rgba(28,20,20,0.50)";
+    cx.fillRect(x, y + h - 2.4, w, 2.4);
+    /* brushed tooling, horizontal, so the plate is machined rather than filled */
+    cx.globalAlpha = 0.16;
+    for (var b = 0; b < 150; b++) {
+      var by = y + 4 + R() * (h - 8);
+      if (by > y + 18 && by < y + 92) continue;   // clear of the laid out room number
+      cx.strokeStyle = R() < 0.5 ? "rgba(255,255,255,0.9)" : "rgba(40,34,34,0.8)";
+      cx.lineWidth = 0.4 + R() * 0.8;
+      cx.beginPath(); cx.moveTo(x + 2, by); cx.lineTo(x + w - 2, by + (R() - .5) * 1.6); cx.stroke();
+    }
+    cx.globalAlpha = 1;
+  })();
+
+  /* ---------------------------------------------------- the reserved red plate
+     A SEATED OBJECT with a lit top edge and a real contact shadow, not a
+     rectangle. #BF0A30 has a relative luminance of 0.1149, so it can't clear 4.5
+     as ink on a dark ground. The role inverts: the colour is the GROUND and the
+     mono is reversed out of it, which is what deck 6 had to do and what deck 12
+     withdrew the colour rather than do. */
+  function seatRedPlate() {
+    /* THE HEIGHT IS MEASURED, NEVER ASSUMED. The seating was cast against a
+       literal 202, the plate set THREE lines where the markup planned two, and
+       its real bottom landed about 35px lower. So the contact shadow was drawn
+       underneath the plate's own opaque background and could not be seen, while
+       the stainless plate 100px above it kept a visible crest and shadow. Two
+       objects on one wall with opposite physics is what cheapens a frame. */
+    var el = document.querySelector(".redplate");
+    var r = el.getBoundingClientRect();
+    var x = r.left, y = r.top, w = r.width, h = r.height;
+    /* THE CORE SPANS THE BASE. A 314px lens centred under a 784px plate leaves
+       both thirds of it with nothing beneath them, which is the library's drop
+       shadow, and it is the same correction frames 7 and 8 already carry. It was
+       applied to two files and not to the third, on the deck's closing frame. */
+    TXCARVE.contactShadow(cx, {
+      x: x + w / 2, y: y + h, w: w, color: "#140D0C",
+      dirDeg: 118 - 180, tightAlpha: 0.62, wideAlpha: 0.0, tightBlur: 2, wideBlur: 2
+    });
+    TXCARVE.contactShadow(cx, {
+      x: x + w / 2, y: y + h + 8, w: w * 1.08, color: "#1B1211",
+      dirDeg: 118 - 180, tightAlpha: 0.50, wideAlpha: 0.16, tightBlur: 4, wideBlur: 38
+    });
+    /* a top lip and a return face, both wide enough to survive the downsample.
+       At 3.2px the lit edge was 1.3px at 432 and the red plate read as a flat
+       rectangle while the stainless plate 100px above it showed a bevel. */
+    cx.fillStyle = "rgba(255,226,218,0.95)";
+    cx.fillRect(x, y - 7, w, 7);
+    cx.fillStyle = "rgba(40,6,14,0.70)";
+    cx.fillRect(x + w, y, 10, h);
+    cx.fillStyle = "rgba(255,226,218,0.35)";
+    cx.fillRect(x + w, y, 2, h);
+    cx.fillStyle = "rgba(40,6,14,0.62)";
+    cx.fillRect(x, y + h, w + 10, 3.4);
+  }
+
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("hookbox"),
+               { min: 62, max: 92, maxLines: 2, respectHeight: true });
+    seatRedPlate();
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

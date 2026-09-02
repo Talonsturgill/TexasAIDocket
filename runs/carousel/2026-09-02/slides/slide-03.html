@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #1C1210; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #E8CFC2;
+    font-size: 25px;
+  }
+  #hookbox {
+    position: absolute; left: 80px; width: 700px; top: 200px;
+    height: 260px; overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 600; color: #F2DCCB;
+    line-height: 1.06; letter-spacing: -.015em;
+  }
+  .dek {
+    position: absolute; left: 80px; width: 792px; top: 1010px;
+    font: 400 29px/1.44 "Manrope", sans-serif; color: #F2DCCB;
+  }
+  .dekline { position: absolute; left: 80px; width: 250px; top: 986px; height: 1px; background: rgba(242,220,203,.44); }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #E8CFC2; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">What is not published</div>
+  <div id="hookbox">Two documents looked in. A third is off limits.</div>
+  <div class="dekline"></div>
+  <div class="dek">The row carries the cancellation and gives no reason for it. This record looked in the listing and the committee's own page. It does not fetch the notice the row links, because robots.txt disallows that path. c1</div>
+  <div class="foot-l">03 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 3;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cv = document.getElementById("art");
+  var cx = cv.getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* THE WHOLE FRAME IS ONE STONE, and the arris divides it.
+     Below the arris it carries its full crystal. Above it, the SAME stone at the
+     SAME median, with no grain at all. Not darker. Not lighter. No information.
+
+     This is the deck's answer to deck 9, which shipped four black rectangles that
+     read as REDACTIONS on a deck about what a document does not say. A redaction
+     asserts that something was removed. Nothing was removed here. */
+  var BASE = "#281A18";                 // one median for both halves
+  var THETA = -7 * Math.PI / 180;       // the face is rotated 7 degrees
+  var ARRIS_Y = 700;
+
+  cx.fillStyle = BASE;
+  cx.fillRect(0, 0, W, H);
+
+  /* a single slow raking wash across the WHOLE face, both halves alike, so the
+     two regions cannot differ by the light either */
+  var kg = cx.createLinearGradient(W, H, 0, 0);
+  kg.addColorStop(0.00, "rgba(242,220,203,0.060)");
+  kg.addColorStop(0.50, "rgba(242,220,203,0.010)");
+  kg.addColorStop(1.00, "rgba(20,16,19,0.170)");
+  cx.fillStyle = kg;
+  cx.fillRect(0, 0, W, H);
+
+  /* the arris line, in the rotated frame */
+  function arrisAt(x) { return ARRIS_Y + Math.tan(THETA) * (x - W / 2); }
+
+  /* ---------------------------------------------- the TEXTURED half, below it
+     Crystals only. No fill, no wash, no value shift: the median is already set
+     by the ground, and the crystals are balanced light against dark so they add
+     variance without moving the mean. */
+  cx.save();
+  cx.beginPath();
+  cx.moveTo(-40, arrisAt(-40));
+  cx.lineTo(W + 40, arrisAt(W + 40));
+  cx.lineTo(W + 40, H + 40);
+  cx.lineTo(-40, H + 40);
+  cx.closePath();
+  cx.clip();
+
+  var pitch = (W / 432) * 1.15;
+  var n = Math.floor((W * H) / (pitch * pitch * 2.6));
+  var darkCount = 0, litCount = 0;
+  for (var i = 0; i < n; i++) {
+    var px = R() * W, py = R() * H;
+    if (py < arrisAt(px)) continue;
+    /* DEPTH AWARE. The dossier's focal is the crown TOGETHER WITH the band of
+       raked stone under it, taken as one bright AREA. An isotropic field at
+       constant density and scale over 1000px gives no such band, and the frame's
+       only bright thing was then a 2px hairline. Heavier and brighter feldspar
+       immediately under the arris, fine fleck at the foot. */
+    var dd = (py - arrisAt(px)) / Math.max(1, H - arrisAt(px));
+    var t = R(), r = pitch * (0.30 + R() * 0.58) * (1.55 - 0.85 * dd);
+    /* balanced: the dark and the lit crystals are drawn in matched measure so
+       the region's MEAN stays on the ground and only its VARIANCE rises */
+    if (t < 0.50) { cx.fillStyle = "rgba(18,14,17," + ((0.20 + R() * 0.30) * (1.45 - 0.70 * dd)) + ")"; darkCount++; }
+    else if (t < 0.80) { cx.fillStyle = "rgba(158,149,140," + (0.08 + R() * 0.14) + ")"; }
+    else { cx.fillStyle = "rgba(255,238,226," + ((0.16 + R() * 0.30) * (1.45 - 0.70 * dd)) + ")"; litCount++; }
+    var sides = 3 + Math.floor(R() * 3), rot = R() * 6.2832;
+    cx.beginPath();
+    for (var s = 0; s < sides; s++) {
+      var a = rot + (s / sides) * 6.2832, rr = r * (0.62 + R() * 0.74);
+      var xx = px + Math.cos(a) * rr, yy = py + Math.sin(a) * rr * 0.78;
+      if (s === 0) cx.moveTo(xx, yy); else cx.lineTo(xx, yy);
+    }
+    cx.closePath();
+    cx.fill();
+  }
+  cx.restore();
+
+  /* THE SMOOTH HALF SITS FRACTIONALLY ABOVE THE TEXTURED ONE, and this is the
+     whole point rather than a tweak. Measured off the render, the crystals are
+     net lighter, which left the ungrained half 1.0 L* DARKER than the grained
+     one. Darker is the redaction read, which asserts something was removed. The
+     lift is about 1.6 L*, well inside the 2.0 median tolerance the acceptance
+     sets and far below anything a reader sees as a highlight. */
+  cx.save();
+  cx.beginPath();
+  cx.moveTo(-40, arrisAt(-40));
+  cx.lineTo(W + 40, arrisAt(W + 40));
+  cx.lineTo(W + 40, -40);
+  cx.lineTo(-40, -40);
+  cx.closePath();
+  cx.clip();
+  cx.fillStyle = "rgba(255,246,240,0.012)";
+  cx.fillRect(-40, -40, W + 80, H);
+  /* SUB CRYSTAL GRAIN. A perfectly flat fill over 48 percent of a frame reads
+     as an unfinished render on a phone, and combined with the arris it read as
+     paper rather than as the same granite dressed smooth. These marks carry no
+     crystal geometry and no value: they are balanced light against dark at a
+     twentieth of the textured half's amplitude, so the variance ratio the
+     acceptance demands is untouched and the median does not move. */
+  for (var sm = 0; sm < 9000; sm++) {
+    var mx = -40 + R() * (W + 80), my = -40 + R() * (H + 40);
+    cx.fillStyle = R() < 0.5 ? "rgba(20,16,19,0.05)" : "rgba(255,244,236,0.05)";
+    cx.fillRect(mx, my, 1.4, 1.2);
+  }
+  cx.restore();
+
+  /* --------------------------------------------------------------- THE ARRIS
+     A real sawn edge. A lit crown on the key side and a dark root under it, so
+     it is an edge in the stone rather than a rule drawn across a picture. */
+  cx.save();
+  cx.translate(W / 2, ARRIS_Y);
+  cx.rotate(THETA);
+  var crown = cx.createLinearGradient(0, -9, 0, 0);
+  crown.addColorStop(0, "rgba(242,220,203,0.00)");
+  crown.addColorStop(1, "rgba(255,244,236,0.72)");
+  cx.fillStyle = crown;
+  cx.fillRect(-W, -9, W * 2, 9);
+  cx.fillStyle = "rgba(255,246,238,0.88)";
+  cx.fillRect(-W, -1.4, W * 2, 1.7);
+  /* A CUT FACE AND A HARD ROOT, at CONSTANT width along the whole run. The
+     first build put one soft band under the crown, widening from about 25px at
+     one end to 55px at the other and blurring outward, which is the signature
+     of a plane in FRONT casting onto the stone. On a frame whose entire job is
+     that nothing was removed, a covering is the one read that must not happen.
+     A chamfer, then a hard core, then a falloff of fixed depth. */
+  cx.fillStyle = "rgba(255,244,236,0.055)";
+  cx.fillRect(-W, 0.3, W * 2, 6);                 // the cut face between crown and root
+  cx.fillStyle = "rgba(20,16,19,0.55)";
+  cx.fillRect(-W, 6.3, W * 2, 3);                 // the hard core, no blur
+  var root = cx.createLinearGradient(0, 9.3, 0, 23.3);
+  root.addColorStop(0, "rgba(20,16,19,0.30)");
+  root.addColorStop(1, "rgba(20,16,19,0.00)");
+  cx.fillStyle = root;
+  cx.fillRect(-W, 9.3, W * 2, 14);
+  cx.restore();
+
+  /* ------------------------------------------- ASSERT THE FRAME'S OWN CLAIM
+     The dossier's acceptance is numeric: the two halves must differ by LESS
+     than 2 L* in median and by a factor of at least 8 in variance, measured at
+     the 432px thumb. The frame measures itself and publishes the result to the
+     render report, so a failure is a number rather than an opinion. */
+  function stats(y0, y1) {
+    var s = 4;                                    // sample stride in CSS px
+    var vals = [];
+    for (var y = y0; y < y1; y += s) {
+      for (var x = 60; x < W - 60; x += s) {
+        if (y < arrisAt(x) + 26 && y > arrisAt(x) - 26) continue;   // skip the arris itself
+        var d = cx.getImageData(x * 2, y * 2, 1, 1).data;
+        vals.push(0.2126 * d[0] + 0.7152 * d[1] + 0.0722 * d[2]);
+      }
+    }
+    vals.sort(function (a, b) { return a - b; });
+    var med = vals[Math.floor(vals.length / 2)];
+    var mean = vals.reduce(function (a, b) { return a + b; }, 0) / vals.length;
+    var varr = vals.reduce(function (a, b) { return a + (b - mean) * (b - mean); }, 0) / vals.length;
+    return { median: med, variance: varr, n: vals.length };
+  }
+
+  var smooth = stats(120, 560);
+  var rough  = stats(720, 1180);
+  window.__txProbe = {
+    smooth_median: +smooth.median.toFixed(2),
+    textured_median: +rough.median.toFixed(2),
+    median_delta: +Math.abs(smooth.median - rough.median).toFixed(2),
+    smooth_variance: +smooth.variance.toFixed(2),
+    textured_variance: +rough.variance.toFixed(2),
+    variance_ratio: +(rough.variance / Math.max(smooth.variance, 0.0001)).toFixed(1)
+  };
+
+  /* what the frame says about itself, on the frame, so a reader can check it */
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("hookbox"),
+               { min: 72, max: 104, maxLines: 3, respectHeight: true });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

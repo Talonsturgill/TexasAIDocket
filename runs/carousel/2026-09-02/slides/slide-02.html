@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #6B3C39; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #F4E2D8;
+    font-size: 25px;
+  }
+  .lede {
+    position: absolute; left: 80px; width: 700px; top: 176px;
+    font: 400 34px/1.34 "Manrope", sans-serif; color: #F6E7DE;
+  }
+  /* The quoted row. It sits on a sawn reserve of DRESSED stone where the fleck
+     stops, which is a real surface rather than a plate laid over the art. */
+  #rowbox {
+    position: absolute; left: 122px; width: 836px; top: 474px; height: 300px;
+    overflow: hidden;
+    font-family: "JetBrains Mono", monospace; font-weight: 500;
+    color: #2A1614; line-height: 1.22; letter-spacing: -.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  #rowparen {
+    position: absolute; left: 122px; width: 836px; top: 706px;
+    font: 500 46px/1.2 "JetBrains Mono", monospace; color: #2A1614;
+    letter-spacing: -.005em;
+  }
+  .attr {
+    position: absolute; left: 80px; width: 800px; top: 1058px;
+    font: 400 26px/1.46 "Manrope", sans-serif; color: #F2DCCB;
+  }
+  .attrline { position: absolute; left: 80px; width: 240px; top: 1036px; height: 1px; background: rgba(242,220,203,.42); }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #F2DCCB; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">The row</div>
+  <div class="lede">The listing puts it in parentheses.</div>
+  <div id="rowbox">Thursday, September 3, 2026<br>9:00&nbsp;AM&nbsp;&nbsp;Economic Development</div>
+  <div id="rowparen">(Canceled/see notice)</div>
+  <div class="attrline"></div>
+  <div class="attr">Texas Legislature Online, upcoming Senate committee meetings. Retrieved September 2nd, 2026. c1</div>
+  <div class="foot-l">02 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 2;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  var MOUNTAIN = "#6B3C39", FELDSPAR = "#F2DCCB";
+
+  /* The deck's shared granite. Angular crystals at a pitch derived from the
+     432px thumb, so the grain is still resolvable at feed size. */
+  function granite(x0, y0, w, h, baseHex, litAmount, fleckScale) {
+    cx.fillStyle = baseHex;
+    cx.fillRect(x0, y0, w, h);
+    var pitch = (w / 432) * 1.15 * (fleckScale || 1);
+    var n = Math.floor((w * h) / (pitch * pitch * 3.0));
+    for (var i = 0; i < n; i++) {
+      var px = x0 + R() * w, py = y0 + R() * h, t = R();
+      var r = pitch * (0.30 + R() * 0.55);
+      if (t < 0.46)      cx.fillStyle = "rgba(20,16,19," + (0.16 + R() * 0.26) + ")";
+      else if (t < 0.82) cx.fillStyle = "rgba(158,149,140," + (0.05 + R() * 0.11) + ")";
+      else               cx.fillStyle = "rgba(242,220,203," + (0.03 + litAmount * (0.05 + R() * 0.22)) + ")";
+      var sides = 3 + Math.floor(R() * 3), rot = R() * 6.2832;
+      cx.beginPath();
+      for (var s = 0; s < sides; s++) {
+        var a = rot + (s / sides) * 6.2832, rr = r * (0.62 + R() * 0.72);
+        var xx = px + Math.cos(a) * rr, yy = py + Math.sin(a) * rr * 0.78;
+        if (s === 0) cx.moveTo(xx, yy); else cx.lineTo(xx, yy);
+      }
+      cx.closePath(); cx.fill();
+    }
+  }
+
+  /* the whole frame is one granite face at full fleck */
+  granite(0, 0, W, H, MOUNTAIN, 0.34, 1.0);
+
+  /* the key falls from lower right at 118 degrees, so the raking is directional */
+  var kg = cx.createLinearGradient(W, H, 0, 0);
+  kg.addColorStop(0.00, "rgba(242,220,203,0.10)");
+  kg.addColorStop(0.42, "rgba(242,220,203,0.02)");
+  kg.addColorStop(1.00, "rgba(20,16,19,0.34)");
+  cx.fillStyle = kg;
+  cx.fillRect(0, 0, W, H);
+
+  /* --------------------------------------------------------- THE SAWN RESERVE
+     A dressed face where the crystal is cut through rather than a plate laid on
+     top. The fleck STOPS at a hard sawn edge, which is the type's declared
+     defence: art never crosses the glyphs because the art ends at the boundary. */
+  /* RY was 512 and RH 428, which left a 150px blank band inside the brightest
+     element on the frame, between the two line row and the parenthetical. At
+     432px that reads as a dropped line, and on a deck whose next frame exists
+     to avoid asserting that anything was removed, an unexplained gap inside a
+     quoted row is the redaction read arriving one frame early. */
+  var RX = 92, RY = 438, RW = 896, RH = 350;
+
+  var SKIPS = [[RY + 40, RY + 372]];
+  function drawReserve() {
+    cx.save();
+    cx.beginPath();
+    cx.rect(RX, RY, RW, RH);
+    cx.clip();
+
+    /* dressed stone: the same rock, sawn smooth, so it is lighter because it is
+       smoother rather than because it is a different colour */
+    /* #C08C7E landed the reserve 40 to 45 L* above the field and desaturated off
+       it, so a reader received a highlighted text box. The dossier's own value
+       structure says it reads brighter BECAUSE IT IS SMOOTHER, not because it is
+       a different colour, so this is the field's own mountain granite carried
+       toward feldspar and nothing else. */
+    cx.fillStyle = "#B78174";
+    cx.fillRect(RX, RY, RW, RH);
+    var dg = cx.createLinearGradient(RX + RW, RY + RH, RX, RY);
+    dg.addColorStop(0.00, "rgba(242,220,203,0.26)");
+    dg.addColorStop(0.55, "rgba(242,220,203,0.12)");
+    dg.addColorStop(1.00, "rgba(74,35,32,0.08)");
+    cx.fillStyle = dg;
+    cx.fillRect(RX, RY, RW, RH);
+
+    /* saw marks: fine parallel tooling across the dressed face, the only texture
+       on it, running perpendicular to the key so they catch.
+
+       THE SKIP ZONE IS MEASURED, NEVER TYPED. RY+40 to RY+372 was written before
+       fitText had chosen a size, so every mark from RY+372 down crossed the
+       x-height of the parenthetical. Two constants cannot know what the layout
+       did, which is the same defect as hand sizing a plate. */
+    cx.globalAlpha = 0.16;
+    for (var s = 0; s < 620; s++) {
+      var sy = RY + R() * RH;
+      var hit = false;
+    for (var z = 0; z < SKIPS.length; z++) {
+      if (sy > SKIPS[z][0] && sy < SKIPS[z][1]) { hit = true; break; }
+    }
+    if (hit) continue;                        // clear of the laid out glyphs, measured
+      cx.strokeStyle = R() < 0.5 ? "rgba(255,244,238,0.95)" : "rgba(72,32,29,0.85)";
+      cx.lineWidth = 0.4 + R() * 0.9;
+      cx.beginPath();
+      cx.moveTo(RX - 4, sy);
+      cx.lineTo(RX + RW + 4, sy + (R() - 0.5) * 2.2);
+      cx.stroke();
+    }
+    cx.globalAlpha = 1;
+
+    /* THE CRYSTAL IS WHAT MAKES THIS STONE, and it runs across the WHOLE face.
+     The saw marks are lines and a line crossing a glyph reads as a strikethrough,
+     so they stay in the margins the layout leaves clear. A speck does not, so
+     the fleck is free to run everywhere and is what carries the material at
+     432px, where the earlier 2,592 ghosts over 383,000 square px did not. */
+    var pitch2 = (RW / 432) * 1.15;
+    var n2 = Math.floor((RW * RH) / (pitch2 * pitch2 * 3.4));
+    for (var i2 = 0; i2 < n2; i2++) {
+      var gx2 = RX + R() * RW, gy2 = RY + R() * RH;
+      cx.fillStyle = R() < 0.5 ? "rgba(74,35,32,0.16)" : "rgba(255,244,236,0.24)";
+      cx.beginPath();
+      cx.ellipse(gx2, gy2, pitch2 * 0.5, pitch2 * 0.36, R() * 3, 0, 6.2832);
+      cx.fill();
+    }
+    cx.restore();
+
+    /* THE SAWN EDGE. A hard value step over fewer than 3px on all four sides, with
+       a lit crown on the two edges the key reaches and a dark root on the others. */
+    cx.fillStyle = "rgba(255,246,238,0.80)"; cx.fillRect(RX, RY, RW, 2.2);
+    cx.fillStyle = "rgba(255,246,238,0.62)"; cx.fillRect(RX + RW - 2.2, RY, 2.2, RH);
+    cx.fillStyle = "rgba(28,14,13,0.66)";    cx.fillRect(RX, RY + RH - 2.2, RW, 2.2);
+    cx.fillStyle = "rgba(28,14,13,0.52)";    cx.fillRect(RX, RY, 2.2, RH);
+  }
+
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("rowbox"),
+               { min: 40, max: 68, maxLines: 2, respectHeight: true });
+    /* the tooling skips what the LAYOUT actually did, with 12px of pad */
+    /* THE TEXT'S OWN EXTENT, not the box's. #rowbox is 300px tall with overflow
+       hidden, so its rect says 300 whatever fitText chose, and taking the union
+       of two container rects left the tooling with 43px of a 400px face to run
+       in. A Range over the contents measures the glyphs. */
+    function textRect(id) {
+      var r = document.createRange();
+      r.selectNodeContents(document.getElementById(id));
+      return r.getBoundingClientRect();
+    }
+    var a = textRect("rowbox"), b = textRect("rowparen");
+    SKIPS = [[a.top - 14, a.bottom + 14], [b.top - 14, b.bottom + 14]];
+    drawReserve();
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #3A2523; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #E8CFC2;
+    font-size: 25px;
+  }
+  #hookbox {
+    position: absolute; left: 80px; width: 780px; top: 162px;
+    height: 150px; overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 600; color: #F2DCCB;
+    line-height: 1.06; letter-spacing: -.015em;
+  }
+  /* FIELD ONE. The words AI server business live inside the same bounded field
+     as the figure, so the segment cannot be severed from its subject. */
+  .fieldLabel {
+    position: absolute; font: 500 25px/1.3 "JetBrains Mono", monospace;
+    color: #DCC7BA; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .fieldFig {
+    position: absolute; font: 500 74px/1 "JetBrains Mono", monospace;
+    color: #F6E7DE; font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+  }
+  .fieldSub {
+    position: absolute; font: 400 27px/1.36 "Manrope", sans-serif; color: #DCC5B9;
+  }
+  .l1 { left: 148px; top: 424px; width: 620px; }
+  .f1 { left: 148px; top: 468px; width: 780px; }
+  .s1 { left: 148px; top: 566px; width: 700px; }
+
+  .l2 { left: 292px; top: 872px; width: 620px; }
+  .f2 { left: 292px; top: 916px; width: 700px; }
+  .s2 { left: 292px; top: 1014px; width: 660px; }
+
+  .attr {
+    position: absolute; left: 80px; width: 920px; top: 1132px;
+    font: 400 24px/1.42 "Manrope", sans-serif; color: #E8CFC2;
+  }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #E8CFC2; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">Two figures, two books</div>
+  <div id="hookbox">The AI servers had a record quarter.</div>
+
+  <div class="fieldLabel l1">Dell &middot; AI server business</div>
+  <div class="fieldFig f1">$60.9 billion</div>
+  <div class="fieldSub s1">booked in orders. A segment figure, not the company. c23</div>
+
+  <div class="fieldLabel l2">Dell &middot; the company</div>
+  <div class="fieldFig f2">$47.0 billion</div>
+  <div class="fieldSub s2">record revenue for the quarter. c24</div>
+
+  <div class="attr">One figure is orders booked in one segment. The other is revenue across the whole company. Exhibit 99.1 to Form 8-K.</div>
+  <div class="foot-l">08 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 8;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* 60.9 IS LARGER THAN 47.0 AND IS THE SMALLER THING. One is a segment's
+     orders and the other is the company's revenue for the quarter, so any rule,
+     axis, bracket or shared baseline between them would assert a comparison the
+     filing does not make. There is a DEEP UNCUT GUTTER and nothing else. */
+  var GUT_TOP = 700, GUT_H = 128;
+
+  cx.fillStyle = "#3A2523";
+  cx.fillRect(0, 0, W, H);
+
+  /* the plate: a surface of LINE where every other frame is a surface of LIGHT */
+  /* THE TWO FIELDS SHARE NO EDGE, and that is the frame's argument rather than a
+     layout preference. The first build gave them the identical left edge, the
+     identical right edge and the identical width, and set both figures in
+     tabular mono from the same left origin, so $60.9 and $47.0 aligned digit for
+     digit down the page. Two identically bounded panels stacked with matching
+     alignment IS a comparison table with a wide gap in it. Slide 6 needs
+     identical objects because ranking three institutions would be a verdict.
+     This frame needs the opposite, because identity is what asserts that two
+     quantities are commensurable, and these two are not. */
+  function engraveField(x0, y0, x1, y1) {
+    var fw = x1 - x0;
+    cx.save();
+    cx.beginPath();
+    cx.rect(x0, y0, fw, y1 - y0);
+    cx.clip();
+    cx.fillStyle = "#4C453F";
+    cx.fillRect(x0, y0, fw, y1 - y0);
+    /* white line intaglio: the density carries the tone, and it stops well
+       clear of every glyph so the engraving never fights the message */
+    for (var ln = 0; ln < 190; ln++) {
+      var yy = y0 + (ln / 190) * (y1 - y0);
+      /* ENGRAVE THE GROUND, NOT THE MESSAGE. The library's named failure for
+         intaglio is line density fighting the type, and the dossier's own
+         acceptance asks for 24px of clearance around every glyph. */
+      if (yy > y0 + 20 && yy < y1 - 46) continue;
+      var amp = 3 + R() * 5;
+      cx.strokeStyle = "rgba(242,220,203," + (0.10 + R() * 0.16) + ")";
+      cx.lineWidth = 0.5 + R() * 0.8;
+      cx.beginPath();
+      cx.moveTo(x0, yy);
+      /* <= so the last stroke REACHES the field's right border. Stopping short
+         left both fields with the same unengraved margin column at the same x,
+         which at 432px read as one continuous rule tying them together. */
+      for (var xx = x0; xx <= x1; xx += 24) {
+        cx.lineTo(xx, yy + Math.sin(xx * 0.014 + ln * 0.6) * amp * 0.34);
+      }
+      cx.stroke();
+    }
+    cx.restore();
+    /* the field's own bevel, so it is a bounded object rather than a band */
+    cx.fillStyle = "rgba(255,246,238,0.46)";
+    cx.fillRect(x0, y0, fw, 2.0);
+    cx.fillStyle = "rgba(16,10,12,0.55)";
+    cx.fillRect(x0, y1 - 2.0, fw, 2.0);
+    cx.fillStyle = "rgba(255,246,238,0.22)";
+    cx.fillRect(x1 - 2.0, y0, 2.0, y1 - y0);
+    cx.fillStyle = "rgba(16,10,12,0.40)";
+    cx.fillRect(x0, y0, 2.0, y1 - y0);
+    /* the plate's own lower return face, so it has a drawn THICKNESS and is not
+       a rectangle in front of granite */
+    cx.fillStyle = "rgba(16,10,12,0.62)";
+    cx.fillRect(x0 + 5, y1, fw - 5, 9);
+    cx.fillStyle = "rgba(255,250,244,0.34)";
+    cx.fillRect(x0, y1 - 0.4, fw, 2.2);
+  }
+
+  engraveField(96, 384, 840, GUT_TOP);
+  engraveField(240, GUT_TOP + GUT_H, 984, 1104);
+
+  /* THE UNCUT GUTTER. The darkest continuous area on the frame, and the claim.
+     No rule, no axis, no bracket, no shared baseline crosses it. */
+  var gg = cx.createLinearGradient(0, GUT_TOP, 0, GUT_TOP + GUT_H);
+  gg.addColorStop(0.00, "#140C0E");
+  /* a FAR WALL. A flat near black rectangle is the redaction read this deck met
+     twice already, at frame 3 and at frame 4's socket, and the answer both times
+     was that a recess has to show its interior. */
+  gg.addColorStop(0.22, "#241A1C");
+  gg.addColorStop(0.55, "#0E080A");
+  gg.addColorStop(0.82, "#1E1517");
+  gg.addColorStop(1.00, "#140C0E");
+  cx.fillStyle = gg;
+  cx.fillRect(96, GUT_TOP, W - 192, GUT_H);
+  /* the two cut walls of the gutter, which is what makes it a channel in a
+     plate rather than a black bar laid over one */
+  /* EACH WALL BELONGS TO THE FIELD IT WAS CUT FROM. Drawn from 96 to 984 they
+     spanned the UNION of the two fields rather than the extent of either, so the
+     lit lower lip was one continuous 888px rule touching both, the black band's
+     ends aligned with one field's left edge and the other's right, and the three
+     rectangles read at 432px as ONE stepped plate with a groove milled across
+     it. Two figures on one object with a groove between them is the invitation
+     to compare that this frame exists to refuse. */
+  cx.fillStyle = "rgba(16,10,12,0.80)";
+  cx.fillRect(96, GUT_TOP, 744, 8);
+  cx.fillStyle = "rgba(255,240,230,0.30)";
+  cx.fillRect(240, GUT_TOP + GUT_H - 2.4, 744, 2.4);
+
+  /* the plate seated on granite, so the frame is an object at a shallow oblique */
+  var pitch = (W / 432) * 1.15;
+  for (var i = 0; i < 8200; i++) {
+    var px = R() * W, py = R() * H;
+    if (py > 380 && py < 1116 && px > 92 && px < 988) continue;
+    var t = R();
+    cx.fillStyle = t < 0.5 ? "rgba(16,12,14,0.28)" : "rgba(242,220,203,0.09)";
+    cx.fillRect(px, py, 1.5, 1.3);
+  }
+  /* A SEAT CORE THE WIDTH OF THE BASE, then a body WIDER than the object. A
+     shadow at 40 percent of the plate's width, centred, is the library's named
+     drop shadow and it makes a seated thing float. */
+  TXCARVE.contactShadow(cx, {
+    x: (240 + 984) / 2, y: 1113, w: 744, color: "#140D0C",
+    dirDeg: 118 - 180, tightAlpha: 0.60, wideAlpha: 0.0, tightBlur: 2, wideBlur: 2
+  });
+  TXCARVE.contactShadow(cx, {
+    x: (240 + 984) / 2, y: 1118, w: 880, color: "#1B1211",
+    dirDeg: 118 - 180, tightAlpha: 0.44, wideAlpha: 0.13, tightBlur: 5, wideBlur: 38
+  });
+
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("hookbox"),
+               { min: 56, max: 84, maxLines: 2, respectHeight: true });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>
