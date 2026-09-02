@@ -414,6 +414,25 @@ The one thing a run was told to write there, `.claude/WORKLOG.md`, has moved to
 file tells a session to write under `.claude/` again, because prose is exactly what the five
 failed fixes were.
 
+**THE UPGRADE LANE OWNS TWO PATHS UNDER THERE AND STILL CANNOT REACH THEM UNATTENDED.**
+`ownership.yaml` gives `upgrade` both `.claude/agents/carousel-*.md` and
+`.claude/skills/carousel-engine/**`, and that stays exactly as it is. **Ownership and
+reachability are different questions and the map answers only the first.** The map says which
+actor is ALLOWED to write a path. The host decides which paths stop a session, it stops one on
+every path under `.claude/`, and it does not read `ownership.yaml`.
+
+So an upgrade that needs either surface is one **this run does not get to make**, and the
+disposition is the one Phase 17 already prescribes for an upgrade it cannot reach. Write it down
+as a proposal in `knowledge/carousel/UPGRADE_BACKLOG.md`, which is `upgrade` lane and is not
+under `.claude/`, and stop. Same answer as an out-of-lane upgrade, arrived at for a different
+reason, and a maintainer at a keyboard can then make the edit and answer the one prompt.
+
+Do not resolve this the other way. Loosening the map to move those surfaces out of `.claude/`
+would put the render engine and the agent definitions somewhere a routine can rewrite itself
+without a human ever seeing it, and the whole point of the retro phase carrying a narrower lane
+is that a self-editing phase is held further back than the rest of the run, never further
+forward.
+
 **And an approval does not survive.** When somebody answers one of these, the grant is persisted
 to `.claude/settings.local.json`, which `.gitignore` excludes and which dies with the container.
 So the owner tapping approve fixes that one run and no future one. That is why the count reached

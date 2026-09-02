@@ -1198,9 +1198,16 @@ python3 scripts/shared/prompt_audit.py
 ```
 
 Exit 1 means a call put a dialog in front of somebody who was not there, and the report names the
-call and the exact command that asked. **Put that in the run record and in the email**, because an
-unattended run that stalls for hours looks from the inside exactly like an unattended run that
-did not.
+call and the command that asked, with the arguments withheld. **Put that in the run record**,
+because an unattended run that stalls for hours looks from the inside exactly like an unattended
+run that did not.
+
+**THIS READING IS INTERIM AND THE RUN RECORD MUST SAY SO.** Everything after this line can still
+prompt, and most of what a run does that a human would want to know about is after this line. The
+upgrade worker runs, files are committed and pushed, the pull request is checked and merged, and
+the Gmail connector is called. **Phase 19 takes the reading that counts**, immediately before the
+email is built, and that is the one a reader acts on. A run record claiming nothing prompted on
+the strength of THIS reading is making the 2026-08-30 mistake one phase earlier.
 
 CLAUDE.md said for eleven days that a session cannot see that it prompted. That was true of the
 tool RESULT and never true of the process, and the sentence blocked six fixes: each was verified
@@ -1341,6 +1348,18 @@ python3 scripts/carousel/gmail_draft.py --run <date> --n <N> --title "<title>" \
   --score <score> --threshold <t> \
   --gates-file <gates.json> --degraded-file <degraded.json> --upgrades-file <upgrades.json>
 ```
+
+**FIRST, TAKE THE READING THAT COUNTS.** Phase 17's was interim and everything since then, the
+upgrade worker, the commits, the push, the merge, could have stopped the run:
+
+```
+python3 scripts/shared/prompt_audit.py
+```
+
+This is the LAST thing a run does before the email, so it is the only reading that covers the
+whole run. Exit 1 means a call waited on a human and the report names it. **Say so in `--notes`,
+naming the tool and how long it waited.** Exit 1 with UNMEASURED means the debug log could not be
+parsed, which is not a clean result and is worth a line of its own.
 
 It writes `runs/carousel/<date>/gmail_payload.json`, a committed artifact beside the deck. Then
 **prove it is postable before you draft it**, by exit code:

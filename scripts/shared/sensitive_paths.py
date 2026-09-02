@@ -56,6 +56,12 @@ INSTRUCTION_GLOBS = (
     "prompts/*.md",
     ".claude/skills/*/SKILL.md",
     ".claude/agents/*.md",
+    # THE WORKLOG IS AN INSTRUCTION SURFACE, and forgetting that would have left the hole this
+    # gate exists to close. CLAUDE.md tells every context to read it FIRST and resume from it, so
+    # a worklog telling a later context to create a file under `.claude/` reaches exactly as far
+    # as CLAUDE.md does. It is also the one file here written by a routine rather than a
+    # maintainer, which makes it the likeliest to drift.
+    "runs/carousel/WORKLOG.md",
 )
 
 DOT_CLAUDE = r"['\"`]?(?:\./)?\.claude/[^\s'\"`)]*"
@@ -70,9 +76,14 @@ TOOL_WRITE = re.compile(
 )
 
 # Any imperative to put something under .claude/, which is the general case.
+# The filler between the verb and the preposition is capped SHORT on purpose. At sixty
+# characters this matched CLAUDE.md's own history prose, "a write into `.git/`, and that
+# `bypassPermissions` in `.claude/settings.json`", where the verb and the path belong to
+# different clauses and nobody is being told to do anything. Thirty still admits every real
+# instruction, "write the durable plan to" being seventeen.
 VERB_WRITE = re.compile(
     rf"(?:write|append|stamp|put|set|save|create|update|maintain|record)\s+"
-    rf"(?:[^\n]{{0,60}}?\s+)?(?:in|into|to|at)\s+{DOT_CLAUDE}",
+    rf"(?:[^\n]{{0,30}}?\s+)?(?:in|into|to|at)\s+{DOT_CLAUDE}",
     re.IGNORECASE,
 )
 
@@ -82,7 +93,18 @@ MOVE_WRITE = re.compile(
     re.IGNORECASE,
 )
 
-PATTERNS = (SHELL_WRITE, TOOL_WRITE, VERB_WRITE, MOVE_WRITE)
+# A verb taking the path as its DIRECT OBJECT, with no preposition in between. "Create
+# `.claude/WORKLOG.md` before starting" prompts exactly as hard as "write the plan TO
+# `.claude/WORKLOG.md`", and the preposition-only pattern above sails straight past it. Up to
+# three filler words are allowed between so that "update the run's own .claude/NOTES.md" is
+# caught, which is how a real instruction is actually phrased.
+DIRECT_WRITE = re.compile(
+    rf"\b(?:write|create|update|edit|append|maintain|overwrite|delete|remove|rewrite)\s+"
+    rf"(?:(?:the|a|an|your|its|this|own|run's|new)\s+){{0,3}}{DOT_CLAUDE}",
+    re.IGNORECASE,
+)
+
+PATTERNS = (SHELL_WRITE, TOOL_WRITE, VERB_WRITE, MOVE_WRITE, DIRECT_WRITE)
 
 HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.*)$")
 
@@ -104,15 +126,27 @@ def offending_lines(text: str) -> list[tuple[int, str]]:
     """
     out: list[tuple[int, str]] = []
     exempt = False
-    for i, line in enumerate(text.splitlines(), 1):
+    lines = text.splitlines()
+    flagged: set[int] = set()
+    for i, line in enumerate(lines, 1):
         head = HEADING.match(line)
         if head:
             exempt = SANCTIONED in head.group(1).lower()
             continue
-        if exempt:
+        if exempt or i in flagged:
             continue
+        # A WRAPPED INSTRUCTION IS STILL AN INSTRUCTION. Prose in these files is hard wrapped, so
+        # "Write the plan to" can end a line and the path begin the next one. Testing the pair
+        # joined catches that; a single-line test structurally cannot, and a checker that reads
+        # one line at a time is the shape of gate this repo has been burned by before.
+        window = line if i == len(lines) else line + " " + lines[i]
         if any(p.search(line) for p in PATTERNS):
             out.append((i, line.strip()))
+            flagged.add(i)
+        elif not HEADING.match(lines[i] if i < len(lines) else "") \
+                and any(p.search(window) for p in PATTERNS):
+            out.append((i, window.strip()))
+            flagged.update({i, i + 1})
     return out
 
 
@@ -167,6 +201,27 @@ def self_test() -> int:
     read = "Read `.claude/skills/carousel-engine/SKILL.md` before writing a slide, every run."
     checks.append(("reading a skill file is NOT flagged, though the line says 'writing'",
                    not offending_lines(read)))
+
+    direct = "Create `.claude/WORKLOG.md` before starting."
+    checks.append(("a DIRECT OBJECT with no preposition is CAUGHT", bool(offending_lines(direct))))
+
+    filler = "Update the run's own .claude/NOTES.md after every commit."
+    checks.append(("...with filler words in between", bool(offending_lines(filler))))
+
+    wrapped = "Write the plan to\n`.claude/WORKLOG.md` before touching code."
+    hits = offending_lines(wrapped)
+    checks.append(("an instruction WRAPPED across two lines is CAUGHT",
+                   len(hits) == 1 and hits[0][0] == 1))
+
+    wrapped_read = "Read the slide contract in\n`.claude/skills/carousel-engine/SKILL.md` first."
+    checks.append(("...and wrapping does not make a READ look like a write",
+                   not offending_lines(wrapped_read)))
+
+    # THE FALSE POSITIVE THE LINE-JOIN CREATED, kept so a future widening cannot bring it back.
+    history = ("of them assumed the Bash sandbox was refusing a write into `.git/`, and that "
+               "`bypassPermissions` in `.claude/settings.json` was otherwise carrying the run.")
+    checks.append(("two clauses that merely both mention a path are NOT an instruction",
+                   not offending_lines(history)))
 
     exempted = (
         "### Why .claude/ is a sensitive file\n"
