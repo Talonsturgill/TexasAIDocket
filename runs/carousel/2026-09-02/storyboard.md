@@ -460,7 +460,7 @@ job: >
   Show three Texas institutions that answered the same question three different ways while the
   hearing was not sitting, without ranking them.
 
-claims: [c8, c9, c11, c12, c14]
+claims: [c8, c9, c12, c14]
 
 type:
   hook: "Three institutions. Three different answers."
@@ -540,7 +540,7 @@ type:
   # is a stronger word and it asserts a labour action at a workplace, which no
   # claim carries.
   dek: "Protesters gathered near Riverside Drive and South Congress Avenue in Austin."
-  labels: ["07 / 09", "says a National Nurses Union member"]
+  labels: ["07 / 09", "says a National Nurses United member"]
 
 composition:
   structure: >

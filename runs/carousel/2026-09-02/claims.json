@@ -154,13 +154,14 @@
     },
     {
       "id": "c16",
-      "text": "A member of the National Nurses Union said at an Austin protest that the Timpani tool drives patient assignments and staffing and sometimes leaves nurses short staffed.",
+      "text": "A member of National Nurses United said at an Austin protest that the Timpani tool drives patient assignments and staffing and sometimes leaves nurses short staffed.",
       "quote": "Timpani is used for making patient assignments, staffing, and to the detriment of the nurses, sometimes they short-staff them.",
       "url": "https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
       "source_title": "Nurses in Austin join nationwide protest against AI firm Palantir's role in healthcare, KUT",
       "source_type": "secondary_reported",
       "retrieved": "2026-09-02",
-      "confidence": "high"
+      "confidence": "high",
+      "note": "The organisation's name is NOT in this claim's quoted span, and the first draft wrote 'National Nurses Union', which is not its name. This repo's own claim for the same protest, runs/carousel/2026-08-30/claims.json, has National Nurses United, and so does the KUT report. A name presented as a proper noun is a factual assertion whether or not the quote carries it."
     },
     {
       "id": "c17",
@@ -234,13 +235,14 @@
     },
     {
       "id": "c24",
-      "text": "Dell's record total company revenue for the quarter was stated separately and is far larger than the AI server segment figure.",
+      "text": "Dell's record total company revenue for the quarter is a company-wide figure, stated separately from the AI server segment's own figures.",
       "quote": "Record revenue of $47.0 billion, up 58% year over year",
       "url": "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm",
       "source_title": "Dell Technologies earnings press release, Exhibit 99.1 to Form 8-K",
       "source_type": "primary_corporate",
       "retrieved": "2026-09-02",
-      "confidence": "high"
+      "confidence": "high",
+      "note": "The first draft said $47.0 billion is 'far larger than the AI server segment figure'. c23 carries THREE segment figures, $60.9 billion of orders, $16.4 billion of revenue and a record backlog, so that ranking is false for one of them and undefined against the others. The comparison is dropped rather than narrowed, because the frame refuses every arithmetic relation between them."
     },
     {
       "id": "c25",

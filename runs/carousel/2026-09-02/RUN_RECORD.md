@@ -93,9 +93,9 @@ Both are real and neither is repairable by another copy pass.
 | aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 5.71 MB, vector |
 | score          | FAIL   | 6.562, below threshold |
-| labels         | PASS   | 0 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| labels         | PASS   | 22 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 72 published string(s) read from one list, every universal names its set |
-| dossiers       | PASS   | 43,896 chars planned |
+| dossiers       | PASS   | 43,892 chars planned |
 | caption        | PASS   | 136 words |
 | craft floor    | WARN   | 9 frame(s), median 531, floor 96, 1 quiet |
 | plan vs render | PASS   | 13 of 69 acceptance item(s) checkable |

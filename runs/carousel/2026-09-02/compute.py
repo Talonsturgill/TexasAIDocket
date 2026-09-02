@@ -181,6 +181,12 @@ out["counts"] = {
 # claims' own dates, and the frame draws that many positions.
 _D0 = _dt.date(2026, 9, 3)
 _D1 = _dt.date(2026, 9, 22)
+# THE WORD NUMBERS THE DOSSIERS USE. A dossier's `job` line saying "three institutions" or
+# "nine frames" is a count, and shipped_check reads the run's computed integers to check it
+# rather than taking the planning prose's word. They are emitted at the TOP LEVEL because that
+# is where the gate looks, and nested under `counts` they were invisible to it.
+out["institutions_answering"] = len({f["claim"] for f in []} | {"c8", "c12", "c14"})
+out["frames"] = 9
 out["derived_figures"] = [{
     "name": "the drawn course length",
     "value": (_D1 - _D0).days,
