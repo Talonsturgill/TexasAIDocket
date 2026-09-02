@@ -11,7 +11,7 @@ The Board of Regents approved adding the first phase of the UT Dell Medical Cent
 - Public access: Closed
 - Take part: https://www.utsystem.edu/sites/default/files/offices/board-of-regents/board-meetings/agenda-book-full/8-2026AB.pdf
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Admitted. The board's own agenda book carries the recommendation, the phase, the site and the money, and it describes the campus technology as digital rather than as artificial intelligence. The AI framing on this campus comes from the university's own release and is attributed to it here.
 - 2026-08-26 · Corrected the same day. The entry said the board amended the program, approved the cost and authorized the money. Every source behind it was the agenda book, which is the document BEFORE the meeting and which recommends rather than records. Its own table of contents puts the committee on August 12th and the board on August 13th. UT System publishes no minutes and no record of action for that meeting. A dated report of the meeting was fetched and admitted as c5. The summary now separates what the board approved from what the item asked it to do.
 - 2026-08-29 · Checked and unchanged. The first phase of the medical center is still in the capital improvement program and the money still comes from revenue financing system bond proceeds. The phase is still early site work rather than a building.
+- 2026-09-01 · The regents' capital-program commitment for the UT Dell Medical Center remains approved.
 
 ## Evidence
 

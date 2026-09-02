@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to the Texas A
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2534344
 
-- Last checked: 2026-08-30
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The Texas A and M user facility award still stands with its stated term and start date. The agency still describes it as open access rather than reserved to the university.
 - 2026-08-29 · Checked and unchanged. The award to the Texas A and M Engineering Experiment Station still funds the autonomous metallurgist platform, and the agency still calls it open access. The dates the grant runs between are unaltered.
 - 2026-08-30 · The user facility award is unchanged. Robots and artificial intelligence still run the instruments that outside researchers book time on.
+- 2026-09-01 · Texas A and M's national autonomous metals user facility remains funded in the federal award record.
 
 ## Evidence
 

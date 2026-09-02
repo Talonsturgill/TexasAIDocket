@@ -9,7 +9,7 @@ A revision request pending at the Electric Reliability Council of Texas concerns
 - Public access: Public meeting
 - Take part: https://www.ercot.com/mktrules/issues/NOGRR289
 
-- Last checked: 2026-08-30
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -20,6 +20,7 @@ A revision request pending at the Electric Reliability Council of Texas concerns
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-30 · Admitted to the record. The request is still pending, with the reliability and operations subcommittee named as its next group.
+- 2026-09-01 · ERCOT's proposed grace period for data-center cooling equipment remains under consideration.
 
 ## Evidence
 

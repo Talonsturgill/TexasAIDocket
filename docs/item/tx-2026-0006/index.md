@@ -8,7 +8,7 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 - Status: decided
 - Public access: Write to the decider
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-21 · Checked and unchanged. Chapter 552 stands in force, enforcement still rests solely with the Attorney General, and the rebuttable presumption of reasonable care still stands.
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-28 · Checked and unchanged. Chapter 552 is still in force and the Attorney General is still the only office that may enforce it. A Texan who believes an AI system broke this law still has no private suit to bring.
+- 2026-09-01 · The Attorney General remains the statute's sole enforcer, and the law still creates no private right to sue.
 
 ## Evidence
 

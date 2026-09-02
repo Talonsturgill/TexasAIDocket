@@ -9,7 +9,7 @@ The Texas Politics Project at the University of Texas at Austin polled 1200 regi
 - Public access: Write to the decider
 - Take part: https://texaspolitics.utexas.edu/blog/new-ut-texas-politics-project-poll-finds-talarico-leading-paxton-abbott-leading-hinojosa-continued-resistance-to-data-centers-2
 
-- Last checked: 2026-08-30
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-27 · Admitted. The project's own release carries the split, the field dates, the sample size and the margin of error.
 - 2026-08-30 · The poll result stands. A majority of Texas voters still say they do not want a data center in their own community.
+- 2026-09-01 · The statewide survey continues to show local opposition to data-center development in its published results.
 
 ## Evidence
 

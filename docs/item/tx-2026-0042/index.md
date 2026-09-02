@@ -9,7 +9,7 @@ Young County Commissioners Court formally received a tax abatement application f
 - Public access: Public meeting
 - Take part: https://www.olneyenterprise.com/news/county-votes-data-center-abatement
 
-- Last checked: 2026-08-28
+- Last checked: 2026-09-01
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Checked and unchanged. The county still received the abatement application on August 10th with no vote taken on it, and the 5 to 0 escrow ratification still stands. Whether the court took the abatement up when it reconvened on August 17th is still unconfirmed.
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-28 · Checked and unchanged. The Project Saltworks abatement application is still with Young County and no vote on it has been posted. The escrow the court ratified to pay outside consultants is still the only thing decided.
+- 2026-09-01 · Young County still has the Saltworks abatement application and its developer-funded consulting escrow before it.
 
 ## Evidence
 
