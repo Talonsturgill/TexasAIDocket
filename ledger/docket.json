@@ -6964,7 +6964,7 @@
     },
     {
       "id": "tx-2026-0077",
-      "title": "Senate Transportation sets an August 25th hearing on how driverless vehicles are being deployed under SB 2807",
+      "title": "Senate Transportation held its August 25th hearing on how driverless vehicles are being deployed under SB 2807",
       "summary": "The Senate Committee on Transportation posted notice of a public hearing for August 25th, 2026 in the Capitol. One of three interim charges covers the deployment of autonomous vehicle technology authorized by SB 2807 of the 89th Session. It reaches the rules adopted by the Department of Public Safety, the Department of Motor Vehicles and the Department of Licensing and Regulation. The charge directs the committee to quantify the impact on traffic related collisions. The committee will hear invited and public testimony.",
       "topic": "state-policy",
       "decider": {
@@ -6987,7 +6987,7 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The hearing is at 9:00 AM on August 25th, 2026 in hearing room E1.016 at the Capitol in Austin, and the committee takes public as well as invited testimony. A speaker gets two minutes. Written testimony goes to the committee clerk in fifteen copies with the submitter's name on each one. The notice describes no electronic comment channel, unlike the House notices posted for the same week.",
+        "how": "The hearing was held at 9:00 AM on August 25th, 2026 in hearing room E1.016 at the Capitol in Austin, and the committee's own page carries the recording. The door to testify has closed. The committee has published no recommendations on the charge.",
         "url": "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF",
         "closes": "2026-08-25"
       },
@@ -7081,9 +7081,18 @@
           "source_title": "Senate Committee on Transportation, interim charges",
           "source_type": "primary_official",
           "fetched": "2026-08-26"
+        },
+        {
+          "text": "The committee's own page carries a recording of the August 25th hearing.",
+          "verbatim_quote": "August 25, 2026",
+          "source_url": "https://senate.texas.gov/cmte.php?c=640",
+          "source_title": "Texas Senate, Committee on Transportation",
+          "source_type": "primary_official",
+          "id": "tx-2026-0077-c11",
+          "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "Statewide because the charge covers deployment on Texas roads generally. The room is in Travis County and the subject is not.",
       "history": [
@@ -7111,6 +7120,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The hearing was held and the committee's own page still carries it in the archive of recorded meetings. What the committee concluded on the driverless charge is still unconfirmed, because its minutes and witness list sit under a directory this project does not fetch."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The August 25th hearing was held and the committee's own page carries its recording. The interim charge on autonomous vehicle deployment under SB 2807 is unchanged, and the committee has published no recommendations yet."
         }
       ]
     },
@@ -8245,8 +8258,8 @@
       ]
     },
     {
-      "title": "Senate Water, Agriculture and Rural Affairs takes up data center cooling water on September 1st",
-      "summary": "The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The Legislature's own upcoming meetings listing sets the committee for Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. It sets a second sitting in the same room the next day. Both are marked a public hearing, which is the room where a member of the public may testify. The charge list also carries desalination and permitting efficiency. The water question is being taken up as one supply problem rather than as a data center problem alone",
+      "title": "Senate Water, Agriculture and Rural Affairs takes up data center cooling water, and sits again on September 2nd",
+      "summary": "The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The committee sat on Tuesday, September 1st, 2026. Its own page carries the recording of that sitting. The Legislature's upcoming meetings listing sets a second sitting for Wednesday, September 2nd, 2026 in hearing room E1.012 at the Capitol. The listing marks it a public hearing. Charles Perry chairs the committee.",
       "topic": "state-policy",
       "decider": {
         "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
@@ -8263,17 +8276,17 @@
         {
           "date": "2026-09-01",
           "kind": "hearing",
-          "note": "Public hearing, 9:00 AM, hearing room E1.012"
+          "note": "Public hearing, held"
         },
         {
           "date": "2026-09-02",
           "kind": "hearing",
-          "note": "Second public hearing, 9:00 AM, hearing room E1.012"
+          "note": "Second public hearing, hearing room E1.012"
         }
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The committee sits twice. The first hearing is Tuesday, September 1st, 2026 at 9:00 AM in hearing room E1.012 at the Capitol in Austin. The second is the following day in the same room at the same hour. The Legislature's own listing marks both a public hearing. Witness registration instructions are unconfirmed, so a member of the public should ask the committee clerk how to sign up.",
+        "how": "The first sitting was held on Tuesday, September 1st, 2026. The committee's own page carries its recording. The second is Wednesday, September 2nd, 2026 in hearing room E1.012 at the Capitol in Austin. The Legislature's listing marks it a public hearing. Witness registration instructions are unconfirmed. A member of the public should ask the committee clerk how to sign up.",
         "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
         "closes": "2026-09-02"
       },
@@ -8331,10 +8344,19 @@
           "source_title": "Texas Legislature, upcoming Senate committee meetings, September 2026 listing",
           "source_type": "primary_official",
           "fetched": "2026-08-27"
+        },
+        {
+          "text": "The committee's own page carries a recording of the September 1st sitting.",
+          "verbatim_quote": "September 1, 2026",
+          "source_url": "https://senate.texas.gov/cmte.php?c=700",
+          "source_title": "Texas Senate, Committee on Water, Agriculture and Rural Affairs",
+          "source_type": "primary_official",
+          "id": "tx-2026-0096-c7",
+          "fetched": "2026-09-02"
         }
       ],
       "id": "tx-2026-0096",
-      "last_verified": "2026-08-30",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-26",
@@ -8359,6 +8381,10 @@
           "date": "2026-08-30",
           "note": "The hearing is still set and the room is still open to file into. Data center cooling water remains on the committee's list, and the window closes September 2nd.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The September 1st sitting was held. The committee's own page carries its recording. The second sitting stands for September 2nd, 2026 in hearing room E1.012, so the door is open today."
         }
       ]
     },
@@ -10197,8 +10223,8 @@
       ]
     },
     {
-      "title": "Senate Economic Development takes up AI and the Texas workforce in a September 3rd hearing",
-      "summary": "The Senate Committee on Economic Development carries an interim charge on preparing the Texas workforce for artificial intelligence. The charge directs the committee to study what AI does to the Texas workforce and what that means for the state's economic competitiveness. It also directs the committee to look at workforce resiliency. Educational pathways set against evolving employer needs and opportunities for upskilling are named in the same charge. The Legislature's own upcoming meetings listing sets the committee for Thursday, September 3rd, 2026 at 9:00 AM in hearing room E1.016 at the Capitol and marks it a public hearing. Angela Paxton chairs the committee and Kevin Sparks is vice chair.",
+      "title": "Senate Economic Development cancels its September 3rd hearing on AI and the Texas workforce and resets for September 22nd",
+      "summary": "The Senate Committee on Economic Development carries an interim charge on preparing the Texas workforce for artificial intelligence. The charge directs the committee to study what AI does to the Texas workforce and what that means for the state's economic competitiveness. It also directs the committee to look at workforce resiliency. Educational pathways set against evolving employer needs and opportunities for upskilling are named in the same charge. The hearing the committee had set for Thursday, September 3rd, 2026 is canceled. The Legislature's own upcoming meetings listing now carries the committee for Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol and marks it a public hearing. Angela Paxton chairs the committee and Kevin Sparks is vice chair.",
       "topic": "state-policy",
       "decider": {
         "name": "Texas Senate Committee on Economic Development",
@@ -10215,12 +10241,18 @@
         {
           "date": "2026-09-03",
           "kind": "hearing",
-          "note": "Public hearing, 9:00 AM, hearing room E1.016"
+          "note": "Canceled",
+          "canceled": true
+        },
+        {
+          "date": "2026-09-22",
+          "kind": "hearing",
+          "note": "Public hearing, hearing room E1.016"
         }
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The hearing is at 9:00 AM on Thursday, September 3rd, 2026 in hearing room E1.016 at the Capitol in Austin. The Legislature's own listing marks it a public hearing. The committee's page names Angela Paxton as chair and gives the committee's telephone number and its office in the Sam Houston Building.",
+        "how": "The September 3rd hearing is canceled and the Legislature's listing says so on its own row. The committee is now set for Tuesday, September 22nd, 2026 in hearing room E1.016 at the Capitol in Austin, and the listing marks it a public hearing. The committee's page names Angela Paxton as chair and gives the committee's telephone number and its office in the Sam Houston Building.",
         "url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
         "closes": null
       },
@@ -10271,10 +10303,28 @@
           "source_type": "primary_official",
           "id": "tx-2026-0109-c5",
           "fetched": "2026-08-29"
+        },
+        {
+          "text": "The September 3rd hearing is marked canceled on the Legislature's own listing.",
+          "verbatim_quote": "Economic Development (Canceled/see notice)",
+          "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+          "source_title": "Texas Legislature Online, Senate upcoming committee meetings",
+          "source_type": "primary_official",
+          "id": "tx-2026-0109-c7",
+          "fetched": "2026-09-02"
+        },
+        {
+          "text": "The same listing carries an Economic Development public hearing on September 22nd.",
+          "verbatim_quote": "Economic Development\n      Type: Public Hearing     Location: E1.016 (Hearing Room)",
+          "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+          "source_title": "Texas Legislature Online, Senate upcoming committee meetings",
+          "source_type": "primary_official",
+          "id": "tx-2026-0109-c8",
+          "fetched": "2026-09-02"
         }
       ],
       "id": "tx-2026-0109",
-      "last_verified": "2026-08-30",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-29",
@@ -10284,6 +10334,10 @@
           "date": "2026-08-30",
           "note": "The September 3rd hearing on artificial intelligence and the Texas workforce is still on the calendar, with nothing filed against it since.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The September 3rd hearing is canceled. The Legislature's upcoming meetings listing now carries the committee for September 22nd, 2026 in the same hearing room, and the interim charge on preparing the Texas workforce for AI is unchanged."
         }
       ]
     },
