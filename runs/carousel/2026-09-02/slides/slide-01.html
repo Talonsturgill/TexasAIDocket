@@ -1,0 +1,400 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txrelief.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #33211F; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #9E958C;
+    font-size: 25px;
+  }
+  #hookbox {
+    position: absolute; left: 80px; width: 560px; top: 196px;
+    height: 300px; overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 600; color: #F2DCCB;
+    line-height: 1.04; letter-spacing: -.015em;
+  }
+  .dek {
+    position: absolute; left: 80px; width: 560px; top: 540px;
+    font: 400 30px/1.42 "Manrope", sans-serif; color: #C9B6A8;
+  }
+  /* the ids get the mono attribution rank every other frame gives them, and NOT
+     the footer, where they sat beside the 01 / 09 counter and numeral_trace read
+     the counter's own 09 as a figure c1 and c2 were being cited for. */
+  .ids {
+    position: absolute; left: 80px; top: 640px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #9E958C; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #9E958C; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">Texas AI Docket</div>
+  <div id="hookbox">Nine in the morning.<br>No hearing.</div>
+  <div class="dek">Thursday September 3rd, 2026. Room E1.016.</div>
+  <div class="ids">c1 c2</div>
+  <div class="foot-l">01 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cv = document.getElementById("art");
+  var cx = cv.getContext("2d");
+  cx.scale(2, 2);                     // 2x backing store, per the engine contract
+
+  var W = 1080, H = 1350;
+  var DESK_TOP = 812;                 // the dais desktop's front edge
+  var BASE_TOP = 1180;                // granite base course below it
+
+  /* ---------------------------------------------------------------- palette */
+  var QUARRY   = "#33211F";
+  var MOUNTAIN = "#6B3C39";
+  var BIOTITE  = "#141013";
+  var FELDSPAR = "#F2DCCB";
+  var QUARTZ   = "#9E958C";
+  var PECAN    = "#4A3527";
+
+  /* THE KEY. One lamp for the whole deck, azimuth 118 degrees, 8 degrees up.
+     Every lit crest and every cast on every frame derives from these two. */
+  var AZ = 118 * Math.PI / 180, EL = 8 * Math.PI / 180;
+  var LX = Math.cos(AZ), LY = -Math.sin(AZ) * Math.cos(EL);
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function hex(h) {
+    return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+  }
+  function mix(a, b, t) {
+    var A = hex(a), B = hex(b);
+    return "rgb(" + Math.round(lerp(A[0], B[0], t)) + "," + Math.round(lerp(A[1], B[1], t)) +
+           "," + Math.round(lerp(A[2], B[2], t)) + ")";
+  }
+
+  /* ------------------------------------------------- the unlit granite field
+     Frames 1, 2 and 3 share this ground. The fleck must stay RESOLVABLE at the
+     432px thumb or the frame becomes the edgeless field deck 12 warned about,
+     so the grain pitch is derived from the thumb width rather than chosen. */
+  function granite(x0, y0, w, h, baseHex, litAmount, fleckScale) {
+    cx.fillStyle = baseHex;
+    cx.fillRect(x0, y0, w, h);
+    /* Pitch is derived from the thumb so the grain survives 432px rather than being
+       chosen at full size. Crystals are ANGULAR and small: the first pass drew round
+       dots at high contrast and the frame read as confetti. */
+    var pitch = (w / 432) * 1.15 * (fleckScale || 1);
+    var n = Math.floor((w * h) / (pitch * pitch * 3.0));
+    for (var i = 0; i < n; i++) {
+      var px = x0 + R() * w, py = y0 + R() * h;
+      var t = R();
+      var r = pitch * (0.30 + R() * 0.55);
+      if (t < 0.46) {
+        cx.fillStyle = "rgba(20,16,19," + (0.16 + R() * 0.26) + ")";
+      } else if (t < 0.82) {
+        cx.fillStyle = "rgba(158,149,140," + (0.05 + R() * 0.11) + ")";
+      } else {
+        cx.fillStyle = "rgba(242,220,203," + (0.03 + litAmount * (0.05 + R() * 0.22)) + ")";
+      }
+      /* an angular crystal, three to five sides, not an ellipse */
+      var sides = 3 + Math.floor(R() * 3), rot = R() * 6.2832;
+      cx.beginPath();
+      for (var s = 0; s < sides; s++) {
+        var a = rot + (s / sides) * 6.2832;
+        var rr = r * (0.62 + R() * 0.72);
+        var xx = px + Math.cos(a) * rr, yy = py + Math.sin(a) * rr * 0.78;
+        if (s === 0) cx.moveTo(xx, yy); else cx.lineTo(xx, yy);
+      }
+      cx.closePath();
+      cx.fill();
+    }
+  }
+
+  /* THE UPPER FIELD. Unlit. The art never reaches the type, which is why the
+     hook needs no plate and no halo. The halo is spent on deck 12 anyway. */
+  granite(0, 0, W, DESK_TOP, "#42292A", 0.14, 1.0);
+
+  /* a slow vertical settle so the field is not a flat fill, still edge-free */
+  var g = cx.createLinearGradient(0, 0, 0, DESK_TOP);
+  g.addColorStop(0, "rgba(20,16,19,0.24)");
+  g.addColorStop(0.62, "rgba(20,16,19,0.02)");
+  g.addColorStop(1, "rgba(20,16,19,0.18)");
+  cx.fillStyle = g;
+  cx.fillRect(0, 0, W, DESK_TOP);
+
+  /* ------------------------------------------------------ the pecan desktop
+     A relit heightfield rather than a filled rectangle, so the surface has
+     tone across it and the bottom third is not flat furniture. */
+  TX.reliefShade(cx, {
+    x: 0, y: DESK_TOP, w: W, h: BASE_TOP - DESK_TOP,
+    scale: 2, seed: SEED + 11,
+    height: function (u, v) {
+      /* anisotropic: cheap variation along the board, tight banding across it */
+      return 0.5
+        + TX.fbm2(u * 2.2, v * 46.0, 4) * 0.34
+        + TX.fbm2(u * 0.7, v * 12.0, 3) * 0.16;
+    },
+    strength: 26,
+    lights: [{ az: 118, el: 8, w: 1 }],
+    ambient: 0.20, diffuse: 0.92,
+    low: "#2C2015", high: "#7E5C40"
+  });
+
+  /* THE PLANE RECEDES, so it carries a value ramp from the far edge to the near
+     arris. Perfectly parallel grain at constant spacing, constant weight and
+     constant value reads as a wainscot panel as readily as a desktop, which is
+     what a reader received. */
+  (function () {
+    var dg2 = cx.createLinearGradient(0, DESK_TOP, 0, BASE_TOP);
+    dg2.addColorStop(0.00, "rgba(18,12,8,0.46)");
+    dg2.addColorStop(0.55, "rgba(18,12,8,0.10)");
+    dg2.addColorStop(1.00, "rgba(255,238,214,0.10)");
+    cx.fillStyle = dg2;
+    cx.fillRect(0, DESK_TOP, W, BASE_TOP - DESK_TOP);
+  })();
+
+  /* wood grain, drawn ALONG the desk so the surface has direction */
+  cx.save();
+  cx.globalAlpha = 0.22;
+  for (var gi = 0; gi < 46; gi++) {
+    var gy = DESK_TOP + 10 + Math.pow(R(), 0.55) * (BASE_TOP - DESK_TOP - 20);
+    cx.strokeStyle = R() < 0.5 ? "rgba(24,17,11,0.50)" : "rgba(140,106,72,0.26)";
+    cx.lineWidth = (0.7 + R() * 2.2) * (0.42 + 0.58 * ((gy - DESK_TOP) / (BASE_TOP - DESK_TOP)));
+    cx.beginPath();
+    cx.moveTo(-10, gy);
+    for (var gx = -10; gx < W + 10; gx += 60) {
+      cx.lineTo(gx, gy + TX.simplex2(gx * 0.0011, gy * 0.013) * 5.2);
+    }
+    cx.stroke();
+  }
+  cx.restore();
+
+  /* THE BULLNOSE ARRIS, AND IT IS AT THE NEAR EDGE. Drawn at DESK_TOP it made
+     y812 the desk's front edge, which turned everything below it into the
+     vertical apron and left the microphone stuck to panelling 96px down that
+     face. A cast base with an elliptical top and a contact shadow both state a
+     horizontal plane, and there was no horizontal plane anywhere near it. The
+     band from DESK_TOP to BASE_TOP is the desktop RECEDING, so its near edge is
+     at the bottom and the reader is seated at it, which is the dossier's own
+     structural claim. */
+  for (var b = 0; b < 22; b++) {
+    var tb = b / 21;
+    cx.fillStyle = mix(FELDSPAR, "#22180F", Math.pow(tb, 0.42));
+    cx.globalAlpha = 1;
+    cx.fillRect(0, BASE_TOP - 9 + b * 0.42, W, 0.5);
+  }
+  cx.fillStyle = "rgba(255,246,238,0.72)";
+  cx.fillRect(0, BASE_TOP - 9.6, W, 1.6);
+  /* the far edge of the desktop, where it meets the wall, is a dark reveal */
+  cx.fillStyle = "rgba(14,10,10,0.62)";
+  cx.fillRect(0, DESK_TOP, W, 4.0);
+
+  /* --------------------------------------------------- granite base course */
+  granite(0, BASE_TOP, W, H - BASE_TOP, BIOTITE, 0.34, 0.82);
+  cx.fillStyle = "rgba(242,220,203,0.30)";
+  cx.fillRect(0, BASE_TOP, W, 1.1);
+
+  /* --------------------------------------------------------- the microphone
+     The one machined thing on this frame. The claim's own instrument, off.
+     Drawn as a centreline walked in segments, each relit from the one key,
+     because a gooseneck drawn as a uniform stroke is a bent line. */
+  /* SCALE. At the first build the silhouette was about one percent of the
+     432px thumb against a stated floor of six, so the news was carried entirely
+     by the headline and the instrument read as an ornament. Everything below is
+     the same drawing at 2.4x, seated on the desktop plane rather than on the
+     apron, and the frame measures its own silhouette at the end. */
+  var BX = 790;
+  var baseY = 1104;
+
+  /* THE POOL, laid before the shadow is cast into it. The dossier's focal is the
+     key light on the desktop around the base and there was none, so the shadow
+     had nothing to subtract from. */
+  (function () {
+    var pg = cx.createRadialGradient(BX - 30, baseY - 6, 20, BX - 30, baseY - 6, 300);
+    pg.addColorStop(0.00, "rgba(255,238,214,0.22)");
+    pg.addColorStop(0.45, "rgba(255,238,214,0.08)");
+    pg.addColorStop(1.00, "rgba(255,238,214,0.00)");
+    cx.fillStyle = pg;
+    cx.fillRect(BX - 340, DESK_TOP, 680, BASE_TOP - DESK_TOP);
+  })();
+  TXCARVE.contactShadow(cx, {
+    x: BX, y: baseY + 3, w: 260, color: "#180F09",
+    dirDeg: 118 - 180, tightAlpha: 0.70, wideAlpha: 0.0, tightBlur: 2, wideBlur: 2
+  });
+  TXCARVE.contactShadow(cx, {
+    x: BX, y: baseY + 6, w: 300, color: "#241A13",
+    dirDeg: 118 - 180, tightAlpha: 0.42, wideAlpha: 0.16, tightBlur: 4, wideBlur: 44
+  });
+
+  /* the cast base, a truncated cone with a lit left rim */
+  (function () {
+    var rB = 115, rT = 79, hC = 62;
+    var gb = cx.createLinearGradient(BX - rB, 0, BX + rB, 0);
+    gb.addColorStop(0.00, "#8E8378");
+    gb.addColorStop(0.24, "#5A5049");
+    gb.addColorStop(0.72, "#2A2320");
+    gb.addColorStop(1.00, "#1B1613");
+    cx.fillStyle = gb;
+    cx.beginPath();
+    cx.moveTo(BX - rB, baseY);
+    cx.lineTo(BX - rT, baseY - hC);
+    cx.lineTo(BX + rT, baseY - hC);
+    cx.lineTo(BX + rB, baseY);
+    cx.closePath();
+    cx.fill();
+    cx.fillStyle = "#6E6259";
+    cx.beginPath();
+    cx.ellipse(BX, baseY - hC, rT, rT * 0.30, 0, 0, 6.2832);
+    cx.fill();
+    cx.fillStyle = "rgba(242,220,203,0.55)";                 // the lit left rim
+    cx.beginPath();
+    cx.ellipse(BX, baseY - hC, rT, rT * 0.30, 0, 2.5, 4.2);
+    cx.lineWidth = 4.4;
+    cx.strokeStyle = "rgba(255,246,238,0.70)";
+    cx.stroke();
+  })();
+
+  /* the swept tube, 140 segments, each with its own lit crest */
+  (function () {
+    var pts = [], N = 260;
+    var y0 = baseY - 62, y1 = y0 - 700;
+    for (var i = 0; i <= N; i++) {
+      var tt = i / N;
+      var bend = Math.pow(tt, 2.4) * 300;
+      pts.push([BX - bend, lerp(y0, y1, tt)]);
+    }
+    var rad = 27;
+
+    /* A TUBE IS ONE CONTINUOUS SOLID, NOT 140 STROKED SEGMENTS.
+       Stroking each segment separately and offsetting it by that SEGMENT'S own
+       normal put a miter spike at every vertex, and at 432px both silhouettes
+       read as a comb. A saw blade, on a deck whose structural law says nothing
+       in nine frames is torn or struck through. The offsets are taken from a
+       SMOOTHED vertex normal now and each shell is stroked as one polyline. */
+    function normals(ps) {
+      var ns = [];
+      for (var i = 0; i < ps.length; i++) {
+        var a = ps[Math.max(0, i - 1)], b = ps[Math.min(ps.length - 1, i + 1)];
+        var dx = b[0] - a[0], dy = b[1] - a[1], len = Math.hypot(dx, dy) || 1;
+        ns.push([-dy / len, dx / len]);
+      }
+      return ns;
+    }
+    var nrm = normals(pts);
+    function shell(off, width, colFn) {
+      cx.lineJoin = "round"; cx.lineCap = "round";
+      cx.lineWidth = width;
+      cx.strokeStyle = colFn();
+      cx.beginPath();
+      for (var i = 0; i < pts.length; i++) {
+        var x = pts[i][0] + nrm[i][0] * off, y = pts[i][1] + nrm[i][1] * off;
+        if (i === 0) cx.moveTo(x, y); else cx.lineTo(x, y);
+      }
+      cx.stroke();
+    }
+    /* the solid body first, at the tube's darkest turn */
+    shell(0, rad * 2, function () { return "#141017"; });
+    /* then the cross section, four shells from the key side to the shadow side.
+       The Lambert term is recomputed per shell, so the metal has a light side,
+       a turn and a dark side rather than one value. */
+    for (var k = 0; k < 4; k++) {
+      (function (k) {
+        var frac = 0.74 - k * 0.42;                 // +0.74 rad to -0.52 rad
+        var lam = Math.max(0, frac * LX * 1.0 + LY * -0.35);
+        shell(rad * frac, rad * 0.62, function () {
+          return mix("#141017", FELDSPAR, Math.pow(Math.min(1, lam + 0.10), 1.3) * 0.92);
+        });
+      })(k);
+    }
+    /* the specular crest, wide enough to survive the 0.4x downscale */
+    shell(rad * 0.86, 5.5, function () { return mix("#0F0A0C", FELDSPAR, 0.97); });
+    shell(-rad * 0.88, 5.0, function () { return "rgba(13,9,11,0.90)"; });
+
+    /* THE HEAD HAS A SILHOUETTE. Twenty two winding strokes drawn straight onto
+       the wall gave it no boundary at all, so it read as a translucent striped
+       cone rather than as a mesh basket, and the head is the one part of the
+       drawing that says microphone. The solid goes down first. */
+    var hx = pts[N][0], hy = pts[N][1];
+    var hcx = hx - 28, hcy = hy - 130, hrx = 72, hry = 132, hrot = -0.36;
+    cx.save();
+    cx.translate(hcx, hcy);
+    cx.rotate(hrot);
+    cx.fillStyle = "#171015";
+    cx.beginPath();
+    cx.ellipse(0, 0, hrx, hry, 0, 0, 6.2832);
+    cx.fill();
+    cx.restore();
+    for (var a = 0; a < 22; a++) {
+      var ta = a / 21;
+      var rr = 36 + Math.sin(ta * Math.PI) * 31;
+      var yy = hy - 14 - ta * 232;
+      cx.lineJoin = "round"; cx.lineCap = "round";
+      cx.strokeStyle = mix("#171015", FELDSPAR, 0.10 + Math.pow(1 - ta, 1.6) * 0.44);
+      cx.lineWidth = 6.5;
+      cx.beginPath();
+      cx.ellipse(hx - ta * 56, yy, rr, rr * 0.42, hrot, 0, 6.2832);
+      cx.stroke();
+    }
+    /* the lit rim, on the key side only, so the basket has an edge */
+    cx.save();
+    cx.translate(hcx, hcy);
+    cx.rotate(hrot);
+    cx.strokeStyle = "rgba(242,220,203,0.86)";
+    cx.lineWidth = 3.4;
+    cx.beginPath();
+    cx.ellipse(0, 0, hrx, hry, 0, 2.24, 4.32);
+    cx.stroke();
+    cx.restore();
+
+    /* THE COLLAR IS A BAND THE TUBE'S OWN WIDTH, with a lit upper arc and a
+       dark lower one. Stroked as an unfilled ellipse 26px wide over a 21px tube
+       it was wider than the thing it encircled, and at 432px it read as a small
+       o floating in an empty half of the frame. */
+    (function () {
+      var ci = Math.round(N * 0.30), c = pts[ci], c2 = pts[ci + 1];
+      var dx = c2[0] - c[0], dy = c2[1] - c[1], len = Math.hypot(dx, dy) || 1;
+      var nx = -dy / len, ny = dx / len;
+      cx.strokeStyle = "rgba(242,220,203,0.62)";
+      cx.lineWidth = 11;
+      cx.beginPath();
+      cx.moveTo(c[0] + nx * rad * 0.30, c[1] + ny * rad * 0.30);
+      cx.lineTo(c[0] + nx * rad * 1.02, c[1] + ny * rad * 1.02);
+      cx.stroke();
+      cx.strokeStyle = "rgba(20,14,16,0.85)";
+      cx.beginPath();
+      cx.moveTo(c[0] - nx * rad * 0.30, c[1] - ny * rad * 0.30);
+      cx.lineTo(c[0] - nx * rad * 1.02, c[1] - ny * rad * 1.02);
+      cx.stroke();
+    })();
+  })();
+
+  /* the type is fitted, never hand sized */
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("hookbox"), { min: 76, max: 108, maxLines: 3, respectHeight: true });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

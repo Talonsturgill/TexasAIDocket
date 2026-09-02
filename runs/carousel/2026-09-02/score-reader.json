@@ -1,0 +1,23 @@
+{
+  "lens": "reader",
+  "carousel_no": 13,
+  "date": "2026-09-02",
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.28, "score": 6.8,
+     "why": "Frame 1's gooseneck is genuinely drawn rather than assembled, frame 2's fleck does not grey out, frame 5's paper inversion is the best single idea in the deck and unmistakable in the contact sheet, and frame 9's lit jamb earns the reversal. Against that: frame 3's texture-to-zero at constant value does not survive the thumb and reads as a dark empty top over a speckled bottom, which is the value difference the storyboard promised to avoid. Frame 4's ashlar reads at 432px as a slatted panel with two notches and a reader cannot count a day. And frames 6, 7, 8 and 9 are four consecutive frames of bright rectangle on dark maroon with mono type, which reads in the contact sheet as one idea."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 7.2,
+     "why": "Every numeral traces. The rejected block is unusually disciplined, refusing the San Antonio gloss, the chair's name, the fiscal period and the St. David's join, with c18 excluded from the deck entirely rather than kept apart by layout. Two framing deductions. Frame 3's hook 'A third is off limits' under the kicker WHAT IS NOT PUBLISHED tells a scrolling reader the cancellation notice is being withheld, and it is not: it is publicly linked off the row and this record's own fetcher declined a robots-disallowed path. Frame 8 stacks $60.9 billion above $47.0 billion, so the layout asserts the comparison the dek spends its length denying."},
+    {"name": "story_and_stakes", "weight": 0.18, "score": 6.2,
+     "why": "The deck hands a Texan a room designation with almost nothing around it. Frame 1's dek is 'Thursday September 3rd, 2026. Room E1.016.' and frame 9's actionable payload is E1.016 plus a date. Cutting 'the Capitol, Austin' from frame 1 was right on integrity grounds and the reader consequence was never solved anywhere else. Frame 9's kicker promises WHAT A READER CAN DO and delivers a question with no committee contact, no written-comment path and no stream. The stake stays institutional: the only frame where a person is at risk is 7, and the deck never connects that back to the charge on frame 5."},
+    {"name": "sequence_and_momentum", "weight": 0.12, "score": 6.3,
+     "why": "Frame 1 earns the swipe cleanly and frames 1 and 2 leave a true residue. Then frames 3 and 4 spend two more frames on one beat. The subject of the hearing, AI and the Texas workforce, does not arrive until frame 5 of 9. The deck's own thesis sentence, 'A hearing can come off the calendar. The work it was called to examine does not', exists only in the caption and appears on no frame, so the value peak and the verbal turn sit two frames apart with the bridge left to the reader. Frame 8 is the cuttable frame and the caption drops it entirely, which is the caption editor's own verdict on it."},
+    {"name": "voice", "weight": 0.12, "score": 6.5,
+     "why": "'Nine in the morning. No hearing.' and 'One course. One block never laid.' are plain and earned, and Riverside Drive and South Congress Avenue is the deck's one genuinely located moment. Against that the caption carries zero writer-chosen commas and by its fourth paragraph reads as a list of unrelated declaratives. Five frames spend copy addressing a critic rather than a Texan: robots.txt on 3, 'Each block is a day' on 4, 'Nothing ranks them' on 6, the accounting caveat that is the whole dek on 8, and 'The red row is the listing's own' on 9. That is the pipeline explaining itself."},
+    {"name": "variety", "weight": 0.10, "score": 5.8,
+     "why": "Palette and technique are genuinely fresh against the fortnight and deck 12's avoid_next asked for a worked surface with real edges, which this delivered. But this is the fifth deck of thirteen built on what a document does not say, and the topics ledger's own deck 11 entry says the absence hook is now the house habit rather than a choice and that the next run should spend an opening move that is not an absence. Deck 12 complied. Deck 13 went straight back to it and gave a whole frame the kicker WHAT IS NOT PUBLISHED."}
+  ],
+  "weighted_score": 6.58,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Tell the reader what the hearing was for before spending two frames on its absence, and put the building and the city on frame 9 so the deck's one actionable item is a place a Texan can actually go rather than a room number with nothing around it."
+}
