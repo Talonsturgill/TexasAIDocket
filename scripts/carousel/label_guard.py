@@ -34,7 +34,18 @@ FURNITURE = {
     "COUNTY", "CITY", "COMMISSION", "COURT", "COUNCIL", "TX", "SAYS", "SAY", "NEITHER",
 }
 WORD = re.compile(r"[A-Z][A-Z0-9'-]{1,}")
-CLAIM_TOKEN = re.compile(r"\bC(\d{1,3})\b")
+# CASE INSENSITIVE SINCE 2026-09-02, AND THAT IS NOT A TIDY UP.
+#
+# This matched an uppercase C only. Deck 13 sets every citation in lowercase, `c8 c9 c12 c14`,
+# which is how the copywriter writes them and how nine of nine frames rendered them. So the loop
+# below examined NO labels on that deck, the receipt recorded `checked: 0` with no problems, and
+# gate_status rendered a zero-count receipt as a PASS. An unsupported institution name beside a
+# lowercase id could have shipped through a gate that says in its own docstring it exists to stop
+# exactly that.
+#
+# GATE_LESSONS' oldest shape, again: a checker wired to nothing, passing. Found by a review bot on
+# the pull request, not by the gate's own self-test, because the self-test used uppercase.
+CLAIM_TOKEN = re.compile(r"\bC(\d{1,3})\b", re.I)
 WINDOW = 6          # capitalised words before an id that count as its label
 
 
@@ -127,7 +138,7 @@ def check(run_dir: Path):
                 # figures file is what backs those. The cover's "SOURCES SILENT" sits above a
                 # cite naming five ids and is force_unstated, a computation, not any one claim.
                 continue
-            tok = "C" + ids[0]
+            tok = "c" + ids[0]
             cid = "c" + ids[0]
             claim = claims.get(cid)
             if not claim:
@@ -241,6 +252,18 @@ def main(argv):
     checked = 0
     for f in sorted((d / "slides").glob("slide-*.html")):
         checked += len(CLAIM_TOKEN.findall(_flat_for_count(f.read_text(encoding="utf-8"))))
+    # A ZERO COUNT IS NOT A PASS. Deck 13's receipt read `checked: 0` with an empty problems
+    # list, and gate_status rendered that as PASS, because nothing here asked whether the gate
+    # had actually looked at anything. A deck that prints claim ids on its frames and gives this
+    # gate none of them is a gate that is not wired up, which is the failure this file exists to
+    # prevent in the copy and had in itself.
+    if checked == 0 and any(
+            "c" in _flat_for_count(f.read_text(encoding="utf-8")).lower()
+            for f in sorted((d / "slides").glob("slide-*.html"))):
+        problems.append(
+            "label_guard matched no claim id on any frame. Either this deck cites nothing, which "
+            "no deck here does, or the token pattern and the rendered ids disagree. A receipt "
+            "reading `checked: 0` is not a pass and this refuses to write one")
     (d / "label_report.json").write_text(
         json.dumps({"checked": checked, "problems": problems}, indent=1, ensure_ascii=False) + "\n",
         encoding="utf-8")
