@@ -1756,11 +1756,15 @@ opposite answers, and the reassuring one was the wrong one.
 The first repair compared that box against the box for a private-use codepoint in the same family.
 That too was machine dependent. Chromium can print the codepoint inside its last-resort box, so two
 missing characters produce different pixels even though neither glyph exists. It failed on macOS
-with every real site character covered. The durable comparison names the fallback instead of
-guessing it. The character is drawn in the requested face followed by each of three explicit
-generic fallbacks, then in that exact generic alone. A missing glyph makes the pair identical on
-mono, serif or sans regardless of which system faces are installed. **A gate whose instrument is
-only checked on the machine that wrote it has been checked in the easy case.**
+with every real site character covered. The next repair named explicit generic fallbacks and still
+failed on Linux, where Chromium drew the primary face's `.notdef` instead of falling through. Three
+pixel heuristics, three font environments, and no stable definition of a missing glyph.
+
+The durable instrument does not infer a font table from pixels. The font builder records each
+committed WOFF2's cmap ranges beside its SHA-256. The browser still supplies the characters and
+computed faces the real pages draw, including generated content; the gate binds the manifest to
+the exact bytes and asks the cmap directly. **A gate whose instrument is only checked on the
+machine that wrote it has been checked in the easy case.**
 
 ---
 

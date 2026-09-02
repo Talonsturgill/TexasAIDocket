@@ -34,6 +34,7 @@ nothing downstream would catch.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -118,6 +119,25 @@ def _read_names(path: Path) -> dict:
     return out
 
 
+def _codepoint_ranges(codepoints) -> list[str]:
+    """Compact a cmap into stable U+XXXX or U+XXXX-YYYY ranges for the committed manifest."""
+    points = sorted(set(codepoints))
+    if not points:
+        return []
+    out = []
+    start = previous = points[0]
+    for point in points[1:]:
+        if point == previous + 1:
+            previous = point
+            continue
+        out.append(f"U+{start:04X}" if start == previous
+                   else f"U+{start:04X}-{previous:04X}")
+        start = previous = point
+    out.append(f"U+{start:04X}" if start == previous
+               else f"U+{start:04X}-{previous:04X}")
+    return out
+
+
 def build() -> int:
     try:
         from fontTools import subset                                # noqa: PLC0415
@@ -171,6 +191,11 @@ def build() -> int:
             # smaller range. Both shrink the delta tables, which is where a variable font's
             # weight actually lives.
             font = instancer.instantiateVariableFont(font, axes, updateFontNames=False)
+        # THE CMAP IS THE COVERAGE ANSWER. Browser pixel comparisons are machine dependent:
+        # one Chromium falls through to a system CJK face, another draws the primary face's
+        # `.notdef`, and a third prints the codepoint inside a last-resort box. Record the font's
+        # own answer next to a hash of the exact WOFF2 bytes instead.
+        codepoint_ranges = _codepoint_ranges((font.getBestCmap() or {}).keys())
         font.flavor = "woff2"
         font.save(out)
         font.close()
@@ -179,6 +204,8 @@ def build() -> int:
         entries.append({
             "file": out.name, "family": family, "weight": weight, "style": style,
             "bytes": after, "source": src_name, "source_bytes": before,
+            "sha256": hashlib.sha256(out.read_bytes()).hexdigest(),
+            "codepoint_ranges": codepoint_ranges,
             "copyright": names.get("copyright", ""),
             "version": names.get("version", ""),
             "licence": names.get("licence", ""),
@@ -253,6 +280,11 @@ def self_test() -> int:
             ok(f"...and the manifest's byte count is right for {f['family']}",
                path.stat().st_size == f["bytes"],
                f"{path.stat().st_size} on disk, {f['bytes']} recorded")
+            ok(f"...and the manifest hash binds {f['family']} coverage to these bytes",
+               hashlib.sha256(path.read_bytes()).hexdigest() == f.get("sha256"),
+               f.get("sha256", "no hash recorded"))
+        ok(f"...and {f['family']} records its cmap coverage",
+           bool(f.get("codepoint_ranges")), "no codepoint ranges recorded")
         # Serving a font without its licence is the part that is actually a problem, so it is
         # checked rather than assumed.
         ok(f"...and {f['family']} carries its copyright line",
