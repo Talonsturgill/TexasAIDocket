@@ -97,6 +97,8 @@ so nothing about it is confirmed and it says so rather than carrying a stamp it 
 | 1 | craft refresh | DONE, see above |
 | 2 | scouts, staleness read | RE-SPAWNED 12:15, four beats |
 | 3 | **re-verify the record, 98 due** | **DONE. 0 rotten, backlog steady** |
+| 3b | codex re-verified the same record, 128 conflicts | DONE, merged semantically |
+| 3c | codex review of the record, 8 findings | DONE, all real, all answered |
 | 4 | discover | pending the scouts |
 | 5 | admit | TODO |
 | 6 | claims | TODO |
@@ -131,3 +133,22 @@ so nothing about it is confirmed and it says so rather than carrying a stamp it 
 - Legistar (`webapi.legistar.com/v1/<place>/matters/<id>/histories`) is reliable and is the
   cheapest primary source in the record for a city or county vote.
 - Federal Register API and NSF award API both answer cleanly.
+
+
+## Two things this run learned the hard way, for the retro
+
+**RAPID PUSHES CANCEL YOUR OWN CI.** `guards.yml` carries a concurrency group. Run 828 on this
+branch was CANCELLED by run 829 because two pushes went out minutes apart, and a cancelled
+conclusion is not a pass. CLAUDE.md already says to batch the work and push once. This run did it
+anyway, twice.
+
+**`pages` REFUSES TO DEPLOY UNTIL GUARDS IS GREEN ON THAT EXACT MAIN COMMIT.** After PR 247
+merged, the pages workflow fired about two minutes later, asked for a successful `guards` check
+run on `7fd6192`, found none yet, and exited 1 saying so. That is the gate working rather than a
+break. It matters for the merge order at the end of a run, because the deploy that publishes the
+site is not instant and a run that merges and walks away has not seen the site deploy.
+
+**A SECOND ACTOR IS RE-VERIFYING THE SAME RECORD.** A codex run stamped `2026-09-01` across 64
+items while this run worked all 98, which conflicted every one of them. The merge was semantic and
+cost real time. This is an owner decision rather than a machine one, and it is written up in the
+run record rather than resolved here.
