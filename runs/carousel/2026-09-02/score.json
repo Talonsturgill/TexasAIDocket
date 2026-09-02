@@ -1,98 +1,104 @@
 {
- "weighted_score": 6.562,
- "judges": [
-  6.25,
-  6.62,
-  6.58
- ],
- "spread": 0.37,
- "criteria": {
-  "artwork_craft": {
-   "score": 6.5,
-   "weight": 0.28,
-   "judges": [
-    6.5,
-    5.5,
-    6.8
-   ]
+  "weighted_score": 6.562,
+  "judges": [
+    6.25,
+    6.62,
+    6.58
+  ],
+  "spread": 0.37,
+  "criteria": {
+    "artwork_craft": {
+      "score": 6.5,
+      "weight": 0.28,
+      "judges": [
+        6.5,
+        5.5,
+        6.8
+      ]
+    },
+    "claim_integrity": {
+      "score": 7.2,
+      "weight": 0.2,
+      "judges": [
+        6.0,
+        7.5,
+        7.2
+      ]
+    },
+    "story_and_stakes": {
+      "score": 6.2,
+      "weight": 0.18,
+      "judges": [
+        6.0,
+        7.0,
+        6.2
+      ]
+    },
+    "sequence_and_momentum": {
+      "score": 6.3,
+      "weight": 0.12,
+      "judges": [
+        6.0,
+        6.5,
+        6.3
+      ]
+    },
+    "voice": {
+      "score": 6.5,
+      "weight": 0.12,
+      "judges": [
+        6.5,
+        7.0,
+        6.5
+      ]
+    },
+    "variety": {
+      "score": 6.5,
+      "weight": 0.1,
+      "judges": [
+        6.5,
+        7.0,
+        5.8
+      ]
+    }
   },
-  "claim_integrity": {
-   "score": 7.2,
-   "weight": 0.2,
-   "judges": [
-    6.0,
-    7.5,
-    7.2
-   ]
-  },
-  "story_and_stakes": {
-   "score": 6.2,
-   "weight": 0.18,
-   "judges": [
-    6.0,
-    7.0,
-    6.2
-   ]
-  },
-  "sequence_and_momentum": {
-   "score": 6.3,
-   "weight": 0.12,
-   "judges": [
-    6.0,
-    6.5,
-    6.3
-   ]
-  },
-  "voice": {
-   "score": 6.5,
-   "weight": 0.12,
-   "judges": [
-    6.5,
-    7.0,
-    6.5
-   ]
-  },
-  "variety": {
-   "score": 6.5,
-   "weight": 0.1,
-   "judges": [
-    6.5,
-    7.0,
-    5.8
-   ]
+  "hard_fails": [],
+  "hard_fails_by_judge": [],
+  "ship": false,
+  "threshold": 6.8,
+  "over_threshold": false,
+  "method": "per-criterion median across three judges, then weighted by the rubric",
+  "threshold_dissents": [
+    "judge 1 refused on the threshold, not on a fault, and scored 6.25 against a 6.8 bar. That dissent is carried in the median",
+    "judge 2 refused on the threshold, not on a fault, and scored 6.62 against a 6.8 bar. That dissent is carried in the median",
+    "judge 3 refused on the threshold, not on a fault, and scored 6.58 against a 6.8 bar. That dissent is carried in the median"
+  ],
+  "threshold_dissents_by_judge": [
+    {
+      "judge": 1,
+      "score": 6.25,
+      "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.25 against a 6.8 bar. That dissent is carried in the median"
+    },
+    {
+      "judge": 2,
+      "score": 6.62,
+      "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.62 against a 6.8 bar. That dissent is carried in the median"
+    },
+    {
+      "judge": 3,
+      "score": 6.58,
+      "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.58 against a 6.8 bar. That dissent is carried in the median"
+    }
+  ],
+  "hold_reason": "no judge found a hard fail, and the median 6.562 is under the rubric's 6.8 bar. This is a HOLD. Keep working the deck",
+  "contested": [
+    "claim_integrity"
+  ],
+  "rounds": 3,
+  "owner_override": {
+    "instruction": "ship the deck as is, and then fix whatever the root cause of why u couldnt get the quality good enough",
+    "date": "2026-09-02",
+    "by": "the owner, in session",
+    "note": "The deck held at 6.562 against a 6.8 bar in 3 rounds of a 5 round cap, with no hard fail standing. The owner ended the search rather than the rubric's cap ending it. The score is not adjusted and every surface reports 6.562. What the override spends is the THRESHOLD and nothing else: run_complete refuses it over a hard fail."
   }
- },
- "hard_fails": [],
- "hard_fails_by_judge": [],
- "ship": false,
- "threshold": 6.8,
- "over_threshold": false,
- "method": "per-criterion median across three judges, then weighted by the rubric",
- "threshold_dissents": [
-  "judge 1 refused on the threshold, not on a fault, and scored 6.25 against a 6.8 bar. That dissent is carried in the median",
-  "judge 2 refused on the threshold, not on a fault, and scored 6.62 against a 6.8 bar. That dissent is carried in the median",
-  "judge 3 refused on the threshold, not on a fault, and scored 6.58 against a 6.8 bar. That dissent is carried in the median"
- ],
- "threshold_dissents_by_judge": [
-  {
-   "judge": 1,
-   "score": 6.25,
-   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.25 against a 6.8 bar. That dissent is carried in the median"
-  },
-  {
-   "judge": 2,
-   "score": 6.62,
-   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.62 against a 6.8 bar. That dissent is carried in the median"
-  },
-  {
-   "judge": 3,
-   "score": 6.58,
-   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.58 against a 6.8 bar. That dissent is carried in the median"
-  }
- ],
- "hold_reason": "no judge found a hard fail, and the median 6.562 is under the rubric's 6.8 bar. This is a HOLD. Keep working the deck",
- "contested": [
-  "claim_integrity"
- ],
- "rounds": 3
 }
