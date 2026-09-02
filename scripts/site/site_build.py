@@ -796,15 +796,23 @@ def self_test() -> int:
         # literal words "still say something", which lived in the first headline, so shortening
         # the headline failed a check about whether the page answers the reader's question. The
         # question is whether somebody can still act. The page answers it with a COUNTED number
-        # of ways in, marked hot so it reads first, and with the sentence that teaches what the
-        # green means. Both of those are structural and survive a rewrite. A quoted fragment of
-        # a headline is a copy of the copy, and it only ever fails for the wrong reason.
+        # of ways in, marked hot and linked to the deadline panel. The Ask agent now comes first,
+        # then the map, then that panel, on the owner's explicit product-priority call.
         hero_html = idx.split('<section class="hero rise">', 1)[1].split("</section>", 1)[0]
-        check("the home page shows the ways a reader can still act inside the hero",
+        check("the home page links its open-door count to the deadline panel",
               'class="n hot"' in hero_html and "Doors open to you" in hero_html
               and 'href="#open-now"' in hero_html
-              and '<aside class="open-now" id="open-now"' in hero_html
-              and 'class="open-now-item' in hero_html)
+              and '<aside class="open-now" id="open-now"' in idx
+              and 'class="open-now-item' in idx)
+        ask_at = idx.find('<section class="asksection"')
+        map_at = idx.find('<svg class="txmap"')
+        deadlines_at = idx.find('<section class="deadline-section"')
+        check("the flagship Ask agent leads the map and deadline panel",
+              -1 < ask_at < map_at < deadlines_at
+              and '<aside class="open-now" id="open-now"' not in hero_html,
+              f"Ask {ask_at}, map {map_at}, deadlines {deadlines_at}")
+        check("the Ask field names its Texas AI scope",
+              'placeholder="Ask about anything about AI in Texas"' in idx)
         check("...and does not repeat the same deadlines further down the page",
               "Closing next" not in idx)
         # THE SENTENCE THIS USED TO CHECK IS GONE, on the owner's call that every word has to
