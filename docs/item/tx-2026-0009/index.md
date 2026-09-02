@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-09-01
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-28 · Checked and unchanged. The Department of Information Resources has published nothing establishing the sandbox, and no vendor register has appeared. The report the statute requires is still ahead of the department.
 - 2026-09-01 · The statutory sandbox duty remains pending, with no published DIR program launch in the record.
+- 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ Conroe City Council voted late on August 13th, 2026 on whether to place a bindin
 - Public access: Public meeting
 - Take part: https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php
 
-- Last checked: 2026-09-01
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-28 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-01 · Conroe's effort to send the Flock contract to voters remains short of the required council support.
+- 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

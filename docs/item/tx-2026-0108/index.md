@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved a net metering arrangement in Do
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-01
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Admitted on the commission's own order and the motion for rehearing, both read as filed documents. The arrangement is approved and the conditions stand while the rehearing motion is undecided.
 - 2026-08-28 · What the commission ordered reaches the second load and names it. An earlier order on the first load carries its own curtailment condition and is a separate proceeding. The two are quoted separately here because the difference is the whole of what the rehearing motion disputes.
 - 2026-09-01 · The rehearing path moved. Commission Advising records that the commission voted not to place Ensign's motion on an open meeting agenda, so the curtailment conditions remain.
+- 2026-09-02 · Ensign Infrastructure's motion for rehearing is filed and the commission has since put a ballot memorandum on the docket, which is how the commissioners vote on it. The order telling the data center to shed its whole load stands until they do.
 
 ## Evidence
 
@@ -172,9 +173,9 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/59220_73_
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/59220_73_1675222.PDF
 
-### The commission voted not to put Ensign's rehearing motion on any open meeting agenda.
+### The commission has a ballot memorandum on the docket after the motion for rehearing.
 
-> The Commission voted to not add the motion for rehearing of the Commission's Order for Movant - Ensign Infrastructure to any open meeting agenda.
+> BALLOT MEMORANDUM
 
-Source (primary_official): https://interchange.puc.texas.gov/Documents/59220_74_1678681.PDF
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 

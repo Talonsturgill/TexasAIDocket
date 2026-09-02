@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved an amendment to Oncor's certific
 - Public access: Closed
 - Take part: https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
 
-- Last checked: 2026-08-30
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -23,6 +23,7 @@ The Public Utility Commission of Texas approved an amendment to Oncor's certific
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-08-30 · Admitted to the record. The company's own project page carries the approval and the route between the two named counties.
+- 2026-09-02 · The line is still carried among the approved projects on the utility's own list of current transmission line projects.
 
 ## Evidence
 
