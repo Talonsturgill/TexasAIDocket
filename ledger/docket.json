@@ -298,9 +298,18 @@
           "source_title": "Texas Utilities Code Sec. 39.170(b)",
           "source_type": "primary_official",
           "fetched": "2026-08-16"
+        },
+        {
+          "text": "The Texas Register acknowledgement on the project sets the comment deadline.",
+          "verbatim_quote": "Texas Register Acknowledgement of Receipt - Comment Deadline 09/04/2026",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Project 58482 filings",
+          "source_type": "primary_official",
+          "id": "tx-2026-0002-c11",
+          "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-08-30",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "This is the single most actionable item in the seed set: a live comment window a reader can still use. The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF and was NOT parsed, for the same missing PDF extractor reason. A follow up should confirm what Section 25.521 actually requires of large loads before the docket summarises its substance beyond the case style.",
       "history": [
@@ -338,6 +347,10 @@
           "date": "2026-08-30",
           "note": "The rule is still out for comment. The proposal for publication of new section 25.521 stands as filed, and the deadline the Texas Register acknowledged is September 4th.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments from consultants and from members of the public have been filed since the proposal was published for comment."
         }
       ]
     },
@@ -549,7 +562,7 @@
           "fetched": "2026-08-29"
         }
       ],
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
       "history": [
@@ -581,6 +594,10 @@
         {
           "date": "2026-08-29",
           "note": "The commission decided this on August 28th, 2026. It amended the certificate to include the line and approved route 559 across the twenty two counties the application named. The administrative law judges had found the utility did not hold a further public meeting for links it added afterwards. The commission approved the line anyway, on a reading that the rule requires only one meeting before filing."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The route application is still the largest file the commission holds on this line and the record shows no change to the approved route. Landowner interventions and protests remain on it."
         }
       ]
     },
@@ -1152,7 +1169,7 @@
     },
     {
       "id": "tx-2026-0015",
-      "title": "Federal comment window open on NRC reactor licensing and siting modernization",
+      "title": "Federal comment window has closed on NRC reactor licensing and siting modernization",
       "summary": "The Nuclear Regulatory Commission has proposed a wholesale revision of its reactor licensing, safety oversight and siting rules. The revision is being carried out under an executive order directing reform of the agency. Comments close August 31st, 2026. Siting rules bear directly on the new nuclear generation being proposed to serve large electrical loads in Texas.",
       "topic": "defense-and-federal",
       "decider": {
@@ -1165,7 +1182,7 @@
         "metro": null,
         "on_ercot": false
       },
-      "status": "open",
+      "status": "pending",
       "key_dates": [
         {
           "date": "2026-07-16",
@@ -1185,7 +1202,7 @@
       ],
       "public_access": {
         "room": "open_comment",
-        "how": "Anyone may comment through regulations.gov under docket NRC-2025-0975 until August 31st, 2026. The comment link on the Federal Register document page reaches the same docket. No lawyer and no standing are required.",
+        "how": "The comment window has closed. The proposed rule and its guidance stay on the federal docket, where anyone can read the rule text and every comment filed against it. The agency has published no final rule.",
         "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices",
         "closes": "2026-08-31"
       },
@@ -1207,9 +1224,18 @@
           "source_title": "Federal Register API, document 2026-14341, fields type, publication_date, comments_close_on, docket_ids",
           "source_type": "primary_official",
           "fetched": "2026-08-28"
+        },
+        {
+          "text": "The federal register record gives the date comments closed.",
+          "verbatim_quote": "2026-08-31",
+          "source_url": "https://www.federalregister.gov/api/v1/documents/2026-14341.json",
+          "source_title": "Federal Register, Modernizing Reactor Licensing, Safety Oversight, and Siting Practices",
+          "source_type": "primary_official",
+          "id": "tx-2026-0015-c9",
+          "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-08-30",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
       "history": [
@@ -1244,6 +1270,10 @@
           "date": "2026-08-30",
           "note": "The federal window is nearly shut. Comments on the reactor licensing and siting rewrite close August 31st, which leaves a single day to file.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The comment window has closed. The proposed rule on reactor licensing, safety oversight and siting stays before the agency and no final rule has been published."
         }
       ]
     },
@@ -1301,7 +1331,7 @@
           "fetched": "2026-08-26"
         }
       ],
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
       "history": [
@@ -1321,6 +1351,10 @@
         {
           "date": "2026-08-29",
           "note": "The comment window is still open, closing September 8th. The proposal to add artificial intelligence questions to the time use survey is unchanged."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The comment window on adding artificial intelligence questions to the American Time Use Survey is still open and the closing date has not moved."
         }
       ]
     },
@@ -1424,7 +1458,7 @@
           "fetched": "2026-08-28"
         }
       ],
-      "last_verified": "2026-08-30",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -1465,6 +1499,10 @@
           "date": "2026-08-30",
           "note": "The calendar feed is still publishing. It still carries the open meeting of August 28th and a public comment deadline of September 17th.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The commission's meeting calendar still runs past the end of this year and the open meeting schedule is unchanged."
         }
       ]
     },
@@ -1650,7 +1688,7 @@
       ]
     },
     {
-      "title": "City of Taylor noticed an amended tax abatement agreement with Compal Technology for a $200 Million electronics project at the Taylor Port Building",
+      "title": "City of Taylor's notice of an amended Compal tax abatement is withdrawn, and no outcome is published",
       "summary": "The City of Taylor published a public notice for its City Council. The council would consider an Amended and Restated Tax Abatement Agreement with Compal Technology, Inc. and PDC TP 01 LOT A LLC. The notice set that consideration for the regularly scheduled meeting on August 13th, 2026 at 6:00 p.m. The property sits in Reinvestment Zone No. 11, which the city calls the Taylor Port Zone. The notice describes the improvements as the renovation of the Taylor Port Building. It covers the design and manufacture of electronics and related items at an estimated cost of approximately $ 200 Million. Compal already holds a separate Chapter 312 abatement from Williamson County for a server service center in Georgetown. The same contract manufacturer is now the subject of incentive agreements at two levels of Central Texas government. The August 13th vote has not been confirmed against a published minute.",
       "topic": "data-centers",
       "decider": {
@@ -1665,7 +1703,7 @@
         "metro": "Austin-Round Rock-San Marcos, TX",
         "on_ercot": true
       },
-      "status": "pending",
+      "status": "unknown",
       "key_dates": [
         {
           "date": "2026-08-13",
@@ -1675,7 +1713,7 @@
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The notice set the item for the regularly scheduled City Council meeting on August 13th, 2026 at 6:00 p.m. Taylor posts these notices under Economic Development Public Notices on taylortx.gov, where the full legal description of Reinvestment Zone No. 11 is available for download.",
+        "how": "The city's notice is no longer posted at the address it was published to. The council meeting it named has passed and the city has published no record of what was decided. A reader who wants the outcome has to ask the city secretary for the minutes.",
         "url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
         "closes": "2026-08-13"
       },
@@ -1718,7 +1756,7 @@
         }
       ],
       "id": "tx-2026-0027",
-      "last_verified": "2026-08-28",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-18",
@@ -1736,6 +1774,14 @@
           "date": "2026-08-28",
           "note": "Taylor's council took the amended abatement agreement with Compal Technology on August 13th and the notice period has run out. The city has published nothing since recording what the council did with it.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The city's notice for the amended agreement is no longer posted where it was, so the council's action on it is unconfirmed."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The city's notice for the amended agreement is withdrawn and the address it stood at now returns nothing. The council meeting it named has passed and no outcome is published, so what the council did is unknown."
         }
       ]
     },
@@ -1799,7 +1845,7 @@
         }
       ],
       "id": "tx-2026-0028",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -1817,6 +1863,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The review period the court adopted still stands and the board it created still evaluates proposed high water use developments against water availability. Nothing on the county's record shortens or lifts it."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The review period stands as adopted. The county has published no amendment and the transparency, water use and environmental survey requirements are unchanged."
         }
       ]
     },
@@ -2239,7 +2289,7 @@
         }
       ],
       "id": "tx-2026-0032",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-18",
@@ -2261,6 +2311,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The commission's denial still stands as a recommendation rather than as the decision, and the final zoning call still belongs to the Killeen City Council. Nothing on the record shows the council has taken it up."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The commission's denial of the conditional use permit stands and the city has recorded no further action on it."
         }
       ]
     },
@@ -2329,7 +2383,7 @@
         }
       ],
       "id": "tx-2026-0033",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -2347,6 +2401,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The policy framework still stands and a hyperscale data center still needs the special permit the council wrote into it. The environmental and public participation conditions are unaltered."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The policy framework stands as adopted. The council's own history for the matter shows nothing after the vote that approved it."
         }
       ]
     },
@@ -2615,7 +2673,7 @@
         }
       ],
       "id": "tx-2026-0036",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -2633,6 +2691,10 @@
         {
           "date": "2026-08-29",
           "note": "The court's decision to end the contract is still corroborated by the San Antonio station's account, which still carries the vandalism of every Flock camera in Seguin. The sheriff's stated reasoning for ending it, which the record takes from the Seguin paper, is unconfirmed this run because that account is no longer readable without a subscription."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The termination of the county's camera contract stands and the commissioners court has recorded no move to restore it."
         }
       ]
     },
@@ -2760,7 +2822,7 @@
         }
       ],
       "id": "tx-2026-0037",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-18",
@@ -2782,6 +2844,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The council still declined a moratorium and its direction to write permanent standards still stands. The land development code still carries no definition of a data center, which is the gap the direction was given to close."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The council's own history for the matter still reads no action taken. The permanent rules the council asked for have not come back to it."
         }
       ]
     },
@@ -2863,6 +2929,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The water supply agreement the board approved still stands, and the water it sells is still effluent from the wastewater plant rather than drinking water. The volume parameters the board set are unchanged."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The waterworks board has published nothing further and the current standing of the effluent supply agreement is unconfirmed."
         }
       ]
     },
@@ -2935,7 +3005,7 @@
         }
       ],
       "id": "tx-2026-0039",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -2953,6 +3023,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The award to the University of Texas at El Paso still stands in the agency's first round. The training it funds is still cybersecurity and artificial intelligence together rather than either alone."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The award stands and the agency's announcement still names the university among the first round of this scholarship program."
         }
       ]
     },
@@ -3138,7 +3212,7 @@
         }
       ],
       "id": "tx-2026-0041",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -3156,6 +3230,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The conditional use permit for the Airport Drive facility still stands, and the conditions the commission attached to it are unaltered. A second phase is still described as planned rather than approved."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The conditional use permit stands as approved and the prohibition on water intensive evaporative cooling is unchanged."
         }
       ]
     },
@@ -3441,7 +3519,7 @@
         }
       ],
       "id": "tx-2026-0044",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -3459,6 +3537,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The resolution still asks the Legislature for authority the county does not have, and it is still a request rather than a rule. Nothing has been enacted in response to it."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The resolution stands as adopted. The authority it asks for still rests with the Legislature, which does not sit again in regular session until next year."
         }
       ]
     },
@@ -3653,7 +3735,7 @@
         }
       ],
       "id": "tx-2026-0046",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -3671,6 +3753,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The phased abatement agreement the court approved still stands and its phases still turn on buildings and generation being completed. No later court action alters it."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The phased abatement stands as approved and the county has recorded no amendment to it."
         }
       ]
     },
@@ -3883,7 +3969,7 @@
         }
       ],
       "id": "tx-2026-0048",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -3913,6 +3999,10 @@
         {
           "date": "2026-08-29",
           "note": "The August 25th meeting has been held and the city's record of it now reads as minutes rather than as a notice. No item on it names an automated license plate reader. The special election is still set for November 3rd and the published wording still tells the voter the result does not bind the council."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The ordinance stands and the special election it ordered is still set."
         }
       ],
       "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
@@ -4092,7 +4182,7 @@
         }
       ],
       "id": "tx-2026-0050",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -4110,6 +4200,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The council's direction to staff still stands and the code amendment it asked for is still being written rather than adopted. Data centers are still not a distinct land use in the city's code."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The motion stands as passed. The zoning amendment it directed staff to write has not come back to the council."
         }
       ]
     },
@@ -4274,7 +4368,7 @@
         }
       ],
       "id": "tx-2026-0052",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -4292,6 +4386,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The resolution still states the conditions the court expects of a data center and it still binds nobody. The court still says it supports appropriately sited development while opposing development without safeguards."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The resolution stands as adopted and the county has recorded no amendment."
         }
       ]
     },
@@ -4451,7 +4549,7 @@
         }
       ],
       "id": "tx-2026-0054",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -4469,6 +4567,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The contract is still live on the cooperative purchasing site and artificial intelligence consulting is still listed among the services a member government may buy through it. The suppliers offering it are unchanged."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The purchasing contract is still listed as active and its category is unchanged."
         }
       ]
     },
@@ -4649,7 +4751,7 @@
         }
       ],
       "id": "tx-2026-0056",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -4675,6 +4777,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The board's denial still stands and the state water plan still carries no standalone water demand projection for data centers. The petition asking for one is still refused."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The petition for a separate water demand category for data centers is still the item on the board's own agenda and the board has published no reversal."
         }
       ]
     },
@@ -4735,7 +4841,7 @@
         }
       ],
       "id": "tx-2026-0057",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -4765,6 +4871,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The cancellation of the Carson County public meeting still stands on the agency's own page for the case. The permit application it was called for is still live, and no replacement meeting is set."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The public meeting is still off the agency's calendar and no new date has been posted for it."
         }
       ]
     },
@@ -5252,7 +5362,7 @@
         }
       ],
       "id": "tx-2026-0063",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -5270,6 +5380,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The pending applications list still carries the four data center air permits with their published notices. The requirement that an applicant publish notice and provide a plain language summary is unchanged."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The applications are still posted with published public notices and none has been withdrawn."
         }
       ]
     },
@@ -5502,7 +5616,7 @@
         }
       ],
       "id": "tx-2026-0065",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -5520,6 +5634,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The cooling water cap is still in the city's utilities chapter and the closed loop requirement still applies to every data center facility. The makeup water limit the ordinance sets is unaltered."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The ordinance stands as adopted and the city's own data center page still carries it."
         }
       ]
     },
@@ -5639,7 +5757,7 @@
         }
       ],
       "id": "tx-2026-0066",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -5657,6 +5775,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. Data centers are still a defined use in the zoning code and still a conditional use rather than a permitted one. The council has not amended the definition since adopting it."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The zoning change stands and data centers are still a conditional use in the city's code."
         }
       ]
     },
@@ -5757,7 +5879,7 @@
         }
       ],
       "id": "tx-2026-0067",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -5775,6 +5897,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The reporting rules for coolant discharged into the city system still stand. What an operator has to report and how often is unchanged."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The reporting rules for coolant discharged into the city sewer stand as adopted."
         }
       ]
     },
@@ -5985,7 +6111,7 @@
         }
       ],
       "id": "tx-2026-0069",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -6003,6 +6129,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The school district's agreement for the Energy Forge One plant still stands, and the state rather than the district still carries the cost of the abatement. Nothing on the Comptroller's record alters the agreement."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The agreement is still listed among the comptroller's current agreements and its terms are unchanged."
         }
       ]
     },
@@ -6933,9 +7063,18 @@
           "source_title": "PUCT Interchange, filings index for control number 59029",
           "source_type": "primary_official",
           "fetched": "2026-08-29"
+        },
+        {
+          "text": "The commission severed part of the Longshore to Drill Hole proceeding.",
+          "verbatim_quote": "ORDER SEVERING PROCEEDINGS",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Docket 59029 filings",
+          "source_type": "primary_official",
+          "id": "tx-2026-0076-c12",
+          "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
       "history": [
@@ -6959,6 +7098,10 @@
         {
           "date": "2026-08-29",
           "note": "The commission decided this on August 28th, 2026. It amended the certificate to include the line and approved route 476 across the ten counties the application named. The two western applications were consolidated on the question of need and then severed so each took its own final order."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The commission has severed part of the proceeding and the Attorney General has filed an amicus brief supporting a motion to defer the determination of need. Landowner letters are still arriving on the docket."
         }
       ]
     },
@@ -8543,7 +8686,7 @@
         }
       ],
       "id": "tx-2026-0098",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-26",
@@ -8552,6 +8695,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The award to Rice still funds a laboratory where a model proposes the next experiment and a robot runs it. The university still frames the machine as complementing a researcher's judgment rather than replacing it. The platform is still described as one researchers elsewhere will be able to reach."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The award is still listed as active and its dates and program are unchanged."
         }
       ]
     },
@@ -8607,7 +8754,7 @@
         }
       ],
       "id": "tx-2026-0099",
-      "last_verified": "2026-08-29",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-26",
@@ -8616,6 +8763,10 @@
         {
           "date": "2026-08-29",
           "note": "Checked and unchanged. The Army award to Rice still stands and artificial intelligence is still one discipline among the several the center combines. The modeling framework it funds is still described as simulating electromagnetic environments in real time."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The research center stands as funded and the university has published no change to its scope."
         }
       ]
     },
@@ -9296,7 +9447,7 @@
           "fetched": "2026-08-22"
         }
       ],
-      "last_verified": "2026-08-30",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "The vote count comes from KBTX because the county's own minutes for August 18th are not yet posted. The statutory notice is primary and carries the parties, the date and the dollar figure.",
       "history": [
@@ -9313,6 +9464,10 @@
           "date": "2026-08-30",
           "note": "The assignment stands. The abatement first approved for the RELLIS campus data center now sits with the new holder, against improvements the county's own notice puts at approximately $700,000,000.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The assignment of the abatement stands and the county has recorded no further amendment."
         }
       ]
     },
@@ -9936,15 +10091,28 @@
           "source_title": "PUCT calendar RSS, entry title",
           "source_type": "primary_official",
           "fetched": "2026-08-28"
+        },
+        {
+          "text": "The commission's market analysis staff filed the memo that opened the comment period.",
+          "verbatim_quote": "Staff memo asking for comments",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Project 59550 filings",
+          "source_type": "primary_official",
+          "id": "tx-2026-0107-c9",
+          "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-08-28",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
       "history": [
         {
           "date": "2026-08-28",
           "note": "Admitted on the staff memorandum filed August 20th and the commission's own calendar entry. The comment window is open and closes September 17th."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The five year review of the ERCOT system wide offer caps is still open and the staff memo asking for comments is the most recent thing on it. Nothing has been filed in answer yet."
         }
       ]
     },
@@ -10206,9 +10374,18 @@
           "source_title": "PUCT Docket 59220, Ensign Infrastructure LLC's Motion for Rehearing, filed as item 73 on August 18th 2026",
           "source_type": "primary_official",
           "fetched": "2026-08-28"
+        },
+        {
+          "text": "The commission has a ballot memorandum on the docket after the motion for rehearing.",
+          "verbatim_quote": "BALLOT MEMORANDUM",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+          "source_title": "PUCT Interchange, Docket 59220 filings",
+          "source_type": "primary_official",
+          "id": "tx-2026-0108-c24",
+          "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-08-28",
+      "last_verified": "2026-09-02",
       "confidence": "high",
       "notes_for_editor": "Armstrong County is named in the order's own findings of fact rather than inferred. Status is pending because the rehearing motion filed August 18th is undecided. Two figures in this docket look alike and are not the same thing. 265.5 MW is GOODNIT1's generating capacity in the commission's finding, and the commission's finding for the first data center load is 265 MW. The 525.5 MW total is Ensign and Crusoe's contention which the order records without adopting.",
       "history": [
@@ -10219,6 +10396,10 @@
         {
           "date": "2026-08-28",
           "note": "What the commission ordered reaches the second load and names it. An earlier order on the first load carries its own curtailment condition and is a separate proceeding. The two are quoted separately here because the difference is the whole of what the rehearing motion disputes."
+        },
+        {
+          "date": "2026-09-02",
+          "note": "Ensign Infrastructure's motion for rehearing is filed and the commission has since put a ballot memorandum on the docket, which is how the commissioners vote on it. The order telling the data center to shed its whole load stands until they do."
         }
       ]
     },
@@ -10528,12 +10709,16 @@
         }
       ],
       "id": "tx-2026-0112",
-      "last_verified": "2026-08-30",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-30",
           "note": "Admitted to the record. The company's own project page carries the approval and the route between the two named counties.",
           "checked": true
+        },
+        {
+          "date": "2026-09-02",
+          "note": "The line is still carried among the approved projects on the utility's own list of current transmission line projects."
         }
       ]
     },
