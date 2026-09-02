@@ -1,6 +1,6 @@
 # Senate Water, Agriculture and Rural Affairs takes up data center cooling water, and sits again on September 2nd
 
-The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The committee sat on Tuesday, September 1st, 2026. Its own page carries the recording of that sitting. The Legislature's upcoming meetings listing sets a second sitting for Wednesday, September 2nd, 2026 in hearing room E1.012 at the Capitol. The listing marks it a public hearing. Charles Perry chairs the committee.
+The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The committee sat on Tuesday, September 1st, 2026. Its own page carries the recording of that sitting. The Legislature's upcoming meetings listing sets a second sitting for Wednesday, September 2nd, 2026 in hearing room E1.012 at the Capitol. The listing marks it a public hearing.
 
 - Topic: state-policy
 - Decided by: Texas Senate Committee on Water, Agriculture and Rural Affairs (legislature)
@@ -69,9 +69,9 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-### The committee's own page carries a recording of the September 1st sitting.
+### The Legislature's listing carries the second sitting on September 2nd.
 
-> September 1, 2026
+> Wednesday, September 2, 2026 9:00 AM Water, Agriculture and Rural Affairs
 
-Source (primary_official): https://senate.texas.gov/cmte.php?c=700
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 

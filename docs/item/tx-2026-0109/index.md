@@ -22,7 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-08-29 · Admitted. The committee's own page carries the interim charge on preparing the Texas workforce for artificial intelligence. The Legislature's upcoming meetings listing sets the hearing for September 3rd in hearing room E1.016. The listing marks it a public hearing rather than a work session.
 - 2026-08-30 · The September 3rd hearing on artificial intelligence and the Texas workforce is still on the calendar, with nothing filed against it since.
-- 2026-09-02 · The September 3rd hearing is canceled. The Legislature's upcoming meetings listing now carries the committee for September 22nd, 2026 in the same hearing room. The interim charge on preparing the Texas workforce for AI is unchanged.
+- 2026-09-02 · The September 3rd hearing is canceled and the Legislature's own listing carries the word on its row. The same listing now sets the committee for September 22nd, 2026 in the same hearing room. The listing points to a notice for the reason, at a path this project does not fetch, so no reason is published here.
 
 ## Evidence
 
@@ -60,13 +60,13 @@ Source (primary_official): https://senate.texas.gov/cmte.php?c=525
 
 ### The September 3rd hearing is marked canceled on the Legislature's own listing.
 
-> Economic Development (Canceled/see notice)
+> Thursday, September 3, 2026 9:00 AM Economic Development (Canceled/see notice)
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
 ### The same listing carries an Economic Development public hearing on September 22nd.
 
-> Economic Development       Type: Public Hearing     Location: E1.016 (Hearing Room)
+> Tuesday, September 22, 2026 9:00 AM Economic Development
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 

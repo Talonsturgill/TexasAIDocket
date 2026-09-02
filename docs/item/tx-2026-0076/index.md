@@ -97,3 +97,15 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
+### The Attorney General filed an amicus brief supporting a motion to defer the determination of need.
+
+> Amicus Brief of Ken Paxton in Support of American Stewards of Liberty's Motion to Defer Determination of Need
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### Letters from members of the public are still being filed on the docket.
+
+> Joanna Friebele Letter to the PUC Commissioners
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+

@@ -30,7 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The commission's calendar feed still carries the September 4th, 2026 public comment deadline for Project 58482 in the commissioners hearing room, and the window is still open. Anyone may still file under the control number.
 - 2026-08-29 · The comment window is still open, closing September 4th. The commission's own calendar feed still carries that deadline as a dated entry naming the project. The proposed rule still draws its line at a demand threshold rather than at the words data center.
 - 2026-08-30 · The rule is still out for comment. The proposal for publication of new section 25.521 stands as filed, and the deadline the Texas Register acknowledged is September 4th.
-- 2026-09-02 · The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments from consultants and from members of the public have been filed since the proposal was published for comment.
+- 2026-09-02 · The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments have been filed against the proposal since it was published.
 
 ## Evidence
 
