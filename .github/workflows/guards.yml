@@ -118,6 +118,28 @@ jobs:
       - name: No instruction file tells a session to write the actor stamp
         run: python3 scripts/shared/actor_stamp_shape.py
 
+      # THE SAME DEFECT IN A SECOND PLACE, found 2026-09-02. The host classes everything under
+      # `.claude/` as a SENSITIVE FILE and prompts on any edit, whatever the permission mode is
+      # and whatever any allow list says. CLAUDE.md told every long task to keep its durable plan
+      # at `.claude/WORKLOG.md`, so every one of them hit that prompt, and the same file was
+      # `human` lane under the ownership catch-all so an approved write could not be committed
+      # either. It moved to `runs/carousel/WORKLOG.md`. This is what stops it coming back, and it
+      # is deliberately about WRITES: reading a skill file and running bootstrap.sh are fine.
+      - name: Sensitive paths self-test (prove it can go red)
+        run: python3 scripts/shared/sensitive_paths.py --self-test
+
+      - name: No instruction file tells a session to write under .claude/
+        run: python3 scripts/shared/sensitive_paths.py
+
+      # THE DETECTOR THAT MAKES THE NEXT ONE VISIBLE. CLAUDE.md said for eleven days that a
+      # session cannot see that it prompted, which is true of the tool result and false of the
+      # process: `permissionDecisionMs` in the debug log is 4 to 43 ms for an auto-approval and
+      # was 21585 ms for the one call that stopped the 2026-09-02 run. Five earlier fixes were
+      # each verified honestly by the run that shipped them and each was wrong, because none of
+      # them measured this. Only the self-test runs in CI, since there is no debug log here.
+      - name: Prompt audit self-test (prove it can go red)
+        run: python3 scripts/shared/prompt_audit.py --self-test
+
       # THE WORKFLOW'S OWN WIRING. This file is six jobs behind one required check now, and a
       # job nobody waits on is a gate connected to nothing. Self-tests first, same rule as the
       # two above.

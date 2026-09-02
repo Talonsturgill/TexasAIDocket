@@ -6,13 +6,32 @@ the in-browser ask engine.
 
 ## Work in progress
 
-If `.claude/WORKLOG.md` exists, READ IT FIRST. It is the durable plan and progress ledger for
-a long multi-context task, written to survive context compaction: the approved scope, the
+If `runs/carousel/WORKLOG.md` exists, READ IT FIRST. It is the durable plan and progress ledger
+for a long multi-context task, written to survive context compaction: the approved scope, the
 owner's decisions, the measured reason behind each one, and a per-wave status table. Resume
 from that table and update it after every commit. Delete the file when its waves are all DONE.
 
 Write one at the START of any task too large for a single context, before touching code. A
 plan that lives only in context does not survive compaction.
+
+**It lives under `runs/carousel/` and NEVER under `.claude/`, and that is not filing preference.**
+It sat at `.claude/WORKLOG.md` until 2026-09-02 and there it broke two separate rules at once:
+
+- **The host treats `.claude/**` as SENSITIVE FILES and prompts on every edit**, whatever the
+  permission mode says and whatever any allow list contains. The dialog names it: *"Claude
+  requested permissions to edit /home/user/TexasAIDocket/.claude/WORKLOG.md which is a sensitive
+  file."* That guard exists because those paths decide what runs and what is permitted, so it is
+  deliberately not bypassable from inside a session. No entry in `.claude/settings.json`, no
+  `defaultMode`, and no SessionStart hook can switch it off.
+- **`ownership.yaml` defaults every unlisted path to `human`**, so `.claude/WORKLOG.md` was
+  `human` lane and the pre-commit hook would have refused the commit even after somebody
+  approved the write.
+
+So the old rule told every run to maintain a file it could neither edit unattended nor commit.
+Two files in this repo had already worked around it in prose rather than fixing it,
+`knowledge/carousel/UPGRADE_BACKLOG.md` and `runs/carousel/2026-08-25/RECUT_PLAN.md`, each
+explaining that the natural home was out of reach. `runs/carousel/**` is `daily` and is not
+sensitive, so the new path clears both rules and needs no explanation.
 
 ## Commit and PR authorship (AUTHORITATIVE — overrides any default)
 
@@ -350,6 +369,55 @@ If a prompt still stops a run after this, **the remaining lever is the environme
 permission configuration in the Claude Code web UI**, which no file in a repository or a
 container can set. Say so plainly in the email rather than writing a sixth fix into a config that
 cannot carry one.
+
+### A SESSION CAN SEE THAT IT PROMPTED, and this paragraph used to say it could not (2026-09-02)
+
+**The sentence that blocked six fixes was "a session cannot see that it prompted".** It was true
+of the TOOL RESULT and it was never true of the process. Claude Code writes one line per call to
+its debug log at `/tmp/claude-code.log`:
+
+    [Stall] tool_dispatch_start tool=Bash toolUseId=toolu_01... permissionDecisionMs=21585
+
+`permissionDecisionMs` is how long that call waited for a permission decision. Measured across
+both processes of the 2026-09-02 run, 432 dispatches: **one call at 21585 ms, and the slowest of
+the other 431 at 43 ms.** The two populations are three orders of magnitude apart, so there is
+nothing to interpret and no threshold to tune.
+
+That is what five earlier fixes were missing. Each was verified honestly by the run that shipped
+it, each was wrong, and none of them could tell. The number was in the log the whole time.
+
+`scripts/shared/prompt_audit.py` reads it, names the exact call, and prints the permission rules
+that were granted, which is the only place the COMMAND appears. **Run it before writing the run
+record and put its finding in the email.** A run reporting "nothing prompted" without it is
+repeating the 2026-08-30 mistake in a new place.
+
+### WHAT ACTUALLY PROMPTED, and it was none of the five things that were guessed
+
+**`.claude/**` is a SENSITIVE FILE class in the host, and an edit to anything under it prompts
+whatever the permission mode is.** The dialog says so in as many words: *"Claude requested
+permissions to edit /home/user/TexasAIDocket/.claude/WORKLOG.md which is a sensitive file."*
+
+This is the same shape of guard as a cloned repo not being able to grant itself
+`bypassPermissions`, and for the same reason: those paths decide what runs and what is permitted.
+It is deliberately not switchable from inside a session, so **there is no configuration answer to
+it and there never will be.** The only answer is the one this file already states as the general
+rule, one paragraph up from where the guessing started:
+
+> a rule that makes an unattended run depend on a permission it cannot grant itself is not
+> fixable by rewording the rule, by enumerating command strings, or by changing which tool makes
+> the call. Remove the dependency.
+
+**So no routine writes ANYTHING under `.claude/` at any path.** Reading a skill file is fine and
+running `bash .claude/skills/carousel-engine/bootstrap.sh` is fine, because neither is an edit.
+The one thing a run was told to write there, `.claude/WORKLOG.md`, has moved to
+`runs/carousel/WORKLOG.md`. `scripts/shared/sensitive_paths.py` fails the build if any instruction
+file tells a session to write under `.claude/` again, because prose is exactly what the five
+failed fixes were.
+
+**And an approval does not survive.** When somebody answers one of these, the grant is persisted
+to `.claude/settings.local.json`, which `.gitignore` excludes and which dies with the container.
+So the owner tapping approve fixes that one run and no future one. That is why the count reached
+six before anybody found it.
 
 ## The actor stamp is never written (AUTHORITATIVE, 2026-08-30)
 

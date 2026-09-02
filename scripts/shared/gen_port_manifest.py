@@ -128,7 +128,7 @@ ROUTES: list[tuple[str, str, str, str, str]] = [
     ("alaska-ai-weekly", r"^assets/voice/", "REBUILD", "TexasAIDispatch:assets/voice/", "Texas gets its own narrator persona"),
     ("alaska-ai-weekly", r"^examples/", "REBUILD", "TexasAIDispatch:examples/", ""),
     ("alaska-ai-weekly", r"^\.claude/agents/", "PORT_RETHEMED", "TexasAIDispatch:.claude/agents/", ""),
-    ("alaska-ai-weekly", r"^\.claude/(settings|WORKLOG)", "REBUILD", "TexasAIDispatch:.claude/", ""),
+    ("alaska-ai-weekly", r"^\.claude/settings", "REBUILD", "TexasAIDispatch:.claude/", ""),
     ("alaska-ai-weekly", r"^\.githooks/", "PORT_VERBATIM", "TexasAIDispatch:.githooks/", "the auto-push guardrail earns its place in every repo"),
     ("alaska-ai-weekly", r"^scripts/", "PORT_RETHEMED", "TexasAIDispatch:scripts/", ""),
     ("alaska-ai-weekly", r"^(README|CLAUDE)\.md$", "REBUILD", "TexasAIDispatch:", ""),
