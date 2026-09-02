@@ -128,7 +128,12 @@ ROUTES: list[tuple[str, str, str, str, str]] = [
     ("alaska-ai-weekly", r"^assets/voice/", "REBUILD", "TexasAIDispatch:assets/voice/", "Texas gets its own narrator persona"),
     ("alaska-ai-weekly", r"^examples/", "REBUILD", "TexasAIDispatch:examples/", ""),
     ("alaska-ai-weekly", r"^\.claude/agents/", "PORT_RETHEMED", "TexasAIDispatch:.claude/agents/", ""),
-    ("alaska-ai-weekly", r"^\.claude/(settings|WORKLOG)", "REBUILD", "TexasAIDispatch:.claude/", ""),
+    ("alaska-ai-weekly", r"^\.claude/settings", "REBUILD", "TexasAIDispatch:.claude/", ""),
+    # The worklog moved OUT of .claude/ on 2026-09-02 because the host classes that
+    # directory as sensitive and prompts on every edit. The Alaska source still keeps its
+    # copy there, so the row stays routed rather than being dropped: deleting the route
+    # leaves the source file UNROUTED and fails the coverage audit on the next regenerate.
+    ("alaska-ai-weekly", r"^\.claude/WORKLOG", "REBUILD", "TexasAIDispatch:runs/carousel/WORKLOG.md", "moved out of .claude/, which the host prompts on"),
     ("alaska-ai-weekly", r"^\.githooks/", "PORT_VERBATIM", "TexasAIDispatch:.githooks/", "the auto-push guardrail earns its place in every repo"),
     ("alaska-ai-weekly", r"^scripts/", "PORT_RETHEMED", "TexasAIDispatch:scripts/", ""),
     ("alaska-ai-weekly", r"^(README|CLAUDE)\.md$", "REBUILD", "TexasAIDispatch:", ""),

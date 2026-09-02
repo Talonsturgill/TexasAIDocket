@@ -109,7 +109,7 @@ and only pushing is.
 | `out/` | per-run scratch, gitignored |
 
 `CLAUDE.md` is the law: attribution, merge policy, the ownership model, the Grid Watch rules,
-and the house style rules that do not bend. `.claude/WORKLOG.md` is the build ledger for a task
+and the house style rules that do not bend. `runs/carousel/WORKLOG.md` is the build ledger for a task
 too large for one context, and exists only while such a task is open.
 `knowledge/shared/GATE_LESSONS.md` is permanent, and is the record of faults that shipped with
 every check passing.

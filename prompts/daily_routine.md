@@ -152,7 +152,8 @@ public fact stand for another day, on a page whose entire promise is that it doe
 ## CONTEXT (read at wake, in this order)
 
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
-- `.claude/WORKLOG.md` if it exists — the durable plan across contexts.
+- `runs/carousel/WORKLOG.md` if it exists — the durable plan across contexts. It is NEVER at
+  `.claude/WORKLOG.md`, which the host classes as a sensitive file and prompts on.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
   traps.** Read this before any fetch. You may not write it. Its companion
   `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
@@ -1190,9 +1191,36 @@ Two parts, and the second one changes lane. **Both commit to the run branch and 
 pull request**, so that everything this run learned is inside the one commit range Phase 19
 merges. Nothing in this phase is allowed to land after the merge.
 
+**DID THIS RUN STOP AND WAIT FOR A HUMAN. Ask, do not assume:**
+
+```
+python3 scripts/shared/prompt_audit.py
+```
+
+Exit 1 means a call put a dialog in front of somebody who was not there, and the report names the
+call and the command that asked, with the arguments withheld. **Put that in the run record**,
+because an unattended run that stalls for hours looks from the inside exactly like an unattended
+run that did not.
+
+**THIS READING IS INTERIM AND THE RUN RECORD MUST SAY SO.** Everything after this line can still
+prompt, and most of what a run does that a human would want to know about is after this line. The
+upgrade worker runs, files are committed and pushed, the pull request is checked and merged, and
+the Gmail connector is called. **Phase 19 takes the reading that counts**, immediately before the
+email is built, and that is the one a reader acts on. A run record claiming nothing prompted on
+the strength of THIS reading is making the 2026-08-30 mistake one phase earlier.
+
+CLAUDE.md said for eleven days that a session cannot see that it prompted. That was true of the
+tool RESULT and never true of the process, and the sentence blocked six fixes: each was verified
+honestly by the run that shipped it, and each was wrong, because none of them measured this. The
+number is `permissionDecisionMs` in the debug log, it is 4 to 43 ms for an auto-approval, and it
+was 21585 ms for the one call that stopped the 2026-09-02 run.
+
+Exit 0 with a note about no debug log means the run is UNMEASURED rather than clean. Say that,
+rather than reporting a clean run.
+
 **The run record.** Append what the worklist held, what was deferred and why, what was admitted and
-what was held, the instrument check's finding, and anything a source did that the registry does not
-describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, append the finding to
+what was held, the instrument check's finding, whether anything prompted, and anything a source did
+that the registry does not describe. **If a source behaved differently than `SOURCES_REGISTRY.md` says, append the finding to
 `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit.** A registry that drifts from reality
 is worse than none, because the next run trusts it.
 
@@ -1320,6 +1348,18 @@ python3 scripts/carousel/gmail_draft.py --run <date> --n <N> --title "<title>" \
   --score <score> --threshold <t> \
   --gates-file <gates.json> --degraded-file <degraded.json> --upgrades-file <upgrades.json>
 ```
+
+**FIRST, TAKE THE READING THAT COUNTS.** Phase 17's was interim and everything since then, the
+upgrade worker, the commits, the push, the merge, could have stopped the run:
+
+```
+python3 scripts/shared/prompt_audit.py
+```
+
+This is the LAST thing a run does before the email, so it is the only reading that covers the
+whole run. Exit 1 means a call waited on a human and the report names it. **Say so in `--notes`,
+naming the tool and how long it waited.** Exit 1 with UNMEASURED means the debug log could not be
+parsed, which is not a clean result and is worth a line of its own.
 
 It writes `runs/carousel/<date>/gmail_payload.json`, a committed artifact beside the deck. Then
 **prove it is postable before you draft it**, by exit code:
