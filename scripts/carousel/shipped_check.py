@@ -429,6 +429,36 @@ def g_ledgers(d: Path):
                       (REPO_ROOT / m.DOCTRINE).read_text(encoding="utf-8")) or [])
 
 
+# The gate did not exist when deck 13 was drawn, and deck 13 is what taught it. A gate that
+# retroactively fails the work that motivated it is judging published work by a rule written
+# after it, which this file's own `shipped fresh` comment already refuses two gates above.
+CONSTRUCTION_SINCE = "2026-09-02"
+
+
+def g_construction(d: Path):
+    """How much of the deck one primitive carries, measured on the shipped images.
+
+    See scripts/carousel/construction_check.py for what it measures and why bespoke_check, which
+    was already green on the deck that produced this finding, could not see it: that file
+    compares drawing CODE and a reader sees the drawn OBJECT.
+
+    NOT APPLICABLE to any deck drawn on or before CONSTRUCTION_SINCE, which is the run that
+    taught it. Every one of those is reported as a note instead, and the notes are worth reading:
+    run into history this finds 4 of 8, 6 of 9 and 7 of 9 on three earlier decks, so the primitive
+    carrying a deck is a standing habit rather than one bad Tuesday.
+    """
+    if d.name <= CONSTRUCTION_SINCE:
+        return ("this gate was written during the " + CONSTRUCTION_SINCE + " run and that deck "
+                "is what taught it. A gate does not judge the work that produced it")
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "construction_check", Path(__file__).resolve().parent / "construction_check.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    code, problems, _rows = m.check(d)
+    return None if code == 2 else problems
+
+
 def g_completion(d: Path):
     """`check(run_dir, bar, cap)`, and the cap is the whole point of the third argument.
 
@@ -480,6 +510,11 @@ GATES = [
     # writer existed has no file for the gate to ask.
     ("measured figures", g_measured, CURRENT),
     ("ledgers", g_ledgers, CURRENT),
+    # CURRENT, because it is a property of the deck being made now and because every deck older
+    # than it was drawn without it. See its own docstring for why bespoke_check, which was
+    # already green, could not see this: that file compares drawing CODE and a reader sees the
+    # drawn OBJECT.
+    ("construction", g_construction, CURRENT),
     ("completion", g_completion, HISTORY),
 ]
 
@@ -500,6 +535,13 @@ def check_run(d: Path, newest: bool) -> tuple:
             continue
         if probs is None:
             notes.append(f"{d.name}  {name}: not applicable, the artifact it reads is absent")
+            continue
+        if isinstance(probs, str):
+            # A GATE RETURNING A STRING says "not applicable, and here is the real reason". The
+            # only reason on offer used to be a missing artifact, so a gate that simply postdates
+            # the deck reported one that was sitting right there. A note giving the wrong reason
+            # is the defect this whole file exists to catch, in the file itself.
+            notes.append(f"{d.name}  {name}: not applicable, {probs}")
             continue
         if not probs:
             continue

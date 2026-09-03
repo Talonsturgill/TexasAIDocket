@@ -1,0 +1,115 @@
+{
+  "run": "2026-09-02",
+  "figures": [
+    {
+      "slide": 2,
+      "claim": "c1",
+      "string": "Thursday, September 3, 2026 9:00 AM Economic Development",
+      "names_the_set": "the listing's own row for the canceled hearing, set verbatim",
+      "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
+    },
+    {
+      "slide": 2,
+      "claim": "c1",
+      "string": "(Canceled/see notice)",
+      "names_the_set": "the listing's own cancellation note, set verbatim",
+      "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
+    },
+    {
+      "slide": 9,
+      "claim": "c3",
+      "string": "Tuesday, September 22, 2026",
+      "names_the_set": "the listing's own row for the hearing it carries without a cancellation note, set verbatim",
+      "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
+    },
+    {
+      "slide": 1,
+      "claim": "c2",
+      "string": "E1.016",
+      "names_the_set": "the room both rows give as the location",
+      "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
+    },
+    {
+      "slide": 8,
+      "claim": "c23",
+      "string": "$60.9 billion",
+      "names_the_set": "orders booked in the AI server segment, never the company",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm"
+    },
+    {
+      "slide": 8,
+      "claim": "c24",
+      "string": "$47.0 billion",
+      "names_the_set": "record revenue for the quarter across the whole company",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm"
+    }
+  ],
+  "refused": [
+    {
+      "pair": [
+        "$60.9 billion (c23)",
+        "$47.0 billion (c24)"
+      ],
+      "why": "a ratio, a difference or a share. 60.9 is a SEGMENT's orders and 47.0 is the whole company's revenue for the quarter, so every arithmetic relation between them is meaningless. Frame 8 draws them in two separately bevelled fields with a deep uncut gutter, no shared baseline, no axis, no bracket and no tick."
+    },
+    {
+      "pair": [
+        "$60.9 billion (c23)",
+        "$16.4 billion (c23)"
+      ],
+      "why": "an orders to revenue conversion rate. Both numerals sit in one quote and only 60.9 reaches a frame, because a segment's booked orders and its recognized revenue are different quantities over different periods. $16.4 billion is on no frame."
+    },
+    {
+      "pair": [
+        "September 3rd (c1)",
+        "September 22nd (c3)"
+      ],
+      "why": "a day count. The interval is DRAWN as built extent on frame 4, one masonry block per day at a constant rate, and no numeral for it is printed anywhere in the deck. The drawing carries the quantity so nothing has to assert it in type."
+    },
+    {
+      "pair": [
+        "the canceled row (c1)",
+        "the row carried without a note (c3)"
+      ],
+      "why": "a cause. The listing gives no reason for the cancellation, frame 3 says so and names where it looked, and nothing in the deck asserts that one row explains the other."
+    }
+  ],
+  "dates": [
+    {
+      "slide": 1,
+      "claim": "c1",
+      "source_form": "September 3, 2026",
+      "house_form": "September 3rd, 2026",
+      "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
+    },
+    {
+      "slide": 4,
+      "claim": "c1",
+      "source_form": "September 3, 2026",
+      "house_form": "September 3rd, 2026",
+      "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S"
+    }
+  ],
+  "counts": {
+    "claims_verified": 25,
+    "figures_proved": 6,
+    "dates_derived": 2,
+    "relationships_refused": 4
+  },
+  "institutions_answering": 3,
+  "frames": 9,
+  "derived_figures": [
+    {
+      "name": "the drawn course length",
+      "value": 19,
+      "unit": "days",
+      "from_claims": [
+        "c1",
+        "c3"
+      ],
+      "how": "the ordinal difference between the two dated rows the listing carries, taken from c1 and c3 rather than typed. Frame 4 draws one block per day at a constant rate and prints no numeral for it, so the drawing carries the quantity.",
+      "printed_on_a_frame": false
+    }
+  ],
+  "note": "One figure is derived and it is drawn rather than printed. Every string above was proved present in its claim's own verbatim quote before it reached a frame, and every date set in house style was derived from that quote by rule rather than re-typed."
+}

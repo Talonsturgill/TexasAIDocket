@@ -1,0 +1,69 @@
+{
+ "claims_verified": {
+  "value": 25,
+  "from_items": [],
+  "note": "Claims this run fetched and verified, counted by compute.py over claims.json."
+ },
+ "figures_proved": {
+  "value": 6,
+  "from_items": [],
+  "note": "Frame figures proved present in their claim's own verbatim quote before reaching a slide."
+ },
+ "dates_derived": {
+  "value": 2,
+  "from_items": [],
+  "note": "Dates set in house ordinal, DERIVED by rule from the source's own date rather than re-typed."
+ },
+ "relationships_refused": {
+  "value": 4,
+  "from_items": [],
+  "note": "Relationships the story invites that no claim licenses, named in aggregates.json rather than left implicit."
+ },
+ "official_records": {
+  "value": 3,
+  "from_items": [
+   "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
+   "https://www.depts.ttu.edu/tlpdc/AI-Syllabus-Statements.php",
+   "https://senate.texas.gov/cmte.php?c=525"
+  ],
+  "note": "Distinct source documents the frames cite whose claims declare primary_official. Counted by DECLARED source_type, which is the method sources_block uses for the published line. A second count over the HOST disagreed with it and was deleted from compute.py this run."
+ },
+ "news_reports": {
+  "value": 3,
+  "from_items": [
+   "https://www.govtech.com/education/k-12/fort-worth-isd-to-launch-chatgpt-for-teachers-district-wide",
+   "https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
+   "https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai"
+  ],
+  "note": "Distinct source documents the frames cite whose claims declare secondary_reported."
+ },
+ "first_party_accounts": {
+  "value": 1,
+  "from_items": [
+   "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm"
+  ],
+  "note": "Distinct source documents the frames cite whose claims declare primary_corporate."
+ },
+ "institutions_answering": {
+  "value": 3,
+  "from_items": [
+   "c8",
+   "c12",
+   "c14"
+  ],
+  "note": "Institutions whose own answer frame 6 carries, one plate each."
+ },
+ "frames": {
+  "value": 9,
+  "from_items": [],
+  "note": "Frames in the deck."
+ },
+ "course_days": {
+  "value": 19,
+  "from_items": [
+   "c1",
+   "c3"
+  ],
+  "note": "The interval frame 4 DRAWS as one block per day. No numeral for it is printed, and the frame's own legend tells a reader each block is a day, so the count is published by the drawing whether or not it is set in type."
+ }
+}

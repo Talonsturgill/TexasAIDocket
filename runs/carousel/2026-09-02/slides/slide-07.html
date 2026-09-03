@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #241715; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #E8CFC2;
+    font-size: 25px;
+  }
+  #hookbox {
+    position: absolute; left: 80px; width: 760px; top: 164px;
+    height: 150px; overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 600; color: #F2DCCB;
+    line-height: 1.06; letter-spacing: -.015em;
+  }
+  /* the quoted words, set ON the panel */
+  #quotebox {
+    position: absolute; left: 202px; width: 700px; top: 452px; height: 300px;
+    overflow: hidden;
+    font-family: "Manrope", sans-serif; font-weight: 500; color: #1C1A19;
+    line-height: 1.30; letter-spacing: -.006em;
+  }
+  .saidby {
+    position: absolute; left: 202px; width: 700px; top: 790px;
+    font: 500 24px/1.36 "JetBrains Mono", monospace; color: #26231F;
+  }
+  .saidline { position: absolute; left: 202px; width: 200px; top: 768px; height: 1px; background: rgba(28,26,25,.62); }
+  .where {
+    position: absolute; left: 80px; width: 900px; top: 1064px;
+    font: 400 26px/1.44 "Manrope", sans-serif; color: #F2DCCB;
+  }
+  .whereline { position: absolute; left: 80px; width: 250px; top: 1040px; height: 1px; background: rgba(242,220,203,.44); }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #E8CFC2; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">On a street corner</div>
+  <div id="hookbox">A union member says it makes the assignments.</div>
+  <div id="quotebox">"Timpani is used for making patient assignments, staffing, and to the detriment of the nurses, sometimes they short-staff them."</div>
+  <div class="saidline"></div>
+  <div class="saidby">says a National Nurses United member &middot; c16</div>
+  <div class="whereline"></div>
+  <div class="where">Protesters gathered near Riverside Drive and South Congress Avenue in Austin. The report ties the tool to HCA Healthcare and names no hospital. c17 c19</div>
+  <div class="foot-l">07 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 7;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* NO PERSON IS DRAWN. No photograph exists, and a badly drawn figure is worse
+     than an honest absence. A panel carrying the words is the object a picket
+     leaves behind, and it is seated on the same granite as every other frame.
+
+     NO HOSPITAL, NO CLINIC, NO LOGO. The report ties the tool to a company and
+     to no named Central Texas hospital, and a LAYOUT can deliver a join that no
+     sentence makes. c18 is not cited on this frame or anywhere in this deck. */
+  cx.fillStyle = "#241715";
+  cx.fillRect(0, 0, W, H);
+
+  var pitch = (W / 432) * 1.15;
+  var n = Math.floor((W * H) / (pitch * pitch * 3.1));
+  for (var i = 0; i < n; i++) {
+    var px = R() * W, py = R() * H, t = R();
+    var r = pitch * (0.30 + R() * 0.55);
+    var lit = Math.max(0, (py - 820) / 530) * 0.9;
+    if (t < 0.46)      cx.fillStyle = "rgba(16,12,14," + (0.16 + R() * 0.26) + ")";
+    else if (t < 0.82) cx.fillStyle = "rgba(158,149,140," + (0.04 + R() * 0.09) + ")";
+    else               cx.fillStyle = "rgba(242,220,203," + (0.02 + lit * (0.10 + R() * 0.30)) + ")";
+    var sides = 3 + Math.floor(R() * 3), rot = R() * 6.2832;
+    cx.beginPath();
+    for (var s = 0; s < sides; s++) {
+      var a = rot + (s / sides) * 6.2832, rr = r * (0.62 + R() * 0.72);
+      if (s === 0) cx.moveTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+      else cx.lineTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+    }
+    cx.closePath(); cx.fill();
+  }
+
+  /* the floor the panel stands on, LIT FIRST so the shadow has something to
+     subtract from. A shadow cast into near black is a two L star change and
+     reads as nothing, which is deck 9's recorded lesson. */
+  var FLOOR = 930;
+  var fg = cx.createLinearGradient(0, FLOOR, 0, H);
+  fg.addColorStop(0.00, "rgba(242,220,203,0.10)");
+  /* THE POOL IS AT THE SEAT. Peaking a third of the way down the floor put the
+     brightest band under the source copy and left the panel's foot the dimmest
+     part of the near floor, so the dossier's focal, one continuous bright area
+     up the left side, was not on the frame. */
+  fg.addColorStop(0.05, "rgba(242,220,203,0.25)");
+  fg.addColorStop(0.46, "rgba(242,220,203,0.11)");
+  fg.addColorStop(1.00, "rgba(242,220,203,0.06)");
+  cx.fillStyle = fg;
+  cx.fillRect(0, FLOOR, W, H - FLOOR);
+  cx.fillStyle = "rgba(255,246,238,0.24)";
+  cx.fillRect(0, FLOOR, W, 1.4);
+
+  /* --------------------------------------------------------------- the panel
+     Seated upright, lit ONLY along its left edge by the one key, which is the
+     deck's law: the brightest pixels are on the object's edge and not its face. */
+  /* SCALE IS THE BREAK. Frames 6 to 9 arrived as one construction four times, a
+     pale plate carrying words on maroon granite, and this is the deck's only
+     human voice getting the same object as a school district and an earnings
+     figure. The board runs off the left frame edge and up past the hook now, so
+     a reader is standing in front of it rather than looking at a plate on a
+     wall. Nothing about the light changes: the deck has one key.
+
+     IT DOES NOT BLEED. The first cut of this ran the board off the left frame
+     edge, which deleted the lit left edge the deck's one law lives on and left
+     the flat face as the frame's brightest AREA, on a frame that declares no
+     exemption. Frame 9 is the deck's only declared break. Scale is what breaks
+     the plate repetition here, and the edge stays on the frame. */
+  var PX = 88, PY = 356, PW = 880, PH = 560;
+
+  /* A 320px lens centred under a 762px board is the library's DROP shadow, and
+     it is what made the panel float. The core spans the whole base and the body
+     is wider than the object it belongs to. */
+  TXCARVE.contactShadow(cx, {
+    x: PX + PW / 2, y: PY + PH, w: PW, color: "#140D0C",
+    dirDeg: 118 - 180, tightAlpha: 0.66, wideAlpha: 0.0, tightBlur: 2, wideBlur: 2
+  });
+  TXCARVE.contactShadow(cx, {
+    x: PX + PW / 2, y: PY + PH + 8, w: PW * 1.08, color: "#1B1211",
+    dirDeg: 118 - 180, tightAlpha: 0.52, wideAlpha: 0.16, tightBlur: 4, wideBlur: 40
+  });
+
+  /* THE FACE IS NEARLY FLAT AND THAT IS THE LAW RATHER THAN A COMPROMISE.
+     The first build ramped the face from #D8D2C6 to #8E8A80 across 762px, and
+     qa read the bright left third as a RULE running through every line of the
+     quote, six times, because a tonal ramp that steep under type is a band
+     whatever it was drawn for. The deck's own rule already said it: the
+     brightest pixels belong on the object's EDGE and never on its face. So the
+     face carries 12 grey levels of horizontal grade and the modeling lives in
+     the vertical falloff and on the bevels.
+
+     AND IT IS STAINLESS, NOT BOND. Flattening the face did not lower it, and
+     flatness was never the complaint. At #CBC5B9 the face was a near white board
+     covering a quarter of the frame, so the deck's brightest AREA sat on a FACE,
+     which is the one law this deck has, and it spent bond on frame 7 when the
+     palette allocates bond to frame 5 alone. #ADA79D to #A29C92 is the declared
+     stainless band, and the lit left edge went to 6px so it survives the
+     downsample to 432 instead of vanishing at 1.2px. */
+  var g = cx.createLinearGradient(PX, 0, PX + PW, 0);
+  g.addColorStop(0.00, "#ADA79D");
+  g.addColorStop(1.00, "#A29C92");
+  cx.fillStyle = g;
+  cx.fillRect(PX, PY, PW, PH);
+  var vg = cx.createLinearGradient(0, PY, 0, PY + PH);
+  vg.addColorStop(0.00, "rgba(255,250,242,0.11)");
+  vg.addColorStop(0.42, "rgba(255,250,242,0.02)");
+  vg.addColorStop(1.00, "rgba(30,22,20,0.11)");
+  cx.fillStyle = vg;
+  cx.fillRect(PX, PY, PW, PH);
+
+  /* board tooth, so the panel is a material rather than a filled rectangle */
+  cx.globalAlpha = 0.13;
+  for (var b = 0; b < 3000; b++) {
+    var bx = PX + R() * PW, by = PY + R() * PH;
+    /* THE EXCLUSION IS A BOX, NOT A BAND. Excluding two full-width strips left
+       81 percent of the face with literally no texture, so the panel read as a
+       filled rectangle at 432px. The tooth now stops clear of the laid out type
+       ITSELF and runs in the panel's margins, where a reader can see it. */
+    if (by > PY + 44 && by < PY + 440 && bx > PX + 20 && bx < PX + 716) continue;
+    cx.fillStyle = R() < 0.5 ? "rgba(60,54,48,0.9)" : "rgba(255,255,250,0.9)";
+    cx.fillRect(bx, by, 2.6, 2.0);
+  }
+  cx.globalAlpha = 1;
+
+  /* THE LIT LEFT EDGE, the frame's brightest thing */
+  cx.fillStyle = "rgba(255,252,246,0.94)";
+  cx.fillRect(PX, PY, 7.0, PH);
+  cx.fillStyle = "rgba(255,252,246,0.60)";
+  cx.fillRect(PX, PY, PW, 2.2);
+  /* A RETURN FACE AND A SEATED FOOT. A 2.6px border is not an edge, it is a
+     stroke, and an object with no thickness is a rectangle in front of granite
+     rather than a board standing on it. */
+  cx.fillStyle = "rgba(24,18,17,0.58)";
+  cx.fillRect(PX + PW - 14, PY + 6, 14, PH - 6);
+  cx.fillStyle = "rgba(255,252,246,0.28)";
+  cx.fillRect(PX + PW - 14, PY + 6, 2, PH - 6);
+  cx.fillStyle = "rgba(24,18,17,0.66)";
+  cx.fillRect(PX + 6, PY + PH - 12, PW - 6, 12);
+
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("hookbox"),
+               { min: 58, max: 86, maxLines: 2, respectHeight: true });
+    TX.fitText(document.getElementById("quotebox"),
+               { min: 34, max: 50, maxLines: 6, respectHeight: true });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

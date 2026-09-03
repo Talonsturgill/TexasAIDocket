@@ -9,7 +9,7 @@ The Texas Water Development Board took up a petition for rulemaking on July 23rd
 - Public access: Public meeting
 - Take part: https://www.twdb.texas.gov/board/2026/07/board/index.asp
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The decision still stands as decided.
 - 2026-08-26 · Quote repaired. The stored verbatim was missing the word "also", which is why a re-check could not find it on the page and reported it unreadable. Re-fetched at the source and the sentence reads "the three-member board also denied a petition by Wimberley resident Margaret Elizabeth Hill". Nothing else about the item changed.
 - 2026-08-29 · Checked and unchanged. The board's denial still stands and the state water plan still carries no standalone water demand projection for data centers. The petition asking for one is still refused.
+- 2026-09-02 · The petition for a separate water demand category for data centers is still the item on the board's own agenda and the board has published no reversal.
 
 ## Evidence
 

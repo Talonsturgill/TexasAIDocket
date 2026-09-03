@@ -108,29 +108,37 @@ jobs:
 
       # THE ACTOR STAMP'S OWN INSTRUCTION. Writing a lane stamp stopped an unattended run on six
       # separate days. Five fixes aimed at HOW the file was written, ending with the Write tool,
-      # and every one failed. Nothing is written now, the lane is resolved from the branch, and
-      # this is what stops the instruction coming back. The gate used to bless the Write tool,
-      # so it carried the fifth failed fix itself.
-      #
-      # The comment here used to give the cause as "this repo's permission grant is inert, so
-      # EVERY write prompts". That was measured wrong and the correction is the step below: the
-      # grant was in force and the write still asked, because the gating is on the DIRECTORY.
+      # and every one failed: in the scheduled runner this repo's permission grant is inert, so
+      # EVERY write prompts a human who is not there, whatever tool makes it. Nothing is written
+      # now, the lane is resolved from the branch, and this is what stops the instruction coming
+      # back. The gate used to bless the Write tool, so it carried the fifth failed fix itself.
       - name: Actor stamp shape self-test (prove it can go red)
         run: python3 scripts/shared/actor_stamp_shape.py --self-test
 
       - name: No instruction file tells a session to write the actor stamp
         run: python3 scripts/shared/actor_stamp_shape.py
 
-      # THE DIRECTORY THE STAMP WAS IN, which is the cause the six runs above and the five after
-      # them actually shared. `.git/` and `.claude/` are gated by the harness whatever the
-      # permission mode says, because both carry things that define what the agent may do. The
-      # worklog moved out of `.claude/` on 2026-09-03 for the same reason the stamp left `.git/`,
-      # and this is what stops either address coming back into an instruction file.
-      - name: Protected path shape self-test (prove it can go red)
-        run: python3 scripts/shared/protected_path_shape.py --self-test
+      # THE SAME DEFECT IN A SECOND PLACE, found 2026-09-02. The host classes everything under
+      # `.claude/` as a SENSITIVE FILE and prompts on any edit, whatever the permission mode is
+      # and whatever any allow list says. CLAUDE.md told every long task to keep its durable plan
+      # at `.claude/WORKLOG.md`, so every one of them hit that prompt, and the same file was
+      # `human` lane under the ownership catch-all so an approved write could not be committed
+      # either. It moved to `runs/carousel/WORKLOG.md`. This is what stops it coming back, and it
+      # is deliberately about WRITES: reading a skill file and running bootstrap.sh are fine.
+      - name: Sensitive paths self-test (prove it can go red)
+        run: python3 scripts/shared/sensitive_paths.py --self-test
 
-      - name: No instruction file tells a session to write inside .claude or .git
-        run: python3 scripts/shared/protected_path_shape.py
+      - name: No instruction file tells a session to write under .claude/
+        run: python3 scripts/shared/sensitive_paths.py
+
+      # THE DETECTOR THAT MAKES THE NEXT ONE VISIBLE. CLAUDE.md said for eleven days that a
+      # session cannot see that it prompted, which is true of the tool result and false of the
+      # process: `permissionDecisionMs` in the debug log is 4 to 43 ms for an auto-approval and
+      # was 21585 ms for the one call that stopped the 2026-09-02 run. Five earlier fixes were
+      # each verified honestly by the run that shipped them and each was wrong, because none of
+      # them measured this. Only the self-test runs in CI, since there is no debug log here.
+      - name: Prompt audit self-test (prove it can go red)
+        run: python3 scripts/shared/prompt_audit.py --self-test
 
       # THE WORKFLOW'S OWN WIRING. This file is six jobs behind one required check now, and a
       # job nobody waits on is a gate connected to nothing. Self-tests first, same rule as the
@@ -1296,8 +1304,9 @@ jobs:
   # GITHUB_TOKEN suppresses ordinary workflow-to-workflow events. Collector pushes therefore
   # dispatch this workflow explicitly, and a workflow_run listener does not reliably continue
   # that token-created chain. This job starts Pages with the one event GitHub explicitly allows
-  # a workflow token to create. It is downstream of the aggregate check, so the required
-  # `guards` result is already green before Pages begins its exact-SHA verification.
+  # a workflow token to create. It is downstream of the aggregate check and passes that exact
+  # SHA to Pages. If main has moved by the time Pages starts, that stale dispatch exits green and
+  # the newer head's own guard run owns the release.
   release:
     needs: guards
     if: github.ref == 'refs/heads/main'
@@ -1309,4 +1318,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         # This job needs no checkout, so gh cannot infer a repository from a .git directory.
-        run: gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main
+        run: gh workflow run pages.yml --repo "${GITHUB_REPOSITORY}" --ref main --field guarded_sha="${GITHUB_SHA}"

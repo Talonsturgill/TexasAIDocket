@@ -19,11 +19,11 @@
     "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
   },
   "opening_moves_recent": [
-    "the deadline",
     "the quiet decision",
     "the number that is wrong",
     "the who",
     "the two things",
+    "the object",
     "the object"
   ],
   "entries": [
@@ -214,11 +214,29 @@
       ],
       "critic_note": "Two directors wrote, and the gate decided rather than taste. The other candidate opened on 'the found receipt' and followed the dollar, which was the better lede, and it FAILED caption_check because it did not end on a question and brand.yaml sets ends_with to engagement_question. THE CLOSING MOVE IS NOW FIVE RUNS RUNNING. The 2026-08-29 note already said it was the next thing to spend and this run spent it again, because the winning candidate was chosen on the gate and the gate does not read the ledger. Hand the caption room the closing move exclusion explicitly next run, the way opening moves are handed over.",
       "menu_note": "Both values are taken from knowledge/carousel/CAPTION_CRAFT.md's menus rather than coined. The 08-21 entry records names coined freehand being normalised at the eighth panel and warns that a run coining a name each day hands the next six runs an exclusion list that excludes nothing. This run did it again and a judge caught it, which is the third recurrence."
+    },
+    {
+      "date": "2026-09-02",
+      "carousel_no": 13,
+      "opening_move": "the before and after",
+      "structure": "pivot",
+      "closing_move": "Ask the one question the decision leaves open.",
+      "first_line": "Thursday was booked. The listing now reads canceled.",
+      "words": 136,
+      "commas": 0,
+      "commas_per_100w": 0.0,
+      "hashtags": [
+        "#TexasSenate",
+        "#NorthsideISD",
+        "#TexasWorkforce"
+      ],
+      "critic_note": "Two directors wrote and the critic took B and demanded one rewrite. The caption was then rewritten twice more by the panel rather than the room: once because it carried two of the frames' own over-assertions, 'Students do not get access yet' against a conditional claim and 'Nurses picketed' against a source that says gathered, and once because its third line asserted the deck's whole premise, that the September 3rd meeting was the AI hearing, which no claim supports.",
+      "menu_note": "The winning caption's closing move was logged freehand by the director as 'name what happens next and when, phrased as the question brand.yaml requires', which is two menu items welded together and is on neither menu. ledger_check refused it, correctly: a freehand name cannot be excluded by a list of real ones. What the caption actually does is ask the one question the decision leaves open, and the date it names is in the sentence before. So this is the FOURTH run running on that move. It is not on the restricted list, which covers opening moves for six runs and structures for three, and four in a row is a habit whatever the list says. Restrict it or spend it deliberately, and the next run should decide which."
     }
   ],
   "structures_recent": [
-    "two columns",
     "Clock",
+    "Zoom out",
     "Zoom out"
   ],
   "closing_moves_recent": [

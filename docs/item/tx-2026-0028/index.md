@@ -11,7 +11,7 @@ The Hays County Commissioners Court approved a resolution on June 23rd, 2026 est
 - Public access: Public meeting
 - Take part: https://www.hayscountytx.gov/877/Commissioners-Court-Minutes
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-22 · Whether the emergency order has been extended or allowed to lapse is still unconfirmed. The resolution pausing consideration of high water use development still stands as adopted and no later action appears.
 - 2026-08-26 · Checked and unchanged. The county's review board for water intensive development still stands and the resolution's stated reason is still the drought conditions and water use restrictions the county has been under. No later action is on the record.
 - 2026-08-29 · Checked and unchanged. The review period the court adopted still stands and the board it created still evaluates proposed high water use developments against water availability. Nothing on the county's record shortens or lifts it.
+- 2026-09-02 · The review period stands as adopted. The county has published no amendment and the transparency, water use and environmental survey requirements are unchanged.
 
 ## Evidence
 

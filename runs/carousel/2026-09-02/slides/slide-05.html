@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #EFE9DC; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .neat { position: absolute; border: 1px solid rgba(32,28,26,.30); left: 56px; top: 56px; right: 56px; bottom: 56px; }
+  .kicker {
+    position: absolute; left: 104px; top: 118px;
+    font: 500 24px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #6A5E56;
+    font-size: 25px;
+  }
+  .title {
+    position: absolute; left: 104px; width: 800px; top: 192px;
+    font-family: "Fraunces", serif; font-weight: 500; font-size: 37px;
+    line-height: 1.20; letter-spacing: -.012em; color: #201C1A;
+  }
+  /* ruled means quoted. this deck's furniture, and it appears here first. */
+  .ruleTop    { position: absolute; left: 104px; right: 104px; top: 344px; height: 2px; background: #201C1A; }
+  .ruleBottom { position: absolute; left: 104px; right: 104px; top: 828px; height: 2px; background: #201C1A; }
+  #quote {
+    position: absolute; left: 104px; width: 872px; top: 396px; height: 400px;
+    overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 500; color: #201C1A;
+    line-height: 1.16; letter-spacing: -.012em;
+  }
+  .tail {
+    position: absolute; left: 104px; width: 872px; top: 872px;
+    font: 400 30px/1.44 "Manrope", sans-serif; color: #322C28;
+  }
+  .hairline { position: absolute; left: 104px; width: 260px; top: 1052px; height: 1px; background: rgba(32,28,26,.42); }
+  .attr {
+    position: absolute; left: 104px; width: 872px; top: 1074px;
+    font: 400 25px/1.44 "JetBrains Mono", monospace; color: #4A423C;
+  }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #6A5E56; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 104px; }
+  .foot-r { right: 104px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="neat"></div>
+  <div class="kicker">The interim charge</div>
+  <div class="title">Senate Committee on Economic Development. Titled "Preparing the Texas Workforce for AI (Artificial Intelligence)".</div>
+  <div class="ruleTop"></div>
+  <div id="quote">"Study the impact of AI on the Texas workforce and its implications for economic competitiveness."</div>
+  <div class="ruleBottom"></div>
+  <div class="tail">The charge closes by asking the committee to "Make recommendations to ensure the Texas labor market remains a national leader in growth and opportunity."</div>
+  <div class="hairline"></div>
+  <div class="attr">senate.texas.gov &middot; c4 c7</div>
+  <div class="foot-l">05 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 5;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* THE DECK'S ONE BRIGHT FRAME, and it is an argument rather than a mood.
+     What the state PUBLISHED gets the deck's only light. What it did NOT publish
+     is frame 3, the darkest. A reader gets the inversion out of the value
+     structure before reading a word.
+
+     A DOCUMENT IS NOT LIT. There is no key on this frame, no cast shadow and no
+     gradient anywhere. The brightness comes from the paper being paper. */
+  cx.fillStyle = "#EFE9DC";
+  cx.fillRect(0, 0, W, H);
+
+  /* measured paper tooth: real per pixel variance, no low frequency ramp, so the
+     sheet reads as stock rather than as a flat fill */
+  var n = Math.floor(W * H / 5.2);
+  for (var i = 0; i < n; i++) {
+    var x = R() * W, y = R() * H, t = R();
+    if (t < 0.5) cx.fillStyle = "rgba(120,110,98," + (0.030 + R() * 0.060) + ")";
+    else         cx.fillStyle = "rgba(255,253,248," + (0.040 + R() * 0.085) + ")";
+    cx.fillRect(x, y, 0.9 + R() * 1.5, 0.9 + R() * 1.5);
+  }
+
+  /* a few longer fibres, the tell that this is stock and not a texture filter */
+  cx.globalAlpha = 0.16;
+  for (var f = 0; f < 340; f++) {
+    var fx = R() * W, fy = R() * H, fa = R() * 6.2832, fl = 5 + R() * 22;
+    cx.strokeStyle = R() < 0.5 ? "rgba(108,98,86,0.9)" : "rgba(255,255,252,0.9)";
+    cx.lineWidth = 0.5 + R() * 0.7;
+    cx.beginPath();
+    cx.moveTo(fx, fy);
+    cx.lineTo(fx + Math.cos(fa) * fl, fy + Math.sin(fa) * fl);
+    cx.stroke();
+  }
+  cx.globalAlpha = 1;
+
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("quote"),
+               { min: 46, max: 74, maxLines: 6, respectHeight: true });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

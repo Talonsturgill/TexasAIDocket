@@ -128,14 +128,12 @@ ROUTES: list[tuple[str, str, str, str, str]] = [
     ("alaska-ai-weekly", r"^assets/voice/", "REBUILD", "TexasAIDispatch:assets/voice/", "Texas gets its own narrator persona"),
     ("alaska-ai-weekly", r"^examples/", "REBUILD", "TexasAIDispatch:examples/", ""),
     ("alaska-ai-weekly", r"^\.claude/agents/", "PORT_RETHEMED", "TexasAIDispatch:.claude/agents/", ""),
-    # Matched to the COMPLETE filename, not by prefix. `^\.claude/(settings|WORKLOG)` left
-    # `.md` as the remainder and routed the worklog to `TexasAIDispatch:.claude/.md`, which
-    # is in the committed manifest as evidence. A review caught it while this file was being
-    # changed for the worklog's retirement.
-    ("alaska-ai-weekly", r"^\.claude/settings\.json$", "REBUILD",
-     "TexasAIDispatch:.claude/settings.json", ""),
-    ("alaska-ai-weekly", r"^\.claude/WORKLOG\.md$", "DROP", "",
-     "Texas keeps a run's durable plan in out/<date>/run_state.json and writes no worklog"),
+    ("alaska-ai-weekly", r"^\.claude/settings", "REBUILD", "TexasAIDispatch:.claude/", ""),
+    # The worklog moved OUT of .claude/ on 2026-09-02 because the host classes that
+    # directory as sensitive and prompts on every edit. The Alaska source still keeps its
+    # copy there, so the row stays routed rather than being dropped: deleting the route
+    # leaves the source file UNROUTED and fails the coverage audit on the next regenerate.
+    ("alaska-ai-weekly", r"^\.claude/WORKLOG", "REBUILD", "TexasAIDispatch:runs/carousel/WORKLOG.md", "moved out of .claude/, which the host prompts on"),
     ("alaska-ai-weekly", r"^\.githooks/", "PORT_VERBATIM", "TexasAIDispatch:.githooks/", "the auto-push guardrail earns its place in every repo"),
     ("alaska-ai-weekly", r"^scripts/", "PORT_RETHEMED", "TexasAIDispatch:scripts/", ""),
     ("alaska-ai-weekly", r"^(README|CLAUDE)\.md$", "REBUILD", "TexasAIDispatch:", ""),

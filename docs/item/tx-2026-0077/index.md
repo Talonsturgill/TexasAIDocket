@@ -1,4 +1,4 @@
-# Senate Transportation sets an August 25th hearing on how driverless vehicles are being deployed under SB 2807
+# Senate Transportation held its August 25th hearing on how driverless vehicles are being deployed under SB 2807
 
 The Senate Committee on Transportation posted notice of a public hearing for August 25th, 2026 in the Capitol. One of three interim charges covers the deployment of autonomous vehicle technology authorized by SB 2807 of the 89th Session. It reaches the rules adopted by the Department of Public Safety, the Department of Motor Vehicles and the Department of Licensing and Regulation. The charge directs the committee to quantify the impact on traffic related collisions. The committee will hear invited and public testimony.
 
@@ -10,7 +10,7 @@ The Senate Committee on Transportation posted notice of a public hearing for Aug
 - Comment closes: 2026-08-25
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-23 · Checked and unchanged. The Senate's own upcoming meetings listing still sets the Transportation hearing for 9:00 AM on August 25th in hearing room E1.016. It does not mark that hearing canceled where it marks another committee's meeting the same day canceled.
 - 2026-08-26 · The hearing was held. The committee's own page now carries August 25th, 2026 in its archive of recorded meetings. The Legislature's upcoming listing no longer shows it, which is what that page does once a date passes. What the committee concluded is unconfirmed, because its minutes and witness list are published only under a directory this project does not fetch.
 - 2026-08-29 · Checked and unchanged. The hearing was held and the committee's own page still carries it in the archive of recorded meetings. What the committee concluded on the driverless charge is still unconfirmed, because its minutes and witness list sit under a directory this project does not fetch.
+- 2026-09-02 · The August 25th hearing was held and the committee's own page carries its recording. The interim charge on autonomous vehicle deployment under SB 2807 is unchanged, and the committee has published no recommendations yet.
 
 ## Evidence
 
@@ -88,6 +89,12 @@ Source (primary_official): https://senate.texas.gov/cmte.php?c=640
 ### The committee's own page carries the autonomous vehicle interim charge in full.
 
 > Studying the Deployment of Autonomous Vehicle Technology: Study the deployment of autonomous vehicle technology as authorized by SB 2807, (89th Session), including rule-making adopted by the Texas Department of Public Safety, the Texas Department of Motor Vehicles and the Texas Department of Licensing and Regulation.
+
+Source (primary_official): https://senate.texas.gov/cmte.php?c=640
+
+### The committee's own page carries a recording of the August 25th hearing.
+
+> August 25, 2026
 
 Source (primary_official): https://senate.texas.gov/cmte.php?c=640
 

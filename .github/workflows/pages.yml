@@ -33,9 +33,11 @@ name: pages
 #    workflow_dispatch too: unlike workflow_run chaining, GitHub permits that event from a
 #    workflow token. The schedule remains the backstop, but it checks the current main SHA for a
 #    successful aggregate guard result before it may deploy anything.
-#    The schedule is what makes a missed publish self-healing rather than permanent. Deploying an
-#    unchanged site is a no-op for a reader, and the verify job below still refuses to publish a
-#    docs/ that does not match a rebuild, so a redundant run cannot do harm.
+#    The release dispatch carries the exact guarded SHA. If main moves before Pages starts, the
+#    verify job exits green without deploying; the newer commit's own guard run will dispatch its
+#    release. The schedule is what makes a genuinely missed publish self-healing rather than
+#    permanent. Deploying an unchanged site is a no-op for a reader, and the verify job below still
+#    refuses to publish a docs/ that does not match a rebuild, so a redundant run cannot do harm.
 
 on:
   schedule:
@@ -43,6 +45,11 @@ on:
     # reading, so the cost of being stale is measured in hours rather than days.
     - cron: "0 */2 * * *"
   workflow_dispatch:
+    inputs:
+      guarded_sha:
+        description: Exact main commit whose guards dispatched this release; blank for recovery
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -58,6 +65,9 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.target.outputs.deploy }}
+      sha: ${{ steps.target.outputs.sha }}
     steps:
       # PINNED TO main, and that is required rather than tidy. A scheduled recovery or a dispatch
       # can begin while another collector is moving the branch. This workflow only ever publishes
@@ -67,11 +77,28 @@ jobs:
         with:
           ref: main
 
-      # THE EXACT SHA, NOT A GREEN RUN SOMEWHERE NEAR IT. A newer collector may move main while
-      # an older guard run is finishing. In that race this workflow checks out the newer commit
-      # and must refuse it until its own guards finish. The scheduled backstop uses the same
-      # proof, so it can heal a missed deploy but can never bypass validation to do it.
+      # A GREEN STALE DISPATCH IS NOT A RED RELEASE. An older guard run can finish after main has
+      # moved. Before this comparison, that completion launched Pages against the newer unguarded
+      # head and created a failed release by design. It was safe and noisy. The newer head will
+      # dispatch its own release after its own guards pass, so the stale request exits cleanly.
+      - name: Select the guarded main commit
+        id: target
+        env:
+          GUARDED_SHA: ${{ inputs.guarded_sha }}
+        run: |
+          SHA=$(git rev-parse HEAD)
+          echo "sha=${SHA}" >> "$GITHUB_OUTPUT"
+          if [ -n "$GUARDED_SHA" ] && [ "$GUARDED_SHA" != "$SHA" ]; then
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::main advanced from guarded ${GUARDED_SHA} to ${SHA}; the newer guard run owns the release"
+            exit 0
+          fi
+          echo "deploy=true" >> "$GITHUB_OUTPUT"
+
+      # THE EXACT SHA, NOT A GREEN RUN SOMEWHERE NEAR IT. Scheduled recovery has no input SHA,
+      # so it selects current main here and still must prove that commit's aggregate guard result.
       - name: Full guards passed for this exact main commit
+        if: steps.target.outputs.deploy == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -85,16 +112,20 @@ jobs:
           fi
 
       - uses: actions/setup-python@v5
+        if: steps.target.outputs.deploy == 'true'
         with:
           python-version: "3.11"
           cache: pip
           cache-dependency-path: requirements.txt
-      - run: python -m pip install --quiet --no-deps --requirement requirements.txt
+      - if: steps.target.outputs.deploy == 'true'
+        run: python -m pip install --quiet --no-deps --requirement requirements.txt
 
       - name: The record passes its own gates
+        if: steps.target.outputs.deploy == 'true'
         run: python3 scripts/site/docket_build.py --validate
 
       - name: The copy about to be published keeps the house rules
+        if: steps.target.outputs.deploy == 'true'
         run: |
           # guards.yml runs this on every branch, and it was missing HERE, which is the one
           # place it actually gates a publish. A house-rule violation caught on a branch is a
@@ -104,6 +135,7 @@ jobs:
           python3 scripts/site/house_style_check.py
 
       - name: The published site is exactly what the ledgers produce
+        if: steps.target.outputs.deploy == 'true'
         run: |
           # No --today. The check rebuilds using the date the committed site was BUILT with,
           # read from its own docket.json, because the question is "does docs/ say anything
@@ -117,16 +149,17 @@ jobs:
 
   deploy:
     needs: verify
+    if: needs.verify.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # PINNED TO main for the same reason as verify: package exactly the commit whose guard proof
-      # was checked rather than an event's incidental ref.
+      # PINNED TO THE VERIFIED SHA. Main can move between jobs, and checking out its name again
+      # would package a commit the verify job never examined.
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ needs.verify.outputs.sha }}
       - uses: actions/configure-pages@v5
         # enablement turns Pages on via the API if it is not already configured, so the site
         # does not sit behind a settings toggle nobody knows to flip. The workflow already

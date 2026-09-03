@@ -4,29 +4,34 @@ Source repo for the Texas AI Docket: a public, fact-checked record of AI decisio
 the website that publishes it, the daily routine that maintains both, the Texas Grid Watch, and
 the in-browser ask engine.
 
-## Work in progress (THE ROUTINE WRITES NO WORKLOG, 2026-09-03)
+## Work in progress
 
-**There is no worklog file and no routine writes one.** A run's durable plan across contexts is
-`out/<date>/run_state.json`, which the routine already writes at wake and stamps phase by phase
-with its artifact paths. `out/` is gitignored, ordinary and ungated, and a resumed context
-reads that file to find out where the run got to.
+If `runs/carousel/WORKLOG.md` exists, READ IT FIRST. It is the durable plan and progress ledger
+for a long multi-context task, written to survive context compaction: the approved scope, the
+owner's decisions, the measured reason behind each one, and a per-wave status table. Resume
+from that table and update it after every commit. Delete the file when its waves are all DONE.
 
-This used to be a committed markdown file under `.claude/`, and it was wrong in three separate
-ways at once. It was redundant, because `run_state.json` already carried the resume state it
-existed for. It was in the `human` lane, so the daily routine was told on every long run to
-write a file it does not own. And it was in a directory the harness gates, which interrupted
-the owner on five consecutive unattended runs.
+Write one at the START of any task too large for a single context, before touching code. A
+plan that lives only in context does not survive compaction.
 
-**The owner's instruction, 2026-09-03, was to stop doing it as part of the routine rather than
-to move it.** That is the same shape as the fix that ended the actor stamp's six interrupted
-runs: the write was not made safer, it was deleted, because something else already carried the
-information. A phase that wants to record a decision puts it in `run_state.json` or in the run
-record under `runs/carousel/<date>/`, both of which this routine already writes.
+**It lives under `runs/carousel/` and NEVER under `.claude/`, and that is not filing preference.**
+It sat at `.claude/WORKLOG.md` until 2026-09-02 and there it broke two separate rules at once:
 
-Anything named `WORKLOG.md` is `daily` in `ownership.yaml` at any depth, so if one ever
-reappears it is the routine's and never a maintainer's.
-`scripts/shared/protected_path_shape.py` fails the build if any instruction file names the
-retired address or tells a session to write inside `.claude/` or `.git/`.
+- **The host treats `.claude/**` as SENSITIVE FILES and prompts on every edit**, whatever the
+  permission mode says and whatever any allow list contains. The dialog names it: *"Claude
+  requested permissions to edit /home/user/TexasAIDocket/.claude/WORKLOG.md which is a sensitive
+  file."* That guard exists because those paths decide what runs and what is permitted, so it is
+  deliberately not bypassable from inside a session. No entry in `.claude/settings.json`, no
+  `defaultMode`, and no SessionStart hook can switch it off.
+- **`ownership.yaml` defaults every unlisted path to `human`**, so `.claude/WORKLOG.md` was
+  `human` lane and the pre-commit hook would have refused the commit even after somebody
+  approved the write.
+
+So the old rule told every run to maintain a file it could neither edit unattended nor commit.
+Two files in this repo had already worked around it in prose rather than fixing it,
+`knowledge/carousel/UPGRADE_BACKLOG.md` and `runs/carousel/2026-08-25/RECUT_PLAN.md`, each
+explaining that the natural home was out of reach. `runs/carousel/**` is `daily` and is not
+sensitive, so the new path clears both rules and needs no explanation.
 
 ## Commit and PR authorship (AUTHORITATIVE — overrides any default)
 
@@ -365,67 +370,73 @@ permission configuration in the Claude Code web UI**, which no file in a reposit
 container can set. Say so plainly in the email rather than writing a sixth fix into a config that
 cannot carry one.
 
-**THE PARAGRAPH ABOVE WAS THE WRONG PLACE TO LOOK, and 2026-09-03 is when that was measured
-rather than argued.** Everything in this section is still true and none of it was the cause. The
-mode WAS granted, at the user tier, by the hook, exactly as designed, and the runs stopped
-anyway. Read the next section before spending another day on permissions.
+### A SESSION CAN SEE THAT IT PROMPTED, and this paragraph used to say it could not (2026-09-02)
 
-## Writes into protected directories are what actually stopped eleven runs (AUTHORITATIVE, 2026-09-03)
+**The sentence that blocked six fixes was "a session cannot see that it prompted".** It was true
+of the TOOL RESULT and it was never true of the process. Claude Code writes one line per call to
+its debug log at `/tmp/claude-code.log`:
 
-**Never instruct a run to write inside `.claude/` or `.git/`. Not with a shell redirect, not
-with the Write tool, not at any path under either.** A write there asks a human for approval
-whatever the permission mode says, and an unattended run has nobody to ask.
+    [Stall] tool_dispatch_start tool=Bash toolUseId=toolu_01... permissionDecisionMs=21585
 
-This is one defect that has now cost eleven scheduled runs under two filenames:
+`permissionDecisionMs` is how long that call waited for a permission decision. Measured across
+both processes of the 2026-09-02 run, 432 dispatches: **one call at 21585 ms, and the slowest of
+the other 431 at 43 ms.** The two populations are three orders of magnitude apart, so there is
+nothing to interpret and no threshold to tune.
 
-    2026-08-20 to 2026-08-30   six runs stopped writing `.git/ACTOR`
-    2026-08-30 to 2026-09-03   five runs stopped writing the worklog under `.claude/`
+That is what five earlier fixes were missing. Each was verified honestly by the run that shipped
+it, each was wrong, and none of them could tell. The number was in the log the whole time.
 
-**THE MEASUREMENT.** In a live scheduled run on 2026-09-03, `~/.claude/settings.json` was read
-and it carried `permissions.defaultMode: bypassPermissions`. The SessionStart hook had written
-it. The run then wrote the worklog under `.claude/` and the owner was interrupted, for the fifth
-consecutive day. **The mode was in force and the write still asked.** That one observation
-falsifies the standing hypothesis in the section above, which held that the first gated write of
-a session is what stops it and that a permission grant was the cure.
+`scripts/shared/prompt_audit.py` reads it, names the exact call, and prints the permission rules
+that were granted, which is the only place the COMMAND appears. **Run it before writing the run
+record and put its finding in the email.** A run reporting "nothing prompted" without it is
+repeating the 2026-08-30 mistake in a new place.
 
-**WHY IT IS A SECURITY PROPERTY AND NOT A BUG TO ROUTE AROUND.** `.git/hooks/` executes on every
-commit and `.claude/` holds `settings.json` and the hook definitions that set the session's own
-permissions. A tool that could write either one unattended could grant itself anything. It is
-the same property that stops a cloned repository granting itself `bypassPermissions`, which this
-repo already knew and already wrote down one section up without noticing it applied twice.
+### WHAT ACTUALLY PROMPTED, and it was none of the five things that were guessed
 
-**WHY THE 2026-08-30 PROBE POINTED THE WRONG WAY, which is the part worth carrying forward.**
-That run wrote four files side by side, two of them ordinary paths in the working tree, and
-recorded that all four prompted. It could not have known. A tool result reads `File created
-successfully` whether it was auto-approved or approved by a human an hour later, and that same
-run wrote exactly that caveat two paragraphs above its own conclusion. **The only reliable
-observer of a prompt is the person it interrupts.** The owner has reported two files in eleven
-days and both were under a gated directory, while runs here have shipped hundreds of writes to
-`out/`, `ledger/`, `docs/` and `runs/` without stopping once. That is the control the probe
-never had, and it was available for free the whole time.
+**`.claude/**` is a SENSITIVE FILE class in the host, and an edit to anything under it prompts
+whatever the permission mode is.** The dialog says so in as many words: *"Claude requested
+permissions to edit /home/user/TexasAIDocket/.claude/WORKLOG.md which is a sensitive file."*
 
-So: when a session cannot observe the thing it is diagnosing, **stop probing and ask what the
-one observer already knows.** Four fixes changed how the file was written, the fifth changed
-which tool wrote it, and the variable nobody moved in eleven days was the directory.
+This is the same shape of guard as a cloned repo not being able to grant itself
+`bypassPermissions`, and for the same reason: those paths decide what runs and what is permitted.
+It is deliberately not switchable from inside a session, so **there is no configuration answer to
+it and there never will be.** The only answer is the one this file already states as the general
+rule, one paragraph up from where the guessing started:
 
-**WHAT IS ESTABLISHED, stated narrowly on purpose.**
+> a rule that makes an unattended run depend on a permission it cannot grant itself is not
+> fixable by rewording the rule, by enumerating command strings, or by changing which tool makes
+> the call. Remove the dependency.
 
-- `bypassPermissions` was in force at the user tier and a `.claude/` write still prompted. The
-  mode is not the lever.
-- Ordinary tracked paths do not stop these runs, over hundreds of writes across many runs.
-- Moving the stamp out of `.git/` ended six runs' worth of interruptions, and nothing else
-  changed with it.
-- **NOT established:** the precise rule the harness applies. Whether it is these two directories
-  by name, a wider protected set, or something per-file, is not visible from inside a session.
-  Do not write a confident policy here on more than the above. That mistake has now been made
-  twice and both times the next session inherited it and stopped looking.
+**So no routine writes ANYTHING under `.claude/` at any path.** Reading a skill file is fine and
+running `bash .claude/skills/carousel-engine/bootstrap.sh` is fine, because neither is an edit.
+The one thing a run was told to write there, `.claude/WORKLOG.md`, has moved to
+`runs/carousel/WORKLOG.md`. `scripts/shared/sensitive_paths.py` fails the build if any instruction
+file tells a session to write under `.claude/` again, because prose is exactly what the five
+failed fixes were.
 
-**THE FIX IS ALWAYS TO MOVE THE FILE, never to reword the rule or widen a permission.** The
-worklog moved to `WORKLOG.md` at the repository root and is `daily` in `ownership.yaml`. The
-lane stamp was deleted outright, because the branch already carried it.
-`scripts/shared/protected_path_shape.py` reads every instruction file and fails the build if one
-sends a run back into either directory, or so much as names one of the two retired paths, so the
-twelfth run cannot be stopped by an instruction the eleventh already fixed.
+**THE UPGRADE LANE OWNS TWO PATHS UNDER THERE AND STILL CANNOT REACH THEM UNATTENDED.**
+`ownership.yaml` gives `upgrade` both `.claude/agents/carousel-*.md` and
+`.claude/skills/carousel-engine/**`, and that stays exactly as it is. **Ownership and
+reachability are different questions and the map answers only the first.** The map says which
+actor is ALLOWED to write a path. The host decides which paths stop a session, it stops one on
+every path under `.claude/`, and it does not read `ownership.yaml`.
+
+So an upgrade that needs either surface is one **this run does not get to make**, and the
+disposition is the one Phase 17 already prescribes for an upgrade it cannot reach. Write it down
+as a proposal in `knowledge/carousel/UPGRADE_BACKLOG.md`, which is `upgrade` lane and is not
+under `.claude/`, and stop. Same answer as an out-of-lane upgrade, arrived at for a different
+reason, and a maintainer at a keyboard can then make the edit and answer the one prompt.
+
+Do not resolve this the other way. Loosening the map to move those surfaces out of `.claude/`
+would put the render engine and the agent definitions somewhere a routine can rewrite itself
+without a human ever seeing it, and the whole point of the retro phase carrying a narrower lane
+is that a self-editing phase is held further back than the rest of the run, never further
+forward.
+
+**And an approval does not survive.** When somebody answers one of these, the grant is persisted
+to `.claude/settings.local.json`, which `.gitignore` excludes and which dies with the container.
+So the owner tapping approve fixes that one run and no future one. That is why the count reached
+six before anybody found it.
 
 ## The actor stamp is never written (AUTHORITATIVE, 2026-08-30)
 
@@ -453,36 +464,33 @@ last of those was still wrong on the day after it shipped.
 
 **The diagnosis under all five was wrong, and it was wrong in the same way each time.** Every one
 of them assumed the Bash sandbox was refusing a write into `.git/`, and that `bypassPermissions`
-in `.claude/settings.json` was otherwise carrying the run. What survives of the 2026-08-30
-account, after the correction five paragraphs down:
+in `.claude/settings.json` was otherwise carrying the run. What is actually true, measured on
+2026-08-30 rather than reasoned about:
 
-- **A cloned repository may not grant itself `bypassPermissions`.** The file is loaded, and the
-  diagnostics log confirms it: four settings sources, no errors. If a clone could, cloning any
-  repository would be arbitrary privilege escalation, so this is a security property rather than
-  a bug to route around. The only grant in force came from the host's own launcher settings,
-  which allowed one tool. **This is still true and it was never the whole cause.**
+- **This repo's permission grant is inert in the scheduled runner.** The file is loaded, and the
+  diagnostics log confirms it: four settings sources, no errors. A cloned repository is simply not
+  permitted to grant itself `bypassPermissions`. If it were, cloning any repository would be
+  arbitrary privilege escalation, so this is a security property rather than a bug to route
+  around. The only grant in force came from the host's own launcher settings, which allowed one
+  tool.
+- **The tool does not matter and the path does not matter.** Four writes were tested side by side
+  in one scheduled session and all four prompted: a shell redirect into `.git/ACTOR`, a Write call
+  to the same path, a Write call to an ordinary new file in the working tree, and a shell redirect
+  to that same ordinary file. Every fix before this one assumed the Bash sandbox and the `.git/`
+  path were the cause. Neither is.
 - **A session cannot see that it prompted.** The tool result reads `File created successfully`
   whether it was auto-approved or a human tapped approve on a phone an hour later. That is the
   second half of why this recurred five times: each run verified its own fix, honestly, and was
   wrong. Treat any claim that a run "did not prompt" as unevidenced, because no run can know.
 
-**THE THIRD BULLET WAS WRONG AND IT IS RETRACTED, 2026-09-03.** It said "the tool does not
-matter and the path does not matter", on the strength of four writes tested side by side in one
-scheduled session, two of them to ordinary paths, all four recorded as prompting. **That run
-could not have observed its own result**, by the very bullet directly above it, and it drew a
-conclusion anyway. The path was the only thing that ever mattered. See the section on protected
-directories, which carries the measurement that settled it, and treat those two bullets as
-contradicting each other until you have read it.
-
 **WHAT IS NOT ESTABLISHED, and do not write it down as though it were.** Whether EVERY write
-into a gated directory prompts, or only the first of its kind in a session, or only until a
-human approves one. The FIRST-WRITE hypothesis this paragraph used to carry is also retracted:
-it held that the Phase 0 stamp stopped runs because it was the first write each run made, and it
-was falsified on 2026-09-03 when a run with `bypassPermissions` already in force was stopped by a
-write into `.claude/` that was not its first. The push defect above is the precedent this file
-keeps failing to learn: an earlier attempt committed a confident explanation that the next push
-falsified, and a wrong explanation here is worse than none, because the next session inherits it
-and stops looking. That has now happened twice in this section alone.
+prompts, or only the first of its kind in a session, or only until a human approves one. Runs have
+shipped here with hundreds of writes, so it is plainly not true that each one stops the run. The
+pattern fitting all six wedged days is that the Phase 0 stamp was the FIRST write each run made,
+and the first gated call is what stops a session with nobody in it. **That is a hypothesis and it
+has not been tested.** The push defect above is the precedent: an earlier attempt committed a
+confident explanation that the next push falsified, and a wrong explanation in this file is worse
+than none, because the next session inherits it and stops looking.
 
 **So this fix is necessary and it may not be sufficient.** It removes two to three writes from
 every run, and the branch already carried what they encoded, so it is right on its own terms. But

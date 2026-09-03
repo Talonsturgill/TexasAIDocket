@@ -1260,11 +1260,9 @@ def home(items: list, today: str) -> str:
     runs = load_runs()
     n_videos = video_count()
 
-    # THE LIVE ACTION RAIL. The old deadline cards were complete but arrived after the ask box
-    # and the map, more than a phone screen below the headline. That made the page advertise a
-    # count of open doors before it showed any of them. The same verified projection now supplies
-    # a compact rail inside the hero, ordered by the date arithmetic in `dk.project`, so the most
-    # perishable public opportunity is the first useful thing a reader meets.
+    # THE LIVE ACTION PANEL. It follows the map, on the owner's call, so the Ask agent remains
+    # the flagship product immediately below the hero. The same verified projection supplies a
+    # compact set of deadlines ordered by the date arithmetic in `dk.project`.
     #
     # THREE ROWS IS A PREVIEW, NOT A SECOND RECORD. It keeps the hero finite if many agencies open
     # windows at once. The participation guide below the rows is the route to the full record.
@@ -1370,7 +1368,6 @@ def home(items: list, today: str) -> str:
     <a class="cta solid" href="record/">The docket</a>
     <a class="cta ghost" href="grid/">The grid</a>
   </div>
-{open_now}
   <div class="statrow">{stats}</div>
 </section>
 
@@ -1384,6 +1381,10 @@ def home(items: list, today: str) -> str:
   {svg}
   <p class="mapread" id="mapread" role="status" aria-live="polite" data-prose="data"></p>
   <button type="button" class="mapreset" id="mapreset" hidden>Show all of Texas</button>
+</section>
+
+<section class="deadline-section" data-reveal>
+{open_now}
 </section>
 
 {covers_html}

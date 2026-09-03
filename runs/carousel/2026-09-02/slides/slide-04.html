@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<style>
+  html, body { margin: 0; padding: 0; width: 1080px; height: 1350px; overflow: hidden; }
+  body { background: #452C29; position: relative; }
+  #art { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .layer { position: absolute; inset: 0; }
+  .kicker {
+    position: absolute; left: 80px; top: 96px;
+    font: 500 25px/1.2 "JetBrains Mono", monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #E8CFC2;
+    font-size: 25px;
+  }
+  #hookbox {
+    position: absolute; left: 80px; width: 828px; top: 168px;
+    height: 200px; overflow: hidden;
+    font-family: "Fraunces", serif; font-weight: 600; color: #F2DCCB;
+    line-height: 1.06; letter-spacing: -.015em;
+  }
+  .rowA, .rowB {
+    position: absolute; font: 500 25px/1.34 "JetBrains Mono", monospace;
+    font-variant-numeric: tabular-nums; letter-spacing: -.005em;
+  }
+  .rowA { left: 80px; width: 460px; top: 396px; color: #C8A79A; }
+  .rowB { left: 560px; width: 440px; top: 396px; color: #F2DCCB; }
+  .attr {
+    position: absolute; left: 80px; width: 860px; top: 1136px;
+    font: 400 25px/1.44 "Manrope", sans-serif; color: #F2DCCB;
+  }
+  .attrline { position: absolute; left: 80px; width: 240px; top: 1114px; height: 1px; background: rgba(242,220,203,.44); }
+  .foot-l, .foot-r {
+    position: absolute; bottom: 104px;
+    font: 500 24px/1 "JetBrains Mono", monospace; color: #E8CFC2; letter-spacing: .1em;
+    font-size: 24px;
+  }
+  .foot-l { left: 80px; }
+  .foot-r { right: 80px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+
+<div class="layer">
+  <div class="kicker">Same hour, same room</div>
+  <div id="hookbox">One course. One block never laid.</div>
+  <div class="rowA">9:00 AM &middot; E1.016<br>Thursday September 3rd, 2026<br>canceled</div>
+  <div class="rowB">9:00 AM &middot; E1.016<br>the listing carries one more<br>no cancellation note</div>
+  <div class="attrline"></div>
+  <div class="attr">Each block is a day. The course runs from the canceled hearing to the date the listing carries now. c1 c2 c3 c25</div>
+  <div class="foot-l">04 / 09</div>
+  <div class="foot-r"><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var SEED = 20260902 + 4;
+  TX.reseed(SEED);
+  var R = TX.rng(SEED);
+
+  var cx = document.getElementById("art").getContext("2d");
+  cx.scale(2, 2);
+  var W = 1080, H = 1350;
+
+  /* THE INTERVAL IS DRAWN AS BUILT EXTENT AND NO NUMERAL FOR IT IS PRINTED.
+     The two dates are quoted from c1 and c3. The count of days between them is a
+     quantity the drawing carries, so nothing has to assert it in type. Time drawn
+     as extent is honest where a bar pair would invite a comparison the record
+     does not support. */
+  var D0 = new Date(Date.UTC(2026, 8, 3));       // c1's dated row
+  var D1 = new Date(Date.UTC(2026, 8, 22));      // c3's dated row
+  var DAYS = Math.round((D1 - D0) / 86400000);   // computed, never typed
+
+  var COURSE_Y = 636, COURSE_H = 128;   /* 48 x 128, so a day block is a BLOCK.
+     At 268 tall each cell was 1 to 5.6 against an ashlar course 40px above it at
+     nearly 1 to 1, so the run read as a slatted panel inset into a wall. Adding
+     the course above did not remove the progress bar shape, it gave the eye a
+     real course to compare against and the day band lost the comparison. The
+     frame's own line is "One course", and the drawing has to deliver the word. */
+  var MARGIN = 80;
+  var runW = W - MARGIN * 2;
+  var blockW = runW / DAYS;                       // the constant rate
+
+  /* the wall behind the course */
+  cx.fillStyle = "#452C29";
+  cx.fillRect(0, 0, W, H);
+  var pitch = (W / 432) * 1.15;
+  var n = Math.floor((W * H) / (pitch * pitch * 3.4));
+  for (var i = 0; i < n; i++) {
+    var px = R() * W, py = R() * H, t = R();
+    var r = pitch * (0.30 + R() * 0.52);
+    if (t < 0.48)      cx.fillStyle = "rgba(16,12,14," + (0.12 + R() * 0.18) + ")";
+    else if (t < 0.84) cx.fillStyle = "rgba(158,149,140," + (0.04 + R() * 0.08) + ")";
+    else               cx.fillStyle = "rgba(242,220,203," + (0.03 + R() * 0.10) + ")";
+    var sides = 3 + Math.floor(R() * 3), rot = R() * 6.2832;
+    cx.beginPath();
+    for (var s = 0; s < sides; s++) {
+      var a = rot + (s / sides) * 6.2832, rr = r * (0.62 + R() * 0.7);
+      if (s === 0) cx.moveTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+      else cx.lineTo(px + Math.cos(a) * rr, py + Math.sin(a) * rr * 0.78);
+    }
+    cx.closePath(); cx.fill();
+  }
+
+  /* THE COURSE IS ONE COURSE IN A WALL, and that is what stops it being a bar.
+     Standing alone with granite on both sides of it, a segmented horizontal
+     strip with a dark notch at one end and a light cap at the other is a
+     PROGRESS BAR at 432px, which is the exact comparison the dossier chose
+     masonry to avoid. So a course runs above it and the base course runs below
+     it, both bleeding past both frame edges. The measured run itself still ends
+     where the two dates are, because that extent is the whole statement. */
+  (function () {
+    var y0 = 508, hh = 120, bw = 104;
+    cx.fillStyle = "#3A2522";
+    cx.fillRect(0, y0, W, hh);
+    for (var c = -1; -40 + c * bw < W + bw; c++) {
+      var xx = -40 + bw / 2 + c * bw;
+      cx.fillStyle = ["#4E322D", "#482D29", "#533630"][((c % 3) + 3) % 3];
+      cx.fillRect(xx, y0, bw - 3, hh - 3);
+      for (var q = 0; q < 46; q++) {
+        cx.fillStyle = R() < 0.5 ? "rgba(14,10,12,0.28)" : "rgba(242,220,203,0.11)";
+        cx.fillRect(xx + R() * (bw - 3), y0 + R() * (hh - 3), 1.5, 1.3);
+      }
+      cx.fillStyle = "rgba(242,220,203,0.16)";
+      cx.fillRect(xx, y0, bw - 3, 1.4);
+      cx.fillStyle = "rgba(12,8,10,0.55)";
+      cx.fillRect(xx + bw - 3, y0, 3, hh - 3);
+    }
+    cx.fillStyle = "rgba(12,8,10,0.50)";
+    cx.fillRect(0, y0 + hh - 4, W, 4);
+  })();
+
+  /* ------------------------------------------------------------- the course
+     One block per day at a constant rate. Every block between the two dates is
+     the SAME value, so the frame ranks nothing and no block is marked as today. */
+  /* CRYSTAL IN EVERY DRAWN FACE. The background granite carried fleck and the
+     course carried none, so the only part of the frame made of stone was the
+     part nobody drew, and the masonry read as moulded plastic. */
+  function fleck(x, y, w, h, k) {
+    for (var q = 0; q < k; q++) {
+      var qx = x + R() * w, qy = y + R() * h;
+      cx.fillStyle = R() < 0.5 ? "rgba(14,10,12,0.30)" : "rgba(242,220,203,0.15)";
+      cx.fillRect(qx, qy, 1.5, 1.3);
+    }
+  }
+
+  /* ONE FLAT VALUE FOR EVERY BLOCK FACE. The first build graded each face top to
+     bottom, and a value gradient laid over a sequence is read as accumulation.
+     The frame's own acceptance says every block between the two dates is the
+     same value so the frame ranks nothing, and a ramp is a ranking. All the
+     light is on the bed joint, which is where a grazing key at 118 puts it. */
+  function block(x, w, face, bedLit) {
+    cx.fillStyle = face;
+    cx.fillRect(x, COURSE_Y, w - 1.4, COURSE_H);
+    fleck(x, COURSE_Y, w - 1.4, COURSE_H, 30);
+    cx.fillStyle = bedLit;
+    cx.fillRect(x, COURSE_Y, w - 1.4, 1.8);
+    cx.fillStyle = "rgba(14,10,12,0.52)";
+    cx.fillRect(x + w - 1.4, COURSE_Y, 1.4, COURSE_H);
+  }
+
+  for (var d = 0; d < DAYS; d++) {
+    var x = MARGIN + d * blockW;
+    block(x, blockW, "#5A3A35", "rgba(242,220,203,0.26)");
+  }
+
+  /* THE SOCKET. The block at the canceled date was never laid.
+     It shows its own lit bed, its back wall and its shadowed head, because deck 7
+     recorded that a hole must show its far wall or it is a black rectangle. */
+  (function () {
+    var x = MARGIN, w = blockW * 1.0, inset = 16;
+    /* THE BACK WALL IS DARKER THAN THE FACE IT IS CUT INTO, everywhere except
+       its bed. The first build guarded only against a near black rectangle, so
+       it drove the interior ABOVE the surrounding block value, and at 432px the
+       socket and the dressed block at the far end read as a MATCHING PAIR of
+       bright vertical strips. That inverts the frame's whole argument at exactly
+       the size a reader receives it. An acceptance item that sets a floor and no
+       ceiling is what produced it. */
+    cx.fillStyle = "#2C1B19";
+    cx.fillRect(x, COURSE_Y, w - 1.4, COURSE_H);
+    var bw = cx.createLinearGradient(x + w, COURSE_Y, x, COURSE_Y + COURSE_H);
+    bw.addColorStop(0, "rgba(242,220,203,0.11)");
+    bw.addColorStop(1, "rgba(242,220,203,0.02)");
+    cx.fillStyle = bw;
+    cx.fillRect(x, COURSE_Y, w - 1.4, COURSE_H);
+    fleck(x, COURSE_Y, w - 1.4, COURSE_H, 22);
+    /* the shadowed head, at the top where the block above overhangs */
+    var hd = cx.createLinearGradient(0, COURSE_Y, 0, COURSE_Y + 46);
+    hd.addColorStop(0, "rgba(14,10,12,0.80)");
+    hd.addColorStop(1, "rgba(14,10,12,0.00)");
+    cx.fillStyle = hd;
+    cx.fillRect(x, COURSE_Y, w - 1.4, 46);
+    /* the lit bed the block would have sat on, the socket's brightest thing */
+    cx.fillStyle = "rgba(255,244,236,0.62)";
+    cx.fillRect(x, COURSE_Y + COURSE_H - inset, w - 1.4, 2.4);
+    /* ONE lit reveal, on the jamb the key reaches, and none on the other. Light
+       on both jambs is what makes a recess read as a raised block. */
+    cx.fillStyle = "rgba(255,244,236,0.22)";
+    cx.fillRect(x + w - 1.4 - 2, COURSE_Y + 10, 2, COURSE_H - 10 - inset);
+    cx.fillStyle = "rgba(14,10,12,0.55)";
+    cx.fillRect(x, COURSE_Y + 10, 6, COURSE_H - 10 - inset);
+  })();
+
+  /* THE DRESSED BLOCK at the rescheduled date, present and faced */
+  (function () {
+    var x = MARGIN + (DAYS - 1) * blockW, w = blockW;
+    /* THE FACE VALUE IS THE SAME AS EVERY OTHER BLOCK, and that is the deck's
+       one structural law rather than a preference here. Lit across its face this
+       block read brighter than anything else on the frame at 432px, which spends
+       frame 9's reserved light break five frames early and makes the presence
+       and the absence read as a pair. Dressed and present is carried entirely on
+       a lit top arris and a real seat. */
+    cx.fillStyle = "#5A3A35";
+    cx.fillRect(x, COURSE_Y, w - 1.4, COURSE_H);
+    fleck(x, COURSE_Y, w - 1.4, COURSE_H, 30);
+    cx.fillStyle = "rgba(242,220,203,0.62)";
+    cx.fillRect(x, COURSE_Y - 3.0, w - 1.4, 3.0);
+    cx.fillStyle = "rgba(14,10,12,0.50)";
+    cx.fillRect(x + w - 1.4, COURSE_Y, 1.4, COURSE_H);
+    TXCARVE.contactShadow(cx, {
+      x: x + w / 2, y: COURSE_Y + COURSE_H + 3, w: w, color: "#180F0F",
+      dirDeg: 118 - 180, tightAlpha: 0.62, wideAlpha: 0.0, tightBlur: 2, wideBlur: 2
+    });
+    TXCARVE.contactShadow(cx, {
+      x: x + w / 2, y: COURSE_Y + COURSE_H + 6, w: w * 2.4, color: "#201413",
+      dirDeg: 118 - 180, tightAlpha: 0.30, wideAlpha: 0.12, tightBlur: 4, wideBlur: 30
+    });
+  })();
+
+  /* THE BASE COURSE, and it is real masonry rather than a graded band.
+     The first build put a flat gradient here and qa called it: the bottom third
+     carried 14 percent of the frame's craft, which is the dead lower zone the
+     scorer named six times running in the sibling product. A course of laid
+     stone with its own joints, relit from the same key, is the answer. */
+  var baseY = COURSE_Y + COURSE_H;
+  cx.fillStyle = "#3A2523";
+  cx.fillRect(0, baseY, W, H - baseY);
+
+  var bh = 118;                                   // base block height
+  var bw2 = 104;                                  // base block width
+  /* THE NEAR FLOOR IS OUT OF THE LIGHT, so it is unarticulated stone rather than
+     laid blocks. With the day course shortened, the base course's bed joints
+     started landing in the type bands and qa read the lit joint at y1233 as a
+     rule through the counter and the site line. A course whose joints have to
+     dodge the copy is a course drawn in the wrong place. */
+  var FLOOR_TOP = 1100;
+  for (var row = 0; baseY + row * bh < FLOOR_TOP; row++) {
+    var yy = baseY + row * bh;
+    var offset = (row % 2) * (bw2 / 2);           // stretcher bond, courses break joint
+    for (var col = -1; MARGIN + col * bw2 < W + bw2; col++) {
+      var xx = -40 + offset + col * bw2;
+      /* each block relit: the face graded top to bottom, a lit bed on top and a
+         dark perpend on its right, from the one key at 118 degrees */
+      var t2 = ((row * 7 + col * 13) % 5 + 5) % 5;   // JS % is signed, col starts at -1
+      var hi = ["#5C3A36", "#553531", "#63403B", "#50322F", "#593833"][t2];
+      var lo = ["#3A2422", "#35211F", "#3E2725", "#321E1D", "#382320"][t2];
+      var gg = cx.createLinearGradient(0, yy, 0, yy + bh);
+      gg.addColorStop(0, hi);
+      gg.addColorStop(1, lo);
+      cx.fillStyle = gg;
+      cx.fillRect(xx, yy, bw2 - 3, bh - 3);
+      cx.fillStyle = "rgba(242,220,203,0.22)";
+      cx.fillRect(xx, yy, bw2 - 3, 1.5);           // lit bed joint
+      cx.fillStyle = "rgba(12,8,10,0.55)";
+      cx.fillRect(xx + bw2 - 3, yy, 3, bh - 3);    // dark perpend
+      cx.fillStyle = "rgba(12,8,10,0.42)";
+      cx.fillRect(xx, yy + bh - 3, bw2 - 3, 3);
+      /* crystal in every face, so the base is the same rock as the wall */
+      for (var q = 0; q < 84; q++) {
+        var qx = xx + R() * (bw2 - 3), qy = yy + R() * (bh - 3);
+        cx.fillStyle = R() < 0.5 ? "rgba(14,10,12,0.30)" : "rgba(242,220,203,0.13)";
+        cx.fillRect(qx, qy, 1.5, 1.3);
+      }
+    }
+  }
+  /* the foreground, in shade, where the reading type sits */
+  var fgg = cx.createLinearGradient(0, FLOOR_TOP - 30, 0, H);
+  fgg.addColorStop(0.00, "rgba(20,13,12,0.00)");
+  fgg.addColorStop(0.22, "rgba(20,13,12,0.52)");
+  fgg.addColorStop(1.00, "rgba(14,9,9,0.66)");
+  cx.fillStyle = fgg;
+  cx.fillRect(0, FLOOR_TOP - 30, W, H - FLOOR_TOP + 30);
+
+  /* the top arris of the base course, where the wall meets it */
+  cx.fillStyle = "rgba(255,246,238,0.42)";
+  cx.fillRect(0, baseY, W, 1.8);
+
+  /* the socket's cast falling across the base, from the one key */
+  TXCARVE.contactShadow(cx, {
+    x: MARGIN + blockW * 0.5, y: baseY + 14, w: blockW * 1.5,
+    color: "#201413", dirDeg: 118 - 180, tightAlpha: 0.44, wideAlpha: 0.14,
+    tightBlur: 5, wideBlur: 36
+  });
+
+  document.fonts.ready.then(function () {
+    TX.fitText(document.getElementById("hookbox"),
+               { min: 62, max: 92, maxLines: 2, respectHeight: true });
+    resolve();
+  });
+});
+</script>
+</body>
+</html>

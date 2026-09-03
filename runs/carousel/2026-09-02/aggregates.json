@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-02",
+  "aggregates": [
+    {
+      "phrase": "Three institutions",
+      "kind": "count",
+      "slide": 6,
+      "value": 3,
+      "from_claims": [
+        "c8",
+        "c12",
+        "c14"
+      ],
+      "note": "Northside ISD, Fort Worth ISD and Texas Tech. Three institutions and three distinct sources, one per plate."
+    },
+    {
+      "phrase": "Three different answers",
+      "kind": "count",
+      "slide": 6,
+      "value": 3,
+      "from_claims": [
+        "c8",
+        "c12",
+        "c14"
+      ],
+      "note": "A rollout in October, an evaluation, and a rule left to each instructor. The frame ranks none of them and the three plates are identical by construction."
+    },
+    {
+      "phrase": "Two figures",
+      "kind": "count",
+      "slide": 8,
+      "value": 2,
+      "from_claims": [
+        "c23",
+        "c24"
+      ],
+      "note": "One claim per figure the frame prints. Both come from the same exhibit and each is declared separately because they measure different things."
+    },
+    {
+      "phrase": "two books",
+      "kind": "count",
+      "slide": 8,
+      "value": 2,
+      "from_claims": [
+        "c23",
+        "c24"
+      ],
+      "note": "The kicker's second half. Two figures on two different bases, a segment's orders and the company's revenue."
+    },
+    {
+      "phrase": "three official records",
+      "kind": "count",
+      "slide": 0,
+      "value": 3,
+      "computed_by": "sources_block.py counts the DISTINCT source urls behind the claims the nine frames cite in copy.json, deduped by url because a document is a document, and split on whether the host is a government domain: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S; https://senate.texas.gov/cmte.php?c=525; https://www.depts.ttu.edu/tlpdc/AI-Syllabus-Statements.php",
+      "note": "The first comment's sources line. Counted from the claims file, never typed."
+    },
+    {
+      "phrase": "three news reports",
+      "kind": "count",
+      "slide": 0,
+      "value": 3,
+      "computed_by": "sources_block.py counts the DISTINCT source urls behind the claims the nine frames cite in copy.json, deduped by url, and split on host class: https://www.tpr.org/education/2026-08-26/northside-isd-joins-list-of-school-districts-partnering-with-openai; https://www.govtech.com/education/k-12/fort-worth-isd-to-launch-chatgpt-for-teachers-district-wide; https://www.kut.org/health/2026-08-27/atx-texas-austin-protesters-palantir-healthcare-nurses-protest",
+      "note": "The first comment's sources line. Counted from the claims file, never typed."
+    }
+  ],
+  "derived": [],
+  "refused": [
+    {
+      "pair": [
+        "$60.9 billion (c23)",
+        "$47.0 billion (c24)"
+      ],
+      "why": "a ratio, a difference or a share. 60.9 is a SEGMENT's orders and 47.0 is the WHOLE COMPANY's revenue for the quarter, so every arithmetic relation between them is meaningless. They are drawn in two separately bevelled fields with a deep uncut gutter between them, no shared baseline, no axis, no bracket and no tick, and the only sentence tying them says the larger figure is the smaller thing."
+    },
+    {
+      "pair": [
+        "$60.9 billion (c23)",
+        "$16.4 billion (c23)"
+      ],
+      "why": "an orders-to-revenue conversion rate. Both numerals sit in one quote and only 60.9 reaches a frame, because a segment's booked orders and its recognized revenue are different quantities in different periods."
+    },
+    {
+      "pair": [
+        "September 3rd (c1)",
+        "September 22nd (c3)"
+      ],
+      "why": "a day count. The interval is DRAWN as built extent on slide 4, one masonry block per day at a constant rate, and no numeral for it is printed anywhere in the deck. The drawing carries the quantity so nothing has to assert it in type."
+    },
+    {
+      "pair": [
+        "the canceled row (c1)",
+        "the rescheduled row (c3)"
+      ],
+      "why": "a cause. The listing gives no reason for the cancellation, slide 3 says so and names where it looked, and nothing in the deck asserts that one row explains the other."
+    }
+  ]
+}

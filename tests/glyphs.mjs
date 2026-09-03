@@ -31,27 +31,21 @@
  *
  * THE MEASUREMENT
  *
- * A character is drawn on a canvas three ways, and it is MISSING from the asked-for family if
- * either comparison says so.
+ * The browser supplies the REAL CHARACTER SET and REAL COMPUTED FAMILY from every page, including
+ * CSS-generated content. Coverage does not come from browser pixels. The font builder records the
+ * cmap ranges beside a SHA-256 of each exact committed WOFF2, and this test refuses a hash mismatch
+ * before asking that cmap whether the requested character exists.
  *
- *   Asked-for family versus a family that does not exist. Both fall back to the same system face
- *   when the asked-for family has no glyph, so identical pixels mean it supplied nothing.
- *
- *   Asked-for family versus a codepoint no font on earth carries, in that same family. A missing
- *   glyph can draw as the LAST RESORT BOX, and the box is drawn with the asked-for family's own
- *   metrics, so it does not match the plain fallback and the first comparison alone reads it as
- *   carried.
- *
- * The second half is here because the first half's control assertion failed on a CI runner and
- * passed on a developer machine. A container with no CJK font at all draws the box; a machine
- * with one draws the character. One measurement, two environments, opposite answers, and the
- * wrong one was the reassuring one. The instrument checks itself before every run for exactly
- * that reason, on a letter that must be carried and a character that must not be.
+ * Pixel comparison was tried twice and failed in opposite environments. A machine with a CJK
+ * fallback draws a real character; another draws the primary font's `.notdef`; Chromium may also
+ * print the codepoint inside a last-resort box. Those are different pixels for the same missing
+ * glyph. The font's cmap is the cross-platform source of truth.
  *
  *   SITE=docs node tests/glyphs.mjs
  */
 import { chromium } from 'playwright';
-import { readdirSync, statSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
@@ -78,13 +72,27 @@ const all = pages(SITE).sort();
 const browser = await chromium.launch();
 const page = await browser.newPage();
 
+async function openForScan(file) {
+  const href = pathToFileURL(join(process.cwd(), file)).href;
+  let firstError;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      await page.goto(href, { waitUntil: 'domcontentloaded', timeout: 15_000 });
+      await page.evaluate(() => document.fonts.ready);
+      return;
+    } catch (error) {
+      firstError ||= error;
+    }
+  }
+  throw new Error(`glyphs could not scan ${relative(SITE, file)} after two attempts: ${firstError}`);
+}
+
 // Every character the site draws, with the family it is drawn in. Collected from real computed
 // styles rather than from the source, so a character inserted by CSS is collected too.
 const wanted = new Map();       // family -> Set(char)
 const control = [];             // every control character that reached published copy
 for (const file of all) {
-  await page.goto(pathToFileURL(join(process.cwd(), file)).href);
-  await page.evaluate(() => document.fonts.ready);
+  await openForScan(file);
   const found = await page.evaluate(() => {
     const out = [];
     const push = (fam, text) => {
@@ -124,28 +132,30 @@ for (const file of all) {
   }
 }
 
-// The instrument, and its own proof. `drawn` reports whether the named family supplied the glyph.
-await page.goto(pathToFileURL(join(process.cwd(), all[0])).href);
-await page.evaluate(() => document.fonts.ready);
-// A codepoint in the last private use plane. Nothing carries it, so whatever a family draws for
-// it IS that family's last resort box.
-const NOTDEF = '\u{10FFFD}';
-const drawn = (family, ch) => page.evaluate(([family, ch, notdef]) => {
-  const shot = (fam, text) => {
-    const c = document.createElement('canvas');
-    c.width = 96; c.height = 96;
-    const x = c.getContext('2d');
-    x.font = `64px ${fam}`;
-    x.fillStyle = '#000';
-    x.fillText(text, 8, 72);
-    return c.toDataURL();
-  };
-  const asked = `"${family}", "__no_such_family__"`;
-  const mine = shot(asked, ch);
-  if (mine === shot('"__no_such_family__"', ch)) return false;   // the fallback drew it, not us
-  if (mine === shot(asked, notdef)) return false;                // our own last resort box
-  return true;
-}, [family, ch, NOTDEF]);
+// The instrument, and its own proof. Coverage comes from the cmap manifest, hash-bound to the
+// exact served bytes. The browser remains responsible for telling us what each page actually asks
+// a face to draw.
+await openForScan(all[0]);
+const fontDir = join(SITE, 'fonts');
+const manifest = JSON.parse(readFileSync(join('assets', 'fonts', 'web', 'manifest.json'), 'utf8'));
+const coverage = new Map();
+const hashes = [];
+for (const face of manifest.faces || []) {
+  const bytes = readFileSync(join(fontDir, face.file));
+  const actual = createHash('sha256').update(bytes).digest('hex');
+  if (actual !== face.sha256) hashes.push(`${face.family}: ${actual} != ${face.sha256 || 'missing'}`);
+  const ranges = (face.codepoint_ranges || []).map((entry) => {
+    const m = /^U\+([0-9A-F]+)(?:-([0-9A-F]+))?$/.exec(entry);
+    if (!m) throw new Error(`${face.family} has malformed cmap range ${entry}`);
+    return [parseInt(m[1], 16), parseInt(m[2] || m[1], 16)];
+  });
+  coverage.set(face.family, ranges);
+}
+const carries = (family, ch) => {
+  const cp = ch.codePointAt(0);
+  return (coverage.get(family) || []).some(([start, end]) => cp >= start && cp <= end);
+};
+const loaded = new Set(await page.evaluate(() => [...document.fonts].map((f) => f.family)));
 
 console.log('=== no control character reached the copy ===');
 ok('published copy carries no control character', control.length === 0,
@@ -154,15 +164,19 @@ ok('published copy carries no control character', control.length === 0,
 console.log('\n=== the instrument answers before it is trusted ===');
 const fams = [...wanted.keys()];
 ok('the site declares at least one family', fams.length > 0, JSON.stringify(fams));
+ok('the cmap manifest is bound to the exact served font bytes', hashes.length === 0, hashes.join('; '));
+ok('every shipped face is declared to the browser',
+   [...coverage.keys()].every((family) => loaded.has(family)),
+   [...coverage.keys()].filter((family) => !loaded.has(family)).join(', '));
 ok('a letter the mono face carries is seen as carried',
-   await drawn('JetBrains Mono', 'M'));
+   carries('JetBrains Mono', 'M'));
 // A character no text face on this site carries. If this ever reads as carried the measurement
 // has stopped measuring and every pass below is meaningless.
 ok('a character no text face carries is seen as missing',
-   !(await drawn('JetBrains Mono', '\u4e2d')));
+   !carries('JetBrains Mono', '\u4e2d'));
 // And one the mono face DOES carry, which the arrow turned out to be all along. An instrument
 // that called it missing would have sent the next session looking at the font subset again.
-ok('a symbol the mono face carries is seen as carried', await drawn('JetBrains Mono', '\u2192'));
+ok('a symbol the mono face carries is seen as carried', carries('JetBrains Mono', '\u2192'));
 
 // ONLY THE FACES THIS SITE SHIPS. A `<button>` on the videos page inherits the browser's own
 // control font, which computes to Arial, and Arial carries the two triangles it draws on every
@@ -173,17 +187,15 @@ ok('a symbol the mono face carries is seen as carried', await drawn('JetBrains M
 // The question this gate exists to answer is narrower and answerable: do the faces in
 // `assets/fonts/web/` carry the characters this site draws in them. A family the project does
 // not ship is not this gate's business.
-const loaded = new Set(await page.evaluate(() => [...document.fonts].map((f) => f.family)));
-
 console.log('\n=== every character the site draws, in the face it is drawn with ===');
 let checked = 0;
 let skipped = [];
 for (const family of fams.sort()) {
-  if (!loaded.has(family)) { skipped.push(family); continue; }
+  if (!coverage.has(family)) { skipped.push(family); continue; }
   const missing = [];
   for (const ch of [...wanted.get(family)].sort()) {
     checked++;
-    if (!(await drawn(family, ch))) missing.push(`U+${ch.codePointAt(0).toString(16).toUpperCase()} ${ch}`);
+    if (!carries(family, ch)) missing.push(`U+${ch.codePointAt(0).toString(16).toUpperCase()} ${ch}`);
   }
   ok(`${family} carries every character asked of it`, missing.length === 0, missing.join(', '));
 }

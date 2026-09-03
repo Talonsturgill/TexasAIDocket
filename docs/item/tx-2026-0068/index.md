@@ -11,7 +11,7 @@ A small emergency services district in Pecos noticed a public hearing to accept 
 - Public access: Public meeting
 - Take part: https://rcesd.org/app/uploads/2026/02/RCESD2_Notice-of-Public-Hearing-Energy-Forge-One-2026-03-25.pdf
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -27,6 +27,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-25 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-26 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-08-29 · Checked and unchanged. The district's notice to take up the abatement application still stands and no action on the application is recorded. The reinvestment zone the plant would sit in is unchanged.
+- 2026-09-01 · The Reeves County emergency-services district still has the data-center power-plant abatement before it.
+- 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

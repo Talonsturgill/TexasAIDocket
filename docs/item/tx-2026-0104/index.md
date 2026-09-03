@@ -11,7 +11,7 @@ The National Science Foundation made award 2535195 to the University of Texas at
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/show-award?AWD_ID=2535195
 
-- Last checked: 2026-08-30
+- Last checked: 2026-09-02
 
 ## Dates
 
@@ -27,6 +27,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The award to the University of Texas at Austin still funds a center on how robots and the people beside them adapt to each other. The director named on the award record has not changed.
 - 2026-08-29 · The university published its own account of the award and it names the places the research runs in. The agency's award record does not name them. They are ordinary rooms rather than laboratories, among them houses and dorms and cafes and a rehabilitation hospital and assisted living residences. The same account says an internal ethics board will develop the consent and opt out procedures.
 - 2026-08-30 · The five year award still stands. The consent and opt out procedures its own abstract leaves to be developed are still not published.
+- 2026-09-01 · The federal award for UT Austin's human-and-robot co-adaptation center remains active.
+- 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

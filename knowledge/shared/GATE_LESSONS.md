@@ -1745,16 +1745,25 @@ project actually ships. Judging a system family would have failed the videos pag
 triangle in Arial, which every reader has and a headless container does not.
 
 **And its self check went red on CI while passing locally, which is the whole reason it has one.**
-The measurement compared a character drawn in the asked-for family against the same character
-drawn in a family that does not exist, on the theory that both fall back to the same face. They do
-not always. A missing glyph can draw as the LAST RESORT BOX, and the box carries the asked-for
-family's own metrics, so it does not match the plain fallback and the comparison reads a missing
-glyph as CARRIED. Locally the runner had a CJK font and drew the control character properly, so
-the flaw was invisible; the container had none and drew the box. One measurement, two
-environments, opposite answers, and the reassuring one was the wrong one.
+The first measurement compared a character drawn in the asked-for family against the same
+character drawn in a family that does not exist, on the theory that both fall back to the same
+face. They do not always. A missing glyph can draw as the LAST RESORT BOX, and the box carries the
+asked-for family's own metrics, so it does not match the plain fallback and the comparison reads a
+missing glyph as CARRIED. Locally the runner had a CJK font and drew the character properly, so the
+flaw was invisible. The container had none and drew the box. One measurement, two environments,
+opposite answers, and the reassuring one was the wrong one.
 
-The fix is a second comparison against a codepoint no font carries, drawn in the same family, so
-the family's own box is recognised as a box. **A gate whose instrument is only checked on the
+The first repair compared that box against the box for a private-use codepoint in the same family.
+That too was machine dependent. Chromium can print the codepoint inside its last-resort box, so two
+missing characters produce different pixels even though neither glyph exists. It failed on macOS
+with every real site character covered. The next repair named explicit generic fallbacks and still
+failed on Linux, where Chromium drew the primary face's `.notdef` instead of falling through. Three
+pixel heuristics, three font environments, and no stable definition of a missing glyph.
+
+The durable instrument does not infer a font table from pixels. The font builder records each
+committed WOFF2's cmap ranges beside its SHA-256. The browser still supplies the characters and
+computed faces the real pages draw, including generated content; the gate binds the manifest to
+the exact bytes and asks the cmap directly. **A gate whose instrument is only checked on the
 machine that wrote it has been checked in the easy case.**
 
 ---
@@ -2214,3 +2223,26 @@ The general form, worth more than the file. **When a check's result is read by a
 result belongs in an artifact that does not exist until it is true, not in the output stream the
 check happens to produce for a person.** A log is advice. A verdict is an answer. Give a reader
 the log and every partial state is indistinguishable from success.
+
+## 70. The release was green for the commit that asked, and red for the commit that answered
+
+September 2nd. A complete guard run dispatched Pages with permission to publish `main`. Between
+those two events another pull request moved `main`. Pages correctly checked out the newer head,
+found no completed aggregate guard for it yet, and failed. Nothing unsafe deployed. The red run
+was still a machine defect: normal concurrency had been encoded as an error, so every busy release
+could leave a failed workflow that required a person to decide whether it mattered.
+
+The dispatch carried a branch name when the fact it had earned was about a commit. Those are not
+the same capability. A branch is a moving pointer, and a green result for its old value does not
+become evidence for its new one merely because the name stayed put.
+
+The release now carries the exact guarded SHA. Pages compares it with current `main`; if main has
+moved, the stale request exits green without deploying because the newer head's own guards own the
+next release. If it still matches, verification records that SHA and the deploy job checks out that
+recorded value rather than reading `main` a second time. Scheduled recovery may select current main,
+but it must prove the aggregate guard attached to that exact commit before publishing.
+
+**Generalises to.** Any handoff from validation to mutation. Pass the immutable object that was
+validated, not the mutable label used to find it. A stale request is often neither success nor
+failure of the product; when a newer request supersedes it, encode that as a clean no-op. Red should
+mean broken, not merely overtaken.
