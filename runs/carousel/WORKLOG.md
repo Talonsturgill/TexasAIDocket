@@ -105,10 +105,19 @@ Art, from deck no. 13's own `avoid_next`:
 
 ## Phase 8 selection, written down
 
-**The story is the Texas A&M University System's VISION supercomputer.** A large shared AI
-machine at Texas A&M in Brazos County, ranked the fastest university supercomputer in the United
-States on the June 2026 TOP500, whose access runs system-wide to twelve universities and eight
-state agencies, and whose own site still lists it as in beta ahead of wider release.
+**The story is the Texas A&M University System's VISION supercomputer.** A shared AI machine that
+entered the June 2026 TOP500 at number 66, credited by the list to the System rather than to one
+campus, whose chancellor describes its reach as twelve universities and eight state agencies, and
+whose own documentation says access is invitation-only under a controlled beta.
+
+**CORRECTED AFTER THE FACT CHECK, and the correction is the deck.** This paragraph first read
+"ranked the fastest university supercomputer in the United States" and "in Brazos County". Both
+were rejected today. **TOP500 publishes no university category**, neither its list page nor its
+system detail page carries that claim, and VISION's own site says only "one of the
+highest-performing AI supercomputers at any North American university". **And no page fetched
+names a county or a city** for the West Campus Data Center. A caption director reading this file
+caught the stale line still sitting here after the claims file had already rejected it, which is
+exactly how a rejected framing gets inherited by a later phase.
 
 **Why this and not the others.** Five of the last thirteen decks came off `power-and-compute` and
 every one of them was about compute somebody fenced off. This is the same subject from the other
