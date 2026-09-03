@@ -11598,6 +11598,168 @@
      "note": "Admitted. The provost's office requires a course artificial intelligence policy in every syllabus every semester. The policy has to name AI permitted or prohibited or partially permitted. The university names it one of two new required statements for Fall 2026. That term's classes began August 24th, 2026."
     }
    ]
+  },
+  {
+   "title": "The Texas A&M System's shared AI supercomputer enters the world list at number 66 while its own documentation still says access is invitation-only",
+   "summary": "VISION is the Texas A&M University System's shared AI computing platform. The June 2026 TOP500 list credits it to the System rather than to one campus and records a measured Linpack result of 34.82 petaflops against a theoretical peak of 51.16. The System says the machine entered the list at number 66 in the world. It is 95 nodes carrying 760 graphics processors over 110,960 cores, housed at the West Campus Data Center at Texas A&M University. The System attributes 45 million dollars for advanced computing infrastructure to its Board of Regents and names no meeting date for that approval. The chancellor says the machine gives the System's 12 universities and eight state agencies computing power most institutions could never build alone. The machine's own documentation says something narrower. It gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected to begin in the coming weeks and starts with institutions that have finished technical integration.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "The Texas A&M University System",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2025-01-01",
+     "kind": "effective",
+     "note": "Installation year recorded on the TOP500 entry"
+    },
+    {
+     "date": "2026-06-01",
+     "kind": "ordered",
+     "note": "June 2026 TOP500 list the machine entered"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The project publishes its own documentation and its own beta status. A researcher at a System institution can read the access rule rather than infer it. The project invites anyone following it to register interest for notification when general availability opens, and its support address is published on the documentation site.",
+    "url": "https://vision.tamus.edu/testing/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The TOP500 list credits the machine to the System rather than to one campus.",
+     "verbatim_quote": "Site: Texas A&M University System URL: https://vision.tamus.edu",
+     "source_url": "https://top500.org/system/180452/",
+     "source_title": "VISION, TOP500 system detail",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c1",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The list records the measured result and the theoretical peak side by side.",
+     "verbatim_quote": "Linpack Performance (Rmax) 34.82 PFlop/s Theoretical Peak (Rpeak) 51.16 PFlop/s",
+     "source_url": "https://top500.org/system/180452/",
+     "source_title": "VISION, TOP500 system detail",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c2",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The list records the core count and the processor those cores sit in.",
+     "verbatim_quote": "Cores: 110,960 Processor: Xeon Platinum 8480C 56C 3.8GHz",
+     "source_url": "https://top500.org/system/180452/",
+     "source_title": "VISION, TOP500 system detail",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c3",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The System states where the machine placed on that list.",
+     "verbatim_quote": "Ranked No. 66 in the world, VISION now stands in elite company among national laboratories, major research institutions and global technology leaders.",
+     "source_url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+     "source_title": "Texas A&M System Home to Nation's Fastest University Supercomputer",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c4",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The System names the building the machine sits in and says who it is meant to serve.",
+     "verbatim_quote": "The system is housed at the West Campus Data Center at Texas A&M University and will support researchers across the A&M System.",
+     "source_url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+     "source_title": "Texas A&M System Home to Nation's Fastest University Supercomputer",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c5",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The System attributes the money to its governing board and gives no date for the approval.",
+     "verbatim_quote": "The ranking validates the A&M System's $45 million investment in advanced computing infrastructure, approved by the Board of Regents.",
+     "source_url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+     "source_title": "Texas A&M System Home to Nation's Fastest University Supercomputer",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c6",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The chancellor names who the machine is for.",
+     "verbatim_quote": "VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone.",
+     "source_url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+     "source_title": "Texas A&M System Home to Nation's Fastest University Supercomputer",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c7",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The machine is 95 nodes carrying 760 graphics processors.",
+     "verbatim_quote": "The supercomputer features 95 NVIDIA DGX nodes, 760 NVIDIA H200 graphics processing units and high-speed storage designed for data-intensive work.",
+     "source_url": "https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/",
+     "source_title": "Nation's Fastest University Supercomputer Opens New Doors for Tarleton State Research",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c8",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The machine's own documentation names the phase it is in.",
+     "verbatim_quote": "Current Status: Controlled Beta",
+     "source_url": "https://docs.vision.tamus.edu/",
+     "source_title": "VISION Documentation",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c9",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The same documentation states the present access rule.",
+     "verbatim_quote": "Access is invitation-only and approved via TAMUS governance",
+     "source_url": "https://docs.vision.tamus.edu/",
+     "source_title": "VISION Documentation",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c10",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The project's own site states who it will eventually be open to.",
+     "verbatim_quote": "VISION will be available to researchers of all disciplines across the entire Texas A&M System.",
+     "source_url": "https://vision.tamus.edu/",
+     "source_title": "VISION Supercomputer",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c11",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The testing page states when wider access starts and which institutions go first.",
+     "verbatim_quote": "General Availability onboarding is expected to begin in the coming weeks, beginning with institutions that have completed the technical integration requirements necessary to access VISION services.",
+     "source_url": "https://vision.tamus.edu/testing/",
+     "source_title": "VISION Beta Test Phase",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c12",
+     "fetched": "2026-09-03"
+    },
+    {
+     "text": "The project's own use cases page gives the size of one screening run on the machine.",
+     "verbatim_quote": "large-scale virtual screening of approximately 10.4 million compounds",
+     "source_url": "https://vision.tamus.edu/usecases/",
+     "source_title": "VISION Use Cases",
+     "source_type": "primary_official",
+     "id": "tx-2026-0119-c13",
+     "fetched": "2026-09-03"
+    }
+   ],
+   "confidence": "high",
+   "history": [
+    {
+     "date": "2026-09-03",
+     "note": "Admitted. The System's shared AI machine is on the June 2026 TOP500 at number 66 with a measured 34.82 petaflops against a 51.16 peak. Its own documentation gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected in the coming weeks and starts with institutions that have finished technical integration."
+    }
+   ],
+   "notes_for_editor": "Published statewide rather than by county, and the reason is on the page rather than in an inference. No source fetched names a county or a city for the West Campus Data Center. The TOP500 site field credits the Texas A&M University System, the chancellor describes the reach as 12 universities and eight state agencies, and that System spans the state, so statewide is what the sources support. A county would be a guess from a headquarters address. Two things this item deliberately does not say. It does not call VISION the fastest university supercomputer in the United States, because TOP500 publishes no university category and that framing belongs to the System rather than to the list. It does not report a dated Board of Regents vote, because none was found and the newsroom's assertion carries no meeting date or agenda item. The regents minutes are published only as PDFs and could not be text extracted this run, so a later run with a PDF extractor should go and get the item number. A vocabulary note for the next run. The three TOP500 claims are stored as primary_official because the docket's vocabulary has no slot for an authoritative third party dataset. claims_check.py carries a 'data' source type and docket_build.py does not, so the same claim needs two different words depending on which gate reads it. TOP500 is the primary publication of the benchmark result rather than a report about one, so primary_official is the honest fit among the three available.",
+   "id": "tx-2026-0119",
+   "last_verified": "2026-09-03"
   }
  ]
 }
