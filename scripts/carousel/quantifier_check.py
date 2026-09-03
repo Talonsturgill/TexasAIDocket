@@ -35,6 +35,20 @@ from __future__ import annotations
 import json, re, sys
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+# THE CAPTION LEDGER IS A DEFAULT RATHER THAN A CALLER'S RESPONSIBILITY, and it was the second
+# on 2026-09-03. `check(run, ledger=None)` meant a caller that forgot the second argument got a
+# gate with its first-line test silently switched off, and `shipped_check` forgot it, so the
+# sweep across every published deck ran two thirds of this gate and reported the whole of it
+# clean. The CLI passed `Path("ledger/carousel/captions.json")`, relative to the working
+# directory, which is its own way to reach the same wrong answer from a different directory.
+#
+# So the path is anchored to the repo and it is the default. A caller that wants the ledger out
+# of the picture, which is the self-test and nothing else, passes `ledger=None` and says so.
+CAPTIONS_LEDGER = REPO_ROOT / "ledger" / "carousel" / "captions.json"
+_UNSET = object()
+
 # Sentences asserting what sources do or do not say about a set. Each of these shipped.
 SOURCE_SILENCE = [
     (re.compile(r"\bno sources?\b", re.I), "no source"),
@@ -55,7 +69,16 @@ UNIVERSAL = re.compile(
 def surfaces(run: Path) -> list:
     """EVERY published surface, from ONE list. Three callers have kept their own before."""
     out = []
+    # BOTH LAYOUTS. A live run writes `render/render_report.json` under its scratch directory and
+    # `ship_images` archives the same file at the RUN ROOT. This looked only under `render/`, so
+    # against every shipped deck it read `caption.txt` and `first_comment.txt` and NO SLIDE TEXT
+    # AT ALL. Measured on 2026-09-03: two published frames carried findings this gate exists to
+    # catch, a banned source silence claim and an undeclared universal, and its receipt said two
+    # surfaces checked and clean. A gate reading two files out of eleven is the "wired to nothing"
+    # shape this project keeps finding, and this one was reporting a pass while doing it.
     rep = run / "render/render_report.json"
+    if not rep.exists():
+        rep = run / "render_report.json"
     if rep.exists():
         for sl in (json.loads(rep.read_text()).get("slides") or []):
             for n in (sl.get("text_nodes") or []):
@@ -67,7 +90,9 @@ def surfaces(run: Path) -> list:
     return out
 
 
-def check(run: Path, ledger: Path | None = None) -> list:
+def check(run: Path, ledger=_UNSET) -> list:
+    if ledger is _UNSET:
+        ledger = CAPTIONS_LEDGER
     problems = []
     figs = {}
     fp = run / "figures.json"
@@ -153,13 +178,13 @@ def self_test() -> int:
         (d / "render/render_report.json").write_text(json.dumps({"slides": [
             {"file": "slide-06.html", "text_nodes": [{"text":
              "San Angelo wrote three of the five. On five of the fifteen no source says either way."}]}]}))
-        bad = check(d)
+        bad = check(d, ledger=None)
         if not any("SOURCE SILENCE" in p for p in bad):
             print("SELF-TEST FAILED: the gate passed 'no source says either way', which hard "
                   "failed this deck twice"); return 1
         (d / "caption.txt").write_text("Four abatements never got a vote. On five no source says "
                                        "either way.\n")
-        if len([p for p in check(d) if "SOURCE SILENCE" in p]) < 2:
+        if len([p for p in check(d, ledger=None) if "SOURCE SILENCE" in p]) < 2:
             print("SELF-TEST FAILED: the gate found the frame and not the caption, which is the "
                   "whole defect: a repair that lands on the surface that was named and no other")
             return 1
@@ -168,18 +193,18 @@ def self_test() -> int:
              "San Angelo wrote three of the five. On five more the record carries no date the "
              "action takes effect."}]}]}))
         (d / "caption.txt").write_text("Four abatements never got a vote.\n")
-        left = [p for p in check(d) if "SOURCE SILENCE" in p]
+        left = [p for p in check(d, ledger=None) if "SOURCE SILENCE" in p]
         if left:
             print("SELF-TEST FAILED: the gate refused the repaired measurement wording, which "
                   "would teach a run to ignore it. " + "; ".join(left)); return 1
         # the universal rule, and the claim that refutes it
         (d / "render/render_report.json").write_text(json.dumps({"slides": [
             {"file": "slide-03.html", "text_nodes": [{"text": "Nothing speaks to all five items."}]}]}))
-        if not any("declares no set" in p for p in check(d)):
+        if not any("declares no set" in p for p in check(d, ledger=None)):
             print("SELF-TEST FAILED: an undeclared universal passed"); return 1
         (d / "quantifiers.json").write_text(json.dumps({"quantifiers": [
             {"phrase": "all five items", "figures_key": "force_unstated", "about": "sources"}]}))
-        if not any("claims.json speaks to" in p for p in check(d)):
+        if not any("claims.json speaks to" in p for p in check(d, ledger=None)):
             print("SELF-TEST FAILED: a declared universal about sources passed while a claim "
                   "spoke to one of its members"); return 1
     print("quantifier_check self-test: refuses source silence on every surface at once, passes "
@@ -196,7 +221,7 @@ def main(argv):
     d = Path(args[0])
     if not d.is_dir():
         print(f"not a directory: {d}", file=sys.stderr); return 2
-    probs = check(d, Path("ledger/carousel/captions.json"))
+    probs = check(d)
     (d / "quantifier_report.json").write_text(
         json.dumps({"surfaces": len(surfaces(d)), "problems": probs}, indent=1) + "\n")
     if probs:
