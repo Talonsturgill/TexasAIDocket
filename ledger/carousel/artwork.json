@@ -798,19 +798,19 @@
     "twenty identical sheets, not one of them punched, each carrying drawn fibre and a raked edge"
    ],
    "value": {
-    "deck_median_L": 72.0,
+    "deck_median_L": 73.1,
     "per_frame_L": [
-     72.0,
+     73.1,
      94.0,
      17.8,
-     76.5,
+     76.9,
      16.5,
-     29.9,
-     16.8,
-     92.6,
-     92.4
+     26.9,
+     16.6,
+     92.3,
+     92.3
     ],
-    "how": "median L* of each render resampled to 216 by 270, then the median of the nine. Written by out/2026-09-03/value_arc.txt and never typed."
+    "how": "measure.py writes measurements.json off the rendered PNGs on the same fixed 270 by 338 grid every prior run used, and this block and value_arc.txt both derive from that file. An earlier figure of 72.0 came from a second script resampling to 216 by 270, which is two homes for one number and is the defect shipped_check's measured-figures gate exists for."
    },
    "bespoke": 0.5486,
    "bespoke_note": "THE WORST OF THE FOURTEEN, against a prior high of 0.52, and it FAILED at 0.5515 before slide 6's four wall rects were redrawn as two bevels. Nothing made this deck a template on purpose. Four repair rounds put one rect-loop idiom into several frames one frame at a time, which is deck 9's recorded mechanism exactly. The craft judge's advice is to read the number as a RANK and not as a gate, since its 0.55 line is fitted from a corpus of two.",
@@ -821,7 +821,7 @@
     "raw #F2EFD6 is within a few dE of deck 13's bond, which shipped the day before, and near deck 12's lint. Three consecutive decks on effectively one cream, and deck 10 asked for a perceptual distance check as Proposal 9 which still does not exist.",
     "Seven of nine frames run one type skeleton, so the drawings rotate and the layout does not."
    ],
-   "light_deck_note": "THE CAP BINDS AND THIS DECK BREACHES IT, measured rather than asserted. ledger_check sets LIGHT_L at 60.0 and LIGHT_CAP at 1 per eight runs, this deck measures 72.0, and the window decks 7 to 14 already holds deck 8 at 86.7. check_register will report two light decks against a cap of one and it is right to. The run did not CHOOSE a light deck: the storyboard planned a median near 43 and nobody measured until round 3, so a brand rule was broken by a plan that was never checked against its own render. Deck 8's waiver was for deck 8 and does not travel. Filing 72.0 anywhere but value.deck_median_L would clear the gate without clearing the rule, which decks 10 and 11 do by accident, and that evasion is named here so nobody takes it later."
+   "light_deck_note": "THE CAP BINDS AND THIS DECK BREACHES IT, measured rather than asserted. ledger_check sets LIGHT_L at 60.0 and LIGHT_CAP at 1 per eight runs, this deck measures 73.1, and the window decks 7 to 14 already holds deck 8 at 86.7. check_register will report two light decks against a cap of one and it is right to. The run did not CHOOSE a light deck: the storyboard planned a median near 43 and nobody measured until round 3, so a brand rule was broken by a plan that was never checked against its own render. Deck 8's waiver was for deck 8 and does not travel. Filing 73.1 anywhere but value.deck_median_L would clear the gate without clearing the rule, which decks 10 and 11 do by accident, and that evasion is named here so nobody takes it later."
   }
  ]
 }

@@ -446,8 +446,13 @@ the words "measured off the rendered PNGs and never asserted from this line". Ro
 judge said it smelled wrong, named slides 3 and 5, and declined to call it a finding without
 computing it.
 
-Nine lines of PIL settled it. **Measured: `72.0 · 94.0 · 17.8 · 76.5 · 16.5 · 29.9 · 16.8 · 92.6 ·
-92.4`, deck median 72.0.** The judge was right about slide 5 by a factor of four. This is a LIGHT
+Nine lines of PIL settled it at the time: `72.0 · 94.0 · 17.8 · 76.5 · 16.5 · 29.9 · 16.8 ·
+92.6 · 92.4`, deck median 72.0. **THAT WAS ALSO MEASURED ON THE WRONG GRID and Phase 16
+found it.** Every prior run samples 270 by 338 and this resampled to 216 by 270, so the run
+corrected one unmeasured figure with a differently measured one and carried the difference
+for two rounds. The shipped figure is `73.1 · 94.0 · 17.8 · 76.9 · 16.5 · 26.9 · 16.6 · 92.3
+· 92.3`, deck median 73.1, and `value_arc.txt` and the artwork ledger now both DERIVE from
+`measurements.json` rather than each holding a copy.** The judge was right about slide 5 by a factor of four. This is a LIGHT
 deck and the plan had it as a dark one, and the claim that the once per eight light cap was
 untouched does not survive its own measurement. Decks 8, 9, 12 and 13 each carry a ledger entry
 recording this exact fault.

@@ -110,7 +110,9 @@ which is written by resampling each render to 216 by 270 and taking the median L
 
 Per frame median L*, computed:
 
-`72.0 · 94.0 · 17.8 · 76.5 · 16.5 · 29.9 · 16.8 · 92.6 · 92.4`, **deck median 72.0**.
+`73.1 · 94.0 · 17.8 · 76.9 · 16.5 · 26.9 · 16.6 · 92.3 · 92.3`, **deck median 73.1**.
+
+**THE FIRST VERSION OF THIS LINE WAS MEASURED ON THE WRONG GRID AND DISAGREED BY 1.1.** It read a deck median of 72.0, resampled to 216 by 270 by a script written for this run. Every prior run measured on 270 by 338, and `shipped_check`'s measured-figures gate reads `measurements.json`, which is written by `measure.py` on that grid. Two grids is two homes for one figure, which is the defect that gate exists for, so this line and the artwork ledger now both derive from that file and nothing here is resampled twice.
 
 So this is a LIGHT deck and the guess had it as a dark one. The thirteen priors run 15.6 to 27.7
 with three light decks at 82 to 87, and 72.0 sits between those two groups rather than in either,
