@@ -549,8 +549,8 @@ ok("a county's construction cites the register it came from",
   JSON.stringify(hrefs));
 ok("a data center cites its own name, which is what the register calls it",
   byHref["facility/bexar-1/"] === "Bexar 1", JSON.stringify(hrefs));
-ok("a reservoir cites the water record rather than repeating the lake",
-  byHref["water/"] === "the water record", JSON.stringify(hrefs));
+ok("a reservoir cites its own daily record rather than repeating the lake",
+  byHref["water/reservoir/travis/"] === "the water record", JSON.stringify(hrefs));
 ok("and no citation is long enough to be mistaken for a sentence",
   hrefs.every(([, t]) => (t || "").length <= 40), JSON.stringify(hrefs));
 ok("and no citation was left rendering as its raw id",

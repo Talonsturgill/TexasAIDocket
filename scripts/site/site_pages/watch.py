@@ -181,6 +181,41 @@ def water_page(today: str) -> str:
                 }])
 
 
+def reservoir_page(detail: dict, today: str) -> str:
+    """One reservoir's own measured history, linked directly from the statewide map."""
+    body = waterwatch_page.reservoir_detail_body(detail)
+    stray = waterwatch_page.reservoir_lint(body, detail)
+    if stray:
+        raise SystemExit(
+            "site_build: a reservoir page carries numerals that trace to no computation: "
+            + ", ".join(stray[:12]))
+    name = detail["name"]
+    slug = detail["slug"]
+    place = ({"@type": "Place", "name": name,
+              "geo": {"@type": "GeoCoordinates", "latitude": detail.get("lat"),
+                      "longitude": detail.get("lon")}}
+             if detail.get("lat") is not None and detail.get("lon") is not None else None)
+    dataset = {
+        "@context": "https://schema.org", "@type": "Dataset",
+        "name": f"{name} daily storage",
+        "description": f"Daily conservation storage, capacity and percent full for {name}.",
+        "url": f"{SITE_URL}/water/reservoir/{slug}/",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": {"@type": "Organization", "name": SITE_NAME},
+        "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json",
+                          "contentUrl": f"{SITE_URL}/waterwatch.json"}],
+        "isAccessibleForFree": True,
+        "temporalCoverage": f'{detail["from_date"]}/{detail["to_date"]}',
+    }
+    if place:
+        dataset["spatialCoverage"] = place
+    return page(
+        title=f"{name} storage · {SITE_NAME}", depth=3, active="water/",
+        desc=f"Daily conservation storage and percent full history for {name}, from Texas "
+             "Water Watch.", body=body, today=today,
+        canonical=f"water/reservoir/{slug}/", extra_ld=[dataset])
+
+
 # The contact form posts to FormSubmit, because a Pages site has no backend. The action is
 # FormSubmit's opaque alias for the docket mailbox named in CLAUDE.md, which keeps the raw
 # address out of the page source. It is the SAME alias the sibling product uses, because it
@@ -704,4 +739,4 @@ def about_page(today: str) -> str:
 
 
 
-__all__ = ['county_links', 'grid_page', 'ask_box', 'water_page', 'BOOKING_URL', 'SCAN_WORKER', 'SCAN_ENDPOINT', 'TURNSTILE_SITE_KEY', '_SCAN_JS', 'field', 'scan_page', 'SCAN_RESULT_URL', 'watch_page', 'services_page', 'about_page']
+__all__ = ['county_links', 'grid_page', 'ask_box', 'water_page', 'reservoir_page', 'BOOKING_URL', 'SCAN_WORKER', 'SCAN_ENDPOINT', 'TURNSTILE_SITE_KEY', '_SCAN_JS', 'field', 'scan_page', 'SCAN_RESULT_URL', 'watch_page', 'services_page', 'about_page']
