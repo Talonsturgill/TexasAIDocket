@@ -330,3 +330,69 @@ pixels rather than resolved, because the judges read the pixels.
 
 Then `caption_check` failed the caption at 943 characters against brand.yaml's 900 ceiling,
 caused by the two additions above. Trimmed to 866 with both of the panel's asks intact.
+
+## Phase 15, panel round 2, and a defect older than round 1
+
+**6.296, 6.17, 5.81. Per-criterion median 5.896, spread 0.486, two hard fails, HOLD.** The number
+went DOWN from round 1's 6.526 and it is worth being exact about why: `claim_integrity` collapsed
+from a 6.5 median to 4.5 on ONE finding, and it was not a defect the repair round introduced.
+
+**All nine repairs were verified as landed by all three judges.** The reader judge said so in as
+many words. This is not a round that claimed fixes it did not make.
+
+**Slide 4 credited the wrong publisher, and it had done so through two rounds.** The frame's only
+attribution read `BOARD CHAIRMAN / QUOTED IN THE SYSTEM'S NEWSROOM`. The quotation is c10, whose
+fetched url is `tarleton.edu`. The deck's own first comment, published under the same post, says
+"c10. The board chairman, quoted by Tarleton State University". So the deck contradicted itself
+inside one post, on the one frame where a human speaks, in a deck whose entire argument is which
+document said what.
+
+**The label was not invented. It was taken from the wrong one of the two claims on that frame.**
+Slide 4 declares c8 and c10. c8 IS the System's newsroom. Nothing compared the attribution's
+publisher against the claims the frame declares, and both the craft judge and the integrity judge
+called that a gate-shaped hole rather than a writing slip. It was in the dossier before it was in
+the render.
+
+**The repair round is what made it visible.** Round 1's fix extended and darkened the plate, and
+nobody re-read the line above it. That is GATE_LESSONS' own shape: a repair verified against the
+defect it was written for, on a frame carrying a different defect the whole time.
+
+**The integrity judge found no hard fail and refused on the number**, 6.296 against a 6.8 bar,
+and said out loud it would not manufacture one. `panel.py` derives that as a threshold dissent
+from the judge's own score rather than reading a field, so it counts in the median and is not a
+veto.
+
+## The second repair round, on twelve findings
+
+| # | what | what was done |
+|---|---|---|
+| 1 | slide 4 credited c10's quotation to the publisher of the OTHER claim on the frame | reads QUOTED BY TARLETON.EDU, and the frame throws unless it names c10's publisher AND does not name c8's |
+| 2 | the first comment published "TOP500, the June 2026 list" and no quote names an edition | the edition label is gone |
+| 3 | the cover printed "Number 66." over a rule naming TOP500, and no TOP500 quote carries a rank | the rule names the two documents the cover is actually about |
+| 4 | the cover's thesis rested on c7 and the frame did not declare it | copy.json and the dossier declare c2, c7, c13 |
+| 5 | slide 5's refusal sat in Tarleton's column, so the deck's own disclaimer read as Tarleton's sentence | its own element spanning both columns, and the frame throws if it sits inside either |
+| 6 | the caption narrowed c16's "institutions" to the twelve universities, dropping the eight agencies | closes on c16's own word |
+| 7 | the storyboard was not reconciled to round 1's repairs | reconciled, and one dek converted to a folded block because straight quotes inside a double quoted scalar is not YAML |
+| 8 | the cover named neither its institution nor its machine, which both reader judges put first | "Texas A&M is No. 66. Both documents say will.", and the frame throws unless it names both |
+| 9 | slides 8 and 9 were the two least made frames and they are the two the argument ends on | every sheet carries drawn fibre and a raked edge where its thickness catches the light |
+| 10 | slide 8's 290px dead band | the travel lane down to the two pin stations, with registration marks at one computed pitch and an EMPTY dashed landing, because none of them has been punched |
+| 11 | slide 9's brightest region carried no label, so the focal was luminance without meaning | labelled OPEN, between the two labelled sheets |
+| 12 | slide 3's "There are 95" was questioned by eye | NOT a defect. The frame draws 12 by 7 plus a short row of 11 and throws unless exactly 95 apertures exist. Verified in the code rather than argued about |
+
+**A full field hatch was deliberately not used on slide 8**, and the craft judge is why. That
+frame already scores 0.75 / 0.87 / 0.66 on the band metric WHILE carrying the empty band, so the
+metric rewards a hatch and a reader does not. What went in the gap is the thing the gap is for.
+
+**Three of my own repairs broke something, and every one was caught by a gate or an assertion:**
+
+- The cover's new source rule wrapped to two lines inside its 460px column and printed straight
+  on top of the site line and the star. Every gate passed it. The strings were right, the nodes
+  were there, the contrast was fine, and two of them were simply in the same place. The frame now
+  asserts that no two elements in its lower stack occupy the same box.
+- The building was added to slide 3's dek and `qa.py` failed it for a STRIKETHROUGH: the fourth
+  line ran through a drawn rule at 12.1 to 1. The frame has no room for it without colliding with
+  its own furniture, so it came back out and the West Campus Data Center is named in the caption
+  and the cover names Texas A&M instead. Recorded as a limit rather than worked around.
+- Reconciling the storyboard's curly quotes broke slide 6's dossier, because straight quotes
+  inside a double quoted YAML scalar is not YAML, and `dossier_check` reported slide 6 rendered
+  with no dossier at all.
