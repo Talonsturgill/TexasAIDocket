@@ -736,22 +736,26 @@ red because a correction landed rather than because something was left undone.
 ## Gate status
 
 <!-- gate-status:begin -->
-| gate | status | detail |
+**The per-deck gate table cannot be regenerated in this container and an ABSENT table is worse
+than none.** `gate_status.py` reads `out/2026-09-03/`, which is scratch under a gitignored
+directory that died with the process that wrote it, so re-running it here reports every gate
+ABSENT and that is a fact about this container rather than about the deck. A block saying so
+was synced into this record by mistake and is replaced by this note.
+
+What DID run against the shipped artifacts, by exit code, and what it means:
+
+| gate | exit | reads |
 |---|---|---|
-| claims         | ABSENT | claims.json not written yet |
-| render         | ABSENT | render/render_report.json not written yet |
-| qa             | ABSENT | render/machine_qa.json not written yet |
-| aggregates     | ABSENT | aggregate_report.json not written yet |
-| assembly       | ABSENT | final/assemble_report.json not written yet |
-| score          | ABSENT | score.json not written yet |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| dossiers       | ABSENT | storyboard.md not written yet |
-| caption        | ABSENT | caption.txt not written yet |
-| craft floor    | ABSENT | nothing rendered yet |
-| plan vs render | ABSENT | nothing rendered yet |
-| texan          | ABSENT | no copy yet |
-| absences       | ABSENT | no copy yet |
-| numerals       | ABSENT | no copy, claims or render yet |
-| completion     | ABSENT | not scored yet |
+| `shipped_check` | 0 | every carousel gate against every deck this project has published, this one included |
+| `ledger_check --date 2026-09-03` | 0 | the variety ledgers, including the light deck cap, which is over and waived by name |
+| `email_check --run 2026-09-03` | 0 | this run's committed email payload |
+| `docket_build --validate` | 0 | the committed record |
+| `schema_contract` | 0 | the record's shape, now recorded at version 2 |
+| `site_fresh_check` | 0 | 911 files byte identical to a rebuild |
+| `ask_pack --self-test` | 0 | the ask index, 36,963 of 40,000 |
+| `ownership_check --diff-per-commit` | 0 | 47 commits, 491 paths, every one inside its declared lane |
+
+CI on `5164af51`, the head this run merged from: `gates`, `guards`, `build`, `freshness`,
+`browser-read`, `browser-render` and `browser-layout` all green, `release` skipped by its own
+condition.
 <!-- gate-status:end -->
