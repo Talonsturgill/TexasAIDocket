@@ -265,3 +265,68 @@ PNG, which is what Phase 14b says a panel is not for.
 
 **And one the deck's OWN assertions caught**, which is the point of writing them: slide 5's two
 source rules were moved 24px and a corner left the punched opening, which the frame throws on.
+
+## Phase 15, panel round 1, and the one defect all three judges named
+
+**6.51, 6.76, 6.34. Per-criterion median 6.526 against a 6.8 bar, spread 0.42, three hard fails,
+HOLD.** Written by `panel.py` from the three cards in `out/2026-09-03/score-*.json`. The
+arithmetic is not mine and is not in this file, per Phase 15's own rule.
+
+**All three judges stopped the deck on the same frame and the same sentence.** Slide 4's dek is
+two sentences. The second, "No meeting date is published for that approval.", laid out below the
+sepia curl on bare cream while keeping its cream fill, at roughly 1.05 to 1. A faint ghost at
+2160px and entirely absent at 432px, so it was gone from the thumb and from the contact sheet.
+
+**The sentence that vanished is the frame's whole guard.** c8 is `confidence: medium` and the
+claims file's own rejected list says the record "carries the System's own assertion and does not
+claim a dated governing body vote". Without that line slide 4 reads as the Board of Regents
+approving 45 million dollars with no qualifier at all.
+
+**EVERY GATE PASSED IT, AND THAT IS THE FINDING.** `copy.json` carried the string, because the
+browser really did lay it out. `numeral_lint` traced every numeral. `dossier_check` passed an
+acceptance item reading "the dek says No meeting date is published" because the string was in the
+DOM. `qa.py` returned zero fails on that slide. `panel_ready` reports "every line clears the
+rubric's 4.5 contrast floor" and reported it while this line sat at 1.05.
+
+Not one of them asks the only question that mattered: **is the ink different from the paper.**
+Twelve gates read what the document SAYS and none reads what the page SHOWS. This is
+GATE_LESSONS' oldest shape arriving somewhere new, and the three judges converged on the same
+one-sentence fix independently: measure contrast against the ground a mark actually lands on.
+
+## The repair round, and what each fix was
+
+Nine changes. Every one traces to a judge's named finding, and each frame that was repaired also
+gained the assertion that would have caught its own defect.
+
+| # | frame | what was wrong | what was done |
+|---|---|---|---|
+| 1 | 4 | the dek's third line on bare cream at 1.05 to 1 | curl extended to y 1172, gradient steepened to four stops for a dark plateau, dek pinned by TOP not BOTTOM, and the frame now computes a real WCAG ratio against the curl's own gradient sampled at the box's top and bottom edges and throws under 4.5 |
+| 2 | 6 | set "willsupport" and "willbe" | the gap advanced by `w + 18` from the VERB's edge while the slot already extended `padX` past it, leaving 2px. Measured from the slot's edge now, with a 24px floor asserted |
+| 3 | 6 | the only frame of nine with no source rule, on the thesis frame | both quotations print QUOTED FROM their publisher, punched through the leaf like every other word |
+| 4 | caption | "Onboarding begins" where c16 says "is expected to begin" | corrected. The deck's fourth structural law, broken on the surface a reader meets first |
+| 5 | 5 | a bare "10.4 million" where c18 says approximately, while "more than" was kept on the other side | "about 10.4 million", and the frame now PRINTS its refusal to join the two counts rather than keeping it in the script |
+| 6 | 9 | c14 cited on the frame and never printed | "The front page is actively seeking beta testing participants" is on the page. The duplicate onboarding row came out, which also cleared the 65 word ceiling |
+| 7 | 9 | the declared focal, "the brightest region in all nine frames", was in the dossier and in no drawing step | drawn as bare backlight measurably brighter than the bed, with slide 8's two empty pin stations carried onto the rail, and the pins now read THROUGH their holes |
+| 8 | 7 | 1100 grain marks vacuously satisfied, about a dozen visible at 2160px and none at 432px | the switched-off table is BUILT rather than textured: panel seams on a grid, frame rails down each side, an ink floor on the grain, and the assertion now counts marks that CARRY INK |
+| 9 | 4, 6 | curly quotes through HTML entities | straight quotes, asserted per frame |
+
+**A registration scale was tried on slide 7 and taken back out.** It landed in the footer band,
+the type keep-out ate every tick under the site line and the counter, and what rendered was a row
+of graduations with a hole in the middle. A drawn thing interrupted by an exclusion zone reads as
+a mistake rather than as an object, which is worse than the quiet it was answering.
+
+**`qa.py` still measures slide 7 at 9 / 9 / 6 percent of cells carrying craft, unchanged.** The
+marks sit under whatever contrast threshold flips a cell, and the frame is visibly a built table
+at 432px where it was a flat rectangle. Recorded as a disagreement between a number and the
+pixels rather than resolved, because the judges read the pixels.
+
+**Two gate findings came out of the repair round itself**, both real:
+
+- `coherence_check` failed slide 9 at 67 words against a 65 ceiling, caused by the c14 line. The
+  duplicate onboarding row came out rather than c14 going back.
+- `aggregate_check` failed five figures in `first_comment.txt`. Two were verbatim source
+  quotations and are now declared through `quoted_from` with the exact quote. Three were counts
+  the deck had invented, and the prose was reworded to stop asserting them.
+
+Then `caption_check` failed the caption at 943 characters against brand.yaml's 900 ceiling,
+caused by the two additions above. Trimmed to 866 with both of the panel's asks intact.
