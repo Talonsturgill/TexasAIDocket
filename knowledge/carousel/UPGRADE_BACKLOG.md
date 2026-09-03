@@ -515,3 +515,28 @@ inferring it. The gate here was right seven times and told nobody anything it di
 - **`captions.json`'s `_spec` still says two exclusions are handed to the room.** The closing
   substance is now enforced and is not on that string. `ledger/carousel/captions.json` is `daily`
   lane.
+
+### The ship step says "copy artifacts" and three of fifteen decks archived no slide HTML
+
+`prompts/daily_routine.md` step 1 of the ship phase reads "Copy artifacts to
+`runs/carousel/<date>/`, archiving `prompts/NEXT_RUN.md` if it existed". Nothing on that line
+names `out/<date>/slides/*.html`, so what each run copies is what that run happened to think of.
+Measured 2026-09-03 across fifteen shipped decks, twelve kept `slides/` and three did not, today's
+included.
+
+The cost was invisible until 2026-09-03 because nothing read those files. `label_guard` tests a
+LABEL BESIDE A CLAIM ID, and the only surface carrying that adjacency is the rendered frame. A
+`copy.json` keeps `labels` and `claims` in separate fields, so a deck with no archived slide HTML
+cannot be checked at all. That is now reported honestly rather than passed: the gate raises
+`Absent`, exits 2, writes `{"status": "absent"}`, `gate_status` renders ABSENT and `--strict`
+refuses to ship on one. So the gap is visible now, on every future run, which is the half this
+run could make.
+
+**The proposal.** Name the file on the line. Step 1 becomes an enumerated list that includes
+`slides/*.html` alongside the renders, `copy.json`, `claims.json`, `compute.py`, `figures.json`
+and the receipts, so a run copies a stated set rather than a remembered one.
+
+**Why this run did not make it.** `prompts/daily_routine.md` is `human` lane in `ownership.yaml`,
+with the note that a run rewriting the instructions it is currently executing is how a machine
+drifts without anyone noticing. This run is executing it. The lane is the answer and the gate is
+already reporting the defect in the meantime.
