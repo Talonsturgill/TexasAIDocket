@@ -470,6 +470,42 @@ def g_construction(d: Path):
 LABEL_SINCE = "2026-09-02"
 QUANTIFIER_SINCE = "2026-08-23"
 
+# A FINDING IN ALREADY PUBLISHED COPY THAT NO ACTION CLEARS, named one by one, with the date and
+# the reason. Same shape and same reasoning as `ledger_check.LIGHT_CAP_WAIVED`, and the same
+# refusal: a waiver stops a finding BLOCKING and never stops it being measured or reported.
+#
+# The alternative was moving QUANTIFIER_SINCE forward to cover deck 14, and that is the move this
+# file exists to refuse. A since-date says the gate was not wired when the deck shipped. Here the
+# gate was wired that day, it went red on the deck's own frames, and the owner read both findings
+# and said post as-is. Writing that down as "not applicable" would be the suite lying about what
+# it saw, which is the whole GATE_LESSONS shape. So each finding is quoted, kept in the output,
+# and carries who let it ship.
+#
+# Keyed by run date, then by a substring of the finding. Nothing matches by accident and a
+# finding this table has never seen is fatal, which its self-test asserts.
+QUANTIFIER_WAIVED = {
+    "2026-09-03": {
+        "slide-05.html asserts SOURCE SILENCE": (
+            "Owner's instruction on 2026-09-03, given after being shown this exact sentence and "
+            "the second finding below. Carousel no. 14 had already been rendered and posted when "
+            "quantifier_check was first pointed at a slide, because `surfaces` read only "
+            "`render/render_report.json` and a shipped deck archives it at the run root. The "
+            "sentence is substantively true, the record does carry no source joining the two "
+            "screening figures, and it is still the banned construction. Re-rendering a posted "
+            "deck was declined. Recorded in the run record"),
+        "slide-08.html prints the universal 'Not one of them'": (
+            "Same instruction, same reason. This one cannot be cleared by declaring it either, "
+            "because a declaration names the figures.json key the universal ranges over and this "
+            "run computed no figure for institutions with a published researcher count. Writing "
+            "a declaration against a key that does not measure the set would be a worse answer "
+            "than carrying the finding"),
+    },
+}
+
+# A finding that is measured, reported and not fatal. `check_run` routes on this prefix, so any
+# gate can use it and none of them can hide a finding to do so.
+WAIVED = "[waived] "
+
 
 def _by_module(name: str, d: Path):
     import importlib.util
@@ -496,11 +532,15 @@ def g_labels(d: Path):
     if d.name <= LABEL_SINCE:
         return ("this gate reads capitalised words before a claim id as a label, and this deck "
                 "sets running prose in capitals, so it would report sentence words as labels")
+    # `audit`, NOT `check`. `check` is the label test alone, and the two states where the gate
+    # could not run were decided afterwards by the CLI. This adapter called `check`, so a deck
+    # that archived no slide HTML came back as an empty list and was swept up as a PASS while the
+    # gate's own CLI reported exit 2 on it. One gate answering two ways depending on who asked.
     m = _by_module("label_guard", d)
     try:
-        return m.check(d)
-    except m.Absent:
-        return None
+        return m.audit(d)[1]
+    except m.Absent as a:
+        return f"the gate could not run on this deck: {a}"
 
 
 def g_quantifiers(d: Path):
@@ -515,7 +555,17 @@ def g_quantifiers(d: Path):
     if d.name <= QUANTIFIER_SINCE:
         return ("this gate was not wired when the deck shipped and its declaration file is "
                 "written by the run, so a finding here can never be cleared")
-    return _by_module("quantifier_check", d).check(d)
+    probs = _by_module("quantifier_check", d).check(d)
+    # THE WAIVER DOES NOT SOFTEN THE MEASUREMENT. Every finding is still computed and still
+    # reported under the date that carries it. What a named waiver changes is only whether an
+    # already published surface BLOCKS this sweep, and only for a date and a phrase somebody
+    # named on the record. A finding this file has never seen is not covered by one.
+    waived = QUANTIFIER_WAIVED.get(d.name) or {}
+    out = []
+    for p in probs:
+        why = next((w for phrase, w in waived.items() if phrase in p), None)
+        out.append(p if why is None else f"{WAIVED}{p}  WAIVED. {why}")
+    return out
 
 
 def g_completion(d: Path):
@@ -604,6 +654,12 @@ def check_run(d: Path, newest: bool) -> tuple:
             # is the defect this whole file exists to catch, in the file itself.
             notes.append(f"{d.name}  {name}: not applicable, {probs}")
             continue
+        # A WAIVED FINDING IS SPLIT OUT HERE RATHER THAN DROPPED BY THE GATE. It is reported on
+        # its own line, in full, under the date that carries it, so the sweep's output still
+        # contains every finding it made. Only the fatal list is shorter.
+        for p in [str(x) for x in probs if str(x).startswith(WAIVED)]:
+            notes.append(f"{d.name}  {name}: {p[len(WAIVED):]}")
+        probs = [x for x in probs if not str(x).startswith(WAIVED)]
         if not probs:
             continue
         head = str(probs[0])[:150]
@@ -639,8 +695,12 @@ def run(only: str | None = None) -> int:
         for f in fatal:
             print(f"  - {f}", file=sys.stderr)
         return 1
+    # THE CLOSING LINE NAMES THE WAIVERS. "every applicable gate clean" over a sweep carrying a
+    # waived finding is the narrow-measurement sentence this file exists to catch, in this file.
+    n_waived = sum(1 for n in notes if "WAIVED." in n)
     print(f"shipped_check: {len(runs)} shipped run(s), every applicable gate clean on the "
-          f"artifacts as committed")
+          f"artifacts as committed" +
+          (f", except {n_waived} named waiver(s) reported above and not fatal" if n_waived else ""))
     return 0
 
 
@@ -691,6 +751,37 @@ def self_test() -> int:
                    not any("selftest probe" in x for x in f), str(f))
     finally:
         GATES.pop()
+
+    # THE WAIVER, BOTH DIRECTIONS. A waiver that stopped a finding being REPORTED, or that
+    # covered a finding nobody named, would be the switch-off this whole file argues against.
+    def waived_probe(_d):
+        return [WAIVED + "a named and waived finding", "an unnamed finding beside it"]
+    GATES.append(("selftest waiver", waived_probe, CURRENT))
+    try:
+        if runs:
+            f, n = check_run(runs[-1], True)
+            ok("a waived finding is NOT fatal on the newest deck",
+               not any("a named and waived finding" in x for x in f), str(f))
+            ok("...and is still reported, in full, as a note",
+               any("a named and waived finding" in x for x in n), str(n))
+            ok("...while a finding beside it that no waiver names is still fatal",
+               any("an unnamed finding beside it" in x for x in f), str(f))
+    finally:
+        GATES.pop()
+
+    # AND THE TABLE MATCHES ON SUBSTRINGS, so an entry that matches nothing is dead weight the
+    # next reader will trust. Every waived phrase has to be a finding the gate actually makes.
+    for date, table in QUANTIFIER_WAIVED.items():
+        d = RUNS / date
+        if not (d / "copy.json").exists():
+            ok(f"the waiver for {date} names a shipped run", False, "no such run")
+            continue
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            raw = _by_module("quantifier_check", d).check(d)
+        for phrase in table:
+            ok(f"the {date} waiver for {phrase[:40]!r} matches a finding the gate still makes",
+               any(phrase in str(p) for p in raw),
+               "nothing matches it, so the entry is stale and should be deleted")
 
     ok("the newest run is identified as the newest",
        (not runs) or shipped_runs()[-1].name == max(p.name for p in shipped_runs()))

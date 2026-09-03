@@ -369,8 +369,21 @@ def _labels(r) -> Row:
     THE DEFECT: on 2026-08-25 frame 3 printed BRAZORIA / CONDITIONS SET / C40 while compute.py
     guarded "resolution adopted" for that item against c40's own words, and passed, because the
     guard runs over the map and the reader reads the frame.
+
+    AN ABSENT RECEIPT IS NOT A PASS, and this row read one as PASS until 2026-09-03. `label_guard`
+    exits 2 and writes `{"status": "absent", "checked": 0, "problems": []}` when the deck archived
+    no slide HTML and its copy keeps labels and ids in separate fields, which is the state today's
+    own deck is in. An empty `problems` list then rendered as green with `0 claim id(s) checked`
+    beside it, so the gate table certified a gate that had not run.
+
+    GATE_LESSONS' oldest shape, in the row that reports a gate rather than in the gate: the
+    banner was measuring something narrower than what it appeared to certify. ABSENT is the
+    status this file already has for it and `--strict` already refuses to ship on one.
     """
     probs = r.get("problems") or []
+    if str(r.get("status") or "").lower() == "absent":
+        return Row("labels", ABSENT,
+                   f"the gate could not run: {r.get('reason') or 'no checkable surface'}")
     return Row("labels", FAIL if probs else PASS,
                (f"{len(probs)} label(s) the record does not support: {probs[0][:90]}"
                 if probs else
@@ -697,6 +710,23 @@ def self_test() -> int:
        _score({"weighted_score": 7.4, "ship": True}).status == PASS)
     ok("...and the older field names still work",
        "7.1" in _score({"total": 7.1, "ship": True}).detail)
+
+    # ---- THE LABELS ROW, AND THE ABSENT RECEIPT THAT READ AS GREEN (2026-09-03) --------
+    #
+    # `label_guard` exits 2 and writes `{"status": "absent", "checked": 0, "problems": []}` on a
+    # deck with no surface carrying a label beside an id. The row read `problems` alone, so an
+    # empty list rendered PASS with `0 claim id(s) checked` printed beside it. A gate that could
+    # not run was certifying the deck, and the count that said so was in the same sentence.
+    ok("an absent label receipt is ABSENT, never a pass",
+       _labels({"status": "absent", "reason": "no slides archived",
+                "checked": 0, "problems": []}).status == ABSENT)
+    ok("...and the row says why the gate could not run",
+       "no slides archived" in _labels({"status": "absent", "reason": "no slides archived",
+                                        "checked": 0, "problems": []}).detail)
+    ok("...while a receipt that ran clean is still a pass",
+       _labels({"checked": 14, "problems": []}).status == PASS)
+    ok("...and one with findings is still a FAIL",
+       _labels({"checked": 14, "problems": ["a label the record does not support"]}).status == FAIL)
 
     # ---- THE AGGREGATES ROW, AND THE FALSE DISCREPANCY OF 2026-08-26 -------------------
     #

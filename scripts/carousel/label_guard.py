@@ -51,9 +51,14 @@ CLAIM_TOKEN = re.compile(r"\bC(\d{1,3})\b", re.I)
 WINDOW = 6          # capitalised words before an id that count as its label
 STRIP = ".,\"'()"   # ONE strip set. Two of them disagreeing crashed this gate twice
 
+# AN ASSIGNMENT, NOT A MENTION. Searching the raw source for the word `ACTED` would fire on a
+# comment reading "this deck has no ACTED shape map", and a correct single-subject deck would
+# then be told its map failed to parse. The discriminator has to be the declaration itself.
+ACTED_ASSIGN = re.compile(r"^\s*ACTED\s*(?::[^=\n]+)?=", re.M)
+
 # WHERE PLACE NAMES COME FROM, and it is the record rather than the deck.
 #
-# `places` is the set of label words that are NOT claims about what a body did, because a county
+# A place name beside a claim id is NOT a claim about what a body did, because a county
 # name beside a claim id names where, not what. It used to be derived from the deck's own `ACTED`
 # map, which meant a deck without one had an EMPTY place set, and every county it printed would
 # have been read as an unsupported label. That is the false-positive failure this file already
@@ -62,6 +67,8 @@ STRIP = ".,\"'()"   # ONE strip set. Two of them disagreeing crashed this gate t
 # Whether a word is a Texas place is a fact about Texas, so it is read from the gazetteer the
 # rest of this project already computes places from, 336 counties and places with their aliases.
 # The deck's own map is still unioned in, because a map may name a body the gazetteer does not.
+#
+# It is a MASK OVER POSITIONS rather than a set of words. See `_place_mask`.
 PLACES_FILE = REPO_ROOT / "assets" / "geo" / "tx-places.json"
 
 # THE STEM FLOOR, and why this gate owns it rather than borrowing it from a deck.
@@ -134,29 +141,71 @@ def _copy_strings(blk) -> list:
     return out
 
 
-def _gazetteer_places() -> set:
-    """Every Texas place name, upper cased, word by word, from the canonical record."""
-    out = set()
+def _gazetteer_places() -> tuple:
+    """`(solo, phrases)`. Single word place names, and multi word ones as word tuples.
+
+    SPLITTING EVERY NAME INTO WORDS WAS WRONG and a review caught it before it shipped. The
+    gazetteer holds Eagle Pass, Live Oak, Real and Wichita Falls, so a word split exempts PASS,
+    LIVE, REAL and FALLS everywhere. `PERMIT PASS c1` would then be accepted beside a claim
+    saying the permit was DENIED, because PASS had become furniture. That is the false positive
+    mode inverted into a false negative, which is worse: the gate would be quietly accepting the
+    exact rewording it exists to catch.
+
+    So a component word is exempt only as part of its whole name. `EAGLE PASS` matches as a
+    phrase and `PASS` on its own does not.
+    """
+    solo, phrases = set(), set()
     try:
         rows = json.loads(PLACES_FILE.read_text(encoding="utf-8")).get("places") or []
     except (OSError, ValueError):
-        return out
+        return solo, phrases
     for r in rows:
-        for field in (r.get("name"), r.get("full_name")):
-            for w in WORD.findall((field or "").upper()):
-                out.add(w)
-        for a in (r.get("aliases") or []):
-            for w in WORD.findall(str(a).upper()):
-                out.add(w)
-    return out
+        names = [r.get("name"), r.get("full_name")] + list(r.get("aliases") or [])
+        for nm in names:
+            ws = tuple(WORD.findall(str(nm or "").upper()))
+            if len(ws) == 1:
+                solo.add(ws[0])
+            elif len(ws) > 1:
+                phrases.add(ws)
+    return solo, phrases
+
+
+def _place_mask(words, solo, phrases) -> set:
+    """Indices of `words` that are place naming rather than shape claiming.
+
+    A multi word name only exempts its components WHERE THE WHOLE NAME STANDS. `EAGLE PASS`
+    covers both of its words. A lone `PASS` is covered by nothing and stays a claim about what
+    a body did, which is the whole reason this is a mask over positions rather than a set of
+    words.
+
+    Longest first, so `WICHITA FALLS` claims its two words before any shorter name can take one.
+    """
+    masked = set()
+    for p in sorted(phrases, key=len, reverse=True):
+        n = len(p)
+        for i in range(len(words) - n + 1):
+            if tuple(words[i:i + n]) == p and not (masked & set(range(i, i + n))):
+                masked |= set(range(i, i + n))
+    for i, w in enumerate(words):
+        if w in solo:
+            masked.add(i)
+    return masked
 
 
 def _guarded(compute_src: str):
-    """The place names, the proof claim to shape map, and the stem table, out of compute.py."""
-    places, stems, shapes = set(), {}, {}
+    """The place names, the proof claim to shape map, and the stem table, out of compute.py.
+
+    Place names come back as `(solo, phrases)` for the reason `_gazetteer_places` states. A
+    deck's own map names bodies like `WICHITA FALLS`, so splitting them into words exempted
+    `FALLS` beside every other claim in the deck.
+    """
+    solo, phrases, stems, shapes = set(), set(), {}, {}
     for m in re.finditer(r'"(tx-[\d-]+)":\s*\("([^"]+)",\s*"([^"]+)",\s*"(c\d+)"', compute_src):
-        for w in WORD.findall(m.group(2).upper()):
-            places.add(w)
+        ws = tuple(WORD.findall(m.group(2).upper()))
+        if len(ws) == 1:
+            solo.add(ws[0])
+        elif len(ws) > 1:
+            phrases.add(ws)
         # the claim that PROVES this shape. A label beside it may say the shape and nothing else.
         shapes.setdefault(m.group(4).lower(), set(m.group(3).upper().split()))
     # BRACE MATCHED, NOT REGEXED. The first version looked for `_STEM = {...\n}` and the real
@@ -179,7 +228,7 @@ def _guarded(compute_src: str):
                 except (ValueError, SyntaxError, AttributeError):
                     stems = {}
                 break
-    return places, stems, shapes
+    return solo, phrases, stems, shapes
 
 
 def _flat_for_count(html: str) -> str:
@@ -217,7 +266,7 @@ def check(run_dir: Path):
     if not compute.exists() or not claims_f.exists():
         return ["label_guard needs compute.py and claims.json in the run directory"]
     src = compute.read_text(encoding="utf-8")
-    places, stems, shapes = _guarded(src)
+    solo, phrases, stems, shapes = _guarded(src)
 
     # A DECK WITH NO SHAPE MAP IS THE ORDINARY CASE, NOT A MISREAD FILE, and treating it as one
     # meant this gate had never run against most of what this project has published. Measured on
@@ -231,14 +280,16 @@ def check(run_dir: Path):
     # original bail was written for. A deck that never declares one has nothing to parse, so
     # `shapes` is empty, the shape test below simply does not bite, and the LABEL WORD test still
     # runs, which is the half that applies to every deck.
-    if "ACTED" in src and not shapes:
+    if ACTED_ASSIGN.search(src) and not shapes:
         return ["label_guard found an ACTED map in compute.py and parsed no entries out of it, "
                 "so it is reading the file wrongly rather than reading the wrong file"]
 
-    places |= _gazetteer_places()
+    g_solo, g_phrases = _gazetteer_places()
+    solo |= g_solo
+    phrases |= g_phrases
     # The deck's own table WINS. This is a floor under a gate that was otherwise refusing to run.
     stems = {**DEFAULT_STEMS, **(stems or {})}
-    if "_STEM = {" in src and not _guarded(src)[1]:
+    if "_STEM = {" in src and not _guarded(src)[2]:
         return ["label_guard found a _STEM table in compute.py and parsed nothing out of it, so "
                 "the deck's own stemming is not in force. That is the one failure mode a checker "
                 "does not get to have, so it stops instead"]
@@ -318,17 +369,23 @@ def check(run_dir: Path):
             # words. The frame prints that string or it prints no shape at all. Word membership
             # alone was not enough: ZONING and SEWER both appear in their claims and neither is
             # the shape the map guards, so a frame could still narrate around the guard.
-            said = [w for w in label
-                    if w not in FURNITURE and w not in places and not re.fullmatch(r"[0-9-]+", w)]
+            # READING ORDER FROM HERE. `label` was walked backwards off the id, and a phrase can
+            # only be recognised the way it is written, so the mask and everything that reads it
+            # work on the label as a reader sees it.
+            words = label[::-1]
+            masked = _place_mask(words, solo, phrases)
+            said = [w for i, w in enumerate(words)
+                    if i not in masked and w not in FURNITURE
+                    and not re.fullmatch(r"[0-9-]+", w)]
             if said and cid in shapes and set(said) != shapes[cid]:
                 problems.append(
-                    f"{name} prints {' '.join(said[::-1])!r} beside {tok}, and compute.py guards "
+                    f"{name} prints {' '.join(said)!r} beside {tok}, and compute.py guards "
                     f"{' '.join(sorted(shapes[cid]))!r} as the shape {cid} proves. A label beside "
                     f"a proof claim is a claim about what a body did, so it says the guarded "
                     f"string or it says no shape at all. This is how BRAZORIA / CONDITIONS SET / "
                     f"C40 shipped over a claim whose own word is 'adopted'")
-            for w in label:
-                if w in FURNITURE or w in places or re.fullmatch(r"[0-9-]+", w):
+            for i, w in enumerate(words):
+                if i in masked or w in FURNITURE or re.fullmatch(r"[0-9-]+", w):
                     continue
                 stem = stems.get(w.lower(), w.lower())
                 if stem not in hay:
@@ -375,7 +432,34 @@ def self_test() -> int:
             print("SELF-TEST FAILED: the gate refused the guarded label itself, which would teach "
                   "a run to ignore it. " + "; ".join(left))
             return 1
-    print("label_guard self-test: refuses a reworded label, passes the guarded one")
+
+        # THE PHRASE RULE, both directions. `EAGLE PASS` is in the gazetteer, so a word split
+        # exempted PASS everywhere and `PERMIT PASS c41` would have been accepted beside a claim
+        # saying the permit was DENIED. That is the gate quietly blessing the exact rewording it
+        # exists to catch, so it gets a case in both directions rather than a comment.
+        solo, ph = _gazetteer_places()
+        if ("EAGLE", "PASS") not in ph:
+            print("SELF-TEST FAILED: the gazetteer no longer yields EAGLE PASS as a phrase, so "
+                  "this case is not testing what it names")
+            return 1
+        (d / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c41", "quote": "The application was denied.",
+             "text": "Eagle Pass city council denied the application."}]}))
+        (d / "slides" / "slide-03.html").write_text(
+            '<div class="pl">PERMIT PASS</div><div class="ci">C41</div>')
+        if not check(d):
+            print("SELF-TEST FAILED: the gate passed PERMIT PASS beside a claim that says denied. "
+                  "PASS is exempt only inside EAGLE PASS, never on its own")
+            return 1
+        (d / "slides" / "slide-03.html").write_text(
+            '<div class="pl">EAGLE PASS DENIED</div><div class="ci">C41</div>')
+        left = check(d)
+        if left:
+            print("SELF-TEST FAILED: the gate refused EAGLE PASS DENIED, so the whole name no "
+                  "longer exempts its own words. " + "; ".join(left))
+            return 1
+    print("label_guard self-test: refuses a reworded label, passes the guarded one, and exempts "
+          "a place word only inside its whole name")
     return 0
 
 
@@ -405,16 +489,14 @@ def main(argv):
         return 2
 
 
-def _run(d: Path):
-    problems = check(d)
-    # THE RECEIPT. gate_status reads this rather than re-deriving the answer, so the run record's
-    # gate table carries the row and a run cannot quietly skip the gate. CI cannot take it,
-    # because .github/workflows belongs to the human actor by ownership.yaml.
-    # COUNTED OVER EVERY SURFACE THE GATE ACTUALLY READ, not over slide HTML alone. Three of
-    # fifteen shipped decks archive no `slides/`, today's included, so a slides-only count wrote
-    # `checked: 0` on a run where the gate had read nine copy.json blocks and traced every label
-    # in them. The receipt then said the gate looked at nothing while it had done its whole job,
-    # which is the narrow-measurement defect this file exists to catch, in this file.
+def _checked_count(d: Path) -> int:
+    """Claim ids over EVERY surface the gate reads, not over slide HTML alone.
+
+    Three of fifteen shipped decks archive no `slides/`, today's included, so a slides-only count
+    wrote `checked: 0` on a run where the gate had read nine copy.json blocks and traced every
+    label in them. The receipt then said the gate looked at nothing while it had done its whole
+    job, which is the narrow-measurement defect this file exists to catch, in this file.
+    """
     checked = 0
     for f in sorted((d / "slides").glob("slide-*.html")):
         checked += len(CLAIM_TOKEN.findall(_flat_for_count(f.read_text(encoding="utf-8"))))
@@ -423,12 +505,23 @@ def _run(d: Path):
         for blk in (json.loads(cpf.read_text(encoding="utf-8")).get("slides") or {}).values():
             for st in _copy_strings(blk):
                 checked += len(CLAIM_TOKEN.findall(st))
-    # A ZERO COUNT IS NOT A PASS. Deck 13's receipt read `checked: 0` with an empty problems
-    # list, and gate_status rendered that as PASS, because nothing here asked whether the gate
-    # had actually looked at anything. A deck that prints claim ids on its frames and gives this
-    # gate none of them is a gate that is not wired up, which is the failure this file exists to
-    # prevent in the copy and had in itself.
-    slide_files = sorted((d / "slides").glob("slide-*.html"))
+    return checked
+
+
+def audit(d: Path):
+    """`(checked, problems)`, raising `Absent` for either state where the gate could not run.
+
+    THE WHOLE VERDICT LIVES HERE, and it did not before. `check` returned the label findings and
+    `_run` then decided the two remaining cases, so the CLI reported exit 2 on a deck with no
+    checkable surface while `shipped_check`, which called `check` directly, read the same deck's
+    empty list as a pass. One gate, two entry points, two answers, and the sweep took the
+    optimistic one. That is the shape this suite exists to catch, in the suite.
+
+    So every caller asks this. `check` stays the label test itself and nothing outside this file
+    calls it.
+    """
+    problems = check(d)
+    checked = _checked_count(d)
     if checked == 0:
         # THREE STATES, AND ONLY ONE OF THEM IS A DEFECT.
         #
@@ -439,15 +532,33 @@ def _run(d: Path):
         # So a deck that archived no `slides/` cannot be checked at all, and saying so is the
         # honest answer. Calling it a pass would be the `checked: 0` receipt this gate already
         # went red over once. Calling it a violation would name a defect nobody committed.
-        if not slide_files:
+        if not sorted((d / "slides").glob("slide-*.html")):
             raise Absent(
                 "this deck archived no slides/*.html, and its copy.json keeps labels and claim "
                 "ids in separate fields, so no surface carries a label beside an id to check. "
                 "Archive the rendered frames to make this deck checkable")
+        # A ZERO COUNT IS NOT A PASS. Deck 13's receipt read `checked: 0` with an empty problems
+        # list, and gate_status rendered that as PASS, because nothing here asked whether the gate
+        # had actually looked at anything. A deck that prints claim ids on its frames and gives
+        # this gate none of them is a gate that is not wired up, which is the failure this file
+        # exists to prevent in the copy and had in itself.
         problems.append(
             "label_guard matched no claim id on any frame. Either this deck cites nothing, which "
             "no deck here does, or the token pattern and the rendered ids disagree. A receipt "
             "reading `checked: 0` is not a pass and this refuses to write one")
+    return checked, problems
+
+
+def _run(d: Path):
+    # THE RECEIPT. gate_status reads this rather than re-deriving the answer, so the run record's
+    # gate table carries the row and a run cannot quietly skip the gate. CI cannot take it,
+    # because .github/workflows belongs to the human actor by ownership.yaml.
+    # COUNTED OVER EVERY SURFACE THE GATE ACTUALLY READ, not over slide HTML alone. Three of
+    # fifteen shipped decks archive no `slides/`, today's included, so a slides-only count wrote
+    # `checked: 0` on a run where the gate had read nine copy.json blocks and traced every label
+    # in them. The receipt then said the gate looked at nothing while it had done its whole job,
+    # which is the narrow-measurement defect this file exists to catch, in this file.
+    checked, problems = audit(d)
     (d / "label_report.json").write_text(
         json.dumps({"checked": checked, "problems": problems}, indent=1, ensure_ascii=False) + "\n",
         encoding="utf-8")
