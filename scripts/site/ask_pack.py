@@ -253,11 +253,12 @@ to cite it by.
 
 Then the data center dossiers, the construction register and the reservoirs, each ROLLED UP
 rather than listed, because a hundred and fifty dossiers, sixty one counties and a hundred and
-thirty eight reservoirs read better as one line carrying all of their names than as hundreds of
-lines. The construction and reservoir lines carry the figure itself, so a question about how
+thirty eight reservoirs read better as one block carrying all of their names than as hundreds
+of lines. The construction and reservoir lines carry the figure itself, so a question about how
 full a reservoir is or how many projects a county has is answered from the line. The dossier
-line carries each name and its id, and the full dossier for the one a question needs is
-retrieved below.
+block is grouped by county, so a question about which data centers sit in a named county is
+answered from the block and the full dossier for the ones a question needs is retrieved below.
+Dossiers whose filing publishes no county are printed together at the end of the block.
 
 ANSWER FROM THESE LINES WHENEVER THEY CARRY WHAT WAS ASKED. A question about which decisions
 name a county, who decided something, what is open, what a decision is called, how full a
@@ -655,8 +656,24 @@ def facility_prose(d: dict) -> str:
     return "\n".join(x for x in lines if x)
 
 
-def facility_index_line(d: dict) -> str:
-    """One dossier in the index, as a name and the id to cite it by, and nothing else.
+def _facility_county(d: dict) -> str | None:
+    """The county named in the dossier's Location fact, or None if the filing does not name one.
+
+    A hundred and twenty five of one hundred and fifty dossiers publish no location, because the
+    state's filing does not require one and the record publishes only what was filed. This reads
+    what is there and does not guess.
+    """
+    import re as _re
+    for f in (d.get("facts") or []):
+        if (f.get("label") or "").strip() == "Location":
+            text = (f.get("text") or "").strip()
+            m = _re.search(r",\s*([A-Za-z][A-Za-z .'-]*?County)\b", text)
+            return m.group(1) if m else None
+    return None
+
+
+def facility_index_entry(d: dict) -> str:
+    """One dossier in the rolled up index, as a name and the id to cite it by.
 
     THE DOSSIERS ARE ROLLED UP, THE WAY THE CONSTRUCTION REGISTER AND THE RESERVOIRS ALREADY
     ARE, 2026-09-03. They were the last family still indexed a full line each, at eighty two
@@ -670,12 +687,48 @@ def facility_index_line(d: dict) -> str:
     reservoir is retrieved. A dossier body sits in `facility_pack`, which the retrieval-off
     escape hatch does NOT send, so a dossier is citable only from the index whenever its body is
     not retrieved. The index's own contract, stated in `INDEX_HEAD`, is that a line with no text
-    below is still real and the line is all there is to go on, and a citation needs the id. So
-    the id is kept and the location detail is dropped instead. The detail was the redundant part,
-    a disambiguator the retriever reads off the full body, and no other family's rolled head
-    carries a per member detail beyond its one figure.
+    below is still real and the line is all there is to go on, and a citation needs the id.
     """
     return f"{(d.get('name') or '').strip().rstrip('.')} [[facility-{d['slug']}]]"
+
+
+# Kept as an alias because callers outside this module import the older name. The dossier index
+# is now built by county in the wrapping block rather than one line per dossier, so this returns
+# the entry rather than a line.
+facility_index_line = facility_index_entry
+
+
+def facility_index_block(dossiers: list) -> str:
+    """The dossiers as a rolled up index block, GROUPED BY COUNTY where the county is on file.
+
+    A county grouping IS the location evidence, and this shape exists because dropping the
+    location detail from the flat list broke a real class of question. The measured case, from a
+    review of the first attempt at this roll-up: "What data centers are in Taylor County?" is
+    answered by eight Lancium Abilene dossiers, all of them carrying `Location: Abilene, Taylor
+    County`. The flat "name and id" list said Abilene but never the county, so retrieval matched
+    six unrelated bodies on other words and the assembled prompt named Taylor County zero times.
+
+    A dossier whose filing publishes no county goes into an unlocated group, printed at the end.
+    A hundred and twenty five of one hundred and fifty dossiers sit there today, because the
+    state's certification does not require a location and the record publishes what was filed.
+    Grouping only what is named is what makes this honest rather than inventing a county.
+
+    Cost: about two hundred forty characters over the flat "name and id" list, well under the
+    ceiling and worth it. This is the shape the review recommended, in as many words: "keep a
+    compact location-bearing roll-up, such as grouping dossier names and IDs by county."
+    """
+    from collections import defaultdict
+    by_county: dict[str | None, list] = defaultdict(list)
+    for d in dossiers:
+        by_county[_facility_county(d)].append(d)
+    parts: list[str] = []
+    for county in sorted(c for c in by_county if c):
+        entries = ", ".join(facility_index_entry(d) for d in by_county[county])
+        parts.append(f"In {county}, {entries}.")
+    if by_county.get(None):
+        entries = ", ".join(facility_index_entry(d) for d in by_county[None])
+        parts.append(f"With no county on file, {entries}.")
+    return " ".join(parts)
 
 
 def familyOf(block_id: str) -> str:
@@ -1069,9 +1122,9 @@ def build(today: str = None, docs_dir=None) -> dict:
     ) if dossiers else "")
     idx = index(items, today, extra=[
         ("THE DATA CENTER DOSSIERS. Every dossier the record holds, rolled up rather than listed, "
-         "each as its name and the id to cite it by, and the full dossier for the ones this "
-         "question needs is below. By name, "
-         + ", ".join(facility_index_line(d) for d in dossiers) + ".") if dossiers else "",
+         "grouped by the county its filing names, each as its name and the id to cite it by, and "
+         "the full dossier for the ones this question needs is below. "
+         + facility_index_block(dossiers)) if dossiers else "",
         county_head,
         water_head,
     ])
@@ -1455,6 +1508,17 @@ def self_test() -> int:
     missing_fac = [d["slug"] for d in _dossiers if f"[[facility-{d['slug']}]]" not in idx]
     check("every dossier is still citable from the index, though rolled onto one line",
           not missing_fac, str(missing_fac[:3]))
+
+    # THE ROLLED HEAD MUST CARRY LOCATION EVIDENCE, and this is what the first version of the
+    # roll-up got wrong. Dropping the location detail from the flat list made the always-sent
+    # index name no county at all, so a question like "What data centers are in Taylor County?"
+    # matched no dossier on the county string and the assembled prompt named the county zero
+    # times. Grouping by county fixes it. Asserting the property directly, rather than trusting
+    # the shape, catches the next accidental drop of it too.
+    counties = {_facility_county(d) for d in _dossiers} - {None}
+    missing_county = [c for c in counties if f"In {c}," not in idx]
+    check("every county the dossiers name is present in the rolled head",
+          not missing_county, str(sorted(missing_county)[:3]))
     # WHAT AN INDEX LINE IS ALLOWED TO PUT IN A READER'S HANDS.
     #
     # The worker authorises the numerals in what it actually sent, so every figure on a line
