@@ -199,3 +199,15 @@ reader's way in, and the deciding body gets named on the frame that needs it.
   sees can therefore never match, which is why two claims on `tx-2026-0024` and one on
   `tx-2026-0002` read as unverifiable every run rather than once. Unescape, then strip, then
   unescape again, or strip twice.
+
+### Which lane may fix which, measured with `ownership_check --files`
+
+| file | lane | who does it |
+|---|---|---|
+| `scripts/site/reverify.py` | `daily` | **this run**, at Phase 17. The upgrade engineer can't reach it |
+| `scripts/site/docket_ingest.py` | `daily` | **this run**, at Phase 17 |
+| `scripts/carousel/caption_check.py` | `upgrade` | the upgrade engineer |
+| `ledger/carousel/upgrades.json` | `upgrade` | the upgrade engineer |
+
+The first two are the ones worth stating. They are `daily` lane, so an upgrade engineer stamped
+`upgrade` is refused on them and nobody fixes them unless this run does.
