@@ -211,3 +211,24 @@ reader's way in, and the deciding body gets named on the frame that needs it.
 
 The first two are the ones worth stating. They are `daily` lane, so an upgrade engineer stamped
 `upgrade` is refused on them and nobody fixes them unless this run does.
+
+## Phase 9, the probe that de-risked the hero frame BEFORE the deck committed to it
+
+Treatment one's central move is a word cut clean THROUGH an opaque leaf with light coming up
+behind it, and the whole deck leans on it. Two things could have killed it and both were cheap to
+test, so one probe slide was rendered before any dossier was written.
+
+- **It passes the art-crossing-glyphs and occlusion gates.** An SVG `mask` knocking type out of a
+  solid rect draws no ink across the letterforms at all, so the gate that fails type over art has
+  nothing to catch. `qa.py` reported zero occlusion and zero glyph failures.
+- **It reads.** The knocked-out word is the brightest thing in the frame and is legible without a
+  plate, a scrim or a halo, which matters because the halo is spent from deck 12.
+
+Two things the probe taught that would otherwise have cost a render round each:
+
+- **The safe zone is 80px and furniture at 60px WARNS.** Both the site line and the counter
+  tripped it. Every frame's furniture sits at 80px or more.
+- **`qa.py` fails a top-loaded composition by measuring craft density per third.** The probe took
+  "the bottom third carries 57 percent of this slide's own average craft density". A backlit deck
+  with a clean lower band will fail this on every frame unless the bottom third is planned to
+  carry modeled tone, which is the same thing `dossier_check` demands of the bands plan.
