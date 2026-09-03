@@ -67,14 +67,14 @@ Art, from deck no. 13's own `avoid_next`:
 | wave | what | status |
 |---|---|---|
 | 0 | wake, branch, hooks, gates | DONE. validate exit 0, ownership self-test exit 0, bootstrap ok |
-| 1 | craft refresh | TODO |
+| 1 | craft refresh | DONE. Folded into Phase 9, see the craft note below |
 | 2 | scouts away, staleness read | DONE. 5 scouts spawned. 6 due, 0 rotten, 0 deferred |
-| 3 | re-verify the record, 6 due | IN PROGRESS. reverify --apply exit 1, 0 stamped, all 6 need hand work |
-| 4 | discover | TODO |
-| 5 | admit | TODO |
-| 6 | claims | TODO |
-| 7 | instrument once over | TODO |
-| 8 | selection + dedupe | TODO |
+| 3 | re-verify the record, 6 due | **DONE. All 6 worked by hand, staleness green, backlog 3** |
+| 4 | discover | DONE. 5 scouts, 28 findings, 6 turned into docket candidates |
+| 5 | admit | **DONE. 4 admitted, ledger 98 to 102, 533 claims** |
+| 6 | claims | IN PROGRESS. fact-checker out on the VISION story |
+| 7 | instrument once over | DONE. All page checks exit 0. Supabase connector unavailable |
+| 8 | selection + dedupe | DONE. VISION picked, dedupe 0.31, texan_check says NO next step |
 | 9 | directors room | TODO |
 | 10 | copy chamber | TODO |
 | 11 | art build | TODO |
@@ -102,3 +102,42 @@ Art, from deck no. 13's own `avoid_next`:
 ## Sources field log to append at Phase 17
 
 - `news.rice.edu` returns HTTP 406 to this client, second consecutive run.
+
+## Phase 8 selection, written down
+
+**The story is the Texas A&M University System's VISION supercomputer.** A large shared AI
+machine at Texas A&M in Brazos County, ranked the fastest university supercomputer in the United
+States on the June 2026 TOP500, whose access runs system-wide to twelve universities and eight
+state agencies, and whose own site still lists it as in beta ahead of wider release.
+
+**Why this and not the others.** Five of the last thirteen decks came off `power-and-compute` and
+every one of them was about compute somebody fenced off. This is the same subject from the other
+side. It is the one big AI machine in Texas that is public, whose access rule is published, and
+that a student at a small campus can get on. That contrast is the deck, and it is an application
+story rather than another filing.
+
+Runners up, and why not:
+- **Atlas and Kodiak driverless sand hauling in the Permian**, past 40,000 paid driverless hours.
+  Genuinely strong and it carries its own counter-image. Held because driverless trucking shipped
+  as deck no. 5 on August 21st and the thirty day window is not up.
+- **Wistron's Fort Worth plant**, designed in a digital twin before it was built and now running
+  world models to find solder defects. The best IDEA in the whole scout haul. Held because its
+  only source is a vendor blog and it is dated July 21st, outside the window a decision needs.
+- **The PUCT Large Load rule closing for comment tomorrow.** Shipped as deck no. 6 on August 22nd.
+
+**texan_check at selection says places yes, body NO, deadline yes, next step NO.** Both gaps are
+known on day one rather than found by a judge in round four. The closing frame carries the
+reader's way in, and the deciding body gets named on the frame that needs it.
+
+## Craft note for this deck, from deck no. 13's own avoid_next
+
+- **Spend the invention on frames 7 to 9**, where the argument ends. No. 13 front loaded its
+  detail budget and the craft judge scored artwork_craft 5.5 for it.
+- **No primitive may carry more than three frames.** No. 13 had one lighter rectangle on stone
+  carrying five of nine.
+- **A declared technique has to reach a reader at 432px.** No. 13 declared engraving and shipped
+  190 low alpha lines inside two thin strips.
+- **A declared light angle goes in a drawing step or it is not declared.** No. 13 declared 8
+  degrees and rendered every shadow as if the key sat well above 45.
+- **Every acceptance item must fail a frame that draws NOTHING**, which is instinct 0.75 as well
+  as no. 13's own finding.
