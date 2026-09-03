@@ -1325,7 +1325,9 @@ def cites(items: list, dossiers: list, county_blocks: list, water_blocks: list,
     for b in water_blocks:
         bid = b[2:b.index("]]")]
         name = b[b.index("]]") + 2:b.index("\n")].strip()
-        out[bid] = [cite_label("water", name), "water/", name]
+        href = (f"water/reservoir/{bid.removeprefix('water-lake-')}/"
+                if bid.startswith("water-lake-") else "water/")
+        out[bid] = [cite_label("water", name), href, name]
     return out
 
 

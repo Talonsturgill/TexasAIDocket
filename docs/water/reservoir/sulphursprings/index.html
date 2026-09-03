@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-wV4i89nL6b9yaVvurdu7MzrIPmkDz1hsqtfInGGq37Q=' 'sha256-L/dR0Xf6NhPN1nE18FacQno6AU92IFJ3Oa5qMnbebIo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self' 'sha256-LiSMaBZjB5/jWza4HdEhzIiqyT0VmiD7YDd2q0KwZOU='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lake Sulphur Springs storage · Texas AI Docket</title>
+<meta name="description" content="Daily conservation storage and percent full history for Lake Sulphur Springs, from Texas Water Watch.">
+<link rel="canonical" href="https://texasaidocket.com/water/reservoir/sulphursprings/">
+<meta property="og:title" content="Lake Sulphur Springs storage · Texas AI Docket">
+<meta property="og:description" content="Daily conservation storage and percent full history for Lake Sulphur Springs, from Texas Water Watch.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://texasaidocket.com/water/reservoir/sulphursprings/">
+<meta property="og:image" content="https://texasaidocket.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Texas AI Docket. The Lone Star on the flag's blue hoist, beside the record's own dusk ground.">
+<meta property="og:site_name" content="Texas AI Docket">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://texasaidocket.com/og.png">
+<link rel="icon" href="../../../favicon.ico" sizes="32x32">
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+<meta name="theme-color" content="#00205B">
+<link rel="stylesheet" href="../../../site.css?v=81785e0710">
+<link rel="preload" href="../../../fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="../../../atom.xml">
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","logo":{"@type":"ImageObject","@id":"https://texasaidocket.com/#logo","url":"https://texasaidocket.com/apple-touch-icon.png","contentUrl":"https://texasaidocket.com/apple-touch-icon.png","width":180,"height":180},"sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket","https://www.instagram.com/texasaidocket","https://www.youtube.com/@TexasAIDocket","https://x.com/TexasAIDocket","https://www.tiktok.com/@texas.ai.docket"]},{"@context":"https://schema.org","@type":"Dataset","name":"Lake Sulphur Springs daily storage","description":"Daily conservation storage, capacity and percent full for Lake Sulphur Springs.","url":"https://texasaidocket.com/water/reservoir/sulphursprings/","license":"https://creativecommons.org/licenses/by/4.0/","creator":{"@type":"Organization","name":"Texas AI Docket"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://texasaidocket.com/waterwatch.json"}],"isAccessibleForFree":true,"temporalCoverage":"2026-08-11/2026-09-02","spatialCoverage":{"@type":"Place","name":"Lake Sulphur Springs","geo":{"@type":"GeoCoordinates","latitude":33.16789,"longitude":-95.6419}}}]</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the record</a>
+<div class="sky" aria-hidden="true"><div class="stars"></div><div class="shimmer"></div><div class="shimmer s2"></div><div class="veil v1"></div><div class="veil v2"></div><div class="veil v3"></div><div class="v4"></div><div class="v5"></div><div class="horizon"></div><div class="tumble"><svg class="weed" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M55.7,51.8Q72.3,51.9 86.7,37.8M69.3,49.8L73.7,52.5M78.3,45.5L85.6,64.6M58.6,49.4Q75.3,44.7 88.6,31.0M70.8,44.4L70.2,26.8M79.8,38.9L90.1,59.9M59.6,53.9Q67.8,57.0 76.1,59.6M63.0,55.0L67.1,55.6M69.3,57.3L76.5,40.7M55.2,52.6Q65.2,57.1 75.7,60.3M62.6,55.7L66.4,54.3M68.9,58.0L70.1,70.5M53.3,53.5Q65.8,64.7 80.5,73.3M64.3,62.8L78.3,49.6M71.9,68.1L82.9,66.6M52.8,54.8Q57.7,74.4 45.6,95.4M54.8,72.3L69.7,77.3M52.2,83.7L77.5,84.1M52.1,55.0Q58.8,64.9 70.7,70.7M58.1,62.1L73.4,56.6M63.7,66.8L70.3,69.9M52.3,56.8Q53.4,68.4 48.0,80.1M51.9,65.0L48.7,73.8M50.7,72.3L30.1,77.3M52.8,56.8Q53.8,73.0 40.0,88.0M51.3,69.6L54.7,79.7M47.4,79.0L60.4,82.8M48.9,57.6Q45.0,71.9 36.8,84.7M45.3,68.0L61.4,78.8M41.7,76.2L28.2,84.6M47.3,58.1Q41.1,67.6 29.1,72.7M42.2,63.3L52.6,69.6M36.4,68.4L23.3,55.6M48.2,54.2Q40.0,72.4 30.9,90.2M40.8,70.3L36.0,84.2M36.1,79.9L18.3,75.9M47.3,54.1Q41.0,70.9 46.6,90.5M43.4,69.2L40.1,74.9M43.7,79.4L13.2,76.8M49.0,55.4Q42.5,70.0 26.6,78.9M42.2,66.9L25.0,63.0M35.6,73.5L11.9,66.8M46.8,56.8Q44.1,75.8 57.3,94.8M46.9,72.5L59.8,78.6M50.2,83.6L48.3,90.3M43.7,57.4Q40.4,65.5 43.1,75.9M43.8,61.9L36.4,63.1M42.7,68.5L42.2,73.3M41.2,54.9Q23.6,59.4 4.0,51.5M27.6,56.2L14.2,36.9M16.0,55.4L5.6,38.1M40.0,54.6Q34.9,61.0 35.6,72.1M40.0,58.6L46.5,68.3M37.1,64.6L23.3,62.5M45.3,52.2Q27.4,61.9 11.8,75.6M29.9,61.2L36.2,86.2M20.9,67.8L9.3,66.6M43.4,52.2Q27.1,63.3 22.0,86.5M30.4,63.8L37.9,88.2M24.3,74.4L11.6,63.6M41.6,48.8Q23.9,49.8 7.7,60.8M28.2,51.1L23.9,65.3M18.0,54.7L10.0,55.2M41.2,51.6Q28.9,53.6 16.6,55.3M33.3,52.8L24.2,49.2M25.3,54.0L20.5,31.3M45.4,48.6Q31.1,46.9 16.6,52.9M33.3,48.2L28.7,58.6M25.2,49.7L21.7,51.1M43.2,43.4Q35.3,37.1 26.0,32.5M38.7,40.4L30.4,44.0M32.7,36.4L19.1,37.9M44.0,46.1Q30.6,31.9 28.6,9.4M34.5,33.1L45.0,16.6M30.3,22.4L43.3,10.3M46.3,45.4Q38.5,37.7 28.7,32.1M40.2,40.1L45.8,33.2M34.9,36.0L46.6,25.8M42.8,42.7Q36.2,32.4 34.9,19.0M40.0,35.9L26.7,39.0M36.9,28.1L18.4,36.3M43.9,42.1Q36.0,35.3 25.2,32.3M39.0,39.4L44.3,28.0M32.7,35.5L19.9,36.2M48.6,43.2Q47.5,33.0 48.7,22.6M48.3,36.4L50.3,29.9M48.3,29.8L68.2,25.8M45.9,42.2Q38.1,25.3 32.5,7.5M40.0,28.7L54.3,17.2M36.0,18.1L53.7,4.1M51.4,45.0Q51.5,29.0 39.6,14.6M49.8,31.6L49.8,27.5M46.1,23.0L25.2,17.6M51.7,41.2Q56.3,23.3 63.8,6.1M55.9,26.9L65.6,15.2M59.6,16.1L82.0,17.0M54.7,42.0Q63.7,33.3 77.9,30.9M61.5,37.7L69.2,41.5M68.9,33.6L60.0,15.7M51.4,45.8Q63.1,28.4 87.3,23.1M64.2,30.9L81.6,34.3M74.9,25.2L80.7,16.1M56.8,44.3Q63.3,33.5 60.8,18.3M59.5,36.1L72.3,31.9M61.2,27.9L46.1,18.4M55.9,45.6Q65.6,32.7 64.0,13.2M61.9,34.3L50.4,17.6M64.3,24.6L69.7,20.4M58.1,45.5Q67.1,44.1 77.0,49.8M63.0,46.6L70.5,57.2M69.8,47.3L69.2,62.3M58.1,48.9Q70.3,44.8 80.0,34.7M66.1,45.0L72.1,51.8M73.1,40.7L76.4,36.5M55.5,47.0Q72.1,38.2 89.3,30.4M69.4,39.8L71.6,19.5M78.9,35.2L67.5,11.3M56.0,46.6Q67.1,38.3 74.9,26.0M63.9,39.7L72.8,46.5M69.6,33.5L87.8,47.1M50.2,51.9L34.6,34.8M50.2,51.9L36.8,59.2M50.2,51.9L65.6,55.5M50.2,51.9L62.0,65.2M50.2,51.9L28.3,53.0M50.2,51.9L50.7,32.1M50.2,51.9L64.3,56.6M50.2,51.9L27.9,43.2M50.2,51.9L59.3,52.3M50.2,51.9L39.6,59.2M50.2,51.9L56.3,43.6M50.2,51.9L58.4,72.1M50.2,51.9L63.4,37.2M50.2,51.9L41.8,58.3M50.2,51.9L70.5,64.3M50.2,51.9L59.7,63.6M50.2,51.9L54.7,43.9M50.2,51.9L49.3,31.8M50.2,51.9L39.1,50.0M50.2,51.9L51.6,67.0"/></svg></div><svg class="lonestar" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><defs><radialGradient id="sky-halo"><stop offset="0%" stop-color="var(--gold)" stop-opacity=".55"/><stop offset="45%" stop-color="var(--gold)" stop-opacity=".13"/><stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/></radialGradient></defs><g class="twinkle"><circle cx="100" cy="100" r="86" fill="url(#sky-halo)"/><path d="M100 14V186M14 100H186" stroke="var(--gold)" stroke-opacity=".22" stroke-width="1.2"/><path d="M52 52L148 148M148 52L52 148" stroke="var(--gold)" stroke-opacity=".1" stroke-width="1"/></g><g transform="translate(100 100) scale(2.6) translate(-12 -12)"><path d="M12 1.6l2.9 7.5 8 .4-6.2 5.1 2.1 7.8L12 18l-6.8 4.4 2.1-7.8L1.1 9.5l8-.4z" fill="var(--star)"/></g></svg></div>
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="../../../"><svg class="lonestar-mark" viewBox="0 0 300 200" role="img" aria-label="The Texas flag" focusable="false"><rect class="m-white" x="100" y="0" width="200" height="100"/><rect class="m-red" x="100" y="100" width="200" height="100"/><rect class="m-blue" x="0" y="0" width="100" height="200"/><path class="m-star" d="M50,62.5L58.42,88.41L85.66,88.41L63.62,104.43L72.04,130.34L50,114.32L27.96,130.34L36.38,104.43L14.34,88.41L41.58,88.41Z"/><path class="f-lit" d="M50,100L41.58,88.41L50,62.5Z"/><path class="f-shade" d="M50,100L50,62.5L58.42,88.41Z"/><path class="f-lit" d="M50,100L58.42,88.41L85.66,88.41Z"/><path class="f-shade" d="M50,100L85.66,88.41L63.62,104.43Z"/><path class="f-lit" d="M50,100L63.62,104.43L72.04,130.34Z"/><path class="f-shade" d="M50,100L72.04,130.34L50,114.32Z"/><path class="f-lit" d="M50,100L50,114.32L27.96,130.34Z"/><path class="f-shade" d="M50,100L27.96,130.34L36.38,104.43Z"/><path class="f-lit" d="M50,100L36.38,104.43L14.34,88.41Z"/><path class="f-shade" d="M50,100L14.34,88.41L41.58,88.41Z"/></svg><span>Texas AI Docket</span></a>
+    <button class="navcue" type="button" aria-label="More sections" hidden></button>
+    <nav class="main" aria-label="Sections"><a href="../../../">Home</a><a href="../../../record/">Docket</a><a href="../../../datacenters/">Data centers</a><a href="../../../articles/">Articles</a><a href="../../../videos/">Videos</a><a href="../../../grid/">Grid</a><a href="../../../water/" aria-current="page">Water</a><a href="../../../services/">Services</a></nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+<style>
+.wviz{margin:1.9rem 0;position:relative}
+.wviz>svg{width:100%;height:auto;display:block;position:relative;z-index:1}
+.waterviz .ax{fill:var(--ink-mute);font-family:var(--mono);font-size:11px}
+.waterviz .ax.unit{font-size:9px;letter-spacing:.08em}
+/* `.ax.lab` SETS COLOUR AND NOTHING ELSE, and the version that also set a size was a real
+   defect rather than a tidiness point. `.waterviz .ax.lab` is a three class selector and
+   `.waterviz .ax` in a media query is two, so the breakpoint below could never raise it: the
+   base rule won at every width. Every label wearing it stayed at 11 units and rendered at 4.4
+   pixels on a 320 pixel phone, on a page whose breakpoints were written specifically to stop
+   that. The size comes from `.ax` for every label, and only the colour is specialised. */
+.waterviz .ax.lab{fill:var(--ink-bright)}
+.waterviz .mklab{fill:var(--ink-bright);font-size:11px}
+.waterviz .g{stroke:var(--rule);stroke-width:1;vector-effect:non-scaling-stroke}
+.waterviz .zero{stroke:var(--rule-strong);stroke-width:1.4;vector-effect:non-scaling-stroke}
+.waterviz .line{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linejoin:round;
+  stroke-linecap:round;vector-effect:non-scaling-stroke}
+.waterviz .cap{stroke:var(--ink-mute);stroke-width:1.3;stroke-dasharray:5 4;
+  vector-effect:non-scaling-stroke;opacity:.85}
+.waterviz .mean{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:6 4;
+  vector-effect:non-scaling-stroke}
+.waterviz .brk{stroke:var(--ink-mute);stroke-width:1;opacity:.45;
+  vector-effect:non-scaling-stroke}
+.waterviz .mk{fill:var(--accent);stroke:var(--bg);stroke-width:1.5}
+.waterviz .room{fill:var(--surface);opacity:.55}
+.waterviz .mv,.waterviz .rv{fill:var(--accent-deep)}
+.waterviz .rv{stroke:var(--bg);stroke-width:.3;vector-effect:non-scaling-stroke}
+
+/* THE SHEEN. A band of light travelling slowly across the filled water, clipped to the water
+   itself so it can never light the empty headroom above the line. It carries no value and is
+   not a ramp: it is the same intensity wherever it is, and what it does is stop a flat fill
+   from reading as a painted block. Light moves on water. */
+/* SOFT EDGED, and the first version was not. A flat rect at one opacity is a BLOCK sliding
+   across the water with two hard vertical edges, and on a fill this size it read as though the
+   chart had rendered in two halves. Light on water has no edges. The gradient is what makes it
+   light rather than a shape. */
+.waterviz .sheen{fill:url(#wtsheen);
+  animation:wsheen 14s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes wsheen{0%{transform:translateX(-60%)}62%,100%{transform:translateX(160%)}}
+
+/* THE READOUT. The figures a reader came for, at the top, at a size that says they are the
+   subject rather than a caption. This is the block that replaced three paragraphs, and it
+   holds every number those paragraphs held. `auto-fit` rather than a fixed column count
+   because the chips are of unequal width and a phone should be allowed to reflow them
+   instead of squeezing six into a row and hyphenating every label. */
+/* THE COLUMN IS SIZED FOR THE WIDEST FIGURE THIS BLOCK CAN HOLD, which is a signed six digit
+   acre foot total with its unit beside it. At 7.5rem that value wrapped and dropped its "AF"
+   onto a second line, which both broke the row rhythm and separated a number from the unit
+   that gives it meaning. A figure and its unit are one thing and they do not get to be on
+   different lines. */
+.wreadout{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.75rem,1fr));
+  gap:.1rem;margin:1.25rem 0 1.6rem;border-top:var(--hair) solid var(--rule-strong)}
+.wreadout>div{padding:.85rem .9rem .95rem;border-bottom:var(--hair) solid var(--rule)}
+.wrk{display:block;font-size:var(--s-2);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-mute);margin-bottom:.3rem}
+.wrv{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:var(--s2);line-height:1.05;color:var(--ink-bright);letter-spacing:-.02em;
+  white-space:nowrap}
+.wru{font-size:var(--s-1);color:var(--ink-mute);margin-left:.25rem;letter-spacing:0}
+[data-reveal].in .wreadout>div{animation:wrise .55s cubic-bezier(.2,.75,.25,1)
+  var(--wd,0s) backwards}
+@keyframes wrise{from{opacity:0;transform:translateY(9px)}}
+
+/* THE MAP. The mesh is the faintest thing on the page on purpose: it is there so a reader can
+   find their own county under the water, and the moment it competes with a reservoir it has
+   stopped doing that and started being decoration. */
+/* THE COUNTIES ARE FILLED, and the first version had them hollow, which was a mistake worth
+   writing down. A stroke only mesh over a dark page is a ghost: the state had no body, the
+   reservoirs floated in the same black as the margin, and the drawing read as dots on nothing.
+   Filled with `--surface`, the same token the county map uses, Texas becomes LAND and the
+   water sits on it. The whole picture depends on that one declaration. */
+.waterviz.resmap{max-width:min(100%,82vh);margin-inline:auto}
+.waterviz.resmap .cty{fill:var(--surface);stroke:var(--rule-strong);stroke-width:.5;
+  vector-effect:non-scaling-stroke}
+.waterviz.resmap .edge{fill:none;stroke:var(--ink-mute);stroke-width:1.4;
+  stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.75}
+/* THE TANK IS ITS OWN MARK, UNDER THE WATER RATHER THAN OVER IT. See `_vessel` for the
+   defect: this fill used to live on `.rim`, which is painted last, so it went over every lake
+   on the map and took the colour out of all of them. */
+.waterviz.resmap .tank{fill:url(#reservoir-shell);opacity:.96}
+.waterviz.resmap .shellshade{fill:url(#reservoir-depth);pointer-events:none}
+.waterviz.resmap .rim{fill:none;stroke:url(#reservoir-rim);stroke-width:1.25;
+  vector-effect:non-scaling-stroke;opacity:.9}
+.waterviz.resmap .rimlight{fill:none;stroke:var(--water-lit);stroke-width:.75;
+  stroke-dasharray:26 90;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.78;
+  transform-box:fill-box;transform-origin:50% 50%;transform:rotate(-42deg)}
+/* WATER, IN A COLOUR WATER COMES IN. `--water` is Comal, derived in theme.py against every
+   ground and contrast gated like every other role on this site. Fully opaque, so the page's
+   film grain stops reading through the one surface on the site that is meant to be liquid. */
+.waterviz.resmap .wf{fill:url(#reservoir-water)}
+/* THE LIT LINE WHERE WATER MEETS AIR. It is the same curve the fill closes over, so the two
+   can never disagree about where the surface is. */
+.waterviz.resmap .men{fill:none;stroke:var(--water-lit);stroke-width:1.3;
+  vector-effect:non-scaling-stroke;stroke-linecap:round;opacity:.95}
+.waterviz.resmap .flow{fill:none;stroke:var(--water-lit);stroke-width:.8;
+  vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-dasharray:3 5;
+  opacity:.15}
+.waterviz.resmap .orbshine{fill:url(#reservoir-shine);opacity:.66;pointer-events:none}
+.waterviz.resmap .hit{fill:transparent;stroke:none;pointer-events:all}
+.waterviz.resmap .lake{transform-box:fill-box;transform-origin:50% 50%}
+.waterviz.resmap .res{transform-box:fill-box;transform-origin:50% 50%}
+.waterviz.resmap .reslink{cursor:pointer;outline:none}
+
+/* HOVER, AND WHY IT MAGNIFIES RATHER THAN SLOSHES.
+   The obvious motion is the water rocking in the bowl, and at this scale it cannot work. The
+   circles run from 5.4 units to 27 and the map is a 1000 unit viewBox in about 740 pixels, so
+   a swell big enough to see on the largest lake is half the radius of the smallest, and any
+   rocking of the body lifts it off the vessel wall and opens a crescent of nothing behind it.
+   So the body never moves. The mark grows, which also answers the real problem a reader has
+   with a 5 unit circle, and the SURFACE ripples inside it.
+   THE RIPPLE ONLY EVER SINKS. Moving the lit line up would part it from the water it sits on
+   and show the tank through the gap. Downward it reads as a swell passing under it, which is
+   what it is, and there is nothing to part from. */
+@media (hover:hover){
+  .waterviz.resmap .res{transition:transform .28s cubic-bezier(.16,1,.3,1),filter .28s ease}
+}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .res{transform:scale(1.58);
+  filter:url(#reservoir-shadow)}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .rim{stroke-width:2.25;opacity:1}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .rimlight{stroke-width:1.45;opacity:1;
+  animation:wrim 1.8s ease-in-out infinite}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .men{opacity:1;
+  animation:wripple 1.4s ease-in-out infinite}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .flow{opacity:.9;
+  animation:wwhoosh .8s linear infinite}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .orbshine{
+  animation:wglint 1.8s ease-in-out infinite}
+@keyframes wripple{0%,100%{transform:translateY(0)}50%{transform:translateY(.9px)}}
+@keyframes wwhoosh{to{stroke-dashoffset:-16}}
+@keyframes wrim{50%{opacity:.42;transform:rotate(-28deg)}}
+@keyframes wglint{50%{opacity:.9;transform:translate(1px,-.6px)}}
+@media (prefers-reduced-motion:reduce){
+  .waterviz.resmap .res{transition:none}
+  .waterviz.resmap .reslink:is(:hover,:focus-visible) :is(.rimlight,.men,.flow,.orbshine){
+    animation:none}}
+/* THE KEY HAS ITS OWN TYPE SCALE, because the map has its own geometry. It is a 1000 unit
+   viewBox against the chart's 720, so the same user unit size renders about a third smaller
+   here at any given column width, and the chart's steps would leave this key under the ten
+   pixel floor on every phone. The county map's answer to the same problem is to hide its
+   survey furniture below 34rem. That is right for a scale bar, which a reader can do without,
+   and wrong for a key, which is the only thing on the page that says what the two encodings
+   on a circle mean. So it steps up rather than disappearing. */
+.waterviz.resmap .key .rim{opacity:.75}
+.waterviz.resmap .key .ax{font-size:15px}
+.waterviz.resmap .key .ax.unit{font-size:13px;fill:var(--ink-bright)}
+@media (max-width:26rem){
+  .waterviz.resmap .key .ax{font-size:38px}
+  .waterviz.resmap .key .ax.unit{font-size:32px}}
+@media (min-width:26.01rem) and (max-width:34rem){
+  .waterviz.resmap .key .ax{font-size:30px}
+  .waterviz.resmap .key .ax.unit{font-size:26px}}
+@media (min-width:34.01rem) and (max-width:46rem){
+  .waterviz.resmap .key .ax{font-size:23px}
+  .waterviz.resmap .key .ax.unit{font-size:20px}}
+@media (min-width:46.01rem) and (max-width:62rem){
+  .waterviz.resmap .key .ax{font-size:19px}
+  .waterviz.resmap .key .ax.unit{font-size:16px}}
+
+/* THE CAUSTICS. Two soft pools of the accent, drifting behind the state on different periods
+   so they never repeat a pattern a reader can catch. This is the water page's answer to the
+   heat shimmer the sky carries everywhere else on the site, and it is the same idea: the
+   atmosphere of a real thing, at the lowest intensity that still reads. */
+/* CLIPPED TO THE FIGURE, because the glow is drawn wider than it and a `-6%` inset on a full
+   width figure is six percent of the page hanging off the right edge. It cost two pixels of
+   horizontal scroll at 1180 and the page sweep caught it. The gradients fade to transparent
+   well inside the bleed, so clipping removes an overflow and no light. */
+.wviz.map{overflow:clip}
+.wviz.map::before{content:"";position:absolute;inset:-3% -6%;z-index:0;pointer-events:none;
+  background:radial-gradient(38% 42% at 28% 34%,
+      color-mix(in srgb,var(--accent) 15%,transparent),transparent 70%),
+    radial-gradient(34% 38% at 72% 62%,
+      color-mix(in srgb,var(--accent-deep) 17%,transparent),transparent 70%);
+  animation:wcaustic 26s ease-in-out infinite alternate}
+@keyframes wcaustic{from{transform:translate(-3%,-2%) scale(1)}
+  to{transform:translate(4%,3%) scale(1.09)}}
+
+/* THE MAP READS BACK WHAT THE POINTER FOUND. The circles are intentionally dense, so the
+   stable panel carries the name and value without asking a reader to hold a tiny tooltip open.
+   The select is the same route for touch and keyboard users, with every option coming from the
+   exact population drawn above it. */
+.reservoir-tools{display:grid;grid-template-columns:minmax(0,1fr) minmax(15rem,.7fr);
+  gap:.75rem;margin:.8rem 0 1.1rem;align-items:stretch}
+.reservoir-inspect,.reservoir-picker{border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--surface) 78%,transparent);padding:.9rem 1rem;
+  min-height:4.7rem}
+.reservoir-inspect{display:flex;align-items:center;gap:.9rem}
+.reservoir-pulse{width:2.45rem;height:2.45rem;flex:none;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 30% 24%,var(--water-lit),var(--water) 35%,
+    color-mix(in srgb,var(--water) 35%,var(--bg)) 74%);
+  box-shadow:inset -.35rem -.45rem .7rem color-mix(in srgb,var(--bg) 65%,transparent),
+    inset .2rem .18rem .3rem color-mix(in srgb,white 35%,transparent),
+    0 .45rem 1rem color-mix(in srgb,var(--water) 22%,transparent)}
+.reservoir-pulse::after{content:"";position:absolute;left:21%;top:15%;width:23%;height:34%;
+  border-radius:50%;background:linear-gradient(140deg,color-mix(in srgb,white 72%,transparent),
+    transparent);transform:rotate(28deg)}
+.reservoir-copy{min-width:0}.reservoir-copy strong{display:block;color:var(--ink-bright)}
+.reservoir-copy span{display:block;color:var(--ink-mute);font-size:var(--s-1);margin-top:.15rem}
+.reservoir-copy a{display:inline-block;margin-top:.32rem;font-size:var(--s-1)}
+.reservoir-copy a[hidden]{display:none}
+.reservoir-picker label{display:block;color:var(--ink-mute);font-size:var(--s-2);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.42rem}
+.reservoir-picker select{width:100%;color:var(--ink-bright);background:var(--bg);
+  border:var(--hair) solid var(--rule-strong);padding:.62rem .7rem;font:inherit}
+@media (max-width:42rem){.reservoir-tools{grid-template-columns:1fr}}
+
+/* THE SPARKLINE. Sized in the row rather than by the drawing, and `preserveAspectRatio:none`
+   is deliberate: the cell is short and wide, the shape being read is a slope over time, and
+   letting it letterbox would waste the only dimension that carries the reading. */
+.spark{width:5.5rem;height:1.375rem;display:block;overflow:visible}
+.spark .zero{stroke:var(--rule);stroke-width:1;vector-effect:non-scaling-stroke}
+.spark .line{fill:none;stroke:var(--accent);stroke-width:1.6;
+  vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.spark .mk{fill:var(--accent)}
+td.sparkcell{width:6rem;vertical-align:middle}
+/* WHICH COLUMN GIVES WAY ON A PHONE, and it was the wrong one until 2026-08-22.
+   The trend was dropped below this width and the acre feet kept, so a reader on a phone lost
+   the one column they cannot get anywhere else and kept a seven digit lookup value. The owner
+   reported it as the trend being cut off, which is what a column that is simply absent looks
+   like from the outside.
+   Acre feet gives way instead. The figure is still in the markup, still in the tooltip on every
+   bar and still in waterwatch.json, and dropping it also stops the long numerals forcing the
+   metro names to wrap onto three lines. */
+@media (max-width:46rem){td.af,th.afhead{display:none}}
+
+/* SVG TEXT SCALES WITH THE DRAWING, AND THE DRAWING SHRINKS TO FIT, which is the same problem
+   the grid watch chart already solved and the same numbers it solved it with. A 720 unit wide
+   viewBox rendered into a 358 pixel column puts an 11 unit label at five and a half pixels.
+   Legible on the laptop it was written on and unreadable on the phone this site is mostly read
+   on, and no build time check can see it, because the markup is identical at every width.
+   Measured on the first render of this page and it was exactly that: every axis number on the
+   trend and the distribution was under six pixels at 390. */
+@media (max-width:22rem){
+  .waterviz .ax,.waterviz .mklab{font-size:27px}.waterviz .ax.unit{font-size:22px}}
+@media (min-width:22.01rem) and (max-width:26rem){
+  .waterviz .ax,.waterviz .mklab{font-size:22px}.waterviz .ax.unit{font-size:18px}}
+@media (min-width:26.01rem) and (max-width:34rem){
+  .waterviz .ax,.waterviz .mklab{font-size:19px}.waterviz .ax.unit{font-size:16px}}
+@media (min-width:34.01rem) and (max-width:46rem){
+  .waterviz .ax,.waterviz .mklab{font-size:15px}.waterviz .ax.unit{font-size:12px}}
+
+/* ---- the show, all of it FROM hidden TO resting, never the other way ---- */
+.wviz .rv,.wviz .mv,.waterviz .wf{transform-box:fill-box;
+  transform-origin:50% 100%}
+[data-reveal].in .rv,[data-reveal].in .mv{animation:wgrow .7s cubic-bezier(.2,.75,.25,1)
+  var(--wd,0s) backwards}
+@keyframes wgrow{from{transform:scaleY(0)}}
+[data-reveal].in .wf{animation:wgrow .9s cubic-bezier(.3,.7,.3,1) var(--wd,0s) backwards}
+[data-reveal].in .rim{animation:wfade .5s ease var(--wd,0s) backwards}
+@keyframes wfade{from{opacity:0}}
+/* THE LINE DRAWS ITSELF, and the dash length is the path's OWN measured length, computed in
+   Python and handed over in `--len`. A guessed constant either stops short of the end or sits
+   still for the first part of its run, and both look like a bug in the data. */
+[data-reveal].in .waterviz .line{stroke-dasharray:var(--len);
+  animation:wdraw 1.15s cubic-bezier(.4,0,.2,1) backwards}
+@keyframes wdraw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+[data-reveal].in .mean,[data-reveal].in .cap{animation:wfade .6s ease .75s backwards}
+[data-reveal].in .mk,[data-reveal].in .mklab{animation:wfade .5s ease .95s backwards}
+.wviz .d1{--wd:.05s}.wviz .d2{--wd:.1s}.wviz .d3{--wd:.15s}.wviz .d4{--wd:.2s}
+.wviz .d5{--wd:.26s}.wviz .d6{--wd:.32s}.wviz .d7{--wd:.4s}
+
+
+.reservoir-back{display:inline-flex;gap:.45rem;align-items:center;margin:.4rem 0 1.2rem;
+  color:var(--ink-mute);font-size:var(--s-1)}
+.reservoir-back::before{content:"←";color:var(--water-lit)}
+.reservoir-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(17rem,.7fr);
+  align-items:center;gap:clamp(1.2rem,4vw,4.6rem);padding:clamp(1rem,3vw,2.2rem) 0 1rem}
+.reservoir-kicker{font:600 var(--s-2)/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--water-lit);margin:0 0 .65rem}
+.reservoir-hero h1{margin:0;max-width:14ch}
+.reservoir-hero .lede{max-width:37rem;margin:.9rem 0 .45rem}
+.reservoir-orb-card{--orb-x:50%;--orb-y:50%;position:relative;isolation:isolate;
+  min-height:clamp(17rem,34vw,27rem);display:grid;place-items:center;outline:none;
+  border-radius:50%;background:radial-gradient(circle at var(--orb-x) var(--orb-y),
+    color-mix(in srgb,var(--water) 18%,transparent),transparent 54%)}
+.reservoir-orb-card[data-tilt-x="left"]{--orb-x:22%;--orb-ry:-3.2deg}
+.reservoir-orb-card[data-tilt-x="centre"]{--orb-x:50%;--orb-ry:0deg}
+.reservoir-orb-card[data-tilt-x="right"]{--orb-x:78%;--orb-ry:3.2deg}
+.reservoir-orb-card[data-tilt-y="top"]{--orb-y:22%;--orb-rx:2.4deg}
+.reservoir-orb-card[data-tilt-y="centre"]{--orb-y:50%;--orb-rx:0deg}
+.reservoir-orb-card[data-tilt-y="bottom"]{--orb-y:78%;--orb-rx:-2.4deg}
+.reservoir-orb-card::before{content:"";position:absolute;inset:14%;border-radius:50%;z-index:-1;
+  background:var(--water);filter:blur(3.2rem);opacity:.12}
+.reservoir-orb-wrap{width:min(100%,27rem);
+  transform:perspective(46rem) rotateX(var(--orb-rx,0deg)) rotateY(var(--orb-ry,0deg));
+  transition:transform .18s ease-out;filter:drop-shadow(0 1.3rem 1.7rem rgba(0,0,0,.34))}
+.reservoir-orb{width:100%;height:auto;display:block;overflow:visible}
+.reservoir-orb .tank{fill:url(#reservoir-shell)}
+.reservoir-orb .wf{fill:url(#reservoir-water)}
+.reservoir-orb .shellshade{fill:url(#reservoir-depth)}
+.reservoir-orb .orbshine{fill:url(#reservoir-shine)}
+.reservoir-orb .rim{fill:none;stroke:url(#reservoir-rim);stroke-width:2.3}
+.reservoir-orb .rimlight{fill:none;stroke:var(--water-lit);stroke-width:1.8;
+  stroke-dasharray:65 240;stroke-linecap:round;transform-box:fill-box;
+  transform-origin:50% 50%;transform:rotate(-42deg)}
+.reservoir-orb .men{fill:none;stroke:var(--water-lit);stroke-width:2.2;stroke-linecap:round}
+.reservoir-orb .flow{fill:none;stroke:var(--water-lit);stroke-width:1.6;
+  stroke-linecap:round;stroke-dasharray:7 12;opacity:.32}
+.reservoir-orb-card:is(:hover,:focus-visible) .flow{opacity:.86;
+  animation:detailwhoosh 1.05s linear infinite}
+.reservoir-orb-card:is(:hover,:focus-visible) .men{animation:detailripple 1.7s ease-in-out infinite}
+.reservoir-orb-card:is(:hover,:focus-visible) .rimlight{animation:detailrim 2.2s ease-in-out infinite}
+@keyframes detailwhoosh{to{stroke-dashoffset:-38}}
+@keyframes detailripple{50%{transform:translateY(1.4px)}}
+@keyframes detailrim{50%{opacity:.42;transform:rotate(-29deg)}}
+.reservoir-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));
+  margin:1.5rem 0 3.2rem;border-top:var(--hair) solid var(--rule-strong)}
+.reservoir-metrics>div{padding:1rem;border-bottom:var(--hair) solid var(--rule);
+  background:linear-gradient(150deg,color-mix(in srgb,var(--surface) 82%,transparent),transparent)}
+.reservoir-metrics .label{display:block;color:var(--ink-mute);font-size:var(--s-2);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem}
+.reservoir-metrics .value{display:block;color:var(--ink-bright);font:500 var(--s1)/1.1 var(--mono);
+  white-space:nowrap}
+.reservoir-metrics .unit{font-size:var(--s-1);color:var(--ink-mute);margin-left:.25rem}
+.reservoir-section{margin:3.4rem 0}.reservoir-section>header{max-width:45rem;margin-bottom:1rem}
+.reservoir-trend{width:100%;height:auto;display:block}
+.reservoir-trend .area{fill:url(#detail-water-area)}
+.reservoir-trend .line{fill:none;stroke:var(--water-lit);stroke-width:3;
+  stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.reservoir-trend .g{stroke:var(--rule);stroke-width:1;vector-effect:non-scaling-stroke}
+.reservoir-trend .ax{fill:var(--ink-mute);font-family:var(--mono);font-size:12.25px}
+.reservoir-trend .point{fill:var(--water-lit);stroke:var(--bg);stroke-width:2;
+  vector-effect:non-scaling-stroke}
+.reservoir-trend .latest{fill:var(--ink-bright);stroke:var(--water);stroke-width:5}
+.reservoir-table-wrap{overflow-x:auto;border-top:var(--hair) solid var(--rule-strong)}
+.reservoir-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.reservoir-table th,.reservoir-table td{text-align:left;padding:.72rem .65rem;
+  border-bottom:var(--hair) solid var(--rule);white-space:nowrap}
+.reservoir-table th{color:var(--ink-mute);font-size:var(--s-2);letter-spacing:.07em;
+  text-transform:uppercase}.reservoir-table td:not(:first-child){font-family:var(--mono)}
+.reservoir-data-note{margin-top:1rem;color:var(--ink-mute);font-size:var(--s-1)}
+@media (max-width:46rem){
+  .reservoir-hero{grid-template-columns:1fr}.reservoir-orb-card{order:-1;min-height:16rem}
+  .reservoir-orb-wrap{width:min(82vw,22rem)}.reservoir-hero h1{max-width:none}}
+@media (max-width:42rem){.reservoir-metrics .metric-wide{grid-column:1/-1}}
+@media (max-width:22rem){.reservoir-trend .ax{font-size:34px}}
+@media (min-width:22.01rem) and (max-width:26rem){.reservoir-trend .ax{font-size:27px}}
+@media (min-width:26.01rem) and (max-width:34rem){.reservoir-trend .ax{font-size:22px}}
+@media (min-width:34.01rem) and (max-width:46rem){.reservoir-trend .ax{font-size:17px}}
+@media (prefers-reduced-motion:reduce){
+  .reservoir-orb-wrap{transition:none;transform:none!important}
+  .reservoir-orb-card :is(.flow,.men,.rimlight){animation:none!important}}
+</style>
+<a class="reservoir-back" href="../../../water/">Texas Water Watch</a>
+<section class="reservoir-hero" data-proper-name="Lake Sulphur Springs">
+  <div>
+    <p class="reservoir-kicker">Reservoir record</p>
+    <h1>Lake Sulphur Springs</h1>
+    <p class="lede">Lake Sulphur Springs is <strong class="num">90.5%</strong> full,
+    holding <strong class="num">16,070</strong> acre feet against a
+    conservation capacity of <strong class="num">17,747</strong> acre feet.</p>
+    <p class="wnote">Updated September 2nd, 2026</p>
+  </div>
+  <div class="reservoir-orb-card" tabindex="0"
+       aria-label="A dimensional gauge for Lake Sulphur Springs at 90.5% full">
+    <div class="reservoir-orb-wrap">
+      <svg class="reservoir-orb" viewBox="0 0 360 360" role="img"
+           aria-label="Lake Sulphur Springs filled to 90.5%">
+        <defs>
+  <radialGradient id="reservoir-shell" cx="30%" cy="22%" r="82%">
+    <stop offset="0" stop-color="var(--ink-mute)"/>
+    <stop offset=".48" stop-color="var(--surface)"/>
+    <stop offset="1" stop-color="var(--bg)"/>
+  </radialGradient>
+  <linearGradient id="reservoir-water" x1="0" y1="0" x2=".85" y2="1">
+    <stop offset="0" stop-color="var(--water-lit)"/>
+    <stop offset=".38" stop-color="var(--water)"/>
+    <stop offset="1" stop-color="var(--accent-deep)"/>
+  </linearGradient>
+  <radialGradient id="reservoir-depth" cx="28%" cy="20%" r="78%">
+    <stop offset="0" stop-color="white" stop-opacity=".13"/>
+    <stop offset=".55" stop-color="var(--bg)" stop-opacity="0"/>
+    <stop offset="1" stop-color="var(--bg)" stop-opacity=".58"/>
+  </radialGradient>
+  <linearGradient id="reservoir-rim" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="var(--water-lit)"/>
+    <stop offset=".46" stop-color="var(--accent)"/>
+    <stop offset="1" stop-color="var(--ink-mute)"/>
+  </linearGradient>
+  <radialGradient id="reservoir-shine" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="white" stop-opacity=".64"/>
+    <stop offset="1" stop-color="white" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="reservoir-shadow" x="-80%" y="-80%" width="260%" height="260%">
+    <feDropShadow dx="0" dy="3" stdDeviation="3.2" flood-color="var(--water)"
+      flood-opacity=".5"/>
+  </filter>
+</defs>
+        <g><circle class="tank" cx="180.0" cy="180.0" r="112.0"/><g class="lake"><path class="wf" d="M114.475,89.168 Q147.238,65.748 180.0,89.168 Q212.762,112.588 245.525,89.168 A112.0,112.0 0 0 1 292.0,180.0 A112.0,112.0 0 0 1 180.0,292.0 A112.0,112.0 0 0 1 68.0,180.0 A112.0,112.0 0 0 1 114.475,89.168 Z"/><path class="flow flow1" d="M116.80,154.07 Q180.00,141.75 243.20,154.07"/><path class="flow flow2" d="M135.03,212.90 Q180.00,200.58 224.97,212.90"/><path class="men" d="M114.475,89.168 Q147.238,65.748 180.0,89.168 Q212.762,112.588 245.525,89.168 "/></g><circle class="shellshade" cx="180.0" cy="180.0" r="112.0"/><ellipse class="orbshine" cx="148.64" cy="146.40" rx="20.16" ry="33.60"/><circle class="rim" cx="180.0" cy="180.0" r="112.0"/><circle class="rimlight" cx="180.0" cy="180.0" r="105.28"/></g>
+      </svg>
+    </div>
+  </div>
+</section>
+<div class="reservoir-metrics" data-prose="data"><div><span class="label">Percent full</span><span class="value">90.5<span class="unit">%</span></span></div><div><span class="label">Storage</span><span class="value">16,070<span class="unit">AF</span></span></div><div><span class="label">Conservation capacity</span><span class="value">17,747<span class="unit">AF</span></span></div><div><span class="label">Change today</span><span class="value">-36<span class="unit">AF</span></span></div><div><span class="label">Across the record</span><span class="value">-966<span class="unit">AF</span></span></div><div class="metric-wide"><span class="label">Recorded range</span><span class="value">90.5% to 96.0%</span></div><div><span class="label">Record</span><span class="value">23<span class="unit">days</span></span></div></div>
+<section class="reservoir-section">
+  <header><h2>Daily movement</h2>
+    <p>The line follows every verified reading held for this reservoir.</p></header>
+  <figure class="wviz">
+<svg class="waterviz reservoir-trend" viewBox="0 0 840 330" role="img"
+  aria-label="Daily percent full for Lake Sulphur Springs from
+  August 11th, 2026 through
+  September 2nd, 2026">
+  <defs><linearGradient id="detail-water-area" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="var(--water)" stop-opacity=".48"/>
+    <stop offset="1" stop-color="var(--water)" stop-opacity=".03"/>
+  </linearGradient></defs>
+  <line class="g" x1="146.2" x2="816.0" y1="272.00" y2="272.00"/><text class="ax" x="136.2" y="276.00" text-anchor="end">89.6%</text><line class="g" x1="146.2" x2="816.0" y1="160.00" y2="160.00"/><text class="ax" x="136.2" y="164.00" text-anchor="end">93.3%</text><line class="g" x1="146.2" x2="816.0" y1="48.00" y2="48.00"/><text class="ax" x="136.2" y="52.00" text-anchor="end">97.0%</text><path class="area" d="M146.20,77.65 L176.65,83.70 L207.09,93.09 L237.54,105.50 L267.98,111.86 L298.43,114.89 L328.87,124.27 L359.32,133.36 L389.76,142.74 L420.21,152.13 L450.65,158.49 L481.10,167.87 L511.55,173.93 L541.99,170.90 L572.44,183.31 L602.88,189.37 L633.33,198.75 L663.77,205.11 L694.22,214.50 L724.66,220.55 L755.11,226.91 L785.55,236.30 L816.00,242.35 L816.00,272.00 L146.20,272.00 Z"/><path class="line" style="--len:693.20" d="M146.20,77.65 L176.65,83.70 L207.09,93.09 L237.54,105.50 L267.98,111.86 L298.43,114.89 L328.87,124.27 L359.32,133.36 L389.76,142.74 L420.21,152.13 L450.65,158.49 L481.10,167.87 L511.55,173.93 L541.99,170.90 L572.44,183.31 L602.88,189.37 L633.33,198.75 L663.77,205.11 L694.22,214.50 L724.66,220.55 L755.11,226.91 L785.55,236.30 L816.00,242.35"/>
+  <circle class="point" cx="146.20" cy="77.65" r="3.2"><title>August 11th, 2026, 96.0% full</title></circle><circle class="point" cx="176.65" cy="83.70" r="3.2"><title>August 12th, 2026, 95.8% full</title></circle><circle class="point" cx="207.09" cy="93.09" r="3.2"><title>August 13th, 2026, 95.5% full</title></circle><circle class="point" cx="237.54" cy="105.50" r="3.2"><title>August 14th, 2026, 95.1% full</title></circle><circle class="point" cx="267.98" cy="111.86" r="3.2"><title>August 15th, 2026, 94.9% full</title></circle><circle class="point" cx="298.43" cy="114.89" r="3.2"><title>August 16th, 2026, 94.8% full</title></circle><circle class="point" cx="328.87" cy="124.27" r="3.2"><title>August 17th, 2026, 94.5% full</title></circle><circle class="point" cx="359.32" cy="133.36" r="3.2"><title>August 18th, 2026, 94.2% full</title></circle><circle class="point" cx="389.76" cy="142.74" r="3.2"><title>August 19th, 2026, 93.8% full</title></circle><circle class="point" cx="420.21" cy="152.13" r="3.2"><title>August 20th, 2026, 93.5% full</title></circle><circle class="point" cx="450.65" cy="158.49" r="3.2"><title>August 21st, 2026, 93.3% full</title></circle><circle class="point" cx="481.10" cy="167.87" r="3.2"><title>August 22nd, 2026, 93.0% full</title></circle><circle class="point" cx="511.55" cy="173.93" r="3.2"><title>August 23rd, 2026, 92.8% full</title></circle><circle class="point" cx="541.99" cy="170.90" r="3.2"><title>August 24th, 2026, 92.9% full</title></circle><circle class="point" cx="572.44" cy="183.31" r="3.2"><title>August 25th, 2026, 92.5% full</title></circle><circle class="point" cx="602.88" cy="189.37" r="3.2"><title>August 26th, 2026, 92.3% full</title></circle><circle class="point" cx="633.33" cy="198.75" r="3.2"><title>August 27th, 2026, 92.0% full</title></circle><circle class="point" cx="663.77" cy="205.11" r="3.2"><title>August 28th, 2026, 91.8% full</title></circle><circle class="point" cx="694.22" cy="214.50" r="3.2"><title>August 29th, 2026, 91.5% full</title></circle><circle class="point" cx="724.66" cy="220.55" r="3.2"><title>August 30th, 2026, 91.3% full</title></circle><circle class="point" cx="755.11" cy="226.91" r="3.2"><title>August 31st, 2026, 91.1% full</title></circle><circle class="point" cx="785.55" cy="236.30" r="3.2"><title>September 1st, 2026, 90.8% full</title></circle><circle class="point latest" cx="816.00" cy="242.35" r="5"><title>September 2nd, 2026, 90.5% full</title></circle><text class="ax" x="146.20" y="310.0" text-anchor="start">Aug 11th</text><text class="ax" x="481.10" y="310.0" text-anchor="middle">Aug 22nd</text><text class="ax" x="816.00" y="310.0" text-anchor="end">Sep 2nd</text>
+</svg>
+<figcaption>Daily percent full. The vertical scale follows this record's own range instead of
+starting at zero, so its movement stays visible without changing the measurement.</figcaption>
+</figure>
+</section>
+<section class="reservoir-section">
+  <header><h2>The readings</h2>
+    <p>Daily movement appears only when the previous reading is from the prior calendar day.</p>
+  </header>
+  <div class="reservoir-table-wrap"><table class="reservoir-table" data-prose="data">
+    <thead><tr><th>Date</th><th>Percent full</th><th>Storage</th><th>Daily movement</th></tr></thead>
+    <tbody><tr><td>September 2nd, 2026</td><td>90.5%</td><td>16,070 AF</td><td>-36 AF</td></tr><tr><td>September 1st, 2026</td><td>90.8%</td><td>16,106 AF</td><td>-55 AF</td></tr><tr><td>August 31st, 2026</td><td>91.1%</td><td>16,161 AF</td><td>-36 AF</td></tr><tr><td>August 30th, 2026</td><td>91.3%</td><td>16,197 AF</td><td>-37 AF</td></tr><tr><td>August 29th, 2026</td><td>91.5%</td><td>16,234 AF</td><td>-54 AF</td></tr><tr><td>August 28th, 2026</td><td>91.8%</td><td>16,288 AF</td><td>-37 AF</td></tr><tr><td>August 27th, 2026</td><td>92.0%</td><td>16,325 AF</td><td>-55 AF</td></tr><tr><td>August 26th, 2026</td><td>92.3%</td><td>16,380 AF</td><td>-36 AF</td></tr><tr><td>August 25th, 2026</td><td>92.5%</td><td>16,416 AF</td><td>-73 AF</td></tr><tr><td>August 24th, 2026</td><td>92.9%</td><td>16,489 AF</td><td>+18 AF</td></tr><tr><td>August 23rd, 2026</td><td>92.8%</td><td>16,471 AF</td><td>-36 AF</td></tr><tr><td>August 22nd, 2026</td><td>93.0%</td><td>16,507 AF</td><td>-55 AF</td></tr><tr><td>August 21st, 2026</td><td>93.3%</td><td>16,562 AF</td><td>-36 AF</td></tr><tr><td>August 20th, 2026</td><td>93.5%</td><td>16,598 AF</td><td>-55 AF</td></tr><tr><td>August 19th, 2026</td><td>93.8%</td><td>16,653 AF</td><td>-55 AF</td></tr><tr><td>August 18th, 2026</td><td>94.2%</td><td>16,708 AF</td><td>-54 AF</td></tr><tr><td>August 17th, 2026</td><td>94.5%</td><td>16,762 AF</td><td>-55 AF</td></tr><tr><td>August 16th, 2026</td><td>94.8%</td><td>16,817 AF</td><td>-18 AF</td></tr><tr><td>August 15th, 2026</td><td>94.9%</td><td>16,835 AF</td><td>-37 AF</td></tr><tr><td>August 14th, 2026</td><td>95.1%</td><td>16,872 AF</td><td>-73 AF</td></tr><tr><td>August 13th, 2026</td><td>95.5%</td><td>16,945 AF</td><td>-54 AF</td></tr><tr><td>August 12th, 2026</td><td>95.8%</td><td>16,999 AF</td><td>-37 AF</td></tr><tr><td>August 11th, 2026</td><td>96.0%</td><td>17,036 AF</td><td>First reading</td></tr></tbody>
+  </table></div>
+  <p class="reservoir-data-note">Every reading is available in the
+    <a href="../../../waterwatch.json">open water record</a>.</p>
+</section>
+<script>(() => {
+  const card = document.querySelector('.reservoir-orb-card');
+  const orb = document.querySelector('.reservoir-orb-wrap');
+  if (!card || !orb || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const reset = () => {
+    delete card.dataset.tiltX;
+    delete card.dataset.tiltY;
+  };
+  const region = (value, low, middle, high) => value < .34 ? low : value > .66 ? high : middle;
+  card.addEventListener('pointermove', (event) => {
+    const box = card.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (event.clientX - box.left) / box.width));
+    const y = Math.max(0, Math.min(1, (event.clientY - box.top) / box.height));
+    card.dataset.tiltX = region(x, 'left', 'centre', 'right');
+    card.dataset.tiltY = region(y, 'top', 'centre', 'bottom');
+  });
+  card.addEventListener('pointerleave', reset);
+  card.addEventListener('blur', reset);
+})();</script>
+
+</main>
+<footer class="site">
+  <div class="wrap block">
+    <svg class="colophon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="m-star" d="M12,1L14.47,8.6L22.46,8.6L16,13.3L18.47,20.9L12,16.2L5.53,20.9L8,13.3L1.54,8.6L9.53,8.6Z"/><path class="f-lit" d="M12,12L9.53,8.6L12,1Z"/><path class="f-shade" d="M12,12L12,1L14.47,8.6Z"/><path class="f-lit" d="M12,12L14.47,8.6L22.46,8.6Z"/><path class="f-shade" d="M12,12L22.46,8.6L16,13.3Z"/><path class="f-lit" d="M12,12L16,13.3L18.47,20.9Z"/><path class="f-shade" d="M12,12L18.47,20.9L12,16.2Z"/><path class="f-lit" d="M12,12L12,16.2L5.53,20.9Z"/><path class="f-shade" d="M12,12L5.53,20.9L8,13.3Z"/><path class="f-lit" d="M12,12L8,13.3L1.54,8.6Z"/><path class="f-shade" d="M12,12L1.54,8.6L9.53,8.6Z"/></svg>
+    <div>
+      <ul class="footnav" data-prose="data"><li><a href="../../../record/">Docket</a></li><li><a href="../../../datacenters/">Data centers</a></li><li><a href="../../../articles/">Articles</a></li><li><a href="../../../videos/">Videos</a></li><li><a href="../../../grid/">Grid</a></li><li><a href="../../../water/">Water</a></li><li><a href="../../../services/">Services</a></li><li><a href="../../../about/">About</a></li><li><a href="../../../topic/">Beats</a></li><li><a href="../../../place/">Places</a></li><li><a href="../../../sources/">Sources</a></li><li><a href="../../../questions/">Questions</a></li><li><a href="../../../scan/">Scan</a></li></ul>
+      <ul class="socials" data-prose="data"><li><a href="https://www.linkedin.com/company/texasaidocket/" target="_blank" rel="noopener" aria-label="Texas AI Docket on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a></li><li><a href="https://www.facebook.com/Texasaidocket" target="_blank" rel="noopener" aria-label="Texas AI Docket on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a></li><li><a href="https://www.instagram.com/texasaidocket" target="_blank" rel="noopener" aria-label="Texas AI Docket on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a></li><li><a href="https://www.youtube.com/@TexasAIDocket" target="_blank" rel="noopener" aria-label="Texas AI Docket on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></li><li><a href="https://x.com/TexasAIDocket" target="_blank" rel="noopener" aria-label="Texas AI Docket on X"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a></li><li><a href="https://www.tiktok.com/@texas.ai.docket" target="_blank" rel="noopener" aria-label="Texas AI Docket on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a></li><li><a href="../../../services/#start" id="contactopen" aria-label="Send a message to Texas AI Docket"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M1.5 5.25A2.25 2.25 0 0 1 3.75 3h16.5a2.25 2.25 0 0 1 2.25 2.25v.38l-10.5 6.3-10.5-6.3v-.38Zm0 2.87V18.75A2.25 2.25 0 0 0 3.75 21h16.5a2.25 2.25 0 0 0 2.25-2.25V8.12l-9.92 5.95a1.5 1.5 0 0 1-1.66 0L1.5 8.12Z"/></svg></a></li></ul>
+      <p class="colophon-line" data-prose="data"><span>Built on the Balcones Escarpment</span><span>30°20&#x27;N 97°47&#x27;W</span></p>
+    </div>
+  </div>
+  <dialog class="askfb" id="contactbox" aria-labelledby="contacth">
+  <form id="contactform" method="POST" action="https://formsubmit.co/228f72bce4f9b0e50b49d8d501374771">
+    <h2 id="contacth">Send a message</h2>
+    <p class="askfbnote">It reaches the desk that publishes this record. An address below is only needed if a reply is wanted, and it is used for that and nothing else.</p>
+    <label class="askfbl" for="contactmsg">Your message</label>
+    <textarea id="contactmsg" name="message" rows="5" required></textarea>
+    <label class="askfbl" for="contactmail">Email, only if a reply is wanted</label>
+    <input id="contactmail" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="Optional">
+    <input type="hidden" name="_subject" value="Texas AI Docket, a message from the site">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <p class="askfbmsg" id="contactstatus" role="status" aria-live="polite"></p>
+    <div class="askfbrow">
+      <button type="submit" class="askfbsend" id="contactsend">Send</button>
+      <button type="button" class="asklink" id="contactclose">Close</button>
+    </div>
+  </form>
+</dialog>
+</footer>
+<script>
+document.documentElement.classList.add('js');
+addEventListener('scroll',function(){
+  document.querySelector('.masthead').classList.toggle('scrolled',scrollY>8);
+},{passive:true});
+// A CLIPPED LABEL IS USUALLY THE PHONE NAV'S SCROLL CUE, but an edge can land exactly in the
+// gap between two labels. In that narrow band the remaining sections are reachable and still
+// look absent. The cue follows actual scroll state, so it never points past the final section
+// and never appears merely because the small-screen layout rule is active.
+(function(){
+  var nav=document.querySelector('nav.main'), cue=document.querySelector('.navcue');
+  if(!nav||!cue) return;
+  function edge(){
+    cue.hidden=!(nav.scrollLeft+nav.clientWidth<nav.scrollWidth-1);
+  }
+  cue.addEventListener('click',function(){
+    nav.scrollBy({left:nav.clientWidth,
+      behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  });
+  nav.addEventListener('scroll',edge,{passive:true});
+  addEventListener('resize',edge,{passive:true});
+  edge();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(edge);
+})();
+if('IntersectionObserver' in window){
+  var els=document.querySelectorAll('[data-reveal]');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in');
+      io.unobserve(en.target); } });
+  },{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){ el.classList.add('pending'); io.observe(el); });
+  // Last resort. If the callback never runs, every section is shown anyway rather than left
+  // present and invisible.
+  setTimeout(function(){ els.forEach(function(el){ el.classList.add('in'); }); },2500);
+}
+// THE MAP UNDER A THUMB.
+// On a laptop the map answers "what is this county" with a hover title. A phone has no hover,
+// so the only way to ask was to commit to a county and load its page, come back, and commit to
+// the next one. That is not looking around, it is a survey taken one page load at a time.
+// Dragging a thumb across the state now names each county and says what it holds, and lifting
+// the thumb without moving still opens the county, so the link is not taken away.
+(function(){
+  var read=document.getElementById('mapread'), map=document.querySelector('svg.txmap'),
+      rb=document.getElementById('mapreset');
+  if(!read||!map||!('ontouchstart' in window)) return;
+  var moved=false, sx=0, sy=0, last=null, clearAt=0;
+  // PINCH TO ZOOM, TWO FINGERS TO MOVE.
+  // Even with the readout naming what is under the thumb, a county in the Panhandle is a few
+  // millimetres of glass and the thumb covers all of it. So the map moves like a map.
+  //
+  // ONE FINGER STAYS THE PICKER and two fingers do the navigating, which is the opposite of a
+  // slippy map and is right here: this drawing is a chooser, not a place to wander. One finger
+  // already reads out and opens a county, and taking that away to pan would trade the working
+  // interaction for a familiar one.
+  //
+  // THE VIEWBOX MOVES, not a transform on a group. Strokes here are `vector-effect:
+  // non-scaling-stroke`, so a viewBox change keeps every hairline at its drawn weight instead
+  // of fattening the borders as you zoom, and `elementFromPoint` keeps working because it asks
+  // in screen coordinates either way.
+  var VB={x:0,y:0,w:0,h:0}, HOME=null, MAXZ=8;
+  (function(){
+    var v=(map.getAttribute('viewBox')||'').split(/[ ,]+/).map(Number);
+    if(v.length===4&&v.every(function(n){return !isNaN(n);})){
+      HOME={x:v[0],y:v[1],w:v[2],h:v[3]}; VB={x:v[0],y:v[1],w:v[2],h:v[3]};
+    }
+  })();
+  function apply(){
+    if(!HOME) return;
+    // CLAMPED SO THE MAP CANNOT BE LOST. Zooming out past the full extent and panning the
+    // state off the glass are both ways to end up looking at nothing with no way back that a
+    // reader would guess.
+    VB.w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,VB.w));
+    VB.h=VB.w*(HOME.h/HOME.w);
+    VB.x=Math.min(HOME.x+HOME.w-VB.w,Math.max(HOME.x,VB.x));
+    VB.y=Math.min(HOME.y+HOME.h-VB.h,Math.max(HOME.y,VB.y));
+    map.setAttribute('viewBox',VB.x+' '+VB.y+' '+VB.w+' '+VB.h);
+    // The button is resolved once at the top with the readout, because this runs on every
+    // touchmove of a pinch, roughly sixty times a second on the device with the least headroom.
+    if(rb) rb.hidden=!(VB.w<HOME.w-0.5);
+  }
+  function reset(){ if(HOME){ VB={x:HOME.x,y:HOME.y,w:HOME.w,h:HOME.h}; apply(); } }
+  if(rb) rb.addEventListener('click',function(){ reset(); show(null); });
+  function span(e){
+    var a=e.touches[0], b=e.touches[1];
+    return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+  }
+  function mid(e){
+    var a=e.touches[0], b=e.touches[1];
+    return {x:(a.clientX+b.clientX)/2,y:(a.clientY+b.clientY)/2};
+  }
+  var pinch=null;
+  map.addEventListener('touchstart',function(e){
+    if(e.touches.length===2&&HOME){
+      show(null);
+      pinch={d:span(e),m:mid(e),vb:{x:VB.x,y:VB.y,w:VB.w,h:VB.h},box:map.getBoundingClientRect()};
+    }
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    if(e.touches.length!==2||!pinch) return;
+    e.preventDefault();                       // or the browser zooms the whole page instead
+    var d=span(e), m=mid(e), box=pinch.box;
+    var k=Math.max(0.05,d/Math.max(1,pinch.d));
+    var w=pinch.vb.w/k;
+    w=Math.min(HOME.w,Math.max(HOME.w/MAXZ,w));
+    var h=w*(HOME.h/HOME.w);
+    // ZOOM ABOUT THE FINGERS, not the centre of the drawing. Anchoring at the midpoint is what
+    // makes a pinch feel like it is holding the paper rather than driving a slider.
+    var fx=(pinch.m.x-box.left)/box.width, fy=(pinch.m.y-box.top)/box.height;
+    VB.x=pinch.vb.x+fx*pinch.vb.w-fx*w-(m.x-pinch.m.x)/box.width*w;
+    VB.y=pinch.vb.y+fy*pinch.vb.h-fy*h-(m.y-pinch.m.y)/box.height*h;
+    VB.w=w; VB.h=h;
+    apply();
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(e.touches.length<2) pinch=null;
+  },{passive:true});
+  function at(t){
+    var el=document.elementFromPoint(t.clientX,t.clientY);
+    return el&&el.closest?el.closest('path.c'):null;
+  }
+  function show(p){
+    if(p===last) return;
+    if(last) last.classList.remove('under');
+    last=p;
+    if(!p){ read.textContent=''; return; }
+    p.classList.add('under');
+    var n=p.getAttribute('data-n');
+    read.textContent=p.getAttribute('data-county')+' County. '+
+      (n? n+(n==='1'?' decision':' decisions')+' on the record. Lift to open.'
+        : 'Nothing on the record yet.');
+  }
+  map.addEventListener('touchstart',function(e){
+    if(e.touches.length>1) return;   // two fingers are a gesture, never a pick
+    clearTimeout(clearAt);           // a new touch outlives the last one's timer
+    var t=e.touches[0]; moved=false; sx=t.clientX; sy=t.clientY; show(at(t));
+  },{passive:true});
+  map.addEventListener('touchmove',function(e){
+    if(e.touches.length>1||pinch) return;
+    var t=e.touches[0];
+    if(Math.abs(t.clientX-sx)>6||Math.abs(t.clientY-sy)>6) moved=true;
+    if(moved){ show(at(t)); e.preventDefault(); }
+    // NOT PASSIVE, because a drag across the map has to stop the page scrolling under it. The
+    // guard is the 6 pixel threshold: until the thumb has actually moved, the browser keeps
+    // its scroll, so a reader who starts a page scroll on top of the map still scrolls.
+  },{passive:false});
+  map.addEventListener('touchend',function(e){
+    if(!moved) return;               // a tap: leave the link alone, it is the whole point
+    // A DRAG IS NOT A CLICK. Without this the county under the lifted thumb navigates, so
+    // looking around the map would keep throwing the reader onto a county page.
+    var kill=function(ev){ ev.preventDefault(); ev.stopPropagation(); };
+    map.addEventListener('click',kill,{capture:true,once:true});
+    setTimeout(function(){ map.removeEventListener('click',kill,{capture:true}); },400);
+    // HELD AND CANCELLED, because it used to be armed on every release and never cleared.
+    // Drag, lift, drag again, then hold still on a county to read it, and the FIRST timer
+    // fired at 2.6s and blanked the readout under a stationary thumb.
+    clearTimeout(clearAt); clearAt=setTimeout(function(){ show(null); },2600);
+  });
+})();
+// SEND A MESSAGE WITHOUT LEARNING WHERE IT GOES.
+// The address is nowhere in this page and is not needed here: the form posts to FormSubmit's
+// opaque alias for the mailbox and that service forwards it. What the reader gets is a box to
+// type in; what a scraper gets is a hash.
+//
+// THE LINK UNDER THIS IS REAL. Without script the icon goes to the form on the services page,
+// which reaches the same mailbox by the same route, so nothing here is the only way through.
+// With script the navigation is refused and the dialog opens over the page instead.
+(function(){
+  var open=document.getElementById('contactopen'), box=document.getElementById('contactbox');
+  if(!open||!box) return;
+  var form=document.getElementById('contactform'), note=document.getElementById('contactstatus'),
+      send=document.getElementById('contactsend'), shut=document.getElementById('contactclose');
+  function close(){ if(typeof box.close==='function') box.close(); else box.removeAttribute('open'); }
+  open.addEventListener('click',function(ev){
+    // A MODIFIED CLICK IS A REQUEST FOR THE OTHER THING. Command, control, shift or a middle
+    // button means open it in a tab, and taking that away is taking away a browser.
+    if(ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey||ev.button) return;
+    ev.preventDefault();
+    note.textContent=''; send.disabled=false;
+    if(typeof box.showModal==='function') box.showModal(); else box.setAttribute('open','');
+    var t=document.getElementById('contactmsg'); if(t) t.focus();
+  });
+  shut.addEventListener('click',close);
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    send.disabled=true; note.textContent='Sending';
+    // THE AJAX ADDRESS IS DERIVED FROM THE ONE IN THE MARKUP rather than written a second
+    // time. The form carries the plain endpoint because that is what the policy's form-action
+    // is checked against, and a second copy of an endpoint is one of them going stale.
+    fetch(form.action.replace('formsubmit.co/','formsubmit.co/ajax/'),{
+      method:'POST',
+      headers:{'content-type':'application/json','accept':'application/json'},
+      body:JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+    }).then(function(r){
+      if(!r.ok) throw new Error('bad status');
+      note.textContent='Thank you. That reached the desk.';
+      form.reset();
+      setTimeout(close,1600);
+    }).catch(function(){
+      // WHAT WAS TYPED STAYS IN THE BOX. Losing somebody's message and telling them it failed
+      // is two bad things where one would do.
+      note.textContent='That did not send. Nothing was lost, so try again or use the form on '
+        + 'the services page.';
+      send.disabled=false;
+    });
+  });
+})();
+</script>
+</body>
+</html>
