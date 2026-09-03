@@ -141,13 +141,14 @@ def build(out: Path, today: str) -> dict:
                            "published figure is recomputable. Unverified days carry no "
                            "numbers rather than yesterday's."},
          "readings": gridwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+    water_records = waterwatch_page.load()
     w("waterwatch.json", json.dumps(
         {"_spec": {"version": dk.SPEC_VERSION, "generated": today,
                    "note": "One day per record, per reservoir, so every roll up is "
                            "recomputable. Out of state reservoirs and flood control dams with "
                            "no conservation pool are excluded, and both exclusions are named "
                            "in each record."},
-         "readings": waterwatch_page.load()}, indent=2, ensure_ascii=False) + "\n")
+         "readings": water_records}, indent=2, ensure_ascii=False) + "\n")
     # The heat clock as open data, on the same terms as the other two series. It has no page
     # of its own, because it is one line at the top of the front page rather than a subject,
     # so the data page is where a reader finds it.
@@ -479,6 +480,15 @@ def build(out: Path, today: str) -> dict:
     w("services/index.html", services_page(items, today))
     w("about/index.html", about_page(today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
+    # THE MAP LINKS TO RECORDS RATHER THAN TOOLTIP DEAD ENDS. The family comes from the same
+    # latest verified population the drawing uses, so a new reservoir earns its page in the
+    # same build that gives it a circle and a removed one cannot leave an orphan route behind.
+    reservoir_catalogue = waterwatch_page.reservoir_catalogue(water_records)
+    for reservoir in reservoir_catalogue:
+        detail = waterwatch_page.reservoir_history(
+            water_records, reservoir["key"], reservoir_catalogue)
+        w(f'water/reservoir/{reservoir["slug"]}/index.html',
+          reservoir_page(detail, today), waterwatch_page.reservoir_authorised(detail))
 
     # THE ANSWERING RECORD, published as two files beside the site.
     #

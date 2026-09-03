@@ -34,6 +34,7 @@ one, and the gap itself is a fact worth publishing.
 """
 from __future__ import annotations
 
+import html
 import json
 import sys
 from pathlib import Path
@@ -475,19 +476,29 @@ STAGE_CSS = """
 /* THE TANK IS ITS OWN MARK, UNDER THE WATER RATHER THAN OVER IT. See `_vessel` for the
    defect: this fill used to live on `.rim`, which is painted last, so it went over every lake
    on the map and took the colour out of all of them. */
-.waterviz.resmap .tank{fill:var(--bg);opacity:.84}
-.waterviz.resmap .rim{fill:none;stroke:var(--accent);stroke-width:1;
-  vector-effect:non-scaling-stroke;opacity:.62}
+.waterviz.resmap .tank{fill:url(#reservoir-shell);opacity:.96}
+.waterviz.resmap .shellshade{fill:url(#reservoir-depth);pointer-events:none}
+.waterviz.resmap .rim{fill:none;stroke:url(#reservoir-rim);stroke-width:1.25;
+  vector-effect:non-scaling-stroke;opacity:.9}
+.waterviz.resmap .rimlight{fill:none;stroke:var(--water-lit);stroke-width:.75;
+  stroke-dasharray:26 90;stroke-linecap:round;vector-effect:non-scaling-stroke;opacity:.78;
+  transform-box:fill-box;transform-origin:50% 50%;transform:rotate(-42deg)}
 /* WATER, IN A COLOUR WATER COMES IN. `--water` is Comal, derived in theme.py against every
    ground and contrast gated like every other role on this site. Fully opaque, so the page's
    film grain stops reading through the one surface on the site that is meant to be liquid. */
-.waterviz.resmap .wf{fill:var(--water)}
+.waterviz.resmap .wf{fill:url(#reservoir-water)}
 /* THE LIT LINE WHERE WATER MEETS AIR. It is the same curve the fill closes over, so the two
    can never disagree about where the surface is. */
 .waterviz.resmap .men{fill:none;stroke:var(--water-lit);stroke-width:1.3;
   vector-effect:non-scaling-stroke;stroke-linecap:round;opacity:.95}
+.waterviz.resmap .flow{fill:none;stroke:var(--water-lit);stroke-width:.8;
+  vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-dasharray:3 5;
+  opacity:.15}
+.waterviz.resmap .orbshine{fill:url(#reservoir-shine);opacity:.66;pointer-events:none}
+.waterviz.resmap .hit{fill:transparent;stroke:none;pointer-events:all}
 .waterviz.resmap .lake{transform-box:fill-box;transform-origin:50% 50%}
 .waterviz.resmap .res{transform-box:fill-box;transform-origin:50% 50%}
+.waterviz.resmap .reslink{cursor:pointer;outline:none}
 
 /* HOVER, AND WHY IT MAGNIFIES RATHER THAN SLOSHES.
    The obvious motion is the water rocking in the bowl, and at this scale it cannot work. The
@@ -500,14 +511,27 @@ STAGE_CSS = """
    and show the tank through the gap. Downward it reads as a swell passing under it, which is
    what it is, and there is nothing to part from. */
 @media (hover:hover){
-  .waterviz.resmap .res{transition:transform .2s cubic-bezier(.2,.8,.3,1)}
-  .waterviz.resmap .res:hover{transform:scale(1.5)}
-  .waterviz.resmap .res:hover .rim{stroke-width:2.2;opacity:1}
-  .waterviz.resmap .res:hover .men{opacity:1;animation:wripple 2.4s ease-in-out infinite}
+  .waterviz.resmap .res{transition:transform .28s cubic-bezier(.16,1,.3,1),filter .28s ease}
 }
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .res{transform:scale(1.58);
+  filter:url(#reservoir-shadow)}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .rim{stroke-width:2.25;opacity:1}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .rimlight{stroke-width:1.45;opacity:1;
+  animation:wrim 1.8s ease-in-out infinite}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .men{opacity:1;
+  animation:wripple 1.4s ease-in-out infinite}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .flow{opacity:.9;
+  animation:wwhoosh .8s linear infinite}
+.waterviz.resmap .reslink:is(:hover,:focus-visible) .orbshine{
+  animation:wglint 1.8s ease-in-out infinite}
 @keyframes wripple{0%,100%{transform:translateY(0)}50%{transform:translateY(.9px)}}
+@keyframes wwhoosh{to{stroke-dashoffset:-16}}
+@keyframes wrim{50%{opacity:.42;transform:rotate(-28deg)}}
+@keyframes wglint{50%{opacity:.9;transform:translate(1px,-.6px)}}
 @media (prefers-reduced-motion:reduce){
-  .waterviz.resmap .res{transition:none}}
+  .waterviz.resmap .res{transition:none}
+  .waterviz.resmap .reslink:is(:hover,:focus-visible) :is(.rimlight,.men,.flow,.orbshine){
+    animation:none}}
 /* THE KEY HAS ITS OWN TYPE SCALE, because the map has its own geometry. It is a 1000 unit
    viewBox against the chart's 720, so the same user unit size renders about a third smaller
    here at any given column width, and the chart's steps would leave this key under the ten
@@ -548,6 +572,35 @@ STAGE_CSS = """
   animation:wcaustic 26s ease-in-out infinite alternate}
 @keyframes wcaustic{from{transform:translate(-3%,-2%) scale(1)}
   to{transform:translate(4%,3%) scale(1.09)}}
+
+/* THE MAP READS BACK WHAT THE POINTER FOUND. The circles are intentionally dense, so the
+   stable panel carries the name and value without asking a reader to hold a tiny tooltip open.
+   The select is the same route for touch and keyboard users, with every option coming from the
+   exact population drawn above it. */
+.reservoir-tools{display:grid;grid-template-columns:minmax(0,1fr) minmax(15rem,.7fr);
+  gap:.75rem;margin:.8rem 0 1.1rem;align-items:stretch}
+.reservoir-inspect,.reservoir-picker{border:var(--hair) solid var(--rule-strong);
+  background:color-mix(in srgb,var(--surface) 78%,transparent);padding:.9rem 1rem;
+  min-height:4.7rem}
+.reservoir-inspect{display:flex;align-items:center;gap:.9rem}
+.reservoir-pulse{width:2.45rem;height:2.45rem;flex:none;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 30% 24%,var(--water-lit),var(--water) 35%,
+    color-mix(in srgb,var(--water) 35%,var(--bg)) 74%);
+  box-shadow:inset -.35rem -.45rem .7rem color-mix(in srgb,var(--bg) 65%,transparent),
+    inset .2rem .18rem .3rem color-mix(in srgb,white 35%,transparent),
+    0 .45rem 1rem color-mix(in srgb,var(--water) 22%,transparent)}
+.reservoir-pulse::after{content:"";position:absolute;left:21%;top:15%;width:23%;height:34%;
+  border-radius:50%;background:linear-gradient(140deg,color-mix(in srgb,white 72%,transparent),
+    transparent);transform:rotate(28deg)}
+.reservoir-copy{min-width:0}.reservoir-copy strong{display:block;color:var(--ink-bright)}
+.reservoir-copy span{display:block;color:var(--ink-mute);font-size:var(--s-1);margin-top:.15rem}
+.reservoir-copy a{display:inline-block;margin-top:.32rem;font-size:var(--s-1)}
+.reservoir-copy a[hidden]{display:none}
+.reservoir-picker label{display:block;color:var(--ink-mute);font-size:var(--s-2);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.42rem}
+.reservoir-picker select{width:100%;color:var(--ink-bright);background:var(--bg);
+  border:var(--hair) solid var(--rule-strong);padding:.62rem .7rem;font:inherit}
+@media (max-width:42rem){.reservoir-tools{grid-template-columns:1fr}}
 
 /* THE SPARKLINE. Sized in the row rather than by the drawing, and `preserveAspectRatio:none`
    is deliberate: the cell is short and wide, the shape being read is a slope over time, and
@@ -1068,9 +1121,18 @@ def reservoir_map_svg(f: dict) -> str:
         r = radius(p["capacity_af"])
         wd = _delay(int((p["cx"] - lons[0]) / span_x * 100), 101)
         frac = max(0.0, min(float(p["percent_full"]) / 100.0, 1.0))
-        title = (f'<title>{p["name"]}, {pct(p["percent_full"])}% full, '
-                 f'{af(p["storage_af"])} of {af(p["capacity_af"])} acre feet</title>')
-        dots.append(f'<g class="res">{_vessel(p["cx"], p["cy"], r, frac, wd)}{title}</g>')
+        name = html.escape(p["name"])
+        meta = (f'{pct(p["percent_full"])}% full · {af(p["storage_af"])} of '
+                f'{af(p["capacity_af"])} acre feet')
+        label = html.escape(f'{p["name"]} details, {meta}')
+        slug = reservoir_slug(p["key"])
+        title = f'<title>{name}, {html.escape(meta)}</title>'
+        dots.append(
+            f'<a class="reslink" href="reservoir/{slug}/" aria-label="{label}" '
+            f'data-name="{name}" data-meta="{html.escape(meta)}" data-proper-name="{name}">'
+            f'<g class="res">{_vessel(p["cx"], p["cy"], r, frac, wd)}{title}'
+            f'<circle class="hit" cx="{p["cx"]}" cy="{p["cy"]}" r="{max(r, 9.0):.2f}"/>'
+            f'</g></a>')
 
     # THE LEGEND, IN THE CORNER THE STATE DOES NOT REACH. A map with two encodings on one mark
     # needs to say what they are, and this one has two: how big the circle is, and how far up
@@ -1116,11 +1178,17 @@ def reservoir_map_svg(f: dict) -> str:
           f'<text class="ax" x="{lx}" y="{ly + 234}" text-anchor="start">'
           f'conservation capacity</text>']
 
+    options = "".join(
+        f'<option value="reservoir/{reservoir_slug(p["key"])}/">'
+        f'{html.escape(p["name"])}</option>'
+        for p in sorted(placed, key=lambda q: q["name"]))
     return f"""<figure class="wviz map">
-<svg viewBox="0 0 {tm.VIEW_W:g} {tm.VIEW_H:g}" class="waterviz resmap" role="img"
-     aria-label="Every Texas reservoir in the day's record, drawn where its gauge sits, each
-     circle sized by conservation capacity and filled to the level it is holding."
+<svg viewBox="0 0 {tm.VIEW_W:g} {tm.VIEW_H:g}" class="waterviz resmap" role="group"
+     aria-label="Interactive map of every Texas reservoir in the day's record. Each link opens
+     that reservoir's daily record. Circle size follows conservation capacity and water height
+     follows the level it is holding."
      preserveAspectRatio="xMidYMid meet">
+  {_reservoir_defs()}
   <g class="mesh">{mesh}</g>
   <path class="edge" d="{edge}"/>
   <g class="dots">{"".join(dots)}</g>
@@ -1129,7 +1197,54 @@ def reservoir_map_svg(f: dict) -> str:
 <figcaption>Where the water is. One circle per reservoir, at its own gauge, filled to the level
 it is holding today. Size follows the fourth root of conservation capacity rather than capacity
 itself, so the smallest lakes stay visible beside the largest, and the ranking by size still
-holds.</figcaption></figure>"""
+holds. Hover, focus or select a reservoir to open its daily record.</figcaption>
+<div class="reservoir-tools" data-prose="data">
+  <div class="reservoir-inspect" id="reservoir-inspect" aria-live="polite">
+    <span class="reservoir-pulse" aria-hidden="true"></span>
+    <span class="reservoir-copy"><strong id="reservoir-name">Explore a reservoir</strong>
+      <span id="reservoir-meta">Move across the map or choose a name</span>
+      <a id="reservoir-open" hidden>Open the daily record</a></span>
+  </div>
+  <label class="reservoir-picker">Find a reservoir
+    <select id="reservoir-picker">
+      <option value="">Choose a name</option>{options}
+    </select>
+  </label>
+</div></figure>"""
+
+
+def _reservoir_defs() -> str:
+    """One lighting rig shared by every vessel on a drawing."""
+    return """<defs>
+  <radialGradient id="reservoir-shell" cx="30%" cy="22%" r="82%">
+    <stop offset="0" stop-color="var(--ink-mute)"/>
+    <stop offset=".48" stop-color="var(--surface)"/>
+    <stop offset="1" stop-color="var(--bg)"/>
+  </radialGradient>
+  <linearGradient id="reservoir-water" x1="0" y1="0" x2=".85" y2="1">
+    <stop offset="0" stop-color="var(--water-lit)"/>
+    <stop offset=".38" stop-color="var(--water)"/>
+    <stop offset="1" stop-color="var(--accent-deep)"/>
+  </linearGradient>
+  <radialGradient id="reservoir-depth" cx="28%" cy="20%" r="78%">
+    <stop offset="0" stop-color="white" stop-opacity=".13"/>
+    <stop offset=".55" stop-color="var(--bg)" stop-opacity="0"/>
+    <stop offset="1" stop-color="var(--bg)" stop-opacity=".58"/>
+  </radialGradient>
+  <linearGradient id="reservoir-rim" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="var(--water-lit)"/>
+    <stop offset=".46" stop-color="var(--accent)"/>
+    <stop offset="1" stop-color="var(--ink-mute)"/>
+  </linearGradient>
+  <radialGradient id="reservoir-shine" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="white" stop-opacity=".64"/>
+    <stop offset="1" stop-color="white" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="reservoir-shadow" x="-80%" y="-80%" width="260%" height="260%">
+    <feDropShadow dx="0" dy="3" stdDeviation="3.2" flood-color="var(--water)"
+      flood-opacity=".5"/>
+  </filter>
+</defs>"""
 
 
 def _vessel(cx: float, cy: float, r: float, frac, wd: str, tank: bool = True) -> str:
@@ -1165,9 +1280,34 @@ def _vessel(cx: float, cy: float, r: float, frac, wd: str, tank: bool = True) ->
             else "")
     line = _surface(cx, cy, r, frac)
     men = f'<path class="men{wd}" d="{line}"/>' if line else ""
+    flows = _flow_lines(cx, cy, r, frac, wd)
     return ((f'<circle class="tank{wd}" cx="{cx}" cy="{cy}" r="{r}"/>' if tank else "")
-            + (f'<g class="lake">{body}{men}</g>' if body else "")
-            + f'<circle class="rim{wd}" cx="{cx}" cy="{cy}" r="{r}"/>')
+            + (f'<g class="lake">{body}{flows}{men}</g>' if body else "")
+            + f'<circle class="shellshade" cx="{cx}" cy="{cy}" r="{r}"/>'
+            + f'<ellipse class="orbshine" cx="{cx - r * .28:.2f}" cy="{cy - r * .3:.2f}" '
+              f'rx="{r * .18:.2f}" ry="{r * .3:.2f}"/>'
+            + f'<circle class="rim{wd}" cx="{cx}" cy="{cy}" r="{r}"/>'
+            + f'<circle class="rimlight" cx="{cx}" cy="{cy}" r="{r * .94:.2f}"/>')
+
+
+def _flow_lines(cx: float, cy: float, r: float, frac: float, wd: str) -> str:
+    """Highlights inside the measured water area, animated without moving its boundary."""
+    if frac <= 0.02:
+        return ""
+    ys, _half = _waterline(cy, r, frac)
+    floor = cy + r
+    room = floor - ys
+    out = []
+    for i, share in enumerate((0.32, 0.61)):
+        y = ys + room * share
+        half = max(r * r - (y - cy) ** 2, 0.0) ** 0.5 * (0.58 if i == 0 else 0.42)
+        if half < 0.45:
+            continue
+        amp = min(r * .11, room * .1)
+        out.append(
+            f'<path class="flow flow{i + 1}{wd}" d="M{cx - half:.2f},{y:.2f} '
+            f'Q{cx:.2f},{y - amp:.2f} {cx + half:.2f},{y:.2f}"/>')
+    return "".join(out)
 
 
 def _segment(cx: float, cy: float, r: float, frac: float) -> str:
@@ -1369,6 +1509,385 @@ def reservoir_label(key: str) -> str:
     """
     import re as _re                                                 # noqa: PLC0415
     return _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", key)
+
+
+def reservoir_slug(key: str) -> str:
+    """The stable public id for one payload key."""
+    import re as _re                                                 # noqa: PLC0415
+    return _re.sub(r"[^a-z0-9]+", "-", str(key).lower()).strip("-")
+
+
+def reservoir_catalogue(records: list[dict]) -> list[dict]:
+    """The exact latest-day population shared by the map and the detail-page builder."""
+    live = [r for r in records if r.get("verified") and isinstance(r.get("reservoirs"), dict)]
+    if not live:
+        return []
+    shared = str(REPO_ROOT / "scripts" / "shared")
+    if shared not in sys.path:
+        sys.path.insert(0, shared)
+    try:
+        import reservoirs as _reservoirs                              # noqa: PLC0415
+        where = _reservoirs.load()
+    except Exception:                                                # noqa: BLE001
+        return []
+    rows = {r["key"]: r for r in reservoir_rows(live[-1])}
+    out = []
+    for key, row in rows.items():
+        loc = where.get(key) or {}
+        if not loc.get("texas"):
+            continue
+        out.append({**row, "slug": reservoir_slug(key),
+                    "name": loc.get("name") or reservoir_label(key),
+                    "lon": loc.get("lon"), "lat": loc.get("lat")})
+    slugs = [r["slug"] for r in out]
+    if len(set(slugs)) != len(slugs):
+        raise ValueError("two reservoir keys resolve to one public route")
+    return sorted(out, key=lambda r: r["name"])
+
+
+def reservoir_history(records: list[dict], key: str,
+                      catalogue: list[dict] | None = None) -> dict:
+    """One reservoir across every verified day that carries a usable reading."""
+    by_key = {r["key"]: r for r in
+              (catalogue if catalogue is not None else reservoir_catalogue(records))}
+    if key not in by_key:
+        raise KeyError(key)
+    identity = by_key[key]
+    rows = []
+    for rec in records:
+        if not rec.get("verified"):
+            continue
+        raw = (rec.get("reservoirs") or {}).get(key)
+        if not isinstance(raw, dict):
+            continue
+        storage, capacity = raw.get("storage_af"), raw.get("capacity_af")
+        if not isinstance(storage, (int, float)) or not isinstance(capacity, (int, float)) \
+                or not capacity:
+            continue
+        rows.append({"date": rec["date"], "storage_af": float(storage),
+                     "capacity_af": float(capacity),
+                     "percent_full": round(float(storage) / float(capacity) * 100.0, 2),
+                     "change_af": None})
+    if not rows:
+        raise KeyError(key)
+
+    import datetime as _dt                                           # noqa: PLC0415
+    for prior, cur in zip(rows, rows[1:]):
+        gap = (_dt.date.fromisoformat(cur["date"])
+               - _dt.date.fromisoformat(prior["date"])).days
+        if gap == 1:
+            cur["change_af"] = round(cur["storage_af"] - prior["storage_af"], 1)
+    latest = rows[-1]
+    values = [r["percent_full"] for r in rows]
+    return {**identity, "rows": rows, "latest": latest, "days": len(rows),
+            "from_date": rows[0]["date"], "to_date": latest["date"],
+            "span_storage_af": round(latest["storage_af"] - rows[0]["storage_af"], 1),
+            "span_percent_full": round(latest["percent_full"] - rows[0]["percent_full"], 2),
+            "range_low": min(values), "range_high": max(values)}
+
+
+RESERVOIR_DETAIL_CSS = """
+.reservoir-back{display:inline-flex;gap:.45rem;align-items:center;margin:.4rem 0 1.2rem;
+  color:var(--ink-mute);font-size:var(--s-1)}
+.reservoir-back::before{content:"←";color:var(--water-lit)}
+.reservoir-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(17rem,.7fr);
+  align-items:center;gap:clamp(1.2rem,4vw,4.6rem);padding:clamp(1rem,3vw,2.2rem) 0 1rem}
+.reservoir-kicker{font:600 var(--s-2)/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+  color:var(--water-lit);margin:0 0 .65rem}
+.reservoir-hero h1{margin:0;max-width:14ch}
+.reservoir-hero .lede{max-width:37rem;margin:.9rem 0 .45rem}
+.reservoir-orb-card{--orb-x:50%;--orb-y:50%;position:relative;isolation:isolate;
+  min-height:clamp(17rem,34vw,27rem);display:grid;place-items:center;outline:none;
+  border-radius:50%;background:radial-gradient(circle at var(--orb-x) var(--orb-y),
+    color-mix(in srgb,var(--water) 18%,transparent),transparent 54%)}
+.reservoir-orb-card[data-tilt-x="left"]{--orb-x:22%;--orb-ry:-3.2deg}
+.reservoir-orb-card[data-tilt-x="centre"]{--orb-x:50%;--orb-ry:0deg}
+.reservoir-orb-card[data-tilt-x="right"]{--orb-x:78%;--orb-ry:3.2deg}
+.reservoir-orb-card[data-tilt-y="top"]{--orb-y:22%;--orb-rx:2.4deg}
+.reservoir-orb-card[data-tilt-y="centre"]{--orb-y:50%;--orb-rx:0deg}
+.reservoir-orb-card[data-tilt-y="bottom"]{--orb-y:78%;--orb-rx:-2.4deg}
+.reservoir-orb-card::before{content:"";position:absolute;inset:14%;border-radius:50%;z-index:-1;
+  background:var(--water);filter:blur(3.2rem);opacity:.12}
+.reservoir-orb-wrap{width:min(100%,27rem);
+  transform:perspective(46rem) rotateX(var(--orb-rx,0deg)) rotateY(var(--orb-ry,0deg));
+  transition:transform .18s ease-out;filter:drop-shadow(0 1.3rem 1.7rem rgba(0,0,0,.34))}
+.reservoir-orb{width:100%;height:auto;display:block;overflow:visible}
+.reservoir-orb .tank{fill:url(#reservoir-shell)}
+.reservoir-orb .wf{fill:url(#reservoir-water)}
+.reservoir-orb .shellshade{fill:url(#reservoir-depth)}
+.reservoir-orb .orbshine{fill:url(#reservoir-shine)}
+.reservoir-orb .rim{fill:none;stroke:url(#reservoir-rim);stroke-width:2.3}
+.reservoir-orb .rimlight{fill:none;stroke:var(--water-lit);stroke-width:1.8;
+  stroke-dasharray:65 240;stroke-linecap:round;transform-box:fill-box;
+  transform-origin:50% 50%;transform:rotate(-42deg)}
+.reservoir-orb .men{fill:none;stroke:var(--water-lit);stroke-width:2.2;stroke-linecap:round}
+.reservoir-orb .flow{fill:none;stroke:var(--water-lit);stroke-width:1.6;
+  stroke-linecap:round;stroke-dasharray:7 12;opacity:.32}
+.reservoir-orb-card:is(:hover,:focus-visible) .flow{opacity:.86;
+  animation:detailwhoosh 1.05s linear infinite}
+.reservoir-orb-card:is(:hover,:focus-visible) .men{animation:detailripple 1.7s ease-in-out infinite}
+.reservoir-orb-card:is(:hover,:focus-visible) .rimlight{animation:detailrim 2.2s ease-in-out infinite}
+@keyframes detailwhoosh{to{stroke-dashoffset:-38}}
+@keyframes detailripple{50%{transform:translateY(1.4px)}}
+@keyframes detailrim{50%{opacity:.42;transform:rotate(-29deg)}}
+.reservoir-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(10.5rem,1fr));
+  margin:1.5rem 0 3.2rem;border-top:var(--hair) solid var(--rule-strong)}
+.reservoir-metrics>div{padding:1rem;border-bottom:var(--hair) solid var(--rule);
+  background:linear-gradient(150deg,color-mix(in srgb,var(--surface) 82%,transparent),transparent)}
+.reservoir-metrics .label{display:block;color:var(--ink-mute);font-size:var(--s-2);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem}
+.reservoir-metrics .value{display:block;color:var(--ink-bright);font:500 var(--s1)/1.1 var(--mono);
+  white-space:nowrap}
+.reservoir-metrics .unit{font-size:var(--s-1);color:var(--ink-mute);margin-left:.25rem}
+.reservoir-section{margin:3.4rem 0}.reservoir-section>header{max-width:45rem;margin-bottom:1rem}
+.reservoir-trend{width:100%;height:auto;display:block}
+.reservoir-trend .area{fill:url(#detail-water-area)}
+.reservoir-trend .line{fill:none;stroke:var(--water-lit);stroke-width:3;
+  stroke-linejoin:round;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.reservoir-trend .g{stroke:var(--rule);stroke-width:1;vector-effect:non-scaling-stroke}
+.reservoir-trend .ax{fill:var(--ink-mute);font-family:var(--mono);font-size:12.25px}
+.reservoir-trend .point{fill:var(--water-lit);stroke:var(--bg);stroke-width:2;
+  vector-effect:non-scaling-stroke}
+.reservoir-trend .latest{fill:var(--ink-bright);stroke:var(--water);stroke-width:5}
+.reservoir-table-wrap{overflow-x:auto;border-top:var(--hair) solid var(--rule-strong)}
+.reservoir-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.reservoir-table th,.reservoir-table td{text-align:left;padding:.72rem .65rem;
+  border-bottom:var(--hair) solid var(--rule);white-space:nowrap}
+.reservoir-table th{color:var(--ink-mute);font-size:var(--s-2);letter-spacing:.07em;
+  text-transform:uppercase}.reservoir-table td:not(:first-child){font-family:var(--mono)}
+.reservoir-data-note{margin-top:1rem;color:var(--ink-mute);font-size:var(--s-1)}
+@media (max-width:46rem){
+  .reservoir-hero{grid-template-columns:1fr}.reservoir-orb-card{order:-1;min-height:16rem}
+  .reservoir-orb-wrap{width:min(82vw,22rem)}.reservoir-hero h1{max-width:none}}
+@media (max-width:42rem){.reservoir-metrics .metric-wide{grid-column:1/-1}}
+@media (max-width:22rem){.reservoir-trend .ax{font-size:34px}}
+@media (min-width:22.01rem) and (max-width:26rem){.reservoir-trend .ax{font-size:27px}}
+@media (min-width:26.01rem) and (max-width:34rem){.reservoir-trend .ax{font-size:22px}}
+@media (min-width:34.01rem) and (max-width:46rem){.reservoir-trend .ax{font-size:17px}}
+@media (prefers-reduced-motion:reduce){
+  .reservoir-orb-wrap{transition:none;transform:none!important}
+  .reservoir-orb-card :is(.flow,.men,.rimlight){animation:none!important}}
+"""
+
+
+MAP_JS = """(() => {
+  const map = document.querySelector('svg.resmap');
+  const picker = document.getElementById('reservoir-picker');
+  const name = document.getElementById('reservoir-name');
+  const meta = document.getElementById('reservoir-meta');
+  const open = document.getElementById('reservoir-open');
+  if (!map || !picker || !name || !meta || !open) return;
+  const show = (link) => {
+    if (!link) return;
+    name.textContent = link.dataset.name || '';
+    meta.textContent = link.dataset.meta || '';
+    open.href = link.getAttribute('href');
+    open.hidden = false;
+    picker.value = link.getAttribute('href');
+  };
+  map.addEventListener('pointerover', (event) => show(event.target.closest('a.reslink')));
+  map.addEventListener('focusin', (event) => show(event.target.closest('a.reslink')));
+  picker.addEventListener('change', () => {
+    if (picker.value) window.location.href = picker.value;
+  });
+  const restore = () => {
+    if (!picker.value) return;
+    show([...map.querySelectorAll('a.reslink')].find(
+      (link) => link.getAttribute('href') === picker.value));
+  };
+  window.addEventListener('pageshow', restore);
+  restore();
+})();"""
+
+
+RESERVOIR_DETAIL_JS = """(() => {
+  const card = document.querySelector('.reservoir-orb-card');
+  const orb = document.querySelector('.reservoir-orb-wrap');
+  if (!card || !orb || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const reset = () => {
+    delete card.dataset.tiltX;
+    delete card.dataset.tiltY;
+  };
+  const region = (value, low, middle, high) => value < .34 ? low : value > .66 ? high : middle;
+  card.addEventListener('pointermove', (event) => {
+    const box = card.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (event.clientX - box.left) / box.width));
+    const y = Math.max(0, Math.min(1, (event.clientY - box.top) / box.height));
+    card.dataset.tiltX = region(x, 'left', 'centre', 'right');
+    card.dataset.tiltY = region(y, 'top', 'centre', 'bottom');
+  });
+  card.addEventListener('pointerleave', reset);
+  card.addEventListener('blur', reset);
+})();"""
+
+
+def _signed(value) -> str:
+    sign = "-" if value < 0 else "+" if value > 0 else ""
+    return f"{sign}{af(abs(value))}"
+
+
+def reservoir_trend_svg(detail: dict) -> str:
+    """A magnified daily percent-full line using this reservoir's recorded range."""
+    rows = detail["rows"]
+    if len(rows) < 2:
+        return ""
+    width, height = 840.0, 330.0
+    # SIZED FOR THE PHONE FACE, where the axis steps up to keep ten screen pixels. A gutter
+    # that fits the desktop type clips the same label after it grows inside a scaled SVG.
+    # The smallest breakpoint grows axis type to 34 SVG units. The top tick needs a full
+    # cap-height above its baseline or fallback monospace faces clip the first row even though
+    # the plotted line itself remains inside the viewBox.
+    left, right, top, bottom = 138.0, 24.0, 48.0, 58.0
+    plot_w, plot_h = width - left - right, height - top - bottom
+    vals = [r["percent_full"] for r in rows]
+    span = max(vals) - min(vals)
+    cushion = max(span * .18, .18)
+    low, high = max(0.0, min(vals) - cushion), max(vals) + cushion
+    if max(vals) <= 100.0:
+        high = min(100.0, high)
+    if high <= low:
+        low, high = max(0.0, low - .5), high + .5
+
+    def x(i):
+        return left + plot_w * i / max(len(rows) - 1, 1)
+
+    def y(value):
+        return top + plot_h * (high - value) / (high - low)
+
+    pts = [(x(i), y(row["percent_full"])) for i, row in enumerate(rows)]
+    line = "M" + " L".join(f"{px:.2f},{py:.2f}" for px, py in pts)
+    area = line + f" L{pts[-1][0]:.2f},{top + plot_h:.2f} L{pts[0][0]:.2f},{top + plot_h:.2f} Z"
+    ticks = [low, (low + high) / 2, high]
+    grid = "".join(
+        f'<line class="g" x1="{left}" x2="{width - right}" y1="{y(v):.2f}" y2="{y(v):.2f}"/>'
+        f'<text class="ax" x="{left - 10}" y="{y(v) + 4:.2f}" text-anchor="end">{pct(v)}%</text>'
+        for v in ticks)
+    points = "".join(
+        f'<circle class="point{" latest" if i == len(rows) - 1 else ""}" '
+        f'cx="{px:.2f}" cy="{py:.2f}" r="{5 if i == len(rows) - 1 else 3.2}">'
+        f'<title>{ordinal_date(row["date"])}, {pct(row["percent_full"])}% full</title></circle>'
+        for i, (row, (px, py)) in enumerate(zip(rows, pts)))
+    labels = "".join(
+        f'<text class="ax" x="{x(i):.2f}" y="{height - 20}" text-anchor="{anchor}">'
+        f'{ordinal_short(rows[i]["date"])}</text>'
+        for i, anchor in ((0, "start"), (len(rows) // 2, "middle"), (len(rows) - 1, "end")))
+    return f"""<figure class="wviz">
+<svg class="waterviz reservoir-trend" viewBox="0 0 {width:g} {height:g}" role="img"
+  aria-label="Daily percent full for {html.escape(detail['name'])} from
+  {html.escape(ordinal_date(rows[0]['date']))} through
+  {html.escape(ordinal_date(rows[-1]['date']))}">
+  <defs><linearGradient id="detail-water-area" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="var(--water)" stop-opacity=".48"/>
+    <stop offset="1" stop-color="var(--water)" stop-opacity=".03"/>
+  </linearGradient></defs>
+  {grid}<path class="area" d="{area}"/><path class="line" style="--len:{_polylen(pts):.2f}" d="{line}"/>
+  {points}{labels}
+</svg>
+<figcaption>Daily percent full. The vertical scale follows this record's own range instead of
+starting at zero, so its movement stays visible without changing the measurement.</figcaption>
+</figure>"""
+
+
+def reservoir_detail_body(detail: dict) -> str:
+    """A complete, static, linkable record for one reservoir."""
+    name = html.escape(detail["name"])
+    latest = detail["latest"]
+    frac = max(0.0, min(float(latest["percent_full"]) / 100.0, 1.0))
+
+    metrics = [("Percent full", pct(latest["percent_full"]), "%"),
+               ("Storage", af(latest["storage_af"]), "AF"),
+               ("Conservation capacity", af(latest["capacity_af"]), "AF")]
+    if latest.get("change_af") is not None:
+        metrics.append(("Change today", _signed(latest["change_af"]), "AF"))
+    if detail["days"] > 1:
+        metrics.append(("Across the record", _signed(detail["span_storage_af"]), "AF"))
+    metrics.extend([
+        ("Recorded range", f'{pct(detail["range_low"])}% to {pct(detail["range_high"])}%', ""),
+        ("Record", af(detail["days"]), plural(detail["days"], "day", "days")),
+    ])
+    def metric_cell(label, value, unit):
+        unit_html = f'<span class="unit">{unit}</span>' if unit else ""
+        wide = ' class="metric-wide"' if label == "Recorded range" else ""
+        return (f'<div{wide}><span class="label">{label}</span>'
+                f'<span class="value">{value}{unit_html}</span></div>')
+
+    cells = "".join(metric_cell(label, value, unit) for label, value, unit in metrics)
+
+    table_rows = []
+    for index, row in reversed(list(enumerate(detail["rows"]))):
+        if row.get("change_af") is not None:
+            move = f'{_signed(row["change_af"])} AF'
+        else:
+            move = "First reading" if index == 0 else "No adjacent reading"
+        table_rows.append(
+            f'<tr><td>{ordinal_date(row["date"])}</td>'
+            f'<td>{pct(row["percent_full"])}%</td><td>{af(row["storage_af"])} AF</td>'
+            f'<td>{move}</td></tr>')
+
+    return f"""<style>{STAGE_CSS}\n{RESERVOIR_DETAIL_CSS}</style>
+<a class="reservoir-back" href="../../../water/">Texas Water Watch</a>
+<section class="reservoir-hero" data-proper-name="{name}">
+  <div>
+    <p class="reservoir-kicker">Reservoir record</p>
+    <h1>{name}</h1>
+    <p class="lede">{name} is <strong class="num">{pct(latest['percent_full'])}%</strong> full,
+    holding <strong class="num">{af(latest['storage_af'])}</strong> acre feet against a
+    conservation capacity of <strong class="num">{af(latest['capacity_af'])}</strong> acre feet.</p>
+    <p class="wnote">Updated {ordinal_date(latest['date'])}</p>
+  </div>
+  <div class="reservoir-orb-card" tabindex="0"
+       aria-label="A dimensional gauge for {name} at {pct(latest['percent_full'])}% full">
+    <div class="reservoir-orb-wrap">
+      <svg class="reservoir-orb" viewBox="0 0 360 360" role="img"
+           aria-label="{name} filled to {pct(latest['percent_full'])}%">
+        {_reservoir_defs()}
+        <g>{_vessel(180.0, 180.0, 112.0, frac, "")}</g>
+      </svg>
+    </div>
+  </div>
+</section>
+<div class="reservoir-metrics" data-prose="data">{cells}</div>
+<section class="reservoir-section">
+  <header><h2>Daily movement</h2>
+    <p>The line follows every verified reading held for this reservoir.</p></header>
+  {reservoir_trend_svg(detail)}
+</section>
+<section class="reservoir-section">
+  <header><h2>The readings</h2>
+    <p>Daily movement appears only when the previous reading is from the prior calendar day.</p>
+  </header>
+  <div class="reservoir-table-wrap"><table class="reservoir-table" data-prose="data">
+    <thead><tr><th>Date</th><th>Percent full</th><th>Storage</th><th>Daily movement</th></tr></thead>
+    <tbody>{''.join(table_rows)}</tbody>
+  </table></div>
+  <p class="reservoir-data-note">Every reading is available in the
+    <a href="../../../waterwatch.json">open water record</a>.</p>
+</section>
+<script>{RESERVOIR_DETAIL_JS}</script>
+"""
+
+
+def reservoir_authorised(detail: dict) -> set[str]:
+    """Exactly the figures reader-facing detail prose and cells publish."""
+    acc = numeral_lint.Authorised()
+    add = acc.add
+    latest = detail["latest"]
+    add(pct(latest["percent_full"]), af(latest["storage_af"]), af(latest["capacity_af"]),
+        ordinal_date(latest["date"]), pct(detail["range_low"]), pct(detail["range_high"]),
+        af(detail["days"]))
+    if latest.get("change_af") is not None:
+        add(af(abs(latest["change_af"])))
+    if detail["days"] > 1:
+        add(af(abs(detail["span_storage_af"])))
+    for row in detail["rows"]:
+        add(ordinal_date(row["date"]), pct(row["percent_full"]), af(row["storage_af"]))
+        if row.get("change_af") is not None:
+            add(af(abs(row["change_af"])))
+    return acc.set
+
+
+def reservoir_lint(html_body: str, detail: dict) -> list[str]:
+    return numeral_lint.scan(html_body, reservoir_authorised(detail))
 
 
 def ordinal_short(iso: str) -> str:
@@ -1670,6 +2189,7 @@ def body(records: list[dict], today: str) -> str:
 
 <div data-reveal>{distribution_svg(f)}</div>
 
+<script>{MAP_JS}</script>
 """
 
 
@@ -1935,6 +2455,73 @@ def self_test() -> int:
               "Elephant Butte" not in drawn_map and "ElephantButte" not in drawn_map)
         check("...while still drawing the ones that are in Texas",
               drawn_map.count('class="rim') > 100, str(drawn_map.count('class="rim')))
+
+        # EVERY DOT IS NOW A DOOR. The population comes from one function and the map and page
+        # builder both consume it, but that shared intent still needs an assertion on the bytes
+        # a reader receives. A circle without an anchor would otherwise look complete and do
+        # nothing, which is exactly the experience this family replaces.
+        cat = reservoir_catalogue(load())
+        check("every mapped reservoir is a keyboard reachable detail link",
+              drawn_map.count('class="reslink"') == len(cat),
+              f'{drawn_map.count("reslink")} links for {len(cat)} reservoirs')
+        check("every mapped reservoir declares its source proper name",
+              drawn_map.count('data-proper-name=') == len(cat),
+              f'{drawn_map.count("data-proper-name=")} names for {len(cat)} reservoirs')
+        check("every detail route is unique",
+              len({r["slug"] for r in cat}) == len(cat), str(len(cat)))
+        # AN ANCHOR CAN EXIST AND STILL BE UNCLICKABLE when every pixel of its hit circle is
+        # painted over by later reservoirs. Sample the whole usable disc against paint order,
+        # which is the property the pointer sees. Keyboard access alone is not a substitute for
+        # the direct map interaction this drawing offers.
+        import re as _hit_re                                         # noqa: PLC0415
+        hits = [(href, float(x), float(y), float(radius)) for href, x, y, radius in
+                _hit_re.findall(
+                    r'<a class="reslink" href="([^"]+)".*?'
+                    r'<circle class="hit" cx="([\d.]+)" cy="([\d.]+)" r="([\d.]+)"/>',
+                    drawn_map, _hit_re.S)]
+        buried = []
+        for i, (href, cx, cy, radius) in enumerate(hits):
+            samples = [(cx, cy)]
+            for reach in (.45, .75, .95):
+                samples.extend((cx + radius * reach * math.cos(step * math.tau / 32),
+                                cy + radius * reach * math.sin(step * math.tau / 32))
+                               for step in range(32))
+            if not any(all((sx - ox) ** 2 + (sy - oy) ** 2 > other ** 2
+                           for _href, ox, oy, other in hits[i + 1:])
+                       for sx, sy in samples):
+                buried.append(href)
+        check("every map link keeps a pointer reachable patch", not buried, str(buried[:8]))
+        check("the dimensional vessels carry depth, light and moving water",
+              all(token in drawn_map for token in
+                  ("reservoir-shell", "reservoir-depth", "orbshine", "flow flow"))
+              and "wwhoosh" in live_b)
+        check("a motion preference turns the water animation off",
+              "prefers-reduced-motion:reduce" in live_b and "animation:none" in live_b)
+
+        if cat:
+            detail = reservoir_history(load(), cat[0]["key"])
+            detail_body = reservoir_detail_body(detail)
+            check("a reservoir page carries every verified reading it has",
+                  detail_body.count("<tbody>") == 1
+                  and detail_body.count("<tr>") - 1 == len(detail["rows"]),
+                  f'{detail_body.count("<tr>") - 1} rows vs {len(detail["rows"])}')
+            check("the reservoir trend and dimensional hero both render",
+                  "reservoir-trend" in detail_body and "reservoir-orb" in detail_body)
+            check("the reservoir page declares its source proper name",
+                  f'data-proper-name="{html.escape(detail["name"])}"' in detail_body)
+            check("the reservoir page has no uncomputed reader numeral",
+                  not reservoir_lint(detail_body, detail),
+                  str(reservoir_lint(detail_body, detail)[:8]))
+            check("every reservoir authorisation reaches a reader",
+                  not orphans(detail_body, reservoir_authorised(detail)),
+                  str(orphans(detail_body, reservoir_authorised(detail))[:8]))
+            detail_problems = _hs.caption_check.check(_hs.our_prose(detail_body))
+            detail_rate = _hs.caption_check.rate_problem(
+                _hs.our_sentences(detail_body), _hs.caption_check.SITE_COMMA_CEILING)
+            if detail_rate:
+                detail_problems.append(detail_rate)
+            check("the reservoir page keeps the house rules", not detail_problems,
+                  "; ".join(detail_problems)[:180])
 
         # THE CHART'S OWN CLAIM, CHECKED. The distribution's caption tells a reader that the
         # area under the steps is the statewide percentage. That is either true arithmetic or

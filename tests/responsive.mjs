@@ -54,6 +54,17 @@ const PREINSTALLED = process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromi
 const browser = await chromium.launch(
   fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {});
 
+const reservoirRoot = path.join(SITE, "water", "reservoir");
+const reservoirPages = fs.existsSync(reservoirRoot)
+  ? fs.readdirSync(reservoirRoot).filter((name) =>
+      fs.existsSync(path.join(reservoirRoot, name, "index.html"))).sort()
+  : [];
+// Canyon's 100.0% range is the widest metric in this data family. Use that page when it is
+// present so the representative sweep exercises the hard layout, not merely the first slug.
+const representativeReservoir = reservoirPages.includes("canyon")
+  ? "canyon" : reservoirPages[0] || null;
+if (!representativeReservoir) console.log("  ..    NOT BUILT, skipped: reservoir detail page");
+
 // ONE PAGE PER LAYOUT, not all fifty-five. The item pages are the same shape as each other
 // and so are the place pages, so sweeping every one of them multiplies the runtime by forty
 // and finds nothing the representative does not. A layout that stops being represented here
@@ -75,7 +86,9 @@ const pages = [
                  if (!ok) console.log(`  ..    NOT BUILT, skipped: ${f}`);
                  return ok; })
  .concat(fs.readdirSync(path.join(SITE, "item")).slice(0, 1).map((d) => `item/${d}/index.html`))
- .concat(fs.readdirSync(path.join(SITE, "place")).slice(0, 1).map((d) => `place/${d}/index.html`));
+ .concat(fs.readdirSync(path.join(SITE, "place")).slice(0, 1).map((d) => `place/${d}/index.html`))
+ .concat(representativeReservoir
+   ? [`water/reservoir/${representativeReservoir}/index.html`] : []);
 
 const overflow = [];
 const overlap = [];
@@ -302,7 +315,10 @@ const CHARTS = [["grid/index.html", "svg.loadshape"],
                 ["water/index.html", "svg.waterviz.trend"],
                 ["water/index.html", "svg.waterviz.dist"],
                 ["water/index.html", "svg.waterviz.resmap"],
-                ["construction/index.html", "svg.cysvg"]];
+                ["construction/index.html", "svg.cysvg"],
+                ...(representativeReservoir
+                  ? [[`water/reservoir/${representativeReservoir}/index.html`,
+                      "svg.reservoir-trend"]] : [])];
 
 const tiny = [];
 for (const w of [320, 360, 390, 414, 480, 540, 600, 680, 768, 900, 1180, 1440])
@@ -503,6 +519,18 @@ check("...while a plain tap still opens the county",
 await touch.close();
 
 await browser.close();
+
+// THE WATER MAP IS A CONTROL NOW, not a screenshot with tooltips. Keep its complete pointer,
+// keyboard, click, touch and reduced-motion suite behind this already-required browser entry
+// point so it cannot silently fall out of CI when the interaction grows another route.
+if (representativeReservoir) {
+  try {
+    await import("./water_reservoirs.mjs");
+    check("every reservoir opens its own daily water record", true);
+  } catch (error) {
+    check("every reservoir opens its own daily water record", false, error.message);
+  }
+}
 
 if (failures) { console.error(`\nresponsive: ${failures} FAILED`); process.exit(1); }
 console.log("\nresponsive: all passed");
