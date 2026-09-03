@@ -459,6 +459,65 @@ def g_construction(d: Path):
     return None if code == 2 else problems
 
 
+# THE TWO GATES NOTHING EVER RAN, wired in 2026-09-03.
+#
+# `label_guard` and `quantifier_check` have existed for days, `gate_status` lists them, and
+# neither was registered here or in guards.yml. So neither had ever run against a published deck,
+# and when they were finally run by hand on 2026-09-03 BOTH were red on the shipped deck. That is
+# this file's own founding lesson repeating: a checker wired to nothing certifies nothing, and an
+# umbrella that says "every carousel gate" while omitting two of them is worse than no umbrella,
+# because it turns unverified gates green.
+LABEL_SINCE = "2026-09-02"
+QUANTIFIER_SINCE = "2026-08-23"
+
+
+def _by_module(name: str, d: Path):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        name, Path(__file__).resolve().parent / (name + ".py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+def g_labels(d: Path):
+    """Every label a frame prints beside a claim id is words that claim says.
+
+    NOT APPLICABLE on or before LABEL_SINCE, and that date is a LIMITATION rather than politeness
+    to old work. This gate reads the capitalised words before an id as a label, which is right for
+    a deck that sets discrete labels and wrong for one that sets a whole dek in capitals. Six
+    published decks do the latter, so run into history it reports WAS, RATHER and THAN as
+    unsupported labels, which is the false positive mode `label_guard` refuses to have.
+
+    Narrowing the heuristic so a caps SENTENCE is not read as a caps LABEL is the fix, and it is
+    a design change rather than a wiring one. Until it lands this binds forward only, and the
+    older decks are reported as notes so the limitation stays visible rather than forgotten.
+    """
+    if d.name <= LABEL_SINCE:
+        return ("this gate reads capitalised words before a claim id as a label, and this deck "
+                "sets running prose in capitals, so it would report sentence words as labels")
+    m = _by_module("label_guard", d)
+    try:
+        return m.check(d)
+    except m.Absent:
+        return None
+
+
+def g_quantifiers(d: Path):
+    """A universal over a set names the set it ranges over.
+
+    NOT APPLICABLE on or before QUANTIFIER_SINCE. Run into history this is clean on thirteen of
+    fourteen earlier decks, and the one it catches, 2026-08-23, is a genuine undeclared universal
+    in already published copy that cannot now be cleared, because a run's `quantifiers.json` is
+    written by the run. A gate that is permanently red with no action that clears it is a gate
+    somebody switches off, which is the call `ledger_check` and this file already make twice.
+    """
+    if d.name <= QUANTIFIER_SINCE:
+        return ("this gate was not wired when the deck shipped and its declaration file is "
+                "written by the run, so a finding here can never be cleared")
+    return _by_module("quantifier_check", d).check(d)
+
+
 def g_completion(d: Path):
     """`check(run_dir, bar, cap)`, and the cap is the whole point of the third argument.
 
@@ -498,6 +557,8 @@ GATES = [
     ("locators", g_locators, CURRENT),
     ("numerals", g_numerals, CURRENT),
     ("sources block", g_sources, HISTORY),
+    ("labels", g_labels, CURRENT),
+    ("quantifiers", g_quantifiers, CURRENT),
     # CURRENT, for the reason already written above about `aggregates`. Run into history this
     # finds 2026-08-19, whose assemble_report titles the PDF "Texas AI Docket, August 19th 2026"
     # where copy.json titles the deck "Batch Zero, and the calendar with a hole in it". That is a
