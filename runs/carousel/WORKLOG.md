@@ -141,3 +141,61 @@ reader's way in, and the deciding body gets named on the frame that needs it.
   degrees and rendered every shadow as if the key sat well above 45.
 - **Every acceptance item must fail a frame that draws NOTHING**, which is instinct 0.75 as well
   as no. 13's own finding.
+
+## Sources field log, the full list to append at Phase 17
+
+- **`news.rice.edu` returns HTTP 406 to every client tried**, a browser user agent included.
+  Second consecutive run. Three claims on `tx-2026-0098` were moved to the NSF award record.
+- **`federalregister.gov` HTML document pages redirect this client to `unblock.federalregister.gov`.**
+  Its JSON API answers normally, and `govinfo.gov/content/pkg/FR-<date>/html/<num>.htm` serves
+  the identical document with no block. That is the working route to verbatim Federal Register
+  text and the registry does not carry it.
+- **The PUCT calendar RSS needs `-L`.** `puc.texas.gov/agency/calendar/GetCalendarRss.aspx`
+  answers 301 to the same path in lower case.
+- **The PUCT feed escapes HTML inside its XML descriptions**, so a quote a reader would take off
+  the feed can never be matched. See the gate finding below.
+- **`yahoo.com` article pages are JavaScript shells** and serve nothing a quote can be read from.
+- **Legistar**: the Austin client slug is `austintexas`, not `austintx`. `/matters/<id>/histories`
+  returned an empty array for Austin and Dallas both, and the event action fields were null on an
+  item already voted, so Legistar is reliable for agenda text and meeting dates here and is not a
+  source of vote tallies.
+- **`pol.tasb.org` returns 403**, which walls off every Texas school district's board policy
+  manual. The single biggest primary source gap on the classroom beat.
+- **`texasattorneygeneral.gov` returns HTTP 402** on every path tried, the same shape the registry
+  already records for `interchange.puc.texas.gov`. Likely a user agent problem rather than policy.
+- **`www.nsf.gov/awardsearch/show-award/` is a JavaScript shell** that renders "No Award Specified"
+  to any plain fetcher. `api.nsf.gov/services/v1/awards/<id>.json?printFields=...` returns the
+  full abstract cleanly and is the route to use.
+- **`lccf.tacc.utexas.edu` returned 403 on its own robots.txt.** The parent `tacc.utexas.edu`
+  disallows our agent, so TACC and Horizon went uncovered for a second run. This needs an owner
+  decision or a second client retest, per the registry's own standing rule.
+- **`hprc.tamu.edu` 403.** `vision.tamus.edu`, `docs.vision.tamus.edu`, `news.tamus.edu`,
+  `www.tarleton.edu` and `top500.org` all answer 200 and are clean primary routes.
+- **`top500.org/system/<id>/` is the quotable page**, not the paginated list, whose row is a table
+  and cannot be quoted as a contiguous string.
+- Also 403 or 503 to this client this run: `businesswire.com`, `technologymagazine.com`,
+  `openai.com`, `beckershospitalreview.com`, `kxan.com`, `wistron.com`, `www.hpcwire.com`,
+  `faa.gov/space/stakeholder_engagement/spacex_starship`, `agendasuite.org`,
+  `ir.diamondbackenergy.com`, `investors.fireflyspace.com`, `sec.gov/cgi-bin/browse-edgar`.
+  `www.gccdd.org` does not resolve at all.
+
+## Upgrade proposals for Phase 17, each with the cost it charged THIS run
+
+- **`docket_ingest.DECIDER_TYPE_MAP` has no entry for `city-council` or `federal-agency`.** Both
+  are what a researcher naturally writes and neither is in `docket_build.DECIDER_TYPES`. Two of
+  this run's four admissions were held on it. This is the mechanical normalisation that script
+  exists for, and it already maps `university` and `utility`.
+- **`claims_check.SOURCE_TYPES` carries `data` and `docket_build.SOURCE_TYPES` does not.** The
+  same TOP500 claim needs two different words depending on which gate reads it. One vocabulary
+  stated twice is wrong in one of the two places eventually, which is this repo's oldest shape.
+- **The caption ledger records `closing_moves_recent` and nothing enforces it.** The last SEVEN
+  shipped captions all closed by asking the one question the decision leaves open.
+  `CAPTION_CRAFT.md` says "Rotate. Never the same phrasing two runs running." Opening moves and
+  structures are handed to the room as exclusions and closing moves are not, so the one that is
+  only written in prose is the one that drifted. Exactly the shape CLAUDE.md names.
+- **`reverify.flatten` cannot read a feed that escapes HTML inside XML.** It strips XML tags
+  first and unescapes second, so `&lt;strong&gt;Project&lt;/strong&gt; 58482` ends up in the
+  flattened text as a literal `<strong>Project</strong> 58482`. A quote taken from what a reader
+  sees can therefore never match, which is why two claims on `tx-2026-0024` and one on
+  `tx-2026-0002` read as unverifiable every run rather than once. Unescape, then strip, then
+  unescape again, or strip twice.
