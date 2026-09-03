@@ -1,0 +1,7 @@
+{
+ "run": "2026-09-03",
+ "status": "absent",
+ "reason": "this deck archived no slides/*.html, and its copy.json keeps labels and claim ids in separate fields, so no surface carries a label beside an id to check. Archive the rendered frames to make this deck checkable",
+ "checked": 0,
+ "problems": []
+}

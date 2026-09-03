@@ -1,0 +1,18 @@
+{
+ "run": "2026-09-03",
+ "note": "Each universal below names the set it ranges over and the check that proved it. Both range over this run's verified claims, which is claims_verified in figures.json. Written after the fact on 2026-09-03, because quantifier_check had never been run by the routine and nothing produced this file.",
+ "quantifiers": [
+  {
+   "phrase": "every source",
+   "figures_key": "claims_verified",
+   "surface": "first_comment.txt",
+   "proved": "every id in claims.json appears in first_comment.txt, and every claim carries retrieved 2026-09-03, so the sentence's date holds for the whole set"
+  },
+  {
+   "phrase": "every claim and every source",
+   "figures_key": "claims_verified",
+   "surface": "first_comment.txt",
+   "proved": "the same set. The record's item page carries each of these claims with its own source, which is what the sentence points a reader at"
+  }
+ ]
+}
