@@ -163,14 +163,15 @@ font-family:var(--mono-face);font-size:12.5px;letter-spacing:.14em;color:var(--s
 .feed::-webkit-scrollbar{display:none}
 .card{position:relative;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;
 display:flex;align-items:center;justify-content:center;background:var(--night)}
-/* the 9:16 stage. Full bleed on a phone, a centred column on a wide screen, because a
-   letterboxed vertical film on a desktop is worse than an honest column. */
+/* A centred column on desktop, with a full-height control surface on phones. A tall
+   phone can constrain the stage's width below 9:16: contain the complete film and
+   poster, rather than cropping the burned-in captions and credits to fill that box. */
 .stage{position:relative;height:100%;aspect-ratio:9/16;max-width:100vw;background:#000;
 overflow:hidden}
 @media(min-width:700px){.stage{height:min(94dvh,1000px);border-radius:14px;
 border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}}
-.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
-.stage .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.stage .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
 transition:opacity .35s}
 .stage.playing .poster{opacity:0;pointer-events:none}
 
