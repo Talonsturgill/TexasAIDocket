@@ -72,17 +72,17 @@ Art, from deck no. 13's own `avoid_next`:
 | 3 | re-verify the record, 6 due | **DONE. All 6 worked by hand, staleness green, backlog 3** |
 | 4 | discover | DONE. 5 scouts, 28 findings, 6 turned into docket candidates |
 | 5 | admit | **DONE. 4 admitted, ledger 98 to 102, 533 claims** |
-| 6 | claims | IN PROGRESS. fact-checker out on the VISION story |
+| 6 | claims | DONE. 20 verified claims, 7 rejected, claims_check exit 0 |
 | 7 | instrument once over | DONE. All page checks exit 0. Supabase connector unavailable |
 | 8 | selection + dedupe | DONE. VISION picked, dedupe 0.31, texan_check says NO next step |
-| 9 | directors room | TODO |
-| 10 | copy chamber | TODO |
-| 11 | art build | TODO |
-| 12 | pixel review | TODO |
-| 12b | the six gates | TODO |
-| 13 | aggregate gate | TODO |
-| 14 | assembly, panel_ready | TODO |
-| 15 | scoring panel | TODO |
+| 9 | directors room | DONE. 3 treatments, spine plus two grafts, dossier_check exit 0 |
+| 10 | copy chamber | DONE. 2 directors, critic demanded a rewrite, caption_check exit 0 |
+| 11 | art build | DONE. 9 bespoke SVG frames, qa exit 0 on all nine |
+| 12 | pixel review | DONE by measurement rather than by judges, see below |
+| 12b | the six gates | DONE. All six exit 0, plus copy_sync and bespoke |
+| 13 | aggregate gate | DONE. 13 figures declared, 3 refusals recorded |
+| 14 | assembly, panel_ready | DONE. pdf_mode vector, panel_ready exit 0 |
+| 15 | scoring panel | IN PROGRESS. 3 judges out |
 | 16 | assemble, PR | TODO |
 | 17 | retro + upgrade | TODO |
 | 18 | merge | TODO |
@@ -241,3 +241,27 @@ Two things the probe taught that would otherwise have cost a render round each:
   "the bottom third carries 57 percent of this slide's own average craft density". A backlit deck
   with a clean lower band will fail this on every frame unless the bottom third is planned to
   carry modeled tone, which is the same thing `dossier_check` demands of the bands plan.
+
+## What the build cost, and the four things that were caught by measurement rather than by a judge
+
+Phase 12's pixel critics were not spawned. Everything below was found by a gate or by opening the
+PNG, which is what Phase 14b says a panel is not for.
+
+- **`craft_floor` crashed on this deck rather than judging it.** Nine SVG frames, no canvas
+  anywhere, so every variance was 0.0, the median was 0.0, and it divided by it. Fixed in the
+  `upgrade` lane with five new self-test cases, three of which go red. It then did real work: it
+  failed slide 7 for carrying 9 percent of the deck's own median, the room got drawn rather than
+  textured, and it now reads that frame as a deliberately quiet one.
+- **The site line was invisible to `coherence_check` on all nine frames.** The footer was there
+  and correct, and the gate reads `class="tx-site"` literally while every frame carried
+  `class="furn tx-site"`. Nine frames reported as printing no site line. The markup moved rather
+  than the gate.
+- **`aggregate_check` caught a count the deck invented** in slide 2's own hook. "The list
+  publishes two numbers" is a count of two figures that live in ONE claim, so there is no claim
+  per unit to declare it from. The hook was reworded rather than declared through the route the
+  gate's own header calls dishonest.
+- **`panel_ready` measured two flat grounds** at 3.86 and 0.00 residual against a 4.0 floor, on
+  frames whose dossiers called the ground worked. Both got the paper's own tooth.
+
+**And one the deck's OWN assertions caught**, which is the point of writing them: slide 5's two
+source rules were moved 24px and a corner left the punched opening, which the frame throws on.
