@@ -6,7 +6,7 @@
   "comma_ceiling": "NOT SET. It is computed from this product's first twenty shipped captions at ten percent below their measured mean, never copied from another product. config/parity_map.yaml carries the unblock condition; scripts/carousel/caption_check.py measures the rate every run.",
   "written_by": "carousel",
   "doctrine": "knowledge/carousel/CAPTION_CRAFT.md holds the menus this ledger rotates: ten opening moves, eight structures, five closing moves, and the anti-template law the critic judges by.",
-  "exclusions_handed_to_the_room": "opening moves from the last 6 runs, structures from the last 3. The room is told what is off the table before it writes, never after.",
+  "exclusions_handed_to_the_room": "Opening moves, structures and closing substances, each off the table for the number of runs its own section of CAPTION_CRAFT.md states. The numbers are NOT written here. scripts/carousel/ledger_check.py reads all three from the doctrine with windows() and derives every stored list from them, so this field can never disagree with the rule. It used to read 'opening moves from the last 6 runs, structures from the last 3', which named two of the three windows, typed both, and left the closing window out of the contract entirely. A review bot on PR 252 found it beside the same defect in the gate. The room is told what is off the table before it writes, never after.",
   "entry_schema": {
    "date": "YYYY-MM-DD",
    "opening_move": "one of the named moves in CAPTION_CRAFT.md",
@@ -258,8 +258,6 @@
   "pivot"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open",
-  "ask the one question the decision leaves open",
   "Ask the one question the decision leaves open."
  ]
 }

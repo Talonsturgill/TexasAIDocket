@@ -891,3 +891,20 @@ one site are treated as one source.
 All five scouts reported again that they have no write tool and returned their JSON inline. The
 2026-08-28 entry already says this. **This run persisted the findings itself** rather than asking
 for the file again, which is the disposition that entry recommended.
+
+### An entry in this file was false when it was written, and only a reader outside caught it
+
+The `yahoo.com` entry above ends "`tx-2026-0038` rested on two of them and no longer does." **That
+was not true on the day it was written.** Four claims moved to the Harlingen board's own posted
+minutes and two were left on the yahoo page, under an item the same run stamped verified. A review
+bot on PR 252 found it by reading this file against the record it describes.
+
+Both claims are now removed rather than re-stamped, because the minutes carry neither the general
+manager's drinking water remark nor the minimum annual payment figure. The correction is here
+rather than in that line because **this file is append only**, and a log that can be edited to
+match what later turned out to be true is not a field log.
+
+**The general lesson is not about yahoo.** A note written while a repair is half done describes
+the repair the writer intends rather than the one that shipped, and nothing in this repo compares
+prose in `knowledge/` against the ledger it talks about. Write the note after the last claim
+moves, or write what actually moved.

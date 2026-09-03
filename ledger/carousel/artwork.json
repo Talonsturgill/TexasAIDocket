@@ -801,16 +801,16 @@
     "deck_median_L": 73.1,
     "per_frame_L": [
      73.1,
-     94.0,
-     17.8,
-     76.9,
-     16.5,
-     26.9,
+     94.1,
+     18.9,
+     77.2,
+     17.5,
+     27.3,
      16.6,
-     92.3,
+     92.4,
      92.3
     ],
-    "how": "measure.py writes measurements.json off the rendered PNGs on the same fixed 270 by 338 grid every prior run used, and this block and value_arc.txt both derive from that file. An earlier figure of 72.0 came from a second script resampling to 216 by 270, which is two homes for one number and is the defect shipped_check's measured-figures gate exists for."
+    "how": "measure.py writes measurements.json off the rendered PNGs on the same fixed 270 by 338 grid every prior run used, and this block and value_arc.txt both derive from that file. Two corrections during the run: an earlier 72.0 came from a second script resampling to 216 by 270, which is two homes for one number, and the L* function combined the sRGB channels BEFORE linearising them, which a review bot on PR 252 caught with the falsifying case of pure blue at 5.6 against a true 32.3. On this palette the error ran 0.0 to 1.7 and the deck median did not move."
    },
    "bespoke": 0.5486,
    "bespoke_note": "THE WORST OF THE FOURTEEN, against a prior high of 0.52, and it FAILED at 0.5515 before slide 6's four wall rects were redrawn as two bevels. Nothing made this deck a template on purpose. Four repair rounds put one rect-loop idiom into several frames one frame at a time, which is deck 9's recorded mechanism exactly. The craft judge's advice is to read the number as a RANK and not as a gate, since its 0.55 line is fitted from a corpus of two.",

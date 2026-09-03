@@ -1,4 +1,4 @@
-# Run record — 2026-09-03
+# Run record, 2026-09-03
 
 Carousel no. 14. The Texas A&M University System's VISION supercomputer, and who may use it.
 
@@ -604,3 +604,92 @@ this repo binds a frame's source stamp to the claims its copy actually carries, 
 judges proposed exactly that, independently, as their one sentence fix.
 
 
+## The review pass on PR 252, and what it cost the contract
+
+A review bot read the branch after the panel closed and filed four findings. Three were real, one
+of them was severe, and every one of them is the shape this run had already spent five rounds on.
+**Something was asserted that nothing measured**, and the bot found each by reading two files side
+by side, which is the one thing no gate here does.
+
+| finding | what was true | disposition |
+|---|---|---|
+| **`tx-2026-0038` was stamped verified while two claims sat on an unreadable page** | The yahoo.com article answers 200 at half a megabyte and serves nothing a quote can be read from. Both claims carried an August 14th fetch date under an item stamped today, and `SOURCES_FIELD_LOG.md` said the item "no longer" rested on that page | both claims removed rather than re-stamped. The board's own minutes carry neither the general manager's drinking water remark nor the minimum annual payment figure, so neither moved to a readable source. The field log was corrected |
+| **`tx-2026-0118` published an unsourced Texas clause and a wrong ERCOT answer** | The summary said Texas carries a large share of the data centers such a market would price. No claim supports it and no national denominator was ever fetched | the clause is gone. `geography.on_ercot` moved from `false` to null, which is a change to the record's shape and is the subject of the next section |
+| **`measure.py` and `measure_focals.py` linearised L\* in the wrong order** | The luma of the three sRGB values was taken first and the transfer function applied once to that. The falsifying case is pure blue, 5.6 against a true 32.3 | fixed in both. On this deck's palette the error runs 0.0 to 1.7 and no published figure moved, which does not make it less of an arithmetic error inside the two files backing the compute-not-generate promise |
+| **neither measurement script can run from a fresh checkout** | Both read `render/slide-NN.png` and nothing else, and `render/` is scratch under `out/` that is never committed | both now fall back to the shipped frames. Eight of the nine are WebP, so the fallback crosses a lossy encoder and the medians move 0.000 to 0.253 L\*, worst on frame 5 at 17.5 against 17.8. **The file states the tolerance rather than claiming the figures match** |
+
+**A measurement nobody outside the run can reproduce is an assertion with a program attached.**
+That is the useful half, and it applied to both scripts at once because they were written the
+same afternoon by the same reasoning.
+
+### The one the bot could not have found, and the gate that did
+
+`ledger_check` derived `closing_moves_recent` three deep off its own line while `windows()` read
+**one** out of `CAPTION_CRAFT.md`, and every self-test fixture typed three as well. All of it
+passed, every run, because the number the gate ENFORCED and the number the gate DERIVED were
+never compared to each other. Both halves were internally consistent and one of them was wrong.
+
+All three windows now come from `windows()`, the fixtures derive theirs from the same call, and
+the stored list holds the doctrine's one entry. A new case fails a closing list deeper than the
+doctrine's own window, so the two can never drift apart again in that direction.
+
+## A third blocker, and it belongs to a person
+
+Correcting `on_ercot` to null widened the field from a boolean to a boolean or null, and
+`schema_contract` went red saying the shape moved and the version had not.
+
+**The field had two states and the record has three.** `tx-2026-0118` is a federal request for
+comment on derivatives with compute as the underlier. It is nationwide, it concerns a market
+rather than a facility, and it names no state, so it is neither on the ERCOT grid nor off it.
+Stored `false`, the site printed a reader a plain "No. It sits outside the ERCOT interconnection",
+which is a confident answer to a question that does not apply. So `false` was carrying two
+meanings, measured-to-be-off and does-not-apply, and only the first is one this project can stand
+behind. **That is the compute-not-generate law applied to a flag.** Where it is neither measured
+nor modelled, it is not published.
+
+`SPEC_VERSION` rose to 2 and `_spec.version` in the ledger with it, both in the `daily` lane, and
+the gate's message changed from "the shape broke and the version is still 1" to naming the break
+and asking for the contract to be recorded.
+
+**`config/schema_contract.json` is `human` and this run did not write it.** Its own note says why,
+and today is the day that sentence earned its keep. "A routine adds ITEMS and never FIELDS, so
+this will not block a run. When the shape does move it is a change to a public contract published
+under CC BY, and a person deciding whether it breaks anybody is exactly the friction that belongs
+there. A contract the process that changes the data can also rewrite is not a contract."
+
+A maintainer runs `python3 scripts/site/schema_contract.py --update` and commits the one file.
+The gate is green the moment they do, and until they do it is red, correctly.
+
+**The note's prediction was that this would never block a run, and it was wrong today.** A routine
+does add items and not fields, and this was neither. It was a correction to the DOMAIN of a field
+the record already had, made by the lane that owns the record. That case is not in the note and
+the map handled it correctly anyway, which is the argument for the map over the prose.
+
+### Two smaller things the suite caught on the way
+
+- **`house_style_check` went red on copy written to fix the bot's findings.** Three history notes
+  ran over the 30 word backstop. The notes were correct and the sentences were too long, which is
+  the ordinary failure mode of writing a careful explanation at the end of a long run.
+- **Two repair passes rewrote `ledger/docket.json` at indent 2 where `docket_build` writes indent
+  1**, turning a twelve line correction into an 11,778 line diff no reviewer could read. Nothing
+  in the suite catches it, because every gate reads the parsed record and the shape was never in
+  question. Restored, and recorded as an instinct.
+- **A new `reverify` self-test case was written as `page =`, the name eleven later cases read.**
+  Those cases then ran against a document that does not carry their quote, and the suite crashed
+  on the first one that indexed a key an unstamped item never grows. The crash was luck. A case
+  asserting the shared fixture still carries what the later cases look for is what catches it now.
+
+## Where this leaves the run
+
+Three blockers, none of them reachable from `daily` or `upgrade`, and each one a real decision
+rather than a thing to wait out.
+
+| gate | why it is red | whose call |
+|---|---|---|
+| `ask_pack --self-test` | the index is 40,450 characters against a 40,000 ceiling. `ask_pack.py` is `human`, and the instrument sections making up 39 percent of the index are `gridwatch` | maintainer |
+| `ledger_check` | the light deck cap is breached, measured at 73.1 against `LIGHT_L` 60.0, with deck 8 at 86.7 in the same eight run window | maintainer |
+| `schema_contract` | the record shape moved deliberately and the contract has not been recorded | maintainer, by design |
+
+**The run still does not merge**, for the reason it did not merge before the review pass. What
+changed is that the record is more nearly true than it was, and one of the three red gates is now
+red because a correction landed rather than because something was left undone.

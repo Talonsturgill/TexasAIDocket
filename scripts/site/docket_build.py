@@ -96,7 +96,24 @@ REQUIRED_FIELDS = ("id", "title", "summary", "topic", "decider", "geography",
 #
 # `scripts/site/schema_contract.py` enforces all of the above against
 # `config/schema_contract.json`, so this constant cannot be a promise nobody keeps.
-SPEC_VERSION = 1
+# VERSION 2, 2026-09-03. `geography.on_ercot` widened from a boolean to a boolean or null, and
+# the reason is a defect a review bot found on PR 252 rather than a new beat.
+#
+# The field had two states and the record has three. `tx-2026-0118` is a federal request for
+# comment on derivatives with compute as the underlier. It is nationwide, it concerns a market
+# rather than a facility, and it names no state, so it is neither on the ERCOT grid nor off it.
+# Stored `false`, the site printed a reader a plain "No. It sits outside the ERCOT
+# interconnection", which is a confident answer to a question that does not apply.
+#
+# So `false` was carrying two meanings, "measured to be off ERCOT" and "the question does not
+# apply here", and only the first is something this project can stand behind. Null is the third
+# state and the page suppresses the question rather than answering it wrongly. That is the same
+# rule the compute-not-generate law states for numerals, applied to a flag: where it is neither
+# measured nor modelled, it is not published.
+#
+# A consumer reading this field must now handle null. That is a break, it is deliberate, and the
+# version is what says so out loud.
+SPEC_VERSION = 2
 
 # --------------------------------------------------------------------------- vocabularies
 # Deliberately closed sets. An open vocabulary drifts, and a drifted topic list silently

@@ -559,6 +559,46 @@
    "evidence": "Deck no. 14. Three frames carried the same attribution defect and each was found in a different round: slide 4 credited c10's quotation to c8's publisher in round 2, slide 7 credited the docs page with a testing page sentence in round 4, and slide 6 set the chancellor's quotation with no publisher at all in round 5. Every fix was to the instance. Both round 5 judges proposed this binding independently as their one sentence fix.",
    "confirmed": [],
    "contradicted": []
+  },
+  {
+   "id": "a-fixture-and-its-gate-can-agree-and-both-be-wrong",
+   "learned": "2026-09-03",
+   "instinct": "When a gate enforces a number, make its test fixtures derive that number from the same source the gate reads. A fixture holding its own copy proves only that the copy matches.",
+   "evidence": "Deck no. 14, PR 252. ledger_check derived closing_moves_recent three deep off its own line while windows() read one out of CAPTION_CRAFT.md, and every self-test fixture typed three as well. All of it passed. A review bot found it by reading the two files side by side, which was the only way it was ever findable: the number the gate enforced and the number the gate derived were never compared to each other.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "never-rebind-a-shared-test-fixture",
+   "learned": "2026-09-03",
+   "instinct": "Give a new test case its own fixture name. Reusing the name of a shared one silently rewrites every case below it.",
+   "evidence": "Deck no. 14. A new reverify case for escaped markup on an ordinary page was written as `page =`, the name eleven later cases read, and those cases then ran against a document that does not carry their quote. The suite crashed on the first one that indexed a key an unstamped item never grows, which is luck rather than a check. A case asserting the shared fixture still carries what the later cases look for is now the thing that catches it.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-measurement-must-be-reproducible-from-what-shipped",
+   "learned": "2026-09-03",
+   "instinct": "A script that certifies a published figure must run from a fresh checkout. If it reads only uncommitted scratch, nobody outside the run can check the number.",
+   "evidence": "Deck no. 14, PR 252. measure.py and measure_focals.py both read render/slide-NN.png and nothing else, and render/ lives under out/ and is never committed. The two scripts backing the compute-not-generate promise could not be re-run by anybody holding only the repository. They now fall back to the shipped frames, and because eight of nine are WebP the fallback agrees to about three tenths of an L* point rather than exactly, which the file states instead of glossing.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-two-state-flag-over-a-three-state-world-publishes-a-wrong-answer",
+   "learned": "2026-09-03",
+   "instinct": "Where a boolean field would have to mean both 'measured false' and 'the question does not apply', give it a third state and suppress the question instead of answering it.",
+   "evidence": "Deck no. 14, PR 252. tx-2026-0118 is a federal request for comment on compute derivatives. It is nationwide, concerns a market rather than a facility, and names no state, and geography.on_ercot stored false printed a reader a plain 'No. It sits outside the ERCOT interconnection.' That is the compute-not-generate law applied to a flag: where it is neither measured nor modelled it is not published. Widening the field is a break, so SPEC_VERSION rose to 2 to say so.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "write-a-ledger-at-the-indent-its-builder-uses",
+   "learned": "2026-09-03",
+   "instinct": "Before hand-editing a generated ledger, match the writer's own json.dumps arguments. A different indent reformats the file and buries the real change.",
+   "evidence": "Deck no. 14. Two repair passes rewrote ledger/docket.json at indent 2 where docket_build writes indent 1, turning a twelve line correction into an 11,778 line diff that no reviewer could read. The change itself was right both times. Nothing in the suite caught it, because every gate reads the parsed record and the shape was never in question.",
+   "confirmed": [],
+   "contradicted": []
   }
  ]
 }

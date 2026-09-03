@@ -110,7 +110,7 @@ which is written by resampling each render to 216 by 270 and taking the median L
 
 Per frame median L*, computed:
 
-`73.1 · 94.0 · 17.8 · 76.9 · 16.5 · 26.9 · 16.6 · 92.3 · 92.3`, **deck median 73.1**.
+`73.1 · 94.1 · 18.9 · 77.2 · 17.5 · 27.3 · 16.6 · 92.4 · 92.3`, **deck median 73.1**.
 
 **THE FIRST VERSION OF THIS LINE WAS MEASURED ON THE WRONG GRID AND DISAGREED BY 1.1.** It read a deck median of 72.0, resampled to 216 by 270 by a script written for this run. Every prior run measured on 270 by 338, and `shipped_check`'s measured-figures gate reads `measurements.json`, which is written by `measure.py` on that grid. Two grids is two homes for one figure, which is the defect that gate exists for, so this line and the artwork ledger now both derive from that file and nothing here is resampled twice.
 
