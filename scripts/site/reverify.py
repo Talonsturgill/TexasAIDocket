@@ -121,11 +121,30 @@ def flatten(raw: bytes) -> str:
     fails on any quote whose words are split by a tag, which is most of them once a source puts
     a case number in a `<strong>`. Tags out, entities decoded, whitespace collapsed, and the
     comparison happens on what a reader would have seen.
+
+    A FEED ESCAPES ITS HTML INSIDE ITS XML, AND ONE PASS CANNOT READ THAT (2026-09-03).
+    An RSS description is markup carried as text, so the bytes hold
+    `&lt;strong&gt;Project&lt;/strong&gt; 58482`. The strip runs first and finds no tag to
+    strip, the unescape runs second and turns it into a literal `<strong>Project</strong> 58482`
+    sitting in the flattened text. The quote a reader would take off that feed, `Project 58482`,
+    can therefore NEVER match, however many runs re-check it.
+
+    Measured on the PUCT calendar feed, which this record tracks as an item of its own. Three
+    claims across `tx-2026-0024` and `tx-2026-0002` reported as unreadable on every run for that
+    reason alone, and a phase handed a permanent false alarm learns to skim the report.
+
+    So the strip and the unescape run TWICE, and the second pass removes the markup the first
+    revealed. The cost is a page that deliberately DISPLAYS escaped markup as visible content,
+    where the second strip removes text a reader can see. That is rare, and it fails toward a
+    missed match rather than a false one, which is the cheaper of the two errors here.
     """
     t = raw.decode("utf-8", "replace")
-    t = _TAG.sub(" ", t)
-    t = _ANY.sub(" ", t)
-    t = html.unescape(t)
+    # TWICE, and the docstring above says why. One pass cannot read a feed whose HTML is escaped
+    # inside its XML, because the strip runs before the unescape that reveals the markup.
+    for _ in range(2):
+        t = _TAG.sub(" ", t)
+        t = _ANY.sub(" ", t)
+        t = html.unescape(t)
     # A non-breaking space is a space to a reader and a different codepoint to `in`.
     t = t.replace(" ", " ").replace("’", "'").replace("“", '"').replace("”", '"')
     return _WS.sub(" ", t).strip()
@@ -494,6 +513,21 @@ def self_test() -> int:  # noqa: C901
     it = item("tx-1", "https://a/", quote)
     f, _, _ = check([it], {}, server({"https://a/": page}))
     ok("a quote split by a tag is still found", all(x["state"] == UNCHANGED for x in f), str(f))
+
+    # A FEED THAT ESCAPES ITS HTML INSIDE ITS XML (2026-09-03). The PUCT calendar feed carries
+    # its descriptions as escaped markup, so one strip-then-unescape pass leaves literal tags in
+    # the flattened text and a reader's own quote can never match. Three claims in this record
+    # reported unreadable on every run for that alone.
+    feed = (b"<rss><channel><item><title>Public Comment Deadline</title>"
+            b"<description>&lt;strong&gt;Project&lt;/strong&gt; 58482&lt;br /&gt;"
+            b"&lt;strong&gt;Commissioners Hearing Room 7-100&lt;/strong&gt;</description>"
+            b"</item></channel></rss>")
+    ok("escaped markup inside a feed does not survive into the text",
+       "<strong>" not in flatten(feed), flatten(feed))
+    ok("...so a quote a reader would take off the feed is found",
+       "Project 58482" in flatten(feed), flatten(feed))
+    ok("...and a quote that is genuinely not there is still not found",
+       "Project 99999" not in flatten(feed), flatten(feed))
 
     print("\nand each outcome is told apart from the others")
     # AUTHORITY IS EARNED. With no record of ever having found this quote here, the honest
