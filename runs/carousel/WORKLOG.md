@@ -571,3 +571,23 @@ that is true and one that is merely green.
 4 in round 2, slide 7 in round 4, slide 6 in round 5. Every fix was to the instance. Nothing in
 this repo binds a frame's source stamp to the claims its copy actually carries, and both round 5
 judges proposed exactly that, independently, as their one sentence fix.
+
+
+## The run is finished, and it did NOT merge
+
+**All waves are DONE.** Panel round 5 was the cap, the deck shipped at a median of 6.762 with no
+hard fail from any judge, and PR no. 252 is open and ready.
+
+**Two gates are red and neither is reachable from this lane.** The ask index is 450 characters
+over its ceiling and `scripts/site/ask_pack.py` is `human`. The light deck cap is breached at a
+measured deck median L* of 73.1 and the remedy is a redesign, not an edit. Both are stated in the
+run record, in the PR body and in the email's own gate block rather than buried.
+
+**Phase 16 found three things the per-run gates could not**, because they read `out/` and
+`shipped_check` reads `runs/`: a stale copy.json and render report that would have shipped, and
+four number words in the plan's prose tracing to no computed count. It also found the value arc's
+REPLACEMENT figure was measured on the wrong grid.
+
+**This file has done its job and the next run should not inherit it.** Delete it. What is worth
+keeping is in `ledger/carousel/instincts.json` (sixteen entries from this deck), in the three
+variety ledgers, and in `runs/carousel/2026-09-03/RUN_RECORD.md`.
