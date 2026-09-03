@@ -32,6 +32,7 @@ import { chromium } from "playwright";
 import { fileURLToPath } from "node:url";
 import fs from "node:fs";
 import path from "node:path";
+import { videoFit } from "./video_fit.mjs";
 
 const SITE = path.resolve(process.env.SITE || path.join(
   path.dirname(fileURLToPath(import.meta.url)), "..", "docs"));
@@ -518,6 +519,7 @@ check("...while a plain tap still opens the county",
       tp.url().includes("/place/county-"), tp.url());
 await touch.close();
 
+await videoFit(browser, SITE, check);
 await browser.close();
 
 // THE WATER MAP IS A CONTROL NOW, not a screenshot with tooltips. Keep its complete pointer,

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-ZepXaCnhozmotfp0glqKknucPsWA0ZRAtvHmHf+GPnY=' 'sha256-u472K+rsZz1c9Kf39fti0utuMCTkK2PRZrdzxxE7BTA=' https://challenges.cloudflare.com; style-src 'self' 'sha256-bqYH/dnN83L6T+0muMdPP8sjlKVpkh8RwX5Ac7jlx1Q='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-ZepXaCnhozmotfp0glqKknucPsWA0ZRAtvHmHf+GPnY=' 'sha256-u472K+rsZz1c9Kf39fti0utuMCTkK2PRZrdzxxE7BTA=' https://challenges.cloudflare.com; style-src 'self' 'sha256-zE82Aa92zxNLR+pS6f3g05Er1Hu5/OalbBB5zcYD22k='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Videos · Texas AI Docket</title>
@@ -77,14 +77,15 @@ font-family:var(--mono-face);font-size:12.5px;letter-spacing:.14em;color:var(--s
 .feed::-webkit-scrollbar{display:none}
 .card{position:relative;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;
 display:flex;align-items:center;justify-content:center;background:var(--night)}
-/* the 9:16 stage. Full bleed on a phone, a centred column on a wide screen, because a
-   letterboxed vertical film on a desktop is worse than an honest column. */
+/* A centred column on desktop, with a full-height control surface on phones. A tall
+   phone can constrain the stage's width below 9:16: contain the complete film and
+   poster, rather than cropping the burned-in captions and credits to fill that box. */
 .stage{position:relative;height:100%;aspect-ratio:9/16;max-width:100vw;background:#000;
 overflow:hidden}
 @media(min-width:700px){.stage{height:min(94dvh,1000px);border-radius:14px;
 border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.6)}}
-.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
-.stage .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.stage .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
 transition:opacity .35s}
 .stage.playing .poster{opacity:0;pointer-events:none}
 
