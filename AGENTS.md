@@ -101,6 +101,15 @@ handoff or push-ready claim, run the relevant browser tests plus the local workf
 ```
 
 `--fast` skips Node/browser suites; the second command is the fuller local approximation of CI.
+
+**This ladder is PRE-MERGE and stops at the merge.** A check is worth its time only while its
+answer can still change what lands. Once a merge returns, kill a suite still in flight, re-run
+nothing to confirm what the merge already carried, and read the branch's CI once. A red `main`
+is a NEW change with its own check before ITS merge. `CLAUDE.md` carries the full rule.
+
+**Two questions, and only one is `--verdict`'s.** `--only <step>` reproduces one failing step
+and its EXIT CODE is the answer. `--verdict` answers whether the whole tree is clean and only a
+full run writes one, so it refuses a `--fast` or `--only` verdict by design.
 Some CI-context steps can only run on GitHub and must be reported as skipped, not passed. Inspect
 rendered output when visual correctness is part of the change; machine gates do not replace pixel
 review.

@@ -1301,11 +1301,23 @@ request. This phase lands it and nothing after it writes to the repository.
    wait again.
 
    **THE LOCAL SUITE IS A PRE-MERGE TOOL.** Reproducing a red job is the reason this runner
-   exists, and `--only <step>` is usually the right shape once the log names the step. Run it
-   before the push, where a red step still means do not merge.
+   exists. Run it before the push, where a red step still means do not merge.
 
-   **When you do run it, ask `python3 scripts/shared/guards_local.py --verdict`. Never read the
-   runner's log to decide it.** Exit 0 there is the only thing that counts as a local pass. Any
+   **TWO DIFFERENT QUESTIONS, AND ONLY ONE OF THEM IS `--verdict`'s.** Asking the wrong one is a
+   loop, and this prose sent a run into it for one round on 2026-09-03.
+
+   - *Did the step CI named pass now?* `guards_local.py --only <step>` and **read its exit
+     code**. That is a targeted reproduction and its exit code is the whole answer.
+   - *Is this whole tree clean?* Only a FULL run answers that, and `--verdict` is how you ask.
+
+   `--verdict` refuses an `--only` verdict on purpose, because a narrow run cannot answer for
+   the whole suite, and its own self-test asserts the refusal. So a run told to use `--only` and
+   then told that `--verdict` is the only local pass has been told to do something that cannot
+   happen. Ask the question you actually have.
+
+   **When you run the FULL suite, ask `python3 scripts/shared/guards_local.py --verdict`. Never
+   read the runner's log to decide it.** Exit 0 there is the only thing that counts as a full
+   local pass. Any
    other exit names its own reason, and the commonest is that the suite has not finished, which
    a log cannot tell you: while it runs, its output is a wall of `ok` with no `FAIL`, which is
    also exactly what a passing run looks like. On 2026-08-27 this run read one at line 84 of an
