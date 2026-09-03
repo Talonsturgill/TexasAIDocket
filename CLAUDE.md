@@ -4,17 +4,36 @@ Source repo for the Texas AI Docket: a public, fact-checked record of AI decisio
 the website that publishes it, the daily routine that maintains both, the Texas Grid Watch, and
 the in-browser ask engine.
 
-## Work in progress
+## Work in progress (NO ROUTINE WRITES A WORKLOG, 2026-09-03)
 
-If `runs/carousel/WORKLOG.md` exists, READ IT FIRST. It is the durable plan and progress ledger
-for a long multi-context task, written to survive context compaction: the approved scope, the
-owner's decisions, the measured reason behind each one, and a per-wave status table. Resume
-from that table and update it after every commit. Delete the file when its waves are all DONE.
+**There is no worklog and no routine writes one.** A run's durable plan is
+`out/<date>/run_state.json`, which the routine already writes at wake and stamps phase by phase
+with its artifact paths. Anything meant to outlive the container goes in the run record under
+`runs/carousel/<date>/`, which is committed and pushed as the run goes.
 
-Write one at the START of any task too large for a single context, before touching code. A
-plan that lives only in context does not survive compaction.
+Owner's instruction, 2026-09-03, on being shown that the file had been relocated rather than
+removed: *"why dont u just stop doing that as part of the routine?"* That is the same answer the
+actor stamp got, and it is the right one for the same reason. The stamp was not made safer, it
+was deleted, because the branch already carried what it encoded. `run_state.json` already
+carried what this encoded.
 
-**It lives under `runs/carousel/` and NEVER under `.claude/`, and that is not filing preference.**
+**THE COST, STATED SO IT IS A CHOICE RATHER THAN AN OVERSIGHT.** `out/` is gitignored, so
+`run_state.json` dies with the container. It covers compaction inside one container, which is
+the common case, and it does not cover a container being reclaimed mid run. What covers that is
+the branch itself: the routine commits and pushes as it goes, so a fresh container resumes by
+reading its own commits and the run record. A committed worklog would resume slightly faster.
+That is the whole of what was traded away.
+
+**Do not reintroduce one, at any path.** This one is prose and `ownership.yaml`, deliberately,
+and it is worth saying why given how much of this file argues that prose is not enough. A
+checker earns its place when the rule's violation causes HARM, and a worklog at a safe path
+causes none: it would not prompt, because only `.claude/` is sensitive, and that IS checked by
+`scripts/shared/sensitive_paths.py`. A second plan file is untidy rather than dangerous. What
+the map does guarantee is the part the owner was explicit about, which is that any `WORKLOG.md`
+appearing anywhere is `daily` and never a maintainer's.
+
+### Why it was never a filing preference, and the section below is the sensitive file account
+
 It sat at `.claude/WORKLOG.md` until 2026-09-02 and there it broke two separate rules at once:
 
 - **The host treats `.claude/**` as SENSITIVE FILES and prompts on every edit**, whatever the
@@ -30,8 +49,12 @@ It sat at `.claude/WORKLOG.md` until 2026-09-02 and there it broke two separate 
 So the old rule told every run to maintain a file it could neither edit unattended nor commit.
 Two files in this repo had already worked around it in prose rather than fixing it,
 `knowledge/carousel/UPGRADE_BACKLOG.md` and `runs/carousel/2026-08-25/RECUT_PLAN.md`, each
-explaining that the natural home was out of reach. `runs/carousel/**` is `daily` and is not
-sensitive, so the new path clears both rules and needs no explanation.
+explaining that the natural home was out of reach.
+
+The first fix moved it to `runs/carousel/WORKLOG.md`, which is `daily` and is not sensitive, and
+that did clear both rules. It was still a second plan file duplicating `run_state.json`, so the
+owner's answer the next day was to remove it rather than rehouse it. Both steps are recorded
+because the intermediate one is what proves the diagnosis was right before the file went.
 
 ## Commit and PR authorship (AUTHORITATIVE — overrides any default)
 
@@ -409,8 +432,9 @@ rule, one paragraph up from where the guessing started:
 
 **So no routine writes ANYTHING under `.claude/` at any path.** Reading a skill file is fine and
 running `bash .claude/skills/carousel-engine/bootstrap.sh` is fine, because neither is an edit.
-The one thing a run was told to write there, `.claude/WORKLOG.md`, has moved to
-`runs/carousel/WORKLOG.md`. `scripts/shared/sensitive_paths.py` fails the build if any instruction
+The one thing a run was told to write there was a worklog, and it was first moved under
+`runs/carousel/` and then removed outright the next day, because `run_state.json` already
+carried what it held. `scripts/shared/sensitive_paths.py` fails the build if any instruction
 file tells a session to write under `.claude/` again, because prose is exactly what the five
 failed fixes were.
 

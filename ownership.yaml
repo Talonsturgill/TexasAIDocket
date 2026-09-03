@@ -154,9 +154,11 @@ rules:
   - path: "WORKLOG.md"
     owner: daily
     note: >
-      The durable plan a long run keeps across context compaction. It lived at
-      `.claude/WORKLOG.md` until 2026-09-03 and it was wrong there twice over, which is why it
-      is named here rather than left to the `**` default.
+      NO ROUTINE WRITES THIS FILE ANY MORE. The owner removed the worklog on 2026-09-03 rather
+      than rehousing it a second time, because `out/<date>/run_state.json` already carried the
+      resume state. The rule stays because ownership is the answer to the question "if one ever
+      reappears, whose is it", and the owner's instruction on that was explicit. It is the
+      routine's, never a maintainer's.
 
       It was in the WRONG LANE. `.claude/` is the constitution's own directory and everything
       in it that this map names is `human` or `upgrade`, so the one file the daily routine was
