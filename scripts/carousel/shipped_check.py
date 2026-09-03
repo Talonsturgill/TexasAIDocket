@@ -502,6 +502,19 @@ QUANTIFIER_WAIVED = {
     },
 }
 
+# A DECK THAT MADE ITSELF UNCHECKABLE, named the same way and for the same reason. An absent
+# label gate is a problem rather than a not-applicable, so the ordinary answer is that the sweep
+# goes red until the run archives its frames. That answer needs the frames to still exist.
+LABEL_ABSENT_WAIVED = {
+    "2026-09-03": (
+        "Carousel no. 14 was rendered and posted from a container that has since been reclaimed, "
+        "and `out/` is gitignored, so `out/2026-09-03/slides/` no longer exists anywhere. The "
+        "artifact cannot be archived after the fact and there is no action left that clears this. "
+        "The cause is the ship step naming only NEXT_RUN.md where it says copy artifacts, written "
+        "up as a proposal in knowledge/carousel/UPGRADE_BACKLOG.md because prompts/ is human lane. "
+        "This waiver covers ONE date. Deck 15 shipping without its frames is fatal"),
+}
+
 # A finding that is measured, reported and not fatal. `check_run` routes on this prefix, so any
 # gate can use it and none of them can hide a finding to do so.
 WAIVED = "[waived] "
@@ -540,7 +553,19 @@ def g_labels(d: Path):
     try:
         return m.audit(d)[1]
     except m.Absent as a:
-        return f"the gate could not run on this deck: {a}"
+        # AN ABSENT GATE ON A DECK THIS GATE COVERS IS A PROBLEM, NOT A NOT-APPLICABLE, and the
+        # first attempt at this fix returned a string here. `check_run` reads any string as "not
+        # applicable" whatever the gate's scope, so the sweep still exited 0 and still printed
+        # "every applicable gate clean" over a deck whose label gate had not run. That is the same
+        # defect as the PASS it replaced, said out loud instead of silently. Review caught it.
+        #
+        # A deck after LABEL_SINCE that archived no slide HTML did not fail this gate, it made
+        # itself uncheckable, and the fix is in the ship step rather than here. So it is a
+        # PROBLEM, the scope machinery makes it fatal on the newest deck and a note on an older
+        # one, and the next run archiving its frames clears it.
+        why = LABEL_ABSENT_WAIVED.get(d.name)
+        line = f"the label gate could not run on this deck: {a}"
+        return [f"{WAIVED}{line}  WAIVED. {why}" if why else line]
 
 
 def g_quantifiers(d: Path):
@@ -768,6 +793,24 @@ def self_test() -> int:
                any("an unnamed finding beside it" in x for x in f), str(f))
     finally:
         GATES.pop()
+
+    # AN ABSENT LABEL GATE IS FATAL WITHOUT A WAIVER, and the first fix here returned a string,
+    # which `check_run` reads as not-applicable whatever the scope. So the sweep exited 0 over a
+    # deck whose label gate had not run. The waiver is lifted for the length of this case: what is
+    # under test is that the ordinary answer is red, not that today's named date is exempt.
+    if runs and runs[-1].name in LABEL_ABSENT_WAIVED:
+        newest = runs[-1]
+        f, n = check_run(newest, True)
+        ok("a waived absent label gate is a note on the newest deck",
+           any("label gate could not run" in x for x in n) and
+           not any("label gate could not run" in x for x in f), f"{f} / {n}")
+        held = LABEL_ABSENT_WAIVED.pop(newest.name)
+        try:
+            f, n = check_run(newest, True)
+            ok("...and WITHOUT the waiver it is FATAL, never a not-applicable",
+               any("label gate could not run" in x for x in f), f"{f} / {n}")
+        finally:
+            LABEL_ABSENT_WAIVED[newest.name] = held
 
     # AND THE TABLE MATCHES ON SUBSTRINGS, so an entry that matches nothing is dead weight the
     # next reader will trust. Every waived phrase has to be a finding the gate actually makes.
