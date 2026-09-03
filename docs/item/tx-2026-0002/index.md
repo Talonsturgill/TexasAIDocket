@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Comment closes: 2026-09-04
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-03
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · The comment window is still open, closing September 4th. The commission's own calendar feed still carries that deadline as a dated entry naming the project. The proposed rule still draws its line at a demand threshold rather than at the words data center.
 - 2026-08-30 · The rule is still out for comment. The proposal for publication of new section 25.521 stands as filed, and the deadline the Texas Register acknowledged is September 4th.
 - 2026-09-02 · The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments have been filed against the proposal since it was published.
+- 2026-09-03 · The comment window on the proposed Large Load Demand Management Service rule closes tomorrow, September 4th, 2026. The commission's calendar feed still carries that deadline as a dated entry of its own, and the proposal for publication of new section 25.521 stands as filed. Anyone meaning to file has one day left. The feed's own project strings are quotable again now that the check reads a feed whose HTML is escaped inside its XML, so the project a deadline belongs to is carried by a claim rather than by a summary alone.
 
 ## Evidence
 
@@ -54,9 +55,9 @@ Source (primary_official): https://interchange.puc.texas.gov/search/documents/?c
 
 Source (primary_official): https://interchange.puc.texas.gov/search/documents/?controlNumber=58482&itemNumber=31
 
-### The PUCT calendar feed independently lists the September 4th public comment deadline for this project.
+### The commission's calendar feed carries the September 4th public comment deadline as its own dated entry.
 
-> Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+> Public Comment Deadline - Friday, September 4, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
@@ -101,4 +102,10 @@ Source (primary_official): https://tcss.legis.texas.gov/resources/UT/htm/UT.39.h
 > Texas Register Acknowledgement of Receipt - Comment Deadline 09/04/2026
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The commission's calendar feed names this project beside its September 4th deadline.
+
+> Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+
+Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 

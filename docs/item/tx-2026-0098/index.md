@@ -1,6 +1,6 @@
 # NSF funds a Rice laboratory where a model designs the experiment and a robot runs it, bookable from anywhere
 
-The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials. AI plans the experiments and the equipment executes them. The University of Texas at Austin is a collaborating institution. Rice describes the point as access rather than speed, putting capability that existed in a handful of laboratories behind a login a researcher anywhere in the country can use. The university's own framing is unusually careful about the limit, saying responsible AI should complement a researcher's judgment rather than replace it.
+The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials. AI plans the experiments and the equipment executes them. The award record calls the result a self-driving laboratory and says it is meant to run with minimal human intervention. SUNY Poly and the University of Texas at Austin are named alongside Rice. What the award promises is access rather than speed alone, putting capability that existed in a handful of laboratories behind tools a researcher elsewhere can reach.
 
 - Topic: research-and-science
 - Decided by: National Science Foundation (federal)
@@ -12,7 +12,7 @@ The National Science Foundation award to William Marsh Rice University funds REA
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2607553.json
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-03
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Admitted. The award record and the university's own account agree on what the platform is and who may use it.
 - 2026-08-29 · Checked and unchanged. The award to Rice still funds a laboratory where a model proposes the next experiment and a robot runs it. The university still frames the machine as complementing a researcher's judgment rather than replacing it. The platform is still described as one researchers elsewhere will be able to reach.
 - 2026-09-02 · The award is still listed as active on the funding agency's own record, with its dates and program unchanged. The university's own announcement could not be read, so what it says about the laboratory is unconfirmed.
+- 2026-09-03 · The award is still active on the funding agency's own record, with its start date, its end date and its program unchanged. The university's own announcement refuses this project's clients outright, a browser user agent included, so three claims that rested on it now cite the award record instead, which carries the same substance and answers. One sentence has come out of the summary with them. The university's framing of responsible AI as complementing rather than replacing a researcher's judgment appears nowhere in the award record, so the record no longer prints it.
 
 ## Evidence
 
@@ -36,21 +37,21 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
-### Rice states what the platform is for.
+### The award record states what the platform is meant to be.
 
-> seeks to create a remote research platform that minimizes trial-and-error experimentation and enhances access to advanced research infrastructure for electronic and quantum materials synthesis.
+> The platform will function as a "self-driving laboratory" capable of autonomously designing, testing, and improving material-synthesis processes with minimal human intervention.
 
-Source (primary_official): https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory
+Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
-### The university states a limit on what the model is for.
+### The award names the institutions working on it together.
 
-> Responsible AI should complement researchers' capabilities rather than replace their judgment.
+> Rice University, SUNY Poly, and the University of Texas at Austin
 
-Source (primary_official): https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory
+Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
-### The stated goal is a laboratory researchers elsewhere can use.
+### The award states that what is built is meant to be reachable from elsewhere.
 
-> Our goal is to create a laboratory that researchers from across the country can use to produce advanced electronic and quantum materials on demand.
+> create remotely accessible tools that will broadly benefit researchers, students, technologists, and industry partners nationwide
 
-Source (primary_official): https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory
+Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
