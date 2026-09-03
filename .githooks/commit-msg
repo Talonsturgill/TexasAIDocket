@@ -34,7 +34,20 @@ actor="$(python3 "$checker" --print-actor --branch "$branch" --gitdir "$gitdir" 
 
 # A maintainer session needs to know none of this, and an unstamped commit is judged against the
 # branch's own actor by CI anyway, so there is nothing to declare.
-[ "$actor" = "human" ] && exit 0
+#
+# THAT IS ONLY TRUE WHEN THE BRANCH ITSELF RESOLVES TO `human`, and assuming it always did cost
+# a red CI run on 2026-09-03. `ownership.yaml` grants `human` on `claude/daily-` branches through
+# `branch_also_allows`, as the escape hatch for a run that has to fix a file it does not own. A
+# maintainer used it, the pre-commit check passed because `human` owns every path, this hook
+# wrote no trailer because the actor was `human`, and CI then inferred `daily` from the branch
+# prefix and failed the commit for writing `config/schema_contract.json`.
+#
+# So the two halves disagreed about a lane the map explicitly permits. The skip now asks whether
+# the BRANCH would have said `human` on its own. When it would, there is still nothing to
+# declare. When it would not, the stamp is the only thing that can tell CI what happened.
+branch_actor="$(env -u TXDOCKET_ACTOR python3 "$checker" --print-actor --branch "$branch" \
+                --gitdir /nonexistent 2>/dev/null | tr -d '[:space:]')"
+[ "$actor" = "human" ] && [ "$branch_actor" = "human" ] && exit 0
 
 # Already stamped, by an amend or a cherry-pick carrying the trailer forward. Leave it alone
 # rather than stacking a second one, which would leave the two disagreeing with no rule for
