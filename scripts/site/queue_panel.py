@@ -145,13 +145,37 @@ def figures(data: dict) -> dict:
     # as though they were adjacent. The collector paid for that honesty and the renderer spent
     # it. The timeline carries every month the record holds, verified or not, and a month with
     # no reading publishes no number: it gets its name and a mark saying nothing was published.
+    #
+    # ONE SLOT PER MONTH, NOT ONE PER RECORD, and this drew one per record until 2026-09-03.
+    #
+    # The ledger is APPEND ONLY and that is correct. A month with no Monthly Operational
+    # Overview gets an explicit unverified record every time the collector looks, because a
+    # failed read writes what it found and never carries yesterday's number forward. Three days
+    # of looking at August wrote three honest lines saying nothing was published.
+    #
+    # The chart then drew three Augusts. The published page carried two, a fresh build made
+    # three, and the count went up by one every day the overview stayed unpublished, so
+    # `site_fresh_check` went red on `main` and would have gone red again the next morning
+    # however many times it was rebuilt. Rebuilding was the loudest wrong answer available: it
+    # clears the gate for a day and puts a fourth August on the live page.
+    #
+    # A month axis is one slot per month. The record that speaks for a month is the VERIFIED
+    # one if there is one, whatever order the lines are in, because a month can be unverified
+    # for days and then publish, and last-wins would then throw the reading away. Where none is
+    # verified the latest look is the one that stands, and it says the same thing every other
+    # look said.
+    by_month = {}
+    for r in sorted(data["records"], key=lambda r: (r["month"], str(r.get("read_at") or ""))):
+        held = by_month.get(r["month"])
+        if held is None or not held.get("verified"):
+            by_month[r["month"]] = r
     f["timeline"] = [{"month": r["month"],
                       "verified": bool(r.get("verified")),
                       "approved_mw": (float(r["approved_to_energize_mw"])
                                       if r.get("verified") else None),
                       "drawing_mw": (float(r["observed_operational_mw"])
                                      if r.get("verified") else None)}
-                     for r in sorted(data["records"], key=lambda r: r["month"])]
+                     for _, r in sorted(by_month.items())]
     if len(f["series"]) >= 2:
         first, latest = f["series"][0], f["series"][-1]
         f["change"] = {
@@ -472,6 +496,43 @@ def self_test() -> int:
              "requested": data.get("requested")}
     check("...and a record with no hole draws no gap",
           "qmiss" not in flatline(figures(solid)))
+
+    # ONE SLOT PER MONTH, AND THE LEDGER IS APPEND ONLY. A month with nothing published gets an
+    # honest unverified record every time the collector looks, so August carried three lines by
+    # 2026-09-03 and the chart drew three Augusts. The published page had two, a fresh build had
+    # three, and the number went up every morning: site_fresh_check red on main with rebuilding
+    # as the loudest wrong answer, since it clears the gate for a day and puts a fourth August
+    # on the live page. Both directions, because the second is what makes the first safe.
+    repeated = {"records": [
+        {"month": "2026-01", "verified": True, "approved_to_energize_mw": 8787,
+         "observed_operational_mw": 4049},
+        {"month": "2026-02", "verified": False, "note": "nothing published",
+         "read_at": "2026-09-01T00:00:00Z"},
+        {"month": "2026-02", "verified": False, "note": "nothing published",
+         "read_at": "2026-09-02T00:00:00Z"},
+        {"month": "2026-02", "verified": False, "note": "nothing published",
+         "read_at": "2026-09-03T00:00:00Z"},
+        {"month": "2026-03", "verified": True, "approved_to_energize_mw": 9042,
+         "observed_operational_mw": 4008}],
+        "requested": data.get("requested")}
+    rh = flatline(figures(repeated))
+    check("a month looked at three times is drawn once, not three times",
+          rh.count('class="qgrp') == 3 and rh.count('datetime="2026-02"') == 1,
+          f"{rh.count('class=' + chr(34) + 'qgrp')} slot(s), "
+          f"{rh.count('datetime=' + chr(34) + '2026-02' + chr(34))} February")
+    # AND A LATE READING WINS OVER AN EARLIER MISS WHATEVER ORDER THE LINES ARE IN. A month can
+    # go unpublished for days and then publish, so last-wins alone would throw the reading away.
+    published_late = {"records": [
+        {"month": "2026-01", "verified": True, "approved_to_energize_mw": 8787,
+         "observed_operational_mw": 4049},
+        {"month": "2026-02", "verified": True, "approved_to_energize_mw": 9043,
+         "observed_operational_mw": 4037, "read_at": "2026-09-01T00:00:00Z"},
+        {"month": "2026-02", "verified": False, "note": "nothing published",
+         "read_at": "2026-09-02T00:00:00Z"}],
+        "requested": data.get("requested")}
+    ph = flatline(figures(published_late))
+    check("...and a verified reading wins over a later miss on the same month",
+          "9,043" in ph and ph.count('datetime="2026-02"') == 1, ph[:200])
 
     # THE VALUE CANNOT LAND ON THE BAR. Not "does not today" but cannot: the label is laid out
     # above a plot wrapper and the fill's percentage resolves against that wrapper, so full
