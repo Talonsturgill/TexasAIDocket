@@ -50,6 +50,34 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 LIGHT_L = 60.0      # deck median L* at or above which a deck reads light
 LIGHT_CAP = 1       # brand.yaml: at most once per eight runs
+
+# NAMED WAIVERS OF THE LIGHT DECK CAP, one date each, with who decided and why.
+#
+# This is not a raised cap and it is not an exemption window. The count above is still measured
+# off the shipped render, still compared against brand.yaml's one per eight, and still PRINTED
+# every run whether or not a waiver applies. A date here changes one thing, which is whether
+# that measured fact stops the build.
+#
+# WHY THE MECHANISM EXISTS AT ALL. The cap guards visual variety across the feed, which is a
+# brand judgment rather than an accuracy one, and the owner owns brand judgments. The
+# alternative shapes were both worse. Raising `LIGHT_CAP` would silently permit every future
+# second light deck. Editing `artwork.json` to hide the measurement would corrupt the durable
+# memory the cap is counted from, which is the one thing an append only ledger refuses.
+#
+# A WAIVER IS SELF LIMITING and that is the point. It names a single date, so it expires on its
+# own the moment that deck rolls out of the eight run window, and it can never make the next
+# light deck legal. Nothing is added here without the owner saying so on the record, and the
+# reason string is what a later session reads instead of guessing.
+LIGHT_CAP_WAIVED = {
+    "2026-09-03": (
+        "Owner's instruction on 2026-09-03, given after being shown that carousel no. 14 was "
+        "that day's deck, carried zero hard fails from all three judges at the five round cap, "
+        "and scored 6.762 against the 6.562 that carousel no. 13 shipped at the day before. The "
+        "other light deck in the window, 2026-08-26, was second oldest in it and rolls out after "
+        "one more run, so the deck tripped the cap by one position. The variety debt is recorded "
+        "in the run record and the next deck is required dark"
+    ),
+}
 DOCTRINE = "knowledge/carousel/CAPTION_CRAFT.md"
 
 # The counts the topic prose is ABOUT. A number word in that prose has to be one of these, not
@@ -328,11 +356,24 @@ def check_register(art: dict) -> list[str]:
               f"entr(y/ies) predate the measurement and are not counted: "
               f"{', '.join(unmeasured)}")
     if len(light) > LIGHT_CAP:
-        problems.append(
-            f"artwork.json: {len(light)} light deck(s) in the last {len(window)} runs "
-            f"({', '.join(e['date'] + ' at L* ' + str(e['value']['deck_median_L']) for e in light)}) "
-            f"against brand.yaml's cap of {LIGHT_CAP} per eight. Measured off the render, not "
-            f"asserted by the run")
+        named = ', '.join(e['date'] + ' at L* ' + str(e['value']['deck_median_L'])
+                          for e in light)
+        waived = [e for e in light if e["date"] in LIGHT_CAP_WAIVED]
+        over = len(light) - len(waived)
+        if over <= LIGHT_CAP:
+            # THE COUNT IS NOT SOFTENED. It is still measured off the render, still over the cap,
+            # and still printed here every run. What a waiver changes is only whether that fact
+            # BLOCKS, and only for a date somebody named on the record.
+            for e in waived:
+                print(f"  note  the light deck cap is OVER at {len(light)} in {len(window)} "
+                      f"({named}) and does not fail, because {e['date']} carries a named "
+                      f"waiver. {LIGHT_CAP_WAIVED[e['date']]}")
+        else:
+            problems.append(
+                f"artwork.json: {len(light)} light deck(s) in the last {len(window)} runs "
+                f"({named}) "
+                f"against brand.yaml's cap of {LIGHT_CAP} per eight. Measured off the render, not "
+                f"asserted by the run")
     return problems
 
 
@@ -567,6 +608,28 @@ def self_test() -> int:
                             "angle": "nine of the seven changed a legal state"}]}
     ok("...while a bare count that the run did not compute still FAILS",
        any("'nine'" in x for x in check_topics(t_count, figs)))
+
+    # THE LIGHT DECK CAP, AND THE WAIVER THAT MUST NOT DISABLE IT. A named waiver stops one
+    # measured date from blocking. It may never stop the count, and it may never make the NEXT
+    # light deck legal, which is the failure mode a raised cap would have had.
+    def _art(*pairs):
+        return {"entries": [{"date": d, "value": {"deck_median_L": L}} for d, L in pairs]}
+
+    dark = [(f"2026-07-{n:02d}", 20.0) for n in range(1, 7)]
+    ok("one light deck in eight is inside the cap",
+       not check_register(_art(*dark, ("2026-08-26", 86.7), ("2026-09-03", 20.0))))
+    ok("two light decks in eight FAIL when neither is waived",
+       any("light deck(s)" in x for x in
+           check_register(_art(*dark, ("2026-08-26", 86.7), ("2026-08-27", 73.1)))))
+    ok("...and do NOT fail when one of them carries a named waiver",
+       not check_register(_art(*dark, ("2026-08-26", 86.7), ("2026-09-03", 73.1))))
+    ok("...while a THIRD light deck fails even with the waiver in place",
+       any("light deck(s)" in x for x in
+           check_register(_art(*dark[:-1], ("2026-08-20", 85.5),
+                               ("2026-08-26", 86.7), ("2026-09-03", 73.1)))))
+    ok("the waiver is one date and never a window",
+       all(isinstance(k, str) and len(k) == 10 for k in LIGHT_CAP_WAIVED)
+       and all(v.strip() for v in LIGHT_CAP_WAIVED.values()))
 
     print("\nledger_check self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

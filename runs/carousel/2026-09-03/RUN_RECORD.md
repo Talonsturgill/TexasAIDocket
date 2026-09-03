@@ -237,7 +237,46 @@ Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit range.
 after eleven days of wrong guesses. No routine wrote under `.claude/` and no actor stamp was
 written by any tool at any path.
 
-## The one gate this run cannot make green, and why it is not merging on its own say-so
+## HOW THIS RUN ACTUALLY CLOSED, appended by the maintainer session of 2026-09-03
+
+**The deck shipped at 6.762 against a 6.8 bar, 0.038 under, on the owner's instruction.** Both
+blockers below were resolved rather than waited out, and both were resolved outside this run's
+own lane, which is why this section is appended rather than written by the run.
+
+**Blocker one, the ask pack ceiling, is fixed at source.** The section below escalated it
+correctly and its diagnosis of the bulk was wrong. It named a 119 reservoir roll call at 39
+percent of the index. Measured, the reservoirs are 8 percent and the bulk is the 150 data center
+dossiers at 12,403 characters, which were the one family still indexed a full line each while
+the reservoirs and the construction register were already rolled up. `ask_pack.py`'s own comment
+prescribes the fix, which is to roll a later family up before the ceiling is touched, so the
+dossier family is rolled up by county now and the index sits at 36,963 of 40,000. That shipped
+as pull request no. 256 and is merged into this branch.
+
+**Blocker two, the light deck cap, is waived by name.** `shipped_check` counted two light decks
+inside the eight run window against brand.yaml's cap of one, this deck at deck median L* 73.1
+and 2026-08-26 at 86.7. The owner waived it for this date after being shown three things. The
+deck carried **zero hard fails from all three judges**, it sat at the five round cap where the
+routine's own rule is that the deck ships at its honest median with the shortfall disclosed
+rather than being reworked, and it scored **6.762 against the 6.562 that carousel no. 13 shipped
+at the day before**. The other light deck was second oldest in the window and rolls out after one
+more run, so the cap was tripped by one position.
+
+**The cap was not raised and the count was not softened.** `LIGHT_CAP_WAIVED` in
+`scripts/carousel/ledger_check.py` names this one date with the reason. The count is still
+measured off the render, still over, and still printed on every run. A new self-test asserts that
+a THIRD light deck fails even with the waiver in place, so the waiver cannot make the next one
+legal, and it expires on its own when 2026-08-26 leaves the window.
+
+**The variety debt is recorded and the next deck is required dark.** `artwork.json`'s
+`avoid_next` for this date now leads with it, naming the Big Bend at dusk register and saying not
+to reach for a light ground again until the counted window holds none.
+
+**What shipped under the bar, stated plainly.** 6.762 against 6.8. Judges 6.75, 6.51 and 7.002,
+spread 0.492, `claim_integrity` contested. Two of the three refused on the threshold rather than
+on a fault and said so. The heaviest criterion, `artwork_craft` at 0.28, scored 6.8, which is the
+work the next run inherits.
+
+## The one gate this run could not make green, and why it did not merge on its own say-so
 
 **`scripts/site/ask_pack.py --self-test` fails. The ask index is 40,450 characters against a
 40,000 ceiling, over by 450.** It runs in `guards.yml`, so CI is red on this branch.
@@ -275,7 +314,7 @@ merits, and cutting a 103 item public record to fit a byte budget is the exact p
 degrades a record.** `CLAUDE.md`'s own rule is that a gate is fixed at source or reported, never
 loosened and never worked around.
 
-**So this run does not merge itself green.** The evidence is committed to the branch and the
+**So this run did not merge itself green, and the section above is how it closed.** The evidence is committed to the branch and the
 pull request is open. A maintainer session owns the decision, and the decision is a real one
 rather than a formality:
 
@@ -693,3 +732,26 @@ rather than a thing to wait out.
 **The run still does not merge**, for the reason it did not merge before the review pass. What
 changed is that the record is more nearly true than it was, and one of the three red gates is now
 red because a correction landed rather than because something was left undone.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | ABSENT | claims.json not written yet |
+| render         | ABSENT | render/render_report.json not written yet |
+| qa             | ABSENT | render/machine_qa.json not written yet |
+| aggregates     | ABSENT | aggregate_report.json not written yet |
+| assembly       | ABSENT | final/assemble_report.json not written yet |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| dossiers       | ABSENT | storyboard.md not written yet |
+| caption        | ABSENT | caption.txt not written yet |
+| craft floor    | ABSENT | nothing rendered yet |
+| plan vs render | ABSENT | nothing rendered yet |
+| texan          | ABSENT | no copy yet |
+| absences       | ABSENT | no copy yet |
+| numerals       | ABSENT | no copy, claims or render yet |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
