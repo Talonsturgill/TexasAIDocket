@@ -3,7 +3,8 @@
 Read `CLAUDE.md` in full before making changes. It is the repository constitution and remains
 the detailed source of truth. This file is the compact Codex entry point; do not let it become
 a competing copy. Also read `ownership.yaml`, the nearest path-specific instructions, and any
-active `runs/carousel/WORKLOG.md` before writing.
+the run state at `out/<date>/run_state.json` before writing. No routine writes a worklog and
+none should be created, at any path.
 
 ## What this project is
 

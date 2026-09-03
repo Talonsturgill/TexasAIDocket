@@ -1,6 +1,6 @@
 # Data center dossier work log
 
-This is the durable handoff for the facility research and registry experience work. The earlier project handoff ends with batch nine in `ORACLE_SPINE.md`. The general onboarding task owns `.claude/WORKLOG.md`, so this project keeps its own record here.
+This is the durable handoff for the facility research and registry experience work. The earlier project handoff ends with batch nine in `ORACLE_SPINE.md`. This project keeps its own record here because there is no shared worklog to keep it in, at any address. The daily routine's plan is `out/<date>/run_state.json`, which is scratch and gitignored, and CLAUDE.md carries the reason under the heading saying the routine writes no worklog.
 
 ## Goal
 
