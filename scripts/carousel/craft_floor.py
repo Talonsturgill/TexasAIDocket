@@ -44,6 +44,23 @@ Fitted on shipped work, not invented. The floor is a fraction of the deck's OWN 
 quiet deck is judged against itself rather than against a bright one, and a deck cannot pass by
 being uniformly flat: the absolute floor catches that.
 
+A DECK CAN DRAW EVERY FRAME AND WRITE NO CANVAS AT ALL (2026-09-03).
+
+Deck no. 14 is entirely SVG. Nine frames, nine drawings, and `canvases` empty on every one of
+them, so `variance_of` returned 0.0 nine times, the median was 0.0, and this gate divided by it
+and raised ZeroDivisionError. A crash is not a verdict. It told the run nothing about the deck
+and it would have told a later run nothing either.
+
+The fix is not to exempt an SVG deck, which would hand every future deck a way to opt out of the
+one gate that asks whether a frame was drawn. It is to ask the SAME QUESTION of a signal that
+exists for SVG. `qa.py` computes the per-third craft-cell density on every frame whatever drew
+it, so when a deck writes no canvas anywhere, the mean of those three bands becomes the measured
+quantity and the relative floor works exactly as before, against the deck's own median.
+
+What that costs, stated rather than hidden: band density answers "is there detail here" and not
+"does this frame have a real light and a real dark", so on an SVG deck this gate is measuring the
+weaker of the two questions it normally asks. The report says so on the line where it happens.
+
     craft_floor.py --date 2026-08-19
     craft_floor.py --self-test
 """
@@ -117,14 +134,28 @@ def check(report: dict, qa: dict | None = None) -> tuple[list, list, dict]:
     if not rows:
         return (["craft_floor: the render report lists no slides"], [], {})
 
-    vals = [r["variance"] for r in rows]
-    median = statistics.median(vals)
-    rel_floor = median * RELATIVE
-    floor = max(ABSOLUTE, rel_floor)
-
     qa_by = {}
     for s in (slides(qa) if qa else []):
         qa_by[s.get("file") or s.get("png") or "?"] = s
+
+    # AN ALL SVG DECK WRITES NO CANVAS, and the question still has to be asked. See the header.
+    # The band densities qa.py already computes are the substitute, and the units change with
+    # them, so the absolute floor cannot come along.
+    signal = "canvas variance"
+    if not any(r["variance"] > 0 for r in rows):
+        signal = "band density"
+        for r in rows:
+            b = bands_of(qa_by.get(r["file"], {}))
+            r["variance"] = (sum(b) / len(b)) if b else 0.0
+
+    vals = [r["variance"] for r in rows]
+    median = statistics.median(vals)
+    if median <= 0:
+        return ([f"craft_floor: every frame measures zero on {signal} and on band density too, so "
+                 f"nothing here was drawn or nothing was measured. Neither is a deck that ships"],
+                [], {"median": 0.0, "floor": 0.0, "rows": rows, "signal": signal})
+    rel_floor = median * RELATIVE
+    floor = max(ABSOLUTE, rel_floor) if signal == "canvas variance" else rel_floor
 
     fails, warns = [], []
     for r in rows:
@@ -134,15 +165,15 @@ def check(report: dict, qa: dict | None = None) -> tuple[list, list, dict]:
         r["thin"], r["lopsided"] = thin, lopsided
         if thin and (lopsided or not bands):
             fails.append(
-                f"{r['file']}: canvas variance {r['variance']:.1f} against a floor of {floor:.1f}. "
+                f"{r['file']}: {signal} {r['variance']:.4g} against a floor of {floor:.4g}. "
                 f"This frame carries {r['variance'] / median * 100:.0f} percent of the deck's own "
                 f"median tonal range, so it is not the same kind of object as the frames around it. "
                 f"Draw it or cut it. Do not answer this by adding texture")
         elif thin:
-            warns.append(f"{r['file']}: canvas variance {r['variance']:.1f} against a floor of "
-                         f"{floor:.1f}, but its detail is spread across the frame. A deliberately "
+            warns.append(f"{r['file']}: {signal} {r['variance']:.4g} against a floor of "
+                         f"{floor:.4g}, but its detail is spread across the frame. A deliberately "
                          f"quiet frame is a legitimate move. Confirm it is one")
-    return fails, warns, {"median": median, "floor": floor, "rows": rows}
+    return fails, warns, {"median": median, "floor": floor, "rows": rows, "signal": signal}
 
 
 def self_test() -> int:
@@ -198,6 +229,31 @@ def self_test() -> int:
     f6, _, _ = check(quiet, qa_lop)
     ok("...and the same frame with its craft in one band IS a fail",
        any("slide-02" in x for x in f6), str(f6))
+
+    # ---- A DECK THAT WRITES NO CANVAS AT ALL (2026-09-03) -------------------------------
+    # Deck no. 14 was entirely SVG and this gate raised ZeroDivisionError on it. A crash tells a
+    # run nothing, so the same question is now asked of the band densities qa.py records for
+    # every frame whatever drew it. These four cases are the proof it still goes red.
+    svg_rep = {"slides": [{"file": "s%d.html" % i, "canvases": []} for i in range(1, 6)]}
+    svg_qa_ok = {"slides": [{"file": "s%d.html" % i, "bands": [0.30, 0.28, 0.31]}
+                            for i in range(1, 6)]}
+    f7, w7, m7 = check(svg_rep, svg_qa_ok)
+    ok("an all SVG deck no longer crashes this gate", True)
+    ok("...and a drawn one passes", f7 == [] and w7 == [], str((f7, w7)))
+    ok("...measured on band density rather than on a canvas that is not there",
+       m7.get("signal") == "band density", str(m7.get("signal")))
+
+    svg_qa_empty = {"slides": [{"file": "s1.html", "bands": [0.0, 0.005, 0.0]}] +
+                              [{"file": "s%d.html" % i, "bands": [0.30, 0.28, 0.31]}
+                               for i in range(2, 6)]}
+    f8, _, _ = check(svg_rep, svg_qa_empty)
+    ok("...and an SVG frame nobody drew is STILL CAUGHT",
+       any("s1.html" in x for x in f8), str(f8))
+
+    f9, _, _ = check(svg_rep, {"slides": [{"file": "s%d.html" % i, "bands": [0.0, 0.0, 0.0]}
+                                          for i in range(1, 6)]})
+    ok("...and a deck where nothing was drawn or nothing was measured is an error",
+       f9 != [] and "nothing" in f9[0], str(f9))
 
     ok("an empty report is an error rather than a pass", check({})[0] != [])
     ok("the floor is fitted, not typed into a slide's own file",
