@@ -407,6 +407,46 @@
    "evidence": "Deck 14 slide 1 set its headline as a mask over two sheets. It rendered beautifully, passed the art crossing glyphs gate with zero failures, and appeared in NO text node in the render report, so copy.json could not carry it and the vector PDF held a shape. Setting the same words as HTML text in the bed's own value gave an identical picture with none of that lost.",
    "confirmed": [],
    "contradicted": []
+  },
+  {
+   "id": "a-laid-out-word-is-not-a-visible-word",
+   "learned": "2026-09-03",
+   "instinct": "Assert CONTRAST against the ground a mark actually lands on, never only that the string is present.",
+   "evidence": "Deck no. 14, slide 4, panel round 1. All three judges stopped the deck on one sentence. The dek's third line laid out below the sepia curl on bare cream while keeping its cream fill, at roughly 1.05 to 1. A ghost at 2160px and entirely absent at 432px. The sentence was 'No meeting date is published for that approval.', the only qualifier on a claim the claims file marks medium confidence and explicitly not a dated vote. copy.json carried the string because the browser really did lay it out, dossier_check's acceptance item asserted the string was present and it was, numeral_lint traced every numeral, qa.py returned zero fails, and panel_ready reported that every line cleared the rubric's 4.5 contrast floor while this line sat at 1.05. Twelve gates read what the document SAYS and none read what the page SHOWS.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "count-the-marks-that-carry-ink",
+   "learned": "2026-09-03",
+   "instinct": "Count the marks that carry ink, never the marks.",
+   "evidence": "Deck no. 14, slide 7. The frame asserted 1100 grain marks and drew 2600, and the craft judge found about a dozen visible at 2160px and none at 432px, because the spill term fell to zero below y 700 and left every mark in the lower two thirds at 0.05 opacity. The assertion counted nodes in a document. Nobody counted marks on a page.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "measure-a-gap-from-the-edge-that-is-drawn",
+   "learned": "2026-09-03",
+   "instinct": "When a word sits beside a drawn opening, advance from the OPENING's edge, not from the word inside it. The two differ by the opening's padding and the string is correct either way, so no gate can see it.",
+   "evidence": "Deck no. 14, slide 6, the thesis frame. The layout advanced by `w + 18` measured from the verb's own width while the slot already extended 16px past it, leaving a 2px gap. Two of three judges read 'willsupport' and 'willbe' on the frame the whole deck turns on. Every string, node and count was right. Only the distance was wrong.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-focal-in-the-dossier-is-not-a-focal-on-the-frame",
+   "learned": "2026-09-03",
+   "instinct": "Every declared focal needs a DRAWING STEP and a measured value delta against the ground around it. A dossier naming a region the light extreme, with nothing in the script that puts a mark there, ships as ordinary bed.",
+   "evidence": "Deck no. 14, slide 9. The dossier called the open registration area 'the brightest region in all nine frames' and between the seated leaf and the dashed one there was nothing but hatched bed at the same value as the whole frame. The craft judge found it on the closing frame and named it as the artwork ledger's own avoid_next line repeating verbatim.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "pin-copy-by-its-top-edge",
+   "learned": "2026-09-03",
+   "instinct": "Pin a copy box by its TOP and measure where it ended, never by its bottom.",
+   "evidence": "Deck no. 14, slide 4. A box offset from the bottom grows UPWARD when the copy wraps to one more line than anybody counted, and this one grew the other way off the sepia curl onto bare cream. Pinned at the top it can only grow downward, where a containment check can see it.",
+   "confirmed": [],
+   "contradicted": []
   }
  ]
 }
