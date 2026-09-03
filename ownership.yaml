@@ -128,6 +128,54 @@ rules:
       A run that can edit its own CI can switch off the gate that judges it. Workflow
       changes go through a maintainer session.
 
+  # ---------------------------------------------------------------- the run's own plan
+  #
+  # A WORKLOG IS NEVER `human`. Owner's instruction, 2026-09-03, in their words: "i have NOTHING
+  # to do with worklog.md that is not human owned EVER". It is a routine's own plan, a maintainer
+  # neither reads it nor writes it, and the one time this map said otherwise it cost five
+  # interrupted runs.
+  #
+  # THE GLOB IS NOT `**/WORKLOG.md`, AND THE FIRST DRAFT OF THIS RULE WAS. Last match wins here,
+  # so a `**` worklog glob sitting below the constitution reached back INTO `.claude/` and handed
+  # `daily` the exact write this whole change exists to stop. A review caught it before it
+  # merged. The addresses are named one by one instead, so widening ownership can never quietly
+  # widen the gated directory with it.
+  #
+  # Nothing under `.claude/` is on this list, deliberately. A file there is not a worklog that
+  # needs an owner, it is a file that must not exist: `protected_path_shape.py` fails the build
+  # if any instruction file so much as names it, and it falls to the `human` default so the
+  # pre-commit hook refuses a routine that creates one anyway. Two mechanisms, because the first
+  # draft of this rule proved one is not enough.
+  - path: "runs/**/WORKLOG.md"
+    owner: daily
+    note: >
+      The worklogs archived inside already-shipped run records. They are history rather than a
+      live plan, and they stay `daily` because the run that wrote them owned them.
+  - path: "WORKLOG.md"
+    owner: daily
+    note: >
+      NO ROUTINE WRITES THIS FILE ANY MORE. The owner removed the worklog on 2026-09-03 rather
+      than rehousing it a second time, because `out/<date>/run_state.json` already carried the
+      resume state. The rule stays because ownership is the answer to the question "if one ever
+      reappears, whose is it", and the owner's instruction on that was explicit. It is the
+      routine's, never a maintainer's.
+
+      It was in the WRONG LANE. `.claude/` is the constitution's own directory and everything
+      in it that this map names is `human` or `upgrade`, so the one file the daily routine was
+      told to write on every long run was the one directory an unattended run must never
+      rewrite. Nothing caught it because the `**` default is `human` and a run that never
+      COMMITS the file never meets the pre-commit hook.
+
+      It was also in a directory the HARNESS gates. A write under `.claude/` asks a human for
+      approval whatever the permission mode says, because that directory carries the settings
+      and hooks defining the agent's own permissions, exactly as `.git/` carries hooks that
+      execute. Five scheduled runs stopped on it and the owner was interrupted every one of
+      them. CLAUDE.md carries the full account under the heading about protected directories.
+
+      So it moved to the repository root, which is an ordinary tracked path in the `daily`
+      lane, and `scripts/shared/protected_path_shape.py` fails the build if any instruction
+      file sends a run back into `.claude/` or `.git/` with a write.
+
   # ---------------------------------------------------------------- shared identity
   - path: "config/schema_contract.json"
     owner: human

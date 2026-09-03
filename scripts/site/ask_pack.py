@@ -251,11 +251,14 @@ title, then its topic, its decider, its status, the counties it names or that it
 whether it sits on the ERCOT grid, and whether a public window is open, and it ends with the id
 to cite it by.
 
-Then every data center dossier, one line each, in the same shape. Then the construction
-register and the reservoirs, ROLLED UP rather than listed, because sixty one counties and a
-hundred and thirty eight reservoirs read better as one line carrying all of their figures than
-as two hundred lines. Those two sections carry the figure itself, so a question about how full
-a reservoir is or how many projects a county has is answered from the line.
+Then the data center dossiers, the construction register and the reservoirs, each ROLLED UP
+rather than listed, because a hundred and fifty dossiers, sixty one counties and a hundred and
+thirty eight reservoirs read better as one block carrying all of their names than as hundreds
+of lines. The construction and reservoir lines carry the figure itself, so a question about how
+full a reservoir is or how many projects a county has is answered from the line. The dossier
+block is grouped by county, so a question about which data centers sit in a named county is
+answered from the block and the full dossier for the ones a question needs is retrieved below.
+Dossiers whose filing publishes no county are printed together at the end of the block.
 
 ANSWER FROM THESE LINES WHENEVER THEY CARRY WHAT WAS ASKED. A question about which decisions
 name a county, who decided something, what is open, what a decision is called, how full a
@@ -653,25 +656,79 @@ def facility_prose(d: dict) -> str:
     return "\n".join(x for x in lines if x)
 
 
-def facility_index_line(d: dict) -> str:
-    """One dossier, compressed to what tells a reader whether it is the one they mean.
+def _facility_county(d: dict) -> str | None:
+    """The county named in the dossier's Location fact, or None if the filing does not name one.
 
-    Its name, one identifying detail, and the id to cite it by. The section already says every
-    row is a data center, so repeating that phrase one hundred fifty times spends the index
-    budget without helping retrieval. One detail keeps the town or the party a reader half
-    remembers while leaving the complete body available to the retriever.
+    A hundred and twenty five of one hundred and fifty dossiers publish no location, because the
+    state's filing does not require one and the record publishes only what was filed. This reads
+    what is there and does not guess.
     """
-    facts = {(f.get("label") or "").strip(): f for f in (d.get("facts") or [])}
-    detail = ""
-    for label in ("Location", "Occupant of record", "Operator of record",
-                  "Owner and operator of record", "Owner of record"):
-        f = facts.get(label)
-        if f and f.get("text") and f["text"] != "None is listed":
-            detail = str(f["text"]).strip().rstrip(".")
-            break
-    return (f"{(d.get('name') or '').strip().rstrip('.')}"
-            + (". " + detail if detail else "")
-            + f". [[facility-{d['slug']}]]")
+    import re as _re
+    for f in (d.get("facts") or []):
+        if (f.get("label") or "").strip() == "Location":
+            text = (f.get("text") or "").strip()
+            m = _re.search(r",\s*([A-Za-z][A-Za-z .'-]*?County)\b", text)
+            return m.group(1) if m else None
+    return None
+
+
+def facility_index_entry(d: dict) -> str:
+    """One dossier in the rolled up index, as a name and the id to cite it by.
+
+    THE DOSSIERS ARE ROLLED UP, THE WAY THE CONSTRUCTION REGISTER AND THE RESERVOIRS ALREADY
+    ARE, 2026-09-03. They were the last family still indexed a full line each, at eighty two
+    characters against sixteen for a rolled county, and one hundred fifty of them carried the
+    index four hundred and fifty characters past its ceiling once this run's five admissions
+    landed. `MAX_INDEX_CHARS` says in as many words that a family arriving later should roll up
+    before that number is touched, and this is that family.
+
+    WHY THE ID STAYS THOUGH THE RESERVOIR AND COUNTY HEADS DROP THEIRS. A reservoir's body sits
+    in the core pack, which every question carries, so its id rides along whether or not the
+    reservoir is retrieved. A dossier body sits in `facility_pack`, which the retrieval-off
+    escape hatch does NOT send, so a dossier is citable only from the index whenever its body is
+    not retrieved. The index's own contract, stated in `INDEX_HEAD`, is that a line with no text
+    below is still real and the line is all there is to go on, and a citation needs the id.
+    """
+    return f"{(d.get('name') or '').strip().rstrip('.')} [[facility-{d['slug']}]]"
+
+
+# Kept as an alias because callers outside this module import the older name. The dossier index
+# is now built by county in the wrapping block rather than one line per dossier, so this returns
+# the entry rather than a line.
+facility_index_line = facility_index_entry
+
+
+def facility_index_block(dossiers: list) -> str:
+    """The dossiers as a rolled up index block, GROUPED BY COUNTY where the county is on file.
+
+    A county grouping IS the location evidence, and this shape exists because dropping the
+    location detail from the flat list broke a real class of question. The measured case, from a
+    review of the first attempt at this roll-up: "What data centers are in Taylor County?" is
+    answered by eight Lancium Abilene dossiers, all of them carrying `Location: Abilene, Taylor
+    County`. The flat "name and id" list said Abilene but never the county, so retrieval matched
+    six unrelated bodies on other words and the assembled prompt named Taylor County zero times.
+
+    A dossier whose filing publishes no county goes into an unlocated group, printed at the end.
+    A hundred and twenty five of one hundred and fifty dossiers sit there today, because the
+    state's certification does not require a location and the record publishes what was filed.
+    Grouping only what is named is what makes this honest rather than inventing a county.
+
+    Cost: about two hundred forty characters over the flat "name and id" list, well under the
+    ceiling and worth it. This is the shape the review recommended, in as many words: "keep a
+    compact location-bearing roll-up, such as grouping dossier names and IDs by county."
+    """
+    from collections import defaultdict
+    by_county: dict[str | None, list] = defaultdict(list)
+    for d in dossiers:
+        by_county[_facility_county(d)].append(d)
+    parts: list[str] = []
+    for county in sorted(c for c in by_county if c):
+        entries = ", ".join(facility_index_entry(d) for d in by_county[county])
+        parts.append(f"In {county}, {entries}.")
+    if by_county.get(None):
+        entries = ", ".join(facility_index_entry(d) for d in by_county[None])
+        parts.append(f"With no county on file, {entries}.")
+    return " ".join(parts)
 
 
 def familyOf(block_id: str) -> str:
@@ -1064,9 +1121,10 @@ def build(today: str = None, docs_dir=None) -> dict:
         + [facility_prose(d) for d in dossiers]
     ) if dossiers else "")
     idx = index(items, today, extra=[
-        ("THE DATA CENTER DOSSIERS. One line each, in the same shape as the decisions above, "
-         "and the full dossier for the ones this question needs is below.\n"
-         + "\n".join(facility_index_line(d) for d in dossiers)) if dossiers else "",
+        ("THE DATA CENTER DOSSIERS. Every dossier the record holds, rolled up rather than listed, "
+         "grouped by the county its filing names, each as its name and the id to cite it by, and "
+         "the full dossier for the ones this question needs is below. "
+         + facility_index_block(dossiers)) if dossiers else "",
         county_head,
         water_head,
     ])
@@ -1430,15 +1488,37 @@ def self_test() -> int:
     check("every decision has a line in the index",
           all(f"[[{it['id']}]]" in idx for it in items),
           str([it["id"] for it in items if f"[[{it['id']}]]" not in idx][:3]))
-    # THE INDEX CARRIES TWO FAMILIES LINE BY LINE AND ROLLS THE OTHER TWO UP, so this counts
-    # what earns a line rather than what exists. A decision and a dossier are each something a
-    # reader hunts by name. Sixty one county rollups and a hundred and thirty eight reservoirs
-    # are a table, and a table reads better as one line naming all of them with their figures,
-    # which is also what keeps the ceiling above reachable.
-    lined = p["families"]["tx"] + p["families"]["facility"]
-    check("the index has exactly one line per decision and per dossier, plus its headers",
-          len([l for l in idx.splitlines() if l.rstrip().endswith("]]")]) == lined,
-          str(len([l for l in idx.splitlines() if l.rstrip().endswith("]]")])) + f" of {lined}")
+    # THE INDEX CARRIES DECISIONS LINE BY LINE AND ROLLS THE OTHER THREE FAMILIES UP, so this
+    # counts what earns its own line rather than what exists. A decision is something a reader
+    # hunts one at a time, and its line carries seven fields no rollup could fold together. The
+    # dossiers joined that rollup on 2026-09-03, once a hundred and fifty of them at a full line
+    # each pushed the index past the ceiling: a dossier line was only ever a name and an id, and
+    # names and ids are exactly what a rollup carries. So decisions get one line each here, and
+    # the dossier, county and reservoir families each get one.
+    dec_lines = [l for l in idx.splitlines() if l.rstrip().endswith("]]")]
+    check("the index has exactly one line per decision, plus one rolled line per other family",
+          len(dec_lines) == p["families"]["tx"],
+          f'{len(dec_lines)} of {p["families"]["tx"]}')
+    # THE ROLLUP DID NOT COST CITATION, which is the property that made the change safe rather
+    # than merely cheaper. A dossier body sits in `facility_pack`, which the retrieval-off hatch
+    # never sends, so a dossier is citable only from the index whenever its body is not
+    # retrieved. Every dossier id must therefore still appear in the index though the dossiers no
+    # longer each hold a line, and that is the thing this asserts, not the line count.
+    _dossiers = (_ledger(FACILITIES) or {}).get("dossiers") or []
+    missing_fac = [d["slug"] for d in _dossiers if f"[[facility-{d['slug']}]]" not in idx]
+    check("every dossier is still citable from the index, though rolled onto one line",
+          not missing_fac, str(missing_fac[:3]))
+
+    # THE ROLLED HEAD MUST CARRY LOCATION EVIDENCE, and this is what the first version of the
+    # roll-up got wrong. Dropping the location detail from the flat list made the always-sent
+    # index name no county at all, so a question like "What data centers are in Taylor County?"
+    # matched no dossier on the county string and the assembled prompt named the county zero
+    # times. Grouping by county fixes it. Asserting the property directly, rather than trusting
+    # the shape, catches the next accidental drop of it too.
+    counties = {_facility_county(d) for d in _dossiers} - {None}
+    missing_county = [c for c in counties if f"In {c}," not in idx]
+    check("every county the dossiers name is present in the rolled head",
+          not missing_county, str(sorted(missing_county)[:3]))
     # WHAT AN INDEX LINE IS ALLOWED TO PUT IN A READER'S HANDS.
     #
     # The worker authorises the numerals in what it actually sent, so every figure on a line

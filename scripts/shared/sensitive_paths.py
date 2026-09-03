@@ -44,6 +44,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -53,16 +54,25 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 INSTRUCTION_GLOBS = (
     "CLAUDE.md",
     "AGENTS.md",
+    "README.md",
     "prompts/*.md",
     ".claude/skills/*/SKILL.md",
     ".claude/agents/*.md",
-    # THE WORKLOG IS AN INSTRUCTION SURFACE, and forgetting that would have left the hole this
-    # gate exists to close. CLAUDE.md tells every context to read it FIRST and resume from it, so
-    # a worklog telling a later context to create a file under `.claude/` reaches exactly as far
-    # as CLAUDE.md does. It is also the one file here written by a routine rather than a
-    # maintainer, which makes it the likeliest to drift.
-    "runs/carousel/WORKLOG.md",
 )
+
+# THE WORKLOG WAS AN INSTRUCTION SURFACE AND IS NOW A RETIRED NAME, 2026-09-03. This glob used to
+# list `runs/carousel/WORKLOG.md`, correctly, because CLAUDE.md told every context to read it
+# FIRST and resume from it, so a worklog sending a later context into `.claude/` reached exactly
+# as far as CLAUDE.md did. The owner then removed the worklog rather than rehousing it, on the
+# ground that `out/<date>/run_state.json` already carried the resume state. There is nothing left
+# to scan, so the glob goes and the NAME is policed instead.
+# The NAME is policed by `routine_claims.py` rather than here, deliberately. This gate's subject
+# is writes under `.claude/` and its self-test asserts that a bare mention is NOT flagged, because
+# reading is fine and a checker that flagged every mention would be switched off in a week.
+# Folding a name ban into it broke exactly that case.
+# Directories that are not instructions to a session. `out/` is scratch, `runs/` is shipped
+# history whose archived worklogs must stay readable, and `vendor/` is somebody else's code.
+SKIP_DIRS = {"out", "runs", "vendor", "node_modules", ".git"}
 
 DOT_CLAUDE = r"['\"`]?(?:\./)?\.claude/[^\s'\"`)]*"
 
@@ -150,18 +160,33 @@ def offending_lines(text: str) -> list[tuple[int, str]]:
     return out
 
 
+def instruction_files(root: Path) -> list[Path]:
+    """Every instruction surface, INCLUDING ones nested under a subdirectory.
+
+    `CLAUDE.md` and `AGENTS.md` are path scoped: a directory may carry its own copy and a session
+    working there reads it instead of, or as well as, the root one. Globbing only the root left a
+    nested copy free to send a run into `.claude/` with the required workflow green, which is the
+    same shape of hole as the worklog being an instruction surface nobody had listed.
+    """
+    found: set[Path] = set()
+    for pattern in INSTRUCTION_GLOBS:
+        found.update(p for p in root.glob(pattern) if p.is_file())
+    for name in ("CLAUDE.md", "AGENTS.md"):
+        for p in root.rglob(name):
+            if p.is_file() and not (set(p.relative_to(root).parts[:-1]) & SKIP_DIRS):
+                found.add(p)
+    return sorted(found)
+
+
 def scan(root: Path) -> list[str]:
     problems: list[str] = []
-    for pattern in INSTRUCTION_GLOBS:
-        for path in sorted(root.glob(pattern)):
-            if not path.is_file():
-                continue
-            try:
-                text = path.read_text(encoding="utf-8")
-            except (UnicodeDecodeError, OSError):
-                continue
-            for lineno, line in offending_lines(text):
-                problems.append(f"{path.relative_to(root)}:{lineno}: {line}")
+    for path in instruction_files(root):
+        try:
+            text = path.read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError):
+            continue
+        for lineno, line in offending_lines(text):
+            problems.append(f"{path.relative_to(root)}:{lineno}: {line}")
     return problems
 
 
@@ -233,6 +258,26 @@ def self_test() -> int:
     hits = offending_lines(exempted)
     checks.append(("the explaining section may quote the mistake", len(hits) == 1))
     checks.append(("...and the exemption ENDS at the next heading", hits and hits[0][0] == 5))
+
+    # NESTED INSTRUCTION FILES. `CLAUDE.md` and `AGENTS.md` are path scoped, so a directory may
+    # carry its own copy that a session working there reads. Globbing only the root left one free
+    # to send a run into `.claude/` while the required workflow stayed green, which is the same
+    # shape of hole as the worklog being an instruction surface nobody had listed.
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        (root / "CLAUDE.md").write_text("# Law\n\nRead the run state first.\n")
+        checks.append(("a clean tree is not flagged", not scan(root)))
+
+        nested = root / "scripts" / "site"
+        nested.mkdir(parents=True)
+        (nested / "AGENTS.md").write_text("# Local\n\nWrite the plan to `.claude/NOTES.md`.\n")
+        checks.append(("a NESTED AGENTS.md is discovered", bool(scan(root))))
+        (nested / "AGENTS.md").unlink()
+
+        hist = root / "runs" / "carousel" / "2026-08-25"
+        hist.mkdir(parents=True)
+        (hist / "CLAUDE.md").write_text("Write the plan to `.claude/WORKLOG.md`.\n")
+        checks.append(("shipped history under runs/ is NOT scanned", not scan(root)))
 
     ok = True
     for label, passed in checks:

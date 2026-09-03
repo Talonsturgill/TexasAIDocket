@@ -152,8 +152,8 @@ public fact stand for another day, on a page whose entire promise is that it doe
 ## CONTEXT (read at wake, in this order)
 
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
-- `runs/carousel/WORKLOG.md` if it exists — the durable plan across contexts. It is NEVER at
-  `.claude/WORKLOG.md`, which the host classes as a sensitive file and prompts on.
+- `out/<date>/run_state.json` if it exists — **the durable plan across contexts, and the only
+  one.** This run writes no worklog and creates no other plan file. See RUN STATE below.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
   traps.** Read this before any fetch. You may not write it. Its companion
   `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.

@@ -4,8 +4,14 @@ Opened 2026-08-19, after a run whose deck was scored seven times and never once 
 threshold. Every item here is written from measured evidence in that run, not from a hunch. Each
 names the defect it exists for, so a later session can judge whether it is still true.
 
-This file is `upgrade` lane. `.claude/WORKLOG.md` would be the natural home and cannot be, because
-`ownership.yaml` line 84 defaults every unlisted path to `human` and no routine may write there.
+This file is `upgrade` lane, and it is where the backlog lives because a routine keeps no other
+durable plan of its own. The general run state is `out/<date>/run_state.json`, which is scratch
+and gitignored, so a lesson meant to outlive one run needs a committed home and this is it.
+
+The sentence here used to point at a worklog under `.claude/` as the natural home. There is no
+worklog now, at any address. Writing one there interrupted the owner on five consecutive
+unattended runs, and CLAUDE.md carries the account under the heading saying the routine writes
+none.
 
 ---
 
