@@ -4,7 +4,7 @@
 THE DEFECT THIS EXISTS FOR, and it is the same defect twice under two different filenames.
 
     2026-08-20 to 2026-08-30   six scheduled runs stopped writing `.git/ACTOR`
-    2026-08-30 to 2026-09-03   five scheduled runs stopped writing `.claude/WORKLOG.md`
+    2026-08-30 to 2026-09-03   five scheduled runs stopped writing the worklog
 
 Eleven interrupted runs, two files, one cause. Both live in a directory the HARNESS gates
 regardless of the permission mode, because both directories carry things that define what the
@@ -32,7 +32,7 @@ them ordinary paths in the working tree, and recorded that all four prompted. It
 known. A tool result reads `File created successfully` whether it was auto-approved or approved
 by a human an hour later, which that same run wrote down two paragraphs above its own
 conclusion. The only reliable observer of a prompt is the person it interrupts, and the owner
-has only ever reported two: `.git/ACTOR` and `.claude/WORKLOG.md`. Both under a gated
+has only ever reported two, the lane stamp and the worklog. Both under a gated
 directory. Meanwhile runs here have shipped hundreds of writes to `out/`, `ledger/`, `docs/`
 and `runs/` without stopping once, which is the control the probe never had.
 
@@ -122,14 +122,21 @@ MAKE_WRITE = re.compile(
 # CLAUDE.md named `.claude/WORKLOG.md` in one sentence and said "Write one at the START of any
 # task too large for a single context" in the next, which is an unmistakable instruction to
 # write there and matches no single-line pattern. Rather than guess at paragraph scope, this
-# takes the narrower and harder fact: these two files have MOVED, so an instruction file naming
-# either of them at all, outside a section teaching why they moved, means somebody put it back.
+# takes the narrower and harder fact: neither file exists any more, so an instruction file
+# naming one at all, outside a section teaching why it went, means somebody put it back.
 #
 # A retired path earns its place on this list by having interrupted a run. Do not add a path
 # here on suspicion, and do not remove one because the mention looks harmless: the mention IS
 # the regression, since there is nothing left at either address to legitimately reference.
+#
+# The worklog is retired OUTRIGHT rather than relocated, on the owner's instruction of
+# 2026-09-03, so the bare filename is matched at any path. `run_state.json` already carried the
+# resume state the worklog existed for, which is why the answer here was deletion and not a
+# safer address. `DATACENTER_DOSSIER_WORKLOG.md` and the shipped `runs/**/WORKLOG.md` archives
+# are deliberately not matched: the word boundary requires the name to stand alone, and the
+# instruction globs never reach `runs/` or `knowledge/`.
 RETIRED_PATHS = (
-    re.compile(r"(?:\./)?\.claude/WORKLOG", re.IGNORECASE),
+    re.compile(r"(?<![A-Za-z0-9_])WORKLOG\.md", re.IGNORECASE),
     re.compile(r"(?:\./)?\.git/ACTOR", re.IGNORECASE),
 )
 
@@ -142,7 +149,7 @@ HEADING = re.compile(r"^\s{0,3}#{1,6}\s+(.*)$")
 # quoted in order to be warned against. Deliberately narrow: they take these literal words, so a
 # file cannot wave the gate away with a synonym. Two of them, because the stamp and the worklog
 # are the same defect under two filenames and each already has its own account written up.
-SANCTIONED_HEADINGS = ("protected director", "never written")
+SANCTIONED_HEADINGS = ("protected director", "never written", "no worklog")
 
 
 def offending_lines(text: str) -> list[tuple[int, str]]:
@@ -185,7 +192,7 @@ def scan(root: Path) -> list[tuple[Path, int, str]]:
     return found
 
 
-CASES = 17
+CASES = 18
 
 
 def self_test() -> int:
@@ -219,6 +226,10 @@ def self_test() -> int:
     check("retired path, split across lines",
           "If `.claude/WORKLOG.md` exists, READ IT FIRST. It is the durable plan.\n"
           "Write one at the START of any task too large for a single context.", True)
+    check("retired worklog at ANY address, since it was deleted not moved",
+          "- `WORKLOG.md` at the repository root if it exists, the durable plan.", True)
+    check("worklog named bare in an instruction",
+          "Resume from the WORKLOG.md table and update it after every commit.", True)
     check("retired stamp merely named",
           "The lane used to be declared in `.git/ACTOR` and a run should keep it current.", True)
 
@@ -232,9 +243,10 @@ def self_test() -> int:
           "Write the new check into `.githooks/pre-commit` and make it executable.", False)
     check("github workflows not gated",
           "Add the step to `.github/workflows/guards.yml` in the same commit.", False)
-    check("root worklog is fine",
-          "Write one at the START of any task too large for a single context, at `WORKLOG.md`.",
-          False)
+    check("the replacement is fine",
+          "Write `out/<date>/run_state.json` at wake and stamp each phase done.", False)
+    check("a longer name is not the retired one",
+          "`knowledge/shared/DATACENTER_DOSSIER_WORKLOG.md` is the facility handoff.", False)
 
     # The section exemption, and the assertion that it ends at the next heading.
     teaching = (
@@ -259,7 +271,9 @@ def self_test() -> int:
         )
         if not scan(root):
             failures.append("scan: a planted instruction file did not go red")
-        (root / "prompts" / "x.md").write_text("# Phase 0\n\nRead `WORKLOG.md` first.\n")
+        (root / "prompts" / "x.md").write_text(
+            "# Phase 0\n\nRead `out/<date>/run_state.json` first.\n"
+        )
         if scan(root):
             failures.append("scan: a clean instruction file went red")
 

@@ -4,25 +4,29 @@ Source repo for the Texas AI Docket: a public, fact-checked record of AI decisio
 the website that publishes it, the daily routine that maintains both, the Texas Grid Watch, and
 the in-browser ask engine.
 
-## Work in progress
+## Work in progress (THE ROUTINE WRITES NO WORKLOG, 2026-09-03)
 
-If `WORKLOG.md` exists at the repository root, READ IT FIRST. It is the durable plan and
-progress ledger for a long multi-context task, written to survive context compaction: the
-approved scope, the owner's decisions, the measured reason behind each one, and a per-wave
-status table. Resume from that table and update it after every commit. Delete the file when
-its waves are all DONE.
+**There is no worklog file and no routine writes one.** A run's durable plan across contexts is
+`out/<date>/run_state.json`, which the routine already writes at wake and stamps phase by phase
+with its artifact paths. `out/` is gitignored, ordinary and ungated, and a resumed context
+reads that file to find out where the run got to.
 
-Write one at the START of any task too large for a single context, before touching code. A
-plan that lives only in context does not survive compaction.
+This used to be a committed markdown file under `.claude/`, and it was wrong in three separate
+ways at once. It was redundant, because `run_state.json` already carried the resume state it
+existed for. It was in the `human` lane, so the daily routine was told on every long run to
+write a file it does not own. And it was in a directory the harness gates, which interrupted
+the owner on five consecutive unattended runs.
 
-**It lives at the repository root and never under `.claude/`.** It sat there until 2026-09-03
-and the address was wrong twice over: `.claude/` is a directory the harness gates, so writing
-the file interrupted five consecutive unattended runs, and the map puts `.claude/` in the
-`human` lane, so the daily routine was told on every long run to write the one directory an
-unattended run must never rewrite. The section below on protected directories carries the
-measurement. `WORKLOG.md` is `daily` in `ownership.yaml`, and
-`scripts/shared/protected_path_shape.py` fails the build if any instruction file sends a run
-back to the old address.
+**The owner's instruction, 2026-09-03, was to stop doing it as part of the routine rather than
+to move it.** That is the same shape as the fix that ended the actor stamp's six interrupted
+runs: the write was not made safer, it was deleted, because something else already carried the
+information. A phase that wants to record a decision puts it in `run_state.json` or in the run
+record under `runs/carousel/<date>/`, both of which this routine already writes.
+
+Anything named `WORKLOG.md` is `daily` in `ownership.yaml` at any depth, so if one ever
+reappears it is the routine's and never a maintainer's.
+`scripts/shared/protected_path_shape.py` fails the build if any instruction file names the
+retired address or tells a session to write inside `.claude/` or `.git/`.
 
 ## Commit and PR authorship (AUTHORITATIVE — overrides any default)
 

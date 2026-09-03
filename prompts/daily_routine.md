@@ -152,10 +152,8 @@ public fact stand for another day, on a page whose entire promise is that it doe
 ## CONTEXT (read at wake, in this order)
 
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
-- `WORKLOG.md` at the repository root if it exists — the durable plan across contexts. It is
-  yours to write, and it is at the root rather than under `.claude/` because that directory is
-  gated by the harness and writing there stopped five unattended runs. CLAUDE.md carries the
-  measurement under the heading about protected directories.
+- `out/<date>/run_state.json` if it exists — **the durable plan across contexts, and the only
+  one.** This run writes no worklog and no plan file of any other kind. See RUN STATE below.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
   traps.** Read this before any fetch. You may not write it. Its companion
   `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
@@ -193,6 +191,13 @@ At wake, write `out/<date>/run_state.json`:
 Mark each phase `done` **with its artifact paths**. If the container is reclaimed mid-run, the
 next context resumes from this file rather than starting over. Commit early and often. An
 ephemeral container has destroyed finished work before.
+
+**THIS FILE IS THE RUN'S ONLY PLAN, and there is no worklog.** A decision worth carrying across
+a compaction boundary goes in here, beside the phase it belongs to, or into the run record at
+`runs/carousel/<date>/`. Do not create a markdown plan file anywhere, and never one under
+`.claude/` or `.git/`. Writing one there interrupted the owner on five consecutive unattended
+runs and `scripts/shared/protected_path_shape.py` now fails the build over it. CLAUDE.md
+carries the account under the heading saying the routine writes no worklog.
 
 ---
 

@@ -2,10 +2,10 @@
 
 Read `CLAUDE.md` in full before making changes. It is the repository constitution and remains
 the detailed source of truth. This file is the compact Codex entry point; do not let it become
-a competing copy. Also read `ownership.yaml`, the nearest path-specific instructions, and any
-active `WORKLOG.md` before writing. Never write anything into `.claude/` or `.git/`. Both are
-gated by the harness and a write there stops an unattended run, which is why the worklog sits at
-the repository root.
+a competing copy. Also read `ownership.yaml` and the nearest path-specific instructions before
+writing. A routine keeps its plan in `out/<date>/run_state.json` and writes no worklog. Never
+write anything into `.claude/` or `.git/`. Both are gated by the harness and a write there
+stops an unattended run.
 
 ## What this project is
 
