@@ -440,3 +440,72 @@ fails.
 settled: a failed build cleans its output tree unconditionally, and a cached failure is replayed as
 a failure rather than resolved from whatever is on disk. That is proposal 17 in the run record,
 stated by everybody else who has hit it.
+
+---
+
+## 2026-09-03, deck no. 14. The two lessons this run's upgrades belong to
+
+`knowledge/shared/GATE_LESSONS.md` is `human` lane, measured with
+`ownership_check.py --actor upgrade --files` rather than assumed, so these are written here and the
+carry across is a proposal in `ledger/carousel/upgrades.json`. Both are argued from the shipped
+ledgers rather than from a hunch, and both have a gate now.
+
+### A checker that verifies a rule's DERIVATION has said nothing about whether the rule was OBEYED
+
+`ledger_check` has three checks on `captions.json`'s exclusion lists. Every recorded move is a name
+`CAPTION_CRAFT.md` carries, the three `*_recent` lists equal what the entries derive, and no date
+appears twice. All three are correct and all three are about the LIST.
+
+The lists exist for one reason, which is to be handed to the caption room BEFORE it writes so the
+room cannot repeat itself. Nothing ever asked whether the room obeyed them. Replayed against the
+ledger as it stood, **eight shipped entries used a move their own window covered**, and this gate
+was green on every one of them.
+
+- 2026-08-30 opening move `the object`, one run after 2026-08-29 shipped `the object`
+- 2026-08-30 structure `Zoom out`, one run after 2026-08-29 shipped `Zoom out`
+- 2026-08-26 through 2026-09-02, six entries, all closing the same way
+
+The tell is that the gate's docstring describes the lists as "what the caption room is handed
+BEFORE it writes" and every assertion in the file is about how the lists were computed. **When a
+gate's own prose says what a thing is FOR, read the assertions and ask whether any of them tests
+that.** Derivation is the easy question, and a checker that answers the easy one reports it as
+though it answered the hard one.
+
+**What to check instead.** For any derived exclusion, allowlist or blocklist, assert the CONSUMER
+side as well as the producer side. `exclusion_violations` walks each entry against its own window
+and the self-test replays it against the real `captions.json`, not only against fixtures, because a
+fixture written beside a detector agrees with it.
+
+### A hard form constraint on one surface silently deletes options from a menu stated on another
+
+`config/brand.yaml` sets `linkedin_post.ends_with: engagement_question`. `caption_check` began
+enforcing it on 2026-08-25. `CAPTION_CRAFT.md` lists five closing moves and four of them are
+declarative, so from that day the doctrine was telling the caption room to rotate through four
+closes the gate refuses.
+
+**Seven consecutive captions closed the same way and nothing reported it.** The variety ledger
+recorded `closing_moves_recent` faithfully the whole time, which is the part worth sitting with: a
+ledger that records what was USED without recording what was AVAILABLE reads healthy while one
+option is the only legal one. `ConInstruct` (arXiv 2511.14342) measures exactly this behaviour in
+models and finds detection is strong while notification is nearly absent. They resolve a conflict
+silently. So did this room, seven times, and each run rediscovered the reason from scratch.
+
+**What to check instead.** On the day a hard form rule is added to any surface, read the doctrine
+that surface's writers are handed and say what the rule COSTS that menu. Where an option cannot
+survive, mark it unavailable in the doctrine rather than leaving a name on a list, and make the
+enforcing gate's message name the collision so the next writer reads the resolution instead of
+inferring it. The gate here was right seven times and told nobody anything it did not already know.
+
+### And the two proposals this run could not make
+
+- **The source vocabulary is stated twice.** `claims_check.SOURCE_TYPES` carries
+  `secondary_reported` and `data`. `docket_build.SOURCE_TYPES` carries `journalism` and no `data`.
+  Measured 2026-09-03 across thirteen shipped decks and the record, 71 deck claims against 80
+  record claims for the same concept under two names, and 5 deck claims the record has no word for
+  at all. `scripts/site/**` is another lane, and a one sided reconciliation would be a third
+  statement of one vocabulary, so `claims_check` DECLARES the divergence and fails on an
+  undeclared one instead. The declaration reports itself stale the day the record adopts the word,
+  which is how whoever makes the real fix finds the other half.
+- **`captions.json`'s `_spec` still says two exclusions are handed to the room.** The closing
+  substance is now enforced and is not on that string. `ledger/carousel/captions.json` is `daily`
+  lane.
