@@ -457,3 +457,57 @@ painted a 93 by 6 rect straight over the word `will` (the frame now asserts ever
 verb's glyph box), and printing c15 made slide 7's dek a line longer so it overprinted the note by
 60 percent. That is four self-inflicted breakages across three repair rounds, every one caught by
 a gate or an assertion rather than by a judge, which is the arrangement working.
+
+## Phase 15, panel round 4, and the widest split of the run
+
+**6.01, 6.85, 7.11. Median 6.602, spread 1.10, one hard fail, HOLD.** The craft and reader judges
+both voted SHIP for the first time. The integrity judge found one hard fail and it was real.
+
+**The spread is 1.10 and `panel.py` says so in the file**, which is the whole reason it reports
+one: three judges disagreeing by more than 0.75 have not converged on the same deck, and the
+disagreement is worth more than the median. Reader 7.11 and integrity 6.01 on the same nine
+frames is the panel doing its job rather than failing at it.
+
+**Slide 7 credited the docs page with a sentence from the testing page, and I wrote it in round 3
+fixing "c15 was withheld".** The dek read "The same page says the beta is being finalized". The
+antecedent of "the same page" is `docs.vision.tamus.edu`, which is also the frame's only source
+stamp. c15 lives at `vision.tamus.edu/testing/`. So the frame pointed a reader who wanted to
+check it at a page that does not carry it, and `copy.json`'s S7 claim list was `[c12, c11, c20]`
+with no c15, so no gate ever saw the sentence attached to a claim at all.
+
+**That is the round 3 c19 fault one slide over, in the deck whose entire subject is which document
+says what.** Third repair in three rounds to introduce a fresh defect of the same family.
+
+## The fourth repair round, and the last one this run gets
+
+`max_rounds` is 5, so round 5 is the cap and the deck ships on whatever the panel says there.
+
+| what | what was done |
+|---|---|
+| slide 7 credited the wrong page for c15 | reads "The testing page says", stamps both hosts, and throws if the string "The same page" appears |
+| slide 4 stamped only TARLETON.EDU while its dek's 45 million is c8 from the newsroom | the dek names its own publisher inside the sentence, the way every other frame does |
+| slide 9's one stamp covered three lines from two hosts | both named, both asserted |
+| slide 7's hook is verbatim c12 and carried no marks, while the frame's other quotation did | marked, and the frame now asserts four marks rather than two |
+| the storyboard described three frames that did not render | slide 2's wedge and windows, slide 5's crowding fibre, slide 7's one sentence dek, all reconciled |
+| **nine focal shares were unmeasured assertions of exactly the kind the value arc had just been caught being** | `measure_focals.py` computes every one from the rectangle the frame actually draws. Slide 1 was "about 11 percent" and is 44.6. Slide 9 was "about 16" and is 3.2. Slide 8 was "about 34" and is 21.3 |
+| the arc note called the junction INTO slide 7 the deck's largest, against its own new array | it is 13.1 in and 75.8 out. The note says both now, and that the frame is entered quietly and left hard |
+| slide 9 drew one object two ways, domed posts for the seated sheet and flat ellipses for the open stations | one pin, one drawing, and the frame asserts an open station is the same object as a seated one |
+| slide 8's seats were 15 percent oversize, sat 224px below the course, and carried no label | the stroke is drawn inside the module, they were raised, and they say what they are |
+| slide 5 carried a magnitude with no purpose, on the brightest frame in the deck | c19's own words, "in one drug discovery project" |
+| slide 2's measured readout hung over the DASHED remainder | over its own ink, asserted |
+
+**CORRECTING THE ONE NUMBER A JUDGE NAMES IS NOT A FIX.** Round 3 replaced the value arc after a
+judge caught it claiming to be measured. Round 4's craft judge then found four more of the
+identical kind in the same file, untouched, and its one-sentence fix was to generate every
+measurable field rather than type it. That is the difference between patching an instance and
+closing a class, and this run did the first one first.
+
+**`bespoke_check` FAILED the deck at 0.5515 against a 0.55 line, and it was right.** Three rounds
+of repairs had put the same rect-loop idiom into several frames, and slides 6 and 7 came out at
+0.791. Slide 6's four wall rects were redrawn as two continuous L-shaped bevels, which is a
+different construction, reads better at 432px, and dropped the median to 0.5486. **A gate this
+run tripped by repairing things.**
+
+**`aggregate_check` rejected the first label I put on slide 8's seats.** It read "TWO STATIONS,
+NOTHING SEATED", and two is a count of objects the deck drew rather than anything a source says.
+Reworded to "OPEN STATIONS, NOTHING SEATED". The gate was right and the label is better for it.
