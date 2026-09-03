@@ -1298,10 +1298,23 @@ request. This phase lands it and nothing after it writes to the repository.
 2. `total_count: 0` is a state to WAIT in or to SAY out loud, and never a state to merge in. A
    `cancelled` conclusion is not a pass.
 3. **Red is work now.** Read the failing job's log, reproduce it in this checkout, fix it, push,
-   wait again. `guards_local.py` is what tells you the work is DONE. CI reporting green is what
-   tells you it may LAND. A run that treats the first as the second has skipped a check.
+   wait again.
 
-   **Ask `python3 scripts/shared/guards_local.py --verdict` for the first half. Never read the
+   **THE LOCAL SUITE RUNS WHEN CI IS RED AND NOT OTHERWISE.** Owner's instruction, 2026-09-03:
+   *"only test locally when there is a ci issue, not every time, its wasting time and tokens."*
+   Push, let CI run, read CI. A run does not sit through forty minutes of browser suites here to
+   re-prove what the next four minutes prove for free, and a run that did spent its afternoon on
+   it. Reproducing a RED job is the reason this runner exists, and `--only <step>` is usually the
+   right shape once the log names the step.
+
+   **CI green on the head SHA is what says the work may LAND, and that was never this runner's
+   job.** Read step 1. What is traded away is that a push can now turn CI red where a local run
+   would have caught it first, which is a cycle, and it is the cost the owner priced.
+
+   What still runs before a push, because each is seconds: the `--self-test` of any gate this run
+   touched, and any single check that reads an artifact this run just changed.
+
+   **When you do run it, ask `python3 scripts/shared/guards_local.py --verdict`. Never read the
    runner's log to decide it.** Exit 0 there is the only thing that counts as a local pass. Any
    other exit names its own reason, and the commonest is that the suite has not finished, which
    a log cannot tell you: while it runs, its output is a wall of `ok` with no `FAIL`, which is

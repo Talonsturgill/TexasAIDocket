@@ -584,11 +584,32 @@ once" for a big file. `out/<run>/tmp/` takes big files.
   `--self-test` that replays it. Run them by EXIT CODE, never by reading the last line: a report
   that prints advice on failure and one clean line on success looks reassuring either way under
   `tail -1`, and that has shipped a red gate here before.
-  **Before you push, run `python3 scripts/shared/guards_local.py`.** It runs the whole of
-  `guards.yml` here, by exit code, and it reads that file rather than keeping its own list so it
-  cannot fall behind CI. `--fast` defers the node suites while you iterate. Running every
-  `--self-test` instead is the wrong half and has already put a red build on the board: a
-  self-test proves the checker can go red, and only the checker proves the product is clean.
+  **CI IS THE DEFAULT CHECK. The local suite is for when CI is red.** Owner's instruction,
+  2026-09-03: *"only test locally when there is a ci issue, not every time, its wasting time and
+  tokens."* Push, let CI run, read CI. Do not run the full suite here first.
+
+  It runs the whole of `guards.yml` on hardware nobody is paying attention to, it takes forty
+  minutes with the browser suites, and it answers a question CI answers for free on every push.
+  A run that sat through it before every push spent its afternoon re-proving what the next four
+  minutes were going to prove anyway.
+
+  **Run `python3 scripts/shared/guards_local.py` when there is something to reproduce.** That is
+  a red CI job, and it is the only ordinary reason. `--only <step>` and `--fast` narrow it to the
+  thing that failed, which is usually what you want: the whole suite is for when you do not yet
+  know which step broke. Running every `--self-test` instead is the wrong half and has already
+  put a red build on the board, because a self-test proves the checker can go red and only the
+  checker proves the product is clean.
+
+  **What this trades away, stated so it is a choice.** A push that turns CI red costs a cycle,
+  and the local suite would have caught some of those before they landed. That is the cost the
+  owner priced and accepted. What it does NOT touch is the merge rule: **CI green on the head SHA
+  is still what says the work may LAND**, and that half was never the local suite's job. The
+  paragraphs above about carousel no. 7 stand unchanged, because their lesson is that a local
+  pass is not a CI pass, and skipping the local run cannot make anyone confuse the two.
+
+  What still runs before every push, because each is seconds rather than minutes: the
+  `--self-test` of any gate you touched, and any single check that reads the artifact you just
+  changed. Cheap and targeted is not what this rule is about.
 
   **NEVER READ THAT RUNNER'S LOG TO DECIDE WHETHER IT PASSED. Ask `guards_local.py --verdict`.**
   On 2026-08-27 a run piped the suite to a file, read the file, saw a wall of `ok` with no
