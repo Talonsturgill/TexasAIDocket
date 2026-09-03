@@ -251,11 +251,13 @@ title, then its topic, its decider, its status, the counties it names or that it
 whether it sits on the ERCOT grid, and whether a public window is open, and it ends with the id
 to cite it by.
 
-Then every data center dossier, one line each, in the same shape. Then the construction
-register and the reservoirs, ROLLED UP rather than listed, because sixty one counties and a
-hundred and thirty eight reservoirs read better as one line carrying all of their figures than
-as two hundred lines. Those two sections carry the figure itself, so a question about how full
-a reservoir is or how many projects a county has is answered from the line.
+Then the data center dossiers, the construction register and the reservoirs, each ROLLED UP
+rather than listed, because a hundred and fifty dossiers, sixty one counties and a hundred and
+thirty eight reservoirs read better as one line carrying all of their names than as hundreds of
+lines. The construction and reservoir lines carry the figure itself, so a question about how
+full a reservoir is or how many projects a county has is answered from the line. The dossier
+line carries each name and its id, and the full dossier for the one a question needs is
+retrieved below.
 
 ANSWER FROM THESE LINES WHENEVER THEY CARRY WHAT WAS ASKED. A question about which decisions
 name a county, who decided something, what is open, what a decision is called, how full a
@@ -654,24 +656,26 @@ def facility_prose(d: dict) -> str:
 
 
 def facility_index_line(d: dict) -> str:
-    """One dossier, compressed to what tells a reader whether it is the one they mean.
+    """One dossier in the index, as a name and the id to cite it by, and nothing else.
 
-    Its name, one identifying detail, and the id to cite it by. The section already says every
-    row is a data center, so repeating that phrase one hundred fifty times spends the index
-    budget without helping retrieval. One detail keeps the town or the party a reader half
-    remembers while leaving the complete body available to the retriever.
+    THE DOSSIERS ARE ROLLED UP, THE WAY THE CONSTRUCTION REGISTER AND THE RESERVOIRS ALREADY
+    ARE, 2026-09-03. They were the last family still indexed a full line each, at eighty two
+    characters against sixteen for a rolled county, and one hundred fifty of them carried the
+    index four hundred and fifty characters past its ceiling once this run's five admissions
+    landed. `MAX_INDEX_CHARS` says in as many words that a family arriving later should roll up
+    before that number is touched, and this is that family.
+
+    WHY THE ID STAYS THOUGH THE RESERVOIR AND COUNTY HEADS DROP THEIRS. A reservoir's body sits
+    in the core pack, which every question carries, so its id rides along whether or not the
+    reservoir is retrieved. A dossier body sits in `facility_pack`, which the retrieval-off
+    escape hatch does NOT send, so a dossier is citable only from the index whenever its body is
+    not retrieved. The index's own contract, stated in `INDEX_HEAD`, is that a line with no text
+    below is still real and the line is all there is to go on, and a citation needs the id. So
+    the id is kept and the location detail is dropped instead. The detail was the redundant part,
+    a disambiguator the retriever reads off the full body, and no other family's rolled head
+    carries a per member detail beyond its one figure.
     """
-    facts = {(f.get("label") or "").strip(): f for f in (d.get("facts") or [])}
-    detail = ""
-    for label in ("Location", "Occupant of record", "Operator of record",
-                  "Owner and operator of record", "Owner of record"):
-        f = facts.get(label)
-        if f and f.get("text") and f["text"] != "None is listed":
-            detail = str(f["text"]).strip().rstrip(".")
-            break
-    return (f"{(d.get('name') or '').strip().rstrip('.')}"
-            + (". " + detail if detail else "")
-            + f". [[facility-{d['slug']}]]")
+    return f"{(d.get('name') or '').strip().rstrip('.')} [[facility-{d['slug']}]]"
 
 
 def familyOf(block_id: str) -> str:
@@ -1064,9 +1068,10 @@ def build(today: str = None, docs_dir=None) -> dict:
         + [facility_prose(d) for d in dossiers]
     ) if dossiers else "")
     idx = index(items, today, extra=[
-        ("THE DATA CENTER DOSSIERS. One line each, in the same shape as the decisions above, "
-         "and the full dossier for the ones this question needs is below.\n"
-         + "\n".join(facility_index_line(d) for d in dossiers)) if dossiers else "",
+        ("THE DATA CENTER DOSSIERS. Every dossier the record holds, rolled up rather than listed, "
+         "each as its name and the id to cite it by, and the full dossier for the ones this "
+         "question needs is below. By name, "
+         + ", ".join(facility_index_line(d) for d in dossiers) + ".") if dossiers else "",
         county_head,
         water_head,
     ])
@@ -1430,15 +1435,26 @@ def self_test() -> int:
     check("every decision has a line in the index",
           all(f"[[{it['id']}]]" in idx for it in items),
           str([it["id"] for it in items if f"[[{it['id']}]]" not in idx][:3]))
-    # THE INDEX CARRIES TWO FAMILIES LINE BY LINE AND ROLLS THE OTHER TWO UP, so this counts
-    # what earns a line rather than what exists. A decision and a dossier are each something a
-    # reader hunts by name. Sixty one county rollups and a hundred and thirty eight reservoirs
-    # are a table, and a table reads better as one line naming all of them with their figures,
-    # which is also what keeps the ceiling above reachable.
-    lined = p["families"]["tx"] + p["families"]["facility"]
-    check("the index has exactly one line per decision and per dossier, plus its headers",
-          len([l for l in idx.splitlines() if l.rstrip().endswith("]]")]) == lined,
-          str(len([l for l in idx.splitlines() if l.rstrip().endswith("]]")])) + f" of {lined}")
+    # THE INDEX CARRIES DECISIONS LINE BY LINE AND ROLLS THE OTHER THREE FAMILIES UP, so this
+    # counts what earns its own line rather than what exists. A decision is something a reader
+    # hunts one at a time, and its line carries seven fields no rollup could fold together. The
+    # dossiers joined that rollup on 2026-09-03, once a hundred and fifty of them at a full line
+    # each pushed the index past the ceiling: a dossier line was only ever a name and an id, and
+    # names and ids are exactly what a rollup carries. So decisions get one line each here, and
+    # the dossier, county and reservoir families each get one.
+    dec_lines = [l for l in idx.splitlines() if l.rstrip().endswith("]]")]
+    check("the index has exactly one line per decision, plus one rolled line per other family",
+          len(dec_lines) == p["families"]["tx"],
+          f'{len(dec_lines)} of {p["families"]["tx"]}')
+    # THE ROLLUP DID NOT COST CITATION, which is the property that made the change safe rather
+    # than merely cheaper. A dossier body sits in `facility_pack`, which the retrieval-off hatch
+    # never sends, so a dossier is citable only from the index whenever its body is not
+    # retrieved. Every dossier id must therefore still appear in the index though the dossiers no
+    # longer each hold a line, and that is the thing this asserts, not the line count.
+    _dossiers = (_ledger(FACILITIES) or {}).get("dossiers") or []
+    missing_fac = [d["slug"] for d in _dossiers if f"[[facility-{d['slug']}]]" not in idx]
+    check("every dossier is still citable from the index, though rolled onto one line",
+          not missing_fac, str(missing_fac[:3]))
     # WHAT AN INDEX LINE IS ALLOWED TO PUT IN A READER'S HANDS.
     #
     # The worker authorises the numerals in what it actually sent, so every figure on a line
