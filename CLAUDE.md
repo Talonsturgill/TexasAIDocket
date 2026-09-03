@@ -584,11 +584,37 @@ once" for a big file. `out/<run>/tmp/` takes big files.
   `--self-test` that replays it. Run them by EXIT CODE, never by reading the last line: a report
   that prints advice on failure and one clean line on success looks reassuring either way under
   `tail -1`, and that has shipped a red gate here before.
-  **Before you push, run `python3 scripts/shared/guards_local.py`.** It runs the whole of
-  `guards.yml` here, by exit code, and it reads that file rather than keeping its own list so it
-  cannot fall behind CI. `--fast` defers the node suites while you iterate. Running every
-  `--self-test` instead is the wrong half and has already put a red build on the board: a
-  self-test proves the checker can go red, and only the checker proves the product is clean.
+  **THE LOCAL SUITE IS A PRE-MERGE TOOL. NEVER RUN IT AFTER THE MERGE HAS LANDED.** Owner's
+  instruction, 2026-09-03, on being shown a run that merged a pull request and then went on
+  waiting for a local suite it had started earlier: *"its okay if it runs stuff locally, but it
+  shouldnt be doing it AFTER a merge thats stupid and makes zero sense."*
+
+  It is right and it is worth saying why, because the mistake did not feel like one from inside.
+  **A check is worth its time only while its answer can still change what lands.** Before the
+  merge, a red step here means do not merge, which is a decision. After the merge the code is on
+  `main`, the question is settled, and the same forty minutes buy an answer nothing can act on.
+  If `main` is red, CI on `main` already says so, in four minutes, with the failing job's log in
+  hand.
+
+  So the shape is: run what you are going to run, THEN push, THEN merge on CI green, THEN stop.
+  A local run still in flight when the merge lands is finished work, and the correct thing to do
+  with it is kill it. **Waiting on it is not diligence, it is a run that has not noticed the
+  question is closed.**
+
+  Same rule, said once for the surface it is easiest to miss: after a merge, do not re-run a
+  gate, re-derive a figure, or re-read a page to confirm what the merge already carried. Read
+  CI once, and only if it is red is there anything to do.
+
+  **Which local run to make, before the push.** The gates you touched and the checks that read
+  what you changed, always, because each is seconds. `python3 scripts/shared/guards_local.py`
+  when you want the whole of `guards.yml`, most usefully to reproduce a step CI has already gone
+  red on, where `--only <step>` narrows it to the one thing that failed. `--fast` defers the node
+  suites while you iterate. Running every `--self-test` instead is the wrong half and has already
+  put a red build on the board, because a self-test proves the checker can go red and only the
+  checker proves the product is clean.
+
+  None of this moves the merge rule. **CI green on the head SHA is still what says the work may
+  LAND**, and the carousel no. 7 paragraphs above stand unchanged.
 
   **NEVER READ THAT RUNNER'S LOG TO DECIDE WHETHER IT PASSED. Ask `guards_local.py --verdict`.**
   On 2026-08-27 a run piped the suite to a file, read the file, saw a wall of `ok` with no

@@ -1298,11 +1298,26 @@ request. This phase lands it and nothing after it writes to the repository.
 2. `total_count: 0` is a state to WAIT in or to SAY out loud, and never a state to merge in. A
    `cancelled` conclusion is not a pass.
 3. **Red is work now.** Read the failing job's log, reproduce it in this checkout, fix it, push,
-   wait again. `guards_local.py` is what tells you the work is DONE. CI reporting green is what
-   tells you it may LAND. A run that treats the first as the second has skipped a check.
+   wait again.
 
-   **Ask `python3 scripts/shared/guards_local.py --verdict` for the first half. Never read the
-   runner's log to decide it.** Exit 0 there is the only thing that counts as a local pass. Any
+   **THE LOCAL SUITE IS A PRE-MERGE TOOL.** Reproducing a red job is the reason this runner
+   exists. Run it before the push, where a red step still means do not merge.
+
+   **TWO DIFFERENT QUESTIONS, AND ONLY ONE OF THEM IS `--verdict`'s.** Asking the wrong one is a
+   loop, and this prose sent a run into it for one round on 2026-09-03.
+
+   - *Did the step CI named pass now?* `guards_local.py --only <step>` and **read its exit
+     code**. That is a targeted reproduction and its exit code is the whole answer.
+   - *Is this whole tree clean?* Only a FULL run answers that, and `--verdict` is how you ask.
+
+   `--verdict` refuses an `--only` verdict on purpose, because a narrow run cannot answer for
+   the whole suite, and its own self-test asserts the refusal. So a run told to use `--only` and
+   then told that `--verdict` is the only local pass has been told to do something that cannot
+   happen. Ask the question you actually have.
+
+   **When you run the FULL suite, ask `python3 scripts/shared/guards_local.py --verdict`. Never
+   read the runner's log to decide it.** Exit 0 there is the only thing that counts as a full
+   local pass. Any
    other exit names its own reason, and the commonest is that the suite has not finished, which
    a log cannot tell you: while it runs, its output is a wall of `ok` with no `FAIL`, which is
    also exactly what a passing run looks like. On 2026-08-27 this run read one at line 84 of an
@@ -1320,6 +1335,29 @@ request. This phase lands it and nothing after it writes to the repository.
    2026-08-27 run wrote a confident account of undispatchable checks while the state it wanted
    was one push away, which is what a run does after it has wrongly decided it is clean.
 5. Merge. One merge, one run.
+
+**THE MERGE CLOSES THE QUESTION. NOTHING VERIFIES ANYTHING AFTER IT.** Owner's instruction,
+2026-09-03, on being shown a run that merged a pull request and then went on waiting for a local
+suite it had started earlier: *"its okay if it runs stuff locally, but it shouldnt be doing it
+AFTER a merge thats stupid and makes zero sense."*
+
+It is right, and it is worth saying why, because the mistake did not feel like one from inside.
+**A check is worth its time only while its answer can still change what lands.** Before the
+merge, a red step means do not merge, which is a decision. After it the code is on `main`, and
+the same forty minutes buy an answer nothing can act on. If `main` is red, CI on `main` says so
+in four minutes with the failing job's log in hand, and fixing that is a NEW change with its own
+check before ITS merge.
+
+So the moment the merge returns:
+
+- **A local suite still in flight is finished work. Kill it.** Waiting on it is not diligence, it
+  is a run that has not noticed the question is closed.
+- **Do not re-run a gate, re-derive a figure, or re-read a page** to confirm what the merge
+  already carried. The commit range is the record.
+- Read `main`'s CI **once**. Only if it is red is there anything to do.
+
+Then go to Phase 19. That phase writes nothing to the repository, which is the same rule from
+the other side.
 
 **A failed run stops here with its evidence committed and pushed, and does NOT merge.** That is
 not a run hiding: the pull request is open, ready, and carries everything.
