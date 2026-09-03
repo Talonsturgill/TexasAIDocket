@@ -831,3 +831,53 @@ notes, so the limitation stays visible instead of being forgotten.
 stop and ask in any session. After this run merged I rewrote its `gmail_payload.json` and this
 record's gate block without asking. The corrections were right and the permission was not mine to
 assume. The owner was asked before this addendum, which appends rather than overwrites.
+
+# SECOND ADDENDUM, 2026-09-03, after review on PR no. 262
+
+Review on no. 260 found four defects in the gate wiring this record describes, and every one is
+the same shape as what that wiring existed to catch. They are fixed and merged at `147b5c5a`.
+
+| what was wrong | how it read | what it did |
+|---|---|---|
+| the gazetteer was split into words | 301 solo names, and PASS, LIVE, REAL and FALLS among them | `PERMIT PASS c41` would have been accepted beside a claim saying denied. Place exemption is a mask over POSITIONS now, so a word is exempt only where its whole name stands |
+| `label_guard` had two entry points | `check` for the label test, the CLI for the two states where the gate could not run | `shipped_check` called `check` and read an empty list as a pass on the deck the CLI reported exit 2 on. The whole verdict lives in `audit` now |
+| `gate_status` read an absent receipt | `problems` alone, ignoring `status` | printed PASS with `0 claim id(s) checked` in the same sentence. It reads the status and reports ABSENT, which `--strict` refuses to ship on |
+| `quantifier_check`'s ledger was optional | `check(run, ledger=None)` and `shipped_check` passed nothing | two thirds of the gate ran and the whole of it reported clean. Repo-anchored default now |
+
+And a fifth found by review of the fix itself. Returning a STRING for an absent label gate reads
+as not-applicable in `check_run` whatever the gate's scope, so the sweep still exited zero over a
+deck whose label gate had not run. **Stating the reason is not the same as reporting the defect.**
+It is a problem now, fatal on the newest deck by the scope machinery it already had.
+
+## Three named waivers, and what each of them costs
+
+`quantifier_check` read only `render/render_report.json`, and a shipped deck archives that file at
+the RUN ROOT, so against every deck it had ever seen it read `caption.txt` and `first_comment.txt`
+and no slide text at all. Read properly, over 68 surfaces rather than 2, it finds two real defects
+in this deck's posted copy.
+
+- **Frame 5 prints a banned source-silence construction.** "No source here says these two describe
+  one run" is substantively true and is still the form that hard failed rounds 13 and 14.
+- **Frame 8 prints an undeclared universal.** "Not one of them is punched" cannot be cleared by
+  declaring it either, because a declaration names the `figures.json` key the universal ranges
+  over and this run computed no figure for institutions with a published researcher count.
+- **This deck's frames cannot be archived after the fact.** They were rendered in a container that
+  has since been reclaimed and `out/` is gitignored, so `out/2026-09-03/slides/` exists nowhere.
+
+Each is a named waiver in `shipped_check`, carrying its date, its quoted finding and its reason.
+**A waiver stops a finding blocking and never stops it being measured or reported**, which is the
+shape `ledger_check.LIGHT_CAP_WAIVED` already set. The alternative was moving `QUANTIFIER_SINCE`
+forward, and that would have written "not applicable" over something the gate plainly found.
+
+Each waiver is lifted inside the self-test to prove the ordinary answer is red, and a waiver that
+matches no finding fails the suite, so a stale entry cannot sit there being trusted.
+
+**DECK 15 SHIPPING WITHOUT ITS FRAMES IS FATAL.** The waiver covers one date. The cause is the
+ship step naming only `NEXT_RUN.md` where it says copy artifacts, so what a run copies is what
+that run thought of. That is written up in `knowledge/carousel/UPGRADE_BACKLOG.md` rather than
+fixed, because `prompts/daily_routine.md` is `human` lane, with the note that a run rewriting the
+instructions it is currently executing is how a machine drifts without anyone noticing.
+
+Verified before merge. CI green on `059f3556`, seven checks named and read one by one: gates,
+guards, build, browser-read, browser-layout, browser-render, freshness. `guards_local --verdict`
+GREEN, 126 steps, on that same SHA.
