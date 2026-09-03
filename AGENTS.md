@@ -3,7 +3,9 @@
 Read `CLAUDE.md` in full before making changes. It is the repository constitution and remains
 the detailed source of truth. This file is the compact Codex entry point; do not let it become
 a competing copy. Also read `ownership.yaml`, the nearest path-specific instructions, and any
-active `.claude/WORKLOG.md` before writing.
+active `WORKLOG.md` before writing. Never write anything into `.claude/` or `.git/`. Both are
+gated by the harness and a write there stops an unattended run, which is why the worklog sits at
+the repository root.
 
 ## What this project is
 

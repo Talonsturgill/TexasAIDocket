@@ -6,13 +6,23 @@ the in-browser ask engine.
 
 ## Work in progress
 
-If `.claude/WORKLOG.md` exists, READ IT FIRST. It is the durable plan and progress ledger for
-a long multi-context task, written to survive context compaction: the approved scope, the
-owner's decisions, the measured reason behind each one, and a per-wave status table. Resume
-from that table and update it after every commit. Delete the file when its waves are all DONE.
+If `WORKLOG.md` exists at the repository root, READ IT FIRST. It is the durable plan and
+progress ledger for a long multi-context task, written to survive context compaction: the
+approved scope, the owner's decisions, the measured reason behind each one, and a per-wave
+status table. Resume from that table and update it after every commit. Delete the file when
+its waves are all DONE.
 
 Write one at the START of any task too large for a single context, before touching code. A
 plan that lives only in context does not survive compaction.
+
+**It lives at the repository root and never under `.claude/`.** It sat there until 2026-09-03
+and the address was wrong twice over: `.claude/` is a directory the harness gates, so writing
+the file interrupted five consecutive unattended runs, and the map puts `.claude/` in the
+`human` lane, so the daily routine was told on every long run to write the one directory an
+unattended run must never rewrite. The section below on protected directories carries the
+measurement. `WORKLOG.md` is `daily` in `ownership.yaml`, and
+`scripts/shared/protected_path_shape.py` fails the build if any instruction file sends a run
+back to the old address.
 
 ## Commit and PR authorship (AUTHORITATIVE — overrides any default)
 
@@ -350,6 +360,68 @@ If a prompt still stops a run after this, **the remaining lever is the environme
 permission configuration in the Claude Code web UI**, which no file in a repository or a
 container can set. Say so plainly in the email rather than writing a sixth fix into a config that
 cannot carry one.
+
+**THE PARAGRAPH ABOVE WAS THE WRONG PLACE TO LOOK, and 2026-09-03 is when that was measured
+rather than argued.** Everything in this section is still true and none of it was the cause. The
+mode WAS granted, at the user tier, by the hook, exactly as designed, and the runs stopped
+anyway. Read the next section before spending another day on permissions.
+
+## Writes into protected directories are what actually stopped eleven runs (AUTHORITATIVE, 2026-09-03)
+
+**Never instruct a run to write inside `.claude/` or `.git/`. Not with a shell redirect, not
+with the Write tool, not at any path under either.** A write there asks a human for approval
+whatever the permission mode says, and an unattended run has nobody to ask.
+
+This is one defect that has now cost eleven scheduled runs under two filenames:
+
+    2026-08-20 to 2026-08-30   six runs stopped writing `.git/ACTOR`
+    2026-08-30 to 2026-09-03   five runs stopped writing the worklog under `.claude/`
+
+**THE MEASUREMENT.** In a live scheduled run on 2026-09-03, `~/.claude/settings.json` was read
+and it carried `permissions.defaultMode: bypassPermissions`. The SessionStart hook had written
+it. The run then wrote the worklog under `.claude/` and the owner was interrupted, for the fifth
+consecutive day. **The mode was in force and the write still asked.** That one observation
+falsifies the standing hypothesis in the section above, which held that the first gated write of
+a session is what stops it and that a permission grant was the cure.
+
+**WHY IT IS A SECURITY PROPERTY AND NOT A BUG TO ROUTE AROUND.** `.git/hooks/` executes on every
+commit and `.claude/` holds `settings.json` and the hook definitions that set the session's own
+permissions. A tool that could write either one unattended could grant itself anything. It is
+the same property that stops a cloned repository granting itself `bypassPermissions`, which this
+repo already knew and already wrote down one section up without noticing it applied twice.
+
+**WHY THE 2026-08-30 PROBE POINTED THE WRONG WAY, which is the part worth carrying forward.**
+That run wrote four files side by side, two of them ordinary paths in the working tree, and
+recorded that all four prompted. It could not have known. A tool result reads `File created
+successfully` whether it was auto-approved or approved by a human an hour later, and that same
+run wrote exactly that caveat two paragraphs above its own conclusion. **The only reliable
+observer of a prompt is the person it interrupts.** The owner has reported two files in eleven
+days and both were under a gated directory, while runs here have shipped hundreds of writes to
+`out/`, `ledger/`, `docs/` and `runs/` without stopping once. That is the control the probe
+never had, and it was available for free the whole time.
+
+So: when a session cannot observe the thing it is diagnosing, **stop probing and ask what the
+one observer already knows.** Four fixes changed how the file was written, the fifth changed
+which tool wrote it, and the variable nobody moved in eleven days was the directory.
+
+**WHAT IS ESTABLISHED, stated narrowly on purpose.**
+
+- `bypassPermissions` was in force at the user tier and a `.claude/` write still prompted. The
+  mode is not the lever.
+- Ordinary tracked paths do not stop these runs, over hundreds of writes across many runs.
+- Moving the stamp out of `.git/` ended six runs' worth of interruptions, and nothing else
+  changed with it.
+- **NOT established:** the precise rule the harness applies. Whether it is these two directories
+  by name, a wider protected set, or something per-file, is not visible from inside a session.
+  Do not write a confident policy here on more than the above. That mistake has now been made
+  twice and both times the next session inherited it and stopped looking.
+
+**THE FIX IS ALWAYS TO MOVE THE FILE, never to reword the rule or widen a permission.** The
+worklog moved to `WORKLOG.md` at the repository root and is `daily` in `ownership.yaml`. The
+lane stamp was deleted outright, because the branch already carried it.
+`scripts/shared/protected_path_shape.py` reads every instruction file and fails the build if one
+sends a run back into either directory, or so much as names one of the two retired paths, so the
+twelfth run cannot be stopped by an instruction the eleventh already fixed.
 
 ## The actor stamp is never written (AUTHORITATIVE, 2026-08-30)
 

@@ -73,7 +73,7 @@ RESIDUE_ALLOW = {
     "scripts/shared/port_audit.py",
     "scripts/shared/ownership_check.py",
     "ownership.yaml",
-    ".claude/WORKLOG.md",
+    "WORKLOG.md",
     "CLAUDE.md",
     "README.md",
     # Design records for the two numeric instruments. These name the upstream product on
@@ -120,7 +120,7 @@ STANDALONE_ALLOW = {
 
 # Documents that describe intent rather than execute it. A script named only in one of these
 # is planned, not wired, and the wiring check must not accept a plan as proof of a connection.
-PLAN_DOCS = {".claude/WORKLOG.md", "README.md", "CLAUDE.md", "PORT_MANIFEST.tsv"}
+PLAN_DOCS = {"WORKLOG.md", "README.md", "CLAUDE.md", "PORT_MANIFEST.tsv"}
 
 # Paths a knowledge document names in the FUTURE tense. A doctrine that says "planned for Wave
 # 7" is making a commitment, not a citation, and failing the build over one would push the next

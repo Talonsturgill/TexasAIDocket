@@ -152,7 +152,10 @@ public fact stand for another day, on a page whose entire promise is that it doe
 ## CONTEXT (read at wake, in this order)
 
 - `CLAUDE.md` — the law: ownership, the compute-not-generate rule, the delivery policy.
-- `.claude/WORKLOG.md` if it exists — the durable plan across contexts.
+- `WORKLOG.md` at the repository root if it exists — the durable plan across contexts. It is
+  yours to write, and it is at the root rather than under `.claude/` because that directory is
+  gated by the harness and writing there stopped five unattended runs. CLAUDE.md carries the
+  measurement under the heading about protected directories.
 - `knowledge/shared/SOURCES_REGISTRY.md` — **what is fetchable, what is off limits, and the
   traps.** Read this before any fetch. You may not write it. Its companion
   `SOURCES_FIELD_LOG.md` is where you append what a source actually did, and it is yours.
