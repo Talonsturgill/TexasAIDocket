@@ -137,6 +137,52 @@ holds every one:
 
 <!-- score block written at scoring time -->
 
+### What the panel found, round by round
+
+**Round 1. 6.51, 6.76, 6.34, median 6.526 against a 6.8 bar. Three hard fails, all the same one.**
+
+Slide 4's dek is two sentences. The second, "No meeting date is published for that approval.",
+laid out below the sepia curl on bare cream while keeping its cream fill, at roughly 1.05 to 1.
+A faint ghost at full size and entirely absent from the 432px thumb and the contact sheet.
+
+The sentence that vanished is the frame's whole guard. c8 is medium confidence and the claims
+file's own rejected list says the record carries the System's assertion and does not claim a
+dated governing body vote. Without that line the frame reads as the Board of Regents approving
+45 million dollars with no qualifier at all.
+
+**Every gate passed it, and that is the finding.** `copy.json` carried the string because the
+browser really did lay it out. `dossier_check` passed an acceptance item reading "the dek says No
+meeting date is published" because the string was in the DOM. `numeral_lint` traced every
+numeral. `qa.py` returned zero fails. `panel_ready` reported that every line cleared the rubric's
+4.5 contrast floor, and reported it while this line sat at 1.05.
+
+Not one of them asks the only question that mattered, which is whether the ink is different from
+the paper. Twelve gates read what the document SAYS and none reads what the page SHOWS.
+
+**Round 2. 6.296, 6.17, 5.81, median 5.896. Two hard fails, and the number went DOWN.**
+
+All three judges verified all nine of round 1's repairs as landed. `claim_integrity` collapsed
+from a 6.5 median to 4.5 on one finding that predated round 1 and that round 1's own repair made
+visible.
+
+**Slide 4 credited the wrong publisher and had done so from the start.** The attribution read
+"QUOTED IN THE SYSTEM'S NEWSROOM". The quotation is c10, fetched from `tarleton.edu`, and the
+deck's own first comment under the same post says "quoted by Tarleton State University".
+
+The label was not invented. Slide 4 declares c8 and c10, and c8 IS the System's newsroom, so it
+was taken from the wrong one of the two claims on its own frame. Nothing compared an attribution's
+publisher against the claims the frame declares. Two judges called that a gate-shaped hole rather
+than a writing slip, and it was in the dossier before it was in the render.
+
+Round 1's repair extended and darkened that plate so a lost sentence would read, and nobody
+re-read the line two inches above it. A repair verified against the defect it was written for, on
+a frame carrying a different defect the whole time.
+
+**The integrity judge found no hard fail in round 2 and refused on the number**, 6.296 against
+the bar, saying it had looked hard and would not manufacture one. `panel.py` derives that as a
+threshold dissent from the judge's own score rather than from any field the run could write, so
+it counts in the median and is not a second veto.
+
 ## Sources field log
 
 Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit range.
