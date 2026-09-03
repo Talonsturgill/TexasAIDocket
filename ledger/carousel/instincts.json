@@ -535,6 +535,30 @@
    "evidence": "Deck no. 14, slide 8. A label reading 'TWO STATIONS, NOTHING SEATED' was rejected by aggregate_check as a figure computed from objects the deck itself drew rather than from anything a source states. Nothing in the record says how many institutions could be seated. It reads 'OPEN STATIONS, NOTHING SEATED' and is better for it.",
    "confirmed": [],
    "contradicted": []
+  },
+  {
+   "id": "a-measurement-script-can-be-the-fault-it-was-written-to-end",
+   "learned": "2026-09-03",
+   "instinct": "Read a measurement script's BODY against its docstring before trusting either.",
+   "evidence": "Deck no. 14, round 5. measure_focals.py was written in round 4 to end the fault of typed figures claiming to be measured. It opened the PNG, computed a scale factor from its width, never used it again, and returned arithmetic over nine hardcoded rectangles, under a docstring reading 'the numbers come out of the pixels'. The craft judge read the source rather than the docstring, which is the only reason it was caught. Rewritten to actually read pixels it immediately found that slides 8 and 9 declare a small object as the frame's light extreme while 80 percent of each frame sits at that value.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "verify-a-string-replacement-took",
+   "learned": "2026-09-03",
+   "instinct": "Assert that a text repair CHANGED the file, because a replacement that matched nothing is silent.",
+   "evidence": "Deck no. 14, rounds 4 and 5. The storyboard's arc note was reported reconciled in round 4 and the round 5 judge found it unchanged: the replacement string did not match and nothing checked that it had. The same run reported a slide 7 dossier reconciliation that also did not take. A repair reported as made and not made is worse than one not attempted, because the next round stops looking.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "bind-a-frames-source-stamp-to-the-claims-it-carries",
+   "learned": "2026-09-03",
+   "instinct": "Derive every source stamp from the URLs of the claims that frame's copy actually carries.",
+   "evidence": "Deck no. 14. Three frames carried the same attribution defect and each was found in a different round: slide 4 credited c10's quotation to c8's publisher in round 2, slide 7 credited the docs page with a testing page sentence in round 4, and slide 6 set the chancellor's quotation with no publisher at all in round 5. Every fix was to the instance. Both round 5 judges proposed this binding independently as their one sentence fix.",
+   "confirmed": [],
+   "contradicted": []
   }
  ]
 }
