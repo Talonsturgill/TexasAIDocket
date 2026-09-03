@@ -190,3 +190,58 @@ Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit range.
 ## Prompt audit
 
 <!-- written at Phase 19, and Phase 17's reading is interim -->
+
+## The one gate this run cannot make green, and why it is not merging on its own say-so
+
+**`scripts/site/ask_pack.py --self-test` fails. The ask index is 40,450 characters against a
+40,000 ceiling, over by 450.** It runs in `guards.yml`, so CI is red on this branch.
+
+**It is this run's doing and the measurement says so.** Against `main`'s record the index builds
+to 39,393, with 607 characters of headroom. This run admitted five decisions and crossed it.
+
+**Where the 40,450 sits:**
+
+| part | chars |
+|---|---|
+| `INDEX_HEAD`, fixed prose | 1,546 |
+| 103 docket lines, at 225 characters each | 23,216 |
+| the instrument sections, chiefly a 119 reservoir roll call | 15,686 |
+
+**The record is 57 percent of the index and the instruments are 39 percent.**
+
+**THE FIX IS NOT IN THIS RUN'S LANE.** `ownership.yaml` gives `scripts/site/ask_pack.py` to
+`human`, with the reason written beside it: *"The answer engine is a gate on what the site may
+claim. Maintainer-owned."* `ownership_check --actor daily --files scripts/site/ask_pack.py` exits
+1. The instrument series belong to `gridwatch`. Neither is reachable from `daily` and neither is
+reachable from `upgrade` either.
+
+**What was done inside the lane, on its own merits.** Four of this run's five new titles were
+genuinely long, and two were bad titles rather than merely long ones: `tx-2026-0119` packed two
+clauses into one title and `tx-2026-0116` carried a date that will go stale. All four were
+tightened and that recovered 176 characters. Three claims were also rewritten to carry a readable
+verbatim quote instead of raw Legistar JSON and a bare URL, which the same self-test was failing
+on separately and which were defects in their own right.
+
+**What was NOT done, deliberately.** The remaining 450 characters are reachable only by cutting
+titles across the existing record. The median title is 111 characters and the longest eight are
+single informative clauses at about 150. **There is nothing there this project would cut on its
+merits, and cutting a 103 item public record to fit a byte budget is the exact pressure that
+degrades a record.** `CLAUDE.md`'s own rule is that a gate is fixed at source or reported, never
+loosened and never worked around.
+
+**So this run does not merge itself green.** The evidence is committed to the branch and the
+pull request is open. A maintainer session owns the decision, and the decision is a real one
+rather than a formality:
+
+- **The ceiling now binds structurally, not once.** The docket adds about 225 characters a day.
+  Even at zero admissions tomorrow the index stays over, and every future run inherits a red gate.
+- **The instruments are the bulk and the record is the growth.** A reservoir roll call naming 119
+  lakes is 39 percent of the block every question pays for, and it does not change with what the
+  docket does.
+- Three shapes of answer exist and this run gets to propose none of them: raise the ceiling on
+  measurement rather than by feel, move the instrument sections out of the always-sent index into
+  a retrieved section, or compress the docket line (the longest one spells 22 county names).
+
+**The run's own gates are green.** `docket_build --validate`, `house_style_check`,
+`schema_contract`, `site_fresh_check`, every carousel gate, `qa.py` with zero fails and
+`panel_ready` all exit 0. This is one gate, in one file, that this actor may not touch.
