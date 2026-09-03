@@ -814,3 +814,80 @@ All six scouts reported the same thing unprompted. `carousel-scout` is defined w
 reply instead. Nothing was lost, because the reply carries the same JSON. It is written down
 because a routine that asks for a file it will never get is a step that silently does nothing, and
 the next session should either drop the instruction or the showrunner should persist the replies.
+
+## 2026-09-03, run no. 14
+
+### The PUCT feed entry above is FIXED, not just observed again
+
+A previous run wrote here that `reverify` reports two claims on `tx-2026-0002` and `tx-2026-0024`
+as unreadable every run because the feed escapes its HTML inside its XML, and it named the fix:
+**unescape the description before matching.** This run made it. `reverify.flatten` now strips and
+unescapes TWICE, because one pass strips before the unescape that reveals the markup and leaves a
+literal `<strong>Project</strong> 58482` in the text a quote is matched against.
+
+Measured both ways before it was committed. After the change all four reader-facing strings on that
+feed are found, and the new self-test case fails on the old code. Three claims across those two
+items now quote the run of text a reader actually sees, naming the project each comment deadline
+belongs to, which the record had been carrying in a summary sentence with no claim under it.
+
+### Hosts, this run
+
+- **`news.rice.edu` returns HTTP 406 to every client tried**, a browser user agent included, so it
+  is not a user agent problem. Third consecutive run. Three claims on `tx-2026-0098` were moved to
+  the NSF award record, which carries the same substance and answers.
+- **`federalregister.gov` HTML document pages redirect this project's clients to
+  `unblock.federalregister.gov`.** Its JSON API answers normally, and
+  `govinfo.gov/content/pkg/FR-<date>/html/<num>.htm` serves the identical document with no block.
+  **That is the working route to verbatim Federal Register text** and the registry does not carry
+  it. The API also rejects an unknown entry in `fields[]` with a bare HTTP 400, so request the
+  whole document rather than a field list.
+- **The PUCT calendar RSS needs a redirect follow.**
+  `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` answers 301 to the same path in lower case.
+- **`yahoo.com` article pages are JavaScript shells.** The page answers 200 at half a megabyte and
+  serves nothing a quote can be read from. `tx-2026-0038` rested on two of them and no longer does.
+- **`www.hwws.com` serves its board minutes as clean digital PDFs** and they extract without OCR
+  artifacts. The cheapest primary source found this run for a utility board vote.
+- **`top500.org/system/<id>/` is the quotable page**, not the paginated list, whose row is
+  delivered as a table and cannot be quoted as a contiguous string. The detail page carries every
+  performance figure in one place.
+- **`api.nsf.gov/services/v1/awards/<id>.json?printFields=...` returns the full abstract cleanly.**
+  `www.nsf.gov/awardsearch/show-award/` is a JavaScript shell that renders "No Award Specified" to
+  any plain fetcher whatever the award id.
+- **`pol.tasb.org` returns 403.** That is TASB Policy Online, the authoritative store of every
+  Texas school district's board policy manual, and it is the single biggest primary source gap on
+  the classroom beat. District AI policies live there and nowhere else in machine readable form.
+- **`texasattorneygeneral.gov` returned HTTP 402 on every path a scout tried**, which is the second
+  observation of the behaviour the 2026-09-02 entry records as a single one. Same shape as
+  `interchange.puc.texas.gov`, so it is probably a user agent problem rather than a policy one and
+  is worth a curl retest from a main session.
+- **`lccf.tacc.utexas.edu` returned 403 on its own robots.txt.** The registry names the LCCF
+  project site as the permitted substitute for the disallowed `tacc.utexas.edu`, and the subdomain
+  would not serve its own robots file, so nothing was fetched and TACC went uncovered for a second
+  run. **This needs an owner decision or a second client retest**, per the registry's own standing
+  rule that a tool level failure is not a property of the source.
+- **Legistar**: the Austin client slug is `austintexas`, and `austintx` returns HTTP 500, which
+  reads like an outage rather than a wrong name. `/matters/<id>/histories` returned an empty array
+  for Austin and Dallas both, and the event action fields were null on an item already voted, so
+  **Legistar is reliable here for agenda text and meeting dates and is not a source of vote
+  tallies** for these two cities.
+- **`vision.tamus.edu`, `docs.vision.tamus.edu`, `news.tamus.edu`, `www.tarleton.edu` and
+  `top500.org` all answer 200** and are clean primary routes. `hprc.tamu.edu` returns 403.
+- Also refusing this project's clients this run: `businesswire.com`, `technologymagazine.com`,
+  `openai.com`, `beckershospitalreview.com`, `kxan.com`, `wistron.com`, `www.hpcwire.com`,
+  `faa.gov/space/stakeholder_engagement/spacex_starship`, `agendasuite.org`,
+  `ir.diamondbackenergy.com`, `investors.fireflyspace.com` and `sec.gov/cgi-bin/browse-edgar`.
+  `www.gccdd.org` does not resolve at all.
+
+### A source can disagree with itself, and the deck was built on it
+
+`vision.tamus.edu` says "We are now actively seeking beta testing participants" while
+`vision.tamus.edu/testing/` says "The VISION beta program is currently being finalized as we
+prepare for General Availability". Both were read the same day. Neither is wrong and the pair is
+the most interesting thing either page carries, which is worth knowing the next time two pages of
+one site are treated as one source.
+
+### The scout write instruction, third confirmation
+
+All five scouts reported again that they have no write tool and returned their JSON inline. The
+2026-08-28 entry already says this. **This run persisted the findings itself** rather than asking
+for the file again, which is the disposition that entry recommended.
