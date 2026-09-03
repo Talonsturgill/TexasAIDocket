@@ -511,6 +511,30 @@
    "evidence": "Deck no. 14, slide 8. The band was filled with a dashed rectangle, guide rails and tick ladders, which the deck's own risk list bans by name ('no title blocks, no neatlines, no borders anywhere'), which was the only object in nine frames that was neither a sheet nor light, and which moved the band metric by 0.004. Redrawn as two empty seats on the same leaf module, outlined rather than filled, it says the same thing in the language the deck spent eight frames teaching.",
    "confirmed": [],
    "contradicted": []
+  },
+  {
+   "id": "correcting-one-number-is-not-closing-a-class",
+   "learned": "2026-09-03",
+   "instinct": "When a judge catches one typed figure claiming to be measured, GENERATE every figure of that kind.",
+   "evidence": "Deck no. 14, rounds 3 and 4. Round 3 replaced the storyboard's value arc after a judge found it asserting it was measured off the renders and being a guess, wrong on one frame by a factor of four. Round 4's craft judge then found four more of exactly the same kind in the same file, the focal shares, untouched: slide 1 declared about 11 percent and measures 44.6, slide 9 declared about 16 and measures 3.2. Patching the instance left the class standing for a whole round.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-repair-round-can-fail-bespoke-check",
+   "learned": "2026-09-03",
+   "instinct": "Re-run the deck-level similarity gate after every repair round, not only after the build.",
+   "evidence": "Deck no. 14, round 4. Three rounds of repairs had put one rect-loop idiom into several frames, and bespoke_check FAILED the deck at 0.5515 against its 0.55 line with slides 6 and 7 at 0.791. Nothing in the run had made the deck more of a template on purpose. Fixing frames one at a time with the same tool is how a deck converges without anybody deciding it should.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-frame-may-not-count-what-it-drew",
+   "learned": "2026-09-03",
+   "instinct": "Never label a drawn object with a count of the objects, only with what a source says.",
+   "evidence": "Deck no. 14, slide 8. A label reading 'TWO STATIONS, NOTHING SEATED' was rejected by aggregate_check as a figure computed from objects the deck itself drew rather than from anything a source states. Nothing in the record says how many institutions could be seated. It reads 'OPEN STATIONS, NOTHING SEATED' and is better for it.",
+   "confirmed": [],
+   "contradicted": []
   }
  ]
 }
