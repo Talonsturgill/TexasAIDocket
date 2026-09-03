@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-02",
+    "generated": "2026-09-03",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -181,14 +181,16 @@
     "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S": {
       "etag": null,
       "last_modified": null,
-      "hash": "a90ddc6e4a961674c34eda97ce416768fd5ce0642ba22c807927f2d16063a38c",
+      "hash": "0a29af1ff3a2a9f0bd9f6c8432adc53814dc44cba3b1b6e9df75ea9a2929b960",
       "proven": [
         "tx-2026-0077-c5",
         "tx-2026-0096-c3",
         "tx-2026-0096-c4",
         "tx-2026-0096-c5",
         "tx-2026-0096-c6",
-        "tx-2026-0109-c4"
+        "tx-2026-0109-c4",
+        "tx-2026-0109-c7",
+        "tx-2026-0109-c8"
       ]
     },
     "https://capitol.texas.gov/tlodocs/89R/schedules/html/C4502026081908001.htm": {
@@ -457,6 +459,7 @@
       "last_modified": null,
       "hash": "c443005e2c4a8181539f5a6860495beb9e477b6ab0542127bcc24af4471c4332",
       "proven": [
+        "tx-2026-0002-c11",
         "tx-2026-0024-c5"
       ]
     },
@@ -637,7 +640,7 @@
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
-      "hash": "c4f00c003a92a49487c6431156e0781cffbb627e61dcef4e2ea7110bffe77311",
+      "hash": "9602d88e4a6adc2c89ad12c5ec0052f367baa1d5736daa3f2badf3013d6d001e",
       "proven": [
         "tx-2026-0024-c1",
         "tx-2026-0024-c3",
@@ -669,7 +672,7 @@
     },
     "https://senate.texas.gov/cmte.php?c=525": {
       "etag": null,
-      "last_modified": "Tue, 01 Sep 2026 12:00:00 GMT",
+      "last_modified": "Wed, 02 Sep 2026 12:00:00 GMT",
       "hash": "559a6e41b059a87297fef69ccc7d98a320daf29818199771f3d844c365556bca",
       "proven": [
         "tx-2026-0109-c1",
@@ -1074,7 +1077,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-13928.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "482e0717b65d61861f249635e1f2a48ce2f5f6b9cbfc05c443daa8aa18703be9",
+      "hash": "8576ec616a3e660db975e3cd222a9ce10c3253a16055d0c228762fa507ca8a98",
       "proven": [
         "tx-2026-0016-c2"
       ]
@@ -1090,7 +1093,7 @@
     "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions": {
       "etag": null,
       "last_modified": null,
-      "hash": "da3b4ed8c04ca955b4eaeb11f76b088d3eb4e1e272fd813b9743a4627cc92fab",
+      "hash": "cb137bfc5fbbc12ac46c7d399c4b4bc4db4a8fab9fd571daab6e4e0e33381736",
       "proven": []
     },
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
@@ -1513,7 +1516,7 @@
     "https://www.yahoo.com/news/articles/proposed-harlingen-data-center-4-213100276.html": {
       "etag": null,
       "last_modified": null,
-      "hash": "d15c75098daecad4385a62b167ac915f50df73be1ef5f809eac52e0c1cd292a3",
+      "hash": "3fcac58d4c5b7274759959ece7b4aa7a81b55db4c53e1ddc0dfbf2b2fcc571cc",
       "proven": [
         "tx-2026-0038-c3"
       ]
