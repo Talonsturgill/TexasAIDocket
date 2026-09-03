@@ -511,3 +511,58 @@ run tripped by repairing things.**
 **`aggregate_check` rejected the first label I put on slide 8's seats.** It read "TWO STATIONS,
 NOTHING SEATED", and two is a count of objects the deck drew rather than anything a source says.
 Reworded to "OPEN STATIONS, NOTHING SEATED". The gate was right and the label is better for it.
+
+## Phase 15, panel round 5, the cap
+
+**6.75, 6.51, 7.002. Median 6.762, spread 0.492, NO HARD FAILS from any judge for the first time
+in five rounds. HOLD, 0.038 under the bar.** `max_rounds` is 5, so the deck ships on this.
+
+Two judges refused on the threshold and said so explicitly rather than manufacturing a fault. The
+reader judge shipped at 7.002.
+
+**The cap round found two things this run had REPORTED AS FIXED AND HAD NOT FIXED**, and that is
+the worst class of error in the whole run.
+
+- **`measure_focals.py` opened the PNG, computed a scale factor from its width, never used it
+  again, and returned arithmetic over nine hardcoded rectangles.** Under a docstring reading
+  "Measure every declared focal AREA off the rendered PNG" and "the numbers come out of the
+  pixels". Round 4 wrote that script to end the fault of typed figures claiming to be measured,
+  and the script was the same fault one level up: not a number claiming to be measured, but a
+  MEASUREMENT PROGRAM claiming to be one. The craft judge read the source rather than the
+  docstring, which is the only reason it was caught.
+- **The arc note still said the junction into slide 7 was the deck's largest.** Computed off the
+  measured array it is 13.1 in and 75.8 out, and the deck's largest is 2 to 3 at 76.2. The
+  repair was reported in round 4 and is not in the artifact, because the replacement string did
+  not match and nothing checked that it had.
+
+**The rewritten script reads pixels and immediately found something the rectangles could not.**
+It computes each frame's own 98th or 2nd percentile L* and the share of the frame within 8 L* of
+it. Five of nine frames come back WIDE, and two of them are damning: **slides 8 and 9 declare a
+small object as "the frame's light extreme" while 80 percent of each frame sits at that value.**
+The light extreme on those frames is the GROUND. The dossiers now say so in the same line.
+
+What the script still cannot do is decide which object the designer meant, and it says that out
+loud rather than implying otherwise. Round 5's integrity judge found the declared rectangles are
+BOUNDING BOXES rather than the objects in them, so slide 6's two slots measure 5.7 percent as a
+box and about 1.3 as drawn. That is not closed, and both judges named the same fix: have each
+frame emit its focal geometry from the elements it actually drew, and generate the dossier from
+that rather than reconciling prose against pixels by hand five rounds running.
+
+## The fifth repair round, after the cap
+
+Nothing here changed the panel's verdict. All of it is the difference between shipping a record
+that is true and one that is merely green.
+
+| what | what was done |
+|---|---|
+| `measure_focals.py` claimed pixel measurement and did arithmetic on typed constants | rewritten to read each frame's own value extreme out of the PNG, and to label the declared rectangle as AUTHORED rather than measured |
+| the arc note asserted a junction the measured array refutes | computed: 13.1 in, 75.8 out, and the deck's largest is 2 to 3 at 76.2, which is not the designed one |
+| slide 2's `value_structure` and `motion` still described the deleted density ramp and two cut windows | reconciled to the frame that renders |
+| slide 2's own `data-encodes` claim still said "a cut window is bare backlight" | rewritten, and `qa.py` then caught an apostrophe breaking the JSON inside the single quoted attribute |
+| slide 7's dossier carried the pre-fix one sentence dek, an unquoted hook and one host | all three reconciled |
+| **slide 6 set a direct quotation from the chancellor and named no publisher for it** | it names the System's newsroom, and the frame asserts it. This is the defect that hard failed slide 4 in rounds 2 and 4, standing the whole time on the frame nobody had looked at |
+
+**Three frames carried the same attribution defect and each was found in a different round.** Slide
+4 in round 2, slide 7 in round 4, slide 6 in round 5. Every fix was to the instance. Nothing in
+this repo binds a frame's source stamp to the claims its copy actually carries, and both round 5
+judges proposed exactly that, independently, as their one sentence fix.
