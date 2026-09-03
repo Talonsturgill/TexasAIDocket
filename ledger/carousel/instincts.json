@@ -479,6 +479,38 @@
    "evidence": "Deck no. 14. Replacing the storyboard's curly quotes with straight ones per the house rule put unescaped quotes inside a double quoted YAML scalar, and dossier_check reported slide 6 rendered with no dossier at all. The edit was correct about the house rule and silently wrong about the file.",
    "confirmed": [],
    "contradicted": []
+  },
+  {
+   "id": "the-claims-file-is-a-surface-too",
+   "learned": "2026-09-03",
+   "instinct": "Assert source entailment over the claims file's own prose fields, not only over the frames.",
+   "evidence": "Deck no. 14, c19, panel round 3. Its text field read 'The System puts the same screening run at more than ten million compounds', on a quote published by Tarleton State that says nothing about it being the same run. So the record asserted the identity slide 5 denies on the frame in the deck's own voice, and credited the wrong publisher, which is the identical substitution that hard-failed slide 4 one round earlier, one claim away. Every gate reads the frames.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-drawing-may-not-state-what-the-data-refutes",
+   "learned": "2026-09-03",
+   "instinct": "Compute the drawn quantity's share and THROW unless it equals the arithmetic it depicts.",
+   "evidence": "Deck no. 14, slide 2, rounds 2 and 3. A 21 step density ramp with two knockouts read to two independent judges as two bars with the DARKER one SHORTER, inverting 34.82 against 51.16, and its most saturated block sat on the headroom that was not achieved while the frame's words were gated against naming a shortfall. Every numeral traced. The picture was the only thing lying, and nothing measured it. It is now ink laid down to the measured figure and an outline to the rated one, and the frame throws unless the inked share equals RMAX over RPEAK.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-frame-that-refuses-a-date-may-not-draw-a-ruler",
+   "learned": "2026-09-03",
+   "instinct": "Never answer a quiet band with an object that could be read as the thing the frame refuses to say.",
+   "evidence": "Deck no. 14, slide 9. A graduated tick rule was drawn across the foot of the closing frame to answer a low craft density, and at 432px it reads as a TIMELINE on the one frame whose entire message is 'No date is published for it'. It was the single most misleading object this deck could have drawn, added for a reason that had nothing to do with meaning.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "borrowed-furniture-is-not-the-deck-s-vocabulary",
+   "learned": "2026-09-03",
+   "instinct": "Answer a dead band in the register the deck already established, never in a borrowed one.",
+   "evidence": "Deck no. 14, slide 8. The band was filled with a dashed rectangle, guide rails and tick ladders, which the deck's own risk list bans by name ('no title blocks, no neatlines, no borders anywhere'), which was the only object in nine frames that was neither a sheet nor light, and which moved the band metric by 0.004. Redrawn as two empty seats on the same leaf module, outlined rather than filled, it says the same thing in the language the deck spent eight frames teaching.",
+   "confirmed": [],
+   "contradicted": []
   }
  ]
 }
