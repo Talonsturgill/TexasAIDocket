@@ -447,6 +447,38 @@
    "evidence": "Deck no. 14, slide 4. A box offset from the bottom grows UPWARD when the copy wraps to one more line than anybody counted, and this one grew the other way off the sepia curl onto bare cream. Pinned at the top it can only grow downward, where a containment check can see it.",
    "confirmed": [],
    "contradicted": []
+  },
+  {
+   "id": "check-the-label-against-the-claim-it-carries",
+   "learned": "2026-09-03",
+   "instinct": "Check every attribution against the publisher of the claim that frame is quoting.",
+   "evidence": "Deck no. 14, slide 4, panel rounds 1 and 2. The frame declares c8 and c10. The quotation on it is c10's, fetched from tarleton.edu, and the attribution read QUOTED IN THE SYSTEM'S NEWSROOM, which is c8's publisher. The label was not invented, it was taken from the wrong one of the two claims the frame declares. It survived two rounds and the deck's own first comment contradicted it under the same post.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-repair-is-not-a-re-read",
+   "learned": "2026-09-03",
+   "instinct": "Re-read the WHOLE frame after repairing part of it, not the part that was repaired.",
+   "evidence": "Deck no. 14, slide 4. Round 1 extended and darkened the plate so a lost sentence would read, and nobody re-read the attribution two inches above it. Round 2 stopped the deck on that line. A repair verified against the defect it was written for, on a frame carrying a different defect the whole time.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "a-band-metric-rewards-a-hatch-and-a-reader-does-not",
+   "learned": "2026-09-03",
+   "instinct": "Answer a dead band with the object that belongs in it, never with a full field hatch.",
+   "evidence": "Deck no. 14, slide 8. The frame scored 0.75 / 0.87 / 0.66 on qa.py's band density with no warn WHILE carrying a 290px empty band all three judges named, and slide 7 scored 0.09 / 0.09 / 0.06 on a frame that was genuinely built. The metric counts cells over a contrast threshold, so it is fooled in both directions. What went in slide 8's gap was the lane a finished sheet travels down to the pins, with an empty landing at the end of it.",
+   "confirmed": [],
+   "contradicted": []
+  },
+  {
+   "id": "reconciling-prose-can-break-the-yaml-under-it",
+   "learned": "2026-09-03",
+   "instinct": "Re-run the parser after any bulk edit to a file a gate parses, not just after editing its meaning.",
+   "evidence": "Deck no. 14. Replacing the storyboard's curly quotes with straight ones per the house rule put unescaped quotes inside a double quoted YAML scalar, and dossier_check reported slide 6 rendered with no dossier at all. The edit was correct about the house rule and silently wrong about the file.",
+   "confirmed": [],
+   "contradicted": []
   }
  ]
 }
