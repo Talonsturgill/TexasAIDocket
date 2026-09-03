@@ -396,3 +396,64 @@ metric rewards a hatch and a reader does not. What went in the gap is the thing 
 - Reconciling the storyboard's curly quotes broke slide 6's dossier, because straight quotes
   inside a double quoted YAML scalar is not YAML, and `dossier_check` reported slide 6 rendered
   with no dossier at all.
+
+## Phase 15, panel round 3, and two hard fails from one judge
+
+**6.296 became 5.77, 6.17 became 6.382, 5.81 became 6.288. Median 6.3, spread 0.612, two hard
+fails, HOLD.** The craft and reader judges both cleared their round 2 hard fail and found none.
+The integrity judge found two, and both were real.
+
+**The cover said "Texas A&M is No. 66." and I wrote it in round 2.** TOP500 ranks MACHINES. c1
+was fetched precisely to record that the list credits this one to the Texas A&M University SYSTEM
+rather than to one campus, and "Texas A&M" unqualified is the campus, which is the exact entity
+c1 exists to distinguish. The deck's own rejected list and its own first comment both say TOP500
+publishes no university category, so the cover asserted a proposition the run's published notes
+refute two surfaces away.
+
+**That is a fix introducing a worse defect than the one it repaired**, and it is the third time
+this run that a repair broke something. The reader judge scored it under `claim_integrity` rather
+than stopping the deck, and said out loud that another judge could land the other way. One did.
+
+**c19's own text field carried two assertions its quote does not.** It read "The System puts the
+same screening run at more than ten million compounds in about a week." The quote is Tarleton
+State's and says nothing about it being the same run. So the record asserted the identity slide 5
+denies on the frame in the deck's own voice and that the first comment denies in print, and it
+credited the A&M System with a sentence published by Tarleton, **which is the identical publisher
+substitution that hard-failed slide 4 in round 2, one claim away and unrepaired.**
+
+The lesson is the integrity judge's own one-sentence fix and it generalises past this deck: the
+frames now assert source entailment and `claims.json`'s own prose fields assert nothing.
+
+## The third repair round, on eleven findings
+
+| # | what | what was done |
+|---|---|---|
+| 1 | the cover awarded a TOP500 rank to an institution | "VISION is No. 66.", c2's own subject, and the frame throws unless the hook starts there and throws if it names an institution as the ranked thing |
+| 2 | c19's text asserted an identity the deck refuses and named the wrong publisher | "Tarleton State reports researchers screened more than ten million compounds in about a week." |
+| 3 | "June 2026" survived in claims.json's story and computed.json after leaving the first comment | gone from both |
+| 4 | slide 2's PIXELS published the verdict its STRINGS are gated against, and two judges read it as two bars with the darker one shorter, inverting 34.82 against 51.16 | the value ramp is GONE. Ink laid down to the measured figure, a dashed outline to the theoretical peak, which is slide 9's own filled versus outlined law, and the frame throws unless the inked share EQUALS RMAX over RPEAK |
+| 5 | slide 7 set verbatim source text with no marks and no publisher, while slide 6 labels both of its quotations | marked and attributed, and asserted |
+| 6 | slide 7 held c15 and did not print it | it prints. A deck whose thesis is read what the document says, holding the qualifying claim and leaving it off, is the accusation turned inward |
+| 7 | slide 9 was the only content frame of nine with no source domain, on the frame that asks a reader to act | VISION.TAMUS.EDU/TESTING |
+| 8 | slide 9's unlabelled tick rule read at 432px as a TIMELINE, on the frame whose message is that no date is published | removed. A frame that refuses to imply a date may not draw a ruler across its foot |
+| 9 | slide 8's lane was drafting furniture the deck's own risk list bans by name | two empty seats on the same leaf module, outlined not filled, one over each pin station |
+| 10 | three pin pitches in one payoff, so the 8 to 9 rhyme held only in the labels | one pitch, 152px, on all three |
+| 11 | slide 6's slots were highlighter chips in a register whose premise is light through material | a cut wall on two sides, a lit lip on the other two, every edge asserted clear of the verb's own glyph box |
+
+**THE VALUE ARC SAID IT WAS MEASURED AND WAS A GUESS, FOR THE FIFTH TIME IN THIS LEDGER.** The
+storyboard read `34 · 45 · 52 · 40 · 66 · 43 · 9 · 38 · 62`, deck median about 43, directly above
+the words "measured off the rendered PNGs and never asserted from this line". Round 3's craft
+judge said it smelled wrong, named slides 3 and 5, and declined to call it a finding without
+computing it.
+
+Nine lines of PIL settled it. **Measured: `72.0 · 94.0 · 17.8 · 76.5 · 16.5 · 29.9 · 16.8 · 92.6 ·
+92.4`, deck median 72.0.** The judge was right about slide 5 by a factor of four. This is a LIGHT
+deck and the plan had it as a dark one, and the claim that the once per eight light cap was
+untouched does not survive its own measurement. Decks 8, 9, 12 and 13 each carry a ledger entry
+recording this exact fault.
+
+**Two of my own round 3 repairs broke a frame and `qa.py` caught both.** Slide 6's new slot walls
+painted a 93 by 6 rect straight over the word `will` (the frame now asserts every edge clears the
+verb's glyph box), and printing c15 made slide 7's dek a line longer so it overprinted the note by
+60 percent. That is four self-inflicted breakages across three repair rounds, every one caught by
+a gate or an assertion rather than by a judge, which is the arrangement working.
