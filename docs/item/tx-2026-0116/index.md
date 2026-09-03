@@ -1,6 +1,6 @@
 # Dallas Public Safety Committee sets a September 8th briefing on the police department's Flock plate reader program
 
-The Dallas City Council Public Safety Committee has put an update on the Dallas Police Department's Flock automated license plate reader program on its September 8th, 2026 agenda. The item was introduced August 13th, 2026 and is a briefing rather than an action item. The chief of police is listed as a presenter alongside a major and a sergeant from operational technology. A briefing is where a council committee is told what a system is doing, and it is the point at which a resident can hear the department describe the program in a public room.
+The Dallas City Council Public Safety Committee has put an update on the Dallas Police Department's Flock automated license plate reader program on its September 8th, 2026 agenda. The item was introduced August 13th, 2026 and is a briefing rather than an action item. The chief of police is listed as a presenter alongside a major and a sergeant from operational technology. A briefing is where a council committee is told what a system is doing. It is the point at which a resident can hear the department describe the program in a public room.
 
 - Topic: surveillance-and-policing
 - Decided by: Dallas City Council Public Safety Committee (city)
