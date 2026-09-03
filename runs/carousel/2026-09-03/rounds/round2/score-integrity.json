@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0,
+   "why": "Three frames genuinely made (S4's curl, S3's countable 95 apertures, S5's torn aperture with fibre crowding). But THE DECK SPENDS ITS INVENTION EVERYWHERE EXCEPT WHERE THE ARGUMENT LANDS: S8 is twenty flat rectangles with a ~390px band of bare hatched cream, S9 is three rectangles and a bar. Deck 13's avoid_next says 'Next deck spends its invention on the frames the argument ends on' and it did the opposite. THE DECLARED FOCAL AREA IS WRONG ON FOUR FRAMES, measured off the PNGs: S1 declares 11 percent and measures ~34, S2 declares 5 and measures ~0.5, S8 declares 34 and measures ~18, S9 declares 16 and the repaired open area measures ~3. Repair 7 drew the focal at a fifth of its declared size. S8's declared value structure is inverted in the pixels: the leaves render at L*~81 on a bed at L*~94, so they are DARKER than their ground. machine_qa still warns top-loaded on 4 of 9, and S7 after repair 8 carries craft in 9/9/6 percent of cells, the emptiest frame by the machine's own measure."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "The refusal discipline is the best thing in this run and is 8-band work: twelve and eight never added, the two compound counts never joined AND the refusal now printed on the frame, the 'fastest university supercomputer' framing explicitly refused, no county named with the reason recorded, S8's absence naming its document. Repairs 3, 4 and 5 landed. Five findings against it. (1) The first comment publishes 'TOP500, the June 2026 list' and no quote in claims.json names an edition or a date. (2) The cover prints 'Number 66.' over a rule reading 'TOP500 . NEWS.TAMUS.EDU' and the only claim carrying the rank is c2, the newsroom; no TOP500 quote contains a rank. (3) S1's thesis 'Both documents say will' rests on c7, which slide 1 does not declare. (4) S5's refusal is set in the same face and column directly above TARLETON.EDU, so the deck's own voice is typographically indistinguishable from the quoted source on the one frame whose subject is attribution. (5) computed.json holds peak_minus_measured_pflops 16.34 as computed-and-unused while slide 2 DRAWS that gap as its own darker block. The words are gated and the drawing is not."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A reader learns the machine exists, what it measured, what it cost, who it is nominally for, and the one thing that matters: today you can't get on it without an invitation. Repair 6 gives the close a real next step, and S9 now names the deciding body, the recruitment and the absence on one frame. The rubric's 9 wants a county, a body and a deadline. This has the body, no county and no deadline, and says why for both, which is the honest ceiling of this record. What it does not do is state the stake for a Texan who is not at an A&M campus: 45 million dollars of state money bought a machine most of them can't touch, and the deck stays inside the institution rather than saying it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "The cover earns the swipe and the turn at slide 7 is the deck's best move, a real value collapse from slide 6's field into the switched-off bed. 8 and 9 rhyme deliberately, the empty pin stations on 8 paying off in the seated pins on 9. Two costs. Slides 2 and 3 are back-to-back inventory before any argument starts, and the storyboard names slide 3 as the cuttable frame and is right. And the deck ends on a diminuendo: 8 and 9 are the flattest frames in nine, so the close is correct in content and weakest in execution."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Three genuinely good lines, and the whole deck holds register with no boosterism, no doom, no first person, no em dash, no emoji, straight quotes throughout after repair 9. Caption comma density about 0.78 per 100 words. Slide 7's colon and semicolon are both verbatim with the exemption named. But there is no Texas in this deck beyond the institution's own name. Swap 'Texas A&M' for any state system and nothing else changes, which the run defends and which still leaves the voice regionless. Two hooks share one construction."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "The DRAWING is new against all fourteen ledger entries: nothing there is lit from behind, nothing runs a no-cast-shadow law across nine frames, and the ~43 median value band is unoccupied. The ARGUMENT is the house habit for at least the fourth time and the ledger already said so in writing. Deck 11's own angle_note: 'FOURTH DECK OF ELEVEN BUILT ON WHAT A DOCUMENT DOES NOT SAY ... the next run should spend an opening move that is not an absence.' Deck 14 opens on a gap between two documents' wording and prints an absence three separate times. No topic repeat inside the window, so this is not the gate's failure, it is the gate measuring the wrong field."
+  }
+ ],
+ "weighted_score": 6.296,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Author every data-encodes rectangle by measuring it off the rendered PNG rather than from the dossier's geometry, because all nine frames report visible 0%/0% at 432w and on the cover, slide 6 and slide 9 the measured separation contradicts what is plainly in the pixels."
+}

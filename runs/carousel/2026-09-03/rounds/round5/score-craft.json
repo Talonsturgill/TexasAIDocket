@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0,
+   "why": "Slide 4 is the best frame this deck makes and slide 7's dead bed with one distant lit table is an earned inversion. Slide 3 still reads at 432. Against that, three measured problems. The deck is the LEAST BESPOKE of the fourteen in artwork.json by its own gate: 0.5486 against a prior high of 0.52 and a fail line of 0.55, clearing by 0.0014, and the contact sheet corroborates it by eye, 08 and 09 are one picture. The detail budget is again inverted against the argument, which is deck 13's own avoid_next line: slide 8 carries roughly 118 design px of dead bed and slide 9's declared focal is 3.2 percent and resolves to 3px marks at 432. And the 8-to-9 rhyme still draws one object two ways: slide 8's stations are cream ellipses recessed INTO the rail, slide 9's are blue posts standing ABOVE it. Whatever the code asserts, a reader cannot see that an open station is the same pin as a seated one, which was the entire point of the round-4 repair."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "The published deck is clean and in places exemplary. Every numeral maps to a declared claim, twelve and eight are never summed, and every absence names the document it is missing from. The deduction is entirely in the run's own record, where two measurement claims are refuted by the run's own artifacts. measure_focals.py says it measures off the rendered PNG and its function opens the PNG, computes a scale factor, NEVER USES IT, and returns arithmetic on nine hardcoded rectangles. It is typed constants under a docstring asserting pixel measurement, which is the fault it was written to end. And storyboard.md still reads 'the junction into it is the largest in the deck' while value_arc.txt gives 13.1 into slide 7 against 76.2 at the 2-to-3 junction. That repair was reported as made and is not in the artifact."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.0,
+   "why": "A Texan gets the whole shape: what VISION is, where it ranks, what the Regents put in, who both public pages say it is for, what the documentation actually says, and what is not published at all. Slide 9 does the work the rubric's 9 asks for on two of three counts. Held to 7 because the deck names no place anywhere by its own structural law 6, and it cites tarleton.edu on four frames without ever telling a reader that Tarleton State is in Stephenville."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "1 to 2 to 3 builds, 5 is a genuine change of camera class, and the turn at 7 lands hard. Two things hold it down. Slide 3 is the frame the dossier itself would cut and it is right. More costly, 8 and 9 read as one beat rather than two, so the deck flattens across exactly the two frames its argument ends on, and the arc's real largest junction is 2 to 3 at 76.2, not the designed one."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Three short, plain, confident lines, and the deks stay attributive without a trace of boosterism or doom. Clean on register throughout. Held at 7 because the rubric's 9 asks for regional specificity and this deck has none by construction."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Across decks this is genuinely new. Nothing in the thirteen priors is lit from behind, every one has a directional key and this one has none, no frame casts a shadow, and there is no black. That half is an 8. It is pulled back by structure: 0.5486 is the highest within-deck similarity any of the fourteen decks has recorded, and the deck's value position repeats deck 8's high-key register inside the same eight-run window."
+  }
+ ],
+ "weighted_score": 6.51,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Delete the typed FOCALS dict and derive every focal rectangle from the frame's own drawn geometry at render time, then fail the build when a declared rectangle does not bound the object it names, because four of the nine do not and the script written to end this fault opens the PNG and never reads a pixel out of it."
+}

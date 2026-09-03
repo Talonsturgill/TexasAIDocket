@@ -1,0 +1,47 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0,
+   "why": "Two frames are genuinely made and could not be swapped out: slide 1's superimposed sheets produce real drawn interference, and slide 4's curl is a true density falloff (bands 0.479/0.870/0.410, dE 54.5). Slide 3's foreshortened lattice earns its hook. Against that, three frames are assembled. Slide 5 is a flat cream blob on a uniform fleck wash: the dossier promises fibre crowding toward the torn edge and the render shows even scatter, which is why QA gives it the deck's thinnest bands at 0.28/0.16/0.17. Slide 8's new travel lane is pale dashed rectangles with tick ladders on a pale ground, invisible at 432px, and it is drafting furniture in a register whose own risk list bans title blocks, neatlines and borders. Slide 2 is a filled bar pair. Four of nine carry top-loaded warns."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 3.5,
+   "why": "Two hard fails, both the round-2 slide-4 defect in new clothing. Beyond them: slide 2's PIXELS publish the verdict its STRINGS are gated against. The acceptance item throws if 68.1 or percent appears because a share printed here would read as a verdict about petaflops that were lost, and the frame then draws computed.json's 16.34 as a solid saturated block that is the only strongly coloured object on it. At 432px it reads as a second bar, not a remainder. claims.json's story still asserts the June 2026 TOP500 and computed.json repeats it, when no quote names an edition. SYSTEM 180452 on slide 2 traces only to a URL path. Offsetting genuinely: the seven-entry rejected list is the best artifact in the run, and all twenty claims appear in the first comment with quote and URL."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.0,
+   "why": "A reader learns the machine exists, what it measured, that access is invitation-only under a controlled beta, that TAMUS governance decides, and that no date is published. But the stake stays institutional. No county, no city (honestly refused), and no reason given why a Texan outside the twelve universities and eight agencies is affected. The close is a question, which is an honest end to a record with no deadline in it and is not a next step a reader can take."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "The turn at slide 7 is real and measured: the bed goes off, bands drop to 0.088/0.090/0.061 against a deck median near 0.6, and it is the one frame that is not a promise. Slides 8 and 9 rhyme through the same registration rail, the deck's best structural idea. Slide 3 carries inventory and the storyboard names it as the cut, correctly. The cover's hook is two sentences that do not cohere until slide 6."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "On register and free of boosterism, with no maroon anywhere and no fastest-university framing the sources would have handed over. Count the holes and Not one of them is punched are written lines. House rules hold: no em dashes, straight quotes, the ordinal date in the comment, one writer-chosen comma in the caption, and slide 7's colon and semicolon are both inside verbatim quotations. Flat rather than Texan though, because the place refusal leaves the copy with proper nouns and no ground."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Transmitted light through paper is new to a fourteen-deck ledger in which every prior deck has a directional key, nothing casts a shadow on any of the nine frames, there is no black, and the deck sits in a value band the ledger has not held. Opening on two superimposed sheets is a new first move. The familiar carry-overs are the large serif hook set top left on eight of nine frames, the mono source rule and the counter."
+  }
+ ],
+ "weighted_score": 5.77,
+ "hard_fails": [
+  "COVER, slide 1. 'Texas A&M is No. 66.' set in the largest type in the deck. No fetched source ranks an institution. TOP500 ranks the machine, and c1 was fetched precisely to record that the list credits it to the Texas A&M University System rather than to one campus. 'Texas A&M' unqualified is the campus, the exact entity c1 distinguishes. Worse, the deck's own rejected finding no. 4 and its first comment both state TOP500 publishes no university category, so the cover asserts a proposition the run's published notes refute two surfaces away. An unverified fact presented as verified.",
+  "RECORD, claim c19. Its text reads 'The System puts the same screening run at more than ten million compounds in about a week.' Two assertions its own quote does not carry. (a) 'the same screening run' asserts the identity with c18 that slide 5 denies on the frame in the deck's own voice and that the first comment denies in print. (b) 'The System puts' credits the A&M System with a sentence whose url is tarleton.edu, the identical publisher substitution that hard-failed slide 4 in round 2, one claim away and unrepaired. c19 is stamped primary_official and confidence high."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Run the same source-entailment assertion the frames now pass over claims.json's own text fields and over the cover hook, because both hard fails are the round-2 slide-4 defect wearing new clothes."
+}

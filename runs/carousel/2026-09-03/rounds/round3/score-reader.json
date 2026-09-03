@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.2,
+   "why": "Nine genuinely distinct frames with real tonal range, and slides 4, 6 and 7 would each stand alone. But slide 2 actively misinforms: at 432px it reads as two bars with the dark one SHORTER, which inverts 34.82 against 51.16. It is one bar with the pale segment at 0.675 of the whole, correct proportionally, but the white gutter splits it into two objects and the maximum-saturation block encodes the headroom that was NOT achieved. Slide 8's middle apparatus is a third of the frame and carries no label at all, and slide 9's bottom tick strip is an unlabeled scale that invites a reading it does not support. Slide 5 spends about 70 percent of the frame on speckled navy for a two-number payload."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Twenty claims, every one an exact quote with a URL, and seven rejected findings published with reasons, including an explicit refusal to join c18's 10.4 million to c19's 10 million, now printed on slide 5 as its own line. Three deductions. The cover collapses the Texas A&M University System to Texas A&M on the frame most readers see, the exact conflation c1 was written to prevent. No. 66 is stated flatly with no hedge the deck applies everywhere else. And slide 7 renders two verbatim source strings with no quotation marks and no QUOTED FROM tag in the deck's own display serif, so a reader cannot tell whose words carry the only colon and only semicolon in the deck. Slide 6 tags both its quotes correctly, which is what makes slide 7 look like the deck's own voice."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 5.5,
+   "why": "A Texan does learn something real and well framed. What they cannot do is anything. Slide 9 says the front page is actively seeking beta testing participants and does not print the address; VISION.TAMUS.EDU appears on slides 1 and 5 and is absent from the one frame that asks a reader to act. No human is named in nine slides. Against a rubric whose 9 names the county, the body and the deadline, this names no person and no place. Worst for my lens, the single most human fact available is buried: c19 says a drug discovery project screened ten million compounds in about a week, and slide 5 renders it under a headline that converts the medicine into a caveat about two figures not matching. The words drug discovery appear nowhere on any frame."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.3,
+   "why": "Slide 6 into 7 is a genuine turn and it lands. Two costs. The cover now spends the turn before the swipe, because Both documents say will appears in both the hook and the dek, so slide 6 restates rather than reveals. And slide 6's footer carries the chancellor saying VISION gives access, present tense, the word that completes the whole argument, and the frame boxes will twice and gives gives no treatment at all. Slide 5 is the cuttable frame for a reader."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.3,
+   "why": "The imperative hooks sound written rather than generated. Temperature is right and No meeting date is published for that approval is the correct way to state a gap. House rules hold, including the ordinal date. But TEXAS_ATTITUDES section 9 says never assume agency literacy and gloss every time, and the deck ships PFlop/s, Rmax, Rpeak, DGX, H200, TAMUS, controlled beta and technical integration unglossed, which is an unglossed ERCOT by another name. Section 8 says the register this audience is fluent in is a chart that reads in three seconds, and slide 2 does not read in thirty."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Technique and palette are genuinely new against the fortnight and the topic is clean. The structural move is not new and the ledger already said so. topics.json deck 11: FOURTH DECK OF ELEVEN BUILT ON WHAT A DOCUMENT DOES NOT SAY, the next run should spend an opening move that is not an absence. Deck 13 did it anyway. Deck 14 opens on an absence and runs six more across nine frames. Three consecutive decks on one rhetorical spine against a written instruction to break it, and dedupe_check cannot see it because it never reads that field."
+  }
+ ],
+ "weighted_score": 6.288,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slide 9 as an action frame rather than a shrug: print VISION.TAMUS.EDU on it, name the body that approves access, and lead with the one thing a Texan can do today, instead of closing nine frames on No date is published for it with no address to go to."
+}

@@ -1,0 +1,46 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5,
+   "why": "The punch-card conceit is genuinely made and carries structurally across slides 3, 5, 8 and 9. Three per-frame failures. Slide 2 inverts its own focal: the light greyed block IS the 34.82 measured result and the saturated navy block is the shortfall, so the loudest ink belongs to the quantity the hook says did not happen. Slide 8 leaves the entire lower-middle third empty. Both new repairs introduced a smaller ambiguity while fixing a larger one: on slide 5 the disclaimer sits inside the right column directly above TARLETON.EDU so it reads as Tarleton's sentence, and on slide 9 the brightest element is a white slab carrying no label of its own, so the frame's new focal is luminance without meaning. Separately: slide 3's hook orders a count and I measured eight rows at roughly 13 to 15 dots, which totals well over 100. I could not count to a number I would publish, so I am not calling it a fail, but the next run should measure it in code."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 4.0,
+   "why": "Twenty claims, every one primary_official or data, every one retrieved 2026-09-03, and a rejected list that refuses the county, refuses the 'fastest university supercomputer' framing and refuses to join the two compound counts. That is exemplary. It is undone by slide 4, which prints 'BOARD CHAIRMAN / QUOTED IN THE SYSTEM'S NEWSROOM' as its only attribution while claims.json c10 gives that quote's url as tarleton.edu and the deck's own first_comment says 'quoted by Tarleton State University'. The deck's most quotable line is credited to the wrong publisher, and the contradiction is visible to any reader who opens the first comment attached to the same post."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.0,
+   "why": "The finding is real and not obvious. Slides 6 to 8 land it honestly and 'Not one of them is punched' is the stake in five words. What a reader cannot do is act. Slide 9's beta-recruitment line prints no address, and slide 9 is the only content frame with no source domain while every other frame carries one. The twelve universities are never named on any frame, so a reader in Kingsville, Prairie View or Canyon cannot tell whether the closing question is about their campus. And the deck never reaches the beat it lives on: nothing here connects the machine to power, cost or the queue, so it reads as a campus IT story rather than a Texas one."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "There is a genuine turn and it is well placed. Two drags. Slide 5 interrupts the money-to-access movement with an aside whose own payload is that the two figures may not describe the same thing, which is a slide that spends a swipe to withdraw a claim. Slide 3 is a spec sheet between the ranking and the money. And the cover is a riddle rather than a stake: 'Number 66. Both documents say will.' over abstract plates, with a dek that never says which machine, so the swipe is earned by curiosity alone."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Three crisp lines, native to the conceit and free of both boosterism and doom. House rules hold. Where it falls short is regional specificity, which the doctrine ranks above state-level abstraction: no city, no county and no named campus appears anywhere in nine frames, and the only sentence with Texas in it belongs to the board chairman. TEXAS_ATTITUDES section 9 requires a gloss on unfamiliar institutional shorthand every time, and PFlop/s, DGX and H200 ship raw."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "The punch-card system is distinct from the last fortnight and the dedupe window is clean. What is not clean is the angle. carousel 11's angle_note reads 'the next run should spend an opening move that is not an absence.' This deck's spine is absence four times over. The two-documents-word-it-differently turn is also carousel 3's angle and carousel 8's angle a third time. dedupe_check cannot see this field, so it is not a gate failure, but the ledger left an instruction and the deck did the opposite."
+  }
+ ],
+ "weighted_score": 5.81,
+ "hard_fails": [
+  "Slide 4 misattributes its quotation. The frame's only attribution reads 'BOARD CHAIRMAN / QUOTED IN THE SYSTEM'S NEWSROOM', and the claim it carries, c10, has url tarleton.edu in claims.json. The deck's own published first_comment.txt says 'c10. The board chairman, quoted by Tarleton State University'. This is an unverified fact presented as verified, and it breaks the stated promise that every fact traces to a fetched source."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the cover to name the machine, the institution and the stake in the hook itself, because a reader who does not swipe never reaches the honest reporting on slides 6 to 8, and every other defect in this deck is downstream of a cover that names neither a place nor a subject."
+}

@@ -1,0 +1,146 @@
+[
+ {
+  "slide": 1,
+  "what": "the agreement region where the two sheets cross",
+  "extreme": "dark",
+  "declared_rect": [
+   150,
+   200,
+   890,
+   730
+  ],
+  "declared_share_pct": 44.6,
+  "measured_extreme_L": 26.9,
+  "measured_extreme_area_pct": 25.8,
+  "median_L": 73.1,
+  "wide": true
+ },
+ {
+  "slide": 2,
+  "what": "the inked run, from the origin to the measured figure",
+  "extreme": "dark",
+  "declared_rect": [
+   120,
+   694,
+   556,
+   192
+  ],
+  "declared_share_pct": 7.3,
+  "measured_extreme_L": 30.2,
+  "measured_extreme_area_pct": 7.0,
+  "median_L": 94.0,
+  "wide": false
+ },
+ {
+  "slide": 3,
+  "what": "the lattice of 95 apertures",
+  "extreme": "light",
+  "declared_rect": [
+   150,
+   470,
+   780,
+   430
+  ],
+  "declared_share_pct": 23.0,
+  "measured_extreme_L": 94.4,
+  "measured_extreme_area_pct": 26.0,
+  "median_L": 17.8,
+  "wide": false
+ },
+ {
+  "slide": 4,
+  "what": "the flush portion of the sheet carrying the quotation",
+  "extreme": "light",
+  "declared_rect": [
+   86,
+   186,
+   908,
+   700
+  ],
+  "declared_share_pct": 43.6,
+  "measured_extreme_L": 94.0,
+  "measured_extreme_area_pct": 40.0,
+  "median_L": 76.9,
+  "wide": false
+ },
+ {
+  "slide": 5,
+  "what": "the punched opening",
+  "extreme": "light",
+  "declared_rect": [
+   92,
+   424,
+   896,
+   592
+  ],
+  "declared_share_pct": 36.4,
+  "measured_extreme_L": 94.7,
+  "measured_extreme_area_pct": 25.3,
+  "median_L": 16.5,
+  "wide": false
+ },
+ {
+  "slide": 6,
+  "what": "the two verb slots taken as one pair",
+  "extreme": "light",
+  "declared_rect": [
+   84,
+   324,
+   220,
+   380
+  ],
+  "declared_share_pct": 5.7,
+  "measured_extreme_L": 81.7,
+  "measured_extreme_area_pct": 39.9,
+  "median_L": 26.9,
+  "wide": true
+ },
+ {
+  "slide": 7,
+  "what": "the lit status plate",
+  "extreme": "light",
+  "declared_rect": [
+   100,
+   560,
+   880,
+   300
+  ],
+  "declared_share_pct": 18.1,
+  "measured_extreme_L": 85.9,
+  "measured_extreme_area_pct": 3.2,
+  "median_L": 16.6,
+  "wide": true
+ },
+ {
+  "slide": 8,
+  "what": "the two courses of leaves",
+  "extreme": "light",
+  "declared_rect": [
+   96,
+   330,
+   888,
+   350
+  ],
+  "declared_share_pct": 21.3,
+  "measured_extreme_L": 94.4,
+  "measured_extreme_area_pct": 80.6,
+  "median_L": 92.3,
+  "wide": true
+ },
+ {
+  "slide": 9,
+  "what": "the open registration area",
+  "extreme": "light",
+  "declared_rect": [
+   446,
+   484,
+   154,
+   304
+  ],
+  "declared_share_pct": 3.2,
+  "measured_extreme_L": 96.7,
+  "measured_extreme_area_pct": 80.4,
+  "median_L": 92.3,
+  "wide": true
+ }
+]

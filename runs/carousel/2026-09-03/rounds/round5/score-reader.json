@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.8,
+   "why": "Nine genuinely distinct compositions, not one drawing reargued. The punch-card motif threads S3, S5, S8 and S9 as a real idea rather than decoration. But four frames carry a nameable defect and two are the frames doing the most reader work. S9's middle state, labelled OPEN, is drawn as the brightest and most SOLID rectangle on the frame, brighter than the seated sheet to its left, so the close inverts its own legend at thumbnail size. S9 also leaves roughly 180px of dead band. S5 spends about two thirds of the frame on evenly spread navy noise. S7's central object reads as nothing identifiable."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.4,
+   "why": "I tried to refute it and could not. Every numeral traces. S5 prints an explicit refusal to join its two figures and first_comment repeats it. The rejected list declines the county, the dated regents vote, the power figure and the fastest-university framing that both the System and Tarleton push, and the first comment publishes all four. That last is a genuinely hard refusal of the deck's own most quotable line. Docked from 9 for one bookkeeping gap: S7's dek sentence comes from c15 and copy.json lists S7's claims as c12, c11, c20 only. The fact is verified, c15 was fetched, and the frame cites the testing page, so this is an incomplete map and not an unverified fact."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.3,
+   "why": "A Texan learns six things cleanly in one pass, which is more than most decks deliver, and the gap between the press release and the docs is real journalism. What they can DO is almost nothing. The only action serves A&M System researchers and no one else. Nine frames name no human at all, so a 45 million dollar decision appears to have been made by nobody. And the deck's own claims.json records that TOP500's power column is EMPTY for this entry, which is the one datum this beat's audience actually trades in, and that established absence appears on no frame, in no caption line and in no first-comment paragraph, while the same deck publishes three other absences."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "There is a real turn and it lands. S6 is the strongest frame in the deck. S5 is the cuttable one, a footnote promoted to a frame. The cover earns a swipe on 'VISION is No. 66' and then loses it on 'Both documents say will', a fragment that will not parse on one pass in a feed and is not decoded until S6."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Three plain, imperative, documentary lines that read like a person wrote them. I walked the house rules by hand across every frame and the caption and found no violation. Where it falls short is regional specificity: nothing in nine frames is Texan except the proper nouns, no place is named on any frame at all, and no human is named anywhere, which flattens the register toward national tech-desk plain."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.8,
+   "why": "Surface variety is real and the topic clears the 30 day gate cleanly. Structural variety is not. topics.json's angle_note on deck 11 reads 'the next run should spend an opening move that is not an absence'. Deck 13's angle is the same shape. Deck 14's spine is the same shape a third consecutive time, with four printed absences and a cover whose second sentence is itself an absence framing. The ledger wrote an instruction to the next run and the next run did not take it."
+  }
+ ],
+ "weighted_score": 7.002,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "The run already established, in claims.json's rejected list, that TOP500 publishes no power figure for VISION, and that absence belongs on a frame or in the caption in the same voice the deck already uses three times, because it costs no new claim and it is the only line in reach that connects a university supercomputer to the thing Texans on this beat actually trade in."
+}

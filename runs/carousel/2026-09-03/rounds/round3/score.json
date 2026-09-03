@@ -1,0 +1,104 @@
+{
+ "weighted_score": 6.3,
+ "judges": [
+  5.77,
+  6.382,
+  6.288
+ ],
+ "spread": 0.612,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.28,
+   "judges": [
+    6.0,
+    5.8,
+    6.2
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.2,
+   "weight": 0.2,
+   "judges": [
+    3.5,
+    6.2,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.0,
+   "weight": 0.18,
+   "judges": [
+    6.0,
+    6.5,
+    5.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.8,
+    6.3
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.6,
+    6.3
+   ]
+  },
+  "variety": {
+   "score": 7.4,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.4,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "COVER, slide 1. 'Texas A&M is No. 66.' set in the largest type in the deck. No fetched source ranks an institution. TOP500 ranks the machine, and c1 was fetched precisely to record that the list credits it to the Texas A&M University System rather than to one campus. 'Texas A&M' unqualified is the campus, the exact entity c1 distinguishes. Worse, the deck's own rejected finding no. 4 and its first comment both state TOP500 publishes no university category, so the cover asserts a proposition the run's published notes refute two surfaces away. An unverified fact presented as verified.",
+  "RECORD, claim c19. Its text reads 'The System puts the same screening run at more than ten million compounds in about a week.' Two assertions its own quote does not carry. (a) 'the same screening run' asserts the identity with c18 that slide 5 denies on the frame in the deck's own voice and that the first comment denies in print. (b) 'The System puts' credits the A&M System with a sentence whose url is tarleton.edu, the identical publisher substitution that hard-failed slide 4 in round 2, one claim away and unrepaired. c19 is stamped primary_official and confidence high."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "COVER, slide 1. 'Texas A&M is No. 66.' set in the largest type in the deck. No fetched source ranks an institution. TOP500 ranks the machine, and c1 was fetched precisely to record that the list credits it to the Texas A&M University System rather than to one campus. 'Texas A&M' unqualified is the campus, the exact entity c1 distinguishes. Worse, the deck's own rejected finding no. 4 and its first comment both state TOP500 publishes no university category, so the cover asserts a proposition the run's published notes refute two surfaces away. An unverified fact presented as verified."
+  },
+  {
+   "judge": 1,
+   "fail": "RECORD, claim c19. Its text reads 'The System puts the same screening run at more than ten million compounds in about a week.' Two assertions its own quote does not carry. (a) 'the same screening run' asserts the identity with c18 that slide 5 denies on the frame in the deck's own voice and that the first comment denies in print. (b) 'The System puts' credits the A&M System with a sentence whose url is tarleton.edu, the identical publisher substitution that hard-failed slide 4 in round 2, one claim away and unrepaired. c19 is stamped primary_official and confidence high."
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.382 against a 6.8 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.288 against a 6.8 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.382,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.382 against a 6.8 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.288,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.288 against a 6.8 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ],
+ "rounds": 3
+}

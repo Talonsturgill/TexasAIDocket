@@ -1,0 +1,46 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5,
+   "why": "Slides 3, 4, 6 and 7 are genuinely drawn. Slide 3's 95 apertures make a published count checkable by counting; slide 4's curl is the deck's only continuous tonal ramp and it is real; slide 6 puts the frame's brightest pixels inside its darkest region with no plate or halo; slide 7's dead bed is a true inversion. Against that, slide 2 is now a plain horizontal bar with a dashed extension, competent infographic rather than drawing, and warns top-loaded at 0.21/0.22/0.15. Slide 8 carries a dead band of roughly a fifth of the frame and its two seats carry no label while slide 9's equivalent is labelled. Slide 9's lower half is six lines of mono. Slide 1's whole register rests on density-is-agreement and machine_qa measures that encoding at dE 4.2 against a 4.0 fail floor, 0.2 from red."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 4.5,
+   "why": "HARD FAIL on slide 7. Beyond it: the cover and caption both state 'VISION is No. 66' flatly while c2's own text is 'The System says VISION entered the list at number 66' and no fetched quote from top500.org carries a rank, in a record scrupulous enough to reject the fastest-university framing on exactly that ground. Slide 4 prints only QUOTED BY TARLETON.EDU while its dek's 45 million figure is c8 from news.tamus.edu. Slide 9's single stamp sits over three lines from three pages. The credit side is genuinely strong: 20 claims each with a verbatim quote and URL, three arithmetic refusals declared, and four printed absences most decks would have papered over."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.0,
+   "why": "A reader learns the machine exists at No. 66, cost 45 million dollars on the Board of Regents' approval, is invitation-only under controlled beta, and that wider access is expected with no published date. The deciding body is named and slide 9 makes the next step an object rather than a sentence. But the rubric's 9 wants the county, the body and the deadline, and this has the body only. The actionable stake for a Texan not employed by an A&M institution is close to nil, and the deck cannot manufacture one."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "The turn at slide 7 is real and the value arc supports it rather than describing it. But slides 2 and 3 are two consecutive figure-delivery frames before any argument starts, and the run's own storyboard names slide 3 as the frame it would cut. The cover's second sentence is unreadable on first encounter and does not pay off until slide 6, a device that costs the swipe it was written to earn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "The three imperative hooks are properly plain and properly confident, and no line reads as a press release. But almost nothing here is Texan beyond the institution's name, by the record's own constraint. The storyboard's claim that the base token is a Post Oak Savannah sand horizon is a regional anchor no reader can perceive. This is the rubric's 7, clean and on register and a little flat, minus the flatness of the frames that are pure furniture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Transmitted light with no key light and no cast shadow anywhere is genuinely new against the thirteen priors, the palette shares nothing with the recent window, and the opening move is a rank rather than an absence, which deck 11's ledger note explicitly asked for. Deducted because the deck is still built on what documents do not say, and because slide 4's beat is the second governing-board capital frame in eight days. No dedupe violation."
+  }
+ ],
+ "weighted_score": 6.01,
+ "hard_fails": [
+  "Slide 7 attributes c15 to the wrong publisher and cites the wrong source for it. The dek reads 'The same page says the beta is being finalized as they prepare for general availability.' The antecedent of 'the same page' is docs.vision.tamus.edu, which is also the frame's only source stamp. claims.json puts c15 at https://vision.tamus.edu/testing/ and c11/c12/c20 at https://docs.vision.tamus.edu/. Nothing in the record supports the docs page saying the beta is being finalized, so the frame presents an unverified statement as verified and points a reader who wants to check it at a page that does not carry it. copy.json's S7 claim list is [c12, c11, c20] with no c15, so no gate ever saw the sentence attached to a claim. This is the round-3 c19 fault reintroduced one slide over, on the deck's turn frame."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Generate every source-domain stamp and every 'the same page' phrase on a frame from the URL of the claim that frame's copy actually carries, and fail the build when a frame's text traces to a claim whose host is not on its stamp."
+}

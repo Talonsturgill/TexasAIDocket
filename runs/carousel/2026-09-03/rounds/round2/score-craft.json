@@ -1,0 +1,46 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0,
+   "why": "Five frames are genuinely made: S3's foreshortened lattice with the short 11-aperture last row is the best frame in the deck, S1 carries a visible diamond beat, S5's fibre field is hundreds of individual strokes, S4's repaired curl has a lit crest and a four-stop ramp, S7 is rebuilt into a real room. The failures land on the frames that carry the argument. S6 is the thesis frame and its declared technique, 'a slot cut clean through to the bed', renders as two cream rectangles behind the word will with no cut edge, no lip and no bed material in the opening. It is a highlighter. S2 declares a 21-step wedge with two windows and renders as two bars with a gap, non-monotonic, which is the exact misreading its own risks list predicted. S8 and S9 are the two frames the argument ends on and are the least made in the deck, flat olive rectangles with a 1px stroke, on a deck whose whole register is transmitted light. S9's declared focal measures roughly 3 percent against a declared 16. Repair 4's pins are two specks on the contact sheet."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 4.5,
+   "why": "Every numeral traces, computed.json holds the three derived values and the deck prints none, and the refusals are exemplary: twelve and eight never summed, the two counts never joined, and slide 5's render goes further than its dossier. Against that, slide 4's attribution line puts c10's verbatim quotation in 'THE SYSTEM'S NEWSROOM' when c10's fetched URL is tarleton.edu, a publisher the deck distinguishes correctly on slides 2, 3, 5 and 6. The caption's closing also narrows c16's 'institutions' to the twelve universities and silently drops the eight state agencies c9 names."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A reader learns what the machine is, what it measured, who it is said to serve, that access is invitation-only under a controlled beta today, and that no date is published for wider access. The absence is named to a document rather than asserted about the world. No county appears and claims.json's rejected list explains why, which is the right call. The stake stays institutional: slide 9's one real door is c14's recruiting line, which arrives as the second of four flat mono lines rather than as the frame's focal, so a reader finishes knowing what to watch and not quite what to do."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The turn at slide 7 is real and now legible: the deck teaches backlight-means-promise across six frames and then takes the light away, and the rebuilt room makes it read as a switched-off table rather than a render failure. Slide 5 is a genuine change of camera class and 8 to 9 rhymes properly. Slides 2 and 3 both sit in the same 'here are the figures' register before anything turns, and the storyboard itself nominates 3 as the cut."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "'Read the verb.' and 'Not one of them is punched.' are the two lines that sound written. The register is fair throughout and never a gotcha, and slide 4 giving the chairman the whole hook is the right instinct. No house rule breaks in the caption. It reads flat rather than Texan, and the regional half of the criterion is unearnable here because the record names no place, which the deck states rather than fakes."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Measured against all fourteen ledger entries: nothing prior is lit from behind, every one of the thirteen shipped decks has a directional key, and this deck has none and casts no shadow anywhere. The diazo palette collides with no prior token set. The planned value band near 43 sits above every prior deck median and below the three light decks, so the once-per-eight light cap is untouched. The one familiar move is the flat stroked rectangle carrying type on slides 8 and 9, which is house furniture."
+  }
+ ],
+ "weighted_score": 6.17,
+ "hard_fails": [
+  "an unverified fact presented as verified: slide 4 attributes c10's verbatim quotation to 'THE SYSTEM'S NEWSROOM' when c10 was fetched from tarleton.edu and no claim in claims.json places that sentence on news.tamus.edu. The deck's own vocabulary reserves 'the System's newsroom' for news.tamus.edu, labels c19 'TARLETON.EDU' on slide 5, and repair 5 just added per-publisher QUOTED FROM lines to slide 6 to keep two documents apart, so this is the one frame that blurs the distinction the deck exists to draw."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slide 6 so the two slots are actual apertures with a cut wall, a lit lip and the bed's own material showing through, and spend the same invention on slides 8 and 9, because the deck's thesis frame and its two closing frames are currently the three least-made in it and every gate reports them green."
+}
