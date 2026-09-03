@@ -213,6 +213,23 @@ ok("the touch finder opens the same detail record", phone.url().endsWith("/water
 ok("the reservoir page does not spill off a phone", phoneFit <= 1, String(phoneFit));
 await phone.close();
 
+console.log("=== narrow fallback typography ===");
+// CI exposed a clipped 100.0% label while the web face was still loading. Exercise the
+// fallback deliberately, with real font requests blocked, and require breathing room.
+const fallbackContext = await browser.newContext({viewport:{width:300,height:844},
+  hasTouch:true,isMobile:true,reducedMotion:"reduce"});
+await fallbackContext.route(/\.(?:woff2?|ttf)(?:\?|$)/, (route) => route.abort());
+const fallback = await fallbackContext.newPage();
+await fallback.goto(`${ORIGIN}/water/reservoir/canyon/`);
+const axisClearance = await fallback.locator("svg.reservoir-trend text.ax").evaluateAll((nodes) =>
+  nodes.filter((node) => node.textContent.trim().endsWith("%")).map((node) => ({
+    label:node.textContent.trim(), left:node.getBBox().x,
+  })));
+ok("narrow reservoir labels keep clearance even without web fonts",
+  axisClearance.length === 3 && axisClearance.every((label) => label.left >= 20),
+  JSON.stringify(axisClearance));
+await fallbackContext.close();
+
 console.log("=== reduced motion ===");
 const stillContext = await browser.newContext({viewport:{width:900,height:800},reducedMotion:"reduce"});
 const still = await stillContext.newPage();

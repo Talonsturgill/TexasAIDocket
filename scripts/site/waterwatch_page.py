@@ -1732,13 +1732,6 @@ def reservoir_trend_svg(detail: dict) -> str:
     if len(rows) < 2:
         return ""
     width, height = 840.0, 330.0
-    # SIZED FOR THE PHONE FACE, where the axis steps up to keep ten screen pixels. A gutter
-    # that fits the desktop type clips the same label after it grows inside a scaled SVG.
-    # The smallest breakpoint grows axis type to 34 SVG units. The top tick needs a full
-    # cap-height above its baseline or fallback monospace faces clip the first row even though
-    # the plotted line itself remains inside the viewBox.
-    left, right, top, bottom = 138.0, 24.0, 48.0, 58.0
-    plot_w, plot_h = width - left - right, height - top - bottom
     vals = [r["percent_full"] for r in rows]
     span = max(vals) - min(vals)
     cushion = max(span * .18, .18)
@@ -1747,6 +1740,14 @@ def reservoir_trend_svg(detail: dict) -> str:
         high = min(100.0, high)
     if high <= low:
         low, high = max(0.0, low - .5), high + .5
+    ticks = [low, (low + high) / 2, high]
+    # SIZE FROM THE ACTUAL PHONE LABELS. A fixed gutter passed on macOS and clipped 100.0%
+    # on CI's fallback face at 300px. The largest axis face is 34 SVG units; reserve its
+    # conservative mono advance plus the 10-unit anchor gap and 24 units of outer clearance.
+    # The top tick likewise needs a full cap-height above its baseline.
+    left = max(138.0, _gutter([f"{pct(v)}%" for v in ticks], 34.0, pad=34.0))
+    right, top, bottom = 24.0, 48.0, 58.0
+    plot_w, plot_h = width - left - right, height - top - bottom
 
     def x(i):
         return left + plot_w * i / max(len(rows) - 1, 1)
@@ -1757,7 +1758,6 @@ def reservoir_trend_svg(detail: dict) -> str:
     pts = [(x(i), y(row["percent_full"])) for i, row in enumerate(rows)]
     line = "M" + " L".join(f"{px:.2f},{py:.2f}" for px, py in pts)
     area = line + f" L{pts[-1][0]:.2f},{top + plot_h:.2f} L{pts[0][0]:.2f},{top + plot_h:.2f} Z"
-    ticks = [low, (low + high) / 2, high]
     grid = "".join(
         f'<line class="g" x1="{left}" x2="{width - right}" y1="{y(v):.2f}" y2="{y(v):.2f}"/>'
         f'<text class="ax" x="{left - 10}" y="{y(v) + 4:.2f}" text-anchor="end">{pct(v)}%</text>'
@@ -2507,6 +2507,14 @@ def self_test() -> int:
                   f'{detail_body.count("<tr>") - 1} rows vs {len(detail["rows"])}')
             check("the reservoir trend and dimensional hero both render",
                   "reservoir-trend" in detail_body and "reservoir-orb" in detail_body)
+            full_detail = {**detail, "rows": [{**row, "percent_full": 100.0}
+                                            for row in detail["rows"]]}
+            full_axis = _hit_re.findall(
+                r'<text class="ax" x="([\d.]+)" y="[\d.]+" text-anchor="end">'
+                r'([^<]+%)</text>', reservoir_trend_svg(full_detail))
+            check("a full reservoir axis reserves fallback-font clearance on a phone",
+                  bool(full_axis) and all(float(x) - MONO_ADV * 34 * len(label) >= 23.9
+                                         for x, label in full_axis), str(full_axis))
             check("the reservoir page declares its source proper name",
                   f'data-proper-name="{html.escape(detail["name"])}"' in detail_body)
             check("the reservoir page has no uncomputed reader numeral",
