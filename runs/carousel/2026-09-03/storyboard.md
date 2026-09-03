@@ -165,7 +165,7 @@ A frame still writes its measurements to `window.__txAssert` so a pixel critic r
 ```yaml
 slide: 1
 job: >
-  Stop the scroll on a rank, and in the same breath put the two future tense promises in front of the reader before either has been explained.
+  Stop the scroll on a rank, and in the same breath put both future tense promises in front of the reader before either has been explained.
 
 claims: [c2, c7, c13]
 numerals:
@@ -211,7 +211,7 @@ risks:
 ```yaml
 slide: 2
 job: >
-  Give the reader the two figures the list itself publishes, and show that the System quoted the honest one, which is what earns the deck the right to argue later.
+  Give the reader both figures the list itself publishes, and show that the System quoted the honest one, which is what earns the deck the right to argue later.
 
 claims: [c3, c4]
 numerals:
@@ -350,7 +350,7 @@ risks:
 ```yaml
 slide: 5
 job: >
-  Show that the machine has already done real work, at a scale no population of marks could honestly draw, and print the two figures the record holds without joining them.
+  Show that the machine has already done real work, at a scale no population of marks could honestly draw, and print both figures the record holds without joining them.
 
 claims: [c18, c19]
 numerals:
@@ -481,7 +481,7 @@ risks:
 ```yaml
 slide: 8
 job: >
-  Draw the constituency the machine is said to serve as figures with no way in, twelve of one kind and eight of another, and never add them.
+  Draw the constituency the machine is said to serve as figures with no way in, 12 of one kind and 8 of another, and never add them.
 
 claims: [c9, c11]
 numerals:
