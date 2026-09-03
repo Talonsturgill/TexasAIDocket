@@ -1,4 +1,4 @@
-# The Texas A&M System's shared AI supercomputer enters the world list at number 66 while its own documentation still says access is invitation-only
+# The Texas A&M System's shared AI supercomputer enters the world list at number 66
 
 VISION is the Texas A&M University System's shared AI computing platform. The June 2026 TOP500 list credits it to the System rather than to one campus and records a measured Linpack result of 34.82 petaflops against a theoretical peak of 51.16. The System says the machine entered the list at number 66 in the world. It is 95 nodes carrying 760 graphics processors over 110,960 cores, housed at the West Campus Data Center at Texas A&M University. The System attributes 45 million dollars for advanced computing infrastructure to its Board of Regents and names no meeting date for that approval. The chancellor says the machine gives the System's 12 universities and eight state agencies computing power most institutions could never build alone. The machine's own documentation says something narrower. It gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected to begin in the coming weeks and starts with institutions that have finished technical integration.
 
@@ -26,9 +26,9 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The TOP500 list credits the machine to the System rather than to one campus.
+### The TOP500 entry's Site field names the Texas A&M University System rather than one campus.
 
-> Site: Texas A&M University System URL: https://vision.tamus.edu
+> Texas A&M University System
 
 Source (primary_official): https://top500.org/system/180452/
 

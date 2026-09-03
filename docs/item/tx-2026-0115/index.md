@@ -1,4 +1,4 @@
-# Austin City Council takes up a resolution starting land code amendments that would say where a data center may operate
+# Austin City Council takes up a resolution to amend the land code for data centers
 
 A resolution on the Austin City Council's August 27th, 2026 agenda directs staff to begin amendments to City Code Title 25, the Land Development Code. The amendments would establish land uses, site development regulations and development processes for data center use in certain zoning districts. It also directs work on business regulations and permit requirements for data center operations. The item carries file number 26-2329 and no fiscal impact. The city's own legislative record still shows the item as agenda ready with no vote recorded against it, so nothing here says the council has acted.
 

@@ -11299,7 +11299,7 @@
    ]
   },
   {
-   "title": "Austin City Council takes up a resolution starting land code amendments that would say where a data center may operate",
+   "title": "Austin City Council takes up a resolution to amend the land code for data centers",
    "summary": "A resolution on the Austin City Council's August 27th, 2026 agenda directs staff to begin amendments to City Code Title 25, the Land Development Code. The amendments would establish land uses, site development regulations and development processes for data center use in certain zoning districts. It also directs work on business regulations and permit requirements for data center operations. The item carries file number 26-2329 and no fiscal impact. The city's own legislative record still shows the item as agenda ready with no vote recorded against it, so nothing here says the council has acted.",
    "topic": "data-centers",
    "decider": {
@@ -11383,7 +11383,7 @@
    ]
   },
   {
-   "title": "Dallas Public Safety Committee sets a September 8th briefing on the police department's Flock plate reader program",
+   "title": "Dallas Public Safety Committee sets a briefing on the police Flock plate reader program",
    "summary": "The Dallas City Council Public Safety Committee has put an update on the Dallas Police Department's Flock automated license plate reader program on its September 8th, 2026 agenda. The item was introduced August 13th, 2026 and is a briefing rather than an action item. The chief of police is listed as a presenter alongside a major and a sergeant from operational technology. A briefing is where a council committee is told what a system is doing. It is the point at which a resident can hear the department describe the program in a public room.",
    "topic": "surveillance-and-policing",
    "decider": {
@@ -11428,8 +11428,8 @@
      "fetched": "2026-09-03"
     },
     {
-     "text": "The city's record dates the item to the September 8th, 2026 agenda.",
-     "verbatim_quote": "\"MatterAgendaDate\":\"2026-09-08T00:00:00\"",
+     "text": "The city's record carries a MatterAgendaDate of September 8th, 2026.",
+     "verbatim_quote": "2026-09-08",
      "source_url": "https://webapi.legistar.com/v1/cityofdallas/matters/25839",
      "source_title": "Legistar matter 25839, City of Dallas",
      "source_type": "primary_official",
@@ -11437,8 +11437,8 @@
      "fetched": "2026-09-03"
     },
     {
-     "text": "The item is a briefing rather than an action the committee votes on.",
-     "verbatim_quote": "\"MatterTypeName\":\"BRIEFING ITEMS\"",
+     "text": "The city's record gives the item a MatterTypeName of BRIEFING ITEMS, so it is a briefing rather than an action the committee votes on.",
+     "verbatim_quote": "BRIEFING ITEMS",
      "source_url": "https://webapi.legistar.com/v1/cityofdallas/matters/25839",
      "source_title": "Legistar matter 25839, City of Dallas",
      "source_type": "primary_official",
@@ -11539,7 +11539,7 @@
    ]
   },
   {
-   "title": "The University of Texas at Austin requires every course syllabus to declare whether AI is permitted, prohibited or partially permitted",
+   "title": "The University of Texas at Austin requires every course syllabus to state its AI policy",
    "summary": "The Office of the Executive Vice President and Provost requires a Course Artificial Intelligence Policy in every syllabus every semester. The policy has to name one of three designations. AI is permitted or prohibited or partially permitted. An instructor who allows it has to write down what is permissible and how a student must disclose use. The university names the requirement one of two new syllabus statements for Fall 2026. That term's classes began August 24th, 2026. The rule on generative AI is therefore set course by course rather than university wide. A student can hold two syllabi with two different answers in the same week.",
    "topic": "health-and-education",
    "decider": {
@@ -11627,7 +11627,7 @@
    ]
   },
   {
-   "title": "The Texas A&M System's shared AI supercomputer enters the world list at number 66 while its own documentation still says access is invitation-only",
+   "title": "The Texas A&M System's shared AI supercomputer enters the world list at number 66",
    "summary": "VISION is the Texas A&M University System's shared AI computing platform. The June 2026 TOP500 list credits it to the System rather than to one campus and records a measured Linpack result of 34.82 petaflops against a theoretical peak of 51.16. The System says the machine entered the list at number 66 in the world. It is 95 nodes carrying 760 graphics processors over 110,960 cores, housed at the West Campus Data Center at Texas A&M University. The System attributes 45 million dollars for advanced computing infrastructure to its Board of Regents and names no meeting date for that approval. The chancellor says the machine gives the System's 12 universities and eight state agencies computing power most institutions could never build alone. The machine's own documentation says something narrower. It gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected to begin in the coming weeks and starts with institutions that have finished technical integration.",
    "topic": "research-and-science",
    "decider": {
@@ -11660,8 +11660,8 @@
    },
    "claims": [
     {
-     "text": "The TOP500 list credits the machine to the System rather than to one campus.",
-     "verbatim_quote": "Site: Texas A&M University System URL: https://vision.tamus.edu",
+     "text": "The TOP500 entry's Site field names the Texas A&M University System rather than one campus.",
+     "verbatim_quote": "Texas A&M University System",
      "source_url": "https://top500.org/system/180452/",
      "source_title": "VISION, TOP500 system detail",
      "source_type": "primary_official",

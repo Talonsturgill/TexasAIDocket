@@ -1,4 +1,4 @@
-# The University of Texas at Austin requires every course syllabus to declare whether AI is permitted, prohibited or partially permitted
+# The University of Texas at Austin requires every course syllabus to state its AI policy
 
 The Office of the Executive Vice President and Provost requires a Course Artificial Intelligence Policy in every syllabus every semester. The policy has to name one of three designations. AI is permitted or prohibited or partially permitted. An instructor who allows it has to write down what is permissible and how a student must disclose use. The university names the requirement one of two new syllabus statements for Fall 2026. That term's classes began August 24th, 2026. The rule on generative AI is therefore set course by course rather than university wide. A student can hold two syllabi with two different answers in the same week.
 
