@@ -137,6 +137,49 @@ holds every one:
 
 <!-- score block written at scoring time -->
 
+**FIVE ROUNDS. Medians 6.526, 5.896, 6.300, 6.602 and 6.762 against a 6.8 bar.** `max_rounds` is
+5, so the deck ships on the last of those. Round 5 is the first round in which **no judge found a
+hard fail**, and two of the three refused on the threshold and said so rather than manufacturing
+a fault.
+
+| round | integrity | craft | reader | median | spread | hard fails |
+|---|---|---|---|---|---|---|
+| 1 | 6.51 | 6.76 | 6.34 | **6.526** | 0.42 | 3, all the same one |
+| 2 | 6.296 | 6.17 | 5.81 | **5.896** | 0.49 | 2, both the same one |
+| 3 | 5.77 | 6.382 | 6.288 | **6.300** | 0.61 | 2, both from one judge |
+| 4 | 6.01 | 6.85 | 7.002 | **6.602** | 1.10 | 1 |
+| 5 | 6.75 | 6.51 | 7.002 | **6.762** | 0.49 | **none** |
+
+The arithmetic is `panel.py`'s, per-criterion median then weighted, and it is not mine to do.
+
+**The spread at round 4 was 1.10 and the file says so**, which is what `SPREAD_NOTE` is for: three
+judges disagreeing by more than 0.75 have not converged on the same deck, and reader 7.11 against
+integrity 6.01 on the same nine frames is the panel working rather than failing.
+
+## The five hard fails, and the one shape under four of them
+
+1. **Slide 4's fairness sentence rendered at 1.05 to 1 on bare cream** and was gone from the 432px
+   thumb. Round 1, all three judges.
+2. **Slide 4 credited c10's quotation to c8's publisher**, taking the name from the wrong one of
+   the two claims on its own frame. Round 2.
+3. **The cover awarded a TOP500 rank to an institution**, which the deck's own rejected list says
+   TOP500 does not rank. Round 3, and round 2's repair wrote it.
+4. **c19's text field asserted an identity slide 5 denies in the deck's own voice**, and credited
+   the System with a Tarleton sentence. Round 3.
+5. **Slide 7 credited the docs page with a sentence from the testing page.** Round 4, and round
+   3's repair wrote it.
+
+**Four of these are one thing: a gate reading what a document SAYS while nothing reads what the
+page SHOWS.** Every numeral traced. Every string was present. `copy.json` carried the sentence
+because the browser really did lay it out. What none of the twelve gates asked was whether the
+ink differs from the paper, whether the label names the right publisher, or whether the drawing
+agrees with the arithmetic.
+
+**Three of my own repairs wrote the next round's hard fail.** Fixing an instance three times in
+three rounds is what happens when nothing binds a frame's source stamp to the claims its copy
+carries, and both round 5 judges proposed exactly that binding, independently, as their one
+sentence fix.
+
 ### What the panel found, round by round
 
 **Round 1. 6.51, 6.76, 6.34, median 6.526 against a 6.8 bar. Three hard fails, all the same one.**
@@ -189,7 +232,10 @@ Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit range.
 
 ## Prompt audit
 
-<!-- written at Phase 19, and Phase 17's reading is interim -->
+**1,488 tool calls measured, none waited on a human.** `prompt_audit.py` reads
+`permissionDecisionMs` off the debug log, which is the measurement the 2026-09-02 run established
+after eleven days of wrong guesses. No routine wrote under `.claude/` and no actor stamp was
+written by any tool at any path.
 
 ## The one gate this run cannot make green, and why it is not merging on its own say-so
 
