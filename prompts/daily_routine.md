@@ -1300,19 +1300,9 @@ request. This phase lands it and nothing after it writes to the repository.
 3. **Red is work now.** Read the failing job's log, reproduce it in this checkout, fix it, push,
    wait again.
 
-   **THE LOCAL SUITE RUNS WHEN CI IS RED AND NOT OTHERWISE.** Owner's instruction, 2026-09-03:
-   *"only test locally when there is a ci issue, not every time, its wasting time and tokens."*
-   Push, let CI run, read CI. A run does not sit through forty minutes of browser suites here to
-   re-prove what the next four minutes prove for free, and a run that did spent its afternoon on
-   it. Reproducing a RED job is the reason this runner exists, and `--only <step>` is usually the
-   right shape once the log names the step.
-
-   **CI green on the head SHA is what says the work may LAND, and that was never this runner's
-   job.** Read step 1. What is traded away is that a push can now turn CI red where a local run
-   would have caught it first, which is a cycle, and it is the cost the owner priced.
-
-   What still runs before a push, because each is seconds: the `--self-test` of any gate this run
-   touched, and any single check that reads an artifact this run just changed.
+   **THE LOCAL SUITE IS A PRE-MERGE TOOL.** Reproducing a red job is the reason this runner
+   exists, and `--only <step>` is usually the right shape once the log names the step. Run it
+   before the push, where a red step still means do not merge.
 
    **When you do run it, ask `python3 scripts/shared/guards_local.py --verdict`. Never read the
    runner's log to decide it.** Exit 0 there is the only thing that counts as a local pass. Any
@@ -1333,6 +1323,29 @@ request. This phase lands it and nothing after it writes to the repository.
    2026-08-27 run wrote a confident account of undispatchable checks while the state it wanted
    was one push away, which is what a run does after it has wrongly decided it is clean.
 5. Merge. One merge, one run.
+
+**THE MERGE CLOSES THE QUESTION. NOTHING VERIFIES ANYTHING AFTER IT.** Owner's instruction,
+2026-09-03, on being shown a run that merged a pull request and then went on waiting for a local
+suite it had started earlier: *"its okay if it runs stuff locally, but it shouldnt be doing it
+AFTER a merge thats stupid and makes zero sense."*
+
+It is right, and it is worth saying why, because the mistake did not feel like one from inside.
+**A check is worth its time only while its answer can still change what lands.** Before the
+merge, a red step means do not merge, which is a decision. After it the code is on `main`, and
+the same forty minutes buy an answer nothing can act on. If `main` is red, CI on `main` says so
+in four minutes with the failing job's log in hand, and fixing that is a NEW change with its own
+check before ITS merge.
+
+So the moment the merge returns:
+
+- **A local suite still in flight is finished work. Kill it.** Waiting on it is not diligence, it
+  is a run that has not noticed the question is closed.
+- **Do not re-run a gate, re-derive a figure, or re-read a page** to confirm what the merge
+  already carried. The commit range is the record.
+- Read `main`'s CI **once**. Only if it is red is there anything to do.
+
+Then go to Phase 19. That phase writes nothing to the repository, which is the same rule from
+the other side.
 
 **A failed run stops here with its evidence committed and pushed, and does NOT merge.** That is
 not a run hiding: the pull request is open, ready, and carries everything.
