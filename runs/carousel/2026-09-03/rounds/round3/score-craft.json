@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 5.8,
+   "why": "The three fixes asked for are real and verifiable: every leaf on slide 8 carries drawn fibre and a lit raked edge, slide 9's seated sheet the same, and slide 1's source rule no longer collides with the footer. But the three weakest frames are untouched and they are the wrong three: the thesis frame, the proof frame and the turn. Slide 6's two will slots are flat cream rectangles with no cut wall, no lit lip, no thickness, measuring about 0.77 percent of the frame against a declared focal of 7 percent, so the deck's entire argument is carried by two highlighter chips. Slide 2 has no cut window anywhere and measures 0.206/0.410/0.158. Slide 7 measures 0.088/0.090/0.061. Slide 5's fibres are uniform-length dashes spread evenly, the rubric's detail-spread-evenly by name. Slide 9's rail shows three different pin pitches so the 8-to-9 rhyme does not hold geometrically, and it carries an unlabelled tick-scale ruler that reads at 432px as a TIMELINE, on the one frame whose message is that no date is published."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.2,
+   "why": "I traced every numeral and all are clean, and I checked c7, c10, c12, c13 and c20 word for word against the rendered strings. Four stretches cost it. The cover reads 'Texas A&M is No. 66.' in the deck's own voice with no in-sentence attribution while every other numeral is attributed inside its sentence. Slide 5 asserts no source joins the two counts while c19's own text field says 'the SAME screening run'. Slide 9 hands the reader c14 as the door and omits c15 from the same record, which says the beta is currently being finalized as we prepare for General Availability, and a deck whose thesis is read-what-the-document-says omitting the qualifying claim it holds is the accusation turned inward. And slide 2's drawing encodes 51.16 as a shorter darker block than 34.82, so the art states a relation the data refutes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A reader gets the rank, the size, the money, the work done, the two future-tense promises, the present-tense refusal, the unpublished count and a named deciding body. Slide 8's line is the strongest in the deck and the refusal to name a county is honest. What holds it under 7: the actual gate is institutions that have finished technical integration and the deck never tells a reader that they, personally, are not an institution, so the closing frame reads as a door for a person when the record describes a door for a campus. With the omitted c15, the close overstates how open the next step is."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "The arc works and the turn at 7 is a genuine change of state carried before a word is read. The cover naming its subject is a real gain over round 2. Costs: slide 3 is the dossier's own nominated cut, slide 2 lands weakly because its drawing argues against its sentence, and the 8-to-9 payoff is asserted in the labels rather than delivered in the geometry."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.6,
+   "why": "Disciplined and on register, short, plain and free of costume. No boosterism, no doom, no first person outside the quotation, straight quotes, no em dashes, and the only colon and semicolon are inside verbatim quotations. Two costs. Slide 7 prints the c20 semicolon with no quotation marks and no quoted-from label while slide 6 labels both of its quotations, so the same device is treated two ways inside one deck. And the closing block sets three lines of running prose in mono, which turns the deck's warmest moment into a terminal readout."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.4,
+   "why": "The strongest criterion. Nothing in the fourteen-entry ledger is lit from behind, all thirteen priors carry a directional key, and this deck has none and casts no shadow anywhere. Against it: raw #F2EFD6 is the most-seen colour across nine frames and sits within a few dE of deck 8's cut_face, deck 10's satin_spar and deck 4's stock, all inside the window. Deck 10's own entry records exactly this failure and asks for a perceptual distance check, and nothing yet does it."
+  }
+ ],
+ "weighted_score": 6.382,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slide 2 so the drawing agrees with the arithmetic: cut two identical windows clean through a single monotonic wedge to bare raw backlight at positions computed from the same ramp, so 51.16 is unmistakably further along than 34.82, because it is the only frame where a reader who trusts the picture ends up misinformed, and that is the one failure a project whose public promise is that its numbers can be recomputed cannot ship."
+}

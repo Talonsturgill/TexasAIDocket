@@ -1,0 +1,139 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 76% of this slide's own average craft density (top 85% / mid 67% / bottom 51% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.8487,
+        0.6723,
+        0.5074
+      ],
+      "band_ratio": 0.759,
+      "encodings": [
+        "'where two documents lie over one another the ink stacks, so the overlap reads darker than ': dE 4.2, AUC 0.64, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 21% / mid 22% / bottom 15% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.2059,
+        0.2248,
+        0.1489
+      ],
+      "band_ratio": 0.7788,
+      "encodings": [
+        "'the inked run is one flat intensity and the outlined remainder beyond it is bare ground, s': dE 72.8, AUC 1.00, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2941,
+        0.708,
+        0.6452
+      ],
+      "band_ratio": 1.1658,
+      "encodings": [
+        "'the sheet is opaque and the bed behind it is lit, which is the whole reason a punched hole': dE 85.7, AUC 0.91, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 70% of this slide's own average craft density (top 48% / mid 87% / bottom 41% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.479,
+        0.8697,
+        0.4062
+      ],
+      "band_ratio": 0.7042,
+      "encodings": [
+        "'the sheet is flush against the glass where the quotation sits and lifts away from it below': dE 54.4, AUC 0.83, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2815,
+        0.1576,
+        0.1765
+      ],
+      "band_ratio": 0.8656,
+      "encodings": [
+        "'the aperture interior is bare backlight and the leaf around it is opaque, so the enlargeme': dE 86.1, AUC 0.91, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.7458,
+        0.6702,
+        0.7941
+      ],
+      "band_ratio": 1.0741,
+      "encodings": [
+        "'the verb sits in a slot cut clean through to the bed, so it is the one word on the frame d': dE 21.5, AUC 0.68, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.0882,
+        0.0945,
+        0.1562
+      ],
+      "band_ratio": 1.359,
+      "encodings": [
+        "'the bed under this page is switched off, so the only lit thing in the frame is a second ta': dE 71.8, AUC 1.00, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.834,
+        0.8655,
+        0.6618
+      ],
+      "band_ratio": 0.8469,
+      "encodings": [
+        "'the registration rail is the one opaque object on the bed and the sheets above it are not,': dE 75.7, AUC 0.97, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8845,
+        0.6618,
+        0.8199
+      ],
+      "band_ratio": 1.0376,
+      "encodings": [
+        "'the open registration area is bare backlight and the rail beside it is the frame dark, so ': dE 68.0, AUC 0.78, visible 0%/0%, seen 0/0px at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 3,
+  "verdict": "WARN"
+}

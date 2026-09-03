@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.5,
+   "why": "Genuinely made. The transmitted-light diazo register has a real light and a real dark on every frame and the detail budget is per region rather than spread. Slide 6 is the deck's best frame and its thesis as an image. Slide 7's turn is real craft. Slide 2 is now not merely fixed but measurably correct: the inked share is 825/1212 = 0.6807 against 34.82/51.16 = 0.68062. Against that: slide 8 is the weak frame of nine, with a large dead field broken only by two small dashed boxes that carry no label, so at 432px the lower half reads unfinished; slide 2's 34.82 readout sits over the DASHED region rather than over the inked bar's terminus, leaving one residual misread; and the controlling metaphor changes referent three times."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "I traced every numeral on all nine frames and in the caption and all trace. All twenty claims are primary_official or data, all retrieved 2026-09-03, and every domain printed on a frame appears in claims.json. I counted slide 8's courses in the full render and got exactly 12 and exactly 8. The rejected list is the best thing in the run. Slide 5 prints its own refusal ON the frame. Deducted because round 3's slide 7 finding is half-fixed: the 'features and tools' line got marks and a stamp, and the larger verbatim on the same frame, 'Current Status: Controlled Beta', is set as the deck's own headline voice with no marks and no tag, and a reader cannot see the quotation status that is the colon's only defense."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.0,
+   "why": "A Texan learns a real thing in order and slide 9 is no longer a shrug. Three things hold it at six. The deck's own structural law says the footer carries the facility name c7 gives, and no footer on any frame carries it, so West Campus Data Center exists only in the caption. 'Access is approved through TAMUS governance' is unglossed and names no board and no room, while slide 4 established 'Board of Regents' five frames earlier and the deck never joins the two. And the machine's PURPOSE never appears in words a Texan uses: slide 5 is titled 'Look through the hole at what it did' and answers with 'compounds in one large-scale virtual screening run', while c19's own verbatim opens 'In one drug discovery project'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "There is a genuine turn and it lands at 7. Six frames teach a reader that light behind paper means a promise, then the bed is switched off on the one text that is not a promise. The measured medians make the swing into 7 the largest junction in the deck and it is where the argument turns. The cover now earns its swipe because the dek carries new information instead of repeating the hook. Held down because the deck names its own cuttable frame and is right, and slide 5, the largest light region in all nine frames, spends itself on an honest caveat about the record occupying the position a payoff should hold."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "The caption is clean against every house rule I checked by hand, roughly 853 characters inside the band. 'Read the verb.' and 'Not one of them is punched.' are lines a person wrote. Refusing maroon and burnt orange is real discipline against boosterism. Two things pull it toward the press-release line. TEXAS_ATTITUDES section 9 says gloss every agency reference every time, and slide 2 prints PFlop/s twice with RMAX and RPEAK beside it while slide 3 prints DGX and H200, five unglossed terms in two frames, when c4 supplies the readable word 'petaflops' that the caption uses and the frame does not. And nine frames name no human."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The craft variety is real and measured rather than asserted. Nothing in the fourteen-entry ledger is lit from behind, no frame here has a directional key or casts a shadow, there is no black, and the measured deck median of 72.0 sits between the priors' dark group and their light group, a band the ledger has never held. Against that, the opening MOVE is the house habit: topics.json's entry for carousel 11 instructs the next run to spend an opening move that is not an absence, deck 13's angle is another absence, and this cover hooks on a gap with five printed absences behind it. Third of the last four, against a written instruction not to."
+  }
+ ],
+ "weighted_score": 7.11,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Slide 5 is the brightest frame in the deck and its payload is a magnitude with no purpose attached, so put c19's own verbatim words 'drug discovery' on it, and the frame stops asking a Texan to care about ten million compounds and starts telling them a public machine is looking for medicines."
+}

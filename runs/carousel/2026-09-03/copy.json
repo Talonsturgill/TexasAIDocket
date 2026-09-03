@@ -1,0 +1,150 @@
+{
+ "run": "2026-09-03",
+ "deck": 14,
+ "note": "Built from the render report's own laid out text nodes rather than from the storyboard. A string here is a string the browser actually set.",
+ "slides": {
+  "S1": {
+   "hook": "VISION is No. 66. Both documents say will.",
+   "dek": "The Texas A&M University System's AI supercomputer. Two pages say who it is for.",
+   "labels": [
+    "NEWS.TAMUS.EDU VISION.TAMUS.EDU",
+    "texasaidocket.com",
+    "01 / 09"
+   ],
+   "claims": [
+    "c2",
+    "c7",
+    "c13"
+   ]
+  },
+  "S2": {
+   "hook": "What was run, and what was rated.",
+   "dek": "TOP500 records 34.82 PFlop/s measured and 51.16 PFlop/s theoretical peak. The System's newsroom quoted the measured one.",
+   "labels": [
+    "34.82",
+    "51.16",
+    "Rmax measured",
+    "Rpeak theoretical",
+    "TOP500.ORG · SYSTEM 180452",
+    "texasaidocket.com",
+    "02 / 09",
+    "THE SCALE RUNS FROM ZERO TO THE THEORETICAL PEAK"
+   ],
+   "claims": [
+    "c3",
+    "c4"
+   ]
+  },
+  "S3": {
+   "hook": "Count the holes. There are 95.",
+   "dek": "Tarleton State counts 95 NVIDIA DGX nodes and 760 NVIDIA H200 graphics processing units. TOP500 lists 110,960 cores.",
+   "labels": [
+    "TARLETON.EDU · TOP500.ORG",
+    "texasaidocket.com",
+    "03 / 09"
+   ],
+   "claims": [
+    "c5",
+    "c6"
+   ]
+  },
+  "S4": {
+   "hook": "\"We did not fund VISION for bragging rights. We funded it because Texas needs answers faster,\"",
+   "dek": "The System's newsroom says its Board of Regents approved 45 million dollars for advanced computing infrastructure. No meeting date is published.",
+   "labels": [
+    "BOARD CHAIRMAN QUOTED BY TARLETON.EDU",
+    "texasaidocket.com",
+    "04 / 09"
+   ],
+   "claims": [
+    "c8",
+    "c10"
+   ]
+  },
+  "S5": {
+   "hook": "Look through the hole at what it did.",
+   "dek": "",
+   "labels": [
+    "about 10.4 million",
+    "more than 10 million",
+    "compounds in one large-scale virtual screening run",
+    "compounds screened in one drug discovery project, in about a week",
+    "texasaidocket.com",
+    "05 / 09",
+    "VISION.TAMUS.EDU",
+    "TARLETON.EDU",
+    "No source here says these two describe one run"
+   ],
+   "claims": [
+    "c18",
+    "c19"
+   ]
+  },
+  "S6": {
+   "hook": "Read the verb.",
+   "dek": "The System's newsroom quotes the chancellor on the same machine. He says VISION gives 12 universities and eight state agencies \"access to computing power that most institutions could never build alone\".",
+   "labels": [
+    "will",
+    "will",
+    "texasaidocket.com",
+    "06 / 09"
+   ],
+   "claims": [
+    "c7",
+    "c13",
+    "c9"
+   ]
+  },
+  "S7": {
+   "hook": "\"Current Status: Controlled Beta\"",
+   "dek": "The documentation for the same machine says access is invitation-only and approved via TAMUS governance. The testing page says the beta is being finalized as they prepare for general availability.",
+   "labels": [
+    "texasaidocket.com",
+    "07 / 09",
+    "\"Features and tools are evolving; beta may not guarantee full support or capacity\" QUOTED FROM DOCS.VISION.TAMUS.EDU · VISION.TAMUS.EDU/TESTING"
+   ],
+   "claims": [
+    "c12",
+    "c11",
+    "c20"
+   ]
+  },
+  "S8": {
+   "hook": "Not one of them is punched.",
+   "dek": "How many researchers can use it today is not published. The documentation states the access rule and states no number.",
+   "labels": [
+    "12 UNIVERSITIES",
+    "8 STATE AGENCIES",
+    "OPEN STATIONS, NOTHING SEATED",
+    "NEWS.TAMUS.EDU · DOCS.VISION.TAMUS.EDU",
+    "texasaidocket.com",
+    "08 / 09"
+   ],
+   "claims": [
+    "c9",
+    "c11"
+   ]
+  },
+  "S9": {
+   "hook": "Who gets in next, and when.",
+   "dek": "The testing page says onboarding is expected to begin in the coming weeks, starting with institutions that finished integration.",
+   "labels": [
+    "WHAT HAPPENS NEXT",
+    "The front page is actively seeking beta testing participants",
+    "Access is approved through TAMUS governance",
+    "No date is published",
+    "VISION.TAMUS.EDU · DOCS.VISION.TAMUS.EDU",
+    "texasaidocket.com",
+    "09 / 09",
+    "SEATED ON THE PINS",
+    "OPEN",
+    "EXPECTED, NOT SEATED"
+   ],
+   "claims": [
+    "c16",
+    "c14",
+    "c11"
+   ]
+  }
+ }
+}

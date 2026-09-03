@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.8,
+   "why": "Nine genuinely different constructions and a real value spread, inversion at 7. Slide 4's curl gradient, slide 5's torn opening and slide 3's aperture lattice are made rather than assembled. Against that: slide 2 is a bar on a beige field and is the thinnest frame in the deck by the report's own numbers; three top-loaded warns; slide 4's dead middle is visible as two empty beige bands. Slide 8 draws its one idea as two different objects, dashed rectangles above the rail AND flat ellipses on it, which muddles the 8-to-9 rhyme; slide 9's pins were upgraded to post-and-cap and slide 8's were not. bespoke_check passes at 0.5486 against a threshold that failed at 0.5515, a margin of 0.0014."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.7,
+   "why": "The refusals are the best thing here: seven recorded, twelve and eight never added, the two compound counts printed unjoined with the refusal stated ON slide 5, no county invented, the fastest-university framing declined. Every numeral on every frame traces to a verbatim quote. Four defects remain. focals.json measures BOUNDING RECTANGLES, not the regions it names: slide 6's rect is 5.7 percent while the two slots as drawn are roughly 1.3. Round 4's fault was that these were typed; they are now computed, and the subject of the computation is still not the thing the label names. Slide 7's stamp names the testing host but nothing on the frame is QUOTED from it, c15 is paraphrased in the dek. Slide 6 carries a direct quotation from the chancellor with no publisher named anywhere on the frame, which is the round-4 slide 4 defect unfixed on the frame nobody looked at. And No. 66 traces only to the subject's own newsroom while top500.org was fetched three times and none of those quotes carries the rank."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.6,
+   "why": "Names the deciding body, the building in the caption, the phase and the next step, and publishes the size of the gap on slide 8. It correctly refuses a county. But the reader's action is to watch, not to do. The constituency is 12 universities and 8 state agencies, a narrow slice of Texans, and the deck never characterises where the 45 million came from, so a general reader is left with a machine they can neither use nor cost."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Real turn: slide 6 isolates the verb, slide 7 kills the backlight. The cover earns a swipe on a rank plus a qualification in the same breath. The close lands honestly rather than loudly. Slides 2 and 3 are two inventory frames in a row and the run nominates 3 for the cut itself, correctly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.9,
+   "why": "Three hard, plain lines that a person would write. No colons or semicolons outside verbatim quotes, no dashes, no first person, ordinal date in the first comment, one writer-chosen comma in about 110 words of caption. But there is nothing regional in it anywhere, by necessity, and the Post Oak Savannah value is a claim no reader can see. Clean, on register, a little flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New topic against a clean 30 day window, a register nothing in fourteen decks has used, and a deck median of 72.0 in a band the ledger has never held. Against it: the spine is documents-disagree with a dedicated absence frame at 8, the fourth time in seven decks. topics.json carries the complaint twice in its own hand. The opening move is a rank, so the letter is met and the shape is not."
+  }
+ ],
+ "weighted_score": 6.75,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make each frame emit its own type block and its focal geometry into a JSON the storyboard is generated FROM, so a dossier can never describe a render that no longer exists, and so a focal percentage is the area of a shape the frame actually drew rather than of a rectangle around it."
+}

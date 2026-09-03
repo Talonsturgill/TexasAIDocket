@@ -1,0 +1,48 @@
+{
+ "claims_verified": {
+  "value": 20,
+  "from_items": [],
+  "note": "Claims this run fetched and verified, counted over claims.json."
+ },
+ "figures_proved": {
+  "value": 7,
+  "from_items": [],
+  "note": "Declared figures whose value appears in the verbatim quote of the claim they cite, counted over aggregates.json."
+ },
+ "relationships_refused": {
+  "value": 3,
+  "from_items": [],
+  "note": "Relationships the story invites that no claim licenses, named in aggregates.json rather than left implicit."
+ },
+ "findings_rejected": {
+  "value": 7,
+  "from_items": [],
+  "note": "Scout findings the fact check refused, counted over claims.json's rejected list."
+ },
+ "official_records": {
+  "value": 17,
+  "from_items": [],
+  "note": "Claims whose source_type is primary_official, counted over claims.json."
+ },
+ "data_records": {
+  "value": 3,
+  "from_items": [],
+  "note": "Claims whose source_type is data, counted over claims.json."
+ },
+ "institutions_answering": {
+  "value": 5,
+  "from_items": [
+   "docs.vision.tamus.edu",
+   "news.tamus.edu",
+   "tarleton.edu",
+   "top500.org",
+   "vision.tamus.edu"
+  ],
+  "note": "Distinct hosts this run fetched a claim from, counted over claims.json urls."
+ },
+ "frames": {
+  "value": 9,
+  "from_items": [],
+  "note": "Frames in the shipped deck, counted over copy.json, which is built from the render report's own laid out text nodes."
+ }
+}

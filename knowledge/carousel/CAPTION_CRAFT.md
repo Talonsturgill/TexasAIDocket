@@ -70,7 +70,8 @@ The last three runs' structures are off the menu.
 
 ## Closing moves
 
-Rotate. Never the same phrasing two runs running.
+**The last run's closing substance is off the menu.** Rotate. Never the same phrasing two runs
+running.
 
 The close is where a caption most wants to become furniture, because the writer has said the
 interesting part and wants to get out. **Resist the urge to summarise.** The reader just read it.
@@ -80,6 +81,43 @@ interesting part and wants to get out. **Resist the urge to summarise.** The rea
 - Point at the record, plainly, without a call to action.
 - Ask the one question the decision leaves open.
 - Stop on the strongest fact, with no wrap-up at all. This is often the best one.
+
+### The form is fixed by config. The substance is not, and it still has to rotate
+
+`config/brand.yaml` sets `linkedin_post.ends_with: engagement_question`, and
+`scripts/carousel/caption_check.py` hard fails any caption body whose last character is not a
+question mark. That key is `human` lane. **It is not a caption room decision and no run may route
+around it.**
+
+Read against the five moves above, that rule looks like it leaves one option, and for seven
+consecutive runs it did. Every caption from August 25th to September 2nd closed by asking the one
+question the decision leaves open. August 25th is the day the ending rule was wired, and every run
+since is the streak. **The rotation did not drift. A gate forced it**, and this file spent those
+seven runs telling the room to rotate through four closes it could not use.
+
+**The five above are SUBSTANCES. The question mark is a FORM, and they are separate choices.** The
+gate reads the last character of the body, so a close may run more than one sentence and only the
+last one has to be interrogative. That is what keeps four of the five available.
+
+| substance | how it takes the interrogative form |
+|---|---|
+| Name what happens next and when | put the date inside the question. "Does the September 18th vote settle it?" |
+| Name what is still not public, and how big that is | ask for the size of the gap. "How much of that 8.9 gigawatts sits in no public filing?" |
+| Point at the record, plainly, without a call to action | state what the record holds, then ask the thing it does not answer |
+| Ask the one question the decision leaves open | already interrogative |
+| Stop on the strongest fact, with no wrap-up at all | **UNAVAILABLE.** A fact stopped on is not a question, and no rendering makes it one |
+
+The fifth is genuinely lost while `ends_with` stands, and this file says so rather than listing a
+move nobody can spend. Getting it back is a `brand.yaml` change and a maintainer makes it. The
+room's job meanwhile is to spend the other four honestly.
+
+**Do not answer this by relabelling.** Recording a question as a substance it is not clears the
+rotation and teaches the next run a false history, which is the same mechanism that put three
+freehand move names in the ledger on August 25th. Write the close the substance asks for and then
+put it in the question.
+
+`scripts/carousel/ledger_check.py` reads the window out of the bold sentence at the top of this
+section and fails a shipped entry that repeats a substance the exclusion covered.
 
 ---
 
@@ -191,8 +229,10 @@ Every shipped caption records, in `ledger/carousel/captions.json`:
 }
 ```
 
-The caption room is handed the exclusions before it writes: opening moves from the last six runs,
-structures from the last three. `first_line` is stored verbatim on purpose, because the critic's
+The caption room is handed the exclusions before it writes. Opening moves from the last six runs,
+structures from the last three, and the closing substance from the last one. Each window is stated
+in the section above that it governs, and `ledger_check.py` reads it from there rather than keeping
+its own copy. `first_line` is stored verbatim on purpose, because the critic's
 real job is catching the skeleton that survives a change of nouns, and it can only do that with
 the actual lines in front of it.
 

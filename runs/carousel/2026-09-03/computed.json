@@ -1,0 +1,50 @@
+{
+ "run": "2026-09-03",
+ "deck": 14,
+ "note": "Every value here is computed from a figure quoted verbatim in claims.json. No numeral in this deck was typed by a model.",
+ "inputs": {
+  "rmax_pflops": "34.82",
+  "rpeak_pflops": "51.16",
+  "cores": 110960,
+  "nodes": 95,
+  "gpus": 760,
+  "universities": 12,
+  "state_agencies": 8,
+  "world_rank": 66
+ },
+ "values": [
+  {
+   "key": "measured_share_of_peak_pct",
+   "value": "68.1",
+   "unit": "percent",
+   "what": "the measured Linpack result as a share of the theoretical peak",
+   "from_claims": [
+    "c3"
+   ],
+   "how": "34.82 divided by 51.16, times 100, rounded half up to one decimal place",
+   "kind": "measured"
+  },
+  {
+   "key": "peak_minus_measured_pflops",
+   "value": "16.34",
+   "unit": "PFlop/s",
+   "what": "theoretical peak less the measured Linpack result",
+   "from_claims": [
+    "c3"
+   ],
+   "how": "51.16 less 34.82",
+   "kind": "measured"
+  },
+  {
+   "key": "machines_ranked_above",
+   "value": "65",
+   "unit": "machines",
+   "what": "how many systems the list places above this one",
+   "from_claims": [
+    "c2"
+   ],
+   "how": "66 less 1, since a rank counts the machine itself",
+   "kind": "measured"
+  }
+ ]
+}

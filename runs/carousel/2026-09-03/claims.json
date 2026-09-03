@@ -1,0 +1,215 @@
+{
+ "story": "The Texas A&M University System's VISION supercomputer entered the TOP500 at number 66 and is the System's shared AI machine for twelve universities and eight state agencies. Its own documentation says access is invitation-only under a controlled beta.",
+ "claims": [
+  {
+   "id": "c1",
+   "text": "The TOP500 list credits the machine to the Texas A&M University System rather than to one campus.",
+   "quote": "Site: Texas A&M University System URL: https://vision.tamus.edu",
+   "url": "https://top500.org/system/180452/",
+   "source_type": "data",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c2",
+   "text": "The System says VISION entered the list at number 66 in the world.",
+   "quote": "Ranked No. 66 in the world, VISION now stands in elite company among national laboratories, major research institutions and global technology leaders.",
+   "url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c3",
+   "text": "The list records the measured Linpack result and the theoretical peak side by side.",
+   "quote": "Linpack Performance (Rmax) 34.82 PFlop/s Theoretical Peak (Rpeak) 51.16 PFlop/s",
+   "url": "https://top500.org/system/180452/",
+   "source_type": "data",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c4",
+   "text": "The System states the measured figure in its own words.",
+   "quote": "VISION posted 34.82 petaflops of measured performance.",
+   "url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c5",
+   "text": "The list records the core count and the processor the cores sit in.",
+   "quote": "Cores: 110,960 Processor: Xeon Platinum 8480C 56C 3.8GHz",
+   "url": "https://top500.org/system/180452/",
+   "source_type": "data",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c6",
+   "text": "The machine is 95 nodes carrying 760 graphics processors.",
+   "quote": "The supercomputer features 95 NVIDIA DGX nodes, 760 NVIDIA H200 graphics processing units and high-speed storage designed for data-intensive work.",
+   "url": "https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c7",
+   "text": "The System names the building the machine sits in and says who it is for.",
+   "quote": "The system is housed at the West Campus Data Center at Texas A&M University and will support researchers across the A&M System.",
+   "url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c8",
+   "text": "The System attributes the money to its governing board.",
+   "quote": "The ranking validates the A&M System's $45 million investment in advanced computing infrastructure, approved by the Board of Regents.",
+   "url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "medium"
+  },
+  {
+   "id": "c9",
+   "text": "The chancellor names who the machine is for.",
+   "quote": "VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone.",
+   "url": "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c10",
+   "text": "The board chairman says what the money was for.",
+   "quote": "We did not fund VISION for bragging rights. We funded it because Texas needs answers faster,",
+   "url": "https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c11",
+   "text": "The machine's own documentation states the present access rule.",
+   "quote": "Access is invitation-only and approved via TAMUS governance",
+   "url": "https://docs.vision.tamus.edu/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c12",
+   "text": "The same documentation names the phase the machine is in.",
+   "quote": "Current Status: Controlled Beta",
+   "url": "https://docs.vision.tamus.edu/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c13",
+   "text": "The machine's own site states who it will eventually be open to.",
+   "quote": "VISION will be available to researchers of all disciplines across the entire Texas A&M System.",
+   "url": "https://vision.tamus.edu/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c14",
+   "text": "The front page is still recruiting for the beta.",
+   "quote": "We are now actively seeking beta testing participants to help us refine and optimize the system before its wider release.",
+   "url": "https://vision.tamus.edu/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c15",
+   "text": "The testing page says that same beta is closing.",
+   "quote": "The VISION beta program is currently being finalized as we prepare for General Availability (GA).",
+   "url": "https://vision.tamus.edu/testing/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c16",
+   "text": "The testing page states when wider access starts and who goes first.",
+   "quote": "General Availability onboarding is expected to begin in the coming weeks, beginning with institutions that have completed the technical integration requirements necessary to access VISION services.",
+   "url": "https://vision.tamus.edu/testing/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c17",
+   "text": "The machine's own site declines the ranking language its System uses.",
+   "quote": "one of the highest-performing AI supercomputers at any North American university",
+   "url": "https://vision.tamus.edu/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c18",
+   "text": "The machine's own use cases page states the size of one screening run on it.",
+   "quote": "large-scale virtual screening of approximately 10.4 million compounds",
+   "url": "https://vision.tamus.edu/usecases/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c19",
+   "text": "Tarleton State reports researchers screened more than ten million compounds in about a week.",
+   "quote": "In one drug discovery project, Texas A&M researchers screened more than 10 million compounds in about a week.",
+   "url": "https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  },
+  {
+   "id": "c20",
+   "text": "The documentation states what the beta does not promise.",
+   "quote": "Features and tools are evolving; beta may not guarantee full support or capacity",
+   "url": "https://docs.vision.tamus.edu/",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-03",
+   "confidence": "high"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "A dated Board of Regents action approving the VISION funding",
+   "reason": "Not found on any page fetched. The System's newsroom asserts the money was approved by the Board of Regents and gives no meeting date and no agenda item. The regents minutes are published only as PDFs and neither 2025 minutes file could be text extracted this run. The record therefore carries the System's own assertion and does not claim a dated governing body vote."
+  },
+  {
+   "finding": "Brazos County, or College Station, as the machine's location",
+   "reason": "No page fetched names a county or a city for the West Campus Data Center. College Station appears only in the System headquarters address in the newsroom footer, which is a different building. Naming a county here would be guessing from a decider's address, which the record does not do."
+  },
+  {
+   "finding": "That a student or researcher at any A&M System campus can get on VISION today",
+   "reason": "Contradicted by the machine's own documentation, which says access is invitation-only under a controlled beta. The all disciplines line on the front page is a future promise and is carried as one."
+  },
+  {
+   "finding": "That TOP500 ranks VISION the fastest university supercomputer in the United States",
+   "reason": "TOP500 publishes no university category and neither its list page nor its system detail page carries that claim. The framing belongs to the System and to Tarleton State. VISION's own site says only that it is one of the highest-performing AI supercomputers at any North American university."
+  },
+  {
+   "finding": "A power draw figure for VISION",
+   "reason": "The TOP500 power column is empty for this entry on both the list and the system detail page."
+  },
+  {
+   "finding": "A publication date for the Tarleton State article",
+   "reason": "The page renders its date line as two dates run together with no separator, so no single date can be read cleanly off it."
+  },
+  {
+   "finding": "A narrower beta window of April to June 2026 reported by an early fetch of the front page",
+   "reason": "Contradicted by the project's own timeline page. Dropped rather than reconciled."
+  }
+ ]
+}

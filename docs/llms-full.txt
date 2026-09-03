@@ -110,7 +110,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Comment closes: 2026-09-04
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-03
 
 ## Dates
 
@@ -131,6 +131,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · The comment window is still open, closing September 4th. The commission's own calendar feed still carries that deadline as a dated entry naming the project. The proposed rule still draws its line at a demand threshold rather than at the words data center.
 - 2026-08-30 · The rule is still out for comment. The proposal for publication of new section 25.521 stands as filed, and the deadline the Texas Register acknowledged is September 4th.
 - 2026-09-02 · The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments have been filed against the proposal since it was published.
+- 2026-09-03 · The comment window on the proposed Large Load Demand Management Service rule closes tomorrow, September 4th, 2026. The commission's calendar feed still carries that deadline as a dated entry of its own, and the proposal for publication of new section 25.521 stands as filed. Anyone meaning to file has one day left. The feed's own project strings are quotable again, now that the check reads a feed whose HTML is escaped inside its XML. The project a deadline belongs to is carried by a claim rather than by a summary alone.
 
 ## Evidence
 
@@ -154,9 +155,9 @@ Source (primary_official): https://interchange.puc.texas.gov/search/documents/?c
 
 Source (primary_official): https://interchange.puc.texas.gov/search/documents/?controlNumber=58482&itemNumber=31
 
-### The PUCT calendar feed independently lists the September 4th public comment deadline for this project.
+### The commission's calendar feed carries the September 4th public comment deadline as its own dated entry.
 
-> Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+> Public Comment Deadline - Friday, September 4, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
@@ -201,6 +202,12 @@ Source (primary_official): https://tcss.legis.texas.gov/resources/UT/htm/UT.39.h
 > Texas Register Acknowledgement of Receipt - Comment Deadline 09/04/2026
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The commission's calendar feed names this project beside its September 4th deadline.
+
+> Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+
+Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
 ---
 
@@ -754,7 +761,7 @@ The Bureau of Labor Statistics has proposed adding questions about artificial in
 - Comment closes: 2026-09-08
 - Take part: https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-03
 
 ## Dates
 
@@ -770,6 +777,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The Bureau of Labor Statistics notice on adding artificial intelligence questions to the American Time Use Survey still stands and its comment window still closes September 8th.
 - 2026-08-29 · The comment window is still open, closing September 8th. The proposal to add artificial intelligence questions to the time use survey is unchanged.
 - 2026-09-02 · The comment window on adding artificial intelligence questions to the American Time Use Survey is still open and the closing date has not moved.
+- 2026-09-03 · The comment window on adding artificial intelligence questions to the American Time Use Survey is still open and still closes September 8th, 2026. The notice stands as published and the closing date has not moved. Five days are left to file.
 
 ## Evidence
 
@@ -791,7 +799,7 @@ Source (primary_official): https://www.federalregister.gov/api/v1/documents/2026
 
 # PUCT open meeting calendar published as a live feed through mid 2027
 
-The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up, and a meeting comes off the feed once it is held. The August 28th, 2026 open meeting is the next one listed and it sits at the Stephen F. Austin Building rather than the commissioners hearing room. The feed now carries two public comment deadlines, Project 58482 on September 4th, 2026 and Project 59550 on September 17th, 2026. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.
+The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up, and a meeting comes off the feed once it is held. The August meetings the feed used to lead with have been held and are gone. The next open meeting listed is Friday, September 11th, 2026 in the commissioners hearing room. The feed carries two public comment deadlines, Project 58482 on September 4th, 2026 and Project 59550 on September 17th, 2026. It also carries a workshop on September 22nd, 2026. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -800,13 +808,14 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-03
 
 ## Dates
 
 - 2026-08-20 · hearing: Open meeting in Commissioners Hearing Room 7-100
 - 2026-08-21 · hearing: Open meeting listed at an off site hotel and conference center
 - 2026-09-04 · comment closes: Public comment deadline for Project 58482
+- 2026-09-11 · hearing: Open meeting in Commissioners Hearing Room 7-100, per the calendar feed
 - 2026-09-17 · comment closes: Public comment deadline for Project 59550
 
 ## How this decision moved
@@ -823,32 +832,33 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The calendar feed still publishes open meetings, workshops and comment deadlines, and it still runs into the middle of 2027. It still names the project a comment deadline belongs to, which is the part a reader can act on.
 - 2026-08-30 · The calendar feed is still publishing. It still carries the open meeting of August 28th and a public comment deadline of September 17th.
 - 2026-09-02 · The commission's meeting calendar still runs past the end of this year and the open meeting schedule is unchanged.
+- 2026-09-03 · The feed has advanced. The August 28th open meeting has been held and has come off it. The next open meeting listed is Friday, September 11th, 2026, back in the commissioners hearing room rather than the off site building. Both public comment deadlines are still there, September 4th and September 17th, and the feed now also carries a workshop on September 22nd. Four claims here quoted the strings a meeting leaves behind when it is held. That is the feed working rather than the calendar changing, so they now quote the entry titles instead. The feed's own project strings are quotable again, now that the check reads a feed whose HTML is escaped inside its XML. The project a deadline belongs to is carried by a claim rather than by a summary alone.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The next open meeting on the feed sits away from the commissioners hearing room and names no docket.
+### The next open meeting on the feed names the commissioners hearing room.
 
-> Stephen F. Austin Building, Room 170
+> Commissioners Hearing Room 7-100
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-### The feed carries public comment deadlines as calendar entries naming the project.
+### The feed carries a public comment deadline as a dated entry of its own.
 
-> Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+> Public Comment Deadline - Friday, September 4, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
 ### The feed dates its next open meeting in the entry title itself.
 
-> Open Meeting - Friday, August 28, 2026
+> Open Meeting - Friday, September 11, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-### The feed's one public comment deadline names the project it belongs to.
+### The feed carries workshops alongside its meetings and its deadlines.
 
-> Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+> Workshop - Tuesday, September 22, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
@@ -861,6 +871,18 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 ### The feed now carries a second public comment deadline, on a different project.
 
 > Public Comment Deadline - Thursday, September 17, 2026
+
+Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+
+### The feed names the project each comment deadline belongs to, which is the part a reader can act on.
+
+> Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+
+Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+
+### The feed names the project behind its second comment deadline too.
+
+> Public Comment Deadline - Thursday, September 17, 2026 Project 59550 NA ( Open To Public )
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
@@ -1693,7 +1715,7 @@ Source (primary_official): https://webapi.legistar.com/v1/cityoflaredo/events/13
 
 # Harlingen Waterworks System board approves an effluent water supply agreement with RGV Property LLC for a proposed data center
 
-The City of Harlingen Waterworks System board of directors approved a water supply agreement with RGV Property LLC for a supply of effluent water. The water is intended to serve a proposed data center on land outside the Harlingen city limits in Cameron County. General Manager Roy Rodriguez said the company would not use drinking water. The pricing terms reported include a rate per thousand gallons of effluent water and a minimum annual payment tied to average daily volume.
+The City of Harlingen Waterworks System board of directors approved a water supply agreement with RGV Property LLC for a supply of effluent water. The water is intended to serve a proposed data center on land outside the Harlingen city limits in Cameron County. The board's own minutes carry the vote, 6 yeas and 0 nays. The trustees took it after consulting their attorney in executive session on what the agenda calls the RGVPG Data Center reclaimed water agreement. Roy Rodriguez, the interim general manager at that meeting, is recorded as the officer who recommended approval. The minutes call it a supply of effluent water.
 
 - Topic: land-water-and-permitting
 - Decided by: City of Harlingen Waterworks System Board of Directors (special-district)
@@ -1704,7 +1726,7 @@ The City of Harlingen Waterworks System board of directors approved a water supp
 - Public access: Public meeting
 - Take part: https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-03
 
 ## Dates
 
@@ -1719,28 +1741,42 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The board's effluent water supply agreement still stands and the utility's position that the plant will not draw drinking water is still the one on the record.
 - 2026-08-29 · Checked and unchanged. The water supply agreement the board approved still stands, and the water it sells is still effluent from the wastewater plant rather than drinking water. The volume parameters the board set are unchanged.
 - 2026-09-02 · The current standing of the effluent supply agreement is unconfirmed.
+- 2026-09-03 · The board's own posted minutes were read this run and they confirm the agreement. The minutes record a vote of 6 yeas and 0 nays on a water supply agreement with RGV Property LLC for a supply of effluent water. The board took it after an executive session on what the agenda calls the RGVPG Data Center reclaimed water agreement. The item had rested on a news article whose page serves nothing a quote can be read from. Four claims now cite the minutes, and the record no longer depends on that article for the vote. The minutes give Roy Rodriguez as interim general manager at that meeting, and the summary said general manager, which is corrected.
+- 2026-09-03 · Two claims were removed rather than re-stamped. They rested on a yahoo.com article page, which answers 200 at half a megabyte and serves nothing a quote can be read from. They carried an August 14th fetch date under an item stamped verified today. The board's own minutes carry neither the general manager's drinking water remark nor the minimum annual payment figure. Neither claim moved to a readable source and neither is published any more. The summary's closing sentence now says what the minutes say.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The Waterworks general manager said the data center would not use the city's drinking water.
-
-> They're not going to use drinking water — we are aligned with the thought we've got to take care of our precious amount of water.
-
-Source (journalism): https://www.yahoo.com/news/articles/proposed-harlingen-data-center-4-213100276.html
-
-### The agreement sets a minimum annual payment tied to average daily effluent volume.
-
-> $1.242 million a year if it averages more than 4.6 million gallons per day at the end of a year.
-
-Source (journalism): https://www.yahoo.com/news/articles/proposed-harlingen-data-center-4-213100276.html
-
-### The board's contracting party for the effluent supply is RGV Property LLC.
+### The board's own minutes name the counterparty and what the board agreed to supply.
 
 > a supply of effluent water
 
-Source (journalism): https://www.yahoo.com/news/articles/proposed-harlingen-data-center-4-213100276.html
+Source (primary_official): https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
+
+### The minutes record the recommendation the board acted on and name the agreement.
+
+> Roy Rodriguez recommended the Board approve a Water Supply Agreement and RGV Property LLC for a supply of effluent water as described in the contract.
+
+Source (primary_official): https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
+
+### The board took the matter into executive session under the open meetings statute, and the agenda item names the data center.
+
+> to consult with attorney pursuant to TX Gov't Code Section 551.071(2) regarding the RGVPG Data Center reclaimed water agreement.
+
+Source (primary_official): https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
+
+### The minutes record how the trustees split on the motion.
+
+> Motion to Approve: 6 Yeas 0 Nays
+
+Source (primary_official): https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
+
+### The minutes give the title the general manager held at that meeting.
+
+> Roy Rodriguez, Interim General Manager
+
+Source (primary_official): https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
 
 ---
 
@@ -5536,7 +5572,7 @@ Source (primary_official): https://capitol.texas.gov/BillLookup/History.aspx?Leg
 
 # NSF funds a Rice laboratory where a model designs the experiment and a robot runs it, bookable from anywhere
 
-The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials. AI plans the experiments and the equipment executes them. The University of Texas at Austin is a collaborating institution. Rice describes the point as access rather than speed, putting capability that existed in a handful of laboratories behind a login a researcher anywhere in the country can use. The university's own framing is unusually careful about the limit, saying responsible AI should complement a researcher's judgment rather than replace it.
+The National Science Foundation award to William Marsh Rice University funds READINESS, a cloud accessible robotic laboratory for synthesizing electronic and quantum materials. AI plans the experiments and the equipment executes them. The award record calls the result a self-driving laboratory and says it is meant to run with minimal human intervention. SUNY Poly and the University of Texas at Austin are named alongside Rice. What the award promises is access rather than speed alone, putting capability that existed in a handful of laboratories behind tools a researcher elsewhere can reach.
 
 - Topic: research-and-science
 - Decided by: National Science Foundation (federal)
@@ -5548,7 +5584,7 @@ The National Science Foundation award to William Marsh Rice University funds REA
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2607553.json
 
-- Last checked: 2026-08-29
+- Last checked: 2026-09-03
 
 ## Dates
 
@@ -5561,6 +5597,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Admitted. The award record and the university's own account agree on what the platform is and who may use it.
 - 2026-08-29 · Checked and unchanged. The award to Rice still funds a laboratory where a model proposes the next experiment and a robot runs it. The university still frames the machine as complementing a researcher's judgment rather than replacing it. The platform is still described as one researchers elsewhere will be able to reach.
 - 2026-09-02 · The award is still listed as active on the funding agency's own record, with its dates and program unchanged. The university's own announcement could not be read, so what it says about the laboratory is unconfirmed.
+- 2026-09-03 · The award is still active on the funding agency's own record, with its start date, its end date and its program unchanged. The university's own announcement refuses this project's clients outright, a browser user agent included. Three claims that rested on it now cite the award record, which carries the same substance and answers. One sentence has come out of the summary with them. The university's framing of responsible AI as complementing rather than replacing a researcher's judgment appears nowhere in the award record, so the record no longer prints it.
 
 ## Evidence
 
@@ -5572,23 +5609,23 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
-### Rice states what the platform is for.
+### The award record states what the platform is meant to be.
 
-> seeks to create a remote research platform that minimizes trial-and-error experimentation and enhances access to advanced research infrastructure for electronic and quantum materials synthesis.
+> The platform will function as a "self-driving laboratory" capable of autonomously designing, testing, and improving material-synthesis processes with minimal human intervention.
 
-Source (primary_official): https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory
+Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
-### The university states a limit on what the model is for.
+### The award names the institutions working on it together.
 
-> Responsible AI should complement researchers' capabilities rather than replace their judgment.
+> Rice University, SUNY Poly, and the University of Texas at Austin
 
-Source (primary_official): https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory
+Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
-### The stated goal is a laboratory researchers elsewhere can use.
+### The award states that what is built is meant to be reachable from elsewhere.
 
-> Our goal is to create a laboratory that researchers from across the country can use to produce advanced electronic and quantum materials on demand.
+> create remotely accessible tools that will broadly benefit researchers, students, technologists, and industry partners nationwide
 
-Source (primary_official): https://news.rice.edu/news/2026/accelerating-discovery-rice-receives-nearly-20m-nsf-award-ai-powered-materials-laboratory
+Source (primary_official): https://api.nsf.gov/services/v1/awards/2607553.json?printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,fundProgramName,abstractText
 
 ---
 
@@ -6330,7 +6367,7 @@ The Senate Committee on Economic Development carries an interim charge on prepar
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-03
 
 ## Dates
 
@@ -6344,6 +6381,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Admitted. The committee's own page carries the interim charge on preparing the Texas workforce for artificial intelligence. The Legislature's upcoming meetings listing sets the hearing for September 3rd in hearing room E1.016. The listing marks it a public hearing rather than a work session.
 - 2026-08-30 · The September 3rd hearing on artificial intelligence and the Texas workforce is still on the calendar, with nothing filed against it since.
 - 2026-09-02 · The September 3rd hearing is canceled and the Legislature's own listing carries the word on its row. The same listing now sets the committee for September 22nd, 2026 in the same hearing room. The listing points to a notice for the reason, at a path this project does not fetch, so no reason is published here.
+- 2026-09-03 · Today is the day the canceled hearing would have been held and the Legislature's listing still carries the cancellation on its own row. The committee stands for Tuesday, September 22nd, 2026 in hearing room E1.016, and the listing marks it a public hearing. The row for September 3rd no longer prints the type and the room it printed before the cancellation, so the record now takes those from the September 22nd row.
 
 ## Evidence
 
@@ -6367,9 +6405,9 @@ Source (primary_official): https://senate.texas.gov/cmte.php?c=525
 
 Source (primary_official): https://senate.texas.gov/cmte.php?c=525
 
-### The Legislature's own upcoming meetings listing carries the committee, the date, the time, the room and that it is a public hearing.
+### The Legislature's own upcoming meetings listing gives the September 22nd meeting its type and its room.
 
-> Thursday, September 3, 2026 9:00 AM Economic Development Type: Public Hearing Location: E1.016 (Hearing Room)
+> Tuesday, September 22, 2026 9:00 AM Economic Development Type: Public Hearing Location: E1.016 (Hearing Room)
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
@@ -6618,5 +6656,336 @@ Source (primary_official): https://www.ercot.com/mktrules/issues/NOGRR289
 > Extension for LCL Cooling Load Ride-Through Compliance
 
 Source (primary_official): https://www.ercot.com/mktrules/issues/NOGRR289
+
+---
+
+# Austin City Council takes up a resolution to amend the land code for data centers
+
+A resolution on the Austin City Council's August 27th, 2026 agenda directs staff to begin amendments to City Code Title 25, the Land Development Code. The amendments would establish land uses, site development regulations and development processes for data center use in certain zoning districts. It also directs work on business regulations and permit requirements for data center operations. The item carries file number 26-2329 and no fiscal impact. The city's own legislative record still shows the item as agenda ready with no vote recorded against it, so nothing here says the council has acted.
+
+- Topic: data-centers
+- Decided by: Austin City Council (city)
+- Where: Travis
+- Statistical areas:
+  - Austin-Round Rock-San Marcos, TX
+- Status: pending
+- Public access: Public meeting
+- Take part: https://www.austintexas.gov/council/2026/20260827-reg
+
+- Last checked: 2026-09-03
+
+## Dates
+
+- 2026-08-05 · filed: Item introduced, per the city's legislative record
+- 2026-08-27 · hearing: Regular council meeting the item was agendaed for
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-09-03 · Admitted. The resolution directing staff to begin land development code amendments for data center use is on the council's August 27th, 2026 agenda with file number 26-2329. The city's own legislative record still carries the item as agenda ready with no date of passage, so nothing here says the council has acted.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The resolution directs staff to begin land development code amendments establishing where a data center may operate.
+
+> Approve a resolution initiating amendments to City Code Title 25 (Land Development Code) and other provisions of City Code or regulations necessary to establish land uses, site development regulations, and development processes, for data center use in certain zoning districts and to develop business regulations and permit requirements applicable to data center operations.
+
+Source (primary_official): https://www.austintexas.gov/council/2026/20260827-reg
+
+### The same item carries no fiscal impact on the city's own record.
+
+> Funding: This item has no fiscal impact.
+
+Source (primary_official): https://webapi.legistar.com/v1/austintexas/matters/28845
+
+### The city's legislative record gives the item's file number.
+
+> "MatterFile":"26-2329"
+
+Source (primary_official): https://webapi.legistar.com/v1/austintexas/matters/28845
+
+### The city's legislative record still carries the item as agenda ready with no date of passage.
+
+> "MatterStatusName":"Agenda Ready"
+
+Source (primary_official): https://webapi.legistar.com/v1/austintexas/matters/28845
+
+---
+
+# Dallas Public Safety Committee sets a briefing on the police Flock plate reader program
+
+The Dallas City Council Public Safety Committee has put an update on the Dallas Police Department's Flock automated license plate reader program on its September 8th, 2026 agenda. The item was introduced August 13th, 2026 and is a briefing rather than an action item. The chief of police is listed as a presenter alongside a major and a sergeant from operational technology. A briefing is where a council committee is told what a system is doing. It is the point at which a resident can hear the department describe the program in a public room.
+
+- Topic: surveillance-and-policing
+- Decided by: Dallas City Council Public Safety Committee (city)
+- Where: Dallas
+- Statistical areas:
+  - Dallas-Fort Worth-Arlington, TX
+- Status: open
+- Public access: Public meeting
+- Take part: https://webapi.legistar.com/v1/cityofdallas/matters/25839
+
+- Last checked: 2026-09-03
+
+## Dates
+
+- 2026-08-13 · filed: Briefing item introduced, per the city's legislative record
+- 2026-09-08 · hearing: Public Safety Committee meeting the briefing is set for
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-09-03 · Admitted. The Public Safety Committee's September 8th, 2026 agenda carries an update on the police department's Flock automated license plate reader program. The city's record marks it a briefing rather than an action item and lists the chief of police among the presenters.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The committee's agenda item is an update on the police department's plate reader program.
+
+> Dallas Police Flock Automated License Plate Reader Program Update - September 2026
+
+Source (primary_official): https://webapi.legistar.com/v1/cityofdallas/matters/25839
+
+### The city's record carries a MatterAgendaDate of September 8th, 2026.
+
+> 2026-09-08
+
+Source (primary_official): https://webapi.legistar.com/v1/cityofdallas/matters/25839
+
+### The city's record gives the item a MatterTypeName of BRIEFING ITEMS, so it is a briefing rather than an action the committee votes on.
+
+> BRIEFING ITEMS
+
+Source (primary_official): https://webapi.legistar.com/v1/cityofdallas/matters/25839
+
+### The chief of police is listed among the presenters.
+
+> Daniel C. Comeaux, Chief of Police, Dallas Police Department
+
+Source (primary_official): https://webapi.legistar.com/v1/cityofdallas/matters/25839
+
+---
+
+# The University of Texas at Austin requires every course syllabus to state its AI policy
+
+The Office of the Executive Vice President and Provost requires a Course Artificial Intelligence Policy in every syllabus every semester. The policy has to name one of three designations. AI is permitted or prohibited or partially permitted. An instructor who allows it has to write down what is permissible and how a student must disclose use. The university names the requirement one of two new syllabus statements for Fall 2026. That term's classes began August 24th, 2026. The rule on generative AI is therefore set course by course rather than university wide. A student can hold two syllabi with two different answers in the same week.
+
+- Topic: health-and-education
+- Decided by: The University of Texas at Austin, Office of the Executive Vice President and Provost (state-agency)
+- Where: Travis
+- Statistical areas:
+  - Austin-Round Rock-San Marcos, TX
+- Status: decided
+- Public access: Closed
+- Take part: https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
+
+- Last checked: 2026-09-03
+
+## Dates
+
+- 2026-08-24 · effective: First day of Fall 2026 classes, the term the requirement names
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-09-03 · Admitted. The provost's office requires a course artificial intelligence policy in every syllabus every semester. The policy has to name AI permitted or prohibited or partially permitted. The university names it one of two new required statements for Fall 2026. That term's classes began August 24th, 2026.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### Every course has to carry an artificial intelligence policy in its syllabus every semester.
+
+> All courses must include a Course Artificial Intelligence Policy in the course syllabi at the time each syllabus is published each semester.
+
+Source (primary_official): https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
+
+### The policy has to pick one of three designations.
+
+> The Artificial Intelligence Policy must include the University's Course AI Policy Syllabus Statement below and designate whether AI is 1) permitted, 2) prohibited, or 3) partially permitted in each course.
+
+Source (primary_official): https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
+
+### An instructor allowing AI has to write the conditions down and say how a student discloses use.
+
+> If an instructor permits or partially permits use of AI in their courses, they must also provide written instructions on what is permissible and what is not and how they expect students to disclose such use.
+
+Source (primary_official): https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
+
+### The university names the requirement as new for the Fall 2026 term.
+
+> There are two new required statements for Fall 2026 syllabi
+
+Source (primary_official): https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
+
+### The registrar dates the first day of that term's classes.
+
+> August 24 First day of classes
+
+Source (primary_official): https://registrar.utexas.edu/calendars/26-27
+
+---
+
+# Federal commodities regulator opens comment on trading derivatives whose underlying commodity is compute
+
+The Commodity Futures Trading Commission published a request for comment on August 21st, 2026 asking what a designated contract market should weigh before listing derivatives with compute as the underlier. The document ties the supply side of a compute price to the cost of deploying and operating data centers, and to the cost of chips and energy. Comments are open until October 20th, 2026. The notice names no state.
+
+- Topic: defense-and-federal
+- Decided by: Commodity Futures Trading Commission (federal)
+- Where: Statewide
+- Status: open
+- Public access: Comment window open
+- Comment closes: 2026-10-20
+- Take part: https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
+
+- Last checked: 2026-09-03
+
+## Dates
+
+- 2026-08-21 · comment opens: Request for comment published in the Federal Register
+- 2026-10-20 · comment closes: Comment deadline stated in the notice
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-09-03 · Admitted. The commodities regulator's request for comment on listing derivatives with compute as the underlier is open until October 20th, 2026. The notice ties the supply side of a compute price to the cost of deploying and operating data centers.
+- 2026-09-03 · The summary asserted that Texas carries a large share of the data centers such a market would price. No claim here supports that. No national denominator was fetched either, so the sentence is gone. The ERCOT flag read false, which a reader saw as a plain 'No. It sits outside the ERCOT interconnection.' The notice is nationwide, concerns a derivatives market rather than a facility, and names no state. It is neither inside nor outside a Texas interconnection. The flag is unset, which suppresses the question rather than answering it wrongly.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The comment window closes on October 20th, 2026.
+
+> Comments must be received on or before October 20, 2026.
+
+Source (primary_official): https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
+
+### The commission ties the supply side of a compute price to the cost of running data centers.
+
+> On the supply side, it reflects the cost of deploying and operating data centers, which in turn depends on the cost of chips, energy and other inputs.
+
+Source (primary_official): https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
+
+### The document names what it is asking about.
+
+> Request for Comment on the Listing of Compute Derivatives Contracts
+
+Source (primary_official): https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
+
+---
+
+# The Texas A&M System's shared AI supercomputer enters the world list at number 66
+
+VISION is the Texas A&M University System's shared AI computing platform. The June 2026 TOP500 list credits it to the System rather than to one campus and records a measured Linpack result of 34.82 petaflops against a theoretical peak of 51.16. The System says the machine entered the list at number 66 in the world. It is 95 nodes carrying 760 graphics processors over 110,960 cores, housed at the West Campus Data Center at Texas A&M University. The System attributes 45 million dollars for advanced computing infrastructure to its Board of Regents and names no meeting date for that approval. The chancellor says the machine gives the System's 12 universities and eight state agencies computing power most institutions could never build alone. The machine's own documentation says something narrower. It gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected to begin in the coming weeks and starts with institutions that have finished technical integration.
+
+- Topic: research-and-science
+- Decided by: The Texas A&M University System (state-agency)
+- Where: Statewide
+- Status: decided
+- Public access: Write to the decider
+- Take part: https://vision.tamus.edu/testing/
+
+- Last checked: 2026-09-03
+
+## Dates
+
+- 2025-01-01 · effective: Installation year recorded on the TOP500 entry
+- 2026-06-01 · ordered: June 2026 TOP500 list the machine entered
+
+## How this decision moved
+
+One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+
+- 2026-09-03 · Admitted. The System's shared AI machine is on the June 2026 TOP500 at number 66 with a measured 34.82 petaflops against a 51.16 peak. Its own documentation gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected in the coming weeks and starts with institutions that have finished technical integration.
+
+## Evidence
+
+Every fact above rests on one of these. The words are the source's own.
+
+### The TOP500 entry's Site field names the Texas A&M University System rather than one campus.
+
+> Texas A&M University System
+
+Source (primary_official): https://top500.org/system/180452/
+
+### The list records the measured result and the theoretical peak side by side.
+
+> Linpack Performance (Rmax) 34.82 PFlop/s Theoretical Peak (Rpeak) 51.16 PFlop/s
+
+Source (primary_official): https://top500.org/system/180452/
+
+### The list records the core count and the processor those cores sit in.
+
+> Cores: 110,960 Processor: Xeon Platinum 8480C 56C 3.8GHz
+
+Source (primary_official): https://top500.org/system/180452/
+
+### The System states where the machine placed on that list.
+
+> Ranked No. 66 in the world, VISION now stands in elite company among national laboratories, major research institutions and global technology leaders.
+
+Source (primary_official): https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/
+
+### The System names the building the machine sits in and says who it is meant to serve.
+
+> The system is housed at the West Campus Data Center at Texas A&M University and will support researchers across the A&M System.
+
+Source (primary_official): https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/
+
+### The System attributes the money to its governing board and gives no date for the approval.
+
+> The ranking validates the A&M System's $45 million investment in advanced computing infrastructure, approved by the Board of Regents.
+
+Source (primary_official): https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/
+
+### The chancellor names who the machine is for.
+
+> VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone.
+
+Source (primary_official): https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/
+
+### The machine is 95 nodes carrying 760 graphics processors.
+
+> The supercomputer features 95 NVIDIA DGX nodes, 760 NVIDIA H200 graphics processing units and high-speed storage designed for data-intensive work.
+
+Source (primary_official): https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/
+
+### The machine's own documentation names the phase it is in.
+
+> Current Status: Controlled Beta
+
+Source (primary_official): https://docs.vision.tamus.edu/
+
+### The same documentation states the present access rule.
+
+> Access is invitation-only and approved via TAMUS governance
+
+Source (primary_official): https://docs.vision.tamus.edu/
+
+### The project's own site states who it will eventually be open to.
+
+> VISION will be available to researchers of all disciplines across the entire Texas A&M System.
+
+Source (primary_official): https://vision.tamus.edu/
+
+### The testing page states when wider access starts and which institutions go first.
+
+> General Availability onboarding is expected to begin in the coming weeks, beginning with institutions that have completed the technical integration requirements necessary to access VISION services.
+
+Source (primary_official): https://vision.tamus.edu/testing/
+
+### The project's own use cases page gives the size of one screening run on the machine.
+
+> large-scale virtual screening of approximately 10.4 million compounds
+
+Source (primary_official): https://vision.tamus.edu/usecases/
 
 ---

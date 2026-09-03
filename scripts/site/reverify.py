@@ -112,6 +112,16 @@ PDF_HINT = (".pdf",)
 _TAG = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)
 _ANY = re.compile(r"<[^>]+>")
 _WS = re.compile(r"\s+")
+# A FEED, SNIFFED OFF THE PAYLOAD. The second flatten pass is right for a document that escapes
+# its HTML inside an XML text node and wrong for one that displays escaped markup to a reader, so
+# it is gated on this rather than run on everything. Sniffed rather than taken from a content type
+# header, because a server that mislabels its feed is exactly the case this has to survive.
+_FEED = re.compile(r"<\?xml\b|<(rss|feed|rdf:RDF)\b", re.I)
+
+
+def _looks_like_feed(text: str) -> bool:
+    """True when the first bytes look like RSS, Atom or a bare XML document."""
+    return bool(_FEED.search(text[:2048]))
 
 
 def flatten(raw: bytes) -> str:
@@ -121,11 +131,41 @@ def flatten(raw: bytes) -> str:
     fails on any quote whose words are split by a tag, which is most of them once a source puts
     a case number in a `<strong>`. Tags out, entities decoded, whitespace collapsed, and the
     comparison happens on what a reader would have seen.
+
+    A FEED ESCAPES ITS HTML INSIDE ITS XML, AND ONE PASS CANNOT READ THAT (2026-09-03).
+    An RSS description is markup carried as text, so the bytes hold
+    `&lt;strong&gt;Project&lt;/strong&gt; 58482`. The strip runs first and finds no tag to
+    strip, the unescape runs second and turns it into a literal `<strong>Project</strong> 58482`
+    sitting in the flattened text. The quote a reader would take off that feed, `Project 58482`,
+    can therefore NEVER match, however many runs re-check it.
+
+    Measured on the PUCT calendar feed, which this record tracks as an item of its own. Three
+    claims across `tx-2026-0024` and `tx-2026-0002` reported as unreadable on every run for that
+    reason alone, and a phase handed a permanent false alarm learns to skim the report.
+
+    So the strip and the unescape run twice ON A FEED, and the second pass removes the markup the
+    first revealed.
+
+    ONLY ON A FEED, and the first version of this ran the second pass on everything. Its docstring
+    said the cost was "a missed match rather than a false one, which is the cheaper of the two
+    errors here", and that was wrong in the direction that matters. A review bot on PR 252 named
+    the case: an ordinary page that DISPLAYS escaped markup as visible content, a code sample
+    reading `<strong>Project</strong> 58482`. One pass flattens it to exactly what a reader sees,
+    and a claim quoting that is correctly confirmed. Two passes flatten it to `Project 58482`, so
+    the reader's own quote goes MISSING and a claim quoting a string that is nowhere on the page
+    gets CONFIRMED instead. The second is a false verification stamp, which is the expensive error
+    and the one this file exists to prevent.
+
+    The second pass is what a feed needs and only a feed needs, because only a feed puts its HTML
+    inside an XML text node. So it is gated on the payload looking like one, sniffed off the first
+    bytes rather than trusted from a header a server can get wrong.
     """
     t = raw.decode("utf-8", "replace")
-    t = _TAG.sub(" ", t)
-    t = _ANY.sub(" ", t)
-    t = html.unescape(t)
+    passes = 2 if _looks_like_feed(t) else 1
+    for _ in range(passes):
+        t = _TAG.sub(" ", t)
+        t = _ANY.sub(" ", t)
+        t = html.unescape(t)
     # A non-breaking space is a space to a reader and a different codepoint to `in`.
     t = t.replace(" ", " ").replace("’", "'").replace("“", '"').replace("”", '"')
     return _WS.sub(" ", t).strip()
@@ -494,6 +534,40 @@ def self_test() -> int:  # noqa: C901
     it = item("tx-1", "https://a/", quote)
     f, _, _ = check([it], {}, server({"https://a/": page}))
     ok("a quote split by a tag is still found", all(x["state"] == UNCHANGED for x in f), str(f))
+
+    # A FEED THAT ESCAPES ITS HTML INSIDE ITS XML (2026-09-03). The PUCT calendar feed carries
+    # its descriptions as escaped markup, so one strip-then-unescape pass leaves literal tags in
+    # the flattened text and a reader's own quote can never match. Three claims in this record
+    # reported unreadable on every run for that alone.
+    feed = (b"<rss><channel><item><title>Public Comment Deadline</title>"
+            b"<description>&lt;strong&gt;Project&lt;/strong&gt; 58482&lt;br /&gt;"
+            b"&lt;strong&gt;Commissioners Hearing Room 7-100&lt;/strong&gt;</description>"
+            b"</item></channel></rss>")
+    ok("escaped markup inside a feed does not survive into the text",
+       "<strong>" not in flatten(feed), flatten(feed))
+    ok("...so a quote a reader would take off the feed is found",
+       "Project 58482" in flatten(feed), flatten(feed))
+    ok("...and a quote that is genuinely not there is still not found",
+       "Project 99999" not in flatten(feed), flatten(feed))
+
+    # AND AN ORDINARY PAGE THAT SHOWS ESCAPED MARKUP TO A READER KEEPS IT (2026-09-03, PR 252).
+    # The second pass is right for a feed and wrong here. Run on everything it deleted text a
+    # reader can see AND confirmed a quote that is nowhere on the page, which is a false
+    # verification stamp rather than a missed one.
+    # IT CARRIES ITS OWN NAME rather than rebinding `page`. Written as `page` it silently
+    # replaced the shared fixture every later case reads, and eleven cases below then ran
+    # against a page that does not carry `quote` at all. The suite crashed on the first one
+    # that indexed a key an unstamped item never grows, which is luck rather than a check.
+    shown = (b"<html><body><p>The docket line reads "
+             b"&lt;strong&gt;Project&lt;/strong&gt; 58482 in the source.</p></body></html>")
+    ok("escaped markup a READER SEES survives on an ordinary page",
+       "<strong>Project</strong> 58482" in flatten(shown), flatten(shown))
+    ok("...and the stripped form, which is on no page, is NOT confirmed",
+       "Project 58482" not in flatten(shown), flatten(shown))
+    ok("a feed is told from a page by its own first bytes, not by a header",
+       _looks_like_feed(feed.decode()) and not _looks_like_feed(shown.decode()))
+    ok("...and the shared fixture still carries the quote the later cases look for",
+       quote in flatten(page), flatten(page))
 
     print("\nand each outcome is told apart from the others")
     # AUTHORITY IS EARNED. With no record of ever having found this quote here, the honest

@@ -1,0 +1,83 @@
+{
+ "weighted_score": 6.602,
+ "judges": [
+  6.01,
+  6.85,
+  7.11
+ ],
+ "spread": 1.1,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.28,
+   "judges": [
+    6.5,
+    6.4,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.4,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    7.4,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.0,
+   "weight": 0.18,
+   "judges": [
+    6.0,
+    7.2,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.6,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.6,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "Slide 7 attributes c15 to the wrong publisher and cites the wrong source for it. The dek reads 'The same page says the beta is being finalized as they prepare for general availability.' The antecedent of 'the same page' is docs.vision.tamus.edu, which is also the frame's only source stamp. claims.json puts c15 at https://vision.tamus.edu/testing/ and c11/c12/c20 at https://docs.vision.tamus.edu/. Nothing in the record supports the docs page saying the beta is being finalized, so the frame presents an unverified statement as verified and points a reader who wants to check it at a page that does not carry it. copy.json's S7 claim list is [c12, c11, c20] with no c15, so no gate ever saw the sentence attached to a claim. This is the round-3 c19 fault reintroduced one slide over, on the deck's turn frame."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Slide 7 attributes c15 to the wrong publisher and cites the wrong source for it. The dek reads 'The same page says the beta is being finalized as they prepare for general availability.' The antecedent of 'the same page' is docs.vision.tamus.edu, which is also the frame's only source stamp. claims.json puts c15 at https://vision.tamus.edu/testing/ and c11/c12/c20 at https://docs.vision.tamus.edu/. Nothing in the record supports the docs page saying the beta is being finalized, so the frame presents an unverified statement as verified and points a reader who wants to check it at a page that does not carry it. copy.json's S7 claim list is [c12, c11, c20] with no c15, so no gate ever saw the sentence attached to a claim. This is the round-3 c19 fault reintroduced one slide over, on the deck's turn frame."
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "note": "the judges disagree by 1.10, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds": 4
+}

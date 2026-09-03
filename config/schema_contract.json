@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "required": [
     "id",
     "title",
@@ -64,7 +64,8 @@
       "string"
     ],
     "geography.on_ercot": [
-      "bool"
+      "bool",
+      "null"
     ],
     "geography.statewide": [
       "bool"

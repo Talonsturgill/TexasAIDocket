@@ -46,6 +46,12 @@ SEED = REPO_ROOT / "seed" / "docket_seed.json"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from docket_build import _resolver          # noqa: E402  the same gazetteer the gate reads
+from docket_build import DECIDER_TYPES      # noqa: E402  the gate's own vocabulary, not a copy
+# IMPORTED RATHER THAN COPIED, 2026-09-03. A mapping table whose targets are typed here would be
+# a second definition of the record's vocabulary, and this repo's oldest recurring defect is a
+# rule stated in two places with nothing checking they agree. The self-test holds every mapping
+# target to this set, so a word the record drops turns this file red instead of turning a batch
+# away with a confusing reason.
 
 # The researcher's word on the left, the record's on the right. Anything not listed passes
 # through and fails the gate loudly, which is correct: a source type nobody has thought about
@@ -67,6 +73,15 @@ SOURCE_TYPE_MAP = {
 DECIDER_TYPE_MAP = {
     "utility": "special-district",
     "university": "state-agency",
+    # ADDED 2026-09-03, after this pair held two of one run's four admissions on the first pass.
+    # A researcher writing up a council vote types the name of the BODY, which is a city council,
+    # and one writing up a federal notice types federal-agency. Neither is in DECIDER_TYPES and
+    # both are unambiguous, so the record's own words are `city` and `federal`. This is the
+    # mechanical normalisation this file exists for and it costs a run a round trip to discover.
+    # Only the two that were actually measured. A speculative mapping is a guess about a word
+    # nobody wrote, and it would silently flatten a distinction the next batch might mean.
+    "city-council": "city",
+    "federal-agency": "federal",
 }
 
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
@@ -349,6 +364,23 @@ def _self_test() -> int:
     it7, n7 = normalise(uni, "tx-2026-0105", "2026-08-14")
     check("a decider type outside the vocabulary is mapped and reported",
           it7["decider"]["type"] == "state-agency" and any("decider.type" in x for x in n7))
+
+    # THE TWO THAT HELD HALF OF ONE RUN'S ADMISSIONS, 2026-09-03. A researcher writing up a
+    # council vote types the body's own name, and one writing up a federal notice types
+    # federal-agency. Neither is in DECIDER_TYPES, and both cost that run a promote-and-repair
+    # round trip before the batch would go in.
+    for typed, want in (("city-council", "city"), ("federal-agency", "federal")):
+        row = json.loads(json.dumps(base))
+        row["decider"] = {"name": "N", "type": typed}
+        got, notes = normalise(row, "tx-2026-0106", "2026-08-14")
+        check(f"decider type {typed!r} is mapped to {want!r} and reported",
+              got["decider"]["type"] == want and any("decider.type" in x for x in notes))
+
+    # AND THE MAP MAY ONLY CONTAIN WORDS THE RECORD ACTUALLY CARRIES. A mapping whose target is
+    # not in the vocabulary moves a batch from one rejection to a different one.
+    check("every mapping target is a real decider type",
+          all(v in DECIDER_TYPES for v in DECIDER_TYPE_MAP.values()),
+          str(sorted(set(DECIDER_TYPE_MAP.values()) - set(DECIDER_TYPES))))
 
     print("\ndocket_ingest self-test: " +
           ("all passed" if not fails else f"{len(fails)} FAILED"))

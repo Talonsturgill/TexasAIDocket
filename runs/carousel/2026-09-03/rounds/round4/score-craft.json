@@ -1,0 +1,44 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.4,
+   "why": "Slide 2's fill ends at 0.6806 of the span, which is 34.82/51.16 exactly, graduations run continuously across both regions, the origin tick and the zero-to-peak label are present. But the frame that got the most work is now the deck's plainest: bands 0.206/0.221/0.149, the lowest craft density of the nine. Slide 6's cut wall and lit lip are real at 2160 and GONE at 432, so the repair lands where the reader is not. Slide 8's seats are about 15 percent oversize against the leaves in both axes, so 'the same leaf module' does not hold as drawn, and the frame has 224px of bare cream in its middle. Slide 9 draws the same object two ways in one frame: the seated leaf's pins are domed posts standing ON the rail and the open stations are flat ellipses sunk INTO it, two projections at two heights 58px apart. Slide 5's fibre is confirmed uniform. Seven of nine frames run one type skeleton. Genuinely made: slide 7's receding room, slide 3's lattice, slide 4's curl, slide 1's crossing gratings."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.4,
+   "why": "Every numeral I read on a frame maps to a claim declared on that frame in copy.json. The absence discipline is genuinely strong and is drawn as well as written. AGAINST: the storyboard now describes three frames that did not render. Slide 2's block still specifies a 21-step wedge with two cut windows and a focal of 'the left window, about 5 percent'; there is no wedge and no window on that frame. Slide 5's block still says the fibre crowds toward the torn edge. Slide 7's dek is one sentence in the plan and two in the render. None reaches a reader so none is a published-claim fault, but the file that is supposed to be the record of what shipped is wrong about three frames on the same day it withdrew a fourth wrong claim from itself."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.2,
+   "why": "The argument is legible and it is fair rather than a gotcha: slide 4 gives the chairman his own words, slide 7 credits the System for publishing its own limit, slide 9 names the deciding body, the mechanism and the gap. A reader finishes knowing what happened and where to look. AGAINST: no county, no city, no place anywhere, honestly handled and still costing a Texas reader the thing this product usually gives them. The next step is institutional, not personal."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.6,
+   "why": "The nine move and the turn at 7 is real. But the storyboard's arc prose is wrong about its own newly-correct array three lines above it: it calls the junction INTO 7 the largest in the deck when the array gives 13.1 in and 75.8 out. Slide 3 is the deck's own nominated cut, and slide 2 now sits between the cover and the machine as a chart rather than as an object."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "'Not one of them is punched.' is the best line in the deck and it is a caption and a drawing at once. No boosterism, no doom, no first person, straight quotes throughout, and the colon and the semicolon are both inside verbatim quotations, which brand.yaml's exemption covers explicitly. AGAINST: nothing in nine frames sounds like it was written from Texas rather than about it. The register's own no-place constraint removed this deck's usual source of regional specificity and nothing replaced it."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Transmitted light with no key and no cast shadow on any frame is a genuine structural first against thirteen priors that all carry a directional key. AGAINST: the deck's most-seen colour, raw #F2EFD6, sits within a few dE of deck 13's bond which shipped YESTERDAY, and near deck 12's lint. Three consecutive decks on effectively the same cream. Deck 10's ledger entry recorded this exact fault class and asked for a perceptual distance check as Proposal 9; it still does not exist, so a judge finding it by eye is now the third time. And seven of nine frames run one type skeleton, so the drawings rotate and the layout does not."
+  }
+ ],
+ "weighted_score": 6.85,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Generate every measurable field in the storyboard from the render report rather than typing it, and fail the build when a dossier field contradicts the frame, because this run corrected the one number a judge named and left four of the identical kind standing in the same file."
+}

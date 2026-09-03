@@ -1,0 +1,122 @@
+{
+ "run": "2026-09-03",
+ "deck": 14,
+ "note": "Every number on a frame or in the caption that is not simply a quoted figure. The three refusals are recorded in out/2026-09-03/compute.py rather than here, because a figure the deck declined to compute has no phrase to declare.",
+ "refused": [
+  "twelve plus eight, because they are different kinds of institution and no source adds them",
+  "760 divided by 95, because it asserts a uniform per node allocation no source states",
+  "any rate over the two compound counts, because about a week is not a duration this record can turn into one"
+ ],
+ "aggregates": [
+  {
+   "phrase": "Two pages",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c7",
+    "c13"
+   ],
+   "note": "One claim per page. c7 is the System newsroom and c13 is the project's own front page, and the deck counts those two documents and no others."
+  },
+  {
+   "phrase": "Two System pages",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c7",
+    "c13"
+   ],
+   "note": "The caption counts the same two documents the deck does."
+  },
+  {
+   "phrase": "One reads",
+   "kind": "count",
+   "value": 1,
+   "from_claims": [
+    "c13"
+   ],
+   "note": "One of those two pages is then quoted, and it is the project's own front page."
+  },
+  {
+   "phrase": "95 NVIDIA DGX nodes",
+   "kind": "count",
+   "value": 95,
+   "quoted_from": "c6",
+   "quote": "The supercomputer features 95 NVIDIA DGX nodes, 760 NVIDIA H200 graphics processing units and high-speed storage designed for data-intensive work."
+  },
+  {
+   "phrase": "110,960 cores",
+   "kind": "count",
+   "value": 110960,
+   "quoted_from": "c5",
+   "quote": "Cores: 110,960 Processor: Xeon Platinum 8480C 56C 3.8GHz"
+  },
+  {
+   "phrase": "45 million dollars",
+   "kind": "count",
+   "value": 45,
+   "quoted_from": "c8",
+   "quote": "The ranking validates the A&M System's $45 million investment in advanced computing infrastructure, approved by the Board of Regents."
+  },
+  {
+   "phrase": "12 universities",
+   "kind": "count",
+   "value": 12,
+   "quoted_from": "c9",
+   "quote": "VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone."
+  },
+  {
+   "phrase": "eight state agencies",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone.",
+   "note": "The count left the chancellor's quotation when the verbatim span was narrowed to keep the first person out of the article page's running prose, so it is stated by the frame now and declared here. c9's own sentence carries it."
+  },
+  {
+   "phrase": "12 UNIVERSITIES",
+   "kind": "count",
+   "value": 12,
+   "quoted_from": "c9",
+   "quote": "VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone."
+  },
+  {
+   "phrase": "8 STATE AGENCIES",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone."
+  },
+  {
+   "phrase": "34.82 petaflops",
+   "kind": "count",
+   "value": 34.82,
+   "quoted_from": "c4",
+   "quote": "VISION posted 34.82 petaflops of measured performance."
+  },
+  {
+   "phrase": "10.4 million compounds",
+   "kind": "count",
+   "value": 10.4,
+   "quoted_from": "c18",
+   "quote": "large-scale virtual screening of approximately 10.4 million compounds",
+   "note": "The first comment prints c18 verbatim. The figure is the source's own and the deck computes nothing from it."
+  },
+  {
+   "phrase": "10 million compounds",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c19",
+   "quote": "In one drug discovery project, Texas A&M researchers screened more than 10 million compounds in about a week.",
+   "note": "The first comment prints c19 verbatim. The two counts are never joined, which is recorded in `refused` above and now stated on slide 5 itself."
+  },
+  {
+   "phrase": "eight state agencies access",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "VISION gives our 12 universities and eight state agencies access to computing power that most institutions could never build alone.",
+   "note": "The same count as it appears inside c9's verbatim sentence in the first comment, which carries the whole quotation while slide 6 now carries only its distinctive clause."
+  }
+ ]
+}

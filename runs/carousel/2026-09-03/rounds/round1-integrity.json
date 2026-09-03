@@ -1,0 +1,46 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.5,
+      "why": "The transmitted-light register is genuinely made, not assembled: slide 3's 95 backlit apertures in steep oblique, slide 5's enlargement of that same aperture with fibre crowding at the torn edge, and slide 1's two rotated sheets with a real double-density agreement region all have a true light and a true dark, and slide 2 positions its two ticks at 68.06 percent of the ramp (x=1000 of a 170-to-1390 span), which is computed.json's measured_share_of_peak_pct doing structural work rather than decorating. Against that, roughly half the deck is flat ground carrying type. Slide 7's lower two thirds is a near-flat near-black field (machine_qa: top 9% / mid 9% / bottom 6% of cells carrying craft, the lowest in the deck) and the promised 1100 grain marks are invisible at 432px. Slide 8 has a dead band of about a third of the frame between the course of eight and the registration rail. Slide 9's bottom half is mono text plus one tick rule. Three top-loaded warns (slides 1, 2, 7). And slide 4 carries an outright rendering defect: the dek's second line overflowed the sepia curl onto bare cream ground and kept its light fill, so it renders at roughly 1:1 contrast and half-clipped by the torn edge."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.20,
+      "score": 5.5,
+      "why": "I transcribed every numeral and every one traces. 66 (c2), 34.82 and 51.16 (c3, c4), 180452 (the c1/c3 system URL), 95 and 760 (c6), 110,960 and H200 (c5, c6), 45 (c8), 10.4 million (c18), more than 10 million (c19), 12 and 8 (c9), and the caption's 66, 34.82, twelve and 'Nine slides' (aggregates.json). All seven refusals hold in the pixels: no 'fastest university' framing anywhere (the deck prints TARLETON.EDU and NEWS.TAMUS.EDU rather than the URL slugs, which both carry that phrase), no county or city on any frame or in the caption, nothing says anyone can get on today, no date beside the Board of Regents, no '20' or 'twenty', no per-node figure and no aperture carries a child, and slide 5 prints 10.4 million against VISION.TAMUS.EDU and more than 10 million against TARLETON.EDU with nothing joining them. Slide 7's colon and semicolon are both verbatim (c12, c20 character for character). Slide 8's absence names its document and c11 does state a rule with no numeral. Four defects against that. FIRST, slide 4's 'No meeting date is published for that approval.' is invisible at full size, gone entirely in the thumb and the contact sheet, so the deck's own disclosure exists only in the DOM (see hard_fails). SECOND, the caption states 'Onboarding begins with the institutions that have finished the technical integration.' where c16 says 'is expected to begin' -- slide 9's dek keeps 'expected', the caption drops it, and that is the deck's own fourth structural law (filled is stated, outlined is expected) broken on the one surface a reader sees first. THIRD, slide 5 prints '10.4 million' where c18 says 'approximately 10.4 million', while preserving 'more than' on the other side, so the two hedges are handled inconsistently. FOURTH, slide 6 is the thesis frame and it is the only one of nine with no source rule: the two 'will' fragments are trimmed off c7 and c13 mid-sentence, set without quotation marks, and attributed to nobody, and the dossier's own risk mitigation ('the two separate publisher attributions are there to prevent' a read as a rendering repeat) is not on the frame."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.5,
+      "why": "A reader learns what happened (entered TOP500 at 66), who decided (Board of Regents per the System, access approved through TAMUS governance), and the honest present state (invitation-only, controlled beta, 'How many researchers can use it today is not published'). The rubric's 9 wants a county, a body and a deadline, and the record legitimately holds none of the first and third, which the deck answers by naming the body and printing 'No date is published for it' on slide 9. But the stake for an ordinary Texan is institutional rather than personal, the next step reduces to waiting for your campus to be onboarded, and the caption's closing question is addressed to universities rather than to the reader. The 'who decided' precision is also weakened on the frame where it matters most, because slide 4 visibly reads 'The System says its Board of Regents approved 45 million dollars' with its caveat rendered invisible."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "There is a genuine turn at slide 7, where the bed goes out and the deck's six frames of teaching that backlight equals a promise pay off, and it runs opposite to every prior inversion. Slide 8 states the absence and slide 9 lands on a real next step with the filled leaf seated on the pins against the outlined one. The cover earns a swipe. Cutting against it: slides 2 and 3 are inventory back to back and the run itself names slide 3 as the cuttable frame, and slide 6 is the thesis arriving at position 6 after slide 1's hook already delivered it, so the middle sags before the turn."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "On register and free of boosterism, and the deck refuses the 'nation's fastest' line its own sources lead with, which is the honest choice. 'Count the holes. There are 95.' and 'Read the verb.' are lines a person wrote. But regional specificity is close to zero because the record forbids naming a place, so the copy is institutional throughout and the only Texas in the deck sits inside a quotation. The house rule 'straight quotes only' is broken in the rendered strings: copy.json shows U+201C/U+201D on slide 4's hook and slide 6's dek, and U+2019 in 'SYSTEM'S NEWSROOM', 'System's newsroom' and 'chancellor's'. That looks engine-level rather than this deck's invention, which is why I did not stop the deck on it, but it is a rule the file says never bends."
+    },
+    {
+      "name": "variety",
+      "weight": 0.10,
+      "score": 8.0,
+      "why": "The deck's strongest criterion. Transmitted light with no key light and zero cast shadows on nine frames is a register the run's own artwork audit says none of the thirteen priors holds, the inversion at slide 7 runs dark-in-a-mid-deck where every prior inversion is bright-in-a-dark-deck, and the value band in the low forties sits between the priors' 15.6 to 27.7 and their three light decks at 82 to 87. Palette is diazo blueline and sepia with no black and no university colour. One familiar move: the mono source rule and star footer furniture is the standard house layout on eight of nine frames."
+    }
+  ],
+  "weighted_score": 6.51,
+  "hard_fails": [
+    "Unfinished frame, slide 4. The dek's second sentence, 'No meeting date is published for that approval.', is laid out (copy.json S4 dek carries it, so every DOM-reading gate saw it) but is rendered in the light fill on bare cream ground below the sepia sheet's torn edge, at roughly 1:1 contrast and with the torn edge clipping the tops of the glyphs. It is a faint ghost at 2160px, and in final/thumbs/slide-04-thumb.png and final/contact_sheet.png it is not there at all: the frame ends on 'The System says its Board of Regents approved 45 million dollars for advanced computing infrastructure.' and then the footer. The dossier's acceptance item for slide 4 says \"the dek says 'No meeting date is published', because the record found none\", and the storyboard names slides 4 and 8 as the two frames carrying the fairness that stops the deck reading as a gotcha. Half of slide 4's fairness reached no reader. This is GATE_LESSONS' own recurring shape, a text node the layout reports and the ink does not carry, and machine_qa returned 0 fails on this slide."
+  ],
+  "ship": false,
+  "one_sentence_fix": "Add a per-text-node ink check to qa.py that samples the rendered pixels beneath every laid-out text node and FAILS below a stated contrast ratio, because copy.json, numeral_lint, the dossier acceptance list and machine QA all read the DOM and every one of them passed a line of published copy that renders invisible."
+}
