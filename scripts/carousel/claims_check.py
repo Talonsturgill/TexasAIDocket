@@ -88,6 +88,82 @@ SOURCE_TYPES = {
     "data",                 # a dataset or an API response
 }
 
+# ---------------------------------------------- ONE VOCABULARY, STATED TWICE (2026-09-03)
+#
+# `scripts/site/docket_build.py` carries its OWN `SOURCE_TYPES` and it is not this one.
+#
+#     deck                record              measured 2026-09-03
+#     primary_official    primary_official    284 deck claims, 463 record claims
+#     primary_corporate   primary_corporate    48 deck claims,   6 record claims
+#     secondary_reported  journalism           71 deck claims,  80 record claims
+#     data                absent                5 deck claims,   0 record claims
+#
+# The same news report needs two different words depending on which gate is reading, so every
+# claim that moves from a deck into the record is renamed by hand. It has cost two runs already.
+# On 2026-08-18 the fact-checker returned `journalism` and this gate refused it, which is one of
+# the four renames in this file's own header. On 2026-09-03 three TOP500 claims went in as `data`
+# and had to be rewritten `primary_official` before the record would take them.
+#
+# WHICH SET IS RIGHT IS NOT THIS FILE'S DECISION. `scripts/site/**` belongs to another lane, so an
+# upgrade may READ it and may not change it, and reconciling a shared vocabulary from one side
+# only would produce a THIRD statement of the same thing. That is the repo's oldest recurring
+# shape and half a fix of it is worse than none.
+#
+# What this file can do is stop the divergence growing quietly and unaided. The record's set is
+# IMPORTED rather than copied, every word here that the record does not hold has to be DECLARED
+# below with what somebody renames it to, and an undeclared one fails the gate. This is the shape
+# `config/parity_map.yaml` uses for the same problem: a divergence is data with a reason attached,
+# never a silence.
+#
+# AND THE DECLARATION EXPIRES ON ITS OWN. If the record's vocabulary later takes one of these
+# words, the divergence is over, the entry is reported as stale, and this table cannot become a
+# permanent excuse for two files disagreeing. That is also the day somebody makes the two sided
+# fix, and it is what tells them the other half is here.
+RECORD_ONLY = {
+    "secondary_reported": "renamed `journalism` at admission. Two words, one meaning, and neither "
+                          "file owns the other's",
+    "data": "the record has no word for a dataset at all. The 2026-09-03 run wrote "
+            "`primary_official` for a TOP500 ranking table and that choice is not settled",
+}
+
+
+def record_source_types() -> set[str]:
+    """`docket_build.SOURCE_TYPES`, imported. Never a copy kept here.
+
+    A copy is the defect this block is about. A missing module RAISES rather than returning an
+    empty set, because a divergence check that quietly passes when it cannot see the other side
+    reports clean on exactly the day it is needed.
+    """
+    import importlib
+    site = REPO_ROOT / "scripts" / "site"
+    if str(site) not in sys.path:
+        sys.path.insert(0, str(site))
+    return set(importlib.import_module("docket_build").SOURCE_TYPES)
+
+
+def vocabulary_problems(record: set[str] | None = None) -> list[str]:
+    """Every undeclared divergence between this taxonomy and the record's, both directions."""
+    record = record_source_types() if record is None else record
+    out: list[str] = []
+    for word in sorted(SOURCE_TYPES - record):
+        if word not in RECORD_ONLY:
+            out.append(
+                f"source_type {word!r} is in this gate's taxonomy and not in "
+                f"docket_build.SOURCE_TYPES ({sorted(record)}), and RECORD_ONLY does not declare "
+                f"it. A claim carrying it cannot enter ledger/docket.json without somebody "
+                f"renaming it by hand. Declare it with what it is renamed to, or use a word the "
+                f"record already holds")
+    for word in sorted(RECORD_ONLY):
+        if word not in SOURCE_TYPES:
+            out.append(f"RECORD_ONLY declares {word!r} and this gate's taxonomy no longer carries "
+                       f"it. Delete the declaration")
+        elif word in record:
+            out.append(
+                f"RECORD_ONLY declares {word!r} as a divergence and docket_build.SOURCE_TYPES now "
+                f"holds it, so there is no divergence left. Delete the entry. This is the half of "
+                f"the two sided fix that lives in this file")
+    return out
+
 ID_RE = re.compile(r"^c\d+$")
 # A claim id has to be stable and referenceable, because slides and captions cite it.
 
@@ -289,6 +365,18 @@ def run(path: Path) -> int:
         print("  `claims_check.py --template` prints a valid skeleton to work from.")
         return 1
     print(f"claims: clean ({n} verified claim(s), {len(doc.get('rejected') or [])} rejected)")
+    # ONE VOCABULARY, STATED TWICE. Named at claims time rather than discovered at admission,
+    # where it has already cost two runs a repair pass. See RECORD_ONLY above.
+    counts: dict[str, int] = {}
+    for c in (doc.get(CONTAINER) or []) if isinstance(doc.get(CONTAINER), list) else []:
+        t = c.get("source_type")
+        if t in RECORD_ONLY:
+            counts[t] = counts.get(t, 0) + 1
+    if counts:
+        print("claims_check: this file uses source_type words ledger/docket.json does not hold, "
+              "so anything admitted to the record is renamed by hand")
+        for t in sorted(counts):
+            print(f"  note  {counts[t]} claim(s) carry {t!r}, {RECORD_ONLY[t]}")
     return 0
 
 
@@ -414,6 +502,43 @@ def self_test() -> int:
            bool(spec_problems(md.replace("secondary_reported", "journalism"))))
         ok("...and a spec whose example fails the gate is CAUGHT",
            bool(spec_problems(md.replace('"url":', '"source_url":'))))
+
+    # ---- ONE VOCABULARY, STATED TWICE (2026-09-03) ----------------------------------------
+    # The record's set is read from `docket_build`, which is another lane's file, so this is a
+    # real second artifact rather than a fixture written beside the detector.
+    rec = record_source_types()
+    ok("the record's source taxonomy is imported from docket_build, never copied here",
+       "journalism" in rec and rec != SOURCE_TYPES, str(sorted(rec)))
+    ok("...and every divergence between the two is declared today",
+       not vocabulary_problems(rec), "; ".join(vocabulary_problems(rec))[:300])
+    ok("...with the two words this run measured named in the declaration",
+       set(RECORD_ONLY) == SOURCE_TYPES - rec, str(sorted(set(RECORD_ONLY))))
+
+    # BOTH DIRECTIONS, FORCED RED. A declaration table nobody can make fail is a table that
+    # becomes a rubber stamp, which is the one way this fix could be worse than the defect.
+    _saved_types, _saved_only = set(SOURCE_TYPES), dict(RECORD_ONLY)
+    try:
+        SOURCE_TYPES.add("dataset_api")
+        p = vocabulary_problems(rec)
+        ok("a NEW deck word the record does not hold and nobody declared FAILS",
+           any("dataset_api" in x and "RECORD_ONLY does not declare" in x for x in p), str(p))
+        SOURCE_TYPES.discard("dataset_api")
+        # The day somebody makes the two sided fix in the daily lane, this half must not be
+        # left behind saying the vocabularies still disagree.
+        p = vocabulary_problems(rec | {"data"})
+        ok("...and a declaration the record has since ADOPTED is reported as stale",
+           any("'data'" in x and "no divergence left" in x for x in p), str(p))
+        RECORD_ONLY["retired_word"] = "no longer in the taxonomy"
+        p = vocabulary_problems(rec)
+        ok("...and a declaration for a word this taxonomy dropped is reported as stale",
+           any("retired_word" in x and "Delete the declaration" in x for x in p), str(p))
+    finally:
+        SOURCE_TYPES.clear()
+        SOURCE_TYPES.update(_saved_types)
+        RECORD_ONLY.clear()
+        RECORD_ONLY.update(_saved_only)
+    ok("...and the fixtures put the module constants back exactly as they were",
+       SOURCE_TYPES == _saved_types and RECORD_ONLY == _saved_only)
 
     if failures:
         print(f"\nclaims_check self-test: {failures} FAILED", file=sys.stderr)

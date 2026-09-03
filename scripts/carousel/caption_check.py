@@ -399,9 +399,27 @@ def post_shape_problems(text: str) -> list[str]:
                 f"because a link suppresses reach and the sources go in the first comment")
     if linkedin_rule("ends_with", str) == "engagement_question" and not body.rstrip().endswith("?"):
         tail = body.rstrip().split("\n")[-1][-70:]
+        # THE GATE NAMES THE COLLISION IT CAUSES (2026-09-03). This rule and the closing move
+        # menu in CAPTION_CRAFT.md are two halves of one decision, and for seven consecutive runs
+        # nothing said so. `ends_with` was wired on 2026-08-25; every caption from that day to
+        # 2026-09-02 closed on "ask the one question the decision leaves open", which is the only
+        # one of the doctrine's five closes that is interrogative on its face. The room read a
+        # file telling it to rotate through four moves this gate refuses, hit the refusal, and
+        # swapped to the one that passes. Seven times, each run rediscovering it from scratch.
+        #
+        # So the message carries the resolution rather than only the rule. A run that reads this
+        # spends thirty seconds instead of a round, and it is pointed at the repair the doctrine
+        # actually wants, which is to keep the substance and change the form.
         problems.append(
             f"the caption does not end on a question, and brand.yaml sets linkedin_post.ends_with "
-            f"to engagement_question. It ends {tail!r}")
+            f"to engagement_question. It ends {tail!r}. THE FORM IS FIXED HERE AND THE SUBSTANCE "
+            f"IS NOT. brand.yaml is human lane, so the interrogative ending is not a caption room "
+            f"decision. knowledge/carousel/CAPTION_CRAFT.md holds the closing SUBSTANCES and four "
+            f"of the five have an interrogative rendering, so put this close in a question rather "
+            f"than swapping to a different move. Only the last sentence of the body is read, so a "
+            f"close may set the fact up first. The one substance that cannot survive this rule is "
+            f"stopping on the strongest fact, and getting that back is a brand.yaml change a "
+            f"maintainer makes")
 
     return problems
 
@@ -1002,6 +1020,26 @@ def self_test() -> int:
     _noq = _ok.replace("Is that worth it?", "That is what the record says.")
     ok("...and a caption that does not end on a question FAILS",
        any("ends_with" in x for x in post_shape_problems(_noq)), str(post_shape_problems(_noq))[:120])
+
+    # THE COLLISION THIS RULE CAUSES, and the resolution the message now names (2026-09-03).
+    #
+    # Seven consecutive captions closed on the one interrogative move of the doctrine's five,
+    # starting the day this rule was wired. The gate was right every time and said only the rule,
+    # so each run rediscovered the reason. These three cases hold the message to being TRUE as
+    # well as helpful, which is the part a nice paragraph would otherwise skip.
+    ok("...and the message names the doctrine the room has to reconcile this with",
+       any("CAPTION_CRAFT.md" in x and "SUBSTANCE" in x for x in post_shape_problems(_noq)),
+       str(post_shape_problems(_noq))[:200])
+    _stop = _ok.replace("Is that worth it?", "The council voted it down that night.")
+    ok("...a close that stops on the strongest fact FAILS, which is the collision itself",
+       any("ends_with" in x for x in post_shape_problems(_stop)),
+       str(post_shape_problems(_stop))[:120])
+    # A message prescribing a repair the gate still refuses would be worse than no message, so
+    # the prescribed repair is asserted to actually clear it. The substance is kept and only the
+    # LAST sentence carries the form, which is the whole claim the message makes.
+    _kept = _ok.replace("Is that worth it?", "It votes again. Does that settle it?")
+    ok("...while keeping the substance and putting the last sentence in the question passes",
+       not post_shape_problems(_kept), str(post_shape_problems(_kept))[:200])
 
     ok("empty copy is clean rather than a crash", not check(""))
     ok("a violation reports as an actionable sentence, not a code",
