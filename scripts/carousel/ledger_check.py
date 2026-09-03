@@ -36,9 +36,12 @@ WHAT IT CHECKS
    run actually computed. Prose beside a number is where the recut goes stale.
 4. No ledger carries two entries for one date. A writer that appends produces a duplicate the
    moment it re-runs, and `recent` windows then read the stale one last.
+5. No entry USES a move its own exclusion window covered. Checks 1 and 2 proved the lists were
+   well formed and derived correctly, and nothing asked the one question those lists exist for.
+   See THE EXCLUSIONS WERE DERIVED AND NEVER ENFORCED, below.
 
-It reads the DOCTRINE for the menus rather than keeping its own copy, because a gate with its own
-copy of a list is the defect it is here to catch.
+It reads the DOCTRINE for the menus AND for the windows rather than keeping its own copy, because
+a gate with its own copy of a list is the defect it is here to catch.
 """
 from __future__ import annotations
 import argparse, json, re, sys
@@ -59,18 +62,125 @@ COUNTING_FIGURES = ("restricted_count", "declined_count", "total_count", "stated
 WORDS = "zero one two three four five six seven eight nine ten eleven twelve".split()
 
 
+def section(text: str, name: str) -> str:
+    m = re.search(rf"^## {re.escape(name)}\n(.*?)(?=^## |\Z)", text, re.S | re.M)
+    return m.group(1) if m else ""
+
+
 def menus(text: str) -> dict[str, set[str]]:
     """Opening moves, structures and closing moves, read off the doctrine's own markdown."""
-    def section(name: str) -> str:
-        m = re.search(rf"^## {re.escape(name)}\n(.*?)(?=^## |\Z)", text, re.S | re.M)
-        return m.group(1) if m else ""
     opens = {m.group(1).strip().lower()
-             for m in re.finditer(r"^\|\s*\*\*(.+?)\*\*\s*\|", section("Opening moves"), re.M)}
+             for m in re.finditer(r"^\|\s*\*\*(.+?)\*\*\s*\|", section(text, "Opening moves"),
+                                  re.M)}
     structs = {m.group(1).strip().lower()
-               for m in re.finditer(r"^-\s*\*\*(.+?)\.\*\*", section("Structures"), re.M)}
+               for m in re.finditer(r"^-\s*\*\*(.+?)\.\*\*", section(text, "Structures"), re.M)}
     closes = {m.group(1).strip().rstrip(".").lower()
-              for m in re.finditer(r"^-\s+(.+)$", section("Closing moves"), re.M)}
+              for m in re.finditer(r"^-\s+(.+)$", section(text, "Closing moves"), re.M)}
     return {"opening_move": opens, "structure": structs, "closing_move": closes}
+
+
+# --------------------------------------------- THE EXCLUSIONS WERE DERIVED AND NEVER ENFORCED
+#
+# 2026-09-03. Check 2 above proves the three `*_recent` lists agree with the entries they derive
+# from. Nothing ever asked the question those lists exist to answer: did a shipped entry USE a
+# move its own list said was off the table. Replayed against the ledger as it stands, EIGHT
+# entries did, past a gate that was green on every one of them.
+#
+#   2026-08-30  opening_move 'the object'   one run after 2026-08-29 shipped 'the object'
+#   2026-08-30  structure    'Zoom out'     one run after 2026-08-29 shipped 'Zoom out'
+#   2026-08-26 through 2026-09-02, six entries, all closing on 'ask the one question the
+#              decision leaves open', which CAPTION_CRAFT.md forbids two runs running
+#
+# THE CLOSING STREAK HAD A SECOND CAUSE AND IT WAS NOT DRIFT. `config/brand.yaml` fixes the
+# closing FORM to a question, four of the doctrine's five closes are declarative, and the ending
+# rule was wired on 2026-08-25, which is the first day of the streak. A gate forced it. That half
+# is fixed in CAPTION_CRAFT.md, which now separates the substance from the form and states which
+# substance the form costs. This half is the rotation, and it is enforced here.
+#
+# THE WINDOWS ARE READ OFF THE DOCTRINE and never typed in this file, for exactly the reason the
+# menus are. A gate holding its own copy of a rule stated somewhere else is the defect this file
+# was written to catch, and it would be a poor place to introduce a fresh one.
+WINDOW_RX = re.compile(r"the last\s+(?:(\w+)\s+)?runs?['\N{RIGHT SINGLE QUOTATION MARK}]", re.I)
+FIELD_SECTION = {"opening_move": "Opening moves",
+                 "structure": "Structures",
+                 "closing_move": "Closing moves"}
+
+# IT BINDS FROM THE DAY IT SHIPPED AND NOT BEFORE, and the reason is not politeness to old work.
+# `captions.json` is append only and belongs to the `daily` lane, so a violation already written
+# into it can never be cleared by anybody. A gate that is permanently red with no action that
+# clears it is a gate somebody eventually switches off, and it takes the real findings with it.
+# The eight entries above are RE-DERIVED and PRINTED as a note instead, so the history is
+# evidence rather than silence. Same call and the same reasoning as `shipped_check`'s
+# CONSTRUCTION_SINCE and as the light deck cap two functions down.
+#
+# This run's own caption was written and gated before this check existed, so its entry is the
+# last one outside the window. Every entry after it is judged.
+EXCLUSIONS_BIND_AFTER = "2026-09-03"
+
+
+def windows(text: str) -> dict[str, int]:
+    """How many runs each move is off the menu for, READ OFF THE DOCTRINE.
+
+    "The last six runs' opening moves are off the menu" is six. "The last run's closing substance
+    is off the menu" is one, which is what CAPTION_CRAFT.md means by never the same phrasing two
+    runs running.
+
+    A section that no longer says raises rather than defaulting. A window this gate guessed would
+    be a second source of truth for a rule that lives in the doctrine, and a check that quietly
+    falls back to a number of its own is the shape that ships a green report over an unenforced
+    rule.
+    """
+    out: dict[str, int] = {}
+    for field, name in FIELD_SECTION.items():
+        m = WINDOW_RX.search(section(text, name))
+        if not m:
+            raise ValueError(
+                f"{DOCTRINE}'s '{name}' section no longer states how many runs a move is off the "
+                f"menu for, so this gate cannot enforce it. Restore the sentence rather than "
+                f"letting the window be guessed here")
+        word = (m.group(1) or "one").lower()
+        if word not in WORDS:
+            raise ValueError(
+                f"{DOCTRINE}'s '{name}' section says the last {word!r} runs and that is not a "
+                f"number this gate can read. Write it as a word, the way the other sections do")
+        out[field] = WORDS.index(word)
+    return out
+
+
+def canon(value: str, names: set[str]) -> str:
+    """A stored move, resolved to the doctrine's own name for it.
+
+    THE COMPARISON CANNOT BE STRING EQUALITY. `on_menu` deliberately accepts the head of a menu
+    sentence, so one run may store 'stop on the strongest fact' and the next 'stop on the
+    strongest fact, with no wrap-up at all' and mean the identical move. Comparing the raw strings
+    would let an exclusion be cleared by lengthening a prefix, which is the 2026-08-25 freehand
+    name defect wearing a different hat. Anything that resolves to no single menu entry is
+    returned normalised and is caught by the menu check instead.
+    """
+    v = norm(value)
+    if v in names:
+        return v
+    hits = [n for n in names if len(v) >= 12 and n.startswith(v)]
+    return hits[0] if len(hits) == 1 else v
+
+
+def exclusion_violations(entries: list[dict], menu: dict[str, set[str]],
+                         win: dict[str, int]) -> list[tuple[str, str, str, str]]:
+    """Every entry that used a move its own window covered, oldest first.
+
+    Each is (date, field, the move as stored, the date it was last used).
+    """
+    out = []
+    for i, e in enumerate(entries):
+        for field, names in menu.items():
+            here = canon(e.get(field, ""), names)
+            if not here:
+                continue
+            for prev in reversed(entries[max(0, i - win[field]):i]):
+                if canon(prev.get(field, ""), names) == here:
+                    out.append((e["date"], field, str(e.get(field)), prev["date"]))
+                    break
+    return out
 
 
 def norm(s: str) -> str:
@@ -99,7 +209,7 @@ def on_menu(value: str, names: set[str]) -> bool:
 PRONOUN_ONE = re.compile(r"\b(any|each|every|no|some|this|that|the|which|than|only)\s+one\b", re.I)
 
 
-def check_captions(cap: dict, menu: dict[str, set[str]]) -> list[str]:
+def check_captions(cap: dict, menu: dict[str, set[str]], doctrine: str) -> list[str]:
     problems: list[str] = []
     entries = sorted(cap.get("entries", []), key=lambda e: e["date"])
     seen: dict[str, int] = {}
@@ -137,6 +247,29 @@ def check_captions(cap: dict, menu: dict[str, set[str]]) -> list[str]:
                 f"entries derive {expect!r}"
                 + (f". {extra!r} appears in no entry" if extra else "")
                 + (f". {missing!r} is in an entry and is not listed" if missing else ""))
+
+    # ---- 5. THE EXCLUSIONS, ENFORCED RATHER THAN MERELY DERIVED. See the block above.
+    try:
+        win = windows(doctrine)
+    except ValueError as exc:
+        problems.append(f"ledger_check cannot read an exclusion window. {exc}")
+        return problems
+    hits = exclusion_violations(entries, menu, win)
+    old = [h for h in hits if h[0] <= EXCLUSIONS_BIND_AFTER]
+    if old:
+        print(f"  note  {len(old)} entr(y/ies) used a move their own exclusion window covered, "
+              f"before this check existed on {EXCLUSIONS_BIND_AFTER}. captions.json is append "
+              f"only and is the daily lane's, so these can't be cleared and are not failed. "
+              f"They are the reason this check exists: "
+              + "; ".join(f"{d} {f} {v!r}, last used {p}" for d, f, v, p in old))
+    for date, field, value, prev in hits:
+        if date > EXCLUSIONS_BIND_AFTER:
+            problems.append(
+                f"captions.json {date} {field} {value!r} was used {prev}, inside the window "
+                f"{DOCTRINE} puts it off the menu for ({win[field]} run(s)). That list is handed "
+                f"to the caption room BEFORE it writes. Spend a different one rather than "
+                f"relabelling this one, which is how three freehand names reached this ledger on "
+                f"2026-08-25")
     return problems
 
 
@@ -217,7 +350,7 @@ def check_topics(top: dict, figures: dict | None) -> list[str]:
 
 def run(cap: dict, top: dict, figures: dict | None, doctrine: str,
         art: dict | None = None) -> list[str]:
-    out = check_captions(cap, menus(doctrine)) + check_topics(top, figures)
+    out = check_captions(cap, menus(doctrine), doctrine) + check_topics(top, figures)
     if art is None:
         f = REPO_ROOT / "ledger" / "carousel" / "artwork.json"
         art = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
@@ -255,13 +388,13 @@ def self_test() -> int:
                 closing_moves_recent=["name what happens next and when",
                                       "point at the record, plainly, without a call to action",
                                       "name what is still not public, and how big that is"])
-    ok("a ledger whose lists match its entries passes", not check_captions(good, M),
-       str(check_captions(good, M)))
+    ok("a ledger whose lists match its entries passes", not check_captions(good, M, doc),
+       str(check_captions(good, M, doc)))
 
     # THE 2026-08-25 DEFECT, both directions.
     bad = json.loads(json.dumps(good))
     bad["structures_recent"] = ["zoom out", "zoom in", "clock"]
-    p = check_captions(bad, M)
+    p = check_captions(bad, M, doc)
     ok("a list holding a move that is in no entry FAILS", any("structures_recent" in x for x in p))
     ok("...and the report names the move that appears in no entry",
        any("zoom out" in x and "no entry" in x for x in p), str(p))
@@ -270,14 +403,104 @@ def self_test() -> int:
 
     free = json.loads(json.dumps(good))
     free["entries"][-1]["opening_move"] = "the procedural fact nobody expects"
-    p = check_captions(free, M)
+    p = check_captions(free, M, doc)
     ok("a freehand move name that is on no menu FAILS",
        any("on no" in x and "procedural fact" in x for x in p), str(p))
 
     dup = json.loads(json.dumps(good))
     dup["entries"].append(json.loads(json.dumps(dup["entries"][-1])))
     ok("two entries for one date FAIL",
-       any("2 entries dated" in x for x in check_captions(dup, M)))
+       any("2 entries dated" in x for x in check_captions(dup, M, doc)))
+
+    # ---- 5. THE EXCLUSIONS, ENFORCED (2026-09-03) --------------------------------------
+    # Eight shipped entries used a move their own window covered and this gate was green on
+    # every one. These cases are the proof it goes red now.
+    W = windows(doc)
+    ok("the windows are read off the doctrine rather than typed here",
+       W == {"opening_move": 6, "structure": 3, "closing_move": 1}, str(W))
+    stripped = doc.replace("**The last run's closing substance is off the menu.**", "Rotate.")
+    try:
+        windows(stripped)
+        ok("a doctrine that stops stating a window RAISES rather than guessing one", False)
+    except ValueError as exc:
+        ok("a doctrine that stops stating a window RAISES rather than guessing one",
+           "Closing moves" in str(exc), str(exc))
+
+    def ledger(rows):
+        """A well-formed captions.json from (date, opening, structure, closing) rows."""
+        es = [{"date": d, "opening_move": o, "structure": s, "closing_move": c}
+              for d, o, s, c in rows]
+        prior = es[:-1]
+        return {"entries": es,
+                "opening_moves_recent": [e["opening_move"] for e in prior[-6:]],
+                "structures_recent": [e["structure"] for e in prior[-3:]],
+                "closing_moves_recent": [e["closing_move"] for e in prior[-3:]]}
+
+    OPEN, STRUCT = "the deadline", "ladder"
+    CLOSE_A = "ask the one question the decision leaves open"
+    CLOSE_B = "name what happens next and when"
+    rotates = ledger([("2026-09-10", "the object", "pivot", CLOSE_A),
+                      ("2026-09-11", OPEN, STRUCT, CLOSE_B)])
+    ok("a ledger that rotates every field passes",
+       not check_captions(rotates, M, doc), str(check_captions(rotates, M, doc)))
+
+    # THE 2026-08-30 DEFECT, replayed on dates this check governs.
+    repeat_open = ledger([("2026-09-10", "the object", "pivot", CLOSE_A),
+                          ("2026-09-11", "the object", STRUCT, CLOSE_B)])
+    p = check_captions(repeat_open, M, doc)
+    ok("an opening move repeated inside its six run window FAILS",
+       any("opening_move" in x and "2026-09-11" in x for x in p), str(p))
+    ok("...and the report names the run it was last used on",
+       any("last used 2026-09-10" in x or "used 2026-09-10" in x for x in p), str(p))
+    repeat_struct = ledger([("2026-09-10", "the object", "Zoom out", CLOSE_A),
+                            ("2026-09-11", OPEN, "zoom out", CLOSE_B)])
+    ok("a structure repeated inside its three run window FAILS, whatever its case",
+       any("structure" in x and "2026-09-11" in x
+           for x in check_captions(repeat_struct, M, doc)),
+       str(check_captions(repeat_struct, M, doc)))
+
+    # THE CLOSING STREAK, which ran seven captions long because a gate forced the FORM.
+    repeat_close = ledger([("2026-09-10", "the object", "pivot", CLOSE_A),
+                           ("2026-09-11", OPEN, STRUCT, CLOSE_A)])
+    ok("a closing move repeated the very next run FAILS",
+       any("closing_move" in x and "2026-09-11" in x
+           for x in check_captions(repeat_close, M, doc)),
+       str(check_captions(repeat_close, M, doc)))
+    two_back = ledger([("2026-09-09", "the object", "pivot", CLOSE_A),
+                       ("2026-09-10", "the who", "ledger", CLOSE_B),
+                       ("2026-09-11", OPEN, STRUCT, CLOSE_A)])
+    ok("...while the same close two runs back is inside the doctrine's window and passes",
+       not check_captions(two_back, M, doc), str(check_captions(two_back, M, doc)))
+
+    # AN EXCLUSION MUST NOT BE CLEARABLE BY LENGTHENING A PREFIX. `on_menu` accepts the head of
+    # a menu sentence, so two spellings of one move must still collide.
+    prefix = ledger([("2026-09-10", "the object", "pivot", "stop on the strongest fact"),
+                     ("2026-09-11", OPEN, STRUCT,
+                      "stop on the strongest fact, with no wrap-up at all")])
+    ok("...and a longer prefix of the same close does NOT clear the exclusion",
+       any("closing_move" in x and "2026-09-11" in x for x in check_captions(prefix, M, doc)),
+       str(check_captions(prefix, M, doc)))
+
+    # THE BINDING DATE, both directions. The identical repeat before it is noted, never failed,
+    # because captions.json is append only and belongs to another lane.
+    before = ledger([("2026-08-29", "the object", "pivot", CLOSE_A),
+                     ("2026-08-30", "the object", "pivot", CLOSE_A)])
+    ok("the same repeat BEFORE the binding date is not failed",
+       not check_captions(before, M, doc), str(check_captions(before, M, doc)))
+
+    # THE REAL ARTIFACT, which is the half a fixture cannot supply. A gate proved only against
+    # cases its own author wrote agrees with its author. This asserts the rule finds the eight
+    # violations actually sitting in the shipped ledger.
+    real = REPO_ROOT / "ledger" / "carousel" / "captions.json"
+    if real.exists():
+        got = exclusion_violations(
+            sorted(json.loads(real.read_text(encoding="utf-8"))["entries"],
+                   key=lambda e: e["date"]), M, W)
+        ok("the shipped ledger's own eight violations are all found",
+           len(got) >= 8 and ("2026-08-30", "opening_move") in {(d, f) for d, f, _, _ in got}
+           and ("2026-08-30", "structure") in {(d, f) for d, f, _, _ in got}
+           and len([1 for _, f, _, _ in got if f == "closing_move"]) >= 6,
+           str([(d, f) for d, f, _, _ in got]))
 
     # TOPICS. The eight that stayed after the run recut to seven.
     figs = {"restricted_count": {"value": 7}, "declined_count": {"value": 3},
