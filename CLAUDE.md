@@ -453,33 +453,36 @@ last of those was still wrong on the day after it shipped.
 
 **The diagnosis under all five was wrong, and it was wrong in the same way each time.** Every one
 of them assumed the Bash sandbox was refusing a write into `.git/`, and that `bypassPermissions`
-in `.claude/settings.json` was otherwise carrying the run. What is actually true, measured on
-2026-08-30 rather than reasoned about:
+in `.claude/settings.json` was otherwise carrying the run. What survives of the 2026-08-30
+account, after the correction five paragraphs down:
 
-- **This repo's permission grant is inert in the scheduled runner.** The file is loaded, and the
-  diagnostics log confirms it: four settings sources, no errors. A cloned repository is simply not
-  permitted to grant itself `bypassPermissions`. If it were, cloning any repository would be
-  arbitrary privilege escalation, so this is a security property rather than a bug to route
-  around. The only grant in force came from the host's own launcher settings, which allowed one
-  tool.
-- **The tool does not matter and the path does not matter.** Four writes were tested side by side
-  in one scheduled session and all four prompted: a shell redirect into `.git/ACTOR`, a Write call
-  to the same path, a Write call to an ordinary new file in the working tree, and a shell redirect
-  to that same ordinary file. Every fix before this one assumed the Bash sandbox and the `.git/`
-  path were the cause. Neither is.
+- **A cloned repository may not grant itself `bypassPermissions`.** The file is loaded, and the
+  diagnostics log confirms it: four settings sources, no errors. If a clone could, cloning any
+  repository would be arbitrary privilege escalation, so this is a security property rather than
+  a bug to route around. The only grant in force came from the host's own launcher settings,
+  which allowed one tool. **This is still true and it was never the whole cause.**
 - **A session cannot see that it prompted.** The tool result reads `File created successfully`
   whether it was auto-approved or a human tapped approve on a phone an hour later. That is the
   second half of why this recurred five times: each run verified its own fix, honestly, and was
   wrong. Treat any claim that a run "did not prompt" as unevidenced, because no run can know.
 
+**THE THIRD BULLET WAS WRONG AND IT IS RETRACTED, 2026-09-03.** It said "the tool does not
+matter and the path does not matter", on the strength of four writes tested side by side in one
+scheduled session, two of them to ordinary paths, all four recorded as prompting. **That run
+could not have observed its own result**, by the very bullet directly above it, and it drew a
+conclusion anyway. The path was the only thing that ever mattered. See the section on protected
+directories, which carries the measurement that settled it, and treat those two bullets as
+contradicting each other until you have read it.
+
 **WHAT IS NOT ESTABLISHED, and do not write it down as though it were.** Whether EVERY write
-prompts, or only the first of its kind in a session, or only until a human approves one. Runs have
-shipped here with hundreds of writes, so it is plainly not true that each one stops the run. The
-pattern fitting all six wedged days is that the Phase 0 stamp was the FIRST write each run made,
-and the first gated call is what stops a session with nobody in it. **That is a hypothesis and it
-has not been tested.** The push defect above is the precedent: an earlier attempt committed a
-confident explanation that the next push falsified, and a wrong explanation in this file is worse
-than none, because the next session inherits it and stops looking.
+into a gated directory prompts, or only the first of its kind in a session, or only until a
+human approves one. The FIRST-WRITE hypothesis this paragraph used to carry is also retracted:
+it held that the Phase 0 stamp stopped runs because it was the first write each run made, and it
+was falsified on 2026-09-03 when a run with `bypassPermissions` already in force was stopped by a
+write into `.claude/` that was not its first. The push defect above is the precedent this file
+keeps failing to learn: an earlier attempt committed a confident explanation that the next push
+falsified, and a wrong explanation here is worse than none, because the next session inherits it
+and stops looking. That has now happened twice in this section alone.
 
 **So this fix is necessary and it may not be sufficient.** It removes two to three writes from
 every run, and the branch already carried what they encoded, so it is right on its own terms. But

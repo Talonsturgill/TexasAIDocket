@@ -130,13 +130,27 @@ rules:
 
   # ---------------------------------------------------------------- the run's own plan
   #
-  # A WORKLOG IS NEVER `human`, AT ANY PATH. Owner's instruction, 2026-09-03, in their words:
-  # "i have NOTHING to do with worklog.md that is not human owned EVER". It is the routine's own
-  # scratch plan across contexts, a maintainer never reads it and never writes it, and the one
-  # time the map said otherwise it cost five interrupted runs. Both rules below are here so the
-  # answer cannot depend on which directory a future run puts it in.
-  - path: "**/WORKLOG.md"
+  # A WORKLOG IS NEVER `human`. Owner's instruction, 2026-09-03, in their words: "i have NOTHING
+  # to do with worklog.md that is not human owned EVER". It is a routine's own plan, a maintainer
+  # neither reads it nor writes it, and the one time this map said otherwise it cost five
+  # interrupted runs.
+  #
+  # THE GLOB IS NOT `**/WORKLOG.md`, AND THE FIRST DRAFT OF THIS RULE WAS. Last match wins here,
+  # so a `**` worklog glob sitting below the constitution reached back INTO `.claude/` and handed
+  # `daily` the exact write this whole change exists to stop. A review caught it before it
+  # merged. The addresses are named one by one instead, so widening ownership can never quietly
+  # widen the gated directory with it.
+  #
+  # Nothing under `.claude/` is on this list, deliberately. A file there is not a worklog that
+  # needs an owner, it is a file that must not exist: `protected_path_shape.py` fails the build
+  # if any instruction file so much as names it, and it falls to the `human` default so the
+  # pre-commit hook refuses a routine that creates one anyway. Two mechanisms, because the first
+  # draft of this rule proved one is not enough.
+  - path: "runs/**/WORKLOG.md"
     owner: daily
+    note: >
+      The worklogs archived inside already-shipped run records. They are history rather than a
+      live plan, and they stay `daily` because the run that wrote them owned them.
   - path: "WORKLOG.md"
     owner: daily
     note: >

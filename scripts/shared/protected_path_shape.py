@@ -104,8 +104,14 @@ TOOL_WRITE = re.compile(
 
 # Any imperative to put something into a gated path, however the file is reached. This is the
 # general case the two patterns above are the known instances of.
+#
+# The preposition is OPTIONAL, and that is not a stylistic choice. Requiring one missed the most
+# natural phrasing there is, `Write .claude/settings.json before continuing`, which a review of
+# this gate caught before it shipped. An instruction file does not have to say "into" to stop a
+# run, so the object may follow the verb directly.
 VERB_WRITE = re.compile(
-    rf"(?:write|stamp|put|save|create|append)\s+(?:[^\n]{{0,60}}?\s+)?(?:in|into|to|at)\s+"
+    rf"(?:write|stamp|put|save|create|append)\s+"
+    rf"(?:(?:[^\n]{{0,60}}?\s+)?(?:in|into|to|at)\s+)?"
     rf"{GATED_PATH}",
     re.IGNORECASE,
 )
@@ -180,19 +186,39 @@ def offending_lines(text: str) -> list[tuple[int, str]]:
     return out
 
 
+def instruction_files(root: Path) -> list[Path]:
+    """Every instruction surface, including ones nested under a subdirectory.
+
+    `CLAUDE.md` and `AGENTS.md` are path-scoped: a directory may carry its own copy and a session
+    working in that directory reads it. Globbing only the repository root would leave a nested one
+    unchecked while the required workflow stayed green, so those two are found recursively by
+    NAME. `out/`, `runs/` and `vendor/` are skipped because they are scratch, shipped history and
+    third-party code rather than instructions to a session.
+    """
+    skip = {"out", "runs", "vendor", "node_modules", ".git"}
+    found: set[Path] = set()
+    for glob in INSTRUCTION_GLOBS:
+        found.update(p for p in root.glob(glob) if p.is_file())
+    for name in ("CLAUDE.md", "AGENTS.md"):
+        for p in root.rglob(name):
+            if not p.is_file():
+                continue
+            if any(part in skip for part in p.relative_to(root).parts[:-1]):
+                continue
+            found.add(p)
+    return sorted(found)
+
+
 def scan(root: Path) -> list[tuple[Path, int, str]]:
     found: list[tuple[Path, int, str]] = []
-    for glob in INSTRUCTION_GLOBS:
-        for path in sorted(root.glob(glob)):
-            if not path.is_file():
-                continue
-            text = path.read_text(encoding="utf-8", errors="replace")
-            for line_no, line in offending_lines(text):
-                found.append((path.relative_to(root), line_no, line))
+    for path in instruction_files(root):
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for line_no, line in offending_lines(text):
+            found.append((path.relative_to(root), line_no, line))
     return found
 
 
-CASES = 18
+CASES = 22
 
 
 def self_test() -> int:
@@ -220,6 +246,10 @@ def self_test() -> int:
           "First `touch .claude/WORKLOG.md` so the next context finds it.", True)
     check("settings write",
           "Save the mode into `.claude/settings.json` and carry on.", True)
+    check("bare imperative, no preposition",
+          "Write `.claude/settings.json` before continuing.", True)
+    check("bare imperative on the git dir",
+          "Create .git/ACTOR and carry on.", True)
 
     # The regression that four line-scoped patterns all miss, and the reason RETIRED_PATHS
     # exists. This is CLAUDE.md's own wording, and it is what five runs actually read.
