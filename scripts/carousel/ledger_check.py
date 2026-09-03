@@ -234,9 +234,25 @@ def check_captions(cap: dict, menu: dict[str, set[str]], doctrine: str) -> list[
         return problems
     newest = entries[-1]["date"]
     prior = [e for e in entries if e["date"] < newest]
-    want = {"opening_moves_recent": [e["opening_move"] for e in prior[-6:]],
-            "structures_recent":    [e["structure"]    for e in prior[-3:]],
-            "closing_moves_recent": [e["closing_move"] for e in prior[-3:]]}
+    # EVERY WINDOW COMES FROM THE DOCTRINE, and until 2026-09-03 exactly one of the three did not.
+    # This block read six, three and three off its own line while `windows()` read six, three and
+    # ONE out of CAPTION_CRAFT.md, so the stored `closing_moves_recent` was checked three deep
+    # against a rule that is one deep. The doctrine says the room is handed "the closing substance
+    # from the last one", the gate demanded three, and the ledger duly carried three.
+    #
+    # A review bot on PR 252 found it by reading the two files side by side, which is the only way
+    # it was ever findable: both halves passed, because the number the gate enforced and the number
+    # the gate derived were never compared to each other. That is the defect shape CLAUDE.md names
+    # three separate times, a rule stated in one place and a surface keeping its own copy, and the
+    # cure is the same every time. There is now one source and this block asks it.
+    try:
+        wins = windows(doctrine)
+    except ValueError as exc:
+        problems.append(f"ledger_check cannot read an exclusion window. {exc}")
+        return problems
+    want = {"opening_moves_recent": [e["opening_move"] for e in prior[-wins["opening_move"]:]],
+            "structures_recent":    [e["structure"]    for e in prior[-wins["structure"]:]],
+            "closing_moves_recent": [e["closing_move"] for e in prior[-wins["closing_move"]:]]}
     for key, expect in want.items():
         got = cap.get(key)
         if got != expect:
@@ -249,11 +265,10 @@ def check_captions(cap: dict, menu: dict[str, set[str]], doctrine: str) -> list[
                 + (f". {missing!r} is in an entry and is not listed" if missing else ""))
 
     # ---- 5. THE EXCLUSIONS, ENFORCED RATHER THAN MERELY DERIVED. See the block above.
-    try:
-        win = windows(doctrine)
-    except ValueError as exc:
-        problems.append(f"ledger_check cannot read an exclusion window. {exc}")
-        return problems
+    # It reads the SAME `wins` the derived lists were built from, rather than asking again. Two
+    # reads of one file cannot disagree today, and the point of the block above is that the
+    # derivation and the enforcement are one number rather than two that happen to match.
+    win = wins
     hits = exclusion_violations(entries, menu, win)
     old = [h for h in hits if h[0] <= EXCLUSIONS_BIND_AFTER]
     if old:
@@ -385,11 +400,19 @@ def self_test() -> int:
     good = dict(base,
                 opening_moves_recent=["the plain question", "the before and after", "the deadline"],
                 structures_recent=["question and answer", "clock", "zoom in"],
-                closing_moves_recent=["name what happens next and when",
-                                      "point at the record, plainly, without a call to action",
-                                      "name what is still not public, and how big that is"])
+                # ONE DEEP, because that is what the doctrine's Closing moves section says and
+                # this fixture used to carry three. It passed against a gate that also typed
+                # three, which is the whole of the 2026-09-03 finding: a fixture and the code it
+                # exercises can agree with each other and both disagree with the rule.
+                closing_moves_recent=["name what is still not public, and how big that is"])
     ok("a ledger whose lists match its entries passes", not check_captions(good, M, doc),
        str(check_captions(good, M, doc)))
+    deep = dict(good, closing_moves_recent=[
+        "point at the record, plainly, without a call to action",
+        "name what is still not public, and how big that is"])
+    ok("a closing list deeper than the doctrine's own window FAILS",
+       any("closing_moves_recent" in x for x in check_captions(deep, M, doc)),
+       str(check_captions(deep, M, doc)))
 
     # THE 2026-08-25 DEFECT, both directions.
     bad = json.loads(json.dumps(good))
@@ -427,14 +450,19 @@ def self_test() -> int:
            "Closing moves" in str(exc), str(exc))
 
     def ledger(rows):
-        """A well-formed captions.json from (date, opening, structure, closing) rows."""
+        """A well-formed captions.json from (date, opening, structure, closing) rows.
+
+        Its windows come from `W`, which came from the doctrine. Typed here they would be a third
+        copy of the number, and a fixture holding the wrong one makes a correct gate look broken,
+        which is exactly how these two cases read the moment the gate was fixed.
+        """
         es = [{"date": d, "opening_move": o, "structure": s, "closing_move": c}
               for d, o, s, c in rows]
         prior = es[:-1]
         return {"entries": es,
-                "opening_moves_recent": [e["opening_move"] for e in prior[-6:]],
-                "structures_recent": [e["structure"] for e in prior[-3:]],
-                "closing_moves_recent": [e["closing_move"] for e in prior[-3:]]}
+                "opening_moves_recent": [e["opening_move"] for e in prior[-W["opening_move"]:]],
+                "structures_recent": [e["structure"] for e in prior[-W["structure"]:]],
+                "closing_moves_recent": [e["closing_move"] for e in prior[-W["closing_move"]:]]}
 
     OPEN, STRUCT = "the deadline", "ladder"
     CLOSE_A = "ask the one question the decision leaves open"
