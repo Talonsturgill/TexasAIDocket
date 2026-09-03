@@ -34,10 +34,23 @@ export async function videoFit(browser, site, check) {
       // A live canvas supplies actual decoded video dimensions, not mocked DOM values.
       const canvas = document.createElement("canvas");
       canvas.width = 720; canvas.height = 1280;
-      const ctx = canvas.getContext("2d");
-      ctx.fillStyle = "#123456"; ctx.fillRect(0, 0, 720, 1280);
+      // Keep both the producer and stream reachable and producing. Chromium on Linux
+      // reclaimed the one-frame local canvas during the final wide-screen case, which
+      // zeroed videoWidth and made a product assertion depend on fixture lifetime.
+      canvas.style.cssText = "position:fixed;left:-2px;top:-2px;width:1px;height:1px";
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext("2d"), stream = canvas.captureStream(5);
+      let tick = 0;
+      const paint = () => {
+        ctx.fillStyle = tick++ % 2 ? "#123456" : "#123457";
+        ctx.fillRect(0, 0, 720, 1280);
+      };
+      paint();
+      const timer = setInterval(paint, 100);
       const video = document.querySelector(".stage video");
-      video.srcObject = canvas.captureStream(1);
+      video.removeAttribute("src"); video.load(); video.dataset.src = "";
+      video.srcObject = stream;
+      window.__videoFitFixture = { canvas, stream, timer };
       await video.play();
     });
     await page.waitForFunction(() => document.querySelector(".stage video").videoWidth === 720);
@@ -71,6 +84,7 @@ export async function videoFit(browser, site, check) {
     for (const [width, height] of [[320, 568], [360, 800], [390, 844], [430, 932],
                                   [844, 390], [768, 1024], [1280, 900], [1920, 1080]]) {
       await page.setViewportSize({ width, height });
+      await page.waitForFunction(() => document.querySelector(".stage video").videoWidth === 720);
       const result = await measure();
       check(`video and poster keep their complete frame at ${width}×${height}`,
         result.length === 2 && result.every((r) => r.fits), JSON.stringify(result));
