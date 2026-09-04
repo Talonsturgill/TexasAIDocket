@@ -309,6 +309,87 @@ dark rectangle after eight frames of insisting that absence is a lit slot with a
 and a floor. It is a blanked opening now, identical to the aperture beside it except that nothing
 goes through.
 
+**A COMBINE THAT COUNTED AS A ROUND AND SHOULD NOT HAVE.** Round 3's three judges returned their
+report cards in their results rather than writing `score-<lens>.json`, and a first `panel.py`
+combine read the round 2 files still sitting on disk. It reported a median of 7.034 and one hard
+fail, which is round 2's own verdict returned a second time. The round 3 cards were then written
+out of the task transcripts and combined properly.
+
+The counter was left at 4 rather than corrected to 3. `count_round()` is the length of
+`panel_rounds.jsonl` precisely so that a run under pressure can't write a smaller number in a
+field, and a run deleting a line to buy itself a round is that field with an extra step. The cost
+is one round of headroom against a cap of five, and it is the run's own to pay.
+
+**ROUND 3. 6.28 integrity, 6.914 craft, 7.02 reader. Median 6.784, spread 0.74, TWO hard fails,
+HOLD.** The spread doubled, which is the panel disagreeing rather than converging, and the
+disagreement was the point: the two judges who scored highest found no disqualifying fault and
+the one who scored lowest found two.
+
+- **`The way in is counted every month.` in 60pt type on frame 7.** An unqualified universal over
+  a set of months, refuted in writing by this run's OWN rejected-claims list, which declined to
+  compute an annual total because the published series has gaps and an outlier. Neither c25 nor
+  c26 supports it. The register in `quantifiers.json` held two universals and had never seen this
+  one, because the register was hand written and the hooks were never read into it. The hook is
+  `The way in has a number.` now, which asserts c26 and nothing else.
+- **`The walk out got cameras and no number of its own.` in the caption.** The deck's own cover
+  frame prints the bridge director's 1.1 million, so the most-read surface asserted an absence the
+  first slide refutes. Frame 7's version survives because `no COMPARABLE data` ties it to the
+  federal series and the caption's dropped that tie. It reads `no monthly count of its own` now,
+  which is the BTS series and is what c25 actually establishes.
+
+**The integrity judge's one-sentence fix is the durable one and it is an upgrade, not a repair.**
+*Stop hand-authoring `quantifiers.json` and make the gate extract every universal and every
+absence word mechanically from all nine hooks, nine deks, every plate, the caption and the first
+comment.* Three rounds found this same defect in three different places and the register only ever
+caught the ones somebody remembered to write down. It is in the upgrade backlog.
+
+**What else round 3 bought, none of it disqualifying and all of it taken.**
+
+- Frame 8's hook was `Eight slots. Three of them filled.` The reader judge: that *"tells a
+  two-second reader the account is three-eighths answered on the one frame whose whole job is to
+  say it answered nothing."* It reads `Three quotes. No measurement.` now, because the three and
+  the five are different kinds and the old hook counted them in one form. `Three quotes` is
+  declared in `aggregates.json` against c7, c9 and c31 through a new `characterisations_quoted`
+  value in `compute.py`, and `Eight slots` and `Two agencies` were removed rather than left
+  declared for a later run to reuse.
+- Frame 8's dek said `Two agencies and one vendor filed a finding`, which the integrity judge
+  called *"bureaucratic and wrong at the same time, which is the worst combination available."*
+  Nothing was filed and the Science and Technology Directorate is a directorate. The dek describes
+  and does not count now, and the frame's own three plates carry the attribution.
+- Frame 8's claim chip cited five ids for a frame that cuts eight slots. It cites all eight now,
+  which pushed the page number 63px past the safe margin until the foot row's gap and letter
+  spacing came in on that one frame.
+- **FRAME 4, THIRD CONSTRUCTION.** The craft judge: *"FRAME 4 IS THE WORST FAILURE AND ITS REPAIR
+  DID NOT TAKE."* Its dossier declared a focal of *"the near volume's lit soffit, the only closed
+  modeled surface in the frame"* and the render contained no soffit at all. Attempt one drew a
+  DIFFERENCE, a roof against an open sky, and asserted two physical facts no claim carries.
+  Attempt two drew one geometry at two depths, which was honest and illegible, because perspective
+  makes the far copy small and a reader sees a big thing and a little thing rather than the same
+  thing twice. Attempt three is two identical portal frames side by side in flat ELEVATION at one
+  scale, drawn from one set of dimension constants with one dimension line across both, so the two
+  objects measure the same because they are the same numbers. It is also no longer a one point
+  corridor, which is the idiom it shared with frames 1, 6 and 9.
+- **The craft judge's one-sentence fix names the gap that let frame 4 survive three rounds.** A
+  gate that reads each dossier's declared focal, resolves it to a region in the rendered PNG, and
+  proves that region exists and carries the frame's stated value extreme. Nothing in the suite
+  could see a focal that was not in the picture. Upgrade backlog.
+- Four drawing defects, each named by the craft judge and each worked. Frame 3's baffles were a
+  2px hairline on a flat bar and are modeled sections now, with a top land, a chamfer, a front
+  face, an inner face and a cast shadow. Frame 1's canopy posts were unattached hairlines with no
+  base and no fixing and read as sensor scratches at full res; each has a head fixing, a base
+  plate and a contact shadow now. Frame 7's fourteen drums carried one identical gradient at one
+  identical height across a plate washed brighter at frame left, which is a per-object gradient
+  rather than a lit scene, and the same defect this deck had already fixed on frame 5; every value
+  on a drum is scaled by the light the plate delivers at that drum's own position now. Frame 9's
+  two axes were 5.0 and 3.4 CSS px and vanished at the 432px thumb, so the frame's whole idea
+  reached no reader, and its blanked opening had a floor LIGHTER than the wall it is cut into, so
+  it read as a plinth standing off the wall.
+- **Deck 14's `avoid_next` said seven of nine frames ran one type skeleton and this deck shipped
+  nine of nine**, which the craft judge called a regression against a written instruction rather
+  than a repeat. Frame 4 now puts its two names ABOVE the drawing on inverted LIGHT plates, which
+  is the one frame in the deck whose type block is a header, and it also breaks the five-of-nine
+  repeat of the dark mono chip that deck 13's own `avoid_next` had named.
+
 ## Gate status
 
 <!-- gate-status:begin -->
