@@ -534,3 +534,45 @@ still reads FAIL for this same score at two rounds, which is inside the cap.
 And the number still describes the deck the JUDGES read rather than the deck that shipped, because
 twelve repairs landed after the last card. Re-scoring is what the cap forbids, so the number is a
 floor and the repairs are listed one by one above.
+
+
+## Phase 19, what actually landed
+
+**Merged to `main` as `a95ec434` on CI green, named check by named check on the head SHA
+`f00c7e5b`.** `gates` success, `build` success, `freshness` success, `browser-render` success,
+`browser-layout` success, `browser-read` success, `guards` success. `release` came back `skipped`,
+which is a job the workflow deliberately did not run on a pull request and is not a red. Nothing
+was in progress and nothing was cancelled. The `gates` job is the whole of `guards.yml`, so CI ran
+every step this container could not finish.
+
+**The Gmail draft is created and nothing was sent.** It is verified against the committed payload
+rather than assumed: the draft was read back and compared. Two differences, both Gmail's own
+sanitiser and neither a transcription fault. It rewrites every href through its redirector and
+lowercases hex colours, and **it strips the nine inline thumbnails**, leaving the `carousel.pdf`
+and contact sheet links, which are the better single view anyway. Worth knowing before somebody
+spends a run making those thumbnails nicer.
+
+### The local suite, and a wrong diagnosis this file is correcting rather than keeping
+
+Three separate full runs of `guards_local.py` were reported in this session as having died part
+way. **None of them did.** The checks that said so used `pgrep` without `-f`, which matches the
+process NAME and not the command line, so it was looking for a process called `guards_local.py`
+when every one of them is called `python3`. It returned zero every time and it was answering a
+different question.
+
+What that error then caused is the part worth keeping. Believing the suite had died, this run
+started another, and another, so **three suites ran concurrently against one `out/gates/`
+directory**, which is precisely the state `--verdict` exists to refuse, and two of them were then
+killed by hand. One of those kills took out the tracked run's own child.
+
+The step they were all sitting on, the shallow-clone determinism check, **passes on its own in
+135 seconds** and passed in CI. Nothing was ever wrong with the step or with the tree.
+
+**`--verdict` was right at every point and was never overruled.** It said NO VERDICT each time,
+which is exactly what it is for, and no version of this run claimed a local pass. What decided the
+merge was CI on the head SHA, which is what `CLAUDE.md` says decides it.
+
+The lesson generalises past this one flag. **A check on the CHECKER is worth as much as the check
+on the product.** `--verdict` exists because a run once read a suite's log and believed it; this
+run had a reliable verdict available the whole time and went looking at process tables instead,
+where it wrote its own faulty instrument and then trusted it twice.
