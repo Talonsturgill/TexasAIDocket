@@ -315,8 +315,17 @@ def rows_for(d: Path) -> list[Row]:
         out.append(Row("completion", ABSENT, "not scored yet"))
     else:
         try:
+            # THE CAP IS PASSED. It was not, and `check()` takes it as `cap=None`, so the one
+            # branch that lets a run ship UNDER the bar never fired here. `run_complete`'s own
+            # CLI passes it and this did not, so the same function answered the same question
+            # two different ways depending on which caller asked. On 2026-09-04 the CLI said
+            # "1 run(s) shipped, 1 under the bar on the 5 round cap" and this row said "THE DECK
+            # DID NOT SHIP" about that same run, in the same minute, off the same files.
+            #
+            # A status board that disagrees with the gate it is reporting is worse than no board,
+            # because the board is what a run reads and pastes into its record.
             import run_complete
-            probs = run_complete.check(d, run_complete.threshold())
+            probs = run_complete.check(d, run_complete.threshold(), run_complete.max_rounds())
             out.append(Row("completion", PASS if not probs else FAIL,
                            "the deck shipped" if not probs else
                            "THE DECK DID NOT SHIP, so this run is not done"))
