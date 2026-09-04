@@ -157,6 +157,75 @@ for what is missing. The instruction to the directors follows from it. Do not dr
 frame. Draw the SLOT the figure would sit in, ruled and labelled and empty, beside the slots
 that are full.
 
+## Phase 9 to 12, the deck
+
+**Three treatment directors, three lenses, and the synthesis took from all three.** The ledger
+lens proposed a two column register and the reading that the account is a form somebody filled
+in halfway. The crossing lens proposed the passage, the two light species and the law that the
+light has two owners who never trade roles. The instrument lens proposed the calibration
+certificate, the die cut case, the resolution target with its numbering removed, and the rule
+that no face appears anywhere in nine frames.
+
+**The two proposals that arrived independently from two directors are the two that carry the
+deck.** Both the crossing and the instrument lens wrote the two-light-owner law without seeing
+each other, which is about as strong a signal as this room produces. Sodium is the bridge's own
+light. 4000K LED is what the test brought. Frame 5 declares neither.
+
+**What each lens lost.** The ledger lens's `flag_red` on frame 9 is not spent, for the reason
+the instrument lens argued and it is the better argument. The reserved colour is for an open
+comment deadline a reader can act on, September 8th is a briefing on a different program in a
+different city, and giving it the reserved colour would be the drawing asserting it is a door
+onto Progreso when the copy says plainly that it is not. The ledger lens's county map went too,
+because the only cartographic claim available is a point resolved to a county and that is thin
+as a frame.
+
+**The caption room.** Two directors on assigned moves, "the place" with a Ledger structure and
+"the correction" with Two columns. The critic returned NEITHER and it was right on most of what
+it found. Both candidates carried unsourced physical detail, both asserted a universal negative
+as a thing that did not happen, both ran over the character band, and one printed "Dallas City
+Council" which the claims file explicitly rejects because the API field reads only "Public
+Safety Committee".
+
+**The critic's disqualifying finding was itself wrong, and it was checked rather than taken.**
+It ruled that "exceeded expectations in both day and night conditions" is unattributed narration
+in the article body, so both candidates fabricated an attribution to a named federal official. A
+second fetch of the page shows the sentence opening directly after "said Larry Panetta, Director
+of CBP's Biometrics Program Office" and inside his quotation, and appearing nowhere else on the
+page. Two independent fetches agree. The attribution stands, claim c7 now records that it was
+verified twice, and the rewrite the critic demanded was taken on everything else.
+
+**The fact this run went and found, which neither the scouts nor the fact checker were asked
+for.** The Bureau of Transportation Statistics publishes a measured monthly pedestrian count at
+the Progreso port of entry, and its own dataset description states, in as many words, that the
+data reflect people ENTERING the United States and that "CBP does not collect comparable data on
+outbound crossings". The same agency that put cameras on the outbound lane publishes a number
+every month for the way in and states it collects none for the way out. That is frame 7 and it is
+the deck's spine.
+
+**101,306 is the one figure that could sink this deck and it is fenced on every surface.** It is
+an inbound count for May 2026. The slide says entering, the caption says entering, the first
+comment says it again in its own paragraph, and compute.py's `means` field says it a fourth time
+so no future run can reuse the number without the sentence.
+
+## The two faults that cost this build, and both were the same shape
+
+**Every SVG label sat under the wrapper.** `<svg id="lay">` was declared before `<div
+class="wrap">`, and the wrapper is `position:absolute; inset:0`. SVG has no z-index and neither
+does that: document order IS the stack. Twenty six machine QA failures across five frames, all
+one line of DOM order. The fix that did NOT work, and is worth recording because it looked
+right, was hoisting every text node to the end of its own svg. That cleared the symptom and
+broke the pairing, because `render.py` measures a label against the rect that is its own
+preceding sibling, so every label then reported spilling off somebody else's plate.
+
+**A worked ground was measured at a scale the drawing never worked at.** `panel_ready` removes
+a BoxBlur(16) local mean before it asks whether a ground is material, so two octaves of fbm at
+130 pixel features are read as exactly the gradient they are. Two attempts at more noise moved
+the number by 0.03. The grain that answered it works on the pixels at a two device pixel cell,
+which is the only scale that survives the measurement and is also what film grain actually is.
+
+**Both are the same lesson and it is this file's oldest one.** A gate answers the question it was
+given. Reading the failure text and adding more of what already failed is not reading it.
+
 ## Gate status
 
 <!-- gate-status:begin -->
