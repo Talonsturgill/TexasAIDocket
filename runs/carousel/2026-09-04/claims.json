@@ -279,6 +279,15 @@
       "source_type": "primary_official",
       "retrieved": "2026-09-04",
       "confidence": "high"
+    },
+    {
+      "id": "c32",
+      "text": "The account announces no comment period, no hearing and no docket. The nearest thing it offers to a next step is an intention to work together again.",
+      "quote": "It was a pleasure working with S&T and we're looking forward to more collaborations with them in the near future.",
+      "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-04",
+      "confidence": "high"
     }
   ],
   "rejected": [
@@ -309,6 +318,10 @@
     {
       "finding": "CARRIL DE CAPTURA and CARRIL DE EXCLUSION as frame 6 lane labels.",
       "reason": "The account says signs were posted in English and Spanish. It never says what they said, so a Spanish lane name set on the frame is the deck writing a sign. The bilingual fact stays where c13 supports it, in the dek."
+    },
+    {
+      "finding": "PROGRESO, NO ROOM OPEN as a frame 9 plate, and 'This test opens no comment period and no hearing' as its dek.",
+      "reason": "Both assert a state of the world about every public body, which no page fetched this run can support. The absence this run CAN establish is about the September 1st account, so c32 anchors it in the c18 to c22 pattern and both surfaces are scoped to the account. Round 1 caught this and round 2 caught the rewording, which is the right order for a panel to work in and the wrong one for a run."
     }
   ]
 }

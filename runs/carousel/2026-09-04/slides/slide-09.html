@@ -26,10 +26,10 @@
 <div class="wrap">
   <div class="tscrim" data-decorative></div>
   <div class="mast">TEXAS AI DOCKET</div>
-  <h1>No room. No window. No date.</h1>
-  <p class="dek">The account announces no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026.</p>
+  <h1>The only date belongs to Dallas.</h1>
+  <p class="dek">The account announces no comment period, no hearing and no docket. The nearest dated room in this record is a different program. Dallas takes a briefing on its police Flock plate readers on September 8th, 2026.</p>
   <div class="fscrim" data-decorative></div>
-  <div class="foot"><span>DIFFERENT PROGRAM</span><span>c21 c23 c24</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
+  <div class="foot"><span>DIFFERENT PROGRAM</span><span>c32 c23 c24</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
 </div>
 <svg id="lay" viewBox="0 0 1080 1350"></svg>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -144,18 +144,30 @@ window.renderReady = (async () => {
   // THE BLANK BAFFLE. The same anodised material, no opening cut in it, and the absence of an
   // opening is the only difference between the two terminations.
   (function baffle(){
-    const x=272, y=1076, w=286, h=112;
-    const gr=g.createLinearGradient(x,y,x+w*0.6,y+h);
-    gr.addColorStop(0,'#39434C'); gr.addColorStop(.5,'#2A323A'); gr.addColorStop(1,'#1C2228');
-    g.fillStyle=gr; g.fillRect(x,y,w,h);
-    g.fillStyle='rgba(195,212,222,.34)'; g.fillRect(x,y,w,2.6);
-    g.fillStyle='rgba(0,0,0,.56)'; g.fillRect(x,y+h-4,w,4);
-    for(let k=0;k<5200;k++){
-      const px=x+R()*w, py=y+R()*h;
-      g.fillStyle= R()<0.5 ? 'rgba(200,214,222,'+(R()*0.05).toFixed(3)+')'
-                           : 'rgba(0,0,0,'+(R()*0.07).toFixed(3)+')';
-      g.fillRect(px,py,1.4,1.4);
+    // A BLANKED OPENING, not a black rectangle. Same lip, same wall, same floor as the aperture
+    // beside it. The only difference is that nothing goes through, which is the whole point.
+    const x=272, y=1058, w=286, h=118, sh=26, dp=30;
+    const fx=x-sh, fy=y+dp;
+    g.beginPath(); g.moveTo(x,y); g.lineTo(x+w,y); g.lineTo(x+w-sh,fy); g.lineTo(fx,fy); g.closePath();
+    const hw=g.createLinearGradient(0,y,0,fy); hw.addColorStop(0,'#12171B'); hw.addColorStop(1,'#222A30');
+    g.fillStyle=hw; g.fill();
+    g.beginPath(); g.moveTo(x,y); g.lineTo(fx,fy); g.lineTo(fx,fy+h); g.lineTo(x,y+h); g.closePath();
+    const sw=g.createLinearGradient(x,0,fx,0); sw.addColorStop(0,'#2A333A'); sw.addColorStop(1,'#141A1F');
+    g.fillStyle=sw; g.fill();
+    const fg=g.createLinearGradient(fx,fy,fx+w*0.6,fy+h);
+    fg.addColorStop(0,'#39434C'); fg.addColorStop(1,'#232B31');
+    g.fillStyle=fg; g.fillRect(fx,fy,w,h);
+    for(let k=0;k<6000;k++){
+      const px=fx+R()*w, py=fy+R()*h;
+      g.fillStyle= R()<0.5 ? 'rgba(200,214,222,'+(R()*0.055).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.08).toFixed(3)+')';
+      g.fillRect(px,py,1.5,1.5);
     }
+    g.lineWidth=3.0;
+    const lip=g.createLinearGradient(x,y,x+w,y+h);
+    lip.addColorStop(0,'rgba(195,212,222,.70)'); lip.addColorStop(1,'rgba(195,212,222,.22)');
+    g.strokeStyle=lip;
+    g.beginPath(); g.moveTo(x,y+h); g.lineTo(x,y); g.lineTo(x+w,y); g.stroke();
   })();
 
 
@@ -168,7 +180,7 @@ window.renderReady = (async () => {
   }
   txt(779, 1026, 'SEPT 8TH, 2026', 'ap', '#0E1417', 'middle');
   txt(556, 928, 'DALLAS, A DIFFERENT PROGRAM', 'apk', '#C3D4DE');
-  txt(272, 1224, 'PROGRESO, NO ROOM OPEN', 'apk', '#7E8B8E');
+  txt(246, 1236, 'PROGRESO, NONE IN THE ACCOUNT', 'apk', '#96A3A6');
   await document.fonts.ready;
   TX.svgPlateAll('#lay .apk', {padX:11, padY:7, fill:'#12181C'});
   TX.svgPlateAll('#lay .ap', {padX:18, padY:12, fill:'#E8EFEE'});

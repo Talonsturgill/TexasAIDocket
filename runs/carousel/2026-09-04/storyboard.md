@@ -147,7 +147,7 @@ slide: 2
 job: >
   Shows the apparatus that was actually installed, and dates the request that produced it, so the
   reader learns this was asked for rather than arrived.
-claims: [c2, c28, c16]
+claims: [c2, c28, c29]
 numerals:
   - value_from: c2
 
@@ -183,16 +183,16 @@ art:
   motion: "Up the pole, collar to collar"
 
 type:
-  hook: "Customs and Border Protection asked in October 2025."
-  dek: "Cameras went up on poles at different heights, so people of different statures would land in frame. Some of the testing ran after dark on lighting the partners brought."
-  labels: ["MOUNTS", "c2 c16 c28", "texasaidocket.com", "02 / 09"]
+  hook: "It had to account for hats and umbrellas."
+  dek: "Customs and Border Protection asked for it in October 2025. Cameras went up on poles at different heights, so people of different statures would land in frame. The technologies had to account for walking pace, hats, sunglasses and umbrellas."
+  labels: ["MOUNTS", "c2 c28 c29", "texasaidocket.com", "02 / 09"]
 
 acceptance:
   - 'three camera collars are drawn at three different heights on one pole, and no two collars share a height'
   - 'no ground plane and no horizon line appears anywhere on this frame'
   - 'the interval between collars is drawn and is never dimensioned, because the account states no figure for it'
   - 'each collar is a real assembly carrying a bracket and a knuckle, not a box on a stick'
-  - 'the string "October 2025" appears on this frame and traces to c2'
+  - 'the string "October 2025" appears on this frame and traces to c2, and the hook names the human factors c29 records rather than repeating the date the dek already carries'
 risks:
   - 'a pole against a sky is three boxes on a stick unless every collar is a real assembly'
   - 'the spill cones grey out the frame and the modeled housings stop reading'
@@ -240,8 +240,8 @@ art:
   motion: "Down through the element, six in and three out"
 
 type:
-  hook: "Six were shown. Three came south."
-  dek: "Six companies were demonstrated at the Maryland Test Facility. Three solutions were carried forward for data collection at the bridge."
+  hook: "Six were invited. Three came south."
+  dek: "Six companies were invited to the Maryland Test Facility. Three solutions were carried forward for data collection at the bridge."
   labels: ["SELECTION", "c3 c4", "texasaidocket.com", "03 / 09"]
 
 acceptance:
@@ -271,17 +271,18 @@ composition:
     match is weaker than a reader seeing where they do not.
   bands: >
     The top third carries the near copy's own soffit, a modeled ceiling taking a cool LED
-    gradient across its ribs, with the second copy's head rail running beneath it further along
-    the axis. The middle third carries the two sets of uprights at identical station spacing and
-    identical width, one in led_cool and one in galv, line only, so the reader reads one lane
-    twice rather than two lanes.
+    gradient across its ribs. The middle third carries a VISIBLE GAP along the axis and then the
+    second structure beyond it, at identical station spacing and identical width, one in led_cool
+    and one in galv, line only. The gap is what makes two structures two rather than one long
+    corridor, and the first render without it read as a single tunnel with two side labels.
     The bottom third carries the shared footprint where the two volumes agree exactly, drawn as a
     modeled floor plane in slab with a low sodium wash graded from the left and the mesh line of
     the near end of both volumes crossing it, so the agreement is a lit surface rather than a
     diagram.
   focal: >
-    The Maryland soffit in the upper third, the only closed modeled surface in the frame and the
-    lightest area on it, which is the thing the real crossing does not have.
+    The near volume's lit soffit, the only closed modeled surface in the frame and the largest
+    light area on it, which is what a reader's eye arrives on before it travels down the axis to
+    the second structure past the gap.
 
 art:
   technique: "Line and node as ONE architectural geometry drawn twice at two depths on one axis"
@@ -304,8 +305,8 @@ type:
   labels: ["REPLICA", "c30", "texasaidocket.com", "04 / 09"]
 
 acceptance:
-  - 'the two wireframes share one vanishing point and one station spacing, and differ only in how far along the axis they sit'
-  - 'the two labels read "MARYLAND TEST FACILITY" and "PROGRESO BORDER CROSSING", which are the two place names c30 itself carries, and neither label asserts a physical property of either place'
+  - 'the two wireframes share one vanishing point and one station spacing, differ only in how far along the axis they sit, and are separated by a drawn gap so a reader sees two structures rather than one'
+  - 'the labels read "MARYLAND TEST FACILITY, BUILT FIRST" and "PROGRESO BORDER CROSSING", which are the two place names and the order c30 itself carries, and neither asserts a physical property of either place'
   - 'the two wireframes are separated by hue and their median L* values differ by less than 8, so neither reads as more real'
   - 'no fill is used on either wireframe. Line only'
 risks:
@@ -337,8 +338,8 @@ composition:
     become a modeled grey field, and the group and element numerals sit beside them as blank
     chrome pads with a lit bevel and a shaded inner face and nothing struck on them.
   focal: >
-    The blank chrome numeral pads in the bottom third, the darkest areas on the deck's lightest
-    frame, which is where the numbering that would say how well should have been.
+    The resolution limit picket in the lower right, the largest continuous dark mass on the
+    deck's lightest frame, where the bar pitch narrows past the point a pair can be told apart.
 
 art:
   technique: "Chrome on glass resolution target, transmitted light, macro at one to one"
@@ -349,18 +350,19 @@ art:
   palette: "glass_lit #F1F4F2 ground, chrome_bar #8E9A9E bars, baffle #0D1013 ink"
   value_structure: >
     Lightest is the transilluminated glass field across the whole frame, which is why this is the
-    deck's inversion. Darkest is the chrome of the blank numeral pads at the bottom. No sodium and
-    no LED appears anywhere on this frame, and it is the only frame in nine that declares neither.
+    deck's inversion. Darkest is the resolution limit picket in the lower right, where the pitch
+    closes to a solid. No sodium and no LED appears anywhere on this frame, and it is the only
+    frame in nine that declares neither.
   motion: "Down through the groups to where they stop resolving"
 
 type:
   hook: "Judged suitable. Suitable at what?"
-  dek: "Artificial intelligence built a three dimensional model of the capture zone, watched pedestrian movement, and judged whether a face was good enough to match. The account gives no rate for how often it was right."
+  dek: "Artificial intelligence and other technologies built a three dimensional model of the capture zone, watched pedestrian movement, and judged whether a face was good enough to match in Customs and Border Protection's Traveler Verification Service. The account gives no rate for how often it was right."
   labels: ["SUITABILITY", "c15 c18", "texasaidocket.com", "05 / 09"]
 
 acceptance:
   - 'the bar groups run in a true geometric progression and no bar is drawn narrower than 5 device pixels at 432px wide'
-  - 'every group and element numeral pad is blank, carrying a lit bevel and a shaded inner face and no character'
+  - 'every group and element numeral pad is blank, carrying a lit bevel and a shaded inner face and no character, and the string "Traveler Verification Service" appears on this frame because c15 names where the judged image goes'
   - 'this frame''s median L* is above 80 and it is the only frame in the deck above 60'
   - 'no sodium and no LED colour appears anywhere on this frame'
   - 'each chrome bar carries a specular edge highlight, so the frame cannot be read as paper on a light table'
@@ -445,8 +447,8 @@ composition:
     The top third carries the register's back plate and the headline, the plate taking a graded
     LED wash across its anodised face with its upper edge lit and its body falling away. The
     middle third carries the upper drum run, the counted direction, each drum a real cylinder with
-    a lit crown, a shaded flank and a cast into the plate's channel, the May drum turned up and
-    set larger than its neighbours. The bottom third carries the lower drum run, the uncounted
+    a lit crown, a shaded flank and a cast into the plate's channel, every drum the same size,
+    because they are the digits of one figure rather than a series of months. The bottom third carries the lower drum run, the uncounted
     direction, identical cylinders in the identical channel with identical lit crowns and shaded
     flanks and no figure struck on any of them, and the register's own machined base below with a
     two part contact shadow on the bench face.
@@ -462,7 +464,7 @@ art:
     with one run struck and one run blank is the craft finding executed as an object.
   palette: "housing #2B343E plate, galv #6E7B7E drums, led_cool #C3D4DE crowns and figures, baffle #0D1013 channel floor, sodium #D9701F low fill"
   value_structure: >
-    Lightest is the lit crown of the turned May drum in the middle of the frame. Darkest is the
+    Lightest is the lit crown of the struck run across the middle of the frame. Darkest is the
     channel floor beneath the blank run at the bottom. Every blank drum's crown is lit to the same
     value as a struck drum's crown, so the lower run reads as machinery nobody turned rather than
     as machinery that was removed.
@@ -529,17 +531,17 @@ art:
 
 type:
   hook: "Eight slots. Three of them filled."
-  dek: "Three verdicts are on the record. Five measurements a reader would need are not. Nothing was removed and none of the five was ever stated."
-  labels: ["NOT STATED", "c18 c19 c20 c21 c22", "texasaidocket.com", "08 / 09"]
+  dek: "Two agencies and one vendor filed a finding. Five measurements were never stated rather than removed."
+  labels: ["SLOTS", "c7 c9 c31 c18 c22", "texasaidocket.com", "08 / 09"]
 
 acceptance:
   - 'exactly three cavities are filled and exactly five are empty, and all eight openings are the same size'
   - 'the five empty cavity labels read "ACCURACY RATE", "IMAGES CAPTURED", "RETENTION PERIOD", "DEPLOYMENT DECISION" and "ASSESSMENT DATES"'
-  - 'the three seated plates read "EXCEEDED EXPECTATIONS", "HIGH-QUALITY FACIAL" and "IT DID JUST THAT", and every one of the three is a literal substring of a quote in claims.json'
+  - 'the three seated plates read "EXCEEDED EXPECTATIONS", "HIGH-QUALITY FACIAL IMAGES" and "IT DID JUST THAT", every one a literal substring of a quote in claims.json, and each names its speaker beneath it as "CBP", "NEC NSS" and "S AND T" so a vendor describing its own product is not drawn as a government finding'
   - 'the eight cavities sit in two ranks of three and five at two different x origins, so there is no shared baseline a reader could measure a length against, and no empty cavity appears under the heading STATED'
-  - 'every cavity shows a near side wall on its left and a head wall across its top, drawn from a twelve degree off axis reveal'
+  - 'every cavity shows a near side wall 40px wide and a head wall 40px deep, both real quadrilaterals with area rather than a hairline and a bar, and every cavity floor is DARKER than the foam around it and lighter than its own walls'
   - 'no empty cavity is drawn as a flat black rectangle, and every one carries a lit lip and a modeled floor'
-  - 'the dek states that nothing was removed, so absence can not be read as redaction'
+  - 'the dek says the five measurements were never stated RATHER THAN REMOVED, so absence can not be read as redaction'
 risks:
   - "a dark cavity reads as a redaction, which would accuse somebody of removing what was never written"
   - "eight cavities at 432px collapse into a grid of dark tiles"
@@ -551,7 +553,7 @@ slide: 9
 job: >
   Leaves the reader with the only dated public room the record actually holds, and says in the
   drawing itself that it does not open onto this test.
-claims: [c21, c23, c24]
+claims: [c32, c23, c24]
 numerals:
   - value_from: c24
 
@@ -588,15 +590,15 @@ art:
   motion: "Along both beams to two different terminations"
 
 type:
-  hook: "No room. No window. No date."
-  dek: "The account announces no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026."
+  hook: "The only date belongs to Dallas."
+  dek: "The account announces no comment period, no hearing and no docket. The nearest dated room in this record is a different program. Dallas takes a briefing on its police Flock plate readers on September 8th, 2026."
   labels: ["DIFFERENT PROGRAM", "c21 c23 c24", "texasaidocket.com", "09 / 09"]
 
 acceptance:
   - 'the two axes are drawn at different depths and do not intersect anywhere in the frame'
   - 'the string "September 8th, 2026" appears on this frame and is set in led_cool #C3D4DE'
   - 'the reserved red #BF0A30 appears nowhere on this frame or anywhere in the deck'
-  - 'the Progreso termination is a blank baffle with no aperture cut in it, in the same material as the lit aperture plate'
+  - 'the Progreso termination is a BLANKED OPENING with the same lit lip, side wall and floor as the aperture beside it and nothing going through, never a flat dark rectangle, because the deck''s own third law says absence is drawn as a lit slot'
   - 'the frame states in words that the Dallas briefing is a different program'
 risks:
   - 'two glowing lines read as science fiction rather than as an instrument'

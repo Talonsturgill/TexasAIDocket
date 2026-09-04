@@ -117,7 +117,7 @@ window.renderReady = (async () => {
     g.strokeStyle=colour; g.lineWidth=closedAbove?2.4:1.7;
     const TOP = CH;
     const D = d => d + dshift;
-    [1.35,2.0,3.1,4.9,7.8,12.4].forEach(d0=>{
+    [1.35,1.9,2.7,3.9].forEach(d0=>{
       const d=D(d0);
       [XL,XR].forEach(x=>{
         g.beginPath(); g.moveTo(sx(x,d),py(d)); g.lineTo(sx(x,d),sy(TOP,d)); g.stroke();
@@ -125,17 +125,17 @@ window.renderReady = (async () => {
       g.beginPath(); g.moveTo(sx(XL,d),sy(CH,d)); g.lineTo(sx(XR,d),sy(CH,d)); g.stroke();
     });
     [XL,XR].forEach(x=>{
-      g.beginPath(); g.moveTo(sx(x,D(NEAR)),sy(TOP,D(NEAR))); g.lineTo(sx(x,D(FAR)),sy(TOP,D(FAR))); g.stroke();
-      g.beginPath(); g.moveTo(sx(x,D(NEAR)),py(D(NEAR))); g.lineTo(sx(x,D(FAR)),py(D(FAR))); g.stroke();
+      g.beginPath(); g.moveTo(sx(x,D(1.35)),sy(TOP,D(1.35))); g.lineTo(sx(x,D(3.9)),sy(TOP,D(3.9))); g.stroke();
+      g.beginPath(); g.moveTo(sx(x,D(1.35)),py(D(1.35))); g.lineTo(sx(x,D(3.9)),py(D(3.9))); g.stroke();
     });
     if(closedAbove){
       // THE ONE LINE THAT DOES NOT MATCH. A modeled soffit with ribs taking a cool LED
       // gradient, and it is the lightest area in the frame.
-      for(let i=0;i<34;i++){
-        const d0=1.35+i*0.46, d1=d0+0.22;
+      for(let i=0;i<14;i++){
+        const d0=1.35+i*0.20, d1=d0+0.11;
         const yA=sy(CH,d0), yB=sy(CH,d1);
         if(yB>VPY-1) break;
-        const t=Math.min(1,i/22), v=Math.round(96-58*t);
+        const t=Math.min(1,i/13), v=Math.round(104-52*t);
         g.fillStyle='rgba('+v+','+(v+8)+','+(v+11)+',.95)';
         g.fillRect(sx(XL,d1), yB, sx(XR,d1)-sx(XL,d1), Math.max(1,yA-yB));
         g.fillStyle='rgba(214,230,238,'+(0.62*(1-t)+0.07).toFixed(3)+')';
@@ -143,7 +143,7 @@ window.renderReady = (async () => {
       }
     }
   }
-  volume('rgba(120,134,138,.80)', false, 2.30);   // Progreso, the same lane further along the axis
+  volume('rgba(126,142,146,.86)', false, 7.10);   // Progreso, the same lane further along the axis, past a gap
   volume('rgba(214,232,240,.92)', true, 0);      // Maryland, the copy that was built first
 
   (function grain(){
@@ -161,8 +161,8 @@ window.renderReady = (async () => {
     t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
     t.textContent=s; svg.appendChild(t); return t;
   }
-  txt(96, 776, 'MARYLAND TEST FACILITY', '#C3D4DE');
-  txt(984, 776, 'PROGRESO BORDER CROSSING', '#8B989B', 'end');
+  txt(96, 700, 'MARYLAND TEST FACILITY, BUILT FIRST', '#D6E6EE');
+  txt(984, 838, 'PROGRESO BORDER CROSSING', '#96A6AA', 'end');
   await document.fonts.ready;
   TX.svgPlateAll('#lay .k', {padX:11, padY:7, fill:'#1C2426'});
 
