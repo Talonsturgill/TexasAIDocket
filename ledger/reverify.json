@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-03",
+    "generated": "2026-09-04",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -445,7 +445,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending": {
       "etag": null,
       "last_modified": null,
-      "hash": "8bfd158cf6fbc27901df15202de400b39b0e78b0a02c9c29080b06fed4bd5454",
+      "hash": "e120f67d88c6b316d236136eb7e08225421fa4b12abb3339d5724bbdccdf7b1f",
       "proven": [
         "tx-2026-0002-c1",
         "tx-2026-0002-c5",
@@ -457,7 +457,7 @@
     "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending": {
       "etag": null,
       "last_modified": null,
-      "hash": "c443005e2c4a8181539f5a6860495beb9e477b6ab0542127bcc24af4471c4332",
+      "hash": "acd085b5e5201ba26a0654d5af4b27be7b49b4d0e0cdd76f6120c29b74b166ac",
       "proven": [
         "tx-2026-0002-c11",
         "tx-2026-0024-c5"
@@ -642,9 +642,15 @@
       "last_modified": null,
       "hash": "9602d88e4a6adc2c89ad12c5ec0052f367baa1d5736daa3f2badf3013d6d001e",
       "proven": [
+        "tx-2026-0002-c12",
+        "tx-2026-0002-c4",
         "tx-2026-0024-c1",
+        "tx-2026-0024-c2",
         "tx-2026-0024-c3",
+        "tx-2026-0024-c4",
         "tx-2026-0024-c6",
+        "tx-2026-0024-c7",
+        "tx-2026-0024-c8",
         "tx-2026-0072-c7",
         "tx-2026-0107-c8"
       ]
@@ -795,6 +801,17 @@
       "hash": "146bd345bd3a824496bda2d043bf75e46b9c9469268bc38860c6b760ec744061",
       "proven": [
         "tx-2026-0051-c3"
+      ]
+    },
+    "https://webapi.legistar.com/v1/cityofdallas/matters/25839": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "5b926856531e830c1649333a706c4746771e4a6f19d8a4e35169ab3329c81f7b",
+      "proven": [
+        "tx-2026-0116-c1",
+        "tx-2026-0116-c2",
+        "tx-2026-0116-c3",
+        "tx-2026-0116-c4"
       ]
     },
     "https://webapi.legistar.com/v1/cityoflaredo/Matters/7693": {
@@ -1077,7 +1094,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-13928.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "8576ec616a3e660db975e3cd222a9ce10c3253a16055d0c228762fa507ca8a98",
+      "hash": "1fcb49ce3a4f9a99c59f25d5c2d3fa855612e6665626e974005255c74b724f72",
       "proven": [
         "tx-2026-0016-c2"
       ]
@@ -1093,7 +1110,7 @@
     "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions": {
       "etag": null,
       "last_modified": null,
-      "hash": "cb137bfc5fbbc12ac46c7d399c4b4bc4db4a8fab9fd571daab6e4e0e33381736",
+      "hash": "343db9c8a216d3cc50fa34dbb8340366ceac3cfa9428e0a27d937c64c59cec79",
       "proven": []
     },
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
