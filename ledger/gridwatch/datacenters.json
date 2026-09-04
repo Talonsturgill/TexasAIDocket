@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-09-03",
+ "read": "2026-09-04",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "3b40c7d0c3337859",
+ "digest": "3d7268f122632a13",
  "facilities": [
   {
    "name": "NADC",
@@ -1299,7 +1299,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX301, LLC"
+    "Vantage Data Centers TX301, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1312,7 +1313,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX302, LLC"
+    "Vantage Data Centers TX302, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1325,7 +1327,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX303, LLC"
+    "Vantage Data Centers TX303, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1338,7 +1341,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX304, LLC"
+    "Vantage Data Centers TX304, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1351,7 +1355,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX305, LLC"
+    "Vantage Data Centers TX305, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1364,7 +1369,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX306, LLC"
+    "Vantage Data Centers TX306, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1377,7 +1383,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX307, LLC"
+    "Vantage Data Centers TX307, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1390,7 +1397,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX308, LLC"
+    "Vantage Data Centers TX308, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1403,7 +1411,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX309, LLC"
+    "Vantage Data Centers TX309, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1416,7 +1425,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Vantage Data Centers TX310, LLC"
+    "Vantage Data Centers TX310, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1457,7 +1467,8 @@
     "Oracle America Cloud Services, LLC"
    ],
    "operators": [
-    "Vantage Data Centers Management Company, LLC"
+    "Vantage Data Centers Management Company, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1471,7 +1482,8 @@
     "Oracle America Cloud Services, LLC"
    ],
    "operators": [
-    "Vantage Data Centers Management Company, LLC"
+    "Vantage Data Centers Management Company, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -2100,6 +2112,32 @@
    ],
    "operators": [
     "Vanguard US Serviceco, LLC"
+   ]
+  },
+  {
+   "name": "SDC Austin III LLC dba SDC Austin IV LLC",
+   "effective": "2026-08-24",
+   "owners": [
+    "SDC Austin III LLC"
+   ],
+   "occupants": [
+    "JS Data Center LLC"
+   ],
+   "operators": [
+    "Sabey Data Center Properties LLC"
+   ]
+  },
+  {
+   "name": "Project Goldeneye",
+   "effective": "2026-08-25",
+   "owners": [
+    "Montera Infrastructure II, LLC"
+   ],
+   "occupants": [
+    "Montera Infrastructure II, LLC"
+   ],
+   "operators": [
+    "Montera Infrastructure II, LLC"
    ]
   }
  ]
