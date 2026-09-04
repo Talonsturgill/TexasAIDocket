@@ -1,0 +1,202 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0D1013}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:520px;
+     background:linear-gradient(to bottom,rgba(13,16,19,.97) 0%,rgba(13,16,19,.94) 68%,rgba(13,16,19,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:172px;
+     background:linear-gradient(to bottom,rgba(13,16,19,0) 0%,rgba(13,16,19,.86) 48%,rgba(13,16,19,.98) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+  h1{position:absolute;top:158px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:76px;line-height:1.04;color:#E6ECEA;letter-spacing:-.018em}
+  .dek{position:absolute;top:372px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:26px;line-height:1.32;color:#A9AEA4}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+  svg#lay{position:absolute;inset:0;width:1080px;height:1350px}
+  .ap{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:38px;letter-spacing:.03em;fill:#0E1417}
+  .apk{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.07em}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>No room. No window. No date.</h1>
+  <p class="dek">This test opens no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>DIFFERENT PROGRAM</span><span>c21 c23 c24</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
+</div>
+<svg id="lay" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  const BAFFLE='#0D1013', HOUSING='#2B343E', GALV='#6E7B7E', LED='#C3D4DE';
+  g.fillStyle=BAFFLE; g.fillRect(0,0,W,H);
+
+  // A WORKED GROUND, not a gradient. panel_ready measures the quietest patch of every ground a
+  // dossier calls modeled and refuses anything under a 4.0 residual, because a gradient is a
+  // promise of light rather than of material. This is the material.
+  function workGround(fn){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.0075, y*0.0075, 4);
+      const m=TX.fbm2(x*0.052+91, y*0.052+37, 3);
+      const d=(n-0.5)*9.5 + (m-0.5)*5.2;
+      g.fillStyle = d>0 ? 'rgba(198,212,218,'+(d*0.020).toFixed(4)+')'
+                        : 'rgba(0,0,0,'+((-d)*0.024).toFixed(4)+')';
+      g.fillRect(x,y,2,2);
+    }}
+  }
+  workGround();
+
+  // A SEALED HOUSING, two point oblique, no ground plane. The upper interior takes a graded
+  // fall from a lit corner into its own shade.
+  (function housing(){
+    // far interior wall
+    g.beginPath(); g.moveTo(96,556); g.lineTo(984,506); g.lineTo(984,1214); g.lineTo(96,1258); g.closePath();
+    const gr=g.createLinearGradient(96,506,760,1258);
+    gr.addColorStop(0,'#3B454E'); gr.addColorStop(.45,'#242C33'); gr.addColorStop(1,'#141A1F');
+    g.fillStyle=gr; g.fill();
+    // the housing's own machined tooth
+    g.save(); g.beginPath(); g.moveTo(96,556); g.lineTo(984,506); g.lineTo(984,1214); g.lineTo(96,1258); g.closePath(); g.clip();
+    for(let k=0;k<30000;k++){
+      const x=96+R()*888, y=506+R()*752;
+      g.fillStyle= R()<0.5 ? 'rgba(200,214,222,'+(R()*0.045).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.07).toFixed(3)+')';
+      g.fillRect(x,y,1.5,1.5);
+    }
+    g.restore();
+    // the lit upper lip of the housing
+    g.strokeStyle='rgba(195,212,222,.46)'; g.lineWidth=3;
+    g.beginPath(); g.moveTo(96,556); g.lineTo(984,506); g.stroke();
+    // the near return, which is what makes it sealed rather than a wall
+    g.beginPath(); g.moveTo(0,600); g.lineTo(96,556); g.lineTo(96,1258); g.lineTo(0,1310); g.closePath();
+    g.fillStyle='#10161A'; g.fill();
+    g.beginPath(); g.moveTo(1080,470); g.lineTo(984,506); g.lineTo(984,1214); g.lineTo(1080,1174); g.closePath();
+    g.fillStyle='#0B1013'; g.fill();
+    // the returns are the same anodised material as the far wall, so they carry the same tooth
+    [[0,600,96,556,96,1258,0,1310],[1080,470,984,506,984,1214,1080,1174]].forEach(q=>{
+      g.save(); g.beginPath(); g.moveTo(q[0],q[1]); g.lineTo(q[2],q[3]);
+      g.lineTo(q[4],q[5]); g.lineTo(q[6],q[7]); g.closePath(); g.clip();
+      for(let k=0;k<9000;k++){
+        const x=Math.min(q[0],q[2],q[4],q[6])+R()*Math.abs(q[0]-q[2]||120)+R()*40;
+        const y=470+R()*840;
+        g.fillStyle= R()<0.5 ? 'rgba(200,214,222,'+(R()*0.055).toFixed(3)+')'
+                             : 'rgba(0,0,0,'+(R()*0.075).toFixed(3)+')';
+        g.fillRect(x,y,1.6,1.6);
+      }
+      g.restore();
+    });
+  })();
+
+  // TWO COLLIMATED AXES AT DIFFERENT DEPTHS. They run the same way and they never cross,
+  // because the one thing this frame exists to say is that the dated room is not this test's.
+  function beam(x0,y0,x1,y1,alpha,wide){
+    const gr=g.createLinearGradient(x0,y0,x1,y1);
+    gr.addColorStop(0,'rgba(195,212,222,'+(alpha*0.22).toFixed(3)+')');
+    gr.addColorStop(.62,'rgba(195,212,222,'+alpha.toFixed(3)+')');
+    gr.addColorStop(1,'rgba(195,212,222,'+(alpha*0.86).toFixed(3)+')');
+    g.strokeStyle=gr; g.lineWidth=wide; g.lineCap='butt';
+    g.beginPath(); g.moveTo(x0,y0); g.lineTo(x1,y1); g.stroke();
+    // the scattering halo the beam leaves in the housing's air
+    g.strokeStyle='rgba(195,212,222,'+(alpha*0.16).toFixed(3)+')'; g.lineWidth=wide*4.2;
+    g.beginPath(); g.moveTo(x0,y0); g.lineTo(x1,y1); g.stroke();
+  }
+  function stop(x,y,w){                       // a physical stop, so the beam is seated
+    g.fillStyle='#4A555C'; g.fillRect(x-w/2,y-9,w,18);
+    g.fillStyle='rgba(195,212,222,.44)'; g.fillRect(x-w/2,y-9,w,2.4);
+    g.fillStyle='rgba(0,0,0,.62)'; g.fillRect(x-w/2,y+7,w,2.4);
+  }
+
+  // the DALLAS axis, nearer, brighter, landing on a lit aperture
+  stop(214, 704, 46);
+  beam(214, 704, 762, 1010, 0.72, 5.0);
+  // the PROGRESO axis, further back, dimmer, landing on a blank baffle
+  stop(214, 856, 40);
+  beam(214, 856, 402, 1104, 0.34, 3.4);
+
+  // THE LIT APERTURE. A cut edge, a bevel, a modeled inner face, and this is the brightest
+  // area on the frame.
+  (function aperture(){
+    const x=636, y=956, w=286, h=112;
+    g.fillStyle='#0A0E11'; g.fillRect(x-10,y-10,w+20,h+20);
+    const gr=g.createLinearGradient(x,y,x,y+h);
+    gr.addColorStop(0,'#F0F5F4'); gr.addColorStop(.42,'#D6E2E4'); gr.addColorStop(1,'#9BAAAE');
+    g.fillStyle=gr; g.fillRect(x,y,w,h);
+    g.fillStyle='rgba(255,255,255,.86)'; g.fillRect(x,y,w,3);              // the bevel
+    g.fillStyle='rgba(20,26,30,.44)';    g.fillRect(x,y+h-4,w,4);
+    // the throw the aperture puts back into the housing's air
+    const th=g.createRadialGradient(x+w/2,y+h/2,10,x+w/2,y+h/2,240);
+    th.addColorStop(0,'rgba(195,212,222,.26)'); th.addColorStop(1,'rgba(195,212,222,0)');
+    g.fillStyle=th; g.beginPath(); g.arc(x+w/2,y+h/2,240,0,6.2832); g.fill();
+  })();
+
+  // THE BLANK BAFFLE. The same anodised material, no opening cut in it, and the absence of an
+  // opening is the only difference between the two terminations.
+  (function baffle(){
+    const x=272, y=1076, w=286, h=112;
+    const gr=g.createLinearGradient(x,y,x+w*0.6,y+h);
+    gr.addColorStop(0,'#39434C'); gr.addColorStop(.5,'#2A323A'); gr.addColorStop(1,'#1C2228');
+    g.fillStyle=gr; g.fillRect(x,y,w,h);
+    g.fillStyle='rgba(195,212,222,.34)'; g.fillRect(x,y,w,2.6);
+    g.fillStyle='rgba(0,0,0,.56)'; g.fillRect(x,y+h-4,w,4);
+    for(let k=0;k<5200;k++){
+      const px=x+R()*w, py=y+R()*h;
+      g.fillStyle= R()<0.5 ? 'rgba(200,214,222,'+(R()*0.05).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.07).toFixed(3)+')';
+      g.fillRect(px,py,1.4,1.4);
+    }
+  })();
+
+
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('lay');
+  function txt(x,y,s,cls,fill,anchor){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class',cls);
+    if(fill) t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
+    t.textContent=s; svg.appendChild(t); return t;
+  }
+  txt(779, 1026, 'SEPT 8TH, 2026', 'ap', '#0E1417', 'middle');
+  txt(556, 928, 'DALLAS, A DIFFERENT PROGRAM', 'apk', '#C3D4DE');
+  txt(272, 1224, 'PROGRESO, NO ROOM OPEN', 'apk', '#7E8B8E');
+  await document.fonts.ready;
+  TX.svgPlateAll('#lay .apk', {padX:11, padY:7, fill:'#12181C'});
+  TX.svgPlateAll('#lay .ap', {padX:18, padY:12, fill:'#E8EFEE'});
+
+
+  // A MEASURED GRAIN, and the previous two attempts were the reason it has to be measured.
+  // panel_ready removes a BoxBlur(16) local mean and asks what is left, so anything whose
+  // feature size is bigger than about thirty device pixels is read as the gradient it is.
+  // Two fbm octaves at 130px features were removed by that blur entirely. This works on the
+  // pixels, at a two device pixel cell, which is the only scale that survives the measurement
+  // and is also what film grain actually looks like.
+  (function measuredGrain(){
+    const id=g.getImageData(0,0,W*2,H*2), px=id.data, SW=W*2;
+    for(let y=0;y<H*2;y+=2){
+      for(let x=0;x<SW;x+=2){
+        const d=(R()-0.5)*30;
+        for(let dy=0;dy<2;dy++){
+          for(let dx=0;dx<2;dx++){
+            const i=((y+dy)*SW+(x+dx))*4;
+            px[i]  =Math.max(0,Math.min(255,px[i]  +d));
+            px[i+1]=Math.max(0,Math.min(255,px[i+1]+d));
+            px[i+2]=Math.max(0,Math.min(255,px[i+2]+d));
+          }
+        }
+      }
+    }
+    g.putImageData(id,0,0);
+  })();
+})();
+</script>
+</body></html>

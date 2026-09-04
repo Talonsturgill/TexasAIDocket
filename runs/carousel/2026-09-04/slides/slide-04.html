@@ -1,0 +1,167 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0D1417}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:716px;
+     background:linear-gradient(to bottom,rgba(13,20,23,.97) 0%,rgba(13,20,23,.95) 68%,rgba(13,20,23,.72) 86%,rgba(13,20,23,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:190px;
+     background:linear-gradient(to bottom,rgba(13,20,23,0) 0%,rgba(13,20,23,.86) 50%,rgba(13,20,23,.98) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+  h1{position:absolute;top:166px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:88px;line-height:1.03;color:#E6ECEA;letter-spacing:-.020em}
+  .dek{position:absolute;top:344px;left:80px;width:870px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:28px;line-height:1.34;color:#A9AEA4}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+  svg#lay{position:absolute;inset:0;width:1080px;height:1350px}
+  .k{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.06em}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>They built the lane twice.</h1>
+  <p class="dek">A replica of the pedestrian exit environment went up at the Maryland Test Facility first, so the vendors could install and assess their prototypes before taking them to the crossing.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>REPLICA</span><span>c30</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+</div>
+<svg id="lay" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  const RIVER='#0D1417', LED='#C3D4DE', GALV='#6E7B7E', SLAB='#2E3130', NA='#D9701F';
+  g.fillStyle=RIVER; g.fillRect(0,0,W,H);
+
+  // THE OPEN SKY over the Progreso volume, the deck's deepest black, so the frame that has no
+  // ceiling reads as having none rather than as having a dark one.
+  (function sky(){
+    const gr=g.createLinearGradient(0,300,0,760);
+    gr.addColorStop(0,'#050809'); gr.addColorStop(1,'rgba(5,8,9,0)');
+    g.fillStyle=gr; g.fillRect(0,300,W,540);
+  })();
+
+  // VANISHING POINT DEAD CENTRE, deliberately against frame 1's off-centre construction.
+  const VPX=540, VPY=812, K=940;
+  const py = d => VPY + K/d;
+  const sx = (x,d) => VPX + (x*K)/d;
+  const sy = (h,d) => py(d) - (h*K)/d;
+  const NEAR=1.25, FAR=17;
+
+  // THE SHARED FOOTPRINT. A modeled floor plane in slab with a low sodium wash from the left,
+  // and this is the one place the two volumes agree exactly.
+  (function floor(){
+    for(let i=0;i<180;i++){
+      const d0=NEAR+i*0.09, d1=d0+0.09;
+      const y0=py(d1), y1=py(d0);
+      if(y1<VPY+2||y0>H) continue;
+      const t=Math.min(1,(d0-NEAR)/(FAR-NEAR));
+      const v=Math.round(40-24*t);
+      g.fillStyle='rgb('+v+','+(v+2)+','+v+')'; g.fillRect(0,y0,W,Math.max(1,y1-y0+1));
+    }
+    const gr=g.createLinearGradient(0,H,620,780);
+    gr.addColorStop(0,'rgba(160,186,198,.24)'); gr.addColorStop(1,'rgba(160,186,198,0)');
+    g.fillStyle=gr; g.fillRect(0,VPY,W,H-VPY);
+    for(let k=0;k<34000;k++){
+      const d=NEAR+Math.pow(R(),2.0)*(FAR-NEAR), y=py(d);
+      if(y>H||y<VPY+2) continue;
+      const x=R()*W, s=Math.max(0.7,2.4*(1.5/d));
+      g.fillStyle= R()<0.5 ? 'rgba(169,174,164,'+(R()*0.14*(1.6/d)).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.17*(1.6/d)).toFixed(3)+')';
+      g.fillRect(x,y,s,s*0.6);
+    }
+    // the near end mesh line of both volumes, crossing the lit floor
+    g.strokeStyle='rgba(169,174,164,.30)'; g.lineWidth=1.4;
+    g.beginPath(); g.moveTo(sx(-1.7,NEAR),py(NEAR)); g.lineTo(sx(1.7,NEAR),py(NEAR)); g.stroke();
+    // THE NEAR SLAB, which the first render left as a dead lower zone. Construction joints run
+    // with the shared footprint, and a kerb with real thickness returns at the reader's feet.
+    g.strokeStyle='rgba(0,0,0,.44)'; g.lineWidth=2.0;
+    [1.35,1.75,2.35,3.2,4.5].forEach(d=>{
+      g.beginPath(); g.moveTo(sx(-2.5,d),py(d)); g.lineTo(sx(2.5,d),py(d)); g.stroke();
+      g.strokeStyle='rgba(169,174,164,.14)'; g.lineWidth=1.0;
+      g.beginPath(); g.moveTo(sx(-2.5,d),py(d)-2); g.lineTo(sx(2.5,d),py(d)-2); g.stroke();
+      g.strokeStyle='rgba(0,0,0,.44)'; g.lineWidth=2.0;
+    });
+    [-1.7,1.7].forEach(xo=>{
+      const d0=NEAR, d1=6.5;
+      g.beginPath();
+      g.moveTo(sx(xo,d0),py(d0)); g.lineTo(sx(xo,d1),py(d1));
+      g.lineTo(sx(xo,d1),py(d1)-(0.13*K)/d1); g.lineTo(sx(xo,d0),py(d0)-(0.13*K)/d0);
+      g.closePath();
+      const kg=g.createLinearGradient(sx(xo,d0),py(d0),sx(xo,d1),py(d1));
+      kg.addColorStop(0,'rgba(120,128,120,.44)'); kg.addColorStop(1,'rgba(120,128,120,.10)');
+      g.fillStyle=kg; g.fill();
+      g.strokeStyle='rgba(200,206,196,.22)'; g.lineWidth=1.2;
+      g.beginPath(); g.moveTo(sx(xo,d0),py(d0)-(0.13*K)/d0); g.lineTo(sx(xo,d1),py(d1)-(0.13*K)/d1); g.stroke();
+    });
+  })();
+
+  // TWO WIREFRAMES ON ONE VANISHING POINT AND ONE FOOTPRINT. Line only, no fill, and they are
+  // separated by HUE rather than by value, so neither reads as more real than the other.
+  const XL=-1.7, XR=1.7, CH=2.75;
+  function volume(colour, closedAbove, jitter){
+    g.strokeStyle=colour; g.lineWidth=closedAbove?1.7:2.2;
+    const TOP = closedAbove ? CH : CH+0.95;   // the open volume has no head to stop at
+    [1.35,2.0,3.1,4.9,7.8,12.4].forEach(d=>{
+      [XL,XR].forEach(x=>{
+        g.beginPath(); g.moveTo(sx(x,d),py(d)); g.lineTo(sx(x,d),sy(TOP,d)); g.stroke();
+      });
+      if(closedAbove){
+        g.beginPath(); g.moveTo(sx(XL,d),sy(CH,d)); g.lineTo(sx(XR,d),sy(CH,d)); g.stroke();
+      }
+    });
+    [XL,XR].forEach(x=>{
+      g.beginPath(); g.moveTo(sx(x,NEAR),sy(TOP,NEAR)); g.lineTo(sx(x,FAR),sy(TOP,FAR)); g.stroke();
+      g.beginPath(); g.moveTo(sx(x,NEAR),py(NEAR)); g.lineTo(sx(x,FAR),py(FAR)); g.stroke();
+    });
+    if(closedAbove){
+      // THE ONE LINE THAT DOES NOT MATCH. A modeled soffit with ribs taking a cool LED
+      // gradient, and it is the lightest area in the frame.
+      for(let i=0;i<34;i++){
+        const d0=1.35+i*0.46, d1=d0+0.22;
+        const yA=sy(CH,d0), yB=sy(CH,d1);
+        if(yB>VPY-1) break;
+        const t=Math.min(1,i/22), v=Math.round(96-58*t);
+        g.fillStyle='rgba('+v+','+(v+8)+','+(v+11)+',.95)';
+        g.fillRect(sx(XL,d1), yB, sx(XR,d1)-sx(XL,d1), Math.max(1,yA-yB));
+        g.fillStyle='rgba(214,230,238,'+(0.62*(1-t)+0.07).toFixed(3)+')';
+        g.fillRect(sx(XL,d0), yA-2.2, sx(XR,d0)-sx(XL,d0), 2.2);
+      }
+    }
+  }
+  volume('rgba(110,123,126,.86)', false, 0);    // Progreso, same footprint, open above
+  volume('rgba(195,212,222,.62)', true, 0);     // Maryland, closed above
+
+  (function grain(){
+    for(let k=0;k<24000;k++){
+      const x=R()*W, y=R()*H;
+      g.fillStyle='rgba(255,255,255,'+(R()*0.020).toFixed(3)+')';
+      g.fillRect(x,y,1,1);
+    }
+  })();
+
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('lay');
+  function txt(x,y,s,fill,anchor){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class','k');
+    t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
+    t.textContent=s; svg.appendChild(t); return t;
+  }
+  txt(96, 776, 'MARYLAND, ROOFED', '#C3D4DE');
+  txt(984, 776, 'PROGRESO, OPEN SKY', '#8B989B', 'end');
+  await document.fonts.ready;
+  TX.svgPlateAll('#lay .k', {padX:11, padY:7, fill:'#0D1417'});
+
+})();
+</script>
+</body></html>

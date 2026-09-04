@@ -1,0 +1,132 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1A1D1C}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:474px;
+     background:linear-gradient(to bottom,rgba(15,17,16,.96) 0%,rgba(15,17,16,.92) 70%,rgba(15,17,16,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:164px;
+     background:linear-gradient(to bottom,rgba(15,17,16,0) 0%,rgba(15,17,16,.86) 48%,rgba(15,17,16,.98) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+  h1{position:absolute;top:154px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:84px;line-height:1.03;color:#E6ECEA;letter-spacing:-.019em}
+  .dek{position:absolute;top:356px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:26px;line-height:1.32;color:#A9AEA4}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+  svg#lay{position:absolute;inset:0;width:1080px;height:1350px}
+  .cav{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.07em}
+  .seat{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:26px;letter-spacing:.05em;fill:#DCE6E8}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Cut for eight. Shipped with three.</h1>
+  <p class="dek">The account carries three verdicts and five measurements a reader would need. Nothing was removed. None of the five was ever stated.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>NOT STATED</span><span>c18 c19 c20 c21 c22</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<svg id="lay" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  const FOAM='#1A1D1C', HOUSING='#2B343E', LED='#C3D4DE';
+  g.fillStyle=FOAM; g.fillRect(0,0,W,H);
+
+  // CHARCOAL CLOSED CELL FOAM, edge to edge, no case lip and no border. Sueded, light eating,
+  // and a material no deck here has touched.
+  (function foam(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.020, y*0.020, 4);
+      const v=Math.round(22 + n*11);
+      g.fillStyle='rgb('+v+','+(v+2)+','+(v+1)+')'; g.fillRect(x,y,2,2);
+    }}
+    // the closed cells themselves, a fine pitted surface
+    for(let k=0;k<52000;k++){
+      const x=R()*W, y=R()*H;
+      g.fillStyle= R()<0.45 ? 'rgba(0,0,0,'+(R()*0.30).toFixed(3)+')'
+                            : 'rgba(190,205,208,'+(R()*0.045).toFixed(3)+')';
+      g.fillRect(x,y,1.6,1.6);
+    }
+    // the LED from frame left, so every cut edge has a rim to catch
+    const gr=g.createLinearGradient(0,0,W,H);
+    gr.addColorStop(0,'rgba(195,212,222,.13)'); gr.addColorStop(.55,'rgba(195,212,222,0)');
+    g.fillStyle=gr; g.fillRect(0,0,W,H);
+  })();
+
+  // A DIE-CUT CAVITY. A lit lip on its cut edge, a visible side wall falling away, and a floor
+  // that lifts BACK UP above its own darkest corner. That last part is the whole point: a hole
+  // has to read as a hole rather than as something struck out.
+  const CX0=80, CW=576, CH=62, ROWS=8, RY0=486, RPITCH=88;
+  function cavity(y, filled){
+    const r=9;
+    function path(x0,y0,w,h){
+      g.beginPath();
+      g.moveTo(x0+r,y0); g.lineTo(x0+w-r,y0); g.quadraticCurveTo(x0+w,y0,x0+w,y0+r);
+      g.lineTo(x0+w,y0+h-r); g.quadraticCurveTo(x0+w,y0+h,x0+w-r,y0+h);
+      g.lineTo(x0+r,y0+h); g.quadraticCurveTo(x0,y0+h,x0,y0+h-r);
+      g.lineTo(x0,y0+r); g.quadraticCurveTo(x0,y0,x0+r,y0); g.closePath();
+    }
+    // side walls, the darkest thing in the frame
+    path(CX0,y,CW,CH); g.fillStyle='#0A0C0B'; g.fill();
+    // the floor, lifted back up so the cavity is not a black rectangle
+    path(CX0+9,y+7,CW-18,CH-14); g.fillStyle='#232726'; g.fill();
+    // the foam's own tooth on the floor, so it is the same material down there
+    g.save(); path(CX0+9,y+7,CW-18,CH-14); g.clip();
+    for(let k=0;k<2200;k++){
+      const x=CX0+9+R()*(CW-18), yy=y+7+R()*(CH-14);
+      g.fillStyle= R()<0.5 ? 'rgba(0,0,0,'+(R()*0.24).toFixed(3)+')'
+                           : 'rgba(190,205,208,'+(R()*0.05).toFixed(3)+')';
+      g.fillRect(x,yy,1.5,1.5);
+    }
+    g.restore();
+    // THE LIT LIP on the cut edge, from the LED at frame left
+    g.lineWidth=2.6; path(CX0,y,CW,CH);
+    const lip=g.createLinearGradient(CX0,y,CX0+CW,y+CH);
+    lip.addColorStop(0,'rgba(195,212,222,.62)'); lip.addColorStop(.6,'rgba(195,212,222,.20)');
+    lip.addColorStop(1,'rgba(195,212,222,.10)');
+    g.strokeStyle=lip; g.stroke();
+    if(filled){
+      // a dull anodised plate seated in the cavity, with a two part contact into the floor
+      const px=CX0+18, py=y+11, pw=CW-36, ph=CH-22;
+      g.fillStyle='rgba(0,0,0,.60)'; g.fillRect(px+5,py+ph-2,pw-6,7);
+      g.fillStyle='rgba(0,0,0,.32)'; g.fillRect(px,py+ph+3,pw,8);
+      const gr=g.createLinearGradient(px,py,px+pw*0.6,py+ph);
+      gr.addColorStop(0,'#4B5761'); gr.addColorStop(.5,'#39434C'); gr.addColorStop(1,'#252C33');
+      g.fillStyle=gr; g.fillRect(px,py,pw,ph);
+      g.fillStyle='rgba(195,212,222,.50)'; g.fillRect(px,py,pw,2.2);
+    }
+  }
+  for(let i=0;i<ROWS;i++) cavity(RY0+i*RPITCH, i<3);
+
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('lay');
+  function txt(x,y,s,cls,fill,anchor){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class',cls);
+    if(fill) t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
+    t.textContent=s; svg.appendChild(t); return t;
+  }
+  const SEATED=['EXCEEDED EXPECTATIONS','HIGH QUALITY IMAGES','IT DID JUST THAT'];
+  const MISSING=['ACCURACY RATE','IMAGES CAPTURED','RETENTION PERIOD','DEPLOYMENT DECISION','ASSESSMENT DATES'];
+  for(let i=0;i<3;i++) txt(CX0+34, RY0+i*RPITCH+CH*0.66, SEATED[i], 'seat');
+  for(let i=0;i<5;i++) txt(CX0+34, RY0+(i+3)*RPITCH+CH*0.66, MISSING[i], 'cav', '#7E8B8E');
+  txt(700, RY0+CH*0.66-38, 'STATED', 'cav', '#C3D4DE');
+  txt(700, RY0+3*RPITCH+CH*0.66-38, 'NOT STATED', 'cav', '#7E8B8E');
+  await document.fonts.ready;
+  TX.svgPlateAll('#lay .cav', {padX:10, padY:6, fill:'#141716'});
+  TX.svgPlateAll('#lay .seat', {padX:10, padY:6, fill:'#333C44'});
+
+})();
+</script>
+</body></html>

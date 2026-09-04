@@ -1,0 +1,48 @@
+{
+  "run": "2026-09-04",
+  "note": "Every figure the deck prints that is not the source's own words repeated. Each names where it came from, and the gate re-derives it.",
+  "aggregates": [
+    {
+      "phrase": "1.1 million pedestrians",
+      "value": 1.1,
+      "quoted_from": "c12",
+      "quote": "Over 1.1 million pedestrians exit the U.S. to Mexico annually, and it is imperative to keep them safely moving,",
+      "why": "The bridge director's own figure for the crossing, repeated rather than computed. It measures the crossing and not the technology, which is the deck's whole angle."
+    },
+    {
+      "phrase": "Six companies",
+      "value": 6,
+      "quoted_from": "c3",
+      "quote": "In early 2026, S&T invited six companies to the Maryland Test Facility (MdTF) for basic capability demonstrations to determine which solutions should be operationally tested.",
+      "why": "The account's own count of companies demonstrated. Not a tally of claims and not arithmetic."
+    },
+    {
+      "phrase": "Three solutions",
+      "value": 3,
+      "quoted_from": "c4",
+      "quote": "These demonstrations led CBP and S&T to select three solutions for additional data collection: two from NEC National Security Systems (NSS) and one joint solution from Paravision and AiFi.",
+      "why": "The account's own count of solutions carried forward."
+    },
+    {
+      "phrase": "three vendor solutions",
+      "value": 3,
+      "quoted_from": "c4",
+      "quote": "These demonstrations led CBP and S&T to select three solutions for additional data collection: two from NEC National Security Systems (NSS) and one joint solution from Paravision and AiFi.",
+      "why": "The caption's form of the same count."
+    },
+    {
+      "phrase": "101,306 pedestrians",
+      "value": 101306,
+      "computed_by": "out/2026-09-04/compute.py, may_inbound_pedestrians. The value is read out of the fetched data row in c26 with a regular expression rather than retyped, and its thousands separator is applied by code. A separator is a formatting decision and this project does not let a writer make one.",
+      "from_claims": ["c26"],
+      "why": "It is a count of people ENTERING the United States at this port in May 2026. It is not a count of the people the cameras watched, who were walking the other way, and both the slide and the caption say entering."
+    },
+    {
+      "phrase": "three verdicts and five measurements",
+      "value": 3,
+      "computed_by": "out/2026-09-04/compute.py, performance_facts_asked and performance_facts_published. Three is the count of verdict claims the frame seats, c7 and c9 and c10. Five is the count of named absences, each established by its own claim, c18 accuracy, c19 images captured, c20 retention, c21 deployment and c22 assessment dates. Neither is a tally over an unnamed set.",
+      "from_claims": ["c7", "c9", "c10"],
+      "why": "The set counted is enumerated in compute.py's own absences list, so a bare count over a set nobody named cannot happen here."
+    }
+  ]
+}

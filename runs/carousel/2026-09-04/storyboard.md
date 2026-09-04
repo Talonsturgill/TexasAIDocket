@@ -88,7 +88,7 @@ slide: 1
 job: >
   Puts the reader standing in the pedestrian exit lane and states the whole decision, so that
   every frame after it is apparatus the reader has already walked past.
-claims: [c1, c17, c27, c28]
+claims: [c1, c12, c27, c28]
 numerals: []
 
 composition:
@@ -127,19 +127,19 @@ art:
 
 type:
   hook: "Tested on the faces walking out."
-  dek: "The pedestrian exit lane at the Progreso International Bridge in Hidalgo County. Cameras watched people leave the country."
-  labels: ["DHS SCIENCE AND TECHNOLOGY", "c1 c17 c27 c28", "texasaidocket.com", "01 / 09"]
+  dek: "The pedestrian exit lane at the Progreso International Bridge in Hidalgo County. Over 1.1 million pedestrians a year walk out of the United States here."
+  labels: ["DHS S AND T", "c1 c12 c27 c28", "texasaidocket.com", "01 / 09"]
 
 acceptance:
-  - "the hook reads exactly \"Tested on the faces walking out.\" and is six words"
-  - "the near diamond mesh plane occludes at least 30 percent of the plane behind it, drawn as real occlusion rather than as a tint"
-  - "the five parallax planes hold five distinct median L* values at least 6 apart, and none is within 6 of another"
-  - "the string \"Hidalgo County\" appears on this frame"
-  - "no person, no face, no body and no vehicle appears anywhere on this frame"
-  - "the sodium pools are emitted falloff on the slab and are never bounded by a drawn stroke"
+  - 'the hook reads exactly "Tested on the faces walking out." and is six words'
+  - 'the near diamond mesh plane occludes at least 30 percent of the plane behind it, drawn as real occlusion rather than as a tint'
+  - 'the five parallax planes hold five distinct median L* values at least 6 apart, and none is within 6 of another'
+  - 'the string "Hidalgo County" appears on this frame'
+  - 'no person, no face, no body and no vehicle appears anywhere on this frame'
+  - 'the sodium pools are emitted falloff on the slab and are never bounded by a drawn stroke'
 risks:
-  - "the layers share a value and the frame becomes a collage rather than a corridor"
-  - "a corridor at night resolves to one dark field at 432px, so the slab's three lit stages have to survive the thumb"
+  - 'the layers share a value and the frame becomes a collage rather than a corridor'
+  - 'a corridor at night resolves to one dark field at 432px, so the slab''s three lit stages have to survive the thumb'
 ```
 
 ```yaml
@@ -170,11 +170,11 @@ composition:
     the one carrying the brightest LED rim.
 
 art:
-  technique: "Zdog scene, a diagrammatic pole with three camera collars at three heights"
+  technique: "Diagrammatic mast and three mount assemblies drawn in canvas 2D, no ground plane"
   why_this_technique: >
-    The library reserves Zdog for a diagrammatic object like a transformer, and a camera mast is
-    exactly that. It is not terrain, which is Zdog's one failure, and there is no terrain on this
-    frame at all.
+    The library reserves the diagrammatic register for an object like a transformer, and a camera
+    mast is exactly that. Its failure is being reached for when the subject is terrain, and there
+    is no terrain on this frame at all.
   palette: "baffle #0D1013 ground, galv #6E7B7E, housing #2B343E, led_cool #C3D4DE, sodium #D9701F skyglow"
   value_structure: >
     Lightest is the LED rim along the lowest collar's housing at the bottom of the frame. Darkest
@@ -185,17 +185,17 @@ art:
 type:
   hook: "Asked for in October 2025."
   dek: "Cameras went up on poles at different heights, so people of different statures would land in frame. Some of the testing ran after dark on lighting the partners brought."
-  labels: ["MOUNT CONFIGURATION", "c2 c16 c28", "texasaidocket.com", "02 / 09"]
+  labels: ["MOUNTS", "c2 c16 c28", "texasaidocket.com", "02 / 09"]
 
 acceptance:
-  - "three camera collars are drawn at three different heights on one pole, and no two collars share a height"
-  - "no ground plane and no horizon line appears anywhere on this frame"
-  - "the interval between collars is drawn and is never dimensioned, because the account states no figure for it"
-  - "each collar is a real assembly carrying a bracket and a knuckle, not a box on a stick"
-  - "the string \"October 2025\" appears on this frame and traces to c2"
+  - 'three camera collars are drawn at three different heights on one pole, and no two collars share a height'
+  - 'no ground plane and no horizon line appears anywhere on this frame'
+  - 'the interval between collars is drawn and is never dimensioned, because the account states no figure for it'
+  - 'each collar is a real assembly carrying a bracket and a knuckle, not a box on a stick'
+  - 'the string "October 2025" appears on this frame and traces to c2'
 risks:
-  - "a pole against a sky is three boxes on a stick unless every collar is a real assembly"
-  - "the spill cones grey out the frame and the modeled housings stop reading"
+  - 'a pole against a sky is three boxes on a stick unless every collar is a real assembly'
+  - 'the spill cones grey out the frame and the modeled housings stop reading'
 ```
 
 ```yaml
@@ -240,18 +240,18 @@ art:
   motion: "Down through the element, six in and three out"
 
 type:
-  hook: "Six were demonstrated. Three came to the border."
-  dek: "Six companies were shown at the Maryland Test Facility. Three solutions were carried forward, two from NEC National Security Systems and one joint solution from Paravision and AiFi."
+  hook: "Six were shown. Three came south."
+  dek: "Six companies were demonstrated at the Maryland Test Facility. Three solutions were carried forward for data collection at the bridge."
   labels: ["SELECTION", "c3 c4", "texasaidocket.com", "03 / 09"]
 
 acceptance:
-  - "exactly six ray bundles enter and exactly three image points land"
-  - "the six and the three never sit on one shared baseline or one shared scale, and a hard horizontal break separates the two planes"
-  - "each of the three landings carries its own name, reading \"NEC NATIONAL SECURITY SYSTEMS\" twice and \"PARAVISION AND AIFI\" once"
-  - "the optical element is drawn with thickness and two curved faces, not as a single line"
+  - 'exactly six ray bundles enter and exactly three image points land'
+  - 'the six and the three never sit on one shared baseline or one shared scale, and a hard horizontal break separates the two planes'
+  - 'each of the three landings carries its own name, reading "NEC NSS" twice and "PARAVISION" once, with the full names set as the object plane and image plane captions'
+  - 'the optical element is drawn with thickness and two curved faces, not as a single line'
 risks:
-  - "a ray diagram reads as generic technology decoration rather than as a selection"
-  - "a reader computes three over six, which would be a ratio of different units"
+  - 'a ray diagram reads as generic technology decoration rather than as a selection'
+  - 'a reader computes three over six, which would be a ratio of different units'
 ```
 
 ```yaml
@@ -288,7 +288,7 @@ art:
     The claim is a copy and its original. Nothing else in the library puts two things in exactly
     the same place and asks a reader to find the difference, and that difference is the whole of
     what a replica is.
-  palette: "river_night #0D1417 ground, led_cool #C3D4DE Maryland, galv #6E7B7E Progreso, slab #2E3130 floor, sodium #D9701F low wash"
+  palette: "river_night #0D1417 ground, led_cool #C3D4DE Maryland and the floor wash, galv #6E7B7E Progreso, slab #2E3130 floor. NO sodium on this frame, because the replica belongs to the test rather than to the bridge, and because frame 1 already owns the orange floor"
   value_structure: >
     Lightest is the Maryland soffit at the top of the frame. Darkest is the open sky above the
     Progreso volume, which is the deck's deepest black. The two wireframes sit between them and
@@ -298,16 +298,16 @@ art:
 type:
   hook: "They built the lane twice."
   dek: "A replica of the pedestrian exit environment went up at the Maryland Test Facility first, so the vendors could install and assess their prototypes before taking them to the crossing."
-  labels: ["MARYLAND TEST FACILITY", "c30", "texasaidocket.com", "04 / 09"]
+  labels: ["REPLICA", "c30", "texasaidocket.com", "04 / 09"]
 
 acceptance:
-  - "two wireframes share one vanishing point and one footprint, and the footprint lines coincide within 3px"
-  - "the Maryland volume is closed above and the Progreso volume is open above"
-  - "the two wireframes are separated by hue and their median L* values differ by less than 8, so neither reads as more real"
-  - "no fill is used on either wireframe. Line only"
+  - 'two wireframes share one vanishing point and one footprint, and the footprint lines coincide within 3px'
+  - 'the Maryland volume is closed above and the Progreso volume is open above'
+  - 'the two wireframes are separated by hue and their median L* values differ by less than 8, so neither reads as more real'
+  - 'no fill is used on either wireframe. Line only'
 risks:
-  - "two wireframes on one vanishing point read as one confused drawing rather than as two buildings"
-  - "the darkest frame in the deck goes muddy at 432px"
+  - 'two wireframes on one vanishing point read as one confused drawing rather than as two buildings'
+  - 'the darkest frame in the deck goes muddy at 432px'
 ```
 
 ```yaml
@@ -353,17 +353,17 @@ art:
 type:
   hook: "Judged suitable. Suitable at what?"
   dek: "Artificial intelligence built a three dimensional model of the capture zone, watched pedestrian movement, and judged whether a face was good enough to match. The account gives no rate for how often it was right."
-  labels: ["TRAVELER VERIFICATION SERVICE", "c15 c18", "texasaidocket.com", "05 / 09"]
+  labels: ["SUITABILITY", "c15 c18", "texasaidocket.com", "05 / 09"]
 
 acceptance:
-  - "the bar groups run in a true geometric progression and no bar is drawn narrower than 5 device pixels at 432px wide"
-  - "every group and element numeral pad is blank, carrying a lit bevel and a shaded inner face and no character"
-  - "this frame's median L* is above 80 and it is the only frame in the deck above 60"
-  - "no sodium and no LED colour appears anywhere on this frame"
-  - "each chrome bar carries a specular edge highlight, so the frame cannot be read as paper on a light table"
+  - 'the bar groups run in a true geometric progression and no bar is drawn narrower than 5 device pixels at 432px wide'
+  - 'every group and element numeral pad is blank, carrying a lit bevel and a shaded inner face and no character'
+  - 'this frame''s median L* is above 80 and it is the only frame in the deck above 60'
+  - 'no sodium and no LED colour appears anywhere on this frame'
+  - 'each chrome bar carries a specular edge highlight, so the frame cannot be read as paper on a light table'
 risks:
-  - "moire on the 432px thumb where the fine groups sit"
-  - "a lit flat field reads as deck 14's light table under a new name"
+  - 'moire on the 432px thumb where the fine groups sit'
+  - 'a lit flat field reads as deck 14''s light table under a new name'
 ```
 
 ```yaml
@@ -411,14 +411,14 @@ type:
   labels: ["OPT-OUT LANE", "c13 c14", "texasaidocket.com", "06 / 09"]
 
 acceptance:
-  - "the two lanes are drawn at the same width on the same surface and differ only in light species"
-  - "no sign, no placard and no posted notice is depicted anywhere on this frame"
-  - "the capture footprint is an area of light with no drawn outline or stroke around it"
-  - "no person, no face and no body appears anywhere on this frame"
-  - "the painted lane edge has real thickness with a lit lip and a shaded inner face"
+  - 'the two lanes are drawn at the same width on the same surface and differ only in light species'
+  - 'no sign, no placard and no posted notice is depicted anywhere on this frame'
+  - 'the capture footprint is an area of light with no drawn outline or stroke around it'
+  - 'no person, no face and no body appears anywhere on this frame'
+  - 'the painted lane edge has real thickness with a lit lip and a shaded inner face'
 risks:
-  - "two lanes drawn unequally deliver a verdict the record does not"
-  - "a lane plan reads as an infographic rather than as ground"
+  - 'two lanes drawn unequally deliver a verdict the record does not'
+  - 'a lane plan reads as an infographic rather than as ground'
 ```
 
 ```yaml
@@ -426,11 +426,10 @@ slide: 7
 job: >
   Sets the one direction that is counted beside the one that is not, using the same agency's own
   published series and its own statement about what it does not collect.
-claims: [c25, c26, c12]
+claims: [c25, c26]
 numerals:
   - value_from: c26
   - computed_by: "out/2026-09-04/compute.py, may_inbound_pedestrians, the published count read out of the fetched data row and given its thousands separator by code"
-  - value_from: c12
 
 composition:
   structure: >
@@ -468,18 +467,18 @@ art:
 
 type:
   hook: "The way in is counted every month."
-  dek: "The federal border crossing series recorded 101,306 pedestrians entering the United States at this port in May 2026, the month the partners were at the bridge. The same series states that no comparable data is collected on outbound crossings. The bridge director puts the annual outbound figure at over 1.1 million."
-  labels: ["BUREAU OF TRANSPORTATION STATISTICS", "c12 c25 c26", "texasaidocket.com", "07 / 09"]
+  dek: "101,306 pedestrians entered the United States here in May 2026, the month the partners were at the bridge. No comparable data is collected on the way out."
+  labels: ["BTS BORDER DATA", "c25 c26", "texasaidocket.com", "07 / 09"]
 
 acceptance:
-  - "the string \"101,306\" appears on this frame with its thousands separator, and matches computed.json may_inbound_pedestrians display"
-  - "the upper drum run carries struck figures and the lower drum run carries none"
-  - "every blank drum draws a lit crown, a shaded flank and a channel floor, and the blank crowns' median L* is within 6 of the struck crowns' median L*"
-  - "the frame states that 101,306 is a count of people entering, in words, so it can't be read as a count of the people the cameras watched"
-  - "the two drum runs are the same length and sit in the same channel geometry"
+  - 'the string "101,306" appears on this frame with its thousands separator, and matches computed.json may_inbound_pedestrians display'
+  - 'the upper drum run carries struck figures and the lower drum run carries none'
+  - 'every blank drum draws a lit crown, a shaded flank and a channel floor, and the blank crowns'' median L* is within 6 of the struck crowns'' median L*'
+  - 'the frame states that 101,306 is a count of people entering, in words, so it can''t be read as a count of the people the cameras watched'
+  - 'the two drum runs are the same length and sit in the same channel geometry'
 risks:
-  - "a reader takes 101,306 for the number of faces the cameras captured, which is the most dangerous misread available in this deck"
-  - "an empty run reads as a redaction rather than as a count nobody keeps"
+  - 'a reader takes 101,306 for the number of faces the cameras captured, which is the most dangerous misread available in this deck'
+  - 'an empty run reads as a redaction rather than as a count nobody keeps'
 ```
 
 ```yaml
@@ -527,17 +526,17 @@ art:
 type:
   hook: "Cut for eight. Shipped with three."
   dek: "The account carries three verdicts and five measurements a reader would need. Nothing was removed. None of the five was ever stated."
-  labels: ["NOT STATED IN THE SEPTEMBER 1ST ACCOUNT", "c7 c9 c10 c18 c19 c20 c21 c22", "texasaidocket.com", "08 / 09"]
+  labels: ["NOT STATED", "c18 c19 c20 c21 c22", "texasaidocket.com", "08 / 09"]
 
 acceptance:
-  - "exactly three cavities are filled and exactly five are empty, and all eight silhouettes are identical"
-  - "the five empty cavity labels read \"ACCURACY RATE\", \"IMAGES CAPTURED\", \"RETENTION PERIOD\", \"DEPLOYMENT DECISION\" and \"ASSESSMENT DATES\""
-  - "every empty cavity draws a lit lip, a visible side wall and a floor, and each floor's median L* is at least 8 above its own darkest corner"
-  - "no empty cavity is drawn as a flat black rectangle"
-  - "the dek states that nothing was removed, so absence can't be read as redaction"
+  - 'exactly three cavities are filled and exactly five are empty, and all eight silhouettes are identical'
+  - 'the five empty cavity labels read "ACCURACY RATE", "IMAGES CAPTURED", "RETENTION PERIOD", "DEPLOYMENT DECISION" and "ASSESSMENT DATES"'
+  - 'every empty cavity draws a lit lip, a visible side wall and a floor, and each floor''s median L* is at least 8 above its own darkest corner'
+  - 'no empty cavity is drawn as a flat black rectangle'
+  - 'the dek states that nothing was removed, so absence can''t be read as redaction'
 risks:
-  - "a dark cavity reads as a redaction, which would accuse somebody of removing what was never written"
-  - "eight cavities at 432px collapse into a grid of dark tiles"
+  - 'a dark cavity reads as a redaction, which would accuse somebody of removing what was never written'
+  - 'eight cavities at 432px collapse into a grid of dark tiles'
 ```
 
 ```yaml
@@ -582,17 +581,17 @@ art:
   motion: "Along both beams to two different terminations"
 
 type:
-  hook: "No room, no window, no date on this one."
-  dek: "The account opens no comment period and no hearing. The nearest dated public room this record holds is a different program in a different city. The Dallas Public Safety Committee takes a briefing on the police department's Flock automated license plate readers on September 8th, 2026."
-  labels: ["A DIFFERENT PROGRAM", "c21 c23 c24", "texasaidocket.com", "09 / 09"]
+  hook: "No room. No window. No date."
+  dek: "This test opens no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026."
+  labels: ["DIFFERENT PROGRAM", "c21 c23 c24", "texasaidocket.com", "09 / 09"]
 
 acceptance:
-  - "the two axes are drawn at different depths and do not intersect anywhere in the frame"
-  - "the string \"September 8th, 2026\" appears on this frame and is set in led_cool #C3D4DE"
-  - "the reserved red #BF0A30 appears nowhere on this frame or anywhere in the deck"
-  - "the Progreso termination is a blank baffle with no aperture cut in it, in the same material as the lit aperture plate"
-  - "the frame states in words that the Dallas briefing is a different program"
+  - 'the two axes are drawn at different depths and do not intersect anywhere in the frame'
+  - 'the string "September 8th, 2026" appears on this frame and is set in led_cool #C3D4DE'
+  - 'the reserved red #BF0A30 appears nowhere on this frame or anywhere in the deck'
+  - 'the Progreso termination is a blank baffle with no aperture cut in it, in the same material as the lit aperture plate'
+  - 'the frame states in words that the Dallas briefing is a different program'
 risks:
-  - "two glowing lines read as science fiction rather than as an instrument"
-  - "a reader takes the Dallas date as a door onto Progreso, which is the one thing this frame exists to prevent"
+  - 'two glowing lines read as science fiction rather than as an instrument'
+  - 'a reader takes the Dallas date as a door onto Progreso, which is the one thing this frame exists to prevent'
 ```

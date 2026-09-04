@@ -1,0 +1,187 @@
+{
+  "run": "2026-09-04",
+  "deck": 15,
+  "note": "Built from the render report's own laid out text nodes rather than from the storyboard. A string here is a string the browser actually set.",
+  "slides": {
+    "S1": {
+      "hook": "Tested on the faces walking out.",
+      "dek": "The pedestrian exit lane at the Progreso International Bridge in Hidalgo County. Over 1.1 million pedestrians a year walk out of the United States here.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "DHS S AND T",
+        "c1 c12 c27 c28",
+        "texasaidocket.com",
+        "01 / 09"
+      ],
+      "claims": [
+        "c1",
+        "c12",
+        "c27",
+        "c28"
+      ]
+    },
+    "S2": {
+      "hook": "Asked for in October 2025.",
+      "dek": "Cameras went up on poles at different heights, so people of different statures would land in frame. Some of the testing ran after dark on lighting the partners brought.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "MOUNTS",
+        "c2 c16 c28",
+        "texasaidocket.com",
+        "02 / 09"
+      ],
+      "claims": [
+        "c2",
+        "c28",
+        "c16"
+      ]
+    },
+    "S3": {
+      "hook": "Six were shown. Three came south.",
+      "dek": "Six companies were demonstrated at the Maryland Test Facility. Three solutions were carried forward for data collection at the bridge.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "SELECTION",
+        "c3 c4",
+        "texasaidocket.com",
+        "03 / 09",
+        "OBJECT PLANE SIX DEMONSTRATED",
+        "IMAGE PLANE THREE CARRIED FORWARD",
+        "NEC NSS",
+        "SOLUTION 1",
+        "NEC NSS",
+        "SOLUTION 2",
+        "PARAVISION",
+        "AND AIFI"
+      ],
+      "claims": [
+        "c3",
+        "c4"
+      ]
+    },
+    "S4": {
+      "hook": "They built the lane twice.",
+      "dek": "A replica of the pedestrian exit environment went up at the Maryland Test Facility first, so the vendors could install and assess their prototypes before taking them to the crossing.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "REPLICA",
+        "c30",
+        "texasaidocket.com",
+        "04 / 09",
+        "MARYLAND, ROOFED",
+        "PROGRESO, OPEN SKY"
+      ],
+      "claims": [
+        "c30"
+      ]
+    },
+    "S5": {
+      "hook": "Judged suitable. Suitable at what?",
+      "dek": "Artificial intelligence built a three dimensional model of the capture zone, watched pedestrian movement, and judged whether a face was good enough to match. The account gives no rate for how often it was right.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "SUITABILITY",
+        "c15 c18",
+        "texasaidocket.com",
+        "05 / 09"
+      ],
+      "claims": [
+        "c15",
+        "c18"
+      ]
+    },
+    "S6": {
+      "hook": "One lane was provided for saying no.",
+      "dek": "Signs in English and Spanish told pedestrians that United States citizens could opt out. An opt-out lane was provided. The mandate the test serves applies to travelers who are not citizens.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "OPT-OUT LANE",
+        "c13 c14",
+        "texasaidocket.com",
+        "06 / 09",
+        "CAPTURE LANE",
+        "CARRIL DE CAPTURA",
+        "OPT-OUT LANE",
+        "CARRIL DE EXCLUSION"
+      ],
+      "claims": [
+        "c13",
+        "c14"
+      ]
+    },
+    "S7": {
+      "hook": "The way in is counted every month.",
+      "dek": "101,306 pedestrians entered the United States here in May 2026, the month the partners were at the bridge. No comparable data is collected on the way out.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "BTS BORDER DATA",
+        "c25 c26",
+        "texasaidocket.com",
+        "07 / 09",
+        "1",
+        "0",
+        "1",
+        ",",
+        "3",
+        "0",
+        "6",
+        "ENTERING THE UNITED STATES, MAY 2026",
+        "LEAVING, NO COMPARABLE DATA COLLECTED"
+      ],
+      "claims": [
+        "c25",
+        "c26"
+      ]
+    },
+    "S8": {
+      "hook": "Cut for eight. Shipped with three.",
+      "dek": "The account carries three verdicts and five measurements a reader would need. Nothing was removed. None of the five was ever stated.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "NOT STATED",
+        "c18 c19 c20 c21 c22",
+        "texasaidocket.com",
+        "08 / 09",
+        "EXCEEDED EXPECTATIONS",
+        "HIGH QUALITY IMAGES",
+        "IT DID JUST THAT",
+        "ACCURACY RATE",
+        "IMAGES CAPTURED",
+        "RETENTION PERIOD",
+        "DEPLOYMENT DECISION",
+        "ASSESSMENT DATES",
+        "STATED",
+        "NOT STATED"
+      ],
+      "claims": [
+        "c7",
+        "c9",
+        "c10",
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22"
+      ]
+    },
+    "S9": {
+      "hook": "No room. No window. No date.",
+      "dek": "This test opens no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "DIFFERENT PROGRAM",
+        "c21 c23 c24",
+        "texasaidocket.com",
+        "09 / 09",
+        "SEPT 8TH, 2026",
+        "DALLAS, A DIFFERENT PROGRAM",
+        "PROGRESO, NO ROOM OPEN"
+      ],
+      "claims": [
+        "c21",
+        "c23",
+        "c24"
+      ]
+    }
+  }
+}

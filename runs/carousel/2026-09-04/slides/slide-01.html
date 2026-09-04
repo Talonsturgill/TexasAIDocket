@@ -1,0 +1,186 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0D1417}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:600px;
+     background:linear-gradient(to bottom,rgba(13,20,23,.95) 0%,rgba(13,20,23,.93) 58%,rgba(13,20,23,.62) 84%,rgba(13,20,23,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:214px;
+     background:linear-gradient(to bottom,rgba(13,20,23,0) 0%,rgba(13,20,23,.82) 46%,rgba(13,20,23,.97) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+  h1{position:absolute;top:170px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:104px;line-height:1.02;color:#E6ECEA;letter-spacing:-.021em}
+  .dek{position:absolute;top:420px;left:80px;width:880px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:30px;line-height:1.34;color:#A9AEA4}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;
+        font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Tested on the faces walking out.</h1>
+  <p class="dek">The pedestrian exit lane at the Progreso International Bridge in Hidalgo County. Over 1.1 million pedestrians a year walk out of the United States here.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>DHS S AND T</span><span>c1 c12 c27 c28</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  // ---- palette -------------------------------------------------------------------------
+  const RIVER='#0D1417', SLAB='#2E3130', SLAB_NA='#6E5A40', SLAB_LED='#869597',
+        NA='#D9701F', LED='#C3D4DE', GALV='#6E7B7E';
+
+  // ---- the corridor, one point, vanishing point OFF CENTRE at 0.42 of the width ---------
+  // Ground distance d in metres. Everything on this frame is placed by these two functions,
+  // so the five planes recede on one geometry rather than on five guesses.
+  const VPX=W*0.42, HY=688, K=980;
+  const py = d => HY + K/d;                 // floor y at ground distance d
+  const sx = (x,d) => VPX + (x*K)/d;        // lateral offset x metres at distance d
+  const sh = (h,d) => (h*K)/d;              // a height h metres, in screen px, at distance d
+
+  g.fillStyle=RIVER; g.fillRect(0,0,W,H);
+
+  // PLANE 5, the far end of the lane. The brightest plane, an LED pool at the gate.
+  (function plane5(){
+    const d=26, y=py(d);
+    const gr=g.createRadialGradient(sx(0,d),y,4,sx(0,d),y,150);
+    gr.addColorStop(0,'rgba(195,212,222,.62)'); gr.addColorStop(.55,'rgba(195,212,222,.20)');
+    gr.addColorStop(1,'rgba(195,212,222,0)');
+    g.fillStyle=gr; g.save(); g.translate(sx(0,d),y); g.scale(1,0.42); g.translate(-sx(0,d),-y);
+    g.beginPath(); g.arc(sx(0,d),y,150,0,6.2832); g.fill(); g.restore();
+    // the gate's own frame, a thin lit lintel
+    g.fillStyle='rgba(195,212,222,.34)';
+    g.fillRect(sx(-1.5,d), y-sh(2.5,d), sx(1.5,d)-sx(-1.5,d), 3);
+  })();
+
+  // PLANE 4, the floor of the lane. Three lit stages, near sodium, dark, then LED.
+  (function floor(){
+    for(let i=0;i<220;i++){
+      const d0=1.15+i*0.14, d1=d0+0.14;
+      const y0=py(d1), y1=py(d0);
+      if(y1<HY+2) continue;
+      // base slab, darkening with distance
+      const t=Math.min(1,(d0-1.15)/24);
+      const v=Math.round(34-18*t);
+      g.fillStyle='rgb('+v+','+(v+2)+','+v+')';
+      g.fillRect(0,y0,W,Math.max(1,y1-y0+1));
+    }
+    // broom finish tooth, coarsening toward the reader
+    for(let k=0;k<26000;k++){
+      const d=1.15+Math.pow(R(),2.1)*26, y=py(d);
+      if(y>H||y<HY+2) continue;
+      const x=R()*W, s=Math.max(0.7, 2.6*(1.6/d));
+      g.fillStyle= R()<0.5 ? 'rgba(169,174,164,'+(R()*0.10*(1.8/d)).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.13*(1.8/d)).toFixed(3)+')';
+      g.fillRect(x,y,s,s*0.6);
+    }
+    // SODIUM POOLS, emitted falloff placed by ground distance. Never bounded by a stroke.
+    [[3.4,1.00],[7.2,0.62],[13.0,0.34]].forEach(([d,amp])=>{
+      const y=py(d), r=Math.min(300, sh(1.35,d));
+      const gr=g.createRadialGradient(sx(0.15,d),y,2,sx(0.15,d),y,r);
+      gr.addColorStop(0,'rgba(217,112,31,'+(0.62*amp).toFixed(3)+')');
+      gr.addColorStop(.40,'rgba(217,112,31,'+(0.24*amp).toFixed(3)+')');
+      gr.addColorStop(1,'rgba(217,112,31,0)');
+      g.save(); g.translate(sx(0.15,d),y); g.scale(1,0.40); g.translate(-sx(0.15,d),-y);
+      g.fillStyle=gr; g.beginPath(); g.arc(sx(0.15,d),y,r,0,6.2832); g.fill(); g.restore();
+    });
+    // the LED pool the test brought, further down, cool and narrow
+    (function(){
+      const d=15.0, y=py(d), r=sh(1.9,d);
+      const gr=g.createRadialGradient(sx(-0.2,d),y,1,sx(-0.2,d),y,r);
+      gr.addColorStop(0,'rgba(195,212,222,.60)'); gr.addColorStop(.5,'rgba(195,212,222,.24)');
+      gr.addColorStop(1,'rgba(195,212,222,0)');
+      g.save(); g.translate(sx(-0.2,d),y); g.scale(1,0.44); g.translate(-sx(-0.2,d),-y);
+      g.fillStyle=gr; g.beginPath(); g.arc(sx(-0.2,d),y,r,0,6.2832); g.fill(); g.restore();
+    })();
+    // worn painted lane edge, running to the vanishing point
+    g.strokeStyle='rgba(169,174,164,.30)'; g.lineWidth=1.2;
+    [-1.55,1.55].forEach(xo=>{
+      g.beginPath(); g.moveTo(sx(xo,1.15),py(1.15)); g.lineTo(sx(xo,26),py(26)); g.stroke();
+    });
+  })();
+
+  // PLANE 3, the canopy soffit. Ribs taking a graded LED wash on their lower edge.
+  (function soffit(){
+    const CH=2.85;                                  // canopy height in metres
+    for(let i=0;i<40;i++){
+      const d0=1.4+i*0.62, d1=d0+0.30;
+      const yA=py(d0)-sh(CH,d0), yB=py(d1)-sh(CH,d1);
+      if(yB>HY-1) break;
+      const t=Math.min(1,i/24), v=Math.round(30-16*t);
+      g.fillStyle='rgb('+v+','+(v+4)+','+(v+5)+')';
+      g.fillRect(0,yB,W,Math.max(1,yA-yB));
+      // the rib's lit lower edge
+      g.fillStyle='rgba(195,212,222,'+(0.30*(1-t)+0.04).toFixed(3)+')';
+      g.fillRect(0,yA-1.4,W,1.4);
+    }
+    // the dark band the soffit falls to behind the near mesh
+    const gr=g.createLinearGradient(0,0,0,180);
+    gr.addColorStop(0,'rgba(6,10,12,.92)'); gr.addColorStop(1,'rgba(6,10,12,0)');
+    g.fillStyle=gr; g.fillRect(0,0,W,180);
+  })();
+
+  // PLANE 2, the galvanized side screens converging on the vanishing point.
+  (function screens(){
+    [-1.75,1.75].forEach(xo=>{
+      g.beginPath();
+      g.moveTo(sx(xo,1.15),py(1.15));
+      g.lineTo(sx(xo,26),py(26));
+      g.lineTo(sx(xo,26),py(26)-sh(2.6,26));
+      g.lineTo(sx(xo,1.15),py(1.15)-sh(2.6,1.15));
+      g.closePath();
+      const gr=g.createLinearGradient(sx(xo,1.15),0,sx(xo,26),0);
+      gr.addColorStop(0,'rgba(110,123,126,.30)'); gr.addColorStop(1,'rgba(110,123,126,.06)');
+      g.fillStyle=gr; g.fill();
+      // uprights
+      for(let d=1.4; d<26; d*=1.30){
+        const x=sx(xo,d);
+        g.fillStyle='rgba(110,123,126,'+(0.46*Math.min(1,2.4/d)+0.05).toFixed(3)+')';
+        g.fillRect(x-Math.max(1,sh(0.05,d)/2), py(d)-sh(2.6,d), Math.max(1.2,sh(0.05,d)), sh(2.6,d));
+      }
+    });
+  })();
+
+  // PLANE 1, THE NEAR MESH. A real diamond fabric that OCCLUDES the plane behind it,
+  // crossing the lower left. It is painted last and it is opaque where its wire is.
+  (function mesh(){
+    g.save();
+    g.beginPath(); g.moveTo(0,690); g.lineTo(470,H); g.lineTo(0,H); g.closePath(); g.clip();
+    // the fabric's own shaded body first, so what is behind is genuinely hidden
+    g.fillStyle='rgba(9,13,15,.90)'; g.fillRect(0,660,520,H-660);
+    const P=27;
+    for(let k=-40;k<40;k++){
+      g.lineWidth=3.0; g.strokeStyle='rgba(110,123,126,.72)';
+      g.beginPath(); g.moveTo(-200+k*P, 620); g.lineTo(-200+k*P+760, H+40); g.stroke();
+      g.lineWidth=2.6; g.strokeStyle='rgba(110,123,126,.40)';
+      g.beginPath(); g.moveTo(-200+k*P, H+40); g.lineTo(-200+k*P+760, 620); g.stroke();
+    }
+    // the sodium rim the near fabric takes from the pool at the reader's feet
+    const gr=g.createLinearGradient(0,H,340,900);
+    gr.addColorStop(0,'rgba(217,112,31,.30)'); gr.addColorStop(1,'rgba(217,112,31,0)');
+    g.fillStyle=gr; g.fillRect(0,660,520,H-660);
+    g.restore();
+  })();
+
+  // grain over everything, so the graded ground does not read as an unfinished render
+  (function grain(){
+    for(let k=0;k<30000;k++){
+      const x=R()*W, y=R()*H;
+      g.fillStyle='rgba(255,255,255,'+(R()*0.026).toFixed(3)+')';
+      g.fillRect(x,y,1,1);
+    }
+  })();
+})();
+</script>
+</body></html>
