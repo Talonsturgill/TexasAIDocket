@@ -255,6 +255,60 @@ reading.** The instruction for the next run stands and is now stated twice in th
 here and once as an instinct, because a lesson that lives in one ledger field a run reads after
 building is a lesson the machine loses.
 
+## The panel, round by round
+
+**ROUND 1. 6.29 integrity, 6.58 craft, 6.55 reader. Median 6.508, spread 0.29, THREE hard fails,
+HOLD.** A tight spread with three hard fails is the panel working exactly as it should: the judges
+agreed on the number and each found a different thing wrong.
+
+Every one of the three was real.
+
+- **`IT DID JUST THAT` on the hero frame was in no claim.** All three judges found it
+  independently. The sentence was in the source the whole time and the claims file did not carry
+  it, which is worse than a fabrication in one way and better in another. c31 carries it now, and
+  the two plates beside it were checked the same way: `HIGH QUALITY IMAGES` had silently dropped
+  "facial" from c9's own words, in a verbatim slot, beside a real quote.
+- **`MARYLAND, ROOFED` and `PROGRESO, OPEN SKY` on frame 4** asserted a roof and a sky no claim
+  carries, and the sky contradicted the deck's own frame 1, which draws the crossing under a
+  canopy. The drawing was saying copy by asserting a DIFFERENCE. It says copy by repeating one
+  geometry now, and the labels are the two place names c30 itself carries.
+- **Frame 6's Spanish lane names were the deck writing a sign.** The account says the signs were
+  in English and Spanish and never says what they said.
+
+**And the run's own finding, which cost the round.** The arc was measured AFTER three judges had
+already been spawned on it, at deck median L* 6.3 against a plan of 24. Eight of nine frames sat
+between 4.5 and 10.1, which is not dark, it is unlit. Every frame had lights and no ambient.
+
+**ROUND 2. 6.6 integrity, 6.936 craft, 7.12 reader. Median 7.034, spread 0.52, ONE hard fail,
+HOLD.** Over the bar and held anyway, which is the rule working: a number over 6.8 is not done.
+
+The hard fail was round 1's own finding **reworded rather than repaired**. Frame 9 had asserted
+"This test opens no comment period and no hearing", an absence about every public body that no
+page fetched this run can support. Rewording it to "The account announces" fixed the dek and left
+the plate reading `PROGRESO, NO ROOM OPEN`, which is not scoped to anything. **c32 anchors it now
+in the same pattern c18 to c22 already used**, stating the absence and quoting the nearest thing
+the page does say.
+
+Four noun-level over-reaches went with it, and each is a place a frame said more than its quote
+does. c16 names no supplier of the night lighting. c3 says six companies were INVITED, and six
+invited does not establish six demonstrated, which is the count six ray bundles draw. c15 says
+artificial intelligence AND OTHER TECHNOLOGIES. c9 is NEC's own president describing NEC's own
+product, and the frame drew it identically to two government findings, flattening exactly the
+speaker distinction the deck's angle depends on. Each plate names its speaker now.
+
+**The craft judge's sentence is the one worth keeping**, because it is a diagnosis rather than a
+complaint. *"An opening is being drawn by decorating the EDGES of an axis-aligned rectangle
+instead of modeling what is INSIDE it."* The numbers said why. The side wall was
+`26 * tan(12 degrees)`, which is five and a half pixels, a hairline standing in for a
+quadrilateral, and the cavity floors sat LIGHTER than the foam around them, so five holes read as
+disabled form fields. Both walls are real quadrilaterals now and every floor is darker than the
+foam and lighter than its own walls, which is what a hole looks like.
+
+**Frame 9's blank baffle broke the deck's own third law on its closing frame**, drawn as a flat
+dark rectangle after eight frames of insisting that absence is a lit slot with a lip, a side wall
+and a floor. It is a blanked opening now, identical to the aperture beside it except that nothing
+goes through.
+
 ## Gate status
 
 <!-- gate-status:begin -->
