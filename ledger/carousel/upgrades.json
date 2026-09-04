@@ -988,6 +988,7 @@
 ,
  "2026-09-04": {
   "phase": "retro and upgrade, deck no. 15, actor `upgrade`",
+  "revert_commit": "51408e8177a5932ac18385db070a52cae7346060. One commit carries all three upgrades and each is independent inside it: scripts/carousel/verbatim_check.py plus its gate_status row plus the SLIDE_DOSSIER_SPEC section, scripts/carousel/panel_ready.py, and scripts/carousel/dedupe_check.py. Reverting the whole commit removes all three and reverting one file removes one, except that dropping verbatim_check.py alone leaves gate_status reporting a row whose receipt nothing writes, which renders ABSENT rather than failing.",
   "read_first": "CLAUDE.md, knowledge/shared/GATE_LESSONS.md, ownership.yaml, knowledge/carousel/UPGRADE_BACKLOG.md and runs/carousel/2026-09-04/RUN_RECORD.md.",
   "the_run_this_came_out_of": "Carousel 15 shipped a nine frame deck about a facial biometric test on the pedestrian exit lane at the Progreso International Bridge. Three judges, working independently, found FIVE on-frame strings dressed as the source's own words that no claim carries, and every gate in the suite was green on all five. Separately the first render measured deck median L* 6.3 against a storyboard plan of 24 and nothing said so, because it was found by the showrunner writing a one-off measure.py after three judges had already been spawned. Separately again, deck 14's angle_note told this run in as many words to pick a story where something happened, and the run read that field after the deck was built, because dedupe_check cannot see it.",
   "upgrades": [
