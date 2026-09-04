@@ -270,55 +270,63 @@ numerals: []
 
 composition:
   structure: >
-    One point perspective with the vanishing point DEAD CENTRE, deliberately against frame 1's
-    off centre construction, with two extruded architectural wireframes of the same footprint
-    superimposed on that single vanishing point. This content wants superposition because a
-    replica is best drawn by laying it exactly on the thing it copies, and a caption saying they
-    match is weaker than a reader seeing where they do not.
+    FLAT ELEVATION at ONE scale, two identical portal frames standing side by side on a single
+    slab, drawn from the same set of dimension constants so the two objects measure the same
+    because they are the same numbers. Deliberately NOT a one point corridor, which frames 1, 6
+    and 9 already own and which this frame ran twice and failed twice: perspective makes the far
+    copy small, so a reader sees a big thing and a little thing rather than the same thing twice.
   bands: >
-    The top third carries the near copy's own soffit, a modeled ceiling taking a cool LED
-    gradient across its ribs. The middle third carries a VISIBLE GAP along the axis and then the
-    second structure beyond it, at identical station spacing and identical width, one in led_cool
-    and one in galv, line only. The gap is what makes two structures two rather than one long
-    corridor, and the first render without it read as a single tunnel with two side labels.
-    The bottom third carries the shared footprint where the two volumes agree exactly, drawn as a
-    modeled floor plane in slab with a low sodium wash graded from the left and the mesh line of
-    the near end of both volumes crossing it, so the agreement is a lit surface rather than a
-    diagram.
+    The top third carries the type header, the two place names on light plates with their own
+    annotations under them, and under those TWO dimension lines of identical length, one over each
+    portal, with witness lines dropping to the object. Two equal measurements side by side is the
+    claim, and one line spanning both would measure the gap instead. This is the only frame in the
+    deck whose names sit above the drawing rather than below it. The middle third carries the two portals at full height,
+    each a pair of sectioned posts with a lit face and a shaded return, a head beam with a lit
+    lip, and a diamond screen infill between the posts. The bottom third is the shared slab, one
+    floor under both, washed by the LED the test brought in from frame left, with each portal's
+    two part contact shadow and its throw falling away to frame right.
   focal: >
-    The near volume's lit soffit, the only closed modeled surface in the frame and the largest
-    light area on it, which is what a reader's eye arrives on before it travels down the axis to
-    the second structure past the gap.
+    The lit post faces and head lip of the frame LEFT portal, the brightest built edges in the
+    frame, which is where the eye arrives before it crosses to find the identical geometry in the
+    duller galvanised ink.
 
 art:
-  technique: "Line and node as ONE architectural geometry drawn twice at two depths on one axis"
+  technique: "Elevation drawing as ONE portal geometry rendered twice at one scale, side by side"
   why_this_technique: >
-    The claim is a copy and its original. The first build of this frame drew a DIFFERENCE, one
-    volume roofed and one open, and a panel found that neither the roof nor the sky is in any
-    claim and that the open sky contradicts frame 1's own canopy. A replica is a thing built to
-    the same dimensions somewhere else, so the honest drawing is one geometry repeated at two
-    depths, with the near copy the one that was built first.
+    The claim is a copy and its original. The first build drew a DIFFERENCE, one volume roofed and
+    one open, and a panel found that neither the roof nor the sky is in any claim and that the
+    open sky contradicts frame 1's own canopy. The second build put one geometry at two depths on
+    one axis, which was honest and illegible, because the far copy came out small and the labels
+    ended up doing the drawing's job. A replica is a thing built to the same dimensions somewhere
+    else, so two objects that MEASURE the same is the whole claim and it needs no caption. The
+    frames stand side by side at one scale, each under its own dimension line, and the two lines
+    come out the same length because the two objects are drawn from the same numbers.
   palette: "river_night #0D1417 ground, led_cool #C3D4DE Maryland and the floor wash, galv #6E7B7E Progreso, slab #2E3130 floor. NO sodium on this frame, because the replica belongs to the test rather than to the bridge, and because frame 1 already owns the orange floor"
   value_structure: >
-    Lightest is the Maryland soffit at the top of the frame. Darkest is the open sky above the
-    Progreso volume, which is the deck's deepest black. The two wireframes sit between them and
-    are separated by hue rather than by value, so neither reads as more real than the other.
-  motion: "Along the shared floor to the vanishing point, then up to the ceiling that is only there once"
+    Lightest are the lit post faces and head lip of the frame LEFT portal, which is where the
+    LED the test brought stands. The two inverted name plates in the header band sit below them
+    at a mid light value, so the header reads as annotation rather than as the subject. Darkest
+    is the worked ground either side of the portals, which is the deck's deepest black. The two
+    portals are separated by ink rather than by construction, the left in led_cool and the right
+    in galv, so neither reads as more real than the other and the order is the one c30 states
+    rather than a judgement about the places.
+  motion: "Across the dimension line left to right, then down each portal and back along the shared slab"
 
 type:
   hook: "They built the lane twice."
   dek: "A replica of the pedestrian exit environment went up at the Maryland Test Facility first, so the vendors could install and assess their prototypes before taking them to the crossing."
-  labels: ["REPLICA", "c30", "texasaidocket.com", "04 / 09"]
+  labels: ["REPLICA", "c30", "texasaidocket.com", "04 / 09", "MARYLAND TEST FACILITY", "BUILT FIRST", "PROGRESO BORDER CROSSING", "THE ORIGINAL"]
 
 verbatim: []
 
 acceptance:
-  - 'the two wireframes share one vanishing point and one station spacing, differ only in how far along the axis they sit, and are separated by a drawn gap so a reader sees two structures rather than one'
-  - 'the labels read "MARYLAND TEST FACILITY, BUILT FIRST" and "PROGRESO BORDER CROSSING", which are the two place names and the order c30 itself carries, and neither asserts a physical property of either place'
-  - 'the two wireframes are separated by hue and their median L* values differ by less than 8, so neither reads as more real'
-  - 'no fill is used on either wireframe. Line only'
+  - 'the two portals are drawn from one set of dimension constants at one scale, stand on one slab, and are the same width and the same height to within a pixel, so a reader measuring them by eye finds no difference'
+  - 'the labels read "MARYLAND TEST FACILITY", "BUILT FIRST", "PROGRESO BORDER CROSSING" and "THE ORIGINAL", which are the two place names and the order c30 itself carries, and none asserts a physical property of either place'
+  - 'each portal has posts with a lit face and a shaded return, a head beam with a lit lip, and a two part contact shadow where it meets the slab, so it is a built object rather than an outline'
+  - 'the two PLACE NAMES are on light plates with dark ink, inverting the deck standard chip, and the two ANNOTATIONS under them are unplated and smaller, so the deck''s own words are never dressed in the slot a quotation anchors'
+  - 'each portal carries its own dimension line with witness lines to the object, and the two lines are the same length, because two equal measurements side by side is the claim and one line spanning both would measure the gap'
 risks:
-  - 'two wireframes on one vanishing point read as one confused drawing rather than as two buildings'
+  - 'two identical objects side by side read as a pattern rather than as a copy and its original'
   - 'the darkest frame in the deck goes muddy at 432px'
 ```
 
@@ -360,12 +368,12 @@ art:
     Lightest is the transilluminated glass field across the whole frame, which is why this is the
     deck's inversion. Darkest is the resolution limit picket in the lower right, where the pitch
     closes to a solid. No sodium and no LED appears anywhere on this frame, and it is the only
-    frame in nine that declares neither.
+    frame in the deck that declares neither.
   motion: "Down through the groups to where they stop resolving"
 
 type:
   hook: "Judged suitable. Suitable at what?"
-  dek: "Artificial intelligence and other technologies built a three dimensional model of the capture zone, watched pedestrian movement, and judged whether a face was good enough to match in Customs and Border Protection's Traveler Verification Service. The account gives no rate for how often it was right."
+  dek: "Artificial intelligence and other technologies built a three dimensional model of the capture zone and watched how pedestrians moved. The software judged whether a face was suitable for matching in Customs and Border Protection's Traveler Verification Service. No rate is given for how often it was right."
   labels: ["SUITABILITY", "c15 c18", "texasaidocket.com", "05 / 09"]
 
 verbatim: []
@@ -385,7 +393,7 @@ risks:
 slide: 6
 job: >
   Carries the record's own countervailing fact, that a lane out was provided for people who
-  declined, and is the one frame in nine where every field the drawing offers is filled.
+  declined, and is the one frame where every field the drawing offers is filled.
 claims: [c13, c14]
 numerals: []
 
@@ -483,7 +491,7 @@ art:
   motion: "Along the upper run to the turned drum, then down to the run that carries nothing"
 
 type:
-  hook: "The way in is counted every month."
+  hook: "The way in has a number."
   dek: "101,306 pedestrians entered the United States here in May 2026, the month the partners were at the bridge. No comparable data is collected on the way out."
   labels: ["BTS BORDER DATA", "c25 c26", "texasaidocket.com", "07 / 09"]
 
@@ -503,11 +511,12 @@ risks:
 ```yaml
 slide: 8
 job: >
-  The hero. Shows in one object that the account was cut for eight things and shipped with
-  three, by naming each missing measurement in the slot it would have occupied.
+  The hero. Shows in one object that the account filled three slots with quotations and left five
+  measurements empty, by naming each missing measurement in the slot it would have occupied.
 claims: [c7, c9, c31, c18, c19, c20, c21, c22]
 numerals:
   - computed_by: "out/2026-09-04/compute.py, performance_facts_asked and performance_facts_published, counted over the five named absences each of which carries its own claim"
+  - computed_by: "out/2026-09-04/compute.py, characterisations_quoted, counted over the three quotations the frame seats, c7 and c9 and c31, each attributed on the frame to the party that said it"
 
 composition:
   structure: >
@@ -544,9 +553,9 @@ art:
   motion: "Across the filled rank, then down into the empty one"
 
 type:
-  hook: "Eight slots. Three of them filled."
-  dek: "Two agencies and one vendor filed a finding. Five measurements were never stated rather than removed."
-  labels: ["SLOTS", "c7 c9 c31 c18 c22", "texasaidocket.com", "08 / 09"]
+  hook: "Three quotes. No measurement."
+  dek: "The account describes the result in words. Five measurements were never stated rather than removed."
+  labels: ["SLOTS", "c7 c9 c31 c18-c22", "texasaidocket.com", "08 / 09"]
 
 verbatim:
   - c7: "EXCEEDED EXPECTATIONS"
@@ -609,9 +618,9 @@ art:
   motion: "Along both beams to two different terminations"
 
 type:
-  hook: "The only date belongs to Dallas."
+  hook: "The next dated meeting is in Dallas."
   dek: "The account announces no comment period, no hearing and no docket. The nearest dated room in this record is a different program. Dallas takes a briefing on its police Flock plate readers on September 8th, 2026."
-  labels: ["DIFFERENT PROGRAM", "c21 c23 c24", "texasaidocket.com", "09 / 09"]
+  labels: ["DIFFERENT PROGRAM", "c32 c23 c24", "texasaidocket.com", "09 / 09"]
 
 verbatim: []
 

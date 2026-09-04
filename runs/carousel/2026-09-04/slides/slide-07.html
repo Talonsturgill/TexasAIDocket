@@ -27,7 +27,7 @@
 <div class="wrap">
   <div class="tscrim" data-decorative></div>
   <div class="mast">TEXAS AI DOCKET</div>
-  <h1>The way in is counted every month.</h1>
+  <h1>The way in has a number.</h1>
   <p class="dek">101,306 pedestrians entered the United States here in May 2026, the month the partners were at the bridge. No comparable data is collected on the way out.</p>
   <div class="fscrim" data-decorative></div>
   <div class="foot"><span>BTS BORDER DATA</span><span>c25 c26</span><span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
@@ -58,7 +58,9 @@ window.renderReady = (async () => {
     const gr=g.createLinearGradient(PX,PY,PX+PW*0.7,PY+PH);
     gr.addColorStop(0,'#69767F'); gr.addColorStop(.42,'#505B64'); gr.addColorStop(1,'#333B42');
     g.fillStyle=gr; g.fillRect(PX,PY,PW,PH);
-    g.fillStyle='rgba(195,212,222,.52)'; g.fillRect(PX,PY,PW,3);            // lit upper edge
+    const le=g.createLinearGradient(PX,0,PX+PW,0);                          // lit upper edge
+    le.addColorStop(0,'rgba(195,212,222,.62)'); le.addColorStop(1,'rgba(195,212,222,.26)');
+    g.fillStyle=le; g.fillRect(PX,PY,PW,3);
     g.fillStyle='rgba(0,0,0,.50)'; g.fillRect(PX,PY+PH-4,PW,4);
     // anodised tooth
     for(let k=0;k<26000;k++){
@@ -78,21 +80,40 @@ window.renderReady = (async () => {
   const RX = PX + (PW-RUNW)/2;
   const RY_UP = PY+66, RY_LO = PY+PH-66-DH;
 
+  // The plate is washed brighter at frame left, so a drum must sit in THAT light rather than in
+  // its own. `f` is the drum's position along the run, 0 at frame left and 1 at frame right, and
+  // every value on the cylinder is taken down by it. A round 3 judge found all fourteen drums
+  // carrying one identical gradient at one identical height, which is a per-object gradient
+  // rather than a lit scene, and it is the same defect this deck already fixed on frame 5.
   function drum(x,y){
+    const f=(x-RX)/RUNW;
+    const row=(y>PY+PH/2)?0.88:1.0;   // the lower run is further from the plate's lit edge                       // 0 at the lit end, 1 at the far end
+    const k=(1-0.21*f)*row;                          // the light the plate actually delivers here
+    const mix=(a,b,w)=>Math.round(a+(b-a)*w);
+    const val=v=>{ const n=Math.round(v*k); return 'rgb('+n+','+mix(n,n+6,1)+','+mix(n,n+7,1)+')'; };
     // the channel the drum sits in, cut into the plate
-    g.fillStyle='rgba(0,0,0,.72)'; g.fillRect(x-6,y-8,DW+12,DH+16);
-    g.fillStyle='rgba(195,212,222,.16)'; g.fillRect(x-6,y-8,DW+12,2);
+    g.fillStyle='rgba(0,0,0,'+(0.72+0.10*f).toFixed(3)+')'; g.fillRect(x-6,y-8,DW+12,DH+16);
+    g.fillStyle='rgba(195,212,222,'+(0.16*k).toFixed(3)+')'; g.fillRect(x-6,y-8,DW+12,2);
     // the cylinder. A real drum is dark at both rims and near uniform across its apex, which
-    // is also what a struck digit needs to sit on.
+    // is also what a struck digit needs to sit on. The apex sits a little lower at frame right,
+    // because the light arriving there is more raking.
+    const apex=0.34+0.05*f;
     const gr=g.createLinearGradient(0,y,0,y+DH);
-    gr.addColorStop(0.00,'#1D2325'); gr.addColorStop(0.16,'#6A767A');
-    gr.addColorStop(0.34,'#AEBBBE'); gr.addColorStop(0.66,'#AEBBBE');
-    gr.addColorStop(0.84,'#667276'); gr.addColorStop(1.00,'#1B2123');
+    gr.addColorStop(0.00, val(30));  gr.addColorStop(0.16, val(118));
+    gr.addColorStop(apex, val(192)); gr.addColorStop(Math.min(0.72,apex+0.32), val(190));
+    gr.addColorStop(0.86, val(106)); gr.addColorStop(1.00, val(28));
     g.fillStyle=gr; g.fillRect(x,y,DW,DH);
+    // the lateral fall across the cylinder itself, away from the light at frame left
+    const lat=g.createLinearGradient(x,0,x+DW,0);
+    lat.addColorStop(0,'rgba(255,255,255,'+(0.055*k).toFixed(3)+')');
+    lat.addColorStop(0.5,'rgba(0,0,0,0)');
+    lat.addColorStop(1,'rgba(0,0,0,'+(0.10+0.09*f).toFixed(3)+')');
+    g.fillStyle=lat; g.fillRect(x,y,DW,DH);
     // the drum's own end flanges
     g.fillStyle='rgba(0,0,0,.34)'; g.fillRect(x,y,3,DH); g.fillRect(x+DW-3,y,3,DH);
     // the crown, the brightest land on the cylinder
-    g.fillStyle='rgba(255,255,255,.20)'; g.fillRect(x+3,y+DH*0.42,DW-6,DH*0.06);
+    g.fillStyle='rgba(255,255,255,'+(0.20*k).toFixed(3)+')';
+    g.fillRect(x+3,y+DH*(apex+0.08),DW-6,DH*0.06);
   }
 
   for(let i=0;i<NDR;i++){

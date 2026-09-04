@@ -227,7 +227,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1195,
+      "render_ms": 1118,
       "ok": true,
       "canvases": [
         {
@@ -240,8 +240,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 65.9,
-          "variance": 391.5
+          "mean": 66.1,
+          "variance": 398.4
         }
       ],
       "breather": false,
@@ -494,7 +494,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2656,
+      "render_ms": 2509,
       "ok": true,
       "canvases": [
         {
@@ -983,7 +983,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 427,
+      "render_ms": 475,
       "ok": true,
       "canvases": [
         {
@@ -996,8 +996,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 49.8,
-          "variance": 194.8
+          "mean": 49.9,
+          "variance": 206.9
         }
       ],
       "breather": false,
@@ -1178,22 +1178,22 @@
           "anc": []
         },
         {
-          "text": "MARYLAND TEST FACILITY, BUILT FIRST",
-          "x": 96,
-          "y": 676,
-          "w": 554,
+          "text": "MARYLAND TEST FACILITY",
+          "x": 114,
+          "y": 482,
+          "w": 348,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(214, 230, 238)",
+          "color": "rgb(20, 26, 28)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              96,
-              676,
-              554,
+              114,
+              482,
+              348,
               31
             ]
           ],
@@ -1201,21 +1201,65 @@
         },
         {
           "text": "PROGRESO BORDER CROSSING",
-          "x": 604,
-          "y": 814,
+          "x": 602,
+          "y": 482,
           "w": 380,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(150, 166, 170)",
+          "color": "rgb(20, 26, 28)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              604,
-              814,
+              602,
+              482,
               380,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BUILT FIRST",
+          "x": 190,
+          "y": 538,
+          "w": 195,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(147, 162, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              190,
+              538,
+              195,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE ORIGINAL",
+          "x": 685,
+          "y": 538,
+          "w": 213,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(147, 162, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              685,
+              538,
+              213,
               31
             ]
           ],
@@ -1250,23 +1294,23 @@
         },
         {
           "kind": "fill",
-          "x": 85,
-          "y": 669,
-          "w": 576.4,
+          "x": 102.8,
+          "y": 475,
+          "w": 370.5,
           "h": 45,
           "by": "rect",
-          "color": "rgb(28, 36, 38)",
+          "color": "rgb(138, 154, 159)",
           "decorative": false,
           "skip": []
         },
         {
           "kind": "fill",
-          "x": 592.8,
-          "y": 807,
+          "x": 590.9,
+          "y": 475,
           "w": 402.2,
           "h": 45,
           "by": "rect",
-          "color": "rgb(28, 36, 38)",
+          "color": "rgb(138, 154, 159)",
           "decorative": false,
           "skip": []
         }
@@ -1274,7 +1318,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 978,
+      "render_ms": 1690,
       "ok": true,
       "canvases": [
         {
@@ -1287,8 +1331,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 43,
-          "variance": 485.9
+          "mean": 44.9,
+          "variance": 831.3
         }
       ],
       "breather": false,
@@ -1353,7 +1397,7 @@
           "anc": []
         },
         {
-          "text": "Artificial intelligence and other technologies built a three dimensional model of the capture zone, watched pedestrian movement, and judged whether a face was good enough to match in Customs and Border Protection's Traveler Verification Service. The account gives no rate for how often it was right.",
+          "text": "Artificial intelligence and other technologies built a three dimensional model of the capture zone and watched how pedestrians moved. The software judged whether a face was suitable for matching in Customs and Border Protection's Traveler Verification Service. No rate is given for how often it was right.",
           "x": 80,
           "y": 352,
           "w": 880,
@@ -1374,25 +1418,25 @@
             [
               80,
               389,
-              783,
+              742,
               38
             ],
             [
               80,
               426,
-              858,
+              792,
               38
             ],
             [
               80,
               464,
-              838,
+              855,
               38
             ],
             [
               80,
               501,
-              674,
+              803,
               38
             ]
           ],
@@ -1517,7 +1561,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 844,
+      "render_ms": 765,
       "ok": true,
       "canvases": [
         {
@@ -1814,7 +1858,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1245,
+      "render_ms": 1199,
       "ok": true,
       "canvases": [
         {
@@ -1865,11 +1909,11 @@
           "anc": []
         },
         {
-          "text": "The way in is counted every month.",
+          "text": "The way in has a number.",
           "x": 80,
           "y": 158,
           "w": 900,
-          "h": 162,
+          "h": 81,
           "font_px": 78,
           "weight": "800",
           "family": "Fraunces",
@@ -1880,13 +1924,7 @@
             [
               80,
               150,
-              717,
-              96
-            ],
-            [
-              80,
-              231,
-              444,
+              848,
               96
             ]
           ],
@@ -2265,7 +2303,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 679,
+      "render_ms": 856,
       "ok": true,
       "canvases": [
         {
@@ -2278,8 +2316,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 73.4,
-          "variance": 1271.2
+          "mean": 71.1,
+          "variance": 983.9
         }
       ],
       "breather": false,
@@ -2316,7 +2354,7 @@
           "anc": []
         },
         {
-          "text": "Eight slots. Three of them filled.",
+          "text": "Three quotes. No measurement.",
           "x": 80,
           "y": 150,
           "w": 900,
@@ -2331,20 +2369,20 @@
             [
               80,
               141,
-              714,
+              612,
               108
             ],
             [
               80,
               232,
-              404,
+              525,
               108
             ]
           ],
           "anc": []
         },
         {
-          "text": "Two agencies and one vendor filed a finding. Five measurements were never stated rather than removed.",
+          "text": "The account describes the result in words. Five measurements were never stated rather than removed.",
           "x": 80,
           "y": 356,
           "w": 900,
@@ -2359,13 +2397,13 @@
             [
               80,
               354,
-              841,
+              897,
               36
             ],
             [
               80,
               388,
-              415,
+              341,
               36
             ]
           ],
@@ -2394,7 +2432,7 @@
           "anc": []
         },
         {
-          "text": "c7 c9 c31 c18 c22",
+          "text": "c7 c9 c31 c18-c22",
           "x": 225,
           "y": 1243,
           "w": 265,
@@ -2776,7 +2814,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1934,
+      "render_ms": 1717,
       "ok": true,
       "canvases": [
         {
@@ -2827,7 +2865,7 @@
           "anc": []
         },
         {
-          "text": "The only date belongs to Dallas.",
+          "text": "The next dated meeting is in Dallas.",
           "x": 80,
           "y": 158,
           "w": 900,
@@ -2842,13 +2880,13 @@
             [
               80,
               151,
-              801,
+              846,
               93
             ],
             [
               80,
               230,
-              232,
+              310,
               93
             ]
           ],
@@ -3001,7 +3039,7 @@
         {
           "text": "DALLAS, A DIFFERENT PROGRAM",
           "x": 556,
-          "y": 904,
+          "y": 832,
           "w": 434,
           "h": 31,
           "font_px": 24,
@@ -3013,7 +3051,7 @@
           "lines": [
             [
               556,
-              904,
+              832,
               434,
               31
             ]
@@ -3022,8 +3060,8 @@
         },
         {
           "text": "PROGRESO, NONE IN THE ACCOUNT",
-          "x": 246,
-          "y": 1212,
+          "x": 250,
+          "y": 1194,
           "w": 466,
           "h": 31,
           "font_px": 24,
@@ -3034,8 +3072,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              246,
-              1212,
+              250,
+              1194,
               466,
               31
             ]
@@ -3083,7 +3121,7 @@
         {
           "kind": "fill",
           "x": 545,
-          "y": 897,
+          "y": 825,
           "w": 456.2,
           "h": 45,
           "by": "rect",
@@ -3093,8 +3131,8 @@
         },
         {
           "kind": "fill",
-          "x": 235,
-          "y": 1205,
+          "x": 239,
+          "y": 1187,
           "w": 488.3,
           "h": 45,
           "by": "rect",
@@ -3106,7 +3144,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2306,
+      "render_ms": 2296,
       "ok": true,
       "canvases": [
         {
@@ -3119,8 +3157,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 68.1,
-          "variance": 1118.8
+          "mean": 68,
+          "variance": 1151.7
         }
       ],
       "breather": false,

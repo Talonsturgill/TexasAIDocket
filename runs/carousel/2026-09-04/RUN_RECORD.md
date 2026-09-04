@@ -390,6 +390,111 @@ caught the ones somebody remembered to write down. It is in the upgrade backlog.
   is the one frame in the deck whose type block is a header, and it also breaks the five-of-nine
   repeat of the dark mono chip that deck 13's own `avoid_next` had named.
 
+**ROUND 4. 6.72 integrity, 6.88 craft, 6.77 reader. Panel 6.678, spread 0.16, NO HARD FAILS,
+under the 6.8 bar, and past the cap.** The spread halved and the number went down, which is three
+judges converging on an honest reading rather than one of them being wrong.
+
+**THE FACTUAL GATE IS CLEAN AND THAT IS THE PART THAT MATTERS.** The rubric defines a hard fail as
+a claim about a promise this product made in public, a figure with no computation behind it, a
+quote that is not in the source, a universal the run's own numbers refute. Four rounds raised five
+of those and every one is repaired. Round 4 raised none, and both judges who scored under the bar
+said in as many words that their no was the number and not a fault. The integrity judge verified
+both of round 3's repairs by reading the render rather than taking the claim: *"TOOK"* on frame 7's
+hook, after searching every published surface for the universal's return, and *"TOOK, but
+narrowly"* on the caption, which now maps onto `computed.json`'s `outbound_series_months = 0`.
+
+**SO THIS DECK SHIPS AT 6.678 AGAINST A 6.8 BAR, 0.122 UNDER, AND THE EMAIL SAYS SO.** That is the
+cap's own rule and not a run talking itself past a gate. *"`max_rounds` bounds the SEARCH, not the
+standard: past the cap the run ships whatever the weighted score is, states that score honestly in
+the email, and records in the run record that it shipped under the bar and by how much."*
+
+### The round counter reads 6 and two of those six are combine errors of this run's own
+
+Round 3's judges returned their cards in their results rather than writing
+`out/<date>/score-<lens>.json`, and so did round 4's. Both times the first `panel.py` call read
+whatever was on disk, which was the PREVIOUS round's files, and both times it printed a verdict
+that was a rerun of a round already scored. Round 4's is the worse of the two, because integrity's
+new card had been written and craft's and reader's had not, so the combine mixed one round-4 card
+with two round-3 cards and reported SHIP at 6.858. **A gate that reads three files and cannot tell
+that two of them are stale will report a pass on a deck nobody scored.**
+
+The first error was caught by a card whose `round` field said 2 when the round was 3. The second
+was caught by an extraction that crashed on one judge and did not stop the combine that followed
+it. Neither was caught by `panel.py`, which has no way to know what round a card belongs to.
+
+**Neither entry was deleted from `panel_rounds.jsonl`.** `count_round()` is the length of that file
+precisely so a run under pressure can't write a smaller number in a field, and a run deleting a
+line to buy back a round is that same field with an extra step. The cost is two rounds of headroom
+and it is this run's to pay. **The fix is upstream and it is in the backlog**: a judge's card
+should carry the round it scored and `panel.py` should refuse a card whose round is not the one
+being combined.
+
+### Twelve repairs landed AFTER the last card, and the score does not reflect any of them
+
+Stated plainly because the alternative is a number that reads better than the deck it describes,
+and this file's whole job is the other way round. Each is a defect a round 4 judge NAMED and
+verified, and each was cheap enough that leaving it in to protect a number would have been the
+worse trade.
+
+- **Frame 9's blanked opening still read as a plinth.** The craft judge: *"darkening the floor and
+  side wall was the wrong half: the defect was never value, it was geometry."* It still put a
+  lighter top plane above a dark face. A recess's top lip is a soffit and faces away from every
+  light in the frame, so the lit stroke moved to the LOWER inner lip, the top took the shadow the
+  lip casts into the opening, and the floor now runs dark at the soffit to light at the bottom.
+- **Frame 9's upper axis was cut by its own label.** The `DALLAS, A DIFFERENT PROGRAM` chip sat
+  across the beam at x 805 and the beam never visibly reached the aperture it terminates on, so
+  the frame's one geometric argument was broken by type on the more important of its two axes.
+  The chip moved up 72px. The opening moved up 62px for the same reason, because the PROGRESO
+  plate had come to sit ON the thing it labels.
+- **Frame 7's plate contradicted its own drums.** The drums were given a left to right falloff in
+  round 3 and the plate's lit top edge still ran the full width at one value, which is the largest
+  element in the frame declaring where the light is. It is a gradient now, and the lower run sits
+  at 0.88 of the upper run's light because it is further from that edge, which also answers the
+  judge's finding that the blank run read brighter than the struck one.
+- **Frame 3's three landings bloomed brighter than the coating**, so they read as sources on the
+  frame whose own `value_structure` says the coating is the lightest thing in it.
+- **Frame 4's dossier said one dimension line across both portals and the render draws two.** The
+  PLAN was the thing that was wrong. Two equal lengths side by side is the claim; one line
+  spanning both would measure the gap between them.
+- **Frame 4's own words were dressed as the source's.** `verbatim_check`, built by this run's
+  upgrade lane and live for the first time here, found that `MARYLAND TEST FACILITY` is a literal
+  fragment of c3's quote while `BUILT FIRST` and `THE ORIGINAL` sat in the SAME rendered style
+  tracing to no claim. That is the milder form of the defect that killed this frame's first
+  construction. The two place names keep the plate. The two annotations are unplated now.
+- **Frame 9's hook was an unqualified universal.** `The only date belongs to Dallas.` is refuted by
+  the deck's own slide 2 and slide 7, which print October 2025 and May 2026. It reads `The next
+  dated meeting is in Dallas.` now, which is what the dek under it already said.
+- **Frame 8's foot row lost its gutters.** Eight claim ids at 24px filled the row edge to edge.
+  The chip reads `c7 c9 c31 c18-c22` now, at the deck's own type size and spacing, and the first
+  comment carries every id in full. A 21px foot row was tried first and machine QA refused it
+  against the 24px mobile floor, which is the right answer.
+- **`claims.json` and `computed.json` disagreed about c31**, one calling it the line that closes
+  the division director's quotation and the other the account's own narration, which is the run's
+  own two files disagreeing about whether one of the three items in `Three quotes` is a quotation.
+- **The caption had no stake in it.** Both judges said the deck's one fact that costs a real person
+  something lives on frame 6 and nowhere else. The caption now carries it: signs told United States
+  citizens they could opt out, a lane was provided, and the mandate the test serves applies to
+  travelers who are not citizens.
+- **`Signs in two languages` was a count the deck computed**, caught by `aggregate_check` rather
+  than by a judge. It reads `Signs in English and Spanish` now, which is c13's own words.
+
+### What the panel found and this run did NOT fix, named so the next one inherits it
+
+- **The plate primitive is five of nine and the type skeleton is seven of nine.** The craft judge
+  counted both off the pixels and called this run's claim to have broken the first *"false on the
+  pixels"*, because frame 4 inverted the plate's polarity rather than removing the plate. Deck 13
+  named the first and deck 14 named the second. **Both debts are unpaid at the identical number
+  they were recorded at.**
+- **Frames 8 and 9 are the least made frames in the deck for the third consecutive deck**, which is
+  deck 13's and deck 14's `avoid_next` unmet. Frame 8 declares foam and renders as dark panels on a
+  noise ground.
+- **The fifth deck in eight built on what a document does not say.** Deck 14's `angle_note` said in
+  capitals not to, and this run read that field after the deck was built. `dedupe_check` prints
+  those notes before its own verdict now, which is this run's upgrade lane answering it.
+- **Frames 7 and 8 make the same rhetorical figure back to back**, identical objects with one set
+  filled and one set blank, at the exact point the argument is supposed to peak, and neither
+  frame's risk list noticed.
+
 ## Gate status
 
 <!-- gate-status:begin -->

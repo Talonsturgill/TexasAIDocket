@@ -1,7 +1,14 @@
 {
   "run": "2026-09-04",
-  "note": "A quantifier is a claim about a SET, so each one names its set. Both universals here are about the deck's own enumerated lists rather than about what any source says.",
+  "note": "A quantifier is a claim about a SET, so each one names its set. All three here are about the deck's own enumerated lists rather than about what any source says. Round 3 found a universal in 60pt type that this register had never seen, because the register was hand written and the hooks were not read into it. The hook was rewritten to carry no universal over months, and this file now carries the one absence frame 8 does state.",
   "quantifiers": [
+    {
+      "phrase": "no measurement",
+      "about": "the deck's own enumerated absences, as printed on frame 8's hook",
+      "from_items": [],
+      "set": "The same five performance facts compute.py enumerates in its `absences` list, each established by its own claim: an accuracy, match or error rate (c18), a count of images captured (c19), a retention period (c20), a decision to deploy (c21), and a date range for the assessment (c22). The hook's 'No measurement' is over those five slots the frame cuts and labels, and over nothing else. The three filled slots beside them are quotations rather than counterexamples, because a characterisation is not a measurement.",
+      "why": "Frame 8's hook reads 'Three quotes. No measurement.' The three are c7, c9 and c31, each a quoted string attributed on the frame to the party that said it. The absence is the five labelled empty slots, and it is the same universal the dek states in words and the same one the frame's own geometry draws."
+    },
     {
       "phrase": "none of the five",
       "about": "the deck's own enumerated absences",

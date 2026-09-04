@@ -57,7 +57,7 @@
     },
     {
       "id": "c7",
-      "text": "Larry Panetta, Director of CBP's Biometrics Program Office, says image capture exceeded expectations in daylight and after dark. VERIFIED TWICE: the sentence sits inside his quotation, opening directly after the attribution in c6's paragraph, and it appears nowhere else on the page. It is the nearest thing the account offers to a result.",
+      "text": "Larry Panetta, Director of CBP's Biometrics Program Office, says image capture exceeded expectations in daylight and after dark. It was verified twice. The sentence sits inside his quotation, opening directly after the attribution in c6's paragraph, and it appears nowhere else on the page. It is the nearest thing the account offers to a result.",
       "quote": "The image capture capabilities of pedestrians walking through the border exit area exceeded expectations in both day and night conditions.",
       "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
       "source_type": "primary_official",
@@ -129,7 +129,7 @@
     },
     {
       "id": "c15",
-      "text": "The account names three things artificial intelligence was used to do, building a digital model of the capture zone, watching pedestrian movement, and judging whether facial images were good enough for matching in the Traveler Verification Service.",
+      "text": "The account names three things artificial intelligence was used to do. It built a digital model of the image capture zone, observed how pedestrians moved through it, and analyzed faces for whether they were suitable for matching. The account credits artificial intelligence and other technologies together and never separates them.",
       "quote": "The partners leveraged artificial intelligence (AI) and other technologies to perform tasks such as constructing a 3D digital environment of the image capture zone, observing pedestrian movement, and analyzing facial images to determine whether they were suitable for biometric matching in CBP's Traveler Verification Service.",
       "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
       "source_type": "primary_official",
@@ -204,16 +204,16 @@
       "text": "Dallas's nearest dated public room on automated recognition is a briefing item on the Flock automated license plate reader program.",
       "quote": "Dallas Police Flock Automated License Plate Reader Program Update - September 2026",
       "url": "https://webapi.legistar.com/v1/cityofdallas/matters/25839",
-      "source_type": "primary_official",
+      "source_type": "data",
       "retrieved": "2026-09-04",
       "confidence": "high"
     },
     {
       "id": "c24",
-      "text": "The item is set for the Public Safety Committee on September 8th, 2026, was introduced on August 13th, 2026, and is typed as a briefing item with a status of agenda ready.",
+      "text": "The item is set for the Public Safety Committee on September 8th, 2026 and was introduced on August 13th, 2026. It is typed as a briefing item with a status of agenda ready.",
       "quote": "\"MatterTypeName\": \"BRIEFING ITEMS\",\n  \"MatterStatusId\": 80,\n  \"MatterStatusName\": \"Agenda Ready\",\n  \"MatterBodyId\": 304,\n  \"MatterBodyName\": \"Public Safety Committee\",\n  \"MatterIntroDate\": \"2026-08-13T00:00:00\",\n  \"MatterAgendaDate\": \"2026-09-08T00:00:00\"",
       "url": "https://webapi.legistar.com/v1/cityofdallas/matters/25839",
-      "source_type": "primary_official",
+      "source_type": "data",
       "retrieved": "2026-09-04",
       "confidence": "high"
     },
@@ -222,7 +222,7 @@
       "text": "The federal border crossing series counts people entering the United States, and the agency that runs the ports states it collects no comparable data on the way out.",
       "quote": "The data reflect the number of vehicles, passengers or pedestrians entering the United States.  CBP does not collect comparable data on outbound crossings.",
       "url": "https://data.transportation.gov/api/views/keg4-3bc2.json",
-      "source_type": "primary_official",
+      "source_type": "data",
       "retrieved": "2026-09-04",
       "confidence": "high"
     },
@@ -231,7 +231,7 @@
       "text": "The published inbound pedestrian count at the Progreso port of entry for May 2026, the month the partners were at the bridge.",
       "quote": "{\"port_name\":\"Progreso\",\"state\":\"Texas\",\"port_code\":\"2309\",\"border\":\"US-Mexico Border\",\"date\":\"2026-05-01T00:00:00.000\",\"measure\":\"Pedestrians\",\"value\":\"101306\"",
       "url": "https://data.transportation.gov/resource/keg4-3bc2.json?$where=port_code='2309' AND measure='Pedestrians'&$order=date DESC&$limit=30",
-      "source_type": "primary_official",
+      "source_type": "data",
       "retrieved": "2026-09-04",
       "confidence": "high"
     },
@@ -240,7 +240,7 @@
       "text": "The Census Bureau resolves the port of entry's own published coordinates to Hidalgo County.",
       "quote": "\"NAME\": \"Hidalgo County\", \"GEOID\": \"48215\", \"BASENAME\": \"Hidalgo\"",
       "url": "https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=-97.949958&y=26.062133&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
-      "source_type": "primary_official",
+      "source_type": "data",
       "retrieved": "2026-09-04",
       "confidence": "high"
     },

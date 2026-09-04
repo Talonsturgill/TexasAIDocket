@@ -1,0 +1,46 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.8,
+      "why": "Real light and real dark on 1, 2, 6 and 9. Frame 2 is the deck's best made object: one pole, three cameras at three heights, three cones, concrete grain, warm sodium on the right against cool slate on the left, and the drawing is the claim. Frame 7's split-flap counter is the best single idea, with a filled top row reading 101,306 and a blank bottom row that carries the argument without a word. Frame 5 inverting to a white ground gives the deck its one breath. Against that, three frames are handsome and underexplaining. Frame 4's two portals sit at rgb(20,26,28)-class darkness against a near-black wall, and in contact-sheet cell 04 they read as two black rectangles with the dimension brackets invisible, so the 'identical, built twice' comparison the whole frame rests on is a comparison the reader cannot physically make at feed size. Frame 5's scatter of resolution test targets is unlabelled and the metaphor is available only to a reader who knows a USAF 1951 chart. Frame 9's beams are wider than round 3 but still read as two faint scratches on grey in cell 09."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.0,
+      "why": "Every numeral traces. 101,306 to c26 and computed.json may_inbound_pedestrians; five and three on frame 8 to performance_facts_asked and characterisations_quoted; 1.1 million to c12; September 8th 2026 to c24; October 2025 to c2. The rejected list in claims.json is the strongest artifact in the run, refusing 'MARYLAND, ROOFED / PROGRESO, OPEN SKY' as physical assertions no claim carries, refusing Spanish lane names the account never quotes, and refusing an annual sum off a gapped series. Docked for three compressions. Frame 8 lists 'ASSESSMENT DATES' under NOT STATED while frame 7, two swipes earlier, states May 2026; c22 supports 'no day, no date range and no duration' and the slide label does not say that. 'IMAGES CAPTURED / NOT STATED' sits beside a STATED plate whose source sentence (c19) continues 'of thousands of pedestrians a day'. Frame 3's 'Three came south' parallels 'Six were invited', which was six companies, where c4 says three solutions from three named firms. One lead I could not settle and am not calling a fault: c7 is the only speech claim in the file whose excerpt carries no quotation marks, while c2, c9, c10 and c12 all preserve them, and both frame 8's 'EXCEEDED EXPECTATIONS / CBP' plate and the caption attribute it as Panetta's speech. The benign reading, that it is a resumed second quoted sentence after the attribution, is consistent with c7's own note and is probably right. Worth one look at the live page."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.5,
+      "why": "A Texan gets who (DHS Science and Technology Directorate for CBP), where (Progreso International Bridge, Hidalgo County, with the county honestly sourced to the Census geocoder rather than to DHS), when (May 2026, published September 1st) and what (cameras on poles reading the faces of people walking out to Mexico). The fact that actually costs a reader something is frame 6: signs said citizens could opt out, a lane was provided, and the mandate applies to travelers who are not citizens. That is the deck's sharpest stake and it lives on exactly one frame and appears nowhere in the caption, so the reader who only reads the caption never meets it at all. Second, 'can they still act on it' resolves to no, and frame 9 is honest about that but ends on a room 500 miles away in a different city about a different program. Third, the question a person at that bridge asks first, are the cameras still there, exists only as a plate reading 'DEPLOYMENT DECISION / NOT STATED' and never as a sentence on any surface."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "Cover to 2 is a strong pair and 'It had to account for hats and umbrellas' is the swipe that buys the rest. The turn is real and it is frame 5 inverting to white on 'Judged suitable. Suitable at what?'. 7 is the peak. On the round 3 question about frame 8: yes, it lands now. 'Three quotes. No measurement.' is the largest type on the frame and it names the two things as different kinds, and the left column's light filled plates against the right column's empty dark shelves is a legible asymmetry at thumb size. The residual is that the picture alone, column heads STATED over three and NOT STATED over five, still reads as a 3-of-8 ledger; the hook fixes it in words and the drawing does not. On frame 4: it earns more than it did, it names both places, and the rebuild is honest. It is still the frame I would cut to reach eight, because its payload is one sentence a reader had already inferred from frame 3 and its visual argument is unreadable at feed size."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.3,
+      "why": "'Three came south' is a Texan line and it does geographic work in three words. 'The walk out got the cameras and no monthly count of its own' is a sentence no template produces. 'Progreso is counted in one direction' is a real opening. No boosterism, no doom, the region named rather than the state gestured at. House rules hold across the caption: no em dashes, no colons or semicolons, ordinal month-first dates, straight quotes, no first person, no sentence opening on And or But, no comma after a conjunction. Against it, 'The nearest dated room in this record is a different program' is in-house vocabulary a stranger in the feed does not have the referent for, and paragraph two of the caption is three dutiful declaratives of source recitation between two good lines."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 5.8,
+      "why": "This is the deck's weak axis and the project's own ledger predicted it. ledger/carousel/topics.json, entry 2026-09-03, closes: 'FOURTH DECK IN SEVEN BUILT ON WHAT A DOCUMENT DOES NOT SAY... THE NEXT RUN SHOULD PICK A STORY WHERE SOMETHING HAPPENED, not one where a document is quiet.' This is that next run, and five of nine frames carry an absence as their payload: 5 ('no rate for how often it was right'), 7 ('No comparable data is collected'), 8 (five NOT STATED slots), 9 ('no comment period, no hearing and no docket'), plus the caption's own lede. Deck 11's angle_note asked for the same change and deck 14's repeated it; this is the third time it has been written down and the third time it was not taken. The caption also returns to 'ask the one question the decision leaves open', which the 09-03 entry records being deliberately broken for the first time in six runs. Credit where it is due and it is why this is not lower: the sodium-on-slate palette, the white frame 5, the split-flap and the lens diagram are all genuinely unspent here. Two of the four axes the rubric names are fresh and two are stale."
+    }
+  ],
+  "weighted_score": 6.77,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Put the opt-out asymmetry into the caption, because 'a United States citizen could step into a separate lane and the mandate the test serves applies to travelers who are not citizens' is the only fact in this deck that costs a real person something, it currently exists on frame 6 and nowhere else, and the caption is the only surface most of the feed will ever read.",
+  "lens": "reader",
+  "round": 4
+}

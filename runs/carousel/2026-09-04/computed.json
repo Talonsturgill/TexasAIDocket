@@ -33,6 +33,17 @@
       ],
       "means": "performance facts a reader would need, each one established as absent by its own claim: an accuracy, match or error rate; a count of images captured; a retention period for the images; a decision to deploy; a date range for the assessment"
     },
+    "characterisations_quoted": {
+      "value": 3,
+      "display": "3",
+      "label": "measured",
+      "from": [
+        "c7",
+        "c9",
+        "c31"
+      ],
+      "means": "quotations the account publishes about how the test went, each one a characterisation rather than a measurement: exceeded expectations, said by CBP's Biometrics Program Office; high-quality facial images, said by the president of NEC NSS; and it did just that, the line that closes the division director's quotation"
+    },
     "performance_facts_published": {
       "value": 0,
       "display": "0",
@@ -45,6 +56,53 @@
         "c22"
       ],
       "means": "how many of those five the account publishes."
+    },
+    "claims_verified": {
+      "value": 32,
+      "display": "32",
+      "label": "measured",
+      "from": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10",
+        "c11",
+        "c12",
+        "c13",
+        "c14",
+        "c15",
+        "c16",
+        "c17",
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22",
+        "c23",
+        "c24",
+        "c25",
+        "c26",
+        "c27",
+        "c28",
+        "c29",
+        "c30",
+        "c31",
+        "c32"
+      ],
+      "means": "claims this run fetched and verified, counted over claims.json. The site's article page prints this count beside the list it renders."
+    },
+    "findings_rejected": {
+      "value": 8,
+      "display": "8",
+      "label": "measured",
+      "from": [],
+      "means": "scout findings the fact check refused, counted over claims.json's rejected list. Each carries its own reason in that file."
     },
     "months_request_to_account": {
       "value": 11,
@@ -94,6 +152,20 @@
     {
       "what": "a date range for the assessment",
       "claim": "c22"
+    }
+  ],
+  "characterisations": [
+    {
+      "what": "exceeded expectations, said by CBP's Biometrics Program Office",
+      "claim": "c7"
+    },
+    {
+      "what": "high-quality facial images, said by the president of NEC NSS",
+      "claim": "c9"
+    },
+    {
+      "what": "and it did just that, the line that closes the division director's quotation",
+      "claim": "c31"
     }
   ]
 }

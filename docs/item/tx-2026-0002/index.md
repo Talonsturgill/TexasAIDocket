@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Comment closes: 2026-09-04
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-03
+- Last checked: 2026-09-04
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-30 · The rule is still out for comment. The proposal for publication of new section 25.521 stands as filed, and the deadline the Texas Register acknowledged is September 4th.
 - 2026-09-02 · The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments have been filed against the proposal since it was published.
 - 2026-09-03 · The comment window on the proposed Large Load Demand Management Service rule closes tomorrow, September 4th, 2026. The commission's calendar feed still carries that deadline as a dated entry of its own, and the proposal for publication of new section 25.521 stands as filed. Anyone meaning to file has one day left. The feed's own project strings are quotable again, now that the check reads a feed whose HTML is escaped inside its XML. The project a deadline belongs to is carried by a claim rather than by a summary alone.
+- 2026-09-04 · Today is the deadline. The filing index moved from 34 filings to 37. The three that arrived are comments on the proposal itself and the last two were filed the day before the window shuts. The Office of Public Utility Counsel, which represents residential and small commercial customers, filed on September 3rd. Texas Industrial Energy Consumers, which represents large industrial load, filed the same day. Nothing about the rule text or the deadline has changed.
 
 ## Evidence
 
@@ -81,9 +82,9 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 ### The filing index records the number of filings in the project.
 
-> 34 filing(s).
+> 37 filing(s).
 
-Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
 ### The rulemaking implements a statutory command in the Utilities Code bearing the same name as the project.
 
@@ -108,4 +109,16 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 > Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+
+### The Office of Public Utility Counsel filed comments on the proposal for publication.
+
+> OFFICE OF PUBLIC UTILITY COUNSEL’S COMMENTS REGARDING THE PROPOSAL FOR PUBLICATION OF NEW 16 TAC §25.521
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### Texas Industrial Energy Consumers filed comments in the project.
+
+> TEXAS INDUSTRIAL ENERGY CONSUMERS’ COMMENTS
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 

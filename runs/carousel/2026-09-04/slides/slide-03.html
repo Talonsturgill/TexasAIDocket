@@ -93,16 +93,41 @@ window.renderReady = (async () => {
       const grd=g.createLinearGradient(540,ELEM_Y+16,x,IMG_Y);
       grd.addColorStop(0,'rgba(195,212,222,.62)'); grd.addColorStop(1,'rgba(195,212,222,.30)');
       g.strokeStyle=grd; g.lineWidth=(k===0?2.2:1.2);
-      g.beginPath(); g.moveTo(540+k*30,ELEM_Y+16); g.lineTo(x+k*7,IMG_Y-14); g.stroke();
+      g.beginPath(); g.moveTo(540+k*30,ELEM_Y+16); g.lineTo(x+k*7,IMG_Y-21); g.stroke();
     }
-    // the baffle: a lit top land, a body, and a shaded inner face
-    g.fillStyle=HOUSING; g.fillRect(x-96,IMG_Y-12,192,26);
-    g.fillStyle='rgba(195,212,222,.46)'; g.fillRect(x-96,IMG_Y-12,192,2.8);
-    g.fillStyle='rgba(0,0,0,.50)'; g.fillRect(x-96,IMG_Y+8,192,6);
+    // THE BAFFLE, modeled rather than striped. A round 3 judge read the previous build as a 2px
+    // light hairline on a flat dark bar, which is what it was: one fill and one highlight rect.
+    // A knife edge has a top land, a chamfer down to the front face, a front face that falls
+    // away from the light at frame left, and an inner face in its own shade.
+    (function baffle(){
+      const bx=x-96, bw=192, top=IMG_Y-20, LAND=7, CHAM=6, FACE=22, INNER=9;
+      // what it throws on the plane it stands on
+      const th=g.createLinearGradient(0,top+LAND+CHAM+FACE,0,top+LAND+CHAM+FACE+22);
+      th.addColorStop(0,'rgba(0,0,0,.58)'); th.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=th; g.fillRect(bx-12,top+LAND+CHAM+FACE,bw+30,22);
+      // the top land, the one surface the ray bundle actually lands on
+      const lg=g.createLinearGradient(bx,0,bx+bw,0);
+      lg.addColorStop(0,'#C6D4D8'); lg.addColorStop(0.62,'#9FB0B5'); lg.addColorStop(1,'#7C8C91');
+      g.fillStyle=lg; g.fillRect(bx,top,bw,LAND);
+      // the chamfer, a narrower band at a lower value, which is what gives the edge its thickness
+      const cg=g.createLinearGradient(0,top+LAND,0,top+LAND+CHAM);
+      cg.addColorStop(0,'#8B9BA0'); cg.addColorStop(1,'#5A686D');
+      g.fillStyle=cg; g.fillRect(bx,top+LAND,bw,CHAM);
+      // the front face, falling to frame right the way every other object in this deck does
+      const fg2=g.createLinearGradient(bx,top+LAND+CHAM,bx+bw,top+LAND+CHAM+FACE);
+      fg2.addColorStop(0,'#4A555A'); fg2.addColorStop(1,'#2B3336');
+      g.fillStyle=fg2; g.fillRect(bx,top+LAND+CHAM,bw,FACE);
+      // the inner face, the deepest value on the object, with the one bounce line off the plane
+      g.fillStyle='#191F21'; g.fillRect(bx,top+LAND+CHAM+FACE,bw,INNER);
+      g.fillStyle='rgba(170,188,194,.20)'; g.fillRect(bx,top+LAND+CHAM+FACE+INNER-1.6,bw,1.6);
+      // the two ends, so it is a section rather than a strip
+      g.fillStyle='rgba(0,0,0,.42)'; g.fillRect(bx,top,3,LAND+CHAM+FACE+INNER);
+      g.fillStyle='rgba(0,0,0,.52)'; g.fillRect(bx+bw-3,top,3,LAND+CHAM+FACE+INNER);
+    })();
     // the landing itself, a small bright area on the land
-    const gr=g.createRadialGradient(x,IMG_Y-11,1,x,IMG_Y-11,26);
-    gr.addColorStop(0,'rgba(230,240,244,.90)'); gr.addColorStop(1,'rgba(230,240,244,0)');
-    g.fillStyle=gr; g.beginPath(); g.arc(x,IMG_Y-11,26,0,6.2832); g.fill();
+    const gr=g.createRadialGradient(x,IMG_Y-17,1,x,IMG_Y-17,26);
+    gr.addColorStop(0,'rgba(214,228,232,.58)'); gr.addColorStop(1,'rgba(214,228,232,0)');
+    g.fillStyle=gr; g.beginPath(); g.arc(x,IMG_Y-17,26,0,6.2832); g.fill();
   }
 
   // THE HARD BREAK at the element line. This is what stops six and three sharing a scale.

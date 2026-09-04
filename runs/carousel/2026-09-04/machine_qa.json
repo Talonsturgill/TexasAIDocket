@@ -5,11 +5,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.187,
+        0.1933,
         0.458,
-        0.2904
+        0.2923
       ],
-      "band_ratio": 0.9344
+      "band_ratio": 0.9323
     },
     {
       "file": "slide-02.html",
@@ -29,31 +29,31 @@
       "bands": [
         0.1807,
         0.1218,
-        0.1452
+        0.2004
       ],
-      "band_ratio": 0.9742
+      "band_ratio": 1.1848
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.1849,
-        0.0945,
-        0.2794
+        0.187,
+        0.6303,
+        0.9412
       ],
-      "band_ratio": 1.4667
+      "band_ratio": 1.5627
     },
     {
       "file": "slide-05.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.2773,
-        0.3319,
+        0.2647,
+        0.3361,
         0.2224
       ],
-      "band_ratio": 0.8096
+      "band_ratio": 0.8176
     },
     {
       "file": "slide-06.html",
@@ -71,33 +71,33 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.145,
-        0.3739,
-        0.375
+        0.1197,
+        0.3929,
+        0.4393
       ],
-      "band_ratio": 1.2439
+      "band_ratio": 1.3608
     },
     {
       "file": "slide-08.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.2605,
+        0.2563,
         0.7605,
         0.6949
       ],
-      "band_ratio": 1.2031
+      "band_ratio": 1.2059
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.2206,
-        0.9538,
-        0.8603
+        0.2269,
+        0.916,
+        0.7904
       ],
-      "band_ratio": 1.2532
+      "band_ratio": 1.2141
     }
   ],
   "fails": 0,

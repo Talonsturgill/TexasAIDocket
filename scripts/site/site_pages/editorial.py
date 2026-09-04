@@ -939,14 +939,34 @@ def article_page(r: dict, today: str, items: list) -> str:
     # opening "August 7th came and went." shipped a twenty-five character description, which
     # is what a search result then had to sell itself with. Sentences are added until there is
     # enough to read, and the cut lands on a sentence boundary rather than mid-word.
-    desc = ""
+    #
+    # AND A SENTENCE BOUNDARY IS NOT ALWAYS REACHABLE. 2026-09-04. The loop above breaks on the
+    # first sentence that would carry it past 160 and keeps what it already had, which is right
+    # when it already had enough. When it does not, the break throws away the only material
+    # there was: carousel 15 opened on a 32 character hook followed by a 230 character dek, so
+    # the article shipped a description of "Tested on the faces walking out." and `seo_check`
+    # refused the build against its own 50 to 200 band.
+    #
+    # The two rules are not in tension, they are ordered. PREFER a sentence boundary. Take a
+    # word boundary out of the sentence that overflowed only when stopping would leave the
+    # description under the band, because a description cut mid-clause still tells a reader what
+    # the page is and a seven word one does not.
+    desc, overflow = "", ""
     for sentence in (flat or [r["title"]]):
-        nxt = (desc + " " + " ".join(sentence.split())).strip()
+        one = " ".join(sentence.split())
+        nxt = (desc + " " + one).strip()
         if desc and len(nxt) > 160:
+            overflow = one
             break
         desc = nxt
         if len(desc) >= 110:
             break
+    if len(desc) < 110 and overflow:
+        room = 176 - len(desc) - 1
+        if room > 24:
+            cut = overflow[:room].rsplit(" ", 1)[0].rstrip(" ,;:")
+            if len(cut) > 24:
+                desc = (desc + " " + cut).strip()
     desc = desc[:180]
 
     # THE ARTICLE SAYS WHAT IT IS. These three pages are the only reporting on the site and

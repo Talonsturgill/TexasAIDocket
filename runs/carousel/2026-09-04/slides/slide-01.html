@@ -143,11 +143,27 @@ window.renderReady = (async () => {
       const gr=g.createLinearGradient(sx(xo,1.15),0,sx(xo,26),0);
       gr.addColorStop(0,'rgba(110,123,126,.30)'); gr.addColorStop(1,'rgba(110,123,126,.06)');
       g.fillStyle=gr; g.fill();
-      // uprights
+      // UPRIGHTS, each one fixed at both ends. A round 3 judge read the previous build as
+      // unattached hairlines hanging off the top of the frame, and it was right: they were a
+      // 1.2px bar with no base plate, no head fixing and no contact on the deck, which is a
+      // scratch rather than a post.
       for(let d=1.4; d<26; d*=1.30){
-        const x=sx(xo,d);
-        g.fillStyle='rgba(110,123,126,'+(0.46*Math.min(1,2.4/d)+0.05).toFixed(3)+')';
-        g.fillRect(x-Math.max(1,sh(0.05,d)/2), py(d)-sh(2.6,d), Math.max(1.2,sh(0.05,d)), sh(2.6,d));
+        const x=sx(xo,d), a=0.46*Math.min(1,2.4/d)+0.05;
+        const w=Math.max(2.4,sh(0.06,d)), top=py(d)-sh(2.6,d), hgt=sh(2.6,d);
+        // the shadow the post drops on the deck, toward the reader
+        g.fillStyle='rgba(0,0,0,'+(0.34*Math.min(1,2.4/d)).toFixed(3)+')';
+        g.fillRect(x-w*0.6, py(d), w*2.2, Math.max(1.4,sh(0.10,d)));
+        // the post, with a lit face at frame left and a shaded return
+        const pg=g.createLinearGradient(x-w/2,0,x+w/2,0);
+        pg.addColorStop(0,'rgba(168,184,186,'+(a*1.35).toFixed(3)+')');
+        pg.addColorStop(1,'rgba(78,89,92,'+(a*0.85).toFixed(3)+')');
+        g.fillStyle=pg; g.fillRect(x-w/2, top, w, hgt);
+        // the head fixing where it takes the canopy, and the base plate where it takes the deck
+        const cap=Math.max(3.2,w*1.9);
+        g.fillStyle='rgba(150,167,170,'+a.toFixed(3)+')';
+        g.fillRect(x-cap/2, top, cap, Math.max(2.0,sh(0.09,d)));
+        g.fillStyle='rgba(126,141,144,'+a.toFixed(3)+')';
+        g.fillRect(x-cap/2, py(d)-Math.max(2.0,sh(0.10,d)), cap, Math.max(2.0,sh(0.10,d)));
       }
     });
   })();
