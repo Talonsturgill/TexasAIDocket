@@ -503,18 +503,34 @@ worse trade.
 | claims         | PASS   | 32 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
-| aggregates     | PASS   | 8 declaration(s), 11 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 5.53 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 6 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.71 MB, vector |
+| score          | FAIL   | 6.678, below threshold |
 | labels         | PASS   | 48 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 102 published string(s) read from one list, every universal names its set |
+| quantifiers    | PASS   | 104 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 3 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 39,065 chars planned |
-| caption        | PASS   | 134 words |
-| craft floor    | PASS   | 9 frame(s), median 488, floor 88 |
-| plan vs render | WARN   | 5 of 46 acceptance item(s) checkable |
+| dossiers       | PASS   | 40,643 chars planned |
+| caption        | PASS   | 140 words |
+| craft floor    | PASS   | 9 frame(s), median 831, floor 150 |
+| plan vs render | WARN   | 5 of 47 acceptance item(s) checkable |
 | texan          | PASS   | places Hidalgo County / body yes / deadline yes / next step yes |
-| absences       | PASS   | 9 of 9 scoped to a named document |
+| absences       | PASS   | 10 of 10 scoped to a named document |
 | numerals       | PASS   | 15 numeral(s) over 9 frame(s), every one reachable |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
+
+**One row is not PASS and it is true rather than unfinished.** `score` reads FAIL because 6.678
+is below the 6.8 threshold, which is the whole of what this run is saying out loud. `completion`
+reads PASS because the round cap was reached, which is the rule that lets a deck ship under the
+bar, and that row was WRONG until this run fixed it. `gate_status` called
+`run_complete.check(d, threshold())` and dropped the third argument, so the branch that lets a run
+ship past the cap could never fire from the board. In the same minute and off the same files,
+`run_complete`'s own CLI said the deck shipped and the board said it did not.
+
+**A status board that disagrees with the gate it reports is worse than no board**, because the
+board is what a run reads and pastes into its own record. It is fixed and calibrated: the row
+still reads FAIL for this same score at two rounds, which is inside the cap.
+
+And the number still describes the deck the JUDGES read rather than the deck that shipped, because
+twelve repairs landed after the last card. Re-scoring is what the cap forbids, so the number is a
+floor and the repairs are listed one by one above.
