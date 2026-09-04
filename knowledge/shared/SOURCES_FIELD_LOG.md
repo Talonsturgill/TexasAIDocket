@@ -908,3 +908,41 @@ match what later turned out to be true is not a field log.
 the repair the writer intends rather than the one that shipped, and nothing in this repo compares
 prose in `knowledge/` against the ledger it talks about. Write the note after the last claim
 moves, or write what actually moved.
+
+## 2026-09-04, five scouts on a federal biometrics test at a Rio Grande crossing
+
+### The hosts that refused, one by one, and what each refusal actually was
+
+- **`interchange.puc.texas.gov` returned 503** to WebFetch, repeatedly, across two scouts and
+  most of the run. It is the Commission's own filing interchange and it is the single most
+  load bearing host this project reads. The run got what it needed from the individual filing
+  pages it already had cached URLs for, so nothing was lost this day. **A 503 here on a day the
+  worklist needed a docket sweep would cost a run its record work**, and there is no second
+  source for a Texas utility docket.
+- **`texasattorneygeneral.gov` returned 402.** Payment Required, from a state agency, which is
+  almost certainly a bot wall answering with the wrong status code rather than a real one. Worth
+  recording because a 402 reads as a client problem and is not one.
+- **`sos.state.tx.us` returned 403** and **`dhs.gov` returned 403 to curl and 200 to WebFetch**
+  on the same URL in the same minute. That pair is the useful one. The DHS article this whole
+  deck rests on is unreachable by the tool a session reaches for first and reachable by the tool
+  it reaches for second, so **a scout that had only curl would have reported the story does not
+  exist.**
+- **`federalregister.gov` redirected** rather than serving, and followed cleanly.
+
+### The instruction that has now been confirmed four times
+
+Every scout reported again that it has no write tool and returned its JSON inline. The
+2026-08-28 entry says this and the 2026-09-03 entry confirms it. The run persisted the findings
+itself. **Four confirmations is not a field note any more, it is a fact about the agent
+definitions**, and the disposition is to stop writing the instruction rather than to keep
+recording that it fails. That is an `upgrade` lane edit to the scout agent file and it lives
+under `.claude/`, which no routine may write, so it is in the backlog for a maintainer.
+
+### A federal statistical series and a federal press release are not the same kind of source
+
+The deck's spine came from putting one beside the other, and the fact check filed all five API
+responses as `primary_official` until a count was run over them. `data.transportation.gov`,
+`webapi.legistar.com` and `geocoding.geo.census.gov` are datasets and API responses, which the
+claims vocabulary has a word for. Nothing failed, because `claims_check` accepts either word.
+**The cost is that the run's own figures.json then reported 32 official records and 0 data
+records**, which would have gone into the email as a fact about how this deck was sourced.
