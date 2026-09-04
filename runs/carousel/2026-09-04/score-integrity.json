@@ -1,0 +1,46 @@
+{
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.6,
+      "why": "Real light structure where the deck is trying: slide-08 runs p05 5.6 to p95 74.3, slide-04 10.0 to 52.2, slide-07 15.3 to 67.7, and slide-05 inverts to median L* 96.3 against a deck median of 23.0, so the turn is a measured event rather than a claimed one. Foam, counter drums and the optical element are genuinely modeled. Against that, three of nine frames are atmosphere: slide-01's declared 'canopy soffit ... ribbed underside' is not findable in the render, its sodium pools are gaussian blobs and slide-06 repeats that same blob idiom; slide-09 is a large empty anodised plane with two faint axes and a termination that reads as a dark box standing off the wall rather than an opening cut into it, which is the deck's own third law. Two fresh defects on frames repaired this round: slide-04's dossier says 'a shared dimension line under them' and 'one dimension line across both' and the render carries TWO separate dimension lines, one per portal, which is a dossier-render mismatch on the exact frame whose dossier-render agreement was round 3's finding; and slide-08's foot row, after the chip grew to eight ids, is now one jammed run 'SLOTS c7 c9 c31 c18 c19 c20 c21 c22 texasaidocket.com 08 / 09' with the column gutters gone, where slide-07's foot row still has four clean columns."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 6.6,
+      "why": "BOTH ROUND 3 HARD FAILS ARE REPAIRED AND I VERIFIED EACH RATHER THAN TAKING IT. (1) slide-07 renders 'The way in has a number.' That asserts c26 and nothing more, and I searched every published surface for the universal's return: no hook, dek, plate, the caption or first_comment.txt contains 'every month' or any month-set quantifier; caption line 1 'Progreso is counted in one direction' is c25's own scope. TOOK. (2) The caption reads 'The walk out got the cameras and no monthly count of its own.' The cover's refuting figure is 'over 1.1 million' ANNUAL and attributed to the bridge director, so it no longer contradicts, and the sentence maps onto computed.json outbound_series_months = 0 ('months of published federal outbound pedestrian counts at this port') off c25. TOOK, but narrowly: unlike frame 7's 'no comparable data', which is c25's own words, the caption sentence names no series or agency and depends on the previous paragraph's 'The same dataset' to carry its scope. Also verified: slide-08's chip prints all eight ids; slide-09's chip prints c32 c23 c24 and the storyboard now matches; c32 is in first_comment.txt; 'Three quotes' and 'Five measurements' are declared in aggregates.json against characterisations_quoted and performance_facts_asked, and 'Eight slots' and 'Two agencies' are gone. Every numeral traces (101,306 computed and fenced on slide, caption, first comment and compute.py's means field). What survives and costs the score: slide-08's dek 'Five measurements were never stated rather than removed' asserts non-removal, which no fetched page establishes; slide-09's hook 'The only date belongs to Dallas.' is an unqualified universal that the deck's own slide-02 ('October 2025') and slide-07 ('MAY 2026') print counterexamples to, rescued only by the dek under it; and claims.json c31 says 'the sentence that closes his quotation' while computed.json says 'the account's own line after S and T', which is the run's own two files disagreeing about whether one of the three items in 'Three quotes' is a quotation at all."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.7,
+      "why": "Names the county (Hidalgo, and fences it to c27 rather than to DHS), the bodies (DHS S and T, CBP), the exact place (Progreso International Bridge pedestrian exit), the mechanism a person meets (signs in two languages, an opt-out lane) and what was not published. The stake is concrete. What holds it under 7: there is nothing to act on. texan_check at selection returned 'next step NO', and slide-09 hands a Rio Grande Valley reader a briefing in Dallas on a different program 550 miles away. 'Where does a pedestrian at Progreso go to ask?' is the best line in the caption and is also the deck admitting it has no answer."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.0,
+      "why": "Cover opens on an event rather than a silence, 2 to 4 build apparatus, 5 is a genuine turn measured at 96.3 against neighbours at 13.6 and 27.2, 6 is the counter-image, 7 is the spine, 8 is the hero and 9 disposes. Nothing is cuttable. Slide-04 is still the weakest beat after three constructions: two identical portals resolve in half a second and carry one sentence, so the deck's darkest frame is also its shortest dwell, and the close lands soft because the date belongs to somebody else."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.8,
+      "why": "'Three came south', 'One lane was provided for saying no' and 'Judged suitable. Suitable at what?' are clipped and unboosterish, and the house rules hold across every surface I read: no colons or semicolons, no dashes, ordinal dates ('September 8th, 2026'), no first person, straight quotes in the caption. Two costs. 'Five measurements were never stated rather than removed' is a sentence nobody would say aloud, in the dek slot of the hero frame. And the Texas of it is thin past slide-01: after 'Hidalgo County' the copy would read identically at any federal port, with the Rio Grande, the valley and the two light species living in the dossier rather than in the words."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.9,
+      "why": "Nine different constructions across nine frames, a palette with a named move-away per token against decks 6 to 14, foam as a material no deck here has touched, and slide-04's header-above-drawing breaking the nine-of-nine type skeleton deck 14's avoid_next named. That is real distinctness on the surface. It is held down by the thing the run record admits in its own words: this is the fifth deck in eight built on what a document does not say, deck 14's angle_note told this run not to do that, and the field was read after the deck was built. Frames 7, 8 and 9 all argue an absence."
+    }
+  ],
+  "weighted_score": 6.72,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Move the previous deck's angle_note out of a field the run reads after building and into the selection gate itself, because five decks in eight built on a document's quiet is why three of this deck's nine frames have to argue an absence and why every hard fail raised in four rounds was an absence string on a hook, a plate or a caption.",
+  "lens": "integrity",
+  "round": 4
+}

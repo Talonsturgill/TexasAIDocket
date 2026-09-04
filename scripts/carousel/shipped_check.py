@@ -281,7 +281,41 @@ def g_shipped_fresh(d: Path):
     sb = d / "storyboard.md"
     figs = _load(d / "computed.json") or {}
     if sb.exists() and figs:
-        allowed = {v for v in figs.values() if isinstance(v, int) and not isinstance(v, bool)}
+        # THE ALLOWLIST READ ONE LEVEL AND EVERY computed.json IN THIS REPO NESTS. 2026-09-04.
+        #
+        # This was `{v for v in figs.values() if isinstance(v, int)}`, which reads the TOP LEVEL
+        # of computed.json. Not one run has ever put a figure there. `compute.py` writes
+        # `{"run": ..., "note": ..., "values": {"<name>": {"value": 5, ...}}}`, so the set this
+        # gate built was empty on every deck but one, and on that one it was `{14}` because
+        # 2026-09-03 happened to carry a top level `"deck": 14`. A gate whose allowlist is empty
+        # refuses every word-number a dossier states, including the ones the run genuinely
+        # computed, and a gate whose allowlist is one accidental integer is worse, because it
+        # passes.
+        #
+        # It went unseen because it fails LOUD in one direction only. An empty allowlist makes
+        # the gate stricter, so a run that hit it read a finding about its own prose and reworded
+        # the prose, which cleared the finding and left the cause. That is GATE_LESSONS' own
+        # recurring shape from the other side: not a green banner over a broken check, but a red
+        # one that keeps being answered in the wrong place.
+        #
+        # So the values are walked wherever they sit. A float that is a whole number counts,
+        # because `5.0` and `five` are the same figure and a dossier says the word.
+        def _ints(node, acc):
+            if isinstance(node, dict):
+                for v in node.values():
+                    _ints(v, acc)
+            elif isinstance(node, list):
+                for v in node:
+                    _ints(v, acc)
+            elif isinstance(node, bool):
+                pass
+            elif isinstance(node, int):
+                acc.add(node)
+            elif isinstance(node, float) and node.is_integer():
+                acc.add(int(node))
+            return acc
+
+        allowed = _ints(figs, set())
         words = ("two three four five six seven eight nine ten eleven twelve thirteen fourteen "
                  "fifteen sixteen seventeen eighteen nineteen twenty").split()
         value_of = {w: i + 2 for i, w in enumerate(words)}

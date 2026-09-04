@@ -1,0 +1,182 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#212829}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .lscrim{position:absolute;left:0;top:0;width:660px;height:1350px;
+     background:linear-gradient(to right,rgba(33,40,41,.95) 0%,rgba(33,40,41,.90) 62%,rgba(33,40,41,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:200px;
+     background:linear-gradient(to bottom,rgba(33,40,41,0) 0%,rgba(33,40,41,.84) 48%,rgba(33,40,41,.97) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+  h1{position:absolute;top:196px;left:80px;width:500px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:60px;line-height:1.06;color:#E6ECEA;letter-spacing:-.018em}
+  .dek{position:absolute;top:500px;left:80px;width:490px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:29px;line-height:1.36;color:#A9AEA4}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="lscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>It had to account for hats and umbrellas.</h1>
+  <p class="dek">Customs and Border Protection asked for it in October 2025. Cameras went up on poles at different heights, so people of different statures would land in frame. The technologies had to account for walking pace, hats, sunglasses and umbrellas.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>MOUNTS</span><span>c2 c28 c29</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  const BAFFLE='#0D1013', GALV='#6E7B7E', HOUSING='#2B343E', LED='#C3D4DE', NA='#D9701F';
+
+  g.fillStyle='#212829'; g.fillRect(0,0,W,H);
+
+  // A WORKED GROUND, not a gradient. panel_ready measures the quietest patch of every ground a
+  // dossier calls modeled and refuses anything under a 4.0 residual, because a gradient is a
+  // promise of light rather than of material. This is the material.
+  function workGround(fn){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.0075, y*0.0075, 4);
+      const m=TX.fbm2(x*0.052+91, y*0.052+37, 3);
+      const d=(n-0.5)*9.5 + (m-0.5)*5.2;
+      g.fillStyle = d>0 ? 'rgba(198,212,218,'+(d*0.020).toFixed(4)+')'
+                        : 'rgba(0,0,0,'+((-d)*0.024).toFixed(4)+')';
+      g.fillRect(x,y,2,2);
+    }}
+  }
+  workGround();
+
+  // SODIUM SKYGLOW. Ambient, behind everything, and it never keys an object.
+  (function skyglow(){
+    const gr=g.createRadialGradient(880,1290,20,880,1290,900);
+    gr.addColorStop(0,'rgba(217,112,31,.34)'); gr.addColorStop(.45,'rgba(217,112,31,.15)');
+    gr.addColorStop(1,'rgba(217,112,31,0)');
+    g.fillStyle=gr; g.fillRect(0,0,W,H);
+    // humid Valley air, so the glow has something to sit in
+    for(let k=0;k<16000;k++){
+      const x=R()*W, y=R()*H, d=Math.hypot(x-880,y-1290)/900;
+      if(d>1) continue;
+      g.fillStyle='rgba(217,112,31,'+(R()*0.035*(1-d)).toFixed(3)+')';
+      g.fillRect(x,y,1.6,1.6);
+    }
+  })();
+
+  // THE POLE, looking almost straight up. Near end at the bottom is wide, the head is narrow.
+  // Everything on this frame is placed off this one taper, so the three collars recede on one
+  // geometry rather than on three guesses.
+  const BASE_X=812, HEAD_X=690, BASE_W=104, HEAD_W=19, BASE_Y=H+40, HEAD_Y=118;
+  const t_of = y => (BASE_Y-y)/(BASE_Y-HEAD_Y);
+  const cx = y => BASE_X + (HEAD_X-BASE_X)*t_of(y);
+  const hw = y => (BASE_W + (HEAD_W-BASE_W)*t_of(y))/2;
+
+  (function pole(){
+    g.beginPath();
+    g.moveTo(cx(BASE_Y)-hw(BASE_Y),BASE_Y); g.lineTo(cx(HEAD_Y)-hw(HEAD_Y),HEAD_Y);
+    g.lineTo(cx(HEAD_Y)+hw(HEAD_Y),HEAD_Y); g.lineTo(cx(BASE_Y)+hw(BASE_Y),BASE_Y);
+    g.closePath();
+    const gr=g.createLinearGradient(cx(900)-hw(900),0,cx(900)+hw(900),0);
+    gr.addColorStop(0,'#171B1D'); gr.addColorStop(.34,'#5C676A'); gr.addColorStop(.62,'#394346');
+    gr.addColorStop(1,'#121618');
+    g.fillStyle=gr; g.fill();
+    // galvanized spangle, coarsening toward the reader
+    g.save(); g.clip();
+    for(let k=0;k<9000;k++){
+      const y=HEAD_Y+R()*(BASE_Y-HEAD_Y), x=cx(y)+(R()*2-1)*hw(y);
+      const s=1.0+3.4*Math.pow(t_of(y),2)*0+1.0+3.2*(1-t_of(y));
+      g.fillStyle= R()<0.5 ? 'rgba(200,212,214,'+(R()*0.10).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.14).toFixed(3)+')';
+      g.beginPath(); g.moveTo(x,y); g.lineTo(x+s,y+s*0.6); g.lineTo(x,y+s*1.2); g.lineTo(x-s,y+s*0.6);
+      g.closePath(); g.fill();
+    }
+    g.restore();
+  })();
+
+  // THREE COLLARS at three heights. Each is a real assembly: a bracket arm, a knuckle, a
+  // housing with a lit top face and a shaded underside, and a spill cone in the air below it.
+  // The interval between them is DRAWN and never dimensioned, because the account states none.
+  function collar(y, scale, dir){
+    const px=cx(y), pw=hw(y);
+    const arm = 96*scale, hgt = 34*scale, wid = 78*scale;
+    const ax = px + dir*(pw+arm);
+    // spill cone, drawn first so the housing occludes its throat
+    (function cone(){
+      const grd=g.createLinearGradient(ax, y+hgt*0.5, ax+dir*40*scale, y+520*scale);
+      grd.addColorStop(0,'rgba(195,212,222,.28)'); grd.addColorStop(1,'rgba(195,212,222,0)');
+      g.fillStyle=grd;
+      g.beginPath();
+      g.moveTo(ax-wid*0.34, y+hgt*0.5); g.lineTo(ax+wid*0.34, y+hgt*0.5);
+      g.lineTo(ax+dir*40*scale+wid*2.5, y+520*scale);
+      g.lineTo(ax+dir*40*scale-wid*2.5, y+520*scale);
+      g.closePath(); g.fill();
+    })();
+    // bracket arm, a channel with a lit top edge
+    g.fillStyle='#394346';
+    g.fillRect(Math.min(px,ax)-2, y-6*scale, Math.abs(ax-px)+4, 13*scale);
+    g.fillStyle='rgba(195,212,222,.42)';
+    g.fillRect(Math.min(px,ax)-2, y-6*scale, Math.abs(ax-px)+4, 2.4*scale);
+    // knuckle, where the arm meets the housing
+    g.fillStyle='#4A555A'; g.beginPath(); g.arc(ax,y,11*scale,0,6.2832); g.fill();
+    g.fillStyle='rgba(195,212,222,.30)'; g.beginPath(); g.arc(ax-3*scale,y-3*scale,5.2*scale,0,6.2832); g.fill();
+    // the housing: lit upper face, shaded flank, dark underside
+    const hx=ax-wid/2, hy=y-hgt*0.10;
+    g.fillStyle=HOUSING; g.fillRect(hx,hy,wid,hgt);
+    const gr=g.createLinearGradient(0,hy,0,hy+hgt);
+    gr.addColorStop(0,'rgba(195,212,222,.52)'); gr.addColorStop(.30,'rgba(195,212,222,.10)');
+    gr.addColorStop(1,'rgba(0,0,0,.55)');
+    g.fillStyle=gr; g.fillRect(hx,hy,wid,hgt);
+    // the LED rim on the leading edge, which is the frame's brightest thing at the near collar
+    g.fillStyle='rgba(195,212,222,'+(0.30+0.52*Math.min(1,scale)).toFixed(3)+')';
+    g.fillRect(hx,hy,wid,2.6*scale);
+    // the aperture, a dark recess in the lit face
+    g.fillStyle='rgba(6,9,11,.88)';
+    g.fillRect(hx+wid*0.62, hy+hgt*0.30, wid*0.26, hgt*0.44);
+    g.fillStyle='rgba(195,212,222,.16)';
+    g.fillRect(hx+wid*0.62, hy+hgt*0.30, wid*0.26, 1.6*scale);
+  }
+  collar(1042, 1.00, -1);   // nearest, largest, brightest rim
+  collar( 700, 0.62,  1);
+  collar( 372, 0.38, -1);
+
+  // the pole head, capped
+  (function head(){
+    const y=HEAD_Y;
+    g.fillStyle='#4A555A'; g.fillRect(cx(y)-hw(y)-3, y-9, hw(y)*2+6, 10);
+    g.fillStyle='rgba(195,212,222,.34)'; g.fillRect(cx(y)-hw(y)-3, y-9, hw(y)*2+6, 2);
+  })();
+
+
+  // A MEASURED GRAIN, and the previous two attempts were the reason it has to be measured.
+  // panel_ready removes a BoxBlur(16) local mean and asks what is left, so anything whose
+  // feature size is bigger than about thirty device pixels is read as the gradient it is.
+  // Two fbm octaves at 130px features were removed by that blur entirely. This works on the
+  // pixels, at a two device pixel cell, which is the only scale that survives the measurement
+  // and is also what film grain actually looks like.
+  (function measuredGrain(){
+    const id=g.getImageData(0,0,W*2,H*2), px=id.data, SW=W*2;
+    for(let y=0;y<H*2;y+=2){
+      for(let x=0;x<SW;x+=2){
+        const d=(R()-0.5)*30;
+        for(let dy=0;dy<2;dy++){
+          for(let dx=0;dx<2;dx++){
+            const i=((y+dy)*SW+(x+dx))*4;
+            px[i]  =Math.max(0,Math.min(255,px[i]  +d));
+            px[i+1]=Math.max(0,Math.min(255,px[i+1]+d));
+            px[i+2]=Math.max(0,Math.min(255,px[i+2]+d));
+          }
+        }
+      }
+    }
+    g.putImageData(id,0,0);
+  })();
+})();
+</script>
+</body></html>

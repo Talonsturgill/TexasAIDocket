@@ -1,0 +1,160 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#363E40}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:472px;
+     background:linear-gradient(to bottom,rgba(46,53,55,.97) 0%,rgba(46,53,55,.94) 68%,rgba(46,53,55,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:172px;
+     background:linear-gradient(to bottom,rgba(46,53,55,0) 0%,rgba(46,53,55,.86) 48%,rgba(46,53,55,.98) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#A3B0AC}
+  h1{position:absolute;top:158px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:78px;line-height:1.04;color:#E6ECEA;letter-spacing:-.018em}
+  .dek{position:absolute;top:328px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:26px;line-height:1.32;color:#C9D0C9}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+  svg#lay{position:absolute;inset:0;width:1080px;height:1350px}
+  .dig{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:64px;fill:#14191B;
+       font-variant-numeric:tabular-nums}
+  .chan{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.08em}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>The way in has a number.</h1>
+  <p class="dek">101,306 pedestrians entered the United States here in May 2026, the month the partners were at the bridge. No comparable data is collected on the way out.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>BTS BORDER DATA</span><span>c25 c26</span><span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
+</div>
+<svg id="lay" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  const BAFFLE='#0D1013', HOUSING='#2B343E', GALV='#6E7B7E', LED='#C3D4DE', NA='#D9701F';
+  g.fillStyle='#363E40'; g.fillRect(0,0,W,H);
+
+  // THE REGISTER'S BACK PLATE. Anodised, taking a graded LED wash from upper left, with its
+  // upper edge lit and its body falling away.
+  const PX=76, PY=596, PW=928, PH=592;
+  (function plate(){
+    // the two part contact shadow onto the bench face beneath it
+    g.fillStyle='rgba(0,0,0,.46)';
+    g.beginPath(); g.ellipse(PX+PW/2+22, PY+PH+30, PW*0.50, 34, 0, 0, 6.2832); g.fill();
+    g.fillStyle='rgba(0,0,0,.72)';
+    g.fillRect(PX+18, PY+PH, PW-36, 12);
+
+    const gr=g.createLinearGradient(PX,PY,PX+PW*0.7,PY+PH);
+    gr.addColorStop(0,'#69767F'); gr.addColorStop(.42,'#505B64'); gr.addColorStop(1,'#333B42');
+    g.fillStyle=gr; g.fillRect(PX,PY,PW,PH);
+    const le=g.createLinearGradient(PX,0,PX+PW,0);                          // lit upper edge
+    le.addColorStop(0,'rgba(195,212,222,.62)'); le.addColorStop(1,'rgba(195,212,222,.26)');
+    g.fillStyle=le; g.fillRect(PX,PY,PW,3);
+    g.fillStyle='rgba(0,0,0,.50)'; g.fillRect(PX,PY+PH-4,PW,4);
+    // anodised tooth
+    for(let k=0;k<26000;k++){
+      const x=PX+R()*PW, y=PY+R()*PH;
+      g.fillStyle= R()<0.5 ? 'rgba(200,214,222,'+(R()*0.045).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.06).toFixed(3)+')';
+      g.fillRect(x,y,1.4,1.4);
+    }
+  })();
+
+  // TWO IDENTICAL CHANNELS holding two identical runs of drums. The upper run is turned to
+  // real figures. The lower run is blank. Every blank drum draws the SAME lit crown as a
+  // struck one, so the run that carries nothing reads as machinery nobody turned rather than
+  // as machinery something was taken out of.
+  const NDR=7, DW=104, DH=150, GAPX=10;
+  const RUNW = NDR*DW + (NDR-1)*GAPX;
+  const RX = PX + (PW-RUNW)/2;
+  const RY_UP = PY+66, RY_LO = PY+PH-66-DH;
+
+  // The plate is washed brighter at frame left, so a drum must sit in THAT light rather than in
+  // its own. `f` is the drum's position along the run, 0 at frame left and 1 at frame right, and
+  // every value on the cylinder is taken down by it. A round 3 judge found all fourteen drums
+  // carrying one identical gradient at one identical height, which is a per-object gradient
+  // rather than a lit scene, and it is the same defect this deck already fixed on frame 5.
+  function drum(x,y){
+    const f=(x-RX)/RUNW;
+    const row=(y>PY+PH/2)?0.88:1.0;   // the lower run is further from the plate's lit edge                       // 0 at the lit end, 1 at the far end
+    const k=(1-0.21*f)*row;                          // the light the plate actually delivers here
+    const mix=(a,b,w)=>Math.round(a+(b-a)*w);
+    const val=v=>{ const n=Math.round(v*k); return 'rgb('+n+','+mix(n,n+6,1)+','+mix(n,n+7,1)+')'; };
+    // the channel the drum sits in, cut into the plate
+    g.fillStyle='rgba(0,0,0,'+(0.72+0.10*f).toFixed(3)+')'; g.fillRect(x-6,y-8,DW+12,DH+16);
+    g.fillStyle='rgba(195,212,222,'+(0.16*k).toFixed(3)+')'; g.fillRect(x-6,y-8,DW+12,2);
+    // the cylinder. A real drum is dark at both rims and near uniform across its apex, which
+    // is also what a struck digit needs to sit on. The apex sits a little lower at frame right,
+    // because the light arriving there is more raking.
+    const apex=0.34+0.05*f;
+    const gr=g.createLinearGradient(0,y,0,y+DH);
+    gr.addColorStop(0.00, val(30));  gr.addColorStop(0.16, val(118));
+    gr.addColorStop(apex, val(192)); gr.addColorStop(Math.min(0.72,apex+0.32), val(190));
+    gr.addColorStop(0.86, val(106)); gr.addColorStop(1.00, val(28));
+    g.fillStyle=gr; g.fillRect(x,y,DW,DH);
+    // the lateral fall across the cylinder itself, away from the light at frame left
+    const lat=g.createLinearGradient(x,0,x+DW,0);
+    lat.addColorStop(0,'rgba(255,255,255,'+(0.055*k).toFixed(3)+')');
+    lat.addColorStop(0.5,'rgba(0,0,0,0)');
+    lat.addColorStop(1,'rgba(0,0,0,'+(0.10+0.09*f).toFixed(3)+')');
+    g.fillStyle=lat; g.fillRect(x,y,DW,DH);
+    // the drum's own end flanges
+    g.fillStyle='rgba(0,0,0,.34)'; g.fillRect(x,y,3,DH); g.fillRect(x+DW-3,y,3,DH);
+    // the crown, the brightest land on the cylinder
+    g.fillStyle='rgba(255,255,255,'+(0.20*k).toFixed(3)+')';
+    g.fillRect(x+3,y+DH*(apex+0.08),DW-6,DH*0.06);
+  }
+
+  for(let i=0;i<NDR;i++){
+    drum(RX+i*(DW+GAPX), RY_UP);
+    drum(RX+i*(DW+GAPX), RY_LO);
+  }
+
+  // the register's machined base
+  (function base(){
+    g.fillStyle='#232B31'; g.fillRect(PX-26, PY+PH+12, PW+52, 26);
+    g.fillStyle='rgba(195,212,222,.30)'; g.fillRect(PX-26, PY+PH+12, PW+52, 2.4);
+    g.fillStyle='rgba(0,0,0,.62)'; g.fillRect(PX-26, PY+PH+34, PW+52, 4);
+  })();
+
+  (function grain(){
+    for(let k=0;k<22000;k++){
+      const x=R()*W, y=R()*H;
+      g.fillStyle='rgba(255,255,255,'+(R()*0.018).toFixed(3)+')';
+      g.fillRect(x,y,1,1);
+    }
+  })();
+
+  // ---- the struck figures, SVG so they stay vector -----------------------------------------
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('lay');
+  function txt(x,y,s,cls,fill,anchor){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class',cls);
+    if(fill) t.setAttribute('fill',fill);
+    if(anchor) t.setAttribute('text-anchor',anchor);
+    t.textContent=s; svg.appendChild(t); return t;
+  }
+  // 101,306 read out of computed.json's own display string, one glyph per drum, tabular.
+  const FIG='101,306'.split('');
+  for(let i=0;i<NDR;i++){
+    txt(RX+i*(DW+GAPX)+DW/2, RY_UP+DH*0.62, FIG[i], 'dig', '#14191B', 'middle');
+  }
+  txt(PX+14, PY+44, 'ENTERING THE UNITED STATES, MAY 2026', 'chan', '#C3D4DE');
+  txt(PX+14, PY+PH-24, 'LEAVING, NO COMPARABLE DATA COLLECTED', 'chan', '#8B989B');
+  await document.fonts.ready;
+  TX.svgPlateAll('#lay .chan', {padX:11, padY:7, fill:'#252D33'});
+
+})();
+</script>
+</body></html>

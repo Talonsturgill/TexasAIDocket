@@ -540,3 +540,175 @@ and the receipts, so a run copies a stated set rather than a remembered one.
 with the note that a run rewriting the instructions it is currently executing is how a machine
 drifts without anyone noticing. This run is executing it. The lane is the answer and the gate is
 already reporting the defect in the meantime.
+
+---
+
+## 2026-09-04, deck no. 15. What three judges found and no gate could
+
+Three upgrades landed and are in `ledger/carousel/upgrades.json` with the commands that prove each
+can go red. What follows is the part a later session needs and a ledger entry cannot carry.
+
+### The lesson these belong in GATE_LESSONS.md, and why it is written here instead
+
+`knowledge/shared/**` is `human` lane, measured with `ownership_check.py --actor upgrade --files`
+rather than assumed. **Proposed as a new entry, in the maintainer's words to keep the file one
+voice.**
+
+> **A gate that checks WHERE a string sits cannot check WHAT it claims to be.**
+>
+> Carousel 15 printed five strings dressed as somebody else's words that no claim carries.
+> `IT DID JUST THAT` on a plate under the heading STATED, in no quote at all. `HIGH QUALITY
+> IMAGES`, which dropped `facial` out of c9's `high-quality facial images` in a verbatim slot.
+> `MARYLAND, ROOFED` and `PROGRESO, OPEN SKY`, two physical assertions about real places, the
+> second contradicting the deck's own frame 1. `CARRIL DE CAPTURA` and `CARRIL DE EXCLUSION`,
+> Spanish sign text on a frame whose whole subject is what the signs said, where the source says
+> only that the signs were in English and Spanish.
+>
+> Two gates exist for this class and both passed, each answering its own question correctly.
+> `label_guard` tests a label BESIDE A CLAIM ID and its window is a few words wide, so a plate in
+> the art region with the citation chip in the footer was never in it. `noun_trace` warns on
+> named THINGS, and `IT DID JUST THAT` names no thing. It is a sentence, and its whole defect is
+> the costume it wears.
+>
+> **What to check instead.** Hold the string to the WORDS of the claim it is filed under. That
+> needs a declaration, because a machine looking at a frame cannot tell a quotation from a label:
+> a deck legitimately prints `SELECTION`, `BTS BORDER DATA` and `01 / 09`. An auto-discovering
+> draft was replayed across all fifteen shipped decks and fired on the REPAIRED deck of
+> 2026-09-04, on two correct authored labels, which is how a gate earns being switched off.
+>
+> **And the half that needs no declaration is worth keeping separately.** Where a frame prints one
+> label that IS a literal fragment of a quote, every other label in the same RENDERED STYLE on
+> that frame is standing in the same slot. Measured across fifteen decks that discovery names
+> three groups, at least two of them legitimate, so it prints a list and decides nothing. On the
+> deck the panel saw it names both frame 8 fabrications with no declaration anywhere. A detector
+> too noisy to fail on is not too noisy to read.
+
+### A second lesson, from the value arc
+
+> **Every deck missed its own planned value arc and every one of them RECORDED the miss instead of
+> preventing it.** 2026-08-29 planned near 32 and measured 15.6. 2026-08-30 planned 40 and
+> measured 21.2. 2026-09-02 planned 30 and measured 20.4. Carousel 15's first render planned 24
+> and measured 6.3, eight of nine frames between 4.5 and 10.1, and it was found by the showrunner
+> writing a one-off `measure.py` AFTER three judges had been spawned on it.
+>
+> The artwork ledger has a `deck_median_L` field and it was always filled in honestly. **A ledger
+> that records an outcome is not a gate that refuses one**, and four consecutive runs wrote down
+> the same miss without anything reading the plan beside it.
+>
+> **What to check instead.** Where a plan states a measurable target, the gate that stands before
+> the expensive step measures it. `panel_ready` now parses the arc out of the storyboard and
+> refuses to declare the deck scorable more than one Munsell value step from its own plan. The
+> tolerance is external on purpose: adjacent Munsell values are one plainly visible lightness step
+> apart and sit about 10 L* apart at every end of the scale, so it can never be re-derived
+> downward off our own decks.
+
+### Filed, not landed, and why each one stopped
+
+**`verbatim_check` and the two gates beside it are in `guards.yml` in no form.** The backlog's
+own NEW item above says thirteen of fifteen carousel steps in CI are `--self-test` and only two
+touch a real artifact. `verbatim_check.py --self-test` belongs on that list, and its calibration
+block reads every shipped deck, so the CI step is the one that catches a parser going quiet.
+`.github/workflows/**` is `human` lane. Proposal filed in the ledger.
+
+**The routine does not call `verbatim_check` anywhere.** `prompts/daily_routine.md` is `human`
+lane and this run is executing it, so the gate is reachable today only through the run record's
+gate table, where `gate_status` now renders a `verbatim` row. That row is WARN rather than PASS on
+a deck that declares nothing, so the gap is visible on every future run in the meantime. The two
+places it should be called are Phase 12, beside `label_guard`, and the ship gate.
+
+**`dedupe_check`'s standing notes are printed and nothing requires them to be read.** The honest
+next move is not a gate. It is one line in the selection phase telling the run to quote the notes
+it read into the run record, so a run that ignored one has to say it ignored it. `human` lane.
+
+**`shipped_check --self-test` is red at HEAD and it is not this phase's.** It reports that the
+newest deck did not run `ledgers`, `construction` or `completion`, which is a fact about
+`runs/carousel/2026-09-04/` rather than about any gate. That directory is `daily` lane. Verified
+by stashing this phase's files and running it again at HEAD, where it fails identically.
+
+### Frontier scan, 2026-09-04. Focus area: holding generated text to its own source span
+
+Rotated deliberately away from 08-21's entailment question, which reached the right answer and
+the wrong dependency. The finding worth acting on is narrower and needs no model.
+
+**Quotation integrity is a span problem, not a similarity problem.** The literature on quotation
+verification separates two errors that a similarity score cannot: a quotation that does not appear
+in the source at all, and a quotation that appears with a word removed that changes its scope.
+`HIGH QUALITY IMAGES` is the second kind and it is the harder one, because every word in it is in
+the source and in that order. **A substring test over a normalised span catches it and a bag of
+words does not**, which is why the check landed as a literal substring rather than as a token
+overlap ratio, and why the normalisation is loose on punctuation and strict on words.
+
+**Refused again, for the reason 08-21 gave.** Nothing here installs an entailment model, CI
+installs `pyyaml` and nothing else, and a verdict that moves when a model moves is not a verdict
+this project can publish. GATE_LESSONS 15.
+
+### Two proposals from round 3 of the 2026-09-04 panel, NOT BUILT this run
+
+Filed by the showrunner into this lane rather than written by it, because this file is `upgrade`
+lane and the run should not write behind the phase that owns it. **Neither was implemented.** This
+phase had already landed its three, and the ceiling is three, so a fourth would have shipped
+without the calibration the other three each got. Both carry enough measured evidence to be built
+in one pass by the next upgrade phase, and both should be verified against a real deck before they
+are believed.
+
+#### A. QUANTIFIERS SHOULD BE EXTRACTED, NOT AUTHORED
+
+**The defect, three rounds and three locations.** `quantifier_check` reads
+`out/<date>/quantifiers.json`, which is HAND WRITTEN, so it only ever sees the universals somebody
+remembered to write down.
+
+- **Round 3.** `The way in is counted every month.` in 60pt type on frame 7. An unqualified
+  universal over a set of months that this run's own rejected-claims list refutes in writing. The
+  register held two entries and had never seen it.
+- **Round 2.** The plate `PROGRESO, NO ROOM OPEN`.
+- **Round 1.** Frame 9's `This test opens no comment period and no hearing`.
+
+One blind spot, found three times, each time by a judge. **This is GATE_LESSONS 39 exactly**, one
+gate over: `copy_sync_check` selected what to examine by matching KEY NAMES against a list and was
+blind to twelve of one deck's nineteen keys. An allowlist fails silent, because a thing nobody
+thought of is a thing nobody checks and nothing reports the omission. A hand written register is an
+allowlist wearing a different coat, and the run authoring it is the same run whose universals it is
+supposed to catch.
+
+**The shape.** The gate extracts every universal and absence word mechanically, `every`, `only`,
+`no`, `none`, `each`, `never`, `all`, `always`, from ALL nine hooks, all nine deks, every on-frame
+plate in `copy.json`, the caption and the first comment, and refuses the build until each extracted
+one names the set it quantifies and the claim that establishes it. **The authored file becomes the
+ANSWER sheet rather than the question sheet**, which is the whole of the change.
+
+**Verify it against the defect before believing it.** Replay this run's frame 7 hook against this
+run's `quantifiers.json` and watch it go red, then add the scoping and watch it go green. And
+measure the extraction across all fifteen shipped decks before setting any severity: a first pass
+will be noisy, `no` is a common word, and the tuning is the work. Warn on what it cannot scope and
+fail on what a register explicitly contradicts, if the noise floor turns out high.
+
+#### B. A DECLARED FOCAL MUST EXIST IN THE PICTURE
+
+**The defect.** Frame 4's dossier declared its focal as *"the near volume's lit soffit, the only
+closed modeled surface in the frame and the largest light area on it"* and the render contained no
+soffit at all. Two bare hairlines, a small far portal and a floor wash. It survived three scoring
+rounds, a green `machine_qa` and a full pixel review, because nothing in the suite reads a
+dossier's focal against the pixels.
+
+That is the FOCAL LAW in `SLIDE_DOSSIER_SPEC.md` failing in a new place. The law was written after
+a judge counted the frames whose declared focal actually won the eye and got two of eight, and
+every one of those was a focal that was a LINE rather than an AREA. This is worse: a focal that is
+not in the drawing at all.
+
+**The shape, in the craft judge's own words.** A gate that reads each dossier's declared focal,
+resolves it to a region in the rendered PNG, and proves that region exists and carries the frame's
+stated value extreme. `dossier_check` already parses `focal` and `value_structure` and already
+compares them to each other, so this is the same comparison taken one step further, to the picture.
+
+**The hard part is resolving prose to a region, and the honest first cut is narrower.** Prove that
+the frame's brightest connected region of at least some stated size sits on the SIDE and LEVEL the
+focal names, using the axis vocabulary `dossier_check.light_disagreement()` already has. That is
+mechanical, it needs no new vocabulary, and it would have caught frame 4, whose brightest area is a
+floor wash at the bottom while the declared focal is a soffit above.
+
+**Two traps this one has to avoid, both already paid for here.** A size floor typed into the file
+is a threshold with no argument behind it, so derive it from the canvas rather than typing a pixel
+count, or take it from an external standard the way the value arc tolerance takes one Munsell step.
+And a gate that misreports costs more than one that misses, because the run then hunts for
+something that was never there, so run it across every shipped deck with PNGs before wiring it, and
+make it WARN wherever the prose does not resolve to an axis rather than guessing one.

@@ -180,6 +180,14 @@ def rows_for(d: Path) -> list[Row]:
     artifact("quantifiers", "quantifier_report.json", lambda r: _quant(r),
              "scripts/carousel/quantifier_check.py <run-dir>")
 
+    # THE VERBATIM ROW, ADDED 2026-09-04, for the same reason the two above are here. Three judges
+    # found five strings on carousel 15's frames that look sourced and are not, and every gate in
+    # the suite was green. `verbatim_check` is the gate that reads an on-frame string against the
+    # words of the claim it is filed under. It cannot go in `guards.yml`, which belongs to the
+    # human actor, so the run record's table is where a run cannot quietly skip it.
+    artifact("verbatim", "verbatim_report.json", lambda r: _verbatim(r),
+             "scripts/carousel/verbatim_check.py --date <date>")
+
     board = d / "storyboard.md"
     out.append(Row("dossiers", PASS if board.exists() else ABSENT,
                    f"{len(board.read_text(encoding='utf-8')):,} chars planned" if board.exists()
@@ -307,8 +315,17 @@ def rows_for(d: Path) -> list[Row]:
         out.append(Row("completion", ABSENT, "not scored yet"))
     else:
         try:
+            # THE CAP IS PASSED. It was not, and `check()` takes it as `cap=None`, so the one
+            # branch that lets a run ship UNDER the bar never fired here. `run_complete`'s own
+            # CLI passes it and this did not, so the same function answered the same question
+            # two different ways depending on which caller asked. On 2026-09-04 the CLI said
+            # "1 run(s) shipped, 1 under the bar on the 5 round cap" and this row said "THE DECK
+            # DID NOT SHIP" about that same run, in the same minute, off the same files.
+            #
+            # A status board that disagrees with the gate it is reporting is worse than no board,
+            # because the board is what a run reads and pastes into its record.
             import run_complete
-            probs = run_complete.check(d, run_complete.threshold())
+            probs = run_complete.check(d, run_complete.threshold(), run_complete.max_rounds())
             out.append(Row("completion", PASS if not probs else FAIL,
                            "the deck shipped" if not probs else
                            "THE DECK DID NOT SHIP, so this run is not done"))
@@ -389,6 +406,35 @@ def _labels(r) -> Row:
                 if probs else
                 f"{r.get('checked', 0)} claim id(s) checked, every label beside one traces to the "
                 f"shape its claim proves"))
+
+
+def _verbatim(r) -> Row:
+    """Reads verbatim_check's receipt.
+
+    THE DEFECT: on 2026-09-04 three judges independently found five on-frame strings dressed as
+    the source's own words that no claim carries, and `label_guard` and `noun_trace` both passed
+    because neither reads a quoted-looking string against the quote it is filed under.
+
+    A DECK THAT DECLARED NOTHING IS A WARN AND NEVER A PASS. This gate can only hold the strings a
+    dossier names, so a storyboard with no `verbatim:` block anywhere has been read and not
+    checked. Rendering that green is the `checked: 0` receipt the row above already went red over
+    once, and the whole reason both these rows exist is that a banner measuring something narrower
+    than it appears to certify is this repository's oldest fault.
+    """
+    probs = r.get("problems") or []
+    notes = r.get("notes") or []
+    if probs:
+        return Row("verbatim", FAIL,
+                   f"{len(probs)} declared fragment(s) the record does not carry: {probs[0][:90]}")
+    tail = f", {len(notes)} slot note(s)" if notes else ""
+    if not r.get("declared"):
+        return Row("verbatim", WARN,
+                   f"no dossier declares a `verbatim:` block, so no on-frame string was held to a "
+                   f"quote{tail}")
+    return Row("verbatim", PASS,
+               f"{r.get('declared')} declared fragment(s) over "
+               f"{len(r.get('declaring') or [])} of {r.get('slides', 0)} dossier(s), every one a "
+               f"literal substring of its own claim's quote{tail}")
 
 
 def _aggr(a) -> Row:
@@ -727,6 +773,28 @@ def self_test() -> int:
        _labels({"checked": 14, "problems": []}).status == PASS)
     ok("...and one with findings is still a FAIL",
        _labels({"checked": 14, "problems": ["a label the record does not support"]}).status == FAIL)
+
+    # ---- THE VERBATIM ROW, ADDED 2026-09-04 --------------------------------------------
+    #
+    # A DECK THAT DECLARED NOTHING WAS READ AND NOT CHECKED. The same shape as the labels row
+    # above, caught before it shipped rather than after: an empty problems list must not render
+    # green when the gate held nothing against anything.
+    ok("a receipt declaring nothing is WARN, never a pass",
+       _verbatim({"slides": 9, "declaring": [], "declared": 0,
+                  "problems": [], "notes": []}).status == WARN)
+    ok("...and the row says the gate held nothing to a quote",
+       "held to a quote" in _verbatim({"slides": 9, "declaring": [], "declared": 0,
+                                       "problems": [], "notes": []}).detail)
+    ok("...while a deck that declared and passed is a PASS",
+       _verbatim({"slides": 9, "declaring": [8], "declared": 3,
+                  "problems": [], "notes": []}).status == PASS)
+    ok("...and a declared fragment the record does not carry is a FAIL",
+       _verbatim({"slides": 9, "declaring": [8], "declared": 3,
+                  "problems": ["slide 8 seats 'IT DID JUST THAT' and no claim quotes it"],
+                  "notes": []}).status == FAIL)
+    ok("...and a slot note never turns a clean receipt red",
+       _verbatim({"slides": 9, "declaring": [8], "declared": 3, "problems": [],
+                  "notes": ["slide 3: two labels in a quoted slot"]}).status == PASS)
 
     # ---- THE AGGREGATES ROW, AND THE FALSE DISCREPANCY OF 2026-08-26 -------------------
     #

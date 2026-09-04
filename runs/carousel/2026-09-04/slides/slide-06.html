@@ -1,0 +1,147 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#394243}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:530px;
+     background:linear-gradient(to bottom,rgba(46,55,56,.96) 0%,rgba(46,55,56,.94) 66%,rgba(46,55,56,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:186px;
+     background:linear-gradient(to bottom,rgba(46,55,56,0) 0%,rgba(46,55,56,.86) 48%,rgba(46,55,56,.98) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#A3B0AC}
+  h1{position:absolute;top:162px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:80px;line-height:1.04;color:#E6ECEA;letter-spacing:-.018em}
+  .dek{position:absolute;top:356px;left:80px;width:880px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:28px;line-height:1.34;color:#C9D0C9}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+  svg#lay{position:absolute;inset:0;width:1080px;height:1350px}
+  .lane{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.07em}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>One lane was provided for saying no.</h1>
+  <p class="dek">Signs in English and Spanish told pedestrians that United States citizens could opt out. An opt-out lane was provided. The mandate the test serves applies to travelers who are not citizens.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>OPT-OUT LANE</span><span>c13 c14</span><span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
+</div>
+<svg id="lay" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  const SLAB='#2E3130', NA='#D9701F', LED='#C3D4DE', PAINT='#A9AEA4';
+  g.fillStyle='#394243'; g.fillRect(0,0,W,H);
+
+  // PLAN OBLIQUE at 45 degrees from above and behind the mast. One slab, two lanes, seen as
+  // equal areas of ground rather than as a diagram.
+  // A ground point (u across the slab, v along it) lands here. Both lanes use the same map,
+  // so nothing about their widths is typed twice.
+  const OX=96, OY=1288, SKEW=0.44, SCALE_U=372, SCALE_V=740;
+  const gx = (u,v) => OX + u*SCALE_U + v*SCALE_V*SKEW;
+  const gy = (u,v) => OY - v*SCALE_V*0.86 - u*30;
+
+  function quad(u0,u1,v0,v1,fill){
+    g.beginPath();
+    g.moveTo(gx(u0,v0),gy(u0,v0)); g.lineTo(gx(u1,v0),gy(u1,v0));
+    g.lineTo(gx(u1,v1),gy(u1,v1)); g.lineTo(gx(u0,v1),gy(u0,v1));
+    g.closePath(); g.fillStyle=fill; g.fill();
+  }
+
+  // the slab itself, both lanes, one material
+  quad(0,2,0,1,'#5F6765');
+
+  // broom finish tooth, coarsening toward the reader
+  (function tooth(){
+    g.save();
+    g.beginPath();
+    g.moveTo(gx(0,0),gy(0,0)); g.lineTo(gx(2,0),gy(2,0)); g.lineTo(gx(2,1),gy(2,1)); g.lineTo(gx(0,1),gy(0,1));
+    g.closePath(); g.clip();
+    for(let k=0;k<46000;k++){
+      const u=R()*2, v=Math.pow(R(),1.5);
+      const x=gx(u,v), y=gy(u,v), s=0.8+2.6*(1-v);
+      g.fillStyle= R()<0.5 ? 'rgba(169,174,164,'+(R()*0.11*(1-v*0.6)).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.15*(1-v*0.6)).toFixed(3)+')';
+      g.fillRect(x,y,s,s*0.55);
+    }
+    g.restore();
+  })();
+
+  // THE TWO LIGHT SPECIES, meeting on one slab with a solved overlap. The division between the
+  // lanes is drawn IN LIGHT, never in paint, so the frame states the choice without ranking it.
+  (function light(){
+    g.save();
+    g.beginPath();
+    g.moveTo(gx(0,0),gy(0,0)); g.lineTo(gx(2,0),gy(2,0)); g.lineTo(gx(2,1),gy(2,1)); g.lineTo(gx(0,1),gy(0,1));
+    g.closePath(); g.clip();
+    // LED, the test's light, over the capture lane. An AREA of light with no outline anywhere.
+    for(let i=0;i<3;i++){
+      const v=0.22+i*0.30, cx=gx(0.52,v), cy=gy(0.52,v), r=250-i*46;
+      const gr=g.createRadialGradient(cx,cy,3,cx,cy,r);
+      gr.addColorStop(0,'rgba(195,212,222,.56)'); gr.addColorStop(.44,'rgba(195,212,222,.22)');
+      gr.addColorStop(1,'rgba(195,212,222,0)');
+      g.save(); g.translate(cx,cy); g.scale(1,0.52); g.translate(-cx,-cy);
+      g.fillStyle=gr; g.beginPath(); g.arc(cx,cy,r,0,6.2832); g.fill(); g.restore();
+    }
+    // sodium, the bridge's own light, over the other lane
+    for(let i=0;i<3;i++){
+      const v=0.16+i*0.32, cx=gx(1.50,v), cy=gy(1.50,v), r=268-i*48;
+      const gr=g.createRadialGradient(cx,cy,3,cx,cy,r);
+      gr.addColorStop(0,'rgba(217,112,31,.52)'); gr.addColorStop(.44,'rgba(217,112,31,.20)');
+      gr.addColorStop(1,'rgba(217,112,31,0)');
+      g.save(); g.translate(cx,cy); g.scale(1,0.52); g.translate(-cx,-cy);
+      g.fillStyle=gr; g.beginPath(); g.arc(cx,cy,r,0,6.2832); g.fill(); g.restore();
+    }
+    g.restore();
+  })();
+
+  // THE PAINTED LANE EDGE. Real thickness, a lit lip on its sodium side, a shaded inner face.
+  // It divides two lanes of the SAME width on the SAME surface.
+  (function edge(){
+    const u=1.0, TH=0.030;
+    quad(u-TH,u+TH,0,1,'rgba(169,174,164,.62)');                     // the paint body
+    quad(u+TH,u+TH+0.012,0,1,'rgba(240,206,168,.50)');               // lit lip, sodium side
+    quad(u-TH-0.014,u-TH,0,1,'rgba(0,0,0,.52)');                     // shaded inner face
+  })();
+
+  // the slab's own construction joints, running with the lanes
+  g.strokeStyle='rgba(0,0,0,.36)'; g.lineWidth=1.6;
+  [0.30,0.62,1.36,1.70].forEach(u=>{
+    g.beginPath(); g.moveTo(gx(u,0),gy(u,0)); g.lineTo(gx(u,1),gy(u,1)); g.stroke();
+  });
+
+  (function grain(){
+    for(let k=0;k<24000;k++){
+      const x=R()*W, y=R()*H;
+      g.fillStyle='rgba(255,255,255,'+(R()*0.020).toFixed(3)+')';
+      g.fillRect(x,y,1,1);
+    }
+  })();
+
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('lay');
+  function txt(x,y,s,fill,anchor){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class','lane');
+    t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
+    t.textContent=s; svg.appendChild(t); return t;
+  }
+  txt(210, 1176, "CAPTURE LANE", "#C3D4DE");
+  
+  txt(908, 964, "OPT-OUT LANE", "#E8C39A", "end");
+  
+  await document.fonts.ready;
+  TX.svgPlateAll('#lay .lane', {padX:12, padY:7, fill:'#232C2E'});
+
+})();
+</script>
+</body></html>

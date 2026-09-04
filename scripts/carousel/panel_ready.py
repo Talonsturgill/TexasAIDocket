@@ -46,6 +46,34 @@ OCCLUSION_FRAC = 0.05      # any non-ornamental text node covered more than this
 MIN_GROUND_STD = 4.0       # residual after removing the local mean, over an open ground patch
 ORNAMENT_CHARS = 3         # a "decorative" node carrying more words than this is not ornament
 
+# THE VALUE ARC TOLERANCE, AND IT IS AN EXTERNAL STANDARD RATHER THAN A NUMBER OFF OUR OWN DECKS.
+#
+# One Munsell value step. Munsell value is the perceptually uniform lightness scale, and adjacent
+# values are one plainly visible step apart by construction: under ASTM D1535 the luminance
+# factors for V=4 and V=5 give CIE L* 41.2 and 51.8, and the step holds near 10 L* at the dark
+# end too (V=1 is L* 10.4, V=2 is L* 20.5).
+#
+# So a deck whose median lands more than one Munsell step from its own plan is not a deck that
+# came out slightly dark. It is a deck rendered at a different value than the one that was
+# planned, which is the difference between a miss and a plan that was never executed.
+#
+# This is deliberately NOT derived from our own decks. GATE_LESSONS' rule for setting a threshold
+# says a figure measured off our own corpus and re-derived is a ratchet with no floor, and the
+# corpus here is four planned-against-measured pairs, which is not a distribution.
+#
+# What the four say, for whoever revisits this: 2026-08-29 planned near 32 and measured 15.6,
+# 2026-08-30 planned 40 and measured 21.2, 2026-09-02 planned 30 and measured 20.4, and this
+# run's FIRST render planned 24 and measured 6.3. Three of the four clear one Munsell step and
+# the fourth sits just inside it, so this fires on the size of miss the evidence actually shows
+# and stays quiet on the repaired deck, which measured 23.1 against 24.
+MUNSELL_STEP_L = 10.0
+
+# The measurement grid. 270 by 338, which is what every prior run's `measurements.json` was
+# written on and what `ledger/carousel/artwork.json` records. 2026-09-03 measured its own arc on
+# a second grid and disagreed with the ledger by 1.1, and its storyboard records the finding:
+# two grids is two homes for one figure.
+ARC_GRID = (270, 338)
+
 
 def rubric_contrast_floor() -> float:
     """The floor the rubric states, never a literal in this file."""
@@ -270,6 +298,152 @@ def check_ground(base: Path) -> list[str]:
     return bad
 
 
+# ------------------------------------------------------------------ the value arc
+
+# THE PARSE RULE, STATED, because a gate that mis-parses its own input invents failures and they
+# are convincing. Two shapes, and both were taken off real shipped storyboards rather than from an
+# idea of how a plan is written:
+#
+#   FENCED   a fenced block whose lines read `F1  24  the lane`, under a paragraph or heading that
+#            names the value arc. 2026-09-04 writes this and it is the form the spec asks for.
+#   INLINE   `Planned per frame 32, 40, 28, ...` (2026-08-29) or `Planned value arc, 34, 22, ...`
+#            (2026-08-30), inside a paragraph that names the value arc AND the word planned.
+#
+# Both are scoped to a span that names the value arc, so a comma list anywhere else in a
+# storyboard cannot become a plan. 2026-09-03 declares a MEASUREMENT and no plan, which is read
+# as no plan rather than as one, because `Per frame median L*, computed` carries no `planned`.
+ARC_CUE = re.compile(r"value arc", re.I)
+ARC_FRAME_LINE = re.compile(r"^\s*F\s*(\d+)\s+(-?\d+(?:\.\d+)?)\b", re.M)
+ARC_INLINE = re.compile(r"\bplanned\b[^\n.]*?((?:-?\d+(?:\.\d+)?\s*,\s*){3,}-?\d+(?:\.\d+)?)",
+                        re.I)
+
+
+def planned_arc(storyboard: str) -> list:
+    """The planned per frame median L*, or `[]` when the deck declares none.
+
+    A DECK THAT DECLARES NO ARC IS THE ORDINARY CASE, not a misread file. Nine of fifteen shipped
+    storyboards declare nothing this can read, so a gate that treated silence as a defect would be
+    red on most of what this project has published, and a row that is always red is ignored
+    exactly as fast as one that is always green.
+    """
+    for m in ARC_CUE.finditer(storyboard):
+        # The span runs from the START OF THE CUE'S OWN PARAGRAPH to the next markdown heading, or
+        # a thousand characters, whichever comes first. Scoped so a number elsewhere in the plan
+        # cannot be read as an arc value.
+        #
+        # IT STARTS AT THE PARAGRAPH AND NOT AT THE CUE, and that is not tidiness. 2026-08-30
+        # writes `Planned value arc, 34, 22, 40, ...`, where the word this parser keys on sits
+        # BEFORE the cue, so a span beginning at the cue read that deck as declaring nothing. The
+        # first version of this function did exactly that and its own self-test caught it.
+        head = storyboard.rfind("\n\n", 0, m.start())
+        start = head + 2 if head >= 0 else 0
+        tail = storyboard[start:]
+        # The next heading AFTER the cue ends the span. Searched from past the cue rather than
+        # from the top, because the cue is often inside a heading of its own and that heading
+        # would otherwise close the span before its own paragraph.
+        after = m.start() - start + len(m.group(0))
+        cut = re.search(r"^#{1,6}[ \t]", tail[after:], re.M)
+        span = tail[:(after + cut.start() if cut else min(len(tail), 1200))]
+        fenced = re.search(r"```[a-z]*\n(.*?)```", span, re.S)
+        if fenced:
+            rows = ARC_FRAME_LINE.findall(fenced.group(1))
+            if len(rows) >= 3:
+                return [float(v) for _n, v in sorted(rows, key=lambda r: int(r[0]))]
+        inline = ARC_INLINE.search(span)
+        if inline:
+            return [float(x) for x in inline.group(1).split(",") if x.strip()]
+    return []
+
+
+def measured_arc(base: Path) -> list:
+    """The shipped PNGs' per frame median L*, on the grid every prior run measured on."""
+    from PIL import Image
+    import numpy as np
+    out = []
+    for png in sorted((base / "render").glob("slide-0*.png")):
+        im = Image.open(png).convert("RGB").resize(ARC_GRID, Image.LANCZOS)
+        a = np.asarray(im, dtype=float) / 255.0
+        a = np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
+        Y = a[..., 0] * 0.2126 + a[..., 1] * 0.7152 + a[..., 2] * 0.0722
+        L = np.where(Y > 0.008856, 116 * np.cbrt(Y) - 16, 903.3 * Y)
+        out.append(round(float(np.median(L)), 1))
+    return out
+
+
+def _median(xs: list) -> float:
+    s = sorted(xs)
+    n = len(s)
+    return s[n // 2] if n % 2 else (s[n // 2 - 1] + s[n // 2]) / 2.0
+
+
+def arc_verdict(planned: list, measured: list) -> list:
+    """The pure half, so this can be replayed without an image library. Returns problems.
+
+    THE DECK MEDIAN AND NOT THE FRAMES. A per frame rule would fire on every deck, because one
+    frame landing eight points off its plan is ordinary and is the sort of thing a run fixes by
+    eye. The deck median is the register, and a register that missed by a Munsell step is a plan
+    nobody executed.
+    """
+    if not planned or not measured:
+        return []
+    if len(planned) != len(measured):
+        return [f"the storyboard's value arc declares {len(planned)} frame(s) and the render "
+                f"carries {len(measured)}, so the plan and the deck are not describing the same "
+                f"deck. One of them is stale, and this refuses to compare them rather than "
+                f"guessing which"]
+    pm, mm = _median(planned), _median(measured)
+    if abs(mm - pm) <= MUNSELL_STEP_L:
+        return []
+    worst = sorted(zip(range(1, len(planned) + 1), planned, measured),
+                   key=lambda r: -abs(r[2] - r[1]))[:3]
+    detail = ", ".join(f"F{i} planned {p:g} measured {m:g}" for i, p, m in worst)
+    return [f"the deck's median L* measures {mm:g} against its own planned {pm:g}, a miss of "
+            f"{abs(mm - pm):.1f} where one Munsell value step is {MUNSELL_STEP_L:g}. That is not "
+            f"a deck that came out a little dark, it is a deck rendered at a different value than "
+            f"the one that was planned. Furthest three: {detail}. Redraw the frames or rewrite "
+            f"the arc, and say in the run record which you did"]
+
+
+def check_value_arc(base: Path) -> list:
+    """THE DECK COMES OUT AT THE VALUE ITS OWN PLAN ASKED FOR.
+
+    THE DEFECT (2026-09-04). The first render of carousel 15 measured deck median L* 6.3 against
+    a storyboard plan of 24, with eight of nine frames between 4.5 and 10.1. That is not a dark
+    deck, it is an unlit one, and it was found by the showrunner writing a one-off `measure.py`
+    AFTER three judges had already been spawned on it. Every deck before it missed its own plan
+    too, by ten to nineteen points, and every one of them RECORDED the miss in the artwork ledger
+    rather than preventing it.
+
+    This gate exists so a judge never has to find a measurement, and the arc is a measurement.
+    """
+    sb = base / "storyboard.md"
+    if not sb.exists():
+        return []
+    planned = planned_arc(sb.read_text(encoding="utf-8"))
+    if not planned:
+        # SAID OUT LOUD RATHER THAN PASSED OVER. Nine of fifteen shipped storyboards declare no
+        # arc, so this is ordinary, and a run that declares one gets it checked.
+        print("      (this storyboard declares no value arc this gate can read, so the deck's "
+              "register was compared against nothing. SLIDE_DOSSIER_SPEC.md gives the form)")
+        return []
+    try:
+        measured = measured_arc(base)
+    except Exception as exc:                                         # noqa: BLE001
+        # A CHECK THAT CANNOT RUN IS NOT A CHECK THAT PASSED. GATE_LESSONS 37: a skip is what a
+        # check looks like when it is not needed, and this one is needed, because the plan is
+        # right there. It goes in the failure list.
+        return [f"this storyboard declares a value arc and the arc could not be measured: {exc}. "
+                f"Install Pillow and numpy. A gate that reports clean because it could not look "
+                f"is the shape this whole file exists to stop"]
+    if not measured:
+        return ["this storyboard declares a value arc and there are no slide PNGs under "
+                "render/ to measure it against"]
+    print(f"      planned {[f'{p:g}' for p in planned]}")
+    print(f"      measured {[f'{m:g}' for m in measured]}  "
+          f"deck median {_median(measured):g} against a plan of {_median(planned):g}")
+    return arc_verdict(planned, measured)
+
+
 # ------------------------------------------------------------------ driver
 
 def run(date: str, out_root: Path | None = None) -> int:
@@ -290,6 +464,8 @@ def run(date: str, out_root: Path | None = None) -> int:
         (f"every line clears the rubric's {floor} contrast floor", check_contrast(qa, floor)),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
         ("every ground a dossier calls worked is worked", check_ground(base)),
+        (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
+         f"planned value arc", check_value_arc(base)),
     ]
     problems = [p for _, ps in groups for p in ps]
     for title, ps in groups:
@@ -372,6 +548,78 @@ def self_test() -> int:
             "The words the item does use for the technology are quoted whole on slide 7.",
             encoding="utf-8")
         ok("...and the corrected pointer passes", not check_pointers(b, rep3))
+
+    # ---- THE VALUE ARC, REPLAYED ON THIS RUN'S OWN TWO MEASUREMENTS ---------------------
+    #
+    # Carousel 15's FIRST render measured a deck median of 6.3 against a plan of 24. The repaired
+    # deck measured 23.1 against the same plan. Both arrays below are the real per frame medians
+    # off `out/2026-09-04/measurements.json` and the run record, not a fixture invented here.
+    PLAN_15 = [24, 18, 21, 13, 88, 32, 28, 17, 25]
+    SHIPPED_15 = [25.0, 15.1, 19.8, 14.0, 96.3, 27.2, 24.8, 15.8, 23.1]
+    # The first render, eight of nine frames between 4.5 and 10.1 with the one light frame lit.
+    FIRST_15 = [6.3, 4.5, 8.1, 5.2, 61.0, 9.4, 10.1, 5.0, 7.7]
+    got = arc_verdict(PLAN_15, FIRST_15)
+    ok("the first render of carousel 15, 6.3 against a plan of 24, is CAUGHT", bool(got), str(got))
+    ok("...and the failure names the size of the miss in Munsell steps",
+       bool(got) and "Munsell" in got[0], str(got))
+    ok("...and the REPAIRED deck at 23.1 against the same plan passes",
+       not arc_verdict(PLAN_15, SHIPPED_15), str(arc_verdict(PLAN_15, SHIPPED_15)))
+
+    # A DECK THAT MISSES BY A LITTLE IS NOT A FINDING. Every deck here misses its plan, and a gate
+    # that fires on ordinary behaviour gets switched off. 2026-09-02 planned 30 and measured 20.4.
+    ok("a miss of 9.6, inside one Munsell step, is not a finding",
+       not arc_verdict([30] * 9, [20.4] * 9))
+    ok("...and a miss of 10.1, outside it, is",
+       bool(arc_verdict([30] * 9, [19.9] * 9)))
+
+    # A PLAN AND A RENDER OF DIFFERENT LENGTHS IS A STALE PLAN, and comparing them anyway is how
+    # a gate invents a failure. It refuses rather than guessing which side moved.
+    ok("a plan of eight frames against a render of nine REFUSES rather than comparing",
+       bool(arc_verdict(PLAN_15[:8], SHIPPED_15)))
+    ok("a deck declaring no arc is silent", not arc_verdict([], SHIPPED_15))
+
+    # ---- THE PARSE RULE, against the two shapes real storyboards actually write ---------
+    FENCED = ("**The value arc, planned per frame median L\\***, measured off the PNGs.\n\n"
+              "```\nF1  24   the lane\nF2  18   three heights\nF3  21   six in\n"
+              "F4  13   the darkest frame\nF5  88   the turn\n```\n\nPlanned deck median **24**.\n")
+    ok("the fenced `F1  24` form 2026-09-04 writes is read",
+       planned_arc(FENCED) == [24, 18, 21, 13, 88], str(planned_arc(FENCED)))
+    INLINE = ("## The value arc\n\nPlanned per frame 32, 40, 28, 26, 24, 40, 68, 30, 38. Planned "
+              "deck median near 32.\n")
+    ok("the inline form 2026-08-29 writes is read",
+       planned_arc(INLINE) == [32, 40, 28, 26, 24, 40, 68, 30, 38], str(planned_arc(INLINE)))
+    INLINE2 = "Planned value arc, 34, 22, 40, 58, 44, 71, 30, 47, 26. **Planned, and replaced.**\n"
+    ok("the inline form 2026-08-30 writes is read",
+       planned_arc(INLINE2) == [34, 22, 40, 58, 44, 71, 30, 47, 26], str(planned_arc(INLINE2)))
+
+    # A MEASUREMENT IS NOT A PLAN. 2026-09-03's storyboard carries only what the render came out
+    # at, written after the fact, and reading that as a plan would compare a deck to itself.
+    MEASURED_ONLY = ("### The value arc\n\nPer frame median L*, computed:\n\n"
+                     "`73.1 · 94.1 · 18.9 · 77.2 · 17.5`, **deck median 73.1**.\n")
+    ok("a storyboard that records a MEASUREMENT and no plan declares no arc",
+       planned_arc(MEASURED_ONLY) == [], str(planned_arc(MEASURED_ONLY)))
+    ok("a comma list nowhere near the value arc declares nothing",
+       planned_arc("The frame carries 12, 14, 16 and 18 ticks planned across the scale.") == [],
+       str(planned_arc("The frame carries 12, 14, 16 and 18 ticks planned across the scale.")))
+
+    # AGAINST THE REAL STORYBOARDS, because a parser tested only on strings this file wrote agrees
+    # with this file. Every shipped storyboard that declares an arc has to still parse into one
+    # value per frame, so the day a run writes it a third way this goes red rather than silent.
+    parsed = 0
+    for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*")):
+        sb = p / "storyboard.md"
+        if not sb.exists():
+            continue
+        txt = sb.read_text(encoding="utf-8")
+        arc = planned_arc(txt)
+        if not arc:
+            continue
+        parsed += 1
+        frames = len(re.findall(r"```yaml\s*\nslide:\s*\d+", txt))
+        ok(f"{p.name}: its declared arc parses into one value per frame "
+           f"({len(arc)} of {frames})", len(arc) == frames, str(arc))
+    ok("the parse rule was calibrated against real storyboards rather than only fixtures",
+       parsed >= 2, f"{parsed} shipped storyboard(s) declare a readable arc")
 
     # EVERY CHECK MUST BE REACHABLE. A gate whose loader silently returns nothing reports clean
     # forever, which is the shape craft_floor shipped when it read a key qa.py never wrote.

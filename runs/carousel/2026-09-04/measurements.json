@@ -1,0 +1,88 @@
+{
+  "run": "2026-09-04",
+  "measured_on": "the nine shipped PNGs resampled to 270 by 338, the grid every prior run used",
+  "per_frame": [
+    {
+      "file": "slide-01.png",
+      "median_L": 25.0,
+      "mean_L": 28.6,
+      "p05": 17.9,
+      "p95": 47.0
+    },
+    {
+      "file": "slide-02.png",
+      "median_L": 15.1,
+      "mean_L": 18.2,
+      "p05": 10.8,
+      "p95": 36.8
+    },
+    {
+      "file": "slide-03.png",
+      "median_L": 19.8,
+      "mean_L": 22.4,
+      "p05": 17.5,
+      "p95": 46.4
+    },
+    {
+      "file": "slide-04.png",
+      "median_L": 13.5,
+      "mean_L": 20.0,
+      "p05": 10.0,
+      "p95": 48.3
+    },
+    {
+      "file": "slide-05.png",
+      "median_L": 96.3,
+      "mean_L": 90.5,
+      "p05": 54.8,
+      "p95": 99.2
+    },
+    {
+      "file": "slide-06.png",
+      "median_L": 27.2,
+      "mean_L": 32.5,
+      "p05": 22.3,
+      "p95": 56.3
+    },
+    {
+      "file": "slide-07.png",
+      "median_L": 24.7,
+      "mean_L": 29.1,
+      "p05": 15.1,
+      "p95": 64.0
+    },
+    {
+      "file": "slide-08.png",
+      "median_L": 13.7,
+      "mean_L": 20.0,
+      "p05": 5.6,
+      "p95": 74.3
+    },
+    {
+      "file": "slide-09.png",
+      "median_L": 22.5,
+      "mean_L": 30.4,
+      "p05": 16.1,
+      "p95": 55.0
+    }
+  ],
+  "deck_median_L": 22.5,
+  "mean_L": 28.6,
+  "sd_L": 24.4,
+  "range_L": [
+    13.5,
+    96.3
+  ],
+  "planned": [
+    24,
+    18,
+    21,
+    13,
+    88,
+    32,
+    28,
+    17,
+    25
+  ],
+  "planned_deck_median": 24
+}

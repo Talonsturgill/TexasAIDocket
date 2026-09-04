@@ -1,0 +1,142 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#F1F4F2}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:496px;
+     background:linear-gradient(to bottom,rgba(241,244,242,.98) 0%,rgba(241,244,242,.96) 70%,rgba(241,244,242,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:172px;
+     background:linear-gradient(to bottom,rgba(241,244,242,0) 0%,rgba(241,244,242,.88) 46%,rgba(241,244,242,.99) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#5B6668}
+  h1{position:absolute;top:160px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:84px;line-height:1.03;color:#0D1013;letter-spacing:-.019em}
+  .dek{position:absolute;top:352px;left:80px;width:880px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:28px;line-height:1.34;color:#3B4547}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#3B4547;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Judged suitable. Suitable at what?</h1>
+  <p class="dek">Artificial intelligence and other technologies built a three dimensional model of the capture zone and watched how pedestrians moved. The software judged whether a face was suitable for matching in Customs and Border Protection's Traveler Verification Service. No rate is given for how often it was right.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>SUITABILITY</span><span>c15 c18</span><span class="tx-site">texasaidocket.com</span><span>05 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  // THE INVERSION. Transmitted light, no lamp anywhere, and the only frame in nine that
+  // declares neither of the deck's two light owners.
+  const GLASS='#F1F4F2', CHROME='#8E9A9E', INK='#0D1013';
+  g.fillStyle=GLASS; g.fillRect(0,0,W,H);
+
+  // the transilluminated field, brighter at the centre because a diffuser always is
+  (function field(){
+    const gr=g.createRadialGradient(540,880,60,540,880,700);
+    gr.addColorStop(0,'rgba(255,255,255,.85)'); gr.addColorStop(1,'rgba(255,255,255,0)');
+    g.fillStyle=gr; g.fillRect(0,0,W,H);
+  })();
+
+  // ONE BAR GROUP. Three vertical bars and three horizontal, evaporated chrome on glass, each
+  // bar carrying a specular edge highlight that paper cannot make.
+  function group(cx, cy, bw){
+    const bl = bw*5.0, gap = bw;               // classic proportion, length five times width
+    function bar(x,y,w,h){
+      // A SPECULAR SWEEP ALONG THE BAR'S OWN LENGTH. Evaporated chrome is a mirror and it
+      // returns a moving highlight; ink on paper returns nothing, which is the whole difference
+      // between this frame and a sheet on a light table.
+      // ONE LIGHT OVER THE WHOLE PLATE. The sweep is placed off the bar's absolute position,
+      // so two bars at different ends of the target return different highlights.
+      const along = w>h;
+      const L=[236,470];                       // where the source sits over the plate
+      const t=Math.max(0,Math.min(1,(Math.hypot((x+w/2)-L[0],(y+h/2)-L[1]))/1180));
+      const gr = along ? g.createLinearGradient(x,0,x+w,0) : g.createLinearGradient(0,y,0,y+h);
+      const k=Math.max(0.06,Math.min(0.94, 0.62-t*0.46));   // the highlight walks with distance
+      gr.addColorStop(0.00,'#4E5C61'); gr.addColorStop(Math.max(0.02,k-0.20),'#8FA0A6');
+      gr.addColorStop(k,'#EDF4F5'); gr.addColorStop(Math.min(0.98,k+0.16),'#A9B8BD');
+      gr.addColorStop(1.00,'#414D51');
+      g.fillStyle=gr; g.fillRect(x,y,w,h);
+      g.fillStyle='rgba(255,255,255,.82)'; g.fillRect(x,y,along?w:Math.max(1.4,w*0.16),along?Math.max(1.4,h*0.16):h);
+      g.fillStyle='rgba(14,20,22,.42)';
+      g.fillRect(along?x:x+w-Math.max(1.4,w*0.14), along?y+h-Math.max(1.4,h*0.14):y,
+                 along?w:Math.max(1.4,w*0.14), along?Math.max(1.4,h*0.14):h);
+    }
+    for(let i=0;i<3;i++) bar(cx - bl/2 + i*(bw+gap)*0, cx*0, 0, 0);   // no-op guard
+    // vertical trio, read left to right
+    for(let i=0;i<3;i++) bar(cx - (bw*3+gap*2)/2 + i*(bw+gap), cy - bl/2, bw, bl);
+    // horizontal trio, sitting to the right of the vertical one
+    for(let i=0;i<3;i++) bar(cx + bl*0.62, cy - (bw*3+gap*2)/2 + i*(bw+gap), bl, bw);
+  }
+
+  // A BLANK CHROME PAD where the group's own number belongs. Lit bevel, shaded inner face,
+  // nothing struck on it. This is the frame's focal and it is the darkest thing on the
+  // deck's lightest frame.
+  function pad(x, y, w, h){
+    g.fillStyle='#7C888C'; g.fillRect(x,y,w,h);
+    const gr=g.createLinearGradient(x,y,x,y+h);
+    gr.addColorStop(0,'rgba(255,255,255,.52)'); gr.addColorStop(.22,'rgba(255,255,255,.06)');
+    gr.addColorStop(.80,'rgba(18,24,26,.34)'); gr.addColorStop(1,'rgba(18,24,26,.62)');
+    g.fillStyle=gr; g.fillRect(x,y,w,h);
+    g.fillStyle='rgba(255,255,255,.74)'; g.fillRect(x,y,w,2.2);          // the lit bevel
+    g.fillStyle='rgba(12,16,18,.40)';   g.fillRect(x,y+h-2.4,w,2.4);     // the shaded inner face
+  }
+
+  // Five groups in a true geometric progression, coarsest first. Nothing is drawn under
+  // 13 CSS px, which is above 5 device px on the 432 thumb.
+  const BW=[34,27,21.5,17,13.6];
+  const CY=[622, 622, 830, 830, 1038];
+  const CX=[236, 640, 236, 640, 236];
+  for(let i=0;i<5;i++){
+    group(CX[i], CY[i], BW[i]);
+    pad(CX[i]-52, CY[i]+BW[i]*3.2, 104, 44);
+  }
+
+  // THE RESOLUTION LIMIT. Below this the bars stop resolving, and the honest way to draw that
+  // is a modeled grey field rather than lines nobody can see.
+  // THE RESOLUTION LIMIT, drawn as bars going under rather than as a noise swatch. Pitch
+  // narrows left to right on a true geometric progression until the pair can no longer be told
+  // apart, and a ruled line marks where that happens. That is what a limit IS on a target.
+  (function limit(){
+    const x=596, y=962, w=392, h=156;
+    let px=x, w0=15.0;
+    while(px < x+w-2){
+      const bw=Math.max(0.9, w0);
+      // the pitch fades out rather than stopping at a box edge, which is what a limit looks
+      // like. Round 1's hard rectangle was the stray swatch relocated.
+      const fade=Math.max(0, Math.min(1, (x+w-px)/150));
+      g.fillStyle= 'rgba(126,141,146,'+(Math.min(0.92, 0.34+bw*0.30)*fade).toFixed(3)+')';
+      g.fillRect(px, y, bw, h);
+      if(bw>3.0){ g.fillStyle='rgba(255,255,255,'+(0.62*fade).toFixed(2)+')'; g.fillRect(px, y, bw, 2.0); }
+      px += bw*2; w0 *= 0.905;
+    }
+    // where the pair stops resolving
+    const cut=x+238;
+    g.strokeStyle='rgba(20,26,28,.62)'; g.lineWidth=1.6;
+    g.beginPath(); g.moveTo(cut, y-16); g.lineTo(cut, y+h+16); g.stroke();
+    g.fillStyle='rgba(20,26,28,.62)';
+    g.beginPath(); g.moveTo(cut,y-16); g.lineTo(cut-7,y-28); g.lineTo(cut+7,y-28); g.closePath(); g.fill();
+    pad(x+w/2-52, y+h+34, 104, 44);
+  })();
+
+  // glass grain, fine, so a lit flat field does not read as an unfinished render
+  (function grain(){
+    for(let k=0;k<34000;k++){
+      const x=R()*W, y=R()*H;
+      g.fillStyle='rgba(20,26,28,'+(R()*0.030).toFixed(3)+')';
+      g.fillRect(x,y,1,1);
+    }
+  })();
+})();
+</script>
+</body></html>

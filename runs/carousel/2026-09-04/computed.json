@@ -1,0 +1,171 @@
+{
+  "run": "2026-09-04",
+  "generated_by": "out/2026-09-04/compute.py",
+  "values": {
+    "may_inbound_pedestrians": {
+      "value": 101306,
+      "display": "101,306",
+      "label": "measured",
+      "from": [
+        "c26"
+      ],
+      "means": "pedestrians recorded ENTERING the United States at the Progreso port of entry in May 2026. It is not a count of the people the cameras watched, who were walking the other way."
+    },
+    "outbound_series_months": {
+      "value": 0,
+      "display": "0",
+      "label": "measured",
+      "from": [
+        "c25"
+      ],
+      "means": "months of published federal outbound pedestrian counts at this port. The dataset's own description states no comparable data is collected on outbound crossings."
+    },
+    "performance_facts_asked": {
+      "value": 5,
+      "display": "5",
+      "label": "measured",
+      "from": [
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22"
+      ],
+      "means": "performance facts a reader would need, each one established as absent by its own claim: an accuracy, match or error rate; a count of images captured; a retention period for the images; a decision to deploy; a date range for the assessment"
+    },
+    "characterisations_quoted": {
+      "value": 3,
+      "display": "3",
+      "label": "measured",
+      "from": [
+        "c7",
+        "c9",
+        "c31"
+      ],
+      "means": "quotations the account publishes about how the test went, each one a characterisation rather than a measurement: exceeded expectations, said by CBP's Biometrics Program Office; high-quality facial images, said by the president of NEC NSS; and it did just that, the line that closes the division director's quotation"
+    },
+    "performance_facts_published": {
+      "value": 0,
+      "display": "0",
+      "label": "measured",
+      "from": [
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22"
+      ],
+      "means": "how many of those five the account publishes."
+    },
+    "claims_verified": {
+      "value": 32,
+      "display": "32",
+      "label": "measured",
+      "from": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10",
+        "c11",
+        "c12",
+        "c13",
+        "c14",
+        "c15",
+        "c16",
+        "c17",
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22",
+        "c23",
+        "c24",
+        "c25",
+        "c26",
+        "c27",
+        "c28",
+        "c29",
+        "c30",
+        "c31",
+        "c32"
+      ],
+      "means": "claims this run fetched and verified, counted over claims.json. The site's article page prints this count beside the list it renders."
+    },
+    "findings_rejected": {
+      "value": 8,
+      "display": "8",
+      "label": "measured",
+      "from": [],
+      "means": "scout findings the fact check refused, counted over claims.json's rejected list. Each carries its own reason in that file."
+    },
+    "months_request_to_account": {
+      "value": 11,
+      "display": "11",
+      "label": "measured",
+      "from": [
+        "c2"
+      ],
+      "means": "whole months from the month CBP asked to the month the account published."
+    },
+    "months_bridge_to_account": {
+      "value": 4,
+      "display": "4",
+      "label": "measured",
+      "from": [
+        "c5"
+      ],
+      "means": "whole months from the month the partners were at the bridge to the month the account published."
+    },
+    "days_to_dallas": {
+      "value": 4,
+      "display": "4",
+      "label": "measured",
+      "from": [
+        "c24"
+      ],
+      "means": "days from this run's date to the Dallas briefing."
+    }
+  },
+  "absences": [
+    {
+      "what": "an accuracy, match or error rate",
+      "claim": "c18"
+    },
+    {
+      "what": "a count of images captured",
+      "claim": "c19"
+    },
+    {
+      "what": "a retention period for the images",
+      "claim": "c20"
+    },
+    {
+      "what": "a decision to deploy",
+      "claim": "c21"
+    },
+    {
+      "what": "a date range for the assessment",
+      "claim": "c22"
+    }
+  ],
+  "characterisations": [
+    {
+      "what": "exceeded expectations, said by CBP's Biometrics Program Office",
+      "claim": "c7"
+    },
+    {
+      "what": "high-quality facial images, said by the president of NEC NSS",
+      "claim": "c9"
+    },
+    {
+      "what": "and it did just that, the line that closes the division director's quotation",
+      "claim": "c31"
+    }
+  ]
+}

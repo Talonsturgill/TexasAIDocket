@@ -1,0 +1,162 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#2C312F}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:466px;
+     background:linear-gradient(to bottom,rgba(30,34,32,.96) 0%,rgba(30,34,32,.92) 70%,rgba(30,34,32,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:158px;
+     background:linear-gradient(to bottom,rgba(30,34,32,0) 0%,rgba(30,34,32,.86) 48%,rgba(30,34,32,.98) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#AFBCB6}
+  h1{position:absolute;top:150px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:88px;line-height:1.03;color:#EFF3F0;letter-spacing:-.020em}
+  .dek{position:absolute;top:356px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:26px;line-height:1.30;color:#B9C2BC}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#B9C2BC;font-variant-numeric:tabular-nums}
+  svg#lay{position:absolute;inset:0;width:1080px;height:1350px}
+  .cav{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;letter-spacing:.06em;fill:#A7B5AE}
+  .seat{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:24px;letter-spacing:.03em;fill:#0F1513}
+  .said{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.04em;fill:#3B453F}
+  .eyeb{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.13em}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Three quotes. No measurement.</h1>
+  <p class="dek">The account describes the result in words. Five measurements were never stated rather than removed.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>SLOTS</span><span>c7 c9 c31 c18-c22</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<svg id="lay" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  // CHARCOAL CLOSED CELL FOAM, edge to edge, no case lip and no border.
+  (function foam(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.020, y*0.020, 4);
+      const v=Math.round(42 + n*15);
+      g.fillStyle='rgb('+v+','+(v+3)+','+(v+1)+')'; g.fillRect(x,y,2,2);
+    }}
+    for(let k=0;k<58000;k++){
+      const x=R()*W, y=R()*H;
+      g.fillStyle= R()<0.45 ? 'rgba(0,0,0,'+(R()*0.34).toFixed(3)+')'
+                            : 'rgba(198,212,206,'+(R()*0.09).toFixed(3)+')';
+      g.fillRect(x,y,1.6,1.6);
+    }
+    const gr=g.createLinearGradient(0,0,W,H);
+    gr.addColorStop(0,'rgba(206,220,214,.16)'); gr.addColorStop(.6,'rgba(0,0,0,.14)');
+    g.fillStyle=gr; g.fillRect(0,0,W,H);
+  })();
+
+  // THE CAVITIES. Round one rendered these as eight flat rounded rectangles sharing one left
+  // edge inside one track, with label plates of eight different widths, and a craft judge read
+  // it as a bar chart on a single baseline. Deck 12's ledger records killing exactly that draft
+  // and deck 7's records the same. So the geometry changed rather than the colour:
+  //
+  //   - the case is seen TWELVE DEGREES OFF AXIS, so every cavity shows a near side wall on its
+  //     left and a far wall at its head, which is what a die cut hole looks like and what a
+  //     rounded rectangle never will
+  //   - the eight sit in TWO RANKS with different x origins, so there is no shared baseline for
+  //     an eye to read a length off
+  //   - every cavity is the SAME size, and nothing inside one varies in width
+  const SH=40, CW=452, CH=90, DEPTH=40;      // the reveal, as real width and real depth
+  // Three in the first rank and five in the second, because that is the split, and at two
+  // different x origins so no shared baseline exists for an eye to read a length off.
+  const RANKS=[{x:120, y:636, n:3, filled:true}, {x:624, y:520, n:5, filled:false}];
+  function slot(x, y, filled){
+    const fx=x-SH, fy=y+DEPTH;               // the floor, seen down and to the left
+    // 1. THE HEAD WALL, a real quadrilateral of CW by DEPTH, falling away from the lit lip
+    g.beginPath();
+    g.moveTo(x,y); g.lineTo(x+CW,y); g.lineTo(x+CW-SH,fy); g.lineTo(fx,fy); g.closePath();
+    const hw=g.createLinearGradient(0,y,0,fy);
+    hw.addColorStop(0,'#0A0C0B'); hw.addColorStop(1,'#171B19');
+    g.fillStyle=hw; g.fill();
+    // 2. THE NEAR SIDE WALL, SH wide, which is what a hairline was standing in for
+    g.beginPath();
+    g.moveTo(x,y); g.lineTo(fx,fy); g.lineTo(fx,fy+CH); g.lineTo(x,y+CH); g.closePath();
+    const sw=g.createLinearGradient(x,0,fx,0);
+    sw.addColorStop(0,'#1C201E'); sw.addColorStop(1,'#0B0D0C');
+    g.fillStyle=sw; g.fill();
+    // 3. THE FLOOR, above the walls so a hole is a hole, and BELOW the foam around it so it
+    //    is a hole rather than a panel sitting on the surface
+    const fg=g.createLinearGradient(fx,fy,fx+CW*0.6,fy+CH);
+    fg.addColorStop(0,'#262B28'); fg.addColorStop(1,'#191D1B');
+    g.fillStyle=fg; g.fillRect(fx,fy,CW,CH);
+    g.save(); g.beginPath(); g.rect(fx,fy,CW,CH); g.clip();
+    for(let k=0;k<3200;k++){
+      const px=fx+R()*CW, py=fy+R()*CH;
+      g.fillStyle= R()<0.5 ? 'rgba(0,0,0,'+(R()*0.26).toFixed(3)+')'
+                           : 'rgba(198,212,206,'+(R()*0.06).toFixed(3)+')';
+      g.fillRect(px,py,1.6,1.6);
+    }
+    g.restore();
+    // 4. THE LIT LIP, on the two cut edges the LED at frame left can reach
+    g.lineWidth=3.4;
+    const lip=g.createLinearGradient(x,y,x+CW,y+CH);
+    lip.addColorStop(0,'rgba(220,236,230,.92)'); lip.addColorStop(.6,'rgba(220,236,230,.40)');
+    lip.addColorStop(1,'rgba(220,236,230,.20)');
+    g.strokeStyle=lip;
+    g.beginPath(); g.moveTo(x,y+CH); g.lineTo(x,y); g.lineTo(x+CW,y); g.stroke();
+    if(filled){
+      const px=fx+18, py=fy+11, pw=CW-36, ph=CH-22;
+      g.fillStyle='rgba(0,0,0,.70)'; g.fillRect(px+6,py+ph-3,pw-10,10);
+      g.fillStyle='rgba(0,0,0,.36)'; g.fillRect(px,py+ph+5,pw,11);
+      const pg=g.createLinearGradient(px,py,px+pw*0.5,py+ph);
+      pg.addColorStop(0,'#CBD8D0'); pg.addColorStop(.5,'#B1BFB7'); pg.addColorStop(1,'#909E97');
+      g.fillStyle=pg; g.fillRect(px,py,pw,ph);
+      g.fillStyle='rgba(255,255,255,.66)'; g.fillRect(px,py,pw,2.6);
+      g.fillStyle='rgba(20,26,24,.44)'; g.fillRect(px,py+ph-2.8,pw,2.8);
+      g.fillStyle='#B8C6BE'; g.fillRect(px+6,py+7,pw-12,ph-16);
+    }
+  }
+  const POS=[]; let idx=0;
+  RANKS.forEach(rk=>{
+    for(let r=0;r<rk.n;r++){
+      const y=rk.y+r*134;
+      POS.push([rk.x,y,idx]);
+      slot(rk.x,y, rk.filled);
+      idx++;
+    }
+  });
+
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('lay');
+  function txt(x,y,s,cls,fill,anchor){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class',cls);
+    if(fill) t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
+    t.textContent=s; svg.appendChild(t); return t;
+  }
+  // Every string on a seated plate is a literal substring of a claim's own quote. c7, c9, c31.
+  const SEATED=['EXCEEDED EXPECTATIONS','HIGH-QUALITY FACIAL IMAGES','IT DID JUST THAT'];
+  const MISSING=['ACCURACY RATE','IMAGES CAPTURED','RETENTION PERIOD','DEPLOYMENT DECISION','ASSESSMENT DATES'];
+  const sh=40;
+  const SAID=['CBP','NEC NSS','S AND T'];
+  // The speaker sits on the same baseline at the plate's far end, so nothing is set across the
+  // plate's own bottom rule, which a gate read as a strikethrough and was right to.
+  POS.forEach(([x,y,idx])=>{
+    const fx=x-40, fy=y+40, tx=fx+30;
+    if(idx<3){
+      txt(tx, fy+40, SEATED[idx], 'seat');
+      txt(tx, fy+72, SAID[idx], 'said');
+    } else {
+      txt(tx, fy+56, MISSING[idx-3], 'cav');
+    }
+  });
+  txt(80, 606, 'STATED', 'eyeb', '#D6E6E0');
+  txt(584, 490, 'NOT STATED', 'eyeb', '#B4C2BB');
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

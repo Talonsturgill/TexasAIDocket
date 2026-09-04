@@ -1,0 +1,176 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1C2426}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:716px;
+     background:linear-gradient(to bottom,rgba(28,36,38,.97) 0%,rgba(28,36,38,.95) 68%,rgba(28,36,38,.72) 86%,rgba(28,36,38,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:190px;
+     background:linear-gradient(to bottom,rgba(28,36,38,0) 0%,rgba(28,36,38,.86) 50%,rgba(28,36,38,.98) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+  h1{position:absolute;top:166px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+     font-weight:800;font-size:88px;line-height:1.03;color:#E6ECEA;letter-spacing:-.020em}
+  .dek{position:absolute;top:344px;left:80px;width:870px;margin:0;font-family:Manrope,sans-serif;
+       font-weight:500;font-size:28px;line-height:1.34;color:#A9AEA4}
+  .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
+        gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+        letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
+  svg#lay{position:absolute;inset:0;width:1080px;height:1350px}
+  .k{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.06em}
+  .ka{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;letter-spacing:.14em;opacity:.80}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>They built the lane twice.</h1>
+  <p class="dek">A replica of the pedestrian exit environment went up at the Maryland Test Facility first, so the vendors could install and assess their prototypes before taking them to the crossing.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>REPLICA</span><span>c30</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+</div>
+<svg id="lay" viewBox="0 0 1080 1350"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260904); const R=TX.rng(20260904);
+
+  const RIVER='#1C2426', LED='#C3D4DE', GALV='#6E7B7E', SLAB='#2E3130';
+  g.fillStyle=RIVER; g.fillRect(0,0,W,H);
+
+  // A WORKED GROUND at the scale the measurement reads, two device pixel cells.
+  (function ground(){
+    for(let y=0;y<H;y+=2){ for(let x=0;x<W;x+=2){
+      const n=TX.fbm2(x*0.0065, y*0.0065, 4);
+      const v=Math.round(28 + n*13);
+      g.fillStyle='rgb('+v+','+(v+4)+','+(v+4)+')'; g.fillRect(x,y,2,2);
+    }}
+  })();
+
+  // THE FLOOR both frames stand on, one slab under both, lit from frame left by the LED the
+  // test brought. Sodium belongs to the bridge and never appears on this frame.
+  const FLOOR=1082;
+  (function floor(){
+    const gr=g.createLinearGradient(0,FLOOR,0,H);
+    gr.addColorStop(0,'#4A5453'); gr.addColorStop(1,'#2A3130');
+    g.fillStyle=gr; g.fillRect(0,FLOOR,W,H-FLOOR);
+    const pool=g.createLinearGradient(0,0,860,0);
+    pool.addColorStop(0,'rgba(195,212,222,.30)'); pool.addColorStop(1,'rgba(195,212,222,0)');
+    g.fillStyle=pool; g.fillRect(0,FLOOR,W,H-FLOOR);
+    for(let k=0;k<30000;k++){
+      const x=R()*W, y=FLOOR+R()*(H-FLOOR), s=1.0+2.0*((y-FLOOR)/(H-FLOOR));
+      g.fillStyle= R()<0.5 ? 'rgba(180,192,190,'+(R()*0.10).toFixed(3)+')'
+                           : 'rgba(0,0,0,'+(R()*0.14).toFixed(3)+')';
+      g.fillRect(x,y,s,s*0.6);
+    }
+    g.strokeStyle='rgba(0,0,0,.36)'; g.lineWidth=1.6;
+    g.beginPath(); g.moveTo(0,FLOOR); g.lineTo(W,FLOOR); g.stroke();
+    g.strokeStyle='rgba(200,214,212,.20)'; g.lineWidth=1.0;
+    g.beginPath(); g.moveTo(0,FLOOR-1.6); g.lineTo(W,FLOOR-1.6); g.stroke();
+  })();
+
+  // ONE PORTAL, DRAWN TWICE, at ONE scale. Every dimension below is used by both, so the two
+  // objects measure the same because they are the same numbers rather than because a caption
+  // says so.
+  const PW=330, PH=452, POST=26, HEAD=30, MESH=17;
+  function portal(cx, ink, lit){
+    const x0=cx-PW/2, y0=FLOOR-PH;
+    // the two posts, each a real section with a lit face and a shaded return
+    [x0, x0+PW-POST].forEach((px,k)=>{
+      const gr=g.createLinearGradient(px,0,px+POST,0);
+      gr.addColorStop(0, lit?'#9EAEB2':'#5C696C'); gr.addColorStop(.55, lit?'#6E7C80':'#414C4F');
+      gr.addColorStop(1, lit?'#394245':'#252C2E');
+      g.fillStyle=gr; g.fillRect(px,y0,POST,PH);
+      g.fillStyle= lit?'rgba(214,232,240,.72)':'rgba(160,176,180,.36)';
+      g.fillRect(px,y0,2.4,PH);
+      // the contact where the post meets the slab, two parts
+      g.fillStyle='rgba(0,0,0,.62)'; g.fillRect(px-3,FLOOR-4,POST+6,7);
+      g.fillStyle='rgba(0,0,0,.30)'; g.fillRect(px-14,FLOOR+2,POST+28,12);
+    });
+    // the head beam
+    const hg=g.createLinearGradient(0,y0,0,y0+HEAD);
+    hg.addColorStop(0, lit?'#A8B7BA':'#637073'); hg.addColorStop(1, lit?'#4C5659':'#303839');
+    g.fillStyle=hg; g.fillRect(x0,y0,PW,HEAD);
+    g.fillStyle= lit?'rgba(220,236,240,.80)':'rgba(160,176,180,.40)';
+    g.fillRect(x0,y0,PW,2.6);
+    // the screen infill, a real diamond fabric between the posts
+    g.save();
+    g.beginPath(); g.rect(x0+POST, y0+HEAD, PW-POST*2, PH-HEAD); g.clip();
+    g.strokeStyle= lit?'rgba(158,174,178,.52)':'rgba(110,124,127,.40)';
+    g.lineWidth=1.6;
+    for(let k=-30;k<40;k++){
+      g.beginPath(); g.moveTo(x0+k*MESH, y0+HEAD-40); g.lineTo(x0+k*MESH+560, y0+PH+40); g.stroke();
+      g.beginPath(); g.moveTo(x0+k*MESH, y0+PH+40); g.lineTo(x0+k*MESH+560, y0+HEAD-40); g.stroke();
+    }
+    g.restore();
+    // the throw the portal casts onto the slab, away from the light at frame left
+    const sg=g.createLinearGradient(cx,FLOOR,cx+180,H);
+    sg.addColorStop(0,'rgba(0,0,0,.34)'); sg.addColorStop(1,'rgba(0,0,0,0)');
+    g.fillStyle=sg;
+    g.beginPath(); g.moveTo(x0,FLOOR); g.lineTo(x0+PW,FLOOR);
+    g.lineTo(x0+PW+150,H); g.lineTo(x0+150,H); g.closePath(); g.fill();
+  }
+  portal(288, LED, true);     // the one built first
+  portal(792, GALV, false);   // the one it was built for
+
+  // the shared dimension line, which is the whole claim: they measure the same
+  (function dim(){
+    const y=FLOOR-PH-46;
+    g.strokeStyle='rgba(190,206,210,.68)'; g.lineWidth=2.6;
+    [[288-PW/2,288+PW/2],[792-PW/2,792+PW/2]].forEach(([a,b])=>{
+      g.beginPath(); g.moveTo(a,y); g.lineTo(b,y); g.stroke();
+      [a,b].forEach(x=>{ g.beginPath(); g.moveTo(x,y-16); g.lineTo(x,y+16); g.stroke(); });
+      // the two witness lines dropping to the object, so the dimension is ON the portal rather
+      // than floating above it
+      g.strokeStyle='rgba(190,206,210,.26)'; g.lineWidth=1.4;
+      [a,b].forEach(x=>{ g.beginPath(); g.moveTo(x,y+16); g.lineTo(x,FLOOR-PH+6); g.stroke(); });
+      g.strokeStyle='rgba(190,206,210,.68)'; g.lineWidth=2.6;
+    });
+  })();
+
+  (function grain(){
+    const id=g.getImageData(0,0,W*2,H*2), px=id.data, SW=W*2;
+    for(let y=0;y<H*2;y+=2){ for(let x=0;x<SW;x+=2){
+      const d=(R()-0.5)*26;
+      for(let dy=0;dy<2;dy++) for(let dx=0;dx<2;dx++){
+        const i=((y+dy)*SW+(x+dx))*4;
+        px[i]=Math.max(0,Math.min(255,px[i]+d));
+        px[i+1]=Math.max(0,Math.min(255,px[i+1]+d));
+        px[i+2]=Math.max(0,Math.min(255,px[i+2]+d));
+      }
+    }}
+    g.putImageData(id,0,0);
+  })();
+
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('lay');
+  function txt(x,y,s,fill,anchor,cls){
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class',cls||'k');
+    t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
+    t.textContent=s; svg.appendChild(t); return t;
+  }
+  // The names sit ABOVE the objects with the dimension line, so this frame's type block is a
+  // header rather than the deck's standard caption-under-drawing. Deck 14's avoid_next asked for
+  // a layout that moves, and the plate is inverted here for the same reason: the dark mono chip
+  // is the primitive deck 13 told this machine to stop leaning on.
+  // THE TWO PLACE NAMES take the plate. THE TWO ANNOTATIONS DO NOT, and that is a correction
+  // rather than a preference. `verbatim_check`'s discovery half found MARYLAND TEST FACILITY is a
+  // literal fragment of c3's quote while BUILT FIRST and THE ORIGINAL sat in the SAME rendered
+  // style tracing to no claim, which is the deck's own words wearing the slot a quotation
+  // anchors. It is the milder form of the defect that killed this frame's first construction.
+  // The names are the source's. The annotations are the deck's, and they now look it.
+  txt(288,  506, 'MARYLAND TEST FACILITY',   '#141A1C', 'middle');
+  txt(792,  506, 'PROGRESO BORDER CROSSING', '#141A1C', 'middle');
+  await document.fonts.ready;
+  TX.svgPlateAll('#lay .k', {padX:11, padY:7, fill:'#8A9A9F'});
+  txt(288,  562, 'BUILT FIRST',  '#93A2A6', 'middle', 'ka');
+  txt(792,  562, 'THE ORIGINAL', '#93A2A6', 'middle', 'ka');
+})();
+</script>
+</body></html>
