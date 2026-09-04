@@ -712,3 +712,35 @@ count, or take it from an external standard the way the value arc tolerance take
 And a gate that misreports costs more than one that misses, because the run then hunts for
 something that was never there, so run it across every shipped deck with PNGs before wiring it, and
 make it WARN wherever the prose does not resolve to an axis rather than guessing one.
+
+## 2026-09-04, found by a review bot on PR 266, not by this run
+
+### `guards_local --verdict` has no concurrency guard, and a run believed it did
+
+**What it actually checks.** `read_verdict()` refuses a missing file, a verdict written by another
+runner version, a verdict whose tree state does not match this tree, a verdict from a `--fast` or
+`--only` invocation, and one whose steps did not all pass. Every branch is a refusal with a reason
+and there is no path that returns 0 on a partial file. That is the design and it holds.
+
+**What it does not check.** There is **no lock, no pid and no active-run marker** anywhere in the
+verdict. Each run deletes `out/gates/verdict.json` at startup and writes it once at the end by
+atomic rename. So if run A finishes and writes a green verdict while run B is still executing on
+the same tree, `--verdict` reads A's file, finds the tree state matching and every step passed, and
+**exits 0 while a suite is still running.**
+
+**How it surfaced.** The 2026-09-04 run put three suites on one tree at once, through a separate
+mistake, and then wrote in its own run record that this was "precisely the state `--verdict` exists
+to refuse". It is not, and a review bot on PR 266 caught the sentence before it merged. The run
+record now says the opposite. This is the shape `CLAUDE.md` warns about twice over: a wrong
+explanation is worse than none, because the next session inherits it and stops looking.
+
+**The proposal.** Write the running pid and a monotonically increasing run id into
+`out/gates/running.json` at startup and remove it on exit, then have `read_verdict()` refuse while
+that file names a live process. Cheap, and it closes the hole in the direction that fails safe.
+The alternative, a lock that prevents a second suite starting at all, is worse: a stale lock from
+a killed run would then block every later run, and this project has already learned that a guard a
+contributor has to clear by hand is a guard they learn to delete.
+
+**Calibrate it against the real case.** Start one suite, and while it runs assert `--verdict`
+refuses even after a second suite writes a green verdict on the same tree. That is the exact
+sequence this run produced by accident and it is reproducible on purpose.
