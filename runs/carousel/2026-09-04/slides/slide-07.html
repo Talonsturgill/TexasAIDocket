@@ -1,19 +1,19 @@
 <!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0D1013}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#363E40}
   canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .tscrim{position:absolute;left:0;top:0;width:1080px;height:472px;
-     background:linear-gradient(to bottom,rgba(13,16,19,.97) 0%,rgba(13,16,19,.94) 68%,rgba(13,16,19,0) 100%)}
+     background:linear-gradient(to bottom,rgba(46,53,55,.97) 0%,rgba(46,53,55,.94) 68%,rgba(46,53,55,0) 100%)}
   .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:172px;
-     background:linear-gradient(to bottom,rgba(13,16,19,0) 0%,rgba(13,16,19,.86) 48%,rgba(13,16,19,.98) 100%)}
+     background:linear-gradient(to bottom,rgba(46,53,55,0) 0%,rgba(46,53,55,.86) 48%,rgba(46,53,55,.98) 100%)}
   .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
-        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#A3B0AC}
   h1{position:absolute;top:158px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
      font-weight:800;font-size:78px;line-height:1.04;color:#E6ECEA;letter-spacing:-.018em}
   .dek{position:absolute;top:328px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
-       font-weight:500;font-size:26px;line-height:1.32;color:#A9AEA4}
+       font-weight:500;font-size:26px;line-height:1.32;color:#C9D0C9}
   .foot{position:absolute;bottom:76px;left:80px;right:80px;display:flex;justify-content:space-between;
         gap:26px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
         letter-spacing:.05em;color:#A9AEA4;font-variant-numeric:tabular-nums}
@@ -43,7 +43,7 @@ window.renderReady = (async () => {
   TX.reseed(20260904); const R=TX.rng(20260904);
 
   const BAFFLE='#0D1013', HOUSING='#2B343E', GALV='#6E7B7E', LED='#C3D4DE', NA='#D9701F';
-  g.fillStyle=BAFFLE; g.fillRect(0,0,W,H);
+  g.fillStyle='#363E40'; g.fillRect(0,0,W,H);
 
   // THE REGISTER'S BACK PLATE. Anodised, taking a graded LED wash from upper left, with its
   // upper edge lit and its body falling away.
@@ -56,7 +56,7 @@ window.renderReady = (async () => {
     g.fillRect(PX+18, PY+PH, PW-36, 12);
 
     const gr=g.createLinearGradient(PX,PY,PX+PW*0.7,PY+PH);
-    gr.addColorStop(0,'#49555F'); gr.addColorStop(.42,'#333D46'); gr.addColorStop(1,'#1B2229');
+    gr.addColorStop(0,'#69767F'); gr.addColorStop(.42,'#505B64'); gr.addColorStop(1,'#333B42');
     g.fillStyle=gr; g.fillRect(PX,PY,PW,PH);
     g.fillStyle='rgba(195,212,222,.52)'; g.fillRect(PX,PY,PW,3);            // lit upper edge
     g.fillStyle='rgba(0,0,0,.50)'; g.fillRect(PX,PY+PH-4,PW,4);
@@ -132,7 +132,7 @@ window.renderReady = (async () => {
   txt(PX+14, PY+44, 'ENTERING THE UNITED STATES, MAY 2026', 'chan', '#C3D4DE');
   txt(PX+14, PY+PH-24, 'LEAVING, NO COMPARABLE DATA COLLECTED', 'chan', '#8B989B');
   await document.fonts.ready;
-  TX.svgPlateAll('#lay .chan', {padX:11, padY:7, fill:'#151B21'});
+  TX.svgPlateAll('#lay .chan', {padX:11, padY:7, fill:'#252D33'});
 
 })();
 </script>

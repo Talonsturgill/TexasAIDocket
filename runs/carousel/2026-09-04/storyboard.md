@@ -127,14 +127,14 @@ art:
 
 type:
   hook: "Tested on the faces walking out."
-  dek: "The pedestrian exit lane at the Progreso International Bridge in Hidalgo County. Over 1.1 million pedestrians a year walk out of the United States here."
+  dek: "The Department of Homeland Security Science and Technology Directorate ran it for Customs and Border Protection at the Progreso International Bridge in Hidalgo County. The bridge director puts the annual walk out at over 1.1 million."
   labels: ["DHS S AND T", "c1 c12 c27 c28", "texasaidocket.com", "01 / 09"]
 
 acceptance:
   - 'the hook reads exactly "Tested on the faces walking out." and is six words'
   - 'the near diamond mesh plane occludes at least 30 percent of the plane behind it, drawn as real occlusion rather than as a tint'
   - 'the five parallax planes hold five distinct median L* values at least 6 apart, and none is within 6 of another'
-  - 'the string "Hidalgo County" appears on this frame'
+  - 'the string "Hidalgo County" appears on this frame, and so does "Customs and Border Protection", because a deck whose subject is one body''s account has to name that body in reader copy rather than in a footer chip'
   - 'no person, no face, no body and no vehicle appears anywhere on this frame'
   - 'the sodium pools are emitted falloff on the slab and are never bounded by a drawn stroke'
 risks:
@@ -183,7 +183,7 @@ art:
   motion: "Up the pole, collar to collar"
 
 type:
-  hook: "Asked for in October 2025."
+  hook: "Customs and Border Protection asked in October 2025."
   dek: "Cameras went up on poles at different heights, so people of different statures would land in frame. Some of the testing ran after dark on lighting the partners brought."
   labels: ["MOUNTS", "c2 c16 c28", "texasaidocket.com", "02 / 09"]
 
@@ -270,10 +270,11 @@ composition:
     replica is best drawn by laying it exactly on the thing it copies, and a caption saying they
     match is weaker than a reader seeing where they do not.
   bands: >
-    The top third carries the two ceilings, and this is where the frames diverge. The Maryland
-    volume is closed above by a modeled soffit that takes a cool LED gradient across its ribs.
-    The Progreso volume has the same footprint and no ceiling at all, opening to unlit sky. The
-    middle third carries the two sets of uprights, one in led_cool and one in galv, line only.
+    The top third carries the near copy's own soffit, a modeled ceiling taking a cool LED
+    gradient across its ribs, with the second copy's head rail running beneath it further along
+    the axis. The middle third carries the two sets of uprights at identical station spacing and
+    identical width, one in led_cool and one in galv, line only, so the reader reads one lane
+    twice rather than two lanes.
     The bottom third carries the shared footprint where the two volumes agree exactly, drawn as a
     modeled floor plane in slab with a low sodium wash graded from the left and the mesh line of
     the near end of both volumes crossing it, so the agreement is a lit surface rather than a
@@ -283,11 +284,13 @@ composition:
     lightest area on it, which is the thing the real crossing does not have.
 
 art:
-  technique: "Line and node as two superimposed architectural wireframes on one vanishing point"
+  technique: "Line and node as ONE architectural geometry drawn twice at two depths on one axis"
   why_this_technique: >
-    The claim is a copy and its original. Nothing else in the library puts two things in exactly
-    the same place and asks a reader to find the difference, and that difference is the whole of
-    what a replica is.
+    The claim is a copy and its original. The first build of this frame drew a DIFFERENCE, one
+    volume roofed and one open, and a panel found that neither the roof nor the sky is in any
+    claim and that the open sky contradicts frame 1's own canopy. A replica is a thing built to
+    the same dimensions somewhere else, so the honest drawing is one geometry repeated at two
+    depths, with the near copy the one that was built first.
   palette: "river_night #0D1417 ground, led_cool #C3D4DE Maryland and the floor wash, galv #6E7B7E Progreso, slab #2E3130 floor. NO sodium on this frame, because the replica belongs to the test rather than to the bridge, and because frame 1 already owns the orange floor"
   value_structure: >
     Lightest is the Maryland soffit at the top of the frame. Darkest is the open sky above the
@@ -301,8 +304,8 @@ type:
   labels: ["REPLICA", "c30", "texasaidocket.com", "04 / 09"]
 
 acceptance:
-  - 'two wireframes share one vanishing point and one footprint, and the footprint lines coincide within 3px'
-  - 'the Maryland volume is closed above and the Progreso volume is open above'
+  - 'the two wireframes share one vanishing point and one station spacing, and differ only in how far along the axis they sit'
+  - 'the two labels read "MARYLAND TEST FACILITY" and "PROGRESO BORDER CROSSING", which are the two place names c30 itself carries, and neither label asserts a physical property of either place'
   - 'the two wireframes are separated by hue and their median L* values differ by less than 8, so neither reads as more real'
   - 'no fill is used on either wireframe. Line only'
 risks:
@@ -412,7 +415,7 @@ type:
 
 acceptance:
   - 'the two lanes are drawn at the same width on the same surface and differ only in light species'
-  - 'no sign, no placard and no posted notice is depicted anywhere on this frame'
+  - 'no sign, no placard and no posted notice is depicted anywhere on this frame, and no Spanish lane name is set, because the account says signs were in English and Spanish and never says what they said'
   - 'the capture footprint is an area of light with no drawn outline or stroke around it'
   - 'no person, no face and no body appears anywhere on this frame'
   - 'the painted lane edge has real thickness with a lit lip and a shaded inner face'
@@ -448,8 +451,8 @@ composition:
     flanks and no figure struck on any of them, and the register's own machined base below with a
     two part contact shadow on the bench face.
   focal: >
-    The turned May drum in the middle third, the largest lit cylinder face on the frame and the
-    only place a figure is struck.
+    The struck run of drums across the middle third, the largest area of lit cylinder face on the
+    frame and the only place in it where a figure is struck at all.
 
 art:
   technique: "Extruded counter drums in a machined channel, shallow three quarter oblique, two part contact shadows"
@@ -484,59 +487,63 @@ risks:
 ```yaml
 slide: 8
 job: >
-  The hero. Shows in one object that the account was cut for eight things and shipped with three,
-  by naming each missing measurement in the slot it would have occupied.
-claims: [c7, c9, c10, c18, c19, c20, c21, c22]
+  The hero. Shows in one object that the account was cut for eight things and shipped with
+  three, by naming each missing measurement in the slot it would have occupied.
+claims: [c7, c9, c31, c18, c19, c20, c21, c22]
 numerals:
   - computed_by: "out/2026-09-04/compute.py, performance_facts_asked and performance_facts_published, counted over the five named absences each of which carries its own claim"
 
 composition:
   structure: >
-    Near frontal and twelve degrees off axis so two walls of every cavity are visible, die-cut
-    foam filling the frame edge to edge with no case lip and no border. This content wants a
-    shipping case because the craft finding is that absence detection rises when the reader is
-    shown the slot the thing would sit in, and a die-cut cavity is the purest form of that slot.
+    Die-cut foam seen TWELVE DEGREES OFF AXIS, filling the frame edge to edge with no case lip
+    and no border, the eight cavities laid in TWO RANKS at two different x origins. The first
+    build stacked all eight in one track on one shared left edge and a craft judge read it as a
+    bar chart on a single baseline, which is a defect two prior decks record killing in draft.
+    Two ranks with no shared origin is what stops a reader measuring a length off it.
   bands: >
-    The top third carries the three filled cavities in one rank, each seating one dull anodised
-    plate carrying one verbatim fragment of what the account does say, each plate throwing a two
-    part contact into its own cavity floor. The middle third carries the headline etched into the
-    foam skin between the ranks, with the foam's own sueded surface texture modeled across it. The
-    bottom third carries five empty cavities of identical silhouette, each with a soft radius on
-    its cut edge taking a thin cool rim from the LED at frame left, each side wall falling away to
-    near black and each floor lifting back to a matte value clearly above its own darkest corner,
-    with the label of what is missing etched into the foam skin beneath each one.
+    The top third carries the headline over open foam, the material's own sueded surface modeled
+    across it with the LED falling from frame left. The middle third carries the two ranks side by
+    side, three cavities on the left holding seated anodised plates under the heading STATED, each
+    plate throwing a two part contact into its own cavity floor, and the first of the five empty
+    ones on the right under the heading NOT STATED. The bottom third carries the rest of the empty
+    rank, each cavity with a near side wall falling to near black on its left, a head wall across
+    its top, a lit lip on the cut edge and a modeled foam floor lifted well clear of its own
+    darkest corner, with the label of what is missing set on that floor.
   focal: >
-    The rank of five empty cavities across the bottom third, the largest single area of the frame
-    and the place the light dies, which is what the frame came to show.
+    The rank of five empty cavities, the largest connected area of the frame and the place the
+    light dies inside each opening, which is what the frame came to show.
 
 art:
-  technique: "Die-cut closed cell foam cavities with lit lips, visible side walls and a foam floor"
+  technique: "Die-cut closed cell foam cavities at twelve degrees off axis, with a near side wall, a head wall, a lit lip and a modeled floor"
   why_this_technique: >
     Foam is a material no deck here has touched, matte and sueded and light eating, and a cut
     cavity is the one shape that means a thing was expected. A rectangle would be a box and a
     black field would be a redaction, and deck 9's own avoid_next records what that costs.
-  palette: "foam #1A1D1C ground, housing #2B343E seated plates, led_cool #C3D4DE rim and etched labels"
+  palette: "foam #2C312F ground, cavity walls #0B0F0D and #121715, cavity floor #39413C to #2A312D, seated plates #C9D6CE to #8E9C95, led_cool rim"
   value_structure: >
-    Lightest is the LED rim along the cut edges of the empty cavities at the bottom of the frame.
-    Darkest is the side wall of each cavity falling away from that rim. Every cavity floor sits at
-    least eight L* above its own darkest corner, so a hole reads as a hole rather than as
+    Lightest is the seated plate face in the first rank, which is where the account's own words
+    are. Darkest is the near side wall of each cavity falling away from its lit lip. Every cavity
+    floor sits clearly above its own darkest corner, so a hole reads as a hole rather than as
     something struck out.
   motion: "Across the filled rank, then down into the empty one"
 
 type:
-  hook: "Cut for eight. Shipped with three."
-  dek: "The account carries three verdicts and five measurements a reader would need. Nothing was removed. None of the five was ever stated."
+  hook: "Eight slots. Three of them filled."
+  dek: "Three verdicts are on the record. Five measurements a reader would need are not. Nothing was removed and none of the five was ever stated."
   labels: ["NOT STATED", "c18 c19 c20 c21 c22", "texasaidocket.com", "08 / 09"]
 
 acceptance:
-  - 'exactly three cavities are filled and exactly five are empty, and all eight silhouettes are identical'
+  - 'exactly three cavities are filled and exactly five are empty, and all eight openings are the same size'
   - 'the five empty cavity labels read "ACCURACY RATE", "IMAGES CAPTURED", "RETENTION PERIOD", "DEPLOYMENT DECISION" and "ASSESSMENT DATES"'
-  - 'every empty cavity draws a lit lip, a visible side wall and a floor, and each floor''s median L* is at least 8 above its own darkest corner'
-  - 'no empty cavity is drawn as a flat black rectangle'
-  - 'the dek states that nothing was removed, so absence can''t be read as redaction'
+  - 'the three seated plates read "EXCEEDED EXPECTATIONS", "HIGH-QUALITY FACIAL" and "IT DID JUST THAT", and every one of the three is a literal substring of a quote in claims.json'
+  - 'the eight cavities sit in two ranks of three and five at two different x origins, so there is no shared baseline a reader could measure a length against, and no empty cavity appears under the heading STATED'
+  - 'every cavity shows a near side wall on its left and a head wall across its top, drawn from a twelve degree off axis reveal'
+  - 'no empty cavity is drawn as a flat black rectangle, and every one carries a lit lip and a modeled floor'
+  - 'the dek states that nothing was removed, so absence can not be read as redaction'
 risks:
-  - 'a dark cavity reads as a redaction, which would accuse somebody of removing what was never written'
-  - 'eight cavities at 432px collapse into a grid of dark tiles'
+  - "a dark cavity reads as a redaction, which would accuse somebody of removing what was never written"
+  - "eight cavities at 432px collapse into a grid of dark tiles"
+  - "the three seated plates line up and read as bars, which is what the first build did"
 ```
 
 ```yaml
@@ -582,7 +589,7 @@ art:
 
 type:
   hook: "No room. No window. No date."
-  dek: "This test opens no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026."
+  dek: "The account announces no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026."
   labels: ["DIFFERENT PROGRAM", "c21 c23 c24", "texasaidocket.com", "09 / 09"]
 
 acceptance:

@@ -1,13 +1,13 @@
 <!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0D1417}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1C2426}
   canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .tscrim{position:absolute;left:0;top:0;width:1080px;height:716px;
-     background:linear-gradient(to bottom,rgba(13,20,23,.97) 0%,rgba(13,20,23,.95) 68%,rgba(13,20,23,.72) 86%,rgba(13,20,23,0) 100%)}
+     background:linear-gradient(to bottom,rgba(28,36,38,.97) 0%,rgba(28,36,38,.95) 68%,rgba(28,36,38,.72) 86%,rgba(28,36,38,0) 100%)}
   .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:190px;
-     background:linear-gradient(to bottom,rgba(13,20,23,0) 0%,rgba(13,20,23,.86) 50%,rgba(13,20,23,.98) 100%)}
+     background:linear-gradient(to bottom,rgba(28,36,38,0) 0%,rgba(28,36,38,.86) 50%,rgba(28,36,38,.98) 100%)}
   .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
         font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
   h1{position:absolute;top:166px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
@@ -41,7 +41,7 @@ window.renderReady = (async () => {
   TX.reseed(20260904); const R=TX.rng(20260904);
 
   const RIVER='#0D1417', LED='#C3D4DE', GALV='#6E7B7E', SLAB='#2E3130', NA='#D9701F';
-  g.fillStyle=RIVER; g.fillRect(0,0,W,H);
+  g.fillStyle='#1C2426'; g.fillRect(0,0,W,H);
 
   // THE OPEN SKY over the Progreso volume, the deck's deepest black, so the frame that has no
   // ceiling reads as having none rather than as having a dark one.
@@ -66,7 +66,7 @@ window.renderReady = (async () => {
       const y0=py(d1), y1=py(d0);
       if(y1<VPY+2||y0>H) continue;
       const t=Math.min(1,(d0-NEAR)/(FAR-NEAR));
-      const v=Math.round(40-24*t);
+      const v=Math.round(62-30*t);
       g.fillStyle='rgb('+v+','+(v+2)+','+v+')'; g.fillRect(0,y0,W,Math.max(1,y1-y0+1));
     }
     const gr=g.createLinearGradient(0,H,620,780);
@@ -109,20 +109,24 @@ window.renderReady = (async () => {
   // TWO WIREFRAMES ON ONE VANISHING POINT AND ONE FOOTPRINT. Line only, no fill, and they are
   // separated by HUE rather than by value, so neither reads as more real than the other.
   const XL=-1.7, XR=1.7, CH=2.75;
-  function volume(colour, closedAbove, jitter){
-    g.strokeStyle=colour; g.lineWidth=closedAbove?1.7:2.2;
-    const TOP = closedAbove ? CH : CH+0.95;   // the open volume has no head to stop at
-    [1.35,2.0,3.1,4.9,7.8,12.4].forEach(d=>{
+  // ONE GEOMETRY, DRAWN TWICE, at two depths along the same axis. A replica is a thing built
+  // to the same dimensions somewhere else, so the honest drawing is the same lane repeated
+  // rather than two lanes differing in a way no document describes. The near copy is the one
+  // that was built first.
+  function volume(colour, closedAbove, dshift){
+    g.strokeStyle=colour; g.lineWidth=closedAbove?2.4:1.7;
+    const TOP = CH;
+    const D = d => d + dshift;
+    [1.35,2.0,3.1,4.9,7.8,12.4].forEach(d0=>{
+      const d=D(d0);
       [XL,XR].forEach(x=>{
         g.beginPath(); g.moveTo(sx(x,d),py(d)); g.lineTo(sx(x,d),sy(TOP,d)); g.stroke();
       });
-      if(closedAbove){
-        g.beginPath(); g.moveTo(sx(XL,d),sy(CH,d)); g.lineTo(sx(XR,d),sy(CH,d)); g.stroke();
-      }
+      g.beginPath(); g.moveTo(sx(XL,d),sy(CH,d)); g.lineTo(sx(XR,d),sy(CH,d)); g.stroke();
     });
     [XL,XR].forEach(x=>{
-      g.beginPath(); g.moveTo(sx(x,NEAR),sy(TOP,NEAR)); g.lineTo(sx(x,FAR),sy(TOP,FAR)); g.stroke();
-      g.beginPath(); g.moveTo(sx(x,NEAR),py(NEAR)); g.lineTo(sx(x,FAR),py(FAR)); g.stroke();
+      g.beginPath(); g.moveTo(sx(x,D(NEAR)),sy(TOP,D(NEAR))); g.lineTo(sx(x,D(FAR)),sy(TOP,D(FAR))); g.stroke();
+      g.beginPath(); g.moveTo(sx(x,D(NEAR)),py(D(NEAR))); g.lineTo(sx(x,D(FAR)),py(D(FAR))); g.stroke();
     });
     if(closedAbove){
       // THE ONE LINE THAT DOES NOT MATCH. A modeled soffit with ribs taking a cool LED
@@ -139,8 +143,8 @@ window.renderReady = (async () => {
       }
     }
   }
-  volume('rgba(110,123,126,.86)', false, 0);    // Progreso, same footprint, open above
-  volume('rgba(195,212,222,.62)', true, 0);     // Maryland, closed above
+  volume('rgba(120,134,138,.80)', false, 2.30);   // Progreso, the same lane further along the axis
+  volume('rgba(214,232,240,.92)', true, 0);      // Maryland, the copy that was built first
 
   (function grain(){
     for(let k=0;k<24000;k++){
@@ -157,10 +161,10 @@ window.renderReady = (async () => {
     t.setAttribute('fill',fill); if(anchor) t.setAttribute('text-anchor',anchor);
     t.textContent=s; svg.appendChild(t); return t;
   }
-  txt(96, 776, 'MARYLAND, ROOFED', '#C3D4DE');
-  txt(984, 776, 'PROGRESO, OPEN SKY', '#8B989B', 'end');
+  txt(96, 776, 'MARYLAND TEST FACILITY', '#C3D4DE');
+  txt(984, 776, 'PROGRESO BORDER CROSSING', '#8B989B', 'end');
   await document.fonts.ready;
-  TX.svgPlateAll('#lay .k', {padX:11, padY:7, fill:'#0D1417'});
+  TX.svgPlateAll('#lay .k', {padX:11, padY:7, fill:'#1C2426'});
 
 })();
 </script>

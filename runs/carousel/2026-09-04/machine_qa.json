@@ -5,22 +5,22 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1849,
-        0.3992,
-        0.2482
+        0.187,
+        0.458,
+        0.2904
       ],
-      "band_ratio": 0.8989
+      "band_ratio": 0.9344
     },
     {
       "file": "slide-02.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.6597,
-        0.6513,
-        0.5754
+        0.7017,
+        0.6618,
+        0.579
       ],
-      "band_ratio": 0.9186
+      "band_ratio": 0.8986
     },
     {
       "file": "slide-03.html",
@@ -28,21 +28,21 @@
       "warns": [],
       "bands": [
         0.1807,
-        0.1197,
-        0.1507
+        0.1218,
+        0.1452
       ],
-      "band_ratio": 1.0022
+      "band_ratio": 0.9742
     },
     {
       "file": "slide-04.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.1828,
-        0.1765,
-        0.204
+        0.1849,
+        0.2374,
+        0.2757
       ],
-      "band_ratio": 1.0824
+      "band_ratio": 1.1752
     },
     {
       "file": "slide-05.html",
@@ -50,10 +50,10 @@
       "warns": [],
       "bands": [
         0.2836,
-        0.105,
-        0.2298
+        0.2815,
+        0.2206
       ],
-      "band_ratio": 1.1089
+      "band_ratio": 0.8483
     },
     {
       "file": "slide-06.html",
@@ -61,10 +61,10 @@
       "warns": [],
       "bands": [
         0.2563,
-        0.1849,
-        0.5699
+        0.1029,
+        0.5588
       ],
-      "band_ratio": 1.6394
+      "band_ratio": 1.76
     },
     {
       "file": "slide-07.html",
@@ -72,32 +72,32 @@
       "warns": [],
       "bands": [
         0.145,
-        0.3761,
-        0.3143
+        0.3739,
+        0.375
       ],
-      "band_ratio": 1.1223
+      "band_ratio": 1.2439
     },
     {
       "file": "slide-08.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.145,
-        0.6744,
-        0.6011
+        0.2227,
+        0.6029,
+        0.7868
       ],
-      "band_ratio": 1.2542
+      "band_ratio": 1.4336
     },
     {
       "file": "slide-09.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.2017,
-        0.9076,
-        0.796
+        0.208,
+        0.9433,
+        0.8566
       ],
-      "band_ratio": 1.2391
+      "band_ratio": 1.2638
     }
   ],
   "fails": 0,

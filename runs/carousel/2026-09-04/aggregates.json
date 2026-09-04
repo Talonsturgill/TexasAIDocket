@@ -34,15 +34,50 @@
       "phrase": "101,306 pedestrians",
       "value": 101306,
       "computed_by": "out/2026-09-04/compute.py, may_inbound_pedestrians. The value is read out of the fetched data row in c26 with a regular expression rather than retyped, and its thousands separator is applied by code. A separator is a formatting decision and this project does not let a writer make one.",
-      "from_claims": ["c26"],
+      "from_claims": [
+        "c26"
+      ],
       "why": "It is a count of people ENTERING the United States at this port in May 2026. It is not a count of the people the cameras watched, who were walking the other way, and both the slide and the caption say entering."
     },
     {
-      "phrase": "three verdicts and five measurements",
+      "phrase": "Eight slots",
+      "value": 8,
+      "computed_by": "out/2026-09-04/compute.py, performance_facts_asked and performance_facts_published. Three is the count of verdict claims the frame seats, c7 and c9 and c31, each string a literal substring of its own claim's quote. Five is the count of named absences, each established by its own claim, c18 accuracy, c19 images captured, c20 retention, c21 deployment and c22 assessment dates. Eight is those two counts added, which is the number of cavities the frame cuts. Neither three nor five is a tally over an unnamed set.",
+      "from_claims": [
+        "c7",
+        "c9",
+        "c31",
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22"
+      ],
+      "why": "The frame cuts one cavity per fact, three for what the account states and five for what it does not."
+    },
+    {
+      "phrase": "Three verdicts",
       "value": 3,
-      "computed_by": "out/2026-09-04/compute.py, performance_facts_asked and performance_facts_published. Three is the count of verdict claims the frame seats, c7 and c9 and c10. Five is the count of named absences, each established by its own claim, c18 accuracy, c19 images captured, c20 retention, c21 deployment and c22 assessment dates. Neither is a tally over an unnamed set.",
-      "from_claims": ["c7", "c9", "c10"],
-      "why": "The set counted is enumerated in compute.py's own absences list, so a bare count over a set nobody named cannot happen here."
+      "computed_by": "out/2026-09-04/compute.py, performance_facts_asked and performance_facts_published. Three is the count of verdict claims the frame seats, c7 and c9 and c31, each string a literal substring of its own claim's quote. Five is the count of named absences, each established by its own claim, c18 accuracy, c19 images captured, c20 retention, c21 deployment and c22 assessment dates. Eight is those two counts added, which is the number of cavities the frame cuts. Neither three nor five is a tally over an unnamed set.",
+      "from_claims": [
+        "c7",
+        "c9",
+        "c31"
+      ],
+      "why": "The three quoted verdicts the frame seats, one per claim."
+    },
+    {
+      "phrase": "Five measurements",
+      "value": 5,
+      "computed_by": "out/2026-09-04/compute.py, performance_facts_asked and performance_facts_published. Three is the count of verdict claims the frame seats, c7 and c9 and c31, each string a literal substring of its own claim's quote. Five is the count of named absences, each established by its own claim, c18 accuracy, c19 images captured, c20 retention, c21 deployment and c22 assessment dates. Eight is those two counts added, which is the number of cavities the frame cuts. Neither three nor five is a tally over an unnamed set.",
+      "from_claims": [
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22"
+      ],
+      "why": "The five named absences compute.py enumerates, one per claim."
     }
   ]
 }

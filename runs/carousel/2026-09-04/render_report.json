@@ -27,7 +27,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 123, 126)",
+          "color": "rgb(163, 176, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -69,12 +69,12 @@
           "anc": []
         },
         {
-          "text": "The pedestrian exit lane at the Progreso International Bridge in Hidalgo County. Over 1.1 million pedestrians a year walk out of the United States here.",
+          "text": "The Department of Homeland Security Science and Technology Directorate ran it for Customs and Border Protection at the Progreso International Bridge in Hidalgo County. The bridge director puts the annual walk out at over 1.1 million.",
           "x": 80,
           "y": 420,
           "w": 880,
-          "h": 121,
-          "font_px": 30,
+          "h": 148,
+          "font_px": 28,
           "weight": "500",
           "family": "Manrope",
           "color": "rgb(169, 174, 164)",
@@ -84,20 +84,26 @@
             [
               80,
               419,
-              878,
-              41
+              825,
+              38
             ],
             [
               80,
-              459,
-              849,
-              41
+              456,
+              766,
+              38
             ],
             [
               80,
-              499,
-              326,
-              41
+              493,
+              774,
+              38
+            ],
+            [
+              80,
+              530,
+              656,
+              38
             ]
           ],
           "anc": []
@@ -221,7 +227,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1014,
+      "render_ms": 1195,
       "ok": true,
       "canvases": [
         {
@@ -234,8 +240,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 32.3,
-          "variance": 253.9
+          "mean": 65.9,
+          "variance": 391.5
         }
       ],
       "breather": false,
@@ -272,12 +278,12 @@
           "anc": []
         },
         {
-          "text": "Asked for in October 2025.",
+          "text": "Customs and Border Protection asked in October 2025.",
           "x": 80,
           "y": 196,
           "w": 500,
-          "h": 162,
-          "font_px": 78,
+          "h": 263,
+          "font_px": 62,
           "weight": "800",
           "family": "Fraunces",
           "color": "rgb(230, 236, 234)",
@@ -286,15 +292,27 @@
           "lines": [
             [
               80,
-              188,
-              406,
-              96
+              190,
+              371,
+              77
             ],
             [
               80,
-              269,
-              498,
-              96
+              256,
+              206,
+              77
+            ],
+            [
+              80,
+              321,
+              485,
+              77
+            ],
+            [
+              80,
+              387,
+              481,
+              77
             ]
           ],
           "anc": []
@@ -470,7 +488,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2424,
+      "render_ms": 2944,
       "ok": true,
       "canvases": [
         {
@@ -483,8 +501,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 21.9,
-          "variance": 319.9
+          "mean": 39.1,
+          "variance": 268.5
         }
       ],
       "breather": false,
@@ -507,7 +525,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 123, 126)",
+          "color": "rgb(163, 176, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -679,7 +697,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(95, 108, 112)",
+          "color": "rgb(156, 170, 174)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -701,7 +719,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(95, 108, 112)",
+          "color": "rgb(156, 170, 174)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -880,7 +898,7 @@
           "w": 521.1,
           "h": 43,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         },
@@ -891,7 +909,7 @@
           "w": 590.3,
           "h": 43,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         },
@@ -902,7 +920,7 @@
           "w": 142.3,
           "h": 49,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         },
@@ -913,7 +931,7 @@
           "w": 173.6,
           "h": 43,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         },
@@ -924,7 +942,7 @@
           "w": 142.3,
           "h": 49,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         },
@@ -935,7 +953,7 @@
           "w": 173.6,
           "h": 43,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         },
@@ -946,7 +964,7 @@
           "w": 193,
           "h": 49,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         },
@@ -957,7 +975,7 @@
           "w": 142.9,
           "h": 43,
           "by": "rect",
-          "color": "rgb(13, 16, 19)",
+          "color": "rgb(42, 49, 52)",
           "decorative": false,
           "skip": []
         }
@@ -965,7 +983,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 443,
+      "render_ms": 477,
       "ok": true,
       "canvases": [
         {
@@ -978,8 +996,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 19.1,
-          "variance": 319.3
+          "mean": 49.8,
+          "variance": 194.8
         }
       ],
       "breather": false,
@@ -1160,10 +1178,10 @@
           "anc": []
         },
         {
-          "text": "MARYLAND, ROOFED",
+          "text": "MARYLAND TEST FACILITY",
           "x": 96,
           "y": 752,
-          "w": 253,
+          "w": 348,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -1175,17 +1193,17 @@
             [
               96,
               752,
-              253,
+              348,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "PROGRESO, OPEN SKY",
-          "x": 699,
+          "text": "PROGRESO BORDER CROSSING",
+          "x": 604,
           "y": 752,
-          "w": 285,
+          "w": 380,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -1195,9 +1213,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              699,
+              604,
               752,
-              285,
+              380,
               31
             ]
           ],
@@ -1234,21 +1252,21 @@
           "kind": "fill",
           "x": 85,
           "y": 745,
-          "w": 275.5,
+          "w": 370.5,
           "h": 45,
           "by": "rect",
-          "color": "rgb(13, 20, 23)",
+          "color": "rgb(28, 36, 38)",
           "decorative": false,
           "skip": []
         },
         {
           "kind": "fill",
-          "x": 687.9,
+          "x": 592.8,
           "y": 745,
-          "w": 307.1,
+          "w": 402.2,
           "h": 45,
           "by": "rect",
-          "color": "rgb(13, 20, 23)",
+          "color": "rgb(28, 36, 38)",
           "decorative": false,
           "skip": []
         }
@@ -1256,7 +1274,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 841,
+      "render_ms": 818,
       "ok": true,
       "canvases": [
         {
@@ -1269,8 +1287,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 34.2,
-          "variance": 914.9
+          "mean": 50.9,
+          "variance": 1551.7
         }
       ],
       "breather": false,
@@ -1493,7 +1511,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 722,
+      "render_ms": 748,
       "ok": true,
       "canvases": [
         {
@@ -1507,7 +1525,7 @@
           "backing_ratio": 2,
           "sample_ok": true,
           "mean": 236.9,
-          "variance": 705.6
+          "variance": 908.5
         }
       ],
       "breather": false,
@@ -1530,7 +1548,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 123, 126)",
+          "color": "rgb(163, 176, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1580,7 +1598,7 @@
           "font_px": 28,
           "weight": "500",
           "family": "Manrope",
-          "color": "rgb(169, 174, 164)",
+          "color": "rgb(201, 208, 201)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1696,7 +1714,7 @@
         {
           "text": "CAPTURE LANE",
           "x": 210,
-          "y": 1122,
+          "y": 1152,
           "w": 193,
           "h": 31,
           "font_px": 24,
@@ -1708,30 +1726,8 @@
           "lines": [
             [
               210,
-              1122,
+              1152,
               193,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "CARRIL DE CAPTURA",
-          "x": 210,
-          "y": 1176,
-          "w": 273,
-          "h": 31,
-          "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(195, 212, 222)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              210,
-              1176,
-              273,
               31
             ]
           ],
@@ -1740,7 +1736,7 @@
         {
           "text": "OPT-OUT LANE",
           "x": 715,
-          "y": 916,
+          "y": 940,
           "w": 193,
           "h": 31,
           "font_px": 24,
@@ -1752,30 +1748,8 @@
           "lines": [
             [
               715,
-              916,
+              940,
               193,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "CARRIL DE EXCLUSION",
-          "x": 602,
-          "y": 970,
-          "w": 306,
-          "h": 31,
-          "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(232, 195, 154)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              602,
-              970,
-              306,
               31
             ]
           ],
@@ -1811,44 +1785,22 @@
         {
           "kind": "fill",
           "x": 198,
-          "y": 1115,
+          "y": 1145,
           "w": 217,
           "h": 45,
           "by": "rect",
-          "color": "rgb(18, 24, 27)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 198,
-          "y": 1169,
-          "w": 297.4,
-          "h": 45,
-          "by": "rect",
-          "color": "rgb(18, 24, 27)",
+          "color": "rgb(35, 44, 46)",
           "decorative": false,
           "skip": []
         },
         {
           "kind": "fill",
           "x": 703,
-          "y": 909,
+          "y": 933,
           "w": 217,
           "h": 45,
           "by": "rect",
-          "color": "rgb(18, 24, 27)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 590.5,
-          "y": 963,
-          "w": 329.5,
-          "h": 45,
-          "by": "rect",
-          "color": "rgb(18, 24, 27)",
+          "color": "rgb(35, 44, 46)",
           "decorative": false,
           "skip": []
         }
@@ -1856,7 +1808,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1212,
+      "render_ms": 1245,
       "ok": true,
       "canvases": [
         {
@@ -1869,8 +1821,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 31,
-          "variance": 476.1
+          "mean": 77,
+          "variance": 488.4
         }
       ],
       "breather": false,
@@ -1893,7 +1845,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 123, 126)",
+          "color": "rgb(163, 176, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1943,7 +1895,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "Manrope",
-          "color": "rgb(169, 174, 164)",
+          "color": "rgb(201, 208, 201)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2288,7 +2240,7 @@
           "w": 609.5,
           "h": 45,
           "by": "rect",
-          "color": "rgb(21, 27, 33)",
+          "color": "rgb(37, 45, 51)",
           "decorative": false,
           "skip": []
         },
@@ -2299,7 +2251,7 @@
           "w": 625.8,
           "h": 45,
           "by": "rect",
-          "color": "rgb(21, 27, 33)",
+          "color": "rgb(37, 45, 51)",
           "decorative": false,
           "skip": []
         }
@@ -2307,7 +2259,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 708,
+      "render_ms": 679,
       "ok": true,
       "canvases": [
         {
@@ -2320,8 +2272,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 41.8,
-          "variance": 2160.9
+          "mean": 73.4,
+          "variance": 1271.2
         }
       ],
       "breather": false,
@@ -2344,7 +2296,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 123, 126)",
+          "color": "rgb(175, 188, 182)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2358,57 +2310,63 @@
           "anc": []
         },
         {
-          "text": "Cut for eight. Shipped with three.",
+          "text": "Eight slots. Three of them filled.",
           "x": 80,
-          "y": 154,
+          "y": 150,
           "w": 900,
-          "h": 173,
-          "font_px": 84,
+          "h": 181,
+          "font_px": 88,
           "weight": "800",
           "family": "Fraunces",
-          "color": "rgb(230, 236, 234)",
+          "color": "rgb(239, 243, 240)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              145,
-              760,
-              103
+              141,
+              714,
+              108
             ],
             [
               80,
               232,
-              377,
-              103
+              404,
+              108
             ]
           ],
           "anc": []
         },
         {
-          "text": "The account carries three verdicts and five measurements a reader would need. Nothing was removed. None of the five was ever stated.",
+          "text": "Three verdicts are on the record. Five measurements a reader would need are not. Nothing was removed and none of the five was ever stated.",
           "x": 80,
-          "y": 356,
-          "w": 900,
-          "h": 69,
-          "font_px": 26,
+          "y": 362,
+          "w": 880,
+          "h": 107,
+          "font_px": 27,
           "weight": "500",
           "family": "Manrope",
-          "color": "rgb(169, 174, 164)",
+          "color": "rgb(185, 194, 188)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
               80,
-              355,
-              891,
-              36
+              361,
+              853,
+              37
             ],
             [
               80,
-              389,
-              744,
-              36
+              397,
+              815,
+              37
+            ],
+            [
+              80,
+              432,
+              91,
+              37
             ]
           ],
           "anc": []
@@ -2422,7 +2380,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(169, 174, 164)",
+          "color": "rgb(185, 194, 188)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2444,7 +2402,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(169, 174, 164)",
+          "color": "rgb(185, 194, 188)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2466,7 +2424,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(169, 174, 164)",
+          "color": "rgb(185, 194, 188)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2488,7 +2446,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(169, 174, 164)",
+          "color": "rgb(185, 194, 188)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2503,197 +2461,197 @@
         },
         {
           "text": "EXCEEDED EXPECTATIONS",
-          "x": 114,
-          "y": 500,
-          "w": 355,
-          "h": 35,
-          "font_px": 26,
+          "x": 120,
+          "y": 645,
+          "w": 336,
+          "h": 34,
+          "font_px": 25,
           "weight": "700",
           "family": "JetBrains Mono",
-          "color": "rgb(220, 230, 232)",
+          "color": "rgb(15, 21, 19)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              500,
-              355,
-              35
+              120,
+              645,
+              336,
+              34
             ]
           ],
           "anc": []
         },
         {
-          "text": "HIGH QUALITY IMAGES",
-          "x": 114,
-          "y": 588,
-          "w": 321,
-          "h": 35,
-          "font_px": 26,
+          "text": "HIGH-QUALITY FACIAL",
+          "x": 120,
+          "y": 777,
+          "w": 304,
+          "h": 34,
+          "font_px": 25,
           "weight": "700",
           "family": "JetBrains Mono",
-          "color": "rgb(220, 230, 232)",
+          "color": "rgb(15, 21, 19)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              588,
-              321,
-              35
+              120,
+              777,
+              304,
+              34
             ]
           ],
           "anc": []
         },
         {
           "text": "IT DID JUST THAT",
-          "x": 114,
-          "y": 676,
-          "w": 270,
-          "h": 35,
-          "font_px": 26,
+          "x": 120,
+          "y": 909,
+          "w": 256,
+          "h": 34,
+          "font_px": 25,
           "weight": "700",
           "family": "JetBrains Mono",
-          "color": "rgb(220, 230, 232)",
+          "color": "rgb(15, 21, 19)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              676,
-              270,
-              35
+              120,
+              909,
+              256,
+              34
             ]
           ],
           "anc": []
         },
         {
           "text": "ACCURACY RATE",
-          "x": 114,
-          "y": 767,
-          "w": 209,
-          "h": 31,
-          "font_px": 24,
+          "x": 580,
+          "y": 573,
+          "w": 215,
+          "h": 34,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(126, 139, 142)",
+          "color": "rgb(167, 181, 174)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              767,
-              209,
-              31
+              580,
+              573,
+              215,
+              34
             ]
           ],
           "anc": []
         },
         {
           "text": "IMAGES CAPTURED",
-          "x": 114,
-          "y": 855,
-          "w": 241,
-          "h": 31,
-          "font_px": 24,
+          "x": 580,
+          "y": 705,
+          "w": 248,
+          "h": 34,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(126, 139, 142)",
+          "color": "rgb(167, 181, 174)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              855,
-              241,
-              31
+              580,
+              705,
+              248,
+              34
             ]
           ],
           "anc": []
         },
         {
           "text": "RETENTION PERIOD",
-          "x": 114,
-          "y": 943,
-          "w": 257,
-          "h": 31,
-          "font_px": 24,
+          "x": 580,
+          "y": 837,
+          "w": 264,
+          "h": 34,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(126, 139, 142)",
+          "color": "rgb(167, 181, 174)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              943,
-              257,
-              31
+              580,
+              837,
+              264,
+              34
             ]
           ],
           "anc": []
         },
         {
           "text": "DEPLOYMENT DECISION",
-          "x": 114,
-          "y": 1031,
-          "w": 306,
-          "h": 31,
-          "font_px": 24,
+          "x": 580,
+          "y": 969,
+          "w": 314,
+          "h": 34,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(126, 139, 142)",
+          "color": "rgb(167, 181, 174)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              1031,
-              306,
-              31
+              580,
+              969,
+              314,
+              34
             ]
           ],
           "anc": []
         },
         {
           "text": "ASSESSMENT DATES",
-          "x": 114,
-          "y": 1119,
-          "w": 257,
-          "h": 31,
-          "font_px": 24,
+          "x": 580,
+          "y": 1101,
+          "w": 264,
+          "h": 34,
+          "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(126, 139, 142)",
+          "color": "rgb(167, 181, 174)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              114,
-              1119,
-              257,
-              31
+              580,
+              1101,
+              264,
+              34
             ]
           ],
           "anc": []
         },
         {
           "text": "STATED",
-          "x": 700,
-          "y": 465,
-          "w": 96,
+          "x": 96,
+          "y": 528,
+          "w": 105,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(195, 212, 222)",
+          "color": "rgb(214, 230, 224)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              700,
-              465,
               96,
+              528,
+              105,
               31
             ]
           ],
@@ -2701,21 +2659,21 @@
         },
         {
           "text": "NOT STATED",
-          "x": 700,
-          "y": 729,
-          "w": 161,
+          "x": 556,
+          "y": 456,
+          "w": 175,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(126, 139, 142)",
+          "color": "rgb(180, 194, 187)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              700,
-              729,
-              161,
+              556,
+              456,
+              175,
               31
             ]
           ],
@@ -2731,7 +2689,7 @@
           "x": 0,
           "y": 0,
           "w": 1080,
-          "h": 474,
+          "h": 500,
           "by": "tscrim",
           "color": "rgba(0, 0, 0, 0)",
           "decorative": true,
@@ -2740,129 +2698,19 @@
         {
           "kind": "fill",
           "x": 0,
-          "y": 1186,
+          "y": 1192,
           "w": 1080,
-          "h": 164,
+          "h": 158,
           "by": "fscrim",
           "color": "rgba(0, 0, 0, 0)",
           "decorative": true,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 493.9,
-          "w": 374.9,
-          "h": 47,
-          "by": "rect",
-          "color": "rgb(51, 60, 68)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 581.9,
-          "w": 341.1,
-          "h": 47,
-          "by": "rect",
-          "color": "rgb(51, 60, 68)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 669.9,
-          "w": 290.4,
-          "h": 47,
-          "by": "rect",
-          "color": "rgb(51, 60, 68)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 760.9,
-          "w": 229,
-          "h": 43,
-          "by": "rect",
-          "color": "rgb(20, 23, 22)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 848.9,
-          "w": 261.2,
-          "h": 43,
-          "by": "rect",
-          "color": "rgb(20, 23, 22)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 936.9,
-          "w": 277.3,
-          "h": 43,
-          "by": "rect",
-          "color": "rgb(20, 23, 22)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 1024.9,
-          "w": 325.5,
-          "h": 43,
-          "by": "rect",
-          "color": "rgb(20, 23, 22)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 104,
-          "y": 1112.9,
-          "w": 277.3,
-          "h": 43,
-          "by": "rect",
-          "color": "rgb(20, 23, 22)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 690,
-          "y": 458.9,
-          "w": 116.5,
-          "h": 43,
-          "by": "rect",
-          "color": "rgb(20, 23, 22)",
-          "decorative": false,
-          "skip": []
-        },
-        {
-          "kind": "fill",
-          "x": 690,
-          "y": 722.9,
-          "w": 180.8,
-          "h": 43,
-          "by": "rect",
-          "color": "rgb(20, 23, 22)",
-          "decorative": false,
           "skip": []
         }
       ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1279,
+      "render_ms": 1835,
       "ok": true,
       "canvases": [
         {
@@ -2875,8 +2723,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 31.1,
-          "variance": 167.7
+          "mean": 50.8,
+          "variance": 843.4
         }
       ],
       "breather": false,
@@ -2899,7 +2747,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(110, 123, 126)",
+          "color": "rgb(163, 176, 172)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2941,11 +2789,11 @@
           "anc": []
         },
         {
-          "text": "This test opens no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026.",
+          "text": "The account announces no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026.",
           "x": 80,
           "y": 372,
           "w": 900,
-          "h": 103,
+          "h": 137,
           "font_px": 26,
           "weight": "500",
           "family": "Manrope",
@@ -2956,19 +2804,25 @@
             [
               80,
               371,
-              850,
+              879,
               36
             ],
             [
               80,
               405,
-              886,
+              826,
               36
             ],
             [
               80,
               440,
-              818,
+              880,
+              36
+            ],
+            [
+              80,
+              474,
+              70,
               36
             ]
           ],
@@ -3192,7 +3046,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2090,
+      "render_ms": 2360,
       "ok": true,
       "canvases": [
         {
@@ -3205,8 +3059,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 31.6,
-          "variance": 1175.3
+          "mean": 68.6,
+          "variance": 1106.9
         }
       ],
       "breather": false,

@@ -1,15 +1,15 @@
 <!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
 <style>
-  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0D1013}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#333B3E}
   canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .tscrim{position:absolute;left:0;top:0;width:1080px;height:520px;
-     background:linear-gradient(to bottom,rgba(13,16,19,.97) 0%,rgba(13,16,19,.94) 68%,rgba(13,16,19,0) 100%)}
+     background:linear-gradient(to bottom,rgba(44,52,54,.97) 0%,rgba(44,52,54,.94) 68%,rgba(44,52,54,0) 100%)}
   .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:172px;
-     background:linear-gradient(to bottom,rgba(13,16,19,0) 0%,rgba(13,16,19,.86) 48%,rgba(13,16,19,.98) 100%)}
+     background:linear-gradient(to bottom,rgba(44,52,54,0) 0%,rgba(44,52,54,.86) 48%,rgba(44,52,54,.98) 100%)}
   .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
-        font-weight:500;font-size:26px;letter-spacing:.16em;color:#6E7B7E}
+        font-weight:500;font-size:26px;letter-spacing:.16em;color:#A3B0AC}
   h1{position:absolute;top:158px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
      font-weight:800;font-size:76px;line-height:1.04;color:#E6ECEA;letter-spacing:-.018em}
   .dek{position:absolute;top:372px;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
@@ -27,7 +27,7 @@
   <div class="tscrim" data-decorative></div>
   <div class="mast">TEXAS AI DOCKET</div>
   <h1>No room. No window. No date.</h1>
-  <p class="dek">This test opens no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026.</p>
+  <p class="dek">The account announces no comment period and no hearing. The nearest dated public room in this record is a different program. Dallas takes a briefing on its police department's Flock plate readers on September 8th, 2026.</p>
   <div class="fscrim" data-decorative></div>
   <div class="foot"><span>DIFFERENT PROGRAM</span><span>c21 c23 c24</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
 </div>
@@ -42,7 +42,7 @@ window.renderReady = (async () => {
   TX.reseed(20260904); const R=TX.rng(20260904);
 
   const BAFFLE='#0D1013', HOUSING='#2B343E', GALV='#6E7B7E', LED='#C3D4DE';
-  g.fillStyle=BAFFLE; g.fillRect(0,0,W,H);
+  g.fillStyle='#333B3E'; g.fillRect(0,0,W,H);
 
   // A WORKED GROUND, not a gradient. panel_ready measures the quietest patch of every ground a
   // dossier calls modeled and refuses anything under a 4.0 residual, because a gradient is a
@@ -65,7 +65,7 @@ window.renderReady = (async () => {
     // far interior wall
     g.beginPath(); g.moveTo(96,556); g.lineTo(984,506); g.lineTo(984,1214); g.lineTo(96,1258); g.closePath();
     const gr=g.createLinearGradient(96,506,760,1258);
-    gr.addColorStop(0,'#3B454E'); gr.addColorStop(.45,'#242C33'); gr.addColorStop(1,'#141A1F');
+    gr.addColorStop(0,'#76838E'); gr.addColorStop(.45,'#525D67'); gr.addColorStop(1,'#333C43');
     g.fillStyle=gr; g.fill();
     // the housing's own machined tooth
     g.save(); g.beginPath(); g.moveTo(96,556); g.lineTo(984,506); g.lineTo(984,1214); g.lineTo(96,1258); g.closePath(); g.clip();
@@ -81,9 +81,9 @@ window.renderReady = (async () => {
     g.beginPath(); g.moveTo(96,556); g.lineTo(984,506); g.stroke();
     // the near return, which is what makes it sealed rather than a wall
     g.beginPath(); g.moveTo(0,600); g.lineTo(96,556); g.lineTo(96,1258); g.lineTo(0,1310); g.closePath();
-    g.fillStyle='#10161A'; g.fill();
+    g.fillStyle='#394247'; g.fill();
     g.beginPath(); g.moveTo(1080,470); g.lineTo(984,506); g.lineTo(984,1214); g.lineTo(1080,1174); g.closePath();
-    g.fillStyle='#0B1013'; g.fill();
+    g.fillStyle='#2E363B'; g.fill();
     // the returns are the same anodised material as the far wall, so they carry the same tooth
     [[0,600,96,556,96,1258,0,1310],[1080,470,984,506,984,1214,1080,1174]].forEach(q=>{
       g.save(); g.beginPath(); g.moveTo(q[0],q[1]); g.lineTo(q[2],q[3]);

@@ -260,20 +260,20 @@ building is a lesson the machine loses.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 30 verified claim(s) |
+| claims         | PASS   | 31 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
-| aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 5.53 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| dossiers       | PASS   | 36,319 chars planned |
+| aggregates     | PASS   | 8 declaration(s), 11 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 5.65 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | PASS   | 48 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 99 published string(s) read from one list, every universal names its set |
+| dossiers       | PASS   | 37,829 chars planned |
 | caption        | PASS   | 134 words |
-| craft floor    | PASS   | 9 frame(s), median 476, floor 86 |
-| plan vs render | WARN   | 3 of 44 acceptance item(s) checkable |
+| craft floor    | PASS   | 9 frame(s), median 843, floor 152 |
+| plan vs render | WARN   | 5 of 46 acceptance item(s) checkable |
 | texan          | PASS   | places Hidalgo County / body yes / deadline yes / next step yes |
 | absences       | PASS   | 13 of 13 scoped to a named document |
 | numerals       | PASS   | 15 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->

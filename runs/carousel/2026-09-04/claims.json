@@ -270,6 +270,15 @@
       "source_type": "primary_official",
       "retrieved": "2026-09-04",
       "confidence": "high"
+    },
+    {
+      "id": "c31",
+      "text": "The division director's verdict on whether the technology worked at the crossing, the sentence that closes his quotation.",
+      "quote": "And it did just that.",
+      "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-04",
+      "confidence": "high"
     }
   ],
   "rejected": [
@@ -292,6 +301,14 @@
     {
       "finding": "The article headline as a quoted string.",
       "reason": "It carries an em dash and a colon, is needed by no claim, and is kept out rather than carried into copy where the house rules would tempt someone to tidy it."
+    },
+    {
+      "finding": "MARYLAND, ROOFED and PROGRESO, OPEN SKY as frame 4 labels.",
+      "reason": "Both are physical assertions about two real places and neither is in any claim. c30 says a replica of the pedestrian exit environment was built at the Maryland Test Facility and says nothing about a roof or a sky, and the open sky claim is contradicted by frame 1, which draws the crossing under a canopy. Replaced with the two place names c30 itself carries, and the drawing now says copy by repeating one geometry rather than by asserting a difference nobody published."
+    },
+    {
+      "finding": "CARRIL DE CAPTURA and CARRIL DE EXCLUSION as frame 6 lane labels.",
+      "reason": "The account says signs were posted in English and Spanish. It never says what they said, so a Spanish lane name set on the frame is the deck writing a sign. The bilingual fact stays where c13 supports it, in the dek."
     }
   ]
 }

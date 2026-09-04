@@ -53,11 +53,19 @@ window.renderReady = (async () => {
   function group(cx, cy, bw){
     const bl = bw*5.0, gap = bw;               // classic proportion, length five times width
     function bar(x,y,w,h){
-      g.fillStyle=CHROME; g.fillRect(x,y,w,h);
-      // the specular edge. Chrome is evaporated metal and it catches a rim; ink on paper does not.
-      g.fillStyle='rgba(255,255,255,.66)'; g.fillRect(x,y,w,Math.max(1,h*0.06));
-      g.fillStyle='rgba(255,255,255,.42)'; g.fillRect(x,y,Math.max(1,w*0.10),h);
-      g.fillStyle='rgba(20,26,28,.30)';    g.fillRect(x+w-Math.max(1,w*0.09),y,Math.max(1,w*0.09),h);
+      // A SPECULAR SWEEP ALONG THE BAR'S OWN LENGTH. Evaporated chrome is a mirror and it
+      // returns a moving highlight; ink on paper returns nothing, which is the whole difference
+      // between this frame and a sheet on a light table.
+      const along = w>h;
+      const gr = along ? g.createLinearGradient(x,0,x+w,0) : g.createLinearGradient(0,y,0,y+h);
+      gr.addColorStop(0.00,'#5E6D72'); gr.addColorStop(0.22,'#9EAFB4');
+      gr.addColorStop(0.40,'#E8F0F1'); gr.addColorStop(0.52,'#B7C6CA');
+      gr.addColorStop(0.74,'#6E7D82'); gr.addColorStop(1.00,'#485559');
+      g.fillStyle=gr; g.fillRect(x,y,w,h);
+      g.fillStyle='rgba(255,255,255,.82)'; g.fillRect(x,y,along?w:Math.max(1.4,w*0.16),along?Math.max(1.4,h*0.16):h);
+      g.fillStyle='rgba(14,20,22,.42)';
+      g.fillRect(along?x:x+w-Math.max(1.4,w*0.14), along?y+h-Math.max(1.4,h*0.14):y,
+                 along?w:Math.max(1.4,w*0.14), along?Math.max(1.4,h*0.14):h);
     }
     for(let i=0;i<3;i++) bar(cx - bl/2 + i*(bw+gap)*0, cx*0, 0, 0);   // no-op guard
     // vertical trio, read left to right
@@ -91,19 +99,26 @@ window.renderReady = (async () => {
 
   // THE RESOLUTION LIMIT. Below this the bars stop resolving, and the honest way to draw that
   // is a modeled grey field rather than lines nobody can see.
+  // THE RESOLUTION LIMIT, drawn as bars going under rather than as a noise swatch. Pitch
+  // narrows left to right on a true geometric progression until the pair can no longer be told
+  // apart, and a ruled line marks where that happens. That is what a limit IS on a target.
   (function limit(){
-    const x=612, y=968, w=372, h=150;
-    const gr=g.createLinearGradient(x,y,x+w,y);
-    gr.addColorStop(0,'rgba(142,154,158,.86)'); gr.addColorStop(.5,'rgba(142,154,158,.62)');
-    gr.addColorStop(1,'rgba(142,154,158,.40)');
-    g.fillStyle=gr; g.fillRect(x,y,w,h);
-    for(let k=0;k<9000;k++){
-      const px=x+R()*w, py=y+R()*h;
-      g.fillStyle= R()<0.5 ? 'rgba(255,255,255,'+(R()*0.30).toFixed(3)+')'
-                           : 'rgba(20,26,28,'+(R()*0.26).toFixed(3)+')';
-      g.fillRect(px,py,1.4,1.4);
+    const x=596, y=962, w=392, h=156;
+    let px=x, w0=15.0;
+    while(px < x+w-2){
+      const bw=Math.max(0.9, w0);
+      g.fillStyle= (bw>2.0) ? '#7E8D92' : 'rgba(126,141,146,'+(0.34+bw*0.30).toFixed(2)+')';
+      g.fillRect(px, y, bw, h);
+      if(bw>3.0){ g.fillStyle='rgba(255,255,255,.62)'; g.fillRect(px, y, bw, 2.0); }
+      px += bw*2; w0 *= 0.905;
     }
-    pad(x+w/2-52, y+h+16, 104, 44);
+    // where the pair stops resolving
+    const cut=x+238;
+    g.strokeStyle='rgba(20,26,28,.62)'; g.lineWidth=1.6;
+    g.beginPath(); g.moveTo(cut, y-16); g.lineTo(cut, y+h+16); g.stroke();
+    g.fillStyle='rgba(20,26,28,.62)';
+    g.beginPath(); g.moveTo(cut,y-16); g.lineTo(cut-7,y-28); g.lineTo(cut+7,y-28); g.closePath(); g.fill();
+    pad(x+w/2-52, y+h+34, 104, 44);
   })();
 
   // glass grain, fine, so a lit flat field does not read as an unfinished render
