@@ -42,6 +42,10 @@ type:
   dek: "..."
   labels: ["..."]
 
+verbatim:                 # EVERY STRING ON THIS FRAME SET AS SOMEBODY ELSE'S WORDS
+  - c7: "EXCEEDED EXPECTATIONS"
+  - c9: "HIGH-QUALITY FACIAL IMAGES"
+
 acceptance:               # THE PIXEL CRITIC GRADES AGAINST THIS, ITEM BY ITEM
   - "the peak figure is legible at 432px against the ember band"
   - "the transmission line reads as a line over terrain, not as a crack in it"
@@ -51,6 +55,42 @@ acceptance:               # THE PIXEL CRITIC GRADES AGAINST THIS, ITEM BY ITEM
 risks:
   - "what could make this frame fall flat, named before it does"
 ```
+
+## THE VERBATIM KEY, and the five strings that made it necessary
+
+**Any frame that seats a fragment of a source's own words lists every one of them under
+`verbatim:`, each filed under the claim whose QUOTE carries it.** `scripts/carousel/verbatim_check.py`
+holds each listed string to that claim and refuses one the quote does not contain.
+
+A frame that seats none writes `verbatim: []`. That is not the same as leaving the key out, and
+the gate reports the two differently: the empty list is a run that looked and says there are none,
+and an absent key is a frame nobody asked the question about.
+
+**Why the key exists.** Carousel no. 15 printed five strings that look sourced and are not, and
+three judges found all five independently while every gate stayed green.
+
+| frame | printed | what the record actually says |
+|---|---|---|
+| 8 | `IT DID JUST THAT` | in no claim quote at all, on a plate under the heading STATED |
+| 8 | `HIGH QUALITY IMAGES` | c9 says `high-quality facial images`. The narrowing word was dropped |
+| 4 | `MARYLAND, ROOFED` | a physical assertion about a real place, in no claim |
+| 4 | `PROGRESO, OPEN SKY` | the same, and it contradicted the deck's own frame 1 |
+| 6 | `CARRIL DE CAPTURA` and `CARRIL DE EXCLUSION` | the source says the signs were in English and Spanish. It never says what they said |
+
+`label_guard` reads the capitalised run beside a CLAIM ID, so a plate in the art region with the
+citation chip in the footer was never in its window. `noun_trace` warns on named THINGS, and
+`IT DID JUST THAT` names no thing. Its whole defect is that it wears the costume of a quotation.
+
+**The declaration is what makes this checkable, and a detector that guessed was measured and
+refused.** A gate cannot tell a verbatim slot from an ordinary label by looking, because a deck
+legitimately prints `SELECTION`, `BTS BORDER DATA` and `01 / 09`. An auto-discovering draft of
+that gate was replayed across all fifteen shipped decks and fired on the repaired deck of
+2026-09-04, on two correct authored labels. A gate that fires on correct behaviour gets switched
+off, so what survives is a declaration a person writes and a machine checks.
+
+**Write the string exactly as the frame will print it**, casing included. The check normalises
+case, dashes and punctuation before comparing, so a hyphen against a space is never the reason a
+line goes red. Only a word can be.
 
 ## THE FOCAL LAW
 

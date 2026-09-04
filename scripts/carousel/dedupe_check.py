@@ -25,6 +25,29 @@ company. Only a person reading both can say whether the STORY repeats.
 So the exit codes are graded rather than binary, and the loudest one still says "read this",
 never "reject this".
 
+THE STANDING NOTES, ADDED 2026-09-04, AND THE DEFECT IS THE PREVIOUS RUN TALKING TO A WALL
+
+`ledger/carousel/topics.json` carries an `angle_note` on some entries, written by the run that
+shipped that deck for the run that comes next. Deck 14's says, in as many words:
+
+    FOURTH DECK IN SEVEN BUILT ON WHAT A DOCUMENT DOES NOT SAY, and all three round 5 judges
+    said so independently. THE NEXT RUN SHOULD PICK A STORY WHERE SOMETHING HAPPENED, not one
+    where a document is quiet.
+
+Deck 11's said the same thing about opening moves. Carousel 15's angle is that a document is
+quiet, the fifth in eight, and both round 1 judges named it. **The run read that field AFTER the
+deck was built**, which is the wrong order, and its own run record says so.
+
+This gate compares topic, entities and keywords. It could not see `angle_note` at all, so the one
+field written specifically for the phase this gate serves was read by nothing at the moment it
+mattered. The cheapest honest fix is not a rule, it is a READING: every note inside the ledger's
+own window is printed here, first, whether or not anything else fires.
+
+**It never changes the exit code and it never will.** An angle is a judgement, and a gate that
+refused one would be a gate deciding editorial. This file's whole argument is that the tool
+removes the luck and the showrunner keeps the call. A note the run has read and disagreed with is
+a decision. A note nobody read is the failure.
+
     dedupe_check.py --entities "PUCT, Oncor, Hood County" --keywords "transmission, 765 kV"
     dedupe_check.py --desc "free text description of the candidate"
     dedupe_check.py --self-test
@@ -113,12 +136,67 @@ def compare(cand: set[str], ledger: dict, ref: _dt.date) -> list[dict]:
     return sorted(out, key=lambda r: -r["score"])
 
 
+def standing_notes(ledger: dict, ref: _dt.date) -> list[dict]:
+    """Every `angle_note` inside the ledger's OWN window, newest first.
+
+    THE WINDOW IS READ FROM THE FILE and is the same one the repeat test uses. A count typed here
+    would be a second opinion about how far back a lesson reaches, and this repo already has one
+    written down in `window_days`. Fourteen entries carry three notes at the time this was built,
+    so it is three lines rather than a wall.
+    """
+    window = int(ledger.get("window_days") or 30)
+    out = []
+    for e in ledger.get("entries") or []:
+        note = e.get("angle_note")
+        if not isinstance(note, str) or not note.strip():
+            continue
+        if not in_window(e, ref, window):
+            continue
+        out.append({"date": e.get("date", "?"),
+                    "title": (e.get("title") or e.get("topic") or "")[:70],
+                    "note": " ".join(note.split())})
+    return sorted(out, key=lambda r: str(r["date"]), reverse=True)
+
+
+def print_standing_notes(notes: list[dict]) -> None:
+    """First, before the verdict, because a lesson printed under a verdict is a lesson skipped."""
+    if not notes:
+        print("dedupe: no run inside the window left an angle note.\n")
+        return
+    print(f"WHAT THE LAST {len(notes)} RUN(S) TOLD THIS ONE, out of topics.json's own "
+          f"`angle_note` field.\nRead these BEFORE choosing, not after building.\n")
+    for n in notes:
+        print(f"  {n['date']}  {n['title']}")
+        for line in _wrap(n["note"]):
+            print(f"      {line}")
+        print()
+    print("  These are JUDGEMENTS, not rules, and this gate will never fail one. A note you have\n"
+          "  read and disagreed with is a decision. A note nobody read is how deck 14's "
+          "instruction\n  reached deck 15 after the deck was built.\n")
+
+
+def _wrap(text: str, width: int = 88) -> list[str]:
+    out, line = [], ""
+    for word in text.split():
+        if line and len(line) + 1 + len(word) > width:
+            out.append(line)
+            line = word
+        else:
+            line = f"{line} {word}".strip()
+    if line:
+        out.append(line)
+    return out
+
+
 def run(cand_terms: set[str], ref: _dt.date) -> int:
     try:
         ledger = json.loads(TOPICS.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         print(f"dedupe_check: cannot read {TOPICS}: {exc}", file=sys.stderr)
         return 2
+    # PRINTED BEFORE ANYTHING ELSE, INCLUDING BEFORE THE ARGUMENT CHECK BELOW, so a run that gets
+    # the invocation wrong still reads what the last run told it.
+    print_standing_notes(standing_notes(ledger, ref))
     if not cand_terms:
         print("dedupe_check: the candidate has no distinctive terms. Give --entities, "
               "--keywords or --desc with something specific in it", file=sys.stderr)
@@ -220,6 +298,51 @@ def self_test() -> int:
                angle=ledger["entries"][0]["angle"] + " " + "filler word here " * 60)]}
     ok("a verbose entry cannot dilute its own similarity",
        compare(repeat, verbose, ref)[0]["score"] >= LIKELY)
+
+    # ---- THE STANDING NOTES (2026-09-04) ------------------------------------------------
+    #
+    # Deck 14 told deck 15 to pick a story where something happened. Deck 15 read that field after
+    # it had built the deck, because nothing surfaced it at selection.
+    noted = dict(ledger)
+    noted["entries"] = [
+        dict(ledger["entries"][0],
+             angle_note="FOURTH DECK IN SEVEN BUILT ON WHAT A DOCUMENT DOES NOT SAY. THE NEXT "
+                        "RUN SHOULD PICK A STORY WHERE SOMETHING HAPPENED."),
+        ledger["entries"][1],
+        dict(ledger["entries"][2], angle_note="an older note, outside the window"),
+    ]
+    ns = standing_notes(noted, ref)
+    ok("deck 14's instruction to the next run is SURFACED", len(ns) == 1, str(ns))
+    ok("...and it is the note itself, not a truncation of the title",
+       bool(ns) and "SOMETHING HAPPENED" in ns[0]["note"], str(ns))
+    ok("...and a note outside the thirty day window is not carried forward",
+       all(n["date"] != "2026-05-02" for n in ns), str(ns))
+    ok("a ledger with no angle notes surfaces nothing rather than raising",
+       standing_notes(ledger, ref) == [])
+    ok("an entry whose angle_note is blank is not a note",
+       not standing_notes({"window_days": 30,
+                           "entries": [dict(ledger["entries"][0], angle_note="   ")]}, ref))
+    # THE NOTE NEVER MOVES THE VERDICT. Surfacing is reading, and a gate that failed on an angle
+    # would be a gate deciding editorial, which this file's own docstring refuses.
+    ok("surfacing a note changes no score and no band",
+       compare(terms("Alabama-Coushatta tribal broadband"), noted, ref) == [])
+
+    # AGAINST THE REAL LEDGER, because a parser proved only against fixtures this file wrote
+    # agrees with this file. The day a run spells the field differently this goes red rather than
+    # going quiet, which is the failure mode the whole upgrade exists to close.
+    try:
+        real = json.loads(TOPICS.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        real = None
+    if real is not None:
+        carried = [e for e in real.get("entries") or [] if (e.get("angle_note") or "").strip()]
+        ok(f"the shipped topics.json carries angle notes this reads ({len(carried)} entr"
+           f"{'y' if len(carried) == 1 else 'ies'})", bool(carried))
+        newest = max((str(e.get("date") or "") for e in real.get("entries") or []), default="")
+        if newest:
+            live = standing_notes(real, _dt.date.fromisoformat(newest[:10]))
+            ok("...and at least one of them is inside the window on the newest entry's own date",
+               bool(live), f"newest={newest}")
 
     if failures:
         print(f"\ndedupe_check self-test: {failures} FAILED", file=sys.stderr)
