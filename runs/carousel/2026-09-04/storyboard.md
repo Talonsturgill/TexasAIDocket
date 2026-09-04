@@ -130,6 +130,8 @@ type:
   dek: "The Department of Homeland Security Science and Technology Directorate ran it for Customs and Border Protection at the Progreso International Bridge in Hidalgo County. The bridge director puts the annual walk out at over 1.1 million."
   labels: ["DHS S AND T", "c1 c12 c27 c28", "texasaidocket.com", "01 / 09"]
 
+verbatim: []
+
 acceptance:
   - 'the hook reads exactly "Tested on the faces walking out." and is six words'
   - 'the near diamond mesh plane occludes at least 30 percent of the plane behind it, drawn as real occlusion rather than as a tint'
@@ -187,6 +189,8 @@ type:
   dek: "Customs and Border Protection asked for it in October 2025. Cameras went up on poles at different heights, so people of different statures would land in frame. The technologies had to account for walking pace, hats, sunglasses and umbrellas."
   labels: ["MOUNTS", "c2 c28 c29", "texasaidocket.com", "02 / 09"]
 
+verbatim: []
+
 acceptance:
   - 'three camera collars are drawn at three different heights on one pole, and no two collars share a height'
   - 'no ground plane and no horizon line appears anywhere on this frame'
@@ -243,6 +247,8 @@ type:
   hook: "Six were invited. Three came south."
   dek: "Six companies were invited to the Maryland Test Facility. Three solutions were carried forward for data collection at the bridge."
   labels: ["SELECTION", "c3 c4", "texasaidocket.com", "03 / 09"]
+
+verbatim: []
 
 acceptance:
   - 'exactly six ray bundles enter and exactly three image points land'
@@ -304,6 +310,8 @@ type:
   dek: "A replica of the pedestrian exit environment went up at the Maryland Test Facility first, so the vendors could install and assess their prototypes before taking them to the crossing."
   labels: ["REPLICA", "c30", "texasaidocket.com", "04 / 09"]
 
+verbatim: []
+
 acceptance:
   - 'the two wireframes share one vanishing point and one station spacing, differ only in how far along the axis they sit, and are separated by a drawn gap so a reader sees two structures rather than one'
   - 'the labels read "MARYLAND TEST FACILITY, BUILT FIRST" and "PROGRESO BORDER CROSSING", which are the two place names and the order c30 itself carries, and neither asserts a physical property of either place'
@@ -360,6 +368,8 @@ type:
   dek: "Artificial intelligence and other technologies built a three dimensional model of the capture zone, watched pedestrian movement, and judged whether a face was good enough to match in Customs and Border Protection's Traveler Verification Service. The account gives no rate for how often it was right."
   labels: ["SUITABILITY", "c15 c18", "texasaidocket.com", "05 / 09"]
 
+verbatim: []
+
 acceptance:
   - 'the bar groups run in a true geometric progression and no bar is drawn narrower than 5 device pixels at 432px wide'
   - 'every group and element numeral pad is blank, carrying a lit bevel and a shaded inner face and no character, and the string "Traveler Verification Service" appears on this frame because c15 names where the judged image goes'
@@ -414,6 +424,8 @@ type:
   hook: "One lane was provided for saying no."
   dek: "Signs in English and Spanish told pedestrians that United States citizens could opt out. An opt-out lane was provided. The mandate the test serves applies to travelers who are not citizens."
   labels: ["OPT-OUT LANE", "c13 c14", "texasaidocket.com", "06 / 09"]
+
+verbatim: []
 
 acceptance:
   - 'the two lanes are drawn at the same width on the same surface and differ only in light species'
@@ -475,6 +487,8 @@ type:
   dek: "101,306 pedestrians entered the United States here in May 2026, the month the partners were at the bridge. No comparable data is collected on the way out."
   labels: ["BTS BORDER DATA", "c25 c26", "texasaidocket.com", "07 / 09"]
 
+verbatim: []
+
 acceptance:
   - 'the string "101,306" appears on this frame with its thousands separator, and matches computed.json may_inbound_pedestrians display'
   - 'the upper drum run carries struck figures and the lower drum run carries none'
@@ -533,6 +547,11 @@ type:
   hook: "Eight slots. Three of them filled."
   dek: "Two agencies and one vendor filed a finding. Five measurements were never stated rather than removed."
   labels: ["SLOTS", "c7 c9 c31 c18 c22", "texasaidocket.com", "08 / 09"]
+
+verbatim:
+  - c7: "EXCEEDED EXPECTATIONS"
+  - c9: "HIGH-QUALITY FACIAL IMAGES"
+  - c31: "IT DID JUST THAT"
 
 acceptance:
   - 'exactly three cavities are filled and exactly five are empty, and all eight openings are the same size'
@@ -593,6 +612,8 @@ type:
   hook: "The only date belongs to Dallas."
   dek: "The account announces no comment period, no hearing and no docket. The nearest dated room in this record is a different program. Dallas takes a briefing on its police Flock plate readers on September 8th, 2026."
   labels: ["DIFFERENT PROGRAM", "c21 c23 c24", "texasaidocket.com", "09 / 09"]
+
+verbatim: []
 
 acceptance:
   - 'the two axes are drawn at different depths and do not intersect anywhere in the frame'
