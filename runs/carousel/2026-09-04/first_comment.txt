@@ -1,0 +1,121 @@
+Every source, fetched September 4th, 2026.
+
+c1. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"The Science and Technology Directorate (S&T) recently brought industry partners to the Progreso International Bridge border crossing in Texas to demonstrate facial biometric capabilities for U.S. Customs and Border Protection (CBP)."
+https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient
+
+c2. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+""In October 2025, CBP approached S&T with a request for solutions that could securely, efficiently, and accurately confirm the departure of pedestrians exiting the U.S. at border crossings using biometrics," said Arun Vemury, S&T Senior Advisor for Biometrics and Identity."
+(same source as above)
+
+c3. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"In early 2026, S&T invited six companies to the Maryland Test Facility (MdTF) for basic capability demonstrations to determine which solutions should be operationally tested."
+(same source as above)
+
+c4. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"These demonstrations led CBP and S&T to select three solutions for additional data collection: two from NEC National Security Systems (NSS) and one joint solution from Paravision and AiFi."
+(same source as above)
+
+c5. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"When the industry partners arrived at the Progreso International Bridge in May, they began setting up for the operational assessment that would support CBP's planning."
+(same source as above)
+
+c30. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"Before deployment, S&T built a replica of the pedestrian exit environment at MdTF so vendors could install and assess their prototypes before taking them to the Progreso border crossing."
+(same source as above)
+
+c28. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"The industry partners installed their products in various configurations. Some cameras were mounted on poles at different heights to account for individuals of different statures."
+(same source as above)
+
+c16. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"Because ports of entry operate day and night, tests were also conducted after dark using external lighting configurations."
+(same source as above)
+
+c29. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"For the testing to be successful, the technologies had to account for human factors such as travelers' walking pace, as well as hats, sunglasses, umbrellas and other items people use or carry."
+(same source as above)
+
+c17. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"With this new technology, pedestrians can walk past the cameras for identity verification as they cross the border."
+(same source as above)
+
+c15. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"The partners leveraged artificial intelligence (AI) and other technologies to perform tasks such as constructing a 3D digital environment of the image capture zone, observing pedestrian movement, and analyzing facial images to determine whether they were suitable for biometric matching in CBP's T..."
+(same source as above)
+
+c13. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"As pedestrians approached the border exits, signs in English and Spanish informed them that U.S. citizens could opt out of biometric exit collection if they did not wish to have their picture taken, since the biometric Entry/Exit mandate applies to non-U.S. citizen travelers."
+(same source as above)
+
+c14. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"U.S. citizens were provided an opt-out lane if they chose not to participate in the image collection testing."
+(same source as above)
+
+c7. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"The image capture capabilities of pedestrians walking through the border exit area exceeded expectations in both day and night conditions."
+(same source as above)
+
+c9. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+""We were able to demonstrate NEC's SmartID Express and Neoface Express in real-world outdoor conditions and weather, successfully capturing high-quality facial images of thousands of pedestrians a day," said Todd Morris, President of NEC NSS."
+(same source as above)
+
+c10. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+""It is one thing for a technology to work in a lab like MdTF, but it is significantly more difficult when the tech is deployed operationally at the border. At Progreso, it had to work with limited infrastructure, in a challenging environment, and do it autonomously," said Dr. Cameron Whitelam, di..."
+(same source as above)
+
+c11. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"Together, AiFi and Paravision enable a seamless, contactless biometric experience by understanding how people move through a space and helping ensure that only high-quality facial images are used for matching."
+(same source as above)
+
+c12. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+""Over 1.1 million pedestrians exit the U.S. to Mexico annually, and it is imperative to keep them safely moving," said Bridge Director Marga A. Lopez."
+(same source as above)
+
+c18. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"This combination supports accurate biometric verification while allowing travelers to continue through the exit process naturally."
+(same source as above)
+
+c19. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"successfully capturing high-quality facial images of thousands of pedestrians a day"
+(same source as above)
+
+c20. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"analyzing facial images to determine whether they were suitable for biometric matching in CBP's Traveler Verification Service"
+(same source as above)
+
+c21. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"This technology could prove to be a force multiplier and allow CBP to maximize deployment of resources."
+(same source as above)
+
+c22. Department of Homeland Security, Science and Technology Directorate, published September 1st, 2026
+"When the industry partners arrived at the Progreso International Bridge in May"
+(same source as above)
+
+c25. Bureau of Transportation Statistics, Border Crossing Entry Data, dataset description
+"The data reflect the number of vehicles, passengers or pedestrians entering the United States.  CBP does not collect comparable data on outbound crossings."
+https://data.transportation.gov/api/views/keg4-3bc2.json
+
+c26. Bureau of Transportation Statistics, Border Crossing Entry Data, Progreso port 2309, pedestrians
+"{"port_name":"Progreso","state":"Texas","port_code":"2309","border":"US-Mexico Border","date":"2026-05-01T00:00:00.000","measure":"Pedestrians","value":"101306""
+https://data.transportation.gov/resource/keg4-3bc2.json?$where=port_code='2309' AND measure='Pedestrians'&$order=date DESC&$limit=30
+
+c27. U.S. Census Bureau geocoder, the port of entry’s own published coordinates resolved to a county
+""NAME": "Hidalgo County", "GEOID": "48215", "BASENAME": "Hidalgo""
+https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=-97.949958&y=26.062133&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json
+
+c23. City of Dallas legislative record, matter 25839
+"Dallas Police Flock Automated License Plate Reader Program Update - September 2026"
+https://webapi.legistar.com/v1/cityofdallas/matters/25839
+
+c24. City of Dallas legislative record, matter 25839
+""MatterTypeName": "BRIEFING ITEMS",   "MatterStatusId": 80,   "MatterStatusName": "Agenda Ready",   "MatterBodyId": 304,   "MatterBodyName": "Public Safety Committee",   "MatterIntroDate": "2026-08-13T00:00:00",   "MatterAgendaDate": "2026-09-08T00:00:00""
+(same source as above)
+
+The record entry for this decision is at https://texasaidocket.com/item/tx-2026-0120/
+
+101,306 is a count of pedestrians ENTERING the United States at Progreso in May 2026. It is not a count of the people the cameras watched, who were walking the other way. The dataset states that no comparable data is collected on outbound crossings.
+
+Hidalgo County is not named on the Homeland Security page. It comes from the Census Bureau resolving the port of entry's own published coordinates, which is claim c27.
+
+The Dallas briefing on September 8th, 2026 is a different program in a different city. Nothing on this record opens a comment window or a hearing on the Progreso test.

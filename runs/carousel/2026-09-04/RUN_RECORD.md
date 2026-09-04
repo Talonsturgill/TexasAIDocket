@@ -156,3 +156,26 @@ present, and the finding that absence detection rises sharply when a reader is p
 for what is missing. The instruction to the directors follows from it. Do not draw an empty
 frame. Draw the SLOT the figure would sit in, ruled and labelled and empty, beside the slots
 that are full.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 30 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | PASS   | 9 slide(s), zero fails, zero warns |
+| aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 5.53 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| dossiers       | PASS   | 36,319 chars planned |
+| caption        | PASS   | 134 words |
+| craft floor    | PASS   | 9 frame(s), median 476, floor 86 |
+| plan vs render | WARN   | 3 of 44 acceptance item(s) checkable |
+| texan          | PASS   | places Hidalgo County / body yes / deadline yes / next step yes |
+| absences       | PASS   | 13 of 13 scoped to a named document |
+| numerals       | PASS   | 15 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->

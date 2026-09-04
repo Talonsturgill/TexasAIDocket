@@ -1,0 +1,20 @@
+{
+  "run": "2026-09-04",
+  "note": "A quantifier is a claim about a SET, so each one names its set. Both universals here are about the deck's own enumerated lists rather than about what any source says.",
+  "quantifiers": [
+    {
+      "phrase": "none of the five",
+      "about": "the deck's own enumerated absences",
+      "from_items": [],
+      "set": "The five performance facts compute.py enumerates in its `absences` list, each established by its own claim: an accuracy, match or error rate (c18), a count of images captured (c19), a retention period (c20), a decision to deploy (c21), and a date range for the assessment (c22). The universal is over those five and over nothing else.",
+      "why": "Frame 8 says none of the five was ever stated. That is a statement about the five slots the frame itself cuts and labels, and each slot's claim quotes the nearest thing the September 1st account does say."
+    },
+    {
+      "phrase": "every source",
+      "about": "the deck's own claims file",
+      "from_items": [],
+      "set": "The 28 claim ids the first comment lists, which are the claims out/2026-09-04/claims.json holds and the nine frames cite. The universal is over the sources this deck used, not over the sources that exist.",
+      "why": "The first comment opens by saying every source was fetched on September 4th, 2026, and the set it quantifies is the list printed immediately beneath it."
+    }
+  ]
+}
