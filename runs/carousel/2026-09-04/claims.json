@@ -57,7 +57,7 @@
     },
     {
       "id": "c7",
-      "text": "The nearest thing the account offers to a performance result is the statement that image capture exceeded expectations in daylight and after dark.",
+      "text": "Larry Panetta, Director of CBP's Biometrics Program Office, says image capture exceeded expectations in daylight and after dark. VERIFIED TWICE: the sentence sits inside his quotation, opening directly after the attribution in c6's paragraph, and it appears nowhere else on the page. It is the nearest thing the account offers to a result.",
       "quote": "The image capture capabilities of pedestrians walking through the border exit area exceeded expectations in both day and night conditions.",
       "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
       "source_type": "primary_official",
@@ -240,6 +240,33 @@
       "text": "The Census Bureau resolves the port of entry's own published coordinates to Hidalgo County.",
       "quote": "\"NAME\": \"Hidalgo County\", \"GEOID\": \"48215\", \"BASENAME\": \"Hidalgo\"",
       "url": "https://geocoding.geo.census.gov/geocoder/geographies/coordinates?x=-97.949958&y=26.062133&benchmark=Public_AR_Current&vintage=Current_Current&layers=Counties&format=json",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-04",
+      "confidence": "high"
+    },
+    {
+      "id": "c28",
+      "text": "The partners installed their products in different configurations, with some cameras on poles at different heights so people of different statures would be captured.",
+      "quote": "The industry partners installed their products in various configurations. Some cameras were mounted on poles at different heights to account for individuals of different statures.",
+      "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-04",
+      "confidence": "high"
+    },
+    {
+      "id": "c29",
+      "text": "The technologies had to account for walking pace and for what pedestrians wear and carry.",
+      "quote": "For the testing to be successful, the technologies had to account for human factors such as travelers' walking pace, as well as hats, sunglasses, umbrellas and other items people use or carry.",
+      "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-04",
+      "confidence": "high"
+    },
+    {
+      "id": "c30",
+      "text": "A replica of the pedestrian exit environment was built at the Maryland Test Facility so the vendors could install and assess their prototypes before going to the crossing.",
+      "quote": "Before deployment, S&T built a replica of the pedestrian exit environment at MdTF so vendors could install and assess their prototypes before taking them to the Progreso border crossing.",
+      "url": "https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient",
       "source_type": "primary_official",
       "retrieved": "2026-09-04",
       "confidence": "high"
