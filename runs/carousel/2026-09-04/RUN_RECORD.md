@@ -314,20 +314,21 @@ goes through.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 31 verified claim(s) |
+| claims         | PASS   | 32 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 8 declaration(s), 11 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 5.65 MB, vector |
+| assembly       | PASS   | 9 slide(s), 5.53 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 48 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 99 published string(s) read from one list, every universal names its set |
-| dossiers       | PASS   | 37,829 chars planned |
+| quantifiers    | PASS   | 102 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 3 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 39,065 chars planned |
 | caption        | PASS   | 134 words |
-| craft floor    | PASS   | 9 frame(s), median 843, floor 152 |
+| craft floor    | PASS   | 9 frame(s), median 488, floor 88 |
 | plan vs render | WARN   | 5 of 46 acceptance item(s) checkable |
 | texan          | PASS   | places Hidalgo County / body yes / deadline yes / next step yes |
-| absences       | PASS   | 13 of 13 scoped to a named document |
+| absences       | PASS   | 9 of 9 scoped to a named document |
 | numerals       | PASS   | 15 numeral(s) over 9 frame(s), every one reachable |
 | completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
