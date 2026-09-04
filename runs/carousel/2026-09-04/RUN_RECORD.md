@@ -226,6 +226,35 @@ which is the only scale that survives the measurement and is also what film grai
 **Both are the same lesson and it is this file's oldest one.** A gate answers the question it was
 given. Reading the failure text and adding more of what already failed is not reading it.
 
+## THE PREVIOUS RUN LEFT THIS RUN AN INSTRUCTION AND THIS RUN DID NOT READ IT BEFORE SELECTING
+
+`ledger/carousel/topics.json`, deck 14's `angle_note`, in as many words:
+
+> FOURTH DECK IN SEVEN BUILT ON WHAT A DOCUMENT DOES NOT SAY, and all three round 5 judges said
+> so independently. THE NEXT RUN SHOULD PICK A STORY WHERE SOMETHING HAPPENED, not one where a
+> document is quiet.
+
+**That field was read AFTER the deck was built, which is the wrong order and is this run's own
+fault.** `dedupe_check` cannot see `angle_note` and did not fail it, exactly as deck 14 predicted.
+The selection phase read the topic, the entities and the keywords and stopped there.
+
+**What the deck is, counted rather than argued.** Seven of nine frames are things that happened.
+The test itself, the request in October 2025, the mounts at three heights, the six demonstrated
+and three carried forward, the replica built in Maryland first, the opt-out lane provided with
+signs in two languages, and a measured monthly count of 101,306 people walking in. Frame 8 is the
+absences and frame 9 is the disposition. The cover opens on an event rather than on a silence,
+which is the letter of what deck 11 asked for and deck 14 recorded as unmet.
+
+**And the strongest thing in this deck is a document SAYING something, not withholding it.** The
+Bureau of Transportation Statistics states outright that Customs and Border Protection collects no
+comparable data on outbound crossings. That is a published fact about a public series, not a gap
+somebody noticed.
+
+**It is still the fifth deck in eight leaning on a document's quiet, and that is the honest
+reading.** The instruction for the next run stands and is now stated twice in this file, once
+here and once as an instinct, because a lesson that lives in one ledger field a run reads after
+building is a lesson the machine loses.
+
 ## Gate status
 
 <!-- gate-status:begin -->
