@@ -542,8 +542,25 @@ floor and the repairs are listed one by one above.
 `f00c7e5b`.** `gates` success, `build` success, `freshness` success, `browser-render` success,
 `browser-layout` success, `browser-read` success, `guards` success. `release` came back `skipped`,
 which is a job the workflow deliberately did not run on a pull request and is not a red. Nothing
-was in progress and nothing was cancelled. The `gates` job is the whole of `guards.yml`, so CI ran
-every step this container could not finish.
+was in progress and nothing was cancelled. `release` is gated on
+`github.ref == 'refs/heads/main'`, which a pull request is not.
+
+**`gates` is ONE job of six and it is not the whole workflow.** `guards.yml` defines `gates`,
+`build`, `freshness`, `browser-read`, `browser-render` and `browser-layout` as siblings, and the
+aggregate job named `guards` is the one that `needs` all six. An earlier draft of this paragraph
+called `gates` the whole of `guards.yml`, which is the kind of sentence a later run reads and then
+merges on one green job. `gates` is the job that runs `guards_local`'s own step list. The other
+five are separate coverage and `guards` is what says they all passed.
+
+**The shipped payload was overwritten and then put back.** `runs/carousel/2026-09-04/gmail_payload.json`
+had already merged in #265 carrying a malformed Notes block, and the first version of this
+follow-up replaced it with a corrected one. **`CLAUDE.md` names overwriting a shipped run artifact
+under `runs/` as one of three things that stop and ask in any session**, and an unattended run has
+nobody to ask, so the answer is the non-destructive one. The shipped file is restored byte for
+byte to what #265 published, the corrected payload sits beside it as
+`gmail_payload_corrected.json`, and this paragraph is the account of the difference. **The draft
+that exists carries the corrected Notes block**, which is prose rather than the JSON dump the
+shipped payload holds, because `--notes-file` takes prose and this run handed it a JSON array.
 
 **The Gmail draft is created and nothing was sent.** It is verified against the committed payload
 rather than assumed: the draft was read back and compared. Two differences, both Gmail's own
@@ -562,8 +579,17 @@ different question.
 
 What that error then caused is the part worth keeping. Believing the suite had died, this run
 started another, and another, so **three suites ran concurrently against one `out/gates/`
-directory**, which is precisely the state `--verdict` exists to refuse, and two of them were then
-killed by hand. One of those kills took out the tracked run's own child.
+directory**, and two of them were then killed by hand. One of those kills took out the tracked
+run's own child.
+
+**AND `--verdict` DOES NOT DETECT THAT, so do not write down that it does.** An earlier draft of
+this paragraph called the three-suite race precisely the state `--verdict` exists to refuse. It is
+not. `read_verdict()` checks that the file exists, that the runner version matches, that the tree
+state matches, that the invocation was not narrowed by `--fast` or `--only`, and that every step
+passed. **There is no lock, no pid and no active-run marker anywhere in it.** A suite that finishes
+and writes a green verdict while a second suite is still running on the same tree would be read as
+a pass, because nothing in the file says another run is in flight. Concurrency is a hole, not a
+guarantee, and it is in the backlog.
 
 The step they were all sitting on, the shallow-clone determinism check, **passes on its own in
 135 seconds** and passed in CI. Nothing was ever wrong with the step or with the tree.
