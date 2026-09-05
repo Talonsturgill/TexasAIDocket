@@ -1,6 +1,6 @@
-# Energy Department research arm funds a Houston led team using AI to design magnets that avoid imported rare earths
+# Energy Department research arm funds a Houston led team using AI to search for new magnet materials
 
-Rice University published on September 1st, 2026 that the Advanced Research Projects Agency-Energy awarded a three year grant to a coalition led by the University of Houston. The other partners are Rice and Colorado State University and Carrier Global and Newfound Materials. Rice brings artificial intelligence and atomistic modeling and high throughput computing to the work. Its part is choosing which magnetic materials get made and tested. The stated target is a magnet that outperforms neodymium iron boron while cutting dependence on foreign mineral supply.
+Rice University published on September 1st, 2026 that the Advanced Research Projects Agency-Energy awarded a three year grant to a coalition led by the University of Houston. The other partners are Rice and Colorado State University and Carrier Global and Newfound Materials. Rice brings artificial intelligence and atomistic modeling and high throughput computing to the work. Its part is choosing which magnetic materials get made and tested. The stated goal is to find entirely new materials while balancing supply constraint concerns.
 
 - Topic: research-and-science
 - Decided by: U.S. Department of Energy, Advanced Research Projects Agency-Energy (federal)

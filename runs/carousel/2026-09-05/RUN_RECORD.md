@@ -184,8 +184,12 @@ county and citing a primary source.
 - Four UT Austin fusion seed grants whose release states the limits of the machine learning
   method alongside its promise, which is a rarer thing for a university to publish than the
   promise alone.
-- An Energy Department award to a Houston led team using AI to design magnets that avoid imported
-  rare earths.
+- An Energy Department award to a Houston led team using AI to search for new magnet materials
+  while balancing supply constraints. **This bullet read "magnets that avoid imported rare earths"
+  and so did the item's own title and summary in `ledger/docket.json`, and NOT ONE of that item's
+  four evidence quotes says it.** A scorer found the reading on slide 6's dek at round 1, in the
+  two carousel ledgers at round 2, and here at round 3, one surface further out each time. This is
+  where it originated and this is where it is fixed.
 
 The gate held all three at first and was right every time. One on a key date kind outside the
 vocabulary, one on a British spelling, one on a comma rate of 4.52 against the 3.97 ceiling, and
