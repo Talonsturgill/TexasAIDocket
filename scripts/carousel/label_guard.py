@@ -28,9 +28,14 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
-# Words a label may carry that are not claims about what a body did: connectives, the deck's own
-# furniture, and the generic half of a body's name. Kept short on purpose. Anything that is not
-# here and not a place name has to be in the claim.
+# Words a label may carry that are not claims about what a body did: connectives and the generic
+# half of a body's name. Kept short on purpose. Anything that is not here and not a place name has
+# to be in the claim.
+#
+# THE DECK'S OWN FURNITURE IS NOT IN THIS SET AND MUST NOT BE. This comment used to name it as
+# belonging here and the set held none of it, which cost three findings on 2026-08-30's slide 9
+# alone. A mark is exempt as a PHRASE, in `_deck_furniture`, because a set of single words would
+# make a lone AI furniture everywhere.
 FURNITURE = {
     "AND", "OR", "THE", "A", "AN", "OF", "IN", "ON", "AT", "TO", "FOR", "BY", "WITH", "FROM",
     "COUNTY", "CITY", "COMMISSION", "COURT", "COUNCIL", "TX", "SAYS", "SAY", "NEITHER",
@@ -170,6 +175,56 @@ def _gazetteer_places() -> tuple:
     return solo, phrases
 
 
+def _deck_furniture() -> set:
+    """The deck's own mark, as WORD TUPLES, out of `config/brand.yaml`.
+
+    THE DEFECT THIS EXISTS FOR. `FURNITURE` above says in its own comment that it holds "the
+    deck's own furniture" and it holds NO DECK FURNITURE AT ALL, only connectives and the generic
+    half of a body's name. Every frame in this project ends in a colophon, and on the frames
+    where that colophon is one element the mark stands directly before the claim ids:
+
+        <span>TEXAS AI DOCKET</span><span>c17 c18</span><span>texasaidocket.com</span>
+
+    So the six word window walks back off the id and picks up the masthead. Replayed across
+    seventeen shipped decks on 2026-09-05, that is 2026-08-30's slide 9, where this gate reports
+    TEXAS, AI and DOCKET as three unsupported labels beside c40, and it is what fired on carousel
+    no. 16's own colophon and on its RICE NEWS byline. Three findings on one frame, none of them
+    a claim about what a body did, on a gate whose whole value is that a run reads its findings.
+
+    A MARK IS EXEMPT AS A PHRASE AND NEVER WORD BY WORD, which is `_place_mask`'s argument and
+    the reason this returns tuples. Splitting `TEXAS AI DOCKET` into words would make a lone AI
+    furniture on every frame in the deck, and AI beside a claim id is exactly the assertion this
+    gate should be reading hardest.
+
+    Read from brand.yaml rather than typed here, because `CLAUDE.md` names a rule stated in
+    config with a surface keeping its own copy as this project's recurring fault, three times.
+    A ONE WORD MARK IS NOT EXEMPTED and that is deliberate: a single word added to the mask is
+    a word this gate stops reading everywhere. If the mark ever becomes one word, this gate
+    starts firing on it, loudly, which is the direction a selector is allowed to fail in.
+    """
+    out = set()
+    try:
+        import yaml  # type: ignore
+        doc = yaml.safe_load((REPO_ROOT / "config" / "brand.yaml").read_text(encoding="utf-8"))
+    except Exception:
+        return out
+
+    def walk(node):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if str(k) == "wordmark" and isinstance(v, str):
+                    ws = tuple(WORD.findall(v.upper()))
+                    if len(ws) > 1:
+                        out.add(ws)
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+
+    walk(doc)
+    return out
+
+
 def _place_mask(words, solo, phrases) -> set:
     """Indices of `words` that are place naming rather than shape claiming.
 
@@ -287,6 +342,8 @@ def check(run_dir: Path):
     g_solo, g_phrases = _gazetteer_places()
     solo |= g_solo
     phrases |= g_phrases
+    # The deck's own mark, as a phrase and never as words. See `_deck_furniture`.
+    phrases |= _deck_furniture()
     # The deck's own table WINS. This is a floor under a gate that was otherwise refusing to run.
     stems = {**DEFAULT_STEMS, **(stems or {})}
     if "_STEM = {" in src and not _guarded(src)[2]:
@@ -458,8 +515,39 @@ def self_test() -> int:
             print("SELF-TEST FAILED: the gate refused EAGLE PASS DENIED, so the whole name no "
                   "longer exempts its own words. " + "; ".join(left))
             return 1
-    print("label_guard self-test: refuses a reworded label, passes the guarded one, and exempts "
-          "a place word only inside its whole name")
+
+        # THE COLOPHON, BOTH DIRECTIONS. 2026-08-30's slide 9 sets the mark in the same element
+        # as its claim id, so the six word window walked back off c40 and reported TEXAS, AI and
+        # DOCKET as three unsupported labels. The mark is read from brand.yaml, so this case is
+        # skipped rather than faked if that file can't be parsed, because a fabricated mark
+        # would test this gate against itself.
+        mark = _deck_furniture()
+        if not mark:
+            print("SELF-TEST FAILED: config/brand.yaml yields no multi word wordmark, so the "
+                  "colophon case is testing nothing. That file is where the mark lives")
+            return 1
+        colophon = " ".join(sorted(mark, key=len)[-1])
+        (d / "slides" / "slide-03.html").write_text(
+            f'<div class="colo"><span>{colophon}</span><span>c41</span>'
+            f'<span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>')
+        left = check(d)
+        if left:
+            print("SELF-TEST FAILED: the gate read the deck's own mark beside a claim id as a "
+                  "label. That is three findings on every colophon frame, none of them a claim "
+                  "about what a body did. " + "; ".join(left))
+            return 1
+        # ...and the mark is exempt as a PHRASE. A word of it standing alone is still a claim,
+        # which is the whole reason `_deck_furniture` returns tuples: AI beside a claim id is the
+        # assertion this gate should be reading hardest.
+        lone = colophon.split()[-1]
+        (d / "slides" / "slide-03.html").write_text(
+            f'<div class="pl">{lone}</div><div class="ci">C41</div>')
+        if not check(d):
+            print(f"SELF-TEST FAILED: the gate passed a lone {lone!r} beside a claim that never "
+                  f"says it. A mark is furniture as a phrase and never word by word")
+            return 1
+    print("label_guard self-test: refuses a reworded label, passes the guarded one, exempts a "
+          "place word only inside its whole name, and exempts the deck's own mark only whole")
     return 0
 
 
