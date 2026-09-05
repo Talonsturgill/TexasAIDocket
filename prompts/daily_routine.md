@@ -599,20 +599,32 @@ either sentence comes back, and fails it the other way if the promise above stop
 <!-- offpage water/ "A data center needs electricity" -->
 
 **THE SCANNER'S DAILY CEILING.** The scan form fires its routine on submit, so the only thing
-between a public form and a bill is `daily_cap` in the scanner project's `scanner.config`. A
+between a public form and a bill is `DAILY_CAP` in the live `texas-scan` Cloudflare Worker. A
 requester who hits it is told the day is full. **NOBODY TELLS YOU**, which is why this step
 exists: a ceiling nobody is notified about is a ceiling you find out about from the people who
 gave up.
 
-Through the Supabase connector, on project `texas-ai-scanner`:
+The scanner left Supabase on 2026-08-20. **Never query the removed Supabase project or its old
+`scanner.config` table.** The records now live in the private `texas-scan` D1 database and the
+cap is a Worker environment variable, not a database row. If this run already has Cloudflare
+D1 access, compute midnight today in `America/Chicago` as a Unix epoch, substitute that integer
+for `<texas_day_start_epoch>`, and run against the REMOTE database:
 
 ```sql
-select (select count(*) from scanner.scans
-        where created_at >= ((now() at time zone 'America/Chicago')::date)) as today,
-       (select value::int from scanner.config where key = 'daily_cap')      as cap,
-       (select count(*) from scanner.scans
-        where created_at >= now() - interval '24 hours' and status = 'failed') as failed_24h;
+select (select count(*) from scans
+        where created_at >= <texas_day_start_epoch>) as today,
+       (select count(*) from scans
+        where created_at >= unixepoch() - 86400 and status = 'failed') as failed_24h;
+
+select created_at, domain, error from scans
+where created_at >= unixepoch() - 86400 and status = 'failed'
+order by created_at desc;
 ```
+
+Read `DAILY_CAP` from the LIVE Worker's settings. The committed Scanner default is context, not
+proof of the deployed value. Do not create credentials or change Worker settings to complete
+this check. If private D1 access or the live cap is unavailable, record exactly which value is
+unknown and carry on; do not report the ceiling healthy from a repository default.
 
 Three outcomes and only the middle one costs you anything.
 
