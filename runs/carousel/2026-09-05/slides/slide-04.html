@@ -1,0 +1,157 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#14100E}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:500px;
+    background:linear-gradient(to bottom,rgba(20,16,14,.95) 0%,rgba(20,16,14,.90) 56%,rgba(20,16,14,.46) 84%,rgba(20,16,14,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:260px;
+    background:linear-gradient(to bottom,rgba(20,16,14,0) 0%,rgba(20,16,14,.66) 40%,rgba(20,16,14,.95) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#8C8478}
+  h1{position:absolute;top:142px;left:80px;width:880px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:92px;line-height:1.03;color:#E8E1D4;letter-spacing:-.022em}
+  .dek{position:absolute;top:270px;left:80px;width:830px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:28px;line-height:1.34;color:#B6ADA0}
+  /* The target's own wording, set as a pair with OR between them and neither ranked. */
+  .props{position:absolute;left:80px;top:1116px;width:920px;display:flex;align-items:baseline;
+    gap:26px;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
+    letter-spacing:.09em;color:#D8D0C3;white-space:nowrap}
+  .props .or{color:#8C8478;font-size:24px}
+  .foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>The block to beat.</h1>
+  <p class="dek">The team aims to surpass the current industry-standard material for high-performance permanent magnets. The federal target is stated against any known material rather than against a competitor.</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="props"><span>SATURATION MAGNETIZATION</span><span class="or">OR</span><span>MAXIMUM ENERGY PRODUCT</span></div>
+  <div class="foot"><span>UH AND ARPA-E</span><span>c9 c11</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const NIGHT='#14100E', SINTER='#191518', NI='#CBC3B4';
+  // ONE KEY, and the specular lobe below is computed from it rather than painted.
+  const KEY_AZ=Math.PI*0.72, KEY_EL=0.32, LAMPX=286, LAMPY=352, LAMPR=1420;
+
+  g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
+  (function bench(){
+    const DW=W*2, DH=H*2, im=g.createImageData(DW,DH), d=im.data;
+    for(let py=0;py<DH;py++){ const y=py*0.5;
+      for(let px=0;px<DW;px++){ const x=px*0.5;
+        let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=f*f;
+        const gr=0.6*TX.fbm2((x+700)*0.0017,(y+250)*0.0170,4)+0.4*TX.fbm2((x+3)*0.0010,(y+11)*0.0040,3);
+        const v=7+f*44+gr*12*(0.35+f);
+        const i=(py*DW+px)*4;
+        d[i]=Math.min(255,v*1.22); d[i+1]=Math.min(255,v*1.03); d[i+2]=Math.min(255,v*0.88); d[i+3]=255;
+      }}
+    g.save(); g.setTransform(1,0,0,1,0,0); g.putImageData(im,0,0); g.restore();
+  })();
+
+  // ---- THE LIT GROUND FIRST, so the contact shadow has something to subtract from ---------
+  // A shadow cast onto near black is a one L* change and reads as nothing. This is the pool
+  // the block will sit in.
+  (function litPool(){
+    const gr=g.createRadialGradient(470,912,30,470,912,470);
+    gr.addColorStop(0,'rgba(246,236,210,0.20)'); gr.addColorStop(0.55,'rgba(246,236,210,0.07)');
+    gr.addColorStop(1,'rgba(246,236,210,0)');
+    g.save(); g.translate(470,912); g.scale(1,0.42); g.translate(-470,-912);
+    g.fillStyle=gr; g.beginPath(); g.arc(470,912,470,0,6.2832); g.fill(); g.restore();
+  })();
+
+  // ---- the block, low three-quarter, three faces visible ---------------------------------
+  // A standard is physically a reference body somebody keeps and measures against, so it is
+  // drawn as a solid with a machined face rather than as a diagram of properties.
+  const BX=470, BY=856, BW=372, BH=150, BD=176;    // centre, width, height, depth
+  const dx=BD*0.52, dy=-BD*0.30;                   // the receding axis
+
+  // two-part contact shadow into the lit pool
+  g.save();
+  g.beginPath(); g.ellipse(BX+34,BY+BH*0.5+16,BW*0.72,44,0,0,6.2832);
+  g.fillStyle='rgba(0,0,0,0.52)'; g.filter='blur(20px)'; g.fill(); g.restore();
+  g.save();
+  g.beginPath(); g.ellipse(BX+10,BY+BH*0.5+4,BW*0.50,15,0,0,6.2832);
+  g.fillStyle='rgba(0,0,0,0.76)'; g.filter='blur(5px)'; g.fill(); g.restore();
+
+  const L=BX-BW/2, Rr=BX+BW/2, T=BY-BH/2, B=BY+BH/2;
+  // right side face, falling away from the key
+  g.beginPath(); g.moveTo(Rr,T); g.lineTo(Rr+dx,T+dy); g.lineTo(Rr+dx,B+dy); g.lineTo(Rr,B); g.closePath();
+  const sg=g.createLinearGradient(Rr,0,Rr+dx,0);
+  sg.addColorStop(0,'#3E3931'); sg.addColorStop(1,'#221E1A'); g.fillStyle=sg; g.fill();
+  // front face
+  g.beginPath(); g.rect(L,T,BW,BH);
+  const fg=g.createLinearGradient(L,T,Rr,B);
+  fg.addColorStop(0,'#585148'); fg.addColorStop(0.46,'#443E37'); fg.addColorStop(1,'#2A2521');
+  g.fillStyle=fg; g.fill();
+
+  // ---- the lapped upper face and its COMPUTED specular lobe -------------------------------
+  // A lapped surface returns light in one narrow lobe, and computing it from the key is what
+  // makes the face read as flat and finished. A painted highlight reads as plastic.
+  (function lapped(){
+    const off=document.createElement('canvas'); off.width=W; off.height=H;
+    const og=off.getContext('2d');
+    const im=og.createImageData(W,H), d=im.data;
+    // the top face as a parallelogram: (L,T) (Rr,T) (Rr+dx,T+dy) (L+dx,T+dy)
+    const y0=Math.floor(T+dy)-2, y1=Math.ceil(T)+2;
+    for(let y=Math.max(0,y0); y<Math.min(H,y1); y++){
+      const t=(T-y)/(-dy);                      // 0 at the front edge, 1 at the back
+      if(t<0||t>1) continue;
+      const xa=L+dx*t, xb=Rr+dx*t;
+      for(let x=Math.floor(xa); x<Math.ceil(xb); x++){
+        if(x<0||x>=W) continue;
+        const u=(x-xa)/(xb-xa);
+        // the lobe: a narrow band perpendicular to the key azimuth, plus a broad diffuse term
+        const proj=u*Math.cos(KEY_AZ)+t*Math.sin(KEY_AZ);
+        const lobe=Math.exp(-Math.pow((proj-0.06)/0.13,2));
+        const diff=0.34+0.30*(1-t);
+        // lapping leaves a fine directional tooth, which is what stops it reading as plastic
+        const tooth=TX.fbm2((u*900+t*40),(t*260),2)*0.10;
+        const v=Math.min(1, diff*0.62 + lobe*0.92 + tooth);
+        const i=(y*W+x)*4;
+        d[i]=Math.min(255,44+v*196); d[i+1]=Math.min(255,42+v*186); d[i+2]=Math.min(255,38+v*168);
+        d[i+3]=255;
+      }
+    }
+    og.putImageData(im,0,0);
+    g.drawImage(off,0,0,W,H);
+  })();
+
+  // THE BENCH IN THE BOTTOM BAND, worked rather than left to the falloff. A second low pool
+  // and a tooth of raking grain, so the band the reader finishes on carries modeled tone under
+  // the two property names instead of a caption over dark.
+  (function foreBench(){
+    const gr=g.createRadialGradient(430,1218,20,430,1218,620);
+    gr.addColorStop(0,'rgba(246,236,210,0.115)'); gr.addColorStop(0.6,'rgba(246,236,210,0.035)');
+    gr.addColorStop(1,'rgba(246,236,210,0)');
+    g.save(); g.translate(430,1218); g.scale(1,0.34); g.translate(-430,-1218);
+    g.fillStyle=gr; g.beginPath(); g.arc(430,1218,620,0,6.2832); g.fill(); g.restore();
+    for(let i=0;i<5200;i++){
+      const x=R()*W, y=1010+Math.pow(R(),0.85)*332;
+      const lit=Math.max(0,1-Math.hypot((x-430)*0.5,(y-1218)*1.5)/460);
+      const a=0.05+0.24*lit*lit;
+      g.fillStyle='rgba(214,201,178,'+a.toFixed(3)+')';
+      g.fillRect(x,y,1.5+R()*2.6,0.7);
+    }
+  })();
+
+  // the arris where the lapped face meets the front, one hairline of the key's own colour
+  g.strokeStyle='rgba(246,236,210,0.44)'; g.lineWidth=1.4;
+  g.beginPath(); g.moveTo(L,T); g.lineTo(Rr,T); g.stroke();
+
+  window.__txProbe={key_azimuth_rad:KEY_AZ, key_elevation:KEY_EL,
+    block:{x:BX,y:BY,w:BW,h:BH,depth:BD}, specular_computed:true, numerals_on_frame:0};
+})();
+</script>
+</body></html>

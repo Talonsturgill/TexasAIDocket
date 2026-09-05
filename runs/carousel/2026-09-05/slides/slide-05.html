@@ -1,0 +1,102 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#E6CE96}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  /* MOVE 2. THE WHOLE TYPE SYSTEM INVERTS. No Fraunces display, no masthead top left. This
+     frame is the document rather than a slide about it, so it takes the document's own
+     typography and the deck's mark drops to a colophon in the lower band. */
+  .headrule{position:absolute;left:80px;top:186px;width:920px;height:4px;background:#191316}
+  .footrule{position:absolute;left:80px;top:1032px;width:920px;height:4px;background:#191316}
+  .use{position:absolute;left:80px;top:214px;width:920px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:600;font-size:34px;line-height:1.32;color:#191316}
+  .rows{position:absolute;left:80px;top:452px;width:920px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:38px;color:#191316;font-variant-numeric:tabular-nums}
+  .row{display:flex;justify-content:space-between;align-items:baseline;
+    padding:22px 0;border-bottom:1px solid rgba(25,19,22,.30)}
+  .row:last-child{border-bottom:0}
+  .row .n{letter-spacing:.02em}
+  .kicker{position:absolute;left:80px;top:120px;font-family:"JetBrains Mono",monospace;
+    font-weight:700;font-size:25px;letter-spacing:.16em;color:#4A3B2A}
+  .title{position:absolute;left:80px;top:1058px;width:920px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.05em;color:#4A3B2A;line-height:1.45}
+  .hook{position:absolute;left:80px;top:1142px;width:920px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:800;font-size:44px;line-height:1.1;color:#191316;letter-spacing:-.012em}
+  .colo{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.06em;color:#6B5943;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="kicker">IMPORT SOURCES</div>
+  <div class="headrule" data-decorative></div>
+  <p class="use">"The estimated leading domestic end use of rare earths was catalysts, whereas the estimated leading global use was magnets."</p>
+  <div class="rows">
+    <div class="row"><span>CHINA</span><span class="n">71%</span></div>
+    <div class="row"><span>MALAYSIA</span><span class="n">13%</span></div>
+    <div class="row"><span>JAPAN</span><span class="n">5%</span></div>
+    <div class="row"><span>ESTONIA</span><span class="n">5%</span></div>
+    <div class="row"><span>OTHER</span><span class="n">6%</span></div>
+  </div>
+  <div class="footrule" data-decorative></div>
+  <div class="title">U.S. GEOLOGICAL SURVEY, MINERAL COMMODITY SUMMARIES 2026, RARE EARTHS</div>
+  <p class="hook">Most of it becomes magnets.</p>
+  <div class="colo"><span>TEXAS AI DOCKET</span><span>c17 c18</span><span class="tx-site">texasaidocket.com</span><span>05 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  // NO DRAWN LIGHT ANYWHERE ON THIS FRAME. Every other frame in the deck has a lamp and a
+  // falloff. This one is a printed page, and a page has no key. What it has is stock, ink
+  // laydown and paper grain, which is what the canvas carries.
+  const STOCK='#E6CE96';
+
+  // Built in DEVICE pixels, because putImageData ignores the canvas transform.
+  const DW=W*2, DH=H*2;
+  const im=g.createImageData(DW,DH), d=im.data;
+  for(let py=0;py<DH;py++){
+    const y=py*0.5;
+    for(let px=0;px<DW;px++){
+      const x=px*0.5;
+      // paper formation, the cloudy variation a sheet has when you hold it to the light
+      const form=TX.fbm2(x*0.0042,y*0.0042,4);
+      // laid tooth, a faint directional fibre
+      const fibre=TX.fbm2(x*0.0016,y*0.062,2);
+      // a fine dither, so the ground is a printed tint rather than one flat fill
+      const dith=((px*7+py*13)%5)/5;
+      const v=0.90+0.075*form+0.030*fibre+0.020*dith;
+      const i=(py*DW+px)*4;
+      d[i]  =Math.min(255,230*v);
+      d[i+1]=Math.min(255,206*v);
+      d[i+2]=Math.min(255,150*v);
+      d[i+3]=255;
+    }
+  }
+  g.save(); g.setTransform(1,0,0,1,0,0); g.putImageData(im,0,0); g.restore();
+
+  // press wear at the sheet edges, which is what stops a full bleed reading as a colour fill
+  (function wear(){
+    for(let i=0;i<5200;i++){
+      const edge=R();
+      let x,y;
+      if(edge<0.25){ x=R()*W; y=R()*46; }
+      else if(edge<0.5){ x=R()*W; y=H-R()*46; }
+      else if(edge<0.75){ x=R()*46; y=R()*H; }
+      else { x=W-R()*46; y=R()*H; }
+      g.fillStyle='rgba(120,96,58,'+(0.02+R()*0.06).toFixed(3)+')';
+      g.fillRect(x,y,1+R()*2.2,1+R()*1.4);
+    }
+  })();
+
+  window.__txProbe={drawn_light_sources:0, ground:STOCK, cast_shadows:0,
+    note:'a printed page has no key, so this frame declares none'};
+})();
+</script>
+</body></html>

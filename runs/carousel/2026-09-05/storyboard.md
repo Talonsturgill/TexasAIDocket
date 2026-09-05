@@ -213,12 +213,15 @@ composition:
     The fan motor's magnet ring in the middle band, the darkest area in the frame and the largest
     single mass of sinter, ringed by a lit nickel edge so it reads as a body.
 art:
-  technique: "Zdog vector 3D with rounded strokes, diagrammatic assemblies"
+  technique: "hand built plan oblique cutaway at 45 degrees with two-part contact shadows"
   why_this_technique: >
-    The library reserves Zdog for a diagrammatic object like a transformer or a cooling tower and
-    warns it off terrain, and five cutaway assemblies is exactly the reserved case. A raymarched
-    or heightfield treatment would render five photographic objects and lose the section cut,
-    which is the only thing that shows the magnet is inside rather than beside.
+    Five cutaway assemblies is the diagrammatic-object case the library reserves Zdog for, and
+    Zdog was the plan until it met the engine. Zdog's Illustration clears the context it renders
+    into, which would wipe the bench, and a second transparent canvas over the top risks the
+    near-uniform canvas gate on a layer that is mostly empty. So the projection is built by hand
+    at the same 45 degrees, which keeps the one thing that matters, a cut that shows the magnet
+    is INSIDE rather than beside. A raymarched or heightfield treatment would render five
+    photographic objects and lose the cut entirely.
   palette: >
     The same condensing unit and bench. sinter #191518 for every magnet, plate_ni #CBC3B4 for
     plated steel, copper #B5622C for windings, neodymia #B3A6D2 as a thin oxide bloom on one cut
@@ -237,7 +240,7 @@ type:
 verbatim:
   - c15: "Magnets are everywhere, from air conditioning systems to all our electronic devices"
 acceptance:
-  - "all five assemblies are cut on one section plane at one angle, and the plane is drawn as a continuous line across the frame"
+  - "every one of the five assemblies has the SAME half removed and shows its interior, which is what makes the cut shared. A single horizontal rule was planned here and cut, because one line cannot section five objects of different heights standing on one bench"
   - "the magnet in every assembly is filled sinter #191518 and is the darkest fill in that assembly"
   - "the fan motor's magnet ring carries a lit nickel rim at least 4px wide at 432px so it reads as a body and not a hole"
   - "no wind turbine, vehicle or turbine blade appears, because c15 names air conditioning and electronic devices and nothing else"

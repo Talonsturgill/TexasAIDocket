@@ -1,0 +1,142 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#14100E}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:540px;
+    background:linear-gradient(to bottom,rgba(20,16,14,.95) 0%,rgba(20,16,14,.90) 58%,rgba(20,16,14,.48) 85%,rgba(20,16,14,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:132px;
+    background:linear-gradient(to bottom,rgba(20,16,14,0) 0%,rgba(20,16,14,.70) 46%,rgba(20,16,14,.96) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#8C8478}
+  h1{position:absolute;top:142px;left:80px;width:880px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:90px;line-height:1.03;color:#E8E1D4;letter-spacing:-.022em}
+  .dek{position:absolute;top:358px;left:80px;width:830px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:30px;line-height:1.32;color:#B6ADA0;font-style:italic}
+  .lab{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:22px;
+    letter-spacing:.10em;color:#CFC7BA;white-space:nowrap}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>It is already in your house.</h1>
+  <p class="dek">"Magnets are everywhere, from air conditioning systems to all our electronic devices"</p>
+
+  <div class="lab" id="a0" style="left:556px;top:742px">CONDENSER FAN MOTOR</div>
+  <div class="lab" id="a1" style="left:96px;top:1002px">BLOWER MOTOR</div>
+  <div class="lab" id="a2" style="left:356px;top:1002px">HARD DRIVE</div>
+  <div class="lab" id="a3" style="left:592px;top:1002px">EARBUD DRIVER</div>
+  <div class="lab" id="a4" style="left:846px;top:1002px">HAPTIC</div>
+
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>RICE NEWS</span><span>c15</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const NIGHT='#14100E', SINTER='#191518', NI='#CBC3B4', CU='#B5622C', NEO='#B3A6D2';
+  const LAMPX=300, LAMPY=250, LAMPR=1500;
+
+  // ---- bench, in DEVICE pixels. putImageData ignores the transform. -----------------------
+  g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
+  (function bench(){
+    const DW=W*2, DH=H*2, im=g.createImageData(DW,DH), d=im.data;
+    for(let py=0;py<DH;py++){ const y=py*0.5;
+      for(let px=0;px<DW;px++){ const x=px*0.5;
+        let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=f*f;
+        const gr=0.6*TX.fbm2((x+1400)*0.0018,(y+400)*0.0165,4)+0.4*TX.fbm2((x+9)*0.0010,(y+7)*0.0038,3);
+        const v=7+f*40+gr*12*(0.35+f);
+        const i=(py*DW+px)*4;
+        d[i]=Math.min(255,v*1.22); d[i+1]=Math.min(255,v*1.03); d[i+2]=Math.min(255,v*0.88); d[i+3]=255;
+      }}
+    g.save(); g.setTransform(1,0,0,1,0,0); g.putImageData(im,0,0); g.restore();
+  })();
+
+  // ---- ONE SECTION PLANE, and every assembly is cut on it --------------------------------
+  // A row of icons would be a list. One shared cut plane at one angle makes it a single
+  // drawing of a single fact, which is that the same black part is inside all five. The plane
+  // is drawn as a continuous line across the frame so a reader can see it is shared.
+  const OBL=Math.PI/4, DEPTH=0.42;   // plan oblique, 45 degrees, foreshortened
+  const ox=d=>Math.cos(OBL)*d*DEPTH, oy=d=>-Math.sin(OBL)*d*DEPTH;
+
+  function seat(cx,cy,rx){                       // two-part contact shadow onto a LIT ground
+    g.save();
+    g.beginPath(); g.ellipse(cx+rx*0.16,cy+10,rx*1.06,rx*0.30,0,0,6.2832);
+    g.fillStyle='rgba(0,0,0,0.50)'; g.filter='blur(18px)'; g.fill(); g.restore();
+    g.save();
+    g.beginPath(); g.ellipse(cx+rx*0.05,cy+3,rx*0.72,rx*0.15,0,0,6.2832);
+    g.fillStyle='rgba(0,0,0,0.72)'; g.filter='blur(5px)'; g.fill(); g.restore();
+  }
+
+  // A cylindrical assembly cut on the plane: outer can, windings, and the magnet ring inside.
+  function assembly(cx,cy,r,h,opt){
+    opt=opt||{};
+    seat(cx,cy+h*0.5,r);
+    const top=cy-h*0.5, bot=cy+h*0.5;
+    // can body
+    const lg=g.createLinearGradient(cx-r,0,cx+r,0);
+    lg.addColorStop(0,'#3A3630'); lg.addColorStop(0.30,'#6E675C'); lg.addColorStop(0.55,'#4A453D');
+    lg.addColorStop(1,'#241F1B');
+    g.fillStyle=lg;
+    g.beginPath();
+    g.moveTo(cx-r,top); g.lineTo(cx+r,top); g.lineTo(cx+r,bot);
+    g.ellipse(cx,bot,r,r*DEPTH,0,0,Math.PI); g.lineTo(cx-r,top); g.closePath(); g.fill();
+    // cut face, the half nearest the reader is removed so the inside shows
+    g.save();
+    g.beginPath(); g.rect(cx-r,top-4,r,h+r*DEPTH+8); g.clip();
+    g.fillStyle='#2B2620';
+    g.beginPath(); g.moveTo(cx-r,top); g.lineTo(cx,top); g.lineTo(cx,bot); g.lineTo(cx-r,bot); g.closePath(); g.fill();
+    // windings, only on the two motors
+    if(opt.windings){
+      for(let i=0;i<9;i++){
+        const yy=top+8+i*((h-16)/8);
+        g.strokeStyle='rgba(181,98,44,'+(0.30+0.5*(1-i/9))+')'; g.lineWidth=5;
+        g.beginPath(); g.moveTo(cx-r+9,yy); g.lineTo(cx-6,yy); g.stroke();
+      }
+    }
+    g.restore();
+    // top ellipse
+    g.beginPath(); g.ellipse(cx,top,r,r*DEPTH,0,0,6.2832);
+    const tg=g.createLinearGradient(cx-r,top-r*DEPTH,cx+r,top+r*DEPTH);
+    tg.addColorStop(0,'#8C857A'); tg.addColorStop(0.42,NI); tg.addColorStop(1,'#4A453D');
+    g.fillStyle=tg; g.fill();
+    // THE MAGNET. Sintered, matte, and the darkest fill in this assembly by construction.
+    const mr=r*(opt.mrat||0.58);
+    g.beginPath(); g.ellipse(cx,top+h*0.10,mr,mr*DEPTH,0,0,6.2832);
+    g.fillStyle=SINTER; g.fill();
+    // the lit nickel rim that proves it is a body and not a hole in the file
+    g.lineWidth=Math.max(3.2,r*0.055);
+    const rimg=g.createLinearGradient(cx-mr,0,cx+mr,0);
+    rimg.addColorStop(0,'#E6DFD2'); rimg.addColorStop(0.5,'#9A9287'); rimg.addColorStop(1,'#55504A');
+    g.strokeStyle=rimg; g.stroke();
+    if(opt.bloom){   // one oxide bloom on one cut face only, per the deck's attribution law
+      g.save(); g.globalAlpha=0.5;
+      g.beginPath(); g.ellipse(cx-r*0.42,top+h*0.30,r*0.20,r*0.10,0,0,6.2832);
+      g.fillStyle=NEO; g.filter='blur(7px)'; g.fill(); g.restore();
+    }
+  }
+
+  // FIVE ASSEMBLIES, sizes true against each other. The fan motor is nearest the optical
+  // centre and largest, so the frame has one focal and not five.
+  assembly(300, 782, 176, 232, {windings:true, mrat:0.60, bloom:true});
+  assembly(166, 1122, 74, 98,  {windings:true, mrat:0.58});
+  assembly(420, 1130, 58, 72,  {mrat:0.52});
+  assembly(662, 1136, 45, 55,  {mrat:0.62});
+  assembly(892, 1140, 37, 43,  {mrat:0.66});
+
+  window.__txProbe={oblique_deg:45, assemblies:5, magnet_fill:SINTER,
+    same_half_removed_on_every_assembly:true};
+})();
+</script>
+</body></html>
