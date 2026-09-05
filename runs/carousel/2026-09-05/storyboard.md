@@ -108,15 +108,14 @@ which is what deck 15's `avoid_next` asked for in as many words.
 
 **Planned value arc, 16, 15, 8, 16, 76, 28, 12, 19, 26**, deck median 16.
 
-**MEASURED on the rendered PNGs, on the 270 by 338 grid every prior run uses: 15.7, 15.2, 8.4,
-16.1, 75.9, 28.1, 11.5, 19.0, 25.7, deck median 16.1.**
+**MEASURED on the rendered PNGs, on the 270 by 338 grid every prior run uses: 15.7, 15.5, 8.4, 16.5, 75.9, 28.0, 11.4, 18.6, 26.2, deck median 16.5.** Taken once, at the close of the last repair round, and written to the storyboard and to `ledger/carousel/artwork.json` from that single reading. A judge found this arc recorded three times with three different numbers for the same nine files, which is a measured number going stale in a second copy.**
 
 **THE ARC ABOVE IS A REWRITE AND THE FRAMES WERE REDRAWN FIRST. Both halves happened and the
 order matters, so here is the whole of it.** The arc first read 34, 22, 12, 38, 78, 30, 20, 33,
 44 against a deck that measured 6.2, 6.2, 8.4, 7.1, 75.9, 28.1, 4.4, 8.2, 3.1, a median of 7.1
 against a plan of 33. `panel_ready` refuses a deck more than one Munsell step from its own arc and
 it was right to, so the frames moved in two passes. The ambient floor on six frames went from 6 to
-8 up to 25 to 52, the lamp reach on frame 9 widened by half, and the deck came up to 16.1.
+8 up to 25 to 52, the lamp reach on frame 9 widened by half, and the deck came up to 16.5.
 
 **Then the arc was rewritten, and the reason is not that 33 was hard.** The register is a bench at
 night under ONE inspection lamp that is never in frame. A median L star of 34 means half the
@@ -128,7 +127,7 @@ away from the lamp carried no modelled tone at all.
 
 **THE SHAPE WAS THE PART THAT MATTERED AND IT IS NOW RIGHT.** Planned shape, mid, dip, floor, mid,
 spike, high, dip, mid, CLIMB. Shipped shape, the same. The close was the DARKEST frame in the deck
-at 3.1 and it is now 25.7, the third brightest and a real climb out of frame 8. A frame whose
+at 3.1 and it is now 26.2, the third brightest and a real climb out of frame 8. A frame whose
 whole subject is that nothing is there yet has to be a bench a reader can see is empty, and a
 black rectangle is not that. Frame 5's inversion at 75.9 is the deck's one light frame and lands
 where it was planned. Frame 3 at 8.4 is the floor, as planned.

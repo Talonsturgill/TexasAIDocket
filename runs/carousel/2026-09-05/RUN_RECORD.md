@@ -365,11 +365,14 @@ was missing and is not any more: slide 4's dek now names the Department of Energ
 Projects Agency-Energy in full, where it read "the federal target" and a reader could finish the deck
 without learning who funded it.
 
-**The places answer is a gate limitation and it is worth writing down.** `assets/geo/tx-places.json`
-carries 254 counties, 67 CBSAs, 13 CSAs, 2 divisions and NO CITIES. `places_named` matches a city by
-bare name at length over four, so the city of Houston is unmatchable, and the only Houston in the
-file is Houston COUNTY in East Texas. A Houston story reports places NONE. Slide 4 does print "The
-Houston led team". Proposal for the upgrade lane, which owns that gate.
+**The places answer was a gate limitation and Phase 17 fixed it.** `assets/geo/tx-places.json`
+carries 254 counties, 67 CBSAs, 13 CSAs, 2 divisions and NO CITIES. `places_named` matched a city by
+bare name at length over four, so the city of Houston was unmatchable and the only Houston in the
+file is Houston COUNTY in East Texas. A Houston story reported places NONE. The gate now reads
+principal cities out of each statistical area's delineated name, and across sixteen decks with a
+`copy.json` it had been reporting no place on SIX that name Austin, Dallas, Fort Worth or Houston in
+plain prose. **This deck now reports `places Houston`.** The deck was SCORED at places NONE, which
+is the profile the judges graded, and it is recorded both ways rather than quietly upgraded.
 
 ## Phase 15, the panel, and it took three rounds
 
@@ -417,3 +420,48 @@ wire still joins two figures the deck says may not be compared. Each of those is
 a repair, and this project's own record says twice that a later round's hard fails were
 manufactured by an earlier round's repairs. They are the next deck's work and they are written
 into `avoid_next`.
+
+
+## Phase 17, the retro and the upgrade lane
+
+**Three gates shipped, each carrying the defect it exists for, each with a self test that replays
+that defect and goes red without the fix, and each replayed across the seventeen shipped decks
+under `runs/carousel/` so it does not fire on correct work.**
+
+- **`texan_check` reads principal cities out of the statistical area names.** See above. Six decks
+  in sixteen were reporting no place while naming a Texas city in plain prose.
+- **`label_guard` masks the wordmark from `config/brand.yaml` as a PHRASE.** Its `FURNITURE` set's
+  own comment claimed it held the deck's own furniture and it held none, so a colophon that puts
+  the mark in the same element as a claim id had TEXAS, AI and DOCKET read as three unsupported
+  labels. A phrase and never words, so a lone `AI` beside a claim is still checked. 2026-08-30 goes
+  from 35 findings to 32 and every other deck is unchanged.
+- **`aggregate_check` stops reading a count of one as a tally.** "Which one does ARPA-E publish?"
+  was reported as a computed count of the word "does", and this run reworded a caption around it.
+  Over every published surface of seventeen decks the shape fires ten times with a numeral of one
+  and NONE of the ten is an aggregate. A scale word after the numeral keeps the count, so "one
+  hundred filings" stays declarable.
+
+**`quantifier_check`'s mechanical extraction was NOT built and the measurement is why.** The last
+run filed it for this phase. The current pattern raises 18 findings across 16 decks and the widened
+word set raises 240, about fifteen a deck. The defect is real, and this run's own "No material named
+yet." and "Three years is the only schedule in the record" are both outside the pattern, and the
+naive fix is a row that is always red.
+
+### THE INCIDENT, AND IT IS THE MOST USEFUL THING PHASE 17 PRODUCED
+
+**The upgrade lane ran `git checkout -- ledger/docket.json`, which is the daily lane's file, and
+destroyed the record correction the daily lane was making at that moment.** It read an equal
+insertion and deletion count, 12,727 each, as a stray whitespace reformat. **Equal counts are also
+what a same length string edit produces.** `site_fresh_check` went red one step later because
+`docs/` held the new wording and the ledger held the old, the tree was made consistent by rebuilding
+`docs/` from the reverted ledger, and commit `6bd8f89c` therefore says it struck a reading that
+`ledger/docket.json` still carried. It was recovered from the built page and re-applied.
+
+Two things follow and both are written into the backlog.
+
+1. **The two writers of `ledger/docket.json` disagree about its indent.** `reverify.py` writes two
+   spaces and `docket_build.py --promote` writes one, so the file reformats itself depending on
+   which touched it last, and that is what made a same length string edit indistinguishable from
+   noise at a glance.
+2. **Two lanes running at once share one working tree.** The ownership map is a commit time guard
+   and it says nothing about a checkout. Nothing stopped this and nothing would have.
