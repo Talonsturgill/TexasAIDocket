@@ -1,83 +1,72 @@
 {
- "weighted_score": 6.988,
+ "weighted_score": 6.924,
  "judges": [
-  6.41,
-  6.942,
-  7.364
+  6.906,
+  6.84,
+  6.992
  ],
- "spread": 0.954,
+ "spread": 0.152,
  "criteria": {
   "artwork_craft": {
-   "score": 6.6,
+   "score": 6.5,
    "weight": 0.28,
    "judges": [
     6.5,
-    6.6,
-    7.3
+    6.3,
+    7.0
    ]
   },
   "claim_integrity": {
-   "score": 7.8,
+   "score": 7.5,
    "weight": 0.2,
    "judges": [
-    5.5,
-    7.8,
-    8.3
+    7.2,
+    7.5,
+    7.5
    ]
   },
   "story_and_stakes": {
-   "score": 6.8,
+   "score": 6.5,
    "weight": 0.18,
    "judges": [
     6.5,
-    6.8,
-    7.0
+    6.5,
+    6.5
    ]
   },
   "sequence_and_momentum": {
-   "score": 7.0,
+   "score": 7.2,
    "weight": 0.12,
    "judges": [
-    7.0,
+    7.3,
     7.2,
-    7.0
+    6.8
    ]
   },
   "voice": {
-   "score": 6.8,
+   "score": 7.0,
    "weight": 0.12,
    "judges": [
-    6.5,
-    6.8,
-    7.0
+    7.0,
+    7.0,
+    6.8
    ]
   },
   "variety": {
-   "score": 7.0,
+   "score": 7.3,
    "weight": 0.1,
    "judges": [
+    7.6,
     7.0,
-    6.3,
-    7.2
+    7.3
    ]
   }
  },
- "hard_fails": [
-  "An unverified fact presented as verified, in the run's committed record. ledger/carousel/topics.json states the topic as magnets that beat neodymium iron boron without imported rare earths, which is the exact sentence round 1 hard failed on slide 6's dek. No claim carries it and this run's own storyboard says so. ledger/carousel/artwork.json carries the same inference as structural law 1 and two storyboard palette rationales still justify the colour scheme by it. A ledger field is memory, so a refuted reading left in it becomes the next run's premise."
- ],
- "hard_fails_by_judge": [
-  {
-   "judge": 1,
-   "fail": "An unverified fact presented as verified, in the run's committed record. ledger/carousel/topics.json states the topic as magnets that beat neodymium iron boron without imported rare earths, which is the exact sentence round 1 hard failed on slide 6's dek. No claim carries it and this run's own storyboard says so. ledger/carousel/artwork.json carries the same inference as structural law 1 and two storyboard palette rationales still justify the colour scheme by it. A ledger field is memory, so a refuted reading left in it becomes the next run's premise."
-  }
- ],
- "ship": false,
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
  "threshold": 6.8,
  "over_threshold": true,
  "method": "per-criterion median across three judges, then weighted by the rubric",
- "note": "the judges disagree by 0.95, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
- "contested": [
-  "claim_integrity"
- ],
- "rounds": 2
+ "rounds": 4
 }

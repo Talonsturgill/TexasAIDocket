@@ -51,3 +51,15 @@ Source (primary_corporate): https://news.rice.edu/news/2026/rice-brings-ai-exper
 
 Source (primary_corporate): https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets
 
+### Rice states what its group contributes and what it is choosing between.
+
+> His research team will employ AI, atomistic modeling and high-throughput computing to identify promising magnetic materials for testing
+
+Source (primary_official): https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets
+
+### The University of Houston states the target the work is set against.
+
+> The UH-led team aims to surpass the properties of neodymium iron boron, the current industry-standard material for high-performance permanent magnets
+
+Source (primary_official): https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php
+

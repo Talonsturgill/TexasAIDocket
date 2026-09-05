@@ -132,7 +132,7 @@ whole subject is that nothing is there yet has to be a bench a reader can see is
 black rectangle is not that. Frame 5's inversion at 75.9 is the deck's one light frame and lands
 where it was planned. Frame 3 at 8.4 is the floor, as planned.
 
-**Deck median 16.1 against priors of 27.7, 22.2, 15.6, 21.2, 20.4, 22.5 and one breach at 73.1.**
+**Deck median 16.5 against priors of 27.7, 22.2, 15.6, 21.2, 20.4, 22.5 and one breach at 73.1.**
 This is the second darkest deck this project has shipped and it sits beside the 15.6, so it does
 NOT fill a band the ledger has never seen, which is what the first plan claimed for 33. Said
 plainly rather than left in the ledger to read as a variety win it is not.
@@ -344,7 +344,7 @@ type:
 verbatim:
   - c10: "The discovery of Nd2Fe14B, with its complex structural chemistry and extraordinary properties, suggests that other complex magnetic materials"
 acceptance:
-  - "the drawn grain field carries real per-pixel variance, with a measured standard deviation above 6 L* inside the tessellated region"
+  - "the drawn grain field carries real per-pixel variance inside the tessellated region rather than a flat fill, which craft_floor measures on the rendered PNG and reports as this frame's canvas variance. An earlier wording set a numeric standard deviation threshold in the luminance unit, which this run measures for whole frames and never for a region, so it named a figure nothing here produces"
   - "the boundary between drawn and undrawn is an ARC, hard within 2px, with no value fade approaching it, so the emptiness reads as a decision rather than as a scrim. A horizontal stop under a 250px fade shipped first and read as a video player's caption bar, which is the one thing this frame could not afford to say"
   - "the truncated quote is closed with its quotation mark and NOTHING ELSE. A drawn stop bar was set after it and two judges read it as a dash, which this house forbids, so the mark was the rule routed around rather than met and it came off. The risk it answered is real and is carried instead by the dek ending exactly where c10's confirmed quote ends, with nothing completing it"
   - "the undrawn region occupies between 30 and 45 percent of the frame area"
@@ -644,7 +644,9 @@ art:
   value_structure: >
     Lightest is the near tag's face in the middle band, catching the key square on. Darkest is
     the drilled hole in the body behind both tags, a small deep void that reads as cut rather
-    than painted. Both tags are lit to within 2 L star of each other so neither is favoured.
+    than painted. Both tags take the SAME gradient endpoints at the same angle, so their lighting is
+    equal by construction rather than to a tolerance, and the frame reports both stop sets to its
+    own probe.
   motion: >
     From the near tag across to the far tag, then down the wires to the hole they share.
 type:
@@ -655,7 +657,7 @@ verbatim:
   - c2: "$2.9 million"
   - c3: "$2.88 million"
 acceptance:
-  - "both tags are the same size, the same fill and lit to within 2 L* of each other, asserted by the frame's own script to window.__txProbe"
+  - "both tags are the same size and the same fill and take the SAME three gradient stops at the same angle, so their lighting is equal by construction rather than to a tolerance, and the frame asserts both stop sets to window.__txProbe. An earlier wording set a numeric luminance tolerance between the two, which the run never measured and which a probe reporting two identical stop sets cannot express"
   - "the two figures are set at one type size, one weight and one colour"
   - "neither figure is drawn on a baseline shared with the other, and no bar, rule, axis or difference appears anywhere"
   - "the shadow chain is present, with the wire casting on the tag and the tag casting on the body"

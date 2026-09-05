@@ -59,6 +59,15 @@ def main() -> int:
     # THE LARGEST FIELD MUST EXCEED THE SUM OF THE OTHER FOUR, which is slide 1's own acceptance
     # item, and that is a property of the shares rather than of the drawing. Asserted here so
     # the acceptance item is checkable against this file rather than against an opinion.
+    # The two published figures for the one award, counted over the claims that print one, and
+    # the term, read out of c2's own quote rather than retyped.
+    AWARD_CLAIMS = [cid for cid in ("c2", "c3")
+                    if re.search(r"\$\d", C[cid]["quote"] + " " + C[cid].get("text", ""))]
+    assert len(AWARD_CLAIMS) == 2, AWARD_CLAIMS
+    m_years = re.search(r"\b(one|two|three|four|five)[- ]year\b", C["c2"]["quote"], re.I)
+    assert m_years, C["c2"]["quote"]
+    GRANT_YEARS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}[m_years.group(1).lower()]
+
     total = sum(p for _, p in shares)
     biggest = max(p for _, p in shares)
     assert biggest > (total - biggest), "the cover's premise fails on these shares"
@@ -92,6 +101,15 @@ def main() -> int:
         "shares_from_c18": shares,
         "slide1_fields": fields,
         "slide1_density_per_kpx2": DENSITY_PER_KPX2,
+        # THE DECK'S THREE COUNTING WORDS, COMPUTED HERE RATHER THAN TYPED, because
+        # `shipped_check`'s freshness gate reads this file for every numeral a dossier's job or
+        # numerals field uses and a WORD is a numeral. Slides 8 and 9 both say "two" and the value
+        # was declared in aggregates.json and computed nowhere.
+        "counting_words": {
+            "import_origins": len(shares),
+            "figures_for_one_award": len(AWARD_CLAIMS),
+            "grant_years": GRANT_YEARS,
+        },
         "printed_numerals": {
             "71%": "c18", "13%": "c18", "5%": "c18", "6%": "c18",
             "$2.9 million": "c2", "$2.88 million": "c3",

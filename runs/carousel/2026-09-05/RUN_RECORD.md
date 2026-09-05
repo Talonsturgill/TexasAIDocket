@@ -324,8 +324,12 @@ critic on the sequence. The findings that changed the product:
 **6.2, 6.2, 8.4, 7.1, 75.9, 28.1, 4.4, 8.2, 3.1, a deck median of 7.1 against a plan of 33.**
 
 The frames were redrawn first, in two passes. The ambient floor on six frames went from 6 to 8 up to
-25 to 52, the lamp reach on the close widened by half, and the deck came up to **15.7, 15.3, 8.3,
-16.4, 76.3, 28.0, 11.5, 18.7, 25.9, a median of 16.4.**
+25 to 52, the lamp reach on the close widened by half, and the deck came up to **15.7, 15.5, 8.4,
+16.5, 75.9, 28.0, 11.4, 18.6, 26.2, a median of 16.5.** One reading, taken at the close of the last
+repair round and written to `out/2026-09-05/measurements.json`, and every surface that states a
+luminance is written from that file. A judge found this arc recorded three times with three
+different numbers for the same nine PNGs, and then found two stale figures surviving inside the
+sentences that announced the reconciliation.
 
 Then the arc was rewritten, and not because 33 was hard. A median of 34 means half the pixels of a
 frame sit at mid grey, which is not a room with one inspection lamp in it. The first nine numbers
@@ -334,10 +338,10 @@ and what the redraw fixed, is that an ambient floor of 6 to 8 is not a dark room
 vacuum, and the bench away from the lamp carried no modelled tone at all.
 
 **The part that mattered was the SHAPE and it is now right.** The close was the DARKEST frame in the
-deck at 3.1 and it is now 25.9, the third brightest and a real climb out of frame 8. A frame whose
+deck at 3.1 and it is now 26.2, the third brightest and a real climb out of frame 8. A frame whose
 whole subject is that nothing is there yet has to be a bench a reader can SEE is empty.
 
-**Deck median 16.4 against priors of 27.7, 22.2, 15.6, 21.2, 20.4, 22.5 and one breach at 73.1.**
+**Deck median 16.5 against priors of 27.7, 22.2, 15.6, 21.2, 20.4, 22.5 and one breach at 73.1.**
 Second darkest this project has shipped and it sits beside the 15.6, so it does not fill a band the
 ledger has never seen, which is what the first plan claimed for 33. Said plainly rather than left in
 the ledger to read as a variety win it is not.
@@ -465,3 +469,38 @@ Two things follow and both are written into the backlog.
    noise at a glance.
 2. **Two lanes running at once share one working tree.** The ownership map is a commit time guard
    and it says nothing about a checkout. Nothing stopped this and nothing would have.
+
+## Phase 15 closed at round 4
+
+| round | integrity | craft | reader | median | spread | verdict |
+|---|---|---|---|---|---|---|
+| 1 | 6.694 | 7.10 | 6.14 | 6.67 | 0.96 | HOLD, 1 hard fail |
+| 2 | 6.41 | 6.942 | 7.364 | 6.988 | 0.95 | HOLD, 1 hard fail |
+| 3 | 6.46 | 7.02 | 7.26 | 7.038 | 0.80 | HOLD, 1 hard fail |
+| 4 | 6.906 | 6.84 | 6.992 | **6.924** | **0.15** | **SHIP** |
+
+**The spread is the useful number.** Three judges started a point apart and finished agreeing
+within fifteen hundredths, and all three set `ship: true` with no hard fail. **6.924 against a 6.8
+bar is an ACCEPTABLE deck and not a good one**, which is what all three said in nearly the same
+words, and the run record should say it in theirs rather than round it up.
+
+**What round 4 also found and what was done with it.** The value arc had been reconciled at round 3
+and two prose figures beside the reconciled arrays were still stale, each inside the sentence that
+announced the reconciliation. Every luminance in the run's prose is now written from
+`measurements.json`, which is one reading taken once. The caption ledger's word count and comma rate
+were taken before the caption's last line was cut and are retaken from the shipped file. The
+published record item's evidence block carried four quotes and not one contained the word magnet, so
+a reader checking that page could verify the funder, the term, the figure and the coalition and find
+nothing establishing the subject: two quotes already verified in this run's claims file were added.
+
+**And a published grammar defect nobody had looked for.** `scripts/site/schema.py` built the FAQ
+answer "The last dated step was a ordered on September 1st". The article was hardcoded and the
+`DATE_KINDS` vocabulary carries `ordered`, `signed`, `passed`, `filed`, `decided`, `withdrawn` and
+`expires`, which are participles and verbs, so every item whose last date is one of those carried
+it. An "a or an" fix would only have made it "an ordered". The sentence takes no article now and
+reads correctly for every kind in the vocabulary.
+
+## Phase 19, the reading that counts
+
+`prompt_audit`: **1,678 tool calls measured and NONE waited on a human.** Taken last, so it covers
+the upgrade worker, the commits, the pushes and the merge as well as the deck.
