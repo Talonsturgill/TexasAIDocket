@@ -605,9 +605,15 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
             f"{ctx.ordinal(d)}, {when}.")
     elif ds:
         d, k = ds[-1]
+        # NO ARTICLE AT ALL, BECAUSE THE KIND IS NOT ALWAYS A NOUN. The DATE_KINDS vocabulary
+        # carries `ordered`, `signed`, `passed`, `filed`, `decided`, `withdrawn` and `expires`,
+        # which are participles and verbs, so the article produced "The last dated step was a
+        # ordered on September 1st" on tx-2026-0124's published page and on every item whose
+        # last date is one of those. An "a or an" fix would only have made it "an ordered".
+        # The sentence reads correctly for every kind in the vocabulary without one.
         add(f"{t}. What happens next?",
-            f"No future date is on the record. The last dated step was a "
-            f"{k.get('kind', 'step').replace('_', ' ')} on {ctx.ordinal(d)}.")
+            f"No future date is on the record. The last dated step on it was "
+            f"{k.get('kind', 'a step').replace('_', ' ')} on {ctx.ordinal(d)}.")
 
     if ds:
         first, _ = ds[0]

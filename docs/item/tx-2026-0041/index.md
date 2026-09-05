@@ -11,7 +11,7 @@ The City of Wichita Falls Planning and Zoning Commission approved a conditional 
 - Public access: Public meeting
 - Take part: https://www.wichitafallstx.gov/AgendaCenter
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The conditional use permit for the Airport Drive facility still stands and the second phase is still described as planned rather than filed.
 - 2026-08-29 · Checked and unchanged. The conditional use permit for the Airport Drive facility still stands, and the conditions the commission attached to it are unaltered. A second phase is still described as planned rather than approved.
 - 2026-09-02 · The conditional use permit stands as approved and the prohibition on water intensive evaporative cooling is unchanged.
+- 2026-09-05 · The Wichita Falls conditional use permit for the Airport Drive site still stands as approved.
 
 ## Evidence
 

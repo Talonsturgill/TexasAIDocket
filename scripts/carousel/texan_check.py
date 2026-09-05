@@ -99,13 +99,68 @@ ACTION = re.compile(
 # elsewhere on the same frame, so the gate was right by accident about a deck it had misread.
 
 
+# A NAME THAT IS ANOTHER PLACE'S FIRST WORD IS THAT OTHER PLACE. See `places_named`.
+OTHER_PLACE_TAIL = r"(?!\s+(?:Count(?:y|ies)|ISD|Independent\s+School\s+District)\b)"
+
+
 def gazetteer() -> tuple:
+    """`(counties, cities)`, and the second set is where a Houston story went missing.
+
+    THE DEFECT THIS EXISTS FOR. 2026-09-05, carousel no. 16, a story about a University of
+    Houston led team, printing "The Houston led team" on frame 4. This gate reported
+    `places NONE`, so the run record had to say in prose that the deck names a Texas city while
+    its own gate said it named none.
+
+    `assets/geo/tx-places.json` holds 254 counties, 67 CBSAs, 13 CSAs and 2 divisions, and NO
+    CITIES. So the only string in the file that carries the word Houston as a CITY is the
+    metropolitan area's full name, `Houston-Pasadena-The Woodlands`, which no deck has ever
+    written and none ever will. The one bare Houston in the file is Houston COUNTY, a rural
+    county in East Texas that has nothing to do with the story.
+
+    Measured across sixteen shipped decks on 2026-09-05, this gate reported no place on six
+    decks that name Austin, Dallas, Fort Worth or Houston in plain prose. That is the four
+    largest cities in Texas, invisible to the one gate whose subject is whether a Texan can tell
+    where this happened.
+
+    THE FIX IS THE FILE'S OWN STRUCTURE RATHER THAN A TYPED LIST. OMB names a statistical area
+    after its PRINCIPAL CITIES, joined with hyphens, so `Houston-Pasadena-The Woodlands` is
+    already a machine readable statement that Houston, Pasadena and The Woodlands are cities.
+    Splitting the delineated name on its hyphens reads that statement instead of restating it,
+    and it needs no gazetteer change, which matters because `assets/` is not this lane's.
+
+    Two guards on the split, both measured rather than assumed.
+
+      A ROW THAT LEAVES TEXAS IS DROPPED WHOLE. `El Paso-Las Cruces, TX-NM` would otherwise
+      teach this gate that Las Cruces, New Mexico is a Texas place, which is the misreport this
+      file already refuses to make about a surname. Only rows whose `full_name` ends `, TX`
+      contribute components. It costs Texarkana, which appears only in the `TX-AR` row, and a
+      miss is the safe half of that trade.
+
+      THE LENGTH FLOOR STAYS. A component is a city only if its name is longer than four
+      characters, which is the rule this set already ran on and the reason Alice and Paris carry
+      the same risk they always did.
+
+    Replayed across all sixteen shipped decks with a `copy.json`, the split adds seven place
+    findings, every one of them a real Texas city in real geographic use, and removes none.
+    """
     if not PLACES.exists():
         return set(), set()
     d = json.loads(PLACES.read_text(encoding="utf-8"))
     ps = d.get("places") or []
-    return ({p["name"] for p in ps if p.get("kind") == "county"},
-            {p["name"] for p in ps if p.get("kind") != "county" and len(p.get("name", "")) > 4})
+    cities = set()
+    for p in ps:
+        if p.get("kind") == "county":
+            continue
+        name = str(p.get("name") or "")
+        if len(name) > 4:
+            cities.add(name)
+        if not str(p.get("full_name") or "").endswith(", TX"):
+            continue
+        for part in name.split("-"):
+            part = part.strip()
+            if len(part) > 4:
+                cities.add(part)
+    return ({p["name"] for p in ps if p.get("kind") == "county"}, cities)
 
 
 def places_named(text: str) -> list:
@@ -115,6 +170,13 @@ def places_named(text: str) -> list:
     county called Anderson, and a bare-token match found it inside a person's surname on the
     2026-08-16 deck. A county counts when it is written as a county, a school district when it
     is written as one, and a city only if its name is long enough not to be an ordinary word.
+
+    AND A CITY NAME STANDING AT THE HEAD OF ANOTHER PLACE'S NAME IS THAT OTHER PLACE. Houston is
+    a principal city and it is also a rural county in East Texas and a school district, so a bare
+    token match reads `Houston County` and `Houston ISD` as the city and reports a place the copy
+    does not name. This is `label_guard._place_mask`'s argument one gate over: a component word is
+    exempt only where its whole name stands, and here a component is a CITY only where the longer
+    name does not stand. Without it the 2026-08-18 calibration gains a Houston off `Houston ISD`.
     """
     counties, cities = gazetteer()
     hits = set()
@@ -122,7 +184,7 @@ def places_named(text: str) -> list:
         if re.search(rf"\b{re.escape(c)}\s+Count(?:y|ies)\b", text):
             hits.add(f"{c} County")
     for c in cities:
-        if re.search(rf"\b{re.escape(c)}\b", text):
+        if re.search(rf"\b{re.escape(c)}\b" + OTHER_PLACE_TAIL, text):
             hits.add(c)
     for m in re.finditer(r"\b([A-Z][a-zA-Z]+)\s+(?:ISD|Independent School District)\b", text):
         hits.add(m.group(0))
@@ -246,6 +308,28 @@ def self_test() -> int:
        str(places_named("Grimes County approved it.")))
     ok("a school district counts", "Houston ISD" in places_named("Houston ISD voted."))
 
+    # THE 2026-09-05 DEFECT, REPLAYED. The gazetteer holds no cities, so before the principal
+    # city split this line measured NONE on a deck whose whole story is a Houston led team. The
+    # first two assertions go red on the unsplit set and the third goes red without the tail
+    # guard, because a bare token match reads the East Texas county as the city.
+    _c, _cities = gazetteer()
+    ok("the gazetteer yields Houston as a principal city, not only inside its metro's full name",
+       "Houston" in _cities)
+    ok("a deck naming the city of Houston reports it",
+       places_named("The Houston led team aims to surpass neodymium.") == ["Houston"],
+       str(places_named("The Houston led team aims to surpass neodymium.")))
+    ok("...and Houston County is the county, never the city",
+       places_named("Houston County approved it.") == ["Houston County"],
+       str(places_named("Houston County approved it.")))
+    ok("...and Houston ISD is the district, never the city",
+       places_named("Houston ISD voted.") == ["Houston ISD"],
+       str(places_named("Houston ISD voted.")))
+    # A ROW THAT LEAVES TEXAS CONTRIBUTES NOTHING. `El Paso-Las Cruces, TX-NM` would otherwise
+    # make a New Mexico city a Texas place, which is the misreport this file refuses to make.
+    ok("a New Mexico principal city is not a Texas place",
+       places_named("Las Cruces filed a brief.") == [],
+       str(places_named("Las Cruces filed a brief.")))
+
     # The closing frame decides the next step, not a docket buried mid deck.
     p = profile("Project 58482 took a comment on August 18th. Nothing else.",
                 closing="Nothing here but a hook.")
@@ -260,10 +344,20 @@ def self_test() -> int:
     p = profile("x", closing="ONE DOOR IS STILL OPEN. NOTHING SCHEDULED.")
     ok("...and caps alone do not conjure one", not p["next_step"], str(p))
 
-    # CALIBRATION against all three shipped decks, so drift shows up as a number.
+    # CALIBRATION against shipped decks, so drift shows up as a number.
+    #
+    # 2026-09-05 is here because it is the deck the principal city split was written for, and
+    # 2026-08-25 is here because it is the one row the split CHANGED. It used to report both
+    # `Lubbock` and `Lubbock County` for a copy whose only Lubbock is `Lubbock County`, so the
+    # tail guard removed a duplicate rather than a finding. Every Lubbock in that copy was
+    # measured before this line was written rather than argued about.
     expect = {"2026-08-16": ["Grimes County", "Iola ISD"],
               "2026-08-18": ["Bonham", "Houston ISD"],
-              "2026-08-19": []}
+              "2026-08-19": [],
+              "2026-08-25": ["Brazoria County", "El Paso", "Fort Worth", "Hays County",
+                             "Hill County", "Lubbock County", "San Angelo", "Tom Green County",
+                             "Wichita Falls", "Williamson County"],
+              "2026-09-05": ["Houston"]}
     for date, want in expect.items():
         cp = REPO_ROOT / "runs" / "carousel" / date / "copy.json"
         if not cp.exists():

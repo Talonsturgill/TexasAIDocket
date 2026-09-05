@@ -1,0 +1,241 @@
+{
+  "story": "ARPA-E funded a University of Houston led coalition that includes Rice University to use artificial intelligence to design permanent magnets that surpass the properties of neodymium iron boron while weighing supply constraints.",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "Rice University materials scientist Geoffroy Hautier has joined a team led by the University of Houston, according to Rice's own announcement.",
+      "quote": "Rice University materials scientist Geoffroy Hautier has joined a team led by the University of Houston",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+      "source_title": "Rice brings AI expertise to DOE-backed search for next-generation magnets",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "Rice's release is dated Sep. 1, 2026 on the page. This claim rests on the Rice announcement, not on an ARPA-E or UH document."
+    },
+    {
+      "id": "c2",
+      "text": "Rice's announcement puts the award at a three year, $2.9 million grant from the U.S. Department of Energy's Advanced Research Projects Agency-Energy.",
+      "quote": "The project has received a three-year, $2.9 million grant from the U.S. Department of Energy's Advanced Research Projects Agency-Energy",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+      "source_title": "Rice brings AI expertise to DOE-backed search for next-generation magnets",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "The lead institution prints a different figure. See c3. Neither number was converted or rounded here."
+    },
+    {
+      "id": "c3",
+      "text": "The University of Houston, which leads the project, puts the same award at $2.88 million from ARPA-E.",
+      "quote": "$2.88 million grant from the U.S. Department of Energy's Advanced Research Projects Agency-Energy",
+      "url": "https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php",
+      "source_title": "Department of Energy Awards UH-led Team $2.88M to Use AI to Strengthen America's Critical Mineral Supply Chain",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "UH's headline carries $2.88M. Rice's release carries $2.9 million. Both are recorded as printed and neither is reconciled here."
+    },
+    {
+      "id": "c4",
+      "text": "The University of Houston names the three year project Guided AI for Magnetic Boride and Carbide Intermetallic Technologies, or GAMBIT, headed by Jakoah Brgoch.",
+      "quote": "Over the three-year grant period, Brgoch will head Guided AI for Magnetic Boride/Carbide Intermetallic Technologies (GAMBIT).",
+      "url": "https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php",
+      "source_title": "Department of Energy Awards UH-led Team $2.88M to Use AI to Strengthen America's Critical Mineral Supply Chain",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "The project name GAMBIT does not appear anywhere on the Rice release."
+    },
+    {
+      "id": "c5",
+      "text": "Rice names the coalition as Rice, Colorado State University, Carrier Global and the Houston startup Newfound Materials, led by principal investigator Jakoah Brgoch of the University of Houston.",
+      "quote": "The coalition led by Jakoah Brgoch, principal investigator and the Eby Nell McElrath Professor of Chemistry at UH, includes researchers from Rice, Colorado State University, Carrier Global, and Houston startup Newfound Materials.",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+      "source_title": "Rice brings AI expertise to DOE-backed search for next-generation magnets",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high"
+    },
+    {
+      "id": "c6",
+      "text": "Hautier's Rice group will use AI, atomistic modeling and high throughput computing to pick which magnetic materials get tested.",
+      "quote": "His research team will employ AI, atomistic modeling and high-throughput computing to identify promising magnetic materials for testing.",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+      "source_title": "Rice brings AI expertise to DOE-backed search for next-generation magnets",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high"
+    },
+    {
+      "id": "c7",
+      "text": "Rice's release names the ARPA-E program only as Magnetic Acceleration Generating, which is not the program's full name.",
+      "quote": "under its Magnetic Acceleration Generating program.",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+      "source_title": "Rice brings AI expertise to DOE-backed search for next-generation magnets",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "ARPA-E's own funding opportunity title is longer. See c8."
+    },
+    {
+      "id": "c8",
+      "text": "ARPA-E's own funding opportunity archive gives the program's full name as Magnetic Acceleration Generating New Innovations and Tactical Outcomes, acronym MAGNITO, listed as DE-FOA-0003590.",
+      "quote": "Magnetic Acceleration Generating New Innovations and Tactical Outcomes (MAGNITO)",
+      "url": "https://arpa-e-foa.energy.gov/Default.aspx?Archive=1",
+      "source_title": "ARPA-E Funding Opportunity Exchange, funding archive",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "The exact strings Magnetic Acceleration Generating New Innovations and Tactical Outcomes (MAGNITO) and DE-FOA-0003590 both appear on this page. The University of Houston release hyperlinks ARPA-E to arpa-e.energy.gov/programs-and-initiatives/view-all-programs/magnito, which ties this award to that program."
+    },
+    {
+      "id": "c9",
+      "text": "ARPA-E states the MAGNITO objective as finding magnets whose saturation magnetization or maximum energy product beats any known material.",
+      "quote": "support the discovery, synthesis, and characterization of new, more powerful magnets with either a saturation magnetization or maximum energy product higher than that of any known material",
+      "url": "https://simpler.grants.gov/opportunity/aad9fcc3-0fb7-4fb3-b36a-29accc831695",
+      "source_title": "Magnetic Acceleration Generating New Innovations and Tactical Outcomes (MAGNITO), DE-FOA-0003590, Advanced Research Projects Agency Energy",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "This is the government's own statement of the performance target, and it is stated against any known material rather than against neodymium iron boron by name."
+    },
+    {
+      "id": "c10",
+      "text": "The MAGNITO opportunity argues that the discovery of the neodymium iron boron compound Nd2Fe14B suggests other complex magnetic materials are still undiscovered.",
+      "quote": "The discovery of Nd2Fe14B, with its complex structural chemistry and extraordinary properties, suggests that other complex magnetic materials",
+      "url": "https://simpler.grants.gov/opportunity/aad9fcc3-0fb7-4fb3-b36a-29accc831695",
+      "source_title": "Magnetic Acceleration Generating New Innovations and Tactical Outcomes (MAGNITO), DE-FOA-0003590, Advanced Research Projects Agency Energy",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-05",
+      "confidence": "medium",
+      "note": "Only the leading portion of the sentence was confirmed identically across two fetches, so only that portion is quoted."
+    },
+    {
+      "id": "c11",
+      "text": "The University of Houston states the team aims to surpass neodymium iron boron, the current industry standard for high performance permanent magnets.",
+      "quote": "The UH-led team aims to surpass the properties of neodymium iron boron, the current industry-standard material for high-performance permanent magnets.",
+      "url": "https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php",
+      "source_title": "Department of Energy Awards UH-led Team $2.88M to Use AI to Strengthen America's Critical Mineral Supply Chain",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high"
+    },
+    {
+      "id": "c12",
+      "text": "The University of Houston states that supply chains for neodymium iron boride magnets are heavily concentrated overseas.",
+      "quote": "Supply chains for neodymium-iron-boride magnets are heavily concentrated overseas.",
+      "url": "https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php",
+      "source_title": "Department of Energy Awards UH-led Team $2.88M to Use AI to Strengthen America's Critical Mineral Supply Chain",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "This is the awardee's characterisation. The federal figure behind it is c18."
+    },
+    {
+      "id": "c13",
+      "text": "The University of Houston states the grant is part of a $100 million Department of Energy initiative on domestic magnet manufacturing and critical mineral production.",
+      "quote": "The grant is part of a $100 million initiative from the DOE to support early-stage research and development projects aimed at boosting domestic magnet manufacturing and critical mineral production.",
+      "url": "https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php",
+      "source_title": "Department of Energy Awards UH-led Team $2.88M to Use AI to Strengthen America's Critical Mineral Supply Chain",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "medium",
+      "note": "The $100 million figure rests on the UH release alone. No DOE or ARPA-E page carrying it was reachable this run."
+    },
+    {
+      "id": "c14",
+      "text": "Principal investigator Jakoah Brgoch frames the work as using AI to find entirely new materials while weighing supply constraints.",
+      "quote": "Our goal is to use AI to find entirely new materials while simultaneously balancing these supply constraint concerns.",
+      "url": "https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php",
+      "source_title": "Department of Energy Awards UH-led Team $2.88M to Use AI to Strengthen America's Critical Mineral Supply Chain",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "The Rice release renders the same quote with artificial intelligence in place of AI. The UH wording is the one quoted here because this is the UH page."
+    },
+    {
+      "id": "c15",
+      "text": "Rice quotes Hautier saying magnets run from air conditioning systems through to electronic devices.",
+      "quote": "Magnets are everywhere, from air conditioning systems to all our electronic devices",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+      "source_title": "Rice brings AI expertise to DOE-backed search for next-generation magnets",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high"
+    },
+    {
+      "id": "c16",
+      "text": "Hautier argues that better magnets translate into an efficiency gain across different technologies.",
+      "quote": "If you improve the quality of these magnets, that translates into an efficiency gain everywhere",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+      "source_title": "Rice brings AI expertise to DOE-backed search for next-generation magnets",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-05",
+      "confidence": "high"
+    },
+    {
+      "id": "c17",
+      "text": "The U.S. Geological Survey reports that the estimated leading global use of rare earths was magnets, while the leading domestic end use was catalysts.",
+      "quote": "The estimated leading domestic end use of rare earths was catalysts, whereas the estimated leading global use was magnets.",
+      "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf",
+      "source_title": "U.S. Geological Survey, Mineral Commodity Summaries 2026, Rare Earths",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "The fact-checker read this through a text extraction proxy because pubs.usgs.gov answered 403, and marked it medium for that reason. The showrunner then fetched the PDF directly from the canonical USGS address with a browser user agent and a Referer header, got HTTP 200 and 639,984 bytes, and matched this string character for character in the extracted text of a two page document. Confidence raised to high on that direct read."
+    },
+    {
+      "id": "c18",
+      "text": "The U.S. Geological Survey lists China as the source of 71 percent of United States imports of rare earth compounds and metals over 2021 to 2024, ahead of Malaysia at 13 percent.",
+      "quote": "Rare-earth compounds and metals: China,8 71%; Malaysia, 13%; Japan, 5%; Estonia, 5%; and other, 6%.",
+      "url": "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-rare-earths.pdf",
+      "source_title": "U.S. Geological Survey, Mineral Commodity Summaries 2026, Rare Earths",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-05",
+      "confidence": "high",
+      "note": "THE QUOTE IS CORRECTED HERE AND THE CORRECTION IS THE REASON THIS NOTE EXISTS. The fact-checker's proxy read dropped a footnote marker and gave 'China, 71%'. The document itself carries a superscript 8 on China, which the PDF text extracts as 'China,8 71%', and that is what is quoted. The line sits under the heading 'Import Sources (2021-24)', which is where the date range comes from. Every percentage is carried exactly as printed and none was summed or converted. Verified by direct fetch of the canonical USGS PDF, HTTP 200, not through a proxy."
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "A single dollar value for the award",
+      "reason": "The two institutions print different figures for the same grant. Rice says $2.9 million and the University of Houston says $2.88 million. Both are recorded separately and attributed, at c2 and c3. Reconciling them would mean producing a number neither page carries."
+    },
+    {
+      "finding": "The ARPA-E program is called Magnetic Acceleration Generating, as the Rice release renders it",
+      "reason": "ARPA-E's own funding opportunity archive gives the full title as Magnetic Acceleration Generating New Innovations and Tactical Outcomes (MAGNITO), DE-FOA-0003590. The Rice rendering is a truncation and is recorded as such at c7."
+    },
+    {
+      "finding": "The ARPA-E MAGNITO program page body text",
+      "reason": "arpa-e.energy.gov renders its program bodies client side. Three direct fetches returned only the page title and no body, so the strings could not be confirmed at their own address. The equivalent government wording was taken from the grants.gov opportunity record instead, at c9 and c10."
+    },
+    {
+      "finding": "MAGNITO has 14 projects and became active on August 25th, 2025",
+      "reason": "Same cause. Both figures came only through a text extraction proxy of a page whose direct fetch returns no body, so neither was confirmed at the ARPA-E address."
+    },
+    {
+      "finding": "MAGNITO program funding of $20,000,000, an award minimum of $500,000 and an award maximum of $3,000,000",
+      "reason": "The grants.gov opportunity page returned its label and value pairs misaligned across two fetches. A figure whose label cannot be pinned is not a figure this record will carry."
+    },
+    {
+      "finding": "China produced 270,000 tons of rare earth oxide, leading world mine production",
+      "reason": "The figure sits in a USGS table carrying footnote markers, and the extracted text ran three numbers together. Which column is which could not be established from the text, so no production number is published."
+    },
+    {
+      "finding": "Joshua Bocarsly's quote about the bottleneck in measuring new magnets",
+      "reason": "Two fetches of the UH page returned two different versions of the same sentence. The exact string is not established, so it is not quoted."
+    },
+    {
+      "finding": "Brgoch's fuller air conditioning quote about permanent-magnet motors driving compressors and blower fans",
+      "reason": "The same two fetches disagreed on where that sentence ends. The ordinary equipment context is carried instead by Hautier's confirmed line at c15."
+    },
+    {
+      "finding": "Hautier's institute affiliations at Rice",
+      "reason": "The reader returned this as a fragment that does not parse as printed prose, so the exact string could not be confirmed. Likely correct and not published without a verbatim match."
+    },
+    {
+      "finding": "A DOE or ARPA-E announcement of the $100 million initiative, or of the MAGNITO award selections",
+      "reason": "No such page was reachable. energy.gov and arpa-e.energy.gov news listings render client side and returned no body. The $100 million figure therefore rests on the UH release alone and c13 says so."
+    }
+  ],
+  "story_note": "THIS FIELD READ 'and cut reliance on imported rare earths' AND NO CLAIM HERE SAYS SO. c11 gives the target against neodymium iron boron and c14 gives the goal as new materials while balancing supply constraint concerns. c12 and c13 are about concentration and about a federal critical minerals initiative and neither says this project leaves rare earths behind. The same reading reached slide 6's dek, where a scorer hard failed it, and it was struck from the frame, the storyboard, both ledgers and here."
+}

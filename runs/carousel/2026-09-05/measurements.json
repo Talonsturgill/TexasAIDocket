@@ -1,0 +1,76 @@
+{
+ "run": "2026-09-05",
+ "measured_on": "the nine shipped PNGs resampled to 270 by 338, the grid every prior run used",
+ "per_frame": [
+  {
+   "file": "slide-01.png",
+   "median_L": 15.7,
+   "mean_L": 21.9,
+   "p05": 5.4,
+   "p95": 63.3
+  },
+  {
+   "file": "slide-02.png",
+   "median_L": 15.5,
+   "mean_L": 18.0,
+   "p05": 6.3,
+   "p95": 44.8
+  },
+  {
+   "file": "slide-03.png",
+   "median_L": 8.4,
+   "mean_L": 12.7,
+   "p05": 3.0,
+   "p95": 40.8
+  },
+  {
+   "file": "slide-04.png",
+   "median_L": 16.5,
+   "mean_L": 19.3,
+   "p05": 6.7,
+   "p95": 43.4
+  },
+  {
+   "file": "slide-05.png",
+   "median_L": 75.9,
+   "mean_L": 73.9,
+   "p05": 54.1,
+   "p95": 79.1
+  },
+  {
+   "file": "slide-06.png",
+   "median_L": 28.0,
+   "mean_L": 33.5,
+   "p05": 4.9,
+   "p95": 76.9
+  },
+  {
+   "file": "slide-07.png",
+   "median_L": 11.4,
+   "mean_L": 14.1,
+   "p05": 4.8,
+   "p95": 29.2
+  },
+  {
+   "file": "slide-08.png",
+   "median_L": 18.6,
+   "mean_L": 24.2,
+   "p05": 9.2,
+   "p95": 74.7
+  },
+  {
+   "file": "slide-09.png",
+   "median_L": 26.2,
+   "mean_L": 24.4,
+   "p05": 5.3,
+   "p95": 42.1
+  }
+ ],
+ "deck_median_L": 16.5,
+ "deck_mean_L": 24.0,
+ "range_L": [
+  8.4,
+  75.9
+ ],
+ "note": "ONE READING, taken at the close of the last repair round and written from here to the storyboard and to ledger/carousel/artwork.json. A judge found the arc recorded three times with three different numbers for the same nine files, which is a measured number going stale in a second copy."
+}

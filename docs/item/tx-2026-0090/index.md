@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2534344.json
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-30 · The award still stands. The alloy laboratory remains open access, and outside researchers can still put work on it.
 - 2026-09-01 · The federal award for Texas A and M's open-access autonomous metals laboratory remains in force.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-05 · The open access robot run alloy laboratory at College Station still stands as funded and outside researchers may still book it.
 
 ## Evidence
 

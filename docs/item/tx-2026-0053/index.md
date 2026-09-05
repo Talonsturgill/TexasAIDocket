@@ -11,7 +11,7 @@ Houston Independent School District has a proposed local board policy numbered C
 - Public access: Public meeting
 - Take part: https://houstonisd.legistar.com/MeetingDetail.aspx?LEGID=1304&GID=889&G=AEA739C4-F651-4FB7-B1D8-F4D303D5084D
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The district's agenda system still records no action on CQD(LOCAL) at its second reading. Houston ISD still has no adopted board policy on artificial intelligence while its schools keep running.
 - 2026-09-01 · Houston ISD's artificial-intelligence board policy remains between readings, with no final adoption in the record.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-09-05 · The Houston district's AI policy is still between readings. It has not returned to the board for the second one.
 
 ## Evidence
 

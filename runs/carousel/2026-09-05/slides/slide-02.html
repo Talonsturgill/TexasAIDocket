@@ -1,0 +1,240 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#14100E}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:540px;
+    /* THE SCRIM WAS WHAT FLATTENED THE GROUND. At 0.95 alpha the bench's grain reaches a
+       reader at a twentieth of its amplitude, so panel_ready measured the quietest patch
+       under it as a gradient rather than as material, which is exactly what it is for. */
+    background:linear-gradient(to bottom,rgba(20,16,14,.84) 0%,rgba(20,16,14,.78) 58%,rgba(20,16,14,.40) 85%,rgba(20,16,14,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:132px;
+    background:linear-gradient(to bottom,rgba(20,16,14,0) 0%,rgba(20,16,14,.70) 46%,rgba(20,16,14,.96) 100%)}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#8C8478}
+  h1{position:absolute;top:142px;left:80px;width:880px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:90px;line-height:1.03;color:#E8E1D4;letter-spacing:-.022em}
+  .dek{position:absolute;top:358px;left:80px;width:830px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:30px;line-height:1.32;color:#B6ADA0;font-style:italic}
+  .lab{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;
+    letter-spacing:.10em;color:#CFC7BA;white-space:nowrap}
+  .lab.r{text-align:right}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#ADA598;font-variant-numeric:tabular-nums;
+    text-shadow:0 0 8px #14100E,0 0 16px #14100E}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>It is already in your house.</h1>
+  <p class="dek">"Magnets are everywhere, from air conditioning systems to all our electronic devices"</p>
+
+  <!-- TWO LABELS, AND THEY ARE THE QUOTE'S OWN TWO ENDS. Five read CONDENSER FAN MOTOR,
+       BLOWER MOTOR, HARD DRIVE, EARBUD DRIVER and HAPTIC, and label_guard was right to refuse
+       them. c15 says magnets run "from air conditioning systems to all our electronic devices"
+       and names nothing more granular, so five product names were five facts the record does
+       not carry, printed beside c15 as though it carried them. The quote is a RANGE, so the
+       frame labels the two ends of it and lets the three between read as what is in between,
+       which is closer to what the source says than the five names were. -->
+  <div class="lab" id="a0" style="left:124px;top:522px">AIR CONDITIONING SYSTEMS</div>
+  <div class="lab r" id="a1" style="right:80px;top:1002px">ELECTRONIC DEVICES</div>
+
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>RICE</span><span>c15</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const NIGHT='#14100E', SINTER='#191518', NI='#CBC3B4', CU='#B5622C', NEO='#B3A6D2';
+  const LAMPX=300, LAMPY=250, LAMPR=1500;
+
+  // ---- bench, in DEVICE pixels. putImageData ignores the transform. -----------------------
+  g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
+  (function bench(){
+    const DW=W*2, DH=H*2, im=g.createImageData(DW,DH), d=im.data;
+    for(let py=0;py<DH;py++){ const y=py*0.5;
+      for(let px=0;px<DW;px++){ const x=px*0.5;
+        let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=f*f;
+        const gr=0.6*TX.fbm2((x+1400)*0.0018,(y+400)*0.0165,4)+0.4*TX.fbm2((x+9)*0.0010,(y+7)*0.0038,3);
+                // THE AMBIENT FLOOR WAS 6 TO 8 AND THE DECK SHIPPED AT A MEDIAN L* OF 7.1 AGAINST A
+        // PLAN OF 33. Measured on the 270 by 338 grid every prior run uses, which is what the
+        // storyboard's value structure section demands and what deck 14 skipped until round 3.
+        // A room at night is not a vacuum, so the floor is raised to give the bench modelled
+        // tone away from the lamp instead of black. The lamp term is untouched, so the raking
+        // key still does all the shaping.
+        // A FINE TOOTH, AND THE GATE IS MEASURING THE RIGHT THING. panel_ready removes each
+        // patch's own local mean with a 16px box blur and then measures what is left, which is
+        // how it separates MATERIAL from a gradient. This bench's grain is long horizontal
+        // streaks on a 118 device px period, so the blur takes the whole of it back out and the
+        // residual was 1.5 to 3.6 against a floor of 4. Oiled wood under a raking lamp has tooth
+        // at the pixel as well as figure across the board, and that is what was missing.
+        // Deterministic in the device coordinate, so two renders agree to the byte.
+        const _h=Math.sin(px*12.9898+py*78.233)*43758.5453;
+        const v=25+f*52+gr*26*(0.35+f)+((_h-Math.floor(_h))-0.5)*17;
+        const i=(py*DW+px)*4;
+        d[i]=Math.min(255,v*1.22); d[i+1]=Math.min(255,v*1.03); d[i+2]=Math.min(255,v*0.88); d[i+3]=255;
+      }}
+    g.save(); g.setTransform(1,0,0,1,0,0); g.putImageData(im,0,0); g.restore();
+  })();
+
+  // ---- THE GROUND UNDER THE ROW, LIT BEFORE ANYTHING IS SEATED ON IT ---------------------
+  // The four small assemblies cast onto bench dark enough that the change was about one L*, so
+  // at 432px they floated. Structural law 2 of this deck is SEATED MEANS MADE, which makes four
+  // unseated bodies a law violation on the frame about things that already exist. A shadow
+  // needs lit ground to be a shadow on.
+  (function rowPool(){
+    const gr=g.createRadialGradient(520,1176,40,520,1176,620);
+    gr.addColorStop(0,'rgba(246,236,210,0.135)'); gr.addColorStop(0.58,'rgba(246,236,210,0.045)');
+    gr.addColorStop(1,'rgba(246,236,210,0)');
+    g.save(); g.translate(520,1176); g.scale(1,0.40); g.translate(-520,-1176);
+    g.fillStyle=gr; g.beginPath(); g.arc(520,1176,620,0,6.2832); g.fill(); g.restore();
+  })();
+
+  // ---- ONE SECTION PLANE, and every assembly is cut on it --------------------------------
+  // A row of icons would be a list. One shared cut plane at one angle makes it a single
+  // drawing of a single fact, which is that the same black part is inside all five. The plane
+  // is drawn as a continuous line across the frame so a reader can see it is shared.
+  const OBL=Math.PI/4, DEPTH=0.42;   // plan oblique, 45 degrees, foreshortened
+  const ox=d=>Math.cos(OBL)*d*DEPTH, oy=d=>-Math.sin(OBL)*d*DEPTH;
+
+  function seat(cx,cy,rx){                       // two-part contact shadow onto a LIT ground
+    g.save();
+    g.beginPath(); g.ellipse(cx+rx*0.16,cy+10,rx*1.06,rx*0.30,0,0,6.2832);
+    g.fillStyle='rgba(0,0,0,0.50)'; g.filter='blur(18px)'; g.fill(); g.restore();
+    g.save();
+    g.beginPath(); g.ellipse(cx+rx*0.05,cy+3,rx*0.72,rx*0.15,0,0,6.2832);
+    g.fillStyle='rgba(0,0,0,0.72)'; g.filter='blur(5px)'; g.fill(); g.restore();
+  }
+
+  // A cylindrical assembly cut on the plane: outer can, windings, and the magnet ring inside.
+  function assembly(cx,cy,r,h,opt){
+    opt=opt||{};
+    seat(cx,cy+h*0.5,r);
+    const top=cy-h*0.5, bot=cy+h*0.5;
+    // can body
+    const lg=g.createLinearGradient(cx-r,0,cx+r,0);
+    lg.addColorStop(0,'#3A3630'); lg.addColorStop(0.30,'#6E675C'); lg.addColorStop(0.55,'#4A453D');
+    lg.addColorStop(1,'#241F1B');
+    g.fillStyle=lg;
+    g.beginPath();
+    g.moveTo(cx-r,top); g.lineTo(cx+r,top); g.lineTo(cx+r,bot);
+    g.ellipse(cx,bot,r,r*DEPTH,0,0,Math.PI); g.lineTo(cx-r,top); g.closePath(); g.fill();
+    // cut face, the half nearest the reader is removed so the inside shows
+    g.save();
+    g.beginPath(); g.rect(cx-r,top-4,r,h+r*DEPTH+8); g.clip();
+    // THE CUT FACE IS LIFTED AGAINST THE BARREL. At #2B2620 against the barrel's own #2A2521
+    // range the section boundary was a 2 L* step, so on three of five assemblies the shared cut
+    // was invisible at 432px and the row read as plain washers beside one small motor. The cut
+    // is the whole argument of the frame, so it is the lightest plane on each body.
+    g.fillStyle='#3E3830';
+    g.beginPath(); g.moveTo(cx-r,top); g.lineTo(cx,top); g.lineTo(cx,bot); g.lineTo(cx-r,bot); g.closePath(); g.fill();
+    // WINDINGS ON EVERY ASSEMBLY, scaled to the body, because the copper is what says the cut
+    // face is an interior. Three of five carried none and read as solid metal.
+    {
+      const n=Math.max(3, Math.round(9*Math.min(1,r/176)+2));
+      for(let i=0;i<n;i++){
+        const yy=top+r*0.10+i*((h-r*0.20)/Math.max(1,n-1));
+        g.strokeStyle='rgba(181,98,44,'+(0.34+0.5*(1-i/n)).toFixed(3)+')';
+        g.lineWidth=Math.max(2.0, r*0.030);
+        g.beginPath(); g.moveTo(cx-r+r*0.05,yy); g.lineTo(cx-r*0.035,yy); g.stroke();
+      }
+    }
+    g.restore();
+    // top ellipse
+    g.beginPath(); g.ellipse(cx,top,r,r*DEPTH,0,0,6.2832);
+    const tg=g.createLinearGradient(cx-r,top-r*DEPTH,cx+r,top+r*DEPTH);
+    tg.addColorStop(0,'#8C857A'); tg.addColorStop(0.42,NI); tg.addColorStop(1,'#4A453D');
+    g.fillStyle=tg; g.fill();
+    // THE MAGNET, AND IT IS A BODY RATHER THAN A HOLE.
+    //
+    // It was a near black ellipse inside a bright nickel annulus, which is the universal read
+    // for a bore straight down the axis of a cylinder, on every one of the five assemblies. The
+    // dossier's risk list named the hole read and the mitigation it chose, a wide lit rim, is
+    // the thing that CAUSES it: a bright annulus around a dark ellipse is what an opening looks
+    // like. The acceptance item asked for a 4px rim, the frame shipped 30px, and it still read
+    // as a hole, because rim width was never what separates a body from an opening.
+    //
+    // What separates them is that a body has a TOP, catches the key on it, and CASTS. So the
+    // sinter is raised off its seat, its top face is graded from the same high left key that
+    // lights the nickel, and it throws a short shadow onto the annulus at the lower right.
+    // IT WAS A HOLE, THEN IT WAS A PUCK ON TOP, AND NEITHER IS INSIDE.
+    //
+    // A dark ellipse in a bright annulus is a bore. Raising it off the plate cured the bore and
+    // read as a lid lying on the face. The frame's job is that the same black part is INSIDE all
+    // five, so the magnet sits in a RECESS: the plate's own bore wall is drawn, its FAR wall
+    // catches the key from high left, and the magnet's top face sits BELOW the plate. A body in
+    // a hole, which is neither the hole nor the body on top of it.
+    const mr=r*(opt.mrat||0.58);
+    const my=top+h*0.10, sink=Math.max(2.5, mr*0.17);
+    // the bore, cut into the plate
+    g.beginPath(); g.ellipse(cx,my,mr,mr*DEPTH,0,0,6.2832);
+    g.fillStyle='#0E0C0D'; g.fill();
+    // the bore's FAR wall, lit, which is what says this is a cut and not a disc
+    g.save(); g.beginPath(); g.ellipse(cx,my,mr,mr*DEPTH,0,0,6.2832); g.clip();
+    g.beginPath(); g.ellipse(cx,my-sink*0.9,mr,mr*DEPTH,0,0,6.2832);
+    g.fillStyle='#0E0C0D'; g.fill();
+    g.lineWidth=Math.max(1.4,r*0.020);
+    g.strokeStyle='rgba(226,218,203,0.58)';
+    g.beginPath(); g.ellipse(cx,my-sink*0.9,mr*0.99,mr*DEPTH*0.99,0,Math.PI*1.04,Math.PI*1.96); g.stroke();
+    g.restore();
+    // the magnet's top face, sunk below the plate and darker than every wall around it
+    g.beginPath(); g.ellipse(cx,my+sink*0.35,mr*0.90,mr*DEPTH*0.90,0,0,6.2832);
+    const mg=g.createLinearGradient(cx-mr,my-mr*DEPTH,cx+mr,my+mr*DEPTH);
+    mg.addColorStop(0,'#2A2528'); mg.addColorStop(0.46,'#1D191C'); mg.addColorStop(1,'#131011');
+    g.fillStyle=mg; g.fill();
+    // the near wall of the bore falling onto it, so the magnet is UNDER the plate's own edge
+    g.save(); g.beginPath(); g.ellipse(cx,my+sink*0.35,mr*0.90,mr*DEPTH*0.90,0,0,6.2832); g.clip();
+    g.beginPath(); g.ellipse(cx,my+sink*1.5,mr*1.02,mr*DEPTH*1.02,0,0,6.2832);
+    g.fillStyle='rgba(0,0,0,0.55)'; g.filter='blur('+Math.max(1.6,r*0.024)+'px)'; g.fill();
+    g.restore();
+    // the nickel rim, dropped from a wide bright annulus to a hairline, because the light in
+    // this frame should belong to the subject and not to the ring around it
+    // the bore's own lip on the plate, a hairline rather than the wide bright annulus that was
+    // causing the hole read in the first place
+    g.beginPath(); g.ellipse(cx,my,mr,mr*DEPTH,0,0,6.2832);
+    g.lineWidth=Math.max(1.4,r*0.020);
+    const rimg=g.createLinearGradient(cx-mr,0,cx+mr,0);
+    rimg.addColorStop(0,'#B6AFA3'); rimg.addColorStop(0.5,'#7D766C'); rimg.addColorStop(1,'#453F3A');
+    g.strokeStyle=rimg; g.stroke();
+    if(opt.bloom){
+      // ONE OXIDE BLOOM ON ONE CUT FACE, per the deck's attribution law. It was a blurred glow
+      // on the bore lip, which is not a cut face, and it read as a lens flare: the only cool
+      // hue on a warm neutral frame, the most saturated thing on the slide, pointing at nothing.
+      // A RADIAL DEPOSIT CLIPPED TO THE CUT FACE, with no straight edge of its own. Drawn as
+      // a quadrilateral it had a level top and a vertical right side and read as a frosted
+      // panel laid over the copper. Oxide blooms outward from where it sits.
+      g.save();
+      g.beginPath(); g.rect(cx-r,top-4,r,h+r*DEPTH+8); g.clip();
+      const bx=cx-r*0.50, by=top+h*0.44;
+      const bg2=g.createRadialGradient(bx,by,r*0.02,bx,by,r*0.40);
+      bg2.addColorStop(0,'rgba(179,166,210,0.62)'); bg2.addColorStop(0.48,'rgba(179,166,210,0.34)');
+      bg2.addColorStop(1,'rgba(179,166,210,0)');
+      g.fillStyle=bg2; g.beginPath(); g.ellipse(bx,by,r*0.40,r*0.30,0,0,6.2832); g.fill();
+      g.restore();
+    }
+  }
+
+  // FIVE ASSEMBLIES, sizes true against each other. The fan motor is nearest the optical
+  // centre and largest, so the frame has one focal and not five.
+  assembly(300, 782, 176, 232, {windings:true, mrat:0.60, bloom:true});
+  assembly(166, 1122, 74, 98,  {windings:true, mrat:0.58});
+  assembly(420, 1130, 58, 72,  {windings:true, mrat:0.52});
+  assembly(662, 1136, 45, 55,  {windings:true, mrat:0.62});
+  assembly(892, 1140, 37, 43,  {windings:true, mrat:0.66});
+
+  window.__txProbe={oblique_deg:45, assemblies:5, magnet_fill:SINTER,
+    same_half_removed_on_every_assembly:true, windings_on_every_assembly:true,
+    magnet_sits_in_a_bore_with_a_lit_far_wall:true, magnet_top_is_below_the_plate:true,
+    labels:['AIR CONDITIONING SYSTEMS','ELECTRONIC DEVICES'], product_names_on_frame:0};
+})();
+</script>
+</body></html>

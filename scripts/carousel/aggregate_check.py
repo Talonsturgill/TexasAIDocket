@@ -151,6 +151,40 @@ def is_slide_counter(text: str, m: re.Match, kind: str, n_slides: int | None) ->
     return not re.match(r"[a-z]", tail, re.I)
 
 
+# SCALE WORDS, which are the one place a leading "one" is not a count of one. `WORDS` stops at
+# twenty, so "one hundred filings" matches with `one` as its numeral and the real figure is 100.
+# That phrase stays detected and stays declarable.
+SCALE = re.compile(r"^(?:hundred|thousand|million|billion|trillion)$", re.I)
+
+
+# A COUNT OF ONE IS NOT A TALLY. 2026-09-05, carousel no. 16.
+#
+# The caption asked "Which one does ARPA-E publish?" and this gate reported `one does` as a
+# computed count, so the run reworded a correct sentence around a figure that was never there.
+# The `count` shape requires a PLURAL noun, and "does" is a verb ending in s, which is the whole
+# of the mis-parse: `one` before any word ending in s reads as a tally of that word.
+#
+# English can't quantify a plural noun with one. So a count whose numeral resolves to 1 is
+# never a tally, it is the pronoun, the article's cousin, or a document number with a leading
+# zero. Replayed over every published surface of seventeen shipped decks on 2026-09-05, this
+# shape fires ten times with a numeral of one and NOT ONE of the ten is an aggregate:
+#
+#     one falls        one that publishes      One says          One reads
+#     one news         one line per fact this  one does          one project the release does
+#     01 ADS Incident Reports                  One and Crusoe Two loads
+#
+# Nothing real is lost, because a tally of one is written "one filing" and the count shape has
+# never been able to see a singular noun. A gate that misreports a figure is worse than one that
+# misses it, and this is that defect ten times over on work that shipped clean.
+def is_count_of_one(m: re.Match, kind: str) -> bool:
+    if kind != "count":
+        return False
+    if to_int(m.group(1)) != 1:
+        return False
+    rest = m.group(2).split()
+    return not (rest and SCALE.match(rest[0]))
+
+
 def to_int(tok: str) -> int | None:
     """A token `NUM` matched, as an integer.
 
@@ -202,6 +236,8 @@ def detect(text: str, n_slides: int | None = None) -> list[dict]:
     for kind, rx in SHAPES.items():
         for m in rx.finditer(text):
             if is_slide_counter(text, m, kind, n_slides):
+                continue
+            if is_count_of_one(m, kind):
                 continue
             if is_exempt(m.start(), m.end()):
                 continue
@@ -777,6 +813,22 @@ def self_test() -> int:
        detect("4 of 9 counties", 9) != [])
     ok("...and with no slide count known, nothing is exempted, which is the safe direction",
        detect("slide one of four") != [])
+
+    # A COUNT OF ONE IS NOT A TALLY. Carousel no. 16's caption, verbatim, which this gate read as
+    # a computed count of the word "does" and the run reworded around a figure never printed.
+    ok("the pronoun 'one' before a verb is not a count",
+       detect("Which one does ARPA-E publish?", 9) == [],
+       str(detect("Which one does ARPA-E publish?", 9)))
+    # Every other count-of-one this shape raised across seventeen shipped decks, by measurement
+    # rather than by invention. None of the four is an aggregate.
+    for _line in ("One reads the record.", "one news report", "One says so and the other does",
+                  "01 ADS Incident Reports"):
+        ok(f"...nor is {_line!r}", detect(_line, 9) == [], str(detect(_line, 9)))
+    # THE HALF THE EXEMPTION MUST NOT EAT. `WORDS` stops at twenty, so a scale word after the
+    # numeral means the figure is not one, and that phrase stays detected and stays declarable.
+    ok("a scale word after 'one' keeps the count", detect("one hundred filings") != [],
+       str(detect("one hundred filings")))
+    ok("...and a real tally is untouched", detect("FIVE PUCT FILINGS")[0]["kind"] == "count")
 
     # THE DECORATIVE MARKER, which existed and was not being read. The coordinates footer in the
     # form the design doctrine asks for produced four findings on every slide, thirty six for the

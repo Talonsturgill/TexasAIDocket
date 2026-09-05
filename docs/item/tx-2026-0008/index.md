@@ -8,7 +8,7 @@ Three separate acts of the 89th Legislature each added a Subchapter S to Governm
 - Status: open
 - Public access: Write to the decider
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The codifier's conflict note is still sitting in the published text and the Legislature has not met to resolve it. A state agency reading its own AI duties still has three Subchapter S's to choose between.
 - 2026-09-01 · The published code still carries the conflicting artificial-intelligence subchapters and their duplicated section designations.
 - 2026-09-02 · Checked and unchanged. Still open, with no dated movement.
+- 2026-09-05 · The three Subchapter S's are still in the Government Code with their section numbers still colliding. Nothing has been renumbered and a reader looking up the AI duties still meets more than one answer.
 
 ## Evidence
 

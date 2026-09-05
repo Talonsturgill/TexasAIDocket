@@ -1,0 +1,113 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1618,
+        0.3718,
+        0.2886
+      ],
+      "band_ratio": 1.0505
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1197,
+        0.6639,
+        0.6728
+      ],
+      "band_ratio": 1.362
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 61% of this slide's own average craft density (top 39% / mid 22% / bottom 15% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.3887,
+        0.2164,
+        0.1507
+      ],
+      "band_ratio": 0.6095
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2185,
+        0.7059,
+        0.6801
+      ],
+      "band_ratio": 1.2562
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 69% of this slide's own average craft density (top 24% / mid 30% / bottom 16% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.2374,
+        0.3046,
+        0.1581
+      ],
+      "band_ratio": 0.6875
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.5084,
+        0.5546,
+        0.4265
+      ],
+      "band_ratio": 0.8645
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.9538,
+        0.8761,
+        0.8272
+      ],
+      "band_ratio": 0.9368
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 68% of this slide's own average craft density (top 33% / mid 31% / bottom 19% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "art touching glyphs (7% of the ring around 'RICE UNIVERSITY', spanning 38%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.334,
+        0.313,
+        0.1875
+      ],
+      "band_ratio": 0.6841
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.9559,
+        0.8803,
+        0.7629
+      ],
+      "band_ratio": 0.8854
+    }
+  ],
+  "fails": 0,
+  "warns": 4,
+  "verdict": "WARN"
+}

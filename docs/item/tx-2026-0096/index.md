@@ -1,21 +1,20 @@
-# Senate Water, Agriculture and Rural Affairs takes up data center cooling water, and sits again on September 2nd
+# Senate Water, Agriculture and Rural Affairs has held both sittings on data center cooling water and published no recommendation
 
-The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The committee sat on Tuesday, September 1st, 2026. Its own page carries the recording of that sitting. The Legislature's upcoming meetings listing sets a second sitting for Wednesday, September 2nd, 2026 in hearing room E1.012 at the Capitol. The listing marks it a public hearing.
+The Senate Committee on Water, Agriculture and Rural Affairs carries an interim charge directing it to examine how much water high consumption cooling technologies use. The charge names data centers. The committee sat on Tuesday, September 1st, 2026 and again on Wednesday, September 2nd, 2026 in hearing room E1.012 at the Capitol. The Legislature's upcoming meetings listing no longer carries either sitting, which is what a held hearing looks like on that page. No recommendation from the committee has been published, so what it will ask the Legislature to do about cooling water is not yet on the record.
 
 - Topic: state-policy
 - Decided by: Texas Senate Committee on Water, Agriculture and Rural Affairs (legislature)
 - Where: Statewide
-- Status: open
-- Public access: Public meeting
-- Comment closes: 2026-09-02
-- Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+- Status: pending
+- Public access: Write to the decider
+- Take part: https://senate.texas.gov/cmte.php?c=700
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
 - 2026-09-01 · hearing: Public hearing, held
-- 2026-09-02 · hearing: Second public hearing, hearing room E1.012
+- 2026-09-02 · hearing: Second public hearing, hearing room E1.012, held
 
 ## How this decision moved
 
@@ -28,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-30 · The hearing is still set and the room is still open to file into. Data center cooling water remains on the committee's list, and the window closes September 2nd.
 - 2026-09-01 · The Senate water committee's data-center hearing remains open to written public submissions through its stated close.
 - 2026-09-02 · The September 1st sitting was held. The committee's own page carries its recording. The second sitting stands for September 2nd, 2026 in hearing room E1.012, so the door is open today.
+- 2026-09-05 · Both sittings have been held and the Legislature's upcoming meetings listing no longer carries either of them, which is what a past hearing looks like on that page. The committee still holds the charge on cooling water and has published no recommendation. The door a reader could have walked through has shut and the question behind it is unanswered.
 
 ## Evidence
 

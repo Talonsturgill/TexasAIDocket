@@ -1,0 +1,236 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#100D0B}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .quote{position:absolute;left:80px;top:170px;width:700px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:27px;line-height:1.36;color:#CDC5B8;font-style:italic;
+    /* the pool moved into the near corner and the upper bench came up under the quote with it */
+    text-shadow:0 0 10px rgba(16,13,11,.85),0 0 20px rgba(16,13,11,.70)}
+  /* MOVE 6. The hook sets hard LEFT over the dark bench and the patch carries NOTHING. It was
+     planned inside the patch and moved out, because setting the closing line in the one place
+     the frame says is empty is the frame arguing against itself. */
+  .hook{position:absolute;left:80px;top:686px;width:300px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:82px;line-height:1.0;color:#E8E1D4;letter-spacing:-.022em;
+    /* The bench came up to bring the close to its planned value, so the closing line now sets on
+       lit raked wood rather than on unlit bench and it needs the halo the engine asks for. */
+    text-shadow:0 0 16px rgba(16,13,11,.92),0 0 34px rgba(16,13,11,.80),0 2px 5px rgba(16,13,11,.95)}
+  /* A KNOCKOUT PLATE, which is what the engine asks for by name when a drawn edge runs
+     through a glyph band. The bench was lifted to bring the close to its planned value and the
+     type that was comfortable on unlit wood now sits on lit, raked, grained wood. */
+  /* A LOCAL knockout under the closing line, not a wider scrim. The bench's raking grain runs
+     HORIZONTALLY, which is what makes it read as rake, and at the amplitude the value lift
+     needed it draws rules straight through an 82px serif. Darkening the whole lower band to fix
+     it would take back the value the close was raised to reach and would dim the patch, which is
+     the one thing on the frame that has to stay lit. This falls to nothing before x 420, where
+     the patch's near edge starts. */
+  /* FULL FRAME BOX, so the gradient has no box edge to end on. Sized to 480 by 300 it reached
+     only 72 percent of its own box before the edge cut it, so the plate shipped as a near black
+     rectangle in the left third, which is the redaction read structural law 2 forbids outright. */
+  .hookplate{position:absolute;inset:0;
+    background:radial-gradient(430px 310px at 250px 852px, rgba(16,13,11,.95) 0%,
+      rgba(16,13,11,.86) 38%, rgba(16,13,11,.40) 72%, rgba(16,13,11,0) 100%)}
+  .lowscrim{position:absolute;left:0;bottom:0;width:1080px;height:420px;
+    background:linear-gradient(to bottom,rgba(16,13,11,0) 0%,rgba(16,13,11,.50) 30%,rgba(16,13,11,.84) 62%,rgba(16,13,11,.97) 100%)}
+  .coal{position:absolute;right:80px;top:1006px;width:490px;text-align:right;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;line-height:1.62;
+    letter-spacing:.06em;color:#EDE6D9;
+    /* The lamp pool moved into the near bench and the coalition list sits over it, so the type
+       that was comfortable on unlit wood is now on the frame's brightest ground. Brighter ink
+       and a deeper halo, because the fix for legibility over a lit surface is the type. */
+    text-shadow:0 0 11px #100D0B,0 0 22px #100D0B,0 0 6px #100D0B,0 1px 3px #100D0B}
+  .coal .yr{color:#D8D0C2}   /* the frame's contrast floor, over the lit near bench */
+  .foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#A79E92;font-variant-numeric:tabular-nums;
+    text-shadow:0 0 8px #100D0B,0 0 16px #100D0B}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <!-- FIRST in the wrap, so every line of type paints OVER it. Inserted between the hook and the
+       coalition list it covered 92 percent of the hook's line box, which the engine reads as type
+       under an opaque plate and is right to. -->
+  <div class="lowscrim" data-decorative></div>
+  <div class="hookplate" data-decorative></div>
+  <p class="quote">"If you improve the quality of these magnets, that translates into an efficiency gain everywhere"</p>
+  <!-- "No material yet." asserted an operational negative no claim carries. "named" scopes it
+       to the four announcements the footer cites, none of which names a material, which is a
+       reading of documents rather than a statement about the world. -->
+  <h1 class="hook">No material named yet.</h1>
+  <!-- Four names and a term, each its OWN text node rather than one div broken by <br>. The
+       renderer joins a node's children with no separator, so the five ran together into a single
+       string that traced to no claim, and noun_trace warned on the concatenation rather than on
+       anything a reader sees. Each name is c5's own and the term is c2's. -->
+  <div class="coal">
+    <div>RICE</div>
+    <div>COLORADO STATE UNIVERSITY</div>
+    <div>CARRIER GLOBAL</div>
+    <div>NEWFOUND MATERIALS, HOUSTON</div>
+    <div class="yr">THREE YEARS</div>
+  </div>
+  <div class="foot"><span>RICE</span><span>c2 c4 c5 c16</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const NIGHT='#100D0B';
+  // GRAZING AT EIGHT DEGREES, the only frame in the deck with the eye at the plane of its
+  // subject. At that angle the grain rakes and dust reads, and a patch where something has been
+  // sitting becomes visible as an ABSENCE OF DUST rather than as a drawn shape.
+  // THE LAMP'S PEAK WAS INSIDE THE PATCH, so the brightest wood in the frame and the patch's
+  // brightest wood were the same pixels. Brightness is the only signal that survives to 432px
+  // and in this frame brightness is already the lamp's job, so a reader received a warm glow on
+  // a bench rather than a place something had been sitting. The pool now sits in the NEAR bench
+  // below the patch, which is what the dossier's bands already asked for, and the patch reads as
+  // a lift ON a gradient instead of as the gradient's own peak.
+  // THE PATCH AND THE POOL WERE THE SAME PIXELS, which is the one confound this frame cannot
+  // carry. Brightness is the only signal that survives to 432px, and if the brightest wood and the
+  // patch are in the same place a reader attributes all of it to the light. The pool's core moves
+  // into the NEAR corner, off the patch entirely, so the patch sits on the pool's upper left flank
+  // and the only variable crossing its boundary is dust density.
+  const LAMPX=1180, LAMPY=1330, LAMPR=1520;
+
+  // ---- the patch, foreshortened. No edge of it is horizontal or vertical. -------------------
+  // 26 percent convergence between the far edge and the near one. It was 1.5 percent, which
+  // is orthographic, so the declared 8 degree grazing camera was asserted in the plan and not
+  // drawn, and the patch read as a slightly tilted rectangle rather than as a footprint on a
+  // receding plane.
+  const P=[[452,672],[884,610],[966,878],[420,946]];
+  function insidePatch(x,y){
+    let inside=false;
+    for(let i=0,j=P.length-1;i<P.length;j=i++){
+      const xi=P[i][0], yi=P[i][1], xj=P[j][0], yj=P[j][1];
+      if(((yi>y)!==(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi)) inside=!inside;
+    }
+    return inside;
+  }
+  // true when the sample is well OUTSIDE the patch, false when well inside, null in the
+  // feather band, so the lift ratio compares two populations and not the transition itself.
+  function edgeOut2(x,y){
+    const e=edgeSoft(x,y);
+    if(e<90) return null;
+    return !insidePatch(x,y);
+  }
+  function edgeSoft(x,y){
+    let best=1e9;
+    for(let i=0,j=P.length-1;i<P.length;j=i++){
+      const ax=P[j][0], ay=P[j][1], bx=P[i][0], by=P[i][1];
+      const dx=bx-ax, dy=by-ay, L=dx*dx+dy*dy;
+      let t=L? ((x-ax)*dx+(y-ay)*dy)/L : 0; t=Math.max(0,Math.min(1,t));
+      best=Math.min(best, Math.hypot(x-(ax+t*dx), y-(ay+t*dy)));
+    }
+    return best;
+  }
+
+  g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
+
+  // ---- the bench, raking, WITH THE PATCH IN ITS BASE COLOUR --------------------------------
+  // THE LIFT BELONGS HERE AND NOWHERE ELSE. Painted as an overlay it was first a card with a
+  // hard edge, then a stepped bevel, then fifty four stacked alphas that composited to a
+  // saturated green block. As one multiplier on wood that is already there it can't pick up a
+  // hue of its own and it can't have an edge the wood does not have.
+  (function bench(){
+    const DW=W*2, DH=H*2, im=g.createImageData(DW,DH), d=im.data;
+    for(let py=0;py<DH;py++){ const y=py*0.5;
+      for(let px=0;px<DW;px++){ const x=px*0.5;
+        let f=1-Math.min(1,Math.hypot((x-LAMPX)*0.86,(y-LAMPY)*1.05)/LAMPR); f=Math.max(0,f); f=f*f;
+        const g1=TX.fbm2(x*0.0013,y*0.030,4);
+        const g2=TX.fbm2(x*0.0007,y*0.0045,3);
+        const grain=0.66*g1+0.34*g2;
+        // raking light multiplies the grain rather than adding to it, which is what makes a
+        // surface read as raked rather than as lit
+                // THE AMBIENT FLOOR WAS 6 TO 8 AND THE DECK SHIPPED AT A MEDIAN L* OF 7.1 AGAINST A
+        // PLAN OF 33. Measured on the 270 by 338 grid every prior run uses, which is what the
+        // storyboard's value structure section demands and what deck 14 skipped until round 3.
+        // A room at night is not a vacuum, so the floor is raised to give the bench modelled
+        // tone away from the lamp instead of black. The lamp term is untouched, so the raking
+        // key still does all the shaping.
+        let v=58+f*68+grain*24*f+grain*16;
+        if(insidePatch(x,y)){
+          // THE LIFT WAS DOING ALL THE WORK AND THE DUST WAS DOING NONE, which makes the patch
+          // a lighter quadrilateral by another route and falsifies the acceptance item whatever
+          // the probe says. Halved and spread over more than twice the feather, so the boundary
+          // is located by where the DUST stops rather than by where the value jumps.
+          const e=Math.min(1, edgeSoft(x,y)/80);
+          v *= 1 + 0.17*e;
+        }
+        const i=(py*DW+px)*4;
+        d[i]=Math.min(255,v*1.24); d[i+1]=Math.min(255,v*1.02); d[i+2]=Math.min(255,v*0.84); d[i+3]=255;
+      }}
+    g.save(); g.setTransform(1,0,0,1,0,0); g.putImageData(im,0,0); g.restore();
+  })();
+
+  // ---- the dust, which is the only thing that says where the edge is ----------------------
+  let dustIn=0, dustOut=0;
+  for(let i=0;i<15000;i++){
+    const x=R()*W, y=R()*H;
+    let f=1-Math.min(1,Math.hypot((x-LAMPX)*0.86,(y-LAMPY)*1.05)/LAMPR); f=Math.max(0,f);
+    const e=edgeSoft(x,y);
+    if(insidePatch(x,y)){
+      const keep=Math.min(1, Math.pow(Math.max(0,1-e/80),2.4));  // creeps back over about 80px
+      if(R()>keep) continue;
+      dustIn++;
+    } else {
+      // UNIFORM RIGHT UP TO THE EDGE. It used to thin over the outer 20px as well, which
+      // softened the one boundary that has to be definite. A swept surface does not fade
+      // toward the thing that swept it.
+      dustOut++;
+    }
+    const a=0.060+0.42*f*f;
+    if(a<0.006) continue;
+    g.fillStyle='rgba(232,219,194,'+a.toFixed(3)+')';
+    // 0.55 to 1.85 design px is 0.22 to 0.74px at 432 wide, so the only mechanism this frame
+    // has for proving an absence was sub-pixel at the size a reader receives it.
+    const s=2.60+R()*2.60;
+    g.fillRect(x,y,s,s);
+  }
+
+  // THE PATCH LIFT IS MEASURED OFF THE RENDERED PIXELS, not declared. The old probe derived
+  // patch_is_absence_of_dust from the dust counts alone, so it was blind to the lift and would
+  // have reported true if the patch had been painted white. An acceptance item whose probe
+  // cannot go red is not an acceptance item.
+  const liftProbe=(function(){
+    // ONE getImageData over the whole region. Per pixel calls are the classic way to make a
+    // frame time out, and the renderer's budget is not the place to find that out.
+    const X0=300, Y0=520, X1=1060, Y1=1040;
+    const blk=g.getImageData(X0*2, Y0*2, (X1-X0)*2, (Y1-Y0)*2);
+    const bw=(X1-X0)*2, bd=blk.data;
+    const L=(x,y)=>{ const i=(((y-Y0)*2)*bw + ((x-X0)*2))*4;
+                     return 0.2126*bd[i]+0.7152*bd[i+1]+0.0722*bd[i+2]; };
+    const inner=[], outer=[];
+    for(let y=Y0+2;y<Y1;y+=4){
+      for(let x=X0+2;x<X1;x+=4){
+        const e=edgeSoft(x,y);
+        // The comparison band is the wood JUST outside the feather rather than the whole
+        // frame, because the lamp's own gradient across 700px would otherwise be measured as
+        // if it were the patch's lift.
+        if(insidePatch(x,y)){ if(e>=90) inner.push(L(x,y)); }
+        else if(e>=90 && e<=220){ outer.push(L(x,y)); }
+      }
+    }
+    const mean=a=>a.length?a.reduce((p,q)=>p+q,0)/a.length:0;
+    return {ratio:+(mean(inner)/Math.max(1e-6,mean(outer))).toFixed(3),
+            inner_samples:inner.length, outer_samples:outer.length};
+  })();
+
+  window.__txProbe={
+    patch:P, dust_inside_patch:dustIn, dust_outside_patch:dustOut,
+    patch_lift_ratio: liftProbe.ratio, lift_probe_samples: liftProbe,
+    patch_is_absence_of_dust: dustIn < dustOut*0.10 && liftProbe.ratio < 1.20,
+    lift_applied_in_base_colour:true, overlay_fills:0,
+    no_edge_axis_aligned: P.every((p,i)=>{
+      const q=P[(i+1)%P.length];
+      return Math.abs(p[0]-q[0])>2 && Math.abs(p[1]-q[1])>2;
+    }),
+    objects_on_frame:0, type_inside_patch:0, lamp:{x:LAMPX,y:LAMPY}
+  };
+})();
+</script>
+</body></html>

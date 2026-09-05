@@ -1,0 +1,35 @@
+{
+  "run": "2026-09-05",
+  "note": "Carousel no. 16 is unusually thin on arithmetic. Every printed numeral on its nine frames is quoted from a claim, so the only aggregates in the deck are three counting words in running copy. Each is declared here.",
+  "aggregates": [
+    {
+      "phrase": "Five sources",
+      "kind": "count",
+      "value": 5,
+      "where": "slide-01.html, the dek",
+      "computed_by": "len(shares_from_c18) in out/2026-09-05/compute.py, which parses the import origins out of claim c18's own quote with a regular expression and asserts their names and their percentages before writing out/2026-09-05/computed.json",
+      "why_not_from_claims": "The five origins are five values inside ONE claim rather than five claims. Naming five claim ids for them would be the shape the count rule expects and a lie about where they came from, which is the reason the computed_by route exists.",
+      "reads_on_the_frame": "A federal survey lists where the United States gets the rare earth compounds and metals it imports. Five sources, and one of them is most of it.",
+      "sources_here_means": "import origins, which is what the survey line lists, and never a count of documents. The deck cites one document for it, c18."
+    },
+    {
+      "phrase": "two figures",
+      "kind": "count",
+      "value": 2,
+      "where": "slide-08.html, the hook",
+      "from_claims": ["c2", "c3"],
+      "reads_on_the_frame": "One award, two figures.",
+      "note": "One claim per figure. c2 is Rice's $2.9 million and c3 is the University of Houston's $2.88 million, for the same award. The frame prints both and reconciles neither, so the count is of the figures published and not of a difference between them."
+    },
+    {
+      "phrase": "THREE YEARS",
+      "kind": "duration",
+      "value": 3,
+      "where": "slide-09.html, the coalition block",
+      "quoted_from": "c2",
+      "quote": "a three-year, $2.9 million grant",
+      "reads_on_the_frame": "THREE YEARS",
+      "note": "The term is the source's own word and not a span this deck measured. No start date and no end date are published anywhere in the record, so the deck can't compute a duration and does not try. c4 carries the same term as 'Over the three-year grant period'."
+    }
+  ]
+}

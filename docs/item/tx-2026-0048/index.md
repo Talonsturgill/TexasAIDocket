@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The city's own notice still carries the ballot wording, which still opens by telling the voter the result is a nonbinding statement of preference. The election is still set for November 3rd.
 - 2026-08-29 · The August 25th meeting has been held and the city's record of it now reads as minutes rather than as a notice. No item on it names an automated license plate reader. The special election is still set for November 3rd and the published wording still tells the voter the result does not bind the council.
 - 2026-09-02 · The ordinance stands and the special election it ordered is still set.
+- 2026-09-05 · The League City election on whether police may keep plate reader data is still ordered for November and the ordering is unchanged.
 
 ## Evidence
 

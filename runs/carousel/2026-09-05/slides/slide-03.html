@@ -1,0 +1,173 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0E0B0D}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:330px;
+    background:linear-gradient(to bottom,rgba(14,11,13,0) 0%,rgba(14,11,13,.62) 34%,rgba(14,11,13,.93) 68%,rgba(14,11,13,.99) 100%)}
+  /* MOVE 1. The hook is at the BOTTOM. Type in the top two thirds would fill the void the
+     frame's whole argument needs, so the masthead goes to the foot rail with the rest. */
+  h1{position:absolute;top:1040px;left:80px;width:520px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:74px;line-height:1.0;color:#E8E1D4;letter-spacing:-.022em}
+  /* 24px is the mobile floor and this set at 20. The renderer warned and the warning was
+     right: a quote nobody can read on a phone is not a quote on the frame. */
+  .dek{position:absolute;top:1042px;left:616px;width:384px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:24px;line-height:1.30;color:#A79E92;font-style:italic}
+  .formula{position:absolute;top:120px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:700;font-size:38px;letter-spacing:.06em;color:#CFC4E2;
+    text-shadow:0 0 10px #0E0B0D,0 0 20px #0E0B0D,0 0 30px #0E0B0D,0 0 6px #0E0B0D}
+  .foot{position:absolute;bottom:86px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#7E7669;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="formula">Nd2Fe14B</div>
+  <div class="fscrim" data-decorative></div>
+  <h1>Found once.</h1>
+  <p class="dek">"The discovery of Nd2Fe14B, with its complex structural chemistry and extraordinary properties, suggests that other complex magnetic materials"</p>
+  <!-- The byline slot names WHOSE document the frame draws on, and this frame draws on the
+       ARPA-E funding opportunity that c10 is quoted from. It carried the deck's own mark
+       instead, which is the slot's other use and belongs on a frame the deck composed itself.
+       MAGNITO OPPORTUNITY was the first repair and it named no institution, so on frame 3,
+       three frames before the acronym is expanded, it read as a codename rather than as an
+       attribution. c8 is the claim that the program is ARPA-E's, so it is cited here. -->
+  <div class="foot"><span>ARPA-E MAGNITO</span><span>c8 c10</span><span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const GROUND='#0E0B0D', SINTER='#191518', NI='#CBC3B4', NEO='#B3A6D2';
+
+  // NO LAMP ON THIS FRAME AND NO GROUND PLANE. A grain structure has no camera position and
+  // no light direction, and inventing one would be inventing a viewpoint on a micrograph.
+  g.fillStyle=GROUND; g.fillRect(0,0,W,H);
+
+  // ---- the tessellation, and where it STOPS ----------------------------------------------
+  // A sintered magnet is physically a partitioned plane with a second phase at the grain
+  // walls, so a Voronoi field here is the material rather than a metaphor for it. Past a
+  // boundary the grains are simply not drawn, because the undiscovered is the one thing this
+  // frame cannot honestly depict.
+  // THE BOUNDARY IS AN ARC AND IT USED TO BE A HORIZONTAL RULE UNDER A 250px FADE.
+  //
+  // Those two things together are the visual grammar of a video player: darken the lower band
+  // so a caption is legible, then draw a panel edge. A reader at 432px did not receive "the
+  // record stops here", they received "this is where the text goes", which is the worst thing
+  // this frame could say, because its whole argument is that the emptiness is a measurement.
+  //
+  // A circle has no edge a UI would ever draw. It is centred far above the frame so the arc
+  // reads as the limit of what has been looked at rather than as a shape, its lowest point
+  // sits 106px clear of the type block, and the walls now run at FULL value right up to it,
+  // so the stop is a stop and not a dissolve.
+  const ARC=[540,-200], ARCR=1100;   // lowest point of the arc is (540, 900)
+  const inField=(x,y)=>Math.hypot(x-ARC[0],y-ARC[1])<ARCR;
+  const edgeOut=(x,y)=>Math.hypot(x-ARC[0],y-ARC[1])-ARCR;   // >0 outside
+  const seeds=[];
+  for(let i=0;i<560;i++){
+    const x=-40+R()*(W+80), y=R()*940;
+    if(!inField(x,y+50)) continue;   // seeded a little inside, so no grain straddles the arc
+    // grains coarsen toward the boundary, so the field thins into it rather than ending flat
+    if(edgeOut(x,y)>-300 && R()<0.44) continue;
+    seeds.push([x,y]);
+  }
+
+  // A SPATIAL GRID, because the naive form is 3 billion distance tests. Every seed goes in a
+  // cell and a lookup only visits the 3x3 neighbourhood, which is about a dozen candidates.
+  const CELL=64, GX=Math.ceil(W/CELL)+1, GY=Math.ceil(1000/CELL)+1;
+  const grid=Array.from({length:GX*GY},()=>[]);
+  seeds.forEach((s,i)=>{
+    const cx=Math.min(GX-1,Math.max(0,Math.floor(s[0]/CELL)));
+    const cy=Math.min(GY-1,Math.max(0,Math.floor(s[1]/CELL)));
+    grid[cy*GX+cx].push(i);
+  });
+  function nearest2(x,y){
+    let b1=1e9,b2=1e9,i1=-1;
+    const cx=Math.min(GX-1,Math.max(0,Math.floor(x/CELL)));
+    const cy=Math.min(GY-1,Math.max(0,Math.floor(y/CELL)));
+    for(let r=1;r<=3;r++){
+      for(let jy=cy-r;jy<=cy+r;jy++){
+        if(jy<0||jy>=GY) continue;
+        for(let jx=cx-r;jx<=cx+r;jx++){
+          if(jx<0||jx>=GX) continue;
+          if(r>1 && Math.abs(jy-cy)<r && Math.abs(jx-cx)<r) continue;   // ring only
+          const cell=grid[jy*GX+jx];
+          for(let k=0;k<cell.length;k++){
+            const s=seeds[cell[k]];
+            const dx=x-s[0], dy=y-s[1], dd=dx*dx+dy*dy;
+            if(dd<b1){ b2=b1; b1=dd; i1=cell[k]; } else if(dd<b2){ b2=dd; }
+          }
+        }
+      }
+      if(i1>=0 && b2<1e9 && Math.sqrt(b1)<r*CELL) break;
+    }
+    return [Math.sqrt(b1), Math.sqrt(b2), i1];
+  }
+
+  // Drawn into an OFFSCREEN buffer at design resolution, then composited with drawImage.
+  // drawImage respects the canvas transform where putImageData does not, so this lands at 2x
+  // without a second device-pixel loop and without the top-left-quarter trap.
+  const off=document.createElement('canvas'); off.width=W; off.height=H;
+  const og=off.getContext('2d');
+  const im=og.createImageData(W,H), d=im.data;
+  for(let y=0;y<H;y++){
+    for(let x=0;x<W;x++){
+      const i=(y*W+x)*4;
+      if(!inField(x,y)){ d[i]=14; d[i+1]=11; d[i+2]=13; d[i+3]=255; continue; }
+      const n=nearest2(x,y); const d1=n[0], d2=n[1], gi=n[2];
+      const wall=d2-d1;
+      const gv=0.5+0.5*Math.sin(gi*12.9898);
+      let r=22+gv*13, gg=19+gv*11, b=23+gv*14;
+      if(wall<3.0){
+        const t=1-wall/3.0;
+        r=22+(203-22)*t*0.86; gg=19+(195-19)*t*0.86; b=23+(226-23)*t*0.86;
+      }
+      // NO FADE. The walls hold their value to the last pixel inside the arc, which is what
+      // makes the boundary a decision. A rare earth phase bloom rides the top of the field,
+      // because structural law 1 says the imported thing is named in paint before it is named
+      // in words and on this frame it was named only in the colour of a label.
+      const bloom=Math.max(0,1-y/300);
+      d[i]=r+(179-r)*bloom*0.34*(wall<3.0?1:0.35);
+      d[i+1]=gg+(166-gg)*bloom*0.34*(wall<3.0?1:0.35);
+      d[i+2]=b+(210-b)*bloom*0.34*(wall<3.0?1:0.35);
+      d[i+3]=255;
+    }
+  }
+  og.putImageData(im,0,0);
+  g.drawImage(off,0,0,W,H);
+
+  // a thin scatter of the boundary phase a short way past the last whole grain, so the bottom
+  // band carries texture falling to zero rather than a printed floor
+  // The scatter follows the ARC now rather than a horizontal band, and it dies out 190px
+  // past it, well above the type block, so no particle lands inside a letterform's box. The
+  // grains are 2.2 to 4.0 design px rather than 0.6 to 1.7, because a sub-pixel speck at 432
+  // wide averages into film grain and the boundary phase then communicates nothing at the
+  // size a reader actually receives.
+  let past=0, undrawn=0;
+  for(let i=0;i<5200;i++){
+    const x=R()*W, y=R()*900;
+    const e=edgeOut(x,y);
+    if(e<=0 || e>190) continue;
+    const a=Math.max(0,0.40*(1-e/190));
+    if(a<=0.004) continue;
+    g.fillStyle='rgba(203,195,226,'+a.toFixed(3)+')';
+    const s=2.2+R()*1.8; g.fillRect(x,y,s,s); past++;
+  }
+
+  // The undrawn fraction is MEASURED on a grid rather than derived from a horizontal line,
+  // because the boundary is no longer a horizontal line.
+  for(let y=4;y<H;y+=8){ for(let x=4;x<W;x+=8){ if(!inField(x,y)) undrawn++; } }
+  const cells=Math.ceil(H/8)*Math.ceil(W/8);
+
+  window.__txProbe={boundary:'arc', arc_centre:ARC, arc_radius:ARCR,
+    arc_lowest_point:[ARC[0],ARC[1]+ARCR], grains:seeds.length, scatter_past_boundary:past,
+    undrawn_fraction_of_frame:+(undrawn/cells).toFixed(3), fade_applied:false, lamp:null};
+})();
+</script>
+</body></html>

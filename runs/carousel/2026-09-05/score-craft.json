@@ -1,0 +1,48 @@
+{
+ "lens": "craft",
+ "date": "2026-09-05",
+ "carousel_no": 16,
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.3,
+   "why": "Two frames are genuinely made and four are not. Slide 3 is the best thing here, with the Voronoi field varying cell size top to bottom, a real lit boundary web and a hard arc stop with a scatter dying out past it. Slide 8's tags carry real modelling, a brass wire with a tonal ramp, grommets and a drilled hole with a lit lip. Slide 1's stipple survives to the thumb and the areas are computed, Malaysia's field measuring about 1.58x Japan's in linear extent against the 1.61 that 13 against 5 requires. Slide 6's engraved field floats ON the plate rather than cut into it, slide 2 is one cylinder at five scales with windings that bear no relation to the projection, slide 4 is a grey box with one soft streak, slide 7's middle station is a hard edged rectangle laid across a circle, and slide 9's patch has no discernible edges at all."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral on a frame traces and the caption's 2021 to 2024 traces to c18's own Import Sources heading. c18's quote is corrected to carry the footnote marker, verified by a direct 200 on the canonical USGS PDF. The rejected list is ten entries deep and each names why. The refuted reading is struck from the frame, the storyboard, both ledgers and claims.json. The deduction is off surface: two prose figures beside the reconciled arrays were still stale, in the two files that had just been reconciled, each in the sentence announcing the reconciliation."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A reader learns what happened, who leads it, where, and the real stake lands on slide 2 with the air conditioning unit, which is the deck's best reader move. What is missing is who decided as a FUNDER on a frame a reader will read. No county on any frame. No date, no window, no next step, honestly so."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "Real build and a real turn, and the six planned type moves are in the pixels rather than repaired in. The fulcrum at 7 is the thinnest frame in the deck, so the swing from what the name says to what the AI does lands on almost nothing, and 3 and 4 both restate that the incumbent is Nd2Fe14B."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "It is already in your house does the work of a paragraph. The hooks are terse and unboosterish and house rules hold across nine frames and the caption. Slide 4's dek is institutional prose lifted nearly whole from the UH release, and the deck is state abstract about place."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "New register, nine camera classes with none repeated, bespoke median 0.1664, and the palette explicitly moves off three consecutive creams. THE SLOT CLAIM IS OVERSTATED AS WRITTEN and I checked it: three of the last four decks put their bright full bleed inversion at slide 5, not five running, because deck 14's brightest is slide 2 and decks 1 and 3 carry a documented post cut renumbering. The STRUCTURAL half is exactly right: bespoke_check measures within a deck, this ledger has no field for which slot an inversion occupies, and nothing can see it."
+  }
+ ],
+ "weighted_score": 6.84,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Before a deck is scored, read every frame's value_structure and acceptance items against its own render and strike each one the pixels do not carry, because four frames here describe a drawing more made than the one that shipped."
+}

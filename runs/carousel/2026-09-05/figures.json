@@ -1,0 +1,42 @@
+{
+ "claims_verified": {
+  "value": 18,
+  "from_items": [],
+  "note": "Claims this run fetched and verified, counted over claims.json."
+ },
+ "findings_rejected": {
+  "value": 10,
+  "from_items": [],
+  "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
+ },
+ "source_documents": {
+  "value": 5,
+  "from_items": [],
+  "note": "Distinct source urls behind the verified claims, counted over claims.json."
+ },
+ "figures_quoted": {
+  "value": 1,
+  "from_items": [],
+  "note": "Aggregates that are a figure the SOURCE wrote, each naming the claim and the exact string, counted over aggregates.json."
+ },
+ "figures_computed": {
+  "value": 1,
+  "from_items": [],
+  "note": "Aggregates the deck computed from data rather than repeated, each naming the code and the input, counted over aggregates.json."
+ },
+ "figures_tallied": {
+  "value": 1,
+  "from_items": [],
+  "note": "Aggregates that are a tally of claims, each naming one claim id per unit counted, counted over aggregates.json."
+ },
+ "universals_declared": {
+  "value": 3,
+  "from_items": [],
+  "note": "Universals published anywhere on a reader facing surface, each with its set closed and its members named, counted over quantifiers.json."
+ },
+ "source_types": {
+  "value": 2,
+  "from_items": [],
+  "note": "Distinct source_type values across the verified claims, counted over claims.json. primary_corporate 13, primary_official 5."
+ }
+}

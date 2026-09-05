@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved the creation of a Schoo
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The School of Computing still stands as approved by the regents, and it still sits inside the College of Natural Sciences rather than as a free standing college.
 - 2026-09-01 · The regents' approval of UT Austin's School of Computing remains intact inside the College of Natural Sciences.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-05 · The School of Computing at Austin still stands as approved by the regents and the four units it unites are unchanged.
 
 ## Evidence
 

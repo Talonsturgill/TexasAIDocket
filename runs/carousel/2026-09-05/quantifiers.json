@@ -1,0 +1,78 @@
+{
+  "quantifiers": [
+    {
+      "phrase": "neither page reconciles them",
+      "surface": "slide-08.html, the dek",
+      "about": "documents",
+      "set": "the two published announcements of this one ARPA-E award, and there are exactly two",
+      "members": [
+        {
+          "claim": "c2",
+          "page": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+          "figure": "$2.9 million",
+          "reconciles": false,
+          "read_on": "2026-09-05"
+        },
+        {
+          "claim": "c3",
+          "page": "https://www.uh.edu/news-events/stories/2026/september/09012026-doe-grant-permanent-magnets.php",
+          "figure": "$2.88 million",
+          "reconciles": false,
+          "read_on": "2026-09-05"
+        }
+      ],
+      "from_items": [
+        "tx-2026-0124"
+      ],
+      "why_this_set_is_closed": "The universal ranges over the pages that PRINT a figure for this award, which is what the sentence beside it says, and both of them are on the frame with their figure and their body named. Each was fetched in full and read for the other's number on 2026-09-05 and neither carries it, so the sentence is a reading of two documents rather than a statement about what sources in general say. The frame prints both figures at one size and draws no difference between them, so the reader is left where the record is.",
+      "not_a_source_silence_claim": "The set is two named documents this run read, never the sources as a class. A sentence about what sources do not say hard failed rounds 13 and 14 and is banned outright, correctly."
+    },
+    {
+      "phrase": "no material named yet",
+      "surface": "slide-09.html, the hook",
+      "about": "documents",
+      "set": "the four announcements this frame cites and nothing wider",
+      "members": [
+        {
+          "claim": "c2"
+        },
+        {
+          "claim": "c4"
+        },
+        {
+          "claim": "c5"
+        },
+        {
+          "claim": "c16"
+        }
+      ],
+      "from_items": [
+        "tx-2026-0124"
+      ],
+      "why_this_set_is_closed": "The word NAMED is load bearing. Each of the four was fetched in full on 2026-09-05 and read for a material, and none names one. The line is a reading of four documents rather than a statement about what exists in the world, which the record cannot support and this project does not publish.",
+      "not_a_source_silence_claim": "The set is four named documents this run read, never sources as a class."
+    },
+    {
+      "phrase": "three years is the only schedule in the record",
+      "surface": "caption.txt",
+      "about": "documents",
+      "set": "the eighteen verified claims in out/2026-09-05/claims.json, which is what THE RECORD means here",
+      "members": [
+        {
+          "claim": "c2",
+          "carries": "a three-year grant"
+        },
+        {
+          "claim": "c4",
+          "carries": "over the three-year grant period"
+        }
+      ],
+      "from_items": [
+        "tx-2026-0124"
+      ],
+      "why_this_set_is_closed": "Every one of the eighteen claims was read for a date, a window, a hearing or a deadline. Two carry the three year term and none carries anything else dated, which is also why the deck spends no reserved red and carries no date on any frame. texan_check reports deadline NO and next step NO for the same reason.",
+      "not_a_source_silence_claim": "It states what the claims file DOES carry and names the term. It does not say the sources are silent."
+    }
+  ],
+  "aggregates_note": "Three universals are published and all three are declared. quantifier_check's pattern sees only the first; the other two were found by a scorer and are declared here because a set claim is a set claim whether or not a regular expression matches it."
+}

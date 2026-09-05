@@ -1,0 +1,48 @@
+{
+ "lens": "integrity",
+ "date": "2026-09-05",
+ "carousel_no": 16,
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5,
+   "why": "Genuinely made and not assembled: computed stipple areas on 1 at exactly 3521.1 px2 per point of share, a specular lobe computed from the declared key on 4, white line intaglio on 6, Voronoi grain on 3. The deck's two invention frames are its weakest. Slide 9's dust free patch reads as a soft horizontal lamp smear rather than as a place where an object sat, so the close's whole argument is not in the pixels. Slide 7 is three small nodes on a line in a large empty field. Slide 8 still runs one continuous brass wire between two figures the deck says may not be compared."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2,
+   "why": "The deck's published surfaces are clean and unusually explicit. computed.json's printed_numerals maps all seven printed figures to c2, c3 or c18, aggregates.json declares Five sources as len(shares_from_c18) with a note that sources means import origins, and quantifiers.json declares three universals including two the gate's regular expression cannot see. c10 ships truncated exactly where two fetches agreed and NAMED is load bearing on the close. ROUND 3'S HARD FAIL IS CLOSED at the ledger, the site, the OG card and the run record, each surface read. Docked for the run's own arithmetic: the value arc existed in four versions across three documents, two of them inside the same JSON object."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A reader learns who funded it, with slide 4 naming the Department of Energy's Advanced Research Projects Agency-Energy in full, who leads it, what Rice does, that the money is printed two ways and that no material exists. Slides 1 and 2 put it in the reader's own condensing unit. No frame carries a county, a date, a window or an action, and the only Texas words on nine frames are on 4 and on 9."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "The turn is real and the value spike carries it. Slide 8 into 9 is a genuine build and Neither page reconciles them and neither does this is the line the deck was built for. Frame 7 is the soft spot and the close has no door, which the storyboard names as a risk rather than fixes."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Plain and on register, opening on the number that is wrong and refusing to reconcile it, ending on a question per brand.yaml. Nothing sounds like a Texan rather than merely like careful plain English: no place, no idiom, no regional specificity anywhere in nine frames or the caption."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "Opening move and structure both off the exclusion lists the room was handed. bespoke_median 0.1664 with a closest pair at 0.6638. Nine camera classes, no repeat. First deck with no cream after three consecutive creams, and the second darkest shipped. Third consecutive close on an absence, recorded in its own avoid_next."
+  }
+ ],
+ "weighted_score": 6.906,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Have compute.py write the measured value arc to a single machine owned file and make the storyboard, the artwork ledger and the run record read that file rather than retype it."
+}

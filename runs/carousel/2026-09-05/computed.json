@@ -1,0 +1,78 @@
+{
+  "run": "2026-09-05",
+  "note": "Every printed numeral in this deck is quoted from a claim. Nothing here is printed. These are the areas and particle counts that draw the five import shares on slide 1.",
+  "shares_from_c18": [
+    [
+      "China",
+      71
+    ],
+    [
+      "Malaysia",
+      13
+    ],
+    [
+      "Japan",
+      5
+    ],
+    [
+      "Estonia",
+      5
+    ],
+    [
+      "Other",
+      6
+    ]
+  ],
+  "slide1_fields": [
+    {
+      "name": "China",
+      "pct": 71,
+      "area_px2": 250000.0,
+      "equiv_radius_px": 282.09,
+      "particles": 11500
+    },
+    {
+      "name": "Malaysia",
+      "pct": 13,
+      "area_px2": 45774.6,
+      "equiv_radius_px": 120.71,
+      "particles": 2106
+    },
+    {
+      "name": "Japan",
+      "pct": 5,
+      "area_px2": 17605.6,
+      "equiv_radius_px": 74.86,
+      "particles": 810
+    },
+    {
+      "name": "Estonia",
+      "pct": 5,
+      "area_px2": 17605.6,
+      "equiv_radius_px": 74.86,
+      "particles": 810
+    },
+    {
+      "name": "Other",
+      "pct": 6,
+      "area_px2": 21126.8,
+      "equiv_radius_px": 82.01,
+      "particles": 972
+    }
+  ],
+  "slide1_density_per_kpx2": 46.0,
+  "counting_words": {
+    "import_origins": 5,
+    "figures_for_one_award": 2,
+    "grant_years": 3
+  },
+  "printed_numerals": {
+    "71%": "c18",
+    "13%": "c18",
+    "5%": "c18",
+    "6%": "c18",
+    "$2.9 million": "c2",
+    "$2.88 million": "c3",
+    "three-year": "c2"
+  }
+}
