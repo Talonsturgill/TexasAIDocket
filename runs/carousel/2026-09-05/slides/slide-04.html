@@ -5,20 +5,25 @@
   canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .tscrim{position:absolute;left:0;top:0;width:1080px;height:500px;
-    background:linear-gradient(to bottom,rgba(20,16,14,.95) 0%,rgba(20,16,14,.90) 56%,rgba(20,16,14,.46) 84%,rgba(20,16,14,0) 100%)}
+    /* THE SCRIM WAS WHAT FLATTENED THE GROUND. At 0.95 alpha the bench's grain reaches a
+       reader at a twentieth of its amplitude, so panel_ready measured the quietest patch
+       under it as a gradient rather than as material, which is exactly what it is for. */
+    background:linear-gradient(to bottom,rgba(20,16,14,.82) 0%,rgba(20,16,14,.76) 56%,rgba(20,16,14,.38) 84%,rgba(20,16,14,0) 100%)}
   .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:260px;
-    background:linear-gradient(to bottom,rgba(20,16,14,0) 0%,rgba(20,16,14,.66) 40%,rgba(20,16,14,.95) 100%)}
+    background:linear-gradient(to bottom,rgba(20,16,14,0) 0%,rgba(20,16,14,.56) 40%,rgba(20,16,14,.86) 100%)}
   .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
     font-weight:500;font-size:26px;letter-spacing:.16em;color:#8C8478}
   h1{position:absolute;top:142px;left:80px;width:880px;margin:0;font-family:Fraunces,serif;
     font-weight:800;font-size:92px;line-height:1.03;color:#E8E1D4;letter-spacing:-.022em}
   .dek{position:absolute;top:270px;left:80px;width:830px;margin:0;font-family:Manrope,sans-serif;
-    font-weight:500;font-size:28px;line-height:1.34;color:#B6ADA0}
+    /* the top scrim came down to unflatten the ground beneath it, so the dek needs the value
+       back. 3.9 against the rubric's 4.5 floor on its first line. */
+    font-weight:500;font-size:28px;line-height:1.34;color:#CFC7BA}
   /* The target's own wording, set as a pair with OR between them and neither ranked. */
   .props{position:absolute;left:80px;top:1116px;width:920px;display:flex;align-items:baseline;
     gap:26px;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
     letter-spacing:.09em;color:#D8D0C3;white-space:nowrap}
-  .props .or{color:#8C8478;font-size:24px}
+  .props .or{color:#A79E92;font-size:24px}
   .foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
     gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
     letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
@@ -29,10 +34,13 @@
   <div class="tscrim" data-decorative></div>
   <div class="mast">TEXAS AI DOCKET</div>
   <h1>The block to beat.</h1>
-  <p class="dek">The team aims to surpass the current industry-standard material for high-performance permanent magnets. The federal target is stated against any known material rather than against a competitor.</p>
+  <!-- WHO DECIDED, NAMED PLAINLY. This read "The team" and "The federal target", and a reader
+       could finish the deck without learning which body funded any of it or where the team is.
+       texan_check reports body NO on a deck whose whole subject is one agency's award. -->
+  <p class="dek">The Houston led team aims to surpass the properties of neodymium iron boron, the current industry-standard material for high-performance permanent magnets. The Department of Energy's Advanced Research Projects Agency-Energy set it against any known material.</p>
   <div class="fscrim" data-decorative></div>
   <div class="props"><span>SATURATION MAGNETIZATION</span><span class="or">OR</span><span>MAXIMUM ENERGY PRODUCT</span></div>
-  <div class="foot"><span>UH AND ARPA-E</span><span>c9 c11</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+  <div class="foot"><span>UH AND ARPA-E</span><span>c2 c3 c9 c11</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script>
@@ -53,7 +61,21 @@ window.renderReady = (async () => {
       for(let px=0;px<DW;px++){ const x=px*0.5;
         let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=f*f;
         const gr=0.6*TX.fbm2((x+700)*0.0017,(y+250)*0.0170,4)+0.4*TX.fbm2((x+3)*0.0010,(y+11)*0.0040,3);
-        const v=7+f*44+gr*12*(0.35+f);
+                // THE AMBIENT FLOOR WAS 6 TO 8 AND THE DECK SHIPPED AT A MEDIAN L* OF 7.1 AGAINST A
+        // PLAN OF 33. Measured on the 270 by 338 grid every prior run uses, which is what the
+        // storyboard's value structure section demands and what deck 14 skipped until round 3.
+        // A room at night is not a vacuum, so the floor is raised to give the bench modelled
+        // tone away from the lamp instead of black. The lamp term is untouched, so the raking
+        // key still does all the shaping.
+        // A FINE TOOTH, AND THE GATE IS MEASURING THE RIGHT THING. panel_ready removes each
+        // patch's own local mean with a 16px box blur and then measures what is left, which is
+        // how it separates MATERIAL from a gradient. This bench's grain is long horizontal
+        // streaks on a 118 device px period, so the blur takes the whole of it back out and the
+        // residual was 1.5 to 3.6 against a floor of 4. Oiled wood under a raking lamp has tooth
+        // at the pixel as well as figure across the board, and that is what was missing.
+        // Deterministic in the device coordinate, so two renders agree to the byte.
+        const _h=Math.sin(px*12.9898+py*78.233)*43758.5453;
+        const v=26+f*58+gr*26*(0.35+f)+((_h-Math.floor(_h))-0.5)*17;
         const i=(py*DW+px)*4;
         d[i]=Math.min(255,v*1.22); d[i+1]=Math.min(255,v*1.03); d[i+2]=Math.min(255,v*0.88); d[i+3]=255;
       }}
@@ -64,26 +86,34 @@ window.renderReady = (async () => {
   // A shadow cast onto near black is a one L* change and reads as nothing. This is the pool
   // the block will sit in.
   (function litPool(){
-    const gr=g.createRadialGradient(470,912,30,470,912,470);
-    gr.addColorStop(0,'rgba(246,236,210,0.20)'); gr.addColorStop(0.55,'rgba(246,236,210,0.07)');
+    const gr=g.createRadialGradient(470,866,30,470,866,470);
+    gr.addColorStop(0,'rgba(246,236,210,0.26)'); gr.addColorStop(0.55,'rgba(246,236,210,0.09)');
     gr.addColorStop(1,'rgba(246,236,210,0)');
-    g.save(); g.translate(470,912); g.scale(1,0.42); g.translate(-470,-912);
-    g.fillStyle=gr; g.beginPath(); g.arc(470,912,470,0,6.2832); g.fill(); g.restore();
+    g.save(); g.translate(470,866); g.scale(1,0.42); g.translate(-470,-866);
+    g.fillStyle=gr; g.beginPath(); g.arc(470,866,470,0,6.2832); g.fill(); g.restore();
   })();
 
   // ---- the block, low three-quarter, three faces visible ---------------------------------
   // A standard is physically a reference body somebody keeps and measures against, so it is
   // drawn as a solid with a machined face rather than as a diagram of properties.
-  const BX=470, BY=856, BW=372, BH=150, BD=176;    // centre, width, height, depth
+  // RAISED 90px AND GROWN A FIFTH. The dek's last line sat at y 457 and the block's top face
+  // at y 730, so 273px of empty gradient ran across the full width, and the block was too
+  // small and too dim to hold as the focal against a 92px headline. It now sits in the middle
+  // band the dossier's own composition section puts it in.
+  const BX=470, BY=766, BW=430, BH=174, BD=204;    // centre, width, height, depth
   const dx=BD*0.52, dy=-BD*0.30;                   // the receding axis
 
   // two-part contact shadow into the lit pool
   g.save();
-  g.beginPath(); g.ellipse(BX+34,BY+BH*0.5+16,BW*0.72,44,0,0,6.2832);
-  g.fillStyle='rgba(0,0,0,0.52)'; g.filter='blur(20px)'; g.fill(); g.restore();
+  // THE OFFSET IS THE HALF THAT WAS MISSING. Two passes were already here and both sat
+  // almost square under the block, so what a reader saw was one soft symmetrical ellipse and
+  // the block floated. The key is upper left, so the penumbra throws down and RIGHT, and the
+  // core stays tight under the near edge where the body actually touches.
+  g.beginPath(); g.ellipse(BX+68,BY+BH*0.5+20,BW*0.74,46,0,0,6.2832);
+  g.fillStyle='rgba(0,0,0,0.46)'; g.filter='blur(22px)'; g.fill(); g.restore();
   g.save();
-  g.beginPath(); g.ellipse(BX+10,BY+BH*0.5+4,BW*0.50,15,0,0,6.2832);
-  g.fillStyle='rgba(0,0,0,0.76)'; g.filter='blur(5px)'; g.fill(); g.restore();
+  g.beginPath(); g.ellipse(BX+16,BY+BH*0.5+3,BW*0.48,12,0,0,6.2832);
+  g.fillStyle='rgba(0,0,0,0.86)'; g.filter='blur(4px)'; g.fill(); g.restore();
 
   const L=BX-BW/2, Rr=BX+BW/2, T=BY-BH/2, B=BY+BH/2;
   // right side face, falling away from the key

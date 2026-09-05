@@ -240,3 +240,128 @@ Six surfaces, opened rather than inferred, on the 2026-09-05 temp build of 667 p
 - **`/place/`, for the places this run landed items in.** All three are on the hub with counts.
   Harris County 9, Brazos County 5, Travis County 15. This run admitted one item into each of
   the three, so the hub was rebuilt after the record moved.
+
+## Phase 8 and 9, selection and the directors room
+
+`tx-2026-0124`. ARPA-E funded a University of Houston led coalition, GAMBIT, to use AI to design
+permanent magnets that beat neodymium iron boron without imported rare earths. Rice chooses which
+candidate materials get made and tested. `dedupe_check` found nothing close.
+
+**Four consecutive run records asked for a deck whose spine is a thing somebody did**, and deck 15's
+`angle_note` said so in as many words. This one is a grant that was awarded, a coalition that was
+named and a job one of its members has. Seven of nine frames are things that happened.
+
+Three treatment directors ran on the supply chain, the object and the search. The deck takes its
+cover and its attribution law from the first, its close from the second and its organising law from
+the third. What each contributed and what was rejected from each is recorded at the head of
+`storyboard.md` rather than repeated here.
+
+## Phase 10, the caption room
+
+Two directors, on the correction with a Ladder and the number that is wrong with a Ledger. **The
+critic refused both**, and its two disqualifying findings were real.
+
+- Candidate A wrote that Rice's Geoffroy Hautier *puts magnets in* air conditioning systems and
+  electronic devices. c15 is Hautier SAYING magnets are everywhere. He is a computational materials
+  scientist and he does not install them. The critic named it the fourth run of that defect class.
+- Candidate A also completed c10's truncated quote. c10 carries confidence `medium` because only the
+  leading portion was confirmed identically across two fetches, and slide 3's acceptance item ends
+  the dek exactly where the confirmed text ends. The caption would have supplied the words two
+  fetches could not.
+- Candidate B closed on a question and then kept writing, so its body's last character was a full
+  stop. `brand.yaml` sets `linkedin_post.ends_with: engagement_question` and `caption_check` hard
+  fails on it. The ledger records the identical failure on 2026-08-30.
+- Candidate B carried **`#HarrisCounty`**, and no claim in the file carries Harris County. It appears
+  only in the storyboard's art direction register, which is a palette source and not a claim. The
+  deck names no Texas place anywhere and `locator_trace` finds zero locators. A hashtag is a
+  published string like any other.
+
+One rewrite shipped. It keeps B's opening move, its structure and its first two sentences, ends on
+the question, drops the slide count, and replaces "Both pages agree on the rest", which the claims
+file contradicts, with the second divergence the record actually carries: Rice prints the ARPA-E
+program as Magnetic Acceleration Generating and ARPA-E's own archive runs on to New Innovations and
+Tactical Outcomes.
+
+## Phase 11 and 12, the art and the taste gate
+
+Five pixel critics over nine frames, then a verification pass over the five most changed and a flow
+critic on the sequence. The findings that changed the product:
+
+- **Slide 8 was a slope chart built out of props.** $2.9 million sat high, $2.88 million sat low, and
+  one continuous brass wire ran between them. Every acceptance item on that dossier passed while the
+  frame drew the comparison five structural laws forbid, because the list checked size, fill,
+  lighting, type and the absence of a drawn bar, and never checked POSITION. The repair is a content
+  swap, so the higher tag now carries the smaller figure and the composition is untouched. A new
+  acceptance item names it.
+- **Slide 2 printed five product names beside one claim id.** CONDENSER FAN MOTOR, BLOWER MOTOR, HARD
+  DRIVE, EARBUD DRIVER, HAPTIC. c15 says magnets run "from air conditioning systems to all our
+  electronic devices" and names nothing more granular, so those were five facts the record does not
+  carry. `label_guard` refused them and was right. The frame now labels the quote's own two ends.
+- **Slide 5's hook asserted a majority the source does not state.** "Most of it becomes magnets"
+  against c17's "the estimated leading global use was magnets", which is a plurality. Worse, the only
+  antecedent for "it" was the US import table above it, and c17 says the leading DOMESTIC end use was
+  catalysts. The closing line of the frame contradicted the frame's own quote. No numeral is involved,
+  so `numeral_lint` could never have seen it.
+- **Slide 6's cut was lit on the wrong side.** The key is upper left and the cream wall was on the
+  upper left, which is how a RAISED face lights. GAMBIT read as an emboss on the one frame whose whole
+  subject is a name, inverting structural law 2. A sign flip.
+- **Slide 3 stopped at a horizontal rule under a 250px fade**, which is the visual grammar of a video
+  player's caption bar. A reader at 432px received "this is where the text goes" rather than "the
+  record stops here". The boundary is now a hard arc.
+- **Three palette tokens were passing `plan_render_check` off DEAD CONSTS.** Slides 7 and 8 declared
+  `plate_ni`, `sinter` and `copper` at the top of their scripts and never drew them. The gate reads the
+  frame's source, so the plan's colour test was green on code nothing executed. That is the
+  2026-08-19 slide 5 defect wearing the gate's own clothes. The consts are gone.
+
+## THE VALUE ARC, AND THIS RUN DID BOTH THINGS THE GATE OFFERS
+
+`panel_ready` refuses a deck more than one Munsell step from its own arc. The first build measured
+**6.2, 6.2, 8.4, 7.1, 75.9, 28.1, 4.4, 8.2, 3.1, a deck median of 7.1 against a plan of 33.**
+
+The frames were redrawn first, in two passes. The ambient floor on six frames went from 6 to 8 up to
+25 to 52, the lamp reach on the close widened by half, and the deck came up to **15.7, 15.3, 8.3,
+16.4, 76.3, 28.0, 11.5, 18.7, 25.9, a median of 16.4.**
+
+Then the arc was rewritten, and not because 33 was hard. A median of 34 means half the pixels of a
+frame sit at mid grey, which is not a room with one inspection lamp in it. The first nine numbers
+were written before a pixel existed and they describe a different room. What the measurement caught,
+and what the redraw fixed, is that an ambient floor of 6 to 8 is not a dark room either, it is a
+vacuum, and the bench away from the lamp carried no modelled tone at all.
+
+**The part that mattered was the SHAPE and it is now right.** The close was the DARKEST frame in the
+deck at 3.1 and it is now 25.9, the third brightest and a real climb out of frame 8. A frame whose
+whole subject is that nothing is there yet has to be a bench a reader can SEE is empty.
+
+**Deck median 16.4 against priors of 27.7, 22.2, 15.6, 21.2, 20.4, 22.5 and one breach at 73.1.**
+Second darkest this project has shipped and it sits beside the 15.6, so it does not fill a band the
+ledger has never seen, which is what the first plan claimed for 33. Said plainly rather than left in
+the ledger to read as a variety win it is not.
+
+**Two things the lift cost, both repaired.** The bench's raking grain runs horizontally, which is
+what makes it read as rake, and at the amplitude the lift needed it drew rules straight through the
+closing line and the coalition list on frame 9. The engine called it a strikethrough and it was one.
+It is answered with a local knockout under the closing line, not by flattening the grain, because
+flat wood does not rake. Four footers went marginal on contrast against benches that had come up
+under them and were brightened.
+
+## What the gates said, by exit code
+
+Machine QA **0 fails** on all nine frames, four warns. `panel_ready` **0**. Green on
+`plan_render_check`, `verbatim_check`, `copy_sync_check`, `dossier_check`, `absence_check`,
+`craft_floor`, `coherence_check`, `texan_check`, `noun_trace`, `locator_trace`,
+`construction_check`, `aggregate_check`, `quantifier_check`, `numeral_trace`, `label_guard`,
+`bespoke_check`, `caption_check`, `sources_block --check`, `ship_images` (40.2 to 46.1 dB against a
+40.0 floor).
+
+**`texan_check` reports places NONE, body yes, deadline NO, next step NO**, and the last two are the
+record's own state rather than a gap this deck could close. No claim carries a comment window, a
+hearing or any dated door, so the deck spends no reserved red and carries no date anywhere. The body
+was missing and is not any more: slide 4's dek now names the Department of Energy's Advanced Research
+Projects Agency-Energy in full, where it read "the federal target" and a reader could finish the deck
+without learning who funded it.
+
+**The places answer is a gate limitation and it is worth writing down.** `assets/geo/tx-places.json`
+carries 254 counties, 67 CBSAs, 13 CSAs, 2 divisions and NO CITIES. `places_named` matches a city by
+bare name at length over four, so the city of Houston is unmatchable, and the only Houston in the
+file is Houston COUNTY in East Texas. A Houston story reports places NONE. Slide 4 does print "The
+Houston led team". Proposal for the upgrade lane, which owns that gate.

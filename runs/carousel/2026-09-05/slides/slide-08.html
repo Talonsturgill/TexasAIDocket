@@ -10,9 +10,17 @@
     color:#1E1A17;font-variant-numeric:tabular-nums;letter-spacing:.01em;white-space:nowrap}
   .inst{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
     color:#3A342C;letter-spacing:.08em;white-space:nowrap}
-  .hook{position:absolute;left:80px;top:642px;width:430px;margin:0;font-family:Fraunces,serif;
+  /* THE WIRE RAN THROUGH THE HOOK. The type composited over roughly 280px of it, so the one
+     continuous wire that says these two figures are about the SAME award arrived at a reader
+     cut in half by its own headline. The wire threads the drilled hole and can't move, so the
+     hook does, up into the frame's dead upper left, where it clears both wires at every y. */
+  .hook{position:absolute;left:80px;top:200px;width:360px;margin:0;font-family:Fraunces,serif;
     font-weight:800;font-size:76px;line-height:1.02;color:#E8E1D4;letter-spacing:-.021em}
-  .sub{position:absolute;left:80px;top:846px;width:400px;margin:0;font-family:Manrope,sans-serif;
+  /* The dek sat at left 80 under the hook and the lower brass wire ran straight through its
+     first line, through the words "reconciles them and", in the smallest type on the frame.
+     The wire is load bearing because it threads the hole, so the type moved instead. The right
+     column is the one band no wire enters, since neither ever goes right of the hole at x 520. */
+  .sub{position:absolute;left:556px;top:846px;width:424px;margin:0;font-family:Manrope,sans-serif;
     font-weight:500;font-size:24px;line-height:1.34;color:#B6ADA0}
   .foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
     gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
@@ -21,10 +29,20 @@
 <body>
 <canvas id="art"></canvas>
 <div class="wrap">
-  <div class="fig" id="fA" style="left:578px;top:214px">$2.9 million</div>
-  <div class="inst" id="iA" style="left:578px;top:282px">RICE UNIVERSITY</div>
-  <div class="fig" id="fB" style="left:114px;top:1040px">$2.88 million</div>
-  <div class="inst" id="iB" style="left:114px;top:1108px">UNIVERSITY OF HOUSTON</div>
+  <!-- THE SMALLER FIGURE IS THE ONE HIGH UP, AND THAT IS THE WHOLE POINT OF THIS EDIT.
+       $2.9 million was on the upper tag and $2.88 million on the lower one, joined by one
+       continuous wire. Larger value high, smaller value low, a line between them, which a
+       reader with any chart literacy reads as a two point slope. Structural law 4 of this deck
+       forbids drawing a quantity as a position and the frame was doing it with props instead of
+       with an axis. Swapping the CONTENT and leaving the composition, the tilt, the lighting
+       and the shadow chain exactly where they were breaks the ascending read and costs nothing.
+       Each figure still sits directly above the body that prints it.
+       The strings also start 72px in from each tag's leading edge rather than 22px, so the
+       wire's eyelet lands in clear stock on BOTH tags instead of terminating on a dollar sign. -->
+  <div class="fig" id="fA" style="left:562px;top:214px">$2.88 million</div>
+  <div class="inst" id="iA" style="left:562px;top:282px">UNIVERSITY OF HOUSTON</div>
+  <div class="fig" id="fB" style="left:164px;top:1040px">$2.9 million</div>
+  <div class="inst" id="iB" style="left:164px;top:1108px">RICE UNIVERSITY</div>
   <h1 class="hook">One award, two figures.</h1>
   <p class="sub">Neither page reconciles them and neither does this.</p>
   <div class="foot"><span>TEXAS AI DOCKET</span><span>c2 c3</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
@@ -37,7 +55,10 @@ window.renderReady = (async () => {
   const g=c.getContext('2d'); g.scale(2,2);
   TX.reseed(20260905); const R=TX.rng(20260905);
 
-  const NIGHT='#14100E', SINTER='#191518', BRASS='#B5892C', TAG='#CBC3B4';
+  // sinter was declared here and never used, and plan_render_check reads the source, so a token
+  // the frame does not draw was passing its palette test off a dead const. Gone, and the dossier
+  // names the body's own ramp instead.
+  const NIGHT='#14100E', BRASS='#B5892C', TAG='#CBC3B4';
   const LAMPX=470, LAMPY=300, LAMPR=1320;
 
   g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
@@ -47,7 +68,13 @@ window.renderReady = (async () => {
       for(let px=0;px<DW;px++){ const x=px*0.5;
         let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=f*f;
         const gr=0.6*TX.fbm2((x+900)*0.0017,(y+130)*0.0140,4)+0.4*TX.fbm2((x+5)*0.0010,(y+9)*0.0038,3);
-        const v=7+f*40+gr*12*(0.35+f);
+                // THE AMBIENT FLOOR WAS 6 TO 8 AND THE DECK SHIPPED AT A MEDIAN L* OF 7.1 AGAINST A
+        // PLAN OF 33. Measured on the 270 by 338 grid every prior run uses, which is what the
+        // storyboard's value structure section demands and what deck 14 skipped until round 3.
+        // A room at night is not a vacuum, so the floor is raised to give the bench modelled
+        // tone away from the lamp instead of black. The lamp term is untouched, so the raking
+        // key still does all the shaping.
+        const v=25+f*52+gr*24*(0.35+f);
         const i=(py*DW+px)*4;
         d[i]=Math.min(255,v*1.22); d[i+1]=Math.min(255,v*1.03); d[i+2]=Math.min(255,v*0.88); d[i+3]=255;
       }}
@@ -94,9 +121,9 @@ window.renderReady = (async () => {
   // The record does not prefer one figure, so the drawing may not either. Both tags take the
   // same size, the same fill and the same key term. The only difference between them is the
   // strings, and the frame reports its own lighting so the claim is measured, not asserted.
-  const TAGW=436, TAGH=132;
+  const TAGW=500, TAGH=132;         // 436 held the figure and not the 72px eyelet reserve too
   const TAGS=[
-    {x:556, y:186, ang:-0.055},     // upper right
+    {x:490, y:186, ang:-0.055},     // upper right
     {x:92,  y:1012, ang: 0.062}     // lower left
   ];
   const litness=[];
@@ -176,7 +203,12 @@ window.renderReady = (async () => {
       litness[0].stop0===litness[1].stop0 && litness[0].stop1===litness[1].stop1 &&
       litness[0].stop2===litness[1].stop2 && litness[0].w===litness[1].w &&
       litness[0].h===litness[1].h,
-    shared_baseline:false, bars:0, rules:0, difference_drawn:false
+    shared_baseline:false, bars:0, rules:0, difference_drawn:false,
+    // POSITION IS A QUANTITY TOO, and the checklist had no item for it, so the frame drew a
+    // slope chart out of props and scored full marks. The higher tag carries the SMALLER
+    // figure, asserted here rather than left to whoever reads the frame next.
+    upper_tag_figure:'$2.88 million', lower_tag_figure:'$2.9 million',
+    vertical_order_follows_numeric_order:false
   };
 })();
 </script>

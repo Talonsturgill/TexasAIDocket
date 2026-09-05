@@ -29,14 +29,25 @@
   <h1>71 percent from one country.</h1>
   <p class="dek">A federal survey lists where the United States gets the rare earth compounds and metals it imports. Five sources, and one of them is most of it.</p>
 
-  <div class="lab" id="l0" style="left:648px;top:846px;font-size:38px">CHINA <span class="pct">71%</span></div>
-  <div class="lab" id="l1" style="left:96px;top:980px;font-size:26px">MALAYSIA <span class="pct">13%</span></div>
-  <div class="lab" id="l2" style="left:378px;top:980px;font-size:26px">JAPAN <span class="pct">5%</span></div>
-  <div class="lab" id="l3" style="left:566px;top:980px;font-size:26px">ESTONIA <span class="pct">5%</span></div>
-  <div class="lab" id="l4" style="left:790px;top:980px;font-size:26px">OTHER <span class="pct">6%</span></div>
+  <!-- CHINA sits on the field's upper right shoulder rather than out to its right, which is
+       where the frame's dead quarter was. The four minor labels are centred over their own
+       fields so the binding is not left to proximity. -->
+  <!-- THE FIVE PERCENTAGES CAME OFF THIS FRAME. Slide 5 is the deck's one inversion and its
+       declared turn, and it was restating these same five figures verbatim, so the largest
+       visual move in the deck delivered numbers a reader had already read four slides earlier.
+       The cover keeps ONE number, in the hook, and the AREAS carry the rest, which is what the
+       technique is for. The figures arrive on the printed page where a survey prints them. -->
+  <div class="lab" id="l0" style="left:700px;top:598px;font-size:34px">CHINA</div>
+  <div class="lab" id="l1" style="left:132px;top:980px;font-size:26px">MALAYSIA</div>
+  <div class="lab" id="l2" style="left:394px;top:980px;font-size:26px">JAPAN</div>
+  <div class="lab" id="l3" style="left:570px;top:980px;font-size:26px">ESTONIA</div>
+  <div class="lab" id="l4" style="left:800px;top:980px;font-size:26px">OTHER</div>
 
   <div class="fscrim" data-decorative></div>
-  <div class="foot"><span>USGS MCS 2026</span><span>c17 c18</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+  <!-- c17 was cited here and nothing on this frame comes from it. c17 is the catalysts against
+       magnets end-use sentence and it belongs to slide 5. A reader who checks a cited claim and
+       finds it is about something else has been told the citation is decoration. -->
+  <div class="foot"><span>USGS MCS 2026</span><span>c18</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script>
@@ -77,7 +88,13 @@ window.renderReady = (async () => {
         const gy=TX.fbm2((x+2200)*0.0016,(y+900)*0.0180,4);
         const gr=TX.fbm2((x+50)*0.0009,(y+30)*0.0042,3);
         const grain=0.55*gy+0.45*gr;
-        const v=8 + f*46 + grain*13*(0.35+f);
+                // THE AMBIENT FLOOR WAS 6 TO 8 AND THE DECK SHIPPED AT A MEDIAN L* OF 7.1 AGAINST A
+        // PLAN OF 33. Measured on the 270 by 338 grid every prior run uses, which is what the
+        // storyboard's value structure section demands and what deck 14 skipped until round 3.
+        // A room at night is not a vacuum, so the floor is raised to give the bench modelled
+        // tone away from the lamp instead of black. The lamp term is untouched, so the raking
+        // key still does all the shaping.
+        const v=27 + f*58 + grain*19*(0.35+f);
         const i=(py*DW+px)*4;
         d[i]=Math.max(0,Math.min(255,v*1.22));
         d[i+1]=Math.max(0,Math.min(255,v*1.03));
@@ -93,15 +110,19 @@ window.renderReady = (async () => {
   // quote. Radius goes as the SQUARE ROOT of the share, because a stipple field's visual
   // weight is its area. A radius drawn proportional to the share would overstate the 71 by
   // the square of its lead, which is the one way this frame could lie with a true number.
+  // sx and sy are a SHAPE ratio and never an area change. Area goes as sx*sy, so the pair
+  // always multiplies to 1 and the encoding the whole frame rests on is untouched. The China
+  // heap was drawn round, ran out at the horizontal centre and left the right quarter of the
+  // frame carrying one mono label. Spread flat it covers the band it is the subject of.
   const FIELDS=[
-    {n:'China',   pct:71, cx:330, cy:790,  r:282.09, part:11500},
-    {n:'Malaysia',pct:13, cx:176, cy:1126, r:120.71, part:2106},
-    {n:'Japan',   pct:5,  cx:434, cy:1132, r:74.86,  part:810},
-    {n:'Estonia', pct:5,  cx:624, cy:1132, r:74.86,  part:810},
-    {n:'Other',   pct:6,  cx:846, cy:1128, r:82.00,  part:972}
+    {n:'China',   pct:71, cx:460, cy:790,  r:282.09, part:11500, sx:1.22, sy:1/1.22},
+    {n:'Malaysia',pct:13, cx:212, cy:1126, r:120.71, part:2106,  sx:1, sy:1},
+    {n:'Japan',   pct:5,  cx:450, cy:1132, r:74.86,  part:810,   sx:1, sy:1},
+    {n:'Estonia', pct:5,  cx:640, cy:1132, r:74.86,  part:810,   sx:1, sy:1},
+    {n:'Other',   pct:6,  cx:858, cy:1128, r:82.00,  part:972,   sx:1, sy:1}
   ];
 
-  function repose(cx,cy,r,seed){
+  function repose(cx,cy,r,seed,sx,sy){
     // The boundary is the material's own angle of repose, not a circle and never a rectangle.
     // A rectangle here would read as a bar and the frame would have published a chart.
     const pts=[], N=176;
@@ -109,20 +130,22 @@ window.renderReady = (async () => {
       const a=i/N*Math.PI*2;
       const w=TX.fbm2(Math.cos(a)*0.62+seed, Math.sin(a)*0.62+seed, 2);
       const rr=r*(0.92+0.15*w);
-      pts.push([cx+Math.cos(a)*rr, cy+Math.sin(a)*rr*0.62]);
+      pts.push([cx+Math.cos(a)*rr*(sx||1), cy+Math.sin(a)*rr*0.62*(sy||1)]);
     }
     return pts;
   }
 
   function drawField(f,idx){
-    const pts=repose(f.cx,f.cy,f.r,idx*7.3);
-    // lee shadow first, offset away from the lamp, so the field sits in the bench. Drawn with
-    // shadowBlur rather than ctx.filter, because a filter layer's bounds rendered as a visible
-    // step in the dark half of this frame.
+    const pts=repose(f.cx,f.cy,f.r,idx*7.3,f.sx,f.sy);
+    // THE LEE IS A CONTACT DARKENING AND NOT A DROP SHADOW. It was offset 17 by 14 under a 26px
+    // blur, and combined with the specular crest below it the five heaps read as sea glass
+    // floating over the bench. Powder poured on a surface merges with it. The offset is cut to
+    // a third and the alpha with it, so the lee still says which way the lamp is and no longer
+    // says the heap is above the wood.
     g.save();
     g.beginPath(); pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));
     g.closePath();
-    g.shadowColor='rgba(0,0,0,0.66)'; g.shadowBlur=26; g.shadowOffsetX=17; g.shadowOffsetY=14;
+    g.shadowColor='rgba(0,0,0,0.52)'; g.shadowBlur=20; g.shadowOffsetX=6; g.shadowOffsetY=5;
     g.fillStyle='rgba(0,0,0,0.9)'; g.fill();
     g.restore();
 
@@ -131,17 +154,27 @@ window.renderReady = (async () => {
     g.save();
     g.beginPath(); pts.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));
     g.closePath(); g.clip();
+    // FLATTER THAN IT WAS. The base was a specular ramp from #CFC4E2 to #5E5570 and it did the
+    // reading on its own, so the frame was a gradient with speckle on top. It now carries the
+    // heap's direction and nothing more, and the STIPPLE is what a reader sees.
     const cr=g.createRadialGradient(f.cx-f.r*0.30,f.cy-f.r*0.34,f.r*0.06,f.cx,f.cy,f.r*1.12);
-    cr.addColorStop(0,'#CFC4E2'); cr.addColorStop(0.52,NEO); cr.addColorStop(1,'#5E5570');
+    cr.addColorStop(0,'#9C93B4'); cr.addColorStop(0.52,'#8B82A4'); cr.addColorStop(1,'#655C78');
     g.fillStyle=cr; g.fill();
     for(let i=0;i<f.part;i++){
       const a=R()*Math.PI*2, rad=Math.sqrt(R())*f.r;
-      const x=f.cx+Math.cos(a)*rad, y=f.cy+Math.sin(a)*rad*0.62;
+      const x=f.cx+Math.cos(a)*rad*(f.sx||1), y=f.cy+Math.sin(a)*rad*0.62*(f.sy||1);
       // grain brightness follows the lamp direction across the heap
       const t=1-Math.min(1,(Math.hypot(x-(f.cx-f.r*0.30), (y-(f.cy-f.r*0.34))*1.6))/(f.r*1.5));
       const b=0.20+0.80*t*t;
-      g.fillStyle='rgba('+Math.round(150+95*b)+','+Math.round(140+90*b)+','+Math.round(175+75*b)+','+(0.16+0.5*b)+')';
-      const s=0.7+R()*1.5;
+      // THE PARTICLE HAS TO SURVIVE THE DOWNSCALE OR THE TECHNIQUE DID NOT SHIP. At 0.7 to
+      // 2.2 design px a grain is 0.28 to 0.88px at 432 wide, which averages away, and the
+      // frame arrives as five flat lozenges. This deck's own dossier named that risk in as
+      // many words. At 2.0 to 4.6 the smallest grain is still 0.8px at feed size, and the
+      // lightness spread is widened so the survivors carry range rather than one tone.
+      const j=(R()-0.5)*0.34;
+      const bb=Math.max(0,Math.min(1,b+j));
+      g.fillStyle='rgba('+Math.round(128+118*bb)+','+Math.round(118*bb+118)+','+Math.round(158+92*bb)+','+(0.22+0.62*bb).toFixed(3)+')';
+      const s=2.0+R()*2.6;
       g.fillRect(x,y,s,s);
     }
     g.restore();

@@ -1,0 +1,47 @@
+{
+ "lens": "craft",
+ "date": "2026-09-05",
+ "carousel_no": 16,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5,
+   "why": "Frame 3's Voronoi field stops at a hard arc so the undrawn third reads as a decision. Frame 4's specular lobe is computed off the key. Frame 1's stipple survives the downscale, verified on the thumb, and the areas are exactly proportional, so the cover is matter and not a bubble chart. Four frames have real defects. Frame 2 ships one canister at five descending sizes with the dark disc sitting on top of the nickel face and the cut reduced to a striped panel, so the frame's whole argument does not render. Frame 9 ships a hard edged near black rectangle behind the closing hook, which is the deck's own structural law 2 broken by name and the most legible shape at 432px. Frame 6's declared 55 percent engraved field arrives as three bands of low contrast hatch. Frame 5's declared dither is not in the pixels."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Eighteen claims, every one with a verbatim quote, a URL, a fetch date and a confidence, primary throughout with no journalism anywhere. c18's note records a correction to the fact checker's own proxy read, verified by direct fetch at HTTP 200 and 639,984 bytes, and c17 was raised from medium to high on the same read after a 403. Ten findings rejected with the reason named. Every printed numeral traces. quantifiers.json bounds the deck's universal to a closed two member set with both pages fetched and each read for the other's figure. Three deductions: frame 4's rail cites claims it derives nothing from, frame 4's dek carries c11's wording unquoted inside the deck's own prose, and the first comment stamps the fetch date where a reader will read a publication date."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.0,
+   "why": "A reader learns what happened, who decided and what the target is, and frame 4 names the agency in full rather than by acronym. No county, no date, no deadline and no next step anywhere, and the record genuinely carries none, which the close says rather than manufacturing one. Frame 2's bid to convert a federal grant into the reader's own air conditioner fails in the pixels. Frame 9 sets THREE YEARS, the only schedule in the record, at list size where it reads as a fifth coalition member."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "The cover earns its swipe and opens on matter rather than on a silence, which four consecutive run records asked for. The declared turn at frame 5 RESTATES frame 1's five percentages verbatim, so the deck's largest visual move delivers exactly one new fact and the picture changes at the turn while the understanding does not. The real turn is frame 6, one slide late. The close does not land at 432px."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "House rules clean, checked line by line across the copy, the caption and the first comment. It is already in your house is the best line in the deck and it is a Texan talking to a Texan about their own equipment. Two things keep it flat: the caption spends a line describing its own artwork, which CAPTION_CRAFT.md tells it not to, and six of nine deks are verbatim quotes or federal wording, so the deck's own writing is four hooks and two deks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "bespoke_median 0.1664 is the lowest of sixteen decks, nine camera classes with none repeated and the risky pair compared at plan time. New register, new palette, no cream, deck median answering deck 14's dark deck debt, six type moves answering deck 15's avoid_next, and the caption honours all three exclusion windows. Against that, the full bleed printed document as the only light frame AT SLIDE 5 is decks 1, 3 and 13's move, and the storyboard's variety argument for that frame is entirely about hue and never about structure."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 9's close so the type sits on the lit bench behind a local dust halo instead of the hard edged black plate structural law 2 bans by name, and move the lamp pool off the patch so thinning dust is the only thing making it brighter."
+}

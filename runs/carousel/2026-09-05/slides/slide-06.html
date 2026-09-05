@@ -8,7 +8,16 @@
      because the plate IS the frame. The deck furniture sits on a foot rail beneath it. */
   h1.cut{position:absolute;left:100px;top:288px;margin:0;font-family:Fraunces,serif;
     font-weight:800;font-size:196px;line-height:1;letter-spacing:-.012em;color:#191518;
-    text-shadow:-3px -3.2px 0 rgba(246,236,210,.90), -5px -5.4px 0 rgba(246,236,210,.34)}
+    /* THE LIT WALL WAS ON THE WRONG SIDE AND THE CUT READ AS AN EMBOSS. The key is upper
+       left, and for a CAVITY lit from upper left the near wall on the upper left is in
+       SHADOW and the far wall on the lower right is what catches it. The cream was on the
+       upper left, which is how a RAISED face lights, so at 432px GAMBIT read as a
+       misregistered second impression. Structural law 2 of this deck says a cut is a thing
+       the record only names, and the one frame whose whole subject is a name was drawing the
+       opposite. The signs are flipped and nothing else changed: a dark near lip was drawn
+       first and the art-crossing-glyphs gate refused it, correctly, because ink of the
+       glyphs' own value beside a letterform is indistinguishable from a rule through it. */
+    text-shadow:3px 3.2px 0 rgba(246,236,210,.90), 5px 5.4px 0 rgba(246,236,210,.34)}
   .expand{position:absolute;left:104px;top:706px;width:872px;margin:0;
     font-family:"JetBrains Mono",monospace;font-weight:500;font-size:29px;line-height:1.42;
     color:#F0EADF;letter-spacing:.01em}
@@ -16,7 +25,9 @@
     font-weight:500;font-size:28px;line-height:1.34;color:#DAD4C9}
   .prog{position:absolute;left:104px;top:1000px;width:872px;font-family:"JetBrains Mono",monospace;
     font-weight:500;font-size:25px;line-height:1.5;color:#E6DFD3;letter-spacing:.03em}
-  .prog .foa{color:#8C8478}
+  /* DE-FOA-0003590 is the frame's only lookup-able identifier and it was set in the dimmest
+     grey on the plate's darkest band, at the edge of legibility at 432px. */
+  .prog .foa{color:#CBC3B4}
   .foot{position:absolute;bottom:78px;left:80px;right:80px;display:flex;justify-content:space-between;
     gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
     letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
@@ -27,7 +38,13 @@
 <div class="wrap">
   <h1 class="cut">GAMBIT</h1>
   <p class="expand">Guided AI for Magnetic Boride/Carbide Intermetallic Technologies (GAMBIT)</p>
-  <p class="note">The name states the search space, and it is not rare earths.</p>
+  <!-- THIS READ "The name states the search space, and it is not rare earths." and it was
+       wrong on the chemistry as well as on the record. Boride and carbide are ANION classes and
+       rare earth is a CATION class, so naming borides and carbides excludes nothing, and
+       Nd2Fe14B, which THIS DECK PRINTS ON SLIDE 3, is a rare earth boride. No claim in the file
+       says the search leaves rare earths behind either. c4 supports what the name contains and
+       nothing more, which is a chemistry family rather than a supply chain. -->
+  <p class="note">The name states a chemistry and not a supply chain.</p>
   <div class="prog">Magnetic Acceleration Generating New Innovations and Tactical Outcomes (MAGNITO)<br><span class="foa">DE-FOA-0003590</span></div>
   <div class="footrail" data-decorative></div>
   <div class="foot"><span>ARPA-E AND UH</span><span>c4 c7 c8</span><span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
@@ -95,14 +112,18 @@ window.renderReady = (async () => {
     const bandTop=PT+24, bandBot=706-30;
     const clearTop=300, clearBot=520;         // the acronym's own band, kept clear by 24px
     g.save();
-    g.lineWidth=1.25;
+    // COARSER THAN IT WAS. At 1.25px and a 7px pitch the field is 0.5px lines 2.8px apart
+    // after the downscale to 432, which averages into a grey smear rather than reading as cut
+    // lines. That is deck 13's recorded engraving failure arriving in a new form. Raising the
+    // alpha on the fine pitch would only deepen the smear, so the LINE is what changed.
+    g.lineWidth=2.2;
     // the type blocks this field must stay 24px clear of, top and bottom of each
     const CLEAR=[[288,500],[700,792],[830,890],[994,1086],[1180,1350]];
     const blocked=yy=>CLEAR.some(b=>yy>b[0]-24 && yy<b[1]+24);
-    for(let y=bandTop;y<1186;y+=7){
+    for(let y=bandTop;y<1186;y+=9){
       if(blocked(y)) continue;
       const amp=9+7*TX.fbm2(y*0.012, 3.1, 2);
-      g.strokeStyle='rgba(246,236,210,'+(0.10+0.16*TX.fbm2(y*0.006,7.7,2)).toFixed(3)+')';
+      g.strokeStyle='rgba(246,236,210,'+(0.13+0.20*TX.fbm2(y*0.006,7.7,2)).toFixed(3)+')';
       g.beginPath();
       for(let x=PL+18;x<PL+PW-18;x+=6){
         const yy=y+Math.sin(x*0.021+y*0.05)*amp*0.16+TX.fbm2(x*0.004,y*0.02,2)*3.2;
@@ -111,7 +132,7 @@ window.renderReady = (async () => {
       g.stroke(); hatchLines++;
     }
     // a second pass at a crossing angle in the lower half, so density builds where the key dies
-    for(let x=PL+30;x<PL+PW-30;x+=11){
+    for(let x=PL+30;x<PL+PW-30;x+=13){
       if(x%3===0) continue;
       g.strokeStyle='rgba(246,236,210,'+(0.05+0.07*TX.fbm2(x*0.008,2.2,2)).toFixed(3)+')';
       g.beginPath();
@@ -128,7 +149,8 @@ window.renderReady = (async () => {
 
   window.__txProbe={
     plate:{x:PL,y:PT,w:PW,h:PH},
-    engraved_lines:hatchLines,
+    engraved_lines:hatchLines, hatch_line_width:2.2, hatch_pitch:9,
+    lit_wall_side:'lower right, away from the upper left key, so the type reads as cut',
     engraved_coverage_estimate:+(hatchLines*(PW-36)*1.25/(PW*PH)).toFixed(3),
     tilt_deg:10, cut_floor:'#191518'
   };

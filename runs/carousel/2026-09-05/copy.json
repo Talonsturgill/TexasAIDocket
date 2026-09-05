@@ -1,0 +1,179 @@
+{
+  "run": "2026-09-05",
+  "deck": 16,
+  "note": "Built from the render report's own laid out text nodes rather than from the storyboard. A string here is a string the browser actually set.",
+  "slides": {
+    "S1": {
+      "hook": "71 percent from one country.",
+      "dek": "A federal survey lists where the United States gets the rare earth compounds and metals it imports. Five sources, and one of them is most of it.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "CHINA",
+        "MALAYSIA",
+        "JAPAN",
+        "ESTONIA",
+        "OTHER",
+        "USGS MCS 2026",
+        "c18",
+        "texasaidocket.com",
+        "01 / 09"
+      ],
+      "claims": [
+        "c18"
+      ]
+    },
+    "S2": {
+      "hook": "It is already in your house.",
+      "dek": "\"Magnets are everywhere, from air conditioning systems to all our electronic devices\"",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "AIR CONDITIONING SYSTEMS",
+        "ELECTRONIC DEVICES",
+        "RICE",
+        "c15",
+        "texasaidocket.com",
+        "02 / 09"
+      ],
+      "claims": [
+        "c15"
+      ]
+    },
+    "S3": {
+      "hook": "Found once.",
+      "dek": "\"The discovery of Nd2Fe14B, with its complex structural chemistry and extraordinary properties, suggests that other complex magnetic materials\"",
+      "labels": [
+        "Nd2Fe14B",
+        "ARPA-E MAGNITO",
+        "c8 c10",
+        "texasaidocket.com",
+        "03 / 09"
+      ],
+      "claims": [
+        "c8",
+        "c10"
+      ]
+    },
+    "S4": {
+      "hook": "The block to beat.",
+      "dek": "The Houston led team aims to surpass the properties of neodymium iron boron, the current industry-standard material for high-performance permanent magnets. The Department of Energy's Advanced Research Projects Agency-Energy set it against any known material.",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "SATURATION MAGNETIZATION",
+        "OR",
+        "MAXIMUM ENERGY PRODUCT",
+        "UH AND ARPA-E",
+        "c2 c3 c9 c11",
+        "texasaidocket.com",
+        "04 / 09"
+      ],
+      "claims": [
+        "c2",
+        "c3",
+        "c9",
+        "c11"
+      ]
+    },
+    "S5": {
+      "hook": null,
+      "dek": "The leading global use is magnets.",
+      "labels": [
+        "IMPORT SOURCES",
+        "\"The estimated leading domestic end use of rare earths was catalysts, whereas the estimated leading global use was magnets.\"",
+        "CHINA",
+        "71%",
+        "MALAYSIA",
+        "13%",
+        "JAPAN",
+        "5%",
+        "ESTONIA",
+        "5%",
+        "OTHER",
+        "6%",
+        "U.S. GEOLOGICAL SURVEY, MINERAL COMMODITY SUMMARIES 2026, RARE EARTHS",
+        "TEXAS AI DOCKET",
+        "c17 c18",
+        "texasaidocket.com",
+        "05 / 09"
+      ],
+      "claims": [
+        "c17",
+        "c18"
+      ]
+    },
+    "S6": {
+      "hook": "GAMBIT",
+      "dek": "The name states a chemistry and not a supply chain.",
+      "labels": [
+        "Guided AI for Magnetic Boride/Carbide Intermetallic Technologies (GAMBIT)",
+        "Magnetic Acceleration Generating New Innovations and Tactical Outcomes (MAGNITO) DE-FOA-0003590",
+        "DE-FOA-0003590",
+        "ARPA-E AND UH",
+        "c4 c7 c8",
+        "texasaidocket.com",
+        "06 / 09"
+      ],
+      "claims": [
+        "c4",
+        "c7",
+        "c8"
+      ]
+    },
+    "S7": {
+      "hook": "Picked for testing.",
+      "dek": "\"Our goal is to use AI to find entirely new materials while simultaneously balancing these supply constraint concerns.\"",
+      "labels": [
+        "TEXAS AI DOCKET",
+        "AI",
+        "ATOMISTIC MODELING",
+        "HIGH THROUGHPUT COMPUTING",
+        "UH AND RICE",
+        "c6 c14",
+        "texasaidocket.com",
+        "07 / 09"
+      ],
+      "claims": [
+        "c6",
+        "c14"
+      ]
+    },
+    "S8": {
+      "hook": "One award, two figures.",
+      "dek": "Neither page reconciles them and neither does this.",
+      "labels": [
+        "$2.88 million",
+        "UNIVERSITY OF HOUSTON",
+        "$2.9 million",
+        "RICE UNIVERSITY",
+        "TEXAS AI DOCKET",
+        "c2 c3",
+        "texasaidocket.com",
+        "08 / 09"
+      ],
+      "claims": [
+        "c2",
+        "c3"
+      ]
+    },
+    "S9": {
+      "hook": "No material named yet.",
+      "dek": "\"If you improve the quality of these magnets, that translates into an efficiency gain everywhere\"",
+      "labels": [
+        "RICE",
+        "COLORADO STATE UNIVERSITY",
+        "CARRIER GLOBAL",
+        "NEWFOUND MATERIALS",
+        "THREE YEARS",
+        "RICE",
+        "c2 c4 c5 c16",
+        "texasaidocket.com",
+        "09 / 09"
+      ],
+      "claims": [
+        "c2",
+        "c4",
+        "c5",
+        "c16"
+      ]
+    }
+  }
+}

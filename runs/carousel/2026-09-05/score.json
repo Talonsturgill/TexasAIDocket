@@ -1,0 +1,93 @@
+{
+ "weighted_score": 6.67,
+ "judges": [
+  6.694,
+  7.1,
+  6.14
+ ],
+ "spread": 0.96,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.28,
+   "judges": [
+    6.2,
+    6.5,
+    6.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    5.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.18,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.5,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.4,
+   "weight": 0.12,
+   "judges": [
+    6.4,
+    7.0,
+    6.0
+   ]
+  },
+  "variety": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "an unverified fact presented as verified: slide 6's dek prints that the name states the search space and it is not rare earths, beneath a claim rail reading c4 c7 c8. No claim in claims.json states that GAMBIT's search space excludes rare earths, and the assertion is refuted by the deck's own slide 3, which names Nd2Fe14B, a rare earth boride, inside the boride and carbide class the name declares."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 3,
+   "fail": "an unverified fact presented as verified: slide 6's dek prints that the name states the search space and it is not rare earths, beneath a claim rail reading c4 c7 c8. No claim in claims.json states that GAMBIT's search space excludes rare earths, and the assertion is refuted by the deck's own slide 3, which names Nd2Fe14B, a rare earth boride, inside the boride and carbide class the name declares."
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.694 against a 6.8 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.694,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.694 against a 6.8 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 0.96, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds": 1
+}

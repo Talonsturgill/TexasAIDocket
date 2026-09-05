@@ -1,0 +1,48 @@
+{
+ "lens": "integrity",
+ "date": "2026-09-05",
+ "carousel_no": 16,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.2,
+   "why": "Slide 3's Voronoi field and slide 8's two tags on one wire are genuinely made. Against that, slide 9 shipped a hard edged near black rectangle: .hookplate's 116 percent extent on a 480px box clips the gradient at about alpha 0.45 and draws straight top, right and bottom edges over about 16 percent of the closing frame, breaking the deck's own structural law 2 by name and squaring the patch's left edge into an exactly vertical line the acceptance item forbids. Machine QA reported zero fails and zero warns on that frame, because band statistics cannot see a uniform dark plate. Slide 6's declared 55 percent engraved coverage ships at roughly 15 to 20 percent. Slide 4's declared wire relief arrives as a shaded solid."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "All 18 claims carry a URL, a verbatim quote, a source type and a retrieval date, and ten findings were rejected with stated reasons. c18's quote was corrected to carry the PDF's footnote marker and re-verified by direct fetch with an HTTP status and a byte count. computed.json's five areas are strictly proportional at 3521.1 px2 per point. The two figure law is obeyed in the pixels. Docked for three: two published universals were undeclared, slide 4's dek compressed c11's 'the PROPERTIES of' out of the deck's central technical claim, and the printed_numerals table omits 2021 to 2024."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "ARPA-E is named in full on frame 4, the coalition on frame 9, the money on frame 8, and frame 2 puts the object in the reader's own air conditioner. No county on any frame. No deadline, window, hearing or action, which the storyboard states honestly and the close refuses to manufacture. The only stake that reaches the reader personally is true of every person on earth."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The arc was measured rather than asserted and the storyboard records that the plan was rewritten after measurement rather than the frames bent to fit it. Frame 5's inversion at 75.9 against a median of 16.1 is a genuine jolt and the close climbs out of frame 8. Frames 3 and 4 both do here is the incumbent and frame 7 is the thinnest art in the deck."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.4,
+   "why": "Clean on every house rule, verified string by string on nine frames plus the caption and the first comment, including the ASCII apostrophe in Energy's. All three hashtags trace and the ledger records HarrisCounty being cut for carrying no claim. Slide 3's drawn stop bar after a truncated quote is the dash rule routed around rather than met. The voice is competent and generic rather than Texan: the two genuinely Texan things available live in the storyboard's palette notes and reach no published sentence."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Distinct subject, palette and register, a named palette source, no cream against three consecutive creams, nine camera classes with the risky pair checked at plan time. The storyboard is honest that deck median 16.1 sits beside a prior 15.6 rather than filling a new band. Four of nine techniques are returns to the ledger and frame 5's flat document inversion is deck 1's move at the same slide number."
+  }
+ ],
+ "weighted_score": 6.694,
+ "hard_fails": [],
+ "ship": false,
+ "refusal_reason": "threshold",
+ "one_sentence_fix": "Fix slide 9's .hookplate so its gradient reaches zero alpha inside its own element box, because the clipped 116 percent extent is what draws a hard edged black rectangle over 16 percent of the closing frame, breaks structural law 2 and squares the dust patch's left edge into the exactly vertical line the acceptance item forbids."
+}

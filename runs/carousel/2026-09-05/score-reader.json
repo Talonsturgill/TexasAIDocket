@@ -1,0 +1,49 @@
+{
+ "lens": "reader",
+ "date": "2026-09-05",
+ "carousel_no": 16,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0,
+   "why": "Slide 3's arc boundary is the best thing in the deck and slide 8's two tags through one hole is a considered invention that survives the downscale. Against that, slide 2 did not render the technique it declares: the dossier promises five assemblies cut on one shared section plane and no interior is visible on any of the five. Slide 9's strikethrough repair reproduced the failure it named, shipping a hard edged near black rectangle in the left third, which the deck's own structural law 2 forbids. Slide 6's plate carries roughly a third of its declared engraved coverage."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "The numeral discipline is 9 level and computed.json's areas resolve to 71.0 percent of the total, so the cover is genuinely computed. The rejected list refuses ten findings with named reasons. BUT SLIDE 6'S DEK IS A FACT SHAPED ASSERTION WITH NO CLAIM BEHIND IT AND THE DECK'S OWN EVIDENCE REFUTES IT. It prints that the name states the search space and it is not rare earths, under a rail reading c4 c7 c8, and none of the three says the search space excludes rare earths. Boride and carbide are anion classes, rare earth is a cation class, and Nd2Fe14B, which this deck names on slide 3, is a rare earth boride."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "The who and the what are unusually clear for a federal story and the import share to magnets bridge is done honestly, with slide 5 supplying the USGS sentence that connects them so the cover statistic is not left to imply something the source does not say. The where is one word. No deadline, no window, no action, stated plainly rather than manufactured. The frame built to make the stake concrete in a reader's own house delivers five anonymous grey cans."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "There is a real turn and it is at 5, measured at 76.3 against a deck median of 16.4. The planned shape is the shipped shape and the close climbing out of frame 8 is a deliberate fix that worked, against a first build where the close was the darkest frame at 3.1. Slide 2 is cuttable and the last third reads thinner than the first."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.0,
+   "why": "Slide 8's dek states a limit and refuses to dress it up. Register clean throughout on every house rule. But nothing here sounds like it was written from Texas: across nine frames and 152 caption words the entire geographic content is one adjective. The caption also spends a line narrating its own artwork."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Lilac as a load bearing attribution colour carrying frames 1, 2 and 3 and gone from 6 onward is a real idea executed. No cream, nine camera classes checked at plan time. The deck median sits beside a prior 15.6 and the storyboard says so, which earns honesty credit and no variety credit. The caption's declared opening move does not match what the caption does."
+  }
+ ],
+ "weighted_score": 6.14,
+ "hard_fails": [
+  "an unverified fact presented as verified: slide 6's dek prints that the name states the search space and it is not rare earths, beneath a claim rail reading c4 c7 c8. No claim in claims.json states that GAMBIT's search space excludes rare earths, and the assertion is refuted by the deck's own slide 3, which names Nd2Fe14B, a rare earth boride, inside the boride and carbide class the name declares."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite slide 6's dek to say only what c4 supports and delete the clause that no claim carries and slide 3 refutes."
+}
