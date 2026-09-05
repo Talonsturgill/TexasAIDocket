@@ -1,0 +1,131 @@
+<!doctype html>
+<!-- ATELIER 05 — Document archaeology.
+     Construction study: source matter is treated as a dimensional artifact under raking and
+     scanning light, rather than pasted into a cream editorial plate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { position: relative; }
+  .atelier-label { position: absolute; left: 82px; top: 82px; z-index: 20;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase; }
+  .atelier-id { position: absolute; right: 82px; top: 78px; z-index: 20;
+    font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 760; letter-spacing: -.04em; }
+  .atelier-footer { position: absolute; left: 82px; right: 82px; bottom: 82px; z-index: 30;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 500; letter-spacing: .05em; }
+  .atelier-footer::before { content: ""; position: absolute; left: 0; right: 0; top: -18px;
+    height: 1px; background: currentColor; opacity: .32; }
+  .atelier-footer .mode { opacity: .68; }
+</style>
+<style>
+  body { background: #ee4938; color: #181321; font-family: "Archivo", sans-serif; }
+  .atelier-label, .atelier-id, .atelier-footer { color: #181321; }
+  .title {
+    position: absolute; left: 82px; top: 145px; z-index: 12; width: 810px;
+    font-family: "Archivo", sans-serif; font-size: 105px; line-height: .84;
+    font-weight: 870; font-stretch: 74%; letter-spacing: -.065em; text-transform: uppercase;
+  }
+  .title .margin { color: #181321; }
+  .sub {
+    position: absolute; left: 82px; top: 356px; z-index: 12; width: 650px;
+    font-family: "Manrope", sans-serif; font-size: 28px; line-height: 1.35;
+    font-weight: 700;
+  }
+  .footer-reserve { position: absolute; left: 0; right: 0; bottom: 0; height: 112px;
+    z-index: 24; background: #b8243f; }
+  svg.scene { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+</style>
+</head>
+<body>
+  <div class="atelier-label">Code atelier · evidence archaeology</div>
+  <div class="atelier-id">05</div>
+  <h1 class="title" data-overlap-ok>What the<br><span class="margin">margin reveals</span></h1>
+  <p class="sub">Layered sheets, a physical edge, selective reveal and one magnified
+    evidence zone.</p>
+
+  <svg class="scene" viewBox="0 0 1080 1350" aria-hidden="true">
+    <defs>
+      <linearGradient id="redRoom" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ff6a48"/><stop offset=".55" stop-color="#ee4938"/><stop offset="1" stop-color="#b8243f"/>
+      </linearGradient>
+      <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#e9f4ee"/><stop offset=".78" stop-color="#c5d6da"/><stop offset="1" stop-color="#8795b1"/>
+      </linearGradient>
+      <linearGradient id="scan" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#6dfff3" stop-opacity="0"/><stop offset=".42" stop-color="#6dfff3" stop-opacity=".15"/>
+        <stop offset=".5" stop-color="#d8fff8" stop-opacity=".96"/><stop offset=".58" stop-color="#6dfff3" stop-opacity=".16"/><stop offset="1" stop-color="#6dfff3" stop-opacity="0"/>
+      </linearGradient>
+      <filter id="drop" x="-60%" y="-60%" width="220%" height="240%"><feGaussianBlur stdDeviation="24"/></filter>
+      <filter id="cyanGlow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="13" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <clipPath id="pageClip"><polygon points="235,575 773,438 959,1046 416,1192"/></clipPath>
+      <clipPath id="lensClip"><circle cx="853" cy="754" r="124"/></clipPath>
+    </defs>
+
+    <rect width="1080" height="1350" fill="url(#redRoom)"/>
+
+    <!-- Lit table and physical stack shadow. -->
+    <ellipse cx="597" cy="1058" rx="495" ry="168" fill="#ff8761" opacity=".52"/>
+    <ellipse cx="626" cy="1070" rx="426" ry="106" fill="#421025" opacity=".49" filter="url(#drop)"/>
+
+    <!-- Three offset sheets establish thickness before the top page. -->
+    <polygon points="202,613 749,472 978,1071 426,1221" fill="#171526" opacity=".72"/>
+    <polygon points="218,596 762,456 971,1059 422,1207" fill="#7e2b58" stroke="#ff9a81" stroke-width="3"/>
+    <polygon points="228,584 768,445 965,1052 419,1200" fill="#a5b4d5" stroke="#271c3c" stroke-width="3"/>
+    <polygon points="235,575 773,438 959,1046 416,1192" fill="url(#paper)" stroke="#181321" stroke-width="5"/>
+
+    <!-- Real source matter would replace these abstract line groups with cited fragments. -->
+    <g clip-path="url(#pageClip)" transform="rotate(-14 600 800)" opacity=".84">
+      <rect x="292" y="536" width="116" height="34" fill="#181321"/>
+      <rect x="426" y="536" width="243" height="12" fill="#30304a" opacity=".58"/>
+      <rect x="292" y="595" width="402" height="7" fill="#30304a" opacity=".52"/>
+      <rect x="292" y="624" width="348" height="7" fill="#30304a" opacity=".52"/>
+      <rect x="292" y="653" width="379" height="7" fill="#30304a" opacity=".52"/>
+      <rect x="292" y="700" width="92" height="155" fill="none" stroke="#5a5c78" stroke-width="4"/>
+      <path d="M315 815 C328 782 339 808 353 752 S369 787 383 734" fill="none" stroke="#ee4938" stroke-width="5"/>
+      <g fill="#3b3d58" opacity=".46">
+        <rect x="418" y="704" width="269" height="7"/><rect x="418" y="735" width="231" height="7"/>
+        <rect x="418" y="766" width="283" height="7"/><rect x="418" y="797" width="250" height="7"/>
+        <rect x="292" y="891" width="394" height="7"/><rect x="292" y="922" width="360" height="7"/>
+        <rect x="292" y="953" width="420" height="7"/>
+      </g>
+      <path d="M706 589 L706 977" stroke="#ee4938" stroke-width="7"/>
+      <g fill="#ee4938"><circle cx="706" cy="650" r="8"/><circle cx="706" cy="798" r="8"/><circle cx="706" cy="931" r="8"/></g>
+    </g>
+
+    <!-- Cyan scan crosses the object and catches the page edge. -->
+    <polygon points="477,498 588,470 782,1090 667,1121" fill="url(#scan)" filter="url(#cyanGlow)"/>
+    <path d="M532 484 L728 1105" stroke="#bafff3" stroke-width="4" opacity=".95" filter="url(#cyanGlow)"/>
+
+    <!-- One magnified evidence region, physically tethered to its source. -->
+    <path d="M702 798 C760 779 770 758 790 747" fill="none" stroke="#181321" stroke-width="4"/>
+    <circle cx="702" cy="798" r="8" fill="#bafff3" stroke="#181321" stroke-width="4"/>
+    <circle cx="853" cy="754" r="134" fill="#181321" opacity=".24" filter="url(#drop)"/>
+    <circle cx="853" cy="754" r="124" fill="#d8fff8" stroke="#181321" stroke-width="7"/>
+    <g clip-path="url(#lensClip)">
+      <rect x="720" y="620" width="280" height="280" fill="#effffb"/>
+      <path d="M805 642 L805 864" stroke="#ee4938" stroke-width="10"/>
+      <g fill="#25243a">
+        <rect x="828" y="656" width="126" height="9"/><rect x="828" y="694" width="161" height="9"/>
+        <rect x="828" y="732" width="112" height="9"/><rect x="828" y="770" width="147" height="9"/>
+        <rect x="828" y="808" width="132" height="9"/>
+      </g>
+      <circle cx="805" cy="732" r="12" fill="#ee4938"/>
+    </g>
+    <circle cx="853" cy="754" r="124" fill="none" stroke="#bafff3" stroke-width="3"/>
+
+    <!-- Raking highlight proves paper thickness along the near edge. -->
+    <path d="M416 1192 L959 1046" stroke="#ffffff" stroke-width="8" opacity=".86"/>
+    <path d="M422 1207 L971 1059" stroke="#7effef" stroke-width="4" opacity=".66"/>
+  </svg>
+
+  <div class="footer-reserve"></div>
+  <div class="atelier-footer"><span>Texas AI Docket</span><span class="mode">SOURCE MATTER · LIGHT AS REVEAL</span></div>
+</body>
+</html>
