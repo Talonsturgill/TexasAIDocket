@@ -2,48 +2,47 @@
  "lens": "reader",
  "date": "2026-09-05",
  "carousel_no": 16,
+ "round": 2,
  "criteria": [
   {
    "name": "artwork_craft",
    "weight": 0.28,
-   "score": 6.0,
-   "why": "Slide 3's arc boundary is the best thing in the deck and slide 8's two tags through one hole is a considered invention that survives the downscale. Against that, slide 2 did not render the technique it declares: the dossier promises five assemblies cut on one shared section plane and no interior is visible on any of the five. Slide 9's strikethrough repair reproduced the failure it named, shipping a hard edged near black rectangle in the left third, which the deck's own structural law 2 forbids. Slide 6's plate carries roughly a third of its declared engraved coverage."
+   "score": 7.3,
+   "why": "Nine distinct techniques and real light and dark on most frames. Slide 8 is the best thing here and a reader gets it in a second. Slide 5's inversion and slide 6's intaglio both land. Slide 9's patch reads at 432px as an out of focus brown smear and the type carries the whole frame. Slide 2's five assemblies read as one ring at five decreasing scales."
   },
   {
    "name": "claim_integrity",
    "weight": 0.2,
-   "score": 5.5,
-   "why": "The numeral discipline is 9 level and computed.json's areas resolve to 71.0 percent of the total, so the cover is genuinely computed. The rejected list refuses ten findings with named reasons. BUT SLIDE 6'S DEK IS A FACT SHAPED ASSERTION WITH NO CLAIM BEHIND IT AND THE DECK'S OWN EVIDENCE REFUTES IT. It prints that the name states the search space and it is not rare earths, under a rail reading c4 c7 c8, and none of the three says the search space excludes rare earths. Boride and carbide are anion classes, rare earth is a cation class, and Nd2Fe14B, which this deck names on slide 3, is a rare earth boride."
+   "score": 8.3,
+   "why": "Every on slide and caption numeral traces, sources are primary throughout, ten rejected findings each with a stated reason, c18's quote corrected to restore the dropped footnote marker and the confidence upgrade documented by a direct 639,984 byte fetch rather than asserted. Deductions: c10 is confidence medium and its truncated quote is slide 3's dek, and the topics ledger still carries without imported rare earths."
   },
   {
    "name": "story_and_stakes",
    "weight": 0.18,
-   "score": 6.5,
-   "why": "The who and the what are unusually clear for a federal story and the import share to magnets bridge is done honestly, with slide 5 supplying the USGS sentence that connects them so the cover statistic is not left to imply something the source does not say. The where is one word. No deadline, no window, no action, stated plainly rather than manufactured. The frame built to make the stake concrete in a reader's own house delivers five anonymous grey cans."
+   "score": 7.0,
+   "why": "A reader learns four true, checkable things and the stake is concrete rather than abstract, which is more than the rubric's 7 asks. Nothing to do: no county, no date, no door, and slide 4 is the only frame naming the deciding body."
   },
   {
    "name": "sequence_and_momentum",
    "weight": 0.12,
-   "score": 6.8,
-   "why": "There is a real turn and it is at 5, measured at 76.3 against a deck median of 16.4. The planned shape is the shipped shape and the close climbing out of frame 8 is a deliberate fix that worked, against a first build where the close was the darkest frame at 3.1. Slide 2 is cuttable and the last third reads thinner than the first."
+   "score": 7.0,
+   "why": "A real build and a real turn at slide 5, which supplies the join the deck needs. Slide 5 states its turn line beneath the source credit and under a quote that already said it. The last two frames are both negatives."
   },
   {
    "name": "voice",
    "weight": 0.12,
-   "score": 6.0,
-   "why": "Slide 8's dek states a limit and refuses to dress it up. Register clean throughout on every house rule. But nothing here sounds like it was written from Texas: across nine frames and 152 caption words the entire geographic content is one adjective. The caption also spends a line narrating its own artwork."
+   "score": 7.0,
+   "why": "Four good headlines and none reads as machine written. No boosterism, no doom, and slide 8's dek is exactly the register this product wants. What it has none of is regional specificity, and the three hashtags carry no Texas or Houston tag at all."
   },
   {
    "name": "variety",
    "weight": 0.1,
-   "score": 6.5,
-   "why": "Lilac as a load bearing attribution colour carrying frames 1, 2 and 3 and gone from 6 onward is a real idea executed. No cream, nine camera classes checked at plan time. The deck median sits beside a prior 15.6 and the storyboard says so, which earns honesty credit and no variety credit. The caption's declared opening move does not match what the caption does."
+   "score": 7.2,
+   "why": "Nine camera classes, no repeat, dark bench palette against the last fortnight, the ochre stock deliberately avoiding three consecutive creams. Opening move and structure both outside the six run window. Deck 11 seven days ago was also a federal research award to a Texas university closing on a partner list."
   }
  ],
- "weighted_score": 6.14,
- "hard_fails": [
-  "an unverified fact presented as verified: slide 6's dek prints that the name states the search space and it is not rare earths, beneath a claim rail reading c4 c7 c8. No claim in claims.json states that GAMBIT's search space excludes rare earths, and the assertion is refuted by the deck's own slide 3, which names Nd2Fe14B, a rare earth boride, inside the boride and carbide class the name declares."
- ],
- "ship": false,
- "one_sentence_fix": "Rewrite slide 6's dek to say only what c4 supports and delete the clause that no claim carries and slide 3 refutes."
+ "weighted_score": 7.364,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Open the caption on what the cover already leads with rather than on a $20,000 difference between two press releases."
 }

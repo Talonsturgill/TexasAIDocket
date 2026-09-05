@@ -5,7 +5,9 @@
   canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .quote{position:absolute;left:80px;top:170px;width:700px;margin:0;font-family:Manrope,sans-serif;
-    font-weight:500;font-size:27px;line-height:1.36;color:#B3AA9D;font-style:italic}
+    font-weight:500;font-size:27px;line-height:1.36;color:#CDC5B8;font-style:italic;
+    /* the pool moved into the near corner and the upper bench came up under the quote with it */
+    text-shadow:0 0 10px rgba(16,13,11,.85),0 0 20px rgba(16,13,11,.70)}
   /* MOVE 6. The hook sets hard LEFT over the dark bench and the patch carries NOTHING. It was
      planned inside the patch and moved out, because setting the closing line in the one place
      the frame says is empty is the frame arguing against itself. */
@@ -31,7 +33,7 @@
       rgba(16,13,11,.86) 38%, rgba(16,13,11,.40) 72%, rgba(16,13,11,0) 100%)}
   .lowscrim{position:absolute;left:0;bottom:0;width:1080px;height:420px;
     background:linear-gradient(to bottom,rgba(16,13,11,0) 0%,rgba(16,13,11,.50) 30%,rgba(16,13,11,.84) 62%,rgba(16,13,11,.97) 100%)}
-  .coal{position:absolute;right:80px;top:1006px;width:420px;text-align:right;
+  .coal{position:absolute;right:80px;top:1006px;width:490px;text-align:right;
     font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;line-height:1.62;
     letter-spacing:.06em;color:#EDE6D9;
     /* The lamp pool moved into the near bench and the coalition list sits over it, so the type
@@ -65,7 +67,7 @@
     <div>RICE</div>
     <div>COLORADO STATE UNIVERSITY</div>
     <div>CARRIER GLOBAL</div>
-    <div>NEWFOUND MATERIALS</div>
+    <div>NEWFOUND MATERIALS, HOUSTON</div>
     <div class="yr">THREE YEARS</div>
   </div>
   <div class="foot"><span>RICE</span><span>c2 c4 c5 c16</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
@@ -88,7 +90,12 @@ window.renderReady = (async () => {
   // a bench rather than a place something had been sitting. The pool now sits in the NEAR bench
   // below the patch, which is what the dossier's bands already asked for, and the patch reads as
   // a lift ON a gradient instead of as the gradient's own peak.
-  const LAMPX=968, LAMPY=1128, LAMPR=1460;   // reach widened so the pool crosses the bench
+  // THE PATCH AND THE POOL WERE THE SAME PIXELS, which is the one confound this frame cannot
+  // carry. Brightness is the only signal that survives to 432px, and if the brightest wood and the
+  // patch are in the same place a reader attributes all of it to the light. The pool's core moves
+  // into the NEAR corner, off the patch entirely, so the patch sits on the pool's upper left flank
+  // and the only variable crossing its boundary is dust density.
+  const LAMPX=1180, LAMPY=1330, LAMPR=1520;
 
   // ---- the patch, foreshortened. No edge of it is horizontal or vertical. -------------------
   // 26 percent convergence between the far edge and the near one. It was 1.5 percent, which
@@ -145,7 +152,7 @@ window.renderReady = (async () => {
         // A room at night is not a vacuum, so the floor is raised to give the bench modelled
         // tone away from the lamp instead of black. The lamp term is untouched, so the raking
         // key still does all the shaping.
-        let v=52+f*62+grain*22*f+grain*15;
+        let v=58+f*68+grain*24*f+grain*16;
         if(insidePatch(x,y)){
           // THE LIFT WAS DOING ALL THE WORK AND THE DUST WAS DOING NONE, which makes the patch
           // a lighter quadrilateral by another route and falsifies the acceptance item whatever

@@ -244,7 +244,8 @@ Six surfaces, opened rather than inferred, on the 2026-09-05 temp build of 667 p
 ## Phase 8 and 9, selection and the directors room
 
 `tx-2026-0124`. ARPA-E funded a University of Houston led coalition, GAMBIT, to use AI to design
-permanent magnets that beat neodymium iron boron without imported rare earths. Rice chooses which
+permanent magnets that surpass the properties of neodymium iron boron while weighing supply
+constraints. Rice chooses which
 candidate materials get made and tested. `dedupe_check` found nothing close.
 
 **Four consecutive run records asked for a deck whose spine is a thing somebody did**, and deck 15's
@@ -365,3 +366,50 @@ carries 254 counties, 67 CBSAs, 13 CSAs, 2 divisions and NO CITIES. `places_name
 bare name at length over four, so the city of Houston is unmatchable, and the only Houston in the
 file is Houston COUNTY in East Texas. A Houston story reports places NONE. Slide 4 does print "The
 Houston led team". Proposal for the upgrade lane, which owns that gate.
+
+## Phase 15, the panel, and it took three rounds
+
+`panel_ready` exited 0 before a single scorer was spawned, which is the rule and is why the
+judges spent themselves on craft and on claims rather than on plates over sentences.
+
+| round | integrity | craft | reader | median | verdict |
+|---|---|---|---|---|---|
+| 1 | 6.694 | 7.10 | 6.14 | 6.67 | HOLD, 1 hard fail |
+| 2 | 6.41 | 6.942 | 7.364 | 6.988 | HOLD, 1 hard fail |
+
+**ROUND 1'S HARD FAIL WAS REAL AND IT WAS CHEMISTRY.** Slide 6's dek printed that the project's
+name states the search space and it is not rare earths, under a claim rail reading c4 c7 c8. No
+claim says it. Worse, the deck's own slide 3 refutes it: boride and carbide are ANION classes,
+rare earth is a CATION class, and Nd2Fe14B, which frame 3 prints in lilac at the top of the
+frame, is a rare earth boride. The project's name excludes nothing at all. The frame now reads
+"The name states a chemistry and not a supply chain."
+
+**ROUND 2'S HARD FAIL WAS THE SAME SENTENCE, IN THE RECORD RATHER THAN ON THE DECK**, and it is
+the more useful of the two findings. The repair had landed on the frame and on the storyboard's
+story line and nowhere else. `ledger/carousel/topics.json` still described the run's topic by it,
+`ledger/carousel/artwork.json` still carried it as structural law 1, `claims.json`'s own `story`
+field said "cut reliance on imported rare earths", and two of the storyboard's palette rationales
+still justified the colour scheme by it. This ledger's own deck 9 entry states the cost in one
+line, and it came true one run after it was written: **a ledger field is memory, so a refuted
+reading left in it becomes the next run's premise.**
+
+Every one of those surfaces is rewritten and each carries a note saying what it read before and
+why that was wrong. The old wording survives only inside those notes, as a quotation of the
+error, which is the point of them.
+
+**What the judges also moved, round over round.** The cover's five percentages came off, because
+slide 5 is the declared turn and it was restating figures a reader had already met four slides
+earlier. Slide 5's hook rendered c17's "was" as "is" directly beneath the verbatim quote carrying
+the tense. Slide 3's stop bar, added to answer a truncated quote, read as a dash to two judges and
+came off, and the acceptance item that demanded it was rewritten rather than left to contradict
+the frame. Slide 9's dust free patch and the lamp pool were the same region, which four judges
+across two rounds read as light rather than as absence, so the lamp's core moved into the near
+corner and the patch now sits on its flank.
+
+**What was NOT taken at round 3, and why.** Slide 2's bore carries no value break where the
+magnet's top face meets the bore wall. Slide 6's engraved field is a cross hatch mesh in bands
+rather than tool paths. Slide 7 is the thinnest frame in the deck. Slide 8's single continuous
+wire still joins two figures the deck says may not be compared. Each of those is a RE-PLAN and not
+a repair, and this project's own record says twice that a later round's hard fails were
+manufactured by an earlier round's repairs. They are the next deck's work and they are written
+into `avoid_next`.

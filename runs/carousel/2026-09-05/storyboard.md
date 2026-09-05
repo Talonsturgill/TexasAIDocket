@@ -66,7 +66,11 @@ no frame carries it and no frame carries a date.
 ## Structural laws
 
 1. **LILAC IS THE IMPORTED THING.** `neodymia` appears only where a frame draws rare earth material or
-   the incumbent magnet. Frames 1, 2 and 3 carry it. Frames 6, 7, 8 and 9 carry none.
+   the incumbent magnet. Frames 1, 2 and 3 carry it. Frames 6, 7, 8 and 9 carry none, so the colour
+   tracks the imported material out of the deck as the deck moves from the dependency to the search.
+   **IT DOES NOT ARGUE THAT THE DEPENDENCY IS DESIGNED OUT**, and the first wording of this law said
+   it did. No claim carries that and the project's own name excludes nothing, since boride and
+   carbide are anion classes and rare earth is a cation class.
 2. **SEATED MEANS MADE. CUT MEANS IMAGINED.** A body with a two-part contact shadow is something the
    record says exists. A cavity with a lit lip, a side wall and a floor is something the record only
    names. Never a black rectangle, which reads as a redaction.
@@ -343,7 +347,7 @@ verbatim:
 acceptance:
   - "the drawn grain field carries real per-pixel variance, with a measured standard deviation above 6 L* inside the tessellated region"
   - "the boundary between drawn and undrawn is an ARC, hard within 2px, with no value fade approaching it, so the emptiness reads as a decision rather than as a scrim. A horizontal stop under a 250px fade shipped first and read as a video player's caption bar, which is the one thing this frame could not afford to say"
-  - "the truncated quote carries a typographic stop after its closing mark, so a sentence that ends where the record ends does not read as a typo"
+  - "the truncated quote is closed with its quotation mark and NOTHING ELSE. A drawn stop bar was set after it and two judges read it as a dash, which this house forbids, so the mark was the rule routed around rather than met and it came off. The risk it answered is real and is carried instead by the dek ending exactly where c10's confirmed quote ends, with nothing completing it"
   - "the undrawn region occupies between 30 and 45 percent of the frame area"
   - "the dek ends exactly where c10's confirmed quote ends, with no ellipsis and no completing words"
   - "the hook sits in the bottom third and no display type appears in the top two thirds"
@@ -455,7 +459,7 @@ art:
     Top to bottom down the column, the way a page is read, with the figures forming a second
     vertical read on the right.
 type:
-  hook: "The leading global use is magnets"
+  hook: "The leading global use was magnets"
   dek: "The estimated leading domestic end use of rare earths was catalysts, whereas the estimated leading global use was magnets."
   labels: ["IMPORT SOURCES", "CHINA", "MALAYSIA", "JAPAN", "ESTONIA", "OTHER", "U.S. GEOLOGICAL SURVEY, MINERAL COMMODITY SUMMARIES 2026, RARE EARTHS"]
 verbatim:
@@ -505,8 +509,10 @@ art:
     again.
   palette: >
     plate_ni #CBC3B4 for the plate face, sinter #191518 in the cut floors, halogen #F6ECD2 on the
-    raked cut walls, ore_night #14100E behind the plate edge. No neodymia, because the name is the
-    argument that the search leaves rare earths behind.
+    raked cut walls, ore_night #14100E behind the plate edge. No neodymia, because this is the frame where
+    the imported colour leaves the deck. It read that the name is the argument that the search
+    leaves rare earths behind, which is the same refuted reading a scorer hard failed on this
+    frame's dek. The name is a chemistry and it excludes nothing.
   value_structure: >
     Lightest is the raked wall of each cut letter along its upper left edge, where the key
     catches the bevel. Darkest is the cut floor inside those same letters, which is the focal, so
@@ -568,8 +574,8 @@ art:
     blue. The three stations are drawn as VALUE RAMPS rather than as tokens, so that surface and
     not hue is what separates them, running #4E463C to #1D1A17 as broken, #6A6157 to #241F1B as
     worked, and a computed lobe up to a warm near white on the cut face. halogen #F6ECD2 is the
-    tool path and the axis highlight, pooled only. No neodymia, since the search is the argument
-    for leaving it, and NO COPPER ANYWHERE. A warm metal on the middle station would have read
+    tool path and the axis highlight, pooled only. No neodymia, because the imported colour has
+    already left the deck by this frame, and NO COPPER ANYWHERE. A warm metal on the middle station would have read
     as a fourth material rather than as the same mass with a face ground on it.
   value_structure: >
     Lightest is the terminal cut face at the right end of the axis, sitting in the lamp pool.
@@ -703,7 +709,7 @@ art:
     multiplied by up to 1.17, which is why it can't carry a hue of its own. The lift was 1.34
     and it was doing all the work, so the patch was a lighter quadrilateral by another route.
     Dust is rgba(232,219,194) at a computed alpha and it is what locates the boundary now.
-    Type carries hook #E8E1D4, coalition #EDE6D9, the three year term #D8D0C2, quote #B3AA9D,
+    Type carries hook #E8E1D4, coalition #EDE6D9, the three year term #D8D0C2, quote #CDC5B8,
     foot #A79E92,
     every one of them brighter than it was because the lamp pool moved into the near bench and
     the lower band is no longer unlit wood. No sinter anywhere, because the object is gone, and
@@ -718,7 +724,7 @@ art:
 type:
   hook: "No material named yet."
   dek: "If you improve the quality of these magnets, that translates into an efficiency gain everywhere"
-  labels: ["RICE", "COLORADO STATE UNIVERSITY", "CARRIER GLOBAL", "NEWFOUND MATERIALS", "THREE YEARS"]
+  labels: ["RICE", "COLORADO STATE UNIVERSITY", "CARRIER GLOBAL", "NEWFOUND MATERIALS, HOUSTON", "THREE YEARS"]
 verbatim:
   - c16: "If you improve the quality of these magnets, that translates into an efficiency gain everywhere"
 acceptance:

@@ -1462,7 +1462,7 @@
           "anc": []
         },
         {
-          "text": "The leading global use is magnets.",
+          "text": "The leading global use was magnets.",
           "x": 80,
           "y": 1142,
           "w": 920,
@@ -1477,7 +1477,7 @@
             [
               80,
               1136,
-              724,
+              771,
               60
             ]
           ],
@@ -1658,7 +1658,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3264,
+      "render_ms": 3369,
       "ok": true,
       "canvases": [
         {
@@ -2515,7 +2515,7 @@
           "font_px": 27,
           "weight": "500",
           "family": "Manrope",
-          "color": "rgb(179, 170, 157)",
+          "color": "rgb(205, 197, 184)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2576,9 +2576,9 @@
         },
         {
           "text": "RICE",
-          "x": 580,
+          "x": 510,
           "y": 1006,
-          "w": 420,
+          "w": 490,
           "h": 39,
           "font_px": 24,
           "weight": "500",
@@ -2598,9 +2598,9 @@
         },
         {
           "text": "COLORADO STATE UNIVERSITY",
-          "x": 580,
+          "x": 510,
           "y": 1045,
-          "w": 420,
+          "w": 490,
           "h": 39,
           "font_px": 24,
           "weight": "500",
@@ -2620,9 +2620,9 @@
         },
         {
           "text": "CARRIER GLOBAL",
-          "x": 580,
+          "x": 510,
           "y": 1084,
-          "w": 420,
+          "w": 490,
           "h": 39,
           "font_px": 24,
           "weight": "500",
@@ -2641,10 +2641,10 @@
           "anc": []
         },
         {
-          "text": "NEWFOUND MATERIALS",
-          "x": 580,
+          "text": "NEWFOUND MATERIALS, HOUSTON",
+          "x": 510,
           "y": 1123,
-          "w": 420,
+          "w": 490,
           "h": 39,
           "font_px": 24,
           "weight": "500",
@@ -2654,9 +2654,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              715,
+              572,
               1126,
-              285,
+              428,
               31
             ]
           ],
@@ -2664,9 +2664,9 @@
         },
         {
           "text": "THREE YEARS",
-          "x": 580,
+          "x": 510,
           "y": 1162,
-          "w": 420,
+          "w": 490,
           "h": 39,
           "font_px": 24,
           "weight": "500",
@@ -2792,7 +2792,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2774,
+      "render_ms": 2895,
       "ok": true,
       "canvases": [
         {
@@ -2805,8 +2805,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 78.6,
-          "variance": 420.4
+          "mean": 77.2,
+          "variance": 301.8
         }
       ],
       "breather": false,
