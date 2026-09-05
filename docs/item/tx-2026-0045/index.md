@@ -11,7 +11,7 @@ Lubbock County Commissioners Court passed a non binding resolution on August 10t
 - Public access: Public meeting
 - Take part: https://www.kcbd.com/2026/08/10/lubbock-county-commissioners-pass-resolution-regarding-large-scale-industrial-development-texas/
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The Lubbock County resolution is still non binding, so a developer who declines to disclose water and electricity use faces nothing. The court has not returned to it with anything enforceable.
 - 2026-09-01 · Lubbock County's industrial-development disclosure resolution remains the court's adopted policy.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-05 · Lubbock County's disclosure resolution is still non binding and still on the books. Nothing has been added to give it force.
 
 ## Evidence
 

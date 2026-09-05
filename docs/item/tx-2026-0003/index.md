@@ -17,7 +17,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The interchange filing list for Docket 59315 answers and its newest filing is still dated March 17th, 2026. No final order has been entered.
 - 2026-08-29 · The commission decided this on August 28th, 2026. It amended the certificate to include the line and approved route 559 across the twenty two counties the application named. The administrative law judges had found the utility did not hold a further public meeting for links it added afterwards. The commission approved the line anyway, on a reading that the rule requires only one meeting before filing.
 - 2026-09-02 · The route application is still the largest file the commission holds on this line and the record shows no change to the approved route. Landowner interventions and protests remain on it.
+- 2026-09-05 · The commission's filing index for the line has taken further filings since the last reading and the approved route is unchanged. The landowner protests and interventions are still on the docket.
 
 ## Evidence
 
@@ -134,7 +135,7 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_581
 
 ### The filing index records the number of filings in the docket.
 
-> 5823 filing(s).
+> 5824 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 

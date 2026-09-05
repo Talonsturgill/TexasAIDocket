@@ -11,7 +11,7 @@ San Angelo passed Ordinance 2026-078, which adds Section 11.02.043 to the city w
 - Public access: Public meeting
 - Take part: https://www.sanangelo.gov/803/Data-Center-Information
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-26 · Checked and unchanged. The cooling water cap still stands as an ordinance, the closed loop requirement is still written into it, and the annual makeup water definition is still the one quoted here.
 - 2026-08-29 · Checked and unchanged. The cooling water cap is still in the city's utilities chapter and the closed loop requirement still applies to every data center facility. The makeup water limit the ordinance sets is unaltered.
 - 2026-09-02 · The ordinance stands as adopted and the city's own data center page still carries it.
+- 2026-09-05 · San Angelo's cap on data center cooling water still stands in the ordinance as adopted.
 
 ## Evidence
 

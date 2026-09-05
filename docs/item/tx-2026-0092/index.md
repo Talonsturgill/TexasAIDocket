@@ -11,7 +11,7 @@ The National Science Foundation made two matched standard grants on August 14th,
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2619079.json
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. Both matched grants still stand, one at the University of Texas at San Antonio and one at Texas A and M. The stated problem is still reaching the accuracy of full parameter fine tuning on machines that can't carry it.
 - 2026-09-01 · The joint Texas A and M and UT San Antonio language-model efficiency award remains in the federal record.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-05 · The San Antonio and College Station award on adapting large models for machines that can't afford to run them still stands as made.
 
 ## Evidence
 

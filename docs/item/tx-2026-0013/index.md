@@ -9,7 +9,7 @@ The Texas Jobs, Energy, Technology and Innovation Act is the state's school dist
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-05
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The Comptroller's published list of executed agreements still contains no data center. Every project type on it is still manufacturing, power generation or extraction.
 - 2026-09-01 · Data centers remain absent from the Comptroller's published list of executed JETI agreements.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-05 · The Comptroller's list of current school district tax agreements still carries no data center. The absence is unchanged.
 
 ## Evidence
 
