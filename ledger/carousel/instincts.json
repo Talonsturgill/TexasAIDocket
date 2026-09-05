@@ -629,6 +629,14 @@
       "evidence": "Deck 15 frame 5 was fixed for this in round 2 and frame 7 shipped fourteen drums carrying one identical gradient at one identical height into round 3. Giving the drums a falloff in round 4 then left the plate's own lit top edge running the full width at one value, which is the largest element in the frame declaring where the light is.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "putimagedata-ignores-transform",
+      "learned": "2026-09-05",
+      "instinct": "Build any ImageData in DEVICE pixels and putImageData under an identity transform, because putImageData ignores the canvas transform and a CSS-sized buffer covers only the top left quarter of a 2x backing store.",
+      "evidence": "Carousel 16 slide 1 drew its bench as a 1080x1350 ImageData on a 2160x2700 canvas under scale(2,2). The unpainted three quarters kept the body background and rendered as a hard edged rectangle down the middle of the frame. render.py reported 0 errors and 0 warnings and qa.py returned PASS on the frame, twice. It was found by sampling the PNG along a row and measuring a step of 7 on values of 10 to 20 at x 520, which is exactly half of 1080.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
