@@ -25,7 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-28 · Checked and unchanged. The Department of Information Resources has published nothing establishing the sandbox, and no vendor register has appeared. The report the statute requires is still ahead of the department.
 - 2026-09-01 · The statutory sandbox duty remains pending, with no published DIR program launch in the record.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
-- 2026-09-05 · The regulatory sandbox is still a duty the statute places on the state technology agency and no sandbox has opened. Agencies still have nowhere to test a system outside the normal rules.
+- 2026-09-05 · The statute still places the sandbox duty on the state technology agency and still sets the reporting date it has to answer by. Whether the agency has opened one is unconfirmed.
 
 ## Evidence
 

@@ -1111,7 +1111,7 @@
         },
         {
           "date": "2026-09-05",
-          "note": "The regulatory sandbox is still a duty the statute places on the state technology agency and no sandbox has opened. Agencies still have nowhere to test a system outside the normal rules.",
+          "note": "The statute still places the sandbox duty on the state technology agency and still sets the reporting date it has to answer by. Whether the agency has opened one is unconfirmed.",
           "checked": true
         }
       ]
@@ -2936,7 +2936,7 @@
         }
       ],
       "id": "tx-2026-0036",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -2961,7 +2961,7 @@
         },
         {
           "date": "2026-09-05",
-          "note": "The county's end of its plate reader contract still stands. The newspaper account behind the sheriff's words now sits behind a subscription wall, so that quote is unconfirmed this run."
+          "note": "The county's end of its plate reader contract still stands on the San Antonio station's account. The newspaper carrying the sheriff's own words now sits behind a subscription wall, so what he said about the cost is unconfirmed."
         }
       ]
     },
@@ -4084,7 +4084,7 @@
         }
       ],
       "id": "tx-2026-0046",
-      "last_verified": "2026-09-05",
+      "last_verified": "2026-09-02",
       "history": [
         {
           "date": "2026-08-19",
@@ -4109,7 +4109,7 @@
         },
         {
           "date": "2026-09-05",
-          "note": "Carson County's phased abatement for the Fermi America development still stands. The station's account of the vote now sits behind a page this run could not read, so the commissioners' own words are unconfirmed."
+          "note": "Carson County's phased abatement for the Fermi America development still stands. The station's account of the vote sits behind a wall that would not open, so the commissioners' own words are unconfirmed."
         }
       ]
     },
@@ -12498,8 +12498,8 @@
       "summary": "Texas A&M's College of Engineering published on September 4th, 2026 that the National Science Foundation is funding PhaseForge, software from the Department of Materials Science and Engineering that applies machine learning to the CALPHAD phase diagram method. The university states the tool is free and openly available. It states the work will accelerate materials discovery across academia, national laboratories and industry. The announcement names no award number and no dollar figure.",
       "topic": "research-and-science",
       "decider": {
-        "name": "Texas A&M University College of Engineering",
-        "type": "state-agency"
+        "name": "U.S. National Science Foundation",
+        "type": "federal"
       },
       "geography": {
         "statewide": false,
@@ -12532,6 +12532,33 @@
           "source_type": "primary_official",
           "fetched": "2026-09-05",
           "id": "tx-2026-0122-c1"
+        },
+        {
+          "id": "tx-2026-0122-c2",
+          "text": "The award is from the National Science Foundation and funds software that is free and open.",
+          "verbatim_quote": "A new National Science Foundation award will fund free, open software that uses machine learning to answer a question every materials scientist asks.",
+          "source_url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/",
+          "source_title": "Texas A&M College of Engineering, NSF backs Texas A&M tool that speeds materials discovery",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05"
+        },
+        {
+          "id": "tx-2026-0122-c3",
+          "text": "The tool applies machine learning to the CALPHAD phase diagram method.",
+          "verbatim_quote": "It applies machine learning to a decades-old method called CALPHAD",
+          "source_url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/",
+          "source_title": "Texas A&M College of Engineering, NSF backs Texas A&M tool that speeds materials discovery",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05"
+        },
+        {
+          "id": "tx-2026-0122-c4",
+          "text": "The question the method answers is whether a material can exist at all.",
+          "verbatim_quote": "that tells researchers whether a material they want to build can exist at all",
+          "source_url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/",
+          "source_title": "Texas A&M College of Engineering, NSF backs Texas A&M tool that speeds materials discovery",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05"
         }
       ],
       "notes_for_editor": "Admitted on the university's own announcement. The award number and the dollar value are not stated on the page and are not claimed here.",
@@ -12583,6 +12610,33 @@
           "source_type": "primary_official",
           "fetched": "2026-09-05",
           "id": "tx-2026-0123-c1"
+        },
+        {
+          "id": "tx-2026-0123-c2",
+          "text": "Three units fund the seed grants between them.",
+          "verbatim_quote": "Funding is provided by all three units.",
+          "source_url": "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/",
+          "source_title": "UT News, Fusion energy seed grants launch new interdisciplinary collaborations at UT Austin",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05"
+        },
+        {
+          "id": "tx-2026-0123-c3",
+          "text": "The grants support four graduate students for two years.",
+          "verbatim_quote": "will support four graduate students for two years as they conduct interdisciplinary research",
+          "source_url": "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/",
+          "source_title": "UT News, Fusion energy seed grants launch new interdisciplinary collaborations at UT Austin",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05"
+        },
+        {
+          "id": "tx-2026-0123-c4",
+          "text": "Three of the four collaborations replace expensive simulations with trained AI models.",
+          "verbatim_quote": "three of the four newly funded collaborations involve taking big, complex computer simulations that require a tremendous amount of time and energy to run, and replacing them with far more efficient AI models that have been trained on the data produced by their beefier predecessors",
+          "source_url": "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/",
+          "source_title": "UT News, Fusion energy seed grants launch new interdisciplinary collaborations at UT Austin",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05"
         }
       ],
       "notes_for_editor": "The dollar value of the seed grants is not stated in the announcement and is not claimed here.",
@@ -12643,6 +12697,24 @@
           "source_type": "primary_official",
           "fetched": "2026-09-05",
           "id": "tx-2026-0124-c2"
+        },
+        {
+          "id": "tx-2026-0124-c3",
+          "text": "The award is a three year grant from the Energy Department's advanced research arm, at the figure Rice prints.",
+          "verbatim_quote": "The project has received a three-year, $2.9 million grant from the U.S. Department of Energy's Advanced Research Projects Agency-Energy",
+          "source_url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+          "source_title": "Rice News, Rice brings AI expertise to DOE backed search for next generation magnets",
+          "source_type": "primary_corporate",
+          "fetched": "2026-09-05"
+        },
+        {
+          "id": "tx-2026-0124-c4",
+          "text": "The coalition and its lead investigator are named, with the partner institutions and companies.",
+          "verbatim_quote": "The coalition led by Jakoah Brgoch, principal investigator and the Eby Nell McElrath Professor of Chemistry at UH, includes researchers from Rice, Colorado State University, Carrier Global, and Houston startup Newfound Materials.",
+          "source_url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+          "source_title": "Rice News, Rice brings AI expertise to DOE backed search for next generation magnets",
+          "source_type": "primary_corporate",
+          "fetched": "2026-09-05"
         }
       ],
       "notes_for_editor": "The Energy Department's own award document was not located this run, so the award number is not claimed. Rice's page carries the agency name and the partner list.",

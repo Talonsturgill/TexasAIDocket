@@ -39,3 +39,15 @@ Source (primary_official): https://news.rice.edu/news/2026/rice-brings-ai-expert
 
 Source (primary_official): https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets
 
+### The award is a three year grant from the Energy Department's advanced research arm, at the figure Rice prints.
+
+> The project has received a three-year, $2.9 million grant from the U.S. Department of Energy's Advanced Research Projects Agency-Energy
+
+Source (primary_corporate): https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets
+
+### The coalition and its lead investigator are named, with the partner institutions and companies.
+
+> The coalition led by Jakoah Brgoch, principal investigator and the Eby Nell McElrath Professor of Chemistry at UH, includes researchers from Rice, Colorado State University, Carrier Global, and Houston startup Newfound Materials.
+
+Source (primary_corporate): https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets
+

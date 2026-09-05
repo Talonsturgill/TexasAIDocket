@@ -33,3 +33,21 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (primary_official): https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/
 
+### Three units fund the seed grants between them.
+
+> Funding is provided by all three units.
+
+Source (primary_official): https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/
+
+### The grants support four graduate students for two years.
+
+> will support four graduate students for two years as they conduct interdisciplinary research
+
+Source (primary_official): https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/
+
+### Three of the four collaborations replace expensive simulations with trained AI models.
+
+> three of the four newly funded collaborations involve taking big, complex computer simulations that require a tremendous amount of time and energy to run, and replacing them with far more efficient AI models that have been trained on the data produced by their beefier predecessors
+
+Source (primary_official): https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/
+

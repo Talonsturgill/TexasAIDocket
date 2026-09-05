@@ -126,9 +126,15 @@ says matters most.
 
 That is not an inference. Two candidates were sitting in `seed/docket_seed.json` naming it as the
 reason they could not be filed, a driverless service opening to the public in Houston and a plant
-assembling AI servers in the same county. **Both had already been written against the slug
-`ai-in-the-field` and the decider type `company` by earlier runs**, which is what says the gap was
-diagnosed before this run closed it.
+assembling AI servers in the same county.
+
+**CORRECTED, and the correction is the point.** This section first claimed both candidates had
+already been written against the slug `ai-in-the-field` AND the decider type `company` by earlier
+runs. A review bot checked the parent revision and that is only half true. Both were written against
+`company`. Only the Waymo candidate was written against `ai-in-the-field`, and the Apple one was
+filed under `state-policy` until THIS run changed it. So the earlier diagnosis covers the decider
+type for both and the beat for one, and presenting this run's own edit as prior evidence was an
+overstatement about the strength of the case.
 
 **The second half of the gap had already cost the published record.** `DECIDER_TYPES` had no word
 for a company acting alone, so items were filed under the nearest wrong one. `tx-2026-0101`
@@ -199,9 +205,12 @@ Six surfaces, opened rather than inferred, on the 2026-09-05 temp build of 667 p
   person would type. What each decision is, who decides, how the public can take part, where a
   comment window is open, where in Texas it applies, what has been decided, what happens next,
   when each one started. The counts differ by shape rather than all reading 108, which is the
-  honest behaviour. Who decides answers 101 of 108 and how the public can take part answers 7,
-  so the page is saying what it can support instead of padding to the total. No shape has
-  stopped making sense against this run's new items.
+  honest behaviour. No shape has stopped making sense against this run's new items.
+  **CORRECTED after a review bot read it against the ledger.** This bullet first paired the counts
+  with the wrong shapes, saying who decides answered 101 of 108. Every one of the 108 items carries
+  a decider name, so who decides answers 108. The 101 is the take part shape, which is every item
+  whose room is not an open comment window, and the 7 is the comment shape, which is exactly the
+  seven open windows. Counted off the ledger rather than off the page this time.
 - **The `Open right now` section of `llms.txt`.** Ten entries, cross checked against what
   Phase 3 moved. tx-2026-0096 is correctly ABSENT, which is the check that matters today. Its
   hearings were held on September 1st and 2nd and this run moved its room from open_meeting to
@@ -219,7 +228,8 @@ Six surfaces, opened rather than inferred, on the 2026-09-05 temp build of 667 p
   embarrass the promise.
 - **`/topic/`, counting one card against its own page.** The hub prints 8 beats. Data centers
   27, defense and federal 2, health and education 10, land water and permitting 14, power and
-  the grid 11, research and science 19, health and education 16, surveillance and policing 9.
+  the grid 11, research and science 19, state policy 16, health and education 10, surveillance and
+  policing 9.
   Those eight sum to 108 and the front page counter row prints 108 decisions tracked, so the
   beats and the counter agree.
   The figure that could have disagreed is the one about TODAY rather than about the record, and
