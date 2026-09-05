@@ -633,6 +633,9 @@ TOPIC_BLURBS = {
     "surveillance-and-policing":
         "Cameras and plate readers in the hands of Texas agencies. The predictive tools "
         "beside them and the oversight attached to each.",
+    "ai-in-the-field":
+        "AI already at work on Texas ground. Oilfields and farms, freight lanes and plant "
+        "floors, and who is doing the job differently now.",
 }
 
 

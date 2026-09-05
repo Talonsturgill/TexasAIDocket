@@ -133,6 +133,13 @@ TOPICS = {
 DECIDER_TYPES = {
     "state-agency", "legislature", "governor", "county", "city",
     "school-district", "court", "federal", "special-district",
+    # ADDED 2026-09-05, and the cost of its absence is already in the published record.
+    # A company acting on its own answered to no type here, so items were filed under the
+    # nearest wrong one. `tx-2026-0101` carries Houston Methodist, a private hospital system,
+    # as a `special-district`, which is a unit of Texas local government and is not what it is.
+    # A closed vocabulary that has no word for a thing does not stop the thing being admitted.
+    # It makes the record say something false about it instead.
+    "company",
 }
 
 STATUSES = {"open", "pending", "decided", "withdrawn", "unknown"}

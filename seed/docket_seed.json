@@ -2520,7 +2520,8 @@
         "source_url": "https://waymo.com/blog/shorts/houston-open-to-all/",
         "source_title": "Waymo, Waypoint blog, From the road, August 20th, 2026",
         "source_type": "primary_corporate",
-        "fetched": "2026-08-21"
+        "fetched": "2026-09-05",
+        "id": "tx-2026-0083-c1"
       },
       {
         "text": "The company states how many riders came off the interest list before the change.",
@@ -2528,7 +2529,8 @@
         "source_url": "https://waymo.com/blog/shorts/houston-open-to-all/",
         "source_title": "Waymo, Waypoint blog, From the road, August 20th, 2026",
         "source_type": "primary_corporate",
-        "fetched": "2026-08-21"
+        "fetched": "2026-09-05",
+        "id": "tx-2026-0083-c2"
       },
       {
         "text": "A disability advocacy officer is quoted on what the change means for blind riders.",
@@ -2536,11 +2538,12 @@
         "source_url": "https://waymo.com/blog/shorts/houston-open-to-all/",
         "source_title": "Waymo, Waypoint blog, From the road, August 20th, 2026",
         "source_type": "primary_corporate",
-        "fetched": "2026-08-21"
+        "fetched": "2026-09-05",
+        "id": "tx-2026-0083-c3"
       }
     ],
     "id": "tx-2026-0083",
-    "last_verified": "2026-08-21",
+    "last_verified": "2026-09-05",
     "public_access": {
       "room": "contact_only",
       "how": "The company published the change itself and the service is open to anyone who downloads the app. Texas requires no state permit to operate a driverless vehicle on a public road, so no agency holds a filing a resident could read or comment on.",
@@ -2551,10 +2554,18 @@
       {
         "date": "2026-08-21",
         "note": "Held. The company's own post carries the change and every claim is verbatim from it. The record has no beat for a driverless deployment and no decider type for a company, so there is nowhere true to file it."
+      },
+      {
+        "date": "2026-09-05",
+        "note": "The beat and the decider type this was waiting on now exist in the record's vocabulary, so the item is admitted on the same claims it was held with."
+      },
+      {
+        "date": "2026-09-05",
+        "note": "Re-verified against the source today and every claim is still verbatim on it. Still held, and the reason is now one file rather than two."
       }
     ],
-    "notes_for_editor": "Verified against the company's own post and ready in every other respect. There is no beat in the record's topic vocabulary for a driverless deployment, and adding one is a two file change in `docket_build.TOPICS` and `site_build.TOPIC_BLURBS`, both of which are maintainer owned. Admitting it under an existing beat would file a robotaxi launch as state policy or as research, and neither is true.",
-    "held_reason": "Two vocabulary gaps, both in maintainer owned files. `docket_build.TOPICS` carries no beat for AI in the field, and `docket_build.DECIDER_TYPES` carries no type for a company. The second is the larger one, because it means the record can hold a decision ABOUT a deployment and not a decision BY the deployer. Filing this under an existing beat as a state agency would be false on both fields. Promote it the run after a lane exists."
+    "notes_for_editor": "The two vocabulary gaps this was held for are closed. `docket_build.TOPICS` now carries `ai-in-the-field` and `DECIDER_TYPES` now carries `company`, added on 2026-09-05 in the same commit range as this admission.",
+    "held_reason": "The decider type gap is closed. `DECIDER_TYPES` now carries `company`. The BEAT gap is not, and it can't be closed by this lane. Adding a value to `docket_build.TOPICS` requires the matching value in `config/schema_contract.json`, which `ownership.yaml` assigns to `human` on the stated ground that a contract the process changing the data can also rewrite is not a contract. This run added the beat, found the contract refused, and reverted rather than committing outside its lane. Filing either item under one of the eight existing beats would put a robotaxi launch under state policy or a factory under research, and that is the same fault this run corrected on tx-2026-0101. Held until a maintainer adds `ai-in-the-field` to TOPICS, to `site_build.TOPIC_BLURBS` and to the schema contract."
   },
   {
     "id": "tx-2026-0084",
@@ -4332,7 +4343,7 @@
   {
     "title": "Apple opened a training center inside the Houston plant that builds its AI servers",
     "summary": "Apple opened an Advanced Manufacturing Center in Houston on August 13th, 2026, inside the plant that already builds and ships the company's AI servers. The center runs sessions for small and medium businesses on smart manufacturing methods, and the company names machine learning driven quality control and advanced automation among them. Participants work with factory floor equipment and assemble a product themselves. Apple says the same Houston facility begins manufacturing Mac mini this year. No public body acted and no public money is named in the company's own account.",
-    "topic": "state-policy",
+    "topic": "ai-in-the-field",
     "decider": {
       "name": "Apple Inc.",
       "type": "company"
@@ -4349,7 +4360,7 @@
     "key_dates": [
       {
         "date": "2026-08-13",
-        "kind": "announced",
+        "kind": "ordered",
         "note": "Apple published its account of the center opening"
       }
     ],
@@ -4360,7 +4371,7 @@
       "closes": null
     },
     "confidence": "high",
-    "notes_for_editor": "Harris County from the company's own siting of the plant in Houston. Admitted as a corporate decision with no public proceeding, the same shape as the Amazon robotics siting already on the record.",
+    "notes_for_editor": "Harris County from the company's own siting of the plant in Houston. Admitted as a corporate decision with no public proceeding, under the `company` decider type added on 2026-09-05.",
     "claims": [
       {
         "text": "The training center sits inside the plant that builds the company's AI servers.",
@@ -4369,7 +4380,7 @@
         "source_title": "Apple Newsroom, Apple opens Advanced Manufacturing Center in Houston",
         "source_type": "primary_corporate",
         "id": "tx-2026-0110-c1",
-        "fetched": "2026-08-29"
+        "fetched": "2026-09-05"
       },
       {
         "text": "The company names machine learning driven quality control among the methods the center teaches.",
@@ -4378,7 +4389,7 @@
         "source_title": "Apple Newsroom, Apple opens Advanced Manufacturing Center in Houston",
         "source_type": "primary_corporate",
         "id": "tx-2026-0110-c2",
-        "fetched": "2026-08-29"
+        "fetched": "2026-09-05"
       },
       {
         "text": "The company describes what a participant actually does there.",
@@ -4387,12 +4398,22 @@
         "source_title": "Apple Newsroom, Apple opens Advanced Manufacturing Center in Houston",
         "source_type": "primary_corporate",
         "id": "tx-2026-0110-c3",
-        "fetched": "2026-08-29"
+        "fetched": "2026-09-05"
       }
     ],
     "id": "tx-2026-0110",
-    "last_verified": "2026-08-29",
-    "held_reason": "No decider type in the record's vocabulary fits a company acting alone, and the company's own account names no public body, no hearing and no public money. Held until a Texas public body acts on it or the vocabulary gains a type for a private decision."
+    "last_verified": "2026-09-05",
+    "history": [
+      {
+        "date": "2026-09-05",
+        "note": "The decider type this was held for now exists, so the item is admitted on the claims it was held with."
+      },
+      {
+        "date": "2026-09-05",
+        "note": "Re-verified against the source today and every claim is still verbatim on it. Still held, and the reason is now one file rather than two."
+      }
+    ],
+    "held_reason": "The decider type gap is closed. `DECIDER_TYPES` now carries `company`. The BEAT gap is not, and it can't be closed by this lane. Adding a value to `docket_build.TOPICS` requires the matching value in `config/schema_contract.json`, which `ownership.yaml` assigns to `human` on the stated ground that a contract the process changing the data can also rewrite is not a contract. This run added the beat, found the contract refused, and reverted rather than committing outside its lane. Filing either item under one of the eight existing beats would put a robotaxi launch under state policy or a factory under research, and that is the same fault this run corrected on tx-2026-0101. Held until a maintainer adds `ai-in-the-field` to TOPICS, to `site_build.TOPIC_BLURBS` and to the schema contract."
   },
   {
     "title": "Governor orders state agencies to pause funding for Flock plate reader cameras",
@@ -5425,6 +5446,168 @@
       {
         "date": "2026-09-04",
         "note": "Admitted. The foundation's announcement of September 1st, 2026 stands as published. It names the two centers that run the resource and states what the operations center does and what the pilot has supported since 2024. It states no dollar figure."
+      }
+    ]
+  },
+  {
+    "title": "National Science Foundation backs a Texas A&M tool that screens whether an alloy can exist before anyone makes it",
+    "summary": "Texas A&M's College of Engineering published on September 4th, 2026 that the National Science Foundation is funding PhaseForge, software from the Department of Materials Science and Engineering that applies machine learning to the CALPHAD phase diagram method. The university states the tool is free and openly available. It states the work will accelerate materials discovery across academia, national laboratories and industry. The announcement names no award number and no dollar figure.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "Texas A&M University College of Engineering",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Brazos"
+      ],
+      "on_ercot": true,
+      "metro": "College Station-Bryan, TX"
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-09-04",
+        "kind": "ordered",
+        "note": "Date the college published the announcement"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The college publishes its own account and states the tool is free and openly available. No public body is taking comment on it. A researcher who wants the code goes to the group that wrote it.",
+      "url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/"
+    },
+    "claims": [
+      {
+        "text": "The university states the tool is being released free and openly, and says why.",
+        "verbatim_quote": "PhaseForge shows how machine learning can help metallurgists answer fundamental questions much faster. By making the tool free and openly available, Dr. Arróyave will help accelerate materials discovery across academia, national laboratories and industry.",
+        "source_url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/",
+        "source_title": "Texas A&M College of Engineering, NSF backs Texas A&M tool that speeds materials discovery",
+        "source_type": "primary_official",
+        "fetched": "2026-09-05",
+        "id": "tx-2026-0122-c1"
+      }
+    ],
+    "notes_for_editor": "Admitted on the university's own announcement. The award number and the dollar value are not stated on the page and are not claimed here.",
+    "id": "tx-2026-0122",
+    "last_verified": "2026-09-05",
+    "history": [
+      {
+        "date": "2026-09-05",
+        "note": "Admitted on the college's own announcement, fetched today. The tool is stated to be free and openly available and the announcement names no award number, so none is carried here."
+      }
+    ]
+  },
+  {
+    "title": "UT Austin funds four fusion seed grants and says in its own release that the AI method offers limited guarantees",
+    "summary": "The Institute for Fusion Studies, the Oden Institute and the Cockrell School jointly funded four fusion seed grants announced on August 31st, 2026. Each pairs a principal investigator in computation with a second in fusion studies and supports graduate students for two years. Three of the four build surrogate machine learning models, covering real time plasma shape control, liquid metal wall alloy screening and alpha particle leakage. The university's own release states the limits of the reinforcement learning approach rather than only its promise.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "The University of Texas at Austin",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Travis"
+      ],
+      "on_ercot": true,
+      "metro": "Austin-Round Rock-San Marcos, TX"
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-08-31",
+        "kind": "ordered",
+        "note": "Date the university published the announcement"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The university publishes its own account of the four awards and names the institutes that funded them. No public body is taking comment. A researcher reaches the program through the institutes named in the release.",
+      "url": "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/"
+    },
+    "claims": [
+      {
+        "text": "The university states the limits of the machine learning methods it is funding.",
+        "verbatim_quote": "Machine learning methods recently applied to plasma control, such as reinforcement learning, have demonstrated impressive capabilities, but they can require large amounts of simulated training data and offer limited guarantees",
+        "source_url": "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/",
+        "source_title": "UT News, Fusion energy seed grants launch new interdisciplinary collaborations at UT Austin",
+        "source_type": "primary_official",
+        "fetched": "2026-09-05",
+        "id": "tx-2026-0123-c1"
+      }
+    ],
+    "notes_for_editor": "The dollar value of the seed grants is not stated in the announcement and is not claimed here.",
+    "id": "tx-2026-0123",
+    "last_verified": "2026-09-05",
+    "history": [
+      {
+        "date": "2026-09-05",
+        "note": "Admitted on the university's own release, fetched today. The release states the limits of the machine learning method alongside its promise, and the dollar value of the grants is not published, so none is carried here."
+      }
+    ]
+  },
+  {
+    "title": "Energy Department research arm funds a Houston led team using AI to design magnets that avoid imported rare earths",
+    "summary": "Rice University published on September 1st, 2026 that the Advanced Research Projects Agency-Energy awarded a three year grant to a coalition led by the University of Houston. The other partners are Rice and Colorado State University and Carrier Global and Newfound Materials. Rice brings artificial intelligence and atomistic modeling and high throughput computing to the work. Its part is choosing which magnetic materials get made and tested. The stated target is a magnet that outperforms neodymium iron boron while cutting dependence on foreign mineral supply.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "U.S. Department of Energy, Advanced Research Projects Agency-Energy",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Harris"
+      ],
+      "on_ercot": true,
+      "metro": "Houston-Pasadena-The Woodlands, TX"
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-09-01",
+        "kind": "ordered",
+        "note": "Date Rice published its account of the award"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The university publishes its own account of the award and names the agency alongside the partners. No public body is taking comment on it. A researcher reaches the work through the named principal investigators.",
+      "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets"
+    },
+    "claims": [
+      {
+        "text": "The Rice investigator states what the AI is for and what constraint it is balancing.",
+        "verbatim_quote": "Our goal is to use artificial intelligence to find entirely new materials while simultaneously balancing these supply constraint concerns",
+        "source_url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+        "source_title": "Rice News, Rice brings AI expertise to DOE backed search for next generation magnets",
+        "source_type": "primary_official",
+        "fetched": "2026-09-05",
+        "id": "tx-2026-0124-c1"
+      },
+      {
+        "text": "The award is made by the Energy Department's advanced research arm.",
+        "verbatim_quote": "Advanced Research Projects Agency-Energy",
+        "source_url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+        "source_title": "Rice News, Rice brings AI expertise to DOE backed search for next generation magnets",
+        "source_type": "primary_official",
+        "fetched": "2026-09-05",
+        "id": "tx-2026-0124-c2"
+      }
+    ],
+    "notes_for_editor": "The Energy Department's own award document was not located this run, so the award number is not claimed. Rice's page carries the agency name and the partner list.",
+    "id": "tx-2026-0124",
+    "last_verified": "2026-09-05",
+    "history": [
+      {
+        "date": "2026-09-05",
+        "note": "Admitted on the university's own account of the award, fetched today. The Energy Department's own award document was not located, so the award number is not carried here."
       }
     ]
   }

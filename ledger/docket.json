@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 2,
-    "generated": "2026-09-04",
+    "generated": "2026-09-05",
     "gates": [
       "claims",
       "cross references",
@@ -9580,7 +9580,7 @@
       "topic": "health-and-education",
       "decider": {
         "name": "Houston Methodist",
-        "type": "special-district"
+        "type": "company"
       },
       "geography": {
         "statewide": false,
@@ -9649,7 +9649,7 @@
         },
         {
           "date": "2026-09-05",
-          "note": "The Houston hospital still runs the imaging model in front of its radiologists and still says in its own words that it is imperfect.",
+          "note": "The Houston hospital still runs the imaging model in front of its radiologists and still says in its own words that it is imperfect. The decider type is corrected here from special-district to company, because a special district is a unit of Texas local government and this is a private hospital system.",
           "checked": true
         }
       ]
@@ -12490,6 +12490,168 @@
         {
           "date": "2026-09-04",
           "note": "Admitted. The foundation's announcement of September 1st, 2026 stands as published. It names the two centers that run the resource and states what the operations center does and what the pilot has supported since 2024. It states no dollar figure."
+        }
+      ]
+    },
+    {
+      "title": "National Science Foundation backs a Texas A&M tool that screens whether an alloy can exist before anyone makes it",
+      "summary": "Texas A&M's College of Engineering published on September 4th, 2026 that the National Science Foundation is funding PhaseForge, software from the Department of Materials Science and Engineering that applies machine learning to the CALPHAD phase diagram method. The university states the tool is free and openly available. It states the work will accelerate materials discovery across academia, national laboratories and industry. The announcement names no award number and no dollar figure.",
+      "topic": "research-and-science",
+      "decider": {
+        "name": "Texas A&M University College of Engineering",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Brazos"
+        ],
+        "on_ercot": true,
+        "metro": "College Station-Bryan, TX"
+      },
+      "status": "decided",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-09-04",
+          "kind": "ordered",
+          "note": "Date the college published the announcement"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The college publishes its own account and states the tool is free and openly available. No public body is taking comment on it. A researcher who wants the code goes to the group that wrote it.",
+        "url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/"
+      },
+      "claims": [
+        {
+          "text": "The university states the tool is being released free and openly, and says why.",
+          "verbatim_quote": "PhaseForge shows how machine learning can help metallurgists answer fundamental questions much faster. By making the tool free and openly available, Dr. Arróyave will help accelerate materials discovery across academia, national laboratories and industry.",
+          "source_url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/",
+          "source_title": "Texas A&M College of Engineering, NSF backs Texas A&M tool that speeds materials discovery",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05",
+          "id": "tx-2026-0122-c1"
+        }
+      ],
+      "notes_for_editor": "Admitted on the university's own announcement. The award number and the dollar value are not stated on the page and are not claimed here.",
+      "id": "tx-2026-0122",
+      "last_verified": "2026-09-05",
+      "history": [
+        {
+          "date": "2026-09-05",
+          "note": "Admitted on the college's own announcement, fetched today. The tool is stated to be free and openly available and the announcement names no award number, so none is carried here."
+        }
+      ]
+    },
+    {
+      "title": "UT Austin funds four fusion seed grants and says in its own release that the AI method offers limited guarantees",
+      "summary": "The Institute for Fusion Studies, the Oden Institute and the Cockrell School jointly funded four fusion seed grants announced on August 31st, 2026. Each pairs a principal investigator in computation with a second in fusion studies and supports graduate students for two years. Three of the four build surrogate machine learning models, covering real time plasma shape control, liquid metal wall alloy screening and alpha particle leakage. The university's own release states the limits of the reinforcement learning approach rather than only its promise.",
+      "topic": "research-and-science",
+      "decider": {
+        "name": "The University of Texas at Austin",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Travis"
+        ],
+        "on_ercot": true,
+        "metro": "Austin-Round Rock-San Marcos, TX"
+      },
+      "status": "decided",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-08-31",
+          "kind": "ordered",
+          "note": "Date the university published the announcement"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The university publishes its own account of the four awards and names the institutes that funded them. No public body is taking comment. A researcher reaches the program through the institutes named in the release.",
+        "url": "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/"
+      },
+      "claims": [
+        {
+          "text": "The university states the limits of the machine learning methods it is funding.",
+          "verbatim_quote": "Machine learning methods recently applied to plasma control, such as reinforcement learning, have demonstrated impressive capabilities, but they can require large amounts of simulated training data and offer limited guarantees",
+          "source_url": "https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/",
+          "source_title": "UT News, Fusion energy seed grants launch new interdisciplinary collaborations at UT Austin",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05",
+          "id": "tx-2026-0123-c1"
+        }
+      ],
+      "notes_for_editor": "The dollar value of the seed grants is not stated in the announcement and is not claimed here.",
+      "id": "tx-2026-0123",
+      "last_verified": "2026-09-05",
+      "history": [
+        {
+          "date": "2026-09-05",
+          "note": "Admitted on the university's own release, fetched today. The release states the limits of the machine learning method alongside its promise, and the dollar value of the grants is not published, so none is carried here."
+        }
+      ]
+    },
+    {
+      "title": "Energy Department research arm funds a Houston led team using AI to design magnets that avoid imported rare earths",
+      "summary": "Rice University published on September 1st, 2026 that the Advanced Research Projects Agency-Energy awarded a three year grant to a coalition led by the University of Houston. The other partners are Rice and Colorado State University and Carrier Global and Newfound Materials. Rice brings artificial intelligence and atomistic modeling and high throughput computing to the work. Its part is choosing which magnetic materials get made and tested. The stated target is a magnet that outperforms neodymium iron boron while cutting dependence on foreign mineral supply.",
+      "topic": "research-and-science",
+      "decider": {
+        "name": "U.S. Department of Energy, Advanced Research Projects Agency-Energy",
+        "type": "federal"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Harris"
+        ],
+        "on_ercot": true,
+        "metro": "Houston-Pasadena-The Woodlands, TX"
+      },
+      "status": "decided",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-09-01",
+          "kind": "ordered",
+          "note": "Date Rice published its account of the award"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The university publishes its own account of the award and names the agency alongside the partners. No public body is taking comment on it. A researcher reaches the work through the named principal investigators.",
+        "url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets"
+      },
+      "claims": [
+        {
+          "text": "The Rice investigator states what the AI is for and what constraint it is balancing.",
+          "verbatim_quote": "Our goal is to use artificial intelligence to find entirely new materials while simultaneously balancing these supply constraint concerns",
+          "source_url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+          "source_title": "Rice News, Rice brings AI expertise to DOE backed search for next generation magnets",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05",
+          "id": "tx-2026-0124-c1"
+        },
+        {
+          "text": "The award is made by the Energy Department's advanced research arm.",
+          "verbatim_quote": "Advanced Research Projects Agency-Energy",
+          "source_url": "https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets",
+          "source_title": "Rice News, Rice brings AI expertise to DOE backed search for next generation magnets",
+          "source_type": "primary_official",
+          "fetched": "2026-09-05",
+          "id": "tx-2026-0124-c2"
+        }
+      ],
+      "notes_for_editor": "The Energy Department's own award document was not located this run, so the award number is not claimed. Rice's page carries the agency name and the partner list.",
+      "id": "tx-2026-0124",
+      "last_verified": "2026-09-05",
+      "history": [
+        {
+          "date": "2026-09-05",
+          "note": "Admitted on the university's own account of the award, fetched today. The Energy Department's own award document was not located, so the award number is not carried here."
         }
       ]
     }
