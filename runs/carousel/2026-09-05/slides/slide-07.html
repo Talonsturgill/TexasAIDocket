@@ -1,0 +1,172 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#14100E}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#8C8478}
+  /* MOVE 4. The hook sets SMALL and LOW RIGHT and there is no dek beneath a headline. The
+     frame is mostly the unbounded thing, and the work is a thin line across it. */
+  .hook{position:absolute;right:80px;top:1010px;width:520px;margin:0;text-align:right;
+    font-family:Fraunces,serif;font-weight:800;font-size:70px;line-height:1.02;
+    color:#E8E1D4;letter-spacing:-.02em}
+  .quote{position:absolute;left:80px;top:1112px;width:600px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:25px;line-height:1.34;color:#C4BCAF;font-style:italic}
+  .st{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.10em;color:#DED6C9;white-space:nowrap;
+    text-shadow:0 0 9px #14100E,0 0 18px #14100E,0 0 4px #14100E}
+  .foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <div class="st" style="left:118px;top:610px">AI</div>
+  <div class="st" style="left:414px;top:610px">ATOMISTIC MODELING</div>
+  <div class="st" style="left:744px;top:610px">HIGH THROUGHPUT</div>
+  <h1 class="hook">Picked for testing.</h1>
+  <p class="quote">"Our goal is to use AI to find entirely new materials while simultaneously balancing these supply constraint concerns."</p>
+  <div class="foot"><span>UH AND RICE</span><span>c6 c14</span><span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const NIGHT='#14100E', SINTER='#191518', NI='#CBC3B4', CU='#B5622C';
+  const LAMPX=880, LAMPY=760, LAMPR=1080;   // the light dies away to the LEFT
+
+  g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
+
+  // ---- the unbounded field ----------------------------------------------------------------
+  // NOTHING IS COUNTABLE HERE. No claim gives the size of the candidate space, so the field
+  // runs off all four edges, carries no boundary and no total, and thins into the frame's dark
+  // quarter. The size is drawn as the refusal of the frame to contain it.
+  (function field(){
+    const off=document.createElement('canvas'); off.width=W; off.height=H;
+    const og=off.getContext('2d');
+    const im=og.createImageData(W,H), d=im.data;
+    for(let y=0;y<H;y++){
+      for(let x=0;x<W;x++){
+        let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=f*f;
+        const n=TX.fbm2(x*0.0032,y*0.0032,4);
+        const v=6+f*30+n*15*(0.30+f);
+        const i=(y*W+x)*4;
+        d[i]=Math.min(255,v*1.18); d[i+1]=Math.min(255,v*1.06); d[i+2]=Math.min(255,v*0.94); d[i+3]=255;
+      }
+    }
+    og.putImageData(im,0,0);
+    g.drawImage(off,0,0,W,H);
+    // a scatter of candidates, coarsening toward the reader and running off every edge
+    for(let i=0;i<14000;i++){
+      const x=-40+R()*(W+80), y=-40+R()*(H+80);
+      let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=Math.max(0,f);
+      const a=0.03+0.30*f*f;
+      g.fillStyle='rgba(198,188,170,'+a.toFixed(3)+')';
+      const s=0.5+R()*1.5+(y/H)*0.9;
+      g.fillRect(x,y,s,s);
+    }
+  })();
+
+  // ---- ONE AXIS, THREE STATIONS ------------------------------------------------------------
+  // Three things Rice contributes are a sequence a candidate passes through. The stations
+  // differ by SURFACE and not by size, deliberately, because three decreasing sizes would draw
+  // a funnel and a funnel asserts a survival ratio no claim carries.
+  const AY=740, X0=150, X1=930;
+
+  // the path, lifted in value against the field rather than shadowed, so it never reads as a
+  // crack in the terrain
+  g.save();
+  g.strokeStyle='rgba(212,203,186,0.30)'; g.lineWidth=8; g.lineCap='round';
+  g.beginPath(); g.moveTo(X0,AY); g.lineTo(X1,AY); g.stroke();
+  g.strokeStyle='rgba(238,231,216,0.72)'; g.lineWidth=2.4;
+  g.beginPath(); g.moveTo(X0,AY); g.lineTo(X1,AY); g.stroke();
+  g.restore();
+
+  function seat(cx,cy,r){
+    g.save(); g.beginPath(); g.ellipse(cx+r*0.20,cy+r*0.46,r*1.15,r*0.34,0,0,6.2832);
+    g.fillStyle='rgba(0,0,0,0.55)'; g.filter='blur(13px)'; g.fill(); g.restore();
+    g.save(); g.beginPath(); g.ellipse(cx+r*0.07,cy+r*0.36,r*0.74,r*0.15,0,0,6.2832);
+    g.fillStyle='rgba(0,0,0,0.74)'; g.filter='blur(4px)'; g.fill(); g.restore();
+  }
+
+  // station 1, ROUGH. an as-broken lump, no worked face anywhere on it
+  (function rough(){
+    const cx=190, cy=AY, r=54; seat(cx,cy,r);
+    g.beginPath();
+    for(let i=0;i<26;i++){
+      const a=i/26*6.2832, rr=r*(0.72+0.44*TX.fbm2(Math.cos(a)*1.1+4.2,Math.sin(a)*1.1+4.2,3));
+      const x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr*0.86;
+      i?g.lineTo(x,y):g.moveTo(x,y);
+    }
+    g.closePath();
+    const gr=g.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
+    gr.addColorStop(0,'#4E463C'); gr.addColorStop(0.55,'#332E28'); gr.addColorStop(1,'#1D1A17');
+    g.fillStyle=gr; g.fill();
+    // conchoidal chips, so the surface is broken rather than smooth
+    g.save(); g.clip();
+    for(let i=0;i<40;i++){
+      const x=cx-r+R()*r*2, y=cy-r*0.9+R()*r*1.8, s=4+R()*13;
+      g.fillStyle='rgba(255,244,222,'+(0.03+R()*0.10).toFixed(3)+')';
+      g.beginPath(); g.ellipse(x,y,s,s*0.5,R()*3,0,6.2832); g.fill();
+    }
+    g.restore();
+  })();
+
+  // station 2, WORKED. the same mass with one ground flat on it and a tool path across it
+  (function worked(){
+    const cx=540, cy=AY, r=54; seat(cx,cy,r);
+    g.beginPath(); g.ellipse(cx,cy,r,r*0.86,0,0,6.2832);
+    const gr=g.createLinearGradient(cx-r,cy-r,cx+r,cy+r);
+    gr.addColorStop(0,'#6A6157'); gr.addColorStop(0.5,'#443E37'); gr.addColorStop(1,'#241F1B');
+    g.fillStyle=gr; g.fill();
+    g.save(); g.clip();
+    // the ground flat, a lighter panel with a directional tooth
+    g.fillStyle='rgba(214,205,188,0.28)';
+    g.beginPath(); g.moveTo(cx-r*0.9,cy-r*0.20); g.lineTo(cx+r*0.55,cy-r*0.52);
+    g.lineTo(cx+r*0.60,cy+r*0.16); g.lineTo(cx-r*0.86,cy+r*0.46); g.closePath(); g.fill();
+    for(let i=0;i<28;i++){
+      const t=i/28;
+      g.strokeStyle='rgba(246,236,210,'+(0.05+0.10*(1-t)).toFixed(3)+')'; g.lineWidth=1.1;
+      g.beginPath(); g.moveTo(cx-r*0.88,cy-r*0.18+t*r*0.62); g.lineTo(cx+r*0.58,cy-r*0.50+t*r*0.66); g.stroke();
+    }
+    g.restore();
+  })();
+
+  // station 3, CUT. a lapped face returning the key, the frame's lightest area
+  (function cut(){
+    const cx=890, cy=AY, r=56; seat(cx,cy,r);
+    g.beginPath(); g.ellipse(cx,cy,r,r*0.86,0,0,6.2832);
+    g.fillStyle='#2A2521'; g.fill();
+    // the cut face itself
+    const off=document.createElement('canvas'); off.width=W; off.height=H;
+    const og=off.getContext('2d'); const im=og.createImageData(W,H), d=im.data;
+    for(let y=Math.floor(cy-r);y<Math.ceil(cy+r);y++){
+      for(let x=Math.floor(cx-r);x<Math.ceil(cx+r);x++){
+        if(x<0||x>=W||y<0||y>=H) continue;
+        const u=(x-cx)/r, v=(y-cy)/(r*0.86);
+        if(u*u+v*v>0.80) continue;
+        const lobe=Math.exp(-Math.pow((u*0.72+v*0.60-0.10)/0.34,2));
+        const tooth=TX.fbm2(x*0.42,y*0.06,2)*0.12;
+        const t=Math.min(1,0.30+lobe*0.86+tooth);
+        const i=(y*W+x)*4;
+        d[i]=Math.min(255,50+t*198); d[i+1]=Math.min(255,48+t*190); d[i+2]=Math.min(255,44+t*172);
+        d[i+3]=255;
+      }
+    }
+    og.putImageData(im,0,0); g.drawImage(off,0,0,W,H);
+    g.strokeStyle='rgba(246,236,210,0.40)'; g.lineWidth=1.5;
+    g.beginPath(); g.ellipse(cx,cy,r*0.895,r*0.77,0,0,6.2832); g.stroke();
+  })();
+
+  window.__txProbe={stations:3, station_radius:[54,54,56], differ_by:'surface, not size',
+    axis:{y:AY,x0:X0,x1:X1}, field_bounded:false, numerals_on_frame:0};
+})();
+</script>
+</body></html>

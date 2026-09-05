@@ -1,0 +1,140 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#100D0B}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .quote{position:absolute;left:80px;top:170px;width:700px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:27px;line-height:1.36;color:#B3AA9D;font-style:italic}
+  /* MOVE 6. The hook sits INSIDE the patch where the part used to be, and the coalition runs
+     flush right as a ragged column. No masthead in the corner. */
+  .hook{position:absolute;left:452px;top:700px;width:440px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:82px;line-height:1.0;color:#171310;letter-spacing:-.022em}
+  .coal{position:absolute;right:80px;top:1006px;width:420px;text-align:right;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;line-height:1.62;
+    letter-spacing:.06em;color:#CFC7BA;
+    text-shadow:0 0 9px #100D0B,0 0 18px #100D0B,0 0 4px #100D0B}
+  .coal .yr{color:#8C8478}
+  .foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <p class="quote">"If you improve the quality of these magnets, that translates into an efficiency gain everywhere"</p>
+  <h1 class="hook">No material yet.</h1>
+  <div class="coal">RICE<br>COLORADO STATE UNIVERSITY<br>CARRIER GLOBAL<br>NEWFOUND MATERIALS<br><span class="yr">THREE YEARS</span></div>
+  <div class="foot"><span>RICE NEWS</span><span>c2 c4 c16</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const NIGHT='#100D0B';
+  // GRAZING AT EIGHT DEGREES, the only frame in the deck with the eye at the plane of its
+  // subject. At that angle the grain rakes and dust reads, and a patch where something has
+  // been sitting becomes visible as an ABSENCE OF DUST rather than as a drawn shape.
+  const LAMPX=902, LAMPY=880, LAMPR=980;    // the lamp runs out to the LEFT
+
+  g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
+
+  // ---- the bench, raking ------------------------------------------------------------------
+  (function bench(){
+    const DW=W*2, DH=H*2, im=g.createImageData(DW,DH), d=im.data;
+    for(let py=0;py<DH;py++){ const y=py*0.5;
+      for(let px=0;px<DW;px++){ const x=px*0.5;
+        let f=1-Math.min(1,Math.hypot((x-LAMPX)*0.86,(y-LAMPY)*1.5)/LAMPR); f=Math.max(0,f); f=f*f;
+        // grain runs along the bench and rakes hard at eight degrees, so the tooth is
+        // long in x and tight in y
+        const g1=TX.fbm2(x*0.0013,y*0.030,4);
+        const g2=TX.fbm2(x*0.0007,y*0.0045,3);
+        const grain=0.66*g1+0.34*g2;
+        // raking light multiplies the grain rather than adding to it, which is what makes a
+        // surface read as raked rather than as lit
+        const v=6+f*34+grain*30*f+grain*4;
+        const i=(py*DW+px)*4;
+        d[i]=Math.min(255,v*1.24); d[i+1]=Math.min(255,v*1.02); d[i+2]=Math.min(255,v*0.84); d[i+3]=255;
+      }}
+    g.save(); g.setTransform(1,0,0,1,0,0); g.putImageData(im,0,0); g.restore();
+  })();
+
+  // ---- THE PATCH, drawn as an absence of dust ---------------------------------------------
+  // The whole close rests on a reader believing something was here and is gone, and the only
+  // honest evidence for that is dust density. The patch is NOT a lighter rectangle. It is the
+  // region a dust field declines to fill, and the frame reports both counts.
+  //
+  // Foreshortened into a parallelogram by the eight degree eye. No edge of it is horizontal
+  // or vertical.
+  const P=[[404,652],[934,614],[962,888],[424,934]];
+  function insidePatch(x,y){
+    let inside=false;
+    for(let i=0,j=P.length-1;i<P.length;j=i++){
+      const xi=P[i][0], yi=P[i][1], xj=P[j][0], yj=P[j][1];
+      if(((yi>y)!==(yj>y)) && (x < (xj-xi)*(y-yi)/(yj-yi)+xi)) inside=!inside;
+    }
+    return inside;
+  }
+  // distance to the patch edge, used to soften where dust has crept back in
+  function edgeSoft(x,y){
+    let best=1e9;
+    for(let i=0,j=P.length-1;i<P.length;j=i++){
+      const ax=P[j][0], ay=P[j][1], bx=P[i][0], by=P[i][1];
+      const dx=bx-ax, dy=by-ay, L=dx*dx+dy*dy;
+      let t=L? ((x-ax)*dx+(y-ay)*dy)/L : 0; t=Math.max(0,Math.min(1,t));
+      best=Math.min(best, Math.hypot(x-(ax+t*dx), y-(ay+t*dy)));
+    }
+    return best;
+  }
+
+  // the unoxidised stock inside the patch, lighter and slightly pink because it never aged
+  g.save();
+  g.beginPath(); P.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])); g.closePath();
+  g.clip();
+  const pg=g.createLinearGradient(424,614,962,934);
+  pg.addColorStop(0,'rgba(224,198,164,0.62)'); pg.addColorStop(0.52,'rgba(238,216,184,0.76)');
+  pg.addColorStop(1,'rgba(200,174,142,0.50)');
+  g.fillStyle=pg; g.fillRect(380,590,620,370);
+  g.restore();
+
+  // the dust field. It runs the whole bench and simply declines inside the patch, with a soft
+  // margin where it has crept back over the edge.
+  let dustIn=0, dustOut=0;
+  for(let i=0;i<52000;i++){
+    const x=R()*W, y=R()*H;
+    let f=1-Math.min(1,Math.hypot((x-LAMPX)*0.86,(y-LAMPY)*1.5)/LAMPR); f=Math.max(0,f);
+    let keep=1;
+    if(insidePatch(x,y)){
+      const e=edgeSoft(x,y);
+      keep=Math.min(1, Math.pow(Math.max(0,1-e/26),2.1));   // creeps back over about 26px
+      if(R()>keep) { continue; }
+      dustIn++;
+    } else {
+      const e=edgeSoft(x,y);
+      keep=e<18 ? 0.55+0.45*(e/18) : 1;
+      if(R()>keep) continue;
+      dustOut++;
+    }
+    const a=0.03+0.42*f*f;
+    if(a<0.006) continue;
+    g.fillStyle='rgba(228,214,188,'+a.toFixed(3)+')';
+    const s=0.55+R()*1.25;
+    g.fillRect(x,y,s,s);
+  }
+
+  window.__txProbe={
+    patch:P, dust_inside_patch:dustIn, dust_outside_patch:dustOut,
+    patch_is_absence_of_dust: dustIn < dustOut*0.06,
+    no_edge_axis_aligned: P.every((p,i)=>{
+      const q=P[(i+1)%P.length];
+      return Math.abs(p[0]-q[0])>2 && Math.abs(p[1]-q[1])>2;
+    }),
+    objects_on_frame:0, lamp:{x:LAMPX,y:LAMPY}
+  };
+})();
+</script>
+</body></html>

@@ -1,0 +1,183 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#14100E}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  /* MOVE 5. The two tags sit at OPPOSITE CORNERS at one size, the hook runs between them, and
+     there is no masthead in the corner and no dek. The deck mark goes to the foot. */
+  .fig{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:46px;
+    color:#1E1A17;font-variant-numeric:tabular-nums;letter-spacing:.01em;white-space:nowrap}
+  .inst{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    color:#3A342C;letter-spacing:.08em;white-space:nowrap}
+  .hook{position:absolute;left:80px;top:642px;width:430px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:76px;line-height:1.02;color:#E8E1D4;letter-spacing:-.021em}
+  .sub{position:absolute;left:80px;top:846px;width:400px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:24px;line-height:1.34;color:#B6ADA0}
+  .foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="fig" id="fA" style="left:578px;top:214px">$2.9 million</div>
+  <div class="inst" id="iA" style="left:578px;top:282px">RICE UNIVERSITY</div>
+  <div class="fig" id="fB" style="left:114px;top:1040px">$2.88 million</div>
+  <div class="inst" id="iB" style="left:114px;top:1108px">UNIVERSITY OF HOUSTON</div>
+  <h1 class="hook">One award, two figures.</h1>
+  <p class="sub">Neither page reconciles them and neither does this.</p>
+  <div class="foot"><span>TEXAS AI DOCKET</span><span>c2 c3</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260905); const R=TX.rng(20260905);
+
+  const NIGHT='#14100E', SINTER='#191518', BRASS='#B5892C', TAG='#CBC3B4';
+  const LAMPX=470, LAMPY=300, LAMPR=1320;
+
+  g.fillStyle=NIGHT; g.fillRect(0,0,W,H);
+  (function bench(){
+    const DW=W*2, DH=H*2, im=g.createImageData(DW,DH), d=im.data;
+    for(let py=0;py<DH;py++){ const y=py*0.5;
+      for(let px=0;px<DW;px++){ const x=px*0.5;
+        let f=1-Math.min(1,Math.hypot(x-LAMPX,y-LAMPY)/LAMPR); f=f*f;
+        const gr=0.6*TX.fbm2((x+900)*0.0017,(y+130)*0.0140,4)+0.4*TX.fbm2((x+5)*0.0010,(y+9)*0.0038,3);
+        const v=7+f*40+gr*12*(0.35+f);
+        const i=(py*DW+px)*4;
+        d[i]=Math.min(255,v*1.22); d[i+1]=Math.min(255,v*1.03); d[i+2]=Math.min(255,v*0.88); d[i+3]=255;
+      }}
+    g.save(); g.setTransform(1,0,0,1,0,0); g.putImageData(im,0,0); g.restore();
+  })();
+
+  // ---- the body, and the ONE drilled hole both wires pass through -------------------------
+  // One award. Hanging two tags from the same hole is what says the disagreement is about the
+  // same thing rather than about two grants.
+  const BX=520, BY=680, BR=196, HOLE=[520,548];
+
+  // the body's own seat
+  g.save(); g.beginPath(); g.ellipse(BX+30,BY+BR*0.80,BR*1.12,BR*0.30,0,0,6.2832);
+  g.fillStyle='rgba(0,0,0,0.56)'; g.filter='blur(22px)'; g.fill(); g.restore();
+
+  g.beginPath();
+  for(let i=0;i<40;i++){
+    const a=i/40*6.2832;
+    const rr=BR*(0.80+0.30*TX.fbm2(Math.cos(a)*0.9+2.7,Math.sin(a)*0.9+2.7,3));
+    const x=BX+Math.cos(a)*rr, y=BY+Math.sin(a)*rr*0.92;
+    i?g.lineTo(x,y):g.moveTo(x,y);
+  }
+  g.closePath();
+  const bg=g.createRadialGradient(BX-BR*0.35,BY-BR*0.45,BR*0.08,BX,BY,BR*1.25);
+  bg.addColorStop(0,'#4A423A'); bg.addColorStop(0.5,'#2A2521'); bg.addColorStop(1,'#161311');
+  g.fillStyle=bg; g.fill();
+  g.save(); g.clip();
+  for(let i=0;i<170;i++){
+    const x=BX-BR+R()*BR*2, y=BY-BR+R()*BR*2, s=5+R()*22;
+    g.fillStyle='rgba(246,236,210,'+(0.015+R()*0.055).toFixed(3)+')';
+    g.beginPath(); g.ellipse(x,y,s,s*0.42,R()*3,0,6.2832); g.fill();
+  }
+  g.restore();
+
+  // the drilled hole, a real cut with a lit near lip and a dark floor
+  (function hole(){
+    g.beginPath(); g.ellipse(HOLE[0],HOLE[1],23,11,0,0,6.2832);
+    g.fillStyle='#0B0908'; g.fill();
+    g.strokeStyle='rgba(246,236,210,0.52)'; g.lineWidth=2.2;
+    g.beginPath(); g.ellipse(HOLE[0],HOLE[1]-1.6,23,11,0,Math.PI*1.06,Math.PI*1.98); g.stroke();
+  })();
+
+  // ---- TWO TAGS, IDENTICAL BY CONSTRUCTION ------------------------------------------------
+  // The record does not prefer one figure, so the drawing may not either. Both tags take the
+  // same size, the same fill and the same key term. The only difference between them is the
+  // strings, and the frame reports its own lighting so the claim is measured, not asserted.
+  const TAGW=436, TAGH=132;
+  const TAGS=[
+    {x:556, y:186, ang:-0.055},     // upper right
+    {x:92,  y:1012, ang: 0.062}     // lower left
+  ];
+  const litness=[];
+
+  function wire(from,to){
+    // wire casts on the body it crosses, then the tag catches it
+    g.save();
+    g.strokeStyle='rgba(0,0,0,0.55)'; g.lineWidth=7; g.filter='blur(6px)';
+    g.beginPath(); g.moveTo(from[0]+7,from[1]+8);
+    g.quadraticCurveTo((from[0]+to[0])/2+30, (from[1]+to[1])/2+16, to[0]+7, to[1]+8);
+    g.stroke(); g.restore();
+    const lg=g.createLinearGradient(from[0],from[1],to[0],to[1]);
+    lg.addColorStop(0,'#E3C173'); lg.addColorStop(0.5,BRASS); lg.addColorStop(1,'#6E5320');
+    g.strokeStyle=lg; g.lineWidth=3.4;
+    g.beginPath(); g.moveTo(from[0],from[1]);
+    g.quadraticCurveTo((from[0]+to[0])/2+24, (from[1]+to[1])/2+10, to[0], to[1]);
+    g.stroke();
+  }
+
+  function tag(t,idx){
+    const cx=t.x+TAGW/2, cy=t.y+TAGH/2;
+    // the tag's own cast onto the bench
+    g.save(); g.translate(cx,cy); g.rotate(t.ang); g.translate(-cx,-cy);
+    g.save();
+    g.fillStyle='rgba(0,0,0,0.58)'; g.filter='blur(14px)';
+    g.fillRect(t.x+16,t.y+18,TAGW,TAGH); g.restore();
+    // stock. IDENTICAL for both: same gradient endpoints, same angle, same fill.
+    const tg=g.createLinearGradient(t.x,t.y,t.x+TAGW,t.y+TAGH);
+    tg.addColorStop(0,'#E4DCCB'); tg.addColorStop(0.52,TAG); tg.addColorStop(1,'#9F978A');
+    g.fillStyle=tg;
+    g.beginPath();
+    const r=9;
+    g.moveTo(t.x+r,t.y); g.lineTo(t.x+TAGW-r,t.y); g.quadraticCurveTo(t.x+TAGW,t.y,t.x+TAGW,t.y+r);
+    g.lineTo(t.x+TAGW,t.y+TAGH-r); g.quadraticCurveTo(t.x+TAGW,t.y+TAGH,t.x+TAGW-r,t.y+TAGH);
+    g.lineTo(t.x+r,t.y+TAGH); g.quadraticCurveTo(t.x,t.y+TAGH,t.x,t.y+TAGH-r);
+    g.lineTo(t.x,t.y+r); g.quadraticCurveTo(t.x,t.y,t.x+r,t.y); g.closePath(); g.fill();
+    // A CLEAN RESERVE WHERE THE FIGURE SITS, which is the engine's own remedy and the right
+    // one. Fibre was drawn first as dashes and then as a speckle, and both registered as edges
+    // running through a 46px figure set on top of them. The tag keeps its texture in the band
+    // BELOW the figure, where nothing is set, and the figure gets flat stock to sit on.
+    g.save(); g.clip();
+    for(let i=0;i<560;i++){
+      const x=t.x+R()*TAGW, y=t.y+TAGH*0.62+R()*TAGH*0.38;
+      g.fillStyle='rgba(120,110,92,'+(0.02+R()*0.045).toFixed(3)+')';
+      const s=0.8+R()*1.1; g.fillRect(x,y,s,s);
+    }
+    // the stock's own edge darkening, which is where a tag actually wears
+    const eg=g.createLinearGradient(t.x,t.y,t.x,t.y+TAGH);
+    eg.addColorStop(0,'rgba(90,82,68,0.20)'); eg.addColorStop(0.16,'rgba(90,82,68,0)');
+    eg.addColorStop(0.84,'rgba(90,82,68,0)'); eg.addColorStop(1,'rgba(90,82,68,0.24)');
+    g.fillStyle=eg; g.fillRect(t.x,t.y,TAGW,TAGH);
+    g.restore();
+    // the eyelet the wire passes through
+    const ey=[t.x+30, t.y+TAGH/2];
+    g.beginPath(); g.ellipse(ey[0],ey[1],11,11,0,0,6.2832);
+    g.fillStyle='#5B534A'; g.fill();
+    g.strokeStyle='rgba(246,236,210,0.55)'; g.lineWidth=2;
+    g.beginPath(); g.ellipse(ey[0],ey[1],11,11,0,Math.PI*1.05,Math.PI*2.0); g.stroke();
+    g.restore();
+    // the two gradient endpoints are the same values on both tags, so litness is equal by
+    // construction rather than by eye
+    litness.push({tag:idx, stop0:'#E4DCCB', stop1:TAG, stop2:'#9F978A', w:TAGW, h:TAGH});
+    return [ey[0], ey[1]];
+  }
+
+  const eyA=tag(TAGS[0],0);
+  const eyB=tag(TAGS[1],1);
+  wire(HOLE, eyA);
+  wire(HOLE, eyB);
+  // redraw the hole's lit lip so both wires read as passing INTO it
+  g.strokeStyle='rgba(246,236,210,0.40)'; g.lineWidth=1.8;
+  g.beginPath(); g.ellipse(HOLE[0],HOLE[1]-1.4,23,11,0,Math.PI*1.10,Math.PI*1.94); g.stroke();
+
+  window.__txProbe={
+    one_hole:true, hole:HOLE, tags:litness,
+    tags_identical: litness.length===2 &&
+      litness[0].stop0===litness[1].stop0 && litness[0].stop1===litness[1].stop1 &&
+      litness[0].stop2===litness[1].stop2 && litness[0].w===litness[1].w &&
+      litness[0].h===litness[1].h,
+    shared_baseline:false, bars:0, rules:0, difference_drawn:false
+  };
+})();
+</script>
+</body></html>
