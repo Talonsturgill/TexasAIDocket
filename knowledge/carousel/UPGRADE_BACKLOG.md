@@ -982,3 +982,38 @@ the defect list is thin, and this one arrived with ten items and evidence attach
 or gets read for the wrong column without anything reporting it. That is the root cause under the
 `texan_check` upgrade above, it is not a checker question, and this repository has three tables of
 that kind already, the gazetteer, the stem floor and the places file `label_guard` shares.
+
+## 2026-09-06 — `render.py` throws `window.__txProbe` away, so a frame's own assertion is unreadable
+
+Found by the round 4 integrity judge on carousel no. 17, and it is worth writing down because
+nobody had checked it in five decks of writing probes.
+
+**Frames set `window.__txProbe` and `render.py` never reads it.** Nine frames on this deck set one.
+`render_report.json` has no field for it, so `probe` is `null` on every slide. Two acceptance items
+on this deck said a number was "asserted by the frame's own script and printed to the render
+report", and the second half of that sentence has never been true of any deck.
+
+**The cost is a check that reads as passing because nothing reads it.** That is GATE_LESSONS' own
+recurring shape and it is worse here than a missing gate, because the dossier's acceptance list
+told four rounds of judges the number was available. A judge who believed it would have scored a
+check nobody could run.
+
+**The interim fix shipped in the deck rather than the engine.** Frame 5 now throws if a contour
+closes or the minimum contour spacing drops under 6 px. Frame 8 throws if its two hardware pockets
+ever differ in size. Frames 7 and 9 already threw. A throw is the only form of assertion that
+cannot ship broken, because the render fails instead of the claim quietly becoming false, and it
+needs nothing from the engine. Frame 1's acceptance item was rewritten to the construction
+argument it always rested on, which is stronger than a printed number: both openings are cut from
+one pair of half extents, so a later edit cannot make them differ by hand.
+
+**The real fix is three lines in `render.py`**, capturing `window.__txProbe` into each slide's
+record after `renderReady` resolves, next to where `canvas_text` and `encodings` are already read.
+Then `plan_render_check` could compare a dossier's declared numbers against the frame's own
+measured ones, which is a gate this repo does not have and which would have caught frame 8's
+dead hatch and frame 4's buried scale bar without a judge.
+
+**It is a proposal and not an upgrade, for the reason `CLAUDE.md` states.** `render.py` lives under
+`.claude/skills/carousel-engine/`, the `upgrade` lane owns that path in `ownership.yaml` and still
+cannot reach it, because the host treats everything under `.claude/` as a sensitive file and
+prompts on every edit whatever the permission mode says. Ownership and reachability are different
+questions. A maintainer at a keyboard can make this edit and answer the one prompt.
