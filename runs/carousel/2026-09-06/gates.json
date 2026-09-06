@@ -10,9 +10,9 @@
  "deck: machine QA": "PASS, 0 fails on all 9 frames, 1 advisory warn on frame 6's footer ring",
  "deck: claims_check": "PASS, 25 verified claims, 7 rejected",
  "deck: absence_check": "PASS, 10 absences all scoped to a named document",
- "deck: verbatim_check": "PASS",
+ "deck: verbatim_check": "PASS when the deck was scored. FAILS NOW with 2 findings, on frames 4 and 7, because this run's own retro phase added the rule that catches them a few hours later.",
  "deck: aggregate_check": "PASS, 9 computed figures all re-derived",
- "deck: quantifier_check": "PASS, 85 published strings, every universal names its set",
+ "deck: quantifier_check": "PASS when the deck was scored, 85 published strings. FAILS NOW with 4 findings because the retro phase added the closure rule, and the first finding is the sentence the panel held the deck for.",
  "deck: copy_sync_check": "PASS",
  "deck: plan_render_check": "PASS",
  "deck: dossier_check": "PASS",
@@ -29,5 +29,6 @@
  "PANEL": "HOLD. Median 6.552 against 6.8, one hard fail from the reader on slide 1's dek",
  "prompt_audit": "PASS, 1383 tool calls measured, none waited on a human",
  "CI on the pull request": "GREEN on head dbea39ee. gates, guards, build, freshness, browser-read, browser-layout and browser-render all success. It went red four times first and every one was this run's own unfinished work: a calendar kind with no label, a stale article page, the missing email payload, and shipped_check judging a HELD run as published work.",
- "prompt_audit (the reading that counts)": "PASS, 1615 tool calls measured, none waited on a human"
+ "prompt_audit (the reading that counts)": "PASS, 1615 tool calls measured, none waited on a human",
+ "THE RETRO'S NEW GATES FAIL THE DECK THAT TAUGHT THEM": "Deliberate and correct. Both gates postdate the scoring, so they judged nothing that was scored, and shipped_check's CURRENT and HISTORY scopes exist for exactly this. A gate written from a defect that then cannot see that defect would be the thing worth worrying about."
 }
