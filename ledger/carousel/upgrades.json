@@ -1211,4 +1211,18 @@
    "why": "The evidence budget went to the two measurements that say no. The area still never rotated to is the one the 2026-09-05 phase named, how a gazetteer or a reference table goes stale with nothing reporting it, and it is still unclaimed."
   }
  }
+,
+ "2026-09-06 second pass": {
+  "phase": "retro and upgrade, deck no. 17 (HELD), actor `upgrade`, second pass after CI",
+  "why_a_second_key_for_one_date": "The first pass had already committed its key when CI surfaced this. This file grows by pure insertion, one top level key with a leading comma, so editing the earlier key would rewrite lines and ownership_check refuses that. A second key is the only append shaped answer.",
+  "changes": [
+   {
+    "what": "shipped_check.py gained a HELD case, so a run that did not publish is out of the sweep's scope rather than a defect in published work.",
+    "defect": "The file's own banner says it reports problems in work that is ALREADY PUBLISHED, and it decided what was published from the presence of a run directory. A held run has one because the delivery policy REQUIRES it: a failed run commits its evidence to its branch and does not merge. Carousel no. 17 was held at 6.552 with a hard fail, and CI then reported the completion gate's own 'THE DECK DID NOT SHIP' as a defect in published work. The branch of a run being honest about failing could never go green, which makes red CI stop carrying information exactly when it matters most.",
+    "how": "Every finding on a held run is still printed, in full, under the date that carries it, the way a WAIVED finding already is. Only the fatal list is shorter. The closing line names the held dates and counts them apart from the shipped ones, because calling a held run a shipped run in the count would be the half truth this file exists to catch.",
+    "the_first_draft_was_wrong_and_this_is_the_load_bearing_part": "The test is a non-empty hard_fails list, NOT ship: false. The first draft read ship alone and put FOUR PUBLISHED DECKS out of scope, 2026-08-30, 2026-09-02, 2026-09-03 and 2026-09-04, every one carrying ship: false with no hard fail because the rubric ships a deck past the five round cap whatever the weighted score is. That draft would have silenced this sweep on four decks a reader can go and look at. A hard fail is what stops a deck at any round, and it is the only verdict that means the deck did not publish. The first draft of an exemption is always too generous to the run that wrote it.",
+    "verified": "shipped_check exits 0 on the real tree, 16 shipped runs with 2026-09-06 named as held. --self-test all passed, up from 1 failure before this change. Four new assertions, and the load bearing one was WATCHED GO RED: restoring the ship-alone discriminator fails 'a deck the panel refused on the NUMBER alone is still published work' and names all four decks. The two fatality proofs were re-pointed at the newest PUBLISHED deck, because on a held deck nothing is fatal and a self-test that cannot go red is the thing this file is about. That also cleared the pre-existing 'missing [ledgers]' failure, which had the same cause: a held run writes no variety ledger entries, so the reachability check was reading a live gate as dead."
+   }
+  ]
+ }
 }
