@@ -20,6 +20,7 @@ The Texas Education Freedom Accounts program publishes exactly four requirements
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-06 · Admitted to the record. The program's own Schools page was read this run and it carries four requirements for a private school and no fifth. Alpha School's own front page was read the same run and it still says an AI tutor gives students their coursework.
+- 2026-09-06 · The Education Freedom Accounts program is a statewide school funding rule rather than a grid connected project, and statewide Texas reaches past the ERCOT interconnection. The grid flag reads false.
 
 ## Evidence
 

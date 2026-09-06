@@ -1,4 +1,4 @@
-# ERCOT tells the utilities which large loads are conditionally inside Batch Zero, three days after saying it would miss its own deadline
+# ERCOT tells the utilities which large loads are conditionally inside Batch Zero
 
 ERCOT issued a market notice on September 3rd, 2026 telling each interconnecting distribution and transmission service provider its provisional classification of the large loads submitted for Batch Zero. Inclusion is conditional and the notice names the conditions. They include passing verification, curing deficiencies in dynamic model data, and a good cause exception granted by the Public Utility Commission. ERCOT states it will not seek an exception for every large load that asked for one. A load whose entity fails to submit the required materials waits for a future interconnection study before it may connect.
 
@@ -20,6 +20,7 @@ ERCOT issued a market notice on September 3rd, 2026 telling each interconnecting
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-06 · Admitted to the record. The notice was read this run and the classifications stand as conditional. Nothing has moved a conditional load into a settled one.
+- 2026-09-06 · The title no longer says the notice followed an earlier one by three days. No fetched document carries that earlier notice, so the record does not assert it.
 
 ## Evidence
 

@@ -11639,7 +11639,7 @@
   },
   {
    "title": "State technology agency publishes how it is implementing the four AI laws of the 89th Legislature",
-   "summary": "The Texas Department of Information Resources published an account on August 14th, 2026 of how it is implementing the artificial intelligence laws passed by the 89th Legislature. Senate Bill 1964, House Bill 3512 and House Bill 149 are named in it. One of them puts an annual artificial intelligence awareness training obligation on certain state and local government employees and officials, and the agency offers a free training video. Another established the state's AI governance framework and directed the agency to develop a public sector sandbox. A third requires governmental entities to disclose their use of AI and creates the Texas Artificial Intelligence Council.",
+   "summary": "The Texas Department of Information Resources published an account on August 14th, 2026 of how it is implementing the artificial intelligence laws passed by the 89th Legislature. Senate Bill 1964, House Bill 3512 and House Bill 149 are named in it. One of them puts an annual artificial intelligence awareness training obligation on certain state and local government employees and officials, and the agency offers a free training video. Another established the state's AI governance framework and directed the agency to develop a public sector sandbox. A third requires governmental entities to disclose their use of AI and creates the Texas Artificial Intelligence Council. The agency also reports that House Bill 2818 established its AI Division to support AI initiatives in the public and private sectors. It reports adopting Texas Administrative Code Chapter 219, which carries the AI Systems Code of Ethics.",
    "topic": "state-policy",
    "decider": {
     "name": "Texas Department of Information Resources",
@@ -11690,10 +11690,28 @@
      "source_type": "primary_official",
      "id": "tx-2026-0113-c3",
      "retrieved_at": "2026-08-30"
+    },
+    {
+     "text": "The agency names the rule chapter it adopted and what it carries.",
+     "verbatim_quote": "Adopting Texas Administrative Code Chapter 219, which includes the AI Systems Code of Ethics, and publishing AI governance resources, including, notices and a model AI Acceptable Use Policy.",
+     "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+     "source_title": "Texas Department of Information Resources, AI in Texas",
+     "source_type": "primary_official",
+     "fetched": "2026-09-06",
+     "id": "tx-2026-0113-c4"
+    },
+    {
+     "text": "A second bill created the division doing the work.",
+     "verbatim_quote": "House Bill 2818 established DIR's AI Division to support AI initiatives in the public and private sectors, as well as modernization efforts for state and local government.",
+     "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+     "source_title": "Texas Department of Information Resources, AI in Texas",
+     "source_type": "primary_official",
+     "fetched": "2026-09-06",
+     "id": "tx-2026-0113-c5"
     }
    ],
    "id": "tx-2026-0113",
-   "last_verified": "2026-09-05",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-08-30",
@@ -11708,6 +11726,11 @@
     {
      "date": "2026-09-05",
      "note": "The state technology agency's account of how it is implementing the four AI laws is still published and unchanged.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The agency's account of House Bill 2818 and of Texas Administrative Code Chapter 219 is added from the same publication. One agency publication stands as one decision.",
      "checked": true
     }
    ]
@@ -12807,7 +12830,7 @@
    "geography": {
     "statewide": true,
     "counties": [],
-    "on_ercot": true
+    "on_ercot": false
    },
    "status": "decided",
    "confidence": "high",
@@ -12904,11 +12927,16 @@
     {
      "date": "2026-09-06",
      "note": "Admitted to the record. The program's own Schools page was read this run and it carries four requirements for a private school and no fifth. Alpha School's own front page was read the same run and it still says an AI tutor gives students their coursework."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The Education Freedom Accounts program is a statewide school funding rule rather than a grid connected project, and statewide Texas reaches past the ERCOT interconnection. The grid flag reads false.",
+     "checked": true
     }
    ]
   },
   {
-   "title": "ERCOT tells the utilities which large loads are conditionally inside Batch Zero, three days after saying it would miss its own deadline",
+   "title": "ERCOT tells the utilities which large loads are conditionally inside Batch Zero",
    "summary": "ERCOT issued a market notice on September 3rd, 2026 telling each interconnecting distribution and transmission service provider its provisional classification of the large loads submitted for Batch Zero. Inclusion is conditional and the notice names the conditions. They include passing verification, curing deficiencies in dynamic model data, and a good cause exception granted by the Public Utility Commission. ERCOT states it will not seek an exception for every large load that asked for one. A load whose entity fails to submit the required materials waits for a future interconnection study before it may connect.",
    "topic": "power-and-the-grid",
    "decider": {
@@ -12979,90 +13007,11 @@
     {
      "date": "2026-09-06",
      "note": "Admitted to the record. The notice was read this run and the classifications stand as conditional. Nothing has moved a conditional load into a settled one."
-    }
-   ]
-  },
-  {
-   "title": "The state technology agency publishes its account of carrying out the four AI laws the 89th Legislature passed",
-   "summary": "The Texas Department of Information Resources published an account of its work implementing Senate Bill 1964, House Bill 2818, House Bill 3512 and House Bill 149. It states that Senate Bill 1964 established the state's AI governance framework. It states that the same bill directed the agency to build a public sector AI sandbox and write rules for government use of heightened scrutiny AI. It states that House Bill 3512 requires annual AI awareness training for certain state and local government employees and officials. It states that House Bill 149 requires governmental entities to disclose their use of AI and creates the Texas Artificial Intelligence Council. The agency reports adopting Texas Administrative Code Chapter 219, which carries the AI Systems Code of Ethics.",
-   "topic": "state-policy",
-   "decider": {
-    "name": "Texas Department of Information Resources",
-    "type": "state-agency"
-   },
-   "geography": {
-    "statewide": true,
-    "counties": [],
-    "on_ercot": true
-   },
-   "status": "decided",
-   "confidence": "high",
-   "key_dates": [
-    {
-     "date": "2026-08-14",
-     "kind": "ordered",
-     "note": "Publication date shown on the agency's own article"
-    }
-   ],
-   "public_access": {
-    "room": "contact_only",
-    "how": "The agency publishes the account and the governance resources it names. The rules themselves were adopted through the Texas Register and that window has closed.",
-    "url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature"
-   },
-   "claims": [
-    {
-     "text": "The agency states what the governance bill directed it to build.",
-     "verbatim_quote": "Senate Bill 1964 established Texas' AI governance framework and directed DIR to develop the Public Sector AI Sandbox and adopt rules for government use of heightened-scrutiny AI.",
-     "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
-     "source_title": "Texas Department of Information Resources, AI in Texas",
-     "source_type": "primary_official",
-     "fetched": "2026-09-06",
-     "id": "tx-2026-0127-c1"
     },
-    {
-     "text": "A training requirement now reaches local government as well as state.",
-     "verbatim_quote": "House Bill 3512 requires annual AI Awareness Training for certain state and local government employees and officials.",
-     "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
-     "source_title": "Texas Department of Information Resources, AI in Texas",
-     "source_type": "primary_official",
-     "fetched": "2026-09-06",
-     "id": "tx-2026-0127-c2"
-    },
-    {
-     "text": "A disclosure requirement and a council come from the fourth bill.",
-     "verbatim_quote": "House Bill 149 requires disclosures of use of AI by governmental entities, creating consumer protections, the Texas Artificial Intelligence Council, and a regulatory sandbox while expanding the Information Resources Deployment Review to include agency AI system inventories.",
-     "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
-     "source_title": "Texas Department of Information Resources, AI in Texas",
-     "source_type": "primary_official",
-     "fetched": "2026-09-06",
-     "id": "tx-2026-0127-c3"
-    },
-    {
-     "text": "The agency names the rule chapter it adopted and what it carries.",
-     "verbatim_quote": "Adopting Texas Administrative Code Chapter 219, which includes the AI Systems Code of Ethics, and publishing AI governance resources, including, notices and a model AI Acceptable Use Policy.",
-     "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
-     "source_title": "Texas Department of Information Resources, AI in Texas",
-     "source_type": "primary_official",
-     "fetched": "2026-09-06",
-     "id": "tx-2026-0127-c4"
-    },
-    {
-     "text": "A second bill created the division doing the work.",
-     "verbatim_quote": "House Bill 2818 established DIR's AI Division to support AI initiatives in the public and private sectors, as well as modernization efforts for state and local government.",
-     "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
-     "source_title": "Texas Department of Information Resources, AI in Texas",
-     "source_type": "primary_official",
-     "fetched": "2026-09-06",
-     "id": "tx-2026-0127-c5"
-    }
-   ],
-   "notes_for_editor": "A scout reported the agency's own news index showing this item under a September 2nd date while the article page shows August 14th. The article page's own date is used and the conflict is recorded here rather than resolved. The counts the article gives for certified training programs and cooperative contracts are not claimed, because a count on a page with a contested date is a figure about a day nobody can name.",
-   "id": "tx-2026-0127",
-   "last_verified": "2026-09-06",
-   "history": [
     {
      "date": "2026-09-06",
-     "note": "Admitted to the record. The agency's own account was read this run and it still names the four bills and the rule chapter it adopted under them."
+     "note": "The title no longer says the notice followed an earlier one by three days. No fetched document carries that earlier notice, so the record does not assert it.",
+     "checked": true
     }
    ]
   },
