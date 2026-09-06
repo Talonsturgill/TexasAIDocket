@@ -1,0 +1,48 @@
+{
+ "lens": "integrity",
+ "round": 5,
+ "deck": 17,
+ "run_date": "2026-09-06",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0,
+   "why": "Frame 1 is the real thing: a raymarched mass where holeL and holeR share one OP={hw:0.80,hh:1.42}, the left reveal shows a lit return and the right is infilled flush, and both cast onto the walk. Frames 3, 5 and 8 are competent. Three are not. Frame 6, the deck's declared inversion, carries a VISIBLE hard vertical boundary at x=330 where reserve(330,930,W-330,320) cuts at its left edge and jambBack then draws seams at 0.55 alpha left of x=326 and 0.16 right of it; the tie holes at [760,1090] and [600,1010] survive as half-erased grey ghosts. A round 3 judge measured a hard edge at x=330 and round 5's repair left it there in a new form at the same x. Frame 5's own HTML names this exact defect and fixed it with reserveSoft; frame 6 did not. Frame 4 renders as four near-black bars with mono type in them, which is the label-chip defect the deck disavows twice. Frame 2's top 55 percent is a featureless dark field and its terrazzo joints render as a near-orthogonal grid."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "The sourcing is the best part of this deck. 25 verbatim claims all fetched 2026-09-06, primary where a primary exists, and a rejected list that refuses the Valenta-to-Alpha inference, a four-digit year the article never prints, a campus count off the locations menu, and the merged nine. compute.py parses $10,474 and 2026-27 out of c8's own string and asserts the absence over the four full quotes on word boundaries. Round 4 items 1 and 2 are genuinely closed at the artifact. Against that: FOUR dossier statements are false of the artifact they describe. The storyboard's labels, verbatim c5 and acceptance all still say the fourth string reads 'Be located in Texas' while the render prints c5 whole. Slide 3's acceptance claims every letter's cast falls at the deck's azimuth while the frame measures 135 against 147 and says so. Slide 2's acceptance requires a gate drawn closed and no gate is discernible. On the published copy: slide 1's dek asserts an exhaustive count whose scope limit lives only in aggregates.json and never on the frame. Slide 9's 'partial list of towns.' asserts an incompleteness nothing measures. And c3 is truncated to 'Be a proven operator', dropping 'for at least two years', by the same logic round 4 used to say truncating c5 was wrong."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.5,
+   "why": "A Texan gets the whole thing: two authorization routes, the commissioner recommends and the board can veto, the other route publishes four requirements, $10,474 follows a child for 2026-27, applications are rolling and opened December 9th, 2025, a school whose front page says an AI tutor delivers the coursework, the board said no and the program said yes. Frame 9 gives a real next step with a real address. What it can't give is a deadline, and it correctly refuses to invent one. Ten named towns are the only geography and no county appears."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "It builds and it turns. 1 poses the contrast, 2 and 3 walk the board route, 4 and 5 walk the checklist route, 6 is a real turn, 7 names the school for the first time on purpose, 8 collides them, 9 hands it to the reader. The inversion sits at 6 rather than the habitual 5 and the two largest value junctions, 27.0 to 82.5 to 16.8, are the pair either side of it. Frame 2 is the cuttable one: its hook promises a room and the room is mostly empty air."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "'Two doors. Different latches.', 'This door never closes.', 'Ask which door.' are clean and unhedged, no boosterism and no doom, no first person, no colon or semicolon anywhere in caption.txt or first_comment.txt, ordinal dates throughout, straight quotes, comma rate near zero. But the Texas in it is thin. Strip the ten town names and 'Texas' itself and nothing in the copy places this state rather than any other with a voucher program."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Nine genuinely different techniques and a palette no recent deck used, so the surface is fresh. Underneath it is not. The deck's SPINE is an absence again: a1 carries frame 6, which is the declared turn, and the close's action line is the same absence restated. topics.json carries four consecutive run records asking for the opposite, two of them in capitals, and each notes dedupe_check cannot read that field. It is also the second Texas-classroom deck in 19 days, which is not a topic repeat but is not distance either."
+  }
+ ],
+ "hard_fails": [],
+ "ship": false,
+ "weighted_score": 6.67,
+ "note": "Round 5. My no is about the NUMBER and not a fault: I found no hard fail and the round 4 hard fail is genuinely closed at the artifact. One sentence fix: make the last render pass re-derive each dossier's verbatim, labels, focal and acceptance strings from render_report.json's laid-out text nodes and fail the build when they disagree, the way copy.json is already built from the report rather than the storyboard. Caveat on my own round 4 item 3: frame 5's guard is weaker than its acceptance line claims, because `if (gap > 0.5)` excludes sub-half-pixel gaps from minGap, so the throw cannot fire on the exact convergence-to-zero case it exists for."
+}

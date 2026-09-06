@@ -1,0 +1,218 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#100D0B}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:86px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#C6B79C}
+  .who{position:absolute;top:150px;left:80px;font-family:Fraunces,serif;font-weight:800;
+    font-size:76px;line-height:1.04;color:#F0E2BC;letter-spacing:-.022em}
+  /* THE CUT LINE. Daylight coming through letters cut in a lintel, so the type is the brightest
+     thing in the frame and the soffit around it is the darkest. */
+  /* THE CUT IS THE LETTERFORM AND NOT A SLOT BEHIND IT. Round 2 measured the old treatment as
+     type painted on the face of a lit rectangle, which is what it was, and the repair is that
+     nothing behind this type is drawn at all. The letter IS the daylight, the two cut walls are
+     modelled on the deck's one azimuth, and the concrete around it goes deep. The frame draws no
+     rectangle anywhere near a word.
+
+     A GRADIENT CLIPPED TO THE GLYPH WAS TRIED HERE AND REMOVED. background-clip:text needs
+     color:transparent, and a transparent colour is what every downstream measurement reads as
+     the type's value, so the contrast gate and the ink contamination gate were both measuring
+     black type on a black ground. A drawing whose own value can't be stated is a drawing that
+     can't be checked, which is worse than a drawing without a gradient in it. */
+  .cut,.cut2{position:absolute;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:700;font-size:54px;line-height:1.22;letter-spacing:.022em;color:#FBF0D2;
+    /* THE SIDE BEARINGS ARE PART OF THE CUT. A chamfer wide enough to read at 432 px is wide
+       enough to bridge a tight letter gap, and a bridged gap across a whole line is the
+       strikethrough qa.py fails a frame for. Opening the tracking is what buys the chamfer
+       its room, so the two are one decision rather than two. */
+    /* the sun side cut wall, DIMMER than the daylight coming through the letter itself, because
+       a chamfer catching raking light is never as bright as the hole it edges */
+    /* THE CHAMFER HAS TO SURVIVE 432 px. At 2 px it was 0.8 px in a feed and a judge read the
+       whole device as a drop shadow, which is exactly what a sub pixel cut wall is. The deck is
+       viewed at 0.4 scale, so a cut wall that a reader can see is 5 px here and not 2. */
+    filter:drop-shadow(3px -3px 0 rgba(176,156,116,.66))
+           drop-shadow(-3.5px 4px 0 rgba(6,5,3,.95))
+           drop-shadow(0 0 3px rgba(4,3,2,.98))}
+  .cut{top:520px}
+  .cut2{top:800px}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#E6DAC2;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <div class="who">Alpha School says it plainly.</div>
+  <p class="cut">"Our AI tutor gives students 1:1 personalized education"</p>
+  <p class="cut2">"Adults, whether teachers or parents, become 'Guides,'"</p>
+  <div class="foot"><span>ALPHA SCHOOL</span><span>c9 c10</span><span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260906); const R=TX.rng(20260906+7);
+
+  const SOFFIT='#100D0B', BRONZE='#4A3520', SUN_RETURN='#F0E2BC', GLASS='#33413C';
+
+  g.fillStyle=SOFFIT; g.fillRect(0,0,W,H);
+
+  // ---- THE LINTEL SOFFIT, read from directly below, falling away from the camera. One point
+  //      perspective computed rather than eyeballed, so the convergence is a real one.
+  const VP={x:540,y:70};                 // the vanishing point, above the frame's centre line
+  function persp(x, t){ return VP.x + (x - VP.x)*t; }   // t is 1 at the near edge, 0 at the VP
+  (function soffit(){
+    const nearY=1090, farY=250;
+    // ONE GRADIENT, NOT 440 STRIPS. The strips quantised to whole bytes, which laid unbroken
+    // horizontal edges across the whole frame every few rows, and qa.py read the ones inside a
+    // glyph band as strikethroughs. A gradient dithers in the compositor and has no rows at all.
+    // The trapezoid is the same shape the strips described, so nothing about the camera changed.
+    const val = t => { const v = 0.16 + 0.84*Math.pow(t,1.35);
+      return 'rgb('+Math.round(96*v+9)+','+Math.round(84*v+8)+','+Math.round(66*v+6)+')'; };
+    g.save();
+    g.beginPath();
+    g.moveTo(persp(-140, 1.0), nearY);   g.lineTo(persp(W+140, 1.0), nearY);
+    g.lineTo(persp(W+140, 0.08), farY);  g.lineTo(persp(-140, 0.08), farY);
+    g.closePath(); g.clip();
+    const sg=g.createLinearGradient(0,nearY,0,farY);
+    for (let k=0;k<=32;k++){ const f=k/32; sg.addColorStop(f, val(1-f)); }
+    g.fillStyle=sg; g.fillRect(0,farY-2,W,nearY-farY+4);
+    g.restore();
+    // the lintel's own board joints, converging on the vanishing point, which is the structure
+    // that makes this a soffit rather than a wash
+    for (const jx of [-460,-300,-150,0,150,300,460]){
+      g.beginPath();
+      g.moveTo(persp(540+jx*2.4, 1.0), nearY);
+      g.lineTo(persp(540+jx*2.4, 0.08), farY);
+      g.strokeStyle='rgba(255,246,220,0.16)'; g.lineWidth=2.4; g.stroke();
+      g.beginPath();
+      g.moveTo(persp(540+jx*2.4, 1.0)+5, nearY);
+      g.lineTo(persp(540+jx*2.4, 0.08)+2, farY);
+      g.strokeStyle='rgba(8,6,4,0.42)'; g.lineWidth=3.2; g.stroke();
+    }
+  })();
+
+  // ---- THE CUTS. Daylight coming through the letterforms, drawn as a lit wall on the sun side
+  //      and a shadowed wall opposite, with the light falling onto the soffit around each cut.
+  // THE CUT IS THE LETTER. The daylight through it, the two cut walls and the spill all live on
+  // the glyph in CSS, clipped to the letterform, so nothing here draws a rectangle. What the
+  // canvas owes the cut is the concrete AROUND it going deeper, so the light has a dark to be
+  // read against, and that darkening is a gradient that reaches zero at both ends rather than a
+  // rule, because a rule through a glyph band is the strikethrough qa.py fails a frame for.
+  // THE SPILL IS DRAWN OUTSIDE THE GLYPH BAND AND THE DARK IS DRAWN INSIDE IT, which is both
+  // what light through a cut actually does and what keeps the measurement honest. A glow sitting
+  // hard against a letter reads to a contrast gate as paper the same value as the ink, and it
+  // reads to a reader as a lit rectangle, which is the defect this frame was rebuilt to lose.
+  // Nothing here has a hard edge anywhere: every gradient reaches zero alpha at both ends.
+  function cutSurround(y,h,x0,x1){
+    const dk=g.createLinearGradient(0,y-46,0,y+h+52);
+    dk.addColorStop(0,'rgba(6,5,3,0)');
+    dk.addColorStop(0.22,'rgba(6,5,3,0.72)');
+    dk.addColorStop(0.78,'rgba(6,5,3,0.80)');
+    dk.addColorStop(1,'rgba(6,5,3,0)');
+    g.fillStyle=dk; g.fillRect(x0-110,y-46,(x1-x0)+220,h+98);
+    const up=g.createLinearGradient(0,y-186,0,y-40);
+    up.addColorStop(0,'rgba(250,238,206,0)'); up.addColorStop(0.62,'rgba(250,238,206,0.17)');
+    up.addColorStop(1,'rgba(250,238,206,0)');
+    g.fillStyle=up; g.fillRect(x0-110,y-186,(x1-x0)+220,146);
+    const dn=g.createLinearGradient(0,y+h+44,0,y+h+196);
+    dn.addColorStop(0,'rgba(250,238,206,0)'); dn.addColorStop(0.40,'rgba(250,238,206,0.13)');
+    dn.addColorStop(1,'rgba(250,238,206,0)');
+    g.fillStyle=dn; g.fillRect(x0-110,y+h+44,(x1-x0)+220,152);
+  }
+  cutSurround(516,142,72,1010);
+  cutSurround(796,142,72,1010);
+
+  // ---- THE DOOR HEAD BELOW, so the frame is a doorway and not an abstract wedge --------------
+  (function head(){
+    g.fillStyle='#241A0F'; g.fillRect(0,1090,W,H-1090);
+    const rail=g.createLinearGradient(0,1090,0,1148);
+    rail.addColorStop(0,'#8A6E3E'); rail.addColorStop(0.30,BRONZE); rail.addColorStop(1,'#1D1408');
+    g.fillStyle=rail; g.fillRect(0,1090,W,58);
+    g.fillStyle='rgba(252,242,212,0.72)'; g.fillRect(0,1088,W,4);   // the raking highlight
+    // the leaf's glazing below the rail, which is what makes it read as a door
+    const gl=g.createLinearGradient(W,1148,0,H);
+    gl.addColorStop(0,'#48594F'); gl.addColorStop(0.5,GLASS); gl.addColorStop(1,'#1C2621');
+    g.fillStyle=gl; g.fillRect(64,1148,W-128,H-1148);
+    g.fillStyle='rgba(240,230,204,0.16)';                            // one reflection across it
+    g.beginPath(); g.moveTo(240,H); g.lineTo(520,1148); g.lineTo(614,1148); g.lineTo(334,H);
+    g.closePath(); g.fill();
+    // the reveal's return running back into shade, a graded wash
+    const ret=g.createLinearGradient(0,1148,0,H);
+    ret.addColorStop(0,'rgba(74,53,32,0.95)'); ret.addColorStop(1,'rgba(20,14,8,0.98)');
+    g.fillStyle=ret; g.fillRect(0,1148,64,H-1148); g.fillRect(W-64,1148,64,H-1148);
+  })();
+
+
+  // ---- WORKED GROUND. panel_ready measures the quietest patch of every ground a dossier calls
+  // worked, and a smooth gradient fails it however well lit it is. This is the material.
+  // BUDGETED, NOT SPRAYED. A round 2 judge counted four frames running a character identical
+  // speck field over sky, wall, ground and door alike. Concrete has tooth. A daylight slot and
+  // a sheet of glass do not, so the two cuts and the glazing are skipped and the soffit's own
+  // density follows its near to far ramp, which is the thing the tooth is there to describe.
+  (function grit(){
+    const SLOTS=[[498,672],[778,952]];                    // the two cuts, which take no tooth
+    const inSlot = y => SLOTS.some(s => y>=s[0] && y<=s[1]);
+    for (let i=0;i<104000;i++){
+      const x=R()*W, y=R()*1088;
+      if (inSlot(y)) continue;
+      const near = 0.28+0.72*Math.pow(y/1088, 1.2);       // the near soffit is the worked one
+      g.globalAlpha=(0.055+R()*0.130)*near;
+      g.fillStyle = R()<0.5 ? '#FFF4D8' : '#0C0906';
+      g.fillRect(x,y,1,1);
+    }
+    for (let i=0;i<21000;i++){                // a coarser aggregate over the fine tooth
+      const x=R()*W, y=R()*1088;
+      if (inSlot(y)) continue;
+      const near = 0.28+0.72*Math.pow(y/1088, 1.2);
+      g.globalAlpha=(0.050+R()*0.115)*near;
+      g.fillStyle = R()<0.45 ? '#E8D8B0' : '#171310';
+      g.fillRect(x,y,1+R()*2.2,1+R()*1.6);
+    }
+    // the bronze rail below takes a finer, denser tooth of its own, because it is cast metal
+    for (let i=0;i<9000;i++){
+      const x=R()*W, y=1090+R()*58;
+      g.globalAlpha=0.05+R()*0.11;
+      g.fillStyle = R()<0.42 ? '#F0DDAE' : '#120C05';
+      g.fillRect(x,y,1,1);
+    }
+    g.globalAlpha=1;
+  })();
+
+  await (async function grain(){
+    const img=new Image();
+    await new Promise(r=>{img.onload=r;img.onerror=r;img.src=TX.grainTile(256,30,20260906);});
+    g.globalAlpha=0.055; g.fillStyle=g.createPattern(img,'repeat');
+    g.fillRect(0,0,W,H); g.globalAlpha=1;
+  })();
+
+  // THE FRAME ASSERTS THE THING IT WAS MARKED DOWN FOR. Round 2 measured the type as sitting on
+  // the face of a lit rectangle, so the probe reports whether any pixel behind a glyph band is
+  // LIGHTER than the concrete two hundred px away from it, which is what a lit plate would be.
+  const band = g.getImageData(160*2, 560*2, 700*2, 60*2).data;
+  const away = g.getImageData(160*2, 340*2, 700*2, 60*2).data;
+  const meanL = d => { let s=0; for (let i=0;i<d.length;i+=4)
+      s += 0.2126*d[i] + 0.7152*d[i+1] + 0.0722*d[i+2]; return s/(d.length/4); };
+  const bandL = +meanL(band).toFixed(1), awayL = +meanL(away).toFixed(1);
+
+  window.__txProbe={ vanishing_point: VP, cuts: 2,
+    ground_behind_glyphs_L: bandL, ground_200px_above_L: awayL,
+    ground_behind_glyphs_is_darker: bandL < awayL,
+    note:"the letters are the light and the concrete behind them is the frame's dark, so the ground behind a glyph band must measure DARKER than the concrete away from it" };
+  if (bandL >= awayL) throw new Error('the ground behind the type is lighter than the concrete around it, which is a lit plate');
+})();
+</script>
+<script>
+document.body.setAttribute('data-encodes', JSON.stringify([{
+  claim: "light comes through the cut lines and the soffit around them does not",
+  reads: "differ",
+  a: [[120, 520, 400, 120]],
+  b: [[120, 330, 400, 120]]
+}]));
+</script>
+</body></html>

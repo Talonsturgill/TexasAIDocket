@@ -1,0 +1,138 @@
+{
+ "quantifiers": [
+  {
+   "phrase": "Not one of them",
+   "surface": "caption.txt, the fourth paragraph",
+   "about": "requirements",
+   "set": "the four requirements the Texas Education Freedom Accounts program publishes for a private school, and there are exactly four",
+   "members": [
+    {
+     "claim": "c2",
+     "requirement": "Be accredited by an organization recognized by the Texas Private School Accreditation Commission (TEPSAC) or by the Texas Education Agency.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c3",
+     "requirement": "Be a proven operator that has successfully run a campus for at least two years.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c4",
+     "requirement": "Administer a nationally norm-referenced assessment.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c5",
+     "requirement": "Be located in Texas or, for a virtual school, have an office in Texas.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    }
+   ],
+   "from_items": [
+    "tx-2026-0125"
+   ],
+   "measured_by": "out/2026-09-06/compute.py, which searches all four requirement quotes for curriculum, instruction, instructional, teaching, teacher, teachers, software and tutor on word boundaries and asserts that none appears. The assertion runs on every build and the run fails if it ever fires.",
+   "why_this_set_is_closed": "The universal ranges over the requirements the program publishes for a PRIVATE SCHOOL, which is what the sentence beside it names, and all four are on the deck's own frame 4 and frame 6 in the program's own words. The set is closed because the page's list of private school requirements is exactly these four. The page carries a SECOND and separate list of five criteria for a pre-K or kindergarten provider under the same heading, and the caption's sentence is not about those and never says it is.",
+   "absence": "a1"
+  },
+  {
+   "phrase": "None of the four",
+   "surface": "slide-06.html dek, which reads None of the four is about the teaching",
+   "about": "requirements",
+   "set": "the four requirements the Texas Education Freedom Accounts program publishes for a private school, and there are exactly four",
+   "members": [
+    {
+     "claim": "c2",
+     "requirement": "Be accredited by an organization recognized by the Texas Private School Accreditation Commission (TEPSAC) or by the Texas Education Agency.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c3",
+     "requirement": "Be a proven operator that has successfully run a campus for at least two years.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c4",
+     "requirement": "Administer a nationally norm-referenced assessment.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c5",
+     "requirement": "Be located in Texas or, for a virtual school, have an office in Texas.",
+     "asks_who_or_what_teaches": false,
+     "read_on": "2026-09-06"
+    }
+   ],
+   "from_items": [
+    "tx-2026-0125"
+   ],
+   "measured_by": "out/2026-09-06/compute.py, which searches all four requirement quotes for curriculum, instruction, instructional, teaching, teacher, teachers, software and tutor on word boundaries and asserts that none appears. The assertion runs on every build and the run fails if it ever fires.",
+   "why_this_set_is_closed": "The universal ranges over the requirements the program publishes for a PRIVATE SCHOOL, which is what the sentence beside it names, and all four are on the deck's own frame 4 and frame 6 in the program's own words. The set is closed because the page's list of private school requirements is exactly these four. The page carries a SECOND and separate list of five criteria for a pre-K or kindergarten provider under the same heading, and the caption's sentence is not about those and never says it is.",
+   "absence": "a1",
+   "note": "The caption's Not one of them and this frame's None of the four are the SAME universal over the SAME closed set, measured by the same assertion in compute.py. It was declared once and printed twice, and a judge found the frame rather than the file. A quantifier is declared where it is PRINTED, so the deck's most load bearing sentence is not the one that goes undeclared."
+  },
+  {
+   "phrase": "every claim and every source",
+   "surface": "first_comment.txt, the closing line",
+   "about": "claims",
+   "set": "the claims and sources the record's own item page for tx-2026-0125 publishes, which is what the sentence points a reader at",
+   "members": [
+    {
+     "claim": "c1",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c2",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c3",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c4",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c5",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c6",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c7",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c8",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c9",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c10",
+     "read_on": "2026-09-06"
+    },
+    {
+     "claim": "c11",
+     "read_on": "2026-09-06"
+    }
+   ],
+   "from_items": [
+    "tx-2026-0125"
+   ],
+   "measured_by": "the item page is generated from ledger/docket.json by scripts/site/site_build.py, and docket_build.py --validate refuses the build unless every claim on it carries a verbatim quote and a source url.",
+   "why_this_set_is_closed": "The sentence is a pointer at a published page rather than a statement about the world. The page prints the item's claims and their sources and nothing is withheld from it, which is what the build gate enforces. The members listed here are the deck's own claims that came from that item's sources, and the page carries the item's full set."
+  }
+ ]
+}

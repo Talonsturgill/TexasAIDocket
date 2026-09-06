@@ -1,0 +1,48 @@
+{
+ "lens": "craft",
+ "round": 5,
+ "deck": 17,
+ "run_date": "2026-09-06",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 5.8,
+   "why": "SIX ROUND 5 CLAIMS VERIFIED, FOUR DEVICES STILL NOT IN THE PIXELS. Real: frame 2's chair contacts land at SEAT_FLOOR-4=808, clear of the rail cap at 840-866, and are visible on the pool; frame 4 draws seven ties, all above the 1216 reserve, and I counted all seven in the render; frame 3's arris is dark top and right and lit left and bottom, consistent with its own recess wall; frame 6 prints no requirement strings; frame 8's pockets are one pw/ph and the script THROWS otherwise, and I suspected unequal pockets by eye and the code refuted me. Against: frame 3 still paints two FULLY OPAQUE gold reserves under both raised lines, burying the plate's 26,000 grain specks and 900 cast pits exactly where the reader looks, which is my round 4 class unaudited on the frame whose only defence against the label chip charge IS the grain. Frame 6's reserve boundary is visible in the render AND the thumb as a hard vertical edge at x=330 with seams at 0.55 alpha left of it and 0.16 right; the scrim no longer covers the concrete, it just stopped being opaque. Frame 7's cut walls are 1.2 to 1.4 px at 432 and the device is gone in the thumb. Frame 4's four mortises are drawn from one set of constants so the declared focal cannot win. Frame 5 declares ten levels and renders three arcs. Frame 9's declared one point doorway has no convergence. And one sun is nine typed offsets rather than a computation: frame 2's own SUN at 133 and CAST at 147 disagree inside one frame, frame 7 is at 131, frame 3 at 135 and disclosed."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2,
+   "why": "Not my lens and I did not open claims.json. What I can verify off the frames: every numeral is either inside a verbatim string carrying a claim id or named to a computation in its dossier; frame 6's dek is an absence scoped to the four and its footer carries a1; frame 9's only figure is quoted and attributed ON the frame; no school name before frame 7, no map, no dot, no person on any of nine. Against: three fresh plan-render divergences at round 5. Frame 7's dossier says the cut walls are on the deck's one azimuth and the CSS hardcodes 131 against a CAST of 147, undisclosed where frame 3's identical deviation was disclosed. Frame 4's bands paragraph says the top third carries the jamb's head and the first mortise and the top 336 px is a flat black type panel. Frame 6's comment says the ties are placed clear of every text box and machine_qa warns a ring crosses 2 percent of PROGRAM PAGE. None touches the public record. All three are the deck describing itself inaccurately."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.3,
+   "why": "A reader gets the whole argument: two lawful routes, one ends at a board that can refuse and one at a published checklist, the checklist has four items and none is about the teaching, the board said no and the program said yes anyway, and frame 9 gives the address plus a question to ask. It names the school, the board, the outlets and the spokesman. Against: the program's name first appears in frame 5's dek, two frames after the reader is asked to compare routes; $10,474 arrives with no statement of who receives it or what it replaces; and withholding the school's name until frame 7 protects the deck's accuracy more than it serves a reader, who meets an agenda line for four frames without being told whose it is not about."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.6,
+   "why": "The 4 to 5 to 6 run builds and 6 is a real turn: 27.0 to 82.5 is a 55 L junction and the largest thing in the deck, and moving the inversion off slot 5 pays deck 16's most explicit avoid_next debt. The cover earns its swipe. Against: 16.8, 6.6, 13.7 is three dark frames in a row after the one flash, which the run records as NOT repaired, so the deck spends everything at 6 and coasts out; frames 4 and 6 remain the same camera class on the same material; and the close is the second thinnest drawing in the deck, which makes the closing line land as a caption rather than as an image."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "'Two doors. Different latches.' and 'The list stops at four.' and 'None of the four is about the teaching.' are short, declarative, unhedged, no boosterism and no doom, and the deck never claims past the record. Frame 9's line names the CATEGORY of the town list rather than letting ten read as a count. House rules hold in copy.json: ordinal dates, no em dashes, the one hyphen and the one ratio both inside untouchable verbatim quotes. Against: nothing here is specifically Texan. Strip the town column and the wordmark and this is a clean national explainer."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.7,
+   "why": "The register is genuinely new against sixteen priors and the inversion moving to frame 6 is the first time in five decks the bright full bleed frame is not at slot 5, which is the debt deck 16's avoid_next named most sharply. Against, read off the ledger rather than by feel: THREE of nine techniques repeat named entries inside the file's own recent window of 14, two of them one day old, and none is disclosed in the storyboard. And five of nine frames still run the masthead, Fraunces hook top left, dek, footer skeleton."
+  }
+ ],
+ "hard_fails": [],
+ "ship": false,
+ "weighted_score": 6.66,
+ "note": "Round 5. My no is about the NUMBER, not a fault, and it should ship stating 6.66 rather than a rounded 6.7. One sentence fix: measure every declared device at 432 px BEFORE the frame is scored and delete or redraw any whose mechanism lands under 2 px there. The round 4 fix was applied as a checklist of five instances rather than as the class it was written as, and an audit that finds five of seven and reports done is the failure mode GATE_LESSONS is about."
+}

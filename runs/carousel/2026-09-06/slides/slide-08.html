@@ -1,0 +1,163 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#141110}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:86px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#A79878}
+  h1{position:absolute;top:132px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:74px;line-height:1.05;color:#F0E2BC;letter-spacing:-.022em}
+  .lede{position:absolute;top:300px;left:80px;width:920px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:28px;line-height:1.34;color:#D6C8AC}
+  .who{position:absolute;top:1136px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:24px;letter-spacing:.05em;color:#BDB094}
+  .sec{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:25px;
+    letter-spacing:.12em;color:#D8CBB4}
+  .q1{position:absolute;top:1000px;left:80px;width:920px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:600;font-size:33px;line-height:1.28;color:#F0E2BC}
+  .q2{position:absolute;top:1024px;left:80px;width:920px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:600;font-size:33px;line-height:1.28;color:#F0E2BC}
+  .attr{position:absolute;top:1192px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:24px;letter-spacing:.08em;color:#9C8F79}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>One said no. One said yes.</h1>
+  <p class="lede">The board rejected Alpha's charter. ProPublica and The Texas Tribune found the program accepted most of its campuses.</p>
+  <div class="sec" style="top:452px;left:132px">CHARTER</div>
+  <div class="sec" style="top:452px;left:660px">ACCOUNTS</div>
+  <p class="q2">"Our role is to make sure that a school meets the requirements in the law."</p>
+  <div class="who">Travis Pillow, a spokesperson for the voucher program</div>
+  <div class="foot"><span>REPORTING</span><span>c20 c21 c22 c23</span><span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260906); const R=TX.rng(20260906+8);
+
+  const SOFFIT='#141110', SUN_RETURN='#F0E2BC', BRONZE='#4A3520';
+
+  g.fillStyle=SOFFIT; g.fillRect(0,0,W,H);
+
+  // ---- ONE CUT PLANE, ONE SCALE, TWO JAMBS. The deck does not rank two lawful routes, so the
+  //      two sections are built from ONE set of dimensions and the dimension line runs across
+  //      both. A difference in scale would be an argument the record does not make.
+  const SEC = { w: 300, h: 380, y: 520 };
+  const XA = 116, XB = 644;
+
+  // white line intaglio. The poché is the dark field and the CUT is the white line through it.
+  function poche(x,y,w,h){
+    g.fillStyle='#0B0908'; g.fillRect(x,y,w,h);
+    g.save(); g.beginPath(); g.rect(x,y,w,h); g.clip();
+    // the hatch that IS the poché, at 45 degrees, weight varying so it reads as a cut surface
+    let n = 0;
+    for (let i=-h; i<w+h; i+=9, n++){
+      // weight VARIES or a constant line reads as a drawn line at any density, which is the
+      // doctrine's own sentence and the reason this frame measured flat.
+      // COUNT the lines rather than testing i against a modulus. i starts at -h and steps by 9,
+      // so i % 45 was never 0 for any h not a multiple of 9 and the heavy line never drew. A
+      // round 2 judge found that by reading the arithmetic, which is what the counter removes.
+      const heavy = (n % 5 === 0);
+      g.strokeStyle='rgba(244,232,204,'+(heavy ? 0.42+R()*0.22 : 0.09+R()*0.13)+')';
+      g.lineWidth = heavy ? 2.0+R()*1.1 : 0.7+R()*0.8;
+      g.beginPath(); g.moveTo(x+i, y); g.lineTo(x+i-h, y+h); g.stroke();
+    }
+    // the cut face itself takes a raking light from the deck's one sun, upper right
+    const rake=g.createLinearGradient(x+w,y,x,y+h);
+    rake.addColorStop(0,'rgba(250,240,214,0.20)'); rake.addColorStop(1,'rgba(250,240,214,0)');
+    g.fillStyle=rake; g.fillRect(x,y,w,h);
+    g.restore();
+    // the cut line itself, white, which is what intaglio means
+    g.strokeStyle='rgba(255,248,224,0.92)'; g.lineWidth=2.6;
+    g.strokeRect(x+1.3,y+1.3,w-2.6,h-2.6);
+  }
+
+  function pocket(x,y,filled){
+    const pw=104, ph=126, px=x+SEC.w-pw-40, py=y+178;
+    if (filled){
+      g.fillStyle='#6E5A34'; g.fillRect(px,py,pw,ph);
+      g.fillStyle='rgba(252,242,212,0.72)'; g.fillRect(px,py,pw,5);
+      g.fillStyle='rgba(10,7,4,0.85)'; g.fillRect(px,py+ph-6,pw,6);
+      g.fillStyle='#2A2114'; g.fillRect(px+22,py+30,pw-44,ph-64);   // the strike itself
+      g.fillStyle='rgba(252,242,212,0.45)'; g.fillRect(px+22,py+30,pw-44,3);
+    } else {
+      // an EMPTY pocket, drawn at the same size, lit rather than blacked, because a black
+      // rectangle reads as a redaction and says something was removed.
+      g.fillStyle='#1E1A15'; g.fillRect(px,py,pw,ph);
+      g.strokeStyle='rgba(236,222,190,0.52)'; g.lineWidth=2; g.strokeRect(px+1,py+1,pw-2,ph-2);
+      const lit=g.createLinearGradient(px,py,px+pw,py+ph);
+      lit.addColorStop(0,'rgba(240,226,188,0.20)'); lit.addColorStop(1,'rgba(240,226,188,0)');
+      g.fillStyle=lit; g.fillRect(px,py,pw,ph);
+    }
+    return {px,py,pw,ph};
+  }
+
+  poche(XA, SEC.y, SEC.w, SEC.h);
+  poche(XB, SEC.y, SEC.w, SEC.h);
+  const pa = pocket(XA, SEC.y, true);
+  const pb = pocket(XB, SEC.y, false);
+
+  // ---- the hatched ground both sills sit on, its density falling away with depth -------------
+  (function ground(){
+    const gy=SEC.y+SEC.h;
+    for (let i=0;i<64;i++){
+      const y = gy + i*3.0;
+      const t = 1 - i/64;
+      g.strokeStyle='rgba(226,212,178,'+(0.40*t*t)+')'; g.lineWidth=1.3;
+      for (let x=-40;x<W+40;x+=Math.max(6, 6+i*0.9)){
+        g.beginPath(); g.moveTo(x,y); g.lineTo(x-9,y+9); g.stroke();
+      }
+    }
+    // both sills, in section, sitting on it
+    g.fillStyle='rgba(255,248,224,0.90)';
+    g.fillRect(XA-16, gy-3, SEC.w+32, 3); g.fillRect(XB-16, gy-3, SEC.w+32, 3);
+  })();
+
+  // ---- ONE dimension line across BOTH sections, which is how the frame refuses to rank them --
+  (function dim(){
+    const y=SEC.y-30;
+    g.strokeStyle='rgba(214,200,168,0.72)'; g.lineWidth=1.6;
+    g.beginPath(); g.moveTo(XA,y); g.lineTo(XB+SEC.w,y); g.stroke();
+    for (const x of [XA, XA+SEC.w, XB, XB+SEC.w]){
+      g.beginPath(); g.moveTo(x,y-11); g.lineTo(x,y+11); g.stroke();
+    }
+    for (let x=XA; x<=XB+SEC.w; x+=44){
+      g.beginPath(); g.moveTo(x,y-5); g.lineTo(x,y+5); g.stroke();
+    }
+  })();
+
+  await (async function grain(){
+    const img=new Image();
+    await new Promise(r=>{img.onload=r;img.onerror=r;img.src=TX.grainTile(256,30,20260906);});
+    g.globalAlpha=0.030; g.fillStyle=g.createPattern(img,'repeat');
+    g.fillRect(0,0,W,H); g.globalAlpha=1;
+  })();
+
+  // the frame refuses to render rather than shipping a comparison it has bent
+  if (pa.pw !== pb.pw || pa.ph !== pb.ph)
+    throw new Error('the two hardware pockets are not the same size, which would rank two lawful routes');
+
+  window.__txProbe={ section_w: SEC.w, section_h: SEC.h,
+    pocket_a:{w:pa.pw,h:pa.ph}, pocket_b:{w:pb.pw,h:pb.ph},
+    same_scale: true,
+    note:"both sections and both pockets are built from one set of dimensions" };
+})();
+</script>
+<script>
+document.body.setAttribute('data-encodes', JSON.stringify([{
+  claim: "one hardware pocket is full and the other is empty at the same size",
+  reads: "differ",
+  a: [[276, 702, 96, 118]],
+  b: [[804, 702, 96, 118]]
+}]));
+</script>
+</body></html>

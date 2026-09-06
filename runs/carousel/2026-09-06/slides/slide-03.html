@@ -1,0 +1,225 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1A1714}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:86px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#C6B590}
+  h1{position:absolute;top:142px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:78px;line-height:1.05;color:#F0E2BC;letter-spacing:-.022em}
+  /* THE RAISED LINES. Cast bronze plaque letters STAND PROUD of the plate, which is what
+     casting a plate does, and an earlier plan called them recessed. The plan was wrong about
+     the material rather than the drawing being wrong about the plan. One text node each, modelled
+     by two drop shadows rather than by stacking offset copies, because stacked copies are text
+     over text and qa.py fails it. The highlight sits up and to the RIGHT on the deck's one sun
+     and the cast falls down and to the left, which is a letter with height rather than depth. */
+  .cut{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;
+    color:#1A1004;letter-spacing:.02em;
+    /* READ OFF CAST RATHER THAN TYPED BESIDE IT. The cast used to run -2px/+2.5px, which is 129
+       degrees against the deck's own CAST of -0.52/+0.34, which is 147.
+
+       THE 12 DEGREES ARE A MEASURED CONSTRAINT AND NOT AN OVERSIGHT, and this is the third thing
+       tried rather than the first. On CAST's own unit vector the cast runs shallower, and a
+       shallower cast under MONO type bridges the side bearings into one unbroken dark row across
+       the line, which qa.py fails as a strikethrough and which is what it looks like. Measured
+       here in round 5: CAST at 8 px failed on four rows, at 3 px on one, and at 3 px with a 7 px
+       blur on four, because a blur fills the same gaps the offset was bridging. Frame 7 hit the
+       identical wall from the other side and bought its chamfer room with tracking; there is no
+       tracking left to spend on a 63 character agenda line already set to two lines at 830 px.
+
+       So the letters cast at 135 rather than 147 and the frame says so instead of claiming a
+       conformance it cannot draw. Every canvas cast on this frame IS read off CAST. The one
+       thing that is not is a CSS drop shadow under mono type, and that is a property of the
+       type rather than of the drawing. */
+    filter:drop-shadow(1.5px -1.5px 0 #F2E2B0) drop-shadow(-2px 2.5px 3px rgba(10,7,3,.62))}
+  .l1{top:596px;left:132px;width:830px;font-size:37px;line-height:1.30;letter-spacing:.02em}
+  .l2{top:862px;left:132px;font-size:46px;letter-spacing:.10em}
+  .dek{position:absolute;top:1092px;left:96px;width:880px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:28px;line-height:1.38;color:#D6C7A6}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>That room keeps a calendar.</h1>
+  <div class="cut l1">Open-Enrollment Charter School Generation 32 Application Updates</div>
+  <div class="cut l2">SBOE - NO ACTION</div>
+  <p class="dek">SBOE is the State Board of Education and the agenda's own header spells it out. The line is an update on an application cycle and it names no applicant.</p>
+  <div class="foot"><span>SBOE AGENDA</span><span>c16 c17 c18 c19</span><span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260906); const R=TX.rng(20260906+3);
+
+  const SOFFIT='#1A1714', WALK='#C4B393', SUN_RETURN='#F0E2BC', BRONZE_CAST='#8A6B33';
+  // one sun, raking from upper right, same as every other frame in the deck
+  const CAST={dx:-0.52,dy:0.34};
+
+  // ---- the walk, seen straight down, with its own aggregate ---------------------------------
+  (function walk(){
+    const grd=g.createLinearGradient(W,0,0,H);
+    grd.addColorStop(0,'#4A4237'); grd.addColorStop(0.5,'#332E27'); grd.addColorStop(1,'#1E1B17');
+    g.fillStyle=grd; g.fillRect(0,0,W,H);
+    for(let i=0;i<9000;i++){
+      const x=R()*W, y=R()*H, r=0.5+R()*2.6, lit=R()<0.44;
+      g.globalAlpha=0.05+R()*0.13;
+      g.fillStyle= lit ? '#9A8C74' : '#151310';
+      g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill();
+      // EVERY CAST ON THIS FRAME IS READ OFF CAST, not typed beside it. A judge found the
+      // constant declared and never used, which is structural law 1's own named failure: a
+      // number that lives in the plan and in no drawing step.
+      if(lit){ g.globalAlpha*=0.8; g.fillStyle='#4A4238';
+        g.beginPath(); g.arc(x+CAST.dx*r*1.55, y+CAST.dy*r*1.75, r*0.8, 0, Math.PI*2); g.fill(); }
+    }
+    g.globalAlpha=1;
+  })();
+
+  // ---- the control joint, a groove that throws its own shadow ------------------------------
+  (function joint(){
+    const jy=1032;
+    g.fillStyle='rgba(52,46,38,0.88)'; g.fillRect(0,jy,W,7);
+    g.fillStyle='rgba(240,226,188,0.34)'; g.fillRect(0,jy-3,W,3);   // the lit upper arris
+    g.fillStyle='rgba(24,20,16,0.42)';                              // its cast, read off CAST
+    g.fillRect(CAST.dx*14, jy+7+CAST.dy*9, W, 11);
+  })();
+
+  // ---- THE PLATE, set INTO the walk. The concrete's edge shadows along its upper margin, so
+  //      the plate reads as inset rather than as a card laid on top.
+  const P={x:96,y:498,w:888,h:512};
+  (function plate(){
+    // the recess the plate sits in, shadowed on the sun side of its own rim
+    g.fillStyle='rgba(28,23,17,0.72)'; g.fillRect(P.x-9,P.y-9,P.w+18,P.h+18);
+    g.fillStyle='rgba(246,236,214,0.30)'; g.fillRect(P.x-9,P.y+P.h+6,P.w+18,7);
+    g.fillStyle='rgba(246,236,214,0.22)'; g.fillRect(P.x-9,P.y-9,7,P.h+18);   // the lit recess wall
+    g.fillStyle='rgba(14,10,5,0.55)';     g.fillRect(P.x+P.w+2,P.y-9,7,P.h+18); // and its shadow side
+    const b=g.createLinearGradient(P.x+P.w,P.y,P.x,P.y+P.h);
+    b.addColorStop(0,'#C29B4E'); b.addColorStop(0.42,BRONZE_CAST); b.addColorStop(1,'#5E4720');
+    g.fillStyle=b; g.fillRect(P.x,P.y,P.w,P.h);
+    // cast patina, pooled where the bronze does not get wiped
+    for(let i=0;i<2600;i++){
+      const x=P.x+R()*P.w, y=P.y+R()*P.h;
+      g.globalAlpha=0.03+R()*0.09;
+      g.fillStyle= R()<0.5 ? '#4E5C46' : '#3B2E14';
+      g.beginPath(); g.arc(x,y,0.7+R()*2.4,0,Math.PI*2); g.fill();
+    }
+    g.globalAlpha=1;
+    // the plate's own raked upper face, the frame's lightest area and its focal
+    const raked=g.createLinearGradient(P.x+P.w,P.y+40,P.x+P.w*0.2,P.y+300);
+    raked.addColorStop(0,'rgba(246,236,214,0.42)'); raked.addColorStop(1,'rgba(246,236,214,0)');
+    g.fillStyle=raked; g.fillRect(P.x,P.y,P.w,320);
+    // THE RECESS WALLS, WHICH WAY ROUND MATTERS. This plate is set INTO the walk and the camera
+    // is above it, so the recess wall the sun cannot reach is the one on the SUN SIDE, up and
+    // right, and the wall opposite it is the one taking light. The bead used to run the other
+    // way, lit on the top and the right, which is a plate standing proud on a wall, and a judge
+    // read the frame as a plaque hung at eye level rather than a casting under a camera.
+    g.strokeStyle='rgba(18,13,7,0.80)'; g.lineWidth=4;
+    g.beginPath(); g.moveTo(P.x,P.y+2); g.lineTo(P.x+P.w-2,P.y+2); g.lineTo(P.x+P.w-2,P.y+P.h); g.stroke();
+    g.strokeStyle='rgba(252,242,216,0.60)'; g.lineWidth=4;
+    g.beginPath(); g.moveTo(P.x+2,P.y); g.lineTo(P.x+2,P.y+P.h-2); g.lineTo(P.x+P.w,P.y+P.h-2); g.stroke();
+  })();
+
+
+
+
+  // ---- WORKED GROUND. panel_ready measures the quietest patch of every ground a dossier calls
+  // worked, and a smooth gradient fails it however well lit it is. This is the material.
+  // BUDGETED, NOT SPRAYED. Two materials share this frame and they do not have the same tooth.
+  // Broom finished concrete is coarse and open. Cast bronze is close grained and its texture is
+  // the pit and the wipe rather than the aggregate, so the plate gets a finer, sparser pass in
+  // its own colours and the walk gets the open one.
+  (function grit(){
+    const onPlate = (x,y) => x>=P.x && x<=P.x+P.w && y>=P.y && y<=P.y+P.h;
+    for (let i=0;i<118000;i++){
+      const x=R()*W, y=R()*H;
+      if (onPlate(x,y)) continue;
+      g.globalAlpha=0.075+R()*0.150;
+      g.fillStyle = R()<0.5 ? '#FFF4D8' : '#0C0906';
+      g.fillRect(x,y,1,1);
+    }
+    for (let i=0;i<24000;i++){                // a coarser aggregate over the fine tooth
+      const x=R()*W, y=R()*H;
+      if (onPlate(x,y)) continue;
+      g.globalAlpha=0.060+R()*0.130;
+      g.fillStyle = R()<0.45 ? '#E8D8B0' : '#171310';
+      g.fillRect(x,y,1+R()*2.2,1+R()*1.6);
+    }
+    // the plate's own surface, a close grain with the odd cast pit that catches its own light
+    for (let i=0;i<26000;i++){
+      const x=P.x+R()*P.w, y=P.y+R()*P.h;
+      g.globalAlpha=0.035+R()*0.075;
+      g.fillStyle = R()<0.46 ? '#F5E4B4' : '#2E2106';
+      g.fillRect(x,y,1,1);
+    }
+    for (let i=0;i<900;i++){                  // cast pits, lit on the sun side and dark opposite
+      const x=P.x+8+R()*(P.w-16), y=P.y+8+R()*(P.h-16), r=0.9+R()*2.2;
+      g.globalAlpha=0.20+R()*0.26;
+      g.fillStyle='#3A2A0C'; g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill();
+      g.globalAlpha*=0.8; g.fillStyle='#FBEDC2';                    // the pit's lit far wall,
+      g.beginPath(); g.arc(x-CAST.dx*r*1.05, y-CAST.dy*r*1.2, r*0.55, 0, Math.PI*2); g.fill();
+    }
+    g.globalAlpha=1;
+  })();
+
+  // ---- THE RESERVE. qa.py failed six frames of this deck for a DRAWN RULE running through a
+  // glyph band, which at feed width reads as a strikethrough. Every one of them was a real
+  // edge in the art, a board seam or an arris or a threshold nosing, doing its job in the
+  // wrong place. The engine names three defences and this is the third, a scrim that lifts the
+  // floor under a whole text block. It is painted AFTER all art and BEFORE the DOM type.
+  function reserve(x,y,w,h,hex,peak){
+    const grd=g.createLinearGradient(0,y,0,y+h);
+    grd.addColorStop(0,   hex+'00');
+    grd.addColorStop(0.16, hex+peak);
+    grd.addColorStop(0.84, hex+peak);
+    grd.addColorStop(1,   hex+'00');
+    g.fillStyle=grd; g.fillRect(x,y,w,h);
+  }
+
+
+  await (async function grain(){
+    const img=new Image();
+    await new Promise(r=>{img.onload=r;img.onerror=r;img.src=TX.grainTile(256,30,20260906);});
+    g.globalAlpha=0.055; g.fillStyle=g.createPattern(img,'repeat');
+    g.fillRect(0,0,W,H); g.globalAlpha=1;
+  })();
+
+  // the reserve is painted LAST, after the grain, or the grain lays edges back over
+  // the type the reserve was put there to clear
+  reserve(P.x+8, 572, P.w-16, 146, '#B99A54', 'FF');
+  reserve(P.x+8, 840, P.w-16, 108, '#B99A54', 'FF');
+  reserve(0, 1218, W, 136, '#1A1714', 'F2');
+
+  // ---- THE RAKE, RE-LAID OVER THE RESERVE. A round 2 judge measured this frame's two brightest
+  // areas as the reserve bands rather than the plate's raked upper face, which is its declared
+  // focal, and a scrim winning the value structure is a frame lit by its own repair. The rake is
+  // the LAST light in the frame, clipped to the plate, so the declared focal is the brightest
+  // thing on it and the bands sit under the light rather than over it.
+  (function rakeBack(){
+    g.save(); g.beginPath(); g.rect(P.x,P.y,P.w,P.h); g.clip();
+    const r2=g.createLinearGradient(P.x+P.w,P.y,P.x+P.w*0.18,P.y+340);
+    r2.addColorStop(0,'rgba(252,242,220,0.40)'); r2.addColorStop(1,'rgba(252,242,220,0)');
+    g.fillStyle=r2; g.fillRect(P.x,P.y,P.w,360);
+    g.restore();
+    // THE ARRIS RE-CUT ON THE RIGHT EDGES. This used to re-light the TOP and RIGHT arris at 0.62,
+    // painted last, directly over the dark recess wall this same round had just put there, so the
+    // frame drew an inset plate and a proud plate on one edge. The plate is set INTO the walk, so
+    // the lit walls are the ones the sun reaches, at frame left and along the bottom.
+    g.strokeStyle='rgba(255,248,226,0.62)'; g.lineWidth=3;
+    g.beginPath(); g.moveTo(P.x+1.5,P.y); g.lineTo(P.x+1.5,P.y+P.h);
+    g.lineTo(P.x+P.w,P.y+P.h-1.5); g.stroke();
+    g.strokeStyle='rgba(16,11,5,0.70)'; g.lineWidth=3;
+    g.beginPath(); g.moveTo(P.x,P.y+1.5); g.lineTo(P.x+P.w-1.5,P.y+1.5);
+    g.lineTo(P.x+P.w-1.5,P.y+P.h); g.stroke();
+  })();
+
+  window.__txProbe={ plate:P, note:"the plate is inset, its rim shadowed on the sun side" };
+})();
+</script>
+</body></html>

@@ -1,0 +1,157 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1A1714}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:300px;
+    background:linear-gradient(to bottom,rgba(26,23,20,.95) 0%,rgba(26,23,20,.62) 58%,rgba(26,23,20,0) 100%)}
+  .mast{position:absolute;top:86px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#A79878}
+  h1{position:absolute;top:142px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:78px;line-height:1.05;color:#F0E2BC;letter-spacing:-.022em}
+  .req{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.03em;color:#EFE2C0;
+    text-shadow:0 2px 8px rgba(10,8,6,.95)}
+  /* c5 carries a carve out for a virtual school and the frame used to truncate it away, in a
+     deck whose own c22 counts 'virtual and in-person campuses'. It is the half that matters, so
+     this one requirement wraps rather than being cut to fit one line. */
+  .req.nowrap{white-space:nowrap}
+  .req.multi{white-space:normal;width:820px;line-height:1.30;font-size:24px}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>The other route has four latches.</h1>
+
+  <div class="req nowrap" style="top:398px;left:132px">Be accredited</div>
+  <div class="req nowrap" style="top:590px;left:132px">Be a proven operator</div>
+  <div class="req nowrap" style="top:782px;left:132px">Administer a nationally norm-referenced assessment.</div>
+  <div class="req multi" style="top:978px;left:132px">Be located in Texas or, for a virtual school, have an office in Texas.</div>
+
+  <div class="foot"><span>PROGRAM PAGE</span><span>c2 c3 c4 c5</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260906); const R=TX.rng(20260906+4);
+
+  const SOFFIT='#1A1714', BRONZE='#4A3520', SUN_RETURN='#F0E2BC', FORMED_SUN='#A79878';
+
+  g.fillStyle=SOFFIT; g.fillRect(0,0,W,H);
+
+  // ---- the strike jamb, one continuous piece of dark bronze running the frame's full height --
+  (function jamb(){
+    const grd=g.createLinearGradient(W,0,0,H);
+    grd.addColorStop(0,'#7A5C31'); grd.addColorStop(0.34,'#5A431F');
+    grd.addColorStop(0.72,BRONZE); grd.addColorStop(1,'#2A1F12');
+    g.fillStyle=grd; g.fillRect(0,336,W,H-336);
+    // the jamb's outer arris, the lit edge that proves it is a solid and not a panel
+    g.fillStyle='rgba(250,238,206,0.50)'; g.fillRect(0,336,W,5);
+    g.fillStyle='rgba(16,11,6,0.72)'; g.fillRect(0,341,W,9);
+  })();
+
+  // ---- ONE MORTISE, drawn as a real cut. A lit lip, a shadowed side wall, and a floor --------
+  // The count comes from computed.json requirements.count over c2 to c5, never from the page.
+  const MORTS=[[368,392],[560,584],[752,776],[944,968]];
+  function mortise(y){
+    const x=88, w=856, h=118;
+    g.fillStyle='#0D0906'; g.fillRect(x,y,w,h);                        // the floor of the cut
+    const wall=g.createLinearGradient(x,y,x,y+h);
+    wall.addColorStop(0,'rgba(12,8,4,0.96)'); wall.addColorStop(0.30,'rgba(30,22,12,0.55)');
+    wall.addColorStop(1,'rgba(8,5,2,0.98)');
+    g.fillStyle=wall; g.fillRect(x,y,w,h);
+    g.fillStyle='rgba(252,242,212,0.82)'; g.fillRect(x,y-5,w,5);        // the sun on the cut arris
+    g.fillStyle='rgba(206,182,132,0.34)'; g.fillRect(x,y+h,w,4);        // the lower lip, in shade
+    const side=g.createLinearGradient(x,0,x+34,0);                      // the side wall, raked
+    side.addColorStop(0,'rgba(196,168,116,0.42)'); side.addColorStop(1,'rgba(196,168,116,0)');
+    g.fillStyle=side; g.fillRect(x,y,34,h);
+  }
+  for (const [ , y] of MORTS) mortise(y);
+
+  // ---- the jamb continuing below the last cut, raked board formed texture with tie holes -----
+  // The bottom third has to be a surface rather than a tone, and this is what the plan names.
+  (function below(){
+    const y0=1094;
+    for(let i=0;i<26;i++){                                   // board seams, each casting
+      const sy=y0+i*11;
+      g.fillStyle='rgba(250,238,206,'+(0.05+R()*0.05)+')'; g.fillRect(0,sy,W,1);
+      g.fillStyle='rgba(10,7,4,'+(0.10+R()*0.08)+')'; g.fillRect(0,sy+1,W,2);
+    }
+    // every one of these sits ABOVE the footer reserve at y 1216, because two of them used to sit
+    // under it and a frame that draws seven ties and shows five has not drawn seven ties
+    const ties=[[142,1146],[338,1188],[540,1150],[742,1192],[886,1148],[240,1090],[644,1096]];
+    // A TIE HOLE IS A RECESS AND A RECESS NEVER CASTS OUTSIDE ITSELF. This drew a lit lip on the
+    // sun side rim and an ellipse on the concrete beside it, which is a STUD, and a judge read
+    // both this frame's and frame 6's as beads. Drawn from the inside out: the rim's own shadow
+    // falls INTO the hole from the sun side, the far wall opposite catches what gets past it,
+    // and the only lit edge outside is the countersink face that turns up toward the sun.
+    for(const [tx,ty] of ties){
+      const r=15;
+      g.save(); g.beginPath(); g.arc(tx,ty,r,0,Math.PI*2); g.clip();
+      g.fillStyle='#221B12'; g.fillRect(tx-r,ty-r,r*2,r*2);
+      g.fillStyle='rgba(6,4,2,0.90)';
+      g.beginPath(); g.arc(tx+r*0.42, ty-r*0.38, r, 0, Math.PI*2); g.fill();
+      g.fillStyle='rgba(250,238,206,0.42)';
+      g.beginPath(); g.arc(tx-r*0.60, ty+r*0.56, r*0.58, 0, Math.PI*2); g.fill();
+      g.restore();
+      g.strokeStyle='rgba(250,238,206,0.52)'; g.lineWidth=2.4;
+      g.beginPath(); g.arc(tx,ty,r+1, Math.PI*0.30, Math.PI*1.10); g.stroke();
+      g.strokeStyle='rgba(8,6,3,0.55)'; g.lineWidth=2.0;
+      g.beginPath(); g.arc(tx,ty,r+1, Math.PI*1.10, Math.PI*2.30); g.stroke();
+    }
+    // NO SCALE BAR. One was drawn here at y 1300 and then buried under the footer's own reserve,
+    // so the acceptance item asking for it was true of the code and false of the render for four
+    // rounds. It is dropped rather than moved, for the reason frame 2's was: a graphic scale
+    // means nothing without figures on it, and a figure on it would be a numeral this deck
+    // computed nothing for.
+  })();
+
+
+  // ---- THE RESERVE. qa.py failed six frames of this deck for a DRAWN RULE running through a
+  // glyph band, which at feed width reads as a strikethrough. Every one of them was a real
+  // edge in the art, a board seam or an arris or a threshold nosing, doing its job in the
+  // wrong place. The engine names three defences and this is the third, a scrim that lifts the
+  // floor under a whole text block. It is painted AFTER all art and BEFORE the DOM type.
+  function reserve(x,y,w,h,hex,peak){
+    const grd=g.createLinearGradient(0,y,0,y+h);
+    grd.addColorStop(0,   hex+'00');
+    grd.addColorStop(0.16, hex+peak);
+    grd.addColorStop(0.84, hex+peak);
+    grd.addColorStop(1,   hex+'00');
+    g.fillStyle=grd; g.fillRect(x,y,w,h);
+  }
+
+
+  await (async function grain(){
+    const img=new Image();
+    await new Promise(r=>{img.onload=r;img.onerror=r;img.src=TX.grainTile(256,30,20260906);});
+    g.globalAlpha=0.034; g.fillStyle=g.createPattern(img,'repeat');
+    g.fillRect(0,0,W,H); g.globalAlpha=1;
+  })();
+
+  // the reserve is painted LAST, after the grain, or the grain lays edges back over
+  // the type the reserve was put there to clear
+  reserve(0, 1216, W, 138, '#1A1714', 'F2');
+
+  window.__txProbe={ mortise_count: MORTS.length,
+    note:"four cuts, one per requirement claim, counted in compute.py over c2 to c5" };
+})();
+</script>
+<script>
+document.body.setAttribute('data-encodes', JSON.stringify([{
+  claim: "the mortise floors are cuts and the jamb face around them is not",
+  reads: "differ",
+  a: [[300, 400, 300, 100]],
+  b: [[300, 520, 300, 50]]
+}]));
+</script>
+</body></html>

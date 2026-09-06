@@ -693,9 +693,65 @@ def shipped_runs() -> list:
     return sorted([p for p in RUNS.glob("2*") if (p / "copy.json").exists()]) if RUNS.exists() else []
 
 
+def held(d: Path):
+    """The panel's verdict where it refused the deck, as a sentence, or None.
+
+    THIS FILE'S OWN BANNER SAYS IT REPORTS PROBLEMS IN WORK THAT IS ALREADY PUBLISHED, and it
+    decided what was published from the presence of a run directory. A HELD run has a run
+    directory because the delivery policy REQUIRES one: a failed run commits its evidence to its
+    branch and does not merge. So the sweep judged unpublished work as published, and the branch
+    of a run that was being honest about failing could never go green.
+
+    Carousel no. 17, 2026-09-06, is the case. The panel returned 6.552 against a 6.8 bar with a
+    hard fail, the deck was left exactly as the panel scored it, and this file then reported the
+    completion gate's "THE DECK DID NOT SHIP" as a defect in published work. It is not a defect.
+    It is the run saying what happened, and the gate reading it back as news.
+
+    NOTHING IS FORGIVEN AND NOTHING IS DROPPED. Every finding on a held run is still printed, in
+    full, under the date that carries it, the way a WAIVED finding already is. Only the fatal
+    list is shorter. A held deck's findings are frequently the most useful output this sweep
+    produces: on 2026-09-06 the quantifier gate independently caught the same sentence the reader
+    judge hard failed the deck for, which is a gate agreeing with a judge and worth reading.
+
+    THE TEST IS A HARD FAIL AND NOT `ship: false`, and the first draft of this function got that
+    wrong in the direction that matters. `ship: false` says the panel REFUSED, which is not the
+    same as the deck not publishing: the rubric caps the search at five rounds and says that past
+    the cap a run ships whatever the weighted score is, stating it honestly. Four SHIPPED decks
+    carry `ship: false` with an empty hard_fails list for exactly that reason, 2026-08-30 at
+    6.582, 2026-09-02 at 6.562, 2026-09-03 at 6.762 and 2026-09-04 at 6.678. Reading `ship` alone
+    put all four out of scope, which would have suppressed every future finding on four published
+    decks. That is the opposite of what this file is for, and it is the failure mode of every
+    exemption: the first draft of one is always too generous to the run that wrote it.
+
+    A HARD FAIL is what stops a deck at any round whatever the median says, in the rubric's own
+    words, and it is the only verdict that means the deck did not publish.
+
+    AND IT IS NOT A WAY TO DODGE A GATE. `hard_fails` is written by `panel.py` from three judges'
+    cards, not by the run, and a run carrying one does not merge, so there is nothing on the far
+    side of this door to reach.
+    """
+    f = d / "score.json"
+    if not f.exists():
+        return None
+    try:
+        v = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    hf = len(v.get("hard_fails") or [])
+    if v.get("ship") is not False or not hf:
+        return None
+    score, bar = v.get("weighted_score"), v.get("threshold")
+    return (f"HELD by the panel, {score} against a {bar} bar, {hf} hard fail(s). A hard fail "
+            f"stops a deck at any round, so this deck did not publish and this sweep's subject "
+            f"does not include it. Every finding below is still printed")
+
+
 def check_run(d: Path, newest: bool) -> tuple:
     """Returns (fatal, notes). Each is a list of strings."""
     fatal, notes = [], []
+    hold = held(d)
+    if hold:
+        notes.append(f"{d.name}  {hold}")
     for name, fn, scope in GATES:
         try:
             with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
@@ -723,7 +779,9 @@ def check_run(d: Path, newest: bool) -> tuple:
             continue
         head = str(probs[0])[:150]
         line = f"{d.name}  {name}: {len(probs)} problem(s). First: {head}"
-        if scope == HISTORY or newest:
+        if hold:
+            notes.append(line + "   [held deck, not published work]")
+        elif scope == HISTORY or newest:
             fatal.append(line)
         else:
             notes.append(line + "   [older deck, gate is newer than it]")
@@ -756,10 +814,17 @@ def run(only: str | None = None) -> int:
         return 1
     # THE CLOSING LINE NAMES THE WAIVERS. "every applicable gate clean" over a sweep carrying a
     # waived finding is the narrow-measurement sentence this file exists to catch, in this file.
+    # IT NAMES THE HELD RUNS FOR THE SAME REASON. Calling a held run a shipped run in the count,
+    # one line under a note saying the panel refused it, would be this file telling the exact
+    # kind of half truth it was written to catch.
     n_waived = sum(1 for n in notes if "WAIVED." in n)
-    print(f"shipped_check: {len(runs)} shipped run(s), every applicable gate clean on the "
+    held_names = [d.name for d in runs if held(d)]
+    n_shipped = len(runs) - len(held_names)
+    print(f"shipped_check: {n_shipped} shipped run(s), every applicable gate clean on the "
           f"artifacts as committed" +
-          (f", except {n_waived} named waiver(s) reported above and not fatal" if n_waived else ""))
+          (f", except {n_waived} named waiver(s) reported above and not fatal" if n_waived else "") +
+          (f". {len(held_names)} run(s) HELD and out of scope, reported above and not fatal: "
+           f"{', '.join(held_names)}" if held_names else ""))
     return 0
 
 
@@ -780,8 +845,12 @@ def self_test() -> int:
     # loader silently returns None on every run, which reports clean forever. Same shape as
     # craft_floor reading a key qa.py never wrote.
     runs = shipped_runs()
-    if runs:
-        newest = runs[-1]
+    # THE NEWEST PUBLISHED DECK. A held run is missing whatever a run writes at ship, so it
+    # reports gates as not-applicable that are alive on every deck that shipped, and this check
+    # would read that as a dead registry entry. It is a question about the GATES.
+    live_runs = [r for r in runs if not held(r)]
+    if live_runs:
+        newest = live_runs[-1]
         reached = []
         for name, fn, _scope in GATES:
             try:
@@ -791,7 +860,7 @@ def self_test() -> int:
                     reached.append(name)
             except Exception:                          # noqa: BLE001
                 pass
-        ok(f"every registered gate actually runs on the newest deck ({newest.name})",
+        ok(f"every registered gate actually runs on the newest published deck ({newest.name})",
            len(reached) == len(GATES),
            f"reached {reached}, missing {[g[0] for g in GATES if g[0] not in reached]}")
 
@@ -800,14 +869,44 @@ def self_test() -> int:
         return ["a deliberately broken gate"]
     GATES.append(("selftest probe", boom, CURRENT))
     try:
-        if runs:
-            f, n = check_run(runs[-1], True)
-            ok("a failing gate on the newest deck is FATAL",
+        # THE NEWEST PUBLISHED DECK, not simply the newest directory. A held run is out of this
+        # sweep's scope, so pointing the fatality proof at one would prove nothing and would go
+        # quiet exactly when a real regression arrived. A self-test that cannot go red is the
+        # thing this file is about.
+        live = [r for r in runs if not held(r)]
+        if live:
+            f, n = check_run(live[-1], True)
+            ok("a failing gate on the newest published deck is FATAL",
                any("selftest probe" in x for x in f), str(f))
             f, n = check_run(runs[0], False) if len(runs) > 1 else ([], ["skipped"])
             if len(runs) > 1:
                 ok("...and on an older deck a CURRENT-scope gate is a note rather than fatal",
                    not any("selftest probe" in x for x in f), str(f))
+        # THE HELD CASE, BOTH DIRECTIONS.
+        holds = [r for r in runs if held(r)]
+        if holds:
+            f, n = check_run(holds[-1], True)
+            ok("a failing gate on a HELD deck is a note and never fatal",
+               not any("selftest probe" in x for x in f), str(f))
+            ok("...and the finding is still PRINTED in full, never dropped",
+               any("selftest probe" in x for x in n), str(n))
+            ok("...and the hold names its score, so the sweep says why it stood down",
+               any("HELD by the panel" in x and "hard fail" in x for x in n), str(n))
+        # THE DISCRIMINATOR, and this is the assertion that would have caught my own first draft.
+        # `ship: false` alone is NOT a hold: the rubric ships a deck past the round cap whatever
+        # the weighted score is, so four published decks carry it with no hard fail. Reading
+        # `ship` alone put all four out of scope and would have silenced this sweep on them.
+        refused = []
+        for r in runs:
+            try:
+                v = json.loads((r / "score.json").read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            if v.get("ship") is False and not (v.get("hard_fails") or []):
+                refused.append(r.name)
+        ok("a deck the panel refused on the NUMBER alone is still published work",
+           all(not held(RUNS / name) for name in refused),
+           f"refused-on-number: {refused}")
     finally:
         GATES.pop()
 
@@ -817,9 +916,11 @@ def self_test() -> int:
         return [WAIVED + "a named and waived finding", "an unnamed finding beside it"]
     GATES.append(("selftest waiver", waived_probe, CURRENT))
     try:
-        if runs:
-            f, n = check_run(runs[-1], True)
-            ok("a waived finding is NOT fatal on the newest deck",
+        # A PUBLISHED DECK, because the third assertion here is the one that proves a waiver
+        # narrows nothing beside itself, and on a held deck nothing is fatal so it proves nothing.
+        if live_runs:
+            f, n = check_run(live_runs[-1], True)
+            ok("a waived finding is NOT fatal on the newest published deck",
                not any("a named and waived finding" in x for x in f), str(f))
             ok("...and is still reported, in full, as a note",
                any("a named and waived finding" in x for x in n), str(n))
@@ -838,13 +939,14 @@ def self_test() -> int:
         ok("a waived absent label gate is a note on the newest deck",
            any("label gate could not run" in x for x in n) and
            not any("label gate could not run" in x for x in f), f"{f} / {n}")
-        held = LABEL_ABSENT_WAIVED.pop(newest.name)
+        # NOT `held`, which is now a module function this scope would shadow for its whole body.
+        waived_label = LABEL_ABSENT_WAIVED.pop(newest.name)
         try:
             f, n = check_run(newest, True)
             ok("...and WITHOUT the waiver it is FATAL, never a not-applicable",
                any("label gate could not run" in x for x in f), f"{f} / {n}")
         finally:
-            LABEL_ABSENT_WAIVED[newest.name] = held
+            LABEL_ABSENT_WAIVED[newest.name] = waived_label
 
     # AND THE TABLE MATCHES ON SUBSTRINGS, so an entry that matches nothing is dead weight the
     # next reader will trust. Every waived phrase has to be a finding the gate actually makes.

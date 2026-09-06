@@ -982,3 +982,181 @@ the defect list is thin, and this one arrived with ten items and evidence attach
 or gets read for the wrong column without anything reporting it. That is the root cause under the
 `texan_check` upgrade above, it is not a checker question, and this repository has three tables of
 that kind already, the gazetteer, the stem floor and the places file `label_guard` shares.
+
+## 2026-09-06 — `render.py` throws `window.__txProbe` away, so a frame's own assertion is unreadable
+
+Found by the round 4 integrity judge on carousel no. 17, and it is worth writing down because
+nobody had checked it in five decks of writing probes.
+
+**Frames set `window.__txProbe` and `render.py` never reads it.** Nine frames on this deck set one.
+`render_report.json` has no field for it, so `probe` is `null` on every slide. Two acceptance items
+on this deck said a number was "asserted by the frame's own script and printed to the render
+report", and the second half of that sentence has never been true of any deck.
+
+**The cost is a check that reads as passing because nothing reads it.** That is GATE_LESSONS' own
+recurring shape and it is worse here than a missing gate, because the dossier's acceptance list
+told four rounds of judges the number was available. A judge who believed it would have scored a
+check nobody could run.
+
+**The interim fix shipped in the deck rather than the engine.** Frame 5 now throws if a contour
+closes or the minimum contour spacing drops under 6 px. Frame 8 throws if its two hardware pockets
+ever differ in size. Frames 7 and 9 already threw. A throw is the only form of assertion that
+cannot ship broken, because the render fails instead of the claim quietly becoming false, and it
+needs nothing from the engine. Frame 1's acceptance item was rewritten to the construction
+argument it always rested on, which is stronger than a printed number: both openings are cut from
+one pair of half extents, so a later edit cannot make them differ by hand.
+
+**The real fix is three lines in `render.py`**, capturing `window.__txProbe` into each slide's
+record after `renderReady` resolves, next to where `canvas_text` and `encodings` are already read.
+Then `plan_render_check` could compare a dossier's declared numbers against the frame's own
+measured ones, which is a gate this repo does not have and which would have caught frame 8's
+dead hatch and frame 4's buried scale bar without a judge.
+
+**It is a proposal and not an upgrade, for the reason `CLAUDE.md` states.** `render.py` lives under
+`.claude/skills/carousel-engine/`, the `upgrade` lane owns that path in `ownership.yaml` and still
+cannot reach it, because the host treats everything under `.claude/` as a sensitive file and
+prompts on every edit whatever the permission mode says. Ownership and reachability are different
+questions. A maintainer at a keyboard can make this edit and answer the one prompt.
+
+## 2026-09-06 — `site_build.py` publishes an article page for a deck the panel HELD
+
+Found by reading CI's freshness diff on a held run, and it is a proposal because
+`scripts/site/site_build.py` is the `human` lane.
+
+**The presence of artifacts under `runs/carousel/<date>/` is read as evidence that something
+shipped.** `site_build.py` writes `docs/articles/<date>/index.html` from that run's `copy.json`
+whenever the directory exists. Carousel no. 17 was held on a hard fail after five scoring rounds
+and an article page carrying its copy is committed anyway, including the sentence the panel
+hard failed.
+
+**`site_fresh_check` then makes the page impossible to remove from inside a run.** It requires
+every committed file under `docs/` to match a rebuild byte for byte, so deleting the page fails
+the build on the next gate. The run cannot opt out of publishing a deck it just refused to ship.
+
+**Only the merge policy is holding the line, and it is holding it by accident.** A failed run does
+not merge, so nothing reaches the live site. But the reason nothing publishes is a rule about
+git rather than a rule about the page, and a maintainer merging this branch to land the record
+work would publish a held deck's copy without being told.
+
+**The proposal.** `site_build.py` reads `runs/carousel/<date>/score.json` where one exists and
+declines to write an article page when `ship` is false, the same way it already declines to write
+what it has no data for. A run with no score file yet is unchanged. The check that proves it is
+the one this defect was found by: build a tree containing a `score.json` with `ship: false` and
+assert no `docs/articles/<date>/` is written.
+
+---
+
+## 2026-09-06, retro. Two gates landed, and the loudest item on the list is a measured NO
+
+The two that landed are in `ledger/carousel/upgrades.json` with the command that proves each can
+go red. What follows is the part a ledger entry cannot carry.
+
+### THE MEASUREMENT THAT SAYS NO, on the species every hard fail in carousel no. 17 belonged to
+
+The run record's table is the evidence and it is worth restating in one line. Five scoring rounds,
+five hard fails, and every one was a sentence in published copy asserting a NEGATIVE or closing a
+SET that no numbered absence and no computation measures. Four rounds repaired the sentence a
+judge named and shipped the next one.
+
+So the question this retro was handed was whether a checker can read a frame's dek for an
+undeclared negative without firing on every sentence containing a negation. **The negative half
+cannot, and here is the measurement rather than the opinion.**
+
+The obvious rule is the one this run's own instinct states: a published negative must be backed by
+a numbered absence record. `claims.json` already carries an `absences` block with a document, a
+`looked_for`, a method and a `slide_safe_statement`, and this deck cites `a1` on frame 6. Replayed
+over every deck this project has shipped:
+
+| rule | firings | of |
+|---|---|---|
+| a negation-bearing sentence must sit on a frame citing an absence id | **136** | 136 negatives |
+| `absence_check`'s document scope moved from the FRAME to the SENTENCE | **88** | 136 negatives |
+
+The first number is not a gate, it is a wall. Absence ids in a frame's citation rail are a habit
+this run started and sixteen decks before it did not have, so the rule refuses every one of them.
+
+The second is the more interesting failure. Tightening `absence_check`'s existing question from
+"does anything on this frame name a document" to "does THIS SENTENCE name one" adds 58 findings,
+and reading them is what settles it. They include "It states no total.", "Neither names a room.",
+"No docket is named against it.", "TxDOT's crash data page names no automated driving category."
+and "None was voted on." These are correct, careful sentences on frames whose kicker or citation
+line carries the document. A deck writes in fragments and the scope lives in the frame, which is
+precisely the reason `absence_check`'s docstring gives for reading the frame, with the 2026-08-19
+slide 3 case behind it. **58 false failures is the cost of ignoring a decision that was already
+measured once.**
+
+That is a third narrowing tried and refused, after the two the 2026-09-05 phase recorded. The
+honest state of the negative half is unchanged: **the defect is real, no narrowing has been
+found, and a run's own sweep is still the only thing that catches it.** The next phase starts
+from this table and the one above it rather than from a fresh hunch. Both scans reproduce in
+seconds over `absence_check.copy_by_slide` and `quantifier_check.surfaces()` for every directory
+under `runs/carousel/`.
+
+**The CLOSED SET half is a different question and it did yield**, because a closure is a
+construction rather than a word. See `CLOSURE` in `scripts/carousel/quantifier_check.py` for the
+corpus numbers, 19 findings against the universal rule's 20 over 1,666 published strings in 17
+decks, and for the two exclusions that keep it off correct copy.
+
+### Proposals, each out of this lane and each stopping here
+
+**The two GATE_LESSONS entries these upgrades owe.** `knowledge/shared/GATE_LESSONS.md` is
+`human` lane, so the text is written here for a maintainer to paste rather than filed by the
+phase that earned it.
+
+> **A substring test cannot tell a fragment from the head of a longer one.** `verbatim_check`
+> asked two questions of every declared verbatim string, is it inside the claim's quote and is it
+> on the frame, and answered both with `in`. Carousel no. 17's frame 4 declared "Be located in
+> Texas" while the frame printed c5 whole. Both tests passed, because the frame's longer string
+> contains the short one and the short one is inside the quote. Round 4 of that same run had hard
+> failed the deck for the truncation, the FRAME was repaired and the PLAN was not, and a judge
+> found it at round 5 by opening both files.
+>
+> The cost has two halves and the second is the quiet one. A pixel critic grades the frame against
+> the dossier, so an understated plan hands it a frame that does not exist. And the gate only ever
+> holds the DECLARED string to the record, so the words a reader actually receives were never
+> checked, while the receipt read clean and counted the declaration.
+>
+> **What to check instead.** Where a declaration and an artifact are compared by containment, ask
+> which direction the containment runs and whether the LONGER side was ever examined. The
+> discrimination that makes this safe is not "the node is longer": `render.py` joins a text node's
+> child spans with no separator, so two seated strings arrive as one node. The extra words have to
+> be MORE OF THE SAME CLAIM'S QUOTE, which is the only thing a truncated plan can have dropped.
+
+> **A count that closes a set is a negative wearing a number.** Carousel no. 17 was held on
+> "Texas has two ways to put a school in front of a child on public money. One ends at a board
+> that votes. The other ends at a published checklist." `numeral_lint` passed it because `two`
+> traces to a computation. `aggregate_check` passed it because the count is declared with its
+> claim ids. `absence_check` never saw it because there is no negation in it. `quantifier_check`
+> never saw it because `two` is not a universal.
+>
+> What makes it false is `The other`, a definite article over the remainder. The run had written
+> the scope limit down, in `aggregates.json`, reading "and never a claim that Texas has no other
+> way of funding a school". **That sentence is correct and it is in a JSON file, and the frame is
+> where a reader is.**
+>
+> **What to check instead.** A closure is a claim about a set's membership and it is detectable as
+> a CONSTRUCTION rather than as a word, which is what makes it narrow enough to enforce where the
+> bare quantifier register was measured at fifteen findings a deck and refused. And note the trap
+> inside the fix: the first draft of the pattern excluded `the other` before a bearing noun and
+> its list carried `ends`, so the gate excused the one string it was written for. A denylist
+> written from the shape of the construction has to be checked against the sentence that caused
+> it.
+
+**`verbatim_check` and `quantifier_check` self-tests are still in `guards.yml` in no form.** Filed
+on 2026-09-04 and still true, and it now costs more: both gates gained a corpus calibration this
+run that reads every shipped deck, which is the assertion most likely to catch a parser going
+quiet, and CI has never run either. `.github/workflows/guards.yml` is `human` lane. The two lines
+are `python3 scripts/carousel/verbatim_check.py --self-test` and
+`python3 scripts/carousel/quantifier_check.py --self-test`.
+
+**`plan_render_check` still compares `type.labels` by substring.** Frame 4's understatement was in
+three places in one dossier and this retro closed one of them, the `verbatim:` block, because that
+block is the one whose meaning is "this is what the frame seats". The `labels` list carried the
+same truncated string and `plan_render_check` passed it, correctly by its own rule, because a
+declared label is satisfied by any node containing it. Widening the same understatement rule to
+every declared display string was measured before it was refused: over 601 declarations in 17
+decks it raises 13 findings and 9 of them are legitimate acceptance items of the form "the frame
+carries 'X'", which assert presence and are correctly satisfied by a longer string. Scoped to
+`type.*` alone it raises 2, one real and one a span join. **Not worth a new rule, worth one line
+in a failure message**: when `verbatim_check` reports an understatement, the same string is
+usually in `type.labels` and in an acceptance item, and the repair is all three.

@@ -5610,5 +5610,349 @@
         "note": "Admitted on the university's own account of the award, fetched today. The Energy Department's own award document was not located, so the award number is not carried here."
       }
     ]
+  },
+  {
+    "title": "The state's checklist for a private school taking Education Freedom Account money has four requirements and none of them asks what teaches the child",
+    "summary": "The Texas Education Freedom Accounts program publishes exactly four requirements a private school must meet to take state money on a student's behalf. It must be accredited, it must have run a campus for at least two years, it must administer a nationally norm referenced assessment, and it must be located in Texas or keep a Texas office if it is virtual. None of the four concerns curriculum, instructional method, or who or what delivers the teaching. The private school application period opened December 9th, 2025 and applications are taken on a rolling basis. Alpha School, which says on its own front page that an AI tutor gives students their coursework and that the adults in the room become Guides, names campuses in ten Texas cities.",
+    "topic": "health-and-education",
+    "decider": {
+      "name": "Texas Comptroller of Public Accounts",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2025-12-09",
+        "kind": "filed",
+        "note": "Date the private school application period opened"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The program publishes its requirements and takes school applications on a rolling basis. A parent or a school reaches the program through the Comptroller's own program site.",
+      "url": "https://educationfreedom.texas.gov/schools/"
+    },
+    "claims": [
+      {
+        "text": "The first published requirement is accreditation.",
+        "verbatim_quote": "Be accredited by an organization recognized by the Texas Private School Accreditation Commission (TEPSAC) or by the Texas Education Agency.",
+        "source_url": "https://educationfreedom.texas.gov/schools/",
+        "source_title": "Texas Education Freedom Accounts, Schools",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c1"
+      },
+      {
+        "text": "The second is a record of running a campus.",
+        "verbatim_quote": "Be a proven operator that has successfully run a campus for at least two years.",
+        "source_url": "https://educationfreedom.texas.gov/schools/",
+        "source_title": "Texas Education Freedom Accounts, Schools",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c2"
+      },
+      {
+        "text": "The third is a test.",
+        "verbatim_quote": "Administer a nationally norm-referenced assessment.",
+        "source_url": "https://educationfreedom.texas.gov/schools/",
+        "source_title": "Texas Education Freedom Accounts, Schools",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c3"
+      },
+      {
+        "text": "The fourth is a location.",
+        "verbatim_quote": "Be located in Texas or, for a virtual school, have an office in Texas.",
+        "source_url": "https://educationfreedom.texas.gov/schools/",
+        "source_title": "Texas Education Freedom Accounts, Schools",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c4"
+      },
+      {
+        "text": "A school may enter the program at any time.",
+        "verbatim_quote": "Applications are accepted on a rolling basis.",
+        "source_url": "https://educationfreedom.texas.gov/schools/",
+        "source_title": "Texas Education Freedom Accounts, Schools",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c5"
+      },
+      {
+        "text": "Alpha School states on its own front page what delivers the coursework.",
+        "verbatim_quote": "Our AI tutor gives students 1:1 personalized education, providing coursework at their individual pace and the appropriate level.",
+        "source_url": "https://alpha.school/",
+        "source_title": "Alpha School",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c6"
+      },
+      {
+        "text": "The same page states what the adults in the room do instead.",
+        "verbatim_quote": "Adults, whether teachers or parents, become 'Guides,' shifting the traditional teacher-student relationship to offer motivational and emotional support.",
+        "source_url": "https://alpha.school/",
+        "source_title": "Alpha School",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c7"
+      },
+      {
+        "text": "The same page carries a performance claim and names no source for it.",
+        "verbatim_quote": "Alpha classes learn twice as fast as their peers and rank in the top 1% nationwide.",
+        "source_url": "https://alpha.school/",
+        "source_title": "Alpha School",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0125-c8"
+      }
+    ],
+    "notes_for_editor": "The four requirements were read directly off the program's own Schools page this run. The record does not claim which Alpha campuses are enrolled in the program: the official approved school finder at finder.educationfreedom.texas.gov renders its listings in the browser and served none to this fetcher. Journalism reports that most Alpha campuses were accepted and that the program's spokesperson said the teaching method was not relevant to eligibility, and neither is claimed here for want of a document. The State Board of Education's 2025 charter decisions release names Valenta Academy of Bastrop among two vetoes and never names Alpha School or 2 Hour Learning, so the record draws no line between them.",
+    "id": "tx-2026-0125",
+    "last_verified": "2026-09-06",
+    "history": [
+      {
+        "date": "2026-09-06",
+        "note": "Admitted to the record. The program's own Schools page was read this run and it carries four requirements for a private school and no fifth. Alpha School's own front page was read the same run and it still says an AI tutor gives students their coursework."
+      }
+    ]
+  },
+  {
+    "title": "ERCOT tells the utilities which large loads are conditionally inside Batch Zero, three days after saying it would miss its own deadline",
+    "summary": "ERCOT issued a market notice on September 3rd, 2026 telling each interconnecting distribution and transmission service provider its provisional classification of the large loads submitted for Batch Zero. Inclusion is conditional and the notice names the conditions, which include the entity passing verification, curing deficiencies in dynamic model data, or the Public Utility Commission granting a good cause exception. ERCOT states it will not seek an exception for every large load that asked for one. A load whose entity fails to submit the required materials waits for a future interconnection study before it may connect.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Electric Reliability Council of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-09-03",
+        "kind": "ordered",
+        "note": "Date ERCOT issued the conditional classifications"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "ERCOT publishes the notice and gives an address and a telephone number for questions about Batch Zero. A load's classification goes to its own utility rather than to the public.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04"
+    },
+    "claims": [
+      {
+        "text": "Inclusion is conditional and the notice names the conditions.",
+        "verbatim_quote": "The information provided indicates whether each Large Load has been conditionally included in Batch Zero subject to one or more conditions, such as the Interconnecting Large Load Entity (ILLE) passing verification, the ILLE curing deficiencies in dynamic model data, or the Public Utility Commission of Texas (PUCT) granting ERCOT a good cause exception to allow the Large Load to qualify despite not meeting an applicable eligibility requirement at the time of submission.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_title": "ERCOT Market Notice M-A080326-04",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0126-c1"
+      },
+      {
+        "text": "Not every requested exception is being carried forward.",
+        "verbatim_quote": "ERCOT will not seek a good cause exception for every Large Load that requested it.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_title": "ERCOT Market Notice M-A080326-04",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0126-c2"
+      },
+      {
+        "text": "The notice states the consequence of not filing.",
+        "verbatim_quote": "If the ILLE fails to submit these materials, its Large Load will not be permitted to interconnect to the ERCOT transmission system until it is studied in a future interconnection process.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_title": "ERCOT Market Notice M-A080326-04",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0126-c3"
+      },
+      {
+        "text": "The notice is titled for what it does.",
+        "verbatim_quote": "Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_title": "ERCOT Market Notice M-A080326-04",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0126-c4"
+      }
+    ],
+    "notes_for_editor": "The notice states no count of large loads and no megawatt total, so the record publishes neither. The earlier notices in the same series were reported by a scout and are not claimed here because they were not fetched by this run.",
+    "id": "tx-2026-0126",
+    "last_verified": "2026-09-06",
+    "history": [
+      {
+        "date": "2026-09-06",
+        "note": "Admitted to the record. The notice was read this run and the classifications stand as conditional. Nothing has moved a conditional load into a settled one."
+      }
+    ]
+  },
+  {
+    "title": "The state technology agency publishes its account of carrying out the four AI laws the 89th Legislature passed",
+    "summary": "The Texas Department of Information Resources published an account of its work implementing Senate Bill 1964, House Bill 2818, House Bill 3512 and House Bill 149. It states that Senate Bill 1964 established the state's AI governance framework and directed the agency to build a public sector AI sandbox and write rules for government use of heightened scrutiny AI. It states that House Bill 3512 requires annual AI awareness training for certain state and local government employees and officials, and that House Bill 149 requires governmental entities to disclose their use of AI and creates the Texas Artificial Intelligence Council. The agency reports adopting Texas Administrative Code Chapter 219, which carries the AI Systems Code of Ethics.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Texas Department of Information Resources",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-08-14",
+        "kind": "ordered",
+        "note": "Publication date shown on the agency's own article"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The agency publishes the account and the governance resources it names. The rules themselves were adopted through the Texas Register and that window has closed.",
+      "url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature"
+    },
+    "claims": [
+      {
+        "text": "The agency states what the governance bill directed it to build.",
+        "verbatim_quote": "Senate Bill 1964 established Texas' AI governance framework and directed DIR to develop the Public Sector AI Sandbox and adopt rules for government use of heightened-scrutiny AI.",
+        "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+        "source_title": "Texas Department of Information Resources, AI in Texas",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0127-c1"
+      },
+      {
+        "text": "A training requirement now reaches local government as well as state.",
+        "verbatim_quote": "House Bill 3512 requires annual AI Awareness Training for certain state and local government employees and officials.",
+        "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+        "source_title": "Texas Department of Information Resources, AI in Texas",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0127-c2"
+      },
+      {
+        "text": "A disclosure requirement and a council come from the fourth bill.",
+        "verbatim_quote": "House Bill 149 requires disclosures of use of AI by governmental entities, creating consumer protections, the Texas Artificial Intelligence Council, and a regulatory sandbox while expanding the Information Resources Deployment Review to include agency AI system inventories.",
+        "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+        "source_title": "Texas Department of Information Resources, AI in Texas",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0127-c3"
+      },
+      {
+        "text": "The agency names the rule chapter it adopted and what it carries.",
+        "verbatim_quote": "Adopting Texas Administrative Code Chapter 219, which includes the AI Systems Code of Ethics, and publishing AI governance resources, including, notices and a model AI Acceptable Use Policy.",
+        "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+        "source_title": "Texas Department of Information Resources, AI in Texas",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0127-c4"
+      },
+      {
+        "text": "A second bill created the division doing the work.",
+        "verbatim_quote": "House Bill 2818 established DIR's AI Division to support AI initiatives in the public and private sectors, as well as modernization efforts for state and local government.",
+        "source_url": "https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature",
+        "source_title": "Texas Department of Information Resources, AI in Texas",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0127-c5"
+      }
+    ],
+    "notes_for_editor": "A scout reported the agency's own news index showing this item under a September 2nd date while the article page shows August 14th. The article page's own date is used and the conflict is recorded here rather than resolved. The counts the article gives for certified training programs and cooperative contracts are not claimed, because a count on a page with a contested date is a figure about a day nobody can name.",
+    "id": "tx-2026-0127",
+    "last_verified": "2026-09-06",
+    "history": [
+      {
+        "date": "2026-09-06",
+        "note": "Admitted to the record. The agency's own account was read this run and it still names the four bills and the rule chapter it adopted under them."
+      }
+    ]
+  },
+  {
+    "title": "Tesla registers a semiconductor plant at its Austin campus with the state and the filing says so in its own words",
+    "summary": "Tesla registered a project with the Texas Department of Licensing and Regulation on August 25th, 2026 under the project name Austin Semiconductor Fab. The address is 1 Harold Green Road in Austin and the filing's own county field reads Travis. The scope of work reads as ground up construction and complete interior finish out of the semiconductor facility at 489,600 square feet. The stated completion date is December 31st, 2029. The filing states the project is privately funded on private land for private use. A registration with the licensing department is an accessibility review filing. It is not a building permit or an air permit or a grid interconnection.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Tesla, Inc.",
+      "type": "company"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Travis"
+      ],
+      "on_ercot": true,
+      "metro": "Austin-Round Rock-San Marcos, TX"
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-08-25",
+        "kind": "filed",
+        "note": "Registration date on the state filing"
+      },
+      {
+        "date": "2029-12-31",
+        "kind": "expires",
+        "note": "Completion date stated on the filing"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The licensing department publishes the project record and it can be read by project number. No public body is taking comment on the registration.",
+      "url": "https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764"
+    },
+    "claims": [
+      {
+        "text": "The filing names the building in the owner's own scope text.",
+        "verbatim_quote": "489,600 SF, Ground up and complete interior finish out of the semiconductor facility.",
+        "source_url": "https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764",
+        "source_title": "Texas Department of Licensing and Regulation, project TABS2026028764",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0128-c1"
+      },
+      {
+        "text": "The filing states who pays and on whose land.",
+        "verbatim_quote": "This project is privately funded, on private land for private use.",
+        "source_url": "https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764",
+        "source_title": "Texas Department of Licensing and Regulation, project TABS2026028764",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0128-c2"
+      },
+      {
+        "text": "The project carries a name the state record prints.",
+        "verbatim_quote": "Austin Semiconductor Fab",
+        "source_url": "https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764",
+        "source_title": "Texas Department of Licensing and Regulation, project TABS2026028764",
+        "source_type": "primary_official",
+        "fetched": "2026-09-06",
+        "id": "tx-2026-0128-c3"
+      }
+    ],
+    "notes_for_editor": "The county comes from the filing's own County field and is not inferred from the address. The estimated cost field on this record reads $50,000, which is what the accessibility filing states and is plainly not the construction value, so it is not claimed. A scout reported a second Tesla registration filed the same day at the same address whose structured square footage field disagrees with its own scope text, and that record is not carried here.",
+    "id": "tx-2026-0128",
+    "last_verified": "2026-09-06",
+    "history": [
+      {
+        "date": "2026-09-06",
+        "note": "Admitted to the record. The state filing was read this run and it still names the building a semiconductor facility in the owner's own words."
+      }
+    ]
   }
 ]

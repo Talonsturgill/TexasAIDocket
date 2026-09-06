@@ -11,7 +11,7 @@ The City of Harlingen Waterworks System board of directors approved a water supp
 - Public access: Public meeting
 - Take part: https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
 
-- Last checked: 2026-09-03
+- Last checked: 2026-09-06
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-02 · The current standing of the effluent supply agreement is unconfirmed.
 - 2026-09-03 · The board's own posted minutes were read this run and they confirm the agreement. The minutes record a vote of 6 yeas and 0 nays on a water supply agreement with RGV Property LLC for a supply of effluent water. The board took it after an executive session on what the agenda calls the RGVPG Data Center reclaimed water agreement. The item had rested on a news article whose page serves nothing a quote can be read from. Four claims now cite the minutes, and the record no longer depends on that article for the vote. The minutes give Roy Rodriguez as interim general manager at that meeting, and the summary said general manager, which is corrected.
 - 2026-09-03 · Two claims were removed rather than re-stamped. They rested on a yahoo.com article page, which answers 200 at half a megabyte and serves nothing a quote can be read from. They carried an August 14th fetch date under an item stamped verified today. The board's own minutes carry neither the general manager's drinking water remark nor the minimum annual payment figure. Neither claim moved to a readable source and neither is published any more. The summary's closing sentence now says what the minutes say.
+- 2026-09-06 · The board's own posted minutes were read again this run and still record the water supply agreement with RGV Property LLC for a supply of effluent water. The vote and the executive session that preceded it stand as written.
 
 ## Evidence
 

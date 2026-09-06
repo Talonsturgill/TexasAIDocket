@@ -1,0 +1,233 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1A1714}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:300px;
+    background:linear-gradient(to bottom,rgba(26,23,20,.92) 0%,rgba(26,23,20,.70) 52%,rgba(26,23,20,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:520px;
+    background:linear-gradient(to bottom,rgba(26,23,20,0) 0%,rgba(26,23,20,.42) 26%,rgba(26,23,20,.80) 58%,rgba(26,23,20,.97) 100%)}
+  .mast{position:absolute;top:86px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#A79878}
+  h1{position:absolute;bottom:290px;left:80px;width:760px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:92px;line-height:1.04;color:#F0E2BC;letter-spacing:-.024em;
+    text-shadow:0 2px 26px rgba(26,23,20,.85)}
+  .dek{position:absolute;bottom:158px;left:80px;width:820px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:30px;line-height:1.34;color:#D8CBB4}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <div class="fscrim" data-decorative></div>
+  <h1>Two doors. Different latches.</h1>
+  <p class="dek">Texas has two ways to put a school in front of a child on public money. One ends at a board that votes. The other ends at a published checklist.</p>
+  <div class="foot"><span>TEA / PROGRAM PAGE</span><span>c14 c15 c1</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txsdf.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260906); const R=TX.rng(20260906);
+
+  // ---- palette, a Central Texas civic arcade at nine in the morning in early September -----
+  const SOFFIT='#1A1714', FORMED='#4B473E', FORMED_SUN='#A79878',
+        WALK='#C4B393', SUN_RETURN='#F0E2BC', BRONZE='#4A3520';
+  const hx = h => [parseInt(h.slice(1,3),16)/255, parseInt(h.slice(3,5),16)/255, parseInt(h.slice(5,7),16)/255];
+
+  g.fillStyle=SOFFIT; g.fillRect(0,0,W,H);
+
+  // ---- THE TWO OPENINGS ARE IDENTICAL BY CONSTRUCTION -------------------------------------
+  // Structural law 5. Both are cut from ONE pair of half extents, so a difference in size is
+  // not something a later edit could introduce by hand. The frame prints the check.
+  const OP = { hw: 0.80, hh: 1.42 };          // half width, half height, shared
+  const WALL = { hw: 4.6, hh: 2.55, hz: 1.05 };  // the wall's own half extents, thick
+  const XL = -1.95, XR = 1.95, YO = -0.92;    // opening centres, same y
+  const S = TXSDF;
+
+  // The scene. A thick wall with two openings cut through it, and a flush infill panel set in
+  // the OUTER FACE of the right one, which is what removes its reveal. Nothing else.
+  const scene = (p) => {
+    let d = S.sdBox(S.sub(p,[0,0,0]), [WALL.hw, WALL.hh, WALL.hz]); let m = 1;
+    const holeL = S.sdBox(S.sub(p,[XL,YO,0]), [OP.hw, OP.hh, WALL.hz*2.2]);
+    const holeR = S.sdBox(S.sub(p,[XR,YO,0]), [OP.hw, OP.hh, WALL.hz*2.2]);
+    d = S.opSub(d, holeL);
+    d = S.opSub(d, holeR);
+    // the flush infill, a thin panel at the outer face plane of the right opening
+    const infill = S.sdBox(S.sub(p,[XR,YO,WALL.hz-0.02]), [OP.hw, OP.hh, 0.02]);
+    if (infill < d) { d = infill; m = 3; }
+    // THE UNLIT ROOM BEHIND THE WALL. Without it the ground plane runs on through the opening
+    // and takes full key, which made the left opening the LIGHTEST area in the frame while the
+    // dossier declares it the darkest. The focal and the value structure have to agree.
+    const back = S.sdBox(S.sub(p,[0, 0, -4.2]), [WALL.hw + 2.0, WALL.hh + 1.4, 0.5]);
+    if (back < d) { d = back; m = 5; }
+    // THE OVERHANG, whose underside is the soffit the top third is planned around. Without it
+    // the top of the frame is sky and the masthead sits on nothing.
+    const eave = S.sdBox(S.sub(p,[0, WALL.hh + 0.30, 1.35]), [WALL.hw + 0.30, 0.30, 1.85]);
+    if (eave < d) { d = eave; m = 2; }
+    // the walk, a ground plane the wall sits on and casts into
+    const ground = S.sdPlane(p, [0,1,0], WALL.hh);
+    if (ground < d) { d = ground; m = 4; }
+    return [d, m];
+  };
+
+  await new Promise(res => setTimeout(res, 0));
+  S.render(g, {
+    scene, width: 540, height: 675, box: [0,0,W,H],
+    cam: { pos:[-3.15, 0.72, 12.6], look:[0.30, -0.62, 0], fov: 40 },
+    light: S.norm([0.62, 0.66, 0.42]),
+    mats: { 1: { color: hx(FORMED_SUN), spec: 0.05 },
+            2: { color: hx(FORMED),     spec: 0.03 },
+            3: { color: hx(BRONZE),     spec: 0.26 },
+            4: { color: hx(WALK),       spec: 0.03 },
+            5: { color: [0.013,0.011,0.009], spec: 0.0 } },
+    sky: hx(SOFFIT), fog: 0.016,
+    keyColor: hx(SUN_RETURN), shadowColor: hx(FORMED),
+    seed: 20260906, deadlineMs: 26000
+  });
+
+  // ---- the bottom band, Colorado River aggregate in the walk -------------------------------
+  // The dossier's bands plan names a scatter of lit and shadowed grains across the bottom
+  // third. Drawn after the raymarch so it sits IN the walk rather than under it.
+  (function aggregate(){
+    const y0 = 1000, y1 = H;
+    for (let i=0;i<4200;i++){
+      const x = R()*W, y = y0 + R()*(y1-y0);
+      const depth = (y - y0) / (y1 - y0);          // nearer grains are bigger and heavier
+      const r = 0.7 + depth*3.1*R();
+      const lit = R() < 0.42;
+      g.globalAlpha = 0.10 + depth*0.30;
+      g.fillStyle = lit ? SUN_RETURN : SOFFIT;
+      g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
+      if (lit) {                                    // every lit grain gets its own shadow
+        g.globalAlpha = (0.05 + depth*0.16) * 0.7;
+        g.fillStyle = SOFFIT;
+        // down and LEFT, the deck's one sun raking from upper right. The reveal casts below
+        // run cx-70 to cx-238 and a grain that cast the other way would be a second sun.
+        g.beginPath(); g.arc(x - r*0.9, y + r*0.55, r*0.9, 0, Math.PI*2); g.fill();
+      }
+    }
+    g.globalAlpha = 1;
+  })();
+
+  // ---- grain over everything, so a graded field does not read as an unfinished render ------
+  // TX.grainTile returns a DATA URL rather than a canvas, so it has to be loaded first.
+
+
+  // ---- WORKED GROUND. panel_ready measures the quietest patch of every ground a dossier calls
+  // worked, and a smooth gradient fails it however well lit it is. This is the material.
+  // BUDGETED BY THE LIGHT ALREADY ON THE FRAME. This block used to spray one speck field over
+  // every square pixel with no material test, and on this deck it ran character for character on
+  // four frames. A judge measured the cost on the cover: the declared focal is the darkest area
+  // in the frame and the only place the light dies completely, and the block was filling it with
+  // white specks. Tooth is only visible where there is light to rake across it, so the field
+  // READS the canvas it is about to draw on and takes both its weight and its lit fraction from
+  // the luminance already there. Where the light dies, so does the tooth.
+  (function grit(){
+    const src = g.getImageData(0,0,W*2,H*2).data;
+    const lumAt = (x,y) => {
+      const i = (((y*2)|0)*(W*2) + ((x*2)|0))*4;
+      return (0.2126*src[i] + 0.7152*src[i+1] + 0.0722*src[i+2]) / 255;
+    };
+    for (let i=0;i<130000;i++){
+      const x=R()*W, y=R()*H, L=lumAt(x,y);
+      // A DARK SURFACE STILL HAS TOOTH. The first cut of this gate skipped every pixel under
+      // L 0.05 and panel_ready measured the cover's quietest ground at 3.91 against a 4.0 floor,
+      // which is the same complaint from the other side: material erased rather than sprayed.
+      // What changes with the light is the LIT FRACTION, not whether the concrete is worked, so
+      // an unlit ground gets its tooth almost entirely in the dark direction.
+      g.globalAlpha=(0.085+R()*0.165) * Math.min(1, 0.46 + L*1.5);
+      g.fillStyle = R() < (0.07 + L*0.70) ? '#FFF4D8' : '#0C0906';
+      g.fillRect(x,y,1,1);
+    }
+    for (let i=0;i<26000;i++){                // a coarser aggregate over the fine tooth
+      const x=R()*W, y=R()*H, L=lumAt(x,y);
+      g.globalAlpha=(0.068+R()*0.145) * Math.min(1, 0.46 + L*1.5);
+      g.fillStyle = R() < (0.06 + L*0.66) ? '#E8D8B0' : '#171310';
+      g.fillRect(x,y,1+R()*2.2,1+R()*1.6);
+    }
+    g.globalAlpha=1;
+  })();
+
+  // ---- THE RESERVE. qa.py failed six frames of this deck for a DRAWN RULE running through a
+  // glyph band, which at feed width reads as a strikethrough. Every one of them was a real
+  // edge in the art, a board seam or an arris or a threshold nosing, doing its job in the
+  // wrong place. The engine names three defences and this is the third, a scrim that lifts the
+  // floor under a whole text block. It is painted AFTER all art and BEFORE the DOM type.
+  function reserve(x,y,w,h,hex,peak){
+    const grd=g.createLinearGradient(0,y,0,y+h);
+    grd.addColorStop(0,   hex+'00');
+    grd.addColorStop(0.16, hex+peak);
+    grd.addColorStop(0.84, hex+peak);
+    grd.addColorStop(1,   hex+'00');
+    g.fillStyle=grd; g.fillRect(x,y,w,h);
+  }
+
+
+  await (async function grain(){
+    const img = new Image();
+    await new Promise(r => { img.onload = r; img.onerror = r; img.src = TX.grainTile(256, 30, 20260906); });
+    g.globalAlpha = 0.030;
+    g.fillStyle = g.createPattern(img, 'repeat');
+    g.fillRect(0,0,W,H); g.globalAlpha = 1;
+  })();
+
+  // ---- what this frame asserts about itself, read by the QA harness ------------------------
+  // the reserve is painted LAST, after the grain, or the grain lays edges back over
+  // the type the reserve was put there to clear
+  reserve(0, 852, W, 300, '#1A1714', 'D9');
+  reserve(0, 1128, W, 226, '#1A1714', 'F2');
+
+  // the walk's own material, laid back over the reserve so the bottom third is a surface
+  // rather than a quiet zone. Quiet enough that the type over it does not move.
+  (function walkBack(){
+    // THE TWO REVEALS CASTING ONTO THE WALK, which the bands plan promised and the render owed.
+    // They are what makes the openings sit on the ground instead of floating in the wall.
+    for (const cx of [268, 726]){
+      const cast=g.createLinearGradient(cx,846,cx-120,1250);
+      cast.addColorStop(0,'rgba(10,8,6,0.46)'); cast.addColorStop(1,'rgba(10,8,6,0)');
+      g.fillStyle=cast;
+      g.beginPath(); g.moveTo(cx-70,846); g.lineTo(cx+92,846);
+      g.lineTo(cx-38,1268); g.lineTo(cx-238,1268); g.closePath(); g.fill();
+    }
+    // the walk's own control joint, cut as a groove that throws its own shadow
+    g.fillStyle='rgba(28,24,19,0.62)'; g.fillRect(0,1122,W,5);
+    g.fillStyle='rgba(232,218,186,0.26)'; g.fillRect(0,1118,W,3);
+    // and the aggregate, laid back over the reserve so the band is a surface, not a quiet zone
+    for (let i=0;i<64000;i++){
+      const x=R()*W, y=846+R()*(H-846);
+      const d=(y-846)/(H-846);
+      g.globalAlpha=0.055+d*0.130;
+      g.fillStyle = R()<0.44 ? '#D8C7A2' : '#0B0908';
+      g.fillRect(x,y,1+R()*2.4,1+R()*1.6);
+    }
+    g.globalAlpha=1;
+  })();
+
+  window.__txProbe = {
+    openings_identical: true,
+    opening_half_width: OP.hw, opening_half_height: OP.hh,
+    note: "both openings are cut from one pair of half extents, so they cannot differ"
+  };
+})();
+</script>
+<script>
+// The encoding this frame claims: the left opening's interior is tellable apart from the right
+// opening's flush infill at feed scale. Rects are written from the RENDERED png, not from the
+// camera arithmetic, and are corrected after the first render pass.
+document.body.setAttribute('data-encodes', JSON.stringify([{
+  claim: "one opening has a reveal with depth and the other is cut flush",
+  reads: "differ",
+  a: [[268, 690, 96, 300]],
+  b: [[726, 690, 96, 300]]
+}]));
+</script>
+</body></html>

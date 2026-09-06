@@ -1,0 +1,47 @@
+{
+ "run": "2026-09-06",
+ "note": "Carousel no. 17 prints one computed numeral and every other figure on it is quoted. The computed one is the size of the program's private-school requirement list, counted over four named claim ids rather than off the page, because the page carries a second list under the same heading.",
+ "requirements": {
+  "count": 4,
+  "from_claims": [
+   "c2",
+   "c3",
+   "c4",
+   "c5"
+  ],
+  "words_tested_for_and_absent": [
+   "curriculum",
+   "instruction",
+   "instructional",
+   "teaching",
+   "teacher",
+   "teachers",
+   "software",
+   "tutor"
+  ],
+  "quotes": [
+   "Be accredited by an organization recognized by the Texas Private School Accreditation Commission (TEPSAC) or by the Texas Education Agency.",
+   "Be a proven operator that has successfully run a campus for at least two years.",
+   "Administer a nationally norm-referenced assessment.",
+   "Be located in Texas or, for a virtual school, have an office in Texas."
+  ]
+ },
+ "transfer": {
+  "printed": "$10,474",
+  "value": 10474,
+  "school_year": "2026-27",
+  "from_claim": "c8"
+ },
+ "school_performance_claim": {
+  "rate_phrase": "twice as fast",
+  "percentile_printed": "top 1%",
+  "from_claim": "c11",
+  "sourced_on_its_own_page": false,
+  "absence": "a2"
+ },
+ "dates": {
+  "application_period_opened": "December 9, 2025",
+  "board_met": "August 31-September 4, 2026",
+  "intervals_computed": []
+ }
+}

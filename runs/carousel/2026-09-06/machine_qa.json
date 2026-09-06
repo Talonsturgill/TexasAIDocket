@@ -1,0 +1,123 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8151,
+        0.8866,
+        0.693
+      ],
+      "band_ratio": 0.8734,
+      "encodings": [
+        "'one opening has a reveal with depth and the other is cut flush': dE 16.2, AUC 0.74, visible 100%/100%, seen 4560/4560px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1849,
+        0.3004,
+        0.614
+      ],
+      "band_ratio": 1.6257
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8739,
+        0.7143,
+        0.7261
+      ],
+      "band_ratio": 0.9437
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1408,
+        0.1513,
+        0.3952
+      ],
+      "band_ratio": 1.6702,
+      "encodings": [
+        "'the mortise floors are cuts and the jamb face around them is not': dE 29.8, AUC 0.99, visible 100%/100%, seen 4800/2400px at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.4643,
+        0.9496,
+        0.6967
+      ],
+      "band_ratio": 0.9907
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (2% of the ring around 'PROGRAM PAGE', spanning 16%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.4475,
+        0.3887,
+        0.557
+      ],
+      "band_ratio": 1.1887,
+      "encodings": [
+        "'the run of cuts stops and the jamb below it is unbroken': dE 26.8, AUC 0.86, visible 100%/100%, seen 25600/25600px at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.6555,
+        0.8046,
+        0.6746
+      ],
+      "band_ratio": 0.9503,
+      "encodings": [
+        "'light comes through the cut lines and the soffit around them does not': dE 12.4, AUC 0.61, visible 100%/100%, seen 7680/7680px at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1324,
+        0.25,
+        0.421
+      ],
+      "band_ratio": 1.5322,
+      "encodings": [
+        "'one hardware pocket is full and the other is empty at the same size': dE 26.5, AUC 0.80, visible 100%/100%, seen 1824/1872px at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.6429,
+        0.4034,
+        0.579
+      ],
+      "band_ratio": 1.0655
+    }
+  ],
+  "fails": 0,
+  "warns": 1,
+  "verdict": "WARN"
+}

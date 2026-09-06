@@ -1,0 +1,50 @@
+{
+ "lens": "reader",
+ "round": 5,
+ "deck": 17,
+ "run_date": "2026-09-06",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5,
+   "why": "The joinery vocabulary is genuinely drawn and it runs: frame 1's raking light gives one opening a reveal with depth and the other a flush cut (dE 16.2, seen 4560px at 432w), frame 3's brushed brass plaque holds real light and real dark, frame 2's chairs now read as objects on a table. Against that, the deck has ONE bright frame in nine and it is now the emptiest. Stripped of its four labels, frame 6's dominant elements at 432 px are roughly 25 screw-head dots that encode nothing, with four small empty mortises jammed against the left edge at a geometry that does not rhyme with frame 4's four wide horizontal slots, so the callback a reader is asked to make is not visually available. Frame 8's diagram carries tick marks along a horizontal rule above CHARTER and ACCOUNTS that read as a measurement axis and measure nothing, and the two panels are identical in size under a hook that says one said no and one said yes, so the only differentiator is a gold latch against a near-invisible dark one at L 6.6. Frame 7 has an unexplained teal-green block behind the footer that is the one place the warm palette breaks."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0,
+   "why": "The claims file is the best part of this run: seven rejected inferences named with reasons, a1's absence taken as a complete sentence inventory of 8 headings and 29 body sentences rather than a keyword search, and a3 re-run because a judge noticed the first pass searched '2 Hour Learning' while c12's own string is '2hr Learning'. Frame 6's 'None of the four is about the teaching' sits inside a1's slide_safe_statement, and frame 8 puts ProPublica and The Texas Tribune on the face of the frame carrying c20 to c23. It fails on the cover. Frame 1's dek states 'Texas has two ways to put a school in front of a child on public money' with claim chips c14 c15 c1, and none of those three carries a count of the routes; 'The other ends at' closes the set, so the sentence asserts exactly two, and a zoned district school is a third. Separately, frame 4 prints 'Be accredited' and 'Be a proven operator' as truncations of c2 and c3 in the same unquoted mono treatment as the two whole verbatim strings beside them, so a reader has no way to tell the state's wording from the deck's on the one frame that exists to be checked."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "The stake is concrete and it survives at thumb size: $10,474 is the largest thing on frame 5, ten Texas towns are named on frame 9, 'more than 30 virtual and in-person campuses' is quoted and attributed, and the close hands a reader one action and a real URL that traces to c1's source_url. Two things hold it at competent. Frame 3 spends a whole swipe on 'Generation 32 Application Updates', set as the largest and brightest type on the frame, a jargon string no Texan knows, about a cycle the run's own rejected list says has nothing to do with this story. And by truncating requirements one and two, frame 4 withholds the exact detail that would answer the reader's obvious pushback, since 'Be a proven operator' sounds like it could be about quality until you read c3's 'that has successfully run a campus for at least two years' and see it is tenure."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "The turn is real and it is frame 8, a school one body rejected and another accepted, which is a thing that happened rather than a document being quiet. That answers four consecutive angle_notes in topics.json demanding exactly this. The close does not land. Frames 7, 8 and 9 run at 16.8, 6.6 and 13.7 after the 82.5 inversion, and the strip makes it plain: three near-identical black tiles in a row, with the only frame carrying an action and a URL as the third of them. Frame 2 is the weakest link, dark, one quote, and the quote is cut at exactly the word that would have explained its own picture, since c14's verbatim continues 'to the SBOE' and the frame stops before it."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Plain, short, declarative, no boosterism and no doom. 'Two doors. Different latches.' and 'Ask a school which one covers the teaching' are both lines a person would say out loud. But the caption carries zero writer-chosen commas across 4 paragraphs, which past clipped and into staccato, and 'A spokesperson for the voucher program told them' puts its antecedent two sentences back across a paragraph break. Regional specificity is thin: no county, no region, just ten town names bolted onto the final frame."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The millwork palette and the mortise-and-jamb technique share nothing with the last fortnight, and the topic is clear of the window: deck 2 on 2026-08-18 was Houston ISD's Future 2 model, 19 days back, and the run cut Future 2 as a second door outright when dedupe_check named it rather than reframing it. The caption is where variety thins. 'Two routes. One veto.' is 'the two things', which sits in opening_moves_recent from 08-28 and falls off the six-run window by exactly one run, and its two-fragment count-then-count skeleton is a near twin of 08-19's first line."
+  }
+ ],
+ "hard_fails": [
+  "An unverified fact presented as verified, slide 1 dek: 'Texas has two ways to put a school in front of a child on public money.' The frame cites c14 c15 c1 and not one of them enumerates the routes. 'The other ends at a published checklist' closes the set with a definite article, so the sentence asserts there are exactly two, and on the plain reading it is also false, since a child's zoned district school is a school in front of a child on public money and arrives by neither route. This is the deck's organizing premise stated as a measured fact on the frame a stranger meets first."
+ ],
+ "ship": false,
+ "weighted_score": 6.2,
+ "note": "Round 5. One sentence fix: stop truncating a quote at the word that carries its meaning. Frame 4 should print c2 and c3 whole the way requirement four now is, and frame 2 makes the same cut by stopping c14 one word before 'to the SBOE'."
+}
