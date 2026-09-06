@@ -13089,11 +13089,6 @@
      "date": "2026-08-25",
      "kind": "filed",
      "note": "Registration date on the state filing"
-    },
-    {
-     "date": "2029-12-31",
-     "kind": "expires",
-     "note": "Completion date stated on the filing"
     }
    ],
    "public_access": {
@@ -13128,6 +13123,24 @@
      "source_type": "primary_official",
      "fetched": "2026-09-06",
      "id": "tx-2026-0128-c3"
+    },
+    {
+     "text": "The filing prints the date the project was registered with the state.",
+     "verbatim_quote": "Registration Date: 8/25/2026",
+     "source_url": "https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764",
+     "source_title": "Texas Department of Licensing and Regulation, project TABS2026028764",
+     "source_type": "primary_official",
+     "fetched": "2026-09-06",
+     "id": "tx-2026-0128-c4"
+    },
+    {
+     "text": "The filing prints the completion date the registrant stated.",
+     "verbatim_quote": "Completion Date: 12/31/2029",
+     "source_url": "https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764",
+     "source_title": "Texas Department of Licensing and Regulation, project TABS2026028764",
+     "source_type": "primary_official",
+     "fetched": "2026-09-06",
+     "id": "tx-2026-0128-c5"
     }
    ],
    "notes_for_editor": "The county comes from the filing's own County field and is not inferred from the address. The estimated cost field on this record reads $50,000, which is what the accessibility filing states and is plainly not the construction value, so it is not claimed. A scout reported a second Tesla registration filed the same day at the same address whose structured square footage field disagrees with its own scope text, and that record is not carried here.",

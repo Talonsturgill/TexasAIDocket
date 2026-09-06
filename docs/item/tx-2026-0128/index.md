@@ -16,7 +16,6 @@ Tesla registered a project with the Texas Department of Licensing and Regulation
 ## Dates
 
 - 2026-08-25 · filed: Registration date on the state filing
-- 2029-12-31 · expires: Completion date stated on the filing
 
 ## How this decision moved
 
@@ -43,6 +42,18 @@ Source (primary_official): https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026
 ### The project carries a name the state record prints.
 
 > Austin Semiconductor Fab
+
+Source (primary_official): https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764
+
+### The filing prints the date the project was registered with the state.
+
+> Registration Date: 8/25/2026
+
+Source (primary_official): https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764
+
+### The filing prints the completion date the registrant stated.
+
+> Completion Date: 12/31/2029
 
 Source (primary_official): https://www.tdlr.texas.gov/TABS/Search/Print/TABS2026028764
 
