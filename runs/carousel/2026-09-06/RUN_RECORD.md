@@ -381,10 +381,25 @@ not have: re-derive each dossier's `verbatim`, `labels`, `focal` and `acceptance
 report's laid out text nodes and fail the build when they disagree, the way `copy.json` is already
 built from the report rather than from the storyboard.
 
-**No variety ledger entries were written and no article page was published.** `topics.json`,
-`artwork.json` and `captions.json` exist to constrain the next deck against what SHIPPED, and this
-one did not. Recording it would exclude a palette, an opening move and a subject from future runs
-on the strength of a deck no reader ever saw.
+**No variety ledger entries were written.** `topics.json`, `artwork.json` and `captions.json`
+exist to constrain the next deck against what SHIPPED, and this one did not. Recording it would
+exclude a palette, an opening move and a subject from future runs on the strength of a deck no
+reader ever saw.
+
+**AN ARTICLE PAGE WAS PUBLISHED, AND AN EARLIER DRAFT OF THIS SECTION SAID IT WAS NOT.** That
+sentence was written from the plan rather than from the artifact, which is the exact defect two
+judges spent this run's last two rounds naming. `docs/articles/2026-09-06/index.html` is tracked
+and carries the deck's copy. It is not a choice the run makes: `site_build.py` writes an article
+page for any date with run artifacts under `runs/carousel/`, and `site_fresh_check` then requires
+the committed page to match a rebuild byte for byte, so the page cannot be deleted without
+changing the builder. `scripts/site/` is the `human` lane.
+
+**Nothing publishes, because the branch does not merge.** That is the whole of what protects the
+site here, and it is worth saying out loud that it is the only thing: a maintainer who merges this
+branch to clear the record work would publish an article page for a deck the panel held. The
+proposal is that `site_build.py` should read the run's `score.json` and decline to write an
+article page for a run whose panel returned HOLD, rather than treating the presence of artifacts
+as evidence that something shipped.
 
 ## CI WENT RED AFTER THE PULL REQUEST OPENED, AND THE RECORD HALF WAS NOT AS CLEAN AS IT LOOKED
 
