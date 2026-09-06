@@ -4,5 +4,7 @@
  "No merge. The pull request is open and ready and carries everything.",
  "No variety ledger entries and no article page, because both exist for a deck that shipped.",
  "Frame 3's letters cast at 135 degrees against the deck's stated 147. Measured three ways and recorded rather than papered over: a cast on the shallower azimuth bridges the mono side bearings into a strikethrough.",
- "Frames 4 and 6 are no longer the same drawing in type but remain the same camera class, and the last three frames are still dark in a row. Both were named by judges and neither was repaired."
+ "Frames 4 and 6 are no longer the same drawing in type but remain the same camera class, and the last three frames are still dark in a row. Both were named by judges and neither was repaired.",
+ "A reviewer on the pull request found five real record defects this run's own gates passed, including a DUPLICATE item. The record is 111 items rather than 112. Fixed, and the finding under the finding is that the admission step let a same-url same-date same-quotes duplicate through.",
+ "guards_local never produced a verdict. It was started, the tree changed under it four times while CI failures were being fixed, and its verdict is stamped with the tree digest so a stale run cannot read as a pass. It was killed rather than left running. CI ran the same guards.yml on the settled head and is green."
 ]
