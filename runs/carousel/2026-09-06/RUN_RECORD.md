@@ -185,3 +185,92 @@ hardest.
 `texan_check` at selection reported no Texas place and no next step, which is a brief to the
 directors room rather than a fault. The ten town names are in the claims file and the closing
 frame carries the next step.
+
+## Phase 9, the directors room
+
+Three lenses pitched. **Threshold and admission at architectural scale, in daylight** was taken
+whole and is the spine. Two lawful routes drawn as two built openings in one wall, and the
+argument needs no adjectives because a reader can see which opening has a stop and a strike
+milled into it.
+
+**The two that lost each gave something up, and each named its own fault first.** The measured
+day drew the difference as periodicity and lit every frame by a sun computed for a printed clock
+time. It is the more beautiful idea and it puts nine chances to be caught wrong on nine frames,
+because a Texan knows what eight in the morning in September looks like. Ground and population
+drew the state as a body of Blackland clay and descended to a hand's width of soil, and its own
+author named the fault, which is that its frame 3 answers an agenda line with an invented
+concrete monument.
+
+**Four grafts, two from the winner's self-critique and two from the lenses that lost.**
+
+- Its frame 3 was a plate with words on it, one step from the label-chip defect two earlier decks
+  were marked down for. The letters are now recessed into cast bronze with the deck's one sun
+  raking across the cut walls.
+- Its frame 5 carried the counter-image on a drawing convention most readers have never met. The
+  isolux plot stayed and the frame's own script now asserts a minimum contour spacing. **That
+  assertion fired on the first render at 2.2 px and refused the frame**, which is the gate
+  working rather than a gate being passed.
+- **A place is a boundary or a name, and never a dot**, taken whole from the ground lens because
+  it is sharper than the rule it replaced. Ten dots is a count drawn in ink and this deck may not
+  print a campus count.
+- Frame 3 carries its guard on its own face rather than only in the plan, reading "The line is an
+  update on an application cycle. It names no applicant."
+
+`dossier_check` passed after one repair. Slide 3's bottom band named only flat furniture, which
+is the dead lower zone stated aloud, and the plan was fixed rather than the gate.
+
+## Phase 10, the caption room
+
+Two directors wrote, the critic judged, and it disqualified candidate B four ways before taste
+entered. **The one worth naming is that B counted "two applicants" off a page rather than from
+code**, which is this project's central law, and the storyboard's own slide 4 shows the
+discipline it ignored.
+
+**Both candidates shared one hard gate failure and neither had been through the linter.**
+`caption_check.NUM_RANGE` reads "the 2026-27 school year" as a range and wants it written X to Y.
+The critic cut the clause rather than expanding it, because writing 2027 would put a numeral in
+published copy that appears in neither the claims file nor `computed.json`.
+
+**One further cut was made after the critic.** It flagged that "elected" rests on a claim's own
+summary field rather than on any fetched string. Two State Board of Education pages were fetched
+to source it and neither says it, so the word came out. The record's rule is get the quote or cut
+it, and this is the cheap end of that rule.
+
+`caption_check` exits 0 at 135 words, zero writer-chosen commas, three niche tags.
+
+## Phases 11 to 14b, the art
+
+Nine bespoke frames, one canvas each at a 2x backing store with the type in the DOM above it.
+
+**The gates found real defects and every one of them was a measurement rather than a taste call.**
+
+- `qa.py` failed six frames for a DRAWN RULE running through a glyph band, which at feed width
+  reads as a strikethrough. Every one was a real edge doing its job in the wrong place, a board
+  seam or an arris or a threshold nosing. The remedy was a reserve painted under each text block,
+  and the second lesson was ordering: the reserve has to be the LAST thing painted, because a
+  grain tile at five percent laid the edges straight back over the type the reserve had cleared.
+- **A plate at eighty percent is not a plate.** Slide 3 proved the engine's own sentence. An edge
+  at 2.2 to 1 came through an 0.8 reserve, and only a fully opaque one cleared it.
+- `panel_ready` found 18 things a judge should never have to see, in three classes. Thirteen lines
+  under the rubric's 4.5 contrast floor, one dossier describing a frame the run no longer made,
+  and four grounds measuring under the worked-ground floor. **A gradient is a promise of light and
+  not of material**, and the fix was to give four frames a real tooth rather than a smoother wash.
+- `plan_render_check` opened at 15 findings. Most were one character: acceptance items written as
+  double-quoted YAML reached the gate with literal backslashes, because it reads the raw
+  storyboard. Three dossiers also named palette tokens their frames never drew, which is the
+  2026-08-19 defect exactly, and the dossiers were corrected to the tokens the frames use. It now
+  reports **21 of 21 declared display strings found on their own frame**, against 3 before.
+- Frame 6 was rebuilt once against the deck's own structural law. Its four requirements sat in
+  dark bars on the light ground, which is four redactions at feed size, and the law says nothing
+  in this deck is a black rectangle. The cuts became narrow slots and the words moved onto the lit
+  concrete in dark ink.
+
+**Disclosed rather than hidden.** Only 5 of 57 acceptance items carry an assertion a render could
+contradict, which is low and is the ratio `SLIDE_DOSSIER_SPEC.md` warns about. The GPU bench was
+not spent on frame 7 and its declared fallback was taken. `bespoke_check` puts the median pairwise
+similarity at 0.4524 and names frames 4 and 6 as the closest pair at 0.7891. **That pair is
+deliberate**, 4 states the list and 6 shows where it stops on inverted ground, and the panel was
+told so and asked to test the call rather than discover it.
+
+Machine QA finished at zero fails across all nine frames. `panel_ready` exits 0. The PDF is
+vector.
