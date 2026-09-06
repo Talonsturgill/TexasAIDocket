@@ -1076,3 +1076,24 @@ each record it. The disposition has not changed and cannot change from here, bec
 an edit to an agent definition under `.claude/`, which no routine may write. It stays in the
 backlog for a maintainer. **This is the last run that should spend a paragraph on it**, and the
 prompt this run sent already told the scouts to return inline, which is the workaround working.
+
+### CORRECTION, same run, on the TDLR entry three sections up
+
+**This repo already reads TDLR and has for some time.** `scripts/site/tdlr_fetch.py` carries
+`BASE = "https://www.tdlr.texas.gov/TABS"` and pulls `Search/Print/<num>`, which is the exact
+endpoint the entry above reports as new, and `scripts/site/tdlr_projects.py` computes a page
+off the result. Both run in CI on every push.
+
+So the finding is narrower than it was written, and it is worth having narrowed rather than
+having left standing. **The host is absent from `SOURCES_REGISTRY.md` while two committed
+scripts and two CI steps depend on it.** That is a registry that has fallen behind the code
+rather than a lane nobody had found, and it is the more useful thing to tell a maintainer.
+
+What survives unchanged is the trap, because it is about a response and not about a URL. An
+unreleased or unknown project number returns **HTTP 200 with the body `Project Not Found`**,
+and the print view's structured square footage field can disagree with the free text scope on
+the same record. Neither is visible to a status code check.
+
+This correction is appended rather than edited into the entry above, because that is what an
+append-only log is for. The 2026-09-03 entry makes the same argument about a half-finished
+repair and it is the same lesson from the other side.
