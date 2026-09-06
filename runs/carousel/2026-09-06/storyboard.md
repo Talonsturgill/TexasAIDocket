@@ -175,7 +175,7 @@ art:
     The eye lands in the dark left opening, is carried right along the shared datum to the second
     opening, and drops to the hook in the lit walk.
 acceptance:
-  - "the two openings are identical in width and in height, asserted by the frame's own script and printed to the render report"
+  - "the two openings are cut from ONE pair of half extents in the frame's own script, so a difference in size is not something a later edit can introduce by hand"
   - "the left opening's reveal shows a lit return face at least 18 px wide, so depth is visible at 432 px"
   - "the right opening shows no return face at all, which is the frame's whole comparison"
   - the hook reads exactly "Two doors. Different latches." and sits in the lower third
@@ -424,8 +424,8 @@ art:
     the point.
 acceptance:
   - the frame prints exactly 1 dollar figure and it reads "$10,474"
-  - "no contour closes anywhere in the frame, and the frame's own script asserts it and prints the result to the render report"
-  - "the minimum contour spacing is 6 px or greater at 2x, asserted by the frame's own script, so the plot does not moire at 432 px"
+  - "no contour closes anywhere in the frame, and the frame's own script THROWS rather than renders if one does"
+  - "the minimum contour spacing is 6 px or greater, and the frame's own script THROWS rather than renders if it is not, so the plot cannot moire at 432 px"
   - the transfer figure reads exactly "$10,474" and matches computed.json transfer.printed
   - the verbatim line reads exactly "Applications are accepted on a rolling basis."
   - "the bottom third carries the threshold's cast shadow and the thinning contour falloff, and is not a flat shaded plane"

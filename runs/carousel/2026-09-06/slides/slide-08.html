@@ -142,6 +142,10 @@ window.renderReady = (async () => {
     g.fillRect(0,0,W,H); g.globalAlpha=1;
   })();
 
+  // the frame refuses to render rather than shipping a comparison it has bent
+  if (pa.pw !== pb.pw || pa.ph !== pb.ph)
+    throw new Error('the two hardware pockets are not the same size, which would rank two lawful routes');
+
   window.__txProbe={ section_w: SEC.w, section_h: SEC.h,
     pocket_a:{w:pa.pw,h:pa.ph}, pocket_b:{w:pb.pw,h:pb.ph},
     same_scale: true,

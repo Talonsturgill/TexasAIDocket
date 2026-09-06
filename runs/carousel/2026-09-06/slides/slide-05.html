@@ -265,6 +265,13 @@ window.renderReady = (async () => {
     g.restore();
   })();
 
+  // AN ASSERTION THAT ONLY REPORTS IS NOT AN ASSERTION. Two acceptance items on this deck said a
+  // number was 'printed to the render report' and the render report captures no probe at all, so
+  // for four rounds the frame recorded a check nothing read. The frame THROWS now, which is the
+  // one form that cannot ship broken, and it is what frames 7 and 9 already do.
+  if (closedCount > 0) throw new Error('a contour closed, which is a shut door and not a rolling window');
+  if (minGap < 6) throw new Error('contour spacing under 6 px, which moires at 432');
+
   window.__txProbe = {
     contours: LEVELS,
     closed_contours: closedCount,          // must be 0. A closed curve would be a shut door.
