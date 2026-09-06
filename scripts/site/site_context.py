@@ -22,6 +22,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
 
 import ask_answers                                                # noqa: E402
 import ask_pack                                                    # noqa: E402
@@ -52,6 +53,7 @@ import entities
 import registry_changes
 import registry_graph
 import tdlr_projects
+import run_complete
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
@@ -941,17 +943,31 @@ RAW = f"https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/main"
 def load_runs() -> list:
     """Every carousel this project has shipped, newest first.
 
-    READ FROM THE ARTIFACTS, NOT FROM A LIST SOMEBODY MAINTAINS. A run is shipped when
-    `runs/carousel/<date>/` exists with copy in it, so the feed cannot claim an article that
-    was never published and cannot miss one that was. A directory that does not parse is
-    skipped rather than guessed at, because a half-written run is a run that did not ship.
+    READ FROM THE ARTIFACTS AND THE COMPLETION GATE, NOT FROM A LIST SOMEBODY MAINTAINS.
+    A run is published when `runs/carousel/<date>/` has copy and its score, where present,
+    satisfies the same completion rule that decides whether the deck shipped. This distinction
+    matters because failed runs keep their evidence in this directory too. A standing hard fail
+    must not become an article merely because the evidence was committed.
+
+    Legacy runs with no score file keep their historical treatment. A score below the threshold
+    may still be publishable on the rubric's round cap or a recorded owner override, so this
+    delegates that decision to `run_complete` rather than treating `ship: false` as sufficient.
+    A directory that does not parse is skipped rather than guessed at, because a half-written run
+    is a run that did not ship.
     """
     out = []
     base = REPO_ROOT / "runs" / "carousel"
     if not base.is_dir():
         return out
+    bar, cap = run_complete.threshold(), run_complete.max_rounds()
     for d in sorted((x for x in base.iterdir() if x.is_dir()), key=lambda x: x.name,
                     reverse=True):
+        # BEFORE READING THE COPY. Failed runs archive the same files as shipped runs so that
+        # their evidence survives the container. Presence therefore proves a run happened, not
+        # that the panel cleared it. Reuse the gate that already knows about cap and owner paths
+        # so the site cannot invent a second definition of shipped.
+        if (d / "score.json").exists() and run_complete.check(d, bar, cap):
+            continue
         try:
             copy = json.loads((d / "copy.json").read_text("utf-8"))
         except Exception:                                            # noqa: BLE001
