@@ -1156,4 +1156,59 @@
    "why": "The three upgrades that landed all came from this run's own measurements and the seven that did not land were all measured too, which took the time a scan would have. A rotating scan earns its place when the defect list is thin, and this one had ten items with evidence attached. The next phase should scan, and the area that has never been rotated to is how a gazetteer or a reference table goes stale without anything reporting it, which is the root cause under the texan_check upgrade above and is not a checker question at all."
   }
  }
+,
+ "2026-09-06": {
+  "phase": "retro and upgrade, deck no. 17 (HELD), actor `upgrade`",
+  "revert_commit": "the commit this phase makes. Two gate upgrades and one spec paragraph, one file each: scripts/carousel/verbatim_check.py, scripts/carousel/quantifier_check.py and knowledge/carousel/SLIDE_DOSSIER_SPEC.md. No shared code between the two gates, so reverting one file removes one upgrade.",
+  "what_this_phase_chose_and_why": "Carousel no. 17 went five scoring rounds and was held on a median of 6.552 with one hard fail. The panel named two candidates. Both were taken, one landed as written and one landed only in half, and the half that did not land is the most valuable thing in this entry because it is refused with a measurement rather than with an opinion. Every hard fail in the five rounds was one species, a sentence asserting a NEGATIVE or closing a SET that nothing measures. The negative half of that species has no gate that does not fire on correct copy, measured at 136 findings out of 136 negatives for the obvious rule and 58 new false failures for the narrowing, and it is filed in knowledge/carousel/UPGRADE_BACKLOG.md with both tables. The closed-set half is a construction rather than a word and it did yield.",
+  "upgrades": [
+   {
+    "what": "verbatim_check refuses a dossier whose `verbatim:` entry declares a TRUNCATION of what the frame actually prints, where the frame's longer string is itself a fragment of that same claim's quote.",
+    "why": "Carousel no. 17's integrity judge found four dossier statements false of the frames they describe, and the sharpest is frame 4. Round 4 hard failed the deck for truncating c5 to 'Be located in Texas'. The FRAME was repaired to print c5 whole and the PLAN was not, and every gate stayed green because both of this gate's tests were containment tests: the short string is inside c5's quote, and it is inside the frame's longer string. A substring test cannot tell a fragment somebody seated from the head of a longer one. Two costs. A pixel critic grades the frame against the dossier, so an understated plan hands it a frame that does not exist. And this gate only ever holds the DECLARED string to the record, so the eleven words a reader receives were never checked against anything while the receipt counted the declaration and read clean.",
+    "files": [
+     "scripts/carousel/verbatim_check.py",
+     "knowledge/carousel/SLIDE_DOSSIER_SPEC.md"
+    ],
+    "verification": "python3 scripts/carousel/verbatim_check.py --self-test, which now carries the real 2026-09-06 frame 4 fixture and a corpus replay over all seventeen shipped decks that REQUIRES the rule to fire on 2026-09-06 frames 4 and 7, the two an integrity judge found by hand, and to be silent on the sixteen before it. Proven able to go red: inserting `return None` at the top of `understated()` turns four assertions red and the self-test exits 1. Against the real artifact, `verbatim_check.py --run 2026-09-06` exits 1 and names both frames.",
+    "revert": "git revert of this phase's commit, or `git checkout HEAD~1 -- scripts/carousel/verbatim_check.py`",
+    "how_i_would_know_this_was_wrong": "A correct frame going red. The one shape that could do it is a renderer joining two separately seated strings into one text node, which render.py does because it joins a node's child spans with no separator. That is why the rule requires the extra words to be MORE OF THE SAME CLAIM'S QUOTE rather than merely more words, and 2026-09-05 frame 6 is in the self-test as the fixture for it. If a deck ever seats two fragments of ONE quote as two adjacent spans in one node, this fires and is wrong, and the fix is to compare against the node's spans rather than the joined node."
+   },
+   {
+    "what": "quantifier_check gains a fourth rule. A CLOSURE, a construction saying the set has no further member, must name its set in quantifiers.json the way a universal already must.",
+    "why": "The round 5 hard fail, on the frame a stranger meets first: 'Texas has two ways to put a school in front of a child on public money. One ends at a board that votes. The other ends at a published checklist.' Four gates passed it and each was right about its own question. numeral_lint traces `two` to a computation. aggregate_check has the count declared with its claim ids. absence_check reads negations and there is none. quantifier_check's UNIVERSAL pattern wants a quantifier word and a set noun off two hand written lists, and `two ways` is in neither. What makes the sentence false is `The other`, a definite article over the remainder. The run had written the scope limit down in aggregates.json, reading 'and never a claim that Texas has no other way of funding a school', and that sentence is correct and it is in a JSON file while the frame is where a reader is.",
+    "files": [
+     "scripts/carousel/quantifier_check.py"
+    ],
+    "verification": "python3 scripts/carousel/quantifier_check.py --self-test, which replays the held sentence verbatim and requires a finding naming 'The other', requires a quantifiers.json declaration to clear it, requires silence on four strings real shipped frames printed (THE THREE YEAR CONTRACT, 'walking the other way', 'The rest of the sentence', THE OTHER DIRECTION), and calibrates against the corpus rather than against a typed number: the closure rule may not raise more than twice the findings of the UNIVERSAL rule already hard failing beside it, measured over the same surfaces. It reads 19 closures against 20 universals over 1,666 published strings in 17 decks. Proven able to go red: restore `ends` to the bearing denylist, which is what the first draft carried, and the self-test exits 1 saying the round 5 hard fail passed. Against the real artifact, quantifier_check.check on runs/carousel/2026-09-06 returns four findings and the first is the held sentence.",
+    "revert": "git revert of this phase's commit, or `git checkout HEAD~1 -- scripts/carousel/quantifier_check.py`",
+    "how_i_would_know_this_was_wrong": "Two shapes. A run meeting it on a sentence where the set genuinely is closed and computed, which is not a false failure because the escape is one line in quantifiers.json naming the members, but which becomes one if the declaration turns into a ritual nobody reads. The tell would be quantifiers.json growing a declaration per deck with no members named. And a rate above about one finding a deck: the 2026-09-05 phase refused a widening that raised fifteen a deck, and the self-test asserts the comparison rather than trusting it, so a future corpus that drifts loud reports itself."
+   }
+  ],
+  "not_done_and_why": {
+   "a gate for an undeclared NEGATIVE": "Refused with two measurements, both replayed over every shipped deck and both written into knowledge/carousel/UPGRADE_BACKLOG.md. Requiring a negation-bearing sentence to sit on a frame citing a numbered absence fires on 136 of 136 negatives, because absence ids in a citation rail are a habit this run started. Moving absence_check's document scope from the frame to the sentence adds 58 findings and they are sentences like 'It states no total.' and 'None was voted on.', which are correct and are scoped by their frame's kicker. That is the decision absence_check's own docstring already made once, with the 2026-08-19 slide 3 case behind it. A gate nobody can trust is worse than none.",
+   "widening the understatement rule to every declared display string": "Measured at 13 findings over 601 declarations in 17 decks, and 9 of them are acceptance items of the form 'the frame carries X', which assert presence and are correctly satisfied by a longer string. Scoped to `type.*` alone it raises 2, one real and one a span join. Landed instead as one sentence in the failure message telling the run that the same truncation is usually in `type.labels` and in an acceptance item.",
+   "a frontier scan": "Not run. The panel named two candidates with evidence attached and the run record's own table named the species; a rotating scan earns its place when the defect list is thin and this one was not."
+  },
+  "proposals_out_of_lane": [
+   {
+    "what": "Two GATE_LESSONS entries, written out in full in knowledge/carousel/UPGRADE_BACKLOG.md for a maintainer to paste. One on a substring test being unable to tell a fragment from the head of a longer one, one on a count that closes a set being a negative wearing a number.",
+    "owner": "human",
+    "why": "knowledge/shared/GATE_LESSONS.md is human lane. The instruction to this phase is that a gate change belongs in that file, and the phase that earned the entry cannot file it, so the text is written where it can be lifted without being rewritten."
+   },
+   {
+    "what": "Add `python3 scripts/carousel/verbatim_check.py --self-test` and `python3 scripts/carousel/quantifier_check.py --self-test` to .github/workflows/guards.yml.",
+    "owner": "human",
+    "why": "Neither appears in guards.yml in any form, filed on 2026-09-04 and still true. It costs more now: both gates gained a corpus calibration this run that reads every shipped deck, which is the assertion most likely to notice a parser going quiet, and CI has never run either. gate_status invokes both during a run, so they are wired to the routine and not to CI."
+   },
+   {
+    "what": "site_build.py should decline to write docs/articles/<date>/ when that run's score.json says ship is false.",
+    "owner": "human",
+    "why": "Carried forward unchanged from the entry above this one in the backlog. Carousel no. 17 was held and an article page carrying the hard failed sentence is committed anyway, and only the merge policy is keeping it off the live site."
+   }
+  ],
+  "frontier_scan": {
+   "focus": "not run this phase",
+   "why": "The evidence budget went to the two measurements that say no. The area still never rotated to is the one the 2026-09-05 phase named, how a gazetteer or a reference table goes stale with nothing reporting it, and it is still unclaimed."
+  }
+ }
 }

@@ -24,12 +24,19 @@ frame away in the footer, is outside it and always was.
 `noun_trace.py` warns on named THINGS that appear in no claim. `IT DID JUST THAT` names no thing.
 It is a SENTENCE, and its whole defect is that it wears the costume of a quotation.
 
-WHAT THIS DOES, IN TWO DIRECTIONS, AND ONLY ONE OF THEM CAN FAIL
+WHAT THIS DOES, IN THREE DIRECTIONS, AND ONLY ONE OF THEM CANNOT FAIL
 
   DECLARED   the hard half. A dossier that seats a fragment of the source's own words on a frame
              lists it, with the claim it came from, under a `verbatim:` key. Every listed string
              must be a literal substring of THAT claim's own quote, after the normalisation stated
              below, and must actually be on the frame. Exit 1 on either.
+
+  UNDERSTATED the hard half's blind spot, added 2026-09-06. A substring test cannot tell a
+             fragment somebody seated from the HEAD of a longer one, so a plan that declares a
+             truncation of what the frame prints passes both tests above. Frame 4 of carousel
+             no. 17 declared "Be located in Texas" while the frame printed c5 whole, and every
+             gate was green. See `understated()` for the defect, the discrimination that keeps
+             this off correct frames, and the measurement across all seventeen shipped decks.
 
   DISCOVERED the soft half, and it never fails. Where a frame prints one all-caps label that IS a
              literal fragment of a claim's quote, every other all-caps label set in the SAME
@@ -241,7 +248,72 @@ def check_declared(dossiers: dict, claims: list, report: dict) -> tuple:
                     f"slide {n}: the dossier declares {want!r} as a verbatim fragment on this "
                     f"frame and the render does not print it. A declaration for a string nobody "
                     f"drew describes a frame the run did not make")
+                continue
+            if q and w and w in q:
+                longer = understated(w, q, nodes)
+                if longer is not None:
+                    fails.append(
+                        f"slide {n}: the dossier declares {want!r} as the fragment of {cid} this "
+                        f"frame seats, and the frame prints MORE of {cid}'s own quote: "
+                        f"{longer!r}. The plan describes a frame the run did not make, and it "
+                        f"describes a SHORTER one, so a critic reading the dossier grades a "
+                        f"truncation that is not there and this gate only ever held the short "
+                        f"string to the record. Declare what the frame prints, and repair the "
+                        f"other two places the same truncated string usually sits: this "
+                        f"dossier's `type.labels` list and any acceptance item quoting it. On "
+                        f"2026-09-06 frame 4 it was in all three and `plan_render_check` passed "
+                        f"the other two, correctly, because a declared label is satisfied by any "
+                        f"node containing it")
     return fails, declared, slides
+
+
+def understated(w: str, q: str, nodes: list):
+    """The frame's own string where it seats a LONGER fragment of the same quote than the plan.
+
+    THE DEFECT, 2026-09-06, carousel no. 17, frame 4. The dossier's `verbatim:` block, its
+    `type.labels` list and one of its acceptance items all say the fourth requirement reads
+    "Be located in Texas". The frame prints c5 whole, "Be located in Texas or, for a virtual
+    school, have an office in Texas." Round 4 of that same run had hard failed the deck for
+    truncating c5, the frame was repaired, and the PLAN was not. The integrity judge found it at
+    round 5 by opening both files, and named this file's own shape as the fix.
+
+    Every gate passed, and each was right about its own question. The declaration IS a literal
+    substring of c5's quote, so the test above it holds. The declaration IS on the frame, because
+    the frame's longer string contains it, so the test above that holds too. A substring test
+    cannot tell a fragment somebody seated from the head of a longer one.
+
+    TWO COSTS, and the second is the one that makes this a FAIL rather than a note. A pixel critic
+    grades the frame against the dossier, so an understated declaration hands it a frame that does
+    not exist. And this gate's whole promise is that a seated fragment is held to its source: when
+    the declaration is shorter than the seated string, the words the reader actually receives were
+    never checked against anything. The gate reports clean having examined less than the frame
+    carries, which is the shape `sources_block` shipped behind an exit code of 0.
+
+    THE DISCRIMINATION, and it is what keeps this off correct frames. It is NOT enough that a node
+    is longer than the declaration. `render.py` joins a text node's child spans with no separator,
+    so 2026-09-05 frame 6 comes back as one node reading "Magnetic Acceleration Generating New
+    Innovations and Tactical Outcomes (MAGNITO) DE-FOA-0003590", two seated strings the renderer
+    glued together, and the extension is a grant number that is in no quote at all. The extra
+    words have to be MORE OF THE SAME CLAIM'S QUOTE, which is the only thing a truncated plan can
+    have dropped.
+
+    MEASURED BEFORE IT WAS WRITTEN, across the 27 declarations in the 17 shipped decks that carry
+    a storyboard, a render report and a claims file. It fires TWICE, both on 2026-09-06, and both
+    are the finding a judge made by hand: frame 4's c5, and frame 7's c10, where the plan declares
+    `become 'Guides,'` and the frame seats the whole leading clause. It is silent on all sixteen
+    earlier decks. The replay is `out/<date>/tmp/measure_rule.py` in that run's scratch and it is
+    one pass over `runs/carousel/*/`.
+
+    Returns the frame's string, or None when the plan and the frame agree.
+    """
+    normed = [(t, norm(t)) for t in
+              (str(x.get("text") or "").strip() for x in nodes) if t]
+    if any(nt == w for _t, nt in normed):
+        return None                      # the frame seats exactly what the plan declares
+    for raw, nt in normed:
+        if len(nt) > len(w) and w in nt and nt in q:
+            return raw
+    return None
 
 
 def check_discovered(dossiers: dict, claims: list, report: dict) -> list:
@@ -484,6 +556,52 @@ def self_test() -> int:
     ok("a declared fragment nobody drew is CAUGHT",
        any("does not print it" in x for x in f), str(f))
 
+    # ---- UNDERSTATED: THE PLAN DECLARES A TRUNCATION OF WHAT THE FRAME PRINTS -------------
+    # THE REAL 2026-09-06 FRAME 4, off the shipped claims.json and render_report.json.
+    C5 = {"id": "c5", "quote": "Be located in Texas or, for a virtual school, have an office in "
+                               "Texas.", "text": "The fourth is a location."}
+    short = _board(4, 'verbatim:\n  - c5: "Be located in Texas"\n')
+    whole = _report({4: [("Be accredited", PLATE),
+                         ("Be located in Texas or, for a virtual school, have an office in "
+                          "Texas.", PLATE), ("c2 c5", FOOT), ("04 / 09", FOOT)]})
+    f, _n, _s = check_declared(parse_dossiers(short), CLAIMS + [C5], whole)
+    ok("a plan declaring a TRUNCATION of what the frame prints is CAUGHT",
+       any("prints MORE of" in x for x in f), str(f))
+    ok("...and the failure names the string the frame actually seats",
+       any("have an office in Texas" in x for x in f), str(f))
+
+    # The repair is one edit in the plan, and it clears.
+    full = _board(4, 'verbatim:\n  - c5: "Be located in Texas or, for a virtual school, have an '
+                     'office in Texas."\n')
+    f, _n, _s = check_declared(parse_dossiers(full), CLAIMS + [C5], whole)
+    ok("...and declaring what the frame prints passes", not f, str(f))
+
+    # THE DISCRIMINATION, and without it this rule fires on a correct frame. 2026-09-05 frame 6
+    # renders two seated strings as ONE text node, because render.py joins a node's child spans
+    # with no separator. The extension is a grant number that is in no quote at all, so it is not
+    # a truncated plan and the rule must stay quiet.
+    C8 = {"id": "c8", "quote": "Magnetic Acceleration Generating New Innovations and Tactical "
+                               "Outcomes (MAGNITO)", "text": "The programme's own name."}
+    joined = _report({6: [("Magnetic Acceleration Generating New Innovations and Tactical "
+                           "Outcomes (MAGNITO) DE-FOA-0003590", PLATE),
+                          ("DE-FOA-0003590", CAVITY), ("06 / 09", FOOT)]})
+    jb = _board(6, 'verbatim:\n  - c8: "Magnetic Acceleration Generating New Innovations and '
+                   'Tactical Outcomes (MAGNITO)"\n')
+    f, _n, _s = check_declared(parse_dossiers(jb), CLAIMS + [C8], joined)
+    ok("a renderer JOINING two seated spans into one node is not read as a truncated plan",
+       not f, str(f))
+
+    # And a fragment legitimately sitting inside a longer AUTHORED line is not an understatement
+    # either, because the authored line is not a fragment of the claim's quote.
+    inside = _report({5: [("The account calls it \"a proven operator\" and stops there.", PLATE),
+                          ("05 / 09", FOOT)]})
+    ib = _board(5, 'verbatim:\n  - c3: "a proven operator"\n')
+    C3 = {"id": "c3", "quote": "Be a proven operator that has successfully run a campus for at "
+                               "least two years.", "text": "The second requirement."}
+    f, _n, _s = check_declared(parse_dossiers(ib), CLAIMS + [C3], inside)
+    ok("a quoted fragment inside a longer AUTHORED sentence is not an understatement",
+       not f, str(f))
+
     # ---- AN UNKNOWN CLAIM ID -------------------------------------------------------------
     unk = _board(8, 'verbatim:\n  - c99: "EXCEEDED EXPECTATIONS"\n')
     f, _n, _s = check_declared(parse_dossiers(unk), CLAIMS, shipped)
@@ -528,8 +646,16 @@ def self_test() -> int:
     # ---- AGAINST EVERY SHIPPED DECK, because a fixture written beside a detector agrees with
     # it. This is the calibration that decided the discovery half warns rather than fails: three
     # groups across fifteen decks, and ZERO on the repaired deck this gate was written for.
+    # THE UNDERSTATEMENT RULE IS REPLAYED AGAINST THE DECK IT EXISTS FOR, by name. Carousel
+    # no. 17 was HELD on 2026-09-06 and never published, and its integrity judge found this
+    # defect on two of its frames by opening the plan and the render side by side. So the
+    # calibration below does not ask for silence on that deck. It REQUIRES the finding there and
+    # silence on every one of the sixteen decks before it, which is the only shape that proves
+    # the rule fires on the fault and not on the corpus. A gate that has never been seen to fail
+    # is a decoration, and a corpus-wide "no deck fails" assertion is how one gets written.
+    REPLAY = "2026-09-06"
     shipped_runs = sorted((REPO_ROOT / "runs" / "carousel").glob("2*"))
-    checked, noisy = 0, []
+    checked, noisy, replayed = 0, [], 0
     for p in shipped_runs:
         rr, cj, sb = p / "render_report.json", p / "claims.json", p / "storyboard.md"
         if not (rr.exists() and cj.exists() and sb.exists()):
@@ -542,8 +668,20 @@ def self_test() -> int:
         if ns:
             noisy.append((p.name, len(ns)))
         fs, _d, _sl = check_declared(ds, cl, rep)
-        ok(f"{p.name}: no shipped deck fails the declared half", not fs, str(fs))
+        under = [x for x in fs if "prints MORE of" in x]
+        ok(f"{p.name}: no shipped deck fails the three original declared tests",
+           not [x for x in fs if x not in under], str(fs))
+        if p.name == REPLAY:
+            replayed = len(under)
+            ok(f"{REPLAY}: the understatement rule fires on the two frames a judge found by hand",
+               len(under) == 2 and any("slide 4" in x for x in under)
+               and any("slide 7" in x for x in under), str(under))
+        else:
+            ok(f"{p.name}: the understatement rule is silent on a deck that does not carry it",
+               not under, str(under))
     ok("the calibration read a real corpus rather than nothing", checked >= 10, str(checked))
+    ok(f"the replay deck {REPLAY} was actually present to be replayed against", replayed == 2,
+       str(replayed))
     print(f"       discovery notes across {checked} shipped deck(s): "
           f"{noisy if noisy else 'none'}")
     newest = next((p.name for p in reversed(shipped_runs)

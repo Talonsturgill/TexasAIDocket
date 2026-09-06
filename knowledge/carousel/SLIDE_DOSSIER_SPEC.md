@@ -92,6 +92,32 @@ off, so what survives is a declaration a person writes and a machine checks.
 case, dashes and punctuation before comparing, so a hyphen against a space is never the reason a
 line goes red. Only a word can be.
 
+### AND WRITE THE WHOLE OF IT. A shorter declaration is a false one (2026-09-06)
+
+**A `verbatim:` entry declares WHAT THE FRAME SEATS, not the part of it worth mentioning.** If
+the frame prints eleven words of a claim's quote, the entry carries eleven words.
+
+Carousel no. 17 was held after five rounds, and one of its integrity findings is this exact
+mistake. Round 4 hard failed frame 4 for truncating c5 to "Be located in Texas". The frame was
+repaired to print c5 whole, "Be located in Texas or, for a virtual school, have an office in
+Texas.", and the PLAN was not. Its `verbatim:` entry, its `type.labels` list and one of its
+acceptance items all still described the truncation. Every gate was green.
+
+Two things go wrong, and the second is the one nobody sees.
+
+- A pixel critic grades the frame against the dossier, so an understated entry hands it a frame
+  that does not exist and it spends a round on a difference that is the plan's fault.
+- **The gate only ever holds the DECLARED string to the record.** Understate the entry and the
+  words a reader actually receives were never checked against anything, while the receipt reads
+  clean.
+
+`verbatim_check` now refuses this. If the frame prints a text node that contains the declared
+string and is itself a longer fragment of THAT SAME claim's quote, the plan is describing a
+truncation the run did not make and the build fails. It stays quiet where the extra words are
+not part of the quote, because `render.py` joins a node's child spans with no separator and two
+seated strings can arrive as one node. Replayed across every deck this project has rendered it
+is silent on sixteen of seventeen.
+
 ## THE FOCAL LAW
 
 **A declared focal must be an AREA carrying one extreme of the frame's value range. Never a
