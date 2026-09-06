@@ -673,6 +673,15 @@
    "confirmed": [],
    "contradicted": [],
    "note_that_was_the_instinct": "Treat every scoring round after the first as evidence that something upstream was skipped, and spend the round before the panel doing what a judge would do rather than shipping a half considered frame into three of them."
+  },
+  {
+   "id": "the-named-list-is-not-the-suite",
+   "learned": "2026-09-06",
+   "instinct": "Run guards_local.py before a push, not the phase's named list, because the list is a summary of the suite.",
+   "note_that_was_the_instinct": "A routine phase that enumerates gates will fall behind guards.yml, and the enumeration reads as complete because it is written down. Run the suite that CI runs.",
+   "evidence": "Run 2026-09-06 ran the nine checks Phase 16 names, pushed, and CI went red four minutes later on docket_calendar.py --self-test, which is in guards.yml and not in that list. Three assertions failed, all caused by one key_date this branch admitted. CLAUDE.md already states the reason guards_local exists in these words: it reads guards.yml so it cannot fall behind on WHICH steps run.",
+   "confirmed": [],
+   "contradicted": []
   }
  ]
 }

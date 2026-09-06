@@ -385,3 +385,41 @@ built from the report rather than from the storyboard.
 `artwork.json` and `captions.json` exist to constrain the next deck against what SHIPPED, and this
 one did not. Recording it would exclude a palette, an opening move and a subject from future runs
 on the strength of a deck no reader ever saw.
+
+## CI WENT RED AFTER THE PULL REQUEST OPENED, AND THE RECORD HALF WAS NOT AS CLEAN AS IT LOOKED
+
+`docket_calendar.py --self-test` failed on the pull request head with three failures this branch
+caused and `main` has never seen. All three trace to one `key_date` on `tx-2026-0128`, the Tesla
+fab registration, admitted this morning with `{"date": "2029-12-31", "kind": "expires"}`.
+
+**Three things were wrong with it and only the first is what CI could see.**
+
+1. `docket_calendar.py`'s `KIND_LABEL` knows nine kinds and `expires` is not one, so its own
+   assertion that every kind on the real record has an explicit label failed the moment the item
+   landed. That table is in `scripts/site/`, which is the `human` lane, so the record is where
+   this gets fixed and not the labeller.
+2. **The kind is wrong on the facts.** Nothing expires on that date. The filing prints a
+   completion date the registrant stated, and a builder's own estimate of when it will finish is a
+   fact about the project rather than a procedural event on a docket. `key_dates` is the record's
+   calendar. A private completion estimate four years out is not on it, which is also what broke
+   the other two assertions: a date that far out moves the record's own end and the calendar's
+   window arithmetic is computed from it.
+3. **Neither date the summary prints carried a claim.** The item states a registration date and a
+   completion date, and its three claims covered the scope text, the funding and the project name.
+   The house law is that every fact carries a claim id and traces to a fetched source. The filing
+   was re-fetched and both dates now carry a verbatim claim.
+
+### Two gate gaps, and the second is the one that matters
+
+**`docket_build.py --validate` passed this.** Its numerals check reports "172 numeral(s) in copy,
+all traceable to a quote or a name", and both of these dates were traceable to a KEY_DATE rather
+than to a quote. A date can therefore enter the public record, be printed in a summary, and
+satisfy the numeral gate on the strength of a field the same run typed. That is the
+compute-not-generate law with a hole in it, and `scripts/site/docket_build.py` is `human` lane, so
+it is a proposal rather than a fix.
+
+**Phase 16's verification list does not contain `docket_calendar.py --self-test`.** Nine checks
+are named there and CI runs more than nine. `CLAUDE.md` already says what covers that:
+`guards_local.py` reads `guards.yml` so it cannot fall behind on WHICH steps run. This run ran the
+Phase 16 list and pushed, and CI found in four minutes what the whole suite would have found
+before the push. The list is a summary of the suite and it was read as a substitute for it.
