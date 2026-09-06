@@ -1444,7 +1444,7 @@
      "fetched": "2026-08-26"
     }
    ],
-   "last_verified": "2026-09-05",
+   "last_verified": "2026-09-06",
    "confidence": "high",
    "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
    "history": [
@@ -1481,6 +1481,10 @@
     {
      "date": "2026-09-05",
      "note": "The Labor Department's notice still stands and the comment door has not shut. A reader can still file on the survey's AI questions."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The Labor Department's own notice still stands and the door on the survey's artificial intelligence questions has not shut. The published closing date has not moved and a reader can still file. The notice's own page would not open, so its wording was read from the agency's data service instead."
     }
    ]
   },
@@ -1607,7 +1611,7 @@
      "fetched": "2026-09-03"
     }
    ],
-   "last_verified": "2026-09-05",
+   "last_verified": "2026-09-06",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -1665,6 +1669,11 @@
     {
      "date": "2026-09-05",
      "note": "The commission's calendar is still published as a live feed and still runs past the end of next year. The open meeting dates on it have not moved.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The commission's own calendar feed still publishes its open meetings and still reaches past next year. Nothing on it has moved the schedule the item rests on.",
      "checked": true
     }
    ]
@@ -2936,7 +2945,7 @@
     }
    ],
    "id": "tx-2026-0036",
-   "last_verified": "2026-09-02",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-08-19",
@@ -2962,6 +2971,10 @@
     {
      "date": "2026-09-05",
      "note": "The county's end of its plate reader contract still stands on the San Antonio station's account. The newspaper carrying the sheriff's own words now sits behind a subscription wall, so what he said about the cost is unconfirmed."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The county's end of its plate reader contract still stands, and the San Antonio station's account of the vandalism that preceded it reads as it did. The Seguin paper carrying the sheriff's own words on cost is behind a subscription wall, so what he said there is unconfirmed."
     }
    ]
   },
@@ -3200,7 +3213,7 @@
     }
    ],
    "id": "tx-2026-0038",
-   "last_verified": "2026-09-03",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-08-19",
@@ -3230,6 +3243,10 @@
     {
      "date": "2026-09-03",
      "note": "Two claims were removed rather than re-stamped. They rested on a yahoo.com article page, which answers 200 at half a megabyte and serves nothing a quote can be read from. They carried an August 14th fetch date under an item stamped verified today. The board's own minutes carry neither the general manager's drinking water remark nor the minimum annual payment figure. Neither claim moved to a readable source and neither is published any more. The summary's closing sentence now says what the minutes say."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The board's own posted minutes were read again this run and still record the water supply agreement with RGV Property LLC for a supply of effluent water. The vote and the executive session that preceded it stand as written."
     }
    ]
   },
@@ -4084,7 +4101,7 @@
     }
    ],
    "id": "tx-2026-0046",
-   "last_verified": "2026-09-02",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-08-19",
@@ -4110,6 +4127,10 @@
     {
      "date": "2026-09-05",
      "note": "Carson County's phased abatement for the Fermi America development still stands. The station's account of the vote sits behind a wall that would not open, so the commissioners' own words are unconfirmed."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The station's account opened this run, after a run that found it walled, and it still carries the commissioners' approval of the phased abatement. Nothing in it has been corrected and the county has recorded no amendment."
     }
    ]
   },
@@ -9397,7 +9418,7 @@
     }
    ],
    "id": "tx-2026-0098",
-   "last_verified": "2026-09-03",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-08-26",
@@ -9414,6 +9435,11 @@
     {
      "date": "2026-09-03",
      "note": "The award is still active on the funding agency's own record, with its start date, its end date and its program unchanged. The university's own announcement refuses this project's clients outright, a browser user agent included. Three claims that rested on it now cite the award record, which carries the same substance and answers. One sentence has come out of the summary with them. The university's framing of responsible AI as complementing rather than replacing a researcher's judgment appears nowhere in the award record, so the record no longer prints it."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The award stands and the laboratory it pays for is still described as one a researcher can book from anywhere. Nothing in the award record has been withdrawn or amended.",
+     "checked": true
     }
    ]
   },
@@ -11834,11 +11860,16 @@
    "confidence": "high",
    "notes_for_editor": "The city's Legistar record shows MatterPassedDate as null and the status as agenda ready, so this item deliberately does not say the council adopted anything. A local broadcaster reported the item adopted as amended without objection. That is worth chasing to the approved minutes on a later run rather than publishing as a vote now.",
    "id": "tx-2026-0115",
-   "last_verified": "2026-09-03",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-09-03",
      "note": "Admitted. The resolution directing staff to begin land development code amendments for data center use is on the council's August 27th, 2026 agenda with file number 26-2329. The city's own legislative record still carries the item as agenda ready with no date of passage, so nothing here says the council has acted."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The resolution is still before the council and no vote has been recorded on it. What the land code says about data centers is unchanged while it waits.",
+     "checked": true
     }
    ]
   },
@@ -11918,7 +11949,7 @@
    "confidence": "high",
    "notes_for_editor": "Legistar histories returned an empty array for this city this run and the event action fields were null. This record carries the agenda and the date the city publishes and no vote, because none is published.",
    "id": "tx-2026-0116",
-   "last_verified": "2026-09-05",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-09-03",
@@ -11932,6 +11963,11 @@
     {
      "date": "2026-09-05",
      "note": "The Dallas committee still has the plate reader briefing on its calendar. It has not been heard.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The committee's briefing on the plate reader program is still set and has not come off the calendar. Nothing has been posted that would settle the program before it is heard.",
      "checked": true
     }
    ]
@@ -12000,7 +12036,7 @@
    "confidence": "high",
    "notes_for_editor": "Published as statewide on the same reading as the other federal comment windows in this record, which apply in Texas without naming a county. federalregister.gov HTML redirected this client to an unblock page, and govinfo served the identical document cleanly.",
    "id": "tx-2026-0118",
-   "last_verified": "2026-09-03",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-09-03",
@@ -12009,6 +12045,11 @@
     {
      "date": "2026-09-03",
      "note": "The summary asserted that Texas carries a large share of the data centers such a market would price. No claim here supports that. No national denominator was fetched either, so the sentence is gone. The ERCOT flag read false, which a reader saw as a plain 'No. It sits outside the ERCOT interconnection.' The notice is nationwide, concerns a derivatives market rather than a facility, and names no state. It is neither inside nor outside a Texas interconnection. The flag is unset, which suppresses the question rather than answering it wrongly."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The regulator's door is still open on derivatives written against compute, and the closing date has not moved off October 20th. A reader who wants to file still can.",
+     "checked": true
     }
    ]
   },
@@ -12092,11 +12133,16 @@
    "confidence": "high",
    "notes_for_editor": "The provost's page states the requirement and the required statement. It does not publish a count of how many courses chose each designation, and no such count was found, so the record makes no claim about the split.",
    "id": "tx-2026-0117",
-   "last_verified": "2026-09-03",
+   "last_verified": "2026-09-06",
    "history": [
     {
      "date": "2026-09-03",
      "note": "Admitted. The provost's office requires a course artificial intelligence policy in every syllabus every semester. The policy has to name AI permitted or prohibited or partially permitted. The university names it one of two new required statements for Fall 2026. That term's classes began August 24th, 2026."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The syllabus requirement stands as adopted and the university has published no exception to it. Every course is still expected to say where it lands.",
+     "checked": true
     }
    ]
   },
@@ -12256,11 +12302,16 @@
     {
      "date": "2026-09-03",
      "note": "Admitted. The System's shared AI machine is on the June 2026 TOP500 at number 66 with a measured 34.82 petaflops against a 51.16 peak. Its own documentation gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected in the coming weeks and starts with institutions that have finished technical integration."
+    },
+    {
+     "date": "2026-09-06",
+     "note": "The machine's placing on the world list stands and the System has published no correction to it. Nothing about the entry has been revised.",
+     "checked": true
     }
    ],
    "notes_for_editor": "Published statewide rather than by county, and the reason is on the page rather than in an inference. No source fetched names a county or a city for the West Campus Data Center. The TOP500 site field credits the Texas A&M University System, the chancellor describes the reach as 12 universities and eight state agencies, and that System spans the state, so statewide is what the sources support. A county would be a guess from a headquarters address. Two things this item deliberately does not say. It does not call VISION the fastest university supercomputer in the United States, because TOP500 publishes no university category and that framing belongs to the System rather than to the list. It does not report a dated Board of Regents vote, because none was found and the newsroom's assertion carries no meeting date or agenda item. The regents minutes are published only as PDFs and could not be text extracted this run, so a later run with a PDF extractor should go and get the item number. A vocabulary note for the next run. The three TOP500 claims are stored as primary_official because the docket's vocabulary has no slot for an authoritative third party dataset. claims_check.py carries a 'data' source type and docket_build.py does not, so the same claim needs two different words depending on which gate reads it. TOP500 is the primary publication of the benchmark result rather than a report about one, so primary_official is the honest fit among the three available.",
    "id": "tx-2026-0119",
-   "last_verified": "2026-09-03"
+   "last_verified": "2026-09-06"
   },
   {
    "title": "Homeland Security tested facial biometric capture on pedestrians walking out of the country at the Progreso International Bridge",

@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-05",
+    "generated": "2026-09-06",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -113,7 +113,10 @@
       "last_modified": null,
       "hash": "a1e7ff08b3bf152d3071123b0c2bbc7c6de39bda63505328551ac68bfa2331c1",
       "proven": [
-        "tx-2026-0098-c1"
+        "tx-2026-0098-c1",
+        "tx-2026-0098-c2",
+        "tx-2026-0098-c3",
+        "tx-2026-0098-c4"
       ]
     },
     "https://api.nsf.gov/services/v1/awards/2616828.json": {
@@ -297,6 +300,15 @@
         "tx-2026-0113-c1",
         "tx-2026-0113-c2",
         "tx-2026-0113-c3"
+      ]
+    },
+    "https://docs.vision.tamus.edu/": {
+      "etag": "\"6a9729bd-37d4\"",
+      "last_modified": "Tue, 01 Sep 2026 19:38:37 GMT",
+      "hash": "5e9bf1f0f30cb7a17e660d185192beab417dead7dee653d0b6fb5dd23d5f3b4f",
+      "proven": [
+        "tx-2026-0119-c10",
+        "tx-2026-0119-c9"
       ]
     },
     "https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf": {
@@ -587,6 +599,17 @@
         "tx-2026-0086-c5"
       ]
     },
+    "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/": {
+      "etag": null,
+      "last_modified": "Sun, 06 Sep 2026 06:09:18 GMT",
+      "hash": "d69c156a73367467cb95b36ee101a785d55d3e3fe3cf12b6c4b2f76d2e11d24f",
+      "proven": [
+        "tx-2026-0119-c4",
+        "tx-2026-0119-c5",
+        "tx-2026-0119-c6",
+        "tx-2026-0119-c7"
+      ]
+    },
     "https://news.utexas.edu/2026/02/19/ut-launches-new-school-of-computing-uniting-computer-and-data-science-statistics-information-disciplines/": {
       "etag": null,
       "last_modified": null,
@@ -656,6 +679,17 @@
         "tx-2026-0084-c2"
       ]
     },
+    "https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "385eaeb5296d585ee59078a4e0a5ac8cf19f4b161f158ee1588585459b5bee75",
+      "proven": [
+        "tx-2026-0117-c1",
+        "tx-2026-0117-c2",
+        "tx-2026-0117-c3",
+        "tx-2026-0117-c4"
+      ]
+    },
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
@@ -680,6 +714,14 @@
       "hash": "2999988cf15c7eca88db03103ba13b2f1678ac4e5995674df85da82689ad4a10",
       "proven": []
     },
+    "https://registrar.utexas.edu/calendars/26-27": {
+      "etag": "W/\"1788494238\"",
+      "last_modified": "Fri, 04 Sep 2026 03:57:18 GMT",
+      "hash": "383ea504b923846daa8d0e80c84663197eb190c3cc5affa6238f58dbb3cc166c",
+      "proven": [
+        "tx-2026-0117-c5"
+      ]
+    },
     "https://sanangelolive.com/news/county/2026-06-02/tom-green-county-commissioners-reject-data-center-moratorium": {
       "etag": null,
       "last_modified": null,
@@ -690,9 +732,9 @@
       ]
     },
     "https://seguingazette.com/news/sheriff-ends-county-s-flock-safety-contract/article_6747d32d-f659-4c2c-b14a-cac72fd18913.html": {
-      "etag": "W/09eba5ac5c8bab6c8a10c8b7eba959b5",
+      "etag": "W/1edad00a284658627200825f20e4601a",
       "last_modified": "Tue, 11 Aug 2026 21:09:28 GMT",
-      "hash": "2657a1962faf5f2e2d48f188af38f943e2958f62d84322b6a97b7f08ec2ec068",
+      "hash": "4445b6860f4c90c03d843967eb83ff359f234fe25a2b66bfa3ee383d250ca6fb",
       "proven": []
     },
     "https://senate.texas.gov/cmte.php?c=525": {
@@ -796,6 +838,50 @@
         "tx-2026-0032-c2",
         "tx-2026-0032-c3",
         "tx-2026-0032-c4"
+      ]
+    },
+    "https://top500.org/system/180452/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "63b9f6e3cd7fe557569d276f0e8a8923c8a1c01a60d1729b860f33f1398e89c7",
+      "proven": [
+        "tx-2026-0119-c1",
+        "tx-2026-0119-c2",
+        "tx-2026-0119-c3"
+      ]
+    },
+    "https://vision.tamus.edu/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "89b426ad34aa44f6ee63690be3f1d0dcc72dc5a9a9ac9ca815c72ef51046bcd9",
+      "proven": [
+        "tx-2026-0119-c11"
+      ]
+    },
+    "https://vision.tamus.edu/testing/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "d54175ed9e5c2395f7af453f17d9b385e73241ab4ad224c8939f89e33f0e61ac",
+      "proven": [
+        "tx-2026-0119-c12"
+      ]
+    },
+    "https://vision.tamus.edu/usecases/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "ca285212702bcb127cf42a8058b92c7d7076541d2416d97308b9c53b6d308d9c",
+      "proven": [
+        "tx-2026-0119-c13"
+      ]
+    },
+    "https://webapi.legistar.com/v1/austintexas/matters/28845": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "1e8fefe30b8b29adbb237a4706988c4bab834e34227511a6e9e1e0b65d281ff2",
+      "proven": [
+        "tx-2026-0115-c2",
+        "tx-2026-0115-c3",
+        "tx-2026-0115-c4"
       ]
     },
     "https://webapi.legistar.com/v1/brazoriacountytx/events/6219/eventitems?AgendaNote=1&MinutesNote=1&Attachments=0": {
@@ -1025,9 +1111,9 @@
       ]
     },
     "https://www.aect.net/southwest-power-pool-spp": {
-      "etag": "W/\"ea380630c93b01cae1fe4c26bb2911ab--gzip\"",
+      "etag": "W/\"ea380630c93b01cae1fe4c26bb2911ab\"",
       "last_modified": null,
-      "hash": "3c5722dde0bf19428a462e9d9a4f5bee0ce462801827c9f4a6484e39e40136d7",
+      "hash": "372c186346e3591946775873e2769c58c2a72d86af56e9c5d90f0f8cb06e5b5b",
       "proven": [
         "tx-2026-0046-c6",
         "tx-2026-0047-c7"
@@ -1060,13 +1146,14 @@
       ]
     },
     "https://www.austintexas.gov/council/2026/20260827-reg": {
-      "etag": "W/\"1788588676-gzip\"",
-      "last_modified": "Sat, 05 Sep 2026 06:11:16 GMT",
-      "hash": "b10684e61e2f3e8640959c657501dee303b8a1a895259db5df6647b7a3d927e7",
+      "etag": "W/\"1788674965-gzip\"",
+      "last_modified": "Sun, 06 Sep 2026 06:09:25 GMT",
+      "hash": "463049fda7e651fcc7665c330438bf9b06115c5e0c5850ef79931b2cb967dd7d",
       "proven": [
         "tx-2026-0106-c1",
         "tx-2026-0106-c2",
-        "tx-2026-0106-c3"
+        "tx-2026-0106-c3",
+        "tx-2026-0115-c1"
       ]
     },
     "https://www.blancogroundwatertx.gov/2026-04-16-district-meeting": {
@@ -1122,7 +1209,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-13928.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "ac00dc687ecc407990d5638b301d6d3eee667a961d9928970d7ebb5328dabfd8",
+      "hash": "100f5af37568670ee3b7bf50bc93620ffbfb66d591a9a55a62b30a62dc5f4561",
       "proven": [
         "tx-2026-0016-c2"
       ]
@@ -1139,7 +1226,7 @@
     "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions": {
       "etag": null,
       "last_modified": null,
-      "hash": "eb25b051145a2a37d443248350e2be6b8b0384e0073c2788197041b416fda9d2",
+      "hash": "26b6b71b3f5050db0509820b2f1a1764ebb4f9e2c47307d74774c829785d867c",
       "proven": []
     },
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
@@ -1147,6 +1234,16 @@
       "last_modified": null,
       "hash": "e2323060da952ad3456924dfad8b7e3da4c632313b61368edbfd33d6589cccea",
       "proven": []
+    },
+    "https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm": {
+      "etag": null,
+      "last_modified": "Fri, 21 Aug 2026 15:07:23 GMT",
+      "hash": "e76917128c82fec96260f671aaa3b7afc2c7292357d4f5ccc764184d26c5b461",
+      "proven": [
+        "tx-2026-0118-c1",
+        "tx-2026-0118-c2",
+        "tx-2026-0118-c3"
+      ]
     },
     "https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards": {
       "etag": null,
@@ -1188,6 +1285,12 @@
         "tx-2026-0101-c1",
         "tx-2026-0101-c2"
       ]
+    },
+    "https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf": {
+      "etag": "\"18d76-642b6fb197268\"",
+      "last_modified": "Mon, 03 Nov 2025 20:58:44 GMT",
+      "hash": "349b9c11ad3a20a46a63516e47d9442bdd9cb57bd286f30cd9f699c14ffb355f",
+      "proven": []
     },
     "https://www.kbtx.com/2026/08/18/brazos-county-commissioners-approve-new-owner-rellis-data-center-heres-what-it-means-your-wallet/": {
       "etag": "W/\"2ad4f-VN9+KDYv5UnoFNg0PX346zT5vzM\"",
@@ -1247,9 +1350,9 @@
       ]
     },
     "https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/": {
-      "etag": "W/\"5718d-aI8EjGX3RYsQK19d68XxJXilLTY\"",
-      "last_modified": "Sat, 05 Sep 2026 06:11:35 GMT",
-      "hash": "fb33db61d8d2e5dae9fbd0386141e57c449b841e451dd46ced61bbb9a447ea86",
+      "etag": "W/\"57021-wsZUX/nsbjPBojAz/g99xpMJRiM\"",
+      "last_modified": "Sun, 06 Sep 2026 06:09:28 GMT",
+      "hash": "3ee8cda678fc3ec132c5a4d5a82c9e3046b15878283b7b8df2d7c192353a7dfc",
       "proven": [
         "tx-2026-0036-c4"
       ]
@@ -1286,9 +1389,9 @@
       ]
     },
     "https://www.newschannel10.com/2025/10/28/carson-county-approves-tax-abatement-fermi-america-development/": {
-      "etag": "W/\"2e154-K6K0vIfbw+WlhK1Q7/hoj1cXs4E\"",
-      "last_modified": "Sat, 05 Sep 2026 06:11:40 GMT",
-      "hash": "b3e14c6e5d88f53b5360c3c9e162b597ebef41b371051591c80c015cb6a9cba1",
+      "etag": "W/\"2d904-51sy4ko7duHdfMhmdey9nwmBOt0\"",
+      "last_modified": "Sun, 06 Sep 2026 06:09:30 GMT",
+      "hash": "d4b6d31f76b087c52ae6312871f90991ed55a31733c5b1941aaf6ddf1440a574",
       "proven": [
         "tx-2026-0046-c2",
         "tx-2026-0046-c3",
@@ -1381,6 +1484,14 @@
       "hash": "ae238947392b0713daeb9b94e0641974e3f3c07f8352239100df394c851163c0",
       "proven": [
         "tx-2026-0061-c3"
+      ]
+    },
+    "https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "5a80c59fb5eba2d56b7c9e677458c9032fdd5927ad987a661e299aeacd0eb265",
+      "proven": [
+        "tx-2026-0119-c8"
       ]
     },
     "https://www.taylortx.gov/m/newsflash/Home/Detail/2066": {
