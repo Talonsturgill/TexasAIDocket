@@ -11,8 +11,13 @@
   h1{position:absolute;top:142px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
     font-weight:800;font-size:78px;line-height:1.05;color:#F0E2BC;letter-spacing:-.022em}
   .req{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
-    letter-spacing:.03em;color:#EFE2C0;white-space:nowrap;
+    letter-spacing:.03em;color:#EFE2C0;
     text-shadow:0 2px 8px rgba(10,8,6,.95)}
+  /* c5 carries a carve out for a virtual school and the frame used to truncate it away, in a
+     deck whose own c22 counts 'virtual and in-person campuses'. It is the half that matters, so
+     this one requirement wraps rather than being cut to fit one line. */
+  .req.nowrap{white-space:nowrap}
+  .req.multi{white-space:normal;width:820px;line-height:1.30;font-size:24px}
   .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
     gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
     letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
@@ -24,10 +29,10 @@
   <div class="mast">TEXAS AI DOCKET</div>
   <h1>The other route has four latches.</h1>
 
-  <div class="req" style="top:398px;left:132px">Be accredited</div>
-  <div class="req" style="top:590px;left:132px">Be a proven operator</div>
-  <div class="req" style="top:782px;left:132px">Administer a nationally norm-referenced assessment.</div>
-  <div class="req" style="top:974px;left:132px">Be located in Texas</div>
+  <div class="req nowrap" style="top:398px;left:132px">Be accredited</div>
+  <div class="req nowrap" style="top:590px;left:132px">Be a proven operator</div>
+  <div class="req nowrap" style="top:782px;left:132px">Administer a nationally norm-referenced assessment.</div>
+  <div class="req multi" style="top:978px;left:132px">Be located in Texas or, for a virtual school, have an office in Texas.</div>
 
   <div class="foot"><span>PROGRAM PAGE</span><span>c2 c3 c4 c5</span><span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
 </div>
@@ -81,7 +86,9 @@ window.renderReady = (async () => {
       g.fillStyle='rgba(250,238,206,'+(0.05+R()*0.05)+')'; g.fillRect(0,sy,W,1);
       g.fillStyle='rgba(10,7,4,'+(0.10+R()*0.08)+')'; g.fillRect(0,sy+1,W,2);
     }
-    const ties=[[142,1146],[338,1188],[540,1150],[742,1192],[886,1148],[240,1244],[644,1250]];
+    // every one of these sits ABOVE the footer reserve at y 1216, because two of them used to sit
+    // under it and a frame that draws seven ties and shows five has not drawn seven ties
+    const ties=[[142,1146],[338,1188],[540,1150],[742,1192],[886,1148],[240,1090],[644,1096]];
     // A TIE HOLE IS A RECESS AND A RECESS NEVER CASTS OUTSIDE ITSELF. This drew a lit lip on the
     // sun side rim and an ellipse on the concrete beside it, which is a STUD, and a judge read
     // both this frame's and frame 6's as beads. Drawn from the inside out: the rim's own shadow
@@ -101,9 +108,11 @@ window.renderReady = (async () => {
       g.strokeStyle='rgba(8,6,3,0.55)'; g.lineWidth=2.0;
       g.beginPath(); g.arc(tx,ty,r+1, Math.PI*1.10, Math.PI*2.30); g.stroke();
     }
-    // the scale bar with ticks along the jamb's outer arris
-    g.fillStyle='rgba(214,196,152,0.55)'; g.fillRect(88,1300,392,2);
-    for(let i=0;i<=8;i++){ g.fillRect(88+i*49, 1294, 2, 8); }
+    // NO SCALE BAR. One was drawn here at y 1300 and then buried under the footer's own reserve,
+    // so the acceptance item asking for it was true of the code and false of the render for four
+    // rounds. It is dropped rather than moved, for the reason frame 2's was: a graphic scale
+    // means nothing without figures on it, and a figure on it would be a numeral this deck
+    // computed nothing for.
   })();
 
 

@@ -34,9 +34,9 @@
   <div class="mast">TEXAS AI DOCKET</div>
   <h1>Ask which door.</h1>
   <div class="towns">Austin<br>Brownsville<br>Highland Park<br>Plano<br>Fort Worth<br>Carrollton<br>Houston<br>The Woodlands<br>Southlake<br>Lake Travis</div>
-  <div class="more">a partial list. ProPublica and The Texas Tribune count "more than 30 virtual and in-person campuses"</div>
+  <div class="more">partial list of towns. ProPublica and The Texas Tribune count "more than 30 virtual and in-person campuses"</div>
   <div class="fscrim" data-decorative></div>
-  <p class="dek">The four requirements are published. Ask a school which one covers the teaching.</p>
+  <p class="dek">Four requirements are published. Ask a school which one covers the teaching.</p>
   <div class="addr">educationfreedom.texas.gov/schools</div>
   <div class="foot"><span>ALPHA SCHOOL</span><span>c25 c22 c2 c5</span><span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
 </div>
@@ -106,6 +106,33 @@ window.renderReady = (async () => {
       }
       g.globalAlpha=1;
     })();
+    // THE WALK ITSELF, BELOW THE HORIZON. The lower half of this aperture is the frame the deck
+    // ends on and it was 800 by 320 px of flat cream. Concrete in full September sun still has
+    // aggregate in it, and a graded wash is a promise of light rather than of material. The
+    // marks coarsen toward the reader and every lit one casts down and left on the deck's one sun.
+    (function walkGrain(){
+      const y0=OP.y+520, y1=OP.y+OP.h;
+      for (let i=0;i<34000;i++){
+        const x=OP.x+R()*OP.w, y=y0+R()*(y1-y0);
+        const d=(y-y0)/(y1-y0);
+        const r=0.5+R()*(1.1+d*2.4);
+        const lit=R()<0.40;
+        g.globalAlpha=(0.05+R()*0.11)*(0.45+d*0.75);
+        g.fillStyle= lit ? '#FBF3DC' : '#6E6146';
+        g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill();
+        if (lit){
+          g.globalAlpha*=0.7; g.fillStyle='#6E6146';
+          g.beginPath(); g.arc(x-r*0.9, y+r*0.6, r*0.85, 0, Math.PI*2); g.fill();
+        }
+      }
+      g.globalAlpha=1;
+      // the walk's own control joints, running to the horizon and closing with depth
+      for (const [jy,al] of [[y0+58,0.16],[y0+132,0.20],[y0+232,0.24]]){
+        g.fillStyle='rgba(252,244,222,'+al+')'; g.fillRect(OP.x,jy,OP.w,2);
+        g.fillStyle='rgba(78,66,44,'+(al*1.1)+')'; g.fillRect(OP.x,jy+2,OP.w,3);
+      }
+    })();
+
     // the far horizon haze
     const hz=g.createLinearGradient(0,OP.y+430,0,OP.y+520);
     hz.addColorStop(0,'rgba(250,242,222,0)'); hz.addColorStop(0.5,'rgba(250,242,222,0.46)');
@@ -146,9 +173,14 @@ window.renderReady = (async () => {
     const bounce=g.createRadialGradient(OP.x+OP.w/2,OP.y,20,OP.x+OP.w/2,OP.y,520);
     bounce.addColorStop(0,'rgba(226,206,164,0.30)'); bounce.addColorStop(1,'rgba(226,206,164,0)');
     g.fillStyle=bounce; g.fillRect(0,0,W,OP.y);
+    // the joints stop short of the hook's own column. A board seam running through a glyph band
+    // is a strikethrough at feed width, whatever it is in the drawing, and this one landed on
+    // 'Ask which door.' at y 181. The hook is set hard right, so the joints run to x 402 there.
     for (let jy=54; jy<OP.y; jy+=62){
-      g.fillStyle='rgba(250,238,208,0.10)'; g.fillRect(0,jy,W,2);
-      g.fillStyle='rgba(4,3,2,0.55)';       g.fillRect(0,jy+2,W,4);
+      const inHook = (jy > 132 && jy < 300);
+      const w = inHook ? 402 : W;
+      g.fillStyle='rgba(250,238,208,0.10)'; g.fillRect(0,jy,w,2);
+      g.fillStyle='rgba(4,3,2,0.55)';       g.fillRect(0,jy+2,w,4);
     }
     // the arris where the head meets the reveal, lit by the walk beyond
     g.fillStyle='rgba(246,232,198,0.34)'; g.fillRect(OP.x-16,OP.y-3,OP.w+32,3);

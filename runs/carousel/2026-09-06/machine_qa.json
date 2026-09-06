@@ -20,10 +20,10 @@
       "warns": [],
       "bands": [
         0.1849,
-        0.2626,
-        0.6103
+        0.3004,
+        0.614
       ],
-      "band_ratio": 1.6752
+      "band_ratio": 1.6257
     },
     {
       "file": "slide-03.html",
@@ -31,10 +31,10 @@
       "warns": [],
       "bands": [
         0.8739,
-        0.7332,
-        0.7298
+        0.7143,
+        0.7261
       ],
-      "band_ratio": 0.9395
+      "band_ratio": 0.9437
     },
     {
       "file": "slide-04.html",
@@ -43,9 +43,9 @@
       "bands": [
         0.1408,
         0.1513,
-        0.4283
+        0.3952
       ],
-      "band_ratio": 1.7224,
+      "band_ratio": 1.6702,
       "encodings": [
         "'the mortise floors are cuts and the jamb face around them is not': dE 29.8, AUC 0.99, visible 100%/100%, seen 4800/2400px at 432w"
       ]
@@ -57,9 +57,9 @@
       "bands": [
         0.4643,
         0.9496,
-        0.6415
+        0.6967
       ],
-      "band_ratio": 0.9391
+      "band_ratio": 0.9907
     },
     {
       "file": "slide-06.html",
@@ -69,12 +69,12 @@
       ],
       "bands": [
         0.4475,
-        0.4727,
-        0.5551
+        0.3887,
+        0.557
       ],
-      "band_ratio": 1.1223,
+      "band_ratio": 1.1887,
       "encodings": [
-        "'the run of cuts stops and the jamb below it is unbroken': dE 28.0, AUC 0.77, visible 100%/100%, seen 25600/25600px at 432w"
+        "'the run of cuts stops and the jamb below it is unbroken': dE 26.8, AUC 0.86, visible 100%/100%, seen 25600/25600px at 432w"
       ]
     },
     {
@@ -110,11 +110,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.6239,
-        0.4097,
-        0.4412
+        0.6429,
+        0.4034,
+        0.579
       ],
-      "band_ratio": 0.9016
+      "band_ratio": 1.0655
     }
   ],
   "fails": 0,

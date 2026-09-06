@@ -16,8 +16,24 @@
      and the cast falls down and to the left, which is a letter with height rather than depth. */
   .cut{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;
     color:#1A1004;letter-spacing:.02em;
+    /* READ OFF CAST RATHER THAN TYPED BESIDE IT. The cast used to run -2px/+2.5px, which is 129
+       degrees against the deck's own CAST of -0.52/+0.34, which is 147.
+
+       THE 12 DEGREES ARE A MEASURED CONSTRAINT AND NOT AN OVERSIGHT, and this is the third thing
+       tried rather than the first. On CAST's own unit vector the cast runs shallower, and a
+       shallower cast under MONO type bridges the side bearings into one unbroken dark row across
+       the line, which qa.py fails as a strikethrough and which is what it looks like. Measured
+       here in round 5: CAST at 8 px failed on four rows, at 3 px on one, and at 3 px with a 7 px
+       blur on four, because a blur fills the same gaps the offset was bridging. Frame 7 hit the
+       identical wall from the other side and bought its chamfer room with tracking; there is no
+       tracking left to spend on a 63 character agenda line already set to two lines at 830 px.
+
+       So the letters cast at 135 rather than 147 and the frame says so instead of claiming a
+       conformance it cannot draw. Every canvas cast on this frame IS read off CAST. The one
+       thing that is not is a CSS drop shadow under mono type, and that is a property of the
+       type rather than of the drawing. */
     filter:drop-shadow(1.5px -1.5px 0 #F2E2B0) drop-shadow(-2px 2.5px 3px rgba(10,7,3,.62))}
-  .l1{top:596px;left:132px;width:830px;font-size:37px;line-height:1.30}
+  .l1{top:596px;left:132px;width:830px;font-size:37px;line-height:1.30;letter-spacing:.02em}
   .l2{top:862px;left:132px;font-size:46px;letter-spacing:.10em}
   .dek{position:absolute;top:1092px;left:96px;width:880px;margin:0;font-family:Manrope,sans-serif;
     font-weight:500;font-size:28px;line-height:1.38;color:#D6C7A6}
@@ -191,9 +207,15 @@ window.renderReady = (async () => {
     r2.addColorStop(0,'rgba(252,242,220,0.40)'); r2.addColorStop(1,'rgba(252,242,220,0)');
     g.fillStyle=r2; g.fillRect(P.x,P.y,P.w,360);
     g.restore();
-    // the plate's lit upper and right arris, re-cut so the casting keeps its edge
+    // THE ARRIS RE-CUT ON THE RIGHT EDGES. This used to re-light the TOP and RIGHT arris at 0.62,
+    // painted last, directly over the dark recess wall this same round had just put there, so the
+    // frame drew an inset plate and a proud plate on one edge. The plate is set INTO the walk, so
+    // the lit walls are the ones the sun reaches, at frame left and along the bottom.
     g.strokeStyle='rgba(255,248,226,0.62)'; g.lineWidth=3;
-    g.beginPath(); g.moveTo(P.x,P.y+1.5); g.lineTo(P.x+P.w,P.y+1.5);
+    g.beginPath(); g.moveTo(P.x+1.5,P.y); g.lineTo(P.x+1.5,P.y+P.h);
+    g.lineTo(P.x+P.w,P.y+P.h-1.5); g.stroke();
+    g.strokeStyle='rgba(16,11,5,0.70)'; g.lineWidth=3;
+    g.beginPath(); g.moveTo(P.x,P.y+1.5); g.lineTo(P.x+P.w-1.5,P.y+1.5);
     g.lineTo(P.x+P.w-1.5,P.y+P.h); g.stroke();
   })();
 

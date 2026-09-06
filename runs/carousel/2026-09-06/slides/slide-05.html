@@ -6,8 +6,12 @@
   .wrap{position:absolute;inset:0;width:1080px;height:1350px}
   .tscrim{position:absolute;left:0;top:0;width:1080px;height:280px;
     background:linear-gradient(to bottom,rgba(26,23,20,.95) 0%,rgba(26,23,20,.60) 60%,rgba(26,23,20,0) 100%)}
+  /* THE SCRIM CAME DOWN so the slab under it can be seen. A canvas reserve can have its material
+     re-laid on top of it and a DOM scrim cannot, because the DOM sits above the canvas, so a .97
+     scrim makes the bottom third a flat band whatever the canvas draws underneath. The reserve
+     below does the contrast work and the scrim only softens the transition. */
   .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:330px;
-    background:linear-gradient(to bottom,rgba(26,23,20,0) 0%,rgba(26,23,20,.66) 42%,rgba(26,23,20,.97) 100%)}
+    background:linear-gradient(to bottom,rgba(26,23,20,0) 0%,rgba(26,23,20,.30) 42%,rgba(26,23,20,.52) 100%)}
   .mast{position:absolute;top:86px;left:80px;font-family:"JetBrains Mono",monospace;
     font-weight:500;font-size:26px;letter-spacing:.16em;color:#A79878}
   h1{position:absolute;top:142px;left:80px;width:880px;margin:0;font-family:Fraunces,serif;
@@ -35,7 +39,7 @@
   <div class="figlab">PER CHILD, THE 2026-27 SCHOOL YEAR</div>
   <div class="fscrim" data-decorative></div>
   <p class="q">"Applications are accepted on a rolling basis."</p>
-  <p class="dek">The application period for private schools opened December 9th, 2025.</p>
+  <p class="dek">Texas Education Freedom Accounts opened its application period for private schools on December 9th, 2025.</p>
   <div class="foot"><span>THE PROGRAM PAGE</span><span>c6 c7 c8</span><span class="tx-site">texasaidocket.com</span><span>05 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -230,7 +234,7 @@ window.renderReady = (async () => {
     g.restore();
   }
 
-  reserve(0, 1074, W, 280, '#1A1714', 'EA');
+  reserve(0, 1074, W, 280, '#1A1714', 'DE');
   reserveSoft(768, 320, 400, 190, '#17130F', 'F2');
 
   // THE MATERIAL, RE-LAID OVER BOTH. A round 2 judge measured the bottom third's aggregate and
@@ -243,11 +247,12 @@ window.renderReady = (async () => {
     const cast=g.createLinearGradient(0,1078,0,1192);
     cast.addColorStop(0,'rgba(10,8,5,0.30)'); cast.addColorStop(1,'rgba(10,8,5,0)');
     g.fillStyle=cast; g.fillRect(0,1078,W,114);
-    for(let i=0;i<9000;i++){
+    for(let i=0;i<26000;i++){
       const x=R()*W, y=1080+R()*(H-1080);
-      g.globalAlpha=0.035+R()*0.075;
+      const d=(y-1080)/(H-1080);
+      g.globalAlpha=0.050+R()*(0.075+d*0.075);
       g.fillStyle= R()<0.36 ? '#C4B393' : '#231E18';
-      g.fillRect(x,y,1+R()*2.0,1+R()*1.4);
+      g.fillRect(x,y,1+R()*(1.6+d*1.4),1+R()*1.4);
     }
     g.globalAlpha=1;
   })();

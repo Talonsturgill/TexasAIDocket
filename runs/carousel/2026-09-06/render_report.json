@@ -244,7 +244,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 7839,
+      "render_ms": 7626,
       "ok": true,
       "canvases": [
         {
@@ -463,7 +463,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2464,
+      "render_ms": 2390,
       "ok": true,
       "canvases": [
         {
@@ -476,8 +476,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 67,
-          "variance": 1230.8
+          "mean": 66.7,
+          "variance": 1216.5
         }
       ],
       "breather": false,
@@ -721,7 +721,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2929,
+      "render_ms": 2821,
       "ok": true,
       "canvases": [
         {
@@ -866,11 +866,11 @@
           "anc": []
         },
         {
-          "text": "Be located in Texas",
+          "text": "Be located in Texas or, for a virtual school, have an office in Texas.",
           "x": 132,
-          "y": 974,
-          "w": 287,
-          "h": 31,
+          "y": 978,
+          "w": 820,
+          "h": 62,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
@@ -880,8 +880,14 @@
           "lines": [
             [
               132,
-              974,
-              287,
+              978,
+              801,
+              31
+            ],
+            [
+              132,
+              1009,
+              242,
               31
             ]
           ],
@@ -1018,7 +1024,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1758,
+      "render_ms": 1734,
       "ok": true,
       "canvases": [
         {
@@ -1031,7 +1037,7 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 35,
+          "mean": 34.9,
           "variance": 351.7
         }
       ],
@@ -1157,11 +1163,11 @@
           "anc": []
         },
         {
-          "text": "The application period for private schools opened December 9th, 2025.",
+          "text": "Texas Education Freedom Accounts opened its application period for private schools on December 9th, 2025.",
           "x": 80,
-          "y": 1179,
+          "y": 1144,
           "w": 860,
-          "h": 35,
+          "h": 70,
           "font_px": 26,
           "weight": "500",
           "family": "Manrope",
@@ -1171,8 +1177,14 @@
           "lines": [
             [
               80,
+              1143,
+              832,
+              36
+            ],
+            [
+              80,
               1178,
-              859,
+              481,
               36
             ]
           ],
@@ -1297,7 +1309,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2971,
+      "render_ms": 3003,
       "ok": true,
       "canvases": [
         {
@@ -1310,8 +1322,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 66.6,
-          "variance": 2733.6
+          "mean": 67,
+          "variance": 2704.7
         }
       ],
       "breather": false,
@@ -1343,94 +1355,6 @@
               86,
               296,
               35
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "Be accredited",
-          "x": 222,
-          "y": 482,
-          "w": 193,
-          "h": 31,
-          "font_px": 24,
-          "weight": "600",
-          "family": "JetBrains Mono",
-          "color": "rgb(36, 29, 19)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              222,
-              482,
-              193,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "Be a proven operator",
-          "x": 222,
-          "y": 592,
-          "w": 298,
-          "h": 31,
-          "font_px": 24,
-          "weight": "600",
-          "family": "JetBrains Mono",
-          "color": "rgb(36, 29, 19)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              222,
-              592,
-              298,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "Administer a nationally norm-referenced assessment.",
-          "x": 222,
-          "y": 702,
-          "w": 759,
-          "h": 31,
-          "font_px": 24,
-          "weight": "600",
-          "family": "JetBrains Mono",
-          "color": "rgb(36, 29, 19)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              222,
-              702,
-              759,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "Be located in Texas",
-          "x": 222,
-          "y": 812,
-          "w": 283,
-          "h": 31,
-          "font_px": 24,
-          "weight": "600",
-          "family": "JetBrains Mono",
-          "color": "rgb(36, 29, 19)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              222,
-              812,
-              283,
-              31
             ]
           ],
           "anc": []
@@ -1604,7 +1528,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1616,
+      "render_ms": 1483,
       "ok": true,
       "canvases": [
         {
@@ -1617,8 +1541,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 161.6,
-          "variance": 5370.3
+          "mean": 158.3,
+          "variance": 5142.5
         }
       ],
       "breather": false,
@@ -1851,7 +1775,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2481,
+      "render_ms": 2281,
       "ok": true,
       "canvases": [
         {
@@ -2164,7 +2088,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1295,
+      "render_ms": 1300,
       "ok": true,
       "canvases": [
         {
@@ -2313,7 +2237,7 @@
           "anc": []
         },
         {
-          "text": "a partial list. ProPublica and The Texas Tribune count \"more than 30 virtual and in-person campuses\"",
+          "text": "partial list of towns. ProPublica and The Texas Tribune count \"more than 30 virtual and in-person campuses\"",
           "x": 322,
           "y": 876,
           "w": 474,
@@ -2328,32 +2252,32 @@
             [
               322,
               877,
-              446,
+              327,
               31
             ],
             [
               322,
               911,
-              432,
+              357,
               31
             ],
             [
               322,
               944,
-              432,
+              402,
               31
             ],
             [
               322,
               978,
-              134,
+              461,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "The four requirements are published. Ask a school which one covers the teaching.",
+          "text": "Four requirements are published. Ask a school which one covers the teaching.",
           "x": 80,
           "y": 1078,
           "w": 880,
@@ -2368,13 +2292,13 @@
             [
               80,
               1076,
-              781,
+              820,
               45
             ],
             [
               80,
               1119,
-              488,
+              387,
               45
             ]
           ],
@@ -2510,7 +2434,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2239,
+      "render_ms": 2618,
       "ok": true,
       "canvases": [
         {
@@ -2523,8 +2447,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 70.6,
-          "variance": 5484
+          "mean": 69.6,
+          "variance": 5318.1
         }
       ],
       "breather": false,

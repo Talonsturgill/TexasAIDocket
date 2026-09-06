@@ -95,15 +95,23 @@ window.renderReady = (async () => {
   }
 
   // ---- the chairs, BEHIND the rail, each one meeting the floor at a contact shadow ----------
+  // THE CHAIRS STAND FURTHER BACK IN THE ROOM THAN THEY DID, and the reason is an ordering bug
+  // rather than a composition preference. Their feet were at FLOOR_Y, which is 862, and the rail
+  // cap covers 840 to 866 and the gate leaf covers 862 to 1030, so all five contact shadows were
+  // painted and then buried. Four rounds satisfied the acceptance item 'every chair leg meets the
+  // floor at a contact shadow' by reading the code. A shadow nobody can see is not a shadow, so
+  // the chairs sit on a floor line at 812, half a chair height back, where their contacts fall on
+  // the lit pool ABOVE the rail cap and a reader can check the claim.
+  const SEAT_FLOOR = 812;
   (function chairs(){
-    const seats=[[128,224],[338,238],[556,230],[774,220],[958,234]];
+    const seats=[[128,196],[338,208],[556,202],[774,194],[958,206]];
     for (const [cx,ch] of seats){
-      const bw=142, by=FLOOR_Y-ch;
+      const bw=142, by=SEAT_FLOOR-ch;
       bar(cx, by, bw, ch*0.42, '#6E6558', '#211D19', '#3F3A33');   // the back
       // two legs, each with its own contact
       bar(cx+16, by+ch*0.42, 12, ch*0.58, '#5E564B', '#1B1815', '#37322C');
       bar(cx+bw-28, by+ch*0.42, 12, ch*0.58, '#5E564B', '#1B1815', '#37322C');
-      contact(cx+10, FLOOR_Y-6, bw+10, 0.95);
+      contact(cx+10, SEAT_FLOOR-4, bw+10, 0.95);
     }
   })();
 

@@ -96,7 +96,7 @@ measurement rather than from this plan.
 | frame | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|
 | planned L* | 34 | 22 | 18 | 26 | 30 | **74** | 20 | 28 | 44 |
-| MEASURED L* | 21.8 | 21.4 | 26.1 | 9.5 | 26.0 | **85.4** | 16.8 | 6.6 | 13.7 |
+| MEASURED L* | 21.8 | 21.0 | 26.1 | 9.5 | 27.0 | **82.5** | 16.8 | 6.6 | 13.7 |
 
 **The measured row is the one that counts and it is written from the renders**, at 270 by 338,
 the grid every prior run used, and it is REWRITTEN after every render pass rather than after the
@@ -109,15 +109,17 @@ room behind the wall went properly unlit and its speck field stopped filling the
 with white. Frame 5 rose to 26.0 as the isolux bands were terraced and the figure's plate became a
 soft reserve with no edges. Frame 7 rose to 16.8 as the soffit's near end took its own light
 instead of sitting under an opaque slot. Frame 9 rose to 13.7 as the black bar came off its focal
-and the head above the camera stopped being a flat rectangle. Frame 6 fell 0.7 to 85.4, which is
-the one number here worth stating plainly: its declared focal was a 98 percent cream scrim painted
-over the concrete, and putting the concrete back on top cost the frame less than a point of
-lightness and gave it the material the acceptance list had asked for since round 1.
+and the head above the camera stopped being a flat rectangle. Frame 6 fell from 86.1 to 82.5 across rounds 4 and 5, which is
+the one number here worth stating plainly. Its declared focal, the lightest area in the whole
+deck, was a 98 percent cream scrim painted OVER the concrete that had just been re-laid for it,
+and in round 5 it also carried four label bars printing strings frame 4 already prints. Putting
+the concrete back on top and taking the labels off cost the frame 3.6 L and gave it the material
+the acceptance list had asked for since round 1. The inversion is still larger than planned.
 
 Three frames came out darker than planned and the reason is the same on all three. Frame 4's
 jamb, frame 8's poché and frame 9's reveal are each mostly one dark material with a small lit
 subject in them, and a MEDIAN reads the material rather than the subject. The inversion is
-larger than planned rather than smaller, 85.4 against 74, so the one thing the arc had to
+larger than planned rather than smaller, 82.5 against 74, so the one thing the arc had to
 deliver is delivered. **The close is the frame this row argues with**: it was planned at 44 and
 measures 13.7, because the reveal the camera stands in fills most of it and only the opening is
 lit. That is the frame it draws and the number is recorded rather than the plan being defended.
@@ -344,9 +346,12 @@ composition:
     by a falloff from the one sun. The middle third carries the second and third mortises, each
     drawn with a lit lip, a shadowed side wall and a floor. The bottom third carries the fourth
     mortise, the jamb continuing below it as raked board formed texture with its tie holes each
-    casting, and a scale bar with ticks laid along the jamb's outer arris.
+    casting. NO SCALE BAR. One was drawn here and then buried under the footer's own reserve, so
+    for four rounds this list was true of the code and false of the render. It is dropped rather
+    than moved, for the reason frame 2's was: a graphic scale means nothing without figures on it
+    and a figure on it would be a numeral this deck computed nothing for.
   focal: >
-    The floor of the fourth mortise, about 200 by 90 px, which is the darkest area in the frame
+    The floor of the fourth mortise, about 856 by 118 px, which is the darkest area in the frame
     and darker than the deck's ambient shade because it is a cut rather than a shadow.
 art:
   technique: Wind worked carve, TXCARVE.surface, macro on one jamb face
@@ -367,9 +372,10 @@ art:
 acceptance:
   - "there are exactly four mortises and the count matches computed.json requirements.count"
   - "each mortise shows a lit lip, a shadowed side wall and a floor, and none is a flat rectangle"
-  - "each mortise carries one requirement fragment in JetBrains Mono at 26 px or larger"
+  - "each mortise carries one requirement in JetBrains Mono at 24 px, the deck's mobile floor and what every other frame's mono is set at"
+  - "the fourth requirement is printed WHOLE, including c5's carve out for a virtual school, because that is the half that matters in a deck whose own c22 counts virtual campuses"
   - the four fragments read "Be accredited", "Be a proven operator", "Administer a nationally norm-referenced assessment." and "Be located in Texas"
-  - "the bottom third carries raked board formed texture with at least six tie holes each casting, plus the scale bar ticks, and is not a flat face"
+  - "the bottom third carries raked board formed texture with at least six tie holes, every one of them ABOVE the footer reserve so a reader sees every one the frame draws, and is not a flat face"
 risks:
   - "four mortises at 432 px could read as four slots in a rack rather than as cuts in a jamb, which the lit lip is what prevents"
   - "the fifth mortise belongs on frame 6 and must not be hinted at here, or the turn is spent early"
@@ -386,7 +392,7 @@ numerals:
   - value_from: c7
 type:
   hook: "This door never closes."
-  dek: "The application period for private schools opened December 9th, 2025."
+  dek: "Texas Education Freedom Accounts opened its application period for private schools on December 9th, 2025."
 verbatim:
   - c6: "Applications are accepted on a rolling basis."
 composition:
@@ -465,6 +471,12 @@ composition:
   focal: >
     The unbroken sunlit jamb below the last mortise, about 520 by 400 px, the lightest area in
     the whole deck.
+  no_labels: >
+    THIS FRAME PRINTS NO REQUIREMENT STRINGS AND THAT IS THE POINT. Frame 4 gives the four in the
+    program's own words. Here they are four cuts and nothing else, because the argument is that
+    the run STOPS, and a run of four captioned rows reads as the same list twice rather than as a
+    thing ending. Four rounds shipped the strings on both frames, this dossier declared verbatim
+    and labels as empty the whole time, and three judges read the pair as one composition.
 art:
   technique: Norther front, a hard horizontal value break with a soft gradient beneath, over full bleed carved board form
   why_this_technique: >
@@ -640,7 +652,7 @@ claims: [c25, c22, c2, c5]
 numerals: []
 type:
   hook: "Ask which door."
-  dek: "The four requirements are published. Ask a school which one covers the teaching."
+  dek: "Four requirements are published. Ask a school which one covers the teaching."
 verbatim:
   - c22: "more than 30 virtual and in-person campuses"
 composition:
@@ -692,7 +704,8 @@ art:
 acceptance:
   - "the heat shimmer is applied to the field only and no glyph anywhere in the frame is warped"
   - "the shimmer amplitude stays under 6 px, asserted by the frame's own script"
-  - the town column is answered by the line a partial list. ProPublica and The Texas Tribune count "more than 30 virtual and in-person campuses"
+  - the town column is answered by the line partial list of towns. ProPublica and The Texas Tribune count "more than 30 virtual and in-person campuses"
+  - "that line names the CATEGORY of the list, because ten towns answered by thirty campuses is two categories the sources never join and a reader is owed the difference"
   - that line is set in dark ink on the daylight and carries no scrim, plate or bar of any kind behind it
   - no numeral appears beside the town names themselves, and the only figure on the frame is the one the reporting printed, named to the reporting on the face of the frame
   - the hook reads exactly "Ask which door." and the dek names the four requirements without printing a count

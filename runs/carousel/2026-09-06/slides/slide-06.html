@@ -13,8 +13,6 @@
     text-align:right}
   .dek{position:absolute;top:1152px;right:80px;width:660px;margin:0;font-family:Manrope,sans-serif;
     font-weight:600;font-size:33px;line-height:1.30;color:#3B3225;text-align:right}
-  .m{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:600;font-size:24px;
-    letter-spacing:.02em;color:#241D13;white-space:nowrap}
   .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
     gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
     letter-spacing:.05em;color:#6B6353;font-variant-numeric:tabular-nums}
@@ -23,10 +21,12 @@
 <canvas id="art"></canvas>
 <div class="wrap">
   <div class="mast">TEXAS AI DOCKET</div>
-  <div class="m" style="top:482px;left:222px">Be accredited</div>
-  <div class="m" style="top:592px;left:222px">Be a proven operator</div>
-  <div class="m" style="top:702px;left:222px">Administer a nationally norm-referenced assessment.</div>
-  <div class="m" style="top:812px;left:222px">Be located in Texas</div>
+  <!-- NO LABELS. This frame's own dossier declares verbatim: [] and names no labels, and for
+       four rounds it printed the same four strings frame 4 prints, in the same order and the same
+       mono, so one swipe in nine returned the reader to text already read and delivered a single
+       new sentence. The four mortises ARE the four requirements. The frame's whole argument is
+       that the run of cuts stops and the jamb past it was never touched, and a drawing that has
+       to caption itself is a drawing that does not trust what it drew. -->
   <h1>The list stops at four.</h1>
   <p class="dek">None of the four is about the teaching.</p>
   <div class="foot"><span>PROGRAM PAGE</span><span>a1 c1 c2 c3 c4 c5</span><span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
@@ -161,10 +161,8 @@ window.renderReady = (async () => {
   // declared brightest and largest area, the uncut jamb, was a 98 percent opaque cream field
   // with a hard edge at x=330. A judge measured it and the frame's own risk line had predicted
   // it word for word. Frame 3 already solved this by re-laying its rake last. Same order here.
-  reserve(208, 470, 600, 74, '#F2E6C8', 'FF');
-  reserve(208, 580, 600, 74, '#F3E7CA', 'FF');
-  reserve(208, 684, 790, 86, '#F4E8CC', 'FF');
-  reserve(208, 800, 600, 74, '#F5E9CE', 'FF');
+  // and with the labels gone, the four scrim bars they needed go with them. They were the last
+  // opaque rectangles on the frame the deck calls its one inversion.
   reserve(330, 930, W-330, 320, '#F6EACF', 'F0');
   // the footer's band keeps a full strength reserve. The repair this round is about the DECLARED
   // FOCAL, which is the uncut jamb at frame right, and lowering the scrim under 24 px mono to

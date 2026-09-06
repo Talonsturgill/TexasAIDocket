@@ -66,7 +66,7 @@
     "c4",
     "c5"
    ],
-   "reads_on_the_frame": "The four requirements are published. Ask a school which one covers the teaching.",
+   "reads_on_the_frame": "Four requirements are published. Ask a school which one covers the teaching.",
    "computed_by": "len(REQUIREMENT_CLAIMS) in out/2026-09-06/compute.py, counted over the four claim ids c2, c3, c4 and c5 rather than off the program's page, and written to computed.json requirements.count. The page carries a SECOND list of five pre-K provider criteria under the same heading, so a count taken off the page returns nine and nine is wrong.",
    "what_four_counts": "published requirements a PRIVATE SCHOOL must meet"
   },
@@ -85,7 +85,7 @@
    "quoted_from": "c22",
    "quote": "Now, just one year after the state rejected its charter school application, Alpha has roughly quadrupled its Texas private schools, with more than 30 virtual and in-person campuses, most of which were accepted into the voucher program, ProPublica and The Texas Tribune found.",
    "value": 30,
-   "reads_on_the_frame": "a partial list. ProPublica and The Texas Tribune count \"more than 30 virtual and in-person campuses\"",
+   "reads_on_the_frame": "partial list of towns. ProPublica and The Texas Tribune count \"more than 30 virtual and in-person campuses\"",
    "note": "Added after the integrity judge found that the deck named ten towns and never printed the figure that stops a reader counting them. It is the reporting's number, quoted, and the frame names whose it is rather than saying reporting."
   }
  ],
