@@ -82,12 +82,24 @@ window.renderReady = (async () => {
       g.fillStyle='rgba(10,7,4,'+(0.10+R()*0.08)+')'; g.fillRect(0,sy+1,W,2);
     }
     const ties=[[142,1146],[338,1188],[540,1150],[742,1192],[886,1148],[240,1244],[644,1250]];
-    for(const [tx,ty] of ties){                              // form tie holes, lit lip and floor
-      g.fillStyle='#0B0804'; g.beginPath(); g.arc(tx,ty,15,0,Math.PI*2); g.fill();
-      g.strokeStyle='rgba(250,238,206,0.55)'; g.lineWidth=2.4;
-      g.beginPath(); g.arc(tx,ty,15,Math.PI*1.32,Math.PI*2.16); g.stroke();
-      g.fillStyle='rgba(10,7,4,0.62)'; g.beginPath();
-      g.ellipse(tx-9,ty+8,15,8,0,0,Math.PI*2); g.fill();
+    // A TIE HOLE IS A RECESS AND A RECESS NEVER CASTS OUTSIDE ITSELF. This drew a lit lip on the
+    // sun side rim and an ellipse on the concrete beside it, which is a STUD, and a judge read
+    // both this frame's and frame 6's as beads. Drawn from the inside out: the rim's own shadow
+    // falls INTO the hole from the sun side, the far wall opposite catches what gets past it,
+    // and the only lit edge outside is the countersink face that turns up toward the sun.
+    for(const [tx,ty] of ties){
+      const r=15;
+      g.save(); g.beginPath(); g.arc(tx,ty,r,0,Math.PI*2); g.clip();
+      g.fillStyle='#221B12'; g.fillRect(tx-r,ty-r,r*2,r*2);
+      g.fillStyle='rgba(6,4,2,0.90)';
+      g.beginPath(); g.arc(tx+r*0.42, ty-r*0.38, r, 0, Math.PI*2); g.fill();
+      g.fillStyle='rgba(250,238,206,0.42)';
+      g.beginPath(); g.arc(tx-r*0.60, ty+r*0.56, r*0.58, 0, Math.PI*2); g.fill();
+      g.restore();
+      g.strokeStyle='rgba(250,238,206,0.52)'; g.lineWidth=2.4;
+      g.beginPath(); g.arc(tx,ty,r+1, Math.PI*0.30, Math.PI*1.10); g.stroke();
+      g.strokeStyle='rgba(8,6,3,0.55)'; g.lineWidth=2.0;
+      g.beginPath(); g.arc(tx,ty,r+1, Math.PI*1.10, Math.PI*2.30); g.stroke();
     }
     // the scale bar with ticks along the jamb's outer arris
     g.fillStyle='rgba(214,196,152,0.55)'; g.fillRect(88,1300,392,2);

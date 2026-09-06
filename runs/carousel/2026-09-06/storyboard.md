@@ -96,22 +96,30 @@ measurement rather than from this plan.
 | frame | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|
 | planned L* | 34 | 22 | 18 | 26 | 30 | **74** | 20 | 28 | 44 |
-| MEASURED L* | 21.9 | 21.0 | 26.1 | 9.5 | 23.9 | **86.1** | 16.4 | 6.6 | 13.8 |
+| MEASURED L* | 21.8 | 21.4 | 26.1 | 9.5 | 26.0 | **85.4** | 16.8 | 6.6 | 13.7 |
 
 **The measured row is the one that counts and it is written from the renders**, at 270 by 338,
 the grid every prior run used, and it is REWRITTEN after every render pass rather than after the
-first one. Deck median 21.0 against a planned 28, well under the light cap. Round 3's repairs
-moved four of the nine: frame 1 fell to 21.9 as the room behind the wall went properly unlit,
-frame 7 rose to 16.4 as the soffit's near end took its own light instead of sitting under an
-opaque slot, and frame 9 rose to 13.8 as the black bar came off its focal and the head above the
-camera stopped being a flat rectangle.
+first one, into BOTH this table and `measurements.json`, which held two different answers for one
+round because only the table was rewritten. Deck median 21.4 against a planned 28, well under the
+light cap.
+
+Round 3's repairs moved four frames and round 4's moved four more. Frame 1 fell to 21.9 as the
+room behind the wall went properly unlit and its speck field stopped filling the declared focal
+with white. Frame 5 rose to 26.0 as the isolux bands were terraced and the figure's plate became a
+soft reserve with no edges. Frame 7 rose to 16.8 as the soffit's near end took its own light
+instead of sitting under an opaque slot. Frame 9 rose to 13.7 as the black bar came off its focal
+and the head above the camera stopped being a flat rectangle. Frame 6 fell 0.7 to 85.4, which is
+the one number here worth stating plainly: its declared focal was a 98 percent cream scrim painted
+over the concrete, and putting the concrete back on top cost the frame less than a point of
+lightness and gave it the material the acceptance list had asked for since round 1.
 
 Three frames came out darker than planned and the reason is the same on all three. Frame 4's
 jamb, frame 8's poché and frame 9's reveal are each mostly one dark material with a small lit
 subject in them, and a MEDIAN reads the material rather than the subject. The inversion is
-larger than planned rather than smaller, 86.1 against 74, so the one thing the arc had to
+larger than planned rather than smaller, 85.4 against 74, so the one thing the arc had to
 deliver is delivered. **The close is the frame this row argues with**: it was planned at 44 and
-measures 13.8, because the reveal the camera stands in fills most of it and only the opening is
+measures 13.7, because the reveal the camera stands in fills most of it and only the opening is
 lit. That is the frame it draws and the number is recorded rather than the plan being defended.
 
 **The inversion is frame 6 and nowhere else.** It is deliberately not at frame 5, because the
@@ -199,9 +207,19 @@ composition:
     The top third carries the room's back wall in shade with a single graded falloff from the
     one sun and no detail competing with the rail. The middle third carries the rail cap, the
     gate leaf and the chair backs, each drawn as a lit edge with its own shadow immediately
-    under it. The bottom third carries the floor lit first as a warm pool and then cast into,
-    with the two part contact shadows of the gate stile and every chair leg falling across that
-    lit ground, plus a scale bar at the near edge.
+    under it, and the room's floor lit first as a warm pool and then cast into, with the two part
+    contact shadows of the gate stile and every chair leg falling across that lit ground. The
+    bottom third carries the NEAR floor, which is the ground the reader is standing on, on the
+    public side of the rail and in shade. It is drawn as terrazzo with its joints converging on
+    the room's own vanishing point, its aggregate coarsening toward the reader, the feet of every
+    rail post meeting it at a two part contact shadow, and the rail's long cast thrown toward the
+    reader on the deck's one sun.
+
+    TWO EARLIER DRAFTS PUT THE LIT POOL IN THIS BAND AND PROMISED A SCALE BAR, and the render put
+    the pool in the middle third and drew no scale bar in either round. The pool belongs where it
+    is, inside the gate, because that is where the room is. The scale bar is dropped rather than
+    re-promised: a graphic scale means nothing without figures on it, and a figure on it would be
+    a numeral this deck computed nothing for.
   focal: >
     The sunlit floor pool inside the gate, about 420 by 160 px, the lightest area in the frame,
     with the chair contacts falling into it.
@@ -225,7 +243,8 @@ acceptance:
   - "the rail cap shows a lit top edge and a shadowed underside, so it is a form and not a stroke"
   - "every chair leg meets the floor at a contact shadow, with none floating"
   - the verbatim fragment reads "the Commissioner of Education is responsible for recommending new open-enrollment charters" and carries the claim id c14
-  - "the bottom third carries the lit floor pool and at least four separate contact shadows, not a flat plane"
+  - "the bottom third carries the near floor as worked material, its joints converging and its aggregate coarsening toward the reader, and is not a flat plane"
+  - "at least four separate two part contact shadows fall on lit ground across the frame, none of them on a ground that was never lit"
   - "no person is drawn anywhere on this frame"
 risks:
   - "a contact shadow on a ground that was never lit is a one L star change and reads as nothing"
@@ -237,11 +256,11 @@ slide: 3
 job: >
   Show that the first route keeps a public calendar, by printing the board's own agenda line for
   the charter cycle as a thing cast into metal.
-claims: [c16, c17, c18, c19, c23]
+claims: [c16, c17, c18, c19]
 numerals: []
 type:
   hook: "That room keeps a calendar."
-  dek: "ProPublica and The Texas Tribune spell out SBOE as the Texas State Board of Education. The line is an update on an application cycle and it names no applicant."
+  dek: "SBOE is the State Board of Education and the agenda's own header spells it out. The line is an update on an application cycle and it names no applicant."
 verbatim:
   - c16: "Open-Enrollment Charter School Generation 32 Application Updates"
   - c18: "SBOE - NO ACTION"
@@ -367,7 +386,7 @@ numerals:
   - value_from: c7
 type:
   hook: "This door never closes."
-  dek: "The window opened December 9th, 2025 and no second date has been set against it."
+  dek: "The application period for private schools opened December 9th, 2025."
 verbatim:
   - c6: "Applications are accepted on a rolling basis."
 composition:
@@ -556,7 +575,7 @@ claims: [c23, c22, c21, c20]
 numerals: []
 type:
   hook: "One said no. One said yes."
-  dek: "ProPublica and The Texas Tribune report the board rejected this charter and the program accepted most of them."
+  dek: "The board rejected Alpha's charter. ProPublica and The Texas Tribune found the program accepted most of its campuses."
 verbatim:
   - c20: "Travis Pillow, a spokesperson for the voucher program"
   - c21: "Our role is to make sure that a school meets the requirements in the law."
@@ -634,10 +653,22 @@ composition:
     The top third carries the head of the opening in shade with the soffit falling away and the
     hook set hard right against it. The middle third carries the daylight beyond the opening
     with heat shimmer warping the field above the walk at under 6 px amplitude, and the Texas
-    town names set in mono as a column down the left jamb that runs off the bottom frame edge
-    rather than ending, so the frame crops the list and never closes it, and the reporting's own
-    count set in DARK INK on the daylight beside them, which is the one place on the frame a
-    text block needs no scrim under it. The bottom third carries the near
+    town names set in mono as a column down the left jamb, and the reporting's own count set in
+    DARK INK on the daylight beside them, which is the one place on the frame a text block needs
+    no scrim under it.
+
+    THE COLUMN CLOSES AND AN EARLIER PLAN SAID IT WOULD NOT. Two rounds of this dossier called it
+    a list the frame CROPS rather than closes, running off the bottom edge, and the render put
+    its last line 509 px above that edge in both rounds. The plan was describing a frame nobody
+    drew, which is the oldest shape in GATE_LESSONS and the reason a judge had to find it.
+
+    The crop was never the point. Its stated job was to stop a reader taking ten as the campus
+    count, and the reporting's own quoted figure does that job directly, on the same frame, with
+    the name of whose figure it is beside it. A cropped column only implies there are more. A
+    quoted count says how many more and says who counted. So the plan follows the drawing here
+    rather than the drawing being bent to the plan, and the column ends where it ends.
+
+    The bottom third carries the near
     threshold with its own two part contact shadow, the sunlit walk beyond it drawn as a graded
     wash with aggregate scatter and its own heat haze at the horizon, and the dek and the two
     addresses set across it.
@@ -684,11 +715,17 @@ risks:
    dark rectangle.
 4. **A PLACE IS A BOUNDARY OR A NAME, AND NEVER A DOT.** Taken whole from the lens that lost,
    because it is sharper than the rule it replaces. Ten dots is a count drawn in ink, and this
-   deck may not print a campus count OF ITS OWN. So the towns are set as type in a list the
-   frame crops rather than closes, and no map appears anywhere in the deck. The one figure that
-   may stand near them is the reporting's own, quoted and attributed to the reporting on the
-   face of the frame, because a cropped list beside no total invites a reader to take ten as the
-   answer and the reporting says otherwise.
+   deck may not print a campus count OF ITS OWN. So the towns are set as type rather than as
+   marks on a map, and no map appears anywhere in the deck. The one figure that may stand beside
+   them is the reporting's own, quoted and named to the outlets that counted it on the face of
+   the frame, because ten names beside no total invites a reader to take ten as the answer and
+   the reporting says otherwise.
+
+   THIS LAW ASKED FOR A CROP FOR TWO ROUNDS AND NO FRAME EVER DREW ONE. A column running off the
+   bottom edge was the device, and the render closed the column at Lake Travis with a third of
+   the frame below it in both rounds. The device is dropped rather than re-promised, because the
+   quoted count is the stronger answer to the same question: a crop implies more and a count
+   says how many more and who counted them.
 5. **THE TWO OPENINGS ARE IDENTICAL IN SIZE** on every frame they share, asserted by that
    frame's own script.
 6. **THE BUILDING IS A DIAGRAM AND NOT A PLACE.** No address, no signage that is not a quoted

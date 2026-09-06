@@ -27,7 +27,7 @@
   <div class="fscrim" data-decorative></div>
   <h1>Two doors. Different latches.</h1>
   <p class="dek">Texas has two ways to put a school in front of a child on public money. One ends at a board that votes. The other ends at a published checklist.</p>
-  <div class="foot"><span>TEA</span><span>c14 c15 c1</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+  <div class="foot"><span>TEA / PROGRAM PAGE</span><span>c14 c15 c1</span><span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txsdf.js"></script>
@@ -124,17 +124,34 @@ window.renderReady = (async () => {
 
   // ---- WORKED GROUND. panel_ready measures the quietest patch of every ground a dossier calls
   // worked, and a smooth gradient fails it however well lit it is. This is the material.
+  // BUDGETED BY THE LIGHT ALREADY ON THE FRAME. This block used to spray one speck field over
+  // every square pixel with no material test, and on this deck it ran character for character on
+  // four frames. A judge measured the cost on the cover: the declared focal is the darkest area
+  // in the frame and the only place the light dies completely, and the block was filling it with
+  // white specks. Tooth is only visible where there is light to rake across it, so the field
+  // READS the canvas it is about to draw on and takes both its weight and its lit fraction from
+  // the luminance already there. Where the light dies, so does the tooth.
   (function grit(){
+    const src = g.getImageData(0,0,W*2,H*2).data;
+    const lumAt = (x,y) => {
+      const i = (((y*2)|0)*(W*2) + ((x*2)|0))*4;
+      return (0.2126*src[i] + 0.7152*src[i+1] + 0.0722*src[i+2]) / 255;
+    };
     for (let i=0;i<130000;i++){
-      const x=R()*W, y=R()*H;
-      g.globalAlpha=0.075+R()*0.150;
-      g.fillStyle = R()<0.5 ? '#FFF4D8' : '#0C0906';
+      const x=R()*W, y=R()*H, L=lumAt(x,y);
+      // A DARK SURFACE STILL HAS TOOTH. The first cut of this gate skipped every pixel under
+      // L 0.05 and panel_ready measured the cover's quietest ground at 3.91 against a 4.0 floor,
+      // which is the same complaint from the other side: material erased rather than sprayed.
+      // What changes with the light is the LIT FRACTION, not whether the concrete is worked, so
+      // an unlit ground gets its tooth almost entirely in the dark direction.
+      g.globalAlpha=(0.085+R()*0.165) * Math.min(1, 0.46 + L*1.5);
+      g.fillStyle = R() < (0.07 + L*0.70) ? '#FFF4D8' : '#0C0906';
       g.fillRect(x,y,1,1);
     }
     for (let i=0;i<26000;i++){                // a coarser aggregate over the fine tooth
-      const x=R()*W, y=R()*H;
-      g.globalAlpha=0.060+R()*0.130;
-      g.fillStyle = R()<0.45 ? '#E8D8B0' : '#171310';
+      const x=R()*W, y=R()*H, L=lumAt(x,y);
+      g.globalAlpha=(0.068+R()*0.145) * Math.min(1, 0.46 + L*1.5);
+      g.fillStyle = R() < (0.06 + L*0.66) ? '#E8D8B0' : '#171310';
       g.fillRect(x,y,1+R()*2.2,1+R()*1.6);
     }
     g.globalAlpha=1;

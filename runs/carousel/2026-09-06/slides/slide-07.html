@@ -22,11 +22,18 @@
      black type on a black ground. A drawing whose own value can't be stated is a drawing that
      can't be checked, which is worse than a drawing without a gradient in it. */
   .cut,.cut2{position:absolute;left:80px;width:920px;margin:0;font-family:Fraunces,serif;
-    font-weight:700;font-size:54px;line-height:1.20;letter-spacing:-.012em;color:#FBF0D2;
+    font-weight:700;font-size:54px;line-height:1.22;letter-spacing:.022em;color:#FBF0D2;
+    /* THE SIDE BEARINGS ARE PART OF THE CUT. A chamfer wide enough to read at 432 px is wide
+       enough to bridge a tight letter gap, and a bridged gap across a whole line is the
+       strikethrough qa.py fails a frame for. Opening the tracking is what buys the chamfer
+       its room, so the two are one decision rather than two. */
     /* the sun side cut wall, DIMMER than the daylight coming through the letter itself, because
        a chamfer catching raking light is never as bright as the hole it edges */
-    filter:drop-shadow(2px -2px 0 rgba(176,156,116,.62))
-           drop-shadow(-2.5px 3px 0 rgba(6,5,3,.94))
+    /* THE CHAMFER HAS TO SURVIVE 432 px. At 2 px it was 0.8 px in a feed and a judge read the
+       whole device as a drop shadow, which is exactly what a sub pixel cut wall is. The deck is
+       viewed at 0.4 scale, so a cut wall that a reader can see is 5 px here and not 2. */
+    filter:drop-shadow(3px -3px 0 rgba(176,156,116,.66))
+           drop-shadow(-3.5px 4px 0 rgba(6,5,3,.95))
            drop-shadow(0 0 3px rgba(4,3,2,.98))}
   .cut{top:520px}
   .cut2{top:800px}

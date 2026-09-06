@@ -32,8 +32,8 @@
   <h1>That room keeps a calendar.</h1>
   <div class="cut l1">Open-Enrollment Charter School Generation 32 Application Updates</div>
   <div class="cut l2">SBOE - NO ACTION</div>
-  <p class="dek">ProPublica and The Texas Tribune spell out SBOE as the Texas State Board of Education. The line is an update on an application cycle and it names no applicant.</p>
-  <div class="foot"><span>SBOE AGENDA</span><span>c16 c17 c18 c19 c23</span><span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
+  <p class="dek">SBOE is the State Board of Education and the agenda's own header spells it out. The line is an update on an application cycle and it names no applicant.</p>
+  <div class="foot"><span>SBOE AGENDA</span><span>c16 c17 c18 c19</span><span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script>
@@ -57,8 +57,11 @@ window.renderReady = (async () => {
       g.globalAlpha=0.05+R()*0.13;
       g.fillStyle= lit ? '#9A8C74' : '#151310';
       g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill();
+      // EVERY CAST ON THIS FRAME IS READ OFF CAST, not typed beside it. A judge found the
+      // constant declared and never used, which is structural law 1's own named failure: a
+      // number that lives in the plan and in no drawing step.
       if(lit){ g.globalAlpha*=0.8; g.fillStyle='#4A4238';
-        g.beginPath(); g.arc(x-r*0.8,y+r*0.6,r*0.8,0,Math.PI*2); g.fill(); }
+        g.beginPath(); g.arc(x+CAST.dx*r*1.55, y+CAST.dy*r*1.75, r*0.8, 0, Math.PI*2); g.fill(); }
     }
     g.globalAlpha=1;
   })();
@@ -68,7 +71,8 @@ window.renderReady = (async () => {
     const jy=1032;
     g.fillStyle='rgba(52,46,38,0.88)'; g.fillRect(0,jy,W,7);
     g.fillStyle='rgba(240,226,188,0.34)'; g.fillRect(0,jy-3,W,3);   // the lit upper arris
-    g.fillStyle='rgba(24,20,16,0.42)'; g.fillRect(0,jy+7,W,11);     // its cast, down and left
+    g.fillStyle='rgba(24,20,16,0.42)';                              // its cast, read off CAST
+    g.fillRect(CAST.dx*14, jy+7+CAST.dy*9, W, 11);
   })();
 
   // ---- THE PLATE, set INTO the walk. The concrete's edge shadows along its upper margin, so
@@ -78,6 +82,8 @@ window.renderReady = (async () => {
     // the recess the plate sits in, shadowed on the sun side of its own rim
     g.fillStyle='rgba(28,23,17,0.72)'; g.fillRect(P.x-9,P.y-9,P.w+18,P.h+18);
     g.fillStyle='rgba(246,236,214,0.30)'; g.fillRect(P.x-9,P.y+P.h+6,P.w+18,7);
+    g.fillStyle='rgba(246,236,214,0.22)'; g.fillRect(P.x-9,P.y-9,7,P.h+18);   // the lit recess wall
+    g.fillStyle='rgba(14,10,5,0.55)';     g.fillRect(P.x+P.w+2,P.y-9,7,P.h+18); // and its shadow side
     const b=g.createLinearGradient(P.x+P.w,P.y,P.x,P.y+P.h);
     b.addColorStop(0,'#C29B4E'); b.addColorStop(0.42,BRONZE_CAST); b.addColorStop(1,'#5E4720');
     g.fillStyle=b; g.fillRect(P.x,P.y,P.w,P.h);
@@ -93,11 +99,15 @@ window.renderReady = (async () => {
     const raked=g.createLinearGradient(P.x+P.w,P.y+40,P.x+P.w*0.2,P.y+300);
     raked.addColorStop(0,'rgba(246,236,214,0.42)'); raked.addColorStop(1,'rgba(246,236,214,0)');
     g.fillStyle=raked; g.fillRect(P.x,P.y,P.w,320);
-    // a bead along the plate's lit edges, so it is a casting rather than a rectangle
-    g.strokeStyle='rgba(250,240,214,0.55)'; g.lineWidth=3;
-    g.beginPath(); g.moveTo(P.x,P.y); g.lineTo(P.x+P.w,P.y); g.lineTo(P.x+P.w,P.y+P.h); g.stroke();
-    g.strokeStyle='rgba(20,15,8,0.75)'; g.lineWidth=3;
-    g.beginPath(); g.moveTo(P.x,P.y); g.lineTo(P.x,P.y+P.h); g.lineTo(P.x+P.w,P.y+P.h); g.stroke();
+    // THE RECESS WALLS, WHICH WAY ROUND MATTERS. This plate is set INTO the walk and the camera
+    // is above it, so the recess wall the sun cannot reach is the one on the SUN SIDE, up and
+    // right, and the wall opposite it is the one taking light. The bead used to run the other
+    // way, lit on the top and the right, which is a plate standing proud on a wall, and a judge
+    // read the frame as a plaque hung at eye level rather than a casting under a camera.
+    g.strokeStyle='rgba(18,13,7,0.80)'; g.lineWidth=4;
+    g.beginPath(); g.moveTo(P.x,P.y+2); g.lineTo(P.x+P.w-2,P.y+2); g.lineTo(P.x+P.w-2,P.y+P.h); g.stroke();
+    g.strokeStyle='rgba(252,242,216,0.60)'; g.lineWidth=4;
+    g.beginPath(); g.moveTo(P.x+2,P.y); g.lineTo(P.x+2,P.y+P.h-2); g.lineTo(P.x+P.w,P.y+P.h-2); g.stroke();
   })();
 
 
@@ -136,8 +146,8 @@ window.renderReady = (async () => {
       const x=P.x+8+R()*(P.w-16), y=P.y+8+R()*(P.h-16), r=0.9+R()*2.2;
       g.globalAlpha=0.20+R()*0.26;
       g.fillStyle='#3A2A0C'; g.beginPath(); g.arc(x,y,r,0,Math.PI*2); g.fill();
-      g.globalAlpha*=0.8; g.fillStyle='#FBEDC2';
-      g.beginPath(); g.arc(x+r*0.55,y-r*0.4,r*0.55,0,Math.PI*2); g.fill();
+      g.globalAlpha*=0.8; g.fillStyle='#FBEDC2';                    // the pit's lit far wall,
+      g.beginPath(); g.arc(x-CAST.dx*r*1.05, y-CAST.dy*r*1.2, r*0.55, 0, Math.PI*2); g.fill();
     }
     g.globalAlpha=1;
   })();

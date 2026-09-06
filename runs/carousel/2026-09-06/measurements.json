@@ -1,15 +1,16 @@
 {
  "per_frame_median_L": {
-  "1": 27.0,
-  "2": 21.0,
-  "3": 26.0,
+  "1": 21.8,
+  "2": 21.4,
+  "3": 26.1,
   "4": 9.5,
-  "5": 23.5,
-  "6": 86.8,
-  "7": 13.4,
+  "5": 26.0,
+  "6": 85.4,
+  "7": 16.8,
   "8": 6.6,
-  "9": 5.7
+  "9": 13.7
  },
- "deck_median_L": 21.0,
- "measured_at": "270x338, the grid every prior run used"
+ "deck_median_L": 21.4,
+ "measured_at": "270x338, the grid every prior run used",
+ "measured_after": "the round 4 renders. This file and the storyboard's MEASURED row are the same measurement and they disagreed for one round, because the row was rewritten and this file was not. Both are taken from the same pass over the same PNGs now, and the pass is re-run after every render. A run that rewrites one of two copies of a measurement has published a number nothing can reproduce."
 }

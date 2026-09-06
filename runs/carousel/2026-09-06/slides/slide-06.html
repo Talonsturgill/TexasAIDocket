@@ -46,6 +46,27 @@ window.renderReady = (async () => {
   //      abstract idea is carried by the most literal thing in the frame. Deliberately NOT on
   //      the vertical centre, which is the named failure of this atmosphere.
   const BREAK = Math.round(H*0.31);      // 418, well off centre
+
+  // A TIE HOLE IS A RECESS AND A RECESS NEVER CASTS OUTSIDE ITSELF. The old one drew a lit lip
+  // on the sun side rim and threw an ellipse onto the concrete beside it, which is a STUD. The
+  // hole is drawn from the inside out now: the rim's own shadow falls INTO it from the sun side,
+  // the far wall opposite catches what gets past the rim, and the only lit edge outside the hole
+  // is the countersink on the shadow side, which is the face that turns up toward the sun.
+  function tie(tx,ty,r){
+    r = r || 16;
+    g.save(); g.beginPath(); g.arc(tx,ty,r,0,Math.PI*2); g.clip();
+    g.fillStyle='#5E5441'; g.fillRect(tx-r,ty-r,r*2,r*2);
+    g.fillStyle='rgba(22,18,11,0.88)';                       // the rim's cast, thrown inward
+    g.beginPath(); g.arc(tx+r*0.42, ty-r*0.38, r, 0, Math.PI*2); g.fill();
+    g.fillStyle='rgba(255,250,232,0.55)';                    // the far wall, down and left
+    g.beginPath(); g.arc(tx-r*0.60, ty+r*0.56, r*0.60, 0, Math.PI*2); g.fill();
+    g.restore();
+    g.strokeStyle='rgba(255,250,232,0.60)'; g.lineWidth=2.4; // the countersink facing the sun
+    g.beginPath(); g.arc(tx,ty,r+1, Math.PI*0.30, Math.PI*1.10); g.stroke();
+    g.strokeStyle='rgba(96,84,58,0.50)'; g.lineWidth=2.0;    // and its shadow side
+    g.beginPath(); g.arc(tx,ty,r+1, Math.PI*1.10, Math.PI*2.30); g.stroke();
+  }
+
   (function ground(){
     const above=g.createLinearGradient(0,0,0,BREAK);
     above.addColorStop(0,'#3E3A32'); above.addColorStop(1,'#575246');
@@ -84,12 +105,7 @@ window.renderReady = (async () => {
                 [660,1226],[520,1170],[760,1090],[600,1010]];
     for (const [tx,ty] of ties){
       if (ty < BREAK) continue;
-      g.fillStyle='#6B5F45'; g.beginPath(); g.arc(tx,ty,17,0,Math.PI*2); g.fill();
-      g.fillStyle='#403829'; g.beginPath(); g.arc(tx,ty,12,0,Math.PI*2); g.fill();
-      g.strokeStyle='rgba(255,250,232,0.92)'; g.lineWidth=3;   // the lit lip, sun side
-      g.beginPath(); g.arc(tx,ty,17,Math.PI*1.30,Math.PI*2.14); g.stroke();
-      g.fillStyle='rgba(96,84,58,0.62)';                        // its own cast, down and LEFT
-      g.beginPath(); g.ellipse(tx-11,ty+9,18,9,0,0,Math.PI*2); g.fill();
+      tie(tx,ty,17);
     }
   })();
 
@@ -140,44 +156,50 @@ window.renderReady = (async () => {
     g.fillRect(0,0,W,H); g.globalAlpha=1;
   })();
 
-  // the reserve is painted LAST, after the grain, or the grain lays edges back over
-  // the type the reserve was put there to clear
+  // the reserve is painted BEFORE the concrete goes back over it, which is the whole repair.
+  // Round 3 painted reserve(330,930) AFTER jambBack() re-laid the material, so the deck's
+  // declared brightest and largest area, the uncut jamb, was a 98 percent opaque cream field
+  // with a hard edge at x=330. A judge measured it and the frame's own risk line had predicted
+  // it word for word. Frame 3 already solved this by re-laying its rake last. Same order here.
   reserve(208, 470, 600, 74, '#F2E6C8', 'FF');
   reserve(208, 580, 600, 74, '#F3E7CA', 'FF');
   reserve(208, 684, 790, 86, '#F4E8CC', 'FF');
   reserve(208, 800, 600, 74, '#F5E9CE', 'FF');
-  reserve(392, 930, W-392, 300, '#F6EACF', 'FA');
-  reserve(0, 1244, W, 110, '#EFE3C4', 'F7');
+  reserve(330, 930, W-330, 320, '#F6EACF', 'F0');
+  // the footer's band keeps a full strength reserve. The repair this round is about the DECLARED
+  // FOCAL, which is the uncut jamb at frame right, and lowering the scrim under 24 px mono to
+  // match it just lets the board seam under the footer graze the label.
+  reserve(0, 1238, W, 116, '#EFE3C4', 'FB');
 
-  // the concrete laid back over the reserves, so the bottom third is a surface again rather
-  // than a quiet zone. The reserve cleared the type and it took the material with it.
   (function jambBack(){
-    for (let i=0;i<46000;i++){
+    // the tooth, over everything below the break, which is a dot field and never a rule
+    for (let i=0;i<74000;i++){
       const x=R()*W, y=930+R()*(H-930);
-      g.globalAlpha=0.030+R()*0.070;
+      // the footer's own band takes no aggregate. A mid value speck beside 24 px mono ink is
+      // nearer the ink than the paper, and qa.py counts it as art crossing the label, which is
+      // what it looks like. The reserve under the footer is the surface there.
+      if (y > 1234 && y < 1302) continue;
+      g.globalAlpha=0.030+R()*0.075;
       g.fillStyle = R()<0.5 ? '#FFF8E2' : '#8B7F63';
       g.fillRect(x,y,1+R()*2.6,1);
     }
-    for (const [tx,ty] of [[132,1000],[132,1150],[132,1290],[300,1070],[300,1220],
-                           [860,1000],[860,1150],[1000,1080],[1000,1240],[520,1300],[690,1300]]){
-      g.globalAlpha=1;
-      g.fillStyle='#7A6E52'; g.beginPath(); g.arc(tx,ty,16,0,Math.PI*2); g.fill();
-      g.fillStyle='#4A4231'; g.beginPath(); g.arc(tx,ty,11,0,Math.PI*2); g.fill();
-      g.strokeStyle='rgba(255,250,232,0.90)'; g.lineWidth=3;
-      g.beginPath(); g.arc(tx,ty,16,Math.PI*1.30,Math.PI*2.14); g.stroke();
-      g.fillStyle='rgba(104,92,64,0.55)';
-      g.beginPath(); g.ellipse(tx-10,ty+9,17,8,0,0,Math.PI*2); g.fill();
-    }
-    for (let y=944; y<H; y+=54){                 // the board seams keep running
-      g.globalAlpha=1;
-      g.fillStyle='rgba(255,250,232,0.55)'; g.fillRect(0,y,W,2);
-      g.fillStyle='rgba(120,102,66,0.30)'; g.fillRect(0,y+2,W,4);
+    g.globalAlpha=1;
+    // the ties, placed clear of every text box on the frame, so nothing is laid over a glyph
+    for (const [tx,ty] of [[132,1000],[132,1150],[132,1290],[262,1070],[262,1220],
+                           [190,1330],[452,1322],[646,1322],[848,1322],[1000,1322]]) tie(tx,ty);
+    // THE BOARD SEAMS, at two amplitudes. Full weight on the uncut jamb at frame left, where
+    // there is no type and a seam is a seam. Under the type at frame right they run at less
+    // than a 28 L step, which is the threshold qa.py reads a strip at, because a hard rule
+    // through a glyph band is a strikethrough and that is not a thing this deck argues about.
+    for (let y=944; y<H; y+=54){
+      g.fillStyle='rgba(255,250,232,0.55)'; g.fillRect(0,y,326,2);
+      g.fillStyle='rgba(120,102,66,0.34)'; g.fillRect(0,y+2,326,4);
+      if (y > 1232 && y < 1306) continue;      // the footer's own band takes no seam at all
+      g.fillStyle='rgba(255,252,238,0.16)'; g.fillRect(326,y,W-326,2);
+      g.fillStyle='rgba(120,102,66,0.15)'; g.fillRect(326,y+2,W-326,4);
     }
     g.globalAlpha=1;
   })();
-
-  reserve(330, 930, W-330, 320, '#F6EACF', 'FA');
-  reserve(0, 1238, W, 116, '#EFE3C4', 'F9');
 
   window.__txProbe={ mortises: MORT_Y.length, break_y: BREAK, break_fraction: BREAK/H,
     fifth_cut: false, scribe_line: false,

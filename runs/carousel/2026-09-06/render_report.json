@@ -103,10 +103,10 @@
           "anc": []
         },
         {
-          "text": "TEA",
+          "text": "TEA / PROGRAM PAGE",
           "x": 80,
           "y": 1245,
-          "w": 47,
+          "w": 281,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -118,7 +118,7 @@
             [
               80,
               1245,
-              47,
+              281,
               31
             ]
           ],
@@ -126,7 +126,7 @@
         },
         {
           "text": "c14 c15 c1",
-          "x": 241,
+          "x": 397,
           "y": 1245,
           "w": 156,
           "h": 31,
@@ -138,7 +138,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              241,
+              397,
               1245,
               156,
               31
@@ -148,7 +148,7 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 511,
+          "x": 589,
           "y": 1245,
           "w": 265,
           "h": 31,
@@ -160,7 +160,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              511,
+              589,
               1245,
               265,
               31
@@ -244,7 +244,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 7698,
+      "render_ms": 7839,
       "ok": true,
       "canvases": [
         {
@@ -257,8 +257,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 75.3,
-          "variance": 1290.7
+          "mean": 74.8,
+          "variance": 1299.3
         }
       ],
       "breather": false,
@@ -463,7 +463,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2554,
+      "render_ms": 2464,
       "ok": true,
       "canvases": [
         {
@@ -476,8 +476,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 66.7,
-          "variance": 1225.2
+          "mean": 67,
+          "variance": 1230.8
         }
       ],
       "breather": false,
@@ -592,7 +592,7 @@
           "anc": []
         },
         {
-          "text": "ProPublica and The Texas Tribune spell out SBOE as the Texas State Board of Education. The line is an update on an application cycle and it names no applicant.",
+          "text": "SBOE is the State Board of Education and the agenda's own header spells it out. The line is an update on an application cycle and it names no applicant.",
           "x": 96,
           "y": 1092,
           "w": 880,
@@ -607,19 +607,19 @@
             [
               96,
               1092,
-              880,
+              868,
               38
             ],
             [
               96,
               1131,
-              834,
+              816,
               38
             ],
             [
               96,
               1169,
-              343,
+              264,
               38
             ]
           ],
@@ -648,10 +648,10 @@
           "anc": []
         },
         {
-          "text": "c16 c17 c18 c19 c23",
-          "x": 277,
+          "text": "c16 c17 c18 c19",
+          "x": 298,
           "y": 1245,
-          "w": 296,
+          "w": 234,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -661,9 +661,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              277,
+              298,
               1245,
-              296,
+              234,
               31
             ]
           ],
@@ -671,7 +671,7 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 600,
+          "x": 579,
           "y": 1245,
           "w": 265,
           "h": 31,
@@ -683,7 +683,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              600,
+              579,
               1245,
               265,
               31
@@ -721,7 +721,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2972,
+      "render_ms": 2929,
       "ok": true,
       "canvases": [
         {
@@ -1018,7 +1018,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1751,
+      "render_ms": 1758,
       "ok": true,
       "canvases": [
         {
@@ -1031,8 +1031,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 34.9,
-          "variance": 350.8
+          "mean": 35,
+          "variance": 351.7
         }
       ],
       "breather": false,
@@ -1157,11 +1157,11 @@
           "anc": []
         },
         {
-          "text": "The window opened December 9th, 2025 and no second date has been set against it.",
+          "text": "The application period for private schools opened December 9th, 2025.",
           "x": 80,
-          "y": 1144,
+          "y": 1179,
           "w": 860,
-          "h": 70,
+          "h": 35,
           "font_px": 26,
           "weight": "500",
           "family": "Manrope",
@@ -1171,14 +1171,8 @@
           "lines": [
             [
               80,
-              1143,
-              855,
-              36
-            ],
-            [
-              80,
               1178,
-              166,
+              859,
               36
             ]
           ],
@@ -1303,7 +1297,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2811,
+      "render_ms": 2971,
       "ok": true,
       "canvases": [
         {
@@ -1316,8 +1310,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 63.1,
-          "variance": 2493.3
+          "mean": 66.6,
+          "variance": 2733.6
         }
       ],
       "breather": false,
@@ -1610,7 +1604,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1606,
+      "render_ms": 1616,
       "ok": true,
       "canvases": [
         {
@@ -1623,8 +1617,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 163,
-          "variance": 5400
+          "mean": 161.6,
+          "variance": 5370.3
         }
       ],
       "breather": false,
@@ -1687,7 +1681,7 @@
           "x": 80,
           "y": 520,
           "w": 920,
-          "h": 130,
+          "h": 132,
           "font_px": 54,
           "weight": "700",
           "family": "Fraunces",
@@ -1697,14 +1691,14 @@
           "lines": [
             [
               80,
-              518,
-              771,
+              519,
+              830,
               67
             ],
             [
               80,
-              583,
-              604,
+              585,
+              646,
               67
             ]
           ],
@@ -1715,7 +1709,7 @@
           "x": 80,
           "y": 800,
           "w": 920,
-          "h": 130,
+          "h": 132,
           "font_px": 54,
           "weight": "700",
           "family": "Fraunces",
@@ -1725,14 +1719,14 @@
           "lines": [
             [
               80,
-              798,
-              713,
+              799,
+              764,
               67
             ],
             [
               80,
-              863,
-              651,
+              865,
+              699,
               67
             ]
           ],
@@ -1857,7 +1851,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2494,
+      "render_ms": 2481,
       "ok": true,
       "canvases": [
         {
@@ -1930,7 +1924,7 @@
           "anc": []
         },
         {
-          "text": "ProPublica and The Texas Tribune report the board rejected this charter and the program accepted most of them.",
+          "text": "The board rejected Alpha's charter. ProPublica and The Texas Tribune found the program accepted most of its campuses.",
           "x": 80,
           "y": 300,
           "w": 920,
@@ -1945,13 +1939,13 @@
             [
               80,
               299,
-              830,
+              898,
               38
             ],
             [
               80,
               337,
-              635,
+              666,
               38
             ]
           ],
@@ -2170,7 +2164,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1353,
+      "render_ms": 1295,
       "ok": true,
       "canvases": [
         {
@@ -2246,9 +2240,9 @@
           "text": "Austin Brownsville Highland Park Plano Fort Worth Carrollton Houston The Woodlands Southlake Lake Travis",
           "x": 78,
           "y": 424,
-          "w": 223,
-          "h": 421,
-          "font_px": 26,
+          "w": 206,
+          "h": 403,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(205, 190, 156)",
@@ -2257,63 +2251,63 @@
           "lines": [
             [
               78,
-              427,
-              103,
-              35
+              428,
+              95,
+              31
             ],
             [
               78,
-              469,
-              189,
-              35
+              468,
+              174,
+              31
             ],
             [
               78,
-              511,
-              223,
-              35
+              509,
+              206,
+              31
             ],
             [
               78,
-              553,
-              86,
-              35
+              549,
+              79,
+              31
             ],
             [
               78,
-              595,
-              172,
-              35
+              589,
+              158,
+              31
             ],
             [
               78,
-              638,
-              172,
-              35
+              630,
+              158,
+              31
             ],
             [
               78,
-              680,
-              120,
-              35
+              670,
+              111,
+              31
             ],
             [
               78,
-              722,
-              223,
-              35
+              710,
+              206,
+              31
             ],
             [
               78,
-              764,
-              154,
-              35
+              751,
+              143,
+              31
             ],
             [
               78,
-              806,
-              189,
-              35
+              791,
+              174,
+              31
             ]
           ],
           "anc": []
@@ -2516,7 +2510,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2157,
+      "render_ms": 2239,
       "ok": true,
       "canvases": [
         {
@@ -2529,8 +2523,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 71.8,
-          "variance": 5588.7
+          "mean": 70.6,
+          "variance": 5484
         }
       ],
       "breather": false,

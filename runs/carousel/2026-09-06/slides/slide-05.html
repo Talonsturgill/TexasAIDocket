@@ -35,7 +35,7 @@
   <div class="figlab">PER CHILD, THE 2026-27 SCHOOL YEAR</div>
   <div class="fscrim" data-decorative></div>
   <p class="q">"Applications are accepted on a rolling basis."</p>
-  <p class="dek">The window opened December 9th, 2025 and no second date has been set against it.</p>
+  <p class="dek">The application period for private schools opened December 9th, 2025.</p>
   <div class="foot"><span>THE PROGRAM PAGE</span><span>c6 c7 c8</span><span class="tx-site">texasaidocket.com</span><span>05 / 09</span></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -121,13 +121,16 @@ window.renderReady = (async () => {
       }
       prevXs = pts;
       const t = i/(LEVELS-1);
-      g.strokeStyle = 'rgba(255,246,220,'+(0.14 + 0.50*(1-t))+')';
+      g.strokeStyle = 'rgba(255,246,220,'+(0.20 + 0.56*(1-t))+')';
       g.lineWidth = 1.8 + 4.6*(1-t);
       g.beginPath(); g.moveTo(pts[0][0], pts[0][1]);
       for (const [x,y] of pts) g.lineTo(x,y);
       g.stroke();
       // the band between this contour and the last, filled, so the plot has value and not lines
-      g.fillStyle='rgba(240,226,188,'+(0.018*(1-t))+')';
+      // TERRACE THE BANDS. Two judges read this plot as three hairlines over a soft glow, and
+      // both were right: the band fill was at 0.018 and did nothing. A contour set carries its
+      // value in the STEP between bands, not in the lines, and the step is what survives 432 px.
+      g.fillStyle='rgba(244,232,196,'+(0.020 + 0.062*(1-t))+')';
       g.beginPath(); g.moveTo(pts[0][0],pts[0][1]);
       for (const [x,y] of pts) g.lineTo(x,y);
       g.lineTo(-220,H); g.lineTo(-220,300); g.closePath(); g.fill();
@@ -154,17 +157,34 @@ window.renderReady = (async () => {
 
   // ---- WORKED GROUND. panel_ready measures the quietest patch of every ground a dossier calls
   // worked, and a smooth gradient fails it however well lit it is. This is the material.
+  // BUDGETED BY THE LIGHT ALREADY ON THE FRAME. This block used to spray one speck field over
+  // every square pixel with no material test, and on this deck it ran character for character on
+  // four frames. A judge measured the cost on the cover: the declared focal is the darkest area
+  // in the frame and the only place the light dies completely, and the block was filling it with
+  // white specks. Tooth is only visible where there is light to rake across it, so the field
+  // READS the canvas it is about to draw on and takes both its weight and its lit fraction from
+  // the luminance already there. Where the light dies, so does the tooth.
   (function grit(){
+    const src = g.getImageData(0,0,W*2,H*2).data;
+    const lumAt = (x,y) => {
+      const i = (((y*2)|0)*(W*2) + ((x*2)|0))*4;
+      return (0.2126*src[i] + 0.7152*src[i+1] + 0.0722*src[i+2]) / 255;
+    };
     for (let i=0;i<130000;i++){
-      const x=R()*W, y=R()*H;
-      g.globalAlpha=0.075+R()*0.150;
-      g.fillStyle = R()<0.5 ? '#FFF4D8' : '#0C0906';
+      const x=R()*W, y=R()*H, L=lumAt(x,y);
+      // A DARK SURFACE STILL HAS TOOTH. The first cut of this gate skipped every pixel under
+      // L 0.05 and panel_ready measured the cover's quietest ground at 3.91 against a 4.0 floor,
+      // which is the same complaint from the other side: material erased rather than sprayed.
+      // What changes with the light is the LIT FRACTION, not whether the concrete is worked, so
+      // an unlit ground gets its tooth almost entirely in the dark direction.
+      g.globalAlpha=(0.085+R()*0.165) * Math.min(1, 0.46 + L*1.5);
+      g.fillStyle = R() < (0.07 + L*0.70) ? '#FFF4D8' : '#0C0906';
       g.fillRect(x,y,1,1);
     }
     for (let i=0;i<26000;i++){                // a coarser aggregate over the fine tooth
-      const x=R()*W, y=R()*H;
-      g.globalAlpha=0.060+R()*0.130;
-      g.fillStyle = R()<0.45 ? '#E8D8B0' : '#171310';
+      const x=R()*W, y=R()*H, L=lumAt(x,y);
+      g.globalAlpha=(0.068+R()*0.145) * Math.min(1, 0.46 + L*1.5);
+      g.fillStyle = R() < (0.06 + L*0.66) ? '#E8D8B0' : '#171310';
       g.fillRect(x,y,1+R()*2.2,1+R()*1.6);
     }
     g.globalAlpha=1;
@@ -195,8 +215,55 @@ window.renderReady = (async () => {
   // ---- WHAT THIS FRAME ASSERTS ABOUT ITSELF, and the acceptance list names both numbers -----
   // the reserve is painted LAST, after the grain, or the grain lays edges back over
   // the type the reserve was put there to clear
-  reserve(0, 1074, W, 280, '#1A1714', 'F2');
-  reserve(430, 224, 580, 210, '#17130F', 'F0');
+  // A SOFT RESERVE HAS NO EDGES. The vertical-only reserve above fades at its top and bottom
+  // and CUTS at its left and right, which on a box narrower than the frame is a rectangle, and a
+  // rectangle behind a figure is the label chip this deck says it is not making. This one falls
+  // off on all four sides from an elliptical centre, so the back wall goes into shade rather
+  // than a plate being laid on it.
+  function reserveSoft(cx,cy,rx,ry,hex,peak){
+    g.save(); g.translate(cx,cy); g.scale(1, ry/rx); g.translate(-cx,-cy);
+    const grd=g.createRadialGradient(cx,cy,0,cx,cy,rx);
+    grd.addColorStop(0,    hex+peak);
+    grd.addColorStop(0.58, hex+peak);
+    grd.addColorStop(1,    hex+'00');
+    g.fillStyle=grd; g.beginPath(); g.arc(cx,cy,rx,0,Math.PI*2); g.fill();
+    g.restore();
+  }
+
+  reserve(0, 1074, W, 280, '#1A1714', 'EA');
+  reserveSoft(768, 320, 400, 190, '#17130F', 'F2');
+
+  // THE MATERIAL, RE-LAID OVER BOTH. A round 2 judge measured the bottom third's aggregate and
+  // threshold cast erased by a 95 percent reserve, and a reserve that removes the thing the
+  // acceptance list requires has traded one defect for another. The near slab and the nosing are
+  // drawn again, on top, quiet enough that nothing moves under the type.
+  (function slabBack(){
+    g.fillStyle='rgba(74,53,32,0.34)'; g.fillRect(0,1052,W,26);
+    g.fillStyle='rgba(250,238,206,0.22)'; g.fillRect(0,1048,W,4);
+    const cast=g.createLinearGradient(0,1078,0,1192);
+    cast.addColorStop(0,'rgba(10,8,5,0.30)'); cast.addColorStop(1,'rgba(10,8,5,0)');
+    g.fillStyle=cast; g.fillRect(0,1078,W,114);
+    for(let i=0;i<9000;i++){
+      const x=R()*W, y=1080+R()*(H-1080);
+      g.globalAlpha=0.035+R()*0.075;
+      g.fillStyle= R()<0.36 ? '#C4B393' : '#231E18';
+      g.fillRect(x,y,1+R()*2.0,1+R()*1.4);
+    }
+    g.globalAlpha=1;
+  })();
+
+  // and the first two isolux bands re-laid across the shaded back wall, so the figure sits IN
+  // the plot rather than on a panel cut out of it
+  (function bandsBack(){
+    g.save(); g.beginPath(); g.ellipse(768,320,400,190,0,0,Math.PI*2); g.clip();
+    for (const [yy,aa] of [[236,0.055],[288,0.042],[352,0.030],[420,0.022]]){
+      g.strokeStyle='rgba(255,246,220,'+aa+')'; g.lineWidth=5;
+      g.beginPath(); g.moveTo(360,yy+70);
+      g.bezierCurveTo(620,yy+18, 860,yy+4, 1180,yy);
+      g.stroke();
+    }
+    g.restore();
+  })();
 
   window.__txProbe = {
     contours: LEVELS,

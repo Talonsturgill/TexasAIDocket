@@ -138,6 +138,61 @@ window.renderReady = (async () => {
     g.closePath(); g.fill();
   })();
 
+  // ---- THE NEAR FLOOR, which is the ground the reader is standing on and was a flat wash -----
+  // Two judges measured the bottom 40 percent of this frame as an empty dark plane, and the
+  // dossier promised a band that was never drawn. Being in shade is not a reason for a surface
+  // to have no material: a terrazzo floor in shade still has joints, still has aggregate, and
+  // still takes the rail's cast. Everything here is drawn BELOW the posts' feet at y 1046, so
+  // nothing is laid back over a contact shadow the frame already earned.
+  (function nearFloor(){
+    const TOP=1046, VPX=540, VPY=300;
+    g.save(); g.beginPath(); g.rect(0,TOP,W,H-TOP); g.clip();
+
+    // the joints running away from the reader, converging on the room's own vanishing point
+    for (let i=-7;i<=7;i++){
+      const nx = 540 + i*212;                       // where the joint meets the near edge
+      const grd=g.createLinearGradient(0,H,0,TOP);
+      grd.addColorStop(0,'rgba(250,240,214,0.20)'); grd.addColorStop(1,'rgba(250,240,214,0.05)');
+      g.strokeStyle=grd; g.lineWidth=2.4;
+      g.beginPath(); g.moveTo(nx,H); g.lineTo(VPX + (nx-VPX)*0.30, VPY+760); g.stroke();
+      g.strokeStyle='rgba(10,8,6,0.46)'; g.lineWidth=3.0;
+      g.beginPath(); g.moveTo(nx+4,H); g.lineTo(VPX + (nx-VPX)*0.30 + 2, VPY+760); g.stroke();
+    }
+    // the joints running across, their spacing closing with depth, which is what says distance
+    // BOUNDED. The spacing closes with depth, which is a geometric series, and a geometric
+    // series converges: written as a while loop on y alone this ran forever and the render timed
+    // out at 45 seconds. The step has a floor and the loop has a count, so it terminates on the
+    // arithmetic rather than on the shape of the picture.
+    let y=H+40, step=132;
+    for (let k=0; k<26 && y>TOP; k++){
+      g.fillStyle='rgba(250,240,214,0.15)'; g.fillRect(0,y-3,W,2);
+      g.fillStyle='rgba(10,8,6,0.42)';      g.fillRect(0,y-1,W,3);
+      step = Math.max(11, step*0.74); y -= step;
+    }
+
+    // terrazzo, coarse near the reader and fine away from them
+    for (let i=0;i<52000;i++){
+      const yy=TOP+R()*(H-TOP), d=(yy-TOP)/(H-TOP);
+      const x=R()*W;
+      g.globalAlpha=0.030+R()*(0.055+d*0.085);
+      g.fillStyle = R()<0.36 ? '#B9AC97' : '#15120F';
+      g.fillRect(x,yy,1+R()*(1+d*2.3),1+R()*(1+d*1.5));
+    }
+    g.globalAlpha=1;
+
+    // THE RAIL'S OWN LONG CAST, thrown toward the reader on the deck's one sun, down and left.
+    // A barrier with no shadow on the public side of it is a drawing of a fence, not of a bar.
+    for (let x=40;x<W-40;x+=176){
+      const cast=g.createLinearGradient(x,TOP,x+CAST.dx*260,TOP+300);
+      cast.addColorStop(0,'rgba(12,10,7,0.50)'); cast.addColorStop(1,'rgba(12,10,7,0)');
+      g.fillStyle=cast;
+      g.beginPath(); g.moveTo(x-4,TOP); g.lineTo(x+22,TOP);
+      g.lineTo(x+22+CAST.dx*300, TOP+330); g.lineTo(x-14+CAST.dx*300, TOP+330);
+      g.closePath(); g.fill();
+    }
+    g.restore();
+  })();
+
   // ---- live oak reaching in at the corners, which is the only thing here that is not civic --
   (function canopy(){
     g.globalAlpha=0.5; g.fillStyle=LIVEOAK;
