@@ -1017,3 +1017,29 @@ dead hatch and frame 4's buried scale bar without a judge.
 cannot reach it, because the host treats everything under `.claude/` as a sensitive file and
 prompts on every edit whatever the permission mode says. Ownership and reachability are different
 questions. A maintainer at a keyboard can make this edit and answer the one prompt.
+
+## 2026-09-06 — `site_build.py` publishes an article page for a deck the panel HELD
+
+Found by reading CI's freshness diff on a held run, and it is a proposal because
+`scripts/site/site_build.py` is the `human` lane.
+
+**The presence of artifacts under `runs/carousel/<date>/` is read as evidence that something
+shipped.** `site_build.py` writes `docs/articles/<date>/index.html` from that run's `copy.json`
+whenever the directory exists. Carousel no. 17 was held on a hard fail after five scoring rounds
+and an article page carrying its copy is committed anyway, including the sentence the panel
+hard failed.
+
+**`site_fresh_check` then makes the page impossible to remove from inside a run.** It requires
+every committed file under `docs/` to match a rebuild byte for byte, so deleting the page fails
+the build on the next gate. The run cannot opt out of publishing a deck it just refused to ship.
+
+**Only the merge policy is holding the line, and it is holding it by accident.** A failed run does
+not merge, so nothing reaches the live site. But the reason nothing publishes is a rule about
+git rather than a rule about the page, and a maintainer merging this branch to land the record
+work would publish a held deck's copy without being told.
+
+**The proposal.** `site_build.py` reads `runs/carousel/<date>/score.json` where one exists and
+declines to write an article page when `ship` is false, the same way it already declines to write
+what it has no data for. A run with no score file yet is unchanged. The check that proves it is
+the one this defect was found by: build a tree containing a `score.json` with `ship: false` and
+assert no `docs/articles/<date>/` is written.
