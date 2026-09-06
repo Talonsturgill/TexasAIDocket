@@ -1,0 +1,18 @@
+[
+ {
+  "what": "Nothing shipped to the machine's code from this run's own hand.",
+  "why": "The retro's two strongest findings both land in files this lane owns and a third lands in one it does not, so the lane is still working them at the time this email was built. What IS committed is two proposals, below."
+ },
+ {
+  "what": "PROPOSAL: render.py should capture window.__txProbe into the render report.",
+  "why": "Nine frames on this deck set a probe and the report has no field for it, so probe is null on every slide. Two acceptance items claiming a number was 'printed to the render report' had never been true of any deck, which is a check reading as passing because nothing reads it. Fixed inside the frames for now by making 5 and 8 THROW rather than render on violation, which 7 and 9 already did. The real fix is three lines in a file under .claude/, which no routine may write."
+ },
+ {
+  "what": "PROPOSAL: site_build.py should decline to write an article page for a run the panel HELD.",
+  "why": "It writes docs/articles/<date>/index.html for any date with run artifacts, so this held deck has a committed article page carrying the sentence the panel hard failed. site_fresh_check then requires it to match a rebuild, so a run cannot opt out of publishing a deck it just refused to ship. Only the no-merge rule keeps it off the live site, and that is a rule about git rather than about the page."
+ },
+ {
+  "what": "PROPOSAL: docket_build --validate accepts a numeral traced to a key_date the same run typed.",
+  "why": "It reports every numeral in copy 'traceable to a quote or a name'. Two dates on the Tesla item were traceable to a key_date rather than to a fetched quote, so a date entered the public record and satisfied the numeral gate on the strength of a field nobody fetched. CI caught the consequence rather than the cause, because the kind on that key_date had no label."
+ }
+]
