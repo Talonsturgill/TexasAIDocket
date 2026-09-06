@@ -1,0 +1,20 @@
+{
+ "slides": 9,
+ "declaring": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "declared": 13,
+ "problems": [
+  "slide 4: the dossier declares 'Be located in Texas' as the fragment of c5 this frame seats, and the frame prints MORE of c5's own quote: 'Be located in Texas or, for a virtual school, have an office in Texas.'. The plan describes a frame the run did not make, and it describes a SHORTER one, so a critic reading the dossier grades a truncation that is not there and this gate only ever held the short string to the record. Declare what the frame prints, and repair the other two places the same truncated string usually sits: this dossier's `type.labels` list and any acceptance item quoting it. On 2026-09-06 frame 4 it was in all three and `plan_render_check` passed the other two, correctly, because a declared label is satisfied by any node containing it",
+  "slide 7: the dossier declares \"become 'Guides,'\" as the fragment of c10 this frame seats, and the frame prints MORE of c10's own quote: '\"Adults, whether teachers or parents, become \\'Guides,\\'\"'. The plan describes a frame the run did not make, and it describes a SHORTER one, so a critic reading the dossier grades a truncation that is not there and this gate only ever held the short string to the record. Declare what the frame prints, and repair the other two places the same truncated string usually sits: this dossier's `type.labels` list and any acceptance item quoting it. On 2026-09-06 frame 4 it was in all three and `plan_render_check` passed the other two, correctly, because a declared label is satisfied by any node containing it"
+ ],
+ "notes": []
+}

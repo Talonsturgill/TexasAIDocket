@@ -27,7 +27,6 @@
  "deck: panel_ready": "PASS",
  "deck: ledger_check": "PASS",
  "PANEL": "HOLD. Median 6.552 against 6.8, one hard fail from the reader on slide 1's dek",
- "prompt_audit": "PASS, 1383 tool calls measured, none waited on a human",
  "CI on the pull request": "GREEN on head dbea39ee. gates, guards, build, freshness, browser-read, browser-layout and browser-render all success. It went red four times first and every one was this run's own unfinished work: a calendar kind with no label, a stale article page, the missing email payload, and shipped_check judging a HELD run as published work.",
  "prompt_audit (the reading that counts)": "PASS, 1615 tool calls measured, none waited on a human",
  "THE RETRO'S NEW GATES FAIL THE DECK THAT TAUGHT THEM": "Deliberate and correct. Both gates postdate the scoring, so they judged nothing that was scored, and shipped_check's CURRENT and HISTORY scopes exist for exactly this. A gate written from a defect that then cannot see that defect would be the thing worth worrying about."
