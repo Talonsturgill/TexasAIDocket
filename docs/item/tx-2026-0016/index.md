@@ -10,7 +10,7 @@ The Bureau of Labor Statistics has proposed adding questions about artificial in
 - Comment closes: 2026-09-08
 - Take part: https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-06
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-03 · The comment window on adding artificial intelligence questions to the American Time Use Survey is still open and still closes September 8th, 2026. The notice stands as published and the closing date has not moved. Five days are left to file.
 - 2026-09-04 · Four days left. The Bureau of Labor Statistics notice proposing artificial intelligence questions for the American Time Use Survey stands as published, and the window still shuts on September 8th, 2026. The wording of the pre-clearance consultation the notice opens is unchanged from the day it published.
 - 2026-09-05 · The Labor Department's notice still stands and the comment door has not shut. A reader can still file on the survey's AI questions.
+- 2026-09-06 · The Labor Department's own notice still stands and the door on the survey's artificial intelligence questions has not shut. The published closing date has not moved and a reader can still file. The notice's own page would not open, so its wording was read from the agency's data service instead.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The Office of the Executive Vice President and Provost requires a Course Artific
 - Public access: Closed
 - Take part: https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/
 
-- Last checked: 2026-09-03
+- Last checked: 2026-09-06
 
 ## Dates
 
@@ -22,6 +22,7 @@ The Office of the Executive Vice President and Provost requires a Course Artific
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-03 · Admitted. The provost's office requires a course artificial intelligence policy in every syllabus every semester. The policy has to name AI permitted or prohibited or partially permitted. The university names it one of two new required statements for Fall 2026. That term's classes began August 24th, 2026.
+- 2026-09-06 · The syllabus requirement stands as adopted and the university has published no exception to it. Every course is still expected to say where it lands.
 
 ## Evidence
 
