@@ -274,3 +274,45 @@ told so and asked to test the call rather than discover it.
 
 Machine QA finished at zero fails across all nine frames. `panel_ready` exits 0. The PDF is
 vector.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 25 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 9 warn(s) |
+| aggregates     | PASS   | 6 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.12 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | PASS   | 93 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 84 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 12 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 40,646 chars planned |
+| caption        | PASS   | 134 words |
+| craft floor    | WARN   | 9 frame(s), median 891, floor 160, 1 quiet |
+| plan vs render | WARN   | 5 of 57 acceptance item(s) checkable |
+| texan          | WARN   | places Austin, Brownsville, Fort Worth, Houston, Plano, The Woodlands / body NO / deadline yes / next step NO |
+| absences       | PASS   | 14 of 14 scoped to a named document |
+| numerals       | PASS   | 3 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
+
+## Two frames changed while the panel was reading, and both changes were gate forced
+
+`numeral_lint`, read through `gate_status`, failed the deck after the scorers were already out.
+Slide 4 printed row markers 01 to 04 that trace to no claim, and slide 5's figure label printed
+2027 where c8's own quote says 2026-27. **A numeral typed as furniture is still a numeral**, and
+the law is that every one of them is quoted or computed. The markers were cut, because four rows
+are self evidently four and numbering them asserted a figure while adding nothing, and the label
+now says what the source says.
+
+Both frames were re-rendered and `copy.json` refreshed from the new render report. The judges
+may therefore have transcribed either version of those two frames. It is small and it is stated
+here rather than left for a reader of the report cards to trip over.
+
+`quantifier_check` was the last gate to go green and it found two universals with no set behind
+them, "Not one of them" in the caption and "every claim and every source" in the first comment.
+Both are now declared in `quantifiers.json` with their members named, and the first one's set is
+measured by `compute.py` rather than asserted, on every build.
