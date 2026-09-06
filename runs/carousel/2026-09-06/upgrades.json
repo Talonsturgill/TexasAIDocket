@@ -1,18 +1,34 @@
 [
  {
-  "what": "Nothing shipped to the machine's code from this run's own hand.",
-  "why": "The retro's two strongest findings both land in files this lane owns and a third lands in one it does not, so the lane is still working them at the time this email was built. What IS committed is two proposals, below."
+  "what": "verbatim_check gained a third direction: a dossier that declares a TRUNCATION of what the frame prints now fails.",
+  "why": "Frame 4 declared 'Be located in Texas' while the frame printed claim c5 whole. Both existing tests are containment tests, so both passed, and the gate only ever held the DECLARED string to the record. The eleven words a reader receives were never checked against anything while the receipt read clean. Round 4 had hard failed this deck for truncating that same claim, the frame was repaired and the plan was not."
+ },
+ {
+  "what": "quantifier_check gained a fourth rule: a CLOSURE must name its set, the way a universal already must.",
+  "why": "The round 5 hard fail passed four gates, each right about its own question. numeral_lint traces 'two' to a computation, aggregate_check has the count declared, absence_check reads negations and there is none, and the universal rule wants a quantifier word and a set noun off two lists holding neither. What makes the sentence false is 'The other'."
+ },
+ {
+  "what": "shipped_check gained a HELD case, so a run that did not publish is out of scope rather than a defect in published work.",
+  "why": "CI could not go green on this branch: the sweep reports problems in work that is ALREADY PUBLISHED and read a run directory as proof of publication, so it reported the completion gate's own 'THE DECK DID NOT SHIP' as a defect. Nothing is dropped, every finding is still printed as a note. The first draft tested ship: false and put four PUBLISHED decks out of scope, so the test is a non-empty hard_fails list instead, and the self-test was watched go red on that exact mistake."
+ },
+ {
+  "what": "A gate for an undeclared NEGATIVE was REFUSED, with two measurements over every shipped deck.",
+  "why": "Requiring a negation-bearing sentence to cite a numbered absence fires on 136 of 136 negatives, because absence ids in a citation rail are a habit this run started and sixteen decks do not have them. Tightening absence_check from 'does this frame name a document' to 'does this sentence' adds 58 findings of the form 'It states no total.' A wall is not a gate. Both tables are in the backlog so the next phase starts from them."
  },
  {
   "what": "PROPOSAL: render.py should capture window.__txProbe into the render report.",
-  "why": "Nine frames on this deck set a probe and the report has no field for it, so probe is null on every slide. Two acceptance items claiming a number was 'printed to the render report' had never been true of any deck, which is a check reading as passing because nothing reads it. Fixed inside the frames for now by making 5 and 8 THROW rather than render on violation, which 7 and 9 already did. The real fix is three lines in a file under .claude/, which no routine may write."
+  "why": "Nine frames set a probe and the report has no field for it, so two acceptance items claiming a number was 'printed to the render report' had never been true of any deck. Fixed inside the frames for now by making 5 and 8 THROW rather than render. The real fix is three lines in a file under .claude/, which no routine may write."
  },
  {
-  "what": "PROPOSAL: site_build.py should decline to write an article page for a run the panel HELD.",
-  "why": "It writes docs/articles/<date>/index.html for any date with run artifacts, so this held deck has a committed article page carrying the sentence the panel hard failed. site_fresh_check then requires it to match a rebuild, so a run cannot opt out of publishing a deck it just refused to ship. Only the no-merge rule keeps it off the live site, and that is a rule about git rather than about the page."
+  "what": "PROPOSAL: site_build.py should decline the article page for a run whose score.json says ship is false.",
+  "why": "It writes an article page for any date with run artifacts, so this held deck has one committed carrying the sentence the panel hard failed, and site_fresh_check then forbids deleting it. Only the no-merge rule keeps it off the live site."
  },
  {
   "what": "PROPOSAL: docket_build --validate accepts a numeral traced to a key_date the same run typed.",
-  "why": "It reports every numeral in copy 'traceable to a quote or a name'. Two dates on the Tesla item were traceable to a key_date rather than to a fetched quote, so a date entered the public record and satisfied the numeral gate on the strength of a field nobody fetched. CI caught the consequence rather than the cause, because the kind on that key_date had no label."
+  "why": "Two dates on the Tesla item satisfied the numeral gate on the strength of a field nobody fetched. CI caught the consequence rather than the cause."
+ },
+ {
+  "what": "PROPOSAL: verbatim_check and quantifier_check self-tests are in guards.yml in no form.",
+  "why": "Filed 2026-09-04 and still true, and it costs more now that both carry a corpus calibration reading every shipped deck that CI has never run."
  }
 ]
