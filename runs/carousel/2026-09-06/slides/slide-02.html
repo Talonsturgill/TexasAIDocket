@@ -1,0 +1,167 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1A1714}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:330px;
+    background:linear-gradient(to bottom,rgba(26,23,20,.94) 0%,rgba(26,23,20,.66) 56%,rgba(26,23,20,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:210px;
+    background:linear-gradient(to bottom,rgba(26,23,20,0) 0%,rgba(26,23,20,.72) 44%,rgba(26,23,20,.97) 100%)}
+  .mast{position:absolute;top:86px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#A79878}
+  h1{position:absolute;top:148px;left:80px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:800;font-size:78px;line-height:1.05;color:#F0E2BC;letter-spacing:-.022em}
+  .q{position:absolute;top:326px;left:80px;width:830px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:29px;line-height:1.36;color:#D8CBB4}
+  .cid{position:absolute;top:300px;left:80px;font-family:"JetBrains Mono",monospace;font-size:22px;
+    letter-spacing:.10em;color:#8C8478}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#8C8478;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>One route ends in a room.</h1>
+  <p class="q">"the Commissioner of Education is responsible for recommending new open-enrollment charters"</p>
+  <div class="fscrim" data-decorative></div>
+  <div class="foot"><span>TEA</span><span>c14 c15</span><span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txrelief.js"></script>
+<script>
+window.renderReady = (async () => {
+  const W=1080,H=1350;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const g=c.getContext('2d'); g.scale(2,2);
+  TX.reseed(20260906); const R=TX.rng(20260906+2);
+
+  const SOFFIT='#1A1714', FORMED='#4B473E', FORMED_SUN='#A79878', WALK='#C4B393',
+        SUN_RETURN='#F0E2BC', BRONZE='#4A3520', LIVEOAK='#2E3826';
+
+  // THE DECK'S ONE SUN. Structural law 1. Every lit edge in this frame faces up and right and
+  // every cast falls down and left, because that is what this azimuth means. Stated once here
+  // and used by every drawing step below, so nothing can disagree with anything else.
+  const SUN = { dx: 0.62, dy: -0.66 };          // direction the light travels FROM
+  const CAST = { dx: -0.52, dy: 0.34 };          // direction a shadow is thrown
+
+  g.fillStyle=SOFFIT; g.fillRect(0,0,W,H);
+
+  // ---- the back wall of the room, in shade, one graded falloff and nothing competing --------
+  (function backwall(){
+    const grd=g.createLinearGradient(W,0,0,H*0.72);
+    grd.addColorStop(0,'#565046'); grd.addColorStop(0.55,FORMED); grd.addColorStop(1,'#332F29');
+    g.fillStyle=grd; g.fillRect(0,0,W,862);
+  })();
+
+  // ---- the floor, LIT FIRST so there is something for a contact shadow to subtract from -----
+  // DESIGN DOCTRINE, and it is the reason this step comes before the chairs rather than after.
+  // A shadow cast onto a surface that is already near black is a one L* change and reads as
+  // nothing. The pool is laid down, then everything casts into it.
+  const FLOOR_Y = 862;   // the rail's own floor line, the room beyond it
+  (function floor(){
+    // the NEAR floor, outside the rail, where the reader is standing. Deliberately in shade.
+    const near=g.createLinearGradient(0,FLOOR_Y,0,H);
+    near.addColorStop(0,'#332F29'); near.addColorStop(1,'#201D19');
+    g.fillStyle=near; g.fillRect(0,FLOOR_Y,W,H-FLOOR_Y);
+    // THE ROOM'S OWN FLOOR, seen through the gate and BEYOND the rail, lit first so every
+    // contact shadow below has something to subtract from. This is the frame's focal.
+    const px=286, py=612, pw=506, ph=250;
+    const pool=g.createRadialGradient(px+pw*0.54, py+ph*0.44, 24, px+pw*0.5, py+ph*0.5, 330);
+    pool.addColorStop(0,SUN_RETURN); pool.addColorStop(0.34,'#DCCBA8');
+    pool.addColorStop(0.66,WALK); pool.addColorStop(1,'rgba(75,71,62,0)');
+    g.fillStyle=pool; g.fillRect(px-150,py-70,pw+340,ph+150);
+    window.__floorPool = {x:px,y:py,w:pw,h:ph};
+  })();
+
+  // ---- a form has a lit edge and a shadow immediately under it, which is what makes it a
+  //      thing rather than a stroke. One helper, used for the rail, the gate and every chair.
+  function bar(x,y,w,h,lit,dark,shade){
+    g.fillStyle=shade; g.fillRect(x,y,w,h);                       // the body
+    g.fillStyle=lit;   g.fillRect(x,y,w,Math.max(2,h*0.22));      // the sun catching the top
+    g.fillStyle=dark;  g.fillRect(x,y+h-Math.max(2,h*0.18),w,Math.max(2,h*0.18)); // the underside
+  }
+  // a two part contact shadow, a tight core and a wide penumbra, so a thing SITS on the floor
+  function contact(x,yBase,w,strength){
+    const core=g.createLinearGradient(0,yBase,0,yBase+16);
+    core.addColorStop(0,'rgba(20,17,14,'+(0.72*strength)+')'); core.addColorStop(1,'rgba(20,17,14,0)');
+    g.fillStyle=core; g.fillRect(x+CAST.dx*10, yBase, w, 16);
+    const pen=g.createLinearGradient(0,yBase,0,yBase+52);
+    pen.addColorStop(0,'rgba(20,17,14,'+(0.34*strength)+')'); pen.addColorStop(1,'rgba(20,17,14,0)');
+    g.fillStyle=pen; g.fillRect(x+CAST.dx*30, yBase, w*1.5, 52);
+  }
+
+  // ---- the chairs, BEHIND the rail, each one meeting the floor at a contact shadow ----------
+  (function chairs(){
+    const seats=[[128,224],[338,238],[556,230],[774,220],[958,234]];
+    for (const [cx,ch] of seats){
+      const bw=142, by=FLOOR_Y-ch;
+      bar(cx, by, bw, ch*0.42, '#6E6558', '#211D19', '#3F3A33');   // the back
+      // two legs, each with its own contact
+      bar(cx+16, by+ch*0.42, 12, ch*0.58, '#5E564B', '#1B1815', '#37322C');
+      bar(cx+bw-28, by+ch*0.42, 12, ch*0.58, '#5E564B', '#1B1815', '#37322C');
+      contact(cx+10, FLOOR_Y-6, bw+10, 0.95);
+    }
+  })();
+
+  // ---- the rail, and the one way through it, which is drawn CLOSED -------------------------
+  // A body that can refuse is a body with something in the way. The gate leaf is a real leaf
+  // with a stile, and its stile casts onto the lit pool rather than onto the dark floor.
+  const RAIL_Y = 866, GATE_X = 286, GATE_W = 506;
+  (function rail(){
+    for (let x=40;x<W-40;x+=176){                                  // the posts
+      bar(x, RAIL_Y, 16, 176, '#7A7062', '#1B1815', '#463F37');
+      contact(x-6, RAIL_Y+172, 30, 0.7);
+    }
+    bar(40, RAIL_Y-26, W-80, 26, '#B9AC97', '#17140F', '#6A6154'); // the cap, lit on top
+    // the gate leaf, closed, its stile heavier than the rail it hangs in
+    g.fillStyle='#2B2721'; g.fillRect(GATE_X, RAIL_Y-4, GATE_W, 168);
+    bar(GATE_X, RAIL_Y-18, GATE_W, 18, '#CDBFA4', '#15120E', '#7A7163');
+    bar(GATE_X, RAIL_Y-4, 26, 168, '#8E8474', '#17140F', '#4A443B');
+    bar(GATE_X+GATE_W-26, RAIL_Y-4, 26, 168, '#8E8474', '#17140F', '#4A443B');
+    for (let i=1;i<7;i++){                                          // the leaf's own bars
+      const bx = GATE_X + 26 + i*((GATE_W-52)/7);
+      bar(bx, RAIL_Y+6, 11, 156, '#6C6355', '#1A1713', '#3C372F');
+    }
+    // the gate's stile casts into the lit pool, which is what the pool was laid down for
+    contact(GATE_X-4, RAIL_Y+164, GATE_W+40, 1.0);
+    // the gate's own cast, thrown BACK onto the lit room floor rather than onto the near shade,
+    // because a shadow on a ground that was never lit is a one L star change and reads as nothing
+    const stile=g.createLinearGradient(0,FLOOR_Y,0,FLOOR_Y-130);
+    stile.addColorStop(0,'rgba(20,17,14,0.52)'); stile.addColorStop(1,'rgba(20,17,14,0)');
+    g.fillStyle=stile;
+    g.beginPath(); g.moveTo(GATE_X,FLOOR_Y); g.lineTo(GATE_X+GATE_W,FLOOR_Y);
+    g.lineTo(GATE_X+GATE_W+CAST.dx*150, FLOOR_Y-130); g.lineTo(GATE_X+CAST.dx*150, FLOOR_Y-130);
+    g.closePath(); g.fill();
+  })();
+
+  // ---- live oak reaching in at the corners, which is the only thing here that is not civic --
+  (function canopy(){
+    g.globalAlpha=0.5; g.fillStyle=LIVEOAK;
+    for (const [ox,oy,or] of [[0,0,300],[W,60,240]]){
+      g.beginPath(); g.arc(ox,oy,or,0,Math.PI*2); g.fill();
+    }
+    g.globalAlpha=1;
+  })();
+
+  // ---- the rail cap given real relief, so it is a form rather than a painted bar ------------
+  TX.reliefShade(g, { x:40, y:RAIL_Y-26, w:W-80, h:26, seed:20260906,
+                      noiseScale:0.010, octaves:2, strength:2.2,
+                      lights:[{az:112, el:34, w:1}], ambient:0.42, diffuse:0.62,
+                      low:'#463F35', high:'#9C8F79' });
+
+  await (async function grain(){
+    const img=new Image();
+    await new Promise(r=>{img.onload=r;img.onerror=r;img.src=TX.grainTile(256,30,20260906);});
+    g.globalAlpha=0.032; g.fillStyle=g.createPattern(img,'repeat');
+    g.fillRect(0,0,W,H); g.globalAlpha=1;
+  })();
+
+  window.__txProbe = { sun_azimuth_from: SUN, cast_direction: CAST,
+    note: "one sun, every lit edge up and right, every cast down and left" };
+})();
+</script>
+</body></html>

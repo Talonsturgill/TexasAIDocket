@@ -1,0 +1,2540 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 152, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two doors. Different latches.",
+          "x": 80,
+          "y": 869,
+          "w": 760,
+          "h": 191,
+          "font_px": 92,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              860,
+              411,
+              113
+            ],
+            [
+              80,
+              955,
+              639,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas has two ways to put a school in front of a child on public money. One ends at a board that votes. The other ends at a published checklist.",
+          "x": 80,
+          "y": 1071,
+          "w": 820,
+          "h": 121,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(216, 203, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1070,
+              769,
+              41
+            ],
+            [
+              80,
+              1111,
+              779,
+              41
+            ],
+            [
+              80,
+              1151,
+              414,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEA",
+          "x": 80,
+          "y": 1245,
+          "w": 47,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              47,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c14 c15 c1",
+          "x": 241,
+          "y": 1245,
+          "w": 156,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              241,
+              1245,
+              156,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 511,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              511,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 300,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 830,
+          "w": 1080,
+          "h": 520,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "one opening has a reveal with depth and the other is cut flush",
+          "reads": "differ",
+          "a": [
+            [
+              268,
+              690,
+              96,
+              300
+            ]
+          ],
+          "b": [
+            [
+              726,
+              690,
+              96,
+              300
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 7698,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 75.3,
+          "variance": 1290.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 152, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One route ends in a room.",
+          "x": 80,
+          "y": 148,
+          "w": 900,
+          "h": 82,
+          "font_px": 78,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              851,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"the Commissioner of Education is responsible for recommending new open-enrollment charters\"",
+          "x": 80,
+          "y": 326,
+          "w": 830,
+          "h": 79,
+          "font_px": 29,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(216, 203, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              325,
+              677,
+              40
+            ],
+            [
+              80,
+              364,
+              634,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEA",
+          "x": 80,
+          "y": 1245,
+          "w": 47,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              47,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c14 c15",
+          "x": 257,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              257,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 496,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              496,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 330,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1140,
+          "w": 1080,
+          "h": 210,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2554,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 66.7,
+          "variance": 1225.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 181, 144)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "That room keeps a calendar.",
+          "x": 80,
+          "y": 142,
+          "w": 900,
+          "h": 164,
+          "font_px": 78,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              618,
+              96
+            ],
+            [
+              80,
+              216,
+              314,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Open-Enrollment Charter School Generation 32 Application Updates",
+          "x": 132,
+          "y": 596,
+          "w": 830,
+          "h": 96,
+          "font_px": 37,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 16, 4)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              595,
+              688,
+              49
+            ],
+            [
+              132,
+              643,
+              757,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SBOE - NO ACTION",
+          "x": 132,
+          "y": 862,
+          "w": 515,
+          "h": 61,
+          "font_px": 46,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 16, 4)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              862,
+              515,
+              61
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ProPublica and The Texas Tribune spell out SBOE as the Texas State Board of Education. The line is an update on an application cycle and it names no applicant.",
+          "x": 96,
+          "y": 1092,
+          "w": 880,
+          "h": 116,
+          "font_px": 28,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(214, 199, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1092,
+              880,
+              38
+            ],
+            [
+              96,
+              1131,
+              834,
+              38
+            ],
+            [
+              96,
+              1169,
+              343,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SBOE AGENDA",
+          "x": 80,
+          "y": 1245,
+          "w": 172,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              172,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17 c18 c19 c23",
+          "x": 277,
+          "y": 1245,
+          "w": 296,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              277,
+              1245,
+              296,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 600,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2972,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 76.5,
+          "variance": 2009.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 152, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The other route has four latches.",
+          "x": 80,
+          "y": 142,
+          "w": 900,
+          "h": 164,
+          "font_px": 78,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              813,
+              96
+            ],
+            [
+              80,
+              216,
+              258,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Be accredited",
+          "x": 132,
+          "y": 398,
+          "w": 197,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 226, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              398,
+              197,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Be a proven operator",
+          "x": 132,
+          "y": 590,
+          "w": 302,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 226, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              590,
+              302,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Administer a nationally norm-referenced assessment.",
+          "x": 132,
+          "y": 782,
+          "w": 771,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 226, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              782,
+              771,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Be located in Texas",
+          "x": 132,
+          "y": 974,
+          "w": 287,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 226, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              974,
+              287,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROGRAM PAGE",
+          "x": 80,
+          "y": 1245,
+          "w": 187,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              187,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c4 c5",
+          "x": 329,
+          "y": 1245,
+          "w": 172,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              329,
+              1245,
+              172,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 563,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              563,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 300,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the mortise floors are cuts and the jamb face around them is not",
+          "reads": "differ",
+          "a": [
+            [
+              300,
+              400,
+              300,
+              100
+            ]
+          ],
+          "b": [
+            [
+              300,
+              520,
+              300,
+              50
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1751,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.9,
+          "variance": 350.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 152, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This door never closes.",
+          "x": 80,
+          "y": 142,
+          "w": 880,
+          "h": 84,
+          "font_px": 80,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              769,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$10,474",
+          "x": 587,
+          "y": 250,
+          "w": 413,
+          "h": 132,
+          "font_px": 100,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 232, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              587,
+              250,
+              413,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PER CHILD, THE 2026-27 SCHOOL YEAR",
+          "x": 412,
+          "y": 372,
+          "w": 588,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(232, 219, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              412,
+              372,
+              588,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Applications are accepted on a rolling basis.\"",
+          "x": 80,
+          "y": 1094,
+          "w": 860,
+          "h": 42,
+          "font_px": 33,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1092,
+              715,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The window opened December 9th, 2025 and no second date has been set against it.",
+          "x": 80,
+          "y": 1144,
+          "w": 860,
+          "h": 70,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(196, 179, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1143,
+              855,
+              36
+            ],
+            [
+              80,
+              1178,
+              166,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE PROGRAM PAGE",
+          "x": 80,
+          "y": 1245,
+          "w": 250,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              250,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7 c8",
+          "x": 387,
+          "y": 1245,
+          "w": 125,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              387,
+              1245,
+              125,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 569,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              569,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 280,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1020,
+          "w": 1080,
+          "h": 330,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2811,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 63.1,
+          "variance": 2493.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 198, 176)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Be accredited",
+          "x": 222,
+          "y": 482,
+          "w": 193,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 29, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              222,
+              482,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Be a proven operator",
+          "x": 222,
+          "y": 592,
+          "w": 298,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 29, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              222,
+              592,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Administer a nationally norm-referenced assessment.",
+          "x": 222,
+          "y": 702,
+          "w": 759,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 29, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              222,
+              702,
+              759,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Be located in Texas",
+          "x": 222,
+          "y": 812,
+          "w": 283,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 29, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              222,
+              812,
+              283,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The list stops at four.",
+          "x": 340,
+          "y": 952,
+          "w": 660,
+          "h": 177,
+          "font_px": 86,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(35, 29, 20)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              466,
+              943,
+              534,
+              106
+            ],
+            [
+              830,
+              1032,
+              170,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "None of the four is about the teaching.",
+          "x": 340,
+          "y": 1152,
+          "w": 660,
+          "h": 43,
+          "font_px": 33,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(59, 50, 37)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              397,
+              1150,
+              603,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROGRAM PAGE",
+          "x": 80,
+          "y": 1245,
+          "w": 187,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 99, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              187,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a1 c1 c2 c3 c4 c5",
+          "x": 298,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 99, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              298,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 595,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 99, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              595,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(107, 99, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the run of cuts stops and the jamb below it is unbroken",
+          "reads": "differ",
+          "a": [
+            [
+              120,
+              300,
+              400,
+              400
+            ]
+          ],
+          "b": [
+            [
+              120,
+              760,
+              400,
+              400
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1606,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 163,
+          "variance": 5400
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 183, 156)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Alpha School says it plainly.",
+          "x": 80,
+          "y": 150,
+          "w": 911,
+          "h": 79,
+          "font_px": 76,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              143,
+              911,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Our AI tutor gives students 1:1 personalized education\"",
+          "x": 80,
+          "y": 520,
+          "w": 920,
+          "h": 130,
+          "font_px": 54,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 240, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              518,
+              771,
+              67
+            ],
+            [
+              80,
+              583,
+              604,
+              67
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Adults, whether teachers or parents, become 'Guides,'\"",
+          "x": 80,
+          "y": 800,
+          "w": 920,
+          "h": 130,
+          "font_px": 54,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(251, 240, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              798,
+              713,
+              67
+            ],
+            [
+              80,
+              863,
+              651,
+              67
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ALPHA SCHOOL",
+          "x": 80,
+          "y": 1245,
+          "w": 187,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 218, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              187,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10",
+          "x": 355,
+          "y": 1245,
+          "w": 94,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 218, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              355,
+              1245,
+              94,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 537,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 218, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              537,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(230, 218, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "light comes through the cut lines and the soffit around them does not",
+          "reads": "differ",
+          "a": [
+            [
+              120,
+              520,
+              400,
+              120
+            ]
+          ],
+          "b": [
+            [
+              120,
+              330,
+              400,
+              120
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2494,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 43.6,
+          "variance": 988.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 152, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One said no. One said yes.",
+          "x": 80,
+          "y": 132,
+          "w": 900,
+          "h": 78,
+          "font_px": 74,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              125,
+              823,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ProPublica and The Texas Tribune report the board rejected this charter and the program accepted most of them.",
+          "x": 80,
+          "y": 300,
+          "w": 920,
+          "h": 75,
+          "font_px": 28,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(214, 200, 172)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              299,
+              830,
+              38
+            ],
+            [
+              80,
+              337,
+              635,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CHARTER",
+          "x": 132,
+          "y": 452,
+          "w": 126,
+          "h": 34,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 203, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              452,
+              126,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ACCOUNTS",
+          "x": 660,
+          "y": 452,
+          "w": 144,
+          "h": 34,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 203, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              660,
+              452,
+              144,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Our role is to make sure that a school meets the requirements in the law.\"",
+          "x": 80,
+          "y": 1024,
+          "w": 920,
+          "h": 84,
+          "font_px": 33,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1022,
+              759,
+              45
+            ],
+            [
+              80,
+              1064,
+              390,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Travis Pillow, a spokesperson for the voucher program",
+          "x": 80,
+          "y": 1136,
+          "w": 827,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(189, 176, 148)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1136,
+              827,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "REPORTING",
+          "x": 80,
+          "y": 1245,
+          "w": 140,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              140,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c20 c21 c22 c23",
+          "x": 277,
+          "y": 1245,
+          "w": 234,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              277,
+              1245,
+              234,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 569,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              569,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "one hardware pocket is full and the other is empty at the same size",
+          "reads": "differ",
+          "a": [
+            [
+              276,
+              702,
+              96,
+              118
+            ]
+          ],
+          "b": [
+            [
+              804,
+              702,
+              96,
+              118
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1353,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25.7,
+          "variance": 177.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 86,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(167, 152, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              86,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ask which door.",
+          "x": 380,
+          "y": 150,
+          "w": 620,
+          "h": 91,
+          "font_px": 88,
+          "weight": "800",
+          "family": "Fraunces",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              429,
+              141,
+              572,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Austin Brownsville Highland Park Plano Fort Worth Carrollton Houston The Woodlands Southlake Lake Travis",
+          "x": 78,
+          "y": 424,
+          "w": 223,
+          "h": 421,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(205, 190, 156)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              78,
+              427,
+              103,
+              35
+            ],
+            [
+              78,
+              469,
+              189,
+              35
+            ],
+            [
+              78,
+              511,
+              223,
+              35
+            ],
+            [
+              78,
+              553,
+              86,
+              35
+            ],
+            [
+              78,
+              595,
+              172,
+              35
+            ],
+            [
+              78,
+              638,
+              172,
+              35
+            ],
+            [
+              78,
+              680,
+              120,
+              35
+            ],
+            [
+              78,
+              722,
+              223,
+              35
+            ],
+            [
+              78,
+              764,
+              154,
+              35
+            ],
+            [
+              78,
+              806,
+              189,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a partial list. ProPublica and The Texas Tribune count \"more than 30 virtual and in-person campuses\"",
+          "x": 322,
+          "y": 876,
+          "w": 474,
+          "h": 134,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 30, 20)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              322,
+              877,
+              446,
+              31
+            ],
+            [
+              322,
+              911,
+              432,
+              31
+            ],
+            [
+              322,
+              944,
+              432,
+              31
+            ],
+            [
+              322,
+              978,
+              134,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The four requirements are published. Ask a school which one covers the teaching.",
+          "x": 80,
+          "y": 1078,
+          "w": 880,
+          "h": 86,
+          "font_px": 33,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(240, 226, 188)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1076,
+              781,
+              45
+            ],
+            [
+              80,
+              1119,
+              488,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "educationfreedom.texas.gov/schools",
+          "x": 80,
+          "y": 1184,
+          "w": 561,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 170, 139)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1184,
+              561,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ALPHA SCHOOL",
+          "x": 80,
+          "y": 1245,
+          "w": 187,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              187,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c25 c22 c2 c5",
+          "x": 319,
+          "y": 1245,
+          "w": 203,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              319,
+              1245,
+              203,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 574,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              574,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(140, 132, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1050,
+          "w": 1080,
+          "h": 300,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2157,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 71.8,
+          "variance": 5588.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+ "run": "2026-09-06",
+ "note": "Carousel no. 17 prints one quoted figure and a handful of counting words. Every counting word the deck computed is declared here with the claim ids it was counted over, because the defect this gate exists for is a run not noticing that a count IS an aggregate.",
+ "aggregates": [
+  {
+   "phrase": "Two doors",
+   "kind": "count",
+   "value": 2,
+   "where": "slide-01.html hook",
+   "from_claims": [
+    "c14",
+    "c1"
+   ],
+   "reads_on_the_frame": "Two doors. Different latches.",
+   "computed_by": "a count of the lawful routes this deck's own claims describe, the charter route at c14 and c15 and the Education Freedom Accounts route at c1 to c8",
+   "what_two_counts": "the two routes the record carries, and never every way a school may be funded"
+  },
+  {
+   "phrase": "two ways",
+   "kind": "count",
+   "value": 2,
+   "where": "slide-01.html dek",
+   "from_claims": [
+    "c14",
+    "c1"
+   ],
+   "reads_on_the_frame": "Texas has two ways to put a school in front of a child on public money. One ends at a board that votes. The other ends at a published checklist.",
+   "computed_by": "a count of the lawful routes this deck's own claims describe, the charter route at c14 and c15 and the Education Freedom Accounts route at c1 to c8",
+   "what_two_counts": "the two routes the record carries, and never a claim that Texas has no other way of funding a school"
+  },
+  {
+   "phrase": "Two routes",
+   "kind": "count",
+   "value": 2,
+   "where": "caption.txt, the first line",
+   "from_claims": [
+    "c14",
+    "c1"
+   ],
+   "reads_on_the_frame": "Two routes. One veto.",
+   "computed_by": "the same count as slide 1's two ways, over the same two claim sets"
+  },
+  {
+   "phrase": "four latches",
+   "kind": "count",
+   "value": 4,
+   "where": "slide-04.html hook",
+   "from_claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "reads_on_the_frame": "The other route has four latches.",
+   "computed_by": "len(REQUIREMENT_CLAIMS) in out/2026-09-06/compute.py, counted over the four claim ids c2, c3, c4 and c5 rather than off the program's page, and written to computed.json requirements.count. The page carries a SECOND list of five pre-K provider criteria under the same heading, so a count taken off the page returns nine and nine is wrong.",
+   "what_four_counts": "published requirements a PRIVATE SCHOOL must meet"
+  },
+  {
+   "phrase": "four requirements",
+   "kind": "count",
+   "value": 4,
+   "where": "slide-09.html dek, and caption.txt twice",
+   "from_claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "reads_on_the_frame": "The four requirements are published. Ask a school which one covers the teaching.",
+   "computed_by": "len(REQUIREMENT_CLAIMS) in out/2026-09-06/compute.py, counted over the four claim ids c2, c3, c4 and c5 rather than off the program's page, and written to computed.json requirements.count. The page carries a SECOND list of five pre-K provider criteria under the same heading, so a count taken off the page returns nine and nine is wrong.",
+   "what_four_counts": "published requirements a PRIVATE SCHOOL must meet"
+  },
+  {
+   "phrase": "32 Application Updates",
+   "value": 32,
+   "where": "slide-03.html, inside the raised agenda line",
+   "reads_on_the_frame": "Open-Enrollment Charter School Generation 32 Application Updates",
+   "note": "NOT A COUNT AND NOT THIS DECK'S NUMBER. It is the ordinal of a charter application cycle, quoted character for character from the board's own agenda at c16 and c17. The deck computes nothing from it and never says how many cycles there have been.",
+   "quoted_from": "c16",
+   "quote": "Open-Enrollment Charter School Generation 32 Application Updates"
+  },
+  {
+   "phrase": "30 virtual and in-person campuses",
+   "where": "slide-09.html, under the town column",
+   "quoted_from": "c22",
+   "quote": "Now, just one year after the state rejected its charter school application, Alpha has roughly quadrupled its Texas private schools, with more than 30 virtual and in-person campuses, most of which were accepted into the voucher program, ProPublica and The Texas Tribune found.",
+   "value": 30,
+   "reads_on_the_frame": "a partial list. ProPublica and The Texas Tribune count \"more than 30 virtual and in-person campuses\"",
+   "note": "Added after the integrity judge found that the deck named ten towns and never printed the figure that stops a reader counting them. It is the reporting's number, quoted, and the frame names whose it is rather than saying reporting."
+  }
+ ],
+ "not_printed": [
+  {
+   "phrase": "a count of Alpha School campuses",
+   "why": "The claims file rejects it. The school's own page lists ten Texas town names and one pass surfaced a separately listed Austin high school, so the list's boundary is unsettled, and reporting at c22 puts the Texas figure above thirty. A frame printing ten would contradict c22 inside this same deck."
+  },
+  {
+   "phrase": "any interval between two of the deck's four dates",
+   "why": "No code computed one, so none is printed. compute.py records that decision at computed.json dates.intervals_computed, which is empty."
+  }
+ ]
+}

@@ -1,0 +1,127 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8298,
+        0.9349,
+        0.6838
+      ],
+      "band_ratio": 0.8441,
+      "encodings": [
+        "'one opening has a reveal with depth and the other is cut flush': dE 16.5, AUC 0.73, visible 100%/100%, seen 4560/4560px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 18% / mid 26% / bottom 16% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.1849,
+        0.2626,
+        0.1581
+      ],
+      "band_ratio": 0.791
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8739,
+        0.7479,
+        0.7114
+      ],
+      "band_ratio": 0.9182
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1408,
+        0.1513,
+        0.432
+      ],
+      "band_ratio": 1.7279,
+      "encodings": [
+        "'the mortise floors are cuts and the jamb face around them is not': dE 29.8, AUC 0.99, visible 100%/100%, seen 4800/2400px at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.5945,
+        0.9811,
+        0.6489
+      ],
+      "band_ratio": 0.8801
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 76% of this slide's own average craft density (top 45% / mid 47% / bottom 31% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.4475,
+        0.4706,
+        0.307
+      ],
+      "band_ratio": 0.7603,
+      "encodings": [
+        "'the run of cuts stops and the jamb below it is unbroken': dE 28.3, AUC 0.78, visible 100%/100%, seen 25600/25600px at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.6555,
+        0.8025,
+        0.6636
+      ],
+      "band_ratio": 0.941,
+      "encodings": [
+        "'light comes through the cut lines and the soffit around them does not': dE 12.5, AUC 0.61, visible 100%/100%, seen 7680/7680px at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1197,
+        0.25,
+        0.421
+      ],
+      "band_ratio": 1.5549,
+      "encodings": [
+        "'one hardware pocket is full and the other is empty at the same size': dE 26.5, AUC 0.80, visible 100%/100%, seen 1824/1872px at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "art touching glyphs (3% of the ring around 'Austin Brownsville Highland Park Plano F', spanning 100%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.5315,
+        0.4391,
+        0.443
+      ],
+      "band_ratio": 0.9427
+    }
+  ],
+  "fails": 0,
+  "warns": 3,
+  "verdict": "WARN"
+}

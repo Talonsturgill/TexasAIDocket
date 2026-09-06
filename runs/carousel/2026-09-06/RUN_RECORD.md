@@ -281,20 +281,20 @@ vector.
 | gate | status | detail |
 |---|---|---|
 | claims         | PASS   | 25 verified claim(s) |
-| render         | WARN   | 9 slide(s), 6 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 10 warn(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | STALE  | render/machine_qa.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | aggregates     | PASS   | 7 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.08 MB, vector |
+| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | PASS   | 90 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| labels         | PASS   | 96 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 85 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 13 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 41,306 chars planned |
+| dossiers       | PASS   | 44,617 chars planned |
 | caption        | PASS   | 134 words |
-| craft floor    | WARN   | 9 frame(s), median 1225, floor 221, 1 quiet |
-| plan vs render | WARN   | 6 of 60 acceptance item(s) checkable |
+| craft floor    | WARN   | 9 frame(s), median 1291, floor 232, 1 quiet |
+| plan vs render | WARN   | 6 of 62 acceptance item(s) checkable |
 | texan          | WARN   | places Austin, Brownsville, Fort Worth, Houston, Plano, The Woodlands / body yes / deadline yes / next step NO |
-| absences       | PASS   | 14 of 14 scoped to a named document |
+| absences       | PASS   | 12 of 12 scoped to a named document |
 | numerals       | PASS   | 4 numeral(s) over 9 frame(s), every one reachable |
 | completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
