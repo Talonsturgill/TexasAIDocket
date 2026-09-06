@@ -316,3 +316,72 @@ here rather than left for a reader of the report cards to trip over.
 them, "Not one of them" in the caption and "every claim and every source" in the first comment.
 Both are now declared in `quantifiers.json` with their members named, and the first one's set is
 measured by `compute.py` rather than asserted, on every build.
+
+## SCORING, FIVE ROUNDS, AND THE DECK IS HELD
+
+**Panel median 6.552 against a 6.8 bar, and one hard fail.** Judges: integrity 6.67, craft 6.66,
+reader 6.20, spread 0.47. Two of the three refused on the NUMBER and said so plainly, and neither
+could name a fault. The third named one, and a hard fail stops the deck at any round whatever the
+median is and whatever the other two said.
+
+**The hard fail, verbatim, on the frame a stranger meets first.** Slide 1's dek reads "Texas has
+two ways to put a school in front of a child on public money." The frame cites c14, c15 and c1 and
+not one of them enumerates the routes. "The other ends at a published checklist" closes the set
+with a definite article, so the sentence asserts there are exactly two, and on the plain reading it
+is false: a child's zoned district school is a school in front of a child on public money and
+arrives by neither route.
+
+**The scope limit existed the whole time and never reached the frame.** `aggregates.json` declares
+the count with `what_two_counts` reading "the two routes the record carries, and never a claim that
+Texas has no other way of funding a school". That sentence is correct and it is in a JSON file. The
+frame is where a reader is, and the frame closed the set.
+
+### Every hard fail this run was one species
+
+| round | frame | the sentence | why it was a fault |
+|---|---|---|---|
+| 2 | slide 1 dek | "Only one of them ends at a body that can say no" | an unmeasured negative, cited to c14 and c15 which carry no such comparison, and refuted by the deck's own c1 and c21 |
+| 3 | slide 5 dek | "no second date has been set against it" | a negative about the state's action, where a1 looked for teaching words on that page and never for a closing date |
+| 3 | first comment | "or of its founders" | a3 searched one founder's name, and no claim records the reporting naming any founder |
+| 4 | first comment | "Every date below is the date this run fetched the document" | false of three of the five lines directly under it |
+| 5 | slide 1 dek | "Texas has two ways to put a school..." | a count that closes a set, asserted as a measured fact, computed by nothing |
+
+**Four rounds repaired the sentence a judge named and shipped the next one.** That is the finding
+worth more than the deck. `ledger/carousel/instincts.json` now carries it as
+`a-negative-needs-an-absence-record`, and the sweep it asks for is over every sentence in the
+deck, the caption and the first comment rather than over the frame that was named.
+
+### The deck was left exactly as the panel scored it
+
+The fault is a one sentence fix and it is NOT applied here. A run that repairs a hard fail after
+the final round and then ships has graded its own repair, which is the failure the rubric's
+`refusal` section was written against, in this repository, after a run wrote a field onto a
+judge's file. The branch therefore carries the deck the panel actually read, the score describes
+that deck, and the fix is written down rather than made.
+
+**The fix, for whoever takes it next.** Two sentences that assert nothing about the count of
+routes, for example "Two of the ways into a Texas classroom on public money end in different
+places. One ends at a board that votes. The other ends at a published checklist." Both judges who
+raised it separately also asked for the same second thing: frame 4 should print c2 and c3 whole,
+the way requirement four now is, because "Be a proven operator" is content free while c3's "that
+has successfully run a campus for at least two years" is the evidence frame 6's hinge rests on.
+
+### What the two threshold dissents said, since a held deck's other findings still count
+
+The craft judge verified five of six round 5 repairs in both code and pixels and then found two
+instances of the same class it had named the round before, `slide-03.html`'s two fully opaque
+reserves over the plate's own grain and `slide-06.html`'s reserve edge still visible at x=330 in a
+432 px thumbnail. Its sentence: an audit that finds five of seven and reports done is the failure
+mode GATE_LESSONS is entirely about. That is now `repair-the-class-not-the-instance`.
+
+The integrity judge confirmed round 4's hard fail closed at the artifact rather than in the report,
+and then found four dossier statements false of the frames they describe, including one acceptance
+line contradicting another six lines above it in the same file. Its fix is a gate this repo does
+not have: re-derive each dossier's `verbatim`, `labels`, `focal` and `acceptance` from the render
+report's laid out text nodes and fail the build when they disagree, the way `copy.json` is already
+built from the report rather than from the storyboard.
+
+**No variety ledger entries were written and no article page was published.** `topics.json`,
+`artwork.json` and `captions.json` exist to constrain the next deck against what SHIPPED, and this
+one did not. Recording it would exclude a palette, an opening move and a subject from future runs
+on the strength of a deck no reader ever saw.

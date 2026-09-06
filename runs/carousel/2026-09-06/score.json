@@ -1,0 +1,98 @@
+{
+ "weighted_score": 6.552,
+ "judges": [
+  6.67,
+  6.66,
+  6.2
+ ],
+ "spread": 0.47,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.28,
+   "judges": [
+    6.0,
+    5.8,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    7.2,
+    5.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.3,
+   "weight": 0.18,
+   "judges": [
+    7.5,
+    7.3,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.6,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    6.6,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.7,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified, slide 1 dek: 'Texas has two ways to put a school in front of a child on public money.' The frame cites c14 c15 c1 and not one of them enumerates the routes. 'The other ends at a published checklist' closes the set with a definite article, so the sentence asserts there are exactly two, and on the plain reading it is also false, since a child's zoned district school is a school in front of a child on public money and arrives by neither route. This is the deck's organizing premise stated as a measured fact on the frame a stranger meets first."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 3,
+   "fail": "An unverified fact presented as verified, slide 1 dek: 'Texas has two ways to put a school in front of a child on public money.' The frame cites c14 c15 c1 and not one of them enumerates the routes. 'The other ends at a published checklist' closes the set with a definite article, so the sentence asserts there are exactly two, and on the plain reading it is also false, since a child's zoned district school is a school in front of a child on public money and arrives by neither route. This is the deck's organizing premise stated as a measured fact on the frame a stranger meets first."
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.67 against a 6.8 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.66 against a 6.8 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.67,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.67 against a 6.8 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.66,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.66 against a 6.8 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds": 2
+}
