@@ -946,3 +946,133 @@ responses as `primary_official` until a count was run over them. `data.transport
 claims vocabulary has a word for. Nothing failed, because `claims_check` accepts either word.
 **The cost is that the run's own figures.json then reported 32 official records and 0 data
 records**, which would have gone into the email as a fact about how this deck was sourced.
+
+## 2026-09-06, five scouts on the field, the clinic, the plant floor, policy and the grid
+
+### THE COMMISSION WENT DOWN AGAIN AND THIS TIME IT COST THE RUN ITS HIGHEST VALUE POLL
+
+`interchange.puc.texas.gov`, `www.puc.texas.gov` and `ftp.puc.texas.gov` all returned **503** to
+two separate scouts across the whole run, including the calendar RSS at
+`/agency/calendar/GetCalendarRss.aspx` and its lower cased twin. The 2026-09-04 entry two
+sections up recorded a 503 on the interchange and closed by saying a 503 on a day the worklist
+needed a docket sweep would cost a run its record work. **That day arrived.** Phase 4's first
+and highest value poll did not happen, no PUCT docket or project was checked, and a reported
+Commission vote on the first two 765 kV lines of the Permian Basin Reliability Plan was dropped
+for want of any fetchable primary document.
+
+The registry describes this host's failure mode as a 402 to a ClaudeBot agent and a 200 to a
+browser agent. **A 503 across all three Commission hosts is a different thing and it is now
+twice in three runs.** Two entries in this log is a pattern rather than an outage.
+
+### ERCOT HAS A DATED, QUOTABLE RECORD OF ITS OWN DECISIONS AND THE REGISTRY DOES NOT CARRY IT
+
+The registry holds ERCOT's dashboard JSON and `/content/cdr/` and says ERCOT has no feed. It
+has one. `www.ercot.com/services/comm/mkt_notices/<NOTICE-ID>` serves an individual market
+notice with a notice date, a short description and a body, and `/services/comm/mkt_notices/`
+with no id returns 404 while `/archives` is the index. This run admitted a docket item off one
+of them. Also confirmed working and unlisted: `/services/comm/notices`,
+`/services/rq/large-load-integration`, `/news/releases`, and the peak demand records page under
+`/static-assets/data/news/content/a-peak-demand/2026/`.
+
+One trap on that last page. It carries a **`Last updated` stamp older than rows printed on the
+same page**, so the stamp is not the freshness signal and the row dates are.
+
+### A NEW PRIMARY LANE FOR ANYTHING BEING BUILT IN TEXAS, AND ITS 200 THAT MEANS NOTHING FOUND
+
+`tdlr.texas.gov` is absent from the registry. Its architectural barriers project records fetch
+keyless at `/TABS/Search/Project/<TABS number>` and with more fields at
+`/TABS/Search/Print/<TABS number>`, carrying owner, county, registration date, square footage
+and a free text scope of work. That county field is why this run could admit a Tesla filing
+naming Travis County without inferring a county from an address.
+
+**The trap, verified twice. An unknown project number returns HTTP 200 with the body `Project
+Not Found` rather than a 404.** A health check reading the status code alone reads that as
+success. Same shape as the empty feed trap the registry already carries for the Commission
+calendar. A second trap on the same host: the print view's structured `Square Footage` field can
+disagree with the free text scope on the same record, and neither is authoritative over the
+other from the page.
+
+### THE FEDERAL REGISTER'S HTML NOW SENDS US TO AN UNBLOCK PAGE, AND THE FIX IS TWO HOSTS AWAY
+
+`federalregister.gov/documents/<date>/<num>/<slug>` **302s to `unblock.federalregister.gov`** for
+this client, and so does the full text endpoint. This is not the clean redirect the 2026-09-04
+entry recorded. Two routes still work and both were used today. The **keyless JSON API at
+`/api/v1/documents/<num>.json` answered every time**, and it is what re-verified this run's open
+comment window on the time use survey when the notice's own page would not open. `govinfo.gov`
+serves the identical document at `/content/pkg/FR-<date>/html/<num>.htm` with no block.
+
+### TEXREG HAS MOVED AND THE REGISTRY STILL POINTS AT THE OLD DOOR
+
+`texreg.sos.state.tx.us/public/regviewer$ext.ViewTOC` now serves a page reading `Site Has Moved`
+pointing at an Appian portal. The Texas Register itself is readable at
+`www.sos.texas.gov/texreg/sos/index.html` and `www.sos.texas.gov/texreg/archive/<Month><D><YYYY>/`,
+and those are what worked. The registry's robots position may still hold. The content does not
+live there any more.
+
+### PDFs, AND THE ONE THING THAT SEPARATES A LOST SOURCE FROM A FOUND ONE
+
+**A research scout cannot read a PDF.** `pdftoppm` is absent so the Read tool errors, and WebFetch
+hands back raw FlateDecode streams its summariser cannot decode. That cost four primary documents
+across three scouts, among them the Northern District's local civil rules and a Texas Register In
+Addition section that very likely carried an open Commission comment deadline.
+
+**The main context CAN read them, and that is the disposition.** `curl` into `out/<run>/tmp/` then
+`pypdf` in three lines pulled the 735 page State Board of Education agenda this deck rests on, and
+the Harlingen Waterworks minutes that re-verified an item the diff could not read. So a PDF is not
+an unreachable source, it is a source a leaf worker must hand back to the showrunner. Worth saying
+plainly because two scouts wrote it off.
+
+**A related trap the same work exposed.** Four of five stored quotes on the Harlingen minutes
+read as MISSING on a naive string test and every one of them was present. The differences were a
+curly apostrophe against a straight one, a doubled space inside `effluent  water`, and tab runs
+inside a vote line. A re-verification that string tests a PDF without normalising whitespace and
+quote characters will report a source moved when nothing moved.
+
+### THE WALLS ARE INTERMITTENT, WHICH IS WORSE THAN BEING SHUT
+
+`newschannel10.com` served its full article text to this run and the 2026-09-05 run recorded it
+behind a wall it could not open. `seguingazette.com` answered 200 at 370 KB with the headline and
+the photo credit and no article body, which is a subscription wall wearing a success code.
+`texastribune.org` served four clean passes to the fact checker today while the registry warns it
+403s a ClaudeBot agent.
+
+**The lesson is about what a run writes down rather than about any of these hosts.** A movement
+note saying a source is walled is a claim about one fetch on one day. This run re-worded one
+because the wall was gone. Write what the fetch did, not what the host is.
+
+### NEW HOSTS THAT ANSWERED CLEAN AND ARE NOT IN THE REGISTRY
+
+`educationfreedom.texas.gov` (robots is `Disallow:` with a sitemap, and it is the Comptroller's
+own program site and the primary source for voucher eligibility), `sboe.texas.gov` (the board's
+own agendas as PDF), `dir.texas.gov`, `future2.houstonisd.org`, `alpha.school`,
+`news.silabs.com`, `www.apple.com/newsroom`, `omnitrax.com`, `abnormal.ai`, `globenewswire.com`.
+
+`finder.educationfreedom.texas.gov` is the official approved school directory and it renders its
+listings in the browser, serving none to a fetcher. It is the document that would have made this
+deck's eligibility claim primary and it could not be read, so the deck attributes that fact to
+reporting instead.
+
+### 403 AND 402 TO THIS CLIENT, UNTESTED WITH A SECOND ONE
+
+`www.usda.gov` (while `www.aphis.usda.gov` answered 200 in the same minute), `www.nhtsa.gov`
+(while `static.nhtsa.gov` served), `www.uth.edu`, `www.houstonpublicmedia.org` article pages,
+`www.kxan.com`, `www.oncor.com`, and `www.texasattorneygeneral.gov` at 402 again. Per the
+standing rule none of these goes on a blocked list on this evidence. The 2026-09-04 entry's DHS
+pair is the reason, and it holds.
+
+### THE COMPTROLLER'S JETI TABLE HAS CHANGED SHAPE AND A COMPUTED METRIC IS STANDING ON THE OLD ONE
+
+The registry records `comptroller.texas.gov/economy/development/prop-tax/jeti/current-agreements.php`
+as an HTML table of 13 rows, and section 3 item 5 builds the metric `0 of 13 JETI agreements are
+data centers` on that count. A scout read **21 rows today, eight of them semiconductor
+manufacturing agreements for one applicant**. The denominator is stale and anything reading it
+needs rechecking. The sibling page at `/jeti/applications.php` returns HTTP 200 with the body
+`Error Loading Page`, which is another success code carrying no data.
+
+### THE SCOUTS STILL CANNOT WRITE, FOR THE FIFTH TIME
+
+All five returned JSON inline and said so. The 2026-08-28, 2026-09-03 and 2026-09-04 entries
+each record it. The disposition has not changed and cannot change from here, because the fix is
+an edit to an agent definition under `.claude/`, which no routine may write. It stays in the
+backlog for a maintainer. **This is the last run that should spend a paragraph on it**, and the
+prompt this run sent already told the scouts to return inline, which is the workaround working.
