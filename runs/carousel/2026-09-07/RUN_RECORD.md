@@ -101,10 +101,19 @@ rather than a policy. All twelve claims on tx-2026-0120 stand.
   1 and they **sum to 4**, which is exactly what the front page's "Doors open to you" counter
   prints and exactly what the ledger holds. Before today it would have been 5. That agreement is
   produced by Phase 3 closing 58482, not by luck.
-- **`/place/`.** Travis County took tx-2026-0125 and tx-2026-0126 today and both appear on the
-  county page and in the Austin-Round Rock-San Marcos metro. Cameron County took tx-2026-0128 and
-  appears under Brownsville-Harlingen. Montgomery County took tx-2026-0127. All are on the hub
-  with counts matching the pages behind them.
+- **`/place/`.** Travis County took tx-2026-0125 today and it appears on the county page and in
+  the Austin-Round Rock-San Marcos metro. Cameron County took tx-2026-0128 and appears under
+  Brownsville-Harlingen. Montgomery County took tx-2026-0127. All are on the hub with counts
+  matching the pages behind them.
+
+  **THIS PARAGRAPH WAS WRONG WHEN IT WAS WRITTEN AND A REVIEW BOT FOUND IT.** It certified
+  that tx-2026-0126 appeared on the Travis County page. That item's committed geography was
+  `statewide: true` with an empty county list, so it was on no county page at all, and the
+  signoff was asserting a reader-visible route that did not exist. The item has since been
+  removed from the record for a separate and worse reason, recorded below, but the lesson
+  stands on its own: a discoverability signoff that is written rather than READ OFF the built
+  pages is a claim about the site, and this project does not get to make one of those
+  untested.
 
 ## Instruments
 
@@ -299,3 +308,49 @@ Every one of these shipped past a green suite, which is this file's half of GATE
 - **The deck names one Texas place and it belongs to the wrong machine.** Round Rock is in
   Williamson County and is the successor's room. Frontera sits at UT Austin in Travis County and is
   never located on any frame, because no fetched source says so.
+
+## An item was admitted from a path this project had already put off limits
+
+**tx-2026-0126 has been removed from the record.** All three of its claims and its
+`public_access.url` pointed at `capitol.texas.gov/tlodocs/`, and
+`knowledge/shared/SOURCES_REGISTRY.md` says of that path, in bold, **"OFF LIMITS. Do not fetch
+`/tlodocs/`."**
+
+The registry does not merely list it. It anticipates the exact mistake that was made:
+
+> The directive is upper case and the live urls are lower case, so a case sensitive reading would
+> not match it. Taking that reading is routing around a disallow on a technicality and this
+> project does not do that.
+
+So the rule was written down, the rationalisation was written down beside it, and the run walked
+into it anyway. **Nothing on this run flagged it.** Every claim carried a fetched url, a verbatim
+quote and a primary_official stamp, and every gate passed, because no gate compares a claim's host
+and path against the registry's own off-limits list. A REVIEW BOT ON THE PULL REQUEST FOUND IT.
+
+The item is removed rather than held, because a held item keeps the facts and the facts are what
+should not have been taken. Nothing about that hearing is published here. The registry names a
+verified substitute for upcoming Senate meetings and it does not reach a hearing that has already
+happened, so re-sourcing is a research problem for another run rather than a rewrite for this one.
+
+**The upgrade this earns is a gate, and it is filed rather than built**, because the retro phase
+had already spent its ceiling of three when this arrived. `SOURCES_REGISTRY.md` is prose that a
+research phase is asked to remember. A checker that reads the off-limits hosts and paths out of
+that file and fails any claim in `docket.json` whose url matches one is the whole fix, it is
+mechanical, and it would have caught this before the item was ever written. That is
+GATE_LESSONS' oldest shape for the third time in this one run: a rule stated in a document, a
+surface that does not read it, and nothing in between.
+
+## Three more findings from the same review, each verified before it was acted on
+
+- **tx-2026-0127's title and summary asserted what the case is about** and no claim carried it.
+  c1 to c4 establish the argument date, the docket metadata and who filed briefs. The sentence
+  naming the dispute as a deposition transcript made without a certified reporter was the deck's
+  own reading of a case name. Removed from both surfaces. If it is not in the claims file, it
+  does not exist, and that rule does not stop at the carousel.
+- **tx-2026-0002's c19 called Oncor the state's largest transmission and distribution utility.**
+  Its verbatim quote is the title of a comment filing and establishes only that Oncor filed. The
+  superlative is gone.
+- **tx-2026-0125 carried the Horizon guide's August 12th update as a key date of kind `ordered`.**
+  The site takes the earliest key date as when a thing started, so the published answer to "when
+  did it start" was August 12th, a stamp belonging to the SUCCESSOR's documentation rather than
+  to Frontera's closure. A guide's last-update stamp is source metadata. Removed.

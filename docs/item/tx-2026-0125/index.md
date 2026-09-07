@@ -15,8 +15,7 @@ The Texas Advanced Computing Center's Frontera user guide carries a warning. The
 
 ## Dates
 
-- 2026-08-12 · ordered: Last update on the Horizon user guide carrying the internal only notice
-- 2026-09-03 · ordered: Last update on the Frontera user guide carrying the closure warning
+- 2026-09-03 · ordered: The Frontera user guide's own last update, carrying the closure warning. This is the date the closure is recorded on the deciding body's own page.
 - 2026-10-01 · effective: Frontera queues close permanently
 
 ## How this decision moved

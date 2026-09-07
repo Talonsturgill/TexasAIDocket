@@ -147,7 +147,7 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
-### The largest transmission and distribution utility in the state filed comments on the proposal for publication.
+### Oncor filed comments on the proposal for publication.
 
 > ONCOR ELECTRIC DELIVERY COMPANY'S COMMENTS ON THE PROPOSAL FOR PUBLICATION OF NEW 16 TAC § 25.521
 

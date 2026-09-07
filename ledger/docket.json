@@ -388,7 +388,7 @@
         },
         {
           "id": "tx-2026-0002-c19",
-          "text": "The largest transmission and distribution utility in the state filed comments on the proposal for publication.",
+          "text": "Oncor filed comments on the proposal for publication.",
           "verbatim_quote": "ONCOR ELECTRIC DELIVERY COMPANY'S COMMENTS ON THE PROPOSAL FOR PUBLICATION OF NEW 16 TAC § 25.521",
           "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
           "source_title": "PUCT Interchange, Filings for 58482",
@@ -12917,73 +12917,8 @@
       ]
     },
     {
-      "title": "A Texas Senate committee took testimony on how much water data center cooling uses and whether local water providers are told",
-      "summary": "The Senate Committee on Water, Agriculture and Rural Affairs met at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. Senator Charles Perry chairs it. The posted notice sets one interim charge. It is examining current water consumption rates for high consumption cooling technologies including data centers. The charge directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. Public testimony was limited to two minutes and written testimony went to the committee clerk. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills decides what to recommend.",
-      "topic": "land-water-and-permitting",
-      "decider": {
-        "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
-        "type": "state-agency"
-      },
-      "geography": {
-        "statewide": true,
-        "counties": [],
-        "on_ercot": null
-      },
-      "status": "pending",
-      "confidence": "high",
-      "key_dates": [
-        {
-          "date": "2026-09-01",
-          "kind": "hearing",
-          "note": "Public hearing on the interim charge"
-        }
-      ],
-      "public_access": {
-        "room": "open_meeting",
-        "how": "The committee posts its notice with the room, the hour and the charge before it meets, and it took invited and public testimony. Public testimony was limited to two minutes. Written testimony goes to the committee clerk, whose address is on the notice, so a Texan who could not be in Austin could still be read into the record.",
-        "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm"
-      },
-      "claims": [
-        {
-          "text": "The posted notice states the committee, the hour, the date, the room and the chair.",
-          "verbatim_quote": "COMMITTEE: Water, Agriculture and Rural Affairs TIME & DATE: 9:00 AM, Tuesday, September 1, 2026 PLACE: E1.012 (Hearing Room) CHAIR: Senator Charles Perry",
-          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
-          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
-          "source_type": "primary_official",
-          "fetched": "2026-09-07",
-          "id": "tx-2026-0126-c1"
-        },
-        {
-          "text": "The interim charge names the technology it is examining and what it asks the committee to recommend.",
-          "verbatim_quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers. Make recommendations to improve transparency for local water providers and ensure industrial growth does not compromise the affordability of water for Texas residents and agricultural producers.",
-          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
-          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
-          "source_type": "primary_official",
-          "fetched": "2026-09-07",
-          "id": "tx-2026-0126-c2"
-        },
-        {
-          "text": "The notice states how long a member of the public could speak.",
-          "verbatim_quote": "Public testimony is limited to 2 minutes.",
-          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
-          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
-          "source_type": "primary_official",
-          "fetched": "2026-09-07",
-          "id": "tx-2026-0126-c3"
-        }
-      ],
-      "id": "tx-2026-0126",
-      "last_verified": "2026-09-07",
-      "history": [
-        {
-          "date": "2026-09-07",
-          "note": "Admitted. The committee's posted notice sets the hearing for September 1st, 2026 and carries the interim charge in full. The charge names data centers and asks the committee to recommend ways to improve transparency for local water providers."
-        }
-      ]
-    },
-    {
-      "title": "The Supreme Court of Texas will hear argument on October 6th on whether a deposition transcript made without a court reporter counts",
-      "summary": "In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The dispute is over a deposition transcript produced without a certified shorthand reporter. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.",
+      "title": "The Supreme Court of Texas will hear argument on October 6th in a mandamus proceeding the court reporters' association has entered",
+      "summary": "In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.",
       "topic": "state-policy",
       "decider": {
         "name": "Supreme Court of Texas",
@@ -13088,14 +13023,9 @@
       "confidence": "high",
       "key_dates": [
         {
-          "date": "2026-08-12",
-          "kind": "ordered",
-          "note": "Last update on the Horizon user guide carrying the internal only notice"
-        },
-        {
           "date": "2026-09-03",
           "kind": "ordered",
-          "note": "Last update on the Frontera user guide carrying the closure warning"
+          "note": "The Frontera user guide's own last update, carrying the closure warning. This is the date the closure is recorded on the deciding body's own page."
         },
         {
           "date": "2026-10-01",

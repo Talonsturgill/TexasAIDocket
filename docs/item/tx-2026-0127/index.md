@@ -1,6 +1,6 @@
-# The Supreme Court of Texas will hear argument on October 6th on whether a deposition transcript made without a court reporter counts
+# The Supreme Court of Texas will hear argument on October 6th in a mandamus proceeding the court reporters' association has entered
 
-In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The dispute is over a deposition transcript produced without a certified shorthand reporter. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.
+In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.
 
 - Topic: state-policy
 - Decided by: Supreme Court of Texas (state-agency)
