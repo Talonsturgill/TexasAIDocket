@@ -125,7 +125,7 @@ on from, and it is worth a maintainer's attention only if it repeats.
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.12 MB, vector |
 | score          | ABSENT | score.json not written yet |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
