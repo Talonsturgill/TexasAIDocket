@@ -373,3 +373,17 @@ Phase 8 `dedupe_check` invocation in `prompts/daily_routine.md`. Nothing else mo
 Worth saying plainly, because it is the second time in one run: an upgrade that lands in a lane
 the routine owns and needs a line in a lane it does not is only half an upgrade, and the half
 that is missing is the half that makes it run.
+
+## The ask index passed by 176 characters and the next run should not find that out from CI
+
+`ask_pack`'s self-test failed on this branch at **40,082 characters against a ceiling of
+40,000**. It passes now, at 39,824, and the only reason is that removing the off-limits item
+gave back 258 characters. The fix for the source boundary bought the headroom by accident.
+
+That ceiling is a bill rather than a warning. The index is the string every question typed into
+the box pays for, so it is spent on every query whether or not the answer needs it. Three or four
+more admitted items break it again, and the record admits three or four most days.
+
+**The choice belongs to a run that is not under a red build.** Either shorten what each item
+contributes to the index, or raise the ceiling deliberately with the cost stated. Discovering it
+from a failing check, twice, is the option to avoid.
