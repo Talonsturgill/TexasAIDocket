@@ -5610,5 +5610,366 @@
         "note": "Admitted on the university's own account of the award, fetched today. The Energy Department's own award document was not located, so the award number is not carried here."
       }
     ]
+  },
+  {
+    "title": "The largest cluster dedicated to open science in the United States closes its queues on October 1st, and its successor is still internal only",
+    "summary": "The Texas Advanced Computing Center's Frontera user guide carries a warning. The queues close permanently on October 1st, 2026 after seven years of running. Users will still reach Frontera's file systems to transfer data off. Frontera is funded by the National Science Foundation through award 1818253 and the guide calls it the largest cluster dedicated to open science in the United States. The successor is Horizon. It is funded through the Leadership Class Computing Facility award. Horizon's own guide carries a notice dated in July saying it is still limited only to internal users. That guide also says it is in progress. Horizon lists three ways in. They are the facility's own allocations and the National Artificial Intelligence Research Resource Pilot and the state's allocation system.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "Texas Advanced Computing Center, The University of Texas at Austin",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Travis"
+      ],
+      "on_ercot": true,
+      "metro": "Austin-Round Rock-San Marcos, TX"
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-08-12",
+        "kind": "ordered",
+        "note": "Last update on the Horizon user guide carrying the internal only notice"
+      },
+      {
+        "date": "2026-09-03",
+        "kind": "ordered",
+        "note": "Last update on the Frontera user guide carrying the closure warning"
+      },
+      {
+        "date": "2026-10-01",
+        "kind": "effective",
+        "note": "Frontera queues close permanently"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The center publishes both user guides itself. A researcher can read the closing date and the access rule rather than infer either one. Horizon's guide names the three allocation routes a request would go through. Anyone with work on Frontera reaches the center through its own portal and its ticket system.",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/"
+    },
+    "claims": [
+      {
+        "text": "The Frontera user guide states the date the queues close and what remains reachable afterward.",
+        "verbatim_quote": "After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset. On October 1, 2026, the Frontera queues will be closed permanently. You will still be able to access Frontera's file systems to transfer any data needed.",
+        "source_url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+        "source_title": "TACC HPC Documentation, Frontera User Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c1"
+      },
+      {
+        "text": "The guide states what Frontera is and who funds it.",
+        "verbatim_quote": "Frontera is funded by the National Science Foundation (NSF) through award #1818253, Computing for the Endless Frontier",
+        "source_url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+        "source_title": "TACC HPC Documentation, Frontera User Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c2"
+      },
+      {
+        "text": "The guide states Frontera's standing among machines open to science.",
+        "verbatim_quote": "Frontera is the largest cluster dedicated to open science in the United States and is the Texas Advanced Computing Center's latest flagship system.",
+        "source_url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+        "source_title": "TACC HPC Documentation, Frontera User Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c3"
+      },
+      {
+        "text": "The successor machine's guide states who may use it.",
+        "verbatim_quote": "Horizon is still limited only to internal users. (07/24/2026)",
+        "source_url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+        "source_title": "TACC HPC Documentation, Horizon User Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c4"
+      },
+      {
+        "text": "The successor machine's guide states its own completeness.",
+        "verbatim_quote": "This user guide is in progress",
+        "source_url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+        "source_title": "TACC HPC Documentation, Horizon User Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c5"
+      },
+      {
+        "text": "The successor machine's guide names the award it is funded through.",
+        "verbatim_quote": "Horizon is a National Science Foundation-funded system that is part of the the Leadership Class Computing Facility (LCCF) award, Award Abstract #2323116",
+        "source_url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+        "source_title": "TACC HPC Documentation, Horizon User Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c6"
+      },
+      {
+        "text": "The center states where an AI assisted workload may run on its machines.",
+        "verbatim_quote": "All AI-assisted workloads must be executed on compute nodes only",
+        "source_url": "https://docs.tacc.utexas.edu/basics/conduct/",
+        "source_title": "TACC HPC Documentation, TACC Good Conduct Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c7"
+      },
+      {
+        "text": "The center states who is billed for what an AI agent consumes.",
+        "verbatim_quote": "All Service Units (SUs) consumed by AI-related workloads will be charged against your allocation.",
+        "source_url": "https://docs.tacc.utexas.edu/basics/conduct/",
+        "source_title": "TACC HPC Documentation, TACC Good Conduct Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c8"
+      },
+      {
+        "text": "The center states the consequence of breaking the AI conduct rule.",
+        "verbatim_quote": "Failure to follow these guidelines will result in degraded access to TACC resources or administrative action to protect system stability.",
+        "source_url": "https://docs.tacc.utexas.edu/basics/conduct/",
+        "source_title": "TACC HPC Documentation, TACC Good Conduct Guide",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0125-c9"
+      }
+    ],
+    "id": "tx-2026-0125",
+    "last_verified": "2026-09-07",
+    "history": [
+      {
+        "date": "2026-09-07",
+        "note": "Admitted. The center's own Frontera guide, last updated September 3rd, 2026, says the queues close permanently on October 1st, 2026 and that the file systems stay reachable for moving data off. The successor machine's guide, last updated August 12th, 2026, still carries a notice dated in July saying it is limited only to internal users."
+      }
+    ]
+  },
+  {
+    "title": "A Texas Senate committee took testimony on how much water data center cooling uses and whether local water providers are told",
+    "summary": "The Senate Committee on Water, Agriculture and Rural Affairs met at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. Senator Charles Perry chairs it. The posted notice sets one interim charge. It is examining current water consumption rates for high consumption cooling technologies including data centers. The charge directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. Public testimony was limited to two minutes and written testimony went to the committee clerk. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills decides what to recommend.",
+    "topic": "land-water-and-permitting",
+    "decider": {
+      "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "on_ercot": null
+    },
+    "status": "pending",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-09-01",
+        "kind": "hearing",
+        "note": "Public hearing on the interim charge"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "The committee posts its notice with the room, the hour and the charge before it meets, and it took invited and public testimony. Public testimony was limited to two minutes. Written testimony goes to the committee clerk, whose address is on the notice, so a Texan who could not be in Austin could still be read into the record.",
+      "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm"
+    },
+    "claims": [
+      {
+        "text": "The posted notice states the committee, the hour, the date, the room and the chair.",
+        "verbatim_quote": "COMMITTEE: Water, Agriculture and Rural Affairs TIME & DATE: 9:00 AM, Tuesday, September 1, 2026 PLACE: E1.012 (Hearing Room) CHAIR: Senator Charles Perry",
+        "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+        "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0126-c1"
+      },
+      {
+        "text": "The interim charge names the technology it is examining and what it asks the committee to recommend.",
+        "verbatim_quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers. Make recommendations to improve transparency for local water providers and ensure industrial growth does not compromise the affordability of water for Texas residents and agricultural producers.",
+        "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+        "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0126-c2"
+      },
+      {
+        "text": "The notice states how long a member of the public could speak.",
+        "verbatim_quote": "Public testimony is limited to 2 minutes.",
+        "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+        "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0126-c3"
+      }
+    ],
+    "id": "tx-2026-0126",
+    "last_verified": "2026-09-07",
+    "history": [
+      {
+        "date": "2026-09-07",
+        "note": "Admitted. The committee's posted notice sets the hearing for September 1st, 2026 and carries the interim charge in full. The charge names data centers and asks the committee to recommend ways to improve transparency for local water providers."
+      }
+    ]
+  },
+  {
+    "title": "The Supreme Court of Texas will hear argument on October 6th on whether a deposition transcript made without a court reporter counts",
+    "summary": "In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The dispute is over a deposition transcript produced without a certified shorthand reporter. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.",
+    "topic": "state-policy",
+    "decider": {
+      "name": "Supreme Court of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [
+        "Montgomery"
+      ],
+      "on_ercot": null,
+      "metro": "Houston-Pasadena-The Woodlands, TX"
+    },
+    "status": "pending",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2025-05-29",
+        "kind": "filed",
+        "note": "Mandamus petition filed"
+      },
+      {
+        "date": "2026-06-04",
+        "kind": "filed",
+        "note": "Amicus brief from the Texas Court Reporters Association"
+      },
+      {
+        "date": "2026-10-06",
+        "kind": "hearing",
+        "note": "Oral argument before the Supreme Court of Texas"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "The court publishes the full docket, the briefs and the argument date on its own case page, and it posts video of its oral arguments. Anyone can read what each side filed before the argument is heard.",
+      "url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup"
+    },
+    "claims": [
+      {
+        "text": "The court's own case record sets the argument date and hour.",
+        "verbatim_quote": "This case has been set for oral argument at 9:00 a.m., October 6, 2026.",
+        "source_url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+        "source_title": "Supreme Court of Texas, Case 25-0463 case information",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0127-c1"
+      },
+      {
+        "text": "The case record gives the docket number, the filing date, the case type and the style.",
+        "verbatim_quote": "Case: 25-0463 Date Filed: 05/29/2025 Case Type: Mandamus/Cause Style: IN RE PATRICK HUGHEY",
+        "source_url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+        "source_title": "Supreme Court of Texas, Case 25-0463 case information",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0127-c2"
+      },
+      {
+        "text": "The court reporters' trade association filed an amicus brief.",
+        "verbatim_quote": "Amicus Curiae Brief received on behalf of Texas Court Reporters Association, Inc., submitted by Jason Ray of Riggs & Ray P.C. of Austin, Texas.",
+        "source_url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+        "source_title": "Supreme Court of Texas, Case 25-0463 case information",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0127-c3"
+      },
+      {
+        "text": "The opposing party in the underlying suit filed its own brief on the merits.",
+        "verbatim_quote": "Real Party in Interest's Brief on the Merits filed on behalf of Reddico Construction Co., Inc.",
+        "source_url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+        "source_title": "Supreme Court of Texas, Case 25-0463 case information",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0127-c4"
+      }
+    ],
+    "id": "tx-2026-0127",
+    "last_verified": "2026-09-07",
+    "history": [
+      {
+        "date": "2026-09-07",
+        "note": "Admitted. The court's own case page sets oral argument for the morning of October 6th, 2026. The briefs on the merits are filed on both sides and three amicus filings are in, two of them from the trades whose work the answer decides."
+      }
+    ]
+  },
+  {
+    "title": "Brownsville takes up a temporary moratorium on data centers after staff tells the commission its code has no rules for them",
+    "summary": "At its September 1st, 2026 meeting the Brownsville City Commission considered starting the process for a temporary moratorium covering data centers alongside private gaming clubs, automotive quick lube facilities, event centers and self storage. City staff told the commission that Brownsville's Unified Development Code contains no regulations addressing data centers. The stated purpose is to give the city time to study electricity and energy use, water consumption, noise, land use compatibility, infrastructure and economic and fiscal impacts. The proposal also reactivates the city's Environmental and Conservation Task Force to study data center development and recommend to the commission. The city's own account says an initial moratorium could run up to 90 days and could be extended for another 90 days after further proceedings.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "City of Brownsville City Commission",
+      "type": "city"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Cameron"
+      ],
+      "on_ercot": true,
+      "metro": "Brownsville-Harlingen, TX"
+    },
+    "status": "pending",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-09-01",
+        "kind": "hearing",
+        "note": "City Commission meeting where the moratorium process was taken up"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "The Brownsville City Commission meets in open session, posts its own account of each meeting and publishes the video. A resident can watch the item and can speak at a commission meeting. A moratorium ordinance would come back to the commission through further public proceedings before it took effect.",
+      "url": "https://www.brownsvilletx.gov/m/newsflash/home/detail/3425"
+    },
+    "claims": [
+      {
+        "text": "The city's own account names what the moratorium would cover and why.",
+        "verbatim_quote": "The Commission considered the process for a temporary moratorium covering data centers, private gaming clubs, automotive quick-lube facilities, event centers, and self-storage facilities while the City evaluates potential regulations.",
+        "source_url": "https://www.brownsvilletx.gov/m/newsflash/home/detail/3425",
+        "source_title": "City of Brownsville, City Commission meeting highlights",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0128-c1"
+      },
+      {
+        "text": "City staff told the commission what the land development code says about data centers today.",
+        "verbatim_quote": "City staff explained that Brownsville's Unified Development Code does not currently contain specific regulations addressing data centers.",
+        "source_url": "https://www.brownsvilletx.gov/m/newsflash/home/detail/3425",
+        "source_title": "City of Brownsville, City Commission meeting highlights",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0128-c2"
+      },
+      {
+        "text": "The city names the questions the pause is meant to buy time to study.",
+        "verbatim_quote": "The proposed process would give the City time to study issues including electricity and energy use, water consumption, noise, land-use compatibility, infrastructure, and potential economic and fiscal impacts.",
+        "source_url": "https://www.brownsvilletx.gov/m/newsflash/home/detail/3425",
+        "source_title": "City of Brownsville, City Commission meeting highlights",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0128-c3"
+      },
+      {
+        "text": "The city states how long a moratorium may run under state law.",
+        "verbatim_quote": "Under state law, an initial moratorium could remain in effect for up to 90 days and could later be extended for another 90 days after additional required proceedings.",
+        "source_url": "https://www.brownsvilletx.gov/m/newsflash/home/detail/3425",
+        "source_title": "City of Brownsville, City Commission meeting highlights",
+        "source_type": "primary_official",
+        "fetched": "2026-09-07",
+        "id": "tx-2026-0128-c4"
+      }
+    ],
+    "id": "tx-2026-0128",
+    "last_verified": "2026-09-07",
+    "history": [
+      {
+        "date": "2026-09-07",
+        "note": "Admitted. The city's own account of the September 1st, 2026 meeting says the commission took up the process for a temporary moratorium and that staff told it the land development code has no rules for data centers. Nothing in that account records a vote."
+      }
+    ]
   }
 ]
