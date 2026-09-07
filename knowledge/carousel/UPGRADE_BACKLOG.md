@@ -982,3 +982,61 @@ the defect list is thin, and this one arrived with ten items and evidence attach
 or gets read for the wrong column without anything reporting it. That is the root cause under the
 `texan_check` upgrade above, it is not a checker question, and this repository has three tables of
 that kind already, the gazetteer, the stem floor and the places file `label_guard` shares.
+
+---
+
+## 2026-09-07, carousel no. 17
+
+### THE LEADER CHANNEL READS ONE GLOBAL AND THE SKILL DOCUMENTS ANOTHER, so every leader
+### declared since the rename has been measured against nothing
+
+**Found by a scoring judge, not by a gate**, which is the whole tell. The craft lens reported
+`render_report.leaders` empty on all nine slides including slide 7, whose acceptance list declares
+a leader, and added that the leader IS drawn and DOES land on its target at full resolution. So the
+product was fine and the measurement channel was empty.
+
+The cause is a two-name disagreement inside the engine's own contract:
+
+- `.claude/skills/carousel-engine/SKILL.md`, in the section headed **A leader must land on the
+  thing it points at, and say where that is**, documents the declaration as
+  `window.__txLeaders = [{ target, at, to }]`.
+- `.claude/skills/carousel-engine/render.py`, at the leader extraction block, reads
+  `window.__akLeaders` and nothing else. The surrounding comment still carries the Alaska example
+  variable, `window.__akLeaders`, which is where the name survived the port.
+
+**So a slide that follows the documentation declares into a channel nothing reads, and `qa.py`'s
+leader check then has no leaders to fail on.** The gate's own docstring says a leader stopping in
+void looks exactly like a leader reaching something small, which is precisely the failure it can no
+longer catch.
+
+**Measured this run.** Slide 7 declared `__txLeaders` and the report came back `leaders: []`. The
+same declaration assigned to `__akLeaders` came back with `to` and `at` both `[619.2, 448.2]`, an
+exact landing. Nothing about the drawing changed between those two renders.
+
+**THIS RUN COULD NOT MAKE THE FIX AND DID NOT TRY.** Both files are under `.claude/`, which the
+host treats as a sensitive path and prompts on whatever the permission mode says, so an unattended
+run cannot edit either one. `ownership.yaml` gives `upgrade` the skill directory and the map
+answers ownership rather than reachability, which is the case `CLAUDE.md` describes exactly. The
+disposition it prescribes is this entry.
+
+**The fix a maintainer makes**, and it is three lines:
+
+1. In `render.py`, read both names, preferring `__txLeaders` and falling back to `__akLeaders`, so
+   no shipped slide breaks. One line.
+2. In `SKILL.md`, leave the documented name as `__txLeaders`, which is the correct one for this
+   repository.
+3. Add a case to the engine's own self-test that declares a leader under the documented name and
+   asserts the report carries it. **Without that third step the same drift returns silently**, and
+   this entry is the evidence that it can sit undetected across at least seventeen decks.
+
+**The general shape, which is the reason this is worth writing down at length.** A declaration API
+has two halves, the name a slide writes and the name a reader reads, and nothing in this project
+checks that they are the same string. `data-encodes`, `data-contacts` and `data-breather` are the
+same shape of thing and none of them has a test that a correctly authored declaration actually
+arrives. The leader is the one that was caught because a human-shaped reader looked at a frame and
+at a report and noticed they disagreed.
+
+**What this run did instead**, so the next reader is not confused by the slide source: slide 7
+assigns one declaration object to BOTH globals, with a comment saying why. That is a workaround in
+one deck's own code, it is not a fix, and it should be removed when the engine reads the documented
+name.
