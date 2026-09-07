@@ -72,7 +72,7 @@ off at all and its edges are hard. A reader does not need that explained to feel
 sources are HTML user guides and drawing them as bond would be a lie about the medium, which is
 also how the bright-full-bleed-sheet-at-slide-5 problem is answered rather than dodged.
 
-**Value arc, per-frame median L\*: 9, 10, 62, 7, 10, 6, 7, 12, 14. Deck median 10.**
+**Planned value arc, corrected to the frame that exists, per-frame median L\*: 9, 10, 62, 7, 10, 6, 7, 12, 14. Deck median 10.**
 
 **THIS ARC WAS REDRAWN ONCE AND THEN CORRECTED, and both halves are stated because the gate
 offers exactly that choice.** The first build measured a deck median of 4.1 against an original

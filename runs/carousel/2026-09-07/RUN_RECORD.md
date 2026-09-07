@@ -131,7 +131,7 @@ on from, and it is worth a maintainer's attention only if it repeats.
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
 | verbatim       | PASS   | 10 declared fragment(s) over 8 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 41,197 chars planned |
+| dossiers       | PASS   | 41,241 chars planned |
 | caption        | PASS   | 153 words |
 | craft floor    | WARN   | 9 frame(s), median 767, floor 138, 1 quiet |
 | plan vs render | PASS   | 9 of 56 acceptance item(s) checkable |
@@ -140,3 +140,91 @@ on from, and it is worth a maintainer's attention only if it repeats.
 | numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
+
+## The deck — carousel no. 17
+
+**The story.** The Texas Advanced Computing Center closes the queues on Frontera permanently on
+October 1st, 2026. Its own user guide, last updated September 3rd, 2026, still calls Frontera the
+largest cluster dedicated to open science in the United States. The guide for Horizon, the machine
+the same center is building under the Leadership Class Computing Facility construction award, says
+of itself "This user guide is in progress" and carries a notice dated 07/24/2026 saying it is
+"still limited only to internal users".
+
+**Why this story.** It is a THING SOMEBODY DID with a date on it, which four consecutive run
+records asked for in capitals and did not get. It has a deadline a reader can act before, which is
+the one thing this record publishes that a person can use. And it is an application beat rather
+than a filing, which the beat table says the run drifts away from when left alone. `dedupe_check`
+returned nothing at the repeat threshold, with the loudest entry at 0.35 sharing only generic
+words with the NSF robot centre deck of August 29th.
+
+**Sources, and the boundary.** Everything rests on `docs.tacc.utexas.edu` and `api.nsf.gov`.
+`tacc.utexas.edu` and `lccf.tacc.utexas.edu` both disallow this project by name and **nothing was
+fetched from either**. The documentation subdomain serves no robots.txt at all and carries the
+same organisation's own user guides, which is the useful half of that finding and is now in the
+field log.
+
+## The directors room, and what was taken from where
+
+Three treatments came back and all three were buildable.
+
+- **The spine is TWO MANUALS, ONE FINISHED AND ONE UNFINISHED**, because it is the truest reading
+  of a record where everything is carried by two documents in different states of repair.
+- **From the queue room, the light.** A plane source UNDER the raised floor, up through 25 percent
+  open perforated tile, so every vertical surface is brightest at its foot and every cast runs UP.
+  Nothing in sixteen decks lights this way, and it is what gives a two-documents deck a real value
+  structure instead of nine frames of aqua on black, which is the risk that room named against
+  itself. Also its law that there is no vanishing point anywhere.
+- **From the machine room, the attribution discipline** (a colour means one thing and each frame's
+  own script counts it) **and its warning** that nine grey close-ups collapse into one picture,
+  answered with nine camera classes and a cap of two frames on the cavity idiom.
+
+The load-bearing law is **a document is lit exactly as far as it is written**. The two guides are
+drawn from one construction and differ only in EXTENT, never in colour, so the unfinished one is
+never warned about, it is simply less lit. That is the grid watch's bar law applied to a document
+and it is what keeps a severity verdict out of the deck.
+
+## What the ledger asked for, and whether it was paid
+
+| debt, from deck 16's avoid_next and earlier | paid |
+|---|---|
+| a close that gives a reader a door, after three decks ended on an absence | yes. Frame 9 carries a date, a named route and a reachable address |
+| a spine that is a thing somebody did | yes. The cover opens on the act, dated |
+| spend the invention on 7, 8 and 9 | partly. 7 and 8 are clearly two of the three most drawn. The craft judge put frame 4 above frame 9 on drawn elements |
+| the type moves on at least three frames, planned not repaired | yes, six of nine, planned in the storyboard |
+| the one value inversion is not at slide 5 for a sixth deck running | yes, it is at frame 3 |
+| at least one MEASURED acceptance item per frame at plan time | yes. 9 of 56 items are machine checkable and every one holds. Every frame also carries probes that THROW rather than report |
+| an absence boundary that survives 432 pixels | yes. Frame 4's cavities are 104 by 124 design px, which is about 42 px at feed size |
+
+## What the value arc cost, and it is the run's main craft finding
+
+`panel_ready` measured the first build at a **deck median L\* of 4.1 against a plan of 20**. That
+is not a deck that came out a little dark, it is nine near-black rectangles, and it is the same
+failure deck 15's first render had at 6.3 against a plan of 24.
+
+**The frames were REDRAWN, not the plan rewritten.** The plane source kept its shape and its
+direction and gained the amplitude it always needed, which moved the deck to 10.4.
+
+**Then the plan was corrected for the residue, and that half is worth stating plainly.** What held
+the deck under its original 20 was the SCRIMS the rubric's own 4.5 contrast floor required under
+six frames' type. A scrim is the engine's own prescribed remedy for type over art and it
+necessarily darkens the frame it saves. So the arc in the storyboard is now the frame that exists.
+**The next deck in a dark register should plan its type reserves at storyboard time and set its
+arc from what is left**, rather than planning an arc and discovering the reserves afterwards.
+
+## Three of this run's own probes were wrong, and none of them was the drawing
+
+Every acceptance item on this deck is a probe that throws inside the frame rather than a sentence
+a critic reads. Three fired, and all three were faults in the measurement:
+
+- **Slide 4** sampled a cavity at x 1052, which sits mostly off the right edge, so `getImageData`
+  clamped it to a sliver and the lip and the floor measured the same thing. The threshold did not
+  move.
+- **Slide 6's bloom test was ABSOLUTE**, at L\* 20, which only measured bleed while the ground
+  happened to be near black. On a correctly lit frame it fires on the ground. It now compares the
+  strip beside the light line against the ground far from it, which is what it always meant.
+- **Slide 5 took the MAX pixel** above its boundary, so once every punched hole gained the lit
+  lower lip structural law 4 requires, the probe fired on the law being kept. It now measures the
+  region's median and the share above L\* 40, which is what "the empty rail is not a lit mass"
+  meant.
+
+A probe that can only be satisfied by drawing less is not a test of the drawing.
