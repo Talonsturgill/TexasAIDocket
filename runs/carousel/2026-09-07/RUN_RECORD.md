@@ -228,3 +228,74 @@ a critic reads. Three fired, and all three were faults in the measurement:
   meant.
 
 A probe that can only be satisfied by drawing less is not a test of the drawing.
+
+## The panel, five rounds, and what four repair rounds actually cost
+
+| round | integrity | craft | reader | median | hard fails |
+|---|---|---|---|---|---|
+| 3 | 6.75 | 7.23 | 6.94 | **7.048** | none |
+| 4 | 6.47 | 7.12 | 7.08 | **7.03** | none |
+| 5 | 6.596 | 7.02 | 6.90 | **6.952** | none |
+
+**The median went DOWN across three rounds in which every named fault was closed, and that is the
+finding rather than an embarrassment.** No judge ever raised a hard fail. What moved was variety,
+from a per-criterion median of 6.8 in round 3 to 6.0 in round 5, because judges who had not opened
+`ledger/carousel/topics.json` early went and read it late. The deck did not get worse. The reading
+of it got better informed, which is what a panel is for and is an argument for handing judges the
+ledger in the brief rather than hoping they find it.
+
+**Per-criterion median at ship:** artwork 7.1, claim integrity 7.0, story 7.0, sequence 7.0,
+voice 7.2, variety 6.0. Variety is the outlier by more than a point and all three judges named the
+same cause independently.
+
+## What the judges found that the twenty-two gates could not
+
+Every one of these shipped past a green suite, which is this file's half of GATE_LESSONS.
+
+- **A typed literal wearing a function, twice, in the same file, in the same run.**
+  `allocation_routes()` returned `len()` of a three-element list it had typed itself, under a
+  comment stating the count was never a typed 3. It was repaired with a post mortem in the
+  docstring. The same judge then found `verified_count` ten lines below that post mortem doing the
+  identical thing with a one-element list. **A repair scoped to the string a finding names leaves
+  the class open**, and that is the run's most transferable lesson.
+- **Claim strips drifting from the dossiers that declared them.** Three were found and fixed, and a
+  judge then found two more. Same shape as above, same round.
+- **An unsourced negative surviving in its twin.** "The dek says neither document mentions the
+  other" was struck from `aggregates.json` in repair round 1 for being a negative the snapshots
+  refute, and its copy sat in `storyboard.md`'s slide 8 risks block until round 3. The run fixed a
+  string rather than grepping for it.
+- **A frame comment asserting what the source does not say.** Slide 9's markup claimed the other
+  two allocation routes were "simply not named by the source". c20's own quoted section names all
+  three. No gate reads comments.
+- **A place sitting unread in a fetched snapshot for four rounds.** Three judges charged the deck
+  for naming no Texas place and were told twice that no claim carried one. The Horizon guide had
+  Round Rock in a file this run stored at 06:56. **Nobody grepped the snapshots**, and the honest
+  version of that finding is that "no claim carries it" and "no source carries it" are different
+  sentences.
+- **A right decision recorded with a wrong reason.** Round 3 declined the scrim work and wrote an
+  arithmetic justification beside it. The round 4 craft judge re-derived it off this deck's own
+  `render_report.json` and showed the opposite: measured per lowest contiguous type run, four
+  scrims were oversized, one of them by 115px on the frame that introduces the light-from-below
+  law. Recut, the deck came back from a median L\* of 9.9 to 11.4 **with every line still clearing
+  the 4.5 contrast floor**, and `machine_qa`'s dead-lower-zone warning on frame 2 disappeared,
+  which is the same defect the scrim had been causing and reporting separately.
+- **A repair that created the next defect.** Rewriting frame 9's dek to reconcile it with frame 6
+  removed the sentence carrying October 1st, so the deck's one reserved colour printed a Frontera
+  date on a frame bylined HORIZON GUIDE with a Horizon headline. Two judges found it independently
+  in the next round. The date is back and the reconciliation is intact.
+
+## What did not get fixed, and why it is here rather than quietly absent
+
+- **Frame 6 is under its own plan.** Its dossier specifies a shut containment door in two point
+  oblique with a return wall giving a second value; the render is a flat field, a light line and a
+  latch box. `craft_floor` names it as the deck's one quiet frame. The scoring rounds were spent
+  and redrawing the deck's turn at that point is how a shipping deck turns red.
+- **Frames 4 and 9 are the closest pair** at 0.6124, named by two judges in two rounds.
+- **Bespoke similarity ROSE, from 0.3091 to 0.395, as a direct cost of the scrim recut**, because
+  letting the plenum wash read at the foot of every frame is itself a shared vocabulary. The right
+  fix had a price and the price is recorded rather than smoothed over.
+- **The plenum tile is drawn on frame 7 and washed on six others**, so the deck's most distinctive
+  structural claim is a texture on one frame and a gradient on the rest.
+- **The deck names one Texas place and it belongs to the wrong machine.** Round Rock is in
+  Williamson County and is the successor's room. Frontera sits at UT Austin in Travis County and is
+  never located on any frame, because no fetched source says so.
