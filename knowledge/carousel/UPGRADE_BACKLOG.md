@@ -1266,3 +1266,29 @@ advisories that are all real.
 **Owner: `daily`.** `scripts/shared/lesson_refs.py` is that lane's, so this run could not make the
 change. This phase's own citations were rewritten into the form the gate reads instead, which is
 the half that was in reach.
+
+## `lesson_refs`'s titled citation form is unwritable inside a JSON string
+
+Found 2026-09-07 by CI going red on PR no. 270. **The deadlock is fixed and the underlying
+defect is not**, so this is the half that is left.
+
+`CITE` in `scripts/shared/lesson_refs.py` requires a literal `("` after the entry number. A
+double quote inside a JSON string is written `\"`, so the raw bytes read `(\"` and the regex
+never matches. **No titled citation can be spelled in any `.json` file**, and `.json` is scanned.
+
+What shipped instead: the files `ownership.yaml` declares `append_only` are out of the failing
+set and are still parsed and printed as notes, because a rule satisfiable only by editing a file
+no actor may edit is a deadlock rather than a rule. That is the right fix for the deadlock and it
+leaves `ledger/carousel/upgrades.json`'s two untitled citations permanently uncorrectable, which
+is the honest consequence of append-only and not a thing to route around.
+
+**The remaining upgrade** is in `CITE` itself, which this lane owns: accept an optional backslash
+before each quote of the title, or decode a `.json` file's string values before scanning. Then a
+future ledger entry can cite a lesson properly, which today it cannot. The self-test needs one
+fixture per shape, a `.md` citation and a `.json` one carrying the same citation, both required
+to pass, and the same pair with a wrong title required to fail.
+
+Not built in the same commit deliberately. It would have changed the parser under a red build to
+turn that build green, and a checker edited to stop reporting is how a checker stops being one.
+The carve-out is a scope decision the ownership map already made; the parser change is a
+behaviour change and belongs in a phase that can force it red on its own terms.
