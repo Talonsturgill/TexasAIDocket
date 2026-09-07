@@ -1,0 +1,134 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#070B10}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#7C8A8C}
+  /* A BOTTOM SCRIM. The footer and the closing prose sit over drawn art on this frame, and
+     qa.py found canvas edges running through their glyph bands, which reads as a
+     strikethrough at feed width. A scrim lifts the floor under the whole block rather than
+     moving the art, which is the fix the engine contract asks for. */
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:207px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.86) 44%,
+    rgba(7,11,16,0.99) 100%)}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
+  /* TYPE MOVE. The type sets in two columns flanking the line of light, the left ranged
+     RIGHT so it stops hard on the line and the right ranged LEFT off the same line. The
+     line of light is the type's own gutter. Nothing sits at the top and the masthead
+     moves to bottom left. */
+  .mast{top:auto;bottom:132px;left:80px}
+  .colL{position:absolute;left:80px;top:520px;width:392px;text-align:right;margin:0;
+    font-family:Fraunces,serif;font-weight:600;font-size:66px;line-height:1.02;color:#E2EAE8;
+    letter-spacing:-.016em}
+  .colR{position:absolute;left:616px;top:534px;width:384px;text-align:left;margin:0;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;line-height:1.46;
+    color:#9BB0B4;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="fscrim" data-decorative></div>
+  <p class="colL">The door is shut and the room is running.</p>
+  <p class="colR">HORIZON USER GUIDE<br><br>"Horizon is still limited only to internal users.
+     (07/24/2026)"<br><br>"powered by a new 20 MW data center with advanced liquid cooling
+     in Round Rock, Texas"</p>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <div class="foot"><span>HORIZON GUIDE</span><span>c4 c22</span>
+    <span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260907;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+  const OM4='#3FB8A6';
+  const LINEX=536, LINEW=18;             // the meeting stile, and the deck's one light line
+
+  // ======================================================================
+  // A SHUT COLD AISLE CONTAINMENT DOOR. Parallax planes at three declared depths, no
+  // perspective. The door leaf carries a brushed grain that falls off with height,
+  // because the source is below.
+  // ======================================================================
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2,v=py/2;
+    const plane = u<LINEX-9 ? 0 : (u>LINEX+LINEW+9 ? 1 : 2);
+    const base  = plane===0 ? 12 : 16;                      // return wall vs leaf
+    const brush = TX.fbm2(u/1.6, v/56, 2)*13;               // vertical brushed grain
+    const lift  = Math.pow(Math.max(0,(v-300)/(H-300)),1.7)*54;
+    const L=base+brush+lift; const i=(py*W*2+px)*4;
+    d[i]=L*0.82; d[i+1]=L*0.98; d[i+2]=L*1.16; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // the floor in front of the door, washed by the plenum: the ONE place in nine frames
+  // where the two light species meet
+  const fg=x.createLinearGradient(0,1180,0,H);
+  fg.addColorStop(0,'rgba(7,11,16,0)'); fg.addColorStop(1,'rgba(112,136,140,0.62)');
+  x.fillStyle=fg; x.fillRect(0,1180,W,H-1180);
+  x.save();
+  for(let i=0;i<2600;i++){
+    const px=R()*W, py=1180+R()*(H-1180);
+    x.fillStyle='rgba(201,212,210,'+(0.02+R()*0.10)+')';
+    x.fillRect(px,py,0.6+R()*1.5,0.6+R()*1.5);
+  }
+  x.restore();
+
+  // ---- THE LIGHT LINE at the meeting stile. Hard edged, capped at 2px falloff, and
+  //      continuous top to bottom except where the magnetic latch body crosses it.
+  const LATCH={y:648,h:96};
+  // THE DOOR'S BOTTOM SWEEP FIRST, so the stile light can run down over it and meet the
+  // seam. The stile gap and the bottom gap are both gaps and light comes through both, so
+  // they join at the corner. The first draft painted the sweep last and cut the line in two.
+  x.fillStyle='#0B1114'; x.fillRect(0,1196,W,26);
+  x.fillStyle=OM4; x.fillRect(0,1222,W,7);
+  x.fillStyle='rgba(150,235,220,0.42)'; x.fillRect(0,1222,W,2.4);
+  x.fillStyle=OM4; x.fillRect(LINEX,0,LINEW,H);
+  x.fillStyle='rgba(150,235,220,0.55)'; x.fillRect(LINEX+3,0,LINEW-6,H);
+  x.fillStyle='rgba(63,184,166,0.28)'; x.fillRect(LINEX-2,0,2,H);
+  x.fillStyle='rgba(63,184,166,0.28)'; x.fillRect(LINEX+LINEW,0,2,H);
+  // the latch body, a real drawn object crossing the line
+  x.fillStyle='#1A2429'; x.fillRect(LINEX-32,LATCH.y,LINEW+64,LATCH.h);
+  x.fillStyle='rgba(7,11,16,0.85)'; x.fillRect(LINEX-32,LATCH.y,LINEW+64,3);
+  x.fillStyle='rgba(163,188,192,0.55)'; x.fillRect(LINEX-32,LATCH.y+LATCH.h-3,LINEW+64,3);
+  x.fillStyle='#2C3940'; x.fillRect(LINEX-24,LATCH.y+22,LINEW+48,30);
+
+  // ---- probes -------------------------------------------------------------
+  function colAt(px,py){ const g=x.getImageData(px*2,py*2,2,2).data; return [g[0],g[1],g[2]]; }
+  function Lof(rgb){
+    const lin=(u)=>u<=0.04045?u/12.92:Math.pow((u+0.055)/1.055,2.4);
+    const Y=0.2126*lin(rgb[0]/255)+0.7152*lin(rgb[1]/255)+0.0722*lin(rgb[2]/255);
+    return Y>0.008856?116*Math.cbrt(Y)-16:903.3*Y;
+  }
+  // the line must be continuous except at the latch
+  let breaks=0;
+  for(let py=6; py<H-6; py+=12){
+    if(py>LATCH.y && py<LATCH.y+LATCH.h) continue;
+    if(Lof(colAt(LINEX+LINEW/2,py))<45) breaks++;
+  }
+  // and it must not bloom: nothing within 40px either side may exceed L* 20
+  let bloom=0, worst=0;
+  for(let py=100; py<1150; py+=40){
+    const far = (Lof(colAt(LINEX+LINEW/2-230,py)) + Lof(colAt(LINEX+LINEW/2+230,py)))/2;
+    for(const dx of [-40,-28,28,40]){
+      const d = Lof(colAt(LINEX+LINEW/2+dx,py)) - far;
+      if(d>worst) worst=d;
+      if(d>10) bloom++;                 // more than 10 L* above the ground beside it is a bleed
+    }
+  }
+  window.__txProbe={ line_x:LINEX, line_w:LINEW, line_breaks:breaks, bloom_hits:bloom,
+    worst_bleed_L:Math.round(worst*10)/10,
+    latch_y:LATCH.y, latch_h:LATCH.h };
+  if(breaks>0) throw new Error('slide 6: the light line is broken in '+breaks+' place(s) outside the latch');
+  if(bloom>0) throw new Error('slide 6: the light line bleeds, '+bloom+' sample(s) within 40px sit more than 10 L* above the ground beside them, worst '+worst.toFixed(1));
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

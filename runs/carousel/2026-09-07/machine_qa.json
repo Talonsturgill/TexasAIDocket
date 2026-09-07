@@ -1,0 +1,115 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.7899,
+        0.8634,
+        0.9228
+      ],
+      "band_ratio": 1.071
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8067,
+        0.8298,
+        0.6765
+      ],
+      "band_ratio": 0.8823
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8298,
+        0.6513,
+        0.7426
+      ],
+      "band_ratio": 1.0018
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.4769,
+        0.3466,
+        0.3419
+      ],
+      "band_ratio": 0.8849
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.6807,
+        0.7059,
+        0.6765
+      ],
+      "band_ratio": 0.9844
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.605,
+        0.4286,
+        0.579
+      ],
+      "band_ratio": 1.0734
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.4979,
+        0.9013,
+        0.5827
+      ],
+      "band_ratio": 0.8868,
+      "leaders": [
+        "leader 'a capped connector lying loose on the plenum floor' lands 0.0px from its target"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "text collision (100% overprint): 'Computation for the Endless Frontier' x 'ation' near 297,441 [marked data-overlap-ok]",
+        "text collision (100% overprint): 'Computing for the Endless Frontier' x 'ing' near 297,665 [marked data-overlap-ok]"
+      ],
+      "bands": [
+        0.6366,
+        0.5441,
+        0.454
+      ],
+      "band_ratio": 0.8396
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.7479,
+        0.4202,
+        0.5496
+      ],
+      "band_ratio": 0.9617,
+      "leaders": [
+        "leader 'the port label naming the one route the record checked' lands 0.0px from its target"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 2,
+  "verdict": "WARN"
+}

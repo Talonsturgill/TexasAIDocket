@@ -153,11 +153,29 @@ def g_craft_floor(d: Path):
 
 
 def g_plan_render(d: Path):
+    """The claim-set comparison needs `copy.json` and the claim ids, and this passed neither.
+
+    2026-09-07. The retro phase added the comparison to `plan_render_check` the same day, made
+    its two new arguments optional so the three existing callers kept working, and left THIS
+    caller, the one CI actually sweeps every shipped run with, passing the old three. So a
+    future deck whose `copy.json` claim list drifts on a frame with no visible strip, or whose
+    dossier names a claim that does not exist, passes the sweep. A review bot found it, and it
+    is the same shape as the defect the comparison exists for: a surface that does not read the
+    thing it is supposed to compare against.
+
+    Both artifacts are loaded here and passed. A run missing either still gets the gate's own
+    warning that it compared fewer surfaces than exist, which is why they are optional rather
+    than required.
+    """
     import plan_render_check as m
     sb, rep = d / "storyboard.md", _load(d / "render_report.json")
     if not (sb.exists() and rep):
         return None
-    fails, _w, _s = m.check(sb.read_text(encoding="utf-8"), d / "slides", rep)
+    copy = _load(d / "copy.json")
+    claims = _load(d / "claims.json") or {}
+    ids = {c.get("id") for c in (claims.get("claims") or []) if isinstance(c, dict)} or None
+    fails, _w, _s = m.check(sb.read_text(encoding="utf-8"), d / "slides", rep,
+                            copy=copy or None, claim_ids=ids)
     return fails
 
 

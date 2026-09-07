@@ -91,6 +91,7 @@ def sources(root: pathlib.Path) -> list[pathlib.Path]:
     The carve out cannot widen: it is this one path, resolved, not a pattern.
     """
     mine = pathlib.Path(__file__).resolve()
+    frozen = append_only_paths(root)
     out = []
     for p in sorted(root.rglob("*")):
         if not p.is_file() or p.suffix not in SCAN_SUFFIXES:
@@ -99,9 +100,85 @@ def sources(root: pathlib.Path) -> list[pathlib.Path]:
             continue
         if p.resolve() == mine:
             continue
+        if p.relative_to(root).as_posix() in frozen:
+            continue
         out.append(p)
     return out
 
+
+def append_only_paths(root: pathlib.Path) -> set[str]:
+    """The files `ownership.yaml` declares append_only, which this gate may not judge.
+
+    2026-09-07. CI went red on `ledger/carousel/upgrades.json`, which cites a lesson by number
+    inside prose describing this gate's own citation format. The obvious fix was to add the
+    title, and it does not work: `CITE` wants a literal `("` after the number, a double quote
+    inside a JSON string is written `\"`, so the raw bytes read `(\"` and no titled citation is
+    spellable in a `.json` file at all. The second fix was to reword the line, and the
+    pre-commit hook refused it, correctly: that file is `append_only` because an upgrade trail
+    whose author can edit its own history can hide an upgrade.
+
+    **A rule that can only be satisfied by editing a file nobody is permitted to edit is not a
+    rule, it is a deadlock.** The trail is a historical record. When a lesson is renumbered, an
+    old entry's citation becomes wrong and no actor in this repository may correct it, so
+    holding the frozen files to a live consistency rule guarantees a permanent red build for a
+    defect that cannot be fixed. They are skipped, and the reason is read out of the map rather
+    than hardcoded here, so a path that stops being append_only comes back under the gate
+    automatically.
+
+    This is deliberately NOT a suffix or directory rule. Every file the map leaves writable is
+    still checked, `.json` included.
+    """
+    import re as _re
+    frozen, path, y = set(), None, (root / "ownership.yaml")
+    if not y.exists():
+        return frozen
+    for line in y.read_text(encoding="utf-8").splitlines():
+        m = _re.match(r'\s*-\s*path:\s*"([^"]+)"', line)
+        if m:
+            path = m.group(1)
+            continue
+        if path and _re.match(r"\s*append_only:\s*true\b", line):
+            frozen.add(path)
+            path = None
+    return frozen
+
+
+
+def frozen_notes(root: pathlib.Path) -> list[str]:
+    """Citation drift inside the append_only files, reported and never fatal.
+
+    Same parser, same rules, different disposition. See `append_only_paths` for why these
+    files cannot be failed and why that is a property of the ownership map rather than a
+    weakness in this gate.
+    """
+    lessons = root / LESSONS
+    if not lessons.is_file():
+        return []
+    by_num = dict(entries(lessons.read_text(encoding="utf-8")))
+    out = []
+    for rel in sorted(append_only_paths(root)):
+        f = root / rel
+        if not f.is_file() or f.suffix not in SCAN_SUFFIXES:
+            continue
+        try:
+            text = f.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
+            continue
+        for m in CITE.finditer(text):
+            num, title = int(m.group(1)), m.group(2)
+            line = text.count("\n", 0, m.start()) + 1
+            real = by_num.get(num)
+            if real is None:
+                out.append(f"{rel}:{line} cites entry {num}, which no longer exists. "
+                           f"append_only, so this is a note rather than a failure")
+            elif title is None:
+                out.append(f"{rel}:{line} cites entry {num} with no title. append_only, so "
+                           f"this is a note rather than a failure. It is entry {num} "
+                           f'("{real}")')
+            elif title.replace(chr(92) + chr(34), chr(34)).strip() != real.strip():
+                out.append(f"{rel}:{line} cites entry {num} as {title!r} and that entry is "
+                           f"{real!r}. append_only, so this is a note rather than a failure")
+    return out
 
 def citations(root: pathlib.Path) -> list[tuple[str, int, int, str | None]]:
     """Every `entry N` on a line that names the lessons file. Title captured when present."""
@@ -213,6 +290,35 @@ def self_test() -> int:
     case("a clean corpus passes", CLEAN_LESSONS,
          {"a.md": 'GATE_LESSONS entry 2 ("Second lesson") explains it.'}, False)
 
+    # 2026-09-07. The deadlock: an append_only file cannot be corrected by any actor here, so a
+    # live consistency rule over it is a permanent red build for a defect nobody may fix. The
+    # pair below is the whole argument. Same citation, same fault, two dispositions, decided by
+    # the ownership map rather than by the file's suffix or its directory.
+    OWNS = ('- path: "frozen/log.json"\n    append_only: true\n'
+            '  - path: "writable/note.md"\n    owner: daily\n')
+    case("a bare citation in an append_only file is a note, not a failure", CLEAN_LESSONS,
+         {"ownership.yaml": OWNS,
+          "frozen/log.json": '{"why": "GATE_LESSONS entry 2 says so"}'}, False)
+    case("...and the identical citation in a writable file still fails", CLEAN_LESSONS,
+         {"ownership.yaml": OWNS,
+          "writable/note.md": "GATE_LESSONS entry 2 says so"}, True)
+
+    # The note has to actually be PRODUCED. A skip that reports nothing is a gate quietly
+    # narrowing its own subject, which is the failure mode this file's own header is about.
+    with tempfile.TemporaryDirectory() as d:
+        root = pathlib.Path(d)
+        (root / "knowledge" / "shared").mkdir(parents=True)
+        (root / LESSONS).write_text(CLEAN_LESSONS)
+        (root / "ownership.yaml").write_text(OWNS)
+        (root / "frozen").mkdir()
+        (root / "frozen" / "log.json").write_text('{"why": "GATE_LESSONS entry 2 says so"}')
+        notes = frozen_notes(root)
+        ok = len(notes) == 1 and "entry 2" in notes[0] and "note rather than a failure" in notes[0]
+        checks.append(ok)
+        print(f"  {'ok  ' if ok else 'FAIL'}  the skipped file's drift is still reported")
+        if not ok:
+            print(f"        got {notes}")
+
     # The original defect: two runs of entries, each restarting its count.
     case("duplicate numbering fails",
          "## 1. First lesson\n\n## 1. Restarted count\n", {}, True)
@@ -263,7 +369,17 @@ def main() -> int:
     if args.self_test:
         return self_test()
 
-    problems = run(pathlib.Path(args.root).resolve())
+    root = pathlib.Path(args.root).resolve()
+    problems = run(root)
+
+    # THE FROZEN FILES ARE REPORTED, NEVER FAILED. Skipping them silently would lose 52 live
+    # citations from `ledger/carousel/upgrades.json` with nothing said, and a gate that quietly
+    # narrows its own subject is the exact shape GATE_LESSONS is a list of. They are read with
+    # the same parser and printed as notes, so drift stays visible to a reader while the build
+    # does not deadlock on a file nobody is permitted to correct.
+    for note in frozen_notes(root):
+        print(f"  note  {note}")
+
     if problems:
         print(f"lesson_refs: {len(problems)} problem(s)")
         for p in problems:

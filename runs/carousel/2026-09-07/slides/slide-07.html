@@ -1,0 +1,348 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#070B10}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#7C8A8C}
+
+  /* TYPE MOVE. The dek is two short mono lines ranged right in the tile's top band, and the
+     hook is bottom left running into the aperture's corner. The frame's type sits in two
+     opposite corners and the entire centre is drawing. */
+  .dek{position:absolute;top:78px;right:80px;width:430px;text-align:right;margin:0;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;line-height:1.44;
+    color:#9BB0B4;font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:900px;width:820px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:92px;line-height:0.99;color:#E2EAE8;letter-spacing:-.018em}
+  .sub{position:absolute;left:80px;top:1122px;width:830px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:27px;line-height:1.30;color:#DCE6E4}
+
+  .lab{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.08em;color:#C9D4D2;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:230px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0.94) 0%,rgba(7,11,16,0.66) 62%,
+    rgba(7,11,16,0) 100%)}
+  /* THE SCRIM STARTS BELOW THE HOOK AND RAMPS FAST, which is what this frame's own
+     geometry allows and nothing else does. The hook's second line ends at y1093 and the dek
+     begins at y1121, so a scrim that protects the dek with an ordinary slow ramp has to
+     start inside the hook's glyph band, and qa.py refuses that. At 186px it started at 1164
+     and the dek sat on unprotected art, which is the round 4 craft finding. At 256px it
+     starts at 1094, clear of the hook by 1px, and reaches useful density by the dek's own
+     first line rather than a third of the way down the frame. */
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:256px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.72) 13%,
+    rgba(7,11,16,0.90) 34%,rgba(7,11,16,0.97) 100%)}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="fscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <p class="dek">HORIZON USER GUIDE<br>Last update: August 12, 2026</p>
+
+  <!-- The hook is the successor guide's own first notice, verbatim, set as the frame's display
+       line. It carries no closing full stop because the source's line carries none. -->
+  <h1>This user guide is in progress</h1>
+  <p class="sub">One side lands. The other ends in connectors nobody has plugged in.</p>
+
+  <!-- The deck's ONE leader. Its polyline terminates on the capped connector's own world
+       coordinates, declared to window.__txLeaders below. -->
+  <div class="lab" id="capnote" style="left:596px;top:392px;letter-spacing:.02em">CAPPED, NOT LANDED</div>
+
+  <div class="foot"><span>HORIZON USER GUIDE</span><span>c5 c15</span>
+    <span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W = 1080, H = 1350, SEED = 20260907;
+  const c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  const x = c.getContext('2d'); x.scale(2, 2);
+  TX.reseed(SEED);
+  const R = TX.rng(SEED);              // R is a GENERATOR. R() is a number.
+
+  // ---- palette -------------------------------------------------------------
+  const HALL = '#070B10', PUNCH = '#0A0F12', ANODIZE = '#4E5B63';
+  const PLENUM = '#A3BCC0', DUST = '#C9D4D2';
+  const OM4 = '#3FB8A6', OM4_DIM = '#1C4F4A';
+
+  // ---- the aperture, the one geometry everything else is measured from -----
+  // A 24 inch raised floor tile lifted out. Square, offset up, tile surface visible on the
+  // left, the right and the bottom.
+  const AP = { x: 250, y: 200, w: 670, h: 670 };
+  const AP_R = AP.x + AP.w, AP_B = AP.y + AP.h;
+  const THICK = 26;                    // the floor's real thickness, seen on the cut edge
+
+  // ======================================================================
+  // 1. THE TILE TOP FACE. This is a plan view and the light is below, so the whole
+  //    tile surface is the frame's dark ground. It is worked rather than flat.
+  // ======================================================================
+  x.fillStyle = HALL; x.fillRect(0, 0, W, H);
+
+  const tileImg = x.createImageData(W * 2, H * 2);
+  const td = tileImg.data;
+  for (let py = 0; py < H * 2; py++) {
+    for (let px = 0; px < W * 2; px++) {
+      const u = px / 2, v = py / 2;
+      // high pressure laminate: a fine tooth over a broad cloud
+      const fine = TX.fbm2(u / 3.1, v / 3.1, 2);
+      const broad = TX.fbm2(u / 260, v / 260, 3);
+      let L = 26 + broad * 17 + fine * 12;
+      // the tile grid: conductive edge trim every 270px, slightly darker
+      const gx = Math.min(u % 270, 270 - (u % 270));
+      const gy = Math.min(v % 270, 270 - (v % 270));
+      if (gx < 3 || gy < 3) L -= 5;
+      const i = (py * W * 2 + px) * 4;
+      td[i] = Math.max(0, L * 0.86); td[i + 1] = Math.max(0, L * 1.02);
+      td[i + 2] = Math.max(0, L * 1.12); td[i + 3] = 255;
+    }
+  }
+  x.putImageData(tileImg, 0, 0);
+
+  // seven years of settled dust and cardboard lint on the tile face
+  x.save();
+  for (let i = 0; i < 5200; i++) {
+    const px = R() * W, py = R() * H;
+    const s = 0.5 + R() * 1.5;
+    x.fillStyle = 'rgba(201,212,210,' + (0.020 + R() * 0.055) + ')';
+    x.fillRect(px, py, s, s);
+  }
+  x.restore();
+
+  // ======================================================================
+  // 2. THE APERTURE. Plan and section at once: the cut edge shows the floor's real
+  //    thickness, and it is lit on its INNER face because the light is under the floor.
+  // ======================================================================
+  // the plenum floor seen through the hole, lit directly by the plane source
+  const plen = x.createImageData(AP.w * 2, AP.h * 2);
+  const pd = plen.data;
+  for (let py = 0; py < AP.h * 2; py++) {
+    for (let px = 0; px < AP.w * 2; px++) {
+      const u = px / 2, v = py / 2;
+      // sealed concrete, and the source strip runs left to right under the aperture
+      // sealed concrete at two scales: a broad trowel cloud and a fine aggregate tooth
+      const broad = TX.fbm2((u + 900) / 150, (v + 300) / 150, 3);
+      const fine  = TX.fbm2((u + 40) / 7.5,  (v + 12) / 7.5,  2);
+      const conc  = broad * 0.62 + fine * 0.38;
+      // THE PLANE SOURCE. A service strip running left to right under the aperture, falling
+      // off hard on both axes so the floor is a lit BAND rather than an evenly filled slab.
+      const dv = Math.abs(v - AP.h * 0.62) / (AP.h * 0.46);
+      const du = Math.abs(u - AP.w * 0.46) / (AP.w * 0.78);
+      const fall = Math.max(0, 1 - dv * dv * 1.35 - du * du * 0.62);
+      let L = 9 + Math.pow(fall, 1.35) * 132 + conc * 26 - 13;
+      if (L < 4) L = 4;
+      if (L > 152) L = 152;                       // ceiling on drawn light, law 2
+      const i = (py * AP.w * 2 + px) * 4;
+      pd[i] = L * 0.90; pd[i + 1] = L * 1.02; pd[i + 2] = L * 1.03; pd[i + 3] = 255;
+    }
+  }
+  x.putImageData(plen, AP.x * 2, AP.y * 2);
+
+  // dust hanging in the light coming up out of the hole
+  x.save();
+  x.beginPath(); x.rect(AP.x, AP.y, AP.w, AP.h); x.clip();
+  for (let i = 0; i < 1500; i++) {
+    const px = AP.x + R() * AP.w, py = AP.y + R() * AP.h;
+    x.fillStyle = 'rgba(201,212,210,' + (0.05 + R() * 0.16) + ')';
+    const s = 0.6 + R() * 1.7;
+    x.fillRect(px, py, s, s);
+  }
+  x.restore();
+
+  // the cut edge. Four inner walls, each brighter at its BOTTOM (nearest the source).
+  function cutWall(x0, y0, w, h, vertical) {
+    const g = vertical
+      ? x.createLinearGradient(x0, 0, x0 + w, 0)
+      : x.createLinearGradient(0, y0, 0, y0 + h);
+    g.addColorStop(0, 'rgba(10,15,18,1)');
+    g.addColorStop(1, 'rgba(120,146,150,1)');
+    x.fillStyle = g; x.fillRect(x0, y0, w, h);
+  }
+  cutWall(AP.x, AP.y, AP.w, THICK, false);                       // top wall
+  cutWall(AP.x, AP_B - THICK, AP.w, THICK, false);               // bottom wall
+  cutWall(AP.x, AP.y, THICK, AP.h, true);                        // left wall
+  x.save();                                                       // right wall mirrored
+  x.translate(AP_R, 0); x.scale(-1, 1); cutWall(0, AP.y, THICK, AP.h, true); x.restore();
+
+  // the tile's own cut edge, catching light thrown UP out of the aperture
+  x.strokeStyle = 'rgba(163,188,192,0.90)'; x.lineWidth = 2.5;
+  x.strokeRect(AP.x - 1.2, AP.y - 1.2, AP.w + 2.4, AP.h + 2.4);
+  x.strokeStyle = 'rgba(201,212,210,0.30)'; x.lineWidth = 7;
+  x.strokeRect(AP.x - 5, AP.y - 5, AP.w + 10, AP.h + 10);
+
+  // ======================================================================
+  // 3. THE CABLE TREE. A document's section hierarchy and a plenum's cable tree are
+  //    the same object. Trunk, branch, drop. Left is written and lands. Right is not
+  //    written and ends in connectors lying loose.
+  //    NO BRANCH HAPPENS AT A POINT: every break-out is a drawn body with area.
+  // ======================================================================
+  const IN = { x: AP.x + THICK, y: AP.y + THICK, w: AP.w - THICK * 2, h: AP.h - THICK * 2 };
+  const MIDX = IN.x + IN.w * 0.50;
+  const TRUNK_Y = IN.y + IN.h * 0.80;
+  const BEND = 26;                       // minimum bend radius, never violated
+
+  let levelsLeft = 0, levelsRight = 0;
+  const capBodies = [];
+
+  function jacket(pts, wdt, lit) {
+    // a real jacket with thickness: dark boundary, then the body, then a lit core line
+    x.lineCap = 'round'; x.lineJoin = 'round';
+    x.beginPath(); x.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < pts.length; i++) x.lineTo(pts[i][0], pts[i][1]);
+    x.strokeStyle = 'rgba(7,11,16,0.92)'; x.lineWidth = wdt + 4.5; x.stroke();
+    x.strokeStyle = lit ? OM4 : OM4_DIM;  x.lineWidth = wdt;       x.stroke();
+    if (lit) { x.strokeStyle = 'rgba(150,235,220,0.55)'; x.lineWidth = Math.max(1, wdt * 0.34); x.stroke(); }
+  }
+  function breakout(cx, cy, r, lit) {
+    // a break-out is a BODY, never a point
+    x.beginPath(); x.ellipse(cx, cy, r, r * 0.72, 0, 0, Math.PI * 2);
+    x.fillStyle = 'rgba(7,11,16,0.95)'; x.fill();
+    x.beginPath(); x.ellipse(cx, cy, r - 2.5, r * 0.72 - 2.5, 0, 0, Math.PI * 2);
+    x.fillStyle = lit ? '#2A6F66' : '#14332F'; x.fill();
+    x.beginPath(); x.ellipse(cx - r * 0.22, cy + r * 0.28, r * 0.40, r * 0.24, 0, 0, Math.PI * 2);
+    x.fillStyle = lit ? 'rgba(140,225,210,0.42)' : 'rgba(120,150,146,0.16)'; x.fill();
+  }
+  function tie(px, py, wdt) {   // a cable tie strap at a seeded pitch
+    x.fillStyle = 'rgba(24,32,36,0.95)';
+    x.fillRect(px - wdt * 0.62, py - 3.4, wdt * 1.24, 6.8);
+    x.fillStyle = 'rgba(120,146,150,0.30)';
+    x.fillRect(px - wdt * 0.62, py - 3.4, wdt * 1.24, 1.6);
+  }
+
+  // ---- the trunk runs the full width, entering and leaving the aperture ----
+  jacket([[IN.x - 8, TRUNK_Y], [IN.x + IN.w + 8, TRUNK_Y]], 19, true);
+  for (let i = 0; i < 9; i++) tie(IN.x + 28 + i * (IN.w - 56) / 8, TRUNK_Y, 19);
+
+  // ---- LEFT: complete to three levels, every run landed and emitting ----
+  const L1 = [IN.x + IN.w * 0.10, IN.x + IN.w * 0.26, IN.x + IN.w * 0.41];
+  levelsLeft = 3;
+  L1.forEach((bx, bi) => {
+    const y1 = IN.y + IN.h * 0.60;
+    breakout(bx, TRUNK_Y, 15, true);
+    jacket([[bx, TRUNK_Y], [bx, y1 + BEND], [bx, y1]], 13, true);          // level 1
+    const kids = [bx - 34, bx + 34];
+    kids.forEach((kx) => {
+      const y2 = IN.y + IN.h * 0.40;
+      breakout(bx, y1, 11, true);
+      jacket([[bx, y1], [bx, y1 - BEND], [kx, y2 + BEND], [kx, y2]], 8.5, true);   // level 2
+      const gk = [kx - 15, kx + 15];
+      gk.forEach((gx2) => {
+        const y3 = IN.y + IN.h * 0.20;
+        jacket([[kx, y2], [kx, y2 - BEND * 0.7], [gx2, y3 + BEND * 0.7], [gx2, y3]], 5, true); // level 3
+        // it LANDS: a seated connector on a small panel body
+        x.fillStyle = 'rgba(10,15,18,0.95)'; x.fillRect(gx2 - 7, y3 - 17, 14, 18);
+        x.fillStyle = '#2A6F66'; x.fillRect(gx2 - 5, y3 - 15, 10, 14);
+        x.fillStyle = OM4; x.fillRect(gx2 - 5, y3 - 15, 10, 3.2);
+      });
+      breakout(kx, y2, 8, true);
+    });
+  });
+  // the panel the left side lands on
+  x.fillStyle = 'rgba(23,32,35,0.96)';
+  x.fillRect(IN.x + 6, IN.y + IN.h * 0.20 - 30, IN.w * 0.48, 14);
+  x.fillStyle = 'rgba(120,146,150,0.34)';
+  x.fillRect(IN.x + 6, IN.y + IN.h * 0.20 - 17, IN.w * 0.48, 2.4);
+
+  // ---- RIGHT: trunk and first branches only. Every drop ends CAPPED. ----
+  const R1 = [IN.x + IN.w * 0.62, IN.x + IN.w * 0.80];
+  levelsRight = 2;
+  R1.forEach((bx) => {
+    const y1 = IN.y + IN.h * 0.58;
+    breakout(bx, TRUNK_Y, 15, false);
+    jacket([[bx, TRUNK_Y], [bx, y1 + BEND], [bx, y1]], 13, false);         // level 1
+    const kids = [bx - 40, bx + 40];
+    kids.forEach((kx, ki) => {
+      const y2 = IN.y + IN.h * (0.40 + (ki ? 0.05 : 0));
+      breakout(bx, y1, 11, false);
+      jacket([[bx, y1], [bx, y1 - BEND], [kx, y2 + BEND], [kx, y2]], 8.5, false);  // level 2
+      // and it STOPS. A connector lying loose on the plenum floor with its dust cap on.
+      // A capped connector is manufactured, present, correct, and not connected.
+      const cw = 30, ch = 32, cx0 = kx - cw / 2, cy0 = y2 - ch;
+      // it lies on the floor, so it throws a two part contact shadow UP onto the concrete
+      x.fillStyle = 'rgba(7,11,16,0.50)';
+      x.beginPath(); x.ellipse(kx, cy0 + 2, cw * 0.86, 7.5, 0, 0, Math.PI * 2); x.fill();
+      x.fillStyle = 'rgba(7,11,16,0.80)';
+      x.beginPath(); x.ellipse(kx, cy0 + 4, cw * 0.50, 3.6, 0, 0, Math.PI * 2); x.fill();
+      x.fillStyle = '#453E3A'; x.fillRect(cx0, cy0 + 12, cw, ch - 12);          // the boot
+      x.fillStyle = 'rgba(120,146,150,0.22)'; x.fillRect(cx0, cy0 + 12, cw, 2.2);
+      x.fillStyle = DUST; x.fillRect(cx0 + 2.5, cy0, cw - 5, 14);               // THE DUST CAP
+      x.fillStyle = 'rgba(255,255,255,0.42)'; x.fillRect(cx0 + 2.5, cy0, cw - 5, 3.4);
+      x.fillStyle = 'rgba(7,11,16,0.30)'; x.fillRect(cx0 + 2.5, cy0 + 11, cw - 5, 3);
+      capBodies.push({ x: cx0, y: cy0, w: cw, h: ch, cx: kx, cy: cy0 + 7 });
+    });
+  });
+
+  // ======================================================================
+  // 4. THE LEADER. Authored as a world coordinate polyline terminating ON the target's
+  //    own coordinates, per the engine contract.
+  // ======================================================================
+  const TARGET = capBodies.length ? [capBodies[0].cx, capBodies[0].cy] : [IN.x, IN.y];
+  const leader = [[688, 404], [648, 404], [TARGET[0] + 16, TARGET[1] - 26], TARGET];
+  x.strokeStyle = 'rgba(201,212,210,0.72)'; x.lineWidth = 1.6;
+  x.beginPath(); x.moveTo(leader[0][0], leader[0][1]);
+  for (let i = 1; i < leader.length; i++) x.lineTo(leader[i][0], leader[i][1]);
+  x.stroke();
+  x.fillStyle = 'rgba(201,212,210,0.95)';
+  x.beginPath(); x.arc(TARGET[0], TARGET[1], 3.2, 0, Math.PI * 2); x.fill();
+  // THE ENGINE READS `__akLeaders` AND THE SKILL DOCUMENTS `__txLeaders`. Declared under both
+  // so this frame's leader is actually measured, rather than declared into a channel nothing
+  // reads. The mismatch is logged as an upgrade proposal: the skill file is under `.claude/`,
+  // which no routine may edit unattended.
+  const LEADER_DECL = [{ target: "a capped connector lying loose on the plenum floor",
+                         at: TARGET, to: leader[leader.length - 1] }];
+  window.__txLeaders = LEADER_DECL;
+  window.__akLeaders = LEADER_DECL;
+
+  // ======================================================================
+  // 5. PROBES. Every acceptance item that a render could contradict is measured here,
+  //    off the drawn geometry and off the pixels, and thrown on rather than reported.
+  // ======================================================================
+  function medianL(x0, y0, w, h) {
+    const d = x.getImageData(x0 * 2, y0 * 2, Math.max(2, w * 2), Math.max(2, h * 2)).data;
+    const v = [];
+    for (let i = 0; i < d.length; i += 4) {
+      const r = d[i] / 255, g = d[i + 1] / 255, b = d[i + 2] / 255;
+      const lin = (u) => u <= 0.04045 ? u / 12.92 : Math.pow((u + 0.055) / 1.055, 2.4);
+      const Y = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+      v.push(Y > 0.008856 ? 116 * Math.cbrt(Y) - 16 : 903.3 * Y);
+    }
+    v.sort((a, b) => a - b); return v[Math.floor(v.length / 2)];
+  }
+  const apL   = medianL(AP.x + 60, AP.y + 60, AP.w - 120, AP.h - 120);
+  const tileL = medianL(60, 1000, 300, 200);
+  const capL  = capBodies.length ? medianL(capBodies[0].x + 4, capBodies[0].y + 2, 20, 9) : 0;
+  const bootL = capBodies.length ? medianL(capBodies[0].x + 4, capBodies[0].y + 18, 20, 9) : 0;
+
+  window.__txProbe = {
+    levels_left: levelsLeft, levels_right: levelsRight,
+    cap_count: capBodies.length,
+    cap_min_px: capBodies.length ? Math.min(...capBodies.map(b => Math.min(b.w, b.h))) : 0,
+    aperture_median_L: apL, tile_top_median_L: tileL,
+    aperture_minus_tile: apL - tileL,
+    cap_minus_boot_L: capL - bootL,
+    min_bend_radius: BEND
+  };
+  // acceptance, asserted rather than described
+  if (levelsLeft < 3) throw new Error('slide 7: the written side must branch to three levels');
+  if (levelsRight >= 3) throw new Error('slide 7: the unwritten side must stop below level two');
+  if (!capBodies.length) throw new Error('slide 7: no capped connector was drawn');
+  if (window.__txProbe.cap_min_px < 26) throw new Error('slide 7: a capped connector is under 26px');
+  if (apL - tileL < 20) throw new Error('slide 7: the aperture is not 20 L* above the tile face, so the frame does not prove the light is below the floor');
+  if (capL - bootL < 8) throw new Error('slide 7: the cap body is under 8 L* above its boot');
+
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

@@ -1,0 +1,175 @@
+{
+  "run": "2026-09-07",
+  "deck": 17,
+  "note": "Built from the render report's own laid out text nodes rather than from the storyboard. Every string here is a string the browser actually set, and this file is rebuilt after every render round so it cannot describe a deck that no longer exists.",
+  "slides": {
+    "S1": {
+      "hook": "Frontera's queues close October 1st.",
+      "dek": "The Texas Advanced Computing Center put a warning at the top of Frontera's user guide. The guide was last updated September 3rd, 2026.",
+      "labels": [
+        "01 / 09",
+        "FRONTERA GUIDE",
+        "On October 1, 2026, the Frontera queues will be closed permanently.",
+        "TEXAS AI DOCKET",
+        "c1 c14 c19 c23",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c1",
+        "c14",
+        "c19",
+        "c23"
+      ]
+    },
+    "S2": {
+      "hook": "Seven years, and one last edit.",
+      "dek": "\"After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.\"",
+      "labels": [
+        "02 / 09",
+        "FRONTERA GUIDE",
+        "TEXAS AI DOCKET",
+        "Texas Advanced Computing Center",
+        "c2 c14 c19",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c2",
+        "c14",
+        "c19"
+      ]
+    },
+    "S3": {
+      "hook": "Frontera is the largest cluster dedicated to open science in the United States",
+      "dek": "",
+      "labels": [
+        "03 / 09",
+        "FRONTERA USER GUIDE",
+        "LAST UPDATE",
+        "SOURCE",
+        "September 3, 2026",
+        "TEXAS AI DOCKET",
+        "c3 c14",
+        "docs.tacc.utexas.edu/hpc/frontera/",
+        "texasaidocket.com",
+        "§ INTRODUCTION",
+        "¶ docs.tacc.utexas.edu/hpc/frontera/"
+      ],
+      "claims": [
+        "c3",
+        "c14"
+      ]
+    },
+    "S4": {
+      "hook": "The cable goes somewhere the page does not.",
+      "dek": "The guide says the file systems stay reachable to move data off. It names no machine the work goes to.",
+      "labels": [
+        "04 / 09",
+        "FRONTERA GUIDE",
+        "FRONTERA USER GUIDE ONE PROMISE FOR AFTER THE DATE",
+        "TEXAS AI DOCKET",
+        "c6 c18",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c6",
+        "c18"
+      ]
+    },
+    "S5": {
+      "hook": "The money is real. The manual is not finished.",
+      "dek": "Leadership Class Computing Facility (LCCF) award, Award Abstract #2323116 07/01/2024 to 04/30/2028",
+      "labels": [
+        "05 / 09",
+        "A construction award with a start date and an end date. What it does not yet have is a finished guide.",
+        "NSF 2323116",
+        "TEXAS AI DOCKET",
+        "c5 c10 c11 c12",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c5",
+        "c10",
+        "c11",
+        "c12"
+      ]
+    },
+    "S6": {
+      "hook": "The door is shut and the room is running.",
+      "dek": "HORIZON USER GUIDE \"Horizon is still limited only to internal users. (07/24/2026)\" \"powered by a new 20 MW data center with advanced liquid cooling in Round Rock, Texas\"",
+      "labels": [
+        "06 / 09",
+        "HORIZON GUIDE",
+        "TEXAS AI DOCKET",
+        "c4 c22",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c4",
+        "c22"
+      ]
+    },
+    "S7": {
+      "hook": "This user guide is in progress",
+      "dek": "",
+      "labels": [
+        "07 / 09",
+        "CAPPED, NOT LANDED",
+        "HORIZON USER GUIDE",
+        "HORIZON USER GUIDE Last update: August 12, 2026",
+        "One side lands. The other ends in connectors nobody has plugged in.",
+        "TEXAS AI DOCKET",
+        "c5 c15",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c5",
+        "c15"
+      ]
+    },
+    "S8": {
+      "hook": "National Science Foundation",
+      "dek": "The funder's own record and the machine's own page give award 1818253 two different titles.",
+      "labels": [
+        "08 / 09",
+        "Computation for the Endless Frontier",
+        "Computing for the Endless Frontier",
+        "FRONTERA USER GUIDE",
+        "NSF 1818253",
+        "NSF AWARD RECORD 1818253",
+        "One award, two names.",
+        "TEXAS AI DOCKET",
+        "ation",
+        "c7 c8 c9",
+        "ing",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c7",
+        "c8",
+        "c9"
+      ]
+    },
+    "S9": {
+      "hook": "Three ways in. The record checked one.",
+      "dek": "The queues stop October 1st. The same center leads the project behind Horizon. The guide listing those routes says the machine is still limited only to internal users.",
+      "labels": [
+        "09 / 09",
+        "HORIZON GUIDE",
+        "NATIONAL ARTIFICIAL INTELLIGENCE RESEARCH RESOURCE PILOT (NAIRR)",
+        "OCTOBER 1ST, 2026",
+        "TEXAS AI DOCKET",
+        "c1 c4 c13 c19 c20 c21",
+        "docs.tacc.utexas.edu/hpc/horizon/",
+        "texasaidocket.com"
+      ],
+      "claims": [
+        "c1",
+        "c4",
+        "c13",
+        "c19",
+        "c20",
+        "c21"
+      ]
+    }
+  }
+}

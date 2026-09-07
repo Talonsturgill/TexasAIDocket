@@ -1,0 +1,52 @@
+{
+  "claims_verified": {
+    "value": 23,
+    "from_items": [],
+    "note": "Claims this run fetched and verified, counted over claims.json."
+  },
+  "findings_rejected": {
+    "value": 7,
+    "from_items": [],
+    "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
+  },
+  "source_documents": {
+    "value": 5,
+    "from_items": [],
+    "note": "Distinct source urls behind the verified claims, counted over claims.json."
+  },
+  "figures_quoted": {
+    "value": 1,
+    "from_items": [],
+    "note": "Aggregates that are a figure the SOURCE wrote, each naming the claim and the exact string, counted over aggregates.json."
+  },
+  "figures_computed": {
+    "value": 3,
+    "from_items": [],
+    "note": "Aggregates produced by code over data, each naming the code and its input, counted over aggregates.json."
+  },
+  "figures_tallied": {
+    "value": 1,
+    "from_items": [],
+    "note": "Aggregates that are a tally of claim ids, counted over aggregates.json."
+  },
+  "universals_declared": {
+    "value": 86,
+    "from_items": [],
+    "note": "Published strings quantifier_check read, every universal among them naming the set it ranges over."
+  },
+  "total_count": {
+    "value": 2,
+    "from_items": [],
+    "note": "Distinct user guides this deck compares, counted over the /hpc/ urls in claims.json. The deck's spine is that there are two of them and they are in different states."
+  },
+  "distinct_shapes": {
+    "value": 1,
+    "from_items": [],
+    "note": "Distinct source_type values across the verified claims. One, primary_official, for every claim in the file."
+  },
+  "source_types": {
+    "value": 1,
+    "from_items": [],
+    "note": "Distinct source_type values across the verified claims. This run is primary_official throughout, so the value is 1 and that is the interesting part."
+  }
+}

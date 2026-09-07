@@ -1,0 +1,2631 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Frontera's queues close October 1st.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 204,
+          "font_px": 104,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              697,
+              129
+            ],
+            [
+              80,
+              238,
+              678,
+              129
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On October 1, 2026, the Frontera queues will be closed permanently.",
+          "x": 118,
+          "y": 566,
+          "w": 844,
+          "h": 135,
+          "font_px": 34,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              164,
+              587,
+              746,
+              46
+            ],
+            [
+              164,
+              633,
+              322,
+              46
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Texas Advanced Computing Center put a warning at the top of Frontera's user guide. The guide was last updated September 3rd, 2026.",
+          "x": 80,
+          "y": 880,
+          "w": 840,
+          "h": 105,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(155, 176, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              879,
+              834,
+              37
+            ],
+            [
+              80,
+              914,
+              821,
+              37
+            ],
+            [
+              80,
+              949,
+              72,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRONTERA GUIDE",
+          "x": 80,
+          "y": 1245,
+          "w": 218,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              218,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c14 c19 c23",
+          "x": 335,
+          "y": 1245,
+          "w": 218,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              335,
+              1245,
+              218,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 589,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              589,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1205,
+          "w": 1080,
+          "h": 145,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5055,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 37.8,
+          "variance": 463.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Advanced Computing Center",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 124,
+          "font_px": 62,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              142,
+              755,
+              77
+            ],
+            [
+              80,
+              204,
+              185,
+              77
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Seven years, and one last edit.",
+          "x": 80,
+          "y": 300,
+          "w": 900,
+          "h": 172,
+          "font_px": 86,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              290,
+              809,
+              106
+            ],
+            [
+              80,
+              376,
+              140,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.\"",
+          "x": 80,
+          "y": 1104,
+          "w": 900,
+          "h": 71,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 212, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1104,
+              780,
+              34
+            ],
+            [
+              80,
+              1140,
+              810,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRONTERA GUIDE",
+          "x": 80,
+          "y": 1245,
+          "w": 218,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              218,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c14 c19",
+          "x": 355,
+          "y": 1245,
+          "w": 156,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              355,
+              1245,
+              156,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 569,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              569,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1064,
+          "w": 1080,
+          "h": 286,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4134,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 46.5,
+          "variance": 658.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 234,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              234,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c14",
+          "x": 387,
+          "y": 84,
+          "w": 94,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              387,
+              84,
+              94,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 553,
+          "y": 84,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              553,
+              84,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 891,
+          "y": 84,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              84,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u00a7 INTRODUCTION",
+          "x": 80,
+          "y": 236,
+          "w": 372,
+          "h": 53,
+          "font_px": 40,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              236,
+              372,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRONTERA USER GUIDE",
+          "x": 80,
+          "y": 292,
+          "w": 337,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              292,
+              337,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Frontera is the largest cluster dedicated to open science in the United States",
+          "x": 80,
+          "y": 346,
+          "w": 920,
+          "h": 433,
+          "font_px": 104,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(7, 11, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              335,
+              845,
+              129
+            ],
+            [
+              80,
+              443,
+              749,
+              129
+            ],
+            [
+              80,
+              551,
+              722,
+              129
+            ],
+            [
+              80,
+              659,
+              520,
+              129
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\u00b6 docs.tacc.utexas.edu/hpc/frontera/",
+          "x": 80,
+          "y": 1078,
+          "w": 688,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(7, 11, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1078,
+              688,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SOURCE",
+          "x": 80,
+          "y": 1152,
+          "w": 112,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1152,
+              112,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "docs.tacc.utexas.edu/hpc/frontera/",
+          "x": 470,
+          "y": 1152,
+          "w": 530,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(7, 11, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              470,
+              1152,
+              530,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "LAST UPDATE",
+          "x": 80,
+          "y": 1208,
+          "w": 206,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(6, 48, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1208,
+              206,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 3, 2026",
+          "x": 735,
+          "y": 1208,
+          "w": 265,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(7, 11, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              735,
+              1208,
+              265,
+              35
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 1040,
+          "w": 920,
+          "h": 5,
+          "by": "rule",
+          "color": "rgb(7, 11, 16)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 1140,
+          "w": 920,
+          "h": 3,
+          "by": "row",
+          "color": "rgb(7, 11, 16)",
+          "decorative": false,
+          "skip": [
+            8,
+            9
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 1196,
+          "w": 920,
+          "h": 3,
+          "by": "row",
+          "color": "rgb(7, 11, 16)",
+          "decorative": false,
+          "skip": [
+            10,
+            11
+          ]
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5035,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 125.3,
+          "variance": 23.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRONTERA USER GUIDE ONE PROMISE FOR AFTER THE DATE",
+          "x": 620,
+          "y": 214,
+          "w": 380,
+          "h": 105,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(155, 176, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              216,
+              274,
+              31
+            ],
+            [
+              784,
+              251,
+              216,
+              31
+            ],
+            [
+              798,
+              286,
+              202,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The cable goes somewhere the page does not.",
+          "x": 80,
+          "y": 892,
+          "w": 660,
+          "h": 177,
+          "font_px": 58,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              885,
+              374,
+              72
+            ],
+            [
+              80,
+              944,
+              655,
+              72
+            ],
+            [
+              80,
+              1003,
+              100,
+              72
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The guide says the file systems stay reachable to move data off. It names no machine the work goes to.",
+          "x": 80,
+          "y": 1112,
+          "w": 640,
+          "h": 64,
+          "font_px": 25,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(155, 176, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1110,
+              640,
+              35
+            ],
+            [
+              80,
+              1142,
+              547,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRONTERA GUIDE",
+          "x": 80,
+          "y": 1245,
+          "w": 218,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              218,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c18",
+          "x": 376,
+          "y": 1245,
+          "w": 94,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              376,
+              1245,
+              94,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 548,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              548,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 210,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 860,
+          "w": 1080,
+          "h": 490,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4141,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 53.6,
+          "variance": 1490.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The money is real. The manual is not finished.",
+          "x": 80,
+          "y": 154,
+          "w": 900,
+          "h": 164,
+          "font_px": 82,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              144,
+              729,
+              101
+            ],
+            [
+              80,
+              226,
+              723,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Leadership Class Computing Facility (LCCF) award, Award Abstract #2323116 07/01/2024 to 04/30/2028",
+          "x": 80,
+          "y": 754,
+          "w": 923,
+          "h": 155,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 212, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              105,
+              774,
+              764,
+              35
+            ],
+            [
+              105,
+              814,
+              359,
+              35
+            ],
+            [
+              105,
+              853,
+              437,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A construction award with a start date and an end date. What it does not yet have is a finished guide.",
+          "x": 80,
+          "y": 1128,
+          "w": 880,
+          "h": 67,
+          "font_px": 26,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(155, 176, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1126,
+              874,
+              36
+            ],
+            [
+              80,
+              1159,
+              333,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NSF 2323116",
+          "x": 80,
+          "y": 1245,
+          "w": 172,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              172,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c10 c11 c12",
+          "x": 303,
+          "y": 1245,
+          "w": 218,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              303,
+              1245,
+              218,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 574,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              574,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1080,
+          "w": 1080,
+          "h": 270,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 754,
+          "w": 3,
+          "h": 154.5,
+          "by": "block",
+          "color": "rgb(63, 184, 166)",
+          "decorative": false,
+          "skip": [
+            2
+          ]
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5474,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 42.1,
+          "variance": 790.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "The door is shut and the room is running.",
+          "x": 80,
+          "y": 520,
+          "w": 392,
+          "h": 269,
+          "font_px": 66,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              152,
+              512,
+              320,
+              82
+            ],
+            [
+              121,
+              579,
+              351,
+              82
+            ],
+            [
+              256,
+              647,
+              216,
+              82
+            ],
+            [
+              225,
+              714,
+              247,
+              82
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HORIZON USER GUIDE \"Horizon is still limited only to internal users. (07/24/2026)\" \"powered by a new 20 MW data center with advanced liquid cooling in Round Rock, Texas\"",
+          "x": 616,
+          "y": 534,
+          "w": 384,
+          "h": 380,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(155, 176, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              616,
+              535,
+              281,
+              35
+            ],
+            [
+              616,
+              611,
+              265,
+              35
+            ],
+            [
+              616,
+              649,
+              374,
+              35
+            ],
+            [
+              616,
+              687,
+              312,
+              35
+            ],
+            [
+              616,
+              763,
+              359,
+              35
+            ],
+            [
+              616,
+              801,
+              250,
+              35
+            ],
+            [
+              616,
+              839,
+              359,
+              35
+            ],
+            [
+              616,
+              877,
+              328,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1183,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1183,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HORIZON GUIDE",
+          "x": 80,
+          "y": 1245,
+          "w": 203,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              203,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c22",
+          "x": 366,
+          "y": 1245,
+          "w": 94,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              366,
+              1245,
+              94,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 543,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              543,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1143,
+          "w": 1080,
+          "h": 207,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3043,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.3,
+          "variance": 762
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HORIZON USER GUIDE Last update: August 12, 2026",
+          "x": 570,
+          "y": 78,
+          "w": 430,
+          "h": 72,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(155, 176, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              730,
+              79,
+              270,
+              34
+            ],
+            [
+              580,
+              115,
+              420,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This user guide is in progress",
+          "x": 80,
+          "y": 900,
+          "w": 820,
+          "h": 182,
+          "font_px": 92,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              889,
+              690,
+              113
+            ],
+            [
+              80,
+              980,
+              315,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One side lands. The other ends in connectors nobody has plugged in.",
+          "x": 80,
+          "y": 1122,
+          "w": 830,
+          "h": 70,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(220, 230, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1121,
+              829,
+              37
+            ],
+            [
+              80,
+              1156,
+              30,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CAPPED, NOT LANDED",
+          "x": 596,
+          "y": 392,
+          "w": 268,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 212, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              596,
+              392,
+              268,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HORIZON USER GUIDE",
+          "x": 80,
+          "y": 1245,
+          "w": 281,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              281,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c15",
+          "x": 418,
+          "y": 1245,
+          "w": 94,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              418,
+              1245,
+              94,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 569,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              569,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 230,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 1094,
+          "w": 1080,
+          "h": 256,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6189,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 36,
+          "variance": 845.9
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "a capped connector lying loose on the plenum floor",
+          "to": [
+            619.2,
+            448.2
+          ],
+          "at": [
+            619.2,
+            448.2
+          ]
+        }
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "National Science Foundation",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 76,
+          "font_px": 78,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              912,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One award, two names.",
+          "x": 480,
+          "y": 986,
+          "w": 520,
+          "h": 114,
+          "font_px": 56,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              980,
+              400,
+              69
+            ],
+            [
+              817,
+              1037,
+              183,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The funder's own record and the machine's own page give award 1818253 two different titles.",
+          "x": 80,
+          "y": 1130,
+          "w": 640,
+          "h": 70,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(155, 176, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1129,
+              597,
+              37
+            ],
+            [
+              80,
+              1164,
+              555,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NSF 1818253",
+          "x": 80,
+          "y": 1245,
+          "w": 172,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              172,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8 c9",
+          "x": 335,
+          "y": 1245,
+          "w": 125,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              335,
+              1245,
+              125,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 543,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              543,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 891,
+          "y": 1245,
+          "w": 109,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              1245,
+              109,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Computation for the Endless Frontier",
+          "x": 172,
+          "y": 441,
+          "w": 752,
+          "h": 45,
+          "font_px": 34,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              172,
+              441,
+              752,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NSF AWARD RECORD 1818253",
+          "x": 172,
+          "y": 504,
+          "w": 384,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 230, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              172,
+              504,
+              384,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Computing for the Endless Frontier",
+          "x": 172,
+          "y": 665,
+          "w": 711,
+          "h": 45,
+          "font_px": 34,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              172,
+              665,
+              711,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FRONTERA USER GUIDE",
+          "x": 172,
+          "y": 728,
+          "w": 304,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 230, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              172,
+              728,
+              304,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ation",
+          "x": 297,
+          "y": 441,
+          "w": 105,
+          "h": 45,
+          "font_px": 34,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(63, 184, 166)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              297,
+              441,
+              105,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ing",
+          "x": 297,
+          "y": 665,
+          "w": 63,
+          "h": 45,
+          "font_px": 34,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(63, 184, 166)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              297,
+              665,
+              63,
+              45
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 230,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 920,
+          "w": 1080,
+          "h": 430,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3926,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 55,
+          "variance": 838.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 84,
+          "w": 296,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              296,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OCTOBER 1ST, 2026",
+          "x": 608,
+          "y": 236,
+          "w": 392,
+          "h": 69,
+          "font_px": 31,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(255, 255, 255)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              630,
+              250,
+              348,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NATIONAL ARTIFICIAL INTELLIGENCE RESEARCH RESOURCE PILOT (NAIRR)",
+          "x": 80,
+          "y": 800,
+          "w": 499,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              800,
+              499,
+              31
+            ],
+            [
+              80,
+              831,
+              484,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Three ways in. The record checked one.",
+          "x": 80,
+          "y": 918,
+          "w": 800,
+          "h": 124,
+          "font_px": 62,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(226, 234, 232)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              910,
+              703,
+              77
+            ],
+            [
+              80,
+              972,
+              351,
+              77
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The queues stop October 1st. The same center leads the project behind Horizon. The guide listing those routes says the machine is still limited only to internal users.",
+          "x": 80,
+          "y": 1048,
+          "w": 880,
+          "h": 96,
+          "font_px": 25,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(201, 212, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1046,
+              832,
+              35
+            ],
+            [
+              80,
+              1078,
+              871,
+              35
+            ],
+            [
+              80,
+              1110,
+              197,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "docs.tacc.utexas.edu/hpc/horizon/",
+          "x": 80,
+          "y": 1174,
+          "w": 541,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(63, 184, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1174,
+              541,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HORIZON GUIDE",
+          "x": 80,
+          "y": 1245,
+          "w": 187,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              187,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c4 c13 c19 c20 c21",
+          "x": 295,
+          "y": 1245,
+          "w": 302,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              295,
+              1245,
+              302,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 626,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              626,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 899,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              899,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 200,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 910,
+          "w": 1080,
+          "h": 440,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4565,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 62.1,
+          "variance": 1142.1
+        }
+      ],
+      "breather": false,
+      "leaders": [
+        {
+          "target": "the port label naming the one route the record checked",
+          "to": [
+            90,
+            794
+          ],
+          "at": [
+            90,
+            794
+          ]
+        }
+      ]
+    }
+  ]
+}

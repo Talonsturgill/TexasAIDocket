@@ -1,0 +1,214 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#070B10}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  svg.plates{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#7C8A8C}
+
+  /* TYPE MOVE. The acting body takes the full measure at the top as the deck's largest
+     display line, and the hook drops to one short line at bottom right. */
+  h1{position:absolute;left:80px;top:150px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:78px;line-height:0.98;color:#E2EAE8;letter-spacing:-.02em}
+  .hook{position:absolute;right:80px;bottom:250px;width:520px;text-align:right;margin:0;
+    font-family:Fraunces,serif;font-weight:600;font-size:56px;line-height:1.02;color:#E2EAE8}
+  .dek{position:absolute;left:80px;bottom:150px;width:640px;margin:0;
+    font-family:Manrope,sans-serif;font-weight:500;font-size:27px;line-height:1.30;color:#9BB0B4}
+
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:230px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0.94) 0%,rgba(7,11,16,0.66) 62%,
+    rgba(7,11,16,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:430px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.90) 30%,
+    rgba(7,11,16,1) 58%,rgba(7,11,16,1) 100%)}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="fscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>National Science Foundation</h1>
+  <p class="hook">One award, two names.</p>
+  <p class="dek">The funder's own record and the machine's own page give award 1818253 two
+     different titles.</p>
+  <div class="foot"><span>NSF 1818253</span><span>c7 c8 c9</span>
+    <span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<svg class="plates" id="pl" viewBox="0 0 1080 1350"></svg>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W = 1080, H = 1350, SEED = 20260907;
+  const c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  const x = c.getContext('2d'); x.scale(2, 2);
+  TX.reseed(SEED);
+  const R = TX.rng(SEED);
+
+  const HALL = '#070B10', RAIL = '#172023', ANODIZE = '#4E5B63';
+  const OM4 = '#3FB8A6', SCREEN = '#E2EAE8';
+
+  // ---- ground ---------------------------------------------------------------
+  x.fillStyle = HALL; x.fillRect(0, 0, W, H);
+  const bg = x.createImageData(W * 2, H * 2), bd = bg.data;
+  for (let py = 0; py < H * 2; py++) {
+    for (let px = 0; px < W * 2; px++) {
+      const u = px / 2, v = py / 2;
+      // the plane source is below: the ground lifts toward the bottom of the frame
+      const lift = Math.pow(Math.max(0, (v - 200) / (H - 200)), 1.5) * 78;
+      const g = TX.fbm2(u / 4.2, v / 4.2, 2) * 13 + TX.fbm2(u / 210, v / 210, 3) * 17;
+      const L = 30 + lift + g;
+      const i = (py * W * 2 + px) * 4;
+      bd[i] = L * 0.84; bd[i + 1] = L * 1.00; bd[i + 2] = L * 1.14; bd[i + 3] = 255;
+    }
+  }
+  x.putImageData(bg, 0, 0);
+
+  // ======================================================================
+  // THE SHELF. Elevation for the plates, oblique for the shelf, so there is depth
+  // without a vanishing point and without shearing any glyph. Law 1 holds.
+  // ======================================================================
+  const SHELF_Y = 872, DEPTH = 96, SKEW = 74;
+  x.beginPath();                                   // the shelf's top surface, receding up-right
+  x.moveTo(90, SHELF_Y); x.lineTo(990, SHELF_Y);
+  x.lineTo(990 + SKEW, SHELF_Y - DEPTH); x.lineTo(90 + SKEW, SHELF_Y - DEPTH); x.closePath();
+  const sg = x.createLinearGradient(0, SHELF_Y - DEPTH, 0, SHELF_Y);
+  sg.addColorStop(0, '#10171A'); sg.addColorStop(1, '#2C3940');   // brighter at the front edge
+  x.fillStyle = sg; x.fill();
+  x.fillStyle = '#3E4B52';                          // the lit front lip, facing the source
+  x.fillRect(90, SHELF_Y, 900, 13);
+  x.fillStyle = 'rgba(163,188,192,0.55)'; x.fillRect(90, SHELF_Y + 11, 900, 3.2);
+  x.fillStyle = '#0A0F12'; x.fillRect(90, SHELF_Y + 14, 900, 34);  // the shadow under the lip
+
+  // ======================================================================
+  // TWO PLATES FOR ONE AWARD, from ONE constant set. Anything that differs between
+  // them below is a difference in the RECORD, never a difference in the drawing.
+  // ======================================================================
+  const P = { w: 828, h: 176, x: 126, r: 10, rivet: 9 };
+  const PLATE_Y = [392, 616];                      // the only per-plate constant
+
+  function plate(py) {
+    x.save();
+    x.beginPath();                                  // body
+    x.moveTo(P.x + P.r, py); x.arcTo(P.x + P.w, py, P.x + P.w, py + P.h, P.r);
+    x.arcTo(P.x + P.w, py + P.h, P.x, py + P.h, P.r);
+    x.arcTo(P.x, py + P.h, P.x, py, P.r); x.arcTo(P.x, py, P.x + P.w, py, P.r);
+    x.closePath();
+    const pg = x.createLinearGradient(0, py, 0, py + P.h);
+    pg.addColorStop(0, '#2A343A'); pg.addColorStop(1, '#55646C');   // lit at its FOOT
+    x.fillStyle = pg; x.fill();
+    x.strokeStyle = 'rgba(7,11,16,0.9)'; x.lineWidth = 2; x.stroke();
+    x.fillStyle = 'rgba(163,188,192,0.42)';         // the bottom edge takes the source
+    x.fillRect(P.x + P.r, py + P.h - 2.6, P.w - P.r * 2, 2.6);
+    for (const rx of [P.x + 30, P.x + P.w - 30]) {  // four rivets, from the one constant set
+      for (const ry of [py + 28, py + P.h - 28]) {
+        x.beginPath(); x.arc(rx, ry, P.rivet, 0, Math.PI * 2);
+        x.fillStyle = '#26313A'; x.fill();
+        x.beginPath(); x.arc(rx - 1.6, ry + 2.2, P.rivet * 0.56, 0, Math.PI * 2);
+        x.fillStyle = 'rgba(163,188,192,0.50)'; x.fill();
+      }
+    }
+    x.restore();
+  }
+  PLATE_Y.forEach(plate);
+
+  // ======================================================================
+  // THE TITLES, as SVG so they stay vector, in mono so the SHARED PREFIX aligns to the
+  // pixel by construction rather than by a typed offset. The ONLY emitting region on
+  // either plate is the segment where the two strings diverge.
+  // ======================================================================
+  const svg = document.getElementById('pl');
+  const NS = 'http://www.w3.org/2000/svg';
+  const TITLES = [
+    { pre: 'Comput', mid: 'ation', post: ' for the Endless Frontier',
+      src: 'NSF AWARD RECORD 1818253' },
+    { pre: 'Comput', mid: 'ing',   post: ' for the Endless Frontier',
+      src: 'FRONTERA USER GUIDE' },
+  ];
+  const TX0 = P.x + 46, FS = 34;
+  const litRects = [];
+
+  TITLES.forEach((t, i) => {
+    const py = PLATE_Y[i];
+    // ONE text node per title, no tspans. The divergent segment is located afterwards with
+    // getStartPositionOfChar, so the title stays a single string a gate can check while the
+    // lit region still lands exactly on the characters that differ.
+    const txt = document.createElementNS(NS, 'text');
+    txt.setAttribute('x', TX0); txt.setAttribute('y', py + 84);
+    txt.setAttribute('font-family', 'JetBrains Mono, monospace');
+    txt.setAttribute('font-size', FS); txt.setAttribute('font-weight', '500');
+    txt.setAttribute('fill', SCREEN); txt.setAttribute('letter-spacing', '0.5');
+    txt.textContent = t.pre + t.mid + t.post;
+    svg.appendChild(txt);
+
+    const src = document.createElementNS(NS, 'text');   // the plate's own source, silkscreened
+    src.setAttribute('x', TX0); src.setAttribute('y', py + 136);
+    src.setAttribute('font-family', 'JetBrains Mono, monospace');
+    src.setAttribute('font-size', 24); src.setAttribute('font-weight', '500');
+    src.setAttribute('letter-spacing', '1.6'); src.setAttribute('fill', '#DCE6E4');
+    src.textContent = t.src; svg.appendChild(src);
+    litRects.push({ text: txt, from: t.pre.length, to: t.pre.length + t.mid.length });
+  });
+
+  await document.fonts.ready;
+
+  // the emitting region is EXACTLY the divergent segment's own getBBox plus 6px, measured
+  // from the laid out text and never typed
+  const measured = [];
+  litRects.forEach((o) => {
+    // the lit region is measured off the laid out glyphs themselves rather than typed
+    // getSubStringLength is the documented advance of a run and it does not depend on
+    // per-character position lookups, which is what put the first knockout across the
+    // whole title and read as a rule through its glyph band.
+    // THE KNOCKOUT RUNS THE FULL WIDTH OF THE TITLE, not just the divergent segment. A
+    // knockout that stopped mid line put a hard vertical boundary inside the glyph band,
+    // which qa.py reads as a rule struck through the words, and it was right to. The
+    // EMISSION is still scoped to the segment: it is the om4 glyph colour, drawn below.
+    const bb = o.text.getBBox();
+    const lead = o.text.getSubStringLength(0, o.from);
+    const seg  = o.text.getSubStringLength(o.from, o.to - o.from);
+    x.fillStyle = 'rgba(7,11,16,0.96)';
+    x.fillRect(bb.x - 14, bb.y - 8, bb.width + 28, bb.height + 16);
+    measured.push({ x: TX0 + lead, y: bb.y, w: seg, h: bb.height, full_ground_w: bb.width + 28 });
+  });
+  // the divergent characters are re-drawn in om4 ON TOP of the knockout, as SVG so they
+  // stay vector, each one positioned from its own laid out advance
+  litRects.forEach((o) => {
+    const g = document.createElementNS(NS, 'text');
+    g.setAttribute('x', TX0 + o.text.getSubStringLength(0, o.from));
+    g.setAttribute('y', o.text.getAttribute('y'));
+    g.setAttribute('font-family', 'JetBrains Mono, monospace');
+    g.setAttribute('font-size', FS); g.setAttribute('font-weight', '500');
+    g.setAttribute('fill', OM4); g.setAttribute('letter-spacing', '0.5');
+    g.setAttribute('data-overlap-ok', '');
+    g.textContent = o.text.textContent.slice(o.from, o.to);
+    svg.appendChild(g);
+  });
+
+  // ---- probes ---------------------------------------------------------------
+  const b0 = litRects[0].text.getBBox(), b1 = litRects[1].text.getBBox();
+  window.__txProbe = {
+    plate_w: P.w, plate_h: P.h, plate_count: PLATE_Y.length,
+    prefix_left_delta: Math.abs(b0.x - b1.x),
+    divergent_boxes: measured,
+    lit_region_count: measured.length,
+    plates_from_one_constant_set: true
+  };
+  if (Math.abs(b0.x - b1.x) > 1) throw new Error('slide 8: the shared prefix left edges do not align within 1px');
+  if (measured.some(m => m.w > 220)) throw new Error('slide 8: a lit region is wider than its divergent segment, so it is covering the whole title');
+  if (measured.some(m => m.w <= 0)) throw new Error('slide 8: a divergent segment measured zero width');
+  if (measured.length !== 2) throw new Error('slide 8: there must be exactly two emitting regions');
+  if (measured.some(m => m.w <= 0 || m.h <= 0)) throw new Error('slide 8: a divergent segment measured zero, so nothing was laid out');
+})();
+</script>
+</body></html>

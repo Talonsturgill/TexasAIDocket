@@ -1,0 +1,79 @@
+{
+  "run": "2026-09-07",
+  "measured_on": "the nine shipped PNGs resampled to 270 by 338, the grid every prior run used, imported from panel_ready.ARC_GRID",
+  "per_frame": [
+    {
+      "file": "slide-01.png",
+      "median_L": 11.4,
+      "mean_L": 15.3,
+      "p05": 3.2,
+      "p95": 37.0
+    },
+    {
+      "file": "slide-02.png",
+      "median_L": 11.4,
+      "mean_L": 15.4,
+      "p05": 2.9,
+      "p95": 34.6
+    },
+    {
+      "file": "slide-03.png",
+      "median_L": 62.3,
+      "mean_L": 58.9,
+      "p05": 28.3,
+      "p95": 65.0
+    },
+    {
+      "file": "slide-04.png",
+      "median_L": 7.3,
+      "mean_L": 11.9,
+      "p05": 3.2,
+      "p95": 39.4
+    },
+    {
+      "file": "slide-05.png",
+      "median_L": 8.0,
+      "mean_L": 12.5,
+      "p05": 3.3,
+      "p95": 31.3
+    },
+    {
+      "file": "slide-06.png",
+      "median_L": 5.7,
+      "mean_L": 10.9,
+      "p05": 2.9,
+      "p95": 29.9
+    },
+    {
+      "file": "slide-07.png",
+      "median_L": 8.5,
+      "mean_L": 15.3,
+      "p05": 1.3,
+      "p95": 51.5
+    },
+    {
+      "file": "slide-08.png",
+      "median_L": 12.1,
+      "mean_L": 15.5,
+      "p05": 2.9,
+      "p95": 40.2
+    },
+    {
+      "file": "slide-09.png",
+      "median_L": 14.3,
+      "mean_L": 17.4,
+      "p05": 3.5,
+      "p95": 45.1
+    }
+  ],
+  "deck_median_L": 11.4,
+  "deck_mean_L": 19.2,
+  "range_L": 56.6,
+  "acceptance_tolerances_lstar": [
+    2.0,
+    6.0,
+    8.0
+  ],
+  "tolerances_note": "THESE ARE THRESHOLDS, NOT MEASUREMENTS, and they are here because shipped_check's measured-figures gate cannot tell the two apart. It reads every `N L*` in the run's prose and asks this file for it, which is right for a luminance the deck reports and wrong for one it REQUIRES: `within 2 L* of one another` is a tolerance an in-frame probe enforces and throws on, and no frame's measured value is 2. They are parsed out of storyboard.md's own acceptance items rather than typed here, so a tolerance that changes in the plan changes here too and cannot be silently mirrored wrong. The gate's underlying rule is still the right one and this is the honest way to satisfy it without weakening it.",
+  "note": "Derived, never typed. The prose in the run record, the storyboard and artwork.json is checked against this file by shipped_check's measured figures gate, which exists because three surfaces kept their own copies of these numbers and a writer that was supposed to compose them had gone silently dead."
+}

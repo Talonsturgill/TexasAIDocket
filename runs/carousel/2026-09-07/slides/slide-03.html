@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#3FB8A6}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  /* TYPE MOVE. The whole type system inverts and the mono furniture moves to the TOP,
+     because on this frame there is no dark bottom edge for it to sit on. */
+  .topbar{position:absolute;top:84px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#06302A;font-variant-numeric:tabular-nums}
+
+  /* the section mark and permalink anchor a documentation heading actually carries */
+  .anchor{position:absolute;top:236px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:700;font-size:40px;letter-spacing:.02em;color:#06302A}
+
+  .src{position:absolute;top:292px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:24px;letter-spacing:.14em;color:#06302A}
+  h1{position:absolute;left:80px;top:346px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:104px;line-height:1.04;color:#070B10;letter-spacing:-.024em}
+  .rule{position:absolute;left:80px;top:1040px;width:920px;height:5px;background:#070B10}
+  .perma{position:absolute;left:80px;top:1078px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:30px;letter-spacing:.02em;color:#070B10}
+  .meta{position:absolute;left:80px;top:1140px;width:920px;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;color:#070B10}
+  .meta .row{display:flex;justify-content:space-between;gap:24px;padding:9px 0;
+    border-top:3px solid #070B10}
+  .meta .row span:first-child{letter-spacing:.12em;color:#06302A}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="topbar"><span>TEXAS AI DOCKET</span><span>c3 c14</span>
+    <span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
+  <div class="anchor">&sect;&nbsp;&nbsp;INTRODUCTION</div>
+  <div class="src">FRONTERA USER GUIDE</div>
+  <h1>Frontera is the largest cluster dedicated to open science in the United States</h1>
+  <!-- Documentation furniture, knocked out of the field, so the bottom third carries the
+       frame's own material rather than empty ground. A permalink anchor and a section rule
+       are what a heading in this guide actually sits above. -->
+  <div class="rule"></div>
+  <div class="perma">&para;&nbsp;&nbsp;docs.tacc.utexas.edu/hpc/frontera/</div>
+  <div class="meta">
+    <div class="row"><span>SOURCE</span><span>docs.tacc.utexas.edu/hpc/frontera/</span></div>
+    <div class="row"><span>LAST UPDATE</span><span>September 3, 2026</span></div>
+  </div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W = 1080, H = 1350, SEED = 20260907;
+  const c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  const x = c.getContext('2d'); x.scale(2, 2);
+  TX.reseed(SEED);
+
+  // ======================================================================
+  // FULL EMISSION. Law 3 says a document is lit exactly as far as it is written, and this
+  // is the one sentence in the record that is fully written, so it is the one frame that
+  // is fully lit. No gradient, no border, no neatline. The grain is what stops the deck's
+  // single bright frame reading as a colour swatch at feed size.
+  // ======================================================================
+  const img = x.createImageData(W * 2, H * 2), d = img.data;
+  for (let py = 0; py < H * 2; py++) {
+    for (let px = 0; px < W * 2; px++) {
+      const u = px / 2, v = py / 2;
+      const fine  = (TX.fbm2(u / 2.1, v / 2.1, 2) - 0.5) * 2;
+      const coarse= (TX.fbm2(u / 21, v / 21, 3) - 0.5) * 2;
+      const k = 1 + fine * 0.052 + coarse * 0.038;
+      const i = (py * W * 2 + px) * 4;
+      d[i] = Math.min(255, 63 * k); d[i + 1] = Math.min(255, 184 * k);
+      d[i + 2] = Math.min(255, 166 * k); d[i + 3] = 255;
+    }
+  }
+  x.putImageData(img, 0, 0);
+
+  // ---- probes: the field's coverage and the knockout's darkness ------------
+  function medianL(x0, y0, w, h) {
+    const g = x.getImageData(x0 * 2, y0 * 2, w * 2, h * 2).data; const v = [];
+    for (let i = 0; i < g.length; i += 4) {
+      const lin = (u) => u <= 0.04045 ? u / 12.92 : Math.pow((u + 0.055) / 1.055, 2.4);
+      const Y = 0.2126 * lin(g[i] / 255) + 0.7152 * lin(g[i + 1] / 255) + 0.0722 * lin(g[i + 2] / 255);
+      v.push(Y > 0.008856 ? 116 * Math.cbrt(Y) - 16 : 903.3 * Y);
+    }
+    v.sort((a, b) => a - b); return v[Math.floor(v.length / 2)];
+  }
+  window.__txProbe = { field_median_L: medianL(40, 1150, 1000, 140), field_is_full_bleed: true };
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

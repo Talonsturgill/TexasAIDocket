@@ -1,22 +1,22 @@
-# PUCT Project 58482, proposed new rule on Large Load Demand Management Service, open for comment
+# PUCT Project 58482, proposed new rule on Large Load Demand Management Service, comment window now shut
 
-The Public Utility Commission of Texas has proposed a new rule governing demand management service for large electric loads. The proposal for publication creates a new Section 25.521. Comments are open until September 4th, 2026. The rule as published in the Texas Register does not contain the words data center. It draws its line at a total non-coincident peak demand at a single site of 75 megawatts or more.
+The Public Utility Commission of Texas has proposed a new rule governing demand management service for large electric loads. The proposal for publication creates a new Section 25.521. The comment window shut on September 4th, 2026 and the filing index now stands at 64 filings. Most of what the commission received arrived on the deadline itself. It came from the transmission utilities, from the grid operator, from generators, from an environmental group, from a data center trade association and from Google. The rule as published in the Texas Register does not contain the words data center. It draws its line at a total non-coincident peak demand at a single site of 75 megawatts or more.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
 - Where: ERCOT region
 - Status: open
-- Public access: Comment window open
-- Comment closes: 2026-09-04
+- Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-04
+- Last checked: 2026-09-07
 
 ## Dates
 
 - 2026-07-24 · ordered: Staff memo and proposal for publication with a September 4th comment deadline
 - 2026-07-30 · comment opens: Proposal for publication of new Section 25.521 filed
 - 2026-09-04 · comment closes: Comment deadline in the Texas Register acknowledgement
+- 2026-09-06 · filed: A supplemental public comment entered the index after the deadline
 
 ## How this decision moved
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-02 · The comment window on the proposed Large Load Demand Management Service rule is still open and the commission's own filing list carries the deadline. Comments have been filed against the proposal since it was published.
 - 2026-09-03 · The comment window on the proposed Large Load Demand Management Service rule closes tomorrow, September 4th, 2026. The commission's calendar feed still carries that deadline as a dated entry of its own, and the proposal for publication of new section 25.521 stands as filed. Anyone meaning to file has one day left. The feed's own project strings are quotable again, now that the check reads a feed whose HTML is escaped inside its XML. The project a deadline belongs to is carried by a claim rather than by a summary alone.
 - 2026-09-04 · Today is the deadline. The filing index moved from 34 filings to 37. The three that arrived are comments on the proposal itself and the last two were filed the day before the window shuts. The Office of Public Utility Counsel, which represents residential and small commercial customers, filed on September 3rd. Texas Industrial Energy Consumers, which represents large industrial load, filed the same day. Nothing about the rule text or the deadline has changed.
+- 2026-09-07 · The window shut. The filing index moved from 37 filings to 64, and almost all of that arrived on the deadline day itself. Oncor, AEP Texas, CenterPoint Energy Houston Electric and Texas New Mexico Power all filed. So did the grid operator, NRG, Vistra, ENGIE and the Lower Colorado River Authority. The Sierra Club filed. The Data Center Coalition filed. Google filed under its own name. A supplemental comment from a member of the public was entered on September 6th, after the deadline. The index is still taking filings even though the dated way in has passed. What the commission does with any of it is not scheduled.
 
 ## Evidence
 
@@ -82,7 +83,7 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 ### The filing index records the number of filings in the project.
 
-> 37 filing(s).
+> 64 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
@@ -119,6 +120,42 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 ### Texas Industrial Energy Consumers filed comments in the project.
 
 > TEXAS INDUSTRIAL ENERGY CONSUMERS’ COMMENTS
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### Google filed comments on the proposal for publication.
+
+> GOOGLE COMMENTS FOR THE 58482 PROPOSAL FOR PUBLICATION
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### A data center trade association filed a comment on the proposal for publication.
+
+> Data Center Coalition's Comment on Proposal for Publication (Project 58482)
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The grid operator filed comments on the proposal for publication.
+
+> ELECTRIC RELIABILITY COUNCIL OF TEXAS, INC.’S COMMENTS ON THE PROPOSAL FOR PUBLICATION
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### An environmental group filed comments on the proposed service.
+
+> Sierra Club Comments on proposed LLDMS
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### Oncor filed comments on the proposal for publication.
+
+> ONCOR ELECTRIC DELIVERY COMPANY'S COMMENTS ON THE PROPOSAL FOR PUBLICATION OF NEW 16 TAC § 25.521
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### A filing was entered under the control number after the comment deadline had passed.
+
+> Supplemental Public Comment Clarifying Backup Generation, BESS, and Duplicate Compensation Concerns
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 

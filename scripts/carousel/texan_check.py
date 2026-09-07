@@ -199,6 +199,72 @@ def places_named(text: str) -> list:
     return sorted(best.values())
 
 
+# THE PLACE THAT SAT UNREAD IN A FETCHED SNAPSHOT FOR FOUR JUDGING ROUNDS. 2026-09-07.
+#
+# Three judges charged carousel no. 17 for naming no Texas place. The run answered twice that no
+# claim carried one, and that answer was TRUE and was about the wrong file. `claims.json` carried
+# no place. `out/2026-09-07/sources/horizon.txt`, stored by this run at 06:56, reads "powered by
+# a new 20 MW data center with advanced liquid cooling in Round Rock, Texas", and both NSF award
+# snapshots carry Austin. Nobody grepped the snapshots.
+#
+# "No claim carries it" and "no source carries it" are different sentences, and the second one is
+# the one a judge is asking about, because a claim is written by the run and a snapshot is what
+# the world said. Measured on that run's own five snapshots: Round Rock in the Horizon guide and
+# Austin in both award records, in about a second.
+#
+# SCOPED TO THE ZERO CASE ON PURPOSE. Where a deck already names a place, the evidence usually
+# names more: 2026-08-30's claims carry seventeen and the deck names one, correctly, because a
+# deck is not obliged to print every place its sources mention. Reporting that gap every run is
+# nine findings a deck that are not defects, which is how a gate teaches a run to scroll past the
+# tenth. The finding is the deck naming NONE while its own evidence names one.
+def evidence_places(run_dir: Path) -> list:
+    """[(place, file)] the run's own fetched evidence carries, deduplicated by place.
+
+    Both surfaces are read, and they are not the same thing. `claims.json` is what the run wrote
+    down. `sources/` is what it fetched. The defect this exists for is a place present only in
+    the second, so a version of this reading claims alone would have reported nothing on the run
+    that produced it.
+    """
+    found = {}
+    src = run_dir / "sources"
+    if src.is_dir():
+        for f in sorted(src.iterdir()):
+            if not f.is_file():
+                continue
+            try:
+                body = f.read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                continue
+            for place in places_named(body):
+                found.setdefault(place, f"sources/{f.name}")
+    cj = run_dir / "claims.json"
+    if cj.is_file():
+        try:
+            raw = json.loads(cj.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            raw = None
+        rows = (raw.get("claims") if isinstance(raw, dict) else raw) or []
+        for c in rows:
+            if not isinstance(c, dict):
+                continue
+            for place in places_named(" ".join(str(c.get(k) or "") for k in ("quote", "text"))):
+                found.setdefault(place, f"claims.json {c.get('id') or ''}".strip())
+    return sorted(found.items())
+
+
+def evidence_files(run_dir: Path) -> int:
+    """How many evidence files were actually opened, so a scan that read nothing says so.
+
+    A gate that prints its findings and not its coverage cannot distinguish "looked and found
+    nothing" from "had nothing to look at", and those are opposite answers.
+    """
+    n = 0
+    src = run_dir / "sources"
+    if src.is_dir():
+        n += sum(1 for f in src.iterdir() if f.is_file())
+    return n + (1 if (run_dir / "claims.json").is_file() else 0)
+
+
 def slide_texts(copy: dict) -> list:
     out = []
     for sid, s in (copy.get("slides") or {}).items():
@@ -282,8 +348,40 @@ def run(date: str | None, text: str | None, quiet: bool = False) -> int:
     fails, warns, p = check(copy)
     for w in warns:
         print(f"  warn  {w}", file=sys.stderr)
+
+    # WHAT THE EVIDENCE CARRIES, asked only when the deck names nothing. See the block comment
+    # above `evidence_places`. This never fails: a place in a source is not a place the deck has
+    # to print, and the whole design of this file is that a placeless story is not a ceiling.
+    # What it removes is the run answering a judge from the wrong file.
+    seen = evidence_files(base)
+    if not p["places"]:
+        ev = evidence_places(base)
+        if ev:
+            print(f"  warn  this deck names no Texas place and its OWN FETCHED EVIDENCE names "
+                  f"{len(ev)}: "
+                  + "; ".join(f"{place} in {where}" for place, where in ev)
+                  + ". On 2026-09-07 three judges charged a deck for naming no place and were "
+                    "told twice that no claim carried one, which was true and was about the "
+                    "wrong file. Round Rock was in a snapshot that run had stored at 06:56. "
+                    "Check whether one of these belongs on a frame before answering a judge",
+                  file=sys.stderr)
+        elif seen:
+            print(f"  note  the deck names no place and neither does any of its {seen} evidence "
+                  f"file(s). That is now a measurement rather than an assumption",
+                  file=sys.stderr)
+        else:
+            print("  note  the deck names no place and no evidence file was found beside it, so "
+                  "nothing was scanned. This is a gap in the reading, not a clean result",
+                  file=sys.stderr)
     if not quiet:
-        print(f"texan_check: {render(p)}")
+        # SCANNED AND AVAILABLE ARE DIFFERENT WORDS, and until a review bot said so on
+        # 2026-09-07 this line used the stronger one on both paths. `evidence_places` is called
+        # ONLY when the deck names nothing, so on a deck that does name a place, which is the
+        # deck that shipped that day, `seen` is a count of directory entries and no file was
+        # opened. A checker that reports coverage it did not perform is the failure this whole
+        # file was extended to fix, one line below where it was fixed.
+        word = "scanned" if not p["places"] else "available, not opened"
+        print(f"texan_check: {render(p)} / evidence {seen} file(s) {word}")
     return 1 if fails else 0
 
 
@@ -343,6 +441,69 @@ def self_test() -> int:
     ok("a dated action set in display caps IS a next step", p["next_step"], str(p))
     p = profile("x", closing="ONE DOOR IS STILL OPEN. NOTHING SCHEDULED.")
     ok("...and caps alone do not conjure one", not p["next_step"], str(p))
+
+    # ---- WHAT THE EVIDENCE CARRIES (2026-09-07) --------------------------------------------
+    #
+    # The sentence below is VERBATIM out of `out/2026-09-07/sources/horizon.txt` as this run
+    # stored it, not a sentence written to suit the detector. A fixture written by the author of
+    # the checker agrees with the checker. That is GATE_LESSONS
+    # entry 16 ("Fixtures written by the author of the detector agree with it"), so the
+    # words below come from the artifact.
+    import tempfile
+    HORIZON = ("Horizon will be highly energy efficient, powered by a new 20 MW data center "
+               "with advanced liquid cooling in Round Rock, Texas. Grace Blackwell Compute "
+               "Nodes Horizon will feature")
+    with tempfile.TemporaryDirectory() as d:
+        rd = Path(d)
+        (rd / "sources").mkdir()
+        (rd / "sources" / "horizon.txt").write_text(HORIZON, encoding="utf-8")
+        # The claims file as that run actually wrote it: every quote about queues and awards and
+        # not one place in any of them. This is the half that made the answer "no claim carries
+        # one" true.
+        (rd / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "quote": "On October 1, 2026, the Frontera queues will be closed "
+                                  "permanently.", "text": "Frontera's queues close October 1st."},
+            {"id": "c20", "quote": "Allocations LCCF Allocations TxRAS", "text": "Three ways in."},
+        ]}), encoding="utf-8")
+
+        ev = evidence_places(rd)
+        ok("the place sitting in a fetched snapshot is FOUND",
+           ev == [("Round Rock", "sources/horizon.txt")], str(ev))
+        ok("...and the file it came from is named, so the run can go and read it",
+           bool(ev) and ev[0][1].startswith("sources/"), str(ev))
+        ok("...while the claims file alone carries none of it, which is why 'no claim carries "
+           "one' was a true answer to the wrong question",
+           places_named(" ".join(c["quote"] for c in json.loads(
+               (rd / "claims.json").read_text())["claims"])) == [])
+        ok("every evidence file is counted, snapshots and the claims file together",
+           evidence_files(rd) == 2, str(evidence_files(rd)))
+
+        # A claim that DOES carry a place is attributed to the claim rather than to a snapshot.
+        (rd / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c9", "quote": "the Commissioners Court of Hays County voted", "text": "x"}]}),
+            encoding="utf-8")
+        ev = evidence_places(rd)
+        ok("a place carried by a claim is attributed to that claim by id",
+           ("Hays County", "claims.json c9") in ev, str(ev))
+
+    with tempfile.TemporaryDirectory() as d:
+        empty = Path(d)
+        ok("a run directory with no evidence reports none and is not an error",
+           evidence_places(empty) == [] and evidence_files(empty) == 0)
+
+    # AGAINST THE ARTIFACT ITSELF where the container still has it. `out/` is gitignored, so this
+    # is absent in CI and on any fresh clone. It is REPORTED as absent rather than skipped
+    # silently, because a check that could not run is not a check that passed.
+    live = REPO_ROOT / "out" / "2026-09-07"
+    if (live / "sources").is_dir():
+        ev = dict(evidence_places(live))
+        ok("2026-09-07: Round Rock is found in the run's real snapshots",
+           ev.get("Round Rock") == "sources/horizon.txt", str(sorted(ev.items())))
+        ok("...and so is Austin, in the award records this run fetched",
+           "Austin" in ev, str(sorted(ev.items())))
+    else:
+        print("  note  out/2026-09-07/sources is absent here, so the snapshot half was proved "
+              "on the verbatim fixture above and not on the artifact")
 
     # CALIBRATION against shipped decks, so drift shows up as a number.
     #

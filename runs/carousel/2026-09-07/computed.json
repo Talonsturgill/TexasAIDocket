@@ -1,0 +1,39 @@
+{
+  "run": "2026-09-07",
+  "note": "Every string here is asserted against a snapshot of the page it came from, in assert_quotes, before it is written. No interval between any two dates is computed anywhere in this deck, deliberately.",
+  "claims_asserted": 23,
+  "dates": {
+    "shutdown_us": "October 1, 2026",
+    "shutdown_house": "October 1st, 2026",
+    "frontera_guide_updated_house": "September 3rd, 2026",
+    "horizon_guide_updated_house": "August 12th, 2026",
+    "lccf_award_end_house": "April 30th, 2028",
+    "horizon_notice": "07/24/2026",
+    "frontera_guide_updated": "September 3, 2026",
+    "horizon_guide_updated": "August 12, 2026",
+    "frontera_award_start": "09/01/2018",
+    "lccf_award_end": "04/30/2028",
+    "lccf_award_start": "07/01/2024"
+  },
+  "awards": {
+    "frontera_award_nsf": "Computation for the Endless Frontier",
+    "frontera_award_tacc": "Computing for the Endless Frontier",
+    "lccf_award_nsf": "Construction for the Leadership Class Computing Facility",
+    "differ": true
+  },
+  "allocations": {
+    "routes": [
+      "LCCF Allocations",
+      "National Artificial Intelligence Research Resource Pilot (NAIRR)",
+      "TxRAS"
+    ],
+    "route_count": 3,
+    "exhaustive": true,
+    "verified_by_this_record": [
+      "National Artificial Intelligence Research Resource Pilot (NAIRR)"
+    ],
+    "verified_count": 1,
+    "section_text": "LCCF Allocations National Artificial Intelligence Research Resource Pilot (NAIRR) TxRAS"
+  },
+  "award_titles_for_1818253": 2
+}
