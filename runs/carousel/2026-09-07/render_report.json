@@ -1864,7 +1864,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5731,
+      "render_ms": 5973,
       "ok": true,
       "canvases": [
         {
@@ -1882,7 +1882,19 @@
         }
       ],
       "breather": false,
-      "leaders": []
+      "leaders": [
+        {
+          "target": "a capped connector lying loose on the plenum floor",
+          "to": [
+            619.2,
+            448.2
+          ],
+          "at": [
+            619.2,
+            448.2
+          ]
+        }
+      ]
     },
     {
       "file": "slide-08.html",
@@ -2372,7 +2384,7 @@
           "anc": []
         },
         {
-          "text": "Anyone with work on Frontera has until October 1st, 2026 to move it. The same center runs Horizon, and the Horizon guide is where that machine's access rule is published.",
+          "text": "The queues stop on October 1st, 2026. The same center leads the construction project behind Horizon, and the Horizon guide is where that machine's access rule is published.",
           "x": 80,
           "y": 1048,
           "w": 880,
@@ -2387,19 +2399,19 @@
             [
               80,
               1046,
-              839,
+              763,
               35
             ],
             [
               80,
               1078,
-              847,
+              849,
               35
             ],
             [
               80,
               1110,
-              285,
+              408,
               35
             ]
           ],
@@ -2450,30 +2462,8 @@
           "anc": []
         },
         {
-          "text": "c1 c13 c15 c20 c21",
-          "x": 305,
-          "y": 1245,
-          "w": 281,
-          "h": 31,
-          "font_px": 24,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(124, 138, 140)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              305,
-              1245,
-              281,
-              31
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "texasaidocket.com",
-          "x": 608,
+          "text": "c1 c4 c13 c20 c21",
+          "x": 309,
           "y": 1245,
           "w": 265,
           "h": 31,
@@ -2485,7 +2475,29 @@
           "overlap_ok": false,
           "lines": [
             [
-              608,
+              309,
+              1245,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 600,
+          "y": 1245,
+          "w": 265,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(124, 138, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
               1245,
               265,
               31
@@ -2495,7 +2507,7 @@
         },
         {
           "text": "09 / 09",
-          "x": 895,
+          "x": 891,
           "y": 1245,
           "w": 109,
           "h": 31,
@@ -2507,7 +2519,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              895,
+              891,
               1245,
               109,
               31
@@ -2546,7 +2558,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4591,
+      "render_ms": 4521,
       "ok": true,
       "canvases": [
         {

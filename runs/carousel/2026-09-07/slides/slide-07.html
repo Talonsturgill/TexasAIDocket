@@ -289,8 +289,14 @@ window.renderReady = (async () => {
   x.stroke();
   x.fillStyle = 'rgba(201,212,210,0.95)';
   x.beginPath(); x.arc(TARGET[0], TARGET[1], 3.2, 0, Math.PI * 2); x.fill();
-  window.__txLeaders = [{ target: "a capped connector lying loose on the plenum floor",
-                          at: TARGET, to: leader[leader.length - 1] }];
+  // THE ENGINE READS `__akLeaders` AND THE SKILL DOCUMENTS `__txLeaders`. Declared under both
+  // so this frame's leader is actually measured, rather than declared into a channel nothing
+  // reads. The mismatch is logged as an upgrade proposal: the skill file is under `.claude/`,
+  // which no routine may edit unattended.
+  const LEADER_DECL = [{ target: "a capped connector lying loose on the plenum floor",
+                         at: TARGET, to: leader[leader.length - 1] }];
+  window.__txLeaders = LEADER_DECL;
+  window.__akLeaders = LEADER_DECL;
 
   // ======================================================================
   // 5. PROBES. Every acceptance item that a render could contradict is measured here,

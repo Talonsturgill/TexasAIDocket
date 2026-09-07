@@ -540,7 +540,7 @@ slide: 9
 job: >
   THE CLOSE. Hand the reader a dated action and a named route, and end on cables leaving the frame
   upward against slide 4's cable leaving it downward.
-claims: [c1, c13, c15, c20, c21]
+claims: [c1, c4, c13, c20, c21]
 numerals:
   - value_from: c1     # October 1, 2026
 composition:
@@ -576,8 +576,8 @@ art:
   motion: "up from the hook, through the ports, along the climbing jumpers and out of the top edge"
 type:
   hook: "Three ways in. The record checked one."
-  dek: "Anyone with work on Frontera has until October 1st, 2026 to move it. The same center runs Horizon, and the Horizon guide is where that machine's access rule is published."   # rewritten in the repair round. The frame used to say the access rule WILL CHANGE, which is a future event no source states, and it called Horizon the successor, which no fetched quote establishes either
-  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c13 c15 c20 c21", "texasaidocket.com", "09 / 09"]
+  dek: "The queues stop on October 1st, 2026. The same center leads the construction project behind Horizon, and the Horizon guide is where that machine's access rule is published."   # rewritten twice. It first said the access rule WILL CHANGE, a future event no source states, and called Horizon the successor, which no fetched quote establishes. It then said a reader had until October 1st TO MOVE DATA, which invents a deadline c6 and this deck's own frame 4 both refute, since the guide says the file systems stay reachable. The only deadline the record carries is the queues
+  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c4 c13 c20 c21", "texasaidocket.com", "09 / 09"]
 verbatim:
   - c13: "National Artificial Intelligence Research Resource Pilot (NAIRR)"
 acceptance:

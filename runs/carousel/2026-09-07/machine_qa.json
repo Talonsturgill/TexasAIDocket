@@ -81,7 +81,10 @@
         0.9013,
         0.3529
       ],
-      "band_ratio": 0.6147
+      "band_ratio": 0.6147,
+      "leaders": [
+        "leader 'a capped connector lying loose on the plenum floor' lands 0.0px from its target"
+      ]
     },
     {
       "file": "slide-08.html",
@@ -104,9 +107,9 @@
       "bands": [
         0.7479,
         0.4181,
-        0.5643
+        0.5515
       ],
-      "band_ratio": 0.9794
+      "band_ratio": 0.9649
     }
   ],
   "fails": 0,

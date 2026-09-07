@@ -28,7 +28,10 @@
       "value": 2,
       "where": "slide-08.html, the hook",
       "computed_by": "main() in out/2026-09-07/compute.py builds a set of the two titles award_titles() returns and takes its length, then exits non-zero unless that set holds two distinct strings. The 2 is never typed.",
-      "from_claims": ["c8", "c9"],
+      "from_claims": [
+        "c8",
+        "c9"
+      ],
       "reads_on_the_frame": "One award, two names.",
       "two_here_means": "distinct titles given to one award number by two documents. c8 is the funder's own record saying Computation and c9 is the centre's own page saying Computing. It is never a count of awards, which is one, quoted at c7."
     },
@@ -38,9 +41,12 @@
       "value": 2,
       "where": "slide-08.html, the dek",
       "computed_by": "the same set length in main() of out/2026-09-07/compute.py, written to computed.json as award_titles_for_1818253.",
-      "from_claims": ["c8", "c9"],
-      "reads_on_the_frame": "The funder's own record and the machine's own page give award 1818253 two different titles. Neither document mentions the other.",
-      "note": "The frame prints both titles in full and ranks neither. The lit segment on each plate is the run of characters where the two strings diverge, measured off the laid out glyphs."
+      "from_claims": [
+        "c8",
+        "c9"
+      ],
+      "reads_on_the_frame": "The funder's own record and the machine's own page give award 1818253 two different titles.",
+      "note": "The frame prints both titles in full and ranks neither. The lit segment on each plate is the run of characters where the two strings diverge, measured off the laid out glyphs. The trailing sentence 'Neither document mentions the other' was removed from the frame in repair round 1 as an unsourced negative, and this declaration was refreshed with it."
     },
     {
       "phrase": "Three ways",
@@ -48,7 +54,9 @@
       "value": 3,
       "where": "slide-09.html, the hook",
       "computed_by": "allocation_routes() in out/2026-09-07/compute.py reads claim c20's own quote of the successor guide's Allocations section, asserts each of the three route names appears in that quote, and returns len(names). It exits non-zero if any named route is missing from the quote.",
-      "from_claims": ["c20"],
+      "from_claims": [
+        "c20"
+      ],
       "reads_on_the_frame": "Three ways in. The record checked one.",
       "three_here_means": "the items the Horizon user guide lists under its own Allocations heading, which are LCCF Allocations, the National Artificial Intelligence Research Resource Pilot (NAIRR) and TxRAS. It is never a count of doors a reader can walk through. The frame draws all three landed and live and names only the one this run holds a verbatim quote for."
     },
@@ -58,7 +66,10 @@
       "value": 1,
       "where": "caption.txt",
       "computed_by": "allocation_routes() in out/2026-09-07/compute.py returns verified_count as the length of the list of routes this run holds a verbatim claim for, against route_count of 3.",
-      "from_claims": ["c13", "c20"],
+      "from_claims": [
+        "c13",
+        "c20"
+      ],
       "reads_on_the_frame": "One of the three ways in is the National Artificial Intelligence Research Resource Pilot.",
       "note": "The caption names the one route the record quotes. Saying three without saying one would present a list as three verified facts when it is one verified fact inside a list."
     },

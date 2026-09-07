@@ -131,7 +131,7 @@ on from, and it is worth a maintainer's attention only if it repeats.
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
 | verbatim       | PASS   | 10 declared fragment(s) over 8 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 41,241 chars planned |
+| dossiers       | PASS   | 41,433 chars planned |
 | caption        | PASS   | 153 words |
 | craft floor    | WARN   | 9 frame(s), median 767, floor 138, 1 quiet |
 | plan vs render | PASS   | 9 of 56 acceptance item(s) checkable |
