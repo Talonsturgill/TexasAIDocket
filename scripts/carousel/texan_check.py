@@ -374,7 +374,14 @@ def run(date: str | None, text: str | None, quiet: bool = False) -> int:
                   "nothing was scanned. This is a gap in the reading, not a clean result",
                   file=sys.stderr)
     if not quiet:
-        print(f"texan_check: {render(p)} / evidence {seen} file(s) scanned")
+        # SCANNED AND AVAILABLE ARE DIFFERENT WORDS, and until a review bot said so on
+        # 2026-09-07 this line used the stronger one on both paths. `evidence_places` is called
+        # ONLY when the deck names nothing, so on a deck that does name a place, which is the
+        # deck that shipped that day, `seen` is a count of directory entries and no file was
+        # opened. A checker that reports coverage it did not perform is the failure this whole
+        # file was extended to fix, one line below where it was fixed.
+        word = "scanned" if not p["places"] else "available, not opened"
+        print(f"texan_check: {render(p)} / evidence {seen} file(s) {word}")
     return 1 if fails else 0
 
 
