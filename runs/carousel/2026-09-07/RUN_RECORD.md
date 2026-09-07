@@ -122,16 +122,16 @@ on from, and it is worth a maintainer's attention only if it repeats.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 22 verified claim(s) |
+| claims         | PASS   | 23 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 2 warn(s) |
 | aggregates     | PASS   | 5 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.12 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| score          | PASS   | 6.952 |
+| labels         | PASS   | 56 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 86 published string(s) read from one list, every universal names its set |
-| verbatim       | PASS   | 11 declared fragment(s) over 8 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 42,922 chars planned |
+| verbatim       | PASS   | 11 declared fragment(s) over 8 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
+| dossiers       | PASS   | 42,928 chars planned |
 | caption        | PASS   | 156 words |
 | craft floor    | WARN   | 9 frame(s), median 791, floor 142, 1 quiet |
 | plan vs render | PASS   | 9 of 56 acceptance item(s) checkable |
