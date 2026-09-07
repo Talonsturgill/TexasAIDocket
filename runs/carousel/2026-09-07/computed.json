@@ -1,7 +1,7 @@
 {
   "run": "2026-09-07",
   "note": "Every string here is asserted against a snapshot of the page it came from, in assert_quotes, before it is written. No interval between any two dates is computed anywhere in this deck, deliberately.",
-  "claims_asserted": 21,
+  "claims_asserted": 23,
   "dates": {
     "shutdown_us": "October 1, 2026",
     "shutdown_house": "October 1st, 2026",
@@ -28,6 +28,7 @@
       "TxRAS"
     ],
     "route_count": 3,
+    "exhaustive": true,
     "verified_by_this_record": [
       "National Artificial Intelligence Research Resource Pilot (NAIRR)"
     ],

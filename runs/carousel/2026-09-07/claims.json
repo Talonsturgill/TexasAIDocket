@@ -55,7 +55,7 @@
     {
       "id": "c6",
       "text": "The one thing the closing guide promises for after the date is a way to take data away.",
-      "quote": "file systems to transfer any data needed",
+      "quote": "You will still be able to access Frontera’s file systems to transfer any data needed.",
       "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
       "source_title": "TACC HPC Documentation, Frontera User Guide",
       "source_type": "primary_official",
@@ -211,6 +211,26 @@
       "source_type": "primary_official",
       "retrieved": "2026-09-07",
       "confidence": "high"
+    },
+    {
+      "id": "c22",
+      "text": "The successor machine's data center is in Round Rock, Texas, and the guide states its power draw and its cooling method.",
+      "quote": "powered by a new 20 MW data center with advanced liquid cooling in Round Rock, Texas",
+      "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+      "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c23",
+      "text": "The Warning block is the first thing the Frontera user guide carries after its own title and update stamp, so the placement the deck states is in the page rather than inferred from it.",
+      "quote": "Frontera User Guide Last update: September 3, 2026 Warning",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
     }
   ],
   "rejected": [
@@ -243,5 +263,5 @@
       "reason": "NO FETCHED SOURCE STATES IT. The Horizon guide names Frontera only in site navigation and in one performance comparison, 'a performance increase of over 3x compared to Frontera's CLX nodes'. The NSF LCCF award abstract never uses the word Frontera at all. The one text that did say it, the NSF project outcomes report calling Horizon the bridge system to the next Leadership System, is a self-reported PI narrative and was already rejected above. The deck's own frame 4 says the Frontera guide names no machine the work goes to, so asserting a successor would contradict the deck's own argument. What IS supported is that one center runs both, which is c19 and c21."
     }
   ],
-  "notes": "Hosts fetched: docs.tacc.utexas.edu, api.nsf.gov. The apostrophe in Frontera's on the closing warning is U+2019 in the raw HTML, confirmed byte by byte, so every quote above is cut short of it and no quote in this deck carries a curly apostrophe. The sentence in the source also carries two spaces between sentences, so each quote is a single sentence and no quote spans a sentence boundary. TACC's page and NSF's record give award 1818253 two different titles, Computing and Computation, and both are quoted separately at c9 and c8 rather than merged. c19 was added after noun_trace found the acting body printed on two frames with no claim behind it, and after texan_check reported no deciding body named. The center's name is in the guide's own sentence about what Frontera is, so the noun now traces to the same page every other claim on those frames does. c21 was added in the repair round after the integrity judge found the deck asserting a succession relation no source carries. The two machines are now joined only by the center that runs both, which is what the record actually establishes."
+  "notes": "Hosts fetched: docs.tacc.utexas.edu, api.nsf.gov. The apostrophe in Frontera's on the closing warning is U+2019 in the raw HTML, confirmed byte by byte. Every quote was originally cut short of it, and c6 is now the exception: it was extended to the whole sentence in repair round 3 because the cut version had dropped the words carrying the verb its frame rests on, so it carries U+2019 deliberately. That is a stored quote rather than published copy, and a verbatim quote is never touched. The sentence in the source also carries two spaces between sentences, so each quote is a single sentence and no quote spans a sentence boundary. TACC's page and NSF's record give award 1818253 two different titles, Computing and Computation, and both are quoted separately at c9 and c8 rather than merged. c19 was added after noun_trace found the acting body printed on two frames with no claim behind it, and after texan_check reported no deciding body named. The center's name is in the guide's own sentence about what Frontera is, so the noun now traces to the same page every other claim on those frames does. c21 was added in the repair round after the integrity judge found the deck asserting a succession relation no source carries. The two machines are now joined only by the center that runs both, which is what the record actually establishes."
 }

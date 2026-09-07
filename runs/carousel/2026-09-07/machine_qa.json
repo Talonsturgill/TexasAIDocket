@@ -5,24 +5,22 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.8277,
+        0.7899,
         0.8634,
-        0.7941
+        0.9228
       ],
-      "band_ratio": 0.9604
+      "band_ratio": 1.071
     },
     {
       "file": "slide-02.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 67% of this slide's own average craft density (top 81% / mid 83% / bottom 47% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ],
+      "warns": [],
       "bands": [
         0.8067,
         0.8298,
-        0.4651
+        0.6765
       ],
-      "band_ratio": 0.6742
+      "band_ratio": 0.8823
     },
     {
       "file": "slide-03.html",
@@ -38,28 +36,24 @@
     {
       "file": "slide-04.html",
       "fails": [],
-      "warns": [
-        "art touching glyphs (3% of the ring around 'The guide says the file systems stay rea', spanning 16%) -- pixel critic verify the label is not crossed"
-      ],
+      "warns": [],
       "bands": [
         0.4769,
         0.3466,
-        0.3474
+        0.3419
       ],
-      "band_ratio": 0.8946
+      "band_ratio": 0.8849
     },
     {
       "file": "slide-05.html",
       "fails": [],
-      "warns": [
-        "a drawn rule crosses the glyph band of 'Leadership Class Computing Facility (LCC' (canvas edge .pixels at 80,792.5 764x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
-      ],
+      "warns": [],
       "bands": [
         0.6807,
-        0.8004,
-        0.7886
+        0.7059,
+        0.6765
       ],
-      "band_ratio": 1.0403
+      "band_ratio": 0.9844
     },
     {
       "file": "slide-06.html",
@@ -67,21 +61,21 @@
       "warns": [],
       "bands": [
         0.605,
-        0.4559,
-        0.5294
+        0.4286,
+        0.579
       ],
-      "band_ratio": 0.9987
+      "band_ratio": 1.0734
     },
     {
       "file": "slide-07.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.5,
+        0.4979,
         0.9013,
-        0.6618
+        0.5827
       ],
-      "band_ratio": 0.964,
+      "band_ratio": 0.8868,
       "leaders": [
         "leader 'a capped connector lying loose on the plenum floor' lands 0.0px from its target"
       ]
@@ -107,15 +101,15 @@
       "bands": [
         0.7479,
         0.4202,
-        0.5515
+        0.5496
       ],
-      "band_ratio": 0.9638,
+      "band_ratio": 0.9617,
       "leaders": [
         "leader 'the port label naming the one route the record checked' lands 0.0px from its target"
       ]
     }
   ],
   "fails": 0,
-  "warns": 5,
+  "warns": 2,
   "verdict": "WARN"
 }

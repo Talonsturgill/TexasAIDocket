@@ -27,9 +27,16 @@
   .tscrim{position:absolute;left:0;top:0;width:1080px;height:230px;
     background:linear-gradient(to bottom,rgba(7,11,16,0.94) 0%,rgba(7,11,16,0.66) 62%,
     rgba(7,11,16,0) 100%)}
-  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:186px;
-    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.80) 46%,
-    rgba(7,11,16,0.97) 100%)}
+  /* THE SCRIM STARTS BELOW THE HOOK AND RAMPS FAST, which is what this frame's own
+     geometry allows and nothing else does. The hook's second line ends at y1093 and the dek
+     begins at y1121, so a scrim that protects the dek with an ordinary slow ramp has to
+     start inside the hook's glyph band, and qa.py refuses that. At 186px it started at 1164
+     and the dek sat on unprotected art, which is the round 4 craft finding. At 256px it
+     starts at 1094, clear of the hook by 1px, and reaches useful density by the dek's own
+     first line rather than a third of the way down the frame. */
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:256px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.72) 13%,
+    rgba(7,11,16,0.90) 34%,rgba(7,11,16,0.97) 100%)}
   .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
     gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
     letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
@@ -49,7 +56,7 @@
 
   <!-- The deck's ONE leader. Its polyline terminates on the capped connector's own world
        coordinates, declared to window.__txLeaders below. -->
-  <div class="lab" id="capnote" style="left:596px;top:392px">CAPPED, NOT LANDED</div>
+  <div class="lab" id="capnote" style="left:596px;top:392px;letter-spacing:.02em">CAPPED, NOT LANDED</div>
 
   <div class="foot"><span>HORIZON USER GUIDE</span><span>c5 c15</span>
     <span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>

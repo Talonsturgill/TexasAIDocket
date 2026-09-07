@@ -1,92 +1,9 @@
 {
   "run": "2026-09-07",
   "note": "Carousel no. 17 quotes every date and every award number it prints, so the aggregates here are counting words rather than arithmetic. Each is declared against the exact string the frame renders. NO INTERVAL between any two dates is computed anywhere in this deck, and that omission is declared at the end of this file rather than left to be noticed.",
-  "aggregates": [
-    {
-      "phrase": "Seven years",
-      "kind": "duration",
-      "value": 7,
-      "where": "slide-02.html, the hook",
-      "quoted_from": "c2",
-      "quote": "After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.",
-      "reads_on_the_frame": "Seven years, and one last edit.",
-      "note": "The term is the source's own word and not a span this deck measured. The frame draws seven bodies because the source says seven, and the deck computes no start date, no end date and no elapsed time. c8 carries a start date of 09/01/2018 and the deck never sets it beside this word."
-    },
-    {
-      "phrase": "seven years",
-      "kind": "duration",
-      "value": 7,
-      "where": "slide-02.html, the c2 quote set in mono",
-      "quoted_from": "c2",
-      "quote": "After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.",
-      "reads_on_the_frame": "\"After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.\"",
-      "note": "The same word inside the verbatim quotation it came from. It is declared separately because the gate reads the rendered string and the frame prints it twice, once as the deck's hook and once inside the source's own sentence."
-    },
-    {
-      "phrase": "two names",
-      "kind": "count",
-      "value": 2,
-      "where": "slide-08.html, the hook",
-      "computed_by": "main() in out/2026-09-07/compute.py builds a set of the two titles award_titles() returns and takes its length, then exits non-zero unless that set holds two distinct strings. The 2 is never typed.",
-      "from_claims": [
-        "c8",
-        "c9"
-      ],
-      "reads_on_the_frame": "One award, two names.",
-      "two_here_means": "distinct titles given to one award number by two documents. c8 is the funder's own record saying Computation and c9 is the centre's own page saying Computing. It is never a count of awards, which is one, quoted at c7."
-    },
-    {
-      "phrase": "two different titles",
-      "kind": "count",
-      "value": 2,
-      "where": "slide-08.html, the dek",
-      "computed_by": "the same set length in main() of out/2026-09-07/compute.py, written to computed.json as award_titles_for_1818253.",
-      "from_claims": [
-        "c8",
-        "c9"
-      ],
-      "reads_on_the_frame": "The funder's own record and the machine's own page give award 1818253 two different titles.",
-      "note": "The frame prints both titles in full and ranks neither. The lit segment on each plate is the run of characters where the two strings diverge, measured off the laid out glyphs. The trailing sentence 'Neither document mentions the other' was removed from the frame in repair round 1 as an unsourced negative, and this declaration was refreshed with it."
-    },
-    {
-      "phrase": "Three ways",
-      "kind": "count",
-      "value": 3,
-      "where": "slide-09.html, the hook",
-      "computed_by": "allocation_routes() in out/2026-09-07/compute.py reads claim c20's own quote of the successor guide's Allocations section, asserts each of the three route names appears in that quote, and returns len(names). It exits non-zero if any named route is missing from the quote.",
-      "from_claims": [
-        "c20"
-      ],
-      "reads_on_the_frame": "Three ways in. The record checked one.",
-      "three_here_means": "the items the Horizon user guide lists under its own Allocations heading, which are LCCF Allocations, the National Artificial Intelligence Research Resource Pilot (NAIRR) and TxRAS. It is never a count of doors a reader can walk through. The frame draws all three landed and live and names only the one this run holds a verbatim quote for."
-    },
-    {
-      "phrase": "One of the three",
-      "kind": "count",
-      "value": 1,
-      "where": "caption.txt",
-      "computed_by": "allocation_routes() in out/2026-09-07/compute.py returns verified_count as the length of the list of routes this run holds a verbatim claim for, against route_count of 3.",
-      "from_claims": [
-        "c13",
-        "c20"
-      ],
-      "reads_on_the_frame": "One of the three ways in is the National Artificial Intelligence Research Resource Pilot.",
-      "note": "The caption names the one route the record quotes. Saying three without saying one would present a list as three verified facts when it is one verified fact inside a list."
-    },
-    {
-      "phrase": "Nine frames read both guides",
-      "kind": "count",
-      "value": 9,
-      "where": "caption.txt, the deck summary line brand.yaml requires",
-      "computed_by": "the deck's own slide count, which is the number of slide-NN.html files the run rendered and the number the counter furniture prints as 09 / 09 on every frame. It is not a figure about the world.",
-      "from_claims": [],
-      "reads_on_the_frame": "A manual is how a public machine is open. Nine frames read both guides side by side.",
-      "note": "A count of this deck's own frames rather than a claim about the record. It is declared because a reader cannot tell those apart by looking, and the gate should not have to either."
-    }
-  ],
   "deliberately_not_computed": [
     {
-      "what": "the interval between the Frontera award's expiration on 02/28/2025 and the closing date of October 1st, 2026",
+      "what": "the interval between the Frontera award's expiration and the closing date",
       "why": "No source performs it. The fact-checker rejected it explicitly and the deck never sets those two dates beside each other in a way that invites the subtraction."
     },
     {
@@ -96,6 +13,61 @@
     {
       "what": "the number of days a reader has left before October 1st, 2026",
       "why": "It would be true for one day and wrong on every other day the post is read."
+    }
+  ],
+  "aggregates": [
+    {
+      "phrase": "Three ways",
+      "slide": "slide-09.html",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "out/2026-09-07/compute.py allocation_routes() over claim c20's quote, the Allocations section of the Horizon user guide. The function removes each named route from that section and requires the residue to be empty, so the count is the length of a list the code has PROVEN complete rather than the length of a list somebody typed. A fourth route inside that quoted section leaves a residue and stops the build. The check runs over the quote rather than over the live page, so what it proves is that the section AS FETCHED holds exactly these three and nothing else.",
+      "from_claims": [
+        "c20"
+      ],
+      "note": "The first version of this counted len() over a typed three-element list, which a scoring judge named as a typed 3 wearing a function. Presence is not exhaustiveness. The exhaustiveness check is what replaced it."
+    },
+    {
+      "phrase": "One of the three",
+      "slide": "caption.txt",
+      "kind": "ratio",
+      "value": 1,
+      "of": 3,
+      "from_claims": [
+        "c13"
+      ],
+      "note": "The whole is the route count above. The numerator is the one route this record checked by name, which is c13, and the caption says so rather than implying the record checked all three."
+    },
+    {
+      "phrase": "seven years",
+      "slide": "slide-02.html",
+      "kind": "duration",
+      "value": 7,
+      "quoted_from": "c2",
+      "quote": "After seven years and billions of computing cycles",
+      "note": "The source wrote the seven. This deck computes NO interval between any two dates, so the only way this figure is allowed on a frame is that TACC's own warning says it, and the frame sets it inside that quote."
+    },
+    {
+      "phrase": "two names",
+      "slide": "slide-08.html",
+      "kind": "count",
+      "value": 2,
+      "computed_by": "out/2026-09-07/compute.py main(), len() of the set of distinct titles the two fetched documents give award 1818253. c8 carries the funder's own 'Computation for the Endless Frontier' and c9 carries the center's page reading 'Computing for the Endless Frontier'. The build stops if that set is not of size two, so the frame cannot print two names over one title.",
+      "from_claims": [
+        "c8",
+        "c9"
+      ]
+    },
+    {
+      "phrase": "two different titles",
+      "slide": "slide-08.html",
+      "kind": "count",
+      "value": 2,
+      "computed_by": "out/2026-09-07/compute.py main(), the same set of distinct titles for award 1818253 that the frame's hook counts. One computation, both strings.",
+      "from_claims": [
+        "c8",
+        "c9"
+      ]
     }
   ]
 }

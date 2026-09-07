@@ -4,20 +4,21 @@
   "note": "Built from the render report's own laid out text nodes rather than from the storyboard. Every string here is a string the browser actually set, and this file is rebuilt after every render round so it cannot describe a deck that no longer exists.",
   "slides": {
     "S1": {
-      "hook": "The queues close October 1st.",
+      "hook": "Frontera's queues close October 1st.",
       "dek": "The Texas Advanced Computing Center put a warning at the top of Frontera's user guide. The guide was last updated September 3rd, 2026.",
       "labels": [
         "01 / 09",
         "FRONTERA GUIDE",
         "On October 1, 2026, the Frontera queues will be closed permanently.",
         "TEXAS AI DOCKET",
-        "c1 c14 c19",
+        "c1 c14 c19 c23",
         "texasaidocket.com"
       ],
       "claims": [
         "c1",
         "c14",
-        "c19"
+        "c19",
+        "c23"
       ]
     },
     "S2": {
@@ -82,10 +83,11 @@
         "A construction award with a start date and an end date. What it does not yet have is a finished guide.",
         "NSF 2323116",
         "TEXAS AI DOCKET",
-        "c10 c11 c12",
+        "c5 c10 c11 c12",
         "texasaidocket.com"
       ],
       "claims": [
+        "c5",
         "c10",
         "c11",
         "c12"
@@ -93,16 +95,17 @@
     },
     "S6": {
       "hook": "The door is shut and the room is running.",
-      "dek": "HORIZON USER GUIDE \"Horizon is still limited only to internal users. (07/24/2026)\"",
+      "dek": "HORIZON USER GUIDE \"Horizon is still limited only to internal users. (07/24/2026)\" \"powered by a new 20 MW data center with advanced liquid cooling in Round Rock, Texas\"",
       "labels": [
         "06 / 09",
         "HORIZON GUIDE",
         "TEXAS AI DOCKET",
-        "c4",
+        "c4 c22",
         "texasaidocket.com"
       ],
       "claims": [
-        "c4"
+        "c4",
+        "c22"
       ]
     },
     "S7": {
@@ -148,14 +151,14 @@
     },
     "S9": {
       "hook": "Three ways in. The record checked one.",
-      "dek": "The queues stop on October 1st, 2026. The same center leads the construction project behind Horizon, and the Horizon guide is where that machine's access rule is published.",
+      "dek": "The queues stop October 1st. The same center leads the project behind Horizon. The guide listing those routes says the machine is still limited only to internal users.",
       "labels": [
         "09 / 09",
         "HORIZON GUIDE",
         "NATIONAL ARTIFICIAL INTELLIGENCE RESEARCH RESOURCE PILOT (NAIRR)",
         "OCTOBER 1ST, 2026",
         "TEXAS AI DOCKET",
-        "c1 c4 c13 c20 c21",
+        "c1 c4 c13 c19 c20 c21",
         "docs.tacc.utexas.edu/hpc/horizon/",
         "texasaidocket.com"
       ],
@@ -163,6 +166,7 @@
         "c1",
         "c4",
         "c13",
+        "c19",
         "c20",
         "c21"
       ]

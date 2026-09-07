@@ -28,7 +28,11 @@ html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;backgrou
   .dek{position:absolute;right:80px;top:214px;width:380px;text-align:right;margin:0;
     font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;line-height:1.46;
     color:#9BB0B4}
-  .q{position:absolute;left:80px;top:1058px;width:640px;margin:0;font-family:Manrope,sans-serif;
+  /* The hook is three lines from top:892 at 58px on 1.02, so its last line box ends near
+     y1070. The dek sat at 1058 and the two collided by 19px in the same column, which read
+     in the PNG as "not." and "The guide says..." being one block. It starts below the hook
+     now, with a gap wide enough to survive a reflow. */
+  .q{position:absolute;left:80px;top:1112px;width:640px;margin:0;font-family:Manrope,sans-serif;
     font-weight:500;font-size:25px;line-height:1.28;color:#9BB0B4}
 </style></head>
 <body>

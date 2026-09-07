@@ -117,7 +117,7 @@ slide: 1
 job: >
   Open on the act, dated, and make the reader understand in one second that a manual is closing
   its own machine. No other slide states the closure as the deck's own headline.
-claims: [c1, c14, c19]
+claims: [c1, c14, c19, c23]
 numerals:
   - value_from: c1     # October 1, 2026
   - value_from: c14    # September 3, 2026
@@ -151,13 +151,13 @@ art:
     is read against a ground that is neither the darkest nor the lightest thing present.
   motion: "down the left border into the quote, then out along the plenum graze at the foot"
 type:
-  hook: "The queues close October 1st."
+  hook: "Frontera's queues close October 1st."
   dek: "The Texas Advanced Computing Center put a warning at the top of Frontera's user guide. The guide was last updated September 3rd, 2026."
-  labels: ["TEXAS AI DOCKET", "FRONTERA GUIDE", "c1 c14 c19", "texasaidocket.com", "01 / 09"]
+  labels: ["TEXAS AI DOCKET", "FRONTERA GUIDE", "c1 c14 c19 c23", "texasaidocket.com", "01 / 09"]
 verbatim:
   - c1: "On October 1, 2026, the Frontera queues will be closed permanently."
 acceptance:
-  - 'the frame carries "The queues close October 1st." as its display line'
+  - 'the frame carries "queues close October 1st." as its display line, and the possessive naming the machine stands in front of it, so the cover no longer spends its largest type on a string with no subject in it'
   - "the admonition box's drawn height equals the measured height of its laid-out quote plus twice 22px padding, from getBBox, and the frame throws above 1px of error"
   - "the om4 left border measures 20 plus or minus 1 CSS px and is unbroken over the full box height"
   - "a frame that renders no quote has a zero-height box and fails, so rendering NOTHING fails this list"
@@ -255,7 +255,7 @@ art:
 type:
   hook: "Frontera is the largest cluster dedicated to open science in the United States"
   dek: ""
-  labels: ["TEXAS AI DOCKET", "FRONTERA USER GUIDE", "c3", "texasaidocket.com", "03 / 09"]
+  labels: ["TEXAS AI DOCKET", "FRONTERA USER GUIDE", "c3 c14", "texasaidocket.com", "03 / 09"]
 verbatim:
   - c3: "Frontera is the largest cluster dedicated to open science in the United States"
 acceptance:
@@ -326,7 +326,7 @@ slide: 5
 job: >
   Show that the successor is real, funded and dated even where its manual is not written. This is
   the counter-image slide and the only one that gives the reader the money and the construction.
-claims: [c10, c12, c11]
+claims: [c5, c10, c12, c11]
 numerals:
   - value_from: c10    # 2323116
   - value_from: c12    # 07/01/2024
@@ -362,7 +362,7 @@ art:
 type:
   hook: "The money is real. The manual is not finished."
   dek: "A construction award with a start date and an end date. What it does not yet have is a finished guide."   # the two dates moved out of the dek and into the frame's own mono block, where they are set in tabular figures
-  labels: ["TEXAS AI DOCKET", "NSF 2323116", "c10 c11 c12", "texasaidocket.com", "05 / 09"]
+  labels: ["TEXAS AI DOCKET", "NSF 2323116", "c5 c10 c11 c12", "texasaidocket.com", "05 / 09"]
 verbatim:
   - c10: "Leadership Class Computing Facility (LCCF) award, Award Abstract #2323116"
 acceptance:
@@ -381,9 +381,10 @@ slide: 6
 job: >
   State who may use the successor, in its own dated words, and draw a closed door that is not a
   sign saying closed. The machine is running and one line of its light reaches the reader.
-claims: [c4]
+claims: [c4, c22]
 numerals:
   - value_from: c4     # 07/24/2026
+  - value_from: c22    # 20 MW, inside the source's own sentence
 composition:
   structure: >
     A shut cold aisle containment door in two point oblique at 12 degrees into the door corner, so
@@ -416,9 +417,10 @@ art:
 type:
   hook: "The door is shut and the room is running."
   dek: ""
-  labels: ["TEXAS AI DOCKET", "HORIZON USER GUIDE", "c4", "texasaidocket.com", "06 / 09"]
+  labels: ["TEXAS AI DOCKET", "HORIZON USER GUIDE", "c4 c22", "texasaidocket.com", "06 / 09"]
 verbatim:
   - c4: "Horizon is still limited only to internal users. (07/24/2026)"
+  - c22: "powered by a new 20 MW data center with advanced liquid cooling in Round Rock, Texas"
 acceptance:
   - 'the frame carries "limited only to internal users" beside the light line'
   - "the light line is continuous from the top edge to the bottom edge except at the latch, measures 18 plus or minus 1 CSS px over its whole run, and no pixel within 40px either side exceeds L* 20, so it does not bloom"
@@ -497,7 +499,6 @@ job: >
 claims: [c7, c8, c9]
 numerals:
   - value_from: c7     # 1818253
-  - value_from: c8     # 09/01/2018
 composition:
   structure: >
     Two riveted anodised nameplates for ONE award, produced by one function from one constant set
@@ -543,7 +544,7 @@ acceptance:
   - "no strike-through, no cross, no tick and no colour difference distinguishes the two plates"
   - "a frame that lights a whole plate rather than a segment fails"
 risks:
-  - "a reader could take the lit divergence as this record correcting the center's page. The dek says neither document mentions the other and both plates are silkscreened with their own source, so the frame reports rather than adjudicates"
+  - "a reader could take the lit divergence as this record correcting the center's page. Both plates are silkscreened with their own source and neither emission is brighter than the other, so the frame reports rather than adjudicates. It asserts nothing about whether either document mentions the other, which is a negative this run's snapshots do not support and which was struck from the dek in repair round 1"
 ```
 
 ```yaml
@@ -551,7 +552,7 @@ slide: 9
 job: >
   THE CLOSE. Hand the reader a dated action and a named route, and end on cables leaving the frame
   upward against slide 4's cable leaving it downward.
-claims: [c1, c4, c13, c20, c21]
+claims: [c1, c4, c13, c19, c20, c21]
 numerals:
   - value_from: c1     # October 1, 2026
 composition:
@@ -587,8 +588,8 @@ art:
   motion: "up from the hook, through the ports, along the climbing jumpers and out of the top edge"
 type:
   hook: "Three ways in. The record checked one."
-  dek: "The queues stop on October 1st, 2026. The same center leads the construction project behind Horizon, and the Horizon guide is where that machine's access rule is published."   # rewritten twice. It first said the access rule WILL CHANGE, a future event no source states, and called Horizon the successor, which no fetched quote establishes. It then said a reader had until October 1st TO MOVE DATA, which invents a deadline c6 and this deck's own frame 4 both refute, since the guide says the file systems stay reachable. The only deadline the record carries is the queues
-  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c4 c13 c20 c21", "texasaidocket.com", "09 / 09"]
+  dek: "The queues stop October 1st. The same center leads the project behind Horizon. The guide listing those routes says the machine is still limited only to internal users."   # rewritten twice. It first said the access rule WILL CHANGE, a future event no source states, and called Horizon the successor, which no fetched quote establishes. It then said a reader had until October 1st TO MOVE DATA, which invents a deadline c6 and this deck's own frame 4 both refute, since the guide says the file systems stay reachable. The only deadline the record carries is the queues
+  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c4 c13 c19 c20 c21", "texasaidocket.com", "09 / 09"]
 verbatim:
   - c13: "National Artificial Intelligence Research Resource Pilot (NAIRR)"
 acceptance:
