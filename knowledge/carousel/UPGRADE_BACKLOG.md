@@ -1040,3 +1040,229 @@ at a report and noticed they disagreed.
 assigns one declaration object to BOTH globals, with a comment saying why. That is a workaround in
 one deck's own code, it is not a fix, and it should be removed when the engine reads the documented
 name.
+
+---
+
+## 2026-09-07, deck no. 17. The class stayed open three times in one run
+
+Three upgrades landed and are in `ledger/carousel/upgrades.json` with their measurements. What is
+below is what did NOT land, each with the measurement that says why, so the next phase does not
+re-derive any of it.
+
+**The run's own most transferable finding, in its words: a repair scoped to the string a finding
+names leaves the class open.** It happened three times in one run and the same judge caught each.
+`compute.py`'s `allocation_routes` returned `len()` over a typed three-element list under a comment
+swearing the count was never a typed 3; that was repaired with a post mortem written into the
+docstring; the same judge then found `verified_count`, ten lines below that post mortem, doing the
+identical thing with a typed one-element list. Separately, three dossier claim strips drifted from
+the frames they declared, three were fixed, and a judge found two more in the next round.
+
+The claim strip half of that is now a gate. The `len()` half is below, and it is harder than it
+looks.
+
+### A typed literal wearing a function. NOT BUILT, and the reason is measured
+
+**The shape.** `len()` over a collection literal defined in the same file, whose elements are all
+constants, is a numeral typed by a person wearing a function. The compute-not-generate law is about
+where a number comes from, and this one comes from the author.
+
+**Why a naive gate would be wrong, measured on the file that shipped today.** `allocation_routes`
+STILL returns `len(names)` over a typed three-element list, and that is now the correct code. What
+changed is that the function first takes the Allocations section out of the fetched snapshot,
+removes each named route from it, and requires the residue to be empty, so a fourth route on that
+page stops the build. The count is the length of a list the code has SHOWN to be complete, which is
+a different claim from the length of a list somebody typed. A gate matching `len(` over a literal
+flags the repaired, correct function and every future function built the same way.
+
+**So the honest gate has to distinguish a literal that was PROVED complete against fetched evidence
+from one that was not, and nothing in the AST says which.** Two shapes worth trying, neither cheap:
+
+- Require the literal to be reachable from a snapshot assertion in the same function, which is
+  structural and would have passed the repaired version and failed both defects as they shipped.
+- Require any `len()` whose result reaches `computed.json` to carry a one line `# exhaustive
+  because ...` beside it, and fail an undeclared one. That is a declaration rather than a proof and
+  it is the weaker of the two, but it is cheap and it makes the class visible at the point of
+  writing.
+
+**The evidence it needs.** Both defects shipped past twenty-two green gates and were found by a
+reading. Neither `aggregate_check` nor `numeral_trace` can see them, because both ask whether a
+published figure traces to a computation and this IS a computation. It traces to a person.
+
+### No acceptance item in this deck can tell a drawn door from no door
+
+**Measured rather than argued.** This deck's nine dossiers carry 56 acceptance items. The nine that
+`plan_render_check` can check are, every one of them, a string-presence assertion about display
+type:
+
+    s1  the frame carries "queues close October 1st." as its display line
+    s5  the frame carries "Award Abstract #2323116" in tabular mono
+    s9  the frame carries "OCTOBER 1ST, 2026" and "docs.tacc.utexas.edu/hpc/horizon/"
+
+and six more of the same shape. **Not one asserts that a drawn body exists.** Frame 6's plan
+specifies a two point oblique containment door with a return wall, a bottom sweep and a dusted
+floor tile. The render is a teal line on a flat field with a latch box. Every acceptance item on
+that frame passed, `craft_floor` named it as the deck's one quiet frame, and nothing blocked it.
+
+**This is NOT the item the 2026-09-05 phase filed.** That one says an acceptance item that cannot
+fail is not a test, and it is about the WRITING of items. This is narrower and it is about the
+KIND: every checkable item this project writes is checkable because it names a string, and a string
+is type. The frame is mostly not type.
+
+**Where it belongs, and why this run could not build it.** A probe for a principal drawn body is a
+pixel question and lives in `.claude/skills/carousel-engine/qa.py`, which `ownership.yaml` gives
+`upgrade` and the host makes unreachable unattended. The half that lives in this lane is a coverage
+count, and it is worth doing on its own: `plan_render_check` could report, per frame, how many
+checkable items are about type and how many are about anything else, and warn on a frame whose
+whole checkable list is type. That is one number and it makes the imbalance visible without
+deciding taste. It was not built today only because three is the ceiling.
+
+### The scrim derivation, and a right decision recorded with a wrong reason
+
+**The wrong reason first, because it is the more expensive half.** Round 3 declined the scrim work
+and wrote an arithmetic justification beside it: that derived scrims come out larger on six of nine
+frames. The round 4 craft judge re-derived it from this deck's own `render_report.json` and
+measured the opposite, that per lowest contiguous type run they come out SMALLER on five, four of
+them oversized and one by 115px on the frame that introduces the light-from-below law. The
+deferral was still right, for a different reason. CLAUDE.md says a wrong explanation is worse than
+none because the next run inherits it and stops looking, and this is that, inside one run, four
+hours apart.
+
+**The derivation itself**, applied by hand to four frames this round and verified:
+
+    scrim_top = 1350 - lowest_contiguous_run_top + 40
+
+Recut, the deck came back from a median L\* of 9.9 to 11.4 with every line still clearing the 4.5
+contrast floor, and `machine_qa`'s dead-lower-zone warning on frame 2 disappeared, which is the
+same defect the scrim had been causing and reporting separately.
+
+**Owner: a maintainer.** Encoding it belongs in the render engine under `.claude/skills/`, which is
+unreachable unattended. Filed here rather than attempted.
+
+### Frontier scan, 2026-09-07. Focus area: how a reference table goes stale with nothing reporting it
+
+The area the 2026-09-05 phase handed forward, in its words, as the one that has never been rotated
+to. Roughly ten searches, and the finding is sharper than expected.
+
+**A static reference table does not go stale on a clock, so a freshness check is the wrong
+instrument.** The data quality literature says so explicitly and gets it exactly backwards: DQOps
+writes that "small static tables containing reference data, such as lists of countries or business
+units, remain accurate over long periods and are not classified as stale." An industrial experience
+report on automated data validation puts the gap plainly, that none of the existing database
+testing frameworks are suitable for testing dataset VINTAGES.
+
+**They do change, and the changes are the kind nobody downstream hears about.**
+
+- **Connecticut retired county FIPS 09001 through 09015 in 2022** and the Census Bureau adopted
+  nine planning regions as county equivalents, coded 09110 to 09190. TIGER/Line and the ACS moved
+  to the new geography with the 2022 data year. Any table keyed on the old codes still parses,
+  still joins, and quietly returns nothing for a whole state.
+- **OMB Bulletin 23-01, July 2023, redelineated the CBSAs** on 2020 census data, and the 2020
+  standards carry a process for updates ACROSS the decade rather than only after a census.
+
+**Why that lands here.** `assets/geo/tx-places.json` declares its vintage honestly, in its own
+`sources` block, as the OMB July 2023 delineation, and every place carries
+`provenance.metro: omb-2023-delineation`. **Nothing in this repository reads either string.**
+`texan_check.gazetteer()` derives its entire CITY set by splitting each statistical area's
+delineated name on its hyphens, which was the right fix and is the correct reading of what OMB
+publishes. It also means that the day the gazetteer is rebuilt against a later delineation, the set
+of cities the gate can see changes, in silence, and the gate whose whole subject is whether a Texan
+can tell where a story happened starts answering about a different Texas.
+
+**The practice worth copying, and it is not a freshness rule.** In the RNA-seq tooling the same
+problem is solved by propagating a hashed checksum of the reference into the output, so an analysis
+can be told post hoc which reference it was computed against. The tzdata case is the same shape
+with the consequence attached: a bundled copy going stale produces WRONG ANSWERS rather than
+errors, and Firefox's ICU shipped two date methods returning different results because of it.
+
+**So the check belongs at the CONSUMER and it is a canary, not a timestamp.** In this repo's terms:
+
+- `texan_check` reads the vintage the gazetteer declares and asserts it is the one its calibration
+  was measured against. A rebuild then says "recalibrate me" instead of changing its answers.
+- The canary is the handful of answers this gate is known to depend on, which its self-test already
+  half carries: Houston is a principal city, Las Cruces is not a Texas place, Houston County is not
+  the city. Each is an assertion about the TABLE rather than about the code.
+
+**In lane, one file, not built today only because three is the ceiling.** `assets/**` is `human`,
+so the gazetteer itself cannot be touched from here, and it does not need to be: the vintage string
+it already publishes is the whole input.
+
+**Sources.** DQOps on stale data, the arXiv industrial experience report on automated data
+validation, the Federal Register notice and Census user note on Connecticut's county equivalents,
+OMB Bulletin 23-01, the tximeta paper on reference checksums, and the Mozilla bug on Firefox's
+stale bundled tzdata.
+
+### Proposed for `knowledge/shared/GATE_LESSONS.md`, which is `human` lane. Written out in full here
+
+**A repair scoped to the string a finding names leaves the class open.**
+
+Three times in one run, on 2026-09-07, and the same judge caught each one.
+
+`compute.py` returned `len()` over a typed three-element list. That was found, repaired, and a post
+mortem was written into the function's own docstring explaining that presence is not
+exhaustiveness. **The same judge came back and found `verified_count` ten lines BELOW that post
+mortem doing the identical thing with a typed one-element list.** Separately, three dossier claim
+strips were found drifting from the frames that declared them, all three were repaired, and the
+next round found two more, slide 3's labels and slide 8's numerals. And a sentence struck from
+`aggregates.json` in repair round 1 for being a negative the snapshots refute sat untouched in its
+twin in `storyboard.md` until round 3, because the run fixed a string rather than grepping for it.
+
+Every repair was correct. Every one was scoped to the instance a reader had pointed at.
+
+**What to do instead, and it is one habit rather than a gate.** When a finding names an instance,
+the first move is to write the QUERY that finds every instance, run it, and fix what it returns.
+Three greps here would have taken a minute each: every `len(` in the file, every claim strip
+against its dossier, and the struck sentence's own words across the run directory. **A post mortem
+in a docstring is the strongest possible evidence that the class was understood and the weakest
+possible evidence that it was swept**, and this run has an instance of the defect ten lines below
+its own account of the defect to prove it.
+
+**And the general form for a gate.** Where a fact is declared in more than one artifact, ask how
+many artifacts declare it before writing a check that compares two. The claim set for one frame is
+written down in four places here, the dossier's `claims` list, the dossier's `numerals` sources,
+`copy.json` and the rendered strip, each authored in a different phase, and until this run nothing
+compared any pair of them.
+
+**One more, from inside the same afternoon, and it is entry 37 catching its author.** The
+self-test written for the beat comparison ended with a block guarded by "if both ledgers are
+readable". Forcing the red proved the guard passed the whole suite when the record could not be
+resolved at all: the block did not fail, it disappeared, and the suite printed `all passed`. The
+fix is one line, asserting the artifacts resolve BEFORE using them. A check that cannot run is not
+a check that passed, and a conditional is how that keeps happening.
+
+### `lesson_refs` reads one of the two forms this repo cites lessons in, and 38 citations are invisible
+
+**Found while writing this phase's own comments**, by writing four citations the way half the repo
+writes them and noticing the gate said nothing about any of them.
+
+`scripts/shared/lesson_refs.py` exists because twelve lesson numbers had been used twice and one
+citation already resolved to the wrong lesson. Its pattern is the file name, then within a short
+window **the word `entry`** and a number. So it reads
+
+    GATE_LESSONS entry 16 ("Fixtures written by the author of the detector agree with it")
+
+and it cannot see
+
+    GATE_LESSONS 16
+
+**Measured: 38 citations across `scripts/`, `knowledge/`, `tests/` and `prompts/` are written in
+the second form**, in `panel.py`, `panel_ready.py`, `claims_check.py`, `locator_trace.py`,
+`verbatim_check.py`, `aggregate_check.py`, `coherence_check.py`, `guards_local.py` and others. Every
+one of them is outside the gate whose entire subject is that a lesson citation still points where
+it says.
+
+**And at least one of them is already wrong.** `aggregate_check.py` line 322 reads
+"(GATE_LESSONS 15, the slide counter that cried wolf nine times a deck)". The slide counter that
+cried wolf nine times a deck is entry **16**. Entry 15 is "Your container is not the environment
+being checked". The description and the number disagree, in the exact way this gate was built to
+catch, and the gate has never been able to look at it. `guards_local.py` line 52 cites
+GATE_LESSONS 69, which is correct today, and would silently retarget on a renumber for the same
+reason.
+
+**The fix is one alternation in the pattern**, plus the existing "cites entry N with no title"
+advisory doing the rest of the work, which is what pushed this phase's own four citations into the
+titled form within a minute of being told. It is roughly one line and it will produce a burst of
+advisories that are all real.
+
+**Owner: `daily`.** `scripts/shared/lesson_refs.py` is that lane's, so this run could not make the
+change. This phase's own citations were rewritten into the form the gate reads instead, which is
+the half that was in reach.

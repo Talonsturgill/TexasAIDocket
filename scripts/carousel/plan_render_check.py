@@ -231,6 +231,117 @@ def slide_sources(html: str) -> str:
     """Every src the slide loads, plus its inline script, as one lowercased haystack."""
     return " ".join(re.findall(r"<script[^>]*>", html, re.I)).lower() + " " + html.lower()
 
+
+# THE CLAIM SET, DECLARED IN FOUR PLACES AND COMPARED IN NONE. 2026-09-07, carousel no. 17.
+#
+# `SLIDE_DOSSIER_SPEC.md` line 19 defines the field in six words: `claims: [c4, c7]  # every
+# factual string on this slide, by claim id`. Four separate artifacts then state that set.
+#
+#   the dossier's `claims:` list            what the plan says the frame stands on
+#   the dossier's `numerals:` `value_from`  which of those claims a printed figure came from
+#   `copy.json`'s per-slide `claims`        what the copy chamber wrote
+#   the rendered claim strip                the citation a reader can actually see
+#
+# On 2026-09-07 an integrity judge found three frames whose strip disagreed with the dossier that
+# declared it. Three were repaired, and the same judge came back the next round with two more,
+# slide 3's labels and slide 8's numerals. That is the run's own most transferable lesson written
+# in its record: A REPAIR SCOPED TO THE STRING A FINDING NAMES LEAVES THE CLASS OPEN. The same
+# round, in the same shape, `compute.py` returned `len()` over a typed list under a docstring
+# post mortem about returning `len()` over a typed list.
+#
+# Measured over the seventeen decks this project has shipped, before a line of this was written:
+#   strip against plan   drift on 5 decks and 9 frames, and none on the deck that shipped today
+#   copy against plan    drift on 8 decks and 12 frames, and none on the deck that shipped today
+# Six of those copy-side frames print no strip at all, which is why the copy surface is read and
+# not only the rendered one: printing the strip is a design choice a frame is free to decline,
+# and `copy.json` exists for every deck this project has ever built.
+CLAIMS_INLINE = re.compile(r"^claims:\s*\[([^\]]*)\]\s*$", re.M)
+CLAIMS_BLOCK = re.compile(r"^claims:\s*\n((?:[ \t]+-[ \t].*\n)+)", re.M)
+NUMERALS_BLOCK = re.compile(r"^numerals:\s*(?:\[\s*\]\s*$|\n((?:[ \t]+-[ \t].*\n)*))", re.M)
+CLAIM_ID = re.compile(r"\bc\d+\b")
+
+# A TEXT NODE THAT IS NOTHING BUT CLAIM IDS. The whole node, anchored, because a node reading
+# "CLAIM c7. QUOTED VERBATIM." is a sentence about a claim rather than a citation strip, and a
+# gate that reads it as one invents a frame that cites a single claim. The separators are the
+# three this project's frames have actually used, measured: a space on fourteen decks, a middle
+# dot on 2026-08-18, and a comma nowhere yet. A strip split across several nodes is one strip:
+# 2026-08-19's slide 8 renders `c3`, `c19`, `c20` and `c21` as four nodes, so taking the first
+# node alone would report a frame citing one claim where the reader sees four.
+CLAIM_STRIP_NODE = re.compile(r"^c\d+(?:[\s,·]+c\d+)*$")
+
+
+def _ids(text: str) -> list:
+    """The claim ids in a string, in order, deduplicated."""
+    out = []
+    for cid in CLAIM_ID.findall(text or ""):
+        if cid not in out:
+            out.append(cid)
+    return out
+
+
+def dossier_claims(body: str) -> list:
+    """The `claims:` list one dossier declares, inline or as a block.
+
+    Every storyboard this project has shipped writes it inline, and the block form is read too
+    because a selector that can only see the shape it was written against is GATE_LESSONS 39. A
+    `claims:` key that parses to nothing is reported by the caller rather than read as absent.
+    """
+    m = CLAIMS_INLINE.search(body)
+    if m:
+        return _ids(m.group(1))
+    m = CLAIMS_BLOCK.search(body)
+    return _ids(m.group(1)) if m else []
+
+
+def declares_claims(body: str) -> bool:
+    """The dossier HAS a claims key, whether or not anything parsed out of it."""
+    return bool(re.search(r"^claims:", body, re.M))
+
+
+def numeral_claims(body: str) -> list:
+    """The claim ids the dossier's `numerals:` block sources its figures from.
+
+    `numerals: []` is a frame that prints no figure and is not a hole. The comment beside a
+    `value_from` carries the value itself on most decks, so ids are taken from the whole entry.
+    """
+    m = NUMERALS_BLOCK.search(body)
+    return _ids(m.group(1)) if (m and m.group(1)) else []
+
+
+def rendered_claim_ids(nodes: list) -> list | None:
+    """The claim ids the frame PRINTS as a citation strip, or None if it prints no strip.
+
+    None and [] are different answers and must not share a return value. None is a frame that
+    declines to cite, which is a design choice this gate does not get to overrule. [] would be a
+    strip with nothing in it, which no frame can produce.
+    """
+    out = []
+    for node in nodes:
+        t = (node or "").strip()
+        if t and CLAIM_STRIP_NODE.match(t):
+            for cid in _ids(t):
+                if cid not in out:
+                    out.append(cid)
+    return out or None
+
+
+def copy_claims(copy: dict | None, n: int) -> list | None:
+    """`copy.json`'s per-slide claim list for slide n, or None if that surface is absent.
+
+    The key is read off the slide id the same way `absence_check.claims_of` reads it, so a deck
+    keyed `S1` and a deck keyed `slide-1` are both found.
+    """
+    if not isinstance(copy, dict):
+        return None
+    for sid, s in (copy.get("slides") or {}).items():
+        m = re.search(r"(\d+)", str(sid))
+        if not m or int(m.group(1)) != n or not isinstance(s, dict):
+            continue
+        if "claims" not in s:
+            return None
+        return [str(x) for x in (s.get("claims") or [])]
+    return None
+
 def parse_dossiers(storyboard: str) -> dict:
     """Slide number to its YAML-ish block. Same fenced form dossier_check reads."""
     out = {}
@@ -410,7 +521,14 @@ def nearest(needle: str, nodes: list) -> str:
     return best if score >= 0.5 else ""
 
 
-def check(storyboard: str, slides_dir: Path, report: dict) -> tuple:
+def check(storyboard: str, slides_dir: Path, report: dict,
+          copy: dict | None = None, claim_ids: set | None = None) -> tuple:
+    """`copy` and `claim_ids` are optional so the three existing callers keep working.
+
+    They are OPTIONAL, never silently absent: a run that passes neither is told in a warning that
+    the claim-set comparison ran on fewer surfaces than exist, because the failure mode of this
+    whole class of gate is that its empty case and its clean case print the same line.
+    """
     fails, warns, stats = [], [], {"checkable": 0, "prose": 0, "slides": 0,
                                    "declared": 0, "silent_slides": []}
     pal = palette_map(storyboard)
@@ -474,6 +592,70 @@ def check(storyboard: str, slides_dir: Path, report: dict) -> tuple:
                    f"carry that string.{instead} A plan the frame did not execute is what let a "
                    f"refused build ship stale HTML to three scoring judges on 2026-08-21")
             (fails if where == "FAIL" else warns).append(msg)
+
+        # ---- CLAIMS: four declarations of one set -------------------------------------
+        # See the block comment above CLAIMS_INLINE for the five frames this shipped past on
+        # 2026-09-07 and the seventeen deck replay. The relation is EQUALITY rather than
+        # containment, because the spec defines the list as every factual string on the slide:
+        # a strip printing fewer ids than the plan declares is a frame under-citing a fact a
+        # reader cannot trace, and one printing more is a plan that no longer describes the frame.
+        planned = dossier_claims(body)
+        if declares_claims(body) and not planned:
+            warns.append(f"slide {n}: the dossier has a `claims:` key and no claim id parsed out "
+                         f"of it, so this frame's claim set was compared against nothing")
+        if planned:
+            stats["claim_slides"] = stats.get("claim_slides", 0) + 1
+
+            # The plan's own ids have to exist. `label_guard` asks this of the ids a frame
+            # PRINTS, which is the other half and cannot see a plan-only id on an uncited frame.
+            # A plan naming a claim that does not exist is GATE_LESSONS
+            # entry 19 ("A reference is a dependency even when it is not a link").
+            if claim_ids:
+                unknown = [c for c in planned if c not in claim_ids]
+                if unknown:
+                    fails.append(
+                        f"slide {n}: the dossier's claims list names {', '.join(unknown)} and "
+                        f"claims.json holds no such claim. Prose or a plan that names a record is "
+                        f"asserting that record exists")
+
+            # A figure's source has to be one of the claims the slide stands on. This is the
+            # second of the two the judge found in round 4, on slide 8.
+            stray = [c for c in numeral_claims(body) if c not in planned]
+            if stray:
+                fails.append(
+                    f"slide {n}: the dossier sources a numeral from {', '.join(stray)} and its "
+                    f"own claims list does not carry {'them' if len(stray) > 1 else 'it'}. The "
+                    f"figure on the frame and the claims behind the frame are one set")
+
+            shown = rendered_claim_ids(nodes)
+            declared_copy = copy_claims(copy, n)
+            # ONE FINDING PER FRAME, naming every surface that disagrees. Two near identical
+            # lines about one drift is the shape that taught a run to scroll past the tenth
+            # warning. That is GATE_LESSONS
+            # entry 16 ("Fixtures written by the author of the detector agree with it"),
+            # and the strip and the copy list drift together on six of
+            # the nine frames this replay names.
+            off = []
+            for label, other in (("the frame's claim strip", shown),
+                                 ("copy.json's claim list", declared_copy)):
+                if other is None:
+                    continue
+                stats["claims_compared"] = stats.get("claims_compared", 0) + 1
+                missing = [c for c in planned if c not in other]
+                extra = [c for c in other if c not in planned]
+                if missing or extra:
+                    off.append(f"{label} says {' '.join(other)}"
+                               + (f", absent there {', '.join(missing)}" if missing else "")
+                               + (f", absent from the plan {', '.join(extra)}" if extra else ""))
+            if off:
+                fails.append(
+                    f"slide {n}: the dossier declares {' '.join(planned)} and " + "; ".join(off)
+                    + ". Three frames drifted this way on 2026-09-07, were repaired, and the "
+                      "same judge found two more in the next round")
+            if shown is None:
+                stats.setdefault("uncited_slides", []).append(n)
+            if declared_copy is None:
+                stats.setdefault("copyless_slides", []).append(n)
 
         # ---- THE DECLARED LIBRARY HAS TO BE IN THE SLIDE ------------------------------
         if html:
@@ -539,6 +721,24 @@ def check(storyboard: str, slides_dir: Path, report: dict) -> tuple:
             f"slide(s) {', '.join(str(x) for x in stats['silent_slides'])} declare no display "
             f"string under `type:`, so their words were compared against nothing")
 
+    # THE CLAIM SET'S OWN EMPTY CASE, and it takes the same treatment as the one above it. A deck
+    # whose dossiers declare no claims at all has not passed this, it has not been asked.
+    if stats["slides"] and not stats.get("claim_slides"):
+        fails.append(
+            "not one dossier in this storyboard declares a `claims:` list, so no frame's claim "
+            "set was compared against anything. knowledge/carousel/SLIDE_DOSSIER_SPEC.md defines "
+            "it as every factual string on the slide, by claim id")
+    elif stats.get("claim_slides") and not stats.get("claims_compared"):
+        warns.append(
+            f"{stats['claim_slides']} dossier(s) declare a claims list and neither the render "
+            f"report nor copy.json carries a claim set to compare it against, so the plan was "
+            f"the only surface read")
+    elif stats.get("uncited_slides") and len(stats["uncited_slides"]) == stats.get("claim_slides"):
+        warns.append(
+            "no frame in this deck prints a claim strip a reader can see. That is a design "
+            "choice this gate does not overrule, and it means the citation half of the claim "
+            "set was compared on copy.json alone")
+
     # COVERAGE, reported ONCE for the deck rather than once per frame. Eight identical warnings
     # is noise, and a warning a reader learns to scroll past protects nothing.
     total = stats["checkable"] + stats["prose"]
@@ -565,7 +765,14 @@ def run(date: str, quiet: bool = False) -> int:
         print(f"plan_render_check: no storyboard at {sb}", file=sys.stderr)
         return 1
     report = json.loads(rp.read_text(encoding="utf-8")) if rp.exists() else {}
-    fails, warns, stats = check(sb.read_text(encoding="utf-8"), out / "slides", report)
+    cp, cl = out / "copy.json", out / "claims.json"
+    copy = json.loads(cp.read_text(encoding="utf-8")) if cp.exists() else None
+    ids = None
+    if cl.exists():
+        raw = json.loads(cl.read_text(encoding="utf-8"))
+        ids = {str(c.get("id")) for c in (raw.get("claims") if isinstance(raw, dict) else raw)
+               if isinstance(c, dict)}
+    fails, warns, stats = check(sb.read_text(encoding="utf-8"), out / "slides", report, copy, ids)
     for w in warns:
         print(f"  warn  {w}", file=sys.stderr)
     if fails:
@@ -579,7 +786,9 @@ def run(date: str, quiet: bool = False) -> int:
         print(f"plan_render_check: {stats['slides']} slide(s), {stats['checkable']} of {total} "
               f"acceptance items carry a machine-checkable assertion, and every one holds. "
               f"{stats.get('compared', 0)} of {stats['declared']} declared display string(s) "
-              f"were found on their own frame")
+              f"were found on their own frame. "
+              f"{stats.get('claims_compared', 0)} claim set comparison(s) over "
+              f"{stats.get('claim_slides', 0)} frame(s) that declare one, and every set agrees")
     return 0
 
 
@@ -600,6 +809,7 @@ Palette line: `tower #16151C` and `pecos #8E4B3A` and `paper #F6F1E4`.
 slide: 5
 job: >
   the inversion
+claims: [c1, c4]
 composition:
   focal: >
     the marked words
@@ -784,6 +994,115 @@ acceptance:
             "<div>One office. The same day. Two wordings.</div>", encoding="utf-8")
         f, w, s = check(SB_U, dd2, REPORT)
         ok("...and the same frame with that colour drawn passes", not f, str(f))
+
+    # ---- THE CLAIM SET, FOUR DECLARATIONS OF ONE THING (2026-09-07) --------------------
+    #
+    # Replays the two findings the integrity judge made in two consecutive rounds of carousel
+    # no. 17: three frames whose strip disagreed with the dossier that declared it, and then,
+    # after those three were repaired, slide 3's labels and slide 8's numerals doing the same.
+    with tempfile.TemporaryDirectory() as d3:
+        dd3 = Path(d3)
+        (dd3 / "slide-05.html").write_text(GOOD, encoding="utf-8")
+        NODES = [{"text": "One office. The same day."}, {"text": "Two wordings."},
+                 {"text": "05 / 09"}, {"text": "PARALLAX"}]
+
+        def rep(strip):
+            return {"slides": [{"file": "slide-05.html",
+                                "text_nodes": NODES + [{"text": t} for t in strip]}]}
+
+        agree = rep(["c1 c4"])
+        copy_ok = {"slides": {"S5": {"hook": "One office. The same day.",
+                                     "claims": ["c1", "c4"]}}}
+        f, w, s = check(SB, dd3, agree, copy_ok, {"c1", "c4", "c7"})
+        ok("a frame whose plan, copy and strip name one set passes", not f, str(f))
+        ok("...and both surfaces were actually compared, rather than skipped",
+           s.get("claims_compared") == 2, str(s))
+
+        f, _w, _s = check(SB, dd3, rep(["c1"]), copy_ok, None)
+        ok("a claim strip that drops one of the plan's claims is CAUGHT",
+           any("claim strip" in x and "absent there c4" in x for x in f), str(f))
+
+        f, _w, _s = check(SB, dd3, rep(["c1 c4 c7"]), copy_ok, None)
+        ok("...and a strip carrying a claim the plan never declared is CAUGHT too",
+           any("absent from the plan c7" in x for x in f), str(f))
+
+        f, _w, _s = check(SB, dd3, agree, {"slides": {"S5": {"claims": ["c1"]}}}, None)
+        ok("copy.json's claim list drifting from the plan is CAUGHT",
+           any("copy.json" in x and "absent there c4" in x for x in f), str(f))
+
+        # ONE FINDING PER FRAME when both surfaces drift together, which is six of the nine
+        # frames the seventeen deck replay names. Two lines about one drift is how a run learns
+        # to scroll past the tenth warning.
+        f, _w, _s = check(SB, dd3, rep(["c1"]), {"slides": {"S5": {"claims": ["c1"]}}}, None)
+        ok("...and a drift on both surfaces is one finding naming both",
+           len([x for x in f if "the dossier declares" in x]) == 1
+           and all(k in f[0] for k in ("claim strip", "copy.json")), str(f))
+
+        # A STRIP SPLIT ACROSS FOUR NODES IS ONE STRIP. 2026-08-19's slide 8 renders c3, c19,
+        # c20 and c21 as four separate text nodes. Reading the first node alone would report
+        # that correct frame as citing one claim, which is a gate inventing a failure.
+        f, _w, _s = check(SB, dd3, rep(["c1", "c4"]), copy_ok, None)
+        ok("a strip split across separate text nodes is read as one strip", not f, str(f))
+
+        # AND A SENTENCE ABOUT A CLAIM IS NOT A STRIP. 2026-08-16's slide 3 prints
+        # "THE PLANT IS ANNOUNCED. NOTHING IS BUILT.CLAIM c7. QUOTED VERBATIM."
+        ok("a sentence naming a claim id is not a citation strip",
+           rendered_claim_ids(["THE PLANT IS ANNOUNCED.CLAIM c7. QUOTED VERBATIM."]) is None)
+        ok("...and a frame that prints no ids at all reports None, not an empty set",
+           rendered_claim_ids(["One office."]) is None)
+
+        # THE NUMERAL HALF, which is what the judge found on slide 8 the round AFTER the strips
+        # were repaired. A figure sourced from a claim the slide does not stand on.
+        SBN = SB.replace("claims: [c1, c4]",
+                         "claims: [c1, c4]\nnumerals:\n  - value_from: c7     # seven years")
+        f, _w, _s = check(SBN, dd3, agree, copy_ok, {"c1", "c4", "c7"})
+        ok("a numeral sourced from a claim outside the slide's own list is CAUGHT",
+           any("sources a numeral from c7" in x for x in f), str(f))
+        SBN2 = SB.replace("claims: [c1, c4]",
+                          "claims: [c1, c4]\nnumerals:\n  - value_from: c4     # seven years")
+        f, _w, _s = check(SBN2, dd3, agree, copy_ok, {"c1", "c4"})
+        ok("...and a numeral sourced from a claim the slide declares is clean", not f, str(f))
+        SBN3 = SB.replace("claims: [c1, c4]", "claims: [c1, c4]\nnumerals: []")
+        f, _w, _s = check(SBN3, dd3, agree, copy_ok, {"c1", "c4"})
+        ok("...and `numerals: []`, a frame that prints no figure, is not a hole", not f, str(f))
+
+        # THE PLAN'S OWN IDS HAVE TO EXIST. label_guard asks this of the ids a frame PRINTS and
+        # cannot see a plan-only id on a frame that prints no strip.
+        f, _w, _s = check(SB, dd3, agree, copy_ok, {"c1"})
+        ok("a dossier citing a claim claims.json does not hold is CAUGHT",
+           any("claims.json holds no such claim" in x for x in f), str(f))
+
+        # THE EMPTY CASE FAILS, because a comparison that compared nothing prints the same line
+        # as a clean one. Nothing in this suite has ever asked for the field the dossier spec
+        # defines on its line 19.
+        f, _w, _s = check(SB.replace("claims: [c1, c4]\n", ""), dd3, agree, copy_ok, None)
+        ok("a storyboard whose dossiers declare no claims at all FAILS",
+           any("declares a `claims:` list" in x for x in f), str(f))
+        f, w, _s = check(SB.replace("claims: [c1, c4]", "claims: []"), dd3, agree, copy_ok, None)
+        ok("...and a `claims:` key nothing parses out of is reported, never read as absent",
+           any("compared against nothing" in x for x in w), str(w))
+
+    # AGAINST THE SHIPPED ARTIFACTS, because a fixture written by the author of the detector
+    # agrees with the detector. That is GATE_LESSONS
+    # entry 16 ("Fixtures written by the author of the detector agree with it").
+    # 2026-09-05's slide 1 declares `c18, c17` and
+    # both its frame and its copy say `c18` alone, measured before this was written. 2026-09-07
+    # is the deck that repaired five of these by hand and has to come back silent.
+    for date, want in (("2026-09-05", True), ("2026-09-07", False)):
+        p = REPO_ROOT / "runs" / "carousel" / date
+        if not ((p / "storyboard.md").exists() and (p / "render_report.json").exists()):
+            continue
+        _copy = json.loads((p / "copy.json").read_text(encoding="utf-8")) \
+            if (p / "copy.json").exists() else None
+        f, _w, st = check((p / "storyboard.md").read_text(encoding="utf-8"), p / "slides",
+                          json.loads((p / "render_report.json").read_text(encoding="utf-8")),
+                          _copy, None)
+        drift = [x for x in f if "the dossier declares" in x]
+        ok(f"{date}: the claim sets {'drift' if want else 'agree'} on the shipped deck",
+           bool(drift) == want, str(drift)[:200])
+        ok(f"{date}: every frame's claim set was compared on both surfaces",
+           st.get("claims_compared") == 2 * st.get("claim_slides", 0),
+           f"compared={st.get('claims_compared')} slides={st.get('claim_slides')}")
 
     # CALIBRATION against every shipped storyboard, so a parser that stops reading the form
     # these runs write reports itself as a number rather than as silence. This is the assertion
