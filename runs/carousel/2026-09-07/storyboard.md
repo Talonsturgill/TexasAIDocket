@@ -43,10 +43,18 @@ off at all and its edges are hard. A reader does not need that explained to feel
    unfinished guide is never warned about, it is simply less lit. This is the grid watch's own bar
    law applied to a document, and it is what keeps a severity verdict out of the deck.
 4. **A BLANK IS A BODY AND A HOLE IS A BODY. NOTHING IS A BLACK RECTANGLE.** Every cavity gets a
-   lit lip, a drawn side wall and a floor. **The cavity idiom is allowed on frames 4 and 5 and
-   nowhere else.** Frames 7 and 9 draw not-yet-ness as a positive body instead. If a repair round
-   wants a cavity on a sixth frame, that is the tell, and the correct answer is to refuse the
-   repair.
+   lit lip, a drawn side wall and a floor, **wherever a hole is drawn**, which is frames 1, 4, 5
+   and 9.
+
+   **THE CAP MOVED AND THE REASON IS WORTH KEEPING.** This law first allowed the cavity idiom on
+   frames 4 and 5 and nowhere else, to stop one idiom becoming the deck's whole vocabulary. The
+   first build then drew flat black squares on frames 1, 5 and 9 while reserving the three-value
+   treatment for frame 4, which is the worst of both readings: the idiom still appeared on four
+   frames and three of them broke the law's own first sentence. A judge found it. **The cap was
+   the wrong instrument.** What stops an idiom becoming a vocabulary is that frames 3, 6, 7 and 8
+   contain no hole at all, and frames 7 and 9 draw not-yet-ness as a positive body, the capped
+   connector and the landed drop, rather than as an absence. A hole that is drawn is drawn
+   properly.
 5. **NO NUMERAL except inside a quote, a claim id, a date the record carries, or an award number
    the record carries.** No count is drawn, no depth is implied, no total is printed. Every numeral
    is JetBrains Mono with tabular figures and never Fraunces, because FIELD_NOTES records Fraunces
@@ -66,6 +74,7 @@ off at all and its edges are hard. A reader does not need that explained to feel
 | `om4` | `#3FB8A6` | OM4 multimode jacket carrying its own light. **WHAT THE DOCUMENT STATES** | site `comal #2A7A9E` is bluer and reserved to water |
 | `om4_dim` | `#1C4F4A` | the same jacket with no light in it. **WHAT THE DOCUMENT DOES NOT STATE** | — |
 | `screen` | `#E2EAE8` | silkscreened rail legend and port label, and the deck's type | deck 6 `legend #E8EFE4`, cooler |
+| `boot` | `#453E3A` | the moulded strain relief boot on an LC connector. The deck's only warm neutral, on frames 4, 7 and 9 only, and under 400 design px of area on each | — |
 | `flag_red` | `#BF0A30` | reserved. Spent once, on frame 9, as a filled tag body carrying white mono | — |
 
 **No cream, no gold, no ochre, no violet, no wood, no stone, and no paper in nine frames.** The
@@ -238,9 +247,10 @@ art:
     argument rather than a container for it.
   palette: "om4 as the whole field, hall as the knockout, screen for the mono furniture"
   value_structure: >
-    The single brightest frame in the deck at median L* 58, against a deck median of 20. The
-    knockout letterforms are the darkest thing on the frame, which inverts the deck's polarity for
-    exactly one slide.
+    The single brightest frame in the deck, measured at median L* 62.3 against a deck median of
+    9.9, which is the widest value gap this project has put between one frame and its own deck.
+    The knockout letterforms are the darkest thing on the frame, which inverts the deck's
+    polarity for exactly one slide.
   motion: "no path. The frame is read as one block, which is what a full-bleed statement is for"
 type:
   hook: "Frontera is the largest cluster dedicated to open science in the United States"
@@ -344,9 +354,10 @@ art:
     it says not yet without saying not working.
   palette: "rail, punch, anodize, plenum on the fitted hardware at the foot, screen for the mono block"
   value_structure: >
-    The deck's darkest frame at median L* 11. Lightest is the plenum graze on the fitted hardware
-    at the very bottom. Everything above the boundary is near the deck's true dark, which is the
-    value argument the frame is making.
+    Measured at median L* 9.9, second darkest in the deck behind frame 6 at 5.7. Lightest is the
+    plenum graze on the fitted hardware at the very bottom. Everything above the boundary sits
+    near the deck's true dark, which is the value argument the frame is making, and the rear rail
+    pair and the cross members behind it are what keep that dark populated rather than empty.
   motion: "up from the lit hardware, across the boundary, into the dark rail"
 type:
   hook: "The money is real. The manual is not finished."

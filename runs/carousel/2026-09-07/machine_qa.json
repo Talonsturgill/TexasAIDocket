@@ -51,13 +51,15 @@
     {
       "file": "slide-05.html",
       "fails": [],
-      "warns": [],
-      "bands": [
-        0.6954,
-        0.8277,
-        0.8088
+      "warns": [
+        "a drawn rule crosses the glyph band of 'Leadership Class Computing Facility (LCC' (canvas edge .pixels at 80,792.5 764x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
       ],
-      "band_ratio": 1.0386
+      "bands": [
+        0.6807,
+        0.8004,
+        0.7886
+      ],
+      "band_ratio": 1.0403
     },
     {
       "file": "slide-06.html",
@@ -73,15 +75,13 @@
     {
       "file": "slide-07.html",
       "fails": [],
-      "warns": [
-        "top-loaded composition: the bottom third carries 61% of this slide's own average craft density (top 50% / mid 90% / bottom 35% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
-      ],
+      "warns": [],
       "bands": [
         0.5,
         0.9013,
-        0.3529
+        0.6618
       ],
-      "band_ratio": 0.6147,
+      "band_ratio": 0.964,
       "leaders": [
         "leader 'a capped connector lying loose on the plenum floor' lands 0.0px from its target"
       ]
@@ -106,10 +106,13 @@
       "warns": [],
       "bands": [
         0.7479,
-        0.4181,
+        0.4202,
         0.5515
       ],
-      "band_ratio": 0.9649
+      "band_ratio": 0.9638,
+      "leaders": [
+        "leader 'the port label naming the one route the record checked' lands 0.0px from its target"
+      ]
     }
   ],
   "fails": 0,

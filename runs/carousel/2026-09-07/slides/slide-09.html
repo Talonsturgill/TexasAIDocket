@@ -151,10 +151,18 @@ window.renderReady = (async () => {
   });
 
   // the silkscreen tick under the ONE named drop, tying the label to its port
+  let tick = null;
   if (LANDED.length) {
     const cx = LANDED[0] + PORT_W / 2;
+    const LABEL = [86, 806];                       // the port label's own top left, in world coords
+    tick = [[cx, PORT_Y + PORT_H + 8], [cx, LABEL[1] - 12], [LABEL[0] + 4, LABEL[1] - 12]];
     x.strokeStyle = 'rgba(226,234,232,0.85)'; x.lineWidth = 1.8;
-    x.beginPath(); x.moveTo(cx, PORT_Y + PORT_H + 8); x.lineTo(cx, 726); x.lineTo(300, 726); x.stroke();
+    x.beginPath(); x.moveTo(tick[0][0], tick[0][1]);
+    for (let k = 1; k < tick.length; k++) x.lineTo(tick[k][0], tick[k][1]);
+    x.stroke();
+    const DECL = [{ target: "the port label naming the one route the record checked",
+                    at: [LABEL[0] + 4, LABEL[1] - 12], to: tick[tick.length - 1] }];
+    window.__txLeaders = DECL; window.__akLeaders = DECL;
   }
 
   // ---- probes ---------------------------------------------------------------

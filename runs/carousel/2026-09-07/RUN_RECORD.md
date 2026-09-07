@@ -125,15 +125,15 @@ on from, and it is worth a maintainer's attention only if it repeats.
 | claims         | PASS   | 21 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 7.14 MB, vector |
+| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | PASS   | 9 slide(s), 7.12 MB, vector |
 | score          | ABSENT | score.json not written yet |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
 | verbatim       | PASS   | 10 declared fragment(s) over 8 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 41,433 chars planned |
+| dossiers       | PASS   | 42,451 chars planned |
 | caption        | PASS   | 153 words |
-| craft floor    | WARN   | 9 frame(s), median 767, floor 138, 1 quiet |
+| craft floor    | WARN   | 9 frame(s), median 791, floor 142, 1 quiet |
 | plan vs render | PASS   | 9 of 56 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body NO / deadline yes / next step yes |
 | absences       | PASS   | 6 of 6 scoped to a named document |

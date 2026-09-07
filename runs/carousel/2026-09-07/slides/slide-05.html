@@ -63,7 +63,22 @@ window.renderReady = (async () => {
   const BOUND=1010;                       // ONE horizontal y, so the line cannot vary
   const RAILX=[150,880], PITCH=46, HOLE=26;
 
-  // bare rail above the boundary, punched to the top edge at full fidelity
+  // THE REAR RAIL PAIR, drawn first so the front pair occludes it. An empty bay is not
+  // empty space, it is a bay you can see the back of, and this is what fills the middle
+  // of the frame with the thing that is genuinely there.
+  [RAILX[0]+96, RAILX[1]-96].forEach(rx=>{
+    x.fillStyle='#0B1013'; x.fillRect(rx-11,300,36,BOUND-300);
+    for(let cy=322; cy<BOUND-20; cy+=PITCH){
+      x.fillStyle='#070A0C'; x.fillRect(rx-2,cy,18,18);
+      x.fillStyle='rgba(52,64,72,0.45)'; x.fillRect(rx-2,cy+15.4,18,2.2);
+    }
+  });
+  // the cross members that tie the two pairs together
+  for(let cy=372; cy<740; cy+=PITCH*3){   // stop clear of the mono block at y772
+    x.fillStyle='rgba(13,18,22,0.95)'; x.fillRect(RAILX[0]+20,cy,RAILX[1]-RAILX[0]-24,7);
+    x.fillStyle='rgba(58,72,80,0.40)'; x.fillRect(RAILX[0]+20,cy+5.2,RAILX[1]-RAILX[0]-24,1.8);
+  }
+  // bare rail above the boundary, punched at full fidelity
   RAILX.forEach(rx=>{
     x.fillStyle='#101619'; x.fillRect(rx-16,300,52,BOUND-300);
     x.fillStyle='rgba(7,11,16,0.7)'; x.fillRect(rx-16,300,3,BOUND-300);
