@@ -354,3 +354,22 @@ surface that does not read it, and nothing in between.
   The site takes the earliest key date as when a thing started, so the published answer to "when
   did it start" was August 12th, a stamp belonging to the SUCCESSOR's documentation rather than
   to Frontera's closure. A guide's last-update stamp is source metadata. Removed.
+
+## One review finding this run could not act on, and it is a lane rather than a judgement
+
+`dedupe_check` gained a candidate-beat comparison in this run's retro phase, and it only runs
+when the caller passes `--item` or `--beat`. **The versioned Phase 8 command in
+`prompts/daily_routine.md` still invokes it with only `--entities` and `--keywords`**, so the
+routine that the upgrade was built for never triggers it and never sees the warning that its
+candidate extends a same-beat run. The bot is right and the upgrade is inert as wired.
+
+`prompts/**` belongs to the `human` actor in `ownership.yaml`, so neither `daily` nor `upgrade`
+may make the one-line change. This is the disposition the map prescribes: written down, not
+worked around.
+
+**The change a maintainer needs to make** is to add `--item <the selected docket item>` to the
+Phase 8 `dedupe_check` invocation in `prompts/daily_routine.md`. Nothing else moves.
+
+Worth saying plainly, because it is the second time in one run: an upgrade that lands in a lane
+the routine owns and needs a line in a lane it does not is only half an upgrade, and the half
+that is missing is the half that makes it run.
