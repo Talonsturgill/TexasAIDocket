@@ -1,0 +1,213 @@
+{
+  "date": "2026-09-07",
+  "story": "The Texas Advanced Computing Center closes the queues on Frontera permanently on October 1st, 2026. Its own guide still calls Frontera the largest cluster dedicated to open science in the United States. The guide for its successor Horizon says that guide is in progress and that the machine is still limited only to internal users.",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "The center's own Frontera guide gives the date the queues close and says the closure is permanent.",
+      "quote": "On October 1, 2026, the Frontera queues will be closed permanently.",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c2",
+      "text": "The guide says the machine is being decommissioned after seven years.",
+      "quote": "After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset.",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c3",
+      "text": "The center describes what Frontera is, in its own words, on the same page that closes it.",
+      "quote": "Frontera is the largest cluster dedicated to open science in the United States",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c4",
+      "text": "The successor machine's own guide says who may use it, and carries a date on that notice.",
+      "quote": "Horizon is still limited only to internal users. (07/24/2026)",
+      "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+      "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c5",
+      "text": "The successor machine's guide states its own completeness, as the first line of its notices.",
+      "quote": "This user guide is in progress",
+      "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+      "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c6",
+      "text": "The one thing the closing guide promises for after the date is a way to take data away.",
+      "quote": "file systems to transfer any data needed",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c7",
+      "text": "The Frontera guide names the funder and the award number behind the machine.",
+      "quote": "Frontera is funded by the National Science Foundation (NSF) through award #1818253",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c8",
+      "text": "The funder's own record gives the Frontera award a different title than the center's page does, and the date it started.",
+      "quote": "\"startDate\":\"09/01/2018\",\"title\":\"Computation for the Endless Frontier\"",
+      "url": "https://api.nsf.gov/services/v1/awards/1818253.json",
+      "source_title": "NSF Award API record 1818253",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c9",
+      "text": "The center's page gives the same award a title of its own.",
+      "quote": "Computing for the Endless Frontier",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c10",
+      "text": "The successor machine names the award it is built under.",
+      "quote": "Leadership Class Computing Facility (LCCF) award, Award Abstract #2323116",
+      "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+      "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c11",
+      "text": "The successor's award record gives the date the construction award runs to.",
+      "quote": "\"expDate\":\"04/30/2028\",\"fundAgencyCode\":\"4900\"",
+      "url": "https://api.nsf.gov/services/v1/awards/2323116.json",
+      "source_title": "NSF Award API record 2323116",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c12",
+      "text": "The successor's award record gives the date its construction award started, and what that award is titled.",
+      "quote": "\"startDate\":\"07/01/2024\",\"title\":\"Construction for the Leadership Class Computing Facility\"",
+      "url": "https://api.nsf.gov/services/v1/awards/2323116.json",
+      "source_title": "NSF Award API record 2323116",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c13",
+      "text": "The successor's own guide lists the second of its three ways in by name.",
+      "quote": "National Artificial Intelligence Research Resource Pilot (NAIRR)",
+      "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+      "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c14",
+      "text": "The closing guide carries the date it was last touched.",
+      "quote": "Last update: September 3, 2026",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c15",
+      "text": "The successor's guide carries the date it was last touched.",
+      "quote": "Last update: August 12, 2026",
+      "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+      "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c16",
+      "text": "The center states where an AI assisted workload is allowed to run on its machines.",
+      "quote": "All AI-assisted workloads must be executed on compute nodes only",
+      "url": "https://docs.tacc.utexas.edu/basics/conduct/",
+      "source_title": "TACC HPC Documentation, TACC Good Conduct Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c17",
+      "text": "The center states who pays for what an AI agent burns.",
+      "quote": "All Service Units (SUs) consumed by AI-related workloads will be charged against your allocation.",
+      "url": "https://docs.tacc.utexas.edu/basics/conduct/",
+      "source_title": "TACC HPC Documentation, TACC Good Conduct Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c18",
+      "text": "The Frontera guide never says what becomes of an allocation after the closing date and never names a machine the work moves to. Its only statement about the period after that date is about taking data away. Looked for on the Frontera user guide and nowhere else.",
+      "quote": "file systems to transfer any data needed",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "medium"
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "NSF award 1818253 estimated total of $60,000,000, funds obligated of $78,999,136, and award 2323116 at $457.4 million",
+      "reason": "The first read of api.nsf.gov came back through a summarising layer that renamed the keys and formatted the currency. The raw body carries unformatted digit strings and the $457.4 million form is a rounding no source performed. No dollar figure is carried anywhere in this deck."
+    },
+    {
+      "finding": "Frontera delivered more than 7.2 million simulations to more than 1,600 research projects, more than 370 million node hours, uptime in excess of 99 percent, and debuted at number 5 in the world",
+      "reason": "Present in the NSF record but only inside a project outcomes report written by the principal investigator and last modified July 1st, 2025. Self reported, and none of it is needed for this story."
+    },
+    {
+      "finding": "The doubled words the the in the Horizon guide's LCCF sentence",
+      "reason": "It is genuinely on the page, confirmed in the raw HTML rather than through a summariser. It is still a typo rather than a decision, and no frame is built on it."
+    },
+    {
+      "finding": "The number of days between the award's expiration and the closing date, and any other interval",
+      "reason": "Deliberately not computed. Both dates are quoted as strings and the reader can hold two dates without an arithmetic result standing between them."
+    },
+    {
+      "finding": "Anything on tacc.utexas.edu or lccf.tacc.utexas.edu",
+      "reason": "Both hosts publish a robots.txt disallowing ClaudeBot and anthropic-ai by name. Neither was fetched, under any user agent. docs.tacc.utexas.edu serves no robots.txt and is the compliant path to the same organisation's own documentation."
+    },
+    {
+      "finding": "The three routes into Horizon rendered as one string",
+      "reason": "The guide lists them as three separate items. Joining them with slashes would be a quote of something the page does not print, so only the one that names the national AI resource is quoted."
+    }
+  ],
+  "notes": "Hosts fetched: docs.tacc.utexas.edu, api.nsf.gov. The apostrophe in Frontera's on the closing warning is U+2019 in the raw HTML, confirmed byte by byte, so every quote above is cut short of it and no quote in this deck carries a curly apostrophe. The sentence in the source also carries two spaces between sentences, so each quote is a single sentence and no quote spans a sentence boundary. TACC's page and NSF's record give award 1818253 two different titles, Computing and Computation, and both are quoted separately at c9 and c8 rather than merged."
+}
