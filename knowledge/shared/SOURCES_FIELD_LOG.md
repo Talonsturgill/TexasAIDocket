@@ -946,3 +946,43 @@ responses as `primary_official` until a count was run over them. `data.transport
 claims vocabulary has a word for. Nothing failed, because `claims_check` accepts either word.
 **The cost is that the run's own figures.json then reported 32 official records and 0 data
 records**, which would have gone into the email as a fact about how this deck was sourced.
+
+## 2026-09-07 — three publishers this record cites now exclude it by name, and one subdomain does not
+
+Checked per host on the day, as the rule requires, and every one of these is a robots.txt read
+this run rather than a memory of one.
+
+**`seguingazette.com`** publishes `Disallow: /` under `ClaudeBot`, `Claude-Web` and
+`anthropic-ai`, among about thirty named agents. Its `*` group disallows only CMS paths. The
+record cites it for three quotes on tx-2026-0036, the Guadalupe County Flock contract, and those
+three can no longer be re-verified from here. A page had already been retrieved before the robots
+file was read and it was **deleted unread**.
+
+**`newschannel10.com`** publishes `Disallow: /` under `GPTBot`, `ChatGPT-User`, `Google-Extended`,
+`CCBot`, `Amazonbot`, `anthropic-ai`, `Bytespider`, `ClaudeBot`, `Claude-Web`, `FacebookBot`,
+`omgili`, `omgilibot` and `PerplexityBot` in one shared group. Its `*` group explicitly ALLOWS
+`/news/`, which is where the cited article sits, so the exclusion is aimed at this class of agent
+rather than at crawling generally. The record cites it for five quotes on tx-2026-0046, the Carson
+County abatement. A page retrieved before the robots read was **deleted unread**. That item now
+carries a primary source instead, from the operator's own SEC filing.
+
+**`ksat.com` is CLEAN and it rescued one of the two.** Its `*` group disallows only feed and
+app-output paths and it names no Claude agent anywhere. It carries the Guadalupe County sheriff's
+own words in its own text, so three claims were re-sourced there.
+
+**`tacc.utexas.edu` and `lccf.tacc.utexas.edu`** both publish `Disallow: /` under `ChatGPT-User`,
+`GPTBot`, `Google-Extended`, `anthropic-ai`, `ClaudeBot`, `ClaudeBot/1.0` and `Omgilibot`.
+
+**`docs.tacc.utexas.edu` serves NO robots.txt. It returns a 404 from nginx.** Nothing is
+disallowed there, and it carries the same organisation's own user guides, which is where the
+substance is. This is the useful half of the finding. A host being excluded does not mean the
+organisation is, and the documentation subdomain answered every question the news pages would
+have, from a better source. **Check the subdomain before writing an organisation off.**
+
+**`dhs.gov` returns 403 to a direct request and serves the same page through another reader**, and
+its own `robots.txt` is also 403. A 403 on the robots file establishes no disallow, so this is an
+edge failure rather than a policy, exactly as the registry already says of `courtlistener.com`.
+All twelve claims on tx-2026-0120 were re-verified this way.
+
+**`interchange.puc.texas.gov` behaved exactly as the registry describes.** No robots.txt, 200 to a
+browser User-Agent. The registry's entry needs no change.
