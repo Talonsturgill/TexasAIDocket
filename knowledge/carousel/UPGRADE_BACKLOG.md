@@ -1001,8 +1001,8 @@ The cause is a two-name disagreement inside the engine's own contract:
   thing it points at, and say where that is**, documents the declaration as
   `window.__txLeaders = [{ target, at, to }]`.
 - `.claude/skills/carousel-engine/render.py`, at the leader extraction block, reads
-  `window.__akLeaders` and nothing else. The surrounding comment still carries the Alaska example
-  variable, `window.__akLeaders`, which is where the name survived the port.
+  `window.__akLeaders` and nothing else. The surrounding comment still carries that same
+  variable as its example, which is where the sibling repo's prefix survived the port.
 
 **So a slide that follows the documentation declares into a channel nothing reads, and `qa.py`'s
 leader check then has no leaders to fail on.** The gate's own docstring says a leader stopping in
