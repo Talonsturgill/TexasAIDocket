@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-09-06-before-the-match",
+      "date": "2026-09-06",
+      "title": "Before the match",
+      "caption": "At Progreso, a live pedestrian facial-biometric assessment tested whether cameras could capture usable images before any match. DHS says capture exceeded expectations, but its public account gives no accuracy rate, retention period, or final deployment choice.",
+      "video": "/runs/2026-09-06/dispatch.mp4",
+      "poster": "/runs/2026-09-06/poster.png",
+      "video_mobile": "/runs/2026-09-06/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-09-06/poster-540.jpg",
+      "county": "Hidalgo",
+      "beat": "record-and-rule"
+    },
+    {
       "id": "2026-09-03-what-the-ground-still-holds",
       "date": "2026-09-03",
       "title": "What the ground still holds",
