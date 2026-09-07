@@ -1,6 +1,6 @@
 # Brownsville takes up a temporary moratorium on data centers after staff tells the commission its code has no rules for them
 
-At its September 1st, 2026 meeting the Brownsville City Commission considered starting the process for a temporary moratorium covering data centers alongside private gaming clubs, automotive quick lube facilities, event centers and self storage. City staff told the commission that Brownsville's Unified Development Code contains no regulations addressing data centers. The stated purpose is to give the city time to study electricity and energy use, water consumption, noise, land use compatibility, infrastructure and economic and fiscal impacts. The proposal also reactivates the city's Environmental and Conservation Task Force to study data center development and recommend to the commission. The city's own account says an initial moratorium could run up to 90 days and could be extended for another 90 days after further proceedings.
+At its September 1st, 2026 meeting the Brownsville City Commission considered starting the process for a temporary moratorium. It would cover data centers alongside private gaming clubs, automotive quick lube facilities, event centers and self storage. City staff told the commission that Brownsville's Unified Development Code contains no regulations addressing data centers. The stated purpose is to give the city time to study electricity and energy use, water consumption, noise, land use compatibility, infrastructure and economic and fiscal impacts. The proposal also reactivates the city's Environmental and Conservation Task Force to study data center development and recommend to the commission. The city's own account says an initial moratorium could run up to 90 days and could be extended for another 90 days after further proceedings.
 
 - Topic: data-centers
 - Decided by: City of Brownsville City Commission (city)
@@ -21,7 +21,7 @@ At its September 1st, 2026 meeting the Brownsville City Commission considered st
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-07 · Admitted. The city's own account of the September 1st, 2026 meeting says the commission took up the process for a temporary moratorium and that staff told it the land development code has no rules for data centers. Nothing in that account records a vote.
+- 2026-09-07 · Admitted. The city's own account of the September 1st, 2026 meeting says the commission took up the process for a temporary moratorium. The same account says staff told it the land development code has no rules for data centers. Nothing in that account records a vote.
 
 ## Evidence
 

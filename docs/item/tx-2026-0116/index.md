@@ -25,7 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-03 · Admitted. The Public Safety Committee's September 8th, 2026 agenda carries an update on the police department's Flock automated license plate reader program. The city's record marks it a briefing rather than an action item and lists the chief of police among the presenters.
 - 2026-09-04 · The Dallas Public Safety Committee's briefing on the police department's Flock plate reader program is still set for September 8th, 2026. The city's own record still lists it as a briefing rather than as an action item. The chief of police is still the named presenter.
 - 2026-09-05 · The Dallas committee still has the plate reader briefing on its calendar. It has not been heard.
-- 2026-09-07 · The plate reader briefing is still on the Public Safety Committee's calendar for September 8th, 2026, and the city's record still lists it as a briefing rather than as an action item. It has not been heard.
+- 2026-09-07 · The plate reader briefing is still on the Public Safety Committee's calendar for September 8th, 2026. The city's record still lists it as a briefing rather than as an action item. It has not been heard.
 
 ## Evidence
 

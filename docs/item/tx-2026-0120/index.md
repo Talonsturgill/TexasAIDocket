@@ -24,7 +24,7 @@ The Department of Homeland Security Science and Technology Directorate brought i
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-04 · Admitted. The directorate's own account of the operational assessment at the Progreso International Bridge stands as published on September 1st, 2026. It names the crossing, the division that ran the work, the office that asked for it and the three vendor solutions that were taken to the bridge. It states no accuracy figure and no deployment decision.
-- 2026-09-07 · The article stands as published on September 1st, 2026. The opt-out lane, the signs in English and Spanish, the after-dark testing and the named capture platforms are all still on the page, and the account still reports how well the cameras performed without publishing a rate.
+- 2026-09-07 · The article stands as published on September 1st, 2026. The opt-out lane, the signs in English and Spanish, the after-dark testing and the named capture platforms are all still on the page. The account still reports how well the cameras performed without publishing a rate.
 
 ## Evidence
 
