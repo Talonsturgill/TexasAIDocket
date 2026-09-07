@@ -23,7 +23,7 @@
   h1{position:absolute;left:80px;top:918px;width:800px;margin:0;font-family:Fraunces,serif;
     font-weight:600;font-size:62px;line-height:1.0;color:#E2EAE8;letter-spacing:-.015em}
   .dek{position:absolute;left:80px;top:1048px;width:880px;margin:0;font-family:Manrope,sans-serif;
-    font-weight:500;font-size:25px;line-height:1.28;color:#9BB0B4}
+    font-weight:500;font-size:25px;line-height:1.28;color:#C9D4D2}
 
   .door{position:absolute;left:80px;top:1174px;font-family:"JetBrains Mono",monospace;
     font-weight:500;font-size:26px;letter-spacing:.03em;color:#3FB8A6}
@@ -31,7 +31,7 @@
      qa.py found canvas edges running through their glyph bands, which reads as a
      strikethrough at feed width. A scrim lifts the floor under the whole block rather than
      moving the art, which is the fix the engine contract asks for. */
-  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:300px;
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:440px;
     background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.86) 44%,
     rgba(7,11,16,0.99) 100%)}
   .tscrim{position:absolute;left:0;top:0;width:1080px;height:200px;
@@ -56,11 +56,12 @@
   <div class="plabel" id="nairr" style="left:80px;top:800px">NATIONAL ARTIFICIAL INTELLIGENCE<br>RESEARCH RESOURCE PILOT (NAIRR)</div>
 
   <h1>Three ways in. The record checked one.</h1>
-  <p class="dek">Anyone with work on Frontera has until October 1st, 2026 to move it. The
-     successor's guide is where its access rule will change.</p>
+  <p class="dek">Anyone with work on Frontera has until October 1st, 2026 to move it. The same
+     center runs Horizon, and the Horizon guide is where that machine's access rule is
+     published.</p>
 
   <div class="door">docs.tacc.utexas.edu/hpc/horizon/</div>
-  <div class="foot"><span>HORIZON USER GUIDE</span><span>c1 c13 c15 c20</span>
+  <div class="foot"><span>HORIZON GUIDE</span><span>c1 c13 c15 c20 c21</span>
     <span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
 </div>
 
@@ -114,9 +115,13 @@ window.renderReady = (async () => {
   const xs = [];
   for (let px = -30; px < W + 30; px += PORT_W + GAP) xs.push(px);
   xs.forEach((px) => {
-    x.fillStyle = '#080C10'; x.fillRect(px, PORT_Y, PORT_W, PORT_H);
-    x.fillStyle = 'rgba(126,149,153,0.34)'; x.fillRect(px, PORT_Y + PORT_H - 3, PORT_W, 3);
-    x.fillStyle = 'rgba(7,11,16,0.9)'; x.fillRect(px + 4, PORT_Y + 4, PORT_W - 8, PORT_H - 10);
+    x.fillStyle = '#070A0D'; x.fillRect(px, PORT_Y, PORT_W, PORT_H);
+    const wg = x.createLinearGradient(px, 0, px + PORT_W, 0);
+    wg.addColorStop(0, 'rgba(70,88,96,0.92)'); wg.addColorStop(0.18, 'rgba(7,10,13,0)');
+    wg.addColorStop(0.82, 'rgba(7,10,13,0)'); wg.addColorStop(1, 'rgba(70,88,96,0.92)');
+    x.fillStyle = wg; x.fillRect(px, PORT_Y, PORT_W, PORT_H);
+    x.fillStyle = 'rgba(150,176,180,0.78)'; x.fillRect(px, PORT_Y + PORT_H - 3.4, PORT_W, 3.4);
+    x.fillStyle = 'rgba(7,11,16,0.92)'; x.fillRect(px, PORT_Y, PORT_W, 2.6);
   });
 
   // ======================================================================

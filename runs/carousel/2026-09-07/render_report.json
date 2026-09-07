@@ -238,7 +238,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5039,
+      "render_ms": 5140,
       "ok": true,
       "canvases": [
         {
@@ -251,8 +251,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 37.4,
-          "variance": 464.9
+          "mean": 37.8,
+          "variance": 463.9
         }
       ],
       "breather": false,
@@ -353,7 +353,7 @@
           "font_px": 25,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(155, 176, 180)",
+          "color": "rgb(201, 212, 210)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -464,11 +464,23 @@
       "body_overflow": false,
       "canvas_text": [],
       "svg_plates": [],
-      "rules": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 920,
+          "w": 1080,
+          "h": 430,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4502,
+      "render_ms": 4023,
       "ok": true,
       "canvases": [
         {
@@ -505,7 +517,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(8, 48, 43)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -519,22 +531,22 @@
           "anc": []
         },
         {
-          "text": "c3",
-          "x": 407,
+          "text": "c3 c14",
+          "x": 387,
           "y": 84,
-          "w": 31,
+          "w": 94,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(8, 48, 43)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              407,
+              387,
               84,
-              31,
+              94,
               31
             ]
           ],
@@ -542,19 +554,19 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 532,
+          "x": 553,
           "y": 84,
           "w": 265,
           "h": 31,
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(8, 48, 43)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              532,
+              553,
               84,
               265,
               31
@@ -571,7 +583,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(8, 48, 43)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -593,7 +605,7 @@
           "font_px": 40,
           "weight": "700",
           "family": "JetBrains Mono",
-          "color": "rgb(12, 68, 60)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -615,7 +627,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(12, 68, 60)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -699,7 +711,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(12, 68, 60)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -743,7 +755,7 @@
           "font_px": 26,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(12, 68, 60)",
+          "color": "rgb(6, 48, 42)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -773,50 +785,6 @@
               735,
               1208,
               265,
-              35
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "CLAIM",
-          "x": 80,
-          "y": 1264,
-          "w": 94,
-          "h": 35,
-          "font_px": 26,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(12, 68, 60)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              80,
-              1264,
-              94,
-              35
-            ]
-          ],
-          "anc": []
-        },
-        {
-          "text": "c3",
-          "x": 969,
-          "y": 1264,
-          "w": 31,
-          "h": 35,
-          "font_px": 26,
-          "weight": "500",
-          "family": "JetBrains Mono",
-          "color": "rgb(7, 11, 16)",
-          "decorative": false,
-          "overlap_ok": false,
-          "lines": [
-            [
-              969,
-              1264,
-              31,
               35
             ]
           ],
@@ -865,26 +833,12 @@
             10,
             11
           ]
-        },
-        {
-          "kind": "border",
-          "x": 80,
-          "y": 1252,
-          "w": 920,
-          "h": 3,
-          "by": "row",
-          "color": "rgb(7, 11, 16)",
-          "decorative": false,
-          "skip": [
-            12,
-            13
-          ]
         }
       ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5211,
+      "render_ms": 5035,
       "ok": true,
       "canvases": [
         {
@@ -1126,6 +1080,17 @@
         {
           "kind": "fill",
           "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 210,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
           "y": 860,
           "w": 1080,
           "h": 490,
@@ -1138,7 +1103,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3826,
+      "render_ms": 3817,
       "ok": true,
       "canvases": [
         {
@@ -1151,8 +1116,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 50.9,
-          "variance": 1558.8
+          "mean": 53.6,
+          "variance": 1490.7
         }
       ],
       "breather": false,
@@ -1386,7 +1351,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4730,
+      "render_ms": 5532,
       "ok": true,
       "canvases": [
         {
@@ -1399,8 +1364,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 42.6,
-          "variance": 757.2
+          "mean": 43.1,
+          "variance": 766.7
         }
       ],
       "breather": false,
@@ -1624,7 +1589,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3117,
+      "render_ms": 3167,
       "ok": true,
       "canvases": [
         {
@@ -1872,11 +1837,34 @@
       "body_overflow": false,
       "canvas_text": [],
       "svg_plates": [],
-      "rules": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 230,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 920,
+          "w": 1080,
+          "h": 430,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 6104,
+      "render_ms": 5731,
       "ok": true,
       "canvases": [
         {
@@ -1977,11 +1965,11 @@
           "anc": []
         },
         {
-          "text": "The funder's own record and the machine's own page give award 1818253 two different titles. Neither document mentions the other.",
+          "text": "The funder's own record and the machine's own page give award 1818253 two different titles.",
           "x": 80,
-          "y": 1095,
+          "y": 1130,
           "w": 640,
-          "h": 105,
+          "h": 70,
           "font_px": 27,
           "weight": "500",
           "family": "Manrope",
@@ -1991,20 +1979,14 @@
           "lines": [
             [
               80,
-              1094,
+              1129,
               597,
               37
             ],
             [
               80,
-              1129,
-              555,
-              37
-            ],
-            [
-              80,
               1164,
-              485,
+              555,
               37
             ]
           ],
@@ -2121,10 +2103,10 @@
           "anc": []
         },
         {
-          "text": "NSF AWARD RECORD 1818253 c8",
+          "text": "NSF AWARD RECORD 1818253",
           "x": 172,
           "y": 504,
-          "w": 432,
+          "w": 384,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -2136,7 +2118,7 @@
             [
               172,
               504,
-              432,
+              384,
               31
             ]
           ],
@@ -2165,10 +2147,10 @@
           "anc": []
         },
         {
-          "text": "FRONTERA USER GUIDE c9",
+          "text": "FRONTERA USER GUIDE",
           "x": 172,
           "y": 728,
-          "w": 352,
+          "w": 304,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -2180,7 +2162,7 @@
             [
               172,
               728,
-              352,
+              304,
               31
             ]
           ],
@@ -2234,11 +2216,34 @@
       "body_overflow": false,
       "canvas_text": [],
       "svg_plates": [],
-      "rules": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 230,
+          "by": "tscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 0,
+          "y": 920,
+          "w": 1080,
+          "h": 430,
+          "by": "fscrim",
+          "color": "rgba(0, 0, 0, 0)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4234,
+      "render_ms": 3926,
       "ok": true,
       "canvases": [
         {
@@ -2367,15 +2372,15 @@
           "anc": []
         },
         {
-          "text": "Anyone with work on Frontera has until October 1st, 2026 to move it. The successor's guide is where its access rule will change.",
+          "text": "Anyone with work on Frontera has until October 1st, 2026 to move it. The same center runs Horizon, and the Horizon guide is where that machine's access rule is published.",
           "x": 80,
           "y": 1048,
           "w": 880,
-          "h": 64,
+          "h": 96,
           "font_px": 25,
           "weight": "500",
           "family": "Manrope",
-          "color": "rgb(155, 176, 180)",
+          "color": "rgb(201, 212, 210)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2388,7 +2393,13 @@
             [
               80,
               1078,
-              628,
+              847,
+              35
+            ],
+            [
+              80,
+              1110,
+              285,
               35
             ]
           ],
@@ -2417,10 +2428,10 @@
           "anc": []
         },
         {
-          "text": "HORIZON USER GUIDE",
+          "text": "HORIZON GUIDE",
           "x": 80,
           "y": 1245,
-          "w": 281,
+          "w": 203,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -2432,17 +2443,17 @@
             [
               80,
               1245,
-              281,
+              203,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "c1 c13 c15 c20",
-          "x": 383,
+          "text": "c1 c13 c15 c20 c21",
+          "x": 305,
           "y": 1245,
-          "w": 218,
+          "w": 281,
           "h": 31,
           "font_px": 24,
           "weight": "500",
@@ -2452,9 +2463,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              383,
+              305,
               1245,
-              218,
+              281,
               31
             ]
           ],
@@ -2462,7 +2473,7 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 623,
+          "x": 608,
           "y": 1245,
           "w": 265,
           "h": 31,
@@ -2474,7 +2485,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              623,
+              608,
               1245,
               265,
               31
@@ -2484,7 +2495,7 @@
         },
         {
           "text": "09 / 09",
-          "x": 910,
+          "x": 895,
           "y": 1245,
           "w": 109,
           "h": 31,
@@ -2496,7 +2507,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              910,
+              895,
               1245,
               109,
               31
@@ -2523,9 +2534,9 @@
         {
           "kind": "fill",
           "x": 0,
-          "y": 1050,
+          "y": 910,
           "w": 1080,
-          "h": 300,
+          "h": 440,
           "by": "fscrim",
           "color": "rgba(0, 0, 0, 0)",
           "decorative": true,
@@ -2535,7 +2546,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4434,
+      "render_ms": 4591,
       "ok": true,
       "canvases": [
         {
@@ -2548,8 +2559,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 61.9,
-          "variance": 1154.4
+          "mean": 62.1,
+          "variance": 1142.1
         }
       ],
       "breather": false,

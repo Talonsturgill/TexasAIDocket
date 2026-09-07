@@ -184,7 +184,7 @@
     },
     {
       "id": "c19",
-      "text": "The guide names the centre that runs the machine, in the same sentence that says what the machine is.",
+      "text": "The guide names the center that runs the machine, in the same sentence that says what the machine is.",
       "quote": "is the Texas Advanced Computing Center",
       "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
       "source_title": "TACC HPC Documentation, Frontera User Guide",
@@ -198,6 +198,16 @@
       "quote": "Allocations LCCF Allocations National Artificial Intelligence Research Resource Pilot (NAIRR) TxRAS System Specifications",
       "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
       "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c21",
+      "text": "The funder's own record says which center leads the construction project the successor machine is built under.",
+      "quote": "The LCCF project, led by the Texas Advanced Computing Center (TACC)",
+      "url": "https://api.nsf.gov/services/v1/awards/2323116.json",
+      "source_title": "NSF Award API record 2323116",
       "source_type": "primary_official",
       "retrieved": "2026-09-07",
       "confidence": "high"
@@ -227,7 +237,11 @@
     {
       "finding": "The three routes into Horizon rendered as one string",
       "reason": "The guide lists them as three separate items. Joining them with slashes would be a quote of something the page does not print, so only the one that names the national AI resource is quoted."
+    },
+    {
+      "finding": "That Horizon succeeds, replaces or is the successor to Frontera",
+      "reason": "NO FETCHED SOURCE STATES IT. The Horizon guide names Frontera only in site navigation and in one performance comparison, 'a performance increase of over 3x compared to Frontera's CLX nodes'. The NSF LCCF award abstract never uses the word Frontera at all. The one text that did say it, the NSF project outcomes report calling Horizon the bridge system to the next Leadership System, is a self-reported PI narrative and was already rejected above. The deck's own frame 4 says the Frontera guide names no machine the work goes to, so asserting a successor would contradict the deck's own argument. What IS supported is that one center runs both, which is c19 and c21."
     }
   ],
-  "notes": "Hosts fetched: docs.tacc.utexas.edu, api.nsf.gov. The apostrophe in Frontera's on the closing warning is U+2019 in the raw HTML, confirmed byte by byte, so every quote above is cut short of it and no quote in this deck carries a curly apostrophe. The sentence in the source also carries two spaces between sentences, so each quote is a single sentence and no quote spans a sentence boundary. TACC's page and NSF's record give award 1818253 two different titles, Computing and Computation, and both are quoted separately at c9 and c8 rather than merged. c19 was added after noun_trace found the acting body printed on two frames with no claim behind it, and after texan_check reported no deciding body named. The centre's name is in the guide's own sentence about what Frontera is, so the noun now traces to the same page every other claim on those frames does."
+  "notes": "Hosts fetched: docs.tacc.utexas.edu, api.nsf.gov. The apostrophe in Frontera's on the closing warning is U+2019 in the raw HTML, confirmed byte by byte, so every quote above is cut short of it and no quote in this deck carries a curly apostrophe. The sentence in the source also carries two spaces between sentences, so each quote is a single sentence and no quote spans a sentence boundary. TACC's page and NSF's record give award 1818253 two different titles, Computing and Computation, and both are quoted separately at c9 and c8 rather than merged. c19 was added after noun_trace found the acting body printed on two frames with no claim behind it, and after texan_check reported no deciding body named. The center's name is in the guide's own sentence about what Frontera is, so the noun now traces to the same page every other claim on those frames does. c21 was added in the repair round after the integrity judge found the deck asserting a succession relation no source carries. The two machines are now joined only by the center that runs both, which is what the record actually establishes."
 }

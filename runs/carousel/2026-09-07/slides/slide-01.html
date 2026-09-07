@@ -65,10 +65,18 @@ window.renderReady = (async () => {
     for(let cy=y0; cy<y1; cy+=PITCH){
       for(let cx=54; cx<W; cx+=PITCH*2.35){
         const lit=Math.pow(Math.max(0,(cy-260)/(H-260)),2.0);
-        x.fillStyle='#0A0F12'; x.fillRect(cx,cy,HOLE,HOLE);
-        x.fillStyle='rgba(163,188,192,'+(0.10+lit*0.55)+')';       // the lit lower lip
-        x.fillRect(cx,cy+HOLE-2.6,HOLE,2.6);
-        x.fillStyle='rgba(7,11,16,0.75)'; x.fillRect(cx,cy,HOLE,2.2);
+        // FLOOR, the deepest value in the frame
+        x.fillStyle='#080C10'; x.fillRect(cx,cy,HOLE,HOLE);
+        // SIDE WALLS, catching a little of the source on their way down
+        const wg=x.createLinearGradient(cx,0,cx+HOLE,0);
+        wg.addColorStop(0,'rgba(58,74,82,'+(0.30+lit*0.55)+')');
+        wg.addColorStop(0.20,'rgba(8,12,16,0)'); wg.addColorStop(0.80,'rgba(8,12,16,0)');
+        wg.addColorStop(1,'rgba(58,74,82,'+(0.30+lit*0.55)+')');
+        x.fillStyle=wg; x.fillRect(cx,cy,HOLE,HOLE);
+        // LIT LOWER LIP, because the light is below
+        x.fillStyle='rgba(163,188,192,'+(0.22+lit*0.62)+')';
+        x.fillRect(cx,cy+HOLE-3.2,HOLE,3.2);
+        x.fillStyle='rgba(7,11,16,0.85)'; x.fillRect(cx,cy,HOLE,2.6);
       }
     }
   }

@@ -72,7 +72,20 @@ off at all and its edges are hard. A reader does not need that explained to feel
 sources are HTML user guides and drawing them as bond would be a lie about the medium, which is
 also how the bright-full-bleed-sheet-at-slide-5 problem is answered rather than dodged.
 
-**Planned value arc, per-frame median L\*: 14, 20, 58, 16, 11, 9, 26, 24, 30. Deck median 20.**
+**Value arc, per-frame median L\*: 9, 10, 62, 7, 10, 6, 7, 12, 14. Deck median 10.**
+
+**THIS ARC WAS REDRAWN ONCE AND THEN CORRECTED, and both halves are stated because the gate
+offers exactly that choice.** The first build measured a deck median of 4.1 against an original
+plan of 20, which is not a deck that came out a little dark, it is nine near-black rectangles.
+The plane source kept its shape and its direction and gained the amplitude it always needed,
+which moved the deck to 10.4. What then held it under the original plan is the SCRIMS the
+rubric's own 4.5 contrast floor required under six frames' type. A scrim is a reserve under a
+line, it is the engine's own prescribed remedy, and it necessarily darkens the frame it saves.
+The arc above is therefore the frame that exists rather than the frame that was hoped for, and
+the honest reading is that this register cannot hold a median of 20 while also clearing the
+contrast floor on a dark ground. **The next deck in a dark register should plan its type
+reserves at storyboard time and set its arc from what is left**, rather than planning an arc
+and discovering the reserves afterwards.
 Decisively under the light-deck cap of 60, which 2026-09-03 already spent. The single inversion is
 at **frame 3**, not frame 5, which breaks a run of five decks putting it in that slot. The close at
 30 is a real climb out of frames 5 and 6, which is what deck 16's avoid_next asked for.
@@ -199,8 +212,9 @@ slide: 3
 job: >
   THE INVERSION. Give the reader the one sentence that says what is being switched off, at the
   largest scale in the deck, and spend the deck's only bright frame on it.
-claims: [c3]
-numerals: []
+claims: [c3, c14]
+numerals:
+  - value_from: c14    # September 3, 2026, printed in the frame's own metadata block
 composition:
   structure: >
     Full emission. The document body run to all four edges as one solid om4 field with a 3 percent
@@ -237,7 +251,7 @@ verbatim:
 acceptance:
   - 'the frame carries "open science in the United States" knocked out of the lit field'
   - "the lit field covers not less than 78 percent of the frame's pixels at 432px"
-  - "the knockout letterforms measure at or below L* 12 at their centres at 432px"
+  - "the knockout letterforms measure at or below L* 12 at their centers at 432px"
   - "a frame that renders type as ink on dark rather than as a knockout out of light fails"
   - "the mono furniture sits at the TOP of the frame, not the bottom, because on this frame there is no dark bottom edge to sit on"
   - "the sentence is the source's own and is set without a closing full stop, because the quote carries none"
@@ -477,7 +491,7 @@ composition:
   structure: >
     Two riveted anodised nameplates for ONE award, produced by one function from one constant set
     and seated on one shelf lip, in a steep three quarter from 40 degrees down. One carries the
-    funder's record's title, one carries the centre's own page's title. The shared prefix is
+    funder's record's title, one carries the center's own page's title. The shared prefix is
     aligned to the pixel across both plates, and the ONLY emitting region on either plate is the
     segment where the two strings diverge.
   bands: >
@@ -504,7 +518,7 @@ art:
   motion: "along the shared prefix from left, stopping at the lit divergence, then down to the second plate and the same stop"
 type:
   hook: "One award, two names."
-  dek: "The funder's own record and the machine's own page give award 1818253 two different titles. Neither document mentions the other."
+  dek: "The funder's own record and the machine's own page give award 1818253 two different titles."   # the trailing sentence came off in the repair round: it was an unsourced NEGATIVE about two documents' contents, and the run's own snapshots refute it, since the Frontera guide does name the award number and the funder
   labels: ["NATIONAL SCIENCE FOUNDATION", "NSF AWARD RECORD 1818253", "FRONTERA USER GUIDE", "c7 c8 c9", "texasaidocket.com", "08 / 09"]
 verbatim:
   - c9: "Computing for the Endless Frontier"
@@ -518,7 +532,7 @@ acceptance:
   - "no strike-through, no cross, no tick and no colour difference distinguishes the two plates"
   - "a frame that lights a whole plate rather than a segment fails"
 risks:
-  - "a reader could take the lit divergence as this record correcting the centre's page. The dek says neither document mentions the other and both plates are silkscreened with their own source, so the frame reports rather than adjudicates"
+  - "a reader could take the lit divergence as this record correcting the center's page. The dek says neither document mentions the other and both plates are silkscreened with their own source, so the frame reports rather than adjudicates"
 ```
 
 ```yaml
@@ -526,7 +540,7 @@ slide: 9
 job: >
   THE CLOSE. Hand the reader a dated action and a named route, and end on cables leaving the frame
   upward against slide 4's cable leaving it downward.
-claims: [c1, c13, c15, c20]
+claims: [c1, c13, c15, c20, c21]
 numerals:
   - value_from: c1     # October 1, 2026
 composition:
@@ -562,8 +576,8 @@ art:
   motion: "up from the hook, through the ports, along the climbing jumpers and out of the top edge"
 type:
   hook: "Three ways in. The record checked one."
-  dek: "Anyone with work on Frontera has until October 1st, 2026 to move it. The successor's guide is where its access rule will change."   # the trailing date came off in the QA pass: it overprinted the door line by 63 percent
-  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON USER GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c13 c15 c20", "texasaidocket.com", "09 / 09"]
+  dek: "Anyone with work on Frontera has until October 1st, 2026 to move it. The same center runs Horizon, and the Horizon guide is where that machine's access rule is published."   # rewritten in the repair round. The frame used to say the access rule WILL CHANGE, which is a future event no source states, and it called Horizon the successor, which no fetched quote establishes either
+  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c13 c15 c20 c21", "texasaidocket.com", "09 / 09"]
 verbatim:
   - c13: "National Artificial Intelligence Research Resource Pilot (NAIRR)"
 acceptance:

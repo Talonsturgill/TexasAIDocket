@@ -11,6 +11,9 @@ html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;backgrou
      qa.py found canvas edges running through their glyph bands, which reads as a
      strikethrough at feed width. A scrim lifts the floor under the whole block rather than
      moving the art, which is the fix the engine contract asks for. */
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:210px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0.94) 0%,rgba(7,11,16,0.66) 62%,
+    rgba(7,11,16,0) 100%)}
   .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:490px;
     background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.86) 44%,
     rgba(7,11,16,0.99) 100%)}
@@ -31,6 +34,7 @@ html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;backgrou
 <body>
 <canvas id="art"></canvas>
 <div class="wrap">
+  <div class="tscrim" data-decorative></div>
   <div class="fscrim" data-decorative></div>
   <div class="mast">TEXAS AI DOCKET</div>
   <p class="dek">FRONTERA USER GUIDE<br>ONE PROMISE FOR<br>AFTER THE DATE</p>
@@ -76,10 +80,17 @@ window.renderReady = (async () => {
       // the cavity floor
       x.fillStyle='#0A0F12'; x.fillRect(px,py,PW,PH);
       // the side walls, catching a little of the source
+      // SIDE WALLS, drawn as real returns with their own falloff into the cavity
       const wg=x.createLinearGradient(px,0,px+PW,0);
-      wg.addColorStop(0,'rgba(46,60,66,0.85)'); wg.addColorStop(0.14,'rgba(10,15,18,0)');
-      wg.addColorStop(0.86,'rgba(10,15,18,0)'); wg.addColorStop(1,'rgba(46,60,66,0.85)');
+      wg.addColorStop(0,'rgba(74,92,101,0.95)'); wg.addColorStop(0.09,'rgba(40,52,58,0.55)');
+      wg.addColorStop(0.22,'rgba(10,15,18,0)'); wg.addColorStop(0.78,'rgba(10,15,18,0)');
+      wg.addColorStop(0.91,'rgba(40,52,58,0.55)'); wg.addColorStop(1,'rgba(74,92,101,0.95)');
       x.fillStyle=wg; x.fillRect(px,py,PW,PH);
+      // and a BACK FLOOR that is not the same value as the walls, so the cavity has depth
+      const dg=x.createLinearGradient(0,py,0,py+PH);
+      dg.addColorStop(0,'rgba(6,9,12,0.95)'); dg.addColorStop(0.62,'rgba(14,20,24,0.55)');
+      dg.addColorStop(1,'rgba(58,74,80,0.42)');
+      x.fillStyle=dg; x.fillRect(px+9,py+4,PW-18,PH-10);
       // THE LIT LOWER LIP. The light is below, so the lip is the brightest part.
       x.fillStyle='rgba(120,146,150,0.92)'; x.fillRect(px,py+PH-7,PW,7);
       x.fillStyle='rgba(201,212,210,0.55)'; x.fillRect(px,py+PH-7,PW,2.2);

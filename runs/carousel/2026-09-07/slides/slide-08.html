@@ -19,6 +19,12 @@
   .dek{position:absolute;left:80px;bottom:150px;width:640px;margin:0;
     font-family:Manrope,sans-serif;font-weight:500;font-size:27px;line-height:1.30;color:#9BB0B4}
 
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:230px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0.94) 0%,rgba(7,11,16,0.66) 62%,
+    rgba(7,11,16,0) 100%)}
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:430px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.90) 30%,
+    rgba(7,11,16,1) 58%,rgba(7,11,16,1) 100%)}
   .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
     gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
     letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
@@ -26,11 +32,13 @@
 <body>
 <canvas id="art"></canvas>
 <div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="fscrim" data-decorative></div>
   <div class="mast">TEXAS AI DOCKET</div>
   <h1>National Science Foundation</h1>
   <p class="hook">One award, two names.</p>
   <p class="dek">The funder's own record and the machine's own page give award 1818253 two
-     different titles. Neither document mentions the other.</p>
+     different titles.</p>
   <div class="foot"><span>NSF 1818253</span><span>c7 c8 c9</span>
     <span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
 </div>
@@ -123,9 +131,9 @@ window.renderReady = (async () => {
   const NS = 'http://www.w3.org/2000/svg';
   const TITLES = [
     { pre: 'Comput', mid: 'ation', post: ' for the Endless Frontier',
-      src: 'NSF AWARD RECORD 1818253   c8' },
+      src: 'NSF AWARD RECORD 1818253' },
     { pre: 'Comput', mid: 'ing',   post: ' for the Endless Frontier',
-      src: 'FRONTERA USER GUIDE   c9' },
+      src: 'FRONTERA USER GUIDE' },
   ];
   const TX0 = P.x + 46, FS = 34;
   const litRects = [];

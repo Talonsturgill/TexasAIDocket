@@ -1,7 +1,7 @@
 {
   "run": "2026-09-07",
   "deck": 17,
-  "note": "Built from the render report's own laid out text nodes rather than from the storyboard. Every string here is a string the browser actually set, so the record cannot drift from the deck.",
+  "note": "Built from the render report's own laid out text nodes rather than from the storyboard. Every string here is a string the browser actually set, and this file is rebuilt after every render round so it cannot describe a deck that no longer exists.",
   "slides": {
     "S1": {
       "hook": "The queues close October 1st.",
@@ -11,7 +11,7 @@
         "FRONTERA GUIDE",
         "On October 1, 2026, the Frontera queues will be closed permanently.",
         "TEXAS AI DOCKET",
-        "c1 c14",
+        "c1 c14 c19",
         "texasaidocket.com"
       ],
       "claims": [
@@ -28,7 +28,7 @@
         "FRONTERA GUIDE",
         "TEXAS AI DOCKET",
         "Texas Advanced Computing Center",
-        "c2 c14",
+        "c2 c14 c19",
         "texasaidocket.com"
       ],
       "claims": [
@@ -42,20 +42,20 @@
       "dek": "",
       "labels": [
         "03 / 09",
-        "CLAIM",
         "FRONTERA USER GUIDE",
         "LAST UPDATE",
         "SOURCE",
         "September 3, 2026",
         "TEXAS AI DOCKET",
-        "c3",
+        "c3 c14",
         "docs.tacc.utexas.edu/hpc/frontera/",
         "texasaidocket.com",
         "§ INTRODUCTION",
         "¶ docs.tacc.utexas.edu/hpc/frontera/"
       ],
       "claims": [
-        "c3"
+        "c3",
+        "c14"
       ]
     },
     "S4": {
@@ -125,18 +125,18 @@
     },
     "S8": {
       "hook": "National Science Foundation",
-      "dek": "The funder's own record and the machine's own page give award 1818253 two different titles. Neither document mentions the other.",
+      "dek": "The funder's own record and the machine's own page give award 1818253 two different titles.",
       "labels": [
         "08 / 09",
-        "Comput",
-        "FRONTERA USER GUIDE c9",
+        "Computation for the Endless Frontier",
+        "Computing for the Endless Frontier",
+        "FRONTERA USER GUIDE",
         "NSF 1818253",
-        "NSF AWARD RECORD 1818253 c8",
+        "NSF AWARD RECORD 1818253",
         "One award, two names.",
         "TEXAS AI DOCKET",
         "ation",
         "c7 c8 c9",
-        "for the Endless Frontier",
         "ing",
         "texasaidocket.com"
       ],
@@ -148,14 +148,14 @@
     },
     "S9": {
       "hook": "Three ways in. The record checked one.",
-      "dek": "Anyone with work on Frontera has until October 1st, 2026 to move it. The successor's guide is where its access rule will change.",
+      "dek": "Anyone with work on Frontera has until October 1st, 2026 to move it. The same center runs Horizon, and the Horizon guide is where that machine's access rule is published.",
       "labels": [
         "09 / 09",
-        "HORIZON USER GUIDE",
+        "HORIZON GUIDE",
         "NATIONAL ARTIFICIAL INTELLIGENCE RESEARCH RESOURCE PILOT (NAIRR)",
         "OCTOBER 1ST, 2026",
         "TEXAS AI DOCKET",
-        "c1 c13 c15",
+        "c1 c13 c15 c20 c21",
         "docs.tacc.utexas.edu/hpc/horizon/",
         "texasaidocket.com"
       ],
@@ -163,7 +163,8 @@
         "c1",
         "c13",
         "c15",
-        "c20"
+        "c20",
+        "c21"
       ]
     }
   }

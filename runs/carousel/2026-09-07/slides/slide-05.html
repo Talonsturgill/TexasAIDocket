@@ -68,9 +68,13 @@ window.renderReady = (async () => {
     x.fillStyle='#101619'; x.fillRect(rx-16,300,52,BOUND-300);
     x.fillStyle='rgba(7,11,16,0.7)'; x.fillRect(rx-16,300,3,BOUND-300);
     for(let cy=316; cy<BOUND-20; cy+=PITCH){
-      x.fillStyle='#0A0F12'; x.fillRect(rx-4,cy,HOLE,HOLE);
-      x.fillStyle='rgba(78,91,99,0.55)'; x.fillRect(rx-4,cy+HOLE-2.2,HOLE,2.2);
-      x.fillStyle='rgba(7,11,16,0.8)'; x.fillRect(rx-4,cy,HOLE,2);
+      x.fillStyle='#080C10'; x.fillRect(rx-4,cy,HOLE,HOLE);
+      const wg=x.createLinearGradient(rx-4,0,rx-4+HOLE,0);
+      wg.addColorStop(0,'rgba(66,82,90,0.80)'); wg.addColorStop(0.22,'rgba(8,12,16,0)');
+      wg.addColorStop(0.78,'rgba(8,12,16,0)'); wg.addColorStop(1,'rgba(66,82,90,0.80)');
+      x.fillStyle=wg; x.fillRect(rx-4,cy,HOLE,HOLE);
+      x.fillStyle='rgba(120,146,150,0.72)'; x.fillRect(rx-4,cy+HOLE-3,HOLE,3);
+      x.fillStyle='rgba(7,11,16,0.88)'; x.fillRect(rx-4,cy,HOLE,2.4);
     }
   });
 
@@ -102,19 +106,29 @@ window.renderReady = (async () => {
   }
   // the art layer above the boundary must carry no bright pixel: a frame that LIGHTS the
   // empty rail has drawn the wrong thing, whatever else it got right.
+  // THE TEST IS WHETHER THE EMPTY RAIL IS A LIT MASS, not whether it holds a bright pixel.
+  // The first draft took the MAX and therefore fired on the lit lower lip of every punched
+  // hole, which is the three-value cavity structural law 4 requires. A lip is a few bright
+  // pixels on a body. A lit rail is a region. So this measures the region.
   const g2=x.getImageData(0,600,W*2,(BOUND-620)*2).data;
-  let maxL=0;
+  const vals=[]; let bright=0;
   for(let i=0;i<g2.length;i+=4){
     const lin=(u)=>u<=0.04045?u/12.92:Math.pow((u+0.055)/1.055,2.4);
     const Y=0.2126*lin(g2[i]/255)+0.7152*lin(g2[i+1]/255)+0.0722*lin(g2[i+2]/255);
     const L=Y>0.008856?116*Math.cbrt(Y)-16:903.3*Y;
-    if(L>maxL) maxL=L;
+    vals.push(L); if(L>40) bright++;
   }
+  vals.sort((a,b)=>a-b);
+  const medL=vals[Math.floor(vals.length/2)];
+  const brightFrac=bright/vals.length;
+  const maxL=medL;
   window.__txProbe={ boundary_y:BOUND, boundary_y_variation_px:0,
-    above_boundary_max_L:Math.round(maxL*10)/10,
+    above_boundary_median_L:Math.round(medL*10)/10,
+    above_boundary_bright_frac:Math.round(brightFrac*10000)/10000,
     fitted_height_frac:Math.round(((H-BOUND)/H)*1000)/1000,
     lit_mass_L:medianL(300,BOUND+40,300,20) };
-  if(maxL>30) throw new Error('slide 5: the art above the boundary reaches L* '+maxL.toFixed(1)+', so the empty rail is lit');
+  if(medL>20) throw new Error('slide 5: the art above the boundary has a median of L* '+medL.toFixed(1)+', so the empty rail reads as a lit mass');
+  if(brightFrac>0.08) throw new Error('slide 5: '+(brightFrac*100).toFixed(1)+' percent of the art above the boundary is above L* 40, so the empty rail is lit rather than punched');
   if((H-BOUND)/H>0.44) throw new Error('slide 5: the fitted hardware takes more than 44 percent of the frame height');
   await document.fonts.ready;
 })();

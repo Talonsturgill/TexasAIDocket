@@ -116,3 +116,27 @@ All ten checks exit 0. Grid watch page check, water watch page check, the water 
 **The scanner's daily ceiling was NOT checked.** No Supabase connector is attached to this
 session, so the query could not be run at all. This is the state the phase says to name and carry
 on from, and it is worth a maintainer's attention only if it repeats.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 21 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 5 warn(s) |
+| aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.14 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | PASS   | 10 declared fragment(s) over 8 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 41,197 chars planned |
+| caption        | PASS   | 153 words |
+| craft floor    | WARN   | 9 frame(s), median 767, floor 138, 1 quiet |
+| plan vs render | PASS   | 9 of 56 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body NO / deadline yes / next step yes |
+| absences       | PASS   | 6 of 6 scoped to a named document |
+| numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
