@@ -11,7 +11,7 @@ Guadalupe County Sheriff Joshua Ray asked the Commissioners Court for permission
 - Public access: Public meeting
 - Take part: https://www.guadalupetx.gov/page/commcourt.agendas
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-07
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · The court's decision to end the contract is still corroborated by the San Antonio station's account, which still carries the vandalism of every Flock camera in Seguin. The sheriff's stated reasoning for ending it, which the record takes from the Seguin paper, is unconfirmed this run because that account is no longer readable without a subscription.
 - 2026-09-02 · The termination of the county's camera contract stands and the commissioners court has recorded no move to restore it.
 - 2026-09-05 · The county's end of its plate reader contract still stands on the San Antonio station's account. The newspaper carrying the sheriff's own words now sits behind a subscription wall, so what he said about the cost is unconfirmed.
+- 2026-09-07 · The San Antonio station's account still carries the sheriff's own words on why the contract ended, and the cost of replacing vandalized cameras is still the reason he gives rather than the technology itself. The Seguin newspaper's account can no longer be read, because that publisher's crawl rules now exclude automated readers, so three quotes drawn from it are unconfirmed today. Three the station carries in its own words now stand beside them and they do not differ.
 
 ## Evidence
 
@@ -53,6 +54,24 @@ Source (journalism): https://seguingazette.com/news/sheriff-ends-county-s-flock-
 ### Public scrutiny of the cameras was part of the sheriff's stated reasoning, and cameras in Seguin were vandalized.
 
 > Every Flock camera in Seguin was vandalized
+
+Source (journalism): https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/
+
+### The sheriff gave the cost of replacing vandalized cameras as his reason.
+
+> I refuse to spend your tax dollars replacing equipment that is likely to keep getting torn down
+
+Source (journalism): https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/
+
+### The sheriff named public scrutiny as what the cameras had drawn.
+
+> There’s so much public scrutiny over it
+
+Source (journalism): https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/
+
+### The county says the vendor would not cover replacement of the damaged cameras.
+
+> is refusing to pay the cost to replace those cameras
 
 Source (journalism): https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/
 

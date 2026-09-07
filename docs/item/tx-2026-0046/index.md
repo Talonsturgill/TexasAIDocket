@@ -11,7 +11,7 @@ Carson County Commissioners Court approved a tax abatement agreement with Fermi 
 - Public access: Public meeting
 - Take part: https://www.newschannel10.com/2025/10/28/carson-county-approves-tax-abatement-fermi-america-development/
 
-- Last checked: 2026-09-02
+- Last checked: 2026-09-07
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The phased abatement agreement the court approved still stands and its phases still turn on buildings and generation being completed. No later court action alters it.
 - 2026-09-02 · The phased abatement stands as approved and the county has recorded no amendment to it.
 - 2026-09-05 · Carson County's phased abatement for the Fermi America development still stands. The station's account of the vote sits behind a wall that would not open, so the commissioners' own words are unconfirmed.
+- 2026-09-07 · The agreement now has a primary source behind it. The company's quarterly report to federal securities regulators, filed August 14th, 2026, states that Carson County approved a 10-year property tax abatement and established a reinvestment zone for the campus. That description and the Amarillo station's account of an agreement covering 15 phases that could extend for up to 25 years do not describe the same length, and neither document reconciles them. The county's own signed agreement is what would settle it and it is not published. The Amarillo station's own crawl rules now exclude automated readers, so its five quotes stand unconfirmed today.
 
 ## Evidence
 
@@ -67,4 +68,16 @@ Source (journalism): https://www.newschannel10.com/2025/10/28/carson-county-appr
 > The SPP grid covers Oklahoma, Kansas, portions of Arkansas, Louisiana and the Texas Panhandle and parts of northeast Texas, including the cities of Amarillo, Lubbock, Texarkana, Longview and Marshall.
 
 Source (primary_official): https://www.aect.net/southwest-power-pool-spp
+
+### The company's own quarterly report to federal securities regulators describes the county's abatement and the reinvestment zone.
+
+> In October 2025, Carson County approved a 10-year property tax abatement and established a reinvestment zone for the Project Matador campus.
+
+Source (primary_corporate): https://www.sec.gov/Archives/edgar/data/2071778/000207177826000051/frmi-20260630.htm
+
+### The company describes the campus the abatement covers.
+
+> The Company is developing its first campus, Project Matador, in Carson County, Texas, integrating approximately 11 gigawatts of private-grid power generation with large-scale AI data center infrastructure.
+
+Source (primary_corporate): https://www.sec.gov/Archives/edgar/data/2071778/000207177826000051/frmi-20260630.htm
 
