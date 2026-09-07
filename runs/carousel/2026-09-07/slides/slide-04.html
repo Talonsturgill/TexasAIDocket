@@ -1,0 +1,136 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#070B10}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#7C8A8C}
+  /* A BOTTOM SCRIM. The footer and the closing prose sit over drawn art on this frame, and
+     qa.py found canvas edges running through their glyph bands, which reads as a
+     strikethrough at feed width. A scrim lifts the floor under the whole block rather than
+     moving the art, which is the fix the engine contract asks for. */
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:490px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.86) 44%,
+    rgba(7,11,16,0.99) 100%)}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
+  /* TYPE MOVE. The hook goes small and low left, under the panel, crossed by the departing
+     jumper, and the dek becomes one mono block hard against the right margin. The frame's
+     largest type is not at the top and the eye lands on the lit port first. */
+  h1{position:absolute;left:80px;top:892px;width:660px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:58px;line-height:1.02;color:#E2EAE8;letter-spacing:-.016em}
+  .dek{position:absolute;right:80px;top:214px;width:380px;text-align:right;margin:0;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;line-height:1.46;
+    color:#9BB0B4}
+  .q{position:absolute;left:80px;top:1058px;width:640px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:25px;line-height:1.28;color:#9BB0B4}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="fscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <p class="dek">FRONTERA USER GUIDE<br>ONE PROMISE FOR<br>AFTER THE DATE</p>
+  <h1>The cable goes somewhere the page does not.</h1>
+  <p class="q">The guide says the file systems stay reachable to move data off. It names no
+     machine the work goes to.</p>
+  <div class="foot"><span>FRONTERA GUIDE</span><span>c6 c18</span>
+    <span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260907;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+  const OM4='#3FB8A6', OM4_DIM='#1C4F4A';
+
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2,v=py/2;
+    const lift=Math.pow(Math.max(0,(v-160)/(H-160)),1.25)*92;
+    const g=TX.fbm2(u/3.4,v/3.4,2)*12+TX.fbm2(u/180,v/180,3)*15;
+    const L=30+lift+g; const i=(py*W*2+px)*4;
+    d[i]=L*0.84; d[i+1]=L*1.00; d[i+2]=L*1.14; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // ======================================================================
+  // A PATCH PANEL AT 1 TO 1, cropped by BOTH frame edges so no port count and therefore
+  // no ratio is readable. Every empty port is a CAVITY, per law 4: a lit lip, a drawn
+  // side wall and a floor. Never a black rectangle.
+  // ======================================================================
+  const PW=104, PH=124, GX=18, GY=20, TOP=330, ROWS=4;
+  x.fillStyle='#111A1D'; x.fillRect(-40,TOP-26,W+80,ROWS*(PH+GY)+52);
+  x.fillStyle='rgba(126,149,153,0.30)'; x.fillRect(-40,TOP+ROWS*(PH+GY)+22,W+80,3);
+
+  const cavities=[];
+  let landed=null;
+  for(let r0=0;r0<ROWS;r0++){
+    for(let px=-46; px<W+46; px+=PW+GX){
+      const py=TOP+r0*(PH+GY);
+      // the cavity floor
+      x.fillStyle='#0A0F12'; x.fillRect(px,py,PW,PH);
+      // the side walls, catching a little of the source
+      const wg=x.createLinearGradient(px,0,px+PW,0);
+      wg.addColorStop(0,'rgba(46,60,66,0.85)'); wg.addColorStop(0.14,'rgba(10,15,18,0)');
+      wg.addColorStop(0.86,'rgba(10,15,18,0)'); wg.addColorStop(1,'rgba(46,60,66,0.85)');
+      x.fillStyle=wg; x.fillRect(px,py,PW,PH);
+      // THE LIT LOWER LIP. The light is below, so the lip is the brightest part.
+      x.fillStyle='rgba(120,146,150,0.92)'; x.fillRect(px,py+PH-7,PW,7);
+      x.fillStyle='rgba(201,212,210,0.55)'; x.fillRect(px,py+PH-7,PW,2.2);
+      x.fillStyle='rgba(28,79,74,0.70)'; x.fillRect(px,py+PH-9.5,PW,2.5);   // om4_dim lip
+      x.fillStyle='rgba(7,11,16,0.92)'; x.fillRect(px,py,PW,3.4);           // top edge, dark
+      cavities.push({x:px,y:py,w:PW,h:PH});
+      if(r0===1 && px>380 && px<520) landed={x:px,y:py};
+    }
+  }
+
+  // ---- THE ONE LANDED PORT, and the jumper that leaves DOWN and out of the frame ----
+  if(landed){
+    const px=landed.x, py=landed.y, cx=px+PW/2;
+    x.fillStyle='#1D2A2E'; x.fillRect(px+4,py+4,PW-8,PH-8);
+    x.fillStyle='#453E3A'; x.fillRect(px+16,py+44,PW-32,PH-52);
+    x.fillStyle=OM4; x.fillRect(px+16,py+16,PW-32,22);
+    x.fillStyle='rgba(150,235,220,0.62)'; x.fillRect(px+16,py+16,PW-32,7);
+    const pts=[[cx,py+30],[cx,846],[cx+286,982],[cx+412,H+40]];
+    x.lineCap='round'; x.lineJoin='round';
+    x.beginPath(); x.moveTo(pts[0][0],pts[0][1]);
+    for(let k=1;k<pts.length;k++) x.lineTo(pts[k][0],pts[k][1]);
+    x.strokeStyle='rgba(7,11,16,0.94)'; x.lineWidth=24; x.stroke();
+    x.strokeStyle=OM4; x.lineWidth=18; x.stroke();
+    x.strokeStyle='rgba(150,235,220,0.48)'; x.lineWidth=6; x.stroke();
+  }
+
+  function medianL(x0,y0,w,h){
+    const g=x.getImageData(Math.max(0,x0*2),Math.max(0,y0*2),Math.max(2,w*2),Math.max(2,h*2)).data;
+    const v=[];
+    for(let i=0;i<g.length;i+=4){
+      const lin=(u)=>u<=0.04045?u/12.92:Math.pow((u+0.055)/1.055,2.4);
+      const Y=0.2126*lin(g[i]/255)+0.7152*lin(g[i+1]/255)+0.0722*lin(g[i+2]/255);
+      v.push(Y>0.008856?116*Math.cbrt(Y)-16:903.3*Y);
+    }
+    v.sort((a,b)=>a-b); return v[Math.floor(v.length/2)];
+  }
+  // SAMPLE A CAVITY THAT IS WHOLLY ON THE FRAME AND IS NOT THE LANDED ONE. The first
+  // draft probed cavities[9], which sits at x 1052 and is mostly off the right edge, so
+  // getImageData clamped it to a sliver and the lip and the floor measured the same thing.
+  // The probe was wrong, not the drawing, and the threshold stays where it was.
+  const cv=cavities.find(v => v.x>=120 && v.x+v.w<=W-120 && !(landed && v.x===landed.x && v.y===landed.y))
+           || cavities[0];
+  const lipL=medianL(cv.x+20,cv.y+cv.h-6,60,5);
+  const floorL=medianL(cv.x+20,cv.y+40,60,40);
+  window.__txProbe={ cavity_count:cavities.length, cavity_min_side:Math.min(PW,PH),
+    lip_L:lipL, floor_L:floorL, lip_minus_floor:lipL-floorL,
+    landed_ports:landed?1:0, jumper_exits_bottom:true };
+  if(Math.min(PW,PH)<34) throw new Error('slide 4: a cavity is under 34px on its short side');
+  if(lipL-floorL<6) throw new Error('slide 4: a cavity lip is under 6 L* above its floor, so it reads as a flat fill');
+  if(!landed) throw new Error('slide 4: no landed port was drawn');
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

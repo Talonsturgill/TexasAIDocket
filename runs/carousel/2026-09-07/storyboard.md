@@ -95,7 +95,7 @@ slide: 1
 job: >
   Open on the act, dated, and make the reader understand in one second that a manual is closing
   its own machine. No other slide states the closure as the deck's own headline.
-claims: [c1, c14]
+claims: [c1, c14, c19]
 numerals:
   - value_from: c1     # October 1, 2026
   - value_from: c14    # September 3, 2026
@@ -131,11 +131,11 @@ art:
 type:
   hook: "The queues close October 1st."
   dek: "The Texas Advanced Computing Center put a warning at the top of Frontera's user guide. The guide was last updated September 3rd, 2026."
-  labels: ["TEXAS AI DOCKET", "FRONTERA USER GUIDE", "c1 c14", "texasaidocket.com", "01 / 09"]
+  labels: ["TEXAS AI DOCKET", "FRONTERA GUIDE", "c1 c14 c19", "texasaidocket.com", "01 / 09"]
 verbatim:
   - c1: "On October 1, 2026, the Frontera queues will be closed permanently."
-  - c14: "Last update: September 3, 2026"
 acceptance:
+  - 'the frame carries "The queues close October 1st." as its display line'
   - "the admonition box's drawn height equals the measured height of its laid-out quote plus twice 22px padding, from getBBox, and the frame throws above 1px of error"
   - "the om4 left border measures 20 plus or minus 1 CSS px and is unbroken over the full box height"
   - "a frame that renders no quote has a zero-height box and fails, so rendering NOTHING fails this list"
@@ -150,7 +150,7 @@ slide: 2
 job: >
   Establish what a FINISHED document looks like, and name the acting body in display type. This is
   the only slide that draws completeness as a positive, fully populated thing.
-claims: [c2, c14]
+claims: [c2, c14, c19]
 numerals:
   - value_from: c2     # seven years
 composition:
@@ -179,11 +179,12 @@ art:
   motion: "left to right along the strip band, then down to the quote"
 type:
   hook: "Seven years, and one last edit."
-  dek: "The guide that carries the closing notice is the same guide that has run the machine since 2018. Nothing about it is unfinished."
-  labels: ["TEXAS ADVANCED COMPUTING CENTER", "FRONTERA USER GUIDE", "c2 c14", "texasaidocket.com", "02 / 09"]
+  dek: ""   # the frame carries the c2 quote itself in mono instead of a written dek, so the source speaks and the deck does not paraphrase it
+  labels: ["TEXAS ADVANCED COMPUTING CENTER", "FRONTERA GUIDE", "c2 c14 c19", "texasaidocket.com", "02 / 09"]
 verbatim:
   - c2: "After seven years and billions of computing cycles, Frontera will be riding off into decommission sunset."
 acceptance:
+  - 'the frame carries "Seven years, and one last edit." and the acting body in display type'
   - "all seven chassis bounding boxes are equal to within 1px and the vertical pitch is constant to within 1px, asserted by the frame's own script off the one constant set that built them"
   - "all seven emitting strips measure within 2 L* of one another off the render at 432px, so no unit reads as ranked"
   - "six bodies, eight bodies, or seven at unequal emission all fail this list"
@@ -234,6 +235,7 @@ type:
 verbatim:
   - c3: "Frontera is the largest cluster dedicated to open science in the United States"
 acceptance:
+  - 'the frame carries "open science in the United States" knocked out of the lit field'
   - "the lit field covers not less than 78 percent of the frame's pixels at 432px"
   - "the knockout letterforms measure at or below L* 12 at their centres at 432px"
   - "a frame that renders type as ink on dark rather than as a knockout out of light fails"
@@ -280,12 +282,12 @@ art:
     a black card.
   motion: "into the lit port, then down the jumper and out of the frame"
 type:
-  hook: "One promise for afterwards."
-  dek: "The guide says the file systems stay reachable to move data off. It never says what becomes of an allocation and never names a machine the work goes to."
+  hook: "The cable goes somewhere the page does not."
+  dek: "The guide says the file systems stay reachable to move data off. It names no machine the work goes to."   # shortened in the QA pass: at full length it ran past the 80px bottom margin and into the footer
   labels: ["TEXAS AI DOCKET", "FRONTERA USER GUIDE", "c6 c18", "texasaidocket.com", "04 / 09"]
-verbatim:
-  - c6: "file systems to transfer any data needed"
+verbatim: []   # the frame paraphrases c6 rather than seating it, so there is none to declare
 acceptance:
+  - 'the frame carries "The cable goes somewhere the page does not." as its display line'
   - "every empty cavity measures at least 34 CSS px on its short side, which is 13.6px at feed size, and carries three distinct values with not less than 6 L* between lip and floor measured off the render"
   - "a cavity drawn as one flat fill fails, so rendering NOTHING fails this list"
   - "exactly one port carries om4 emission, asserted by a hue pixel count in the frame's own script"
@@ -334,11 +336,12 @@ art:
   motion: "up from the lit hardware, across the boundary, into the dark rail"
 type:
   hook: "The money is real. The manual is not finished."
-  dek: "The successor is built under a construction award that runs from July 1st, 2024 to April 30th, 2028."
-  labels: ["TEXAS AI DOCKET", "NSF AWARD 2323116", "c10 c11 c12", "texasaidocket.com", "05 / 09"]
+  dek: "A construction award with a start date and an end date. What it does not yet have is a finished guide."   # the two dates moved out of the dek and into the frame's own mono block, where they are set in tabular figures
+  labels: ["TEXAS AI DOCKET", "NSF 2323116", "c10 c11 c12", "texasaidocket.com", "05 / 09"]
 verbatim:
   - c10: "Leadership Class Computing Facility (LCCF) award, Award Abstract #2323116"
 acceptance:
+  - 'the frame carries "Award Abstract #2323116" in tabular mono'
   - "the boundary is one horizontal line whose y varies by not more than 2px across the frame width, asserted by the frame off the geometry that drew it"
   - "the art layer above the boundary contains no pixel above L* 30 with the type layer removed, so a frame that lights the empty rail fails"
   - "the two dates are set in JetBrains Mono with tabular figures and neither is set in Fraunces"
@@ -392,6 +395,7 @@ type:
 verbatim:
   - c4: "Horizon is still limited only to internal users. (07/24/2026)"
 acceptance:
+  - 'the frame carries "limited only to internal users" beside the light line'
   - "the light line is continuous from the top edge to the bottom edge except at the latch, measures 18 plus or minus 1 CSS px over its whole run, and no pixel within 40px either side exceeds L* 20, so it does not bloom"
   - "both type columns' inner edges sit within 4px of the line's own edges, computed from the line's x rather than typed"
   - "the masthead is at BOTTOM LEFT on this frame and nothing sits in the top 180px"
@@ -443,12 +447,13 @@ art:
   motion: "down the left tree through three branchings, across to the right tree, then stop at the caps"
 type:
   hook: "This user guide is in progress"
-  dek: "The successor's guide says so in its own first line. It was last updated August 12th, 2026."
+  dek: "One side lands. The other ends in connectors nobody has plugged in."   # the last-update date moved to the frame's top-right mono block, which is the type move this frame declares
   labels: ["TEXAS AI DOCKET", "HORIZON USER GUIDE", "c5 c15", "texasaidocket.com", "07 / 09"]
 verbatim:
   - c5: "This user guide is in progress"
   - c15: "Last update: August 12, 2026"
 acceptance:
+  - 'the frame carries "This user guide is in progress" as its display line'
   - "the left half contains not fewer than three branching levels, each at a smaller stroke weight than its parent, and the right half none below level two, asserted by the frame's own script off the tree it built"
   - "every capped connector measures at least 26 by 26 CSS px with the cap body at least 8 L* above the boot behind it"
   - "no branch happens at a point, so every break-out is a drawn body with area"
@@ -499,15 +504,16 @@ art:
   motion: "along the shared prefix from left, stopping at the lit divergence, then down to the second plate and the same stop"
 type:
   hook: "One award, two names."
-  dek: "The funder's record and the machine's own page give award 1818253 two different titles. Neither document mentions the other."
+  dek: "The funder's own record and the machine's own page give award 1818253 two different titles. Neither document mentions the other."
   labels: ["NATIONAL SCIENCE FOUNDATION", "NSF AWARD RECORD 1818253", "FRONTERA USER GUIDE", "c7 c8 c9", "texasaidocket.com", "08 / 09"]
 verbatim:
   - c9: "Computing for the Endless Frontier"
   - c8: "Computation for the Endless Frontier"
 acceptance:
+  - 'the frame carries "for the Endless Frontier" twice, once per plate, each preceded by its own divergent segment'
   - "the two plates match in width, height, corner radius and rivet position to within 1px, from the one constant set that built both"
   - "the shared prefix's left edges align to within 1px at the same glyph size"
-  - "each emitting region is exactly its divergent segment's getBBox plus 6px, never typed"
+  - "the emitting region is exactly the divergent segment's own advance, from getSubStringLength, never typed. The dark ground under the title runs the full line, because a knockout that stops mid line puts a hard boundary inside the glyph band"
   - "the two emissions measure within 2 L* of one another off the render, so neither title is ranked"
   - "no strike-through, no cross, no tick and no colour difference distinguishes the two plates"
   - "a frame that lights a whole plate rather than a segment fails"
@@ -520,7 +526,7 @@ slide: 9
 job: >
   THE CLOSE. Hand the reader a dated action and a named route, and end on cables leaving the frame
   upward against slide 4's cable leaving it downward.
-claims: [c1, c13, c15]
+claims: [c1, c13, c15, c20]
 numerals:
   - value_from: c1     # October 1, 2026
 composition:
@@ -556,11 +562,12 @@ art:
   motion: "up from the hook, through the ports, along the climbing jumpers and out of the top edge"
 type:
   hook: "Three ways in. The record checked one."
-  dek: "Anyone with work on Frontera has until October 1st, 2026 to move it. The successor's guide is where its access rule will change, and it was last updated August 12th, 2026."
-  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON USER GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c13 c15", "texasaidocket.com", "09 / 09"]
+  dek: "Anyone with work on Frontera has until October 1st, 2026 to move it. The successor's guide is where its access rule will change."   # the trailing date came off in the QA pass: it overprinted the door line by 63 percent
+  labels: ["TEXAS AI DOCKET", "OCTOBER 1ST, 2026", "HORIZON USER GUIDE", "docs.tacc.utexas.edu/hpc/horizon/", "c1 c13 c15 c20", "texasaidocket.com", "09 / 09"]
 verbatim:
   - c13: "National Artificial Intelligence Research Resource Pilot (NAIRR)"
 acceptance:
+  - 'the frame carries "OCTOBER 1ST, 2026" and "docs.tacc.utexas.edu/hpc/horizon/"'
   - "the three landed drops are identical by construction to within 1px and their emitting strips are within 2 L* of one another, so the frame cannot rank the three routes"
   - "exactly one drop carries a silkscreen label and it reads the NAIRR string in the source's own words"
   - "the red tag's white mono computes at not less than 4.5 to 1 against the tag body at build time, from the two rendered values rather than asserted, and the frame throws below it"

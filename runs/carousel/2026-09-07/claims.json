@@ -181,6 +181,26 @@
       "source_type": "primary_official",
       "retrieved": "2026-09-07",
       "confidence": "medium"
+    },
+    {
+      "id": "c19",
+      "text": "The guide names the centre that runs the machine, in the same sentence that says what the machine is.",
+      "quote": "is the Texas Advanced Computing Center",
+      "url": "https://docs.tacc.utexas.edu/hpc/frontera/",
+      "source_title": "TACC HPC Documentation, Frontera User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
+    },
+    {
+      "id": "c20",
+      "text": "The successor's guide lists its allocation routes, and the deck's count of three is computed from this run rather than typed.",
+      "quote": "Allocations LCCF Allocations National Artificial Intelligence Research Resource Pilot (NAIRR) TxRAS System Specifications",
+      "url": "https://docs.tacc.utexas.edu/hpc/horizon/",
+      "source_title": "TACC HPC Documentation, Horizon User Guide",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-07",
+      "confidence": "high"
     }
   ],
   "rejected": [
@@ -209,5 +229,5 @@
       "reason": "The guide lists them as three separate items. Joining them with slashes would be a quote of something the page does not print, so only the one that names the national AI resource is quoted."
     }
   ],
-  "notes": "Hosts fetched: docs.tacc.utexas.edu, api.nsf.gov. The apostrophe in Frontera's on the closing warning is U+2019 in the raw HTML, confirmed byte by byte, so every quote above is cut short of it and no quote in this deck carries a curly apostrophe. The sentence in the source also carries two spaces between sentences, so each quote is a single sentence and no quote spans a sentence boundary. TACC's page and NSF's record give award 1818253 two different titles, Computing and Computation, and both are quoted separately at c9 and c8 rather than merged."
+  "notes": "Hosts fetched: docs.tacc.utexas.edu, api.nsf.gov. The apostrophe in Frontera's on the closing warning is U+2019 in the raw HTML, confirmed byte by byte, so every quote above is cut short of it and no quote in this deck carries a curly apostrophe. The sentence in the source also carries two spaces between sentences, so each quote is a single sentence and no quote spans a sentence boundary. TACC's page and NSF's record give award 1818253 two different titles, Computing and Computation, and both are quoted separately at c9 and c8 rather than merged. c19 was added after noun_trace found the acting body printed on two frames with no claim behind it, and after texan_check reported no deciding body named. The centre's name is in the guide's own sentence about what Frontera is, so the noun now traces to the same page every other claim on those frames does."
 }

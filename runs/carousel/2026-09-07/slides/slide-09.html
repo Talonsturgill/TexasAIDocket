@@ -1,0 +1,195 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#070B10}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#7C8A8C}
+
+  /* THE DATE, in the deck's one reserved red, as a filled tag body carrying knockout mono.
+     Red as a TAG rather than as ink on dark, which cannot clear 4.5 in this register. */
+  .tag{position:absolute;top:236px;right:80px;background:#BF0A30;padding:14px 22px;
+    font-family:"JetBrains Mono",monospace;font-weight:700;font-size:31px;letter-spacing:.06em;
+    color:#FFFFFF;font-variant-numeric:tabular-nums}
+
+  .plabel{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#E2EAE8;white-space:nowrap}
+
+  /* TYPE MOVE. The frame reads bottom up: the hook is the smallest display type in the deck
+     and sits hard against the bottom edge, and the eye climbs toward the departing cables. */
+  h1{position:absolute;left:80px;top:918px;width:800px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:62px;line-height:1.0;color:#E2EAE8;letter-spacing:-.015em}
+  .dek{position:absolute;left:80px;top:1048px;width:880px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:25px;line-height:1.28;color:#9BB0B4}
+
+  .door{position:absolute;left:80px;top:1174px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.03em;color:#3FB8A6}
+  /* A BOTTOM SCRIM. The footer and the closing prose sit over drawn art on this frame, and
+     qa.py found canvas edges running through their glyph bands, which reads as a
+     strikethrough at feed width. A scrim lifts the floor under the whole block rather than
+     moving the art, which is the fix the engine contract asks for. */
+  .fscrim{position:absolute;left:0;bottom:0;width:1080px;height:300px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0) 0%,rgba(7,11,16,0.86) 44%,
+    rgba(7,11,16,0.99) 100%)}
+  .tscrim{position:absolute;left:0;top:0;width:1080px;height:200px;
+    background:linear-gradient(to bottom,rgba(7,11,16,0.96) 0%,rgba(7,11,16,0.72) 58%,
+    rgba(7,11,16,0) 100%)}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="tscrim" data-decorative></div>
+  <div class="fscrim" data-decorative></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+
+  <div class="tag">OCTOBER 1ST, 2026</div>
+
+  <!-- Exactly one of the three landed drops carries a printed label, because the guide lists
+       three routes and this record verified one. The other two are landed and live and simply
+       not named by the source. -->
+  <div class="plabel" id="nairr" style="left:80px;top:800px">NATIONAL ARTIFICIAL INTELLIGENCE<br>RESEARCH RESOURCE PILOT (NAIRR)</div>
+
+  <h1>Three ways in. The record checked one.</h1>
+  <p class="dek">Anyone with work on Frontera has until October 1st, 2026 to move it. The
+     successor's guide is where its access rule will change.</p>
+
+  <div class="door">docs.tacc.utexas.edu/hpc/horizon/</div>
+  <div class="foot"><span>HORIZON USER GUIDE</span><span>c1 c13 c15 c20</span>
+    <span class="tx-site">texasaidocket.com</span><span>09 / 09</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W = 1080, H = 1350, SEED = 20260907;
+  const c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  const x = c.getContext('2d'); x.scale(2, 2);
+  TX.reseed(SEED);
+  const R = TX.rng(SEED);
+
+  const HALL = '#070B10', RAIL = '#172023', OM4 = '#3FB8A6';
+
+  // ---- ground. Seen from 10 degrees BELOW, so the panel's underside is toward the source
+  //      and the frame lifts at the bottom. -------------------------------------
+  x.fillStyle = HALL; x.fillRect(0, 0, W, H);
+  const bg = x.createImageData(W * 2, H * 2), bd = bg.data;
+  for (let py = 0; py < H * 2; py++) {
+    for (let px = 0; px < W * 2; px++) {
+      const u = px / 2, v = py / 2;
+      const lift = Math.pow(Math.max(0, (v - 180) / (H - 180)), 1.4) * 86;
+      const g = TX.fbm2(u / 4.6, v / 4.6, 2) * 14 + TX.fbm2(u / 240, v / 240, 3) * 18;
+      const L = 36 + lift + g;
+      const i = (py * W * 2 + px) * 4;
+      bd[i] = L * 0.84; bd[i + 1] = L * 1.00; bd[i + 2] = L * 1.14; bd[i + 3] = 255;
+    }
+  }
+  x.putImageData(bg, 0, 0);
+
+  // ======================================================================
+  // THE PANEL. Cropped by BOTH frame edges so no port count is readable and no ratio
+  // exists. Seen from below, so its underside is drawn rather than implied.
+  // ======================================================================
+  const PY = 560, PH = 210;
+  x.fillStyle = '#141C20'; x.fillRect(-40, PY, W + 80, PH);            // panel face
+  const fg = x.createLinearGradient(0, PY, 0, PY + PH);
+  fg.addColorStop(0, 'rgba(7,11,16,0.62)'); fg.addColorStop(1, 'rgba(7,11,16,0)');
+  x.fillStyle = fg; x.fillRect(-40, PY, W + 80, PH);
+  // THE LIT UNDERSIDE. The plane source rakes across it at a grazing angle.
+  const ug = x.createLinearGradient(0, PY + PH, 0, PY + PH + 54);
+  ug.addColorStop(0, '#7E9599'); ug.addColorStop(0.28, '#3B484D'); ug.addColorStop(1, 'rgba(7,11,16,0)');
+  x.fillStyle = ug; x.fillRect(-40, PY + PH, W + 80, 54);
+  x.fillStyle = 'rgba(201,212,210,0.55)'; x.fillRect(-40, PY + PH, W + 80, 2.4);
+  x.fillStyle = 'rgba(7,11,16,0.85)'; x.fillRect(-40, PY - 5, W + 80, 5);
+
+  // ---- the ports. Dark, cut, and running off both edges. --------------------
+  const PORT_W = 54, PORT_H = 74, GAP = 24, PORT_Y = PY + 58;
+  const xs = [];
+  for (let px = -30; px < W + 30; px += PORT_W + GAP) xs.push(px);
+  xs.forEach((px) => {
+    x.fillStyle = '#080C10'; x.fillRect(px, PORT_Y, PORT_W, PORT_H);
+    x.fillStyle = 'rgba(126,149,153,0.34)'; x.fillRect(px, PORT_Y + PORT_H - 3, PORT_W, 3);
+    x.fillStyle = 'rgba(7,11,16,0.9)'; x.fillRect(px + 4, PORT_Y + 4, PORT_W - 8, PORT_H - 10);
+  });
+
+  // ======================================================================
+  // THREE LANDED DROPS, IDENTICAL BY CONSTRUCTION. They run UP and out of the top edge,
+  // against frame 4's single cable running DOWN and out of the bottom. The deck's first
+  // movement and its last are the same line in opposite directions.
+  // ======================================================================
+  const LANDED = [xs[3], xs[7], xs[11]].filter(v => v !== undefined);
+  const strips = [];
+  LANDED.forEach((px, i) => {
+    const cx = px + PORT_W / 2;
+    // the seated connector body
+    x.fillStyle = '#1D2A2E'; x.fillRect(px + 3, PORT_Y + 3, PORT_W - 6, PORT_H - 6);
+    x.fillStyle = '#453E3A'; x.fillRect(px + 8, PORT_Y + 26, PORT_W - 16, PORT_H - 30); // boot
+    // THE EMITTING STRIP. Identical for all three, so the frame cannot rank the routes.
+    x.fillStyle = OM4; x.fillRect(px + 8, PORT_Y + 10, PORT_W - 16, 12);
+    x.fillStyle = 'rgba(150,235,220,0.62)'; x.fillRect(px + 8, PORT_Y + 10, PORT_W - 16, 4);
+    strips.push({ x: px + 8, y: PORT_Y + 10, w: PORT_W - 16, h: 12 });
+    // the jumper, leaving upward, out of the frame
+    const pts = [[cx, PORT_Y + 12], [cx, 420], [cx + (i - 1) * 46, 300], [cx + (i - 1) * 64, -30]];
+    x.lineCap = 'round'; x.lineJoin = 'round';
+    x.beginPath(); x.moveTo(pts[0][0], pts[0][1]);
+    for (let k = 1; k < pts.length; k++) x.lineTo(pts[k][0], pts[k][1]);
+    x.strokeStyle = 'rgba(7,11,16,0.94)'; x.lineWidth = 17; x.stroke();
+    x.strokeStyle = OM4; x.lineWidth = 12.5; x.stroke();
+    x.strokeStyle = 'rgba(150,235,220,0.50)'; x.lineWidth = 4.2; x.stroke();
+  });
+
+  // the silkscreen tick under the ONE named drop, tying the label to its port
+  if (LANDED.length) {
+    const cx = LANDED[0] + PORT_W / 2;
+    x.strokeStyle = 'rgba(226,234,232,0.85)'; x.lineWidth = 1.8;
+    x.beginPath(); x.moveTo(cx, PORT_Y + PORT_H + 8); x.lineTo(cx, 726); x.lineTo(300, 726); x.stroke();
+  }
+
+  // ---- probes ---------------------------------------------------------------
+  function medianL(x0, y0, w, h) {
+    const d = x.getImageData(Math.max(0, x0 * 2), Math.max(0, y0 * 2),
+                             Math.max(2, w * 2), Math.max(2, h * 2)).data;
+    const v = [];
+    for (let i = 0; i < d.length; i += 4) {
+      const lin = (u) => u <= 0.04045 ? u / 12.92 : Math.pow((u + 0.055) / 1.055, 2.4);
+      const Y = 0.2126 * lin(d[i] / 255) + 0.7152 * lin(d[i + 1] / 255) + 0.0722 * lin(d[i + 2] / 255);
+      v.push(Y > 0.008856 ? 116 * Math.cbrt(Y) - 16 : 903.3 * Y);
+    }
+    v.sort((a, b) => a - b); return v[Math.floor(v.length / 2)];
+  }
+  const stripL = strips.map(s => medianL(s.x + 2, s.y + 1, s.w - 4, s.h - 2));
+  const spread = stripL.length ? Math.max(...stripL) - Math.min(...stripL) : 99;
+
+  // the reserved red's contrast, COMPUTED from the two rendered values rather than asserted
+  function relLum(hex) {
+    const n = parseInt(hex.slice(1), 16);
+    const ch = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(u => {
+      const s = u / 255; return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+  }
+  const ratio = (relLum('#FFFFFF') + 0.05) / (relLum('#BF0A30') + 0.05);
+
+  window.__txProbe = {
+    landed_count: LANDED.length,
+    labelled_count: 1,
+    strip_median_L: stripL,
+    strip_spread_L: spread,
+    tag_contrast_ratio: Math.round(ratio * 100) / 100,
+    jumpers_exit_top: LANDED.length
+  };
+  if (LANDED.length !== 3) throw new Error('slide 9: there must be exactly three landed drops');
+  if (spread > 2) throw new Error('slide 9: the three emitting strips differ by more than 2 L*, so the frame ranks the routes');
+  if (ratio < 4.5) throw new Error('slide 9: the reserved red does not clear 4.5 to 1 against white');
+
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

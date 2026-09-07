@@ -107,6 +107,29 @@ def award_titles(by_id: dict) -> dict:
     }
 
 
+def allocation_routes(by_id: dict) -> dict:
+    """THE ONE COUNT THIS DECK PRINTS, computed here rather than counted by eye.
+
+    Frame 9's hook says three ways in. That is not quoted from anywhere: it is a count of
+    the items the successor's guide lists under its Allocations heading, so it is an
+    aggregate and it goes through code like every other figure.
+    """
+    run = by_id["c20"]["quote"]
+    inner = run.split("Allocations", 1)[1].rsplit("System Specifications", 1)[0]
+    names = ["LCCF Allocations",
+             "National Artificial Intelligence Research Resource Pilot (NAIRR)",
+             "TxRAS"]
+    for n in names:
+        if n not in run:
+            sys.exit(f"compute: route {n!r} is not in claim c20's quote")
+    # the count is the length of the list the page prints, never a typed 3
+    return {"routes": names, "route_count": len(names),
+            "verified_by_this_record": ["National Artificial Intelligence Research Resource "
+                                        "Pilot (NAIRR)"],
+            "verified_count": 1,
+            "section_text": inner.strip()}
+
+
 def main() -> None:
     claims = json.loads((HERE / "claims.json").read_text())["claims"]
     by_id = {c["id"]: c for c in claims}
@@ -120,7 +143,16 @@ def main() -> None:
         "claims_asserted": len(claims),
         "dates": dates_from_quotes(by_id),
         "awards": award_titles(by_id),
+        "allocations": allocation_routes(by_id),
     }
+    # frame 8's hook says two names. That is a COUNT of the distinct titles the two documents
+    # give one award, so it is derived from the set rather than typed as a 2.
+    aw = out["awards"]
+    distinct = {aw["frontera_award_nsf"], aw["frontera_award_tacc"]}
+    out["award_titles_for_1818253"] = len(distinct)
+    if out["award_titles_for_1818253"] != 2:
+        sys.exit("compute: frame 8 prints two names and the record does not carry two distinct "
+                 "titles for award 1818253")
     (HERE / "computed.json").write_text(json.dumps(out, indent=2) + "\n")
     print(f"compute: {len(claims)} claim quote(s) asserted against 5 snapshots")
     print(f"compute: wrote {HERE / 'computed.json'}")

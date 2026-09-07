@@ -1,0 +1,106 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#070B10}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.16em;color:#7C8A8C}
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;justify-content:space-between;
+    gap:22px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+    letter-spacing:.05em;color:#7C8A8C;font-variant-numeric:tabular-nums}
+  .over{position:absolute;left:80px;top:150px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:62px;line-height:1.0;color:#E2EAE8;letter-spacing:-.018em}
+  h1{position:absolute;left:80px;top:300px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:86px;line-height:1.0;color:#E2EAE8;letter-spacing:-.02em}
+  .q{position:absolute;left:80px;top:1104px;width:900px;margin:0;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;line-height:1.42;color:#9BB0B4}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <p class="over">Texas Advanced Computing Center</p>
+  <h1>Seven years, and one last edit.</h1>
+  <p class="q">"After seven years and billions of computing cycles, Frontera will be riding
+     off into decommission sunset."</p>
+  <div class="foot"><span>FRONTERA GUIDE</span><span>c2 c14 c19</span>
+    <span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260907;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+  const OM4='#3FB8A6';
+
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2,v=py/2;
+    const lift=Math.pow(Math.max(0,(v-240)/(H-240)),1.5)*74;
+    const g=TX.fbm2(u/3.8,v/3.8,2)*12+TX.fbm2(u/200,v/200,3)*16;
+    const L=24+lift+g; const i=(py*W*2+px)*4;
+    d[i]=L*0.84; d[i+1]=L*1.00; d[i+2]=L*1.14; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // ======================================================================
+  // SEVEN identical 1U chassis, from ONE constant set, every one fitted and EVERY ONE
+  // EMITTING. Nothing blanked. That is what a finished document looks like as hardware.
+  // The count is the source's own word and this frame counts nothing else.
+  // ======================================================================
+  const N=7, CH={x:106,w:868,h:52,pitch:74}, TOP=474;
+  const boxes=[], strips=[];
+  for(let i=0;i<N;i++){
+    const y=TOP+i*CH.pitch;
+    // the body, lit at its FOOT because the source is below, dark on its top face
+    const g=x.createLinearGradient(0,y,0,y+CH.h);
+    g.addColorStop(0,'#141C21'); g.addColorStop(0.62,'#202C32'); g.addColorStop(1,'#3A4A51');
+    x.fillStyle=g; x.fillRect(CH.x,y,CH.w,CH.h);
+    x.fillStyle='rgba(7,11,16,0.9)'; x.fillRect(CH.x,y,CH.w,2.4);           // top face, darkest
+    x.fillStyle='rgba(163,188,192,0.46)'; x.fillRect(CH.x,y+CH.h-2.6,CH.w,2.6);
+    // the bevel
+    x.strokeStyle='rgba(7,11,16,0.8)'; x.lineWidth=1.6; x.strokeRect(CH.x,y,CH.w,CH.h);
+    // vent slots, so the body is a made thing rather than a bar
+    for(let s=0;s<44;s++){
+      x.fillStyle='rgba(7,11,16,0.55)';
+      x.fillRect(CH.x+150+s*15, y+14, 5, CH.h-28);
+    }
+    // THE EMITTING STRIP, identical on all seven
+    x.fillStyle=OM4; x.fillRect(CH.x+22,y+18,74,16);
+    x.fillStyle='rgba(150,235,220,0.60)'; x.fillRect(CH.x+22,y+18,74,5);
+    boxes.push({x:CH.x,y:y,w:CH.w,h:CH.h}); strips.push({x:CH.x+22,y:y+18,w:74,h:16});
+  }
+  // the rail the seven are seated in
+  x.fillStyle='#101619'; x.fillRect(CH.x-30,TOP-16,26,N*CH.pitch+10);
+  x.fillStyle='#101619'; x.fillRect(CH.x+CH.w+4,TOP-16,26,N*CH.pitch+10);
+
+  function medianL(x0,y0,w,h){
+    const g=x.getImageData(x0*2,y0*2,Math.max(2,w*2),Math.max(2,h*2)).data; const v=[];
+    for(let i=0;i<g.length;i+=4){
+      const lin=(u)=>u<=0.04045?u/12.92:Math.pow((u+0.055)/1.055,2.4);
+      const Y=0.2126*lin(g[i]/255)+0.7152*lin(g[i+1]/255)+0.0722*lin(g[i+2]/255);
+      v.push(Y>0.008856?116*Math.cbrt(Y)-16:903.3*Y);
+    }
+    v.sort((a,b)=>a-b); return v[Math.floor(v.length/2)];
+  }
+  const sL=strips.map(s=>medianL(s.x+2,s.y+1,s.w-4,s.h-2));
+  const spread=Math.max(...sL)-Math.min(...sL);
+  const pitches=[]; for(let i=1;i<boxes.length;i++) pitches.push(boxes[i].y-boxes[i-1].y);
+  const pitchSpread=Math.max(...pitches)-Math.min(...pitches);
+  const topFace=medianL(CH.x+300,TOP+1,300,3);
+  const frontFace=medianL(CH.x+300,TOP+CH.h-16,300,10);
+
+  window.__txProbe={ chassis_count:N, pitch_spread_px:pitchSpread,
+    strip_median_L:sL, strip_spread_L:Math.round(spread*100)/100,
+    top_face_L:topFace, front_face_L:frontFace, front_minus_top:frontFace-topFace };
+  if(boxes.length!==7) throw new Error('slide 2: there must be exactly seven chassis');
+  if(pitchSpread>1) throw new Error('slide 2: the chassis pitch is not constant within 1px');
+  if(spread>2) throw new Error('slide 2: the seven emitting strips differ by more than 2 L*');
+  await document.fonts.ready;
+})();
+</script>
+</body></html>

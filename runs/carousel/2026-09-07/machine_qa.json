@@ -1,0 +1,143 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8361,
+        0.8634,
+        0.7849
+      ],
+      "band_ratio": 0.95
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 3.3 on '\"After seven years and billions of compu' (box mean 4.1) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "low contrast ~2.0 on 'FRONTERA GUIDE' (est.)",
+        "worst-point contrast 1.8 on 'FRONTERA GUIDE' (box mean 2.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "low contrast ~2.1 on 'c2 c14 c19' (est.)",
+        "low contrast ~2.0 on 'texasaidocket.com' (est.)",
+        "worst-point contrast 1.8 on 'texasaidocket.com' (box mean 2.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "low contrast ~2.2 on '02 / 09' (est.)",
+        "worst-point contrast 1.8 on '02 / 09' (box mean 2.2) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "bands": [
+        0.8067,
+        0.8298,
+        0.8474
+      ],
+      "band_ratio": 1.0224
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 3.7 on '\u00a7 INTRODUCTION' (box mean 3.9) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 3.7 on 'FRONTERA USER GUIDE' (box mean 4.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 3.7 on 'SOURCE' (box mean 4.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "worst-point contrast 3.7 on 'LAST UPDATE' (box mean 4.0) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: 'CLAIM' at 80,1264 94x35 (margin 80px)",
+        "worst-point contrast 3.7 on 'CLAIM' (box mean 3.9) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: 'c3' at 969,1264 31x35 (margin 80px)"
+      ],
+      "bands": [
+        0.8298,
+        0.6513,
+        0.6801
+      ],
+      "band_ratio": 0.9465
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 4.4 on 'TEXAS AI DOCKET' (box mean 4.9) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "art touching glyphs (3% of the ring around 'The guide says the file systems stay rea', spanning 16%) -- pixel critic verify the label is not crossed"
+      ],
+      "bands": [
+        0.6071,
+        0.2101,
+        0.3088
+      ],
+      "band_ratio": 0.8294
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "a drawn rule crosses the glyph band of 'Leadership Class Computing Facility (LCC' (canvas edge .pixels at 80,791.5 764x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.6996,
+        0.834,
+        0.8015
+      ],
+      "band_ratio": 1.0283
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.605,
+        0.4559,
+        0.5294
+      ],
+      "band_ratio": 0.9987
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 4.4 on 'c5 c15' (box mean 4.8) -- below the rubric's 4.5 line somewhere along the run of the text"
+      ],
+      "bands": [
+        0.605,
+        0.9013,
+        0.7831
+      ],
+      "band_ratio": 1.0249
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "text collision (100% overprint): 'Computation for the Endless Frontier' x 'ation' near 297,441 [marked data-overlap-ok]",
+        "text collision (100% overprint): 'Computing for the Endless Frontier' x 'ing' near 297,665 [marked data-overlap-ok]",
+        "worst-point contrast 4.4 on 'TEXAS AI DOCKET' (box mean 4.9) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "low contrast ~3.4 on 'The funder's own record and the machine'' (est.)",
+        "worst-point contrast 2.8 on 'The funder's own record and the machine'' (box mean 3.4) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "low contrast ~1.8 on 'NSF 1818253' (est.)",
+        "low contrast ~1.8 on 'c7 c8 c9' (est.)",
+        "low contrast ~1.7 on 'texasaidocket.com' (est.)",
+        "low contrast ~1.9 on '08 / 09' (est.)"
+      ],
+      "bands": [
+        0.7941,
+        0.5441,
+        0.7647
+      ],
+      "band_ratio": 1.0864
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "worst-point contrast 3.0 on 'Anyone with work on Frontera has until O' (box mean 4.3) -- below the rubric's 4.5 line somewhere along the run of the text",
+        "outside safe zone: '09 / 09' at 910,1245 109x31 (margin 80px)"
+      ],
+      "bands": [
+        0.7479,
+        0.4181,
+        0.7169
+      ],
+      "band_ratio": 1.1349
+    }
+  ],
+  "fails": 0,
+  "warns": 30,
+  "verdict": "WARN"
+}
