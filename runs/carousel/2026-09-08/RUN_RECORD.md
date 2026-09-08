@@ -796,3 +796,51 @@ retro carries first is a sweep that fails when a snapshot's own links are named 
 - **Frame 6's quarter folds were a one pixel value change**, so the sheet still read as a road.
   The centre crease is stronger and it stops above the clause, because the clause is centred on
   the same axis and a crease strong enough to read put a dark band under every line.
+
+## SCORING ROUND FOUR, ON THE SHIPPED DECK, AND IT FOUND A BROKEN SEAM
+
+Round three had scored a deck that three craft repairs then changed, so `gate_status` marked the
+score row STALE, which is correct and is why round four exists. **A panel that graded a deck the
+run then edited has not graded the deck.**
+
+| lens | score | hard fails | ship |
+|---|---|---|---|
+| integrity | 6.548 | **2** | no |
+| craft | 7.024 | 0 | yes |
+| reader | 6.93 | 0 | yes |
+
+**Both hard fails were real and both were verified before anything moved.**
+
+**The closing frame cited a source a reader could not reach.** Frame 9 printed `c40` and
+`first_comment.txt` listed no c40 and no action notes URL. `sources_block.py --check` was run and
+said so in its own words: *the deck prints c40 and the sources block does not list them, so a
+reader cannot reach the document.* That gate exists for the 2026-08-19 defect of exactly this
+shape, and it had not been re-run after c40 was added in a scoring round.
+
+**The sources line published a count that no longer re-derived.** It read `two official records and
+one published dataset` while the deck cited three official documents and printed c19 on no frame at
+all. Rebuilt, it reads three official records, the declaration was re-derived rather than retyped,
+and `figures.json` went from describing a 39 claim deck to the 41 claim one that ships.
+
+**The judge's diagnosis is the finding, not the two defects.** Every repair after the render round
+landed in the FRAMES and none of them landed in the files that surround the frames. The fix is an
+ordering one and it is now in the record: `sources_block --build`, then the figures rebuild, are
+the last two commands before the artifact copy, gated by `sources_block --check`.
+
+### The same miss, a third time, one line further in
+
+`action_notes.txt` does not merely omit the tally. The sentence at the top of the page this run
+fetched in round three reads:
+
+> Details of Council's votes are not captured below but will be incorporated in the minutes
+> approved by the City Council at a subsequent Council Meeting and posted to the web.
+
+Round three opened the link a judge had named, claimed the `Approved` disposition, and stopped one
+line above the sentence that says where the count goes. **Three times in one run the answer was
+further into something already in hand.**
+
+So the closing frame's absence is now the true one and it is better than the one it replaces. It
+does not say no count is published. It says the action notes send the count to minutes approved
+later and that the city's open voting record has not reached that meeting, resting on c40, c41 and
+c19, under a locator naming both searches. An absence that names where the number will appear is
+worth more to a reader than an absence that says there isn't one.
