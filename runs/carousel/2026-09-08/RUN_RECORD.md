@@ -431,8 +431,8 @@ for.
 | aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 6.53 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| labels         | FAIL   | 8 label(s) the record does not support: slide-03.html prints the label word 'READ' beside c5, and c5 says neither 'read' nor 'read |
+| quantifiers    | PASS   | 88 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
 | dossiers       | PASS   | 53,060 chars planned |
 | caption        | PASS   | 141 words |
@@ -440,7 +440,7 @@ for.
 | plan vs render | WARN   | 12 of 72 acceptance item(s) checkable |
 | texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
 | absences       | PASS   | 4 of 4 scoped to a named document |
-| numerals       | FAIL   | 13 numeral(s) over 9 frame(s), 1 the cited claims do not reach: s8 prints '5' in "(5)" and the claims that frame cites (c17, c18, c23, c24, c30, c31) carr |
+| numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
 
