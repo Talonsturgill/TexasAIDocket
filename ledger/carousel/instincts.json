@@ -154,7 +154,8 @@
         "2026-08-25",
         "2026-08-26",
         "2026-09-03",
-        "2026-09-04"
+        "2026-09-04",
+        "2026-09-08"
       ],
       "contradicted": []
     },
@@ -635,6 +636,30 @@
       "learned": "2026-09-05",
       "instinct": "Build any ImageData in DEVICE pixels and putImageData under an identity transform, because putImageData ignores the canvas transform and a CSS-sized buffer covers only the top left quarter of a 2x backing store.",
       "evidence": "Carousel 16 slide 1 drew its bench as a 1080x1350 ImageData on a 2160x2700 canvas under scale(2,2). The unpainted three quarters kept the body background and rendered as a hard edged rectangle down the middle of the frame. render.py reported 0 errors and 0 warnings and qa.py returned PASS on the frame, twice. It was found by sampling the PNG along a row and measuring a step of 7 on values of 10 to 20 at x 520, which is exactly half of 1080.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "read-the-whole-document",
+      "learned": "2026-09-08",
+      "instinct": "Sweep every fetched snapshot for the story's own subject noun before the directors room opens, and claim or reject every place it appears.",
+      "evidence": "2026-09-08: the deck argued that City Code Chapter 2-19 merely weighed artificial intelligence and section 2-19-9 of that same ordinance lists the tools among what is not permitted. The run had cited six other sections of the fourteen page extraction. The ordinance names the subject in twelve places across five provisions and the run had read one. An integrity judge found it in scoring.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "follow-the-links-you-fetched",
+      "learned": "2026-09-08",
+      "instinct": "Open the links a page you fetched names before you publish an absence that one of them could settle.",
+      "evidence": "2026-09-08: the rejected list recorded that the agenda published no vote for the item, which was true of the page's prose and skipped the link titled Actions Taken By Council on that same fetched page. Opened after a judge named it, the notes record the item approved and publish no tally, so the deck's absence was right and had not been earned.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "re-measure-beside-the-fix",
+      "learned": "2026-09-08",
+      "instinct": "After a repair, measure what it was aimed at and what it now sits next to.",
+      "evidence": "2026-09-08: three times in one run. Moving frame 6's stock below the clause destroyed the frame's argument that the sentence runs out of page. Removing frame 7's swell outline was right and left the frame with no drawn object at 432px. Strengthening frame 6's centre crease put a dark band under type centred on the same axis.",
       "confirmed": [],
       "contradicted": []
     }
