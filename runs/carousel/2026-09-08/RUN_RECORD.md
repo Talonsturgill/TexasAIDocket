@@ -425,13 +425,13 @@ for.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 31 verified claim(s) |
+| claims         | PASS   | 32 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 6.55 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| labels         | FAIL   | 4 label(s) the record does not support: slide-03.html prints the label word 'READ' beside c5, and c5 says neither 'read' nor 'read |
+| labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 88 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
 | dossiers       | PASS   | 53,851 chars planned |
@@ -600,3 +600,29 @@ defending on a deck about cameras**, so the bay now carries a stack of flat fenc
 the same material as a stock item and has no circular form in it at all. L2 is the law that stops
 the deck inventing the one thing the record does not contain, and the honest reading of two
 independent judges is the measurement that matters here.
+
+### A hashtag was a proper noun outside claim coverage
+
+The caption publishes `#TRUSTAct`. A judge went looking for it in `claims.json`, did not find it,
+was ready to call it a fabrication, then found it in the fetched resolution and withdrew the
+finding in writing. The resolution reads `codified at City Code Chapter 2-19 and known as the ~'
+TRUST Act.` with the scan garbling the opening quotation mark.
+
+The name was correct and it was outside claim id coverage, and **for a proper noun published to
+readers that is the same defect as an unsourced numeral.** c32 now carries it, with the garbled
+mark kept so the string can still be found in the document. The check the run was missing is the
+one the judge performed by hand: every proper noun on a published surface, the caption's tag block
+included, traced to a claim.
+
+### The L5 locator stopped tripping `label_guard`, without weakening the locator
+
+`label_guard` reads the capitalised run beside a claim id, and the locator's instruction words
+were landing in that window: READ, FULL, BOTH, PAGES, none of which is a claim about what a body
+did. The citation stays in capitals, because it is the citation, and the extent went to lower
+case, because it is a sentence about a search. `RESOLUTION 20260812-017 / read in full, both
+pages`. The gate now reports every printed label tracing to its claim's own words, and the
+locator still names the document and the extent read on all three frames that carry one.
+
+That is the answer this file argued for two sections earlier and it is worth saying that it cost
+the deck nothing. The alternative, adding claims until READ and FULL traced to something, would
+have been the gate writing the record.
