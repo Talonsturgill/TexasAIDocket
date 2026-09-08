@@ -124,6 +124,38 @@ def equipment(resolution: str) -> dict:
             "counted_over": "the enumeration in Resolution No. 20260812-017"}
 
 
+def reached_kinds(resolution: str, equip: dict) -> dict:
+    """How many of the enumerated kinds the prohibition actually reaches.
+
+    The clause names a camera and a drone. The enumeration names six kinds. This matches the
+    clause's own nouns against the enumeration's own entries rather than counting by eye, and it
+    asserts that every noun it looks for is found, so a reworded clause stops the build.
+    """
+    flat = _n(resolution)
+    i = flat.index("shall not consider acquisition")
+    clause = flat[i:i + 240].lower()
+    nouns = ("camera", "drone")
+    for noun in nouns:
+        if noun not in clause:
+            sys.exit(f"compute: the prohibition does not name {noun!r}, so the ratio is stale")
+    hit = [k for k in equip["items"] if any(n in k.lower() for n in nouns)]
+    return {"reached": len(hit), "of": equip["total"], "items": hit,
+            "counted_over": "the enumeration in Resolution No. 20260812-017, matched against the"
+                            " nouns the prohibition itself names"}
+
+
+def clause_uses(resolution: str) -> dict:
+    """The uses the prohibition forbids the system to be used for, from the clause's own words."""
+    flat = _n(resolution)
+    i = flat.index("intelligence to conduct")
+    tail = flat[i:i + 90].lower()
+    uses = [u for u in ("surveillance", "analysis") if u in tail]
+    if len(uses) != 2:
+        sys.exit(f"compute: expected two named uses in the clause, found {uses}")
+    return {"total": len(uses), "uses": uses,
+            "counted_over": "the clause's own words in Resolution No. 20260812-017"}
+
+
 def main() -> int:
     claims = json.loads((HERE / "claims.json").read_text(encoding="utf-8"))["claims"]
     seen = assert_quotes(claims)
@@ -156,6 +188,8 @@ def main() -> int:
         "factors": factors(ordn),
         "gated_acts": gated_acts(ordn),
         "equipment": equipment(res),
+        "reached_kinds": reached_kinds(res, equipment(res)),
+        "clause_uses": clause_uses(res),
         "voting_record": {
             "latest_meeting_loaded": vote[0]["max_meeting_date"][:10],
             "covers_the_august_meeting": False,
@@ -170,6 +204,9 @@ def main() -> int:
     print(f"compute: {out['gated_acts']['total']} gated acts, acquisition is "
           f"({out['gated_acts']['acquire_letter']})")
     print(f"compute: {out['equipment']['total']} kinds of equipment named")
+    print(f"compute: the prohibition reaches {out['reached_kinds']['reached']} of them, "
+          f"{out['reached_kinds']['items']}")
+    print(f"compute: the clause names {out['clause_uses']['total']} uses, {out['clause_uses']['uses']}")
     return 0
 
 

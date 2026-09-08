@@ -145,7 +145,7 @@
   {
    "id": "c15",
    "text": "Acquiring new surveillance technology is one of the acts that ordinance gates.",
-   "quote": "acquiring new surveillance technology",
+   "quote": "(B) acquiring new surveillance technology",
    "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
    "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
    "source_type": "primary_official",
@@ -188,7 +188,7 @@
    "quote": "[{\"max_meeting_date\":\"2026-05-28T00:00:00.000\"}]",
    "url": "https://data.austintexas.gov/resource/3c89-i35a.json?$select=max(meeting_date)",
    "source_title": "City of Austin Council Voting Record, open data dataset 3c89-i35a",
-   "source_type": "primary_official",
+   "source_type": "data",
    "retrieved": "2026-09-08",
    "confidence": "high"
   },
@@ -235,7 +235,7 @@
   {
    "id": "c24",
    "text": "The weighing runs against a finding that the technology is low risk.",
-   "quote": "strongly against a determination that the surveillance technology presents no or",
+   "quote": "strongly against a determination that the surveillance technology presents no or minimal risk to civil liberties and privacy rights",
    "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
    "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
    "source_type": "primary_official",
@@ -245,7 +245,7 @@
   {
    "id": "c25",
    "text": "The ordinance also gates a department accepting outside money for surveillance technology.",
-   "quote": "accepting funds for surveillance technology outside o f the annual budget process",
+   "quote": "(A) accepting funds for surveillance technology outside o f the annual budget process",
    "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
    "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
    "source_type": "primary_official",
@@ -255,7 +255,7 @@
   {
    "id": "c26",
    "text": "The ordinance also gates using existing surveillance technology in a way the council has not approved.",
-   "quote": "using new or existing surveillance technology, or the information it collects, for a",
+   "quote": "(C) using new or existing surveillance technology, or the information it collects, for a",
    "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
    "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
    "source_type": "primary_official",
@@ -265,7 +265,7 @@
   {
    "id": "c27",
    "text": "The ordinance also gates an agreement with an outside party to acquire or share surveillance technology.",
-   "quote": "entering into an agreement with a third-party entity outside o f the City to acquire,",
+   "quote": "(D) entering into an agreement with a third-party entity outside o f the City to acquire,",
    "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
    "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
    "source_type": "primary_official",
@@ -276,6 +276,116 @@
    "id": "c28",
    "text": "The assessment has to be posted publicly on the day it goes to the council.",
    "quote": "must post the privacy impact assessment on a publicly",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c29",
+   "text": "The ordinance's council-approval requirement is a numbered code section with its own heading, and the scanned text splits the word approval.",
+   "quote": "\u00a7 2-19-3 COUNCIL APPROV AL REQUIRED.",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c30",
+   "text": "The privacy impact assessment is its own numbered code section, and the scanned text splits the word privacy.",
+   "quote": "\u00a7 2-19-4 PRIV ACY IMPACT ASSESSMENT.",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c31",
+   "text": "Subsection (C) of that section states the risk question the assessment has to determine, and the ten numbered factors run from it as one passage. The fifth of them is the one that names the training of artificial intelligence.",
+   "quote": "A privacy impact assessment must determine whether the surveillance technology poses more than a minimal risk to civil liberties and privacy rights, and must include at a minimum an analysis of whether the surveillance technology: (1) allows the indiscriminate collection of data without a warrant, probable cause, or reasonable suspicion of criminal activity, or a criminal nexus where the data is capable o f being associated with individuals or groups engaged in legal behavior; (2) routinely transmits sensitive personal information through data networks subject to legal or illegal access by third parties, other than networks that are completely internal to the City; (3) can store sensitive personal information in a manner allowing for broad or unrestricted sharing of or access to the information with or by third parties outside of the criminal justice system; (4) can collect sensitive personal information without a warrant, probable cause, or reasonable suspicion of criminal activity or a criminal nexus, or where the technology allows for the creation o f data records associated with particular individuals or groups; (5) collects data in such a manner that it can be used by third parties to develop or expand products, services, or technology, including training of artificial intelligence",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c32",
+   "text": "The resolution gives the chapter its short name, and the scanned text garbles the opening quotation mark.",
+   "quote": "City Code Chapter 2-19 and known as the ~' TRUST Act.",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+   "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c33",
+   "text": "The April ordinance carries its own list of technologies it does not permit, and it is a section of its own.",
+   "quote": "\u00a7 2-19-9 PROHIBITED TECHNOLOGIES. The following surveillance technologies or data uses are not permitted",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c34",
+   "text": "Artificial intelligence tools are on that list, subject to an exception for what the city's own policy allows.",
+   "quote": "(B) artificial intelligence or machine learning tools, except as consistent with City policy",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c35",
+   "text": "Facial recognition is on the same list and carries a wider exception than the artificial intelligence entry does.",
+   "quote": "(A) facial recognition technology, except as consistent with City policy, or with any state or federal requirements",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c36",
+   "text": "The council approval requirement opens on a carve out for anything the chapter itself permits.",
+   "quote": "Except as otherwise permitted in this chapter, City departments must obtain approval of the city council before",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c37",
+   "text": "The ordinance names an exception to council approval for circumstances that will not wait.",
+   "quote": "\u00a7 2-19-7 EXCEPTION: EXIGENT CIRCUMSTANCES.",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c38",
+   "text": "The ordinance names a second exception for technology found to pose minimal or no risk.",
+   "quote": "\u00a7 2-19-8 EXCEPTION: MINIMAL OR NO RISK TO CIVIL LIBERTIES AND",
+   "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
+   "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
+  },
+  {
+   "id": "c39",
+   "text": "A surveillance use policy has to describe the technology's own machine learning and artificial intelligence capabilities.",
+   "quote": "a description of the machine learning and/or artificial intelligence capabilities and features of the surveillance technology",
    "url": "https://services.austintexas.gov/edims/document.cfm?id=473428",
    "source_title": "Ordinance No. 20260423-029, City of Austin, executed copy",
    "source_type": "primary_official",
@@ -303,6 +413,10 @@
   {
    "finding": "a count of the council members who sponsored the item",
    "reason": "counting them here would produce a numeral the document does not state"
+  },
+  {
+   "finding": "three further artificial intelligence provisions in Section 2-19-5, the surveillance use policy",
+   "reason": "A full sweep of both snapshots for the subject noun was run after an integrity judge found Section 2-19-9 in a file this run had already fetched. The resolution mentions artificial intelligence in its one clause and nowhere else. The ordinance mentions it in twelve places across five provisions. Two are carried, the assessment factor at c18 and c31 and the prohibition at c34, and one more is carried at c39. The remaining provisions require a surveillance use policy to state whether data will feed artificial intelligence tools, to state any guidelines or prohibitions on those algorithms, to state whether data is integrated with them, and to comply with the city's other technology policies. None of them changes the deck's reading and none reached a frame, so they are recorded here rather than claimed. THE POINT IS THE SWEEP, not these four. The deck's first spine was refuted by a provision six pages past the one it read, in a document it had in hand."
   }
  ],
  "notes": [
@@ -311,6 +425,10 @@
   "THE PROHIBITION IS NARROW AND MUST NOT BE OVERSTATED. It reaches a camera or drone system that depends upon artificial intelligence to conduct surveillance or analysis. It is not a ban on artificial intelligence in Austin parks or in Austin city government.",
   "It is written against future acquisition only, in the words shall not consider acquisition.",
   "A resolution directs a manager. It is not an ordinance and it creates no offence.",
-  "The ordinance's text layer breaks the word of as o f in several places. That garbling is the scan's and is reproduced rather than repaired, so a quote can be searched for in the source."
+  "The ordinance's text layer breaks the word of as o f in several places. That garbling is the scan's and is reproduced rather than repaired, so a quote can be searched for in the source.",
+  "FIVE QUOTES WERE WIDENED IN THE PIXEL REVIEW ROUND, and none of them changed what the record says. Each had been stored cut short of words the deck legitimately printed, so a string a frame set could not be found in the claim it cited. c15, c25, c26 and c27 regained the subsection letters (A) through (D), which are in the executed copy and are what slide 5 stencils. c24 regained the words minimal risk, which slide 8 prints and which the stored quote stopped two words short of. c29, c30 and c31 are new and carry the two section headings and the risk question, so a code citation on a frame names a passage that was fetched.",
+  "c31's quote was extended through the fifth numbered factor after numeral_lint found slide 8 printing (5) with no cited claim carrying it. The position is computed by compute.py from the ordinance's own numbering, and the numeral now also appears in a quote the frame cites, which is what the lint asks for. A digit produced by a correct computation and absent from every quote is exactly the case the lint exists to surface.",
+  "c32 was added after a judge checked the caption's #TRUSTAct hashtag and found the name in the fetched resolution but in no claim. The name was correct and it was outside claim id coverage, which for a proper noun published to readers is the same defect as an unsourced numeral. The scan's garbled quotation mark is kept so the string can still be found in the document.",
+  "THE RUN'S THESIS WAS REFUTED BY A SECTION OF A DOCUMENT IT HAD ALREADY FETCHED. The deck argued that the April ordinance WEIGHED artificial intelligence as one of ten assessment factors and that the August resolution turned it into a bar. Section 2-19-9 of the same ordinance, six pages past the section the deck read, lists artificial intelligence or machine learning tools among the technologies that are NOT PERMITTED, except as consistent with City policy. c33 through c38 carry that section, the facial recognition entry beside it, and the three carve outs the chapter already contained, so the comparison the deck makes is against the whole instrument rather than against one section of it. The ordinance names artificial intelligence in five separate places and the run had read one."
  ]
 }

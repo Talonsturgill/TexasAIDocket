@@ -429,7 +429,7 @@ for.
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
-| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | PASS   | 9 slide(s), 6.53 MB, vector |
 | score          | ABSENT | score.json not written yet |
 | labels         | PASS   | 46 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |

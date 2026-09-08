@@ -2,6 +2,22 @@
 
 ## THE SYNTHESIS, and what each of the three rooms contributed
 
+**THE SPINE WAS REBUILT AFTER SCORING, AND THE FIRST ONE WAS FALSE.** It read that City Code
+Chapter 2-19 WEIGHED artificial intelligence as one of ten privacy assessment factors and that the
+August resolution turned it into a bar. Section 2-19-9 of the same ordinance, six pages past the
+section this deck read, lists `artificial intelligence or machine learning tools` among the
+technologies that are `not permitted`, except as consistent with City policy. An integrity judge
+found it in a snapshot this run had fetched on its first pass and had already cited six other
+sections of. **The ordinance names artificial intelligence in five separate places and the run had
+read one.**
+
+The spine now is the one the whole instrument supports. **April had already said no, with a door
+in it. August closed the door and narrowed the room.** The April prohibition reaches artificial
+intelligence tools across the city and carries an exception for whatever the city's own policy
+allows. The August clause reaches a camera or drone in the parks, carries no exception at all, and
+binds one officer for one kind of purchase. Frame 5's fence with a single gate leaf turned out to
+be the right drawing for a prohibition with an exception in it, which it was not drawn to be.
+
 The spine taken is **THE SPECIFICATION**, because it is the truest reading of the record. This is
 not a debate and it is not a scandal. It is a purchase instruction with an exclusion clause in
 it, and every interesting fact in the file is a fact about the SHAPE of that instruction.
@@ -61,7 +77,13 @@ declared values, an up face, a side face and an under face, with a minimum separ
 the frame's own script, and the up face is the brightest region of that body on every frame. A
 body is seated by an occlusion gradient at its foot, declared through `data-contacts` and
 measured like any other contact. **The second half of the law is what stops nine soft grey
-fields: every frame carries at least one hard silhouette against the sky.**
+fields: every frame carries at least one hard edge against its own field.** It was written as
+"against the sky" and that was a drafting error rather than a standard, because frames 6, 7 and 8
+declare no sky at all and no version of them could ever have met it. Two judges found that
+independently. The substitute edge is named per frame: frame 6 the sheet's cut edge against the
+granite, frame 7 the completing line's own head rule, frame 8 the part's outline against the
+matte field. The six outdoor frames still carry a silhouette against sky and frames 1 and 2 were
+rebuilt in this round to get one.
 
 **L2. A PART IS HARDWARE. A PROPERTY IS A FINISH.** Artificial intelligence is never drawn as a
 body, an eye, a lens, a brain, a network or a glow, on any frame. The record forbids a property
@@ -78,9 +100,14 @@ reaches the foot of frame 6 at "artificial" and c9 enters at the head of frame 7
 the resolution's own page break and it is verified against a local extraction. Nothing is capped
 with an ellipsis and no break is invented.
 
-**L5. EVERY ABSENCE NAMES ITS SEARCH.** A frame asserting that something is not in the document
-carries a 26px JetBrains Mono locator reading `RESOLUTION 20260812-017 / READ IN FULL, BOTH
-PAGES`. Frames 3, 7 and 9 carry it.
+**L5. EVERY ABSENCE NAMES ITS SEARCH, AND IT NAMES THE SEARCH THE SENTENCE ACTUALLY RESTS ON.**
+A frame asserting that something is not in a document carries a 26px JetBrains Mono locator giving
+that document and the extent read. Frames 3 and 7 carry `RESOLUTION 20260812-017 / read in full,
+both pages`, because both assert something about the resolution's own text. **Frame 9 carries
+`VOTING RECORD 3c89-i35a / loaded to May 28th, 2026` instead**, because its absence is the missing
+vote tally and the resolution's extent cannot answer that. A judge found frame 9 naming the wrong
+search on the first round and it was right: a locator that names a document which could not settle
+the sentence beside it is furniture rather than provenance.
 
 ---
 
@@ -169,9 +196,11 @@ written up as an upgrade proposal rather than left as a number nobody can meet.
 
 | frame | 01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 | 09 |
 |---|---|---|---|---|---|---|---|---|---|
-| planned median L\* | 34 | 30 | 38 | 26 | 33 | 22 | **62** | 29 | 41 |
+| planned median L\* | 34 | 30 | 38 | 24 | 33 | 26 | **62** | 29 | 41 |
 
-Sorted: 22, 26, 29, 30, 33, 34, 38, 41, 62. **Planned deck median 33**, inside the 28 to 42 band,
+**Planned value arc, per-frame median L\*: 34, 30, 38, 24, 33, 26, 62, 29, 41. Deck median 33.**
+
+Sorted: 24, 26, 29, 30, 33, 34, 38, 41, 62. **Planned deck median 33**, inside the 28 to 42 band,
 clear of the last three decks at 22.5, 16.5 and 11.4, and a long way under the 60.0 cap that
 2026-09-03 already spent.
 
@@ -179,6 +208,16 @@ clear of the last three decks at 22.5, 16.5 and 11.4, and a long way under the 6
 it lands exactly on the resolution's page break, so the arc performs the swipe before a word is
 read. The second biggest is 7 to 8 at thirty three points, dropping out of the paper and into the
 drafting field where the counter-argument is made.
+
+**FRAMES 4 AND 6 SWAPPED PLACES BEFORE ANYTHING WAS DRAWN, and the reason is the whole of deck
+17's lesson applied one phase earlier.** Frame 6 was planned as the deck's darkest at 22. The ink
+on it is `toner` on a field print in the shade of a live oak, and the shade factor was solved
+against the 4.5 floor rather than chosen. The page has to sit at **L\* 58 or above** for that ink
+to clear, at which point the sheet can't also be the darkest thing in the deck. So frame 6 plans
+at 26 with a legible page and dark surroundings, and **frame 4 takes the floor at 24**, which it
+can hold honestly because it is mostly canopy silhouette against a sky aperture and carries no
+body type at all. Deck 17 discovered this conflict after its first render measured 4.1 against a
+plan of 20. This run discovered it with arithmetic before a frame existed.
 
 **The structural protection on the arc**, which is deck 17's recorded lesson answered rather than
 repeated. On every frame at least a quarter of the frame area is sky or an up facing surface,
@@ -229,7 +268,7 @@ slide: 1
 job: >
   Open on the order itself, so the reader knows before anything else that this is a purchase
   instruction with an exclusion in it. No other slide lists the goods.
-claims: [c6, c1, c12]
+claims: [c1, c6, c8, c12]
 numerals:
   - value_from: c1     # 20260812-017
   - computed_by: "compute.py equipment.total, the length of the split of the resolution's own
@@ -263,25 +302,26 @@ art:
     no sky reaches. Nothing casts, so every value is a sky view factor.
   motion: "left to right along the stencilled line, then down through the bays"
 type:
-  hook: "Austin ordered six kinds of equipment."
+  hook: "Austin's order names six kinds of equipment."
   dek: "The resolution directs the city manager to acquire, deploy and activate it. One property
     is written out of two of the six."
-  labels: ["RESOLUTION 20260812-017", "01 / 09", "texasaidocket.com"]
-verbatim:
-  - c6: "security cameras"
-  - c6: "non-recording drones as first responders"
-  - c6: "signage and wayfinding"
-  - c6: "radio communication systems"
+  labels: ["RES 20260812-017", "01 / 09", "texasaidocket.com"]
+verbatim: []
+# The frame draws the six kinds as MATERIALS on a rack rather than seating their names as
+# somebody else's words, so it declares no verbatim slot. An empty list is a run that looked.
 acceptance:
-  - "the count in the hook is produced by compute.py equipment.total and the frame names the set
-     it counted over in its footer label"
-  - "no cast shadow appears anywhere on this frame and every body is seated by an occlusion
-     gradient at its foot"
+  - "the hook prints the word six, and six is compute.py equipment.total, which is 6 counted over the enumeration in Resolution No. 20260812-017"
+  - "at least one upright crosses the horizon and is drawn flat in liveoak, so it reads as a hard vertical against the sky band at 432px"
+  - "no closed concentric ring set and no radially lit disc appears anywhere on this frame, because both are lens cues and L2 forbids one"
+  - "six separate masses are individually resolvable in the 432px thumb"
+  - "no cast shadow appears anywhere on this frame and every body is seated by an occlusion gradient at its foot"
   - "at least one hard silhouette edge appears against the sky band"
-  - "the hook's ink measures 7.0 to 1 or better against its own local ground at the worst point
-     along the run, on the alpha 0.34 scrim"
-  - "the frame median L* measures 34 plus or minus 4 on the 270 by 338 grid"
+  - "the hook's ink measures 7.0 to 1 or better against its own local ground at the worst point along the run, on the alpha 0.34 scrim"
+  - "the frame median L* measures 34 plus or minus 8 on the 270 by 338 grid"
   - "nothing in the frame is powered, lit, flying or fitted"
+  - "the footer prints 'RES 20260812-017' and the claim strip reads 'c1 c6 c8 c12'"
+  - "the hook says 'names' rather than 'ordered', and the dek says the list is not limited to the six, because c6 reads potentially including but not limited to"
+  - "the bay that held a coil carries no circular form at all, because two judges read a coil as a lens however it was drawn"
 risks:
   - "a stock rack reading as a warehouse stock photo. Every item is drawn as its own geometry
      with real fixings, and the bay uprights are cantilever arms rather than pallet beams"
@@ -331,16 +371,17 @@ type:
   dek: "The implementation plan has to rest on a security audit the parks department already had
     done."
   labels: ["RESOLUTION 20260812-017", "02 / 09", "texasaidocket.com"]
-verbatim:
-  - c4: "shall use the July 2025 Parks and Recreation Department Security Audit Findings and Recommendations Report"
+verbatim: []
+# The frame states the audit in the deck's own voice rather than seating the ordinance's
+# sentence, so it declares no verbatim slot.
 acceptance:
-  - "the placed course and the unplaced subgrade are declared as data-encodes reads differ and
-     measure 4.0 dE or more apart at 432px"
+  - "the granite left of the screed rail is a tighter size spread than the granite right of it, and the rail's vanishing point is at x 742 with the horizon computed at y 486"
   - "individual chips remain resolvable at 432px in the bottom third and the field does not grey out"
-  - "the horizon y is computed from the camera pitch and appears in the frame's own script rather
-     than as a typed constant"
+  - "the horizon y is computed from the camera pitch and appears in the frame's own script rather than as a typed constant"
   - "no cast shadow appears and the rail is seated by occlusion at its foot"
   - "the frame median L* measures 30 plus or minus 4"
+  - "the footer prints 'RESOLUTION 20260812-017' and the claim strip reads 'c3 c4'"
+  - "one grade stake crosses the horizon in the ground still to be screeded, so the frame carries a hard vertical against the sky"
 risks:
   - "two granular fields at similar value reading as one texture. The probe is what catches it
      and it is declared before the render rather than after"
@@ -385,21 +426,23 @@ art:
   motion: "across the five heads, then down into the rows and off the bottom"
 type:
   hook: null
-  dek: "The resolution says what the plan must establish. None of it is published yet."
-  labels: ["RESOLUTION 20260812-017 / READ IN FULL, BOTH PAGES", "03 / 09", "texasaidocket.com"]
+  dek: "The resolution says what the plan must establish. The plan itself is not in it."
+  labels: ["RESOLUTION 20260812-017 / read in full, both pages", "03 / 09", "texasaidocket.com"]
 verbatim:
-  - c5: "planned operational and capital improvements, priority locations, responsible parties, funding mechanisms, and implementation timelines."
+  - c5: "planned operational and capital improvements"
+  - c5: "priority locations"
+  - c5: "responsible parties"
+  - c5: "funding mechanisms"
+  - c5: "implementation timelines"
 acceptance:
   - "the board carries exactly five ruled column heads and every one of them is one of c5's own terms"
-  - "every row beneath the heads is empty, and the empty run is the frame's BRIGHTEST area rather
-     than its darkest"
-  - "the locator reads \"RESOLUTION 20260812-017 / READ IN FULL, BOTH PAGES\" at 26px or larger"
+  - "every row beneath the heads is empty, and the empty run is the frame's BRIGHTEST area rather than its darkest"
+  - "the locator reads 'RESOLUTION 20260812-017 / read in full, both pages' at 26px or larger"
   - "no sentence on this frame asserts a silence wider than that one document"
-  - "the mirrored dome gradient is visible across the empty cells, so no cell reads as a flat fill
-     and no region over 12 percent of the frame is near uniform"
-  - "there is no hook block and no dek block above the board, and the display line is in the
-     title block at lower right"
+  - "the mirrored dome gradient is visible across the empty cells, so no cell reads as a flat fill and no region over 12 percent of the frame is near uniform"
+  - "there is no hook block and no dek block above the board, and the display line is in the title block at lower right"
   - "the frame median L* measures 38 plus or minus 4"
+  - "no sentence on this frame says the resolution establishes none of the five terms, because c10 fixes a priority rule and c11 fixes a date"
 risks:
   - "an empty table reading as a design that ran out of content rather than as a finding. The
      locator and the dek are what make it a finding, and both are set at reading size"
@@ -450,12 +493,13 @@ type:
 verbatim:
   - c10: "Parks with a history of violent crime shall be prioritized for the initial deployment of this equipment."
 acceptance:
-  - "the pole's mounting boss is bare and no camera, no housing and no fitting appears on it"
+  - "the pole's boss carries exactly 4 tapped holes and nothing is fitted to any of them"
   - "the layout paint runs off both frame edges so no reader can count positions"
-  - "the sky's brightest region sits off frame at the lower left rather than in a band across the
-     frame, declared as data-encodes reads differ on a lower left sky rect against an upper right one"
+  - "the sky's brightest region sits off frame at the lower left rather than in a band across the frame, declared as data-encodes reads differ on a lower left sky rect against an upper right one"
   - "the pole and canopy read as hard silhouette against the sky at 432px"
-  - "the frame median L* measures 26 plus or minus 4"
+  - "the frame median L* measures 24 plus or minus 4, and it is the darkest frame in the deck"
+  - "the footer prints 'RESOLUTION 20260812-017' and the claim strip reads 'c10'"
+  - "no string on this frame asserts what has or has not been fitted in Austin, because no claim in this run records a deployment status"
 risks:
   - "a sky and a tree is the most generic image available and this frame has to earn it with the
      bare boss and the layout paint, both of which are the record's own content"
@@ -468,7 +512,7 @@ slide: 5
 job: >
   Name the standard the purchase has to meet, and show that it is a mesh with one controlled
   opening rather than a wall. No other slide draws the ordinance as a structure.
-claims: [c7, c14, c15, c25, c26, c27]
+claims: [c7, c33, c34]
 numerals:
   - value_from: c7     # 20260423-029, 2-19
   - computed_by: "compute.py gated_acts.total and gated_acts.acquire_letter, over the lettered
@@ -482,12 +526,21 @@ composition:
     top rail.
   bands: >
     Top, the top rail with the stencilled citation, the post caps, and the sky above them. Middle,
-    the fabric with the sky through it and the four gated acts stencilled on four fabric panels.
+    the fabric with the sky through it, and the gate leaf at frame right drawn with its own frame
+    tubing, a hinge pair and a dropped latch rod, which is the one controlled opening in the mesh.
+    THE FABRIC CARRIES NO STENCILLED TEXT AND THIS PARAGRAPH USED TO PROMISE FOUR ACTS ON IT. Two
+    judges asked for them and the deck's own reading load ceiling forbids them: the four acts in
+    the ordinance's own words are 28 words, this frame already carries 54, and coherence_check
+    fails a frame over 65. Paraphrasing them down is what put minimal risk on frame 8 in the first
+    place, and after scoring the frame stopped arguing from section 2-19-3 altogether, so there
+    is no list left to stencil. The mesh carries the prohibition and the gate leaf carries its
+    exception, which is the whole of what section 2-19-9 says.
     Bottom third, the fabric's bottom selvage, the tension wire, the granite it stands in with
     the post footings visible as poured collars, and the granite's own grain at its nearest and
     coarsest. The footer sits on that granite.
-  focal: "the post cap and top rail junction at upper left, about 160 by 190 at (120, 300), at
-    L* 68, the frame's high extreme and the one assembly that sees the full dome"
+  focal: "the gate leaf at frame right, about 216 by 594 at (818, 534), its frame tubing at
+    L* 72 against a leaf fabric held 8 L* under the neighbouring bay. It is the frame's high
+    extreme and it is the one thing on the frame the sentence is actually about"
 art:
   technique: "chain link fabric as authored geometry with knuckle and twist per intersection,
     TX.reliefShade from the zenith for the rail and caps, TXCARVE occlusion at the footings"
@@ -501,22 +554,23 @@ art:
     close to silhouette. The sky through the diamonds is the frame's mid value everywhere else.
   motion: "along the top rail from the caps toward the shut gate leaf"
 type:
-  hook: "Whatever is bought meets Chapter 2-19."
-  dek: "The ordinance gates four acts behind council approval. Acquiring new surveillance
-    technology is the second of them."
-  labels: ["ORDINANCE 20260423-029", "05 / 09", "texasaidocket.com"]
-verbatim:
-  - c15: "acquiring new surveillance technology"
-  - c25: "accepting funds for surveillance technology outside o f the annual budget process"
-  - c27: "entering into an agreement with a third-party entity outside o f the City to acquire,"
+  hook: "April had already listed the tools."
+  dek: "Artificial intelligence or machine learning tools sit among what is not
+    permitted in City Code Chapter 2-19. The exception is whatever the city's own policy allows."
+  labels: ["ORDINANCE 20260423-029 / section 2-19-9 read in full", "CITY CODE 2-19-9 NOT PERMITTED (B) ARTIFICIAL INTELLIGENCE", "05 / 09", "texasaidocket.com"]
+verbatim: []
+# The frame prints the citation in the deck's own compressed voice rather than a contiguous
+# fragment of the ordinance, so it declares no verbatim slot. An empty list is a run that looked.
 acceptance:
-  - "the count of gated acts is produced by compute.py gated_acts.total and the frame names the
-     lettered section it counted over"
-  - "the mesh aperture is never below 26 design px at full size, and where perspective compresses
-     it past 12 px the fabric resolves to one solid silhouette value rather than to moire"
+  - "the count of gated acts is produced by compute.py gated_acts.total and the frame names the lettered section it counted over"
+  - "the fabric's aperture constant is 34 design px, which is above the 26 px moire floor, and window.__txComputed.aperture_px reports it"
   - "the dek sits in the sky above the top rail and never over mesh"
   - "no cast shadow appears and the post footings are seated by occlusion"
   - "the frame median L* measures 33 plus or minus 4"
+  - "the rail stencil reads 'CITY CODE 2-19-9 NOT PERMITTED (B) ARTIFICIAL INTELLIGENCE'"
+  - "the locator reads 'ORDINANCE 20260423-029 / section 2-19-9 read in full'"
+  - "the right bay carries a gate leaf drawn with its own frame tubing, a hinge pair and a dropped latch rod, so it reads as a controlled opening rather than as more fence"
+  - "the frame names section 2-19-9 rather than 2-19-3, because 2-19-9 is where the April instrument speaks to artificial intelligence and reading only 2-19-3 is what made this deck's first spine false"
 risks:
   - "chain link is the classic moire generator and the 432px thumb is where it shows. Checked on
      the thumb before anything else on this frame is judged"
@@ -561,17 +615,18 @@ art:
 type:
   hook: null
   dek: "The clause reaches the foot of the resolution's first page."
-  labels: ["RESOLUTION 20260812-017", "06 / 09", "texasaidocket.com"]
+  labels: ["RES 20260812-017", "06 / 09", "texasaidocket.com"]
 verbatim:
   - c8: "The City Manager shall not consider acquisition of any camera or drone system that depends upon artificial"
 acceptance:
-  - "the last visible word of the quoted clause is \"artificial\" and no glyph and no punctuation
-     appears after it"
+  - "the last visible word of the quoted clause is \"artificial\" and no glyph and no punctuation appears after it"
   - "the sheet runs off the bottom frame edge and no bottom edge of the sheet is drawn"
   - "there is no hook block on this frame and the dek is at the TOP"
   - "every glyph is DOM or SVG text sharing the canvas projection, and none is drawn into the canvas"
   - "no cast shadow appears, and the galvanized stock is seated by occlusion on the sheet"
-  - "the frame median L* measures 22 plus or minus 4, and it is the darkest frame in the deck"
+  - "the frame median L* measures 26 plus or minus 4"
+  - "the last line of the clause reads 'depends upon artificial'"
+  - "the four quote lines share one type size in the sheet's own plane, so each line's size is the line above it times the plane's own width ratio at that depth"
 risks:
   - "a reader who never swipes sees a sentence stopping mid word. The dek naming the page foot is
      the mitigation, and it is a mitigation rather than a guarantee"
@@ -585,7 +640,7 @@ job: >
   THE INVERSION. Complete the clause at the top of the next page, in the open where nothing
   occludes the sky, which under this deck's own physics makes it the brightest surface the deck
   can contain. No other slide is dead flat and no other slide is bright.
-claims: [c9]
+claims: [c9, c34]
 numerals: []
 composition:
   structure: >
@@ -600,11 +655,12 @@ composition:
     rather than as a highlight. The paper's formation and laid tooth are at their most visible
     there, carrying a real grain and a press dither in the toner, so the band is a modelled
     surface. The dek and the footer sit on that grain rather than on a flat band.
-  focal: "the low swell where the sheet turns toward the sky, about 340 by 260 at (620, 900), at
-    L* 78, sitting directly beneath the word \"analysis\""
+  focal: "the page's empty lower half with the low swell in it, about 900 by 420 at (90, 700), at
+    L* 78 against a press block at L* 52. The block above it now carries page two's own nine
+    lines and stops, so the emptiness under them is the frame's argument rather than dead paper"
 art:
-  technique: "flat printed matter with paper formation, laid tooth and a press dither on the
-    toner as the only modelling, plus one bounded swell from TX.reliefRect. NO drawn light"
+  technique: "paper formation, laid tooth and a press dither on the toner as the only modelling,
+    plus one bounded swell from TX.reliefRect. NO drawn light of any kind"
   why_this_technique: >
     This is the one frame whose brightness has a physical reason inside the deck's own law rather
     than a compositional one. A sheet in the open sees the whole dome, and the deck has spent six
@@ -616,21 +672,22 @@ art:
   motion: "in at the top edge, down the page to the swell"
 type:
   hook: null
-  dek: "The clause finishes at the top of page two. It reaches a camera or drone that depends on
-    artificial intelligence to do those two things, and nothing else."
-  labels: ["RESOLUTION 20260812-017", "07 / 09", "texasaidocket.com"]
+  dek: "The clause finishes at the top of page two. It reaches a camera or drone that
+    depends on artificial intelligence to do those two things. April had already listed those
+    tools as not permitted. That listing carries an exception and this clause carries none."
+  labels: ["RESOLUTION 20260812-017 / read in full, both pages", "07 / 09", "texasaidocket.com"]
 verbatim:
   - c9: "intelligence to conduct surveillance or analysis."
 acceptance:
-  - "the completing line reads \"intelligence to conduct surveillance or analysis.\" and it is the
-     completion of the string frame 6 ended on"
-  - "the dek states the scope in the record's own terms and no string on this frame implies a ban
-     on artificial intelligence in Austin parks or in Austin city government"
-  - "this frame's camera is dead flat with zero perspective, which is the opposite of frame 6's
-     thirty degree oblique"
-  - "the deck's pairwise source similarity puts frames 6 and 7 BELOW 0.70. If they are the
-     closest pair above it, frame 7 is rebuilt from a different camera rather than retouched"
+  - "the completing line is the completion of the string frame 6 ended on, and it is the only line of quoted text on the frame"
+  - "the dek states the scope in the record's own terms and no string on this frame implies a ban on artificial intelligence in Austin parks or in Austin city government"
+  - "this frame's camera is dead flat with zero perspective, which is the opposite of frame 6's thirty degree oblique"
+  - "the deck's pairwise source similarity puts frames 6 and 7 BELOW 0.70. If they are the closest pair above it, frame 7 is rebuilt from a different camera rather than retouched"
   - "the frame median L* measures 62 plus or minus 5, and it is the brightest frame in the deck"
+  - "the completing line reads 'intelligence to conduct surveillance or analysis.'"
+  - "the locator reads 'RESOLUTION 20260812-017 / read in full, both pages'"
+  - "the press block carries nine ruled lines and no more, which is page two's own line count after the completing line"
+  - "the asymmetry this frame states is between the April listing and this clause, and both halves trace to a claim in the strip, c34 for the listing and c9 for the clause"
 risks:
   - "the page break pair shipping as one drawing twice, which is deck 15's recorded fault where
      the repeated thing was the CAMERA and two geometry changes did not touch it"
@@ -644,7 +701,7 @@ job: >
   Make the counter-argument on its own slide. The April instrument dimensions the same part that
   the August one deletes, and the training of artificial intelligence is visibly one dimension
   among several rather than the only one.
-claims: [c16, c17, c18, c20, c21, c22, c23, c24]
+claims: [c17, c18, c23, c24, c30, c31]
 numerals:
   - computed_by: "compute.py factors.total, the length of the numbered analysis in City Code
       Section 2-19-4(C), counted over that list"
@@ -685,18 +742,18 @@ type:
   dek: null
   labels: ["ORDINANCE 20260423-029 / SECTION 2-19-4", "08 / 09", "texasaidocket.com"]
 verbatim:
-  - c22: "develop or expand products, services, or technology, including training of"
+  - c18: "including training of"
+  - c18: "artificial intelligence"
   - c17: "no less than four weeks before the city council meeting"
-  - c23: "The presence of any one or more o f the factors in Subsection (C) shall weigh"
 acceptance:
-  - "the witness lines number exactly ten and the frame names the numbered section it counted over"
-  - "the artificial intelligence witness line is drawn at the same stroke weight and the same type
-     size as the other nine, and carries no colour, no fill and no emphasis of any kind"
+  - "the frame prints exactly 10 witness line labels, (1) through (10), and the label SECTION 2-19-4(C), TEN NUMBERED FACTORS names the set they were counted over"
   - "the four week span is drawn with both terminators present and is never truncated"
-  - "every leader is authored as a world coordinate polyline and each at: lands on its target
-     within 24 design px"
+  - "every leader is authored as a world coordinate polyline and each at: lands on its target within 24 design px"
   - "this frame carries no headline block at all and every string on it is drafting annotation"
   - "the frame median L* measures 29 plus or minus 4"
+  - "the set label reads 'SECTION 2-19-4(C), TEN NUMBERED FACTORS'"
+  - "the locator reads 'ORDINANCE 20260423-029 / SECTION 2-19-4'"
+  - "no witness line in the stack carries any annotation, so all ten are drawn identically and the fifth is called out by a leader from below the stack"
 risks:
   - "eight claims trips the one idea advisory. It is a summary frame and the gate warns rather
      than fails, and the frame is the deck's counter-argument which the library says earns its
@@ -708,10 +765,11 @@ risks:
 ```yaml
 slide: 9
 job: >
-  THE DOOR. Give the reader a dated public meeting they can attend. This is the only slide that
-  owes the reader nothing and gives instead, and it is the debt the ledger records against this
-  deck by name.
-claims: [c11, c19, c12]
+  THE DOOR. Give the reader a dated obligation on the city manager and the place to check whether
+  it was met. c11 is a progress update owed to a council committee by a date, which is not a
+  public meeting anybody can attend, and this line said it was until a judge read the claim
+  against it. This is the only slide that owes the reader nothing and gives instead.
+claims: [c11, c12, c19]
 numerals:
   - value_from: c11    # December 9,2026
   - value_from: c19    # 2026-05-28
@@ -746,22 +804,22 @@ art:
     surface, which is what makes it read.
   motion: "along the rail from frame left, into the painted band, then out along the path"
 type:
-  hook: "December 9th, 2026."
+  hook: "DECEMBER 9TH, 2026"
   dek: "The city manager owes the Council Climate, Water, Environment, and Parks Committee a
     progress update by then. The city's own voting record still holds no count for the meeting
     that adopted this."
-  labels: ["RESOLUTION 20260812-017 / READ IN FULL, BOTH PAGES", "09 / 09", "texasaidocket.com"]
-verbatim:
-  - c11: "The City Manager shall provide a progress update on the direction given in this Resolution to the Council Climate, Water, Environment, and Parks Committee no later than December 9,2026."
+  labels: ["VOTING RECORD 3c89-i35a / loaded to May 28th, 2026", "RES 20260812-017", "09 / 09", "texasaidocket.com"]
+verbatim: []
 acceptance:
   - "flag_red appears on this frame and on no other frame in the deck"
   - "flag_red is a painted GROUND and no glyph anywhere in the deck is flag_red"
   - "the paint_white reversed out of the red band measures 4.9 to 1 or better at the worst point"
   - "the painted band runs off BOTH frame edges, so it is a length of steel rather than a plate"
-  - "the date is set in JetBrains Mono at the largest type size in the deck, which inverts the
-     deck's own hierarchy where mono is small furniture"
+  - "the date is set in JetBrains Mono at the largest type size in the deck, which inverts the deck's own hierarchy where mono is small furniture"
   - "no cast shadow appears and the rail posts are seated by occlusion on the granite"
   - "the frame median L* measures 41 plus or minus 4, and it is the second brightest frame"
+  - "the locator reads 'VOTING RECORD 3c89-i35a / loaded to May 28th, 2026'"
+  - "the rail's side face is taller than its top face, which is what fifteen degrees down onto a horizontal rail gives"
 risks:
   - "a close that reads as a call to action. The copy names the meeting and the date and asks for
      nothing"

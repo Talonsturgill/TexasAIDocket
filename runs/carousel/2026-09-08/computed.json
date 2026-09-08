@@ -1,6 +1,6 @@
 {
  "run": "2026-09-08",
- "claims_asserted": 28,
+ "claims_asserted": 39,
  "note": "Every string here is asserted against a snapshot of the document it came from before it is written. The two scanned documents keep their OCR garbling, because a repaired quote can no longer be found in the document it cites.",
  "dates": {
   "adopted": "August 12th, 2026",
@@ -57,6 +57,23 @@
    "radio communication systems"
   ],
   "counted_over": "the enumeration in Resolution No. 20260812-017"
+ },
+ "reached_kinds": {
+  "reached": 2,
+  "of": 6,
+  "items": [
+   "security cameras",
+   "non-recording drones as first responders"
+  ],
+  "counted_over": "the enumeration in Resolution No. 20260812-017, matched against the nouns the prohibition itself names"
+ },
+ "clause_uses": {
+  "total": 2,
+  "uses": [
+   "surveillance",
+   "analysis"
+  ],
+  "counted_over": "the clause's own words in Resolution No. 20260812-017"
  },
  "voting_record": {
   "latest_meeting_loaded": "2026-05-28",

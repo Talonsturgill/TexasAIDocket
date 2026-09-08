@@ -1,0 +1,120 @@
+{
+ "run": "2026-09-08",
+ "note": "Carousel no. 18 quotes every date, every resolution number and every chapter number it prints, so the aggregates here are COUNTING WORDS over a source's own enumeration rather than arithmetic. Each is produced by compute.py by parsing the document's own numbered or lettered list, and each frame that prints one names the set it counted over.",
+ "deliberately_not_computed": [
+  {
+   "what": "the interval in days or weeks between August 12th, 2026 and December 9th, 2026",
+   "why": "The resolution states both dates and performs no subtraction between them. A span in the largest type on a page is a fresh factual assertion, and the deck sets the two dates on different frames rather than side by side, so it never invites the arithmetic."
+  },
+  {
+   "what": "the interval between the April ordinance and the August resolution",
+   "why": "The deck's argument is that a weighing became a bar over one summer, and it makes that argument in the SHAPE of two objects rather than by printing a span. No source computes the interval and neither does the deck. THIS ENTRY SAID THIRTEEN WEEKS UNTIL A JUDGE CHECKED IT. April 23rd, 2026 to August 12th, 2026 is 111 days, 15 weeks and 6 days. The figure was on no slide and in no caption so it failed nothing, and it was typed rather than computed on a deck whose first law is that no number is typed. It is recorded here rather than quietly corrected, because a wrong number in a file that says why a number was not computed is the exact shape this law exists to prevent."
+  },
+  {
+   "what": "how many council members voted for the resolution, or how many sponsored the item",
+   "why": "The city's own voting record has loaded no meeting later than May 28th, 2026, so no tally exists to count. The agenda names sponsors individually and counting them here would produce a numeral the document does not state."
+  },
+  {
+   "what": "any count of chain link diamonds, granite chips, rack bays, punched holes or spangle marks",
+   "why": "Every repeated element in this deck runs off its frame edges with no boundary and no total, so no count is readable. Frame 4's layout paint runs off both edges for exactly this reason and its dossier says so."
+  },
+  {
+   "what": "the ordinal position of acquiring new surveillance technology in Section 2-19-3",
+   "why": "The frame prints the ordinance's own letter (B) in its stencilled citation rather than the word second, so no ordinal is asserted on any frame. compute.py knows the letter and the deck declines to convert it."
+  },
+  {
+   "what": "the count of acts City Code Section 2-19-3 gates behind council approval",
+   "why": "The deck printed 'four acts' until scoring, and the count is right. What made it not worth printing is that 2-19-3 opens on 'Except as otherwise permitted in this chapter' and sections 2-19-7 and 2-19-8 are express exceptions to it, so a bare four states a gate the chapter itself already carves holes in. c36, c37 and c38 carry the carve outs. The frame now names section 2-19-9 instead, which is where the April instrument speaks to artificial intelligence."
+  }
+ ],
+ "aggregates": [
+  {
+   "phrase": "six kinds",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 6,
+   "computed_by": "out/2026-09-08/compute.py equipment(), which splits the resolution's own enumeration in claim c6 on the source's own commas after the stem 'potentially including but not limited to,' and takes the length of the split. The count is the length of a list the source wrote, not the length of a list somebody typed.",
+   "from_claims": [
+    "c6"
+   ],
+   "note": "The frame's footer names the set it counted over and the HOOK NOW SAYS NAMES RATHER THAN ORDERED, because c6's enumeration is expressly open: it reads potentially including but not limited to. Six is the count of what the resolution NAMES, and the frame's dek says the list is not limited to them."
+  },
+  {
+   "phrase": "TEN NUMBERED FACTORS",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 10,
+   "computed_by": "out/2026-09-08/compute.py factors(), which splits the numbered analysis in City Code Section 2-19-4(C) between its own stem and subsection (D), parses the bracketed numbers, and asserts they run 1 to n with no gap before returning the length. A missing or duplicated number stops the build.",
+   "from_claims": [
+    "c20",
+    "c21",
+    "c22",
+    "c23",
+    "c24"
+   ],
+   "note": "The frame draws exactly ten witness lines and labels them (1) through (10), which are the ordinance's own numbers rather than a numbering the deck invented."
+  },
+  {
+   "phrase": "two of the six",
+   "slide": "slide-01.html",
+   "kind": "ratio",
+   "value": 2,
+   "of": 6,
+   "computed_by": "out/2026-09-08/compute.py reached_kinds(), which matches the nouns the prohibition itself names, camera and drone, against the six entries of the resolution's own enumeration. It asserts that both nouns are present in the clause before it counts, so a reworded clause stops the build rather than producing a stale ratio.",
+   "from_claims": [
+    "c6",
+    "c8"
+   ],
+   "note": "The two reached are security cameras and non-recording drones as first responders. The whole is the count of what the resolution NAMES, which is not the same as the whole of what may be bought, and the frame says so in its dek. A judge found the denominator asserted as closed when the source declares it open, and the copy was changed rather than the ratio."
+  },
+  {
+   "phrase": "two things",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "out/2026-09-08/compute.py clause_uses(), which reads the clause's own tail after the word intelligence and collects the uses it names. It asserts exactly two are found and stops the build otherwise.",
+   "from_claims": [
+    "c9"
+   ],
+   "note": "The two are surveillance and analysis, which are the clause's own words. The dek says two things rather than two uses because the reworded line restored the PART the clause reaches, so the count now sits beside a camera or drone."
+  },
+  {
+   "phrase": "four weeks",
+   "slide": "slide-08.html",
+   "kind": "quoted_duration",
+   "value": 4,
+   "unit": "weeks",
+   "from_claims": [
+    "c17"
+   ],
+   "note": "A quoted duration rather than an arithmetic one. The ordinance states the figure itself and the deck performs no subtraction anywhere. THE KIND WAS 'duration' UNTIL THIS ROUND, and sources_block.py appends 'Day counts computed in compute.py from the source dates above' whenever any aggregate declares a duration or a span. This deck computes no day count, so that line was a provenance claim about a computation that did not happen, which is the exact defect the gate's own comment says it was written to close. The label was wrong rather than the line.",
+   "quoted_from": "c17",
+   "quote": "no less than four weeks before the city council meeting"
+  },
+  {
+   "phrase": "four weeks",
+   "slide": "caption.txt",
+   "kind": "quoted_duration",
+   "value": 4,
+   "unit": "weeks",
+   "from_claims": [
+    "c17"
+   ],
+   "note": "A quoted duration rather than an arithmetic one. The ordinance states the figure itself and the deck performs no subtraction anywhere. THE KIND WAS 'duration' UNTIL THIS ROUND, and sources_block.py appends 'Day counts computed in compute.py from the source dates above' whenever any aggregate declares a duration or a span. This deck computes no day count, so that line was a provenance claim about a computation that did not happen, which is the exact defect the gate's own comment says it was written to close. The label was wrong rather than the line.",
+   "quoted_from": "c17",
+   "quote": "no less than four weeks before the city council meeting"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, which groups the run's claims by their source document and counts the distinct documents whose source_type is primary_official. The two are the executed resolution and the executed ordinance.",
+   "from_claims": [
+    "c1",
+    "c7"
+   ],
+   "note": "Counted over claims.json's own url field rather than over a list anybody typed."
+  }
+ ]
+}
