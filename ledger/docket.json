@@ -13707,7 +13707,7 @@
   },
   {
    "title": "A Texas Senate committee took testimony on how much water data center cooling uses and whether local water providers are told",
-   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs met at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. Senator Charles Perry chairs it. The posted notice sets one interim charge. It is examining current water consumption rates for high consumption cooling technologies including data centers. The charge directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. Public testimony was limited to two minutes and written testimony went to the committee clerk. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills decides what to recommend.",
+   "summary": "The Senate Committee on Water, Agriculture, and Rural Affairs sat on September 1st, 2026 on the water demands of energy intensive cooling. The Senate's video archive carries the recording under the committee's name and that date. The committee's page lists the sitting among the interim work of the current Legislature, beside a second sitting the following day. Senator Charles Perry chairs the committee. What the committee heard is on the recording. No recommendation from either sitting has been published. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills settles what it will recommend.",
    "topic": "land-water-and-permitting",
    "decider": {
     "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
@@ -13729,44 +13729,48 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The committee posts its notice with the room, the hour and the charge before it meets, and it took invited and public testimony. Public testimony was limited to two minutes. Written testimony goes to the committee clerk, whose address is on the notice, so a Texan who could not be in Austin could still be read into the record.",
-    "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm"
+    "how": "The committee publishes its own page with the chair, the members and the clerk's telephone number. The recording of the sitting is in the Senate's video archive and can be watched in full. Written comment on an interim charge goes to the committee clerk.",
+    "url": "https://senate.texas.gov/cmte.php?c=700"
    },
    "claims": [
     {
-     "text": "The posted notice states the committee, the hour, the date, the room and the chair.",
-     "verbatim_quote": "COMMITTEE: Water, Agriculture and Rural Affairs TIME & DATE: 9:00 AM, Tuesday, September 1, 2026 PLACE: E1.012 (Hearing Room) CHAIR: Senator Charles Perry",
-     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
-     "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+     "text": "The Senate's own video archive carries the committee's September 1st sitting under that committee's name and date.",
+     "verbatim_quote": "Senate Committee on Water, Agriculture, and Rural Affairs, September 1, 2026 | Texas Senate Video",
+     "source_url": "https://senate.texas.gov/videoplayer.php?vid=22662&lang=en",
+     "source_title": "Texas Senate video archive, Senate Committee on Water, Agriculture, and Rural Affairs, September 1, 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-07",
+     "fetched": "2026-09-08",
      "id": "tx-2026-0126-c1"
     },
     {
-     "text": "The interim charge names the technology it is examining and what it asks the committee to recommend.",
-     "verbatim_quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers. Make recommendations to improve transparency for local water providers and ensure industrial growth does not compromise the affordability of water for Texas residents and agricultural producers.",
-     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
-     "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+     "text": "The committee's own page lists the sitting under the interim work of the current Legislature.",
+     "verbatim_quote": "89th Session Interim",
+     "source_url": "https://senate.texas.gov/cmte.php?c=700",
+     "source_title": "Senate Committee on Water, Agriculture, and Rural Affairs, The Texas State Senate",
      "source_type": "primary_official",
-     "fetched": "2026-09-07",
+     "fetched": "2026-09-08",
      "id": "tx-2026-0126-c2"
     },
     {
-     "text": "The notice states how long a member of the public could speak.",
-     "verbatim_quote": "Public testimony is limited to 2 minutes.",
-     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
-     "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+     "text": "The committee's page carries the committee's own name.",
+     "verbatim_quote": "Senate Committee on Water, Agriculture, and Rural Affairs | The Texas State Senate",
+     "source_url": "https://senate.texas.gov/cmte.php?c=700",
+     "source_title": "Senate Committee on Water, Agriculture, and Rural Affairs, The Texas State Senate",
      "source_type": "primary_official",
-     "fetched": "2026-09-07",
+     "fetched": "2026-09-08",
      "id": "tx-2026-0126-c3"
     }
    ],
    "id": "tx-2026-0126",
-   "last_verified": "2026-09-07",
+   "last_verified": "2026-09-08",
    "history": [
     {
      "date": "2026-09-07",
      "note": "Admitted. The committee's posted notice sets the hearing for September 1st, 2026 and carries the interim charge in full. The charge names data centers and asks the committee to recommend ways to improve transparency for local water providers."
+    },
+    {
+     "date": "2026-09-08",
+     "note": "The committee's own page and the Senate video archive both carry the September 1st sitting, and they are what the entry rests on now. Three details that appeared only on the posted hearing notice are no longer carried."
     }
    ]
   },
