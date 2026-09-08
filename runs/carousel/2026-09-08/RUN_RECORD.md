@@ -425,21 +425,21 @@ for.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 32 verified claim(s) |
+| claims         | PASS   | 39 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
-| aggregates     | PASS   | 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.55 MB, vector |
+| aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
+| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | score          | ABSENT | score.json not written yet |
-| labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| labels         | PASS   | 46 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 53,851 chars planned |
-| caption        | PASS   | 137 words |
+| dossiers       | PASS   | 55,387 chars planned |
+| caption        | PASS   | 133 words |
 | craft floor    | WARN   | 9 frame(s), median 922, floor 166, 1 quiet |
 | plan vs render | PASS   | 12 of 77 acceptance item(s) checkable |
 | texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
-| absences       | PASS   | 6 of 6 scoped to a named document |
+| absences       | PASS   | 9 of 9 scoped to a named document |
 | numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
@@ -667,3 +667,73 @@ computation that produced them.
 **That is the second time in one run that a correct gate fired off a field nobody had checked**,
 the first being `label_guard` reading the L5 locator. Both are the same shape as the acceptance
 truncation: the check was right and its INPUT was not what anybody thought it was.
+
+## SCORING ROUND TWO, AND THE DECK'S THESIS WAS FALSE
+
+| lens | score | hard fails | ship |
+|---|---|---|---|
+| integrity | 5.92 | 2 | no |
+| craft | 7.18 | 0 | yes |
+| reader | 6.69 | 1 | no |
+
+**THE FINDING THAT DECIDED THE RUN.** The deck argued that City Code Chapter 2-19 WEIGHED
+artificial intelligence as one of ten privacy assessment factors in April, and that the August
+resolution turned it into a bar thirteen weeks later. Section **2-19-9 PROHIBITED TECHNOLOGIES**
+of the same ordinance reads:
+
+> The following surveillance technologies or data uses are not permitted ... **(B) artificial
+> intelligence or machine learning tools, except as consistent with City policy**
+
+**April had already said no.** The run had the whole fourteen page extraction in hand, cited six
+other sections of it, and never read the section six pages past the one its argument stood on. A
+sweep run after the finding shows the ordinance mentions artificial intelligence in **twelve
+places across five provisions** and the run had read one.
+
+Nothing was published. What this cost is a scoring round and a rebuilt spine, and the second spine
+is better than the first because it is what the whole instrument says.
+
+### The spine now
+
+**April prohibited the tools with a door in it. August closed the door and narrowed the room.**
+
+- The April prohibition reaches artificial intelligence or machine learning TOOLS across the city
+  and carries an exception, `except as consistent with City policy`.
+- The August clause reaches a camera or drone in the PARKS, carries no exception at all, and binds
+  one officer for one kind of purchase.
+
+Frame 5's fence with a single gate leaf turned out to be the right drawing for a prohibition with
+an exception in it, which is not what it was drawn to be. Its hook went from `Surveillance
+technology meets Chapter 2-19.` to `April had already listed the tools.`, its stencil from
+`CITY CODE 2-19-3 COUNCIL APPROVAL BEFORE (B) ACQUIRING` to `CITY CODE 2-19-9 NOT PERMITTED (B)
+ARTIFICIAL INTELLIGENCE`, and frame 7's thesis line from `The April ordinance weighs it. This one
+directs a manager not to consider it.` to `April had already listed those tools as not permitted.
+That listing carries an exception and this clause carries none.`
+
+Seven claims were added for the sections the run should have read: c33 and c34 the prohibition and
+its artificial intelligence entry, c35 the facial recognition entry beside it, c36 the
+`Except as otherwise permitted in this chapter` carve out that opens 2-19-3, c37 and c38 the two
+express exception sections, and c39 the surveillance use policy's own duty to describe a
+technology's machine learning capabilities.
+
+### The check that was missing, in the judge's own words
+
+> Before a deck asserts a contrast between two instruments, grep the FULL snapshot of BOTH
+> documents for the subject noun and either claim or explicitly reject every place it appears.
+
+That sweep is now run and its disposition is in `claims.json`. The resolution mentions artificial
+intelligence in its one clause and nowhere else. The ordinance mentions it twelve times. Three
+provisions are claimed, four more are recorded in `rejected` as read and not carried. **A deck
+that argues from one section of a document it has fetched in full has not read the document.**
+
+### Two hard fails that were not fails
+
+Both judges reported that `claims.json` held 31 claims and no c32 for the TRUST Act name, and the
+integrity judge computed the source_type split to prove it. **The file held 32 with c32 when they
+read it and holds 39 now.** They read a state that existed for a few minutes between the c31 and
+c32 additions, which is a hazard of scoring a run that is still repairing itself.
+
+The lesson is not that the judges were careless. It is that **`runs/carousel/2026-09-08/claims.json`
+really was four claims stale**, because it is written at Phase 6 and refreshed at Phase 16, and a
+judge reading the run directory rather than the scratch directory sees a record the deck has
+outgrown. That is a real defect with a real fix, and it is why the artifact copy happens before
+the panel from now on.
