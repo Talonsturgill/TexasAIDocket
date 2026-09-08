@@ -428,14 +428,14 @@ for.
 | claims         | PASS   | 32 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
-| aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
+| aggregates     | PASS   | 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 6.55 MB, vector |
 | score          | ABSENT | score.json not written yet |
 | labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 88 published string(s) read from one list, every universal names its set |
+| quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
 | dossiers       | PASS   | 53,851 chars planned |
-| caption        | PASS   | 141 words |
+| caption        | PASS   | 137 words |
 | craft floor    | WARN   | 9 frame(s), median 922, floor 166, 1 quiet |
 | plan vs render | PASS   | 12 of 77 acceptance item(s) checkable |
 | texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
@@ -645,3 +645,25 @@ What was left is the contrast the caption's own preceding sentences already carr
 chapter that gates a purchase on council approval and a filed assessment against a resolution that
 directs an officer. The analytical line, `The forbidding one is the weaker instrument`, stays,
 because it rests on those sourced facts rather than asserting a legal conclusion of its own.
+
+### The sources block published a computation that did not happen, again
+
+`sources_block.py` appends `Day counts computed in compute.py from the source dates above.`
+whenever any aggregate declares a `duration` or a `span`. Its own comment records why that line is
+conditional: the 2026-08-26 deck published it unconditionally over a `compute.py` that parses no
+date, an integrity judge called it a hard fail, and the gate's comment says in as many words that
+**a line claiming a computation is exactly the defect `compute.py` exists to close.**
+
+This deck fired it through the `kind` field. Its only durations are the two instances of `four
+weeks`, and both are QUOTED verbatim from c17 rather than computed. Their own notes said so, and
+they were still labelled `duration`, so the block published a provenance claim about arithmetic
+this deck deliberately never performed. The interval between the two instruments is in
+`deliberately_not_computed` for the same reason.
+
+The label was wrong rather than the line. `kind` is now `quoted_duration` on both, the line is
+gone, and the two counts the block itself computes, `two official records`, are declared with the
+computation that produced them.
+
+**That is the second time in one run that a correct gate fired off a field nobody had checked**,
+the first being `label_guard` reading the L5 locator. Both are the same shape as the acceptance
+truncation: the check was right and its INPUT was not what anybody thought it was.
