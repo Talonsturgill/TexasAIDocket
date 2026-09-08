@@ -487,8 +487,12 @@ art:
   motion: "up the pole into the aperture, then out along the canopy edge"
 type:
   hook: "Which parks go first."
-  dek: "Parks with a history of violent crime are prioritized for the first deployment. Nothing
-    is fitted yet."
+  dek: "Parks with a history of violent crime shall be prioritized for the initial
+    deployment of this equipment. The mount is bare."
+  # THE SECOND SENTENCE USED TO READ "Nothing is fitted yet." and the pixel review struck
+  # it as an unsourced claim about the state of the world. It is recorded here as struck
+  # rather than silently replaced, because a plan that keeps a struck sentence is how a
+  # struck reading gets rebuilt by the next run that reads the plan.
   labels: ["RESOLUTION 20260812-017", "04 / 09", "texasaidocket.com"]
 verbatim:
   - c10: "Parks with a history of violent crime shall be prioritized for the initial deployment of this equipment."
