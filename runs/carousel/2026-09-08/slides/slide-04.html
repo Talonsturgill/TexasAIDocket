@@ -1,0 +1,152 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0E1109}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#D6DCD2}
+h1{position:absolute;left:600px;top:150px;width:400px;margin:0;font-family:Fraunces,serif;
+  font-weight:600;font-size:76px;line-height:1.0;color:#D6DCD2;letter-spacing:-.02em;text-align:right}
+.dek{position:absolute;left:80px;top:548px;width:496px;margin:0;font-family:Manrope,sans-serif;
+  font-weight:500;font-size:28px;line-height:1.26;color:#D6DCD2}
+.foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+  gap:18px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;
+  letter-spacing:.04em;color:#A9B0A3;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Which parks go first.</h1>
+  <p class="dek">"Parks with a history of violent crime shall be prioritized for the initial
+     deployment of this equipment." The mount is bare.</p>
+  <div class="foot"><span>RESOLUTION 20260812-017</span><span>c10</span>
+    <span class="tx-site">texasaidocket.com</span><span>04 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // Worm's eye, three hundred millimetres above the granite, twenty degrees up. The sky fills two
+  // thirds. One pole stands against the aperture between the canopy and ITS MOUNTING BOSS IS BARE,
+  // because the order is placed and the equipment is not acquired. The brightest region of the
+  // dome sits OFF FRAME at the lower left, toward downtown, because a city glow has no azimuth.
+  const GROUND=1096;
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2; let base,rr,gg,bb;
+    if(v<GROUND){
+      const city=Math.max(0,1-Math.hypot((u+150)/1150,(v-GROUND-160)/1000));
+      // Aerosol loading thickens toward the horizon, so the dome's MATERIAL is carried by two
+      // fine scales that grow with depth through it rather than by one wash at one frequency.
+      // Held off the upper dome on purpose: that is where the headline sits.
+      const q=Math.pow(Math.max(0,v/GROUND),2.2);
+      base = 44 + city*62 + Math.pow(Math.max(0,v/GROUND),1.4)*28 + TX.fbm2(u/240,v/190,3)*10
+           + q*(TX.fbm2(u/3.0,v/3.0,2)*30 + TX.fbm2(u/19,v/19,3)*14);
+      rr=base*1.22; gg=base*1.00; bb=base*0.70;
+    } else {
+      const t=(v-GROUND)/(H-GROUND);
+      base = 62 + t*34 + TX.fbm2(u/2.2,v/2.2,2)*16 + TX.fbm2(u/36,v/36,3)*13;
+      rr=base*1.02; gg=base*1.00; bb=base*0.82;
+    }
+    const i=(py*W*2+px)*4; d[i]=rr; d[i+1]=gg; d[i+2]=bb; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // HAZE PARTICULATE in the city glow, so the sky is a material rather than a ramp. A gradient
+  // is a promise of light and this frame's own dossier calls its ground worked.
+  for(let i=0;i<26000;i++){
+    const hx3=R()*W, hy3=R()*GROUND, s3=0.6+R()*1.9;
+    const l=44+R()*40;
+    x.fillStyle='rgba('+Math.round(l*1.2)+','+Math.round(l)+','+Math.round(l*0.72)+','+(0.05+R()*0.16)+')';
+    x.fillRect(hx3,hy3,s3,s3);
+  }
+
+  // ---- THE CANOPY, closing both upper corners as silhouette with a real ragged edge and gaps.
+  const cv=document.createElement('canvas'); cv.width=W*2; cv.height=H*2;
+  const cxx=cv.getContext('2d'); cxx.scale(2,2);
+  cxx.fillStyle='#14170F';
+  for(let u=0;u<W;u++){
+    const left = 470 + TX.fbm2(u/86, 2.1, 4)*300 + TX.fbm2(u/17, 8.3, 3)*72;
+    const right= 470 + TX.fbm2((W-u)/78, 6.4, 4)*300 + TX.fbm2((W-u)/15, 3.9, 3)*72;
+    const lim = Math.min(left * Math.max(0, 1-(u/430))*1.15 + 40, 720);
+    const rim = Math.min(right * Math.max(0, 1-((W-u)/400))*1.15 + 40, 720);
+    const h = Math.max(lim, rim);
+    if(h>44) cxx.fillRect(u, 0, 1.02, h);
+  }
+  // leaf texture inside the mass, so it is a canopy and not a black shape
+  for(let i=0;i<9000;i++){
+    const lx=R()*W, ly=R()*860, s=2+R()*7;
+    cxx.globalAlpha=0.05+R()*0.10; cxx.fillStyle='#2C3626';
+    cxx.beginPath(); cxx.ellipse(lx,ly,s,s*0.55,R()*3,0,6.284); cxx.fill();
+  }
+  cxx.globalAlpha=1;
+  x.drawImage(cv,0,0,W,H);
+
+  // ---- THE POLE, hard silhouette against the aperture, with a BARE mounting boss on top.
+  const PX=632;
+  x.fillStyle='#171B14'; x.fillRect(PX-19,322,38,GROUND-322+10);
+  x.fillStyle='#20261C'; x.fillRect(PX+12,322,7,GROUND-322+10);
+  // the boss: a flat plate and four tapped holes, and nothing on it
+  x.fillStyle='#232A1E'; x.fillRect(PX-88,286,176,36);
+  x.fillStyle='#2E3626'; x.fillRect(PX-88,286,176,6);
+  for(let k=0;k<4;k++){
+    x.fillStyle='#0D1009';
+    x.beginPath(); x.arc(PX-60+k*40,306,9,0,6.284); x.fill();
+  }
+  // base plate and anchor bolts, seated by occlusion
+  x.fillStyle='#1B2117'; x.fillRect(PX-46,GROUND-24,92,26);
+  for(let k=0;k<4;k++){ x.fillStyle='#2A3223'; x.beginPath(); x.arc(PX-32+k*21,GROUND-12,6,0,6.284); x.fill(); }
+  const og=x.createRadialGradient(PX,GROUND+4,6,PX,GROUND+4,120);
+  og.addColorStop(0,'rgba(8,10,6,0.6)'); og.addColorStop(1,'rgba(8,10,6,0)');
+  x.fillStyle=og; x.beginPath(); x.ellipse(PX,GROUND+4,120,30,0,0,6.284); x.fill();
+
+  // ---- LAYOUT PAINT on the granite, running OFF BOTH EDGES so no position is countable.
+  const pc=document.createElement('canvas'); pc.width=W*2; pc.height=H*2;
+  const pxx=pc.getContext('2d'); pxx.scale(2,2);
+  pxx.strokeStyle='#D6DCD2'; pxx.lineWidth=7; pxx.setLineDash([54,46]);
+  for(let k=0;k<3;k++){
+    const yy=GROUND+18+k*26;
+    pxx.beginPath(); pxx.moveTo(-40,yy); pxx.lineTo(W+40,yy+k*9-8); pxx.stroke();
+  }
+  pxx.setLineDash([]);
+  pxx.globalCompositeOperation='destination-out';
+  for(let i=0;i<2600;i++){ pxx.globalAlpha=0.18+R()*0.5;
+    pxx.beginPath(); pxx.arc(R()*W, GROUND+R()*(H-GROUND), 1+R()*4, 0, 6.284); pxx.fill(); }
+  pxx.globalAlpha=1; pxx.globalCompositeOperation='source-over';
+  x.globalAlpha=0.5; x.drawImage(pc,0,0,W,H); x.globalAlpha=1;
+
+  // granite chips over the whole ground band
+  for(let i=0;i<7000;i++){
+    const gx=R()*W, gy=GROUND+R()*(H-GROUND);
+    const depth=(gy-GROUND)/(H-GROUND), s=0.9+R()*2+depth*2.6, l=44+depth*26+R()*24;
+    x.fillStyle='rgba('+Math.round(l*1.0)+','+Math.round(l)+','+Math.round(l*0.84)+','+(0.22+R()*0.36)+')';
+    x.beginPath(); x.moveTo(gx,gy-s); x.lineTo(gx+s*0.9,gy); x.lineTo(gx+s*0.2,gy+s);
+    x.lineTo(gx-s*0.8,gy+s*0.4); x.closePath(); x.fill();
+  }
+  // a scrim at the computed alpha under the dek only
+  // the dek's own reserve, in the sky beside the pole, at the computed alpha
+  const sc=x.createLinearGradient(0,500,0,930);
+  sc.addColorStop(0,'rgba(0,0,0,0)'); sc.addColorStop(0.18,'rgba(0,0,0,0.34)');
+  sc.addColorStop(0.86,'rgba(0,0,0,0.34)'); sc.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=sc; x.fillRect(0,500,636,430);
+
+  // A BOTTOM RESERVE, SOLID rather than graded. A gradient has its own edges and those edges cut
+  // through glyphs, which is the defect this is answering rather than causing. The fade sits
+  // entirely ABOVE the type band and the band itself is one flat value.
+  const RT=1190, FADE=26;
+  const bs=x.createLinearGradient(0,RT,0,RT+FADE);
+  bs.addColorStop(0,'rgba(8,10,6,0)'); bs.addColorStop(1,'rgba(8,10,6,0.88)');
+  x.fillStyle=bs; x.fillRect(0,RT,W,FADE);
+  x.fillStyle='rgba(8,10,6,0.88)'; x.fillRect(0,RT+FADE,W,H-RT-FADE);
+  window.__txComputed={ground_y:GROUND, pole_x:PX, boss:"bare, four tapped holes, nothing fitted",
+    countable_positions:0, scrim_alpha:0.34, cast_shadows:0};
+  await document.fonts.ready;
+})();
+</script></body></html>

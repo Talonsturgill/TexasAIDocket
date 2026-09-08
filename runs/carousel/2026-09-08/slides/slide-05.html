@@ -1,0 +1,170 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#161A12}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#D6DCD2}
+h1{position:absolute;left:80px;top:128px;width:900px;margin:0;font-family:Fraunces,serif;
+  font-weight:600;font-size:84px;line-height:1.0;color:#D6DCD2;letter-spacing:-.02em}
+.dek{position:absolute;left:80px;top:308px;width:920px;margin:0;font-family:Manrope,sans-serif;
+  font-weight:500;font-size:30px;line-height:1.28;color:#C4CABE}
+.loc{position:absolute;left:80px;top:1192px;font-family:"JetBrains Mono",monospace;
+  font-weight:500;font-size:24px;letter-spacing:.02em;color:#D6DCD2}
+.foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+  gap:14px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+  letter-spacing:.02em;color:#D6DCD2;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>April had already listed the tools.</h1>
+  <p class="dek">Artificial intelligence or machine learning tools sit among what is not
+     permitted in City Code Chapter 2-19. The exception is whatever the city's own policy allows.</p>
+  <div class="loc">ORDINANCE 20260423-029 / section 2-19-9 read in full</div>
+  <div class="foot"><span>c7 c33 c34</span>
+    <span class="tx-site">texasaidocket.com</span><span>05 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // A code chapter is the mesh everything passes through, and the one controlled opening in it is
+  // council approval before acquiring. Galvanized chain link at a shallow three quarter, the sky
+  // reading through every diamond. THE APERTURE NEVER FALLS BELOW 26 DESIGN PX, because chain
+  // link is the classic moire generator and compression past that is what makes it one.
+  const FENCE_TOP=520, FENCE_BOT=1130, GROUND=1130;
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2; let base,rr,gg,bb;
+    if(v<GROUND){
+      const t=v/GROUND;
+      const city=Math.max(0,1-Math.hypot((u-140)/1000,(v-GROUND)/700));
+      base = 46 + Math.pow(t,1.4)*54 + city*32 + TX.fbm2(u/230,v/170,3)*9;
+      rr=base*1.20; gg=base*1.00; bb=base*0.73;
+    } else {
+      const t=(v-GROUND)/(H-GROUND);
+      base = 44 + t*26 + TX.fbm2(u/2.2,v/2.2,2)*16 + TX.fbm2(u/36,v/36,3)*13;
+      rr=base*1.00; gg=base*1.00; bb=base*0.84;
+    }
+    const i=(py*W*2+px)*4; d[i]=rr; d[i+1]=gg; d[i+2]=bb; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // ---- THE FABRIC. Real geometry, knuckle and twist at each intersection.
+  const APERTURE=34;                 // design px, held well above the 26 px moire floor
+  const fc=document.createElement('canvas'); fc.width=W*2; fc.height=H*2;
+  const fx=fc.getContext('2d'); fx.scale(2,2);
+  fx.lineCap='round';
+  for(let k=-30;k<52;k++){
+    for(const dir of [1,-1]){
+      fx.beginPath();
+      for(let yy=FENCE_TOP; yy<=FENCE_BOT; yy+=APERTURE){
+        const xx = k*APERTURE + dir*(yy-FENCE_TOP);
+        if(yy===FENCE_TOP) fx.moveTo(xx,yy); else fx.lineTo(xx,yy);
+      }
+      const lit = 0.30 + 0.34*(dir>0?1:0.45);
+      fx.strokeStyle='rgba(160,180,166,'+lit+')'; fx.lineWidth=4.6; fx.stroke();
+      fx.strokeStyle='rgba(24,30,22,0.5)'; fx.lineWidth=1.4; fx.stroke();
+    }
+  }
+  // the gate leaf at frame right: the SAME fabric at a different density, and it is SHUT
+  fx.fillStyle='rgba(20,24,16,0.50)'; fx.fillRect(806,FENCE_TOP,W-806,FENCE_BOT-FENCE_TOP);
+  for(let k=0;k<26;k++){
+    for(const dir of [1,-1]){
+      fx.beginPath();
+      for(let yy=FENCE_TOP; yy<=FENCE_BOT; yy+=22){
+        const xx = 806 + k*22 + dir*(yy-FENCE_TOP)*0.62;
+        if(yy===FENCE_TOP) fx.moveTo(xx,yy); else fx.lineTo(xx,yy);
+      }
+      fx.strokeStyle='rgba(150,168,156,0.30)'; fx.lineWidth=3.4; fx.stroke();
+    }
+  }
+  x.save(); x.beginPath(); x.rect(0,FENCE_TOP,W,FENCE_BOT-FENCE_TOP); x.clip();
+  x.drawImage(fc,0,0,W,H); x.restore();
+
+  // the gate leaf's own frame, so the right bay reads as a leaf hung on a post rather than as
+  // more fence. GT is the leading stile, which is where the latch lives.
+  const GL=818, GT=FENCE_TOP+14, GR=1034, GB=FENCE_BOT-16, TUBE=17;
+  x.fillStyle='#A9BCB1'; x.fillRect(GL,GT,GR-GL,TUBE);          // top member, sees the dome
+  x.fillStyle='#5E6E68'; x.fillRect(GL,GB-TUBE,GR-GL,TUBE);     // bottom member
+  x.fillStyle='#9DB0A5'; x.fillRect(GL,GT,TUBE,GB-GT);          // hinge stile
+  x.fillStyle='#9DB0A5'; x.fillRect(GR-TUBE,GT,TUBE,GB-GT);     // leading stile
+  x.fillStyle='#42504B'; x.fillRect(GL+TUBE,GT+TUBE,4,GB-GT-TUBE*2);
+  for(const hy of [GT+72, GB-104]){                              // the hinge pair, on the post
+    x.fillStyle='#9DB0A5'; x.fillRect(GL-16,hy,30,20);
+    x.fillStyle='#3E4A45'; x.fillRect(GL-16,hy+20,30,5);
+  }
+  x.fillStyle='#9DB0A5'; x.fillRect(GR-TUBE-8,GT+236,29,17);     // the drop rod latch keeper
+  x.fillStyle='#3E4A45'; x.fillRect(GR-TUBE-8,GT+253,29,5);
+  x.fillStyle='#A9BCB1'; x.fillRect(GR-9,GT+244,12,GB-GT-244+6); // the rod itself, dropped
+
+
+  // ---- TOP RAIL, POSTS AND CAPS. Three declared values each, up face brightest.
+  function post(px){
+    x.fillStyle='#879C90'; x.fillRect(px-13,FENCE_TOP-68,26,GROUND-FENCE_TOP+68);
+    x.fillStyle='#566661'; x.fillRect(px+13,FENCE_TOP-68,9,GROUND-FENCE_TOP+68);
+    x.fillStyle='#9DB0A5'; x.beginPath(); x.ellipse(px+4,FENCE_TOP-68,17,8,0,0,6.284); x.fill();
+    const og=x.createRadialGradient(px,GROUND,4,px,GROUND,70);
+    og.addColorStop(0,'rgba(10,12,8,0.55)'); og.addColorStop(1,'rgba(10,12,8,0)');
+    x.fillStyle=og; x.beginPath(); x.ellipse(px,GROUND,70,18,0,0,6.284); x.fill();
+    // a poured collar at the footing
+    x.fillStyle='#5E6156'; x.beginPath(); x.ellipse(px,GROUND-4,30,10,0,0,6.284); x.fill();
+  }
+  // A WIDE TOP RAIL. The stencil goes on steel, which is a solid face, rather than over the
+  // fabric's lattice. A knockout has to actually knock out and a veil over a lattice does not.
+  x.fillStyle='#8DA096'; x.fillRect(0,FENCE_TOP-74,W,54);
+  x.fillStyle='#4E5C57'; x.fillRect(0,FENCE_TOP-20,W,20);
+  x.fillStyle='rgba(226,232,222,0.18)'; x.fillRect(0,FENCE_TOP-74,W,2.5);
+  for(let i=0;i<2200;i++){
+    const gx=R()*W, gy=FENCE_TOP-74+R()*54, s2=1.2+R()*3.6;
+    x.fillStyle='rgba(226,232,222,'+(0.03+R()*0.10)+')';
+    x.beginPath(); x.moveTo(gx,gy-s2); x.lineTo(gx+s2,gy); x.lineTo(gx,gy+s2); x.lineTo(gx-s2,gy); x.fill();
+  }
+  for(const px of [128,470,806,1046]) post(px);
+  // the bottom selvage and the tension wire
+  x.strokeStyle='rgba(140,158,146,0.5)'; x.lineWidth=3;
+  x.beginPath(); x.moveTo(0,FENCE_BOT-6); x.lineTo(W,FENCE_BOT-6); x.stroke();
+  for(let i=0;i<2600;i++){
+    const gx=R()*W, gy=FENCE_TOP-26+R()*20, s=1+R()*3.2;
+    x.fillStyle='rgba(226,232,222,'+(0.04+R()*0.14)+')';
+    x.beginPath(); x.moveTo(gx,gy-s); x.lineTo(gx+s,gy); x.lineTo(gx,gy+s); x.lineTo(gx-s,gy); x.fill();
+  }
+  // the ground's own occlusion, running UP into the fabric so the selvage is the darkest part
+  // of it rather than the brightest, which is what makes the fence stand in the ground
+  const gocc=x.createLinearGradient(0,FENCE_BOT-140,0,FENCE_BOT+8);
+  gocc.addColorStop(0,'rgba(10,12,8,0)'); gocc.addColorStop(1,'rgba(10,12,8,0.50)');
+  x.fillStyle=gocc; x.fillRect(0,FENCE_BOT-140,W,148);
+
+  // granite the fence stands in
+  for(let i=0;i<7000;i++){
+    const gx=R()*W, gy=GROUND+R()*(H-GROUND);
+    const depth=(gy-GROUND)/(H-GROUND), s=1.5+R()*2.6+depth*3.4, l=54+depth*26+R()*22;
+    x.fillStyle='rgba('+Math.round(l)+','+Math.round(l)+','+Math.round(l*0.84)+','+(0.2+R()*0.34)+')';
+    x.beginPath(); x.moveTo(gx,gy-s); x.lineTo(gx+s*0.9,gy); x.lineTo(gx+s*0.2,gy+s);
+    x.lineTo(gx-s*0.8,gy+s*0.4); x.closePath(); x.fill();
+  }
+  // THE STENCILLED CITATION along the top rail, an alpha mask with bleed, not set type on metal
+  // THE STENCILLED CITATION IS DOM TEXT, NOT CANVAS. Canvas text rasterises into the vector PDF
+  // and is invisible to the ranker, to copy_sync and to accessibility.
+  const cit=document.createElement('div');
+  cit.style.cssText='position:absolute;left:80px;top:'+(FENCE_TOP-66)+'px;font-family:"JetBrains Mono",monospace;'
+    +'font-weight:500;font-size:24px;letter-spacing:.035em;color:#1A2118;white-space:nowrap';
+  cit.textContent='CITY CODE 2-19-9  NOT PERMITTED  (B) ARTIFICIAL INTELLIGENCE';
+  document.querySelector('.wrap').appendChild(cit);
+  const sc=x.createLinearGradient(0,0,0,506);
+  sc.addColorStop(0,'rgba(0,0,0,0.34)'); sc.addColorStop(0.74,'rgba(0,0,0,0.34)');
+  sc.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=sc; x.fillRect(0,0,W,506);
+  window.__txComputed={aperture_px:APERTURE, moire_floor_px:26, gate:"shut, frame right",
+                       gated_acts:4, acquire_letter:"B", cast_shadows:0};
+  await document.fonts.ready;
+})();
+</script></body></html>

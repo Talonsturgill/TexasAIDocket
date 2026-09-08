@@ -367,7 +367,7 @@ art:
     which is the frame's whole trick and is why the two are declared as a probe.
   motion: "along the rail to the vanishing point"
 type:
-  hook: "A plan is ordered. Its basis is on file."
+  hook: "A plan is ordered. Its basis is named."
   dek: "The implementation plan has to rest on a security audit the parks department already had
     done."
   labels: ["RESOLUTION 20260812-017", "02 / 09", "texasaidocket.com"]
@@ -543,7 +543,7 @@ composition:
     the post footings visible as poured collars, and the granite's own grain at its nearest and
     coarsest. The footer sits on that granite.
   focal: "the gate leaf at frame right, about 216 by 594 at (818, 534), its frame tubing at
-    L* 72 against a leaf fabric held 8 L* under the neighbouring bay. It is the frame's high
+    L* 72 against a leaf fabric held under the neighbouring bay. It is the frame's high
     extreme and it is the one thing on the frame the sentence is actually about"
 art:
   technique: "chain link fabric as authored geometry with knuckle and twist per intersection,

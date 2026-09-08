@@ -25,6 +25,10 @@
   {
    "what": "the count of acts City Code Section 2-19-3 gates behind council approval",
    "why": "The deck printed 'four acts' until scoring, and the count is right. What made it not worth printing is that 2-19-3 opens on 'Except as otherwise permitted in this chapter' and sections 2-19-7 and 2-19-8 are express exceptions to it, so a bare four states a gate the chapter itself already carves holes in. c36, c37 and c38 carry the carve outs. The frame now names section 2-19-9 instead, which is where the April instrument speaks to artificial intelligence."
+  },
+  {
+   "what": "the assessment lead time, as a figure in the caption",
+   "why": "The caption carried 'an assessment filed four weeks ahead' until the spine was rebuilt in scoring, and the rebuilt paragraph argues from section 2-19-9's prohibition rather than from 2-19-4's assessment, so the figure has no sentence to sit in. It is still printed on frame 8, quoted from c17, and it is still declared for that surface. A declaration left pointing at a surface that stopped printing it is the same defect as a stale gate row and a judge found this one."
   }
  ],
  "aggregates": [
@@ -92,24 +96,11 @@
    "quote": "no less than four weeks before the city council meeting"
   },
   {
-   "phrase": "four weeks",
-   "slide": "caption.txt",
-   "kind": "quoted_duration",
-   "value": 4,
-   "unit": "weeks",
-   "from_claims": [
-    "c17"
-   ],
-   "note": "A quoted duration rather than an arithmetic one. The ordinance states the figure itself and the deck performs no subtraction anywhere. THE KIND WAS 'duration' UNTIL THIS ROUND, and sources_block.py appends 'Day counts computed in compute.py from the source dates above' whenever any aggregate declares a duration or a span. This deck computes no day count, so that line was a provenance claim about a computation that did not happen, which is the exact defect the gate's own comment says it was written to close. The label was wrong rather than the line.",
-   "quoted_from": "c17",
-   "quote": "no less than four weeks before the city council meeting"
-  },
-  {
    "phrase": "three official records",
    "slide": "first_comment.txt",
    "kind": "count",
    "value": 3,
-   "computed_by": "scripts/carousel/sources_block.py, which groups the run's claims by their source document and counts the distinct documents whose source_type is primary_official. The two are the executed resolution and the executed ordinance.",
+   "computed_by": "scripts/carousel/sources_block.py, which groups the run's printed claims by their source document and counts the distinct documents whose source_type is primary_official. The three are the executed resolution, the executed ordinance and the council's own action notes for the August 12th, 2026 meeting.",
    "from_claims": [
     "c1",
     "c7",

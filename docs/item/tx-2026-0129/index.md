@@ -22,7 +22,7 @@ Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-08 · Admitted to the record. The executed resolution is posted in the city's document system and carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update.
+- 2026-09-08 · Admitted to the record. The executed resolution is posted in the city's document system. It carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update.
 
 ## Evidence
 

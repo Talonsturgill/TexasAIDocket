@@ -428,22 +428,22 @@ for.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 40 verified claim(s) |
+| claims         | PASS   | 41 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 6.55 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | PASS   | 46 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| score          | PASS   | 6.962 |
+| labels         | PASS   | 48 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 56,025 chars planned |
-| caption        | PASS   | 133 words |
+| dossiers       | PASS   | 56,208 chars planned |
+| caption        | PASS   | 141 words |
 | craft floor    | WARN   | 9 frame(s), median 922, floor 166, 1 quiet |
 | plan vs render | PASS   | 12 of 77 acceptance item(s) checkable |
 | texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
-| absences       | PASS   | 10 of 10 scoped to a named document |
-| numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
+| absences       | PASS   | 9 of 9 scoped to a named document |
+| numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
 | completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
 
@@ -844,3 +844,108 @@ does not say no count is published. It says the action notes send the count to m
 later and that the city's open voting record has not reached that meeting, resting on c40, c41 and
 c19, under a locator naming both searches. An absence that names where the number will appear is
 worth more to a reader than an absence that says there isn't one.
+
+## SCORING ROUND FIVE, AND THE PANEL SHIPS IT AT 6.962
+
+| lens | score | hard fails | ship |
+|---|---|---|---|
+| integrity | 6.612 | 1, withdrawn on inspection | yes |
+| craft | 7.024 | 0 | yes |
+| reader | 6.93 | 0 | yes |
+
+`panel: [6.612, 7.024, 6.93] -> median 6.962, spread 0.412, SHIP`.
+
+**The integrity judge's two real findings were fixed before the card was written.** An orphaned
+aggregate declaration for a `four weeks` figure that `caption.txt` no longer prints, removed and
+replaced with a `deliberately_not_computed` entry saying why. And a `computed_by` on the three
+official records figure that still described the two record deck it had been written for.
+
+**Its hard fail was withdrawn, and the withdrawal is the finding.** The judge reported that the
+assembled deck carried a superseded closing frame. Checked directly against the thumb and the
+contact sheet, it does not. The judge read a state that existed while the deck was still being
+repaired, **which is the third time in this run a judge has done so and is the run's own fault
+for scoring in parallel with fixes.**
+
+## THE RETRO SHIPPED THREE GATES, EACH ONE MEASURING LESS THAN IT CERTIFIED
+
+Commit `b9240b49`, actor `upgrade`, one file each and no shared code between them.
+
+- **`plan_render_check` reads the whole acceptance list.** Measured on this run's own storyboard
+  at `7a32b69e`, it read 17 items of 52. The block was taken with a repetition that ends at the
+  first line that is not two spaces and a dash, which is the continuation of a wrapped item, so
+  the block ended at the first item long enough to wrap. The survivors are the short ones, and a
+  short item is the one least likely to quote a string. PyYAML is now the primary route, which is
+  the parser `dossier_check` has always used on the same blocks.
+- **`sources_block` prints its day count provenance line only for a real span.** It was
+  conditioned on `kind`, so a duration a source states in its own words carried a line saying the
+  deck computed it. It reached readers. `runs/carousel/2026-08-30/first_comment.txt` carries that
+  line over two aggregates that each declare `quoted_from`. The condition is now `from_date` and
+  `to_date`, which is what a computed span actually holds.
+- **`claims_check` sweeps the run's own snapshots for its own subject nouns.** Every other gate
+  here asks whether what the deck PRINTS goes back to a source. Nothing asked whether what a
+  source SAYS came forward. Replayed with every claim quoting inside 2-19-9 taken back out, the
+  sweep names 2-19-9, which is the section that refuted this deck's first thesis.
+
+Three of six proposals were refused for the stated ceiling and are written up with their
+measurements in `knowledge/carousel/UPGRADE_BACKLOG.md`.
+
+## THE RUN HOLDS. THE ASK INDEX IS OVER ITS CEILING AND THE FIX IS OUT OF LANE
+
+**This is the one thing on this page that needs a maintainer.**
+
+`scripts/site/ask_pack.py --self-test` is a step in the `gates` job and it is now red:
+
+    FAIL  the index is under its ceiling of 40000 chars, which is the one every question pays
+          for   41,381
+
+Measured on `origin/main` in a throwaway worktree, the same check reads **39,826**, which passes
+by 174 characters. This run admitted seven decisions and the always-sent index is a line per
+decision, so seven lines at roughly 222 characters each is 1,555, and 39,826 plus 1,555 is 41,381.
+**The arithmetic accounts for the whole of it. Nothing else moved.**
+
+The gate is doing exactly its job. Its own comment says the index is the number that bills, that
+every question carries the whole of it whatever it asked, and that raising the ceiling is a real
+decision about a real bill.
+
+**Why this run does not fix it.** `ownership.yaml` gives `scripts/site/ask_*.py` to `human`, with
+no `rebuild_by`, and the note says the answer engine is a gate on what the site may claim. The
+pre-commit hook would refuse the write and CI would refuse the branch. The two fixes the file
+itself names are both edits to it. Roll the decisions up the way the construction register, the
+reservoirs and the facility dossiers already are, or raise `MAX_INDEX_CHARS`.
+
+**Why the record was not trimmed to fit instead.** The daily lane does own the titles the index
+lines are built from, so shedding 1,500 characters would mean cutting about 13 characters from
+each of 118 headlines. That is rewriting the public record's headlines to fit a token budget, and
+this project does not get to bend the record around a gate. The seven admissions are true and
+each one is sourced.
+
+**What this costs.** The deck scored 6.962 and passes every one of its own gates. Both
+deliverables are on the branch and neither is on `main`. **Tomorrow's run starts from `main`, does
+not get today's record, and hits the same wall one decision sooner**, because main was already 174
+characters from the ceiling before this run touched it. This was going to happen within days
+whatever today did.
+
+The email's image URLs therefore point at the run branch rather than `main`, which is what
+`gmail_draft --ref` exists for.
+
+## Permission audit
+
+`scripts/shared/prompt_audit.py` read `permissionDecisionMs` for every dispatch in both of this
+run's processes. **1,827 tool calls measured, none waited on a human.** That is the reading the
+2026-09-02 entry in `CLAUDE.md` demands, and it is worth more than a run reporting that it did not
+notice a prompt, which no run can know from the tool results alone.
+
+## One artifact carried a numeral no measurement backed
+
+`shipped_check` reported it once `measurements.json` and `slides/` were archived beside this deck,
+which they had not been. The storyboard's slide 5 focal note read `a leaf fabric held 8 L* under
+the neighbouring bay`. **That delta was never measured.** `measurements.json` holds the nine
+per-frame medians and nothing else, so the figure traced to nothing. It is now written without the
+number, which is the compute-not-generate law's own answer. Every other luminance in the storyboard
+is in the `L* 62` form the gate reads as a plan target and each of those is checked against the
+render.
+
+Two files were missing from the run directory and are now in it, `measurements.json` and
+`slides/`. **A gate that has nothing to read reports not-applicable, which looks like a pass.**
+The archived slides are what make `shipped_check`'s label and construction gates able to run on
+this deck at all.

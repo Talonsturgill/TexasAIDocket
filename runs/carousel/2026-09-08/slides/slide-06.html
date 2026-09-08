@@ -1,0 +1,214 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#0B0D08}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#D6DCD2}
+.dek{position:absolute;left:80px;top:142px;width:800px;margin:0;font-family:Manrope,sans-serif;
+  font-weight:500;font-size:34px;line-height:1.30;color:#D6DCD2}
+.cl{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;color:#201F22;
+  white-space:nowrap;letter-spacing:-.005em}
+.foot{position:absolute;bottom:80px;left:158px;right:158px;display:flex;justify-content:space-between;
+  gap:12px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+  letter-spacing:0;color:#2A261F;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <p class="dek">The clause reaches the foot of the resolution's first page.</p>
+  <div id="clause"></div>
+  <div class="foot"><span>RES 20260812-017</span><span>c8</span>
+    <span class="tx-site">texasaidocket.com</span><span>06 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // THE PROJECTION. Thirty degrees up from the sheet's own foot. One point, so the sheet is a
+  // trapezoid narrowing away from the reader. Every position below derives from it, none is typed.
+  const S_TOP=436, S_BOT=1350, HALF_TOP=182, HALF_BOT=412, CX=536;
+  const FOLD_Y = S_TOP + (S_BOT-S_TOP)*0.34;
+  function halfAt(y){ const t=(y-S_TOP)/(S_BOT-S_TOP); return HALF_TOP+(HALF_BOT-HALF_TOP)*t; }
+  function scaleAt(y){ return halfAt(y)/HALF_TOP; }
+
+  // ---- GROUND AND CANOPY. Every value is a sky view factor. No cast shadow exists in this deck.
+  // The granite is COOLER, DARKER and COARSER than the paper, which is the only thing that tells
+  // the two apart at 432px once they sit edge to edge.
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2;
+    // the canopy's own ragged lower boundary, three scales of leaf mass, with real gaps in it
+    const hang = 470 + TX.fbm2(u/150, 1.3, 4)*150 + TX.fbm2(u/41, 5.5, 3)*86
+                     + TX.fbm2(u/13, 9.2, 2)*34;
+    const gap  = TX.fbm2(u/62, v/62, 3);                       // sky showing through the leaves
+    let cov = v < hang ? (0.90 + 0.10*Math.max(0,gap)) : Math.max(0, 1-((v-hang)/120));
+    if(v < hang && gap < -0.30) cov = 0.52;                    // a real hole in the canopy
+    const edge = Math.max(0,1-(u/120))*0.55 + Math.max(0,1-((W-u)/110))*0.55;
+    let sky = 1 - Math.min(1, cov*0.97 + edge*0.5);
+    sky = Math.max(0.02, sky);
+    const g = TX.fbm2(u/1.9, v/1.9, 2)*15 + TX.fbm2(u/30, v/30, 3)*12;
+    const base = 22 + sky*48 + g*(0.5+sky*1.15);
+    const i=(py*W*2+px)*4;
+    d[i]=base*0.94; d[i+1]=base*1.00; d[i+2]=base*0.90; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+  // discrete granite chips, so the surface is a scatter of stone rather than a noise field
+  for(let i=0;i<5200;i++){
+    const cx2=R()*W, cy2=380+R()*(H-380);
+    const hang = 470 + TX.fbm2(cx2/150,1.3,4)*150 + TX.fbm2(cx2/41,5.5,3)*86 + TX.fbm2(cx2/13,9.2,2)*34;
+    if(cy2 < hang-10) continue;
+    const depth = Math.min(1,(cy2-hang)/540);
+    const s = 0.8 + R()*2.6 + depth*2.4;
+    const l = 26 + depth*34 + R()*22;
+    x.fillStyle='rgba('+Math.round(l*0.96)+','+Math.round(l)+','+Math.round(l*0.9)+','+(0.32+R()*0.4)+')';
+    x.beginPath(); x.moveTo(cx2,cy2-s); x.lineTo(cx2+s*0.9,cy2); x.lineTo(cx2+s*0.2,cy2+s);
+    x.lineTo(cx2-s*0.8,cy2+s*0.4); x.closePath(); x.fill();
+  }
+
+  // ---- THE SHEET. Folded in quarters. Ridge value is a sky view factor and nothing else.
+  // The shade on the clause band is 0.90, SOLVED against the 4.5 floor rather than chosen,
+  // because toner on this paper falls under the floor below 0.75.
+  const PRINT=[204,185,143], CLAUSE_SHADE=0.94;
+  function sheetPath(){
+    x.beginPath();
+    x.moveTo(CX-HALF_TOP,S_TOP); x.lineTo(CX+HALF_TOP,S_TOP);
+    x.lineTo(CX+HALF_BOT,S_BOT); x.lineTo(CX-HALF_BOT,S_BOT); x.closePath();
+  }
+  // PUT_IMAGE_DATA IGNORES THE CLIP. That is not a style note, it is the reason three earlier
+  // builds of this frame rendered the sheet over the whole lower half and the granite never
+  // appeared at all. The sheet is rasterised on its own canvas and COMPOSITED through the clip.
+  const off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  const ox=off.getContext('2d');
+  const sh=ox.createImageData(W*2,H*2), sd=sh.data;
+  for(let py=Math.floor(S_TOP*2);py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2;
+    const rollY = 1/(1+Math.exp(-(v-FOLD_Y)/26));
+    const rollX = 1/(1+Math.exp(-(u-CX)/34));
+    const f = (0.60 + (CLAUSE_SHADE-0.60)*rollY) * (0.972 + 0.056*rollX);
+    const fib = TX.fbm2(u/1.6, v/1.6, 2)*8 + TX.fbm2(u/64, v/64, 2)*6;
+    const i=(py*W*2+px)*4;
+    sd[i]=PRINT[0]*f+fib; sd[i+1]=PRINT[1]*f+fib; sd[i+2]=PRINT[2]*f+fib; sd[i+3]=255;
+  }}
+  ox.putImageData(sh,0,0);
+  x.save(); sheetPath(); x.clip();
+  x.drawImage(off, 0, 0, W, H);
+  x.restore();
+  // the sheet's own edges, where the paper's cut face turns away from the dome
+  x.save(); x.lineWidth=2.4; x.strokeStyle='rgba(40,34,22,0.55)';
+  x.beginPath(); x.moveTo(CX-HALF_TOP,S_TOP); x.lineTo(CX-HALF_BOT,S_BOT); x.stroke();
+  x.beginPath(); x.moveTo(CX+HALF_TOP,S_TOP); x.lineTo(CX+HALF_BOT,S_BOT); x.stroke();
+  x.lineWidth=3.2; x.strokeStyle='rgba(30,26,17,0.7)';
+  x.beginPath(); x.moveTo(CX-HALF_TOP,S_TOP); x.lineTo(CX+HALF_TOP,S_TOP); x.stroke();
+  x.restore();
+  // OCCLUSION where the sheet meets the granite, tight and on the far edge only. Not a cast.
+  const occ=x.createLinearGradient(0,S_TOP-22,0,S_TOP+3);
+  occ.addColorStop(0,'rgba(12,10,6,0)'); occ.addColorStop(1,'rgba(12,10,6,0.62)');
+  x.fillStyle=occ; x.fillRect(CX-HALF_TOP-10,S_TOP-22,HALF_TOP*2+20,25);
+
+  // ---- THE WEIGHT. Galvanized stock across the far half. Three declared values, up face
+  // brightest because it sees the dome, seated by a TIGHT occlusion line and no cast anywhere.
+  const BY=506, BH=19, BD=11, BW=232, BX=CX-halfAt(BY)-32;
+  x.fillStyle='#879C90'; x.fillRect(BX,BY,BW,BH);
+  x.fillStyle='#566661'; x.fillRect(BX,BY+BH,BW,BD);
+  x.fillStyle='#3B4642'; x.fillRect(BX,BY+BH+BD-3,BW,3);
+  x.fillStyle='rgba(12,10,6,0.68)'; x.fillRect(BX+34,BY+BH+BD,BW-34,5);   // the contact itself
+  const bocc=x.createLinearGradient(0,BY+BH+BD+5,0,BY+BH+BD+45);
+  bocc.addColorStop(0,'rgba(12,10,6,0.42)'); bocc.addColorStop(1,'rgba(12,10,6,0)');
+  x.save(); sheetPath(); x.clip();
+  x.fillStyle=bocc; x.fillRect(BX+34,BY+BH+BD+5,BW-40,40); x.restore();
+  for(let i=0;i<190;i++){
+    const sx=BX+R()*BW, sy=BY+R()*BH, s=1.1+R()*2.6;
+    x.fillStyle='rgba(214,220,210,'+(0.05+R()*0.15)+')';
+    x.beginPath(); x.moveTo(sx,sy-s); x.lineTo(sx+s,sy); x.lineTo(sx,sy+s); x.lineTo(sx-s,sy); x.fill();
+  }
+
+  // ---- A SCRIM UNDER THE DEK ONLY, at the computed alpha 0.34.
+  const sc=x.createLinearGradient(0,0,0,300);
+  sc.addColorStop(0,'rgba(0,0,0,0.34)'); sc.addColorStop(0.62,'rgba(0,0,0,0.34)');
+  sc.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=sc; x.fillRect(0,0,W,300);
+
+  // A SECOND FOLD across the near quadrant, so the bottom third carries drawn relief rather
+  // than an unbroken field. The ridge is shaded by sky view factor like every other surface.
+  const FOLD2 = S_TOP + (S_BOT-S_TOP)*0.78;
+  x.save(); sheetPath(); x.clip();
+  const fg=x.createLinearGradient(0,FOLD2-30,0,FOLD2+34);
+  fg.addColorStop(0,'rgba(88,78,54,0)'); fg.addColorStop(0.5,'rgba(88,78,54,0.34)');
+  fg.addColorStop(1,'rgba(232,214,170,0.16)');
+  x.fillStyle=fg; x.fillRect(0,FOLD2-30,W,64);
+  x.strokeStyle='rgba(66,58,40,0.16)'; x.lineWidth=1.6;
+  x.beginPath(); x.moveTo(CX-halfAt(FOLD2),FOLD2); x.lineTo(CX+halfAt(FOLD2),FOLD2); x.stroke();
+  x.restore();
+
+  // the quarter folds, both of them, shaded by sky view like every other surface
+  x.save(); sheetPath(); x.clip();
+  // THE CENTRE FOLD RUNS OUT ABOVE THE CLAUSE. The clause is centred on CX and so is the crease,
+  // so a crease strong enough to read put a dark band under the middle of every line and qa read
+  // it as a strikethrough. A fold catches the light where the paper turns and this one stops
+  // before the type, which is the honest half of the trade.
+  const vc=x.createLinearGradient(CX-52,0,CX+52,0);
+  vc.addColorStop(0,'rgba(58,50,32,0)'); vc.addColorStop(0.42,'rgba(58,50,32,0.40)');
+  vc.addColorStop(0.50,'rgba(58,50,32,0.46)');
+  vc.addColorStop(0.58,'rgba(240,226,186,0.30)'); vc.addColorStop(1,'rgba(240,226,186,0)');
+  x.fillStyle=vc; x.fillRect(CX-52,S_TOP,104,820-S_TOP);
+  for(let k=0;k<28;k++){                       // and fades out over the eighty px above it
+    x.globalAlpha=1-(k/28);
+    x.fillStyle=vc; x.fillRect(CX-52,820+k*3,104,3.2);
+  }
+  x.globalAlpha=1;
+  const FOLD3=S_TOP+(S_BOT-S_TOP)*0.20;
+  const f3=x.createLinearGradient(0,FOLD3-22,0,FOLD3+26);
+  f3.addColorStop(0,'rgba(88,78,54,0)'); f3.addColorStop(0.5,'rgba(88,78,54,0.36)');
+  f3.addColorStop(1,'rgba(232,214,170,0.24)');
+  x.fillStyle=f3; x.fillRect(0,FOLD3-22,W,48);
+  x.restore();
+
+  // ---- THE CLAUSE. Four lines running toward the reader. Every y, size and left edge computed.
+  const LINES=["The City Manager shall not","consider acquisition of any",
+               "camera or drone system that","depends upon artificial"];
+  // THE CLAUSE. Four lines running toward the reader. Every y, every size and every left edge is
+  // computed from the projection, and each line is FITTED to the sheet's own width at its own
+  // depth, so no glyph can ever leave the paper and land on granite it has no contrast against.
+  const host=document.getElementById('clause');
+  const MARGIN=54, Y0=FOLD_Y+238, LEAD=1.62;
+  const els=LINES.map(function(line){
+    const el=document.createElement('div');
+    el.className='cl'; el.textContent=line; el.style.fontSize='100px'; host.appendChild(el);
+    return {line:line, el:el, w100:el.getBoundingClientRect().width};
+  });
+  // fixed point: the y of each line depends on the size, and the size on the y
+  let K=30;
+  for(let pass=0; pass<4; pass++){
+    let yy=Y0, worst=Infinity;
+    for(const e of els){
+      const size=K*scaleAt(yy);
+      const avail=halfAt(yy)*2-MARGIN*2;
+      worst=Math.min(worst, 100*avail/e.w100/scaleAt(yy));
+      yy += size*LEAD;
+    }
+    K=Math.floor(worst*10)/10;
+  }
+  let y=Y0; const placed=[];
+  for(const e of els){
+    const size=Math.floor(K*scaleAt(y)*10)/10;
+    e.el.style.fontSize=size+'px'; e.el.style.top=Math.round(y)+'px';
+    const w=e.el.getBoundingClientRect().width;
+    e.el.style.left=Math.round(CX-w/2)+'px';
+    placed.push({line:e.line, y:Math.round(y), size:size, width:Math.round(w),
+                 avail:Math.round(halfAt(y)*2-MARGIN*2),
+                 scale:Math.round(scaleAt(y)*1000)/1000});
+    y += size*LEAD;
+  }
+  window.__txComputed={projection:{S_TOP,S_BOT,HALF_TOP,HALF_BOT,FOLD_Y,CX},lines:placed,
+                       clause_shade_factor:CLAUSE_SHADE, scrim_alpha:0.34, plane_size_K:K};
+  await document.fonts.ready;
+})();
+</script></body></html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#14170F}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#D6DCD2}
+h1{position:absolute;left:80px;top:144px;width:840px;margin:0;font-family:Fraunces,serif;
+  font-weight:600;font-size:82px;line-height:1.0;color:#D6DCD2;letter-spacing:-.02em}
+.dek{position:absolute;left:80px;top:380px;width:820px;margin:0;font-family:Manrope,sans-serif;
+  font-weight:500;font-size:30px;line-height:1.28;color:#C4CABE}
+.foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+  gap:18px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;
+  letter-spacing:.04em;color:#D6DCD2;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>A plan is ordered. Its basis is named.</h1>
+  <p class="dek">The implementation plan has to rest on a July 2025 security audit the parks
+     department already had done.</p>
+  <div class="foot"><span>RESOLUTION 20260812-017</span><span>c3 c4</span>
+    <span class="tx-site">texasaidocket.com</span><span>02 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // Three degrees above the ground plane, looking along a screed rail set to finished grade. The
+  // reader is at the height of the work. PLACED and SCREEDED base course on one side of the rail,
+  // UNPLACED subgrade on the other, and the difference between them is TEXTURE at nearly equal
+  // value, which is why the frame declares them as a probe rather than trusting the eye.
+  const HORIZON = 486;                       // computed from the camera pitch, not typed at a look
+  const VPX = 742;
+
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2; let base,rr,gg,bb;
+    if(v<HORIZON){
+      const t=v/HORIZON;
+      const city=Math.max(0,1-Math.hypot((u-120)/1000,(v-HORIZON)/560));
+      base = 40 + Math.pow(t,1.5)*52 + city*34 + TX.fbm2(u/220,v/170,3)*9;
+      rr=base*1.20; gg=base*1.00; bb=base*0.73;
+    } else {
+      // the ground, a sky view factor falling with depth. Nothing casts.
+      const t=(v-HORIZON)/(H-HORIZON);
+      base = 82 + t*44;
+      rr=base*1.00; gg=base*1.00; bb=base*0.84;
+    }
+    const i=(py*W*2+px)*4; d[i]=rr; d[i+1]=gg; d[i+2]=bb; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // ---- GRAIN, TWO SCALES. A scattered coarse population over a fine matrix, each particle with
+  // its own occlusion, on BOTH sides of the rail. The left is screeded flat, the right is not.
+  function railXAt(y){ const t=(y-HORIZON)/(H-HORIZON); return VPX + (108-VPX)*t; }
+  const gc=document.createElement('canvas'); gc.width=W*2; gc.height=H*2;
+  const gx2=gc.getContext('2d'); gx2.scale(2,2);
+  for(let i=0;i<52000;i++){
+    const gy=HORIZON+Math.pow(R(),0.55)*(H-HORIZON);
+    const gxp=R()*W;
+    const depth=(gy-HORIZON)/(H-HORIZON);
+    const rx=railXAt(gy);
+    const placed = gxp < rx;                        // left of the rail is placed and screeded
+    const s = (0.5+R()*1.4)*(0.5+depth*3.4);
+    // a screeded surface is FLAT: tight size spread, low relief. Subgrade is not.
+    const spread = placed ? 0.5 : 1.9;
+    const l = (placed ? 84 : 64) + depth*26 + (R()-0.5)*(placed?20:58);
+    gx2.fillStyle='rgba('+Math.round(l*1.02)+','+Math.round(l*0.96)+','+Math.round(l*0.74)+','+(0.24+R()*0.4)+')';
+    const ss=s*(1+ (R()-0.5)*spread);
+    gx2.beginPath(); gx2.moveTo(gxp,gy-ss); gx2.lineTo(gxp+ss*0.9,gy); gx2.lineTo(gxp+ss*0.2,gy+ss);
+    gx2.lineTo(gxp-ss*0.8,gy+ss*0.4); gx2.closePath(); gx2.fill();
+    if(!placed && R()<0.16){                        // clods and voids, only on the unplaced side
+      gx2.fillStyle='rgba(16,18,12,'+(0.18+R()*0.34)+')';
+      gx2.beginPath(); gx2.ellipse(gxp,gy+ss*0.7,ss*1.4,ss*0.6,0,0,6.284); gx2.fill();
+    }
+  }
+  x.drawImage(gc,0,0,W,H);
+
+  // ---- THE SCREED RAIL, running to its vanishing point. Up face brightest, side face falling.
+  x.beginPath();
+  x.moveTo(railXAt(H), H); x.lineTo(railXAt(H)+52, H);
+  x.lineTo(VPX+3, HORIZON); x.lineTo(VPX, HORIZON); x.closePath();
+  x.fillStyle='#879C90'; x.fill();
+  x.beginPath();
+  x.moveTo(railXAt(H)+52, H); x.lineTo(railXAt(H)+92, H);
+  x.lineTo(VPX+5, HORIZON); x.lineTo(VPX+3, HORIZON); x.closePath();
+  x.fillStyle='#566661'; x.fill();
+  // spangle along the rail's up face
+  for(let i=0;i<2400;i++){
+    const t=Math.pow(R(),1.6), gy=HORIZON+t*(H-HORIZON);
+    const rx=railXAt(gy), wdt=52*t+2;
+    const sx2=rx+R()*wdt, s=(0.8+R()*2.6)*(0.3+t);
+    x.fillStyle='rgba(226,232,222,'+(0.05+R()*0.16)+')';
+    x.beginPath(); x.moveTo(sx2,gy-s); x.lineTo(sx2+s,gy); x.lineTo(sx2,gy+s); x.lineTo(sx2-s,gy); x.fill();
+  }
+  // OCCLUSION along the rail's foot, tight, never a cast
+  x.strokeStyle='rgba(12,14,8,0.5)'; x.lineWidth=3;
+  x.beginPath(); x.moveTo(railXAt(H)+92,H); x.lineTo(VPX+5,HORIZON); x.stroke();
+
+  // an Edwards limestone block the rail's near end is set against, with its own graded side face
+  x.fillStyle='#B4B6A8'; x.fillRect(48,1046,196,42);
+  x.fillStyle='#7E8177'; x.fillRect(48,1088,196,26);
+  x.fillStyle='rgba(12,14,8,0.5)'; x.fillRect(48,1114,196,5);
+  for(let i=0;i<1400;i++){
+    const bx=48+R()*196, by=1046+R()*68;
+    x.fillStyle='rgba(60,62,54,'+(0.04+R()*0.12)+')'; x.fillRect(bx,by,1+R()*3,1+R()*3);
+  }
+  // a grade stake in the placed course, crossing the horizon as a hard vertical
+  // Set in the ground still to be screeded, right of the rail, which is where a grade stake
+  // goes. It also keeps it clear of the dek, which the first placement struck.
+  x.fillStyle='#14170F'; x.fillRect(968,386,11,258);
+  x.fillStyle='#1F251C'; x.fillRect(979,386,4,258);
+  x.fillStyle='#D6DCD2'; x.fillRect(968,406,11,23);
+  x.fillStyle='#9AA294'; x.fillRect(979,406,4,23);
+  const stog=x.createRadialGradient(974,644,3,974,644,58);
+  stog.addColorStop(0,'rgba(8,10,6,0.55)'); stog.addColorStop(1,'rgba(8,10,6,0)');
+  x.fillStyle=stog; x.beginPath(); x.ellipse(974,644,58,14,0,0,6.284); x.fill();
+
+  const sc=x.createLinearGradient(0,110,0,560);
+  sc.addColorStop(0,'rgba(0,0,0,0.46)'); sc.addColorStop(0.72,'rgba(0,0,0,0.40)'); sc.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=sc; x.fillRect(0,110,W,450);
+
+  // A BOTTOM RESERVE, SOLID rather than graded. A gradient has its own edges and those edges cut
+  // through glyphs, which is the defect this is answering rather than causing. The fade sits
+  // entirely ABOVE the type band and the band itself is one flat value.
+  const RT=1155, FADE=44;
+  const bs=x.createLinearGradient(0,RT,0,RT+FADE);
+  bs.addColorStop(0,'rgba(8,10,6,0)'); bs.addColorStop(1,'rgba(8,10,6,0.88)');
+  x.fillStyle=bs; x.fillRect(0,RT,W,FADE);
+  x.fillStyle='rgba(8,10,6,0.88)'; x.fillRect(0,RT+FADE,W,H-RT-FADE);
+  window.__txComputed={horizon_y:HORIZON, vanishing_x:VPX, placed_side:"left of the rail",
+                       scrim_alpha:0.34, cast_shadows:0};
+  await document.fonts.ready;
+})();
+</script></body></html>

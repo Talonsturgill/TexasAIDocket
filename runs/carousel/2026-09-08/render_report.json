@@ -249,7 +249,7 @@
           "anc": []
         },
         {
-          "text": "A plan is ordered. Its basis is on file.",
+          "text": "A plan is ordered. Its basis is named.",
           "x": 80,
           "y": 144,
           "w": 840,
@@ -270,7 +270,7 @@
             [
               80,
               216,
-              276,
+              307,
               101
             ]
           ],
@@ -400,7 +400,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 2980,
+      "render_ms": 3201,
       "ok": true,
       "canvases": [
         {

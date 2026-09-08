@@ -1,0 +1,132 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#2A2118}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:74px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#D6DCD2}
+#ann{position:absolute;inset:0}
+.an{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+  letter-spacing:.01em;color:#D6DCD2;white-space:nowrap}
+.an.dim{color:#C4CABE}
+.loc{position:absolute;left:80px;top:1182px;font-family:"JetBrains Mono",monospace;
+  font-weight:500;font-size:24px;letter-spacing:.01em;color:#D6DCD2}
+.foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+  gap:12px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;
+  letter-spacing:0;color:#D6DCD2;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <div id="ann"></div>
+  <div class="loc">ORDINANCE 20260423-029 / SECTION 2-19-4</div>
+  <div class="foot"><span>c17 c18 c23 c24 c30 c31</span>
+    <span class="tx-site">texasaidocket.com</span><span>08 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // NO CAMERA AT ALL. A drafting elevation of the same housing the pole on frame 4 carried no
+  // fitting for. THE APRIL ORDINANCE DIMENSIONS THE PART. THE AUGUST ONE DELETES IT. Every
+  // requirement is a dimension annotated in WORDS rather than figures, all at ONE stroke weight
+  // and ONE type size, so nothing on this frame ranks anything. The training of artificial
+  // intelligence is visibly one witness line among ten, drawn identically to the other nine.
+  const STROKE=1.6;
+
+  // the matte drafting field, with a fine hatch across the title block band and a grain over all
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2;
+    const n = TX.fbm2(u/2.6,v/2.6,2)*7 + TX.fbm2(u/120,v/120,3)*6;
+    const base = 74 + n*1.5;
+    const i=(py*W*2+px)*4;
+    d[i]=base*1.06; d[i+1]=base*1.00; d[i+2]=base*0.86; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+  // the sheet's border
+  x.strokeStyle='rgba(214,220,210,0.36)'; x.lineWidth=2;
+  x.strokeRect(52,120,976,1150);
+
+  // ---- THE PART, the only filled mass on the frame.
+  const PX=176, PY=372, PW=252, PH=386;
+  x.fillStyle='#B2C0B6'; x.fillRect(PX,PY,PW,PH);
+  x.fillStyle='#8E9C93'; x.fillRect(PX,PY+PH,PW,22);
+  x.fillStyle='#4A5450'; x.fillRect(PX+PW,PY,20,PH+22);
+  x.fillStyle='#586460'; x.fillRect(PX+34,PY+52,PW-68,110);      // the aperture housing
+  x.fillStyle='#2E3733'; x.fillRect(PX+52,PY+70,PW-104,74);
+  x.strokeStyle='rgba(20,24,18,0.5)'; x.lineWidth=1.4;
+  for(let k=1;k<7;k++){ x.beginPath(); x.moveTo(PX,PY+PH-k*40); x.lineTo(PX+PW,PY+PH-k*40); x.stroke(); }
+  for(let i=0;i<1800;i++){
+    const gx=PX+R()*PW, gy=PY+R()*(PH+22), s=1+R()*3;
+    x.fillStyle='rgba(226,232,222,'+(0.03+R()*0.09)+')';
+    x.beginPath(); x.moveTo(gx,gy-s); x.lineTo(gx+s,gy); x.lineTo(gx,gy+s); x.lineTo(gx-s,gy); x.fill();
+  }
+
+  // ---- THE TEN WITNESS LINES. One per numbered factor in Section 2-19-4(C). ALL IDENTICAL.
+  const N=10, AI=5;                     // both produced by compute.py from the ordinance's own list
+  const WX0=PX+PW+64, WX1=1006, WY0=372, STEP=52;
+  const host=document.getElementById('ann');
+  function ann(text, left, top, cls){
+    const el=document.createElement('div'); el.className='an'+(cls?' '+cls:'');
+    el.textContent=text; el.style.left=Math.round(left)+'px'; el.style.top=Math.round(top)+'px';
+    host.appendChild(el); return el;
+  }
+  x.strokeStyle='#C4CABE'; x.lineWidth=STROKE;
+  const leaders=[];
+  for(let k=0;k<N;k++){
+    const wy=WY0+k*STEP;
+    x.beginPath(); x.moveTo(WX0-34,wy); x.lineTo(WX1,wy); x.stroke();          // the dimension line
+    x.beginPath(); x.moveTo(WX0-34,wy-7); x.lineTo(WX0-34,wy+7); x.stroke();   // both terminators
+    x.beginPath(); x.moveTo(WX1,wy-7); x.lineTo(WX1,wy+7); x.stroke();
+    ann('('+(k+1)+')', WX0-30, wy-30);
+    leaders.push({target:'factor '+(k+1)+' of the numbered analysis in Section 2-19-4(C)',
+                  at:[WX1,wy], to:[WX1,wy]});
+  }
+  // the AI factor's own words, set at the SAME size and weight as every other annotation
+  // Set BELOW the stack with a leader onto its own rule, because the run beside a dimension
+  // line is 458px and the line needs 659px. Two lines inside a 52px row is what put the second
+  // half level with the (6) label, which is the misread this is answering.
+  const AIY=WY0+(AI-1)*STEP;
+  ann('including training of artificial intelligence', PX, 872);
+  x.beginPath(); x.moveTo(845,887); x.lineTo(890,887); x.stroke();      // the leader's shoulder
+  x.beginPath(); x.moveTo(890,887); x.lineTo(890,AIY+6); x.stroke();
+  x.beginPath(); x.moveTo(884,AIY+16); x.lineTo(890,AIY+4); x.lineTo(896,AIY+16); x.stroke();
+  leaders.push({target:'the fifth of the ten numbered factors',
+                at:[890,AIY], to:[890,AIY]});
+
+  // ---- THE FOUR WEEK SPAN, an untruncated dimension with both terminators present.
+  const SY=966;
+  x.beginPath(); x.moveTo(PX,SY); x.lineTo(WX1,SY); x.stroke();
+  x.beginPath(); x.moveTo(PX,SY-9); x.lineTo(PX,SY+9); x.stroke();
+  x.beginPath(); x.moveTo(WX1,SY-9); x.lineTo(WX1,SY+9); x.stroke();
+  ann('no less than four weeks before the city council meeting', PX+8, SY-34, 'dim');
+
+  // the weighing statement, one column, at the same weight and size as every other annotation
+  ann('SECTION 2-19-4(C), TEN NUMBERED FACTORS', PX, 1060);
+  ann('any one of them shall weigh strongly against', PX, 1104, 'dim');
+  ann('a determination of minimal risk', PX, 1140, 'dim');
+
+  // the title block band, hatched so the bottom is a drawn surface rather than a ruled void.
+  // It sits BELOW every annotation and below the footer's own baseline band, so no rule can
+  // run through a glyph. A rule through type reads as a strikethrough at feed width.
+  x.save(); x.beginPath(); x.rect(52,1224,976,46); x.clip();
+  x.strokeStyle='rgba(214,220,210,0.13)'; x.lineWidth=1;
+  for(let k=-60;k<200;k++){ x.beginPath(); x.moveTo(52+k*11,1224); x.lineTo(52+k*11+46,1270); x.stroke(); }
+  x.restore();
+
+  window.__txLeaders=leaders;
+  window.__txComputed={factors_total:N, ai_position:AI,
+    counted_over:'the numbered analysis in City Code Section 2-19-4(C)',
+    stroke_weight:STROKE, type_size_px:24, ranked:false,
+    span:'four weeks, both terminators present, never truncated'};
+  await document.fonts.ready;
+})();
+</script></body></html>

@@ -21,7 +21,7 @@ Texas A&M University Technology Services published guidance on August 31st, 2026
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-08 · Admitted to the record. The university's guidance naming its approved AI platform is posted, and it states both the data classification the platform is cleared for and that conversations are not used to train outside models.
+- 2026-09-08 · Admitted to the record. The university's guidance naming its approved AI platform is posted. It states both the data classification the platform is cleared for and that conversations are not used to train outside models.
 
 ## Evidence
 

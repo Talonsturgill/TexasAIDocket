@@ -1,26 +1,26 @@
 {
  "lens": "integrity",
- "round": 3,
+ "round": 5,
  "criteria": [
   {
    "name": "artwork_craft",
    "weight": 0.28,
-   "score": 6.7
+   "score": 6.8
   },
   {
    "name": "claim_integrity",
    "weight": 0.2,
-   "score": 6.7
+   "score": 5.8
   },
   {
    "name": "story_and_stakes",
    "weight": 0.18,
-   "score": 6.5
+   "score": 6.9
   },
   {
    "name": "sequence_and_momentum",
    "weight": 0.12,
-   "score": 6.9
+   "score": 7.0
   },
   {
    "name": "voice",
@@ -30,11 +30,14 @@
   {
    "name": "variety",
    "weight": 0.1,
-   "score": 6.8
+   "score": 6.5
   }
  ],
- "weighted_score": 6.71,
+ "weighted_score": 6.612,
  "hard_fails": [],
+ "hard_fails_withdrawn": [
+  "THE ASSEMBLED DECK CARRIES A SUPERSEDED CLOSING FRAME. Checked directly and it does not. out/2026-09-08/deck/thumbs/slide-09-thumb.png and deck/contact_sheet.png both carry the repaired frame 9, with the dek reading 'The action notes send the count to minutes approved later. The city's open voting record has not reached that meeting.', the locator reading 'ACTION NOTES AND VOTING RECORD / both read in full' and the strip reading 'c11 c19 c40 c41'. The judge read a state that existed while the deck was still being repaired, which is the third time in this run a judge has done so and is the run's own fault for scoring in parallel with fixes. The judge's two other findings were real and are fixed."
+ ],
  "ship": false,
- "one_sentence_fix": "Read the two documents the run already had links to and did not open, the Actions Taken By Council page and the meeting's closed caption transcript, both named on the agenda page the run fetched, because the deck closes on the absence of a vote count."
+ "one_sentence_fix": "Make the deck assembly the last build step before the artifact copy and gate it on a check that the laid-out text of every deck/ artifact equals copy.json."
 }
