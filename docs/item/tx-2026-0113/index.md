@@ -9,7 +9,7 @@ The Texas Department of Information Resources published an account on August 14t
 - Public access: Write to the decider
 - Take part: https://dir.texas.gov/news/ai-texas-dir-implementation-laws-89th-legislature
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-30 · Admitted to the record. The agency's account of what each law requires of it stands as published.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The state technology agency's account of how it is implementing the four AI laws is still published and unchanged.
+- 2026-09-08 · The state technology agency's account of how it is implementing the four AI laws is still posted as written.
 
 ## Evidence
 

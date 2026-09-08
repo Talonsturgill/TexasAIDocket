@@ -18,7 +18,7 @@ WHAT IS ACTUALLY COMPUTED, and it is more than this story looks like it has.
     impact assessment has to analyse, and the training of artificial intelligence is one of
     them. Both the LENGTH of that list and the POSITION of the AI factor in it are parsed out
     of the ordinance's own numbered enumeration rather than counted by a person. The deck's
-    whole argument is that a factor on a weighing list became a bar thirteen weeks later, so
+    whole argument is that a factor on a weighing list became a bar one summer later, so
     those two numerals are the argument and they get the strictest treatment in the file.
   * THE EQUIPMENT LIST. The resolution enumerates what the city may buy in one sentence. The
     split is done here, on the source's own commas, and the count falls out of the split.

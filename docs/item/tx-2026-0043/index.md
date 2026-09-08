@@ -11,7 +11,7 @@ Archer County Commissioners Court voted unanimously on June 22nd, 2026 against a
 - Public access: Public meeting
 - Take part: https://www.newschannel6now.com/2026/06/22/archer-county-commissioners-deny-tax-abatement-proposed-data-center/
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Archer County's denial of the proposed data-center tax abatement remains the controlling decision.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · Archer County's denial of the Dynamo Ventures abatement still stands. No new application has been filed to replace it.
+- 2026-09-08 · Archer County's denial of the Dynamo Ventures abatement still stands. Nothing has been refiled with the commissioners court.
 
 ## Evidence
 

@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The governor's direction to audit queued data centers remains pending before the utility commission and ERCOT.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-05 · The audit directive still stands over every data center in the interconnection queue and no audit result has been published. What the queue looks like after it is still unknown.
+- 2026-09-08 · The Governor's instruction to audit every data center in the interconnection queue is still an instruction without a published audit behind it.
 
 ## Evidence
 

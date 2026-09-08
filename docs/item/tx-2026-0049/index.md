@@ -11,7 +11,7 @@ Harris County Commissioners Court approved a renewal option with Flock Group, In
 - Public access: Public meeting
 - Take part: https://agenda.harriscountytx.gov/
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Harris County's amended countywide Flock contract remains approved.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · Harris County's plate reader and sound detection contract still runs county-wide as amended. The renewal is unchanged.
+- 2026-09-08 · Harris County's plate reader and sound detection contract with Flock still runs county-wide under the amendment. The Governor's funding pause reaches state agencies rather than this county contract.
 
 ## Evidence
 

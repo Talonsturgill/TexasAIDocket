@@ -223,7 +223,7 @@ so a run after September 20th can build the deck the window currently forbids.
   about adopting a system or pausing one. This is a government writing artificial intelligence
   OUT of a purchase, by name, in operative text.
 
-### The argument, and it is a thirteen week escalation by one council against itself
+### The argument, and it is one summer's escalation by a council against itself
 
 On April 23rd, 2026 the same council adopted the TRUST Act at City Code Chapter 2-19. It gates
 four acts behind council approval and acquiring new surveillance technology is the second of
@@ -429,17 +429,17 @@ for.
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.53 MB, vector |
+| assembly       | PASS   | 9 slide(s), 6.55 MB, vector |
 | score          | ABSENT | score.json not written yet |
-| labels         | FAIL   | 8 label(s) the record does not support: slide-03.html prints the label word 'READ' beside c5, and c5 says neither 'read' nor 'read |
+| labels         | FAIL   | 4 label(s) the record does not support: slide-03.html prints the label word 'READ' beside c5, and c5 says neither 'read' nor 'read |
 | quantifiers    | PASS   | 88 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 53,060 chars planned |
+| dossiers       | PASS   | 53,851 chars planned |
 | caption        | PASS   | 141 words |
-| craft floor    | WARN   | 9 frame(s), median 909, floor 164, 1 quiet |
-| plan vs render | WARN   | 12 of 72 acceptance item(s) checkable |
+| craft floor    | WARN   | 9 frame(s), median 922, floor 166, 1 quiet |
+| plan vs render | PASS   | 12 of 77 acceptance item(s) checkable |
 | texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
-| absences       | PASS   | 4 of 4 scoped to a named document |
+| absences       | PASS   | 6 of 6 scoped to a named document |
 | numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
@@ -531,4 +531,72 @@ happen to appear in c19's text, which is luck rather than correctness.
 The deck was NOT distorted to satisfy the third one. `SLIDE_DOSSIER_SPEC` already records the
 rule for this case in as many words: **a gate that fires on correct behaviour gets switched off**,
 and the answer is to narrow its window rather than to reword a locator until a false positive
-goes quiet. `label_guard` exits 0 on this deck, so nothing was suppressed to say so.
+goes quiet. `label_guard` EXITS 0 and `gate_status` marks the row FAIL, and both are correct: the script's exit code is advisory and the row is computed from the problems it lists. Two judges read that pair as a contradiction in this file, so it is stated here rather than left to be picked. Nothing was suppressed either way.
+
+## SCORING ROUND ONE, and three of the four hard fails were real
+
+| lens | score | hard fails | ship |
+|---|---|---|---|
+| integrity | 6.41 | 4 | no |
+| craft | 7.19 | 0 | yes |
+| reader | 6.78 | 0 | no |
+
+**Any one judge's hard fail stops the deck**, so every one of the four was checked against the
+claims rather than taken on trust. Three held.
+
+**The cover asserted a closed set the source declares open.** c6 reads `potentially including but
+not limited to, security cameras, non-recording drones as first responders, lighting, access
+control/fencing/gates, signage and wayfinding, and radio communication systems`. The hook read
+`Austin ordered six kinds of equipment.` and `aggregates.json` declared the ratio `two of the six`
+on that denominator. `compute.py`'s own splitter is documented as cutting after the stem
+`potentially including but not limited to,`, so **the run read the qualifier and then wrote past
+it.** The hook is now `Austin's order names six kinds of equipment.` and the dek says the list is
+not limited to them.
+
+**Frame 3 asserted a universal the deck's own claims refute.** `It establishes none of it` was
+cited to c5 alone, and the board's five heads include PRIORITY LOCATIONS and IMPLEMENTATION
+TIMELINES. c10 fixes a priority rule and frame 4 prints it verbatim one swipe later. c11 fixes a
+date and frame 9 prints it in the largest type in the deck. The line now reads `The plan itself is
+not in it`, which is true of the document and is what the empty board is about.
+
+**Frame 5 scoped an obligation wider than its own claim.** `Whatever is bought meets Chapter 2-19.`
+c7 attaches the obligation to `Any surveillance technology sought`, and four of the six kinds the
+deck had just named are not surveillance technology. The hook is now `Surveillance technology
+meets Chapter 2-19.` The frame's own dek had the scope right the whole time, which is the shape of
+all three: **the deks and the locators were careful and the display type was not.**
+
+The fourth was a numerals row the judge read out of this file after it had been repaired and
+re-stamped. It is recorded because a judge reading a committed run record is reading the run's own
+testimony, and a stale gate table is a run certifying a failure that no longer exists.
+
+### The thesis was on no frame at all
+
+Both the flow critic and the reader judge found it independently, and the reader judge put the
+cost plainly: the caption says `The forbidding one is the weaker instrument` and on LinkedIn that
+line sits behind a see-more tap, so a reader who swipes and does not expand gets nine frames whose
+plain reading is that Austin banned AI cameras in its parks. **That is the exact overstatement
+`claims.json` forbids in capitals.**
+
+Frame 7 now carries it, immediately after the page turn pays off, and both halves are sourced
+rather than interpreted: `The April ordinance weighs it. This one directs a manager not to
+consider it.` The comparison the caption draws is left to the caption. The frame states the
+asymmetry and lets a reader see it.
+
+### A number was typed on a deck whose first law is that no number is typed
+
+`aggregates.json` and this record both called the interval **thirteen weeks**. April 23rd, 2026 to
+August 12th, 2026 is **111 days, fifteen weeks and six days**, computed rather than typed. It was
+on no slide and in no caption so it failed no gate, and it sat in the entry explaining why the
+interval is deliberately not computed. A wrong number inside the paragraph that says a number was
+withheld is the sharpest available demonstration of why the law exists, and it is left recorded
+rather than quietly corrected.
+
+### The coil that read as a lens, twice
+
+Frame 1's bay held a roll of chain link seen end on. A first-round critic called it a dome camera,
+it was redrawn with a spiral winding, banding straps and a barrel to remove every lens cue, and
+the integrity judge called it a target anyway. **A circular form in that bay was not worth
+defending on a deck about cameras**, so the bay now carries a stack of flat fence panels, which is
+the same material as a stock item and has no circular form in it at all. L2 is the law that stops
+the deck inventing the one thing the record does not contain, and the honest reading of two
+independent judges is the measurement that matters here.

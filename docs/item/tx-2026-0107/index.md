@@ -10,7 +10,7 @@ The Public Utility Commission of Texas has opened Project 59550, the quinquennia
 - Comment closes: 2026-09-17
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59550&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The offer-cap review still contains only the opening request and staff memorandum, so its public comment window remains open.
 - 2026-09-02 · The five year review of the ERCOT system wide offer caps is still open and the staff memo asking for comments is the most recent thing on it. Nothing has been filed in answer yet.
 - 2026-09-05 · The five year review of the ERCOT offer caps is still open and the comment door has not shut. A reader can still file in it.
+- 2026-09-08 · The five year review of the ERCOT system-wide offer caps is still taking comments, and the commission's own calendar still carries the September 17th deadline as a public entry.
 
 ## Evidence
 
