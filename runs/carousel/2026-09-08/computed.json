@@ -1,0 +1,66 @@
+{
+ "run": "2026-09-08",
+ "claims_asserted": 28,
+ "note": "Every string here is asserted against a snapshot of the document it came from before it is written. The two scanned documents keep their OCR garbling, because a repaired quote can no longer be found in the document it cites.",
+ "dates": {
+  "adopted": "August 12th, 2026",
+  "adopted_raw": "ADOPTED: August 12 , 2026",
+  "report_due": "December 9th, 2026",
+  "ordinance_adopted": "April 23rd, 2026",
+  "voting_record_latest": "May 28th, 2026",
+  "audit": "July 2025"
+ },
+ "numbers": {
+  "resolution": "20260812-017",
+  "ordinance": "20260423-029",
+  "chapter": "2-19",
+  "assessment_section": "2-19-4",
+  "approval_section": "2-19-3",
+  "lead_time": "four weeks"
+ },
+ "factors": {
+  "total": 10,
+  "ai_position": 5,
+  "counted_over": "the numbered analysis in City Code Section 2-19-4(C)",
+  "items_first_words": [
+   "allows the indiscriminate collection of data without a war",
+   "routinely transmits sensitive personal information through",
+   "can store sensitive personal information in a manner allow",
+   "can collect sensitive personal information without a warra",
+   "collects data in such a manner that it can be used by thir",
+   "can be directly controlled or accessed",
+   "collects data in such a manner that even i f anonymized or",
+   "collects data in a manner that is disproportionately assoc",
+   "can collect sensitive personal information of individuals ",
+   "is known to be associated with frequent violations of law"
+  ]
+ },
+ "gated_acts": {
+  "total": 4,
+  "letters": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "acquire_letter": "B",
+  "counted_over": "the lettered list in City Code Section 2-19-3"
+ },
+ "equipment": {
+  "total": 6,
+  "items": [
+   "security cameras",
+   "non-recording drones as first responders",
+   "lighting",
+   "access control/fencing/gates",
+   "signage and wayfinding",
+   "radio communication systems"
+  ],
+  "counted_over": "the enumeration in Resolution No. 20260812-017"
+ },
+ "voting_record": {
+  "latest_meeting_loaded": "2026-05-28",
+  "covers_the_august_meeting": false,
+  "how": "the city's published Council Voting Record dataset was queried for its maximum meeting_date and the answer predates the meeting"
+ }
+}
