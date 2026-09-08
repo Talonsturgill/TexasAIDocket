@@ -2251,7 +2251,7 @@
           "anc": []
         },
         {
-          "text": "The city manager owes that committee a progress update by then. The council's own action notes record the item approved and publish no tally.",
+          "text": "The city manager owes that committee a progress update by then. The action notes send the count to minutes approved later. The city's open voting record has not reached that meeting.",
           "x": 80,
           "y": 1064,
           "w": 900,
@@ -2272,23 +2272,23 @@
             [
               80,
               1097,
-              844,
+              884,
               37
             ],
             [
               80,
               1131,
-              59,
+              555,
               37
             ]
           ],
           "anc": []
         },
         {
-          "text": "ACTION NOTES AUGUST 12TH, 2026 / no tally published",
+          "text": "ACTION NOTES AND VOTING RECORD / both read in full",
           "x": 80,
           "y": 1191,
-          "w": 862,
+          "w": 845,
           "h": 35,
           "font_px": 26,
           "weight": "500",
@@ -2300,7 +2300,7 @@
             [
               80,
               1191,
-              862,
+              845,
               35
             ]
           ],
@@ -2309,10 +2309,10 @@
         {
           "text": "RES 20260812-017",
           "x": 80,
-          "y": 1235,
-          "w": 266,
-          "h": 35,
-          "font_px": 26,
+          "y": 1239,
+          "w": 238,
+          "h": 31,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(220, 226, 214)",
@@ -2321,20 +2321,20 @@
           "lines": [
             [
               80,
-              1235,
-              266,
-              35
+              1239,
+              238,
+              31
             ]
           ],
           "anc": []
         },
         {
-          "text": "c11 c12 c40",
-          "x": 370,
-          "y": 1235,
-          "w": 183,
-          "h": 35,
-          "font_px": 26,
+          "text": "c11 c19 c40 c41",
+          "x": 352,
+          "y": 1239,
+          "w": 223,
+          "h": 31,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(220, 226, 214)",
@@ -2342,21 +2342,21 @@
           "overlap_ok": false,
           "lines": [
             [
-              370,
-              1235,
-              183,
-              35
+              352,
+              1239,
+              223,
+              31
             ]
           ],
           "anc": []
         },
         {
           "text": "texasaidocket.com",
-          "x": 577,
-          "y": 1235,
-          "w": 283,
-          "h": 35,
-          "font_px": 26,
+          "x": 609,
+          "y": 1239,
+          "w": 253,
+          "h": 31,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(220, 226, 214)",
@@ -2364,21 +2364,21 @@
           "overlap_ok": false,
           "lines": [
             [
-              577,
-              1235,
-              283,
-              35
+              609,
+              1239,
+              253,
+              31
             ]
           ],
           "anc": []
         },
         {
           "text": "09 / 09",
-          "x": 883,
-          "y": 1235,
-          "w": 116,
-          "h": 35,
-          "font_px": 26,
+          "x": 896,
+          "y": 1239,
+          "w": 104,
+          "h": 31,
+          "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
           "color": "rgb(220, 226, 214)",
@@ -2386,10 +2386,10 @@
           "overlap_ok": false,
           "lines": [
             [
-              883,
-              1235,
-              116,
-              35
+              896,
+              1239,
+              104,
+              31
             ]
           ],
           "anc": []
@@ -2402,7 +2402,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3737,
+      "render_ms": 3702,
       "ok": true,
       "canvases": [
         {

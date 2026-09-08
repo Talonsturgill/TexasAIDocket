@@ -105,16 +105,17 @@
    "quote": "no less than four weeks before the city council meeting"
   },
   {
-   "phrase": "two official records",
+   "phrase": "three official records",
    "slide": "first_comment.txt",
    "kind": "count",
-   "value": 2,
+   "value": 3,
    "computed_by": "scripts/carousel/sources_block.py, which groups the run's claims by their source document and counts the distinct documents whose source_type is primary_official. The two are the executed resolution and the executed ordinance.",
    "from_claims": [
     "c1",
-    "c7"
+    "c7",
+    "c40"
    ],
-   "note": "Counted over claims.json's own url field rather than over a list anybody typed."
+   "note": "Counted over claims.json's own url field rather than over a list anybody typed. IT SAID TWO UNTIL ROUND FOUR. The action notes became a fourth source document in a scoring round and first_comment.txt, figures.json and this declaration all still described the deck that existed before it. The fix is an ordering one: sources_block --build and the figures rebuild are the last two commands before the artifact copy, gated by sources_block --check."
   }
  ]
 }

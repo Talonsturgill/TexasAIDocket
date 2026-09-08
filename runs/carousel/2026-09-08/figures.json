@@ -2,7 +2,7 @@
  "run": "2026-09-08",
  "note": "Every value here is counted by this run's own generator over claims.json, aggregates.json and copy.json. None is typed. figures_proved and figures_computed are kept apart because this deck's aggregates are COUNTING WORDS over a source's own enumeration rather than figures a source states, so a single count would flatter one and understate the other.",
  "claims_verified": {
-  "value": 39,
+  "value": 41,
   "from_items": [],
   "note": "Claims this run fetched and verified, counted over claims.json."
  },
@@ -27,7 +27,7 @@
   "note": "Scout findings the fact check refused, counted over claims.json's rejected list."
  },
  "official_records": {
-  "value": 38,
+  "value": 40,
   "from_items": [],
   "note": "Claims whose source_type is primary_official, counted over claims.json."
  },

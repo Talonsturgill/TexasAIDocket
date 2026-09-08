@@ -401,6 +401,16 @@
    "source_type": "primary_official",
    "retrieved": "2026-09-08",
    "confidence": "high"
+  },
+  {
+   "id": "c41",
+   "text": "The action notes say where the vote details go rather than omitting them silently.",
+   "quote": "Details of Council's votes are not captured below but will be incorporated in the minutes approved by the City Council at a subsequent Council Meeting and posted to the web",
+   "url": "https://services.austintexas.gov/council_meetings/action_notes.cfm?mid=1496",
+   "source_title": "Actions Taken By Council, August 12th, 2026 meeting, City of Austin",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
   }
  ],
  "rejected": [
@@ -440,6 +450,7 @@
   "c31's quote was extended through the fifth numbered factor after numeral_lint found slide 8 printing (5) with no cited claim carrying it. The position is computed by compute.py from the ordinance's own numbering, and the numeral now also appears in a quote the frame cites, which is what the lint asks for. A digit produced by a correct computation and absent from every quote is exactly the case the lint exists to surface.",
   "c32 was added after a judge checked the caption's #TRUSTAct hashtag and found the name in the fetched resolution but in no claim. The name was correct and it was outside claim id coverage, which for a proper noun published to readers is the same defect as an unsourced numeral. The scan's garbled quotation mark is kept so the string can still be found in the document.",
   "THE RUN'S THESIS WAS REFUTED BY A SECTION OF A DOCUMENT IT HAD ALREADY FETCHED. The deck argued that the April ordinance WEIGHED artificial intelligence as one of ten assessment factors and that the August resolution turned it into a bar. Section 2-19-9 of the same ordinance, six pages past the section the deck read, lists artificial intelligence or machine learning tools among the technologies that are NOT PERMITTED, except as consistent with City policy. c33 through c38 carry that section, the facial recognition entry beside it, and the three carve outs the chapter already contained, so the comparison the deck makes is against the whole instrument rather than against one section of it. The ordinance names artificial intelligence in five separate places and the run had read one.",
-  "c40 WAS FETCHED AFTER A JUDGE FOUND AN UNOPENED LINK ON A PAGE THIS RUN HAD ALREADY FETCHED. The agenda page names a link titled 'Actions Taken By Council' and the run's rejected list said 'the agenda page publishes no vote for the item', which was true of the page's prose and skipped the link on it. The action notes were retrieved, they record the item as Approved, and they publish no vote count, no mover and no seconder. The words vote, ayes, nays and motion appear nowhere against any item on that page. So the deck's absence sentence was right and the run had not earned it. It has now. This is the same defect as the section 2-19-9 miss, one document later, and it is the second time in one run that the answer was inside something already in hand."
+  "c40 WAS FETCHED AFTER A JUDGE FOUND AN UNOPENED LINK ON A PAGE THIS RUN HAD ALREADY FETCHED. The agenda page names a link titled 'Actions Taken By Council' and the run's rejected list said 'the agenda page publishes no vote for the item', which was true of the page's prose and skipped the link on it. The action notes were retrieved, they record the item as Approved, and they publish no vote count, no mover and no seconder. The words vote, ayes, nays and motion appear nowhere against any item on that page. So the deck's absence sentence was right and the run had not earned it. It has now. This is the same defect as the section 2-19-9 miss, one document later, and it is the second time in one run that the answer was inside something already in hand.",
+  "c41 IS THE THIRD TIME IN ONE RUN THAT THE ANSWER WAS ONE LINE FURTHER INTO SOMETHING ALREADY FETCHED. The run opened the action notes after a judge named the unopened link, claimed the Approved disposition at c40, and stopped above the sentence at the top of that same page. The page does not merely omit the tally. It says the vote details will be incorporated in the minutes approved at a subsequent meeting and posted to the web. So the honest absence is not that no count is published, it is that the count is deferred to a document not yet approved, and the city's own open voting record at c19 has loaded no meeting later than May 28th, 2026. The closing frame now rests on both searches."
  ]
 }
