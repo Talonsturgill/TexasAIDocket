@@ -9683,6 +9683,15 @@
      "source_type": "primary_official",
      "id": "tx-2026-0096-c7",
      "fetched": "2026-09-02"
+    },
+    {
+     "text": "The Senate's own video archive carries the committee's September 1st sitting under that committee's name and date.",
+     "verbatim_quote": "Senate Committee on Water, Agriculture, and Rural Affairs, September 1, 2026 | Texas Senate Video",
+     "source_url": "https://senate.texas.gov/videoplayer.php?vid=22662&lang=en",
+     "source_title": "Senate Committee on Water, Agriculture, and Rural Affairs, September 1, 2026 | Texas Senate Video",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0096-c8"
     }
    ],
    "id": "tx-2026-0096",
@@ -9728,6 +9737,11 @@
     {
      "date": "2026-09-08",
      "note": "Senate Water, Agriculture and Rural Affairs has still published no recommendation from either of its sittings on data center cooling water. The upcoming meetings list that first carried those dates has moved past them. The committee's own page is now the only place a reader can see that the sittings happened.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-08",
+     "note": "The Senate's video archive carries a recording of the September 1st sitting under the committee's own name and date, so what the committee heard can be watched in full. No recommendation from either sitting has been published.",
      "checked": true
     }
    ]
@@ -13135,7 +13149,7 @@
    "confidence": "high",
    "notes_for_editor": "The dollar value of the cooperative award and any share flowing to UT Austin are not stated on the announcement.",
    "id": "tx-2026-0121",
-   "last_verified": "2026-09-07",
+   "last_verified": "2026-09-08",
    "history": [
     {
      "date": "2026-09-04",
@@ -13145,12 +13159,17 @@
      "date": "2026-09-07",
      "note": "The foundation's announcement of September 1st, 2026 stands as published. The operations center it established is still led by the San Diego Supercomputer Center in collaboration with the Texas Advanced Computing Center at The University of Texas at Austin.",
      "checked": true
+    },
+    {
+     "date": "2026-09-08",
+     "note": "The foundation's announcement of September 1st, 2026 stands as published. The operations center it established is still led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is still named as the collaborating institution. The announcement still states no dollar figure.",
+     "checked": true
     }
    ]
   },
   {
    "title": "National Science Foundation backs a Texas A&M tool that screens whether an alloy can exist before anyone makes it",
-   "summary": "Texas A&M's College of Engineering published on September 4th, 2026 that the National Science Foundation is funding PhaseForge. The software comes from the Department of Materials Science and Engineering and applies machine learning to the CALPHAD phase diagram method. The university states the tool is free and openly available. It states the work will accelerate materials discovery across academia, national laboratories and industry. The announcement names no award number and no dollar figure.",
+   "summary": "Texas A&M's College of Engineering published on September 4th, 2026 that the National Science Foundation is funding PhaseForge. The software comes from the Department of Materials Science and Engineering and applies machine learning to the CALPHAD phase diagram method. The university states the tool is free and openly available. It states that making the tool free and openly available will help accelerate materials discovery across academia, national laboratories and industry. The announcement names no award number and no dollar figure.",
    "topic": "research-and-science",
    "decider": {
     "name": "U.S. National Science Foundation",
@@ -13180,8 +13199,8 @@
    },
    "claims": [
     {
-     "text": "The university states the tool is being released free and openly, and says why.",
-     "verbatim_quote": "PhaseForge shows how machine learning can help metallurgists answer fundamental questions much faster,",
+     "text": "The university states the tool is distributed free and openly online and that anyone can contribute to it.",
+     "verbatim_quote": "PhaseForge is being distributed free and openly online, and anyone can contribute to it.",
      "source_url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/",
      "source_title": "Texas A&M College of Engineering, NSF backs Texas A&M tool that speeds materials discovery",
      "source_type": "primary_official",
@@ -13214,6 +13233,15 @@
      "source_title": "Texas A&M College of Engineering, NSF backs Texas A&M tool that speeds materials discovery",
      "source_type": "primary_official",
      "fetched": "2026-09-05"
+    },
+    {
+     "text": "The university states what making the tool free and open is expected to do for the field.",
+     "verbatim_quote": "By making the tool free and openly available, Dr. Arr\u00f3yave will help accelerate materials discovery across academia, national laboratories and industry.",
+     "source_url": "https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/",
+     "source_title": "NSF backs Texas A&M tool that speeds materials discovery",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0122-c5"
     }
    ],
    "notes_for_editor": "Admitted on the university's own announcement. The award number and the dollar value are not stated on the page and are not claimed here.",
@@ -13227,6 +13255,11 @@
     {
      "date": "2026-09-08",
      "note": "The award for the alloy screening tool still stands and the university's account of it is unchanged. A quotation the record carried ran two separated passages together as one, and it now stops where the source stops."
+    },
+    {
+     "date": "2026-09-08",
+     "note": "The college's announcement states that PhaseForge is distributed free and openly online and that anyone can contribute to it. It states that making the tool free and openly available will help accelerate materials discovery across academia, national laboratories and industry. It names no award number and no dollar figure.",
+     "checked": true
     }
    ]
   },
@@ -13706,75 +13739,6 @@
    ]
   },
   {
-   "title": "A Texas Senate committee took testimony on how much water data center cooling uses and whether local water providers are told",
-   "summary": "The Senate Committee on Water, Agriculture, and Rural Affairs sat on September 1st, 2026 on the water demands of energy intensive cooling. The Senate's video archive carries the recording under the committee's name and that date. The committee's page lists the sitting among the interim work of the current Legislature, beside a second sitting the following day. Senator Charles Perry chairs the committee. What the committee heard is on the recording. No recommendation from either sitting has been published. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills settles what it will recommend.",
-   "topic": "land-water-and-permitting",
-   "decider": {
-    "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
-    "type": "state-agency"
-   },
-   "geography": {
-    "statewide": true,
-    "counties": [],
-    "on_ercot": null
-   },
-   "status": "pending",
-   "confidence": "high",
-   "key_dates": [
-    {
-     "date": "2026-09-01",
-     "kind": "hearing",
-     "note": "Public hearing on the interim charge"
-    }
-   ],
-   "public_access": {
-    "room": "open_meeting",
-    "how": "The committee publishes its own page with the chair, the members and the clerk's telephone number. The recording of the sitting is in the Senate's video archive and can be watched in full. Written comment on an interim charge goes to the committee clerk.",
-    "url": "https://senate.texas.gov/cmte.php?c=700"
-   },
-   "claims": [
-    {
-     "text": "The Senate's own video archive carries the committee's September 1st sitting under that committee's name and date.",
-     "verbatim_quote": "Senate Committee on Water, Agriculture, and Rural Affairs, September 1, 2026 | Texas Senate Video",
-     "source_url": "https://senate.texas.gov/videoplayer.php?vid=22662&lang=en",
-     "source_title": "Texas Senate video archive, Senate Committee on Water, Agriculture, and Rural Affairs, September 1, 2026",
-     "source_type": "primary_official",
-     "fetched": "2026-09-08",
-     "id": "tx-2026-0126-c1"
-    },
-    {
-     "text": "The committee's own page lists the sitting under the interim work of the current Legislature.",
-     "verbatim_quote": "89th Session Interim",
-     "source_url": "https://senate.texas.gov/cmte.php?c=700",
-     "source_title": "Senate Committee on Water, Agriculture, and Rural Affairs, The Texas State Senate",
-     "source_type": "primary_official",
-     "fetched": "2026-09-08",
-     "id": "tx-2026-0126-c2"
-    },
-    {
-     "text": "The committee's page carries the committee's own name.",
-     "verbatim_quote": "Senate Committee on Water, Agriculture, and Rural Affairs | The Texas State Senate",
-     "source_url": "https://senate.texas.gov/cmte.php?c=700",
-     "source_title": "Senate Committee on Water, Agriculture, and Rural Affairs, The Texas State Senate",
-     "source_type": "primary_official",
-     "fetched": "2026-09-08",
-     "id": "tx-2026-0126-c3"
-    }
-   ],
-   "id": "tx-2026-0126",
-   "last_verified": "2026-09-08",
-   "history": [
-    {
-     "date": "2026-09-07",
-     "note": "Admitted. The committee's posted notice sets the hearing for September 1st, 2026 and carries the interim charge in full. The charge names data centers and asks the committee to recommend ways to improve transparency for local water providers."
-    },
-    {
-     "date": "2026-09-08",
-     "note": "The committee's own page and the Senate video archive both carry the September 1st sitting, and they are what the entry rests on now. Three details that appeared only on the posted hearing notice are no longer carried."
-    }
-   ]
-  },
-  {
    "title": "Austin bars its city manager from buying any park camera or drone that depends on artificial intelligence",
    "summary": "Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It directs the City Manager to write a Parks Security Implementation Plan. It also directs the manager to acquire and deploy security equipment for city parks and recreation lands. The resolution lists the kinds of equipment contemplated. Security cameras are on that list. So are non-recording drones as first responders. So are lighting and access control and signage and radio. The resolution then forbids the City Manager from considering any camera or drone system that depends on artificial intelligence to conduct surveillance or analysis. Anything acquired has to comply with the surveillance technology ordinance the council adopted in April. Parks with a history of violent crime are prioritized for the first deployment. The City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee no later than December 9th, 2026. The resolution sets the date by which the update is owed and does not set a date for a meeting. The April ordinance the resolution points at is City Code Chapter 2-19. It already lists artificial intelligence or machine learning tools among what is not permitted. The exception is whatever the city's own policy allows.",
    "topic": "surveillance-and-policing",
@@ -13799,8 +13763,8 @@
     },
     {
      "date": "2026-12-09",
-     "kind": "hearing",
-     "note": "the date by which the City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee"
+     "kind": "ordered",
+     "note": "the date by which the resolution orders the City Manager to give the Council Climate, Water, Environment, and Parks Committee a progress update. No meeting is set for it"
     }
    ],
    "public_access": {
@@ -13889,66 +13853,6 @@
     {
      "date": "2026-09-08",
      "note": "Admitted to the record. The executed resolution is posted in the city's document system. It carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update."
-    }
-   ],
-   "confidence": "high"
-  },
-  {
-   "title": "National Science Foundation puts UT Austin's supercomputing center in an operating role for the national AI research resource",
-   "summary": "The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is named as the collaborating institution. The operations center is to coordinate resource providers, integrate computing and data, run the national portal and provide user support and training. The pilot it takes over has supported research projects nationwide since it launched. This puts a Texas public institution in a role that runs the front door to federal AI compute rather than only hosting a machine behind it.",
-   "topic": "research-and-science",
-   "decider": {
-    "name": "National Science Foundation",
-    "type": "federal"
-   },
-   "geography": {
-    "statewide": false,
-    "counties": [
-     "Travis"
-    ],
-    "on_ercot": true,
-    "metro": "Austin-Round Rock-San Marcos, TX"
-   },
-   "status": "decided",
-   "key_dates": [
-    {
-     "date": "2026-09-01",
-     "kind": "decided",
-     "note": "the date the National Science Foundation published the establishment of the operations center"
-    }
-   ],
-   "public_access": {
-    "room": "contact_only",
-    "how": "The National Science Foundation publishes the announcement and the program pages for the research resource. There is no comment window and no hearing attached to the establishment of the operations center.",
-    "url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
-    "closes": null
-   },
-   "claims": [
-    {
-     "text": "The National Science Foundation names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center.",
-     "verbatim_quote": "Led by the San Diego Supercomputer Center at UC San Diego, in collaboration with the Texas Advanced Computing Center at The University of Texas at Austin, the operating center will bring complementary expertise and decades of experience developing and operating national-scale research infrastructure.",
-     "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
-     "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
-     "source_type": "primary_official",
-     "fetched": "2026-09-08",
-     "id": "tx-2026-0130-c1"
-    },
-    {
-     "text": "The agency states the scale of the pilot the operations center takes over.",
-     "verbatim_quote": "the pilot has supported over 800 research projects",
-     "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
-     "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
-     "source_type": "primary_official",
-     "fetched": "2026-09-08",
-     "id": "tx-2026-0130-c2"
-    }
-   ],
-   "id": "tx-2026-0130",
-   "last_verified": "2026-09-08",
-   "history": [
-    {
-     "date": "2026-09-08",
-     "note": "Admitted to the record. The agency's own announcement names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center."
     }
    ],
    "confidence": "high"
@@ -14099,13 +14003,7 @@
     "metro": "Dallas-Fort Worth-Arlington, TX"
    },
    "status": "decided",
-   "key_dates": [
-    {
-     "date": "2026-07-01",
-     "kind": "effective",
-     "note": "the start the university states for the curriculum on its own program page"
-    }
-   ],
+   "key_dates": [],
    "public_access": {
     "room": "contact_only",
     "how": "The university publishes the degree plan and the department contact on its program page. Admission questions go to the department rather than through any public proceeding.",
@@ -14129,6 +14027,11 @@
     {
      "date": "2026-09-08",
      "note": "Admitted to the record. The university's program page states the length of the curriculum and when it starts."
+    },
+    {
+     "date": "2026-09-08",
+     "note": "The university's page states that the four year curriculum starts in July 2026 and names no day within that month, so the record carries the month and no date.",
+     "checked": true
     }
    ],
    "confidence": "high"
@@ -14149,18 +14052,13 @@
     ],
     "on_ercot": true
    },
-   "status": "pending",
+   "status": "unknown",
    "confidence": "high",
    "key_dates": [
     {
      "date": "2026-05-06",
      "kind": "filed",
      "note": "the date opened given on the ODI resume for the preliminary evaluation"
-    },
-    {
-     "date": "2025-12-03",
-     "kind": "effective",
-     "note": "the date the office understands public passenger service began in Dallas"
     }
    ],
    "public_access": {
@@ -14173,6 +14071,11 @@
     {
      "date": "2026-09-08",
      "note": "Admitted to the record. The resume was read in full this run and every claim below is quoted from it."
+    },
+    {
+     "date": "2026-09-08",
+     "note": "The agency's own investigation status pages would not answer, so what state the preliminary evaluation is in today is not on the record. The resume gives December 3rd, 2025 as the office's understanding of when public passenger service began in Dallas. That is a fact about the service rather than a step in this evaluation.",
+     "checked": true
     }
    ],
    "claims": [

@@ -15,13 +15,13 @@ The University of North Texas is offering a Bachelor of Science in Artificial In
 
 ## Dates
 
-- 2026-07-01 · effective: the start the university states for the curriculum on its own program page
 
 ## How this decision moved
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-08 · Admitted to the record. The university's program page states the length of the curriculum and when it starts.
+- 2026-09-08 · The university's page states that the four year curriculum starts in July 2026 and names no day within that month, so the record carries the month and no date.
 
 ## Evidence
 

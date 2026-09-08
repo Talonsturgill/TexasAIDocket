@@ -16,7 +16,7 @@ Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It
 ## Dates
 
 - 2026-08-12 · decided: Resolution No. 20260812-017 adopted and attested by the City Clerk
-- 2026-12-09 · hearing: the date by which the City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee
+- 2026-12-09 · ordered: the date by which the resolution orders the City Manager to give the Council Climate, Water, Environment, and Parks Committee a progress update. No meeting is set for it
 
 ## How this decision moved
 

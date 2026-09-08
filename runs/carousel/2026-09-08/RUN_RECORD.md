@@ -43,12 +43,11 @@ claims rather than by editing the old ones.
 same three sentences from the item's own fields, so a reader opening ten items in a row met one
 template ten times. `reverify.py --check-notes` passes on all 426 checked notes.
 
-## Six decisions admitted, two held, and one that had to be re-sourced
+## Six decisions admitted, two of them duplicates that were removed the same day, two held
 
 | id | what |
 |---|---|
 | tx-2026-0129 | Austin forbids its city manager from buying a park camera or drone that depends on artificial intelligence |
-| tx-2026-0130 | The National Science Foundation puts UT Austin's supercomputing centre in an operating role on the national AI research resource |
 | tx-2026-0131 | Texas State moves an AI pavement assessment method toward statewide highway use |
 | tx-2026-0132 | Texas A&M names one approved platform for campus AI use and states the data classification it is cleared for |
 | tx-2026-0133 | North Texas opens a named undergraduate artificial intelligence degree |
@@ -75,7 +74,9 @@ It will fail every future re-check for a reason that looks like a fetch problem 
 boundary the project drew on purpose.
 
 **One of them was promoted from the seed by this run**, tx-2026-0126, and all three of its claims
-cited the disallowed path. That is the second time in two days an item has entered the record from
+cited the disallowed path. That entry was later removed as a duplicate, for a separate reason set
+out below, and the re-sourcing described here is what proved its one piece of new evidence was
+compliant enough to fold into tx-2026-0096. That is the second time in two days an item has entered the record from
 a path already ruled out, and the first time it came through the seed rather than through a fresh
 admission. It has been re-sourced onto `senate.texas.gov`, whose robots.txt disallows neither
 `cmte.php` nor `videoplayer.php`. Three facts that only the disallowed notice carried, the time,
@@ -127,15 +128,17 @@ scout briefs named five off limits hosts and did not name these two, which is th
   should be at the top of that list. The quoted-material exemption is still doing its own job and
   not sheltering any of our sentences. LOOKED AT, and it is where the off limits finding above
   came from.
-- **`/topic/`.** Eight beats. The per beat counts are 28, 3, 12, 15, 11, 22, 17 and 10, which sum
-  to 118, the figure the front page's own counter prints. The `still open to comment` figures sum
-  to 4, which is the front page's `04 Doors open to you`. The surveillance and policing card says
-  10 and its page says "10 of 118". LOOKED AT, counts agree in both directions.
+- **`/topic/`.** Eight beats. The per beat counts summed to 118 when this was looked at, which is
+  the figure the front page's own counter printed, and both moved to 116 later the same day when
+  two duplicate admissions were removed. The `still open to comment` figures sum to 4, which is the
+  front page's `04 Doors open to you`. LOOKED AT, counts agree in both directions, and they agree
+  again on the rebuild after the removals.
 - **`/place/`.** Travis County took three items today. The hub says 19 and the county page says 19
   and names the Austin resolution among them. LOOKED AT, correct.
 
-**The front page counter row** reads 17 articles, 05 videos, 118 decisions, 642 sources cited and
-04 doors open. `Sources cited` is rendering, which is the entry that spent its early life invisible
+**The front page counter row** read 17 articles, 05 videos, 118 decisions, 642 sources cited and
+04 doors open when this was looked at, and reads 18 articles, 116 decisions and 640 sources on the
+final rebuild, which is this run's own article plus the two duplicate removals below. `Sources cited` is rendering, which is the entry that spent its early life invisible
 behind a cap of four. `What this is` is absent, as instructed.
 
 **The backlog did not grow.** Three entries at wake, three now, the same grandfathered
@@ -437,7 +440,7 @@ for.
 | labels         | PASS   | 48 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 56,208 chars planned |
+| dossiers       | PASS   | 56,203 chars planned |
 | caption        | PASS   | 141 words |
 | craft floor    | WARN   | 9 frame(s), median 922, floor 166, 1 quiet |
 | plan vs render | PASS   | 12 of 77 acceptance item(s) checkable |
@@ -915,7 +918,7 @@ reservoirs and the facility dossiers already are, or raise `MAX_INDEX_CHARS`.
 
 **Why the record was not trimmed to fit instead.** The daily lane does own the titles the index
 lines are built from, so shedding 1,500 characters would mean cutting about 13 characters from
-each of 118 headlines. That is rewriting the public record's headlines to fit a token budget, and
+each of 116 headlines. That is rewriting the public record's headlines to fit a token budget, and
 this project does not get to bend the record around a gate. The seven admissions are true and
 each one is sourced.
 
@@ -931,15 +934,15 @@ The email's image URLs therefore point at the run branch rather than `main`, whi
 ## Permission audit
 
 `scripts/shared/prompt_audit.py` read `permissionDecisionMs` for every dispatch in both of this
-run's processes. **1,827 tool calls measured, none waited on a human.** That is the reading the
+run's processes. **1,891 tool calls measured, none waited on a human.** That is the reading the
 2026-09-02 entry in `CLAUDE.md` demands, and it is worth more than a run reporting that it did not
 notice a prompt, which no run can know from the tool results alone.
 
 ## One artifact carried a numeral no measurement backed
 
 `shipped_check` reported it once `measurements.json` and `slides/` were archived beside this deck,
-which they had not been. The storyboard's slide 5 focal note read `a leaf fabric held 8 L* under
-the neighbouring bay`. **That delta was never measured.** `measurements.json` holds the nine
+which they had not been. The storyboard's slide 5 focal note put a luminance delta between the
+leaf fabric and the neighbouring bay. **That delta was never measured.** `measurements.json` holds the nine
 per-frame medians and nothing else, so the figure traced to nothing. It is now written without the
 number, which is the compute-not-generate law's own answer. Every other luminance in the storyboard
 is in the `L* 62` form the gate reads as a plan target and each of those is checked against the
@@ -949,3 +952,57 @@ Two files were missing from the run directory and are now in it, `measurements.j
 `slides/`. **A gate that has nothing to read reports not-applicable, which looks like a pass.**
 The archived slides are what make `shipped_check`'s label and construction gates able to run on
 this deck at all.
+
+
+## TWO OF THIS RUN'S SIX ADMISSIONS WERE DUPLICATES OF DECISIONS ALREADY IN THE RECORD
+
+A review bot on the pull request found both, and both were verified here against the ledger before
+anything moved. **Neither had reached `main`**, so removing them rewrote nothing a reader had seen.
+
+| removed | duplicate of | what makes it the same decision |
+|---|---|---|
+| tx-2026-0130 | tx-2026-0121 | Same NSF operations center, established September 1st, 2026, same announcement URL, and c1 is the identical verbatim quote naming the San Diego Supercomputer Center and TACC. Nothing in it rested on evidence tx-2026-0121 did not hold |
+| tx-2026-0126 | tx-2026-0096 | Same Senate Water, Agriculture and Rural Affairs committee, same interim charge on cooling water, same September 1st sitting. Its one piece of new evidence, the Senate video archive's recording of that sitting, is folded into tx-2026-0096 as c8 |
+
+**This is the run's worst record defect and no gate here catches it.** `dedupe_check` compares the
+CAROUSEL's topic, entities and keywords against recent decks. Nothing compares an admission against
+the record it is being added to. A duplicate inflates the decision count the front page prints, and
+it splits one decision's evidence across two pages, two feeds, two calendar entries and two ask
+index lines that a model retrieving on the same words will both return.
+
+The 2026-09-05 upgrade backlog already carries an instrument axis for `dedupe_check`. This is a
+different and larger gap: an admission-time check against `ledger/docket.json` itself, keyed on the
+source URL and the decision date, which would have caught both of these before they were written.
+Written up for the upgrade lane rather than fixed here.
+
+**The removals also moved the ask index from 41,381 to 40,894**, which is still 894 over its 40,000
+ceiling. The hold below stands unchanged and the arithmetic in it is unchanged, because a correct
+record is smaller than an incorrect one by exactly two duplicate lines and no more.
+
+## FOUR MORE FINDINGS FROM THE SAME REVIEW, ALL OF THEM REAL
+
+- **A report deadline was filed as a hearing.** `tx-2026-0129`'s December 9th key date carried
+  `kind: hearing`, and `docket_calendar.ACTIONABLE` treats a hearing as a door a reader can walk
+  through. **This run had already corrected the same error in the item's prose and left it standing
+  in the data**, which is the more instructive half. The resolution sets a date by which the City
+  Manager owes an update and sets no meeting, so the kind is now `ordered` and the note says so.
+- **A first of the month was computed rather than read.** `tx-2026-0133`'s only key date was
+  `2026-07-01`, and the university's page says the curriculum starts "in July 2026" with no day.
+  That invented day reached the item page, the FAQ answer and the JSON-LD `datePublished`. The key
+  date is gone and the month stays in the prose, where an imprecise date belongs.
+- **A status asserted what the item's own summary said could not be known.** `tx-2026-0136`'s
+  summary says the agency's status pages would not answer, so the record can't say what state the
+  defect evaluation is in. `status: pending` made the published FAQ answer "It is pending." It is
+  now `unknown`, which is a value this schema already has for exactly this.
+- **A contextual date was starting a decision's timeline.** The same item listed December 3rd, 2025,
+  the date the office understands passenger service began, among its key dates. The site reads the
+  earliest key date as the decision's beginning, so the FAQ said an investigation opened in May 2026
+  began in December 2025 and the JSON-LD predated it by five months. The date stays in claim c12
+  and is out of the timeline.
+
+**A fifth finding was real and was fixed by re-fetching rather than by narrowing.** This run had
+cut `tx-2026-0122-c1` back because it spliced two passages across an attribution, which was right,
+and the shortened quote then supported less than the claim beside it said. The page was fetched
+again. c1 now quotes the sentence that actually states the tool is distributed free and openly, and
+the sentence about accelerating materials discovery is its own claim rather than a summary
+assertion resting on nothing.
