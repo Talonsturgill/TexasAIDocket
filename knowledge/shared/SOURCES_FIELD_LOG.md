@@ -986,3 +986,69 @@ All twelve claims on tx-2026-0120 were re-verified this way.
 
 **`interchange.puc.texas.gov` behaved exactly as the registry describes.** No robots.txt, 200 to a
 browser User-Agent. The registry's entry needs no change.
+
+---
+
+## 2026-09-08, carousel no. 18
+
+**THE TEXAS REGISTER NOW DISALLOWS AI AGENTS SITE WIDE, and the routine still tells a run to poll
+it.** `texreg.sos.state.tx.us/robots.txt` names GPTBot, ChatGPT-User, OAI-SearchBot, Googlebot,
+bingbot, AhrefsBot, meta-externalagent, DataForSeoBot and FacebookExternalHit and disallows the
+whole site to each. It is the third source in the daily routine's Phase 4 discovery list, and it
+is described there as "the authoritative publication for proposed rules and their official comment
+instructions", which it still is and which a run may no longer read. Not routed around, and
+nothing was fetched from it. **This is a registry change a maintainer should fold up**, because
+the routine's own instructions currently send every run at a host that will refuse it.
+
+**The PUCT calendar RSS url in the registry and in the routine has the wrong case, and the
+redirect is what breaks it.** `puc.texas.gov/agency/calendar/GetCalendarRss.aspx` answers 301 to
+the same path in lower case. `WebFetch` returned **503 twice** rather than following it, which
+reads as an outage and is not one. `curl -L` with a browser User-Agent returns 200 and 36 items.
+The lowercase form is `https://www.puc.texas.gov/agency/calendar/getcalendarrss.aspx`. This poll
+is the highest value one the routine has, so a 503 that is really a redirect costs a run its best
+lead source and looks like nothing.
+
+**`www.nhtsa.gov` returns 403 on every path INCLUDING its own robots.txt. `static.nhtsa.gov`
+serves no robots.txt at all and answers 200.** The investigation documents live on the static
+host, so the useful half is reachable. Following the registry's own CourtListener precedent, a 403
+on the robots file establishes no disallow and is an edge failure rather than a policy change, so
+`www.nhtsa.gov` is NOT written off on one reading. Nothing was fetched from it. This is the same
+shape as the `dhs.gov` finding of 2026-09-04 and the second time a federal host has answered this
+way, which is worth a registry line rather than a third rediscovery.
+
+**`statutes.capitol.texas.gov` serves its homepage navigation shell for every statute path**, and
+returns 200 while doing it. `/Docs/TN/htm/TN.545.htm`, `/SOTWDocs/TN/htm/TN.545.htm` and the PDF
+form all behaved this way. `www.statutes.legis.state.tx.us` 301s to the same host, so it is the
+same policy rather than an alternate route. **A 200 carrying the wrong body is worse than a 404**,
+because a fetcher records success. No Texas statutory text was read this run.
+
+**`news.rice.edu` returns 406 to a plain client and 200 to a browser User-Agent.** Two entries,
+tx-2026-0099 and tx-2026-0124, have been failing re-verification against it for that reason alone
+and their claims are all still exactly on the page. The registry describes no problem with this
+host and there is not really one, but a checker that sends no User-Agent will keep reporting it
+unreachable forever.
+
+**The San Angelo document centre and the PUCT Interchange are not unreachable, they are
+unreadable to a text-only checker.** `sanangelo.gov/DocumentCenter/View/` serves PDFs and
+`interchange.puc.texas.gov` serves a JavaScript shell whose filing table is in the payload. Both
+answer 200 to a browser client and both carry every quote the record holds against them. Sixteen
+entries were re-verified this way this run.
+
+**`senate.texas.gov` is the compliant substitute for a Senate committee hearing and it is better
+than the notice.** Its robots.txt disallows only `/_assets`, `/bin`, `/kids`, `/hola`, `/tsn` and
+`/memberForm.php` under `*`, so `cmte.php`, `committees.php` and `videoplayer.php` are all clear.
+`cmte.php?c=700` carries the committee's name, chair, members, clerk telephone number and its own
+archive of sittings by date. `videoplayer.php?vid=<id>` carries the recording under the
+committee's name and the date. **This is what a run should reach for instead of
+`capitol.texas.gov/tlodocs/`,** which is disallowed and which four entries on the record still
+cite. The committee codes come from `committees.php` and Water, Agriculture, and Rural Affairs is
+`700`, Transportation is `640`.
+
+**Blocked, by name, and not routed around:** `tacc.utexas.edu` and `lccf.tacc.utexas.edu` again,
+`beckershospitalreview.com` 403, `openai.com` 403, `usda.gov` 403, `tesla.com` 403,
+`reuters.com` unfetchable, `kxan.com` 403, `thedailytexan.com` 403, `hpcwire.com` 403,
+`texasattorneygeneral.gov` 402 on four separate paths.
+
+**`globenewswire.com` disconnected mid-request** on a release two scouts had read successfully
+minutes earlier, so a candidate resting on it was dropped rather than admitted on an unverifiable
+quote.
