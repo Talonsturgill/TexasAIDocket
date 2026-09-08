@@ -235,9 +235,38 @@ def build(run_dir: Path) -> str:
     agg_f = run_dir / "aggregates.json"
     aggs = (json.loads(agg_f.read_text(encoding="utf-8")).get("aggregates", [])
             if agg_f.exists() else [])
-    if any(a.get("kind") in ("duration", "span") for a in aggs if isinstance(a, dict)):
+    if any(computed_span(a) for a in aggs if isinstance(a, dict)):
         lines.append("Day counts computed in compute.py from the source dates above.")
     return "\n".join(lines) + "\n"
+
+
+def computed_span(agg: dict) -> bool:
+    """Did this aggregate come from date arithmetic, or is it a duration somebody quoted?
+
+    THE DEFECT, and the first repair was half of one. The condition above used to read
+    `a.get("kind") in ("duration", "span")`, and `kind` is a LABEL a writer types. Every
+    duration a source states in its own words is legitimately labelled `duration` too, so the
+    provenance claim rode along on a deck that performed no subtraction anywhere.
+
+    It reached readers. `runs/carousel/2026-08-30/first_comment.txt` carries the line, and that
+    deck's only two durations are `SIX MONTHS` quoted from c21 and `three years` quoted from
+    c17, each with `quoted_from` set and each with a note reading in as many words "No
+    arithmetic, no unit change, no hedge dropped". It nearly reached them again on 2026-09-08,
+    where both instances of `four weeks` are quoted verbatim from c17, and a scoring judge
+    caught it in the round rather than a gate.
+
+    GATE_LESSONS 41 is the rule this is a case of. A fact the build BRANCHES ON may not be
+    carried in a label or in prose, because the branch then follows whatever wording somebody
+    used that day. A computed span carries the two dates it was computed from. Those are
+    fields, they are already in the format, and a run that wants the line writes them.
+
+    THE DELIBERATE COST, stated so it is a choice. `runs/carousel/2026-08-21` really did compute
+    481 days and declared it only in a `computed_by` sentence, so this drops a TRUE line from a
+    deck of that shape. Omitting a true provenance line is a smaller harm than publishing a
+    false one, and the cure is one field pair rather than a parser for English.
+    """
+    a, b = agg.get("from_date"), agg.get("to_date")
+    return bool(a) and bool(b) and str(a) != str(b)
 
 
 # THE ONE RUN THAT SHIPPED BEFORE THIS RULE EXISTED.
@@ -428,6 +457,59 @@ def self_test() -> int:
             (exempt / f_).write_text((d / f_).read_text())
         ok("...while the exempt run, which exists, is skipped whole", check(exempt) == [],
            str(check(exempt)))
+
+        # ---- THE DAY COUNT LINE, 2026-08-30 and 2026-09-08 ---------------------------
+        # SYNTHETIC HALF: the two shapes, side by side, so the discrimination is stated.
+        QUOTED = {"phrase": "four weeks", "kind": "duration", "value": 4,
+                  "quoted_from": "c17", "quote": "not later than four weeks"}
+        COMPUTED = {"phrase": "156 DAYS", "kind": "duration", "value": 156,
+                    "from_date": "2026-03-10", "to_date": "2026-08-13"}
+        ok("a duration QUOTED from a source does not authorise the day count line",
+           not computed_span(QUOTED), str(QUOTED))
+        ok("...and a span computed between two dates does",
+           computed_span(COMPUTED), str(COMPUTED))
+        ok("...and two identical dates are not an interval",
+           not computed_span({"from_date": "2026-08-13", "to_date": "2026-08-13"}))
+        ok("the label alone can no longer carry it",
+           not computed_span({"kind": "span"}) and not computed_span({"kind": "duration"}))
+
+        # THE LINE IS ACTUALLY WITHHELD AND ACTUALLY PRINTED, through build(), because a
+        # predicate that is right while its caller ignores it is GATE_LESSONS 37.
+        (d / "copy.json").write_text(json.dumps({"slides": {"S1": {"claims": ["c1"]}}}))
+        (d / "aggregates.json").write_text(json.dumps({"aggregates": [QUOTED]}))
+        ok("build() withholds the line over a quoted duration",
+           "Day counts computed" not in build(d), build(d))
+        (d / "aggregates.json").write_text(json.dumps({"aggregates": [QUOTED, COMPUTED]}))
+        ok("...and prints it as soon as one aggregate carries both dates",
+           "Day counts computed" in build(d), build(d))
+
+        # REAL ARTIFACT HALF. GATE_LESSONS 50: the fixture proves the logic can tell them
+        # apart, and only the shipped file would have gone red on the day this broke.
+        shipped = REPO_ROOT / "runs" / "carousel"
+        for date, want in (("2026-08-30", False),   # both durations quoted, line SHIPPED anyway
+                           ("2026-09-08", False),   # both `four weeks`, quoted from c17
+                           ("2026-08-25", True),    # first_action_date to last_action_date
+                           ("2026-08-19", True)):   # the letter's date to the run date
+            f_ = shipped / date / "aggregates.json"
+            if not f_.exists():
+                continue
+            got = any(computed_span(x) for x in
+                      json.loads(f_.read_text(encoding="utf-8")).get("aggregates", [])
+                      if isinstance(x, dict))
+            ok(f"{date}: the day count line is {'earned' if want else 'withheld'} on the "
+               f"shipped aggregates", got is want, f"computed_span said {got}")
+
+        # AND THE SHIPPED BLOCK THAT CARRIES IT WITH NO ARITHMETIC BEHIND IT. This is the
+        # defect as a reader received it, not as a fixture describes it.
+        fc = shipped / "2026-08-30" / "first_comment.txt"
+        ag = shipped / "2026-08-30" / "aggregates.json"
+        if fc.exists() and ag.exists():
+            ok("2026-08-30 published the line, which is what this repair is for",
+               "Day counts computed" in fc.read_text(encoding="utf-8"))
+            ok("...and every duration in that deck names the claim it was quoted from",
+               all(x.get("quoted_from") for x in
+                   json.loads(ag.read_text(encoding="utf-8")).get("aggregates", [])
+                   if isinstance(x, dict) and x.get("kind") in ("duration", "span")))
 
         # ---- THE 2026-08-21 DEFECT, all three ways it read as clean --------------------
         ghost = Path(td) / "2026-08-21"          # the bare date, taken as a path by --run
