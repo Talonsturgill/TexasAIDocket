@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-07",
+  "generated": "2026-09-08",
   "gates": [
    "claims",
    "cross references",
@@ -13704,6 +13704,421 @@
      "note": "Admitted. The city's own account of the September 1st, 2026 meeting says the commission took up the process for a temporary moratorium. The same account says staff told it the land development code has no rules for data centers. Nothing in that account records a vote."
     }
    ]
+  },
+  {
+   "title": "A Texas Senate committee took testimony on how much water data center cooling uses and whether local water providers are told",
+   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs met at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. Senator Charles Perry chairs it. The posted notice sets one interim charge. It is examining current water consumption rates for high consumption cooling technologies including data centers. The charge directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. Public testimony was limited to two minutes and written testimony went to the committee clerk. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills decides what to recommend.",
+   "topic": "land-water-and-permitting",
+   "decider": {
+    "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": null
+   },
+   "status": "pending",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-09-01",
+     "kind": "hearing",
+     "note": "Public hearing on the interim charge"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The committee posts its notice with the room, the hour and the charge before it meets, and it took invited and public testimony. Public testimony was limited to two minutes. Written testimony goes to the committee clerk, whose address is on the notice, so a Texan who could not be in Austin could still be read into the record.",
+    "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm"
+   },
+   "claims": [
+    {
+     "text": "The posted notice states the committee, the hour, the date, the room and the chair.",
+     "verbatim_quote": "COMMITTEE: Water, Agriculture and Rural Affairs TIME & DATE: 9:00 AM, Tuesday, September 1, 2026 PLACE: E1.012 (Hearing Room) CHAIR: Senator Charles Perry",
+     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+     "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+     "source_type": "primary_official",
+     "fetched": "2026-09-07",
+     "id": "tx-2026-0126-c1"
+    },
+    {
+     "text": "The interim charge names the technology it is examining and what it asks the committee to recommend.",
+     "verbatim_quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers. Make recommendations to improve transparency for local water providers and ensure industrial growth does not compromise the affordability of water for Texas residents and agricultural producers.",
+     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+     "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+     "source_type": "primary_official",
+     "fetched": "2026-09-07",
+     "id": "tx-2026-0126-c2"
+    },
+    {
+     "text": "The notice states how long a member of the public could speak.",
+     "verbatim_quote": "Public testimony is limited to 2 minutes.",
+     "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+     "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+     "source_type": "primary_official",
+     "fetched": "2026-09-07",
+     "id": "tx-2026-0126-c3"
+    }
+   ],
+   "id": "tx-2026-0126",
+   "last_verified": "2026-09-07",
+   "history": [
+    {
+     "date": "2026-09-07",
+     "note": "Admitted. The committee's posted notice sets the hearing for September 1st, 2026 and carries the interim charge in full. The charge names data centers and asks the committee to recommend ways to improve transparency for local water providers."
+    }
+   ]
+  },
+  {
+   "title": "Austin bars its city manager from buying any park camera or drone that depends on artificial intelligence",
+   "summary": "Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It directs the City Manager to write a Parks Security Implementation Plan. It also directs the manager to acquire and deploy security equipment for city parks and recreation lands. The resolution lists the kinds of equipment contemplated. Security cameras are on that list. So are non-recording drones as first responders. So are lighting and access control and signage and radio. The resolution then forbids the City Manager from considering any camera or drone system that depends on artificial intelligence to conduct surveillance or analysis. Anything acquired has to comply with the surveillance technology ordinance the council adopted in April. Parks with a history of violent crime are prioritized for the first deployment. The City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee no later than December 9th, 2026. That committee meeting is the next public step a reader can attend.",
+   "topic": "surveillance-and-policing",
+   "decider": {
+    "name": "Austin City Council",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-08-12",
+     "kind": "decided",
+     "note": "Resolution No. 20260812-017 adopted and attested by the City Clerk"
+    },
+    {
+     "date": "2026-12-09",
+     "kind": "hearing",
+     "note": "the date by which the City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The progress update is owed to the Council Climate, Water, Environment, and Parks Committee, whose meetings are posted on the city's council calendar and are open to the public. The executed resolution is published in the city's document system and can be read in full.",
+    "url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The resolution forbids the City Manager from considering a camera or drone system that relies on artificial intelligence.",
+     "verbatim_quote": "The City Manager shall not consider acquisition of any camera or drone system that depends upon artificial intelligence to conduct surveillance or analysis.",
+     "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+     "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0129-c1"
+    },
+    {
+     "text": "The executed copy carries the resolution number.",
+     "verbatim_quote": "RESOLUTION NO. 20260812-017",
+     "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+     "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0129-c2"
+    },
+    {
+     "text": "Any surveillance technology the city buys under the resolution has to comply with the ordinance the council adopted in April, which sits in the city code.",
+     "verbatim_quote": "Any surveillance technology sought must be acquired, deployed, and used in full compliance with all requirements of Ordinance No. 20260423-029, codified at City Code Chapter 2-19",
+     "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+     "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0129-c3"
+    },
+    {
+     "text": "The resolution names the equipment the city may buy for its parks.",
+     "verbatim_quote": "potentially including but not limited to, security cameras, non-recording drones as first responders, lighting, access control/fencing/gates, signage and wayfinding, and radio communication systems",
+     "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+     "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0129-c4"
+    },
+    {
+     "text": "Parks with a history of violent crime get the equipment first.",
+     "verbatim_quote": "Parks with a history of violent crime shall be prioritized for the initial deployment of this equipment.",
+     "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+     "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0129-c5"
+    },
+    {
+     "text": "The resolution sets a date by which the City Manager owes the council committee a progress update.",
+     "verbatim_quote": "The City Manager shall provide a progress update on the direction given in this Resolution to the Council Climate, Water, Environment, and Parks Committee no later than December 9, 2026.",
+     "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+     "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0129-c6"
+    },
+    {
+     "text": "The item was on the council's August 12th agenda and is described there.",
+     "verbatim_quote": "Approve a resolution directing the City Manager to develop a security implementation plan for City parks and recreation lands and facilities",
+     "source_url": "https://www.austintexas.gov/council/2026/20260812-reg",
+     "source_title": "Austin City Council agenda, August 12, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0129-c7"
+    }
+   ],
+   "id": "tx-2026-0129",
+   "last_verified": "2026-09-08",
+   "history": [
+    {
+     "date": "2026-09-08",
+     "note": "Admitted to the record. The executed resolution is posted in the city's document system and carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "National Science Foundation puts UT Austin's supercomputing center in an operating role for the national AI research resource",
+   "summary": "The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego, with the Texas Advanced Computing Center at The University of Texas at Austin named as the collaborating institution. The operations center is to coordinate resource providers, integrate computing and data, run the national portal and provide user support and training. The pilot it takes over has supported research projects nationwide since it launched. This puts a Texas public institution in a role that runs the front door to federal AI compute rather than only hosting a machine behind it.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-01",
+     "kind": "decided",
+     "note": "the date the National Science Foundation published the establishment of the operations center"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The National Science Foundation publishes the announcement and the program pages for the research resource. There is no comment window and no hearing attached to the establishment of the operations center.",
+    "url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The National Science Foundation names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center.",
+     "verbatim_quote": "Led by the San Diego Supercomputer Center at UC San Diego, in collaboration with the Texas Advanced Computing Center at The University of Texas at Austin, the operating center will bring complementary expertise and decades of experience developing and operating national-scale research infrastructure.",
+     "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+     "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0130-c1"
+    },
+    {
+     "text": "The agency states the scale of the pilot the operations center takes over.",
+     "verbatim_quote": "the pilot has supported over 800 research projects",
+     "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+     "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0130-c2"
+    }
+   ],
+   "id": "tx-2026-0130",
+   "last_verified": "2026-09-08",
+   "history": [
+    {
+     "date": "2026-09-08",
+     "note": "Admitted to the record. The agency's own announcement names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "Texas State University moves an AI pavement inspection method toward statewide highway use",
+   "summary": "Texas State University published on August 24th, 2026 that its project on artificial intelligence for pavement condition assessment has entered a second phase. The method reads two dimensional surface images paired with three dimensional depth data and finds cracking and other damage at pixel level rather than relying on a human rater's judgment. The university describes the second phase as closer to statewide deployment. Pavement condition ratings are what decide which roads get repair money, so moving that judgment from a rater to a model changes how the money is aimed.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "Texas State University",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Hays"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-08-24",
+     "kind": "decided",
+     "note": "the date the university published that the project had entered its second phase"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The university publishes the research announcement. No comment window or hearing is attached to it, and the deployment decision would rest with the state transportation department rather than with the university.",
+    "url": "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The university says the project is in a second phase and closer to statewide deployment.",
+     "verbatim_quote": "is now in its second phase, closer to statewide deployment with faster, more precise pixel-level detection of pavement damage than manual inspections.",
+     "source_url": "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html",
+     "source_title": "TXST team develops more accurate way to evaluate road conditions",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0131-c1"
+    },
+    {
+     "text": "The university states the size of the road network the work is aimed at.",
+     "verbatim_quote": "703,000 lane miles of highways",
+     "source_url": "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html",
+     "source_title": "TXST team develops more accurate way to evaluate road conditions",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0131-c2"
+    }
+   ],
+   "id": "tx-2026-0131",
+   "last_verified": "2026-09-08",
+   "history": [
+    {
+     "date": "2026-09-08",
+     "note": "Admitted to the record. The university's announcement says the pavement assessment project has entered a second phase and is closer to statewide deployment."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "Texas A&M tells its campus to run AI through a university portal rather than a public chatbot",
+   "summary": "Texas A&M University Technology Services published guidance on August 31st, 2026 naming TAMU AI Chat as the university approved way for faculty, staff and students to use commercial AI models. The single platform carries models from several vendors behind a university login. The university states the service supports information classified up to and including University-Confidential, which is what decides whether a researcher may put non-public university data into a model at all. It also states that conversations in the tool are not used to train external models. The same channel that protects the data is a channel the university controls, and the guidance does not say what the university does with the conversations itself.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Texas A&M University Technology Services",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Brazos"
+    ],
+    "on_ercot": true,
+    "metro": "College Station-Bryan, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-08-31",
+     "kind": "decided",
+     "note": "the date the university published the guidance naming the approved platform"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The university publishes the guidance on its technology services news page. There is no comment window, and the platform itself is behind a university login.",
+    "url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The university states the platform carries models from several commercial vendors in one place.",
+     "verbatim_quote": "Unlike public AI services, TAMU AI Chat provides a single platform that offers access to multiple commercial AI models, including technologies from OpenAI, Anthropic, Google, and other providers.",
+     "source_url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+     "source_title": "TAMU AI Chat, Texas A&M Technology Services",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0132-c1"
+    },
+    {
+     "text": "The university states the data classification the platform is cleared for.",
+     "verbatim_quote": "supports information classified up to and including University-Confidential data",
+     "source_url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+     "source_title": "TAMU AI Chat, Texas A&M Technology Services",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0132-c2"
+    },
+    {
+     "text": "The university states that conversations in the tool are not used to train outside models.",
+     "verbatim_quote": "user conversations within TAMU AI Chat are not used to train external AI models",
+     "source_url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+     "source_title": "TAMU AI Chat, Texas A&M Technology Services",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0132-c3"
+    }
+   ],
+   "id": "tx-2026-0132",
+   "last_verified": "2026-09-08",
+   "history": [
+    {
+     "date": "2026-09-08",
+     "note": "Admitted to the record. The university's guidance naming its approved AI platform is posted, and it states both the data classification the platform is cleared for and that conversations are not used to train outside models."
+    }
+   ],
+   "confidence": "high"
+  },
+  {
+   "title": "University of North Texas opens an undergraduate artificial intelligence degree",
+   "summary": "The University of North Texas is offering a Bachelor of Science in Artificial Intelligence through its Department of Computer Science and Engineering, with the curriculum starting in 2026. The university describes it as a four year curriculum built around the applications of AI development rather than as a concentration inside a computer science degree. A named undergraduate credential in artificial intelligence changes what a hiring manager in the Dallas Fort Worth area is reading on a resume.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "University of North Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Denton"
+    ],
+    "on_ercot": true,
+    "metro": "Dallas-Fort Worth-Arlington, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-07-01",
+     "kind": "effective",
+     "note": "the start the university states for the curriculum on its own program page"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The university publishes the degree plan and the department contact on its program page. Admission questions go to the department rather than through any public proceeding.",
+    "url": "https://engineering.unt.edu/cse/undergraduate/bsai.html",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The university states the curriculum's length and its start.",
+     "verbatim_quote": "This 4-year curriculum, starting in July 2026, is designed to help students master the applications of AI development",
+     "source_url": "https://engineering.unt.edu/cse/undergraduate/bsai.html",
+     "source_title": "Bachelor of Science in Artificial Intelligence, UNT College of Engineering",
+     "source_type": "primary_official",
+     "fetched": "2026-09-08",
+     "id": "tx-2026-0133-c1"
+    }
+   ],
+   "id": "tx-2026-0133",
+   "last_verified": "2026-09-08",
+   "history": [
+    {
+     "date": "2026-09-08",
+     "note": "Admitted to the record. The university's program page states the length of the curriculum and when it starts."
+    }
+   ],
+   "confidence": "high"
   }
  ]
 }
