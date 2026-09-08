@@ -506,3 +506,29 @@ plan so the next run does not rediscover it.
 
 Every frame now measures inside its own declared median L\*, which none of three did before this
 round: 27.6, 31.1, 41.8, 22.3, 31.1, 27.4, 65.3, 32.0, 42.4, deck median 31.1 against a plan of 33.
+
+## THREE GATES THIS RUN WERE MEASURING SOMETHING OTHER THAN WHAT THEY CERTIFY
+
+Written together because it is one pattern and GATE_LESSONS' oldest one. Each is `upgrade` lane,
+so this run does not touch any of them, and each is carried into Phase 17 as a proposal.
+
+**`plan_render_check` reads the acceptance items before the first wrapped one.** 16 of this
+deck's 52. Measured per slide in the table earlier in this record. Its `--self-test` passes
+because the fixture writes every item on one line.
+
+**`absence_check` reads whether a frame names a document, not whether that document could settle
+the sentence.** Three sentences in this deck asserted a state of the world wider than the search
+behind them, `absence_check` passed all three, and two readers found them by reading. The check
+it is missing is a comparison: the locator's subject against the sentence's subject.
+
+**`label_guard` reads the L5 locator as a set of labels.** It reports eight problems on this deck
+and every one of them is a word from `RESOLUTION 20260812-017 / READ IN FULL, BOTH PAGES` on
+frames 3 and 7: READ, FULL, BOTH, PAGES. That string is structural furniture mandated by a
+structural law, and it is not a claim about what a body did, which is what the gate's own
+docstring says a label is. Slide 9's locator does not fire, because `VOTING RECORD` and `LOADED`
+happen to appear in c19's text, which is luck rather than correctness.
+
+The deck was NOT distorted to satisfy the third one. `SLIDE_DOSSIER_SPEC` already records the
+rule for this case in as many words: **a gate that fires on correct behaviour gets switched off**,
+and the answer is to narrow its window rather than to reword a locator until a false positive
+goes quiet. `label_guard` exits 0 on this deck, so nothing was suppressed to say so.
