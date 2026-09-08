@@ -626,3 +626,22 @@ locator still names the document and the extent read on all three frames that ca
 That is the answer this file argued for two sections earlier and it is worth saying that it cost
 the deck nothing. The alternative, adding claims until READ and FULL traced to something, would
 have been the gate writing the record.
+
+### The same discipline, applied to the caption
+
+The caption read `This one directs a manager. It creates no offense and reaches only what the city
+has yet to buy.` **No claim supports the first half**, and the same sentence was refused on a
+frame earlier in this run for exactly that reason, so it should not have survived in the copy a
+reader meets first.
+
+A contrast that IS observable was checked and refused as well. The resolution's two pages contain
+no instance of penalty, offense, violation or enforce; the ordinance contains penalty once. The
+ordinance's is a requirement that a CITY CONTRACT WITH A THIRD PARTY carry penalties for breaching
+a surveillance use policy, which is not a penalty for violating the ordinance, so writing "the
+April measure names a penalty and this one names none" would have swapped one unsupported
+sentence for a better dressed one.
+
+What was left is the contrast the caption's own preceding sentences already carry, a codified
+chapter that gates a purchase on council approval and a filed assessment against a resolution that
+directs an officer. The analytical line, `The forbidding one is the weaker instrument`, stays,
+because it rests on those sourced facts rather than asserting a legal conclusion of its own.
