@@ -274,3 +274,73 @@ on the whole resulting range was checked before any frame was drawn.
 body text. Carousel no. 17's own `avoid_next` said a dark deck should plan its type reserves at
 storyboard time and set its arc from what is left. This is that, done arithmetically and before
 the drawing.
+
+### `plan_render_check` has been reading a third of every plan, and it found none of this
+
+Phase 12b's report on this deck read `0 of 16 acceptance items carry a machine-checkable
+assertion`. The deck's nine dossiers carry **52** acceptance items, not 16, and most of them
+quote a string, name a count or state a tolerance. Both halves of that sentence were wrong for
+the same reason.
+
+The gate takes the acceptance block with
+
+```
+re.search(r"^acceptance:\s*\n((?:  - .*\n)+)", body, re.M)
+```
+
+and `(?:  - .*\n)+` stops at the first line that does not begin with two spaces and a dash. An
+acceptance item long enough to wrap is written with its continuation indented four spaces, so
+**the block ends at the first wrapped item** and everything after it in that slide's list is
+never read. Measured across this deck's nine dossiers:
+
+| slide | items the gate read | items actually written |
+|---|---|---|
+| 1 | 1 | 6 |
+| 2 | 1 | 5 |
+| 3 | 2 | 7 |
+| 4 | 3 | 5 |
+| 5 | 1 | 5 |
+| 6 | 1 | 6 |
+| 7 | 1 | 5 |
+| 8 | 1 | 6 |
+| 9 | 5 | 7 |
+| | **16** | **52** |
+
+The items that survive truncation are the SHORT ones, and a short item is the one least likely
+to quote a string, which is why the checkable ratio then reported as zero. The gate was not
+finding uncheckable plans. It was reading the fragment of each plan that happens to fit on one
+line.
+
+**This is GATE_LESSONS' oldest shape and it is the gate built to answer that shape.** It exists
+because the plan-versus-render defect shipped in all three early runs, and it has been certifying
+a third of the plan since. Its own `--self-test` passes, because the fixture it tests against
+writes every item on one line.
+
+`ownership.yaml` puts `scripts/carousel/**` in the `upgrade` lane and says why in as many words:
+the routine runs these every day and does not edit them mid run. So this run does not touch it.
+It is written up here, it is carried into Phase 17 as the upgrade this run proposes first, and
+the daily-lane answer taken now is to write this deck's acceptance items on single lines so the
+gate reads all fifty two of them.
+
+### Three frames missed their own declared value, and only one mattered
+
+The per-frame median L\* is declared in each dossier's acceptance list with a tolerance, and
+every one of those declarations sits past its slide's first wrapped item, so the gate above had
+never read one. Measured directly on the 270 by 338 grid:
+
+| slide | declared | measured | verdict |
+|---|---|---|---|
+| 1 | 34 +- 8 | 28.0 | ok |
+| 2 | 30 +- 4 | 26.2 | ok |
+| 3 | 38 +- 4 | 43.4 | over by 1.4 |
+| 4 | 24 +- 4 | 21.4 | ok, and the darkest frame as declared |
+| 5 | 33 +- 4 | 35.4 | ok |
+| 6 | 26 +- 4 | 27.4 | ok |
+| 7 | 62 +- 5 | 70.6 | over by 3.6, and the brightest frame as declared |
+| 8 | 29 +- 4 | 32.0 | ok |
+| 9 | 41 +- 4 | 31.1 | **under by 5.9** |
+
+Slides 3 and 7 came out brighter than planned and neither carries a ranking claim that the miss
+breaks. Slide 9 does. Its dossier calls it the second brightest frame in the deck and it rendered
+fifth, which is not a tolerance miss, it is the closing frame failing to be the lift the arc was
+built around.
