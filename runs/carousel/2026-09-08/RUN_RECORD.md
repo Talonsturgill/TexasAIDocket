@@ -419,3 +419,90 @@ inside the stack on two lines with its second line level with the `(6)` label, s
 below the stack with a drafting leader onto the `(5)` rule, and **all ten rules are drawn
 identically with nothing on any of them**, which is what the dossier's job line says the frame is
 for.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 31 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | PASS   | 9 slide(s), zero fails, zero warns |
+| aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.53 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 53,060 chars planned |
+| caption        | PASS   | 141 words |
+| craft floor    | WARN   | 9 frame(s), median 909, floor 164, 1 quiet |
+| plan vs render | WARN   | 12 of 72 acceptance item(s) checkable |
+| texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
+| absences       | PASS   | 4 of 4 scoped to a named document |
+| numerals       | FAIL   | 13 numeral(s) over 9 frame(s), 1 the cited claims do not reach: s8 prints '5' in "(5)" and the claims that frame cites (c17, c18, c23, c24, c30, c31) carr |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
+
+## ROUND TWO, and both of the round one fixes bought a new problem
+
+A flow critic on the sequence and two pixel critics on the four frames that were rebuilt hardest.
+The most useful thing they returned is that **a fix is a change, and a change can be wrong.**
+
+| frame | the round one fix | what it cost |
+|---|---|---|
+| 6 | the galvanized stock moved below the clause | it told the reader there was more page under the sentence, which is the opposite of the frame's argument. The clause stopped with 272 design px of empty sheet under it and frame 7's whole payoff rests on it running out |
+| 8 | the AI callout moved off the row stack | the misread at 432px went, and nine of ten witness lines were left carrying nothing |
+| 9 | the locator moved to the voting record | correct, and the sentence beside it had been widened to a universal negative, so the two now pointed at different scopes |
+
+### A third unsourced sentence, on the frame that closes the deck
+
+`No count for the adopting vote is public` claims that no count exists anywhere public. c19
+supports only that **the city's own published voting record** holds no tally, because its most
+recent loaded meeting predates the adopting one. The line now reads `The city's own voting record
+holds no count for the meeting that adopted it`, which is what the locator directly beneath it
+names.
+
+That is three sentences in one deck asserting a state of the world wider than the search behind
+them, and none of them was caught by a gate. `absence_check` reads whether a frame names a
+document. It cannot read whether that document could settle the sentence. **Naming a search is not
+the same as naming the right one**, and that is the upgrade this run proposes first after the
+acceptance-item truncation.
+
+### What was fixed, and it is mostly the drawing paying for the copy
+
+- **6** the clause block runs to the footer, so the sentence reaches the foot of the page and
+  stops. The stock moved to the sheet's far cut edge, overhanging onto the granite, and its
+  contact became a two part occlusion rather than one hard line. Both quarter folds are drawn,
+  because at 432px a tan trapezoid between dark walls with no crease in it reads as a ROAD, and a
+  page with two visible creases cannot.
+- **9** the canopy was upside down. Its straight edge faced the sky and its ragged edge faced the
+  ground, which is a torn paper strip rather than a treeline, and it was the frame's only
+  silhouette. The crown is ragged now and rises through the horizon. The post feet lost a
+  symmetric pool four times the post's own width, which is a cast shadow in a deck whose first law
+  is that nothing casts. The paint band moved clear of the lit arris it had been sitting against,
+  which is where the pale outline on both its long edges came from.
+- **5** the fence floated, with the brightest amber in the frame directly under the bottom selvage
+  and the granite arriving as a hard unbroken line. The ground's occlusion now runs up into the
+  fabric. The gate leaf existed only at full size and now reads at 432px, which was the point of
+  drawing it.
+- **7** the press block was rendered as simulated glyphs and read as BLACKED OUT TEXT at 432px,
+  which is the exact misread frame 3's whole design avoids, on the one frame whose job is that the
+  sentence is complete and readable in the open. Nine ruled lines now, at page two's own line
+  lengths, asserting that a document continues and nothing about what it says.
+- **2** carried no fact the argument uses and opened the deck at frame 1's own weight. It states
+  the audit's July 2025 date, which c4's quote carries, and it moved from 26.1 to 31.1.
+- **3** was the only frame outside its own declared value. The silkscreen went to `liveoak` in the
+  first round, which bought exactly the headroom the board needed to come down from 43.4 to 41.8.
+
+### The one request refused, and the reason is a measurement
+
+Two critics asked for the four gated acts stencilled on frame 5's fabric, which its own dossier
+had promised. **The deck's reading load ceiling forbids them.** The four acts in the ordinance's
+own words are 28 words, the frame already carries 54, and `coherence_check` fails a frame over 65.
+Paraphrasing them down to fit is what put `minimal risk` on frame 8 in the first place. The
+dossier's bands paragraph was corrected to stop promising it, with the arithmetic written into the
+plan so the next run does not rediscover it.
+
+Every frame now measures inside its own declared median L\*, which none of three did before this
+round: 27.6, 31.1, 41.8, 22.3, 31.1, 27.4, 65.3, 32.0, 42.4, deck median 31.1 against a plan of 33.
