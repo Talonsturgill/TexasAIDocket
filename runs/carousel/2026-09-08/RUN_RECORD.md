@@ -742,3 +742,57 @@ really was four claims stale**, because it is written at Phase 6 and refreshed a
 judge reading the run directory rather than the scratch directory sees a record the deck has
 outgrown. That is a real defect with a real fix, and it is why the artifact copy happens before
 the panel from now on.
+
+## SCORING ROUND THREE, AND THE PANEL SHIPS IT
+
+| lens | score | hard fails | ship |
+|---|---|---|---|
+| integrity | 6.71 | 0 | no, a threshold dissent |
+| craft | 6.97 | 0 | yes |
+| reader | 7.05 | 0 | yes |
+
+`panel.py`: **weighted 6.948 against a 6.8 bar, spread 0.34, no hard fail from any judge, SHIP.**
+The arithmetic is the per criterion median weighted by the rubric and it is not the median of the
+totals. The integrity judge's no is about the number rather than about a defect, which the rubric
+says is a dissent and not a veto.
+
+**The rebuilt spine survived an adversarial read.** The integrity judge swept both snapshots
+independently rather than taking this record's word for it, counted seven occurrences of
+artificial intelligence and five of machine learning across five provisions in the ordinance and
+one in the resolution, and confirmed every occurrence is claimed or in the rejected list and every
+one of the quotes is a literal substring. Its own words: **the round two hard fail is genuinely
+dead.**
+
+### The lead the judge handed over, and it was worth taking
+
+> Read the two documents the run already had links to and did not open.
+
+The agenda page this run fetched on its first pass names a link titled **Actions Taken By
+Council**. The rejected list said `the agenda page publishes no vote for the item`, which was true
+of the page's prose and skipped the link sitting on it. The action notes were retrieved at
+`services.austintexas.gov/council_meetings/action_notes.cfm?mid=1496`, `robots.txt` checked on
+that host first, and they say:
+
+> ... prioritized for deployment to City parks with a history of violent crimes. **Approved**
+
+**No tally, no mover, no seconder.** The words vote, ayes, nays and motion appear against no item
+on that page. So the deck's absence was right and the run had not earned it. It has now, it is
+c40, and frame 9's sentence and locator moved onto the document that actually settles them.
+
+**This is the section 2-19-9 miss one document later.** Twice in one run the answer was inside
+something already in hand, and both times a judge found it rather than a gate. The proposal the
+retro carries first is a sweep that fails when a snapshot's own links are named and never followed.
+
+### The three craft repairs round three asked for
+
+- **Frame 9's crown read as conifers**, which two judges said and the round two fix half answered.
+  A noise band gives a ridgeline. The profile is now a run of overlapping domes with leaf scale
+  texture on the edge, which is what a live oak canopy against a sky is.
+- **Frame 7's swell had stopped existing at 432px.** Round two removed its elliptical outline,
+  correctly, because an outline is not relief, and left a lift too faint to survive the size a
+  reader receives. The form is larger, its top is broader and its peak now measures 44 of 255
+  above the paper in the thumb. **A fix is a change and a change can be wrong**, for the third
+  time in this run.
+- **Frame 6's quarter folds were a one pixel value change**, so the sheet still read as a road.
+  The centre crease is stronger and it stops above the clause, because the clause is centred on
+  the same axis and a crease strong enough to read put a dark band under every line.
