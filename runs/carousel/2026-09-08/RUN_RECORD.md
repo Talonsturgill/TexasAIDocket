@@ -179,3 +179,98 @@ still not have been noticed by anybody.
 
 All of it is appended to `knowledge/shared/SOURCES_FIELD_LOG.md` rather than to the registry,
 which is `human` lane and carries the crawl boundary.
+
+## The deck — carousel no. 18
+
+**The story is tx-2026-0129, Austin's Resolution No. 20260812-017**, admitted to the record by
+this run from the executed and attested copy in the city's own document system.
+
+### Why this story and not the other one, written down because it was a close call
+
+The strongest thing the scouts brought back was **tx-2026-0136**, the federal defect evaluation
+opened into the Avride automated driving system after crashes in Dallas and Austin. It was fact
+checked in full first, its claims file is complete, and it is admitted to the record. It is not
+the deck.
+
+`dedupe_check` returned it at 0.32 against carousel no. 5 of 2026-08-21, under the repeat
+threshold, with the tool's own advice to read the top entry anyway. **Reading the full entry is
+what changed the answer.** Carousel no. 5 was Texas authorising commercial driverless operation
+and the Senate committee sitting to study it, and its declared angle was "the gap between what
+the machines measure continuously and what the state publishes a crash count for". A federal
+crash count taken off machine video, eighteen days later, is the answer to that deck's own
+question rather than a new story. The thirty day call is the showrunner's after reading, and this
+is a repeat.
+
+That is the failure mode the phase warns about, arriving from the opposite direction. The sibling
+product's near miss came from reading a TITLE and clearing a repeat. This one would have come
+from reading a SCORE and clearing it.
+
+**The Avride claims file is kept** at `claims-avride-deferred.json` and the item is on the record,
+so a run after September 20th can build the deck the window currently forbids.
+
+### Why the Austin story earns it on its own terms
+
+- The document is **executed, attested and signed**, and every quote was verified against a local
+  extraction made in this run rather than against any third party reader.
+- **It has a door, and the deck owes one.** `avoid_next` on carousel no. 16 recorded that four
+  decks running had closed on an absence. This one closes on December 9th, 2026, a Council
+  Climate, Water, Environment, and Parks Committee meeting a reader can attend.
+- `texan_check` at selection returned places Austin, body yes, deadline yes. Its one gap was the
+  next step, and the closing frame is where that gets spent.
+- Its nearest neighbours in the variety ledger are 0.30 and 0.25, and the 0.30 shares only
+  geography words with a deck about Amazon siting a robotics factory.
+- **It is the rarest kind of AI decision this record carries.** Every other surveillance entry is
+  about adopting a system or pausing one. This is a government writing artificial intelligence
+  OUT of a purchase, by name, in operative text.
+
+### The argument, and it is a thirteen week escalation by one council against itself
+
+On April 23rd, 2026 the same council adopted the TRUST Act at City Code Chapter 2-19. It gates
+four acts behind council approval and acquiring new surveillance technology is the second of
+them. Before the vote a department files a privacy impact assessment, four weeks ahead, posted
+publicly the same day, and that assessment analyses ten numbered properties the technology might
+have. **Using the data to train artificial intelligence is number five on that list**, and the
+ordinance says any one of the ten "shall weigh strongly against a determination that the
+surveillance technology presents no or minimal risk".
+
+Thirteen weeks later the same council wrote "shall not consider acquisition".
+
+**A factor on a weighing list became a wall.** That is the deck.
+
+Both figures are parsed out of the ordinance's own numbered enumeration by `compute.py` rather
+than counted by anybody, and the frame that prints them names the set they were counted over,
+which is the instinct the ledger handed this run.
+
+### What the resolution does not say, read in the whole two page text
+
+No definition of what it means to depend upon artificial intelligence. Nobody named to decide
+which side a system falls on. No enforcement, no penalty, no consequence. It reaches future
+acquisition only, so anything the city already runs is untouched. And no vote is published
+anywhere, because the city's own Council Voting Record has loaded no meeting later than
+May 28th, 2026.
+
+`absence_check` refuses a stated absence that names no document, so every one of those is
+asserted against Resolution No. 20260812-017 by name.
+
+### Measured before a frame was written, which is the cheapest round there is
+
+The last three decks shipped at deck median L\* 22.5, then 16.5, then 11.4. A fourth near-black
+deck is a rut rather than variety, and the light deck cap is spent by 2026-09-03 so the deck
+also can't go light. The band is 28 to 42.
+
+A first ground written the way the last three decks were written **measured 16.1**, which is the
+rut, and it was caught by rendering one throwaway frame and reading the pixels rather than by a
+judge in round three. The ground base was solved numerically from there, and the type contrast
+on the whole resulting range was checked before any frame was drawn.
+
+| ground base | deck median L\* | limestone on it | caliche on it |
+|---|---|---|---|
+| 40 | 16.6 | 11.70:1 | 10.33:1 |
+| 58 | 25.1 | 8.95:1 | 7.90:1 |
+| 70 | 30.5 | 7.38:1 | 6.52:1 |
+| 78 | 34.0 | 6.49:1 | 5.73:1 |
+
+`dust #C9B393` falls to 3.98:1 at the top of that range and is therefore furniture only, never
+body text. Carousel no. 17's own `avoid_next` said a dark deck should plan its type reserves at
+storyboard time and set its arc from what is left. This is that, done arithmetically and before
+the drawing.
