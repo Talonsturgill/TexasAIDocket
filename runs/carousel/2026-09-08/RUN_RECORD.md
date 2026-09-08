@@ -213,8 +213,11 @@ so a run after September 20th can build the deck the window currently forbids.
 - The document is **executed, attested and signed**, and every quote was verified against a local
   extraction made in this run rather than against any third party reader.
 - **It has a door, and the deck owes one.** `avoid_next` on carousel no. 16 recorded that four
-  decks running had closed on an absence. This one closes on December 9th, 2026, a Council
-  Climate, Water, Environment, and Parks Committee meeting a reader can attend.
+  decks running had closed on an absence. This one closes on December 9th, 2026, the date by
+  which the city manager owes a progress update to the Council Climate, Water, Environment, and
+  Parks Committee. THIS LINE SAID "a meeting a reader can attend" UNTIL SCORING. c11 is a
+  reporting obligation on an officer and not a public meeting, the frame's own dossier says so,
+  and two judges found the run record selling something the frame was careful not to.
 - `texan_check` at selection returned places Austin, body yes, deadline yes. Its one gap was the
   next step, and the closing frame is where that gets spent.
 - Its nearest neighbours in the variety ledger are 0.30 and 0.25, and the 0.30 shares only
@@ -505,7 +508,8 @@ dossier's bands paragraph was corrected to stop promising it, with the arithmeti
 plan so the next run does not rediscover it.
 
 Every frame now measures inside its own declared median L\*, which none of three did before this
-round: 27.6, 31.1, 41.8, 22.3, 31.1, 27.4, 65.3, 32.0, 42.4, deck median 31.1 against a plan of 33.
+round. The arc moved again in the rounds after this one and the figure that counts is the one in
+the gate block above, which is re-stamped from the artifacts rather than typed here.
 
 ## THREE GATES THIS RUN WERE MEASURING SOMETHING OTHER THAN WHAT THEY CERTIFY
 
@@ -521,9 +525,10 @@ the sentence.** Three sentences in this deck asserted a state of the world wider
 behind them, `absence_check` passed all three, and two readers found them by reading. The check
 it is missing is a comparison: the locator's subject against the sentence's subject.
 
-**`label_guard` reads the L5 locator as a set of labels.** It reports eight problems on this deck
-and every one of them is a word from `RESOLUTION 20260812-017 / READ IN FULL, BOTH PAGES` on
-frames 3 and 7: READ, FULL, BOTH, PAGES. That string is structural furniture mandated by a
+**`label_guard` reads the L5 locator as a set of labels.** It reported eight problems on this deck when it was
+first run and every one of them was a word from `RESOLUTION 20260812-017 / READ IN FULL, BOTH
+PAGES` on frames 3 and 7: READ, FULL, BOTH, PAGES. The locator's extent is now set in lower case
+and the gate passes, which is recorded three sections below. That string is structural furniture mandated by a
 structural law, and it is not a claim about what a body did, which is what the gate's own
 docstring says a label is. Slide 9's locator does not fire, because `VOTING RECORD` and `LOADED`
 happen to appear in c19's text, which is luck rather than correctness.
@@ -531,7 +536,7 @@ happen to appear in c19's text, which is luck rather than correctness.
 The deck was NOT distorted to satisfy the third one. `SLIDE_DOSSIER_SPEC` already records the
 rule for this case in as many words: **a gate that fires on correct behaviour gets switched off**,
 and the answer is to narrow its window rather than to reword a locator until a false positive
-goes quiet. `label_guard` EXITS 0 and `gate_status` marks the row FAIL, and both are correct: the script's exit code is advisory and the row is computed from the problems it lists. Two judges read that pair as a contradiction in this file, so it is stated here rather than left to be picked. Nothing was suppressed either way.
+goes quiet. `label_guard` exited 0 while `gate_status` marked the row FAIL, and both were correct at the time: the script's exit code is advisory and the row is computed from the problems it lists. Two judges read that pair as a contradiction in this file. Both now read clean, and the pair is left described because the asymmetry between an advisory exit code and a computed row is the thing a future run needs to know about.
 
 ## SCORING ROUND ONE, and three of the four hard fails were real
 
