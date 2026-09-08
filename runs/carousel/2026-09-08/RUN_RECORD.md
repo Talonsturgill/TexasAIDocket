@@ -344,3 +344,78 @@ Slides 3 and 7 came out brighter than planned and neither carries a ranking clai
 breaks. Slide 9 does. Its dossier calls it the second brightest frame in the deck and it rendered
 fifth, which is not a tolerance miss, it is the closing frame failing to be the lift the arc was
 built around.
+
+## PIXEL REVIEW, and the two sentences that had no source behind them
+
+Five critics, one per one or two frames. Two findings were integrity rather than craft, both were
+verified against `claims.json` before anything moved, and both were fixed at the COPY rather than
+at the drawing, because the drawing was not the thing that was wrong.
+
+| frame | printed | what the record actually holds |
+|---|---|---|
+| 3 | `None of it is published yet.` | c5 says what the plan must establish. Nothing in this run records a dated search of the city's plan publication surface, so the sentence asserts a state of the world the deck never looked at |
+| 4 | `Nothing is fitted yet.` | c10 says which parks go first. No claim records a deployment status as of today, a month after adoption |
+
+Frame 3 now reads `It establishes none of it`, which is a fact about the document its own locator
+names. Frame 4 keeps `The mount is bare`, which is a statement about the drawing and needs no
+claim, and drops the second sentence.
+
+**Neither was caught by a gate and both were caught by two readers independently.** `absence_check`
+passed because each frame carries a locator, and a locator satisfies it whether or not the document
+it names could settle the sentence beside it. That is the same defect as frame 9's locator below,
+and it is worth stating as one thing: **naming a search is not the same as naming the right one.**
+
+### Five quotes were stored cut short, and one of them made a frame's contested fact untraceable
+
+A judge found `(B)` printed twice on frame 5 and in none of the six claims the frame cites. The
+letter is in the fetched source, `(B) acquiring new surveillance technology;` in the executed copy
+of the April ordinance, and `compute.py` had parsed it correctly. What was wrong is that the stored
+quote began after the letter.
+
+| claim | was stored as | now carries |
+|---|---|---|
+| c15 | `acquiring new surveillance technology` | the `(B)` in front of it |
+| c25, c26, c27 | the same, without `(A)`, `(C)`, `(D)` | their own letters |
+| c24 | ends at `presents no or` | `no or minimal risk to civil liberties and privacy rights`, which is what frame 8 prints |
+
+Three claims are new and each names a passage the run had already fetched. c29 and c30 carry the
+two section headings, `§ 2-19-3 COUNCIL APPROV AL REQUIRED.` and `§ 2-19-4 PRIV ACY IMPACT
+ASSESSMENT.`, with the scan's own word splits kept so a quote can still be found in the document.
+c31 carries the risk question subsection (C) opens on. All thirty one assert against the snapshots.
+
+**The generalisable half.** `numeral_lint` cannot see a letter, and `verbatim_check` only holds the
+strings a dossier declares, so a subsection letter set beside a quoted phrase is in nobody's
+window. It reached the render wearing the costume of a citation, which is the carousel no. 15
+defect in a form the gate built for that defect does not cover.
+
+### Two of the deck's own structural laws were mis-drafted
+
+Both were found by judges rather than by a gate, and in both cases the frames were right.
+
+**L1's second half read "every frame carries at least one hard silhouette against the sky".**
+Frames 6, 7 and 8 declare no sky at all, so no version of them could ever have met it. Two critics
+named it independently and both called it a drafting error in the law. It now reads "at least one
+hard edge against its own field" and the substitute edge is named per frame. The six outdoor frames
+still carry a silhouette against sky, and frames 1 and 2 did not until this round: frame 1's
+uprights all began below the horizon and frame 2's rail terminated exactly on it, so the only hard
+edge against the sky on either was the ground plane's own top line.
+
+**L5 read that frames 3, 7 and 9 carry the resolution's locator.** Frame 9's absence is the missing
+vote tally, and the resolution's extent cannot settle that however fully it is read. It now carries
+`VOTING RECORD 3c89-i35a / LOADED TO MAY 28TH, 2026`, which is the search the sentence rests on.
+
+### The one finding judged and not taken
+
+Frame 8's ten witness lines carry no factor text, and a critic held that nine blank rules read as
+withheld rather than as nine other factors. The fix it proposed was to set each row with its own
+factor text from the ordinance. Measured: the annotation run beside a dimension line is 458 design
+px and the shortest honest fragment of factor (5) needs 659 px at the deck's 24 px mobile floor, so
+ten rows of source text do not fit at a size a reader can have. The alternative was to truncate ten
+quotations, which is worse than leaving them out.
+
+What was taken instead is the half of that finding that is unambiguous. The `(5)` callout had sat
+inside the stack on two lines with its second line level with the `(6)` label, so the thumb read
+`(6) artificial intelligence` and the frame's whole numeric claim inverted. It is now one line
+below the stack with a drafting leader onto the `(5)` rule, and **all ten rules are drawn
+identically with nothing on any of them**, which is what the dossier's job line says the frame is
+for.
