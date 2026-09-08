@@ -60,22 +60,22 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.6933,
-        0.7437,
-        0.5478
+        0.6975,
+        0.7857,
+        0.5386
       ],
-      "band_ratio": 0.8345
+      "band_ratio": 0.8066
     },
     {
       "file": "slide-07.html",
       "fails": [],
       "warns": [],
       "bands": [
-        0.6723,
+        0.6744,
         0.9517,
-        0.7941
+        0.7996
       ],
-      "band_ratio": 0.9859
+      "band_ratio": 0.9895
     },
     {
       "file": "slide-08.html",
@@ -93,11 +93,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.0462,
+        0.042,
         0.458,
-        0.6471
+        0.6562
       ],
-      "band_ratio": 1.6351
+      "band_ratio": 1.65
     }
   ],
   "fails": 0,

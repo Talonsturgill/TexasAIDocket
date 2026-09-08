@@ -428,23 +428,23 @@ for.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 39 verified claim(s) |
+| claims         | PASS   | 40 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.53 MB, vector |
-| score          | ABSENT | score.json not written yet |
+| assembly       | PASS   | 9 slide(s), 6.55 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 46 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 55,387 chars planned |
+| dossiers       | PASS   | 56,025 chars planned |
 | caption        | PASS   | 133 words |
 | craft floor    | WARN   | 9 frame(s), median 922, floor 166, 1 quiet |
 | plan vs render | PASS   | 12 of 77 acceptance item(s) checkable |
 | texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
-| absences       | PASS   | 9 of 9 scoped to a named document |
+| absences       | PASS   | 10 of 10 scoped to a named document |
 | numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
 
 ## ROUND TWO, and both of the round one fixes bought a new problem

@@ -1,0 +1,40 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.1
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.8
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 7.05,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Set frame 7's asymmetry as a display hook instead of the fourth sentence of a body block, and cut or rebuild frame 8 with it."
+}

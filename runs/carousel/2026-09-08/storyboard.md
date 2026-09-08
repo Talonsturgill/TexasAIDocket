@@ -104,7 +104,7 @@ with an ellipsis and no break is invented.
 A frame asserting that something is not in a document carries a 26px JetBrains Mono locator giving
 that document and the extent read. Frames 3 and 7 carry `RESOLUTION 20260812-017 / read in full,
 both pages`, because both assert something about the resolution's own text. **Frame 9 carries
-`VOTING RECORD 3c89-i35a / loaded to May 28th, 2026` instead**, because its absence is the missing
+`ACTION NOTES AUGUST 12TH, 2026 / no tally published` instead**, because its absence is the missing
 vote tally and the resolution's extent cannot answer that. A judge found frame 9 naming the wrong
 search on the first round and it was right: a locator that names a document which could not settle
 the sentence beside it is furniture rather than provenance.
@@ -773,11 +773,14 @@ job: >
   it was met. c11 is a progress update owed to a council committee by a date, which is not a
   public meeting anybody can attend, and this line said it was until a judge read the claim
   against it. This is the only slide that owes the reader nothing and gives instead.
-claims: [c11, c12, c19]
+claims: [c11, c12, c40]
 numerals:
   - value_from: c11    # December 9,2026
-  - value_from: c19    # 2026-05-28
-  - computed_by: "compute.py dates.report_due and dates.voting_record_latest, the house ordinal forms"
+  - value_from: c40    # the council's own action notes for the August 12th, 2026 meeting
+  - computed_by: "compute.py dates.report_due, the house ordinal form. THE FRAME'S ABSENCE MOVED
+      FROM c19 TO c40 after a judge found the run had never opened the Actions Taken By Council
+      link named on the agenda page it had already fetched. The action notes record the item
+      approved and publish no tally, which is the search this frame's sentence actually rests on"
 composition:
   structure: >
     Fifteen degrees down onto a horizontal galvanized top rail at reading height, with the
@@ -809,10 +812,9 @@ art:
   motion: "along the rail from frame left, into the painted band, then out along the path"
 type:
   hook: "DECEMBER 9TH, 2026"
-  dek: "The city manager owes the Council Climate, Water, Environment, and Parks Committee a
-    progress update by then. The city's own voting record still holds no count for the meeting
-    that adopted this."
-  labels: ["VOTING RECORD 3c89-i35a / loaded to May 28th, 2026", "RES 20260812-017", "09 / 09", "texasaidocket.com"]
+  dek: "The city manager owes that committee a progress update by then. The council's
+    own action notes record the item approved and publish no tally."
+  labels: ["ACTION NOTES AUGUST 12TH, 2026 / no tally published", "RES 20260812-017", "09 / 09", "texasaidocket.com"]
 verbatim: []
 acceptance:
   - "flag_red appears on this frame and on no other frame in the deck"
@@ -822,7 +824,7 @@ acceptance:
   - "the date is set in JetBrains Mono at the largest type size in the deck, which inverts the deck's own hierarchy where mono is small furniture"
   - "no cast shadow appears and the rail posts are seated by occlusion on the granite"
   - "the frame median L* measures 41 plus or minus 4, and it is the second brightest frame"
-  - "the locator reads 'VOTING RECORD 3c89-i35a / loaded to May 28th, 2026'"
+  - "the locator reads 'ACTION NOTES AUGUST 12TH, 2026 / no tally published'"
   - "the rail's side face is taller than its top face, which is what fifteen degrees down onto a horizontal rail gives"
 risks:
   - "a close that reads as a call to action. The copy names the meeting and the date and asks for

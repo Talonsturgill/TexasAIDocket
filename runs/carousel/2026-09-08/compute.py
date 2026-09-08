@@ -42,6 +42,8 @@ SNAPSHOT = {
     "https://www.austintexas.gov/council/2026/20260812-reg": "agenda.txt",
     "https://data.austintexas.gov/resource/3c89-i35a.json?$select=max(meeting_date)":
         "voting_record_max.json",
+    "https://services.austintexas.gov/council_meetings/action_notes.cfm?mid=1496":
+        "action_notes.txt",
 }
 
 ORDINALS = {1: "1st", 2: "2nd", 3: "3rd", 9: "9th", 12: "12th", 23: "23rd", 28: "28th"}

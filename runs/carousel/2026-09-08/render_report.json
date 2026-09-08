@@ -1284,7 +1284,7 @@
         },
         {
           "text": "The City Manager shall not",
-          "x": 278,
+          "x": 279,
           "y": 985,
           "w": 513,
           "h": 44,
@@ -1296,7 +1296,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              278,
+              279,
               985,
               513,
               44
@@ -1306,7 +1306,7 @@
         },
         {
           "text": "consider acquisition of any",
-          "x": 257,
+          "x": 258,
           "y": 1039,
           "w": 556,
           "h": 45,
@@ -1318,7 +1318,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              257,
+              258,
               1039,
               556,
               45
@@ -1328,7 +1328,7 @@
         },
         {
           "text": "camera or drone system that",
-          "x": 245,
+          "x": 246,
           "y": 1095,
           "w": 580,
           "h": 48,
@@ -1340,7 +1340,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              245,
+              246,
               1095,
               580,
               48
@@ -1350,7 +1350,7 @@
         },
         {
           "text": "depends upon artificial",
-          "x": 278,
+          "x": 279,
           "y": 1153,
           "w": 514,
           "h": 49,
@@ -1362,7 +1362,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              278,
+              279,
               1153,
               514,
               49
@@ -1466,7 +1466,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 13262,
+      "render_ms": 14210,
       "ok": true,
       "canvases": [
         {
@@ -1479,8 +1479,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 80,
-          "variance": 3379.7
+          "mean": 80.2,
+          "variance": 3412.9
         }
       ],
       "breather": false,
@@ -1674,7 +1674,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 7560,
+      "render_ms": 7987,
       "ok": true,
       "canvases": [
         {
@@ -1687,8 +1687,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 150.9,
-          "variance": 39.6
+          "mean": 150.3,
+          "variance": 69.3
         }
       ],
       "breather": false,
@@ -2227,8 +2227,8 @@
           "x": 80,
           "y": 966,
           "w": 920,
-          "h": 99,
-          "font_px": 44,
+          "h": 90,
+          "font_px": 40,
           "weight": "600",
           "family": "Fraunces",
           "color": "rgb(214, 220, 210)",
@@ -2238,25 +2238,25 @@
             [
               80,
               963,
-              843,
-              54
+              886,
+              49
             ],
             [
               80,
-              1012,
-              350,
-              54
+              1008,
+              204,
+              49
             ]
           ],
           "anc": []
         },
         {
-          "text": "The city manager owes that committee a progress update by then. The city's own voting record holds no count for the meeting that adopted it.",
+          "text": "The city manager owes that committee a progress update by then. The council's own action notes record the item approved and publish no tally.",
           "x": 80,
-          "y": 1078,
+          "y": 1064,
           "w": 900,
-          "h": 111,
-          "font_px": 29,
+          "h": 104,
+          "font_px": 27,
           "weight": "500",
           "family": "Manrope",
           "color": "rgb(214, 220, 210)",
@@ -2265,30 +2265,30 @@
           "lines": [
             [
               80,
-              1076,
-              895,
-              40
+              1062,
+              887,
+              37
             ],
             [
               80,
-              1113,
-              864,
-              40
+              1097,
+              844,
+              37
             ],
             [
               80,
-              1150,
-              147,
-              40
+              1131,
+              59,
+              37
             ]
           ],
           "anc": []
         },
         {
-          "text": "VOTING RECORD 3c89-i35a / loaded to May 28th, 2026",
+          "text": "ACTION NOTES AUGUST 12TH, 2026 / no tally published",
           "x": 80,
-          "y": 1197,
-          "w": 845,
+          "y": 1191,
+          "w": 862,
           "h": 35,
           "font_px": 26,
           "weight": "500",
@@ -2299,8 +2299,8 @@
           "lines": [
             [
               80,
-              1197,
-              845,
+              1191,
+              862,
               35
             ]
           ],
@@ -2329,7 +2329,7 @@
           "anc": []
         },
         {
-          "text": "c11 c12 c19",
+          "text": "c11 c12 c40",
           "x": 370,
           "y": 1235,
           "w": 183,
@@ -2402,7 +2402,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5546,
+      "render_ms": 3737,
       "ok": true,
       "canvases": [
         {
@@ -2415,8 +2415,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 99.9,
-          "variance": 2201.4
+          "mean": 89.6,
+          "variance": 2110.6
         }
       ],
       "breather": false,

@@ -391,6 +391,16 @@
    "source_type": "primary_official",
    "retrieved": "2026-09-08",
    "confidence": "high"
+  },
+  {
+   "id": "c40",
+   "text": "The council's own action notes record the item as approved and publish no tally beside it.",
+   "quote": "prioritized for deployment to City parks with a history of violent crimes. Approved",
+   "url": "https://services.austintexas.gov/council_meetings/action_notes.cfm?mid=1496",
+   "source_title": "Actions Taken By Council, August 12th, 2026 meeting, City of Austin",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-08",
+   "confidence": "high"
   }
  ],
  "rejected": [
@@ -429,6 +439,7 @@
   "FIVE QUOTES WERE WIDENED IN THE PIXEL REVIEW ROUND, and none of them changed what the record says. Each had been stored cut short of words the deck legitimately printed, so a string a frame set could not be found in the claim it cited. c15, c25, c26 and c27 regained the subsection letters (A) through (D), which are in the executed copy and are what slide 5 stencils. c24 regained the words minimal risk, which slide 8 prints and which the stored quote stopped two words short of. c29, c30 and c31 are new and carry the two section headings and the risk question, so a code citation on a frame names a passage that was fetched.",
   "c31's quote was extended through the fifth numbered factor after numeral_lint found slide 8 printing (5) with no cited claim carrying it. The position is computed by compute.py from the ordinance's own numbering, and the numeral now also appears in a quote the frame cites, which is what the lint asks for. A digit produced by a correct computation and absent from every quote is exactly the case the lint exists to surface.",
   "c32 was added after a judge checked the caption's #TRUSTAct hashtag and found the name in the fetched resolution but in no claim. The name was correct and it was outside claim id coverage, which for a proper noun published to readers is the same defect as an unsourced numeral. The scan's garbled quotation mark is kept so the string can still be found in the document.",
-  "THE RUN'S THESIS WAS REFUTED BY A SECTION OF A DOCUMENT IT HAD ALREADY FETCHED. The deck argued that the April ordinance WEIGHED artificial intelligence as one of ten assessment factors and that the August resolution turned it into a bar. Section 2-19-9 of the same ordinance, six pages past the section the deck read, lists artificial intelligence or machine learning tools among the technologies that are NOT PERMITTED, except as consistent with City policy. c33 through c38 carry that section, the facial recognition entry beside it, and the three carve outs the chapter already contained, so the comparison the deck makes is against the whole instrument rather than against one section of it. The ordinance names artificial intelligence in five separate places and the run had read one."
+  "THE RUN'S THESIS WAS REFUTED BY A SECTION OF A DOCUMENT IT HAD ALREADY FETCHED. The deck argued that the April ordinance WEIGHED artificial intelligence as one of ten assessment factors and that the August resolution turned it into a bar. Section 2-19-9 of the same ordinance, six pages past the section the deck read, lists artificial intelligence or machine learning tools among the technologies that are NOT PERMITTED, except as consistent with City policy. c33 through c38 carry that section, the facial recognition entry beside it, and the three carve outs the chapter already contained, so the comparison the deck makes is against the whole instrument rather than against one section of it. The ordinance names artificial intelligence in five separate places and the run had read one.",
+  "c40 WAS FETCHED AFTER A JUDGE FOUND AN UNOPENED LINK ON A PAGE THIS RUN HAD ALREADY FETCHED. The agenda page names a link titled 'Actions Taken By Council' and the run's rejected list said 'the agenda page publishes no vote for the item', which was true of the page's prose and skipped the link on it. The action notes were retrieved, they record the item as Approved, and they publish no vote count, no mover and no seconder. The words vote, ayes, nays and motion appear nowhere against any item on that page. So the deck's absence sentence was right and the run had not earned it. It has now. This is the same defect as the section 2-19-9 miss, one document later, and it is the second time in one run that the answer was inside something already in hand."
  ]
 }

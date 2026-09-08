@@ -1,0 +1,40 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.4
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.4
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.3
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.2
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 6.97,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Add a gate that measures each dossier's declared focal in the render, because frames 1, 6, 7 and 9 all declare a focal with coordinates and an L* delta the shipped pixels do not contain."
+}

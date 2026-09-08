@@ -49,5 +49,25 @@
   "value": 9,
   "from_items": [],
   "note": "Frames in the shipped deck, counted over copy.json, which is built from the render report's own laid out text nodes."
+ },
+ "equipment_kinds": {
+  "value": 6,
+  "from_items": [
+   "security cameras",
+   "non-recording drones as first responders",
+   "lighting",
+   "access control/fencing/gates",
+   "signage and wayfinding",
+   "radio communication systems"
+  ],
+  "note": "The kinds the resolution NAMES, counted by compute.py equipment() over the source's own enumeration split on its own commas. The enumeration is expressly open, so this is the count of what is named and not of what may be bought."
+ },
+ "instruments_compared": {
+  "value": 2,
+  "from_items": [
+   "Resolution No. 20260812-017",
+   "Ordinance No. 20260423-029"
+  ],
+  "note": "The distinct executed instruments the deck argues from, counted over the source documents in claims.json. The deck's whole argument is the difference between them."
  }
 }

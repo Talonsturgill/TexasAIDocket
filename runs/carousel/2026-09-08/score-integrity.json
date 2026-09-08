@@ -1,0 +1,40 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.7
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.7
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.9
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.8
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8
+  }
+ ],
+ "weighted_score": 6.71,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Read the two documents the run already had links to and did not open, the Actions Taken By Council page and the meeting's closed caption transcript, both named on the agenda page the run fetched, because the deck closes on the absence of a vote count."
+}
