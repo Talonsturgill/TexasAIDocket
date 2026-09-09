@@ -200,8 +200,10 @@ it. It is this project's own bar-never-a-dial rule arriving as physics rather th
 six of nine frames and every one named that as its own top risk for `bespoke_check`. The fix was
 not to draw fewer shadows. It was to stop using ONE instrument for nine different claims. A
 proportion is drawn as a fraction of a run. A direction is drawn as a slope. A sameness is drawn
-as air. An absence is drawn as a staked empty traverse. Three frames carry a cast shadow on ground
-and each does a different job with a different edge quality.
+as air. An absence is drawn as a staked empty traverse. FOUR frames carry a cast shadow on ground
+and each does a different job with a different edge quality. That sentence said THREE here and in
+the storyboard, then FOUR naming the wrong four, before it was right. Slide 4 stopped casting
+altogether in round 4, because ground does not cast onto ground.
 
 ### compute.py overruled all three rooms, and that is the run's best moment
 
@@ -234,15 +236,113 @@ moved leaves the next reader able to check the same thing by hand.
 
 ### The value arc, measured rather than asserted
 
-Median CIELAB L\* per frame at 432px wide: **71, 73, 79, 66, 68, 77, 17, 74, 90.** A light deck
-with one dark turn at slide 7 and the brightest frame at slide 9, inverting five consecutive dark
-decks. `panel_ready` confirms the render comes out within one Munsell step of its own planned arc.
+Planned **71, 73, 79, 66, 68, 77, 17, 74, 90**, measured **69.6, 71.1, 88.2, 66.4, 68.2, 76.8,
+29.3, 73.7, 89.6**, deck median **71.1**. `panel_ready` confirms every frame lands within one
+Munsell step of its own plan. The turn at 7 came in at 29.3 against a planned 17, so the deck's one
+dark frame is lighter than intended and reads as a half-dark frame split by a diagonal.
+
+**The claim that this inverts "five consecutive dark decks" was false and the ledger says so.** It
+is three, decks 15, 16 and 17 at 22.5, 16.5 and 11.4, and then deck 14 at 73.1, which is light. The
+storyboard also claimed slide 9 is the brightest frame this account has posted in a fortnight;
+deck 14's frame 2 measured 94.1 six days ago. A reader judge checked both against
+`ledger/carousel/artwork.json` and both are corrected.
 
 <!-- gate-status block written by gate_status.py --sync -->
 
+## Phase 15, the panel, and what five rounds actually bought
+
+**Final: 6.714 against a 6.8 bar. THE DECK SHIPPED UNDER THE BAR, by 0.086, at the five round cap.**
+`config/carousel/scoring_rubric.yaml` sets `max_rounds: 5`, and past the cap the run ships whatever
+the median is and says so. This says so.
+
+| round | integrity | craft | reader | median | hard fails |
+|---|---|---|---|---|---|
+| 1 | 6.546 | 6.750 | 6.216 | 6.414 | 2 |
+| 3 | 7.010 | 6.710 | 6.250 | 6.500 | 0 |
+| 4 | 6.340 | 6.870 | 6.354 | 6.570 | 1 |
+| 5 | 6.800 | 6.680 | 6.700 | **6.714** | 0 |
+
+Per-criterion medians at the cap: artwork_craft 6.5, claim_integrity 7.5, story_and_stakes 6.8,
+sequence_and_momentum 7.0, voice 6.5, **variety 5.5**. Spread 0.12, the tightest of the run, so the
+three judges finally agreed about what they were looking at.
+
+**Three hard fails were raised across the run and every one was an ACTOR OR A PREDICATE THE RECORD
+DOES NOT LICENSE, on a surface no gate can read.**
+
+1. Slide 9 printed `OPEN ACCESS, AND FREE TO READ TODAY`. No claim carries the study's access
+   status. Found by a pixel critic before scoring began.
+2. Slide 2 printed "over **every** inpatient encounter discharged in the window". c1 quotes an
+   inclusion criterion, not a census, and the run's own c10 shows the compared sets are subsets.
+   The first comment separately promised the sources were "all from the same **open** record",
+   which is the same predicate as (1) surviving one surface over.
+3. Slide 1's dek made Houston Methodist the subject of both **compared** and **published**. c1
+   places only the ENCOUNTERS there, c6 gives the finding to "this quality improvement study", and
+   c14 and the deck's own slide 9 name JAMA Network Open as the publisher. The cover contradicted
+   the close and the caption, and `claims.json` had already REJECTED the authors' affiliations, so
+   the run knew it could not put those people at that hospital before it wrote the cover.
+
+None of the three carries a numeral, a new noun, a negative or a verbatim slot, so `numeral_lint`,
+`noun_trace`, `absence_check` and `verbatim_check` are all structurally blind to them, and
+`plan_render_check` proves a declared string APPEARS rather than that a forbidden one is absent.
+**All three were found by a human-style read of pixels against `claims.json`.** The gate that would
+catch the class is in the backlog.
+
 ## Phase 17, the retro
 
-<!-- written at retro time -->
+### The run's worst moment, which is a process failure rather than a craft one
+
+**Slide 5 drew its plot at 180 px per day while `compute.py` held 300.** Every y coordinate
+`computed.json` published for that frame, the four series points, the eight interval bounds, the
+zero and both pixel gaps, described a plot no frame contained. `slide-04.html` held `run_depth 138`
+and `run_gap 178` against `computed.json`'s 96 and 190, under a comment reading `FROM compute.py`.
+Both were hand-synced literals, and CLAUDE.md's rule is that every measurable coordinate comes from
+`compute.py` and nothing is eyeballed.
+
+**And the run corrected the record toward the wrong half.** Round 2's judge reported
+`aggregates.json` declaring 180 against `computed.json`'s 300. The run changed the DECLARATION to
+300, wrote a confident paragraph about the wrong number living only in the declaration, and shipped
+that into round 3. The declaration had been right the whole time, for a reason nobody had checked.
+It surfaced in round 4 only because a knockout panel positioned from the 300 reading landed on the
+wrong row of the frame and struck a label. **A layout accident found it, not a check.**
+
+The instinct is filed: when a computation file and a frame disagree about a drawing, measure the
+render before deciding which one is stale.
+
+### A repair can be worse than the defect
+
+Round 4 put a lit SILL SLAB under the cover's doorway so it would stop reading as a bare hole in a
+wall. A sill is the most window-defining element in architecture, and all three judges then read the
+cover as a window. Round 5's ambient-shadow fix on slide 6 sized its fill rect smaller than its own
+gradient radius and rendered two translucent boxes with hard vertical edges. **Both passed machine
+QA.** Both are now repaired against the thumb rather than against the code.
+
+### What the machine changed about itself
+
+- **`caption_check.py`'s first-person rule was genuinely wrong and is narrowed.** The City of
+  Lubbock publishes at `mylubbock.us`, so the source page built to `sources/mylubbock-us/` and
+  `\bus\b` matched the TLD in the hostname, the slug, the canonical URL, the title and four
+  metadata fields. Nine strings containing no first person were reported as first person, and the
+  only ways past it were to rename a source page after a domain the city actually uses or to switch
+  the rule off. The exemption is anchored on the character in FRONT, exactly like the two
+  exemptions already in that pattern, and `house_style_check.py` gained four self-tests proving it
+  in both directions: a `.us` hostname and its slug pass, and "told us" and a sentence opening on
+  "Us" still fail. Committed in the `upgrade` lane.
+- **`ledger/carousel/captions.json`'s three `*_recent` lists were stale in both directions** before
+  this run touched them, which is the caption critic's standing finding. They are derived from the
+  entries rather than appended to, and they are recomposed now.
+
+### The variety debt, stated as a breach rather than a waiver
+
+**This deck is light at a measured deck median L\* of 71.1 and it should not be.** Deck 14's
+`avoid_next` is addressed to this deck by name: *"do not reach for a light ground again until the
+counted window holds none."* The eight run window still holds deck 14 at 73.1. `check_register`
+does NOT fail, because deck 14's named waiver subtracts it and leaves `over = 1`, **which is the
+exact effect deck 14's own `light_deck_note` says a waiver must never have.** So the brand rule is
+broken behind a green gate, which is GATE_LESSONS' oldest shape.
+
+Two of three judges scored variety at 5.0 and 5.5 for it and both were right. **No waiver is claimed
+for this date.** The artwork entry records it as a breach and requires the next deck dark.
+
 
 ## Phase 19, what actually landed
 

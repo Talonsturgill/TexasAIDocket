@@ -20,11 +20,11 @@
   },
   "opening_moves_recent": [
     "the object",
-    "the object",
     "the before and after",
     "the plain question",
     "the place",
-    "the number that is wrong"
+    "the number that is wrong",
+    "the correction"
   ],
   "entries": [
     {
@@ -290,14 +290,31 @@
       ],
       "critic_note": "A SIXTH EDIT CAME IN ROUND 4 AND IT IS WHY THE WORD COUNT MOVED. The caption named no Texas place, which two scoring judges charged, so it gained 'The room it goes in is a new 20 MW data center in Round Rock.' from claim c22. That pushed it to 989 characters against brand.yaml's 300 to 900 band, so three things were cut to pay for it: the self-referential 'Nine frames read both guides side by side', the trailing 'to move data off' on the file systems sentence, and nothing else. The band is the reason the caption reads tighter, and a sentence about the deck itself was the right thing to spend. Two directors wrote to opposed assignments and the critic took B without spending its rewrite, with three surgical edits. It rejected A on two counts. A's close asked whether a NAIRR door opens to Frontera's users before October 1st, which imports a causal link no claim carries, and A ran one sentence skeleton six times inside a single caption, which is the anti-template law failing against the caption itself rather than against yesterday's. The three edits to B were to replace a close that was a riddle about a web page with one that names the next event, to split a compound sentence carrying two claims, and to change a definite article that over-asserted. A FOURTH EDIT CAME FROM A SCORING JUDGE RATHER THAN THE CRITIC. The caption said 'Horizon is next', which asserts a succession no fetched source states, and the deck had already REJECTED the one text that said it as a self-reported narrative. It now says the same center leads the construction project behind Horizon, which claim c21 carries. caption_check then caught 'centre' as British spelling in the repair. A FIFTH EDIT CAME FROM THE READER JUDGE IN ROUND 2 AND IT IS THE ONE WORTH REMEMBERING. The round 1 repair took the succession relation out of frame 9 and out of the caption BODY and left it standing as the caption's opening sentence, 'A successor is not a handover', which is the single line LinkedIn shows before the fold. A repair scoped to the list a judge happened to name is how a struck reading survives one surface further out, which this ledger already records from 2026-09-05. The opening is now 'Open science has a closing date', which c3 and c1 carry between them.",
       "menu_note": "`the deadline` was assigned to director A and it lost with the caption that used it, so it is UNSPENT and remains on the menu. The ledger records what shipped."
+    },
+    {
+      "date": "2026-09-09",
+      "carousel_no": 18,
+      "opening_move": "the two things",
+      "structure": "Pivot",
+      "closing_move": "Ask the one question the decision leaves open",
+      "first_line": "A commercial clinician-assisted tool estimated when patients would go home. Houston Methodist's case managers beat it, and by more the nearer discharge got.",
+      "words": 141,
+      "commas": 4,
+      "commas_per_100w": 2.84,
+      "hashtags": [
+        "#HoustonMethodist",
+        "#JAMANetworkOpen",
+        "#SQUIRE"
+      ],
+      "critic_note": "REWRITTEN IN ROUND 4 AFTER THE SAME JUDGE ASKED TWICE. The shipped caption is the third version. The first opened 'Three clinicians compared a hospital's software against its own case managers' and was wrong twice in one line: c13's byline reads MD, BS, MD so CLINICIANS overstated it, and c5 calls the thing a commercial clinician-assisted tool rather than the hospital's own build. The second fixed both and still opened on a method summary, which the reader judge called the flattest first line in seventeen ledger entries. The third leads on the result and carries c6's reason in its second line. Two further fixes went in with it: 'At admission neither' was contradicted by the run's own c4, which says the case managers matched the exact date more often at admission, and the close asked 'How many stays sit inside that blank?', a question c10 answers and this run cut. THE WORD `actionable` ALSO SHIPPED IN VERSION TWO AND IS IN brand.yaml's banned_phrases. caption_check.py does not read that key, so nothing caught it and a judge did. It survives in the first comment only inside c6's verbatim quote, where the house rule says a quote is never touched. THE FIRST FILING OF THIS ENTRY USED FREEHAND MOVE NAMES, 'the result first', 'Turn and caveat' and 'name what the record cannot answer', and ledger_check refused all three: a freehand name cannot be excluded by a list of real ones, which is how three excluded moves shipped on 2026-08-25."
     }
   ],
   "structures_recent": [
-    "question and answer",
     "two columns",
-    "Ledger"
+    "Ledger",
+    "Zoom out"
   ],
   "closing_moves_recent": [
-    "point at the record, plainly, without a call to action"
+    "name what happens next and when"
   ]
 }

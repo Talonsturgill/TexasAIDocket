@@ -1,13 +1,13 @@
 {
  "run": "2026-09-09",
  "deck": 18,
- "note": "Built from the render report's own laid out text nodes rather than from the storyboard, and identified by the FONT the browser actually resolved rather than by a class name. Rebuilt after every render round.",
+ "note": "Built from the render report's own laid out text nodes, identified by the FONT the browser resolved rather than by a class name. Rebuilt after every render round.",
  "slides": {
   "S1": {
    "hook": "When does this patient go home?",
-   "dek": "Houston Methodist compared two ways of answering it, and published which one was closer when accurate estimations are most actionable for bed management.",
+   "dek": "A quality improvement study compared two ways of answering it at Houston Methodist, and reported which one was closer.",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "01 / 09",
     "c1 · c6",
     "texasaidocket.com"
@@ -19,9 +19,9 @@
   },
   "S2": {
    "hook": "Two answers, one date",
-   "dek": "The hospital's own staff, and a commercial clinician-assisted tool integrated with the EHR, over every inpatient encounter discharged in the window below.",
+   "dek": "The hospital's own staff, and a commercial clinician-assisted tool integrated with the EHR, over inpatient encounters discharged in the window below.",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "02 / 09",
     "CASE MANAGERS",
     "AI ESTIMATIONS",
@@ -37,52 +37,61 @@
   },
   "S3": {
    "hook": "At admission, level",
-   "dek": "At admission the case managers and the tool sat within a fraction of a day of each other on error. Both marks are out at that distance, and the air between here and there is what a reader has to see through.",
+   "dek": "At admission the case managers and the tool sat within a fraction of a day of each other on error.",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "03 / 09",
     "CASE MANAGERS",
-    "23.6%",
+    "4.20",
     "AI ESTIMATIONS",
-    "15.3%",
-    "MATCHED THE EXACT DATE, AT ADMISSION",
+    "4.27",
+    "MEAN ABSOLUTE ERROR IN DAYS, AT ADMISSION",
     "c4",
     "texasaidocket.com"
    ],
    "claims": [
     "c4"
+   ],
+   "bodies": [
+    "The case managers did match the exact date more often, 23.6% against 15.3%."
    ]
   },
   "S4": {
    "hook": "On the last day, they were not",
-   "dek": "",
+   "dek": "The authors say this is the point where an accurate date counts for most in bed management.",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "04 / 09",
     "CASE MANAGERS 79.5%",
     "AI ESTIMATIONS 37.9%",
     "WITHIN ONE DAY OF THE TRUE DATE 24 HOURS BEFORE DISCHARGE",
-    "c2",
+    "c2 · c6",
     "texasaidocket.com"
    ],
    "claims": [
-    "c2"
+    "c2",
+    "c6"
    ]
   },
   "S5": {
    "hook": "One improved. One got worse.",
-   "dek": "Mean absolute error in days. The two never meet, and the gap between them is wider at the door than it was at the earlier reading.",
+   "dek": "Mean absolute error in days. The two never meet.",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "05 / 09",
-    "CASE MANAGERS 1.29 to 0.98",
-    "AI 1.59 to 1.93",
+    "HIGHER IS FURTHER FROM THE TRUE DATE",
+    "CASE MANAGERS",
+    "AI ESTIMATIONS",
     "48 HOURS",
     "24 HOURS",
     "0",
-    "DAYS",
+    "ERROR IN DAYS",
     "c3 · c6",
-    "texasaidocket.com"
+    "texasaidocket.com",
+    "1.29",
+    "0.98",
+    "1.59",
+    "1.93"
    ],
    "claims": [
     "c3",
@@ -91,9 +100,9 @@
   },
   "S6": {
    "hook": "Agreement is not understanding",
-   "dek": "The strong admission correlation did not persist nearer discharge and should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay.",
+   "dek": "",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "06 / 09",
     "The study's authors, on their own result",
     "c7",
@@ -101,30 +110,36 @@
    ],
    "claims": [
     "c7"
+   ],
+   "bodies": [
+    "The strong admission correlation did not persist nearer discharge and should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay."
    ]
   },
   "S7": {
    "hook": "One estimate was being read",
-   "dek": "Estimates were part of usual care and visible to care teams, so they may be partly self-fulfilling and, in the authors' own word, advantaged nearer discharge.",
+   "dek": "Estimates were part of usual care and visible to care teams. They may be partly self-fulfilling. The authors' own word for it is advantaged nearer discharge.",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "07 / 09",
+    "THE STUDY'S AUTHORS, AGAINST THEIR OWN RESULT",
     "CASE MANAGERS",
     "AI ESTIMATIONS",
-    "Accessible in the EHR but not enabled automatically. Nothing was shining on this one.",
-    "The study's authors, against their own result",
     "c8",
     "texasaidocket.com"
    ],
    "claims": [
     "c8"
+   ],
+   "bodies": [
+    "Accessible in the EHR but not enabled automatically.",
+    "advantaged nearer discharge"
    ]
   },
   "S8": {
    "hook": "What the comparison never saw",
-   "dek": "No baseline patient demographic data were available.",
+   "dek": "",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "08 / 09",
     "THE STUDY FOLLOWED THE SQUIRE REPORTING GUIDELINE",
     "c11 · c12",
@@ -133,23 +148,27 @@
    "claims": [
     "c11",
     "c12"
+   ],
+   "bodies": [
+    "No baseline patient demographic data were available."
    ]
   },
   "S9": {
    "hook": "What settles it",
-   "dek": "The authors say what has to happen before anyone decides the tool is worth what it takes to run it.",
+   "dek": "The authors say what has to happen before anyone decides the tool's extra accuracy in some subgroups justifies the complexity of putting it in.",
    "labels": [
-    "HARRIS COUNTY",
+    "HOUSTON METHODIST",
     "09 / 09",
-    "Warrants prospective, outcome-based evaluation.",
-    "PUBLISHED SEPTEMBER 3RD, 2026 OPEN ACCESS, AND FREE TO READ TODAY",
-    "c9 · c12 · c14",
+    "JAMA NETWORK OPEN, SEPTEMBER 3RD, 2026 DOI 10.1001/JAMANETWORKOPEN.2026.32033",
+    "c9 · c14",
     "texasaidocket.com"
    ],
    "claims": [
     "c9",
-    "c12",
     "c14"
+   ],
+   "bodies": [
+    "Warrants prospective, outcome-based evaluation."
    ]
   }
  }

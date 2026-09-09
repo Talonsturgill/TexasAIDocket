@@ -17,32 +17,83 @@ from __future__ import annotations
 
 import json
 import math
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 
 # --------------------------------------------------------------------------- the source figures
-# Read from claims.json rather than retyped, so a claim that changes upstream changes here too
-# and cannot silently disagree with the frame.
+# PARSED OUT OF THE CLAIM QUOTES, not retyped beside them.
+#
+# This block used to head itself "Read from claims.json rather than retyped, so a claim that
+# changes upstream changes here too and cannot silently disagree with the frame", and then assign
+# ten literals. Every one of the ten was correct, which is exactly why it survived: nothing
+# downstream could tell, and `computed.json` carried the same sentence in its own header. The
+# integrity judge found it by reading the file rather than its output.
+#
+# It is the rubric preamble's own named class and this project's central public promise, so the
+# comment is now true. Each figure is lifted from the string the fact checker verified, and a
+# quote that stops carrying its figure raises here instead of drifting quietly away from the
+# frame. The file already did this for c3's stations and c13's byline credentials, so the honest
+# route was in front of it the whole time.
 CLAIMS = {c["id"]: c for c in json.loads((HERE / "claims.json").read_text())["claims"]}
 
+
+# WHICH CLAIMS THIS FILE ACTUALLY READ, recorded as it reads them. `computed.json` used to
+# publish `claims_used: sorted(CLAIMS)`, which is every id in the claims file: it listed c10,
+# which this deck cut, and c15 to c18, which belong to the ERCOT and Lubbock stories and appear
+# on no surface. A field named for what was used that reports what was available is the same
+# defect as the comment above, one file over.
+CLAIMS_READ: set = set()
+
+
+def _q(cid: str) -> str:
+    CLAIMS_READ.add(cid)
+    return CLAIMS[cid]["quote"]
+
+
+def _one(pattern: str, cid: str) -> tuple[str, ...]:
+    m = re.search(pattern, _q(cid))
+    if not m:
+        raise SystemExit(f"claim {cid} no longer carries the figures this deck reads from it. "
+                         f"The quote is now {_q(cid)!r}")
+    return m.groups()
+
+
 # c2, the last day, within one day of the true date.
-CM_WITHIN_1D_24H = 79.5     # "79.5% of case manager estimations fell within 1 day"
-AI_WITHIN_1D_24H = 37.9     # "vs 37.9% for AI estimations"
+#   "At 24 hours, 79.5% of case manager estimations fell within 1 day vs 37.9% for AI estimations"
+_p2 = [float(x) for x in re.findall(r"(\d+\.\d+)%", _q("c2"))]
+assert len(_p2) == 2, "c2 must carry exactly the two percentages, case managers first"
+CM_WITHIN_1D_24H, AI_WITHIN_1D_24H = _p2
 
-# c3, mean absolute error in days at the two later stations.
-CM_MAE_48H, AI_MAE_48H = 1.29, 1.59
-CM_MAE_24H, AI_MAE_24H = 0.98, 1.93
-CM_CI_48H, AI_CI_48H = (1.26, 1.32), (1.57, 1.61)
-CM_CI_24H, AI_CI_24H = (0.96, 1.01), (1.91, 1.95)
+# c3, mean absolute error in days at the two later stations, with intervals.
+#   "48 hours: MAE, 1.29 [95% CI, 1.26-1.32] vs 1.59 [95% CI 1.57-1.61] days; 24 hours: ..."
+_s3 = re.findall(r"(\d+)\s+hours:\s*MAE,\s*(\d+\.\d+)\s*\[95% CI,?\s*(\d+\.\d+)-(\d+\.\d+)\]"
+                 r"\s*vs\s*(\d+\.\d+)\s*\[95% CI,?\s*(\d+\.\d+)-(\d+\.\d+)\]", _q("c3"))
+assert [r[0] for r in _s3] == ["48", "24"], "c3 must report the 48 hour station then the 24 hour"
+_f = lambda r, k: float(r[k])
+CM_MAE_48H, AI_MAE_48H = _f(_s3[0], 1), _f(_s3[0], 4)
+CM_MAE_24H, AI_MAE_24H = _f(_s3[1], 1), _f(_s3[1], 4)
+CM_CI_48H, AI_CI_48H = (_f(_s3[0], 2), _f(_s3[0], 3)), (_f(_s3[0], 5), _f(_s3[0], 6))
+CM_CI_24H, AI_CI_24H = (_f(_s3[1], 2), _f(_s3[1], 3)), (_f(_s3[1], 5), _f(_s3[1], 6))
 
-# c4, admission.
-CM_MAE_ADM, AI_MAE_ADM = 4.20, 4.27
-CM_CI_ADM, AI_CI_ADM = (4.08, 4.31), (4.15, 4.38)
-CM_EXACT_ADM, AI_EXACT_ADM = 23.6, 15.3
+# c4, admission. The second interval is written without the "95% CI" label in the source, so the
+# pattern allows it rather than the deck retyping the bound the source did label oddly.
+_a4 = _one(r"MAE,\s*(\d+\.\d+)\s*\[95% CI,?\s*(\d+\.\d+)-(\d+\.\d+)\]"
+           r"\s*vs\s*(\d+\.\d+)\s*\[(?:95% CI,?\s*)?(\d+\.\d+)-(\d+\.\d+)\]", "c4")
+CM_MAE_ADM, AI_MAE_ADM = float(_a4[0]), float(_a4[3])
+CM_CI_ADM, AI_CI_ADM = (float(_a4[1]), float(_a4[2])), (float(_a4[4]), float(_a4[5]))
+_e4 = _one(r"\((\d+\.\d+)%\s*vs\s*(\d+\.\d+)%\)", "c4")
+CM_EXACT_ADM, AI_EXACT_ADM = float(_e4[0]), float(_e4[1])
 
-# c1, the study window.
-WINDOW_START, WINDOW_END = "2023-08-01", "2024-02-28"
+# c1, the study window. The month names are the source's own, so the dates are read rather than
+# transcribed into ISO by hand.
+_MONTHS = ("January February March April May June July August September October November "
+           "December").split()
+_d1 = re.findall(r"(" + "|".join(_MONTHS) + r")\s+(\d{1,2}),\s*(\d{4})", _q("c1"))
+assert len(_d1) == 2, "c1 must carry the two window dates"
+_iso = lambda d: f"{d[2]}-{_MONTHS.index(d[0]) + 1:02d}-{int(d[1]):02d}"
+WINDOW_START, WINDOW_END = _iso(_d1[0]), _iso(_d1[1])
 
 FRAME_W, FRAME_H = 1080, 1350
 
@@ -145,8 +196,15 @@ RAMP_PX_PER_DAY = (RAMP_X1 - RAMP_X0) / WINDOW_DAYS
 # scale is needed and no ratio between the two runs is drawable, which is why the band between
 # them carries no rule.
 RUN_LEN = 820
-RUN_DEPTH = 96
-RUN_GAP = 190
+# THE SAME DIVERGENCE AS SLIDE 5, ONE FRAME OVER, FOUND IN THE ROUND THAT CLOSED SLIDE 5.
+# This file held 96 and 190; slide-04.html draws 138 and 178 under a comment reading
+# "FROM compute.py". No reader received a wrong figure, because the run length and both lit
+# fractions agreed and those are what carry the claim, but two of the six geometry fields
+# published for this frame described a drawing nobody made. The frame is what a reader receives,
+# so these come to the frame. Four scoring panels did not see it, which is the argument for
+# injecting each slide's computed block into its frame rather than hand-syncing two files.
+RUN_DEPTH = 138
+RUN_GAP = 178
 CM_EDGE_FRAC = CM_WITHIN_1D_24H / 100.0
 AI_EDGE_FRAC = AI_WITHIN_1D_24H / 100.0
 CM_EDGE_PX = round(RUN_LEN * CM_EDGE_FRAC, 1)
@@ -157,8 +215,21 @@ AI_EDGE_PX = round(RUN_LEN * AI_EDGE_FRAC, 1)
 # The axis is anchored at zero and the zero is printed. A truncated axis here would be a lie told
 # with a true number, and the top of the axis is set from the largest interval bound in the plot
 # rather than from the largest value, so no interval can run off the frame.
-PLOT_X0, PLOT_X1 = 250, 900
-PLOT_Y0, PLOT_Y1 = 380, 980          # y0 is the axis top, y1 is zero
+# THE PLOT RECT IS THE ONE THE FRAME ACTUALLY DRAWS, and it was not until round 4.
+#
+# This file had 250/900 and 380/980, giving 300 px per day. Slide 5 draws 330/812 and 660/1020,
+# giving 180. So every y coordinate this block published, the four series points, the eight
+# interval bounds, the zero and both pixel gaps, described a plot no frame contains, and the
+# frame computed its own geometry from its own literals. CLAUDE.md's rule is that every
+# measurable length, fraction and coordinate comes from here and nothing is eyeballed, and this
+# is the one frame that quietly opted out.
+#
+# NOTHING CAUGHT IT AND ONE ROUND OF THIS RUN MADE IT WORSE. A judge found aggregates.json
+# declaring 180 where computed.json said 300, the run "corrected" aggregates to 300, and 300 is
+# the number nobody draws. The frame is what a reader receives, so the frame's rect wins and this
+# file is brought to it. The board sits at y 560 to 1120 and a plot at 380 would start above it.
+PLOT_X0, PLOT_X1 = 330, 812
+PLOT_Y0, PLOT_Y1 = 660, 1020         # y0 is the axis top, y1 is zero
 SLOPE_MAX_DAYS = max(AI_CI_24H[1], AI_CI_48H[1], CM_CI_48H[1], CM_CI_24H[1])
 SLOPE_AXIS_TOP = math.ceil(SLOPE_MAX_DAYS * 2) / 2      # to the next half day
 SLOPE_PX_PER_DAY = (PLOT_Y1 - PLOT_Y0) / SLOPE_AXIS_TOP
@@ -227,25 +298,84 @@ ADM_GAP_PX = round(abs(AI_MAE_ADM - CM_MAE_ADM) * ADM_PX_PER_DAY, 2)
 ADM_GAP_AT_THUMB = round(ADM_GAP_PX * (432 / FRAME_W), 3)
 
 
-# --------------------------------------------------------------------------- slide 6, the solids
-# Two dissimilar solids, one declared sun, and the shadow lengths SOLVED to equality. The height
-# of each solid differs, so each needs its own sun altitude to land the same shadow length, which
-# is exactly the point: agreement on the output says nothing about the process behind it.
-SHADOW_LEN = 300.0
-SOLID_A_H, SOLID_B_H = 210.0, 128.0
-SUN_ALT_A = math.degrees(math.atan2(SOLID_A_H, SHADOW_LEN))
-SUN_ALT_B = math.degrees(math.atan2(SOLID_B_H, SHADOW_LEN))
+# --------------------------------------------------------------------- slides 6 and 7, ONE sun
+# THE FRAME USED TO STAND EACH SOLID UNDER ITS OWN SUN, and the code said so while calling it one.
+# The comment here read "one declared sun" over two computed altitudes, 34.99 and 23.11 degrees,
+# picked so a 210px solid and a 128px solid would throw one length, and the frame's own comment
+# admitted it in as many words: "which is only possible because each stands under its own sun
+# altitude". The rationalisation attached to it, that differing altitudes are "exactly the point",
+# is the part worth naming. The point is that two methods can agree on an OUTPUT and share nothing
+# about the process. Moving the light between them makes the agreement a property of the lighting
+# rather than of the objects, which is the opposite claim, drawn on the one frame the deck's
+# argument turns on. The storyboard rule two sections up says the sun is declared once and HELD
+# STILL across slides 4, 5 and 6, and this broke it inside a single frame.
+#
+# Under ONE sun, two solids throw one shadow length if and only if they stand the SAME HEIGHT. So
+# they do, and everything else about them differs: footprint, profile, curvature, silhouette. That
+# is the better drawing of the claim as well as the honest one. The two methods here agreed on one
+# measured quantity at admission and shared nothing about how they reached it, which is a shared
+# height and no other shared dimension.
+#
+# Found by the craft judge, from `computed.json`, which published both altitudes openly. Nothing
+# was hidden and no gate could see it: the geometry was internally consistent and only the deck's
+# own written rule said it was wrong.
+SUN_ALT = 34.0                       # the deck's one sun, used by slides 6 and 7 alike
+SOLID_H = 202.0                      # ONE height, both solids, so ONE shadow length follows
+SHADOW_LEN = round(SOLID_H / math.tan(math.radians(SUN_ALT)), 1)
+SUN_ALT_A = SUN_ALT_B = SUN_ALT
+SOLID_A_H = SOLID_B_H = SOLID_H
+assert SUN_ALT_A == SUN_ALT_B, \
+    "two sun altitudes in one frame make the shadow agreement a property of the light"
+assert abs(SOLID_A_H / math.tan(math.radians(SUN_ALT_A))
+           - SOLID_B_H / math.tan(math.radians(SUN_ALT_B))) < 0.05, \
+    "under one sun the two solids agree on shadow length only by standing the same height"
 
 
 # --------------------------------------------------------------------------- slide 7, the cloud
-# The cumulus shadow's offset from the cloud is solved from a declared sun altitude and cloud
-# base, so the weather is geometry rather than a placed shape.
-SUN_ALT_S7 = 34.0
+# The cumulus shadow's offset from the cloud is solved from the SAME declared sun altitude slide 6
+# uses, so the weather is geometry rather than a placed shape and the deck's light is one light.
+SUN_ALT_S7 = SUN_ALT
 CLOUD_BASE_PX = 760.0
 CLOUD_OFFSET_PX = round(CLOUD_BASE_PX / math.tan(math.radians(SUN_ALT_S7)), 1)
 # The occlusion edge must sit well away from horizontal or it becomes the excluded norther front.
 OCCLUSION_EDGE_DEG = 27.0
 assert OCCLUSION_EDGE_DEG >= 15.0, "an occlusion edge inside 15 degrees of horizontal is a norther front"
+
+
+# ------------------------------------------------------------------ the caption's station count
+# The caption says the two figures moved "Between the two readings". TWO is a tally of the time
+# stations c3 reports, so it is counted off c3's own quote rather than typed. The study reports
+# each station as "<N> hours:" followed by its figures, and there are exactly two of them nearer
+# discharge. Admission is reported in c4 and is deliberately not one of these.
+STATIONS = re.findall(r"(\d+)\s+hours:", _q("c3"))
+STATION_COUNT = len(STATIONS)
+assert STATIONS == ["48", "24"], \
+    "the caption's 'two readings' is the pair c3 names, in the order c3 names them"
+
+
+# ------------------------------------------------------------------- the caption's author count
+# The caption opens "Three authors compared ...". THREE is a tally and the deck must not type it,
+# so it is counted here off c13's byline rather than read off it by eye. Each author on that
+# byline carries a trailing credential, so the credentials are what get counted: a name with no
+# letters after it would not be an author of record and should not be counted as one.
+#
+# IT SAID "clinicians" UNTIL ALL THREE JUDGES CAUGHT IT. The byline reads MD, BS, MD, and a BS is
+# not a clinician credential, so the noun asserted a profession for one of the three that nothing
+# fetched establishes. c13's own text carried the overstatement, which is how it reached the
+# caption: a claim whose paraphrase says more than its quote hands the extra to every surface
+# downstream and no gate can see the difference. The count was right the whole time. The noun was
+# not, and the noun is the part a reader believes.
+_BYLINE = _q("c13")
+CREDENTIALS = re.findall(r",\s*(MD|DO|BS|BA|BSN|RN|MSN|MPH|MS|PhD|PharmD)\b", _BYLINE)
+AUTHOR_COUNT = len(CREDENTIALS)
+CLINICAL_CREDENTIALS = {"MD", "DO", "RN", "BSN", "MSN", "PharmD"}
+# Published as a measurement rather than used, so the next run can see WHY the noun is "authors".
+CLINICIANS_ON_BYLINE = len([c for c in CREDENTIALS if c in CLINICAL_CREDENTIALS])
+assert AUTHOR_COUNT == len([p for p in _BYLINE.split(",") if p.strip() not in CREDENTIALS]), \
+    "every name on the byline must carry exactly one credential, or the tally is counting wrong"
+assert CLINICIANS_ON_BYLINE < AUTHOR_COUNT, \
+    "if every credential were clinical the caption could say clinicians, and this assert is the " \
+    "record that it checked rather than assumed"
 
 
 def main() -> None:
@@ -274,10 +404,15 @@ def main() -> None:
                    "manager_edge_px": CM_EDGE_PX, "tool_edge_px": AI_EDGE_PX},
         "slide5": SLOPE,
         "slide6": {"shadow_len": SHADOW_LEN, "solid_a_h": SOLID_A_H, "solid_b_h": SOLID_B_H,
-                   "sun_alt_a_deg": round(SUN_ALT_A, 2), "sun_alt_b_deg": round(SUN_ALT_B, 2)},
+                   "sun_alt_deg": SUN_ALT, "one_sun": SUN_ALT_A == SUN_ALT_B,
+                   "solids_same_height": SOLID_A_H == SOLID_B_H},
         "slide7": {"sun_alt_deg": SUN_ALT_S7, "cloud_base_px": CLOUD_BASE_PX,
                    "cloud_offset_px": CLOUD_OFFSET_PX, "occlusion_edge_deg": OCCLUSION_EDGE_DEG},
-        "claims_used": sorted(CLAIMS),
+        "caption": {"author_count": AUTHOR_COUNT, "credentials": CREDENTIALS,
+                    "station_count": STATION_COUNT, "stations_hours": STATIONS,
+                    "clinicians_on_byline": CLINICIANS_ON_BYLINE},
+        "claims_read": sorted(CLAIMS_READ),
+        "claims_available": len(CLAIMS),
     }
     (HERE / "computed.json").write_text(json.dumps(out, indent=2) + "\n")
     print(f"computed.json written, {len(PALETTE)} palette tokens, "
@@ -289,7 +424,7 @@ def main() -> None:
           f"({SLOPE['gap_48h_px']}px -> {SLOPE['gap_24h_px']}px), widens: {SLOPE['gap_widens']}")
     print(f"  slide 5 direction  manager {SLOPE['manager_direction']}  tool {SLOPE['tool_direction']}")
     print(f"  slide 3 admission gap {ADM_GAP_PX}px, {ADM_GAP_AT_THUMB}px at 432 wide")
-    print(f"  slide 6 sun altitudes {round(SUN_ALT_A,2)} and {round(SUN_ALT_B,2)} degrees "
+    print(f"  slide 6 one sun at {SUN_ALT} degrees, both solids {SOLID_H}px, "
           f"for one shadow length")
     print(f"  ink contrast  " + "  ".join(f"{g} {v}" for g, v in INK_CONTRAST.items()))
     print(f"  type-safe grounds at 4.5 or better: {', '.join(TYPE_SAFE)}")

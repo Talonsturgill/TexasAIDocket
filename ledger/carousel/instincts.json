@@ -637,6 +637,30 @@
       "evidence": "Carousel 16 slide 1 drew its bench as a 1080x1350 ImageData on a 2160x2700 canvas under scale(2,2). The unpainted three quarters kept the body background and rendered as a hard edged rectangle down the middle of the frame. render.py reported 0 errors and 0 warnings and qa.py returned PASS on the frame, twice. It was found by sampling the PNG along a row and measuring a step of 7 on values of 10 to 20 at x 520, which is exactly half of 1080.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "measure-the-render-before-picking-a-stale-file",
+      "learned": "2026-09-09",
+      "instinct": "When a computation file and a frame disagree about a drawing, MEASURE THE RENDER before deciding which one is stale.",
+      "evidence": "2026-09-09, carousel 18. A judge reported aggregates.json declaring 180 px per day against computed.json's 300. The run changed the declaration to 300 with a confident paragraph attached. The frame draws 180, so 300 was the number nobody drew, and the correction made the record agree with the half that had no pixels behind it. It survived two more scoring rounds and surfaced only when a knockout panel positioned from the 300 reading landed on the wrong row and struck a label.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "read-the-repair-at-feed-scale",
+      "learned": "2026-09-09",
+      "instinct": "Read every repair at 432px against the defect it was meant to cure, because a repair can be worse than the defect.",
+      "evidence": "2026-09-09, carousel 18. A lit sill slab was added under the cover's doorway to stop it reading as a bare hole; a sill is the most window-defining element in architecture and all three judges then read the cover as a window. The same round's ambient-shadow fix on slide 6 clipped its own radial gradient and rendered two translucent boxes with hard vertical edges. Both passed machine QA.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-paraphrase-can-outrun-its-quote",
+      "learned": "2026-09-09",
+      "instinct": "A claim's own paraphrase can assert more than its quote, and every surface downstream inherits the excess with nothing able to see the gap.",
+      "evidence": "2026-09-09, carousel 18. c13's text read 'Three named clinicians wrote the study' where its quote is a byline reading MD, BS, MD. A BS is not a clinician credential, so the caption said CLINICIANS on the widest-reach surface. Three judges found it. No gate compares a claim's text to its own quote.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

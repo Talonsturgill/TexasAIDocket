@@ -119,8 +119,8 @@
   },
   "slide4": {
     "run_len": 820,
-    "run_depth": 96,
-    "run_gap": 190,
+    "run_depth": 138,
+    "run_gap": 178,
     "manager_edge_frac": 0.795,
     "tool_edge_frac": 0.379,
     "manager_edge_px": 651.9,
@@ -128,51 +128,52 @@
   },
   "slide5": {
     "axis_top_days": 2.0,
-    "px_per_day": 300.0,
-    "x_48h": 250,
-    "x_24h": 900,
+    "px_per_day": 180.0,
+    "x_48h": 330,
+    "x_24h": 812,
     "manager": {
-      "y_48h": 593.0,
-      "y_24h": 686.0,
+      "y_48h": 787.8,
+      "y_24h": 843.6,
       "ci_48h": [
-        584.0,
-        602.0
+        782.4,
+        793.2
       ],
       "ci_24h": [
-        677.0,
-        692.0
+        838.2,
+        847.2
       ]
     },
     "tool": {
-      "y_48h": 503.0,
-      "y_24h": 401.0,
+      "y_48h": 733.8,
+      "y_24h": 672.6,
       "ci_48h": [
-        497.0,
-        509.0
+        730.2,
+        737.4
       ],
       "ci_24h": [
-        395.0,
-        407.0
+        669.0,
+        676.2
       ]
     },
-    "zero_y": 980,
+    "zero_y": 1020,
     "cross_t": -0.4615,
     "lines_cross_in_plot": false,
     "gap_48h_days": 0.3,
     "gap_24h_days": 0.95,
     "gap_widens": true,
-    "gap_48h_px": 90.0,
-    "gap_24h_px": 285.0,
+    "gap_48h_px": 54.0,
+    "gap_24h_px": 171.0,
     "manager_below_tool_at_both": true,
     "manager_direction": "down",
     "tool_direction": "up"
   },
   "slide6": {
-    "shadow_len": 300.0,
-    "solid_a_h": 210.0,
-    "solid_b_h": 128.0,
-    "sun_alt_a_deg": 34.99,
-    "sun_alt_b_deg": 23.11
+    "shadow_len": 299.5,
+    "solid_a_h": 202.0,
+    "solid_b_h": 202.0,
+    "sun_alt_deg": 34.0,
+    "one_sun": true,
+    "solids_same_height": true
   },
   "slide7": {
     "sun_alt_deg": 34.0,
@@ -180,24 +181,26 @@
     "cloud_offset_px": 1126.7,
     "occlusion_edge_deg": 27.0
   },
-  "claims_used": [
+  "caption": {
+    "author_count": 3,
+    "credentials": [
+      "MD",
+      "BS",
+      "MD"
+    ],
+    "station_count": 2,
+    "stations_hours": [
+      "48",
+      "24"
+    ],
+    "clinicians_on_byline": 2
+  },
+  "claims_read": [
     "c1",
-    "c10",
-    "c11",
-    "c12",
     "c13",
-    "c14",
-    "c15",
-    "c16",
-    "c17",
-    "c18",
     "c2",
     "c3",
-    "c4",
-    "c5",
-    "c6",
-    "c7",
-    "c8",
-    "c9"
-  ]
+    "c4"
+  ],
+  "claims_available": 18
 }

@@ -4,13 +4,13 @@ The Public Utility Commission of Texas is amending its wholesale and investor ow
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
-- Where: ERCOT region
+- Where: Statewide
 - Status: pending
 - Public access: Comment window open
 - Comment closes: 2026-08-11
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58000&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The transmission-cost rulemaking remains unresolved after comments closed. The commission still has not published an adopting order.
 - 2026-09-02 · The comment window closed on August 11th.
 - 2026-09-05 · The rulemaking on ERCOT transmission cost recovery is still sitting after its comment deadline and the commission has published no proposal for adoption. What the comments changed is still unknown.
+- 2026-09-09 · The comment window closed on August 11th. Nothing has been proposed for adoption since, so the transmission cost recovery rule is still where it was when the window shut.
 
 ## Evidence
 

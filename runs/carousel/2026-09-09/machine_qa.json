@@ -5,13 +5,13 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1576,
-        0.4769,
-        0.9926
+        0.2269,
+        0.4307,
+        0.8934
       ],
-      "band_ratio": 1.7637,
+      "band_ratio": 1.6727,
       "contacts": [
-        "'the canopy column standing on the sunlit lane': shadow L* 51.4 vs ground L* 63.3, dL 11.9 at 432w"
+        "'the canopy column standing on the sunlit lane': shadow L* 23.4 vs ground L* 68.1, dL 44.7 at 432w"
       ]
     },
     {
@@ -19,11 +19,11 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1155,
-        0.3193,
+        0.1197,
+        0.3256,
         0.7426
       ],
-      "band_ratio": 1.8183
+      "band_ratio": 1.8036
     },
     {
       "file": "slide-03.html",
@@ -31,12 +31,12 @@
       "warns": [],
       "bands": [
         0.1492,
-        0.6282,
-        0.5147
+        0.4958,
+        0.2537
       ],
-      "band_ratio": 1.1846,
+      "band_ratio": 0.8528,
       "encodings": [
-        "'at admission the two methods sat level': dE 0.1, AUC 0.51, visible 100%/100%, seen 240/230px at 432w"
+        "'at admission the two methods sat level': dE 0.0, AUC 0.50, visible 100%/100%, seen 240/230px at 432w"
       ]
     },
     {
@@ -44,32 +44,27 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.3866,
-        0.7983,
-        0.6599
+        0.3845,
+        0.7479,
+        0.557
       ],
-      "band_ratio": 1.0696,
+      "band_ratio": 0.9896,
       "encodings": [
-        "'the lit share of each run differs, 79.5 percent against 37.9 percent': dE 5.6, AUC 0.98, visible 100%/100%, seen 1224/1296px at 432w"
-      ],
-      "contacts": [
-        "'the near edge of the upper run': shadow L* 49.3 vs ground L* 64.5, dL 15.2 at 432w"
+        "'the lit share of each run differs, 79.5 percent against 37.9 percent': dE 16.0, AUC 1.00, visible 100%/100%, seen 1224/1224px at 432w"
       ]
     },
     {
       "file": "slide-05.html",
       "fails": [],
-      "warns": [
-        "opaque plate grazing text: 'Mean absolute error in days. The two nev' has a 19x4px patch covered by .swatch -- pixel critic verify no glyph is cut"
-      ],
+      "warns": [],
       "bands": [
-        0.3172,
-        0.6513,
-        0.7647
+        0.3214,
+        0.5987,
+        0.7371
       ],
-      "band_ratio": 1.3044,
+      "band_ratio": 1.3144,
       "encodings": [
-        "'the gap between the two series is wider at the right station than at the left': dE 12.2, AUC 0.65, visible 100%/100%, seen 1102/3248px at 432w"
+        "'the gap between the two series is wider at the right station than at the left': dE 13.3, AUC 0.67, visible 100%/100%, seen 806/2938px at 432w"
       ]
     },
     {
@@ -77,17 +72,17 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.1723,
-        0.3004,
-        0.3309
+        0.2857,
+        0.4265,
+        0.2739
       ],
-      "band_ratio": 1.2222,
+      "band_ratio": 0.8397,
       "encodings": [
-        "'the two shadows are the same length and the same value': dE 33.6, AUC 0.71, visible 100%/100%, seen 1152/1152px at 432w"
+        "'the two shadows are the same length and the same value': dE 5.7, AUC 1.00, visible 100%/100%, seen 120/120px at 432w"
       ],
       "contacts": [
-        "'the left solid on the lit clay': shadow L* 26.8 vs ground L* 73.8, dL 47.1 at 432w",
-        "'the right solid on the lit clay': shadow L* 26.5 vs ground L* 73.5, dL 47.0 at 432w"
+        "'the left solid on the lit clay': shadow L* 32.0 vs ground L* 79.5, dL 47.5 at 432w",
+        "'the right solid on the lit clay': shadow L* 31.6 vs ground L* 77.4, dL 45.8 at 432w"
       ]
     },
     {
@@ -95,43 +90,45 @@
       "fails": [],
       "warns": [],
       "bands": [
-        0.25,
-        0.6786,
-        0.636
+        0.3214,
+        0.8634,
+        0.8401
       ],
-      "band_ratio": 1.2075
+      "band_ratio": 1.2309
     },
     {
       "file": "slide-08.html",
       "fails": [],
-      "warns": [
-        "contact shadow: 'the near corner stake driven into the clay': shadow L* 62.7 vs ground L* 70.2, dL 7.4 at 432w -- under the 8.0 L* comfort band; it reads, barely"
-      ],
+      "warns": [],
       "bands": [
-        0.1702,
-        0.5441,
-        0.864
+        0.2395,
+        0.8466,
+        0.8419
       ],
-      "band_ratio": 1.5957,
+      "band_ratio": 1.2918,
       "encodings": [
-        "'the ground inside the staked traverse is identical to the ground outside it': dE 4.8, AUC 0.80, visible 100%/100%, seen 3648/3648px at 432w"
+        "'the ground inside the staked traverse is identical to the ground outside it': dE 1.1, AUC 0.59, visible 100%/100%, seen 1824/1824px at 432w"
+      ],
+      "contacts": [
+        "'the near corner stake driven into the clay': shadow L* 22.7 vs ground L* 66.3, dL 43.6 at 432w"
       ]
     },
     {
       "file": "slide-09.html",
       "fails": [],
-      "warns": [
-        "contact shadow: 'the benchmark monument standing on the prairie': shadow L* 62.8 vs ground L* 67.5, dL 4.7 at 432w -- under the 8.0 L* comfort band; it reads, barely"
-      ],
+      "warns": [],
       "bands": [
-        0.0651,
-        0.1239,
-        0.4485
+        0.0546,
+        0.1891,
+        0.4669
       ],
-      "band_ratio": 2.009
+      "band_ratio": 1.8878,
+      "contacts": [
+        "'the benchmark monument standing on the prairie': shadow L* 20.6 vs ground L* 67.3, dL 46.7 at 432w"
+      ]
     }
   ],
   "fails": 0,
-  "warns": 3,
-  "verdict": "WARN"
+  "warns": 0,
+  "verdict": "PASS"
 }

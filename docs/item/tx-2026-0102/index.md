@@ -11,7 +11,7 @@ UT Southwestern Medical Center built a process that reads and grades the post en
 - Public access: Closed
 - Take part: https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · UT Southwestern's use of artificial intelligence to grade clinical-exam notes remains documented as current practice.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The Dallas medical school still says AI does most of the grading on its students' clinical exam notes. Nothing has been withdrawn.
+- 2026-09-09 · UT Southwestern still has AI doing most of the grading on its medical students' clinical exam notes, and has published no change to the arrangement.
 
 ## Evidence
 

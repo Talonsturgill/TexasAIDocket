@@ -542,6 +542,30 @@
         "award title"
       ],
       "angle_note": "THE SPINE WAS A THING SOMEBODY DID AND THAT DEBT IS PAID. Four consecutive run records asked for it in capitals. The cover opens on a dated act, the closure, and seven of nine frames are things that happened or documents that say something rather than documents that are quiet. The one honest absence, frame 4, is scoped to one page and bylined to it. THE PLACE ARRIVED IN ROUND FOUR AND IT IS THE WRONG ONE. Three judges across two rounds charged the deck for naming no Texas place, and the answer given twice was that no claim carried one. The Horizon guide had it all along, in a snapshot this run fetched at 06:56, saying the machine goes in a new 20 MW data center with advanced liquid cooling in Round Rock, Texas. It is now claim c22, quoted on frame 6 in the source's own words and carried in the caption, and texan_check reports a place where it reported none. What did NOT get fixed is that Round Rock sits in Williamson County and belongs to the SUCCESSOR, while the machine this deck is about is at UT Austin in Travis County and is never located on any frame. So the deck names a place and still does not place its subject. The research lesson is to grep the snapshots already in hand before concluding a story carries no place, and the selection lesson is that a place belonging to the wrong noun answers the gate without answering the reader. A SECOND THING, and it is a dedupe blind spot rather than a craft note. Deck 14 on September 3rd was the Texas A&M VISION supercomputer whose own docs say access is invitation-only, and this is a Texas university supercomputer whose own docs say limited only to internal users. Different institution, different machine, different docket item, so dedupe_check cannot see it and did not fail it. Two judges said it reads as the same story twice in five days. The gate compares topic, entities and keywords and it does not compare INSTRUMENT, which is the field that would have caught this one."
+    },
+    {
+      "date": "2026-09-09",
+      "carousel_no": 18,
+      "docket_item": "tx-2026-0129",
+      "topic": "A quality improvement study at Houston Methodist Hospital comparing AI-estimated discharge dates from a commercial clinician-assisted tool against the hospital's own case managers, over inpatient encounters discharged between August 1st, 2023 and February 28th, 2024, published in JAMA Network Open on September 3rd, 2026.",
+      "angle": "THE TOOL GOT WORSE AS THE ANSWER GOT EASIER. At admission the two methods sat level on error. Nearer discharge, where the study says an accurate date counts for most in bed management, the case managers improved from 1.29 to 0.98 days of mean absolute error and the tool went the other way, 1.59 to 1.93. The deck's instrument is a peer-reviewed clinical study rather than a filing or a vote, which is new to this account, and its structural law is that the sun is declared once and every object throws from it.",
+      "entities": [
+        "Houston Methodist Hospital",
+        "JAMA Network Open",
+        "SQUIRE reporting guideline"
+      ],
+      "keywords": [
+        "discharge date",
+        "case managers",
+        "clinical AI",
+        "quality improvement",
+        "mean absolute error",
+        "electronic health record",
+        "bed management",
+        "hospital"
+      ],
+      "instrument": "a peer-reviewed clinical study",
+      "note": "dedupe_check clean at 17 entries in the ledger over a 30 day window, nothing close. The `health-and-education` beat is 2 of the 17 decks in the window and is not the most recent."
     }
   ]
 }

@@ -1098,6 +1098,98 @@
         "THE DEDUPE GATE DOES NOT COMPARE INSTRUMENT. Deck 14 was a Texas university supercomputer whose own docs restrict access and so is this one, four days apart, and dedupe_check cleared it at 0.35 because it compares topic, entities and keywords. Two judges read it as the same story twice. An `instrument` field on this ledger, compared across the window, is the upgrade that would catch it.",
         "FRAME 5 WAS THE THINNEST FRAME AND ITS OWN RISK NOTE PREDICTED IT. The note said a mostly empty dark frame can read as unfinished art rather than an unfinished install, and named the mitigation, which was to draw the punch column at full fidelity to the top edge. The column stopped below the headline. A risk note that names its own mitigation should be read back against the render before the frame is called done."
       ]
+    },
+    {
+      "date": "2026-09-09",
+      "carousel_no": 18,
+      "written_from": "panel_ready's measured value arc, machine_qa.json, bespoke_check, render_report and the gates' exit codes. The value block is MEASURED off the nine shipped PNGs.",
+      "register": "BROAD DAYLIGHT ON THE GULF COASTAL PRAIRIE, the first outdoor deck of the eighteen. One declared sun at 34 degrees governs slides 6 and 7 and every object throws from it. There is no interior, no emission, no document-as-paper and no artificial light anywhere. Value comes from Lake Charles clay at two depths, so no shadow in the deck reaches black.",
+      "techniques": [
+        "one-point perspective relief on the cover, soffit, wall, doorway and every slab joint converging on a vanishing point off the right edge, with the saw-cut joints drawn BEFORE the cast so the shadow darkens them rather than sitting under them",
+        "a hachure phenology ramp whose position along it is days elapsed at 4.3602 px per day, so the ramp IS the seven month calendar rather than a gradient placed by eye",
+        "a horizontal domain warp over a distant live oak motte line, which is the only element in the band with an edge a horizontal displacement can move",
+        "two runs of the same ground in plan-oblique, each crossed by a hard cast edge at a computed fraction of its OWN length, so a proportion is drawn without a scale and no ratio can be read between them",
+        "a slope chart staked as a lit plywood board, with the axis anchored at zero, the zero printed, and the confidence intervals drawn at true scale with caps at their own bounds",
+        "two dissimilar solids at ONE height under ONE sun, throwing one shadow length because they are the same height rather than because the light moved between them",
+        "a cumulus occlusion on a 27 degree diagonal with the penumbra feathered on BOTH sides of the terminator, and footpath ruts holding the deck's darkest values",
+        "a flow field of wind-laid grass advected on a declared onshore wind, run identically inside a staked traverse and outside it, so an absence is drawn as a measurement",
+        "a benchmark monument on open prairie, a mark set down so a LATER survey can be taken from it, which is what a prospective evaluation is"
+      ],
+      "palette": {
+        "source": "Lake Charles clay, Katy Prairie tallgrass and the Houston September sky",
+        "tokens": [
+          "crust #B1A291",
+          "clay #443428",
+          "bluestem #B37555",
+          "straw #D4B186",
+          "sky #C5DBE9",
+          "haze #ECE3D6",
+          "oakshade #203329",
+          "cloud #141B24",
+          "ink #1D140D",
+          "manager #AC654B",
+          "tool #647D97"
+        ],
+        "note": "manager and tool sit at ONE OKLCH lightness (0.58) and differ in hue and chroma only, asserted in compute.py, so colour carries no verdict about which party won. Both value extremes come from one material at two depths."
+      },
+      "value": {
+        "planned": [
+          71,
+          73,
+          79,
+          66,
+          68,
+          77,
+          17,
+          74,
+          90
+        ],
+        "measured": [
+          69.6,
+          71.1,
+          88.2,
+          66.4,
+          68.2,
+          76.8,
+          29.3,
+          73.7,
+          89.6
+        ],
+        "deck_median_L": 71.1,
+        "measured_on": "the nine shipped PNGs, by panel_ready's own arc measurement",
+        "note": "Within one Munsell step of plan on every frame. The turn at 7 came in at 29.3 against a planned 17, so the deck's one dark frame is lighter than intended and reads as a half-dark frame bisected by a diagonal rather than as a dark."
+      },
+      "cameras": [
+        "one-point perspective, VP off the right edge",
+        "flat elevation with a left-to-right ramp",
+        "long lens to a horizon through heat",
+        "plan-oblique from above and left",
+        "frontal to a staked board",
+        "near frontal at object distance",
+        "low oblique under a cloud",
+        "high and wide over a traverse",
+        "near frontal to open sky, horizon at 0.80"
+      ],
+      "bespoke": {
+        "median_pairwise_similarity": 0.3169,
+        "closest_pair": [
+          "slide-02",
+          "slide-09"
+        ],
+        "closest_value": 0.7412,
+        "note": "Comfortably clear of the 0.55 line. The closest pair rose when slide 9's type moved right and its monument moved left, which gave it slide 2's left-heavy-art right-heavy-type balance."
+      },
+      "light_deck_note": "THE CAP BINDS AND THIS DECK BREACHES IT, and unlike deck 14 this run CHOSE the register knowing so. deck_median_L is 71.1 against LIGHT_L 60.0, and the eight run window still holds deck 14 at 73.1. check_register does NOT fail, because deck 14's named waiver subtracts it and leaves over = 1, which is the exact effect deck 14's own light_deck_note says a waiver must never have. So the brand rule is broken behind a green gate. Deck 14's avoid_next is addressed to this deck by name and says do not reach for a light ground again until the counted window holds none. It held one. Two of three judges marked variety down to 5.0 and 5.5 for it and both were right. NO WAIVER IS CLAIMED FOR THIS DATE. It is recorded as a breach.",
+      "avoid_next": [
+        "THE NEXT DECK IS DARK, AND THIS IS A DEBT THIS RUN INCURRED RATHER THAN INHERITED. Deck 14's breach was a plan nobody measured until round 3. This one chose a light register with deck 14 still in the window and wrote the justification into its storyboard, where it miscounted the ledger twice and had to be corrected against the measurements. Draw the next deck in the Big Bend dusk family and do not reach for a light ground until the counted window holds none.",
+        "A FRAME COMPUTED ITS OWN GEOMETRY AND FOUR SCORING PANELS DID NOT SEE IT. slide-05.html drew its plot at 180 px per day while compute.py held 300, so every y coordinate computed.json published for that frame described a plot nobody drew. slide-04.html held run_depth 138 and run_gap 178 against computed.json's 96 and 190, under a comment reading FROM compute.py. Both were hand-synced literals. The fix is to INJECT each slide's computed block into its frame rather than retyping it, and it is in the backlog as a proposal.",
+        "THE RUN CORRECTED THE RECORD TOWARD THE WRONG HALF. A judge reported aggregates.json declaring 180 against computed.json's 300 and the run changed the declaration to 300 with a confident paragraph attached. 300 was the number nobody drew. When two files disagree about a drawing, MEASURE THE RENDER before deciding which one is stale.",
+        "A REPAIR CAN BE WORSE THAN THE DEFECT AND ONLY THE THUMB WILL SAY SO. Round 4 put a lit sill slab under the cover's doorway to stop it reading as a hole in a wall, and a sill is the most window-defining element in architecture, so all three judges then read the cover as a window. Round 5's ambient fix on slide 6 clipped its own gradient and rendered two translucent boxes. Read every repair at 432px against the defect it was meant to cure.",
+        "THREE UNSOURCED STRINGS REACHED FRAMES AND NO GATE COULD SEE ANY OF THEM. OPEN ACCESS AND FREE TO READ TODAY on slide 9, an unlicensed universal on slide 2, and a cover dek making the hospital the subject of both compared and published when c1 places only the encounters there and c14 names the journal. Each was found by a human-style read of pixels against claims.json. The gate that would catch the class extracts the SUBJECT and main verb of every declarative sentence and checks that subject is an agent of that act inside a cited claim's quote.",
+        "A BANNED PHRASE SHIPPED TO TWO SURFACES BEHIND A GREEN caption_check. brand.yaml lists actionable in banned_phrases and caption_check.py does not read that key at all. Same shape as the light cap: a rule stated in config with nothing in between checking it.",
+        "SLIDE 9 IS THE THINNEST FRAME FOR THE FIFTH CONSECUTIVE DECK, which decks 13, 14, 15, 16 and 17 each wrote down and none has paid. Draw the close FIRST next time.",
+        "THE TYPE MOVED ON THREE FRAMES AND IT MOVED IN ROUND 3. Deck 15 asked for three moves PLANNED IN THE STORYBOARD rather than repaired late, and two of the three here are right-alignment, the cheapest move on the shelf."
+      ]
     }
   ]
 }

@@ -1,0 +1,18 @@
+Sources. Every fact on every frame traces to one of these, all from the same record.
+
+c1 Inpatient encounters at Houston Methodist Hospital discharged between August 1st, 2023 and February 28th, 2024. https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+c2 At 24 hours, 79.5% of case manager estimations fell within 1 day vs 37.9% for AI estimations.
+c3 Mean absolute error at 48 hours and at 24 hours, case managers against AI, with confidence intervals.
+c4 At admission accuracy was similar between methods, and case managers matched the exact date more often.
+c5 The dates came from a commercial clinician-assisted tool integrated with the EHR.
+c6 AI-estimated discharge was comparable to usual care at admission but outperformed by case managers as discharge approached, when accurate estimations are most actionable for bed management.
+c7 The strong admission correlation did not persist nearer discharge and should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay.
+c8 Case manager estimates were part of usual care and visible to care teams, so they may be partly self-fulfilling. AI estimations were accessible in the EHR but not enabled automatically.
+c9 Whether the AI's incremental accuracy in selected subgroups justifies the complexity of implementation warrants prospective, outcome-based evaluation.
+c11 No baseline patient demographic data were available.
+c12 The study followed the SQUIRE reporting guideline.
+c13 Havish S Kantheti, MD, Connor Dolan, BS, Jordan Dale, MD.
+c14 Published September 3rd, 2026, doi 10.1001/jamanetworkopen.2026.32033.
+
+The full study is at https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+The record entry is at https://texasaidocket.com/item/tx-2026-0129/

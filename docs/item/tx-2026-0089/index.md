@@ -9,7 +9,7 @@ The Speaker's interim charges give a charge to the House Committee on Delivery o
 - Public access: Public meeting
 - Take part: https://house.texas.gov/committees/committee/233
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The House government-efficiency study of artificial intelligence for fraud detection remains an unresolved interim charge.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-05 · The efficiency committee still carries the charge to study AI for finding fraud in state spending. It has published nothing on it.
+- 2026-09-09 · The government efficiency committee still carries the charge to study whether the state should buy artificial intelligence differently, and has reported nothing.
 
 ## Evidence
 

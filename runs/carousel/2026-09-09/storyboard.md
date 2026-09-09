@@ -31,9 +31,19 @@ arriving as physics rather than as a chart.
 six of nine frames and every one of them named that as its own top risk for `bespoke_check`. The
 fix is not to draw fewer shadows, it is to stop using ONE instrument for nine different claims.
 A proportion is drawn as a fraction of a run. A direction is drawn as a slope. A sameness is drawn
-as air. An absence is drawn as a staked empty traverse. Only three frames now carry a cast shadow
-on ground, and each does a different job with a different edge quality: a soffit gradient, a hard
-proportional edge, and a cloud occlusion.
+as air. An absence is drawn as a staked empty traverse. FOUR frames carry a cast shadow on ground and each does a
+different job with a different edge quality: a soffit gradient on 1, two solids agreeing on one
+length on 6, a knee-high string line on 8, and a low raking cast on 9. Slide 7's dark is a cloud
+OCCLUSION rather than a cast, and slide 4's near edges are GRADE lines in the surface rather than
+shadows above it.
+
+This paragraph said THREE, then FOUR naming the wrong four, and it is worth keeping the trail
+visible. Two judges counted three against four. A third then counted five, correctly including
+slide 8's string line, which the first correction had missed while adding slide 4. Slide 4 then
+stopped casting at all, because ground does not cast onto ground and its band was a drop shadow
+deck 8's law rejects by name. The sentence was written at planning time and re-read against the
+render three times before it was right, which is the same defect as the two acceptance items that
+described a slide 3 nobody drew.
 
 **c10 IS CUT FROM THE DECK, DELIBERATELY.** The three encounter counts print with a thin space
 inside the thousands, and `numeral_lint` was asked before anything was planned rather than at the
@@ -56,8 +66,23 @@ it because every gate after the plan grades the frame against the plan.
 
 ## The value arc
 
-A LIGHT deck with ONE dark turn, inverting five consecutive dark-interior decks. The turn is
-slide 7 and slide 9 is the brightest thing this account has posted in a fortnight.
+A LIGHT deck with ONE dark turn. The turn is slide 7 and slide 9 is the deck's own brightest
+frame at a measured 89.6.
+
+**BOTH SENTENCES THAT USED TO SIT HERE WERE FALSE AGAINST THE LEDGER, and a judge checked them
+rather than reading them.** They claimed the deck inverts "five consecutive dark-interior decks"
+and that slide 9 is "the brightest thing this account has posted in a fortnight".
+`ledger/carousel/artwork.json` says three, decks 15, 16 and 17 at 22.5, 16.5 and 11.4, and then
+deck 14 at 73.1, which is light. And deck 14's own frame 2 measured 94.1 six days ago, above
+anything here. The variety credit this deck actually has is the outdoor daylight register and a
+peer-reviewed study as its instrument, and it does not need a claim the ledger refutes on top.
+
+**AND THE REGISTER ITSELF IS A DEBT THIS RUN INCURRED RATHER THAN AVOIDED.** Deck 14's
+`avoid_next` is addressed to this deck by name: "do not reach for a light ground again until the
+counted window holds none." The window still holds deck 14 at 73.1. `check_register` passes only
+because deck 14's named waiver subtracts it and leaves `over = 1`, which is the exact effect that
+waiver's own note says it must never have. The gate is green and the brand rule is broken, and
+that gap is the run's own to write up rather than to lean on.
 
 The planned value arc, in median CIELAB L\* per frame at 432px wide:
 
@@ -75,6 +100,33 @@ F9 90
 
 Each frame also publishes its own median to `window.__txProbe`, so the arc is measured on the
 render rather than asserted in the plan.
+
+## A frame computed its own geometry, and the run corrected the record toward the wrong half
+
+**Slide 5 drew its plot at 330 to 812 by 660 to 1020, which is 180 pixels per day. `compute.py`
+held 250 to 900 by 380 to 980, which is 300.** So every y coordinate `computed.json` published for
+that frame, the four series points, the eight interval bounds, the zero rule and both pixel gaps,
+described a plot no frame contained, and the frame worked from its own literals with a comment
+beside them reading `// 300 px per day` over arithmetic that produces 180.
+
+CLAUDE.md's rule is that every measurable length, fraction and coordinate comes from `compute.py`
+and nothing is eyeballed. This is the one frame that quietly opted out, and **no gate compares a
+frame's geometry to the file that is supposed to own it.** `plan_render_check` compares STRINGS.
+`numeral_lint` reads published numerals and neither of these was published. `aggregate_check`
+reads declarations rather than the drawing.
+
+**And the run made it worse before it made it better.** Round 2's integrity judge found
+`aggregates.json` declaring 180 against `computed.json`'s 300 and reported the disagreement. The
+run resolved it by changing the declaration to 300, wrote a confident paragraph about the wrong
+number living only in the declaration, and shipped that into round 3. 300 is the number nobody
+draws. The declaration had been right the whole time, for a reason nobody had checked.
+
+It surfaced in round 4 only because a knockout panel was positioned from the 300 reading, landed
+on the wrong row of the frame, and struck a label. **A layout accident found it, not a check.**
+
+The disposition: the frame is what a reader receives, so `compute.py` was brought to the frame's
+rect and the declaration went back to 180. The upgrade this argues for is in the backlog rather
+than here, because it is a new gate and this run does not get to write one on its own lane.
 
 ## The palette, and every source is a place rather than a product
 
@@ -120,7 +172,7 @@ tool #647D97
   frame. This lens invites sentimentality and the guard against it is structural.
 - Every measurable length, fraction and coordinate comes from `compute.py`. Nothing is eyeballed.
 - The horizon is declared per slide and never sits at 0.50.
-- Furniture is fixed across all nine. Kicker in mono at 25px top left, counter `01 / 09` through
+- Furniture is fixed across all nine. Kicker in mono at 25px top left, reading HOUSTON METHODIST, which c1 carries verbatim. It read HARRIS COUNTY on all nine frames until round 3, and no claim in this run carries a county: deck 5 recorded that Houston does not resolve to Harris from data this repo holds, and deck 16 lost a hashtag for the same fact one surface further in, counter `01 / 09` through
   `09 / 09` at 25px top right, source line in mono at 24px along the bottom with the claim chip.
 
 ## The plan was brought up to the frames, and here is why that is not the gate being defeated
@@ -141,6 +193,21 @@ reason a gate gave, and none of them moved because a frame was easier to leave a
 **So the plan is updated and the movement is written down here, which is the part that matters.**
 A run that silently rewrites its plan to match its render has turned this gate off. A run that
 records what moved and why leaves the next reader able to check the same thing by hand.
+
+## A fact reached a frame that no claim carried, and no gate could have caught it
+
+Slide 9 shipped the line `OPEN ACCESS, AND FREE TO READ TODAY` through four gate passes. **No
+claim in `claims.json` says the study is open access.** It was added by this run to satisfy
+`texan_check`'s ask that the closing frame carry an action, which is the worst possible reason to
+put an unsourced sentence on a slide.
+
+It carries no numeral, so `numeral_lint` structurally cannot see it. It names no thing, so
+`noun_trace` cannot. It is not a negative, so `absence_check` cannot. It sits in no verbatim slot,
+so `verbatim_check` cannot. **A pixel critic reading the frame against the claims file found it,
+and nothing else in this run could have.**
+
+What replaces it is what c14 actually carries, the journal and the doi, which is also a better
+answer to the question the closing frame was asked.
 
 ---
 
@@ -191,11 +258,10 @@ art:
 
 type:
   hook: "When does this patient go home?"
-  dek: "Houston Methodist compared two ways of answering it, and published which one was closer when accurate estimations are most actionable for bed management."
-  labels: ["HARRIS COUNTY", "01 / 09"]
+  dek: "A quality improvement study compared two ways of answering it at Houston Methodist, and reported which one was closer."
+  labels: ["HOUSTON METHODIST", "01 / 09"]
 
-verbatim:
-  - c6: "when accurate estimations are most actionable for bed management"
+verbatim: []
 
 acceptance:
   - "the doorway aperture is the darkest region in the frame, and the sunlit lane the lightest, measured off the rendered PNG at 432px"
@@ -256,7 +322,7 @@ art:
 
 type:
   hook: "Two answers, one date"
-  dek: "The hospital's own staff, and a commercial clinician-assisted tool integrated with the EHR, over every inpatient encounter discharged in the window below."
+  dek: "The hospital's own staff, and a commercial clinician-assisted tool integrated with the EHR, over inpatient encounters discharged in the window below."
   labels: ["CASE MANAGERS", "AI ESTIMATIONS", "02 / 09"]
 
 verbatim:
@@ -324,7 +390,7 @@ art:
 type:
   hook: "At admission, level"
   dek: "At admission the case managers and the tool sat within a fraction of a day of each other on error."
-  labels: ["CASE MANAGERS", "23.6%", "AI ESTIMATIONS", "15.3%", "03 / 09"]
+  labels: ["CASE MANAGERS", "4.20", "AI ESTIMATIONS", "4.27", "MEAN ABSOLUTE ERROR IN DAYS, AT ADMISSION", "03 / 09"]
 
 verbatim: []
 
@@ -334,7 +400,7 @@ acceptance:
   - "every glyph bounding box in the frame sits outside the shimmer band, and no type is warped"
   - "the shimmer amplitude is at or under 6 design px and is applied to the field layer only"
   - "the bottom third carries sharp unwarped prairie texture and a scale tick, and the near clay panel is the lightest region in the frame"
-  - 'the frame carries "EXACT DATE" and prints no mean absolute error figure, because those belong to slide 5'
+  - 'the frame prints 4.20 and 4.27 under "MEAN ABSOLUTE ERROR IN DAYS, AT ADMISSION" and states no difference between them'
 
 risks:
   - "a frame whose subject is that a difference is invisible can be read by a pixel critic as a failed render. The reads:\"same\" declaration is the mitigation and it is also an admission that the frame carries a null result."
@@ -347,7 +413,7 @@ job: >
   Draw the last day's result as a proportion of a whole rather than as a length, so a reader sees
   how much of each method's work landed inside one day without needing a scale.
 
-claims: [c2]
+claims: [c2, c6]
 numerals:
   - value_from: c2
   - computed_by: "compute.py, each run's shadow edge placed at 0.795 and 0.379 of that run's own length"
@@ -391,7 +457,7 @@ art:
 
 type:
   hook: "On the last day, they were not"
-  dek: "WITHIN ONE DAY OF THE TRUE DATE"
+  dek: "WITHIN ONE DAY OF THE TRUE DATE 24 HOURS BEFORE DISCHARGE"
   labels: ["CASE MANAGERS 79.5%", "AI ESTIMATIONS 37.9%", "WITHIN ONE DAY", "04 / 09"]
 
 verbatim: []
@@ -402,7 +468,7 @@ acceptance:
   - 'the upper run carries "CASE MANAGERS 79.5%" and the lower run carries "AI ESTIMATIONS 37.9%"'
   - "both shadow masses are the same colour at the same intensity, so length is the only variable, and there is no gradient or falloff along either edge"
   - "the band between the two runs carries wind-laid grass texture and no rule, tick or axis, so no ratio can be read between the runs"
-  - "each run has a two-part contact shadow at its near edge, declared in data-contacts, at 8.0 L* separation or better"
+  - 'neither run carries a contact shadow and the frame declares none, because both runs ARE ground seen plan-oblique and ground does not cast onto ground. Their near edges are grade lines in the surface'
   - "no dial, arc, gauge or radial geometry appears anywhere in the frame"
 
 risks:
@@ -460,14 +526,14 @@ art:
 
 type:
   hook: "One improved. One got worse."
-  dek: "Mean absolute error in days. The two never meet, and the gap between them is wider at the door than it was at the earlier reading."
-  labels: ["CASE MANAGERS 1.29 to 0.98", "AI 1.59 to 1.93", "DAYS", "0", "05 / 09"]
+  dek: "Mean absolute error in days. The two never meet."
+  labels: ["CASE MANAGERS", "AI ESTIMATIONS", "1.29", "0.98", "1.59", "1.93", "HIGHER IS FURTHER FROM THE TRUE DATE", "ERROR IN DAYS", "48 HOURS", "24 HOURS", "0", "05 / 09"]
 
 verbatim: []
 
 acceptance:
   - 'the frame carries "One improved. One got worse." as its hook, and the vertical axis starts at zero with the numeral 0 printed on it'
-  - 'the frame carries "CASE MANAGERS 1.29 to 0.98" above or left of "AI 1.59 to 1.93"'
+  - 'the key reads "CASE MANAGERS" left of "AI ESTIMATIONS" and each figure sits beside its own line'
   - "the two series lines sit within 2 L* of each other, measured off the rendered PNG, and differ in hue and chroma only"
   - 'the two lines do not intersect anywhere inside the plot area, and the vertical gap between them at the right hand station is greater than at the left'
   - "the confidence intervals are drawn at true scale and the px-per-day figure is published to window.__txProbe, and no interval is drawn wider than its own value"
@@ -506,13 +572,21 @@ composition:
     read as one shape because they are the same length.
 
 art:
-  technique: "SDF raymarch (TXSDF) for two dissimilar solids under one light, with the shadow lengths solved to equality"
+  technique: "two dissimilar solids drawn as flat-shaded masses under one solved light, at one height, so the shadow lengths are equal by construction. THE RAYMARCH FALLBACK WAS TAKEN, and the risk note below is the one that named it"
   why_this_technique: >
     The claim is that agreement on an output is not evidence of agreement on the process behind
     it, and there is no way to state that in a chart. Two objects that share nothing but the
     length of their shadows IS the claim, drawn. Raymarching is what lets the two forms be
-    genuinely unlike rather than two versions of one primitive, and it is the one frame in the
-    deck worth its cost.
+    genuinely unlike rather than two versions of one primitive. The raymarch did not survive the
+    build and the fallback this dossier already named was taken instead: a stepped prism and a
+    continuous curved mass, both flat shaded under the same key. They are unlike enough at 432px,
+    and the claim rests on the shadows rather than on the surfaces.
+
+    WHAT THE FIRST BUILD GOT WRONG, kept here because it is the finding. It stood each solid at a
+    different height and gave each its own sun altitude so both would throw one length. That makes
+    the agreement a property of the LIGHTING, which is the opposite of the claim, on the frame the
+    deck turns on. Under one sun two solids throw one length only by standing the same height, so
+    they do, and every other dimension still differs.
   palette: "Lake Charles clay lit and in shade, with both solids in neutral clay values so neither carries the manager or tool hue"
   value_structure: >
     Lightest is the lit clay between and around the two solids. Darkest is the two shadow masses,
@@ -531,9 +605,11 @@ verbatim:
   - c7: "should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay"
 
 acceptance:
-  - 'the two solid regions are declared in data-encodes with reads differ and the two shadow regions with reads same, in the same frame'
+  - 'the two shadow regions are declared in data-encodes with reads same, and NO differ pair is declared for the solids: they are drawn in one clay value on purpose so neither is coded as a party, and a colour probe would answer that question wrongly'
   - "the two shadow lengths match within one pixel measured at 432px, and both lengths are published to window.__txProbe"
-  - "the raymarch step count and epsilon are fixed independent of output scale, so the 432px thumb shows the same surface as the full render"
+  - "ONE sun altitude governs the frame, published to window.__txProbe as sun_alt_deg with one_sun true, and the two solids stand at the SAME HEIGHT, which under one light is the only way two solids agree on a shadow length"
+  - "the ground rule that marks the shadow tips is drawn AT the tips, at GROUND_Y plus the cast's own vertical component, and never at a ground distance used as a screen distance"
+  - "the curved solid's apex is SOLVED to its declared height rather than eyeballed, because a cubic with both control points at one height peaks below them"
   - "each solid has a two-part contact shadow at its footing, declared in data-contacts, at 8.0 L* separation or better"
   - "neither solid is drawn in the manager hue or the tool hue, so neither is identified as a party"
   - 'the frame carries "the same information clinicians use throughout the stay" and attributes it to the authors rather than to this record'
@@ -588,7 +664,7 @@ art:
 
 type:
   hook: "One estimate was being read"
-  dek: "THE STUDY'S AUTHORS, AGAINST THEIR OWN RESULT"
+  dek: "Estimates were part of usual care and visible to care teams. They may be partly self-fulfilling. The authors' own word for it is advantaged nearer discharge."
   labels: ["07 / 09"]
 
 verbatim:
@@ -679,7 +755,7 @@ job: >
   Close on what the authors say has to happen next, and tell the reader where the study and the
   record entry can be read, which is the only action this story offers.
 
-claims: [c9, c12, c14]
+claims: [c9, c14]
 numerals:
   - value_from: c14
 
@@ -718,8 +794,8 @@ art:
 
 type:
   hook: "What settles it"
-  dek: "The authors say what has to happen before anyone decides the tool is worth what it takes to run it."
-  labels: ["texasaidocket.com", "SEPTEMBER 3RD, 2026", "09 / 09"]
+  dek: "The authors say what has to happen before anyone decides the tool's extra accuracy in some subgroups justifies the complexity of putting it in."
+  labels: ["JAMA NETWORK OPEN, SEPTEMBER 3RD, 2026", "DOI 10.1001/JAMANETWORKOPEN.2026.32033", "09 / 09"]
 
 verbatim:
   - c9: "warrants prospective, outcome-based evaluation"
@@ -727,9 +803,9 @@ verbatim:
 acceptance:
   - "the horizon sits at or below 0.22 of frame height"
   - "this frame's median lightness at 432px is the highest of the nine, published to window.__txProbe"
-  - 'the frame carries "warrants prospective, outcome-based evaluation" and names where the study can be read, and is the only frame in the deck carrying an action'
+  - 'the frame carries "warrants prospective, outcome-based evaluation" and names the journal and the doi, which is where the study can be read'
   - "the monument has a two-part contact shadow, declared in data-contacts, at 8.0 L* separation or better"
-  - 'the frame prints "texasaidocket.com" and no "talonsturgill.github.io" address appears anywhere on it'
+  - 'the frame prints "JAMA NETWORK OPEN" and no "talonsturgill.github.io" address appears anywhere on it'
   - "the monument's cast shadow runs toward the bottom edge of the frame, away from the low sun behind the reader"
 
 risks:

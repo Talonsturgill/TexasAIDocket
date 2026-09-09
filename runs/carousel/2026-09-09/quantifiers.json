@@ -1,0 +1,33 @@
+{
+  "run": "2026-09-09",
+  "note": "Both sets are measured by this script rather than written down. It asserts the two facts the sentences assert, so a drift fails here before the gate sees it.",
+  "quantifiers": [
+    {
+      "phrase": "every fact on every frame traces to one of these",
+      "about": "claims",
+      "from_items": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c11",
+        "c12",
+        "c14"
+      ],
+      "measured_by": "tmp/quantifiers_build.py reads every citation footer laid out in render_report.json and asserts each id it finds is listed in first_comment.txt. The set is the ids the frames actually print."
+    },
+    {
+      "phrase": "all from the same record",
+      "about": "documents",
+      "from_items": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/"
+      ],
+      "measured_by": "the distinct url over those same claims in claims.json, asserted to be exactly one. Two documents would fail rather than publish."
+    }
+  ]
+}

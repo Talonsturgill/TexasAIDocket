@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The statutory sandbox duty remains pending, with no published DIR program launch in the record.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-05 · The statute still places the sandbox duty on the state technology agency and still sets the reporting date it has to answer by. Whether the agency has opened one is unconfirmed.
+- 2026-09-09 · The regulatory sandbox letting state agencies test AI systems outside the ordinary rules is still a duty on the state technology agency. It still has no published program behind it.
 
 ## Evidence
 

@@ -8,7 +8,7 @@ Chapter 552 of the Business and Commerce Code supersedes and preempts any local 
 - Status: decided
 - Public access: Closed
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The state-law preemption of city and county rules governing artificial-intelligence use remains in force.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · State law still takes AI regulation away from cities and counties. No local ordinance has tested the preemption in court.
+- 2026-09-09 · Cities and counties still can't write their own artificial intelligence rules. The state preemption stands as enacted.
 
 ## Evidence
 

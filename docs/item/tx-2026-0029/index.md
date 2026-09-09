@@ -11,7 +11,7 @@ The Williamson County Commissioners Court approved a Chapter 312 tax abatement i
 - Public access: Write to the decider
 - Take part: https://www.wilcotx.gov/m/newsflash/Home/Detail/789
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Williamson County's approved Compal server-service-center abatement remains in place without a published amendment or termination.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · Williamson County's abatement for the Georgetown server service center still stands as granted. Nothing has been filed to amend or rescind it.
+- 2026-09-09 · The Chapter 312 abatement Williamson County granted Compal is still in force on the terms the court adopted, and the agreement has not been amended since.
 
 ## Evidence
 
