@@ -514,6 +514,25 @@ def self_test() -> int:
        any("first person" in p for p in caption_check.check(our_prose(
            '<html><main><p>The owner of record is Galaxy Helios I on that row.</p></main></html>'))))
 
+    # THE FRONT PAGE'S OWN CHIP, WHICH TURNED `main` RED ON 2026-09-09. The telemetry chip
+    # rotates, the drought candidate led for the first time, and its first segment is the body
+    # that authored the reading rather than a weather station. That body is the
+    # `US Drought Monitor` and this rule read the US in it as first person.
+    #
+    # The name could not be dropped: `drought_collect` attributes it in that segment ON PURPOSE,
+    # because a drought figure is a panel's judgement and not a thermometer, and `frontchip`'s
+    # own self-test requires the attribution. So `site_context.telemetry` declares it, and this
+    # is the replay in both directions on the exact markup that failed.
+    chip = ('<html><body><div class="tele" data-proper-name="US Drought Monitor">'
+            'US Drought Monitor<span>69% of Texas in drought on September 1st</span>'
+            '<span>normal is 41</span></div></body></html>')
+    ok("the front page's drought chip is not read as first person",
+       not any("first person" in p for p in caption_check.check(our_prose(chip))),
+       str(caption_check.check(our_prose(chip)))[:120])
+    ok("...and the same chip undeclared is exactly the failure main hit",
+       any("first person" in p for p in caption_check.check(our_prose(
+           chip.replace(' data-proper-name="US Drought Monitor"', "")))))
+
     # ---- the address never reaches a page --------------------------------------
     # A gate that cannot go red is a comment. This one guards a promise the site makes to every
     # reader who opens the contact dialog, so it is proved in both directions here rather than
