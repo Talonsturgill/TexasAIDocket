@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The contract is still live on the cooperative purchasing site and artificial intelligence consulting is still listed among the services a member government may buy through it. The suppliers offering it are unchanged.
 - 2026-09-02 · The purchasing contract is still listed as active and its category is unchanged.
 - 2026-09-05 · AI consulting services are still on the regional council's purchasing catalog and the contract behind them is unchanged.
+- 2026-09-08 · AI consulting services are still listed on the regional council's purchasing catalog under the same contract, so any member government can still buy them without running its own procurement.
 - 2026-09-09 · Artificial intelligence consulting is still on the regional council's purchasing schedule, so any member government can still buy it without running its own procurement.
 
 ## Evidence

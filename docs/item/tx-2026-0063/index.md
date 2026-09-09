@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The pending applications list still carries the four data center air permits with their published notices. The requirement that an applicant publish notice and provide a plain language summary is unchanged.
 - 2026-09-02 · The applications are still posted with published public notices and none has been withdrawn.
 - 2026-09-05 · The agency's pending permit list still carries the data center applications with published notice. None has been withdrawn.
+- 2026-09-08 · The state environmental agency still posts the same four data center air permit applications with public notices, and Crusoe's two Texas campuses are still among them. None has moved to a decision.
 - 2026-09-09 · The four data center air permit applications are still posted as pending with published public notice.
 
 ## Evidence

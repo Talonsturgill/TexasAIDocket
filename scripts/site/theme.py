@@ -2245,11 +2245,37 @@ nav.main a[aria-current]::after {{ right:0; }}
 }}
 /* AND THE TELEMETRY PILL STOPS RUNNING UNDER IT. Measured with the mark forced on and its box
    compared against the hero's, the mark never touches the headline at any width down to 360px.
-   The only thing it ever met was this strip, between about 640 and 800 pixels, where the pill
-   is long enough to reach the right gutter. Capping the strip is a smaller change than deleting
-   a mark, and it is the change that matches what was actually wrong. */
-@media (min-width:30.01rem) and (max-width:56rem) {{
-  .home .hero .tele {{ max-width:74%; }}
+   The only thing it ever met was this strip, where the pill is long enough to reach the right
+   gutter. Capping the strip is a smaller change than deleting a mark, and it is the change that
+   matches what was actually wrong.
+
+   THE UPPER BOUND WAS THE BUG AND IT TURNED `main` RED ON 2026-09-09. This read
+   `max-width:56rem`, and 56rem is 896. Above it the cap simply stopped, which was harmless for
+   as long as the longest thing the chip could say was short enough to not reach the mark
+   unaided. The chip ROTATES. On the day the drought candidate first led it, the strip read
+   `US Drought Monitor 69% of Texas in drought on September 1st normal is 41` and measured 748
+   pixels, and the band the cap had been fitted to was the band the OLD candidates collided in.
+
+   Measured on the built page, star's left edge against the strip's right, at every width the
+   responsive suite tests:
+
+     width   strip ends   star starts   overlap
+      896        650          672          none    <- last width the old cap covered
+      960        776          720          56px
+     1024        776          773           3px
+
+   The 56 pixel overlap is the cap switching off. The 3 pixel one is why CI saw this and a dev
+   box did not: at a hairline the answer is a verdict about which chromium is measuring, which
+   is the thing `tests/responsive.mjs` says in its own header.
+
+   So the bound is gone rather than moved, because a hand fitted band is what failed. The cap
+   now holds at every width above the phone breakpoint, where the mark is beside the strip at
+   all of them. 71% is computed rather than chosen: the tightest width is 720, where the strip
+   may occupy 74.8% of the hero and still clear the mark by twelve pixels, and 71 is that with
+   the four percent margin this suite requires between two chromium builds. It does not bite at
+   all above about 1400, where the strip's natural width is already inside it. */
+@media (min-width:30.01rem) {{
+  .home .hero .tele {{ max-width:71%; }}
 }}
 
 /* ---- the hero ----------------------------------------------------------- */

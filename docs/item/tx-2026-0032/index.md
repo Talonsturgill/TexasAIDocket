@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The commission's denial still stands as a recommendation rather than as the decision, and the final zoning call still belongs to the Killeen City Council. Nothing on the record shows the council has taken it up.
 - 2026-09-02 · The commission's denial of the conditional use permit stands and the city has recorded no further action on it.
 - 2026-09-05 · The Killeen commission's refusal of the conditional use permit still stands and the agenda that carried it is unchanged. Nothing new has been filed for the site.
+- 2026-09-08 · Killeen's commission still stands on its refusal of the conditional use permit for the ONMINE data center. The agenda that carried the item is still posted and no rehearing appears on a later one.
 - 2026-09-09 · Killeen's planning commission has not revisited the conditional use permit it voted down, and the agenda that carried it reads as it did.
 
 ## Evidence

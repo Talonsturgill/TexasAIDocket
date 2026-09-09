@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Conroe's effort to send the Flock contract to voters remains short of the required council support.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The Conroe camera contract is still off the November ballot for want of the votes. Nothing has been reconsidered.
+- 2026-09-08 · Conroe's Flock camera contract still stands without a public vote on it. The council never found the votes to put it on the ballot.
 - 2026-09-09 · The Conroe Flock camera question is still off the ballot, because the council never found the votes to put it on, and nothing has been refiled.
 
 ## Evidence

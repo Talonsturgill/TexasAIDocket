@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Fort Worth's moratorium and grid-filing direction remain active while permanent data-center rules are still in development.
 - 2026-09-02 · Checked and unchanged. Still open, with no dated movement.
 - 2026-09-05 · Fort Worth's moratorium is still running and the grid filing requirements adopted with it are still in force. No extension has been voted.
+- 2026-09-08 · Fort Worth's data center moratorium is still running and the grid filing requirements adopted with it are still in force.
 - 2026-09-09 · Fort Worth's data center moratorium is still running and the grid filing rules the council adopted alongside it are still in force.
 
 ## Evidence

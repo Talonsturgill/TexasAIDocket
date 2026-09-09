@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · ERCOT's proposed grace period for data-center cooling equipment remains under consideration.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-05 · The grid operator is still weighing the grace period for data center cooling equipment under the ride-through rules. Nothing is adopted.
+- 2026-09-08 · The grid operator is still weighing a grace period for data center cooling equipment under the ride-through rules, with nothing adopted.
 - 2026-09-09 · The grace period on ride-through rules for data center cooling equipment is still a proposal in front of the grid operator.
 
 ## Evidence

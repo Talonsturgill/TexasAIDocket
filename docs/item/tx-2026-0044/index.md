@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The resolution still asks the Legislature for authority the county does not have, and it is still a request rather than a rule. Nothing has been enacted in response to it.
 - 2026-09-02 · The resolution stands as adopted. The authority it asks for still rests with the Legislature, which does not sit again in regular session until next year.
 - 2026-09-05 · Angelina County's resolution asking the Legislature for authority over data centers still stands. The Legislature has not answered it.
+- 2026-09-08 · Angelina County's resolution asking the Legislature for authority over data centers still stands, and no answer from the state has been published to it.
 - 2026-09-09 · Angelina County's resolution asking the Legislature for authority over data centers is still standing and has drawn no answer.
 
 ## Evidence

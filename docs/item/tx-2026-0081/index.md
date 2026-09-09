@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · UT Austin's award for learning robot-safety constraints from demonstrations remains in the federal record.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The Austin award on learning robot safety rules from demonstrated behavior still stands. Nothing about the grant has moved.
+- 2026-09-08 · The UT Austin award for learning robot safety from demonstrated behavior rather than hand written rules is still active as awarded.
 - 2026-09-09 · The UT Austin award to replace hand written robot safety rules with a learned model is still active, and the award record shows no change.
 
 ## Evidence

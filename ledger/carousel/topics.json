@@ -544,6 +544,34 @@
       "angle_note": "THE SPINE WAS A THING SOMEBODY DID AND THAT DEBT IS PAID. Four consecutive run records asked for it in capitals. The cover opens on a dated act, the closure, and seven of nine frames are things that happened or documents that say something rather than documents that are quiet. The one honest absence, frame 4, is scoped to one page and bylined to it. THE PLACE ARRIVED IN ROUND FOUR AND IT IS THE WRONG ONE. Three judges across two rounds charged the deck for naming no Texas place, and the answer given twice was that no claim carried one. The Horizon guide had it all along, in a snapshot this run fetched at 06:56, saying the machine goes in a new 20 MW data center with advanced liquid cooling in Round Rock, Texas. It is now claim c22, quoted on frame 6 in the source's own words and carried in the caption, and texan_check reports a place where it reported none. What did NOT get fixed is that Round Rock sits in Williamson County and belongs to the SUCCESSOR, while the machine this deck is about is at UT Austin in Travis County and is never located on any frame. So the deck names a place and still does not place its subject. The research lesson is to grep the snapshots already in hand before concluding a story carries no place, and the selection lesson is that a place belonging to the wrong noun answers the gate without answering the reader. A SECOND THING, and it is a dedupe blind spot rather than a craft note. Deck 14 on September 3rd was the Texas A&M VISION supercomputer whose own docs say access is invitation-only, and this is a Texas university supercomputer whose own docs say limited only to internal users. Different institution, different machine, different docket item, so dedupe_check cannot see it and did not fail it. Two judges said it reads as the same story twice in five days. The gate compares topic, entities and keywords and it does not compare INSTRUMENT, which is the field that would have caught this one."
     },
     {
+      "date": "2026-09-08",
+      "carousel_no": 18,
+      "docket_item": "tx-2026-0129",
+      "topic": "Austin City Council adopting Resolution No. 20260812-017 on August 12th, 2026, which directs the City Manager to acquire, deploy and activate the kinds of parks security equipment it names, and in the same text bars that officer from considering a camera or drone system that depends upon artificial intelligence to conduct surveillance or analysis.",
+      "angle": "THE SAME COUNCIL SPOKE TWICE ON THE SAME SUBJECT AND THE SECOND TIME IT CLOSED A DOOR THE FIRST LEFT OPEN. City Code Chapter 2-19, adopted in April, already lists artificial intelligence or machine learning tools among what is not permitted, with an exception for whatever the city's own policy allows. The August clause reaches a camera or drone in the parks, carries no exception at all, and binds a single officer for a single kind of purchase. The deck's structural device is the resolution's own page break, which falls between the words artificial and intelligence, so the reader's thumb performs it.",
+      "entities": [
+        "Austin City Council",
+        "City of Austin",
+        "City Manager",
+        "Council Climate, Water, Environment, and Parks Committee",
+        "Austin Parks and Recreation Department",
+        "City Code Chapter 2-19"
+      ],
+      "keywords": [
+        "resolution",
+        "ordinance",
+        "parks",
+        "security cameras",
+        "drones",
+        "surveillance technology",
+        "privacy impact assessment",
+        "prohibited technologies",
+        "city manager",
+        "progress update"
+      ],
+      "angle_note": "THE FIRST ANGLE WAS FALSE AND A JUDGE FOUND IT. It read that Chapter 2-19 merely WEIGHED artificial intelligence as a privacy assessment factor and that August turned it into a bar. Section 2-19-9 of the same ordinance, six pages past the section the run read, lists the tools among what is not permitted. The run had the whole fourteen page extraction in hand and had cited six other sections of it. The angle above is the rebuilt spine and it is what the whole instrument says. The check the run was missing is now written into the record: before a deck asserts a contrast between two instruments, sweep the FULL snapshot of BOTH for the subject noun and either claim or explicitly reject every place it appears. The same run then recorded that the agenda published no vote while the link titled Actions Taken By Council sat unopened on the page it had already fetched, so the sweep has to cover a snapshot's own links as well."
+    },
+    {
       "date": "2026-09-09",
       "carousel_no": 18,
       "docket_item": "tx-2026-0129",

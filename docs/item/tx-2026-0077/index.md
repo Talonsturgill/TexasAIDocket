@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The hearing was held and the committee's own page still carries it in the archive of recorded meetings. What the committee concluded on the driverless charge is still unconfirmed, because its minutes and witness list sit under a directory this project does not fetch.
 - 2026-09-02 · The August 25th hearing was held and the committee's own page carries its recording. The interim charge on autonomous vehicle deployment under SB 2807 is unchanged, and the committee has published no recommendations yet.
 - 2026-09-05 · The August 25th hearing has been held and the Legislature's upcoming meetings listing no longer carries it, which is what a past sitting looks like on that page. What the committee concluded on the driverless charge is still unconfirmed.
+- 2026-09-08 · Senate Transportation's August sitting on driverless vehicle deployment is now in the committee's own video archive, and the committee has published no report from it. The state's list of upcoming Senate meetings no longer carries the hearing, because that list only ever shows what is still to come.
 - 2026-09-09 · The August 25th transportation hearing has now dropped off the chamber's list of upcoming meetings, which carries only what is still ahead. The hearing notice itself is still posted and the committee has published nothing since it sat.
 
 ## Evidence

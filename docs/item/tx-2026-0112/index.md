@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-30 · Admitted to the record. The company's own project page carries the approval and the route between the two named counties.
 - 2026-09-02 · The line is still carried among the approved projects on the utility's own list of current transmission line projects.
 - 2026-09-05 · The approved 765 kilovolt line from Somervell County to Howard County still stands as certificated and its route is unchanged.
+- 2026-09-08 · The approved 765 kilovolt line from Somervell County to Howard County still stands as ordered, and the route has not been reopened.
 - 2026-09-09 · The 765 kilovolt line from Somervell County to Howard County is still approved, and the utility's own project page still describes it as it did.
 
 ## Evidence

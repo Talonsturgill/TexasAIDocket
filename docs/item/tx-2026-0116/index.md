@@ -11,7 +11,7 @@ The Dallas City Council Public Safety Committee has put an update on the Dallas 
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/cityofdallas/matters/25839
 
-- Last checked: 2026-09-07
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-04 · The Dallas Public Safety Committee's briefing on the police department's Flock plate reader program is still set for September 8th, 2026. The city's own record still lists it as a briefing rather than as an action item. The chief of police is still the named presenter.
 - 2026-09-05 · The Dallas committee still has the plate reader briefing on its calendar. It has not been heard.
 - 2026-09-07 · The plate reader briefing is still on the Public Safety Committee's calendar for September 8th, 2026. The city's record still lists it as a briefing rather than as an action item. It has not been heard.
+- 2026-09-08 · The Dallas Public Safety Committee still has the police plate reader briefing on its calendar, and no briefing document has been posted.
 
 ## Evidence
 

@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The written-order and majority-vote limits on commission directions to ERCOT remain in the Utilities Code.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The Utilities Code still holds the commission to written direction of the grid operator. The bar on verbal directives is unchanged.
+- 2026-09-08 · The Utilities Code still holds the commission to written direction of the grid operator, and the bar on verbal directives is unchanged.
 - 2026-09-09 · The Utilities Code still holds the commission to written direction of the grid operator. The bar on verbal directives is unchanged.
 
 ## Evidence

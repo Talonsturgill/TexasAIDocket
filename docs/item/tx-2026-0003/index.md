@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · The commission decided this on August 28th, 2026. It amended the certificate to include the line and approved route 559 across the twenty two counties the application named. The administrative law judges had found the utility did not hold a further public meeting for links it added afterwards. The commission approved the line anyway, on a reading that the rule requires only one meeting before filing.
 - 2026-09-02 · The route application is still the largest file the commission holds on this line and the record shows no change to the approved route. Landowner interventions and protests remain on it.
 - 2026-09-05 · The commission's filing index for the line has taken further filings since the last reading and the approved route is unchanged. The landowner protests and interventions are still on the docket.
+- 2026-09-08 · The Dinosaur Switch to Longshore Switch application is still docketed under the same case style and still names the same counties. One more filing has been entered since the record last read the index.
 - 2026-09-09 · The commission's filing index for the line has taken further filings since the last reading. The approved route is unchanged and the landowner protests and interventions are still on the docket.
 
 ## Evidence

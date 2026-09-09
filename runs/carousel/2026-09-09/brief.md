@@ -1,6 +1,6 @@
-# The story, 2026-09-09. Carousel no. 18.
+# The story, 2026-09-09. Carousel no. 19.
 
-**Docket item tx-2026-0129**, admitted to the record today.
+**Docket item tx-2026-0137**, admitted to the record today.
 
 A quality improvement study published in JAMA Network Open on September 3rd, 2026 compared two
 ways of answering one question at Houston Methodist Hospital. When will this patient go home?

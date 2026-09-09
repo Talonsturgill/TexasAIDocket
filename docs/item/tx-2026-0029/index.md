@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Williamson County's approved Compal server-service-center abatement remains in place without a published amendment or termination.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · Williamson County's abatement for the Georgetown server service center still stands as granted. Nothing has been filed to amend or rescind it.
+- 2026-09-08 · Williamson County's abatement for the Georgetown server service center still stands as granted, and no amendment to it has been posted.
 - 2026-09-09 · The Chapter 312 abatement Williamson County granted Compal is still in force on the terms the court adopted, and the agreement has not been amended since.
 
 ## Evidence

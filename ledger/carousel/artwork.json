@@ -1100,6 +1100,93 @@
       ]
     },
     {
+      "date": "2026-09-08",
+      "carousel_no": 18,
+      "written_from": "render_report.json's own canvas statistics, machine_qa.json, panel_ready's measured value arc on the 270 by 338 grid, bespoke_check's pairwise matrix and the gates' exit codes. Every figure below is measured off the nine shipped PNGs.",
+      "register": "an Austin greenbelt park at dusk with NO KEY LIGHT AT ALL. The sky dome is the only source, so every value is a function of how much sky a surface can see, and there is no cast shadow anywhere in nine frames. Bodies are seated by occlusion at the foot and never by a drop. Austin's night sky is amber and lifted rather than black, which is what gives the deck its value band on physics rather than on taste. It is the exact inverse of deck 17, where a plane source under the floor made top faces darkest and ran every cast upward.",
+      "techniques": [
+        "a cantilever stock rack in level long lens elevation, six bays each drawn as its own material",
+        "a screed rail in one point convergence dividing placed granite from unplaced, the two distinguished by SIZE SPREAD at nearly equal value rather than by value",
+        "a weathered enamel schedule board with a MIRRORED SKY DOME across it, brightest LOW because the dome is, which is the opposite of a lit surface and is what makes it read as gloss",
+        "worm's eye through a canopy aperture onto a pole with a BARE mounting boss, four tapped holes and nothing fitted to any of them",
+        "chain link fabric as authored geometry with knuckle and twist per intersection, aperture held at 34 design px against a 26 px moire floor, and a gate leaf with its own tubing, a hinge pair and a dropped latch rod",
+        "a field print in thirty degree oblique with the clause set in the SHEET'S OWN PLANE, one type size scaled by depth and solved by fixed point rather than fitted line by line",
+        "the same print dead flat with zero perspective and NO DRAWN LIGHT OF ANY KIND, carrying page two's own nine line lengths as ruled lines that assert a document continues and nothing about what it says",
+        "a drafting elevation dimensioning a part with ten identical witness lines, the fifth called out by a leader from below the stack so no row is typographically privileged",
+        "traffic paint over galvanized spangle as an alpha mask following its own coverage, running off both frame edges so it is a length of painted steel and never a plate"
+      ],
+      "palette": {
+        "source": "an Austin greenbelt park at dusk, its materials and its skyglow",
+        "tokens": [
+          "liveoak #14170F",
+          "toner #201F22",
+          "dg_granite #7E6349",
+          "galv_side #566661",
+          "galv #879C90",
+          "edwards #B4B6A8",
+          "paint_white #D6DCD2",
+          "print #CCB98F",
+          "sky_amber",
+          "sky_high",
+          "dust #C9B393 furniture only, 3.98:1 at the top of the range",
+          "flag_red #BF0A30 spent once, on frame 9, as a PAINTED GROUND and never as a glyph"
+        ],
+        "note": "NO machine hall, no emission, no anodize and no screen glow, which is deck 17's whole palette. Seven of thirteen tokens came back inside dE 10 of the last eight decks and the run recorded the distances honestly rather than optimising the materials into a lie: two optimiser passes returned green galvanized steel and maroon live oak and both were refused."
+      },
+      "value": {
+        "planned": [
+          34,
+          30,
+          38,
+          24,
+          33,
+          26,
+          62,
+          29,
+          41
+        ],
+        "measured": [
+          28.0,
+          31.1,
+          41.8,
+          22.3,
+          31.5,
+          27.4,
+          64.5,
+          32.0,
+          41.0
+        ],
+        "deck_median_L": 31.5,
+        "planned_median": 33,
+        "measured_on": "the nine shipped PNGs, on panel_ready's 270 by 338 grid",
+        "note": "EVERY FRAME LANDED INSIDE ITS OWN DECLARED TOLERANCE, which none of three did before the pixel rounds. The ground base was solved numerically before a frame was drawn, because a first ground written the way the last three decks were written measured 16.1, which is the rut. The three that missed were 3 over by 5.4, 7 over by 8.6 and 9 UNDER by 9.9, and frame 9's was the one that mattered: its dossier calls it the second brightest frame and it had rendered fifth. Fixing it was bounded by a contrast cap rather than by taste, because the dek's ink capped the ground it sits on at L* 38.5."
+      },
+      "cameras": [
+        "level long lens elevation",
+        "one point convergence at a computed horizon",
+        "near frontal at six degrees so the board's thickness shows",
+        "worm's eye twenty degrees up",
+        "shallow three quarter across a fence plane",
+        "thirty degree oblique down a folded sheet",
+        "dead flat orthographic, zero perspective",
+        "drafting elevation, no camera at all",
+        "fifteen degrees down onto a rail at reading height"
+      ],
+      "bespoke": {
+        "pairs": 36,
+        "median_similarity": 0.2642,
+        "closest_pair": "slide-04 and slide-05",
+        "closest_value": 0.6189
+      },
+      "avoid_next": [
+        "A DECK MAY NOT ARGUE FROM ONE SECTION OF A DOCUMENT IT HAS FETCHED IN FULL. This run's spine was refuted in scoring by section 2-19-9 of an ordinance it had in hand, had cited six other sections of, and had never read. Sweep every snapshot for the subject noun before the directors room opens.",
+        "FOLLOW THE LINKS ON A PAGE YOU FETCHED. The same run recorded that the agenda published no vote while the link titled Actions Taken By Council sat on the page it had fetched. Twice in one run the answer was inside something already in hand.",
+        "A FIX IS A CHANGE AND A CHANGE CAN BE WRONG, three times here. Moving frame 6's stock below the clause destroyed the frame's own argument, removing frame 7's swell outline left it with no drawn object at 432px, and strengthening frame 6's centre crease put a dark band under centred type. Re-measure the thing the fix was aimed at AND the thing it sat next to.",
+        "THE DEK AND THE LOCATOR WERE CAREFUL AND THE DISPLAY TYPE WAS NOT. Every one of round two's three hard fails was a hook or a one line dek that dropped a qualifier present in the claim directly beneath it. Read the display strings against their own claims last, not first.",
+        "A DECLARED FOCAL IS NOT A DRAWN ONE. Three judges found frames whose dossiers name a focal with coordinates and an L* delta that the pixels do not contain. Measure the focal rect in the render before the panel does."
+      ]
+    },
+    {
       "date": "2026-09-09",
       "carousel_no": 18,
       "written_from": "panel_ready's measured value arc, machine_qa.json, bespoke_check, render_report and the gates' exit codes. The value block is MEASURED off the nine shipped PNGs.",

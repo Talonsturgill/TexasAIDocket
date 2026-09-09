@@ -19,12 +19,12 @@
     "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
   },
   "opening_moves_recent": [
-    "the object",
     "the before and after",
     "the plain question",
     "the place",
     "the number that is wrong",
-    "the correction"
+    "the correction",
+    "the quiet decision"
   ],
   "entries": [
     {
@@ -292,12 +292,29 @@
       "menu_note": "`the deadline` was assigned to director A and it lost with the caption that used it, so it is UNSPENT and remains on the menu. The ledger records what shipped."
     },
     {
+      "date": "2026-09-08",
+      "carousel_no": 18,
+      "opening_move": "the quiet decision",
+      "structure": "Pivot",
+      "closing_move": "ask the one question the decision leaves open",
+      "first_line": "The rule arrived inside a parks item.",
+      "words": 130,
+      "commas": 0,
+      "commas_per_100w": 0.0,
+      "hashtags": [
+        "#AustinCityCouncil",
+        "#TRUSTAct",
+        "#AustinParks"
+      ],
+      "critic_note": "THE CAPTION WAS REWRITTEN TWICE AFTER SCORING AND BOTH TIMES FOR THE SAME REASON. It first read that the forbidding instrument is the weaker one and that the resolution creates no offense, and no claim supported the second half, so it went. The whole third paragraph then went when the deck's spine was refuted: April had already listed the tools and the caption had said it merely gated a purchase. It also lost 'names nobody to apply it', which the resolution's own text refutes because it names and binds the City Manager, and 'bars him', which asserted an officeholder's gender the document never states. #TRUSTAct now traces to c32 after a judge went looking for it and found the name in the fetched resolution but in no claim."
+    },
+    {
       "date": "2026-09-09",
       "carousel_no": 18,
       "opening_move": "the two things",
-      "structure": "Pivot",
-      "closing_move": "Ask the one question the decision leaves open",
-      "first_line": "A commercial clinician-assisted tool estimated when patients would go home. Houston Methodist's case managers beat it, and by more the nearer discharge got.",
+      "structure": "Two columns",
+      "closing_move": "Name what is still not public, and how big that is",
+      "first_line": "Two ways to say when a patient goes home. A commercial tool wired into the health record. The hospital's own case managers.",
       "words": 141,
       "commas": 4,
       "commas_per_100w": 2.84,
@@ -310,11 +327,11 @@
     }
   ],
   "structures_recent": [
-    "two columns",
     "Ledger",
-    "Zoom out"
+    "Zoom out",
+    "Pivot"
   ],
   "closing_moves_recent": [
-    "name what happens next and when"
+    "ask the one question the decision leaves open"
   ]
 }

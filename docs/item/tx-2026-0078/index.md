@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The House State Affairs record still shows the data-center and transmission hearing without a later committee action.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-05 · House State Affairs has held its hearing on data centers and the proposed transmission lines. No interim report has been published from it.
+- 2026-09-08 · House State Affairs has held its hearing on data center development and the proposed 765 kV lines, and the committee has issued nothing since.
 - 2026-09-09 · The August interim hearing on data center development has dropped off the committee's own meeting list, which carries only what is still ahead. The legislative library's record of the week still carries it and no report has followed.
 
 ## Evidence

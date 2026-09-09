@@ -1,0 +1,40 @@
+{
+ "lens": "craft",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.6
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.3
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.1
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.3
+  }
+ ],
+ "weighted_score": 7.024,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Frame 6 reads as a road because of its SILHOUETTE, so break the outline with a cut corner or a curled near margin rather than treating the surface, because a strengthened centre crease is the single most road-like mark available."
+}

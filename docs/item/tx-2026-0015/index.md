@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-30 · The federal window is nearly shut. Comments on the reactor licensing and siting rewrite close August 31st, which leaves a single day to file.
 - 2026-09-02 · The comment window has closed. The proposed rule on reactor licensing, safety oversight and siting stays before the agency and no final rule has been published.
 - 2026-09-05 · The federal notice still carries its stated close and the Commission has published no next step. What it does with the comments it took is still unconfirmed.
+- 2026-09-08 · The federal comment window on reactor licensing and siting modernization is still shut, and the notice still reads as it did when it closed. No adopting action has been published since.
 - 2026-09-09 · The federal comment window on reactor licensing and siting modernization is still shut, and the notice that closed it reads as it did.
 
 ## Evidence

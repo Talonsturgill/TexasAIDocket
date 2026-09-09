@@ -1,6 +1,6 @@
 # National Science Foundation backs a Texas A&M tool that screens whether an alloy can exist before anyone makes it
 
-Texas A&M's College of Engineering published on September 4th, 2026 that the National Science Foundation is funding PhaseForge. The software comes from the Department of Materials Science and Engineering and applies machine learning to the CALPHAD phase diagram method. The university states the tool is free and openly available. It states the work will accelerate materials discovery across academia, national laboratories and industry. The announcement names no award number and no dollar figure.
+Texas A&M's College of Engineering published on September 4th, 2026 that the National Science Foundation is funding PhaseForge. The software comes from the Department of Materials Science and Engineering and applies machine learning to the CALPHAD phase diagram method. The university states the tool is free and openly available. It states that making the tool free and openly available will help accelerate materials discovery across academia, national laboratories and industry. The announcement names no award number and no dollar figure.
 
 - Topic: research-and-science
 - Decided by: U.S. National Science Foundation (federal)
@@ -22,15 +22,17 @@ Texas A&M's College of Engineering published on September 4th, 2026 that the Nat
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-05 · Admitted on the college's own announcement, fetched today. The tool is stated to be free and openly available and the announcement names no award number, so none is carried here.
+- 2026-09-08 · The award for the alloy screening tool still stands and the university's account of it is unchanged. A quotation the record carried ran two separated passages together as one, and it now stops where the source stops.
+- 2026-09-08 · The college's announcement states that PhaseForge is distributed free and openly online and that anyone can contribute to it. It states that making the tool free and openly available will help accelerate materials discovery across academia, national laboratories and industry. It names no award number and no dollar figure.
 - 2026-09-09 · The Texas A and M alloy screening tool is still funded and still promised as free and openly available.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The head of the department states the tool is being released free and openly, and says what that is for.
+### The university states the tool is distributed free and openly online and that anyone can contribute to it.
 
-> By making the tool free and openly available, Dr. Arróyave will help accelerate materials discovery across academia, national laboratories and industry.
+> PhaseForge is being distributed free and openly online, and anyone can contribute to it.
 
 Source (primary_official): https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/
 
@@ -49,6 +51,12 @@ Source (primary_official): https://news.engineering.tamu.edu/news/2026/09/04/nsf
 ### The question the method answers is whether a material can exist at all.
 
 > that tells researchers whether a material they want to build can exist at all
+
+Source (primary_official): https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/
+
+### The university states what making the tool free and open is expected to do for the field.
+
+> By making the tool free and openly available, Dr. Arróyave will help accelerate materials discovery across academia, national laboratories and industry.
 
 Source (primary_official): https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/
 

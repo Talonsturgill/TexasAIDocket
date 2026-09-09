@@ -1,77 +1,78 @@
-# Case managers beat Houston Methodist's discharge AI on the last day
+# Austin bars its city manager from buying any park camera or drone that depends on artificial intelligence
 
-JAMA Network Open published a quality improvement study on September 3rd, 2026. It compared discharge dates from a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. It reports estimation accuracy rather than any effect on a patient, and says so.
+Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It directs the City Manager to write a Parks Security Implementation Plan. It also directs the manager to acquire and deploy security equipment for city parks and recreation lands. The resolution lists the kinds of equipment contemplated. Security cameras are on that list. So are non-recording drones as first responders. So are lighting and access control and signage and radio. The resolution then forbids the City Manager from considering any camera or drone system that depends on artificial intelligence to conduct surveillance or analysis. Anything acquired has to comply with the surveillance technology ordinance the council adopted in April. Parks with a history of violent crime are prioritized for the first deployment. The City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee no later than December 9th, 2026. The resolution sets the date by which the update is owed and does not set a date for a meeting. The April ordinance the resolution points at is City Code Chapter 2-19. It already lists artificial intelligence or machine learning tools among what is not permitted. The exception is whatever the city's own policy allows.
 
-- Topic: health-and-education
-- Decided by: Houston Methodist Hospital (company)
-- Where: Harris
+- Topic: surveillance-and-policing
+- Decided by: Austin City Council (city)
+- Where: Travis
 - Statistical areas:
-  - Houston-Pasadena-The Woodlands, TX
+  - Austin-Round Rock-San Marcos, TX
 - Status: decided
-- Public access: Write to the decider
-- Take part: https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+- Public access: Public meeting
+- Take part: https://services.austintexas.gov/edims/document.cfm?id=479192
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-08
 
 ## Dates
 
-- 2026-09-03 · filed: Published in JAMA Network Open
+- 2026-08-12 · decided: Resolution No. 20260812-017 adopted and attested by the City Clerk
+- 2026-12-09 · ordered: the date by which the resolution orders the City Manager to give the Council Climate, Water, Environment, and Parks Committee a progress update. No meeting is set for it
 
 ## How this decision moved
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-09 · Admitted on the published study. The hospital has said nothing about whether the tool is still in front of its case managers, and the study names no vendor.
+- 2026-09-08 · Admitted to the record. The executed resolution is posted in the city's document system. It carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The study reports how often each method landed within a day of the true discharge date in the last 24 hours.
+### The resolution forbids the City Manager from considering a camera or drone system that relies on artificial intelligence.
 
-> At 24 hours, 79.5% of case manager estimations fell within 1 day vs 37.9% for AI estimations
+> The City Manager shall not consider acquisition of any camera or drone system that depends upon artificial intelligence to conduct surveillance or analysis.
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://services.austintexas.gov/edims/document.cfm?id=479192
 
-### The study states where the encounters came from and over what period.
+### The executed copy carries the resolution number.
 
-> This quality improvement study included inpatient encounters at Houston Methodist Hospital with discharge dates between August 1, 2023, and February 28, 2024.
+> RESOLUTION NO. 20260812-017
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://services.austintexas.gov/edims/document.cfm?id=479192
 
-### The study describes what produced the AI dates, without naming a vendor or a product.
+### Any surveillance technology the city buys under the resolution has to comply with the ordinance the council adopted in April, which sits in the city code.
 
-> Artificial intelligence–estimated discharge dates were generated by a commercial clinician-assisted tool integrated with the EHR.
+> Any surveillance technology sought must be acquired, deployed, and used in full compliance with all requirements of Ordinance No. 20260423-029, codified at City Code Chapter 2-19
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://services.austintexas.gov/edims/document.cfm?id=479192
 
-### The study states its own finding, and names when an accurate estimate actually matters.
+### The resolution names the equipment the city may buy for its parks.
 
-> This quality improvement study found that AI-estimated discharge was comparable to usual care at admission but outperformed by case managers as discharge approached (when accurate estimations are most actionable for bed management).
+> potentially including but not limited to, security cameras, non-recording drones as first responders, lighting, access control/fencing/gates, signage and wayfinding, and radio communication systems
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://services.austintexas.gov/edims/document.cfm?id=479192
 
-### The study warns against reading the admission result as evidence the tool knows what a clinician knows.
+### Parks with a history of violent crime get the equipment first.
 
-> The strong admission correlation did not persist nearer discharge and should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay.
+> Parks with a history of violent crime shall be prioritized for the initial deployment of this equipment.
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://services.austintexas.gov/edims/document.cfm?id=479192
 
-### The study names the limitation that cuts hardest against its own headline, which is that the case managers' own estimates were visible to the people acting on them.
+### The resolution sets a date by which the City Manager owes the council committee a progress update.
 
-> Case manager estimates were part of usual care and visible to care teams, so they may be partly self-fulfilling and, thus, advantaged nearer discharge; AI estimations were accessible in the EHR but not enabled automatically.
+> The City Manager shall provide a progress update on the direction given in this Resolution to the Council Climate, Water, Environment, and Parks Committee no later than December 9, 2026.
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://services.austintexas.gov/edims/document.cfm?id=479192
 
-### The study says what would have to happen before anyone concludes the tool is worth its implementation.
+### The item was on the council's August 12th agenda and is described there.
 
-> Whether the AI’s incremental accuracy in selected subgroups justifies the complexity of implementation warrants prospective, outcome-based evaluation.
+> Approve a resolution directing the City Manager to develop a security implementation plan for City parks and recreation lands and facilities
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://www.austintexas.gov/council/2026/20260812-reg
 
-### The study reports the mean absolute error of each method at each of the three points it measured.
+### The April ordinance the resolution points at already lists artificial intelligence tools among what it does not permit.
 
-> Nearer to discharge, case managers vs AI were more accurate (48 hours: MAE, 1.29 [95% CI, 1.26-1.32] vs 1.59 [95% CI 1.57-1.61] days; 24 hours: MAE, 0.98 [95% CI, 0.96-1.01] vs 1.93 [95% CI, 1.91-1.95] days) (both P < .001).
+> (B) artificial intelligence or machine learning tools, except as consistent with City policy
 
-Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
+Source (primary_official): https://services.austintexas.gov/edims/document.cfm?id=473428
 

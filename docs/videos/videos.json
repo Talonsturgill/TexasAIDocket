@@ -2,6 +2,30 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-09-09-the-clock-that-has-not-started",
+      "date": "2026-09-09",
+      "title": "The clock that has not started",
+      "caption": "Houston Methodist compared discharge-date estimates from case managers and an artificial intelligence model. At admission, case managers named the exact date more often, while the model's absolute error was similar. The study did not test whether either estimate improved patient outcomes, and the model was available in the health record but not automatically shown to clinicians.",
+      "video": "/runs/2026-09-09/dispatch.mp4",
+      "poster": "/runs/2026-09-09/poster.png",
+      "video_mobile": "/runs/2026-09-09/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-09-09/poster-540.jpg",
+      "county": "Harris",
+      "beat": "clinic-and-bench"
+    },
+    {
+      "id": "2026-09-08-the-clock-that-has-not-started",
+      "date": "2026-09-08",
+      "title": "The clock that has not started",
+      "caption": "Brownsville commissioners voted to begin drafting a possible data-center moratorium. The moratorium is not in effect. The proposed path includes a public hearing, impact reports and a final vote, with any approved pause taking effect only after that process.",
+      "video": "/runs/2026-09-08/dispatch.mp4",
+      "poster": "/runs/2026-09-08/poster.png",
+      "video_mobile": "/runs/2026-09-08/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-09-08/poster-540.jpg",
+      "county": "Cameron",
+      "beat": "record-and-rule"
+    },
+    {
       "id": "2026-09-06-before-the-match",
       "date": "2026-09-06",
       "title": "Before the match",

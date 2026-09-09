@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · UT Austin's computer-science and artificial-intelligence core course remains approved for all undergraduates.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The computer science and AI course is still in the core curriculum every Austin undergraduate takes.
+- 2026-09-08 · The computer science and AI course is still in the core curriculum every UT Austin undergraduate takes.
 - 2026-09-09 · The computer science and artificial intelligence requirement is still in the core every UT Austin undergraduate takes.
 
 ## Evidence

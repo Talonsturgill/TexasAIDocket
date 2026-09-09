@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The regents' capital-program commitment for the UT Dell Medical Center remains approved.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The first billion dollars of the Austin medical center is still in the capital program as approved.
+- 2026-09-08 · The first billion dollars of the UT Dell Medical Center is still in the capital program where the regents put it.
 - 2026-09-09 · The first billion dollars of the UT Dell Medical Center is still in the capital program, on the phase the regents approved.
 
 ## Evidence

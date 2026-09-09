@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The statewide survey continues to show local opposition to data-center development in its published results.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The poll finding that most Texas voters oppose a data center in their own community still stands as published across two surveys.
+- 2026-09-08 · The statewide poll finding most Texas voters oppose a data center in their own community still stands, and it is still the second survey to find it.
 - 2026-09-09 · The statewide poll finding most Texas voters against a data center in their own community is still the most recent reading of the question.
 
 ## Evidence

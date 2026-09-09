@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The federal award for Texas A and M's open-access autonomous metals laboratory remains in force.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The open access robot run alloy laboratory at College Station still stands as funded and outside researchers may still book it.
+- 2026-09-08 · The open access robot run alloy laboratory at Texas A&M is still funded and still says outside researchers may book time on it.
 - 2026-09-09 · The robot run alloy laboratory at Texas A and M is still funded as an open access facility. That is the part of it that matters to anyone outside the university.
 
 ## Evidence

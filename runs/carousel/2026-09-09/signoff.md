@@ -3,7 +3,7 @@
 Six surfaces, opened rather than inferred, one line each. The build under all of these is
 `out/2026-09-09/tmp/site`, rebuilt after every fix below.
 
-- **One decision's card, opened as an image.** `og/tx-2026-0129.png`, the run's newest item.
+- **One decision's card, opened as an image.** `og/tx-2026-0137.png`, the run's newest item.
   **LOOKED AT, AND IT CHANGED THE RECORD.** At its admitted length the title wrapped to four
   lines and the wrapper cut it at "the hospital's AI at...", which is a whole word and is still
   a preposition left hanging in the air. The title was rewritten to sixty seven characters and

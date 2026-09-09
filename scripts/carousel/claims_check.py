@@ -244,6 +244,152 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+# =========================================================================================
+# THE PROVISION SWEEP. Did this run read the whole of a document it fetched?
+#
+# THE DEFECT, 2026-09-08, carousel no. 18. The deck argued that City Code Chapter 2-19 WEIGHED
+# artificial intelligence as one of ten privacy assessment factors in April, and that an August
+# resolution turned that into a bar. Section 2-19-9 of the same ordinance, six pages past the
+# section the argument stood on, reads "The following surveillance technologies or data uses are
+# not permitted ... (B) artificial intelligence or machine learning tools, except as consistent
+# with City policy". April had already said no. **The run had fetched the whole fourteen page
+# ordinance, cited six other sections of it, and never opened that one.** The thesis was false
+# and the spine had to be rebuilt in the middle of scoring.
+#
+# A second one the same run, on the same shape: the council's Actions Taken By Council page was
+# linked from an agenda the run had fetched on its first pass, and the run's `rejected` list said
+# "the agenda page publishes no vote for the item", which was true of the page's prose and skipped
+# the link sitting on it.
+#
+# Both were found by a scoring judge. No gate here had anything to say, because every gate in this
+# pipeline asks whether what the deck PRINTS traces back to a source. Not one asks the other
+# direction: whether what a SOURCE says reached the deck. `claims_check` is where that belongs,
+# because it runs at Phase 6, before a frame exists, which is the last moment the answer is cheap.
+#
+# THE RULE, IN THE JUDGE'S OWN WORDS. "Before a deck asserts a contrast between two instruments,
+# sweep the full snapshot of both for the subject noun and either claim or explicitly reject every
+# place it appears."
+#
+# WHAT IS DERIVED AND WHAT IS TYPED, because a gate with a typed list of nouns would be a gate
+# that goes quiet on tomorrow's story. Nothing here is typed but the stopwords.
+#
+#   SUBJECT TERM   a maximal run of two or more content words in the run's own `story` sentence
+#                  that also appears in at least one claim's `text`. Maximal runs need no window
+#                  length and no frequency floor, so there is no number to tune and none to creep.
+#                  On 2026-09-08 that yields exactly `artificial intelligence` and `city manager`,
+#                  which are the deck's two subjects, and drops `austin ordered security
+#                  equipment` and `same resolution forbade`, which no claim states in those words.
+#   PROVISION      the span from one section heading to the next. A document with no section
+#                  headings is one provision, which makes this gate SILENT on an unsectioned
+#                  source, and that boundary is stated here rather than left to be inferred.
+#   READ           a provision holding any claim's verbatim quote, or whose section id is written
+#                  down anywhere in the claims file. The second half is the "explicitly reject"
+#                  arm: a run that looked and chose not to carry it names the section in
+#                  `rejected` or in `notes` and the sweep goes quiet on it.
+#
+# WARN, NEVER FAIL, for the reason `absence_check` and `noun_trace` give and it is the same
+# reason. Deciding that a provision did not matter is an editorial judgement, and a gate that
+# hard-fails a correct decision is a gate somebody switches off. What this does is put the list in
+# front of the run while a rebuild still costs nothing.
+# =========================================================================================
+
+# The section heading forms this project's instruments actually use. `§ 2-19-9` is the city code
+# extraction; `SECTION 4.` and `ARTICLE 1.` are the shapes a resolution and an order carry. Each
+# has to start a line or follow sentence-ending space, so a cross reference inside a sentence does
+# not open a provision.
+SECTION_HEAD = re.compile(
+    r"(?:^|(?<=[\n\r]))\s*(?:§\s*|(?:SECTION|ARTICLE|PART)\s+)([0-9]+[0-9A-Za-z.\-]*)",
+    re.M)
+
+# Words that carry no subject on their own. A subject term is a run BETWEEN these.
+STOPWORDS = frozenset("""
+a an and are as at be been by for from had has have in into is it its of on or that the their
+there this to was were which with within without upon any all not no nor but so if then than
+each other over under between about after before during per via such these those they them
+""".split())
+
+
+def _norm(s: str) -> str:
+    """Case folded, punctuation to single spaces. The ordinance's text layer breaks words across
+    a page footer, so whitespace is collapsed rather than preserved."""
+    s = (s or "").replace("’", "'").replace("‘", "'")
+    return re.sub(r"[^a-z0-9']+", " ", s.lower()).strip()
+
+
+def subject_terms(doc: dict) -> list[str]:
+    """The deck's own subject nouns, taken from its story and confirmed against its claims."""
+    story, cur, runs = doc.get("story") or "", [], []
+    for w in _norm(story).split():
+        if w in STOPWORDS or len(w) < 2:
+            if len(cur) > 1:
+                runs.append(" ".join(cur))
+            cur = []
+        else:
+            cur.append(w)
+    if len(cur) > 1:
+        runs.append(" ".join(cur))
+    claims = doc.get(CONTAINER) if isinstance(doc.get(CONTAINER), list) else []
+    texts = [_norm(c.get("text", "")) for c in claims if isinstance(c, dict)]
+    out, seen = [], set()
+    for r in runs:
+        if r not in seen and any(r in t for t in texts):
+            seen.add(r)
+            out.append(r)
+    return out
+
+
+def provisions(raw: str) -> list[tuple[str, str]]:
+    """(label, normalised text) per section heading. One entry for an unsectioned document."""
+    marks = [(m.start(), m.group(1)) for m in SECTION_HEAD.finditer(raw)]
+    if not marks:
+        return [("(the whole document)", _norm(raw))]
+    out = []
+    if marks[0][0] > 0:
+        out.append(("(before the first section)", _norm(raw[:marks[0][0]])))
+    for i, (pos, label) in enumerate(marks):
+        end = marks[i + 1][0] if i + 1 < len(marks) else len(raw)
+        out.append((label, _norm(raw[pos:end])))
+    return out
+
+
+def unread_provisions(doc: dict, snapshots: dict[str, str]) -> list[str]:
+    """One finding per subject term per document, naming the provisions nothing reached."""
+    terms = subject_terms(doc)
+    if not terms:
+        return []
+    claims = doc.get(CONTAINER) if isinstance(doc.get(CONTAINER), list) else []
+    quotes = [q for q in (_norm(c.get("quote", "")) for c in claims if isinstance(c, dict)) if q]
+    # Everything the run WROTE DOWN, so a section named in `rejected` or in `notes` counts as
+    # disposed of. `json.dumps` rather than a field walk, because the disposition can be written
+    # into a finding, a reason, a note or a claim's own text and all four are the run saying it
+    # looked.
+    written = _norm(json.dumps(doc.get("rejected") or []) + " " + json.dumps(doc.get("notes") or [])
+                    + " " + " ".join(str(c.get("text", "")) for c in claims if isinstance(c, dict)))
+    findings = []
+    for name in sorted(snapshots):
+        provs = provisions(snapshots[name])
+        if len(provs) < 2:
+            continue                       # unsectioned. The boundary is stated in the block above
+        for term in terms:
+            unread = []
+            for label, text in provs:
+                if term not in text:
+                    continue
+                if any(q and q in text for q in quotes):
+                    continue
+                if _norm(label) and _norm(label) in written:
+                    continue
+                unread.append(label)
+            if unread:
+                findings.append(
+                    f"{name} names {term!r} in {len(unread)} provision(s) no claim quotes and "
+                    f"nothing in this file disposes of: {', '.join(unread[:8])}"
+                    f"{' ...' if len(unread) > 8 else ''}. Read each one and either claim it or "
+                    f"write why it was not carried into `rejected`. On 2026-09-08 the one that "
+                    f"was skipped this way, 2-19-9, refuted the deck's whole thesis")
+    return findings
+
+
 def check(doc: dict) -> list[str]:
     """Every problem, phrased so somebody can fix it without opening this file."""
     problems: list[str] = []
@@ -377,7 +523,39 @@ def run(path: Path) -> int:
               "so anything admitted to the record is renamed by hand")
         for t in sorted(counts):
             print(f"  note  {counts[t]} claim(s) carry {t!r}, {RECORD_ONLY[t]}")
+
+    # THE PROVISION SWEEP. Advisory, and it prints what it swept on the clean path as well as on
+    # the dirty one, because a sweep that found no snapshots and a sweep that found nothing wrong
+    # must not print the same line. GATE_LESSONS 26.
+    snaps = read_snapshots(path.parent / "sources")
+    terms = subject_terms(doc)
+    if not snaps:
+        print("claims_check: no sources/ beside this file, so no provision sweep was run")
+    else:
+        findings = unread_provisions(doc, snaps)
+        for f in findings:
+            print(f"  warn  {f}", file=sys.stderr)
+        print(f"claims_check: swept {len(snaps)} snapshot(s) for "
+              f"{len(terms)} subject term(s) {terms}, {len(findings)} provision finding(s)")
     return 0
+
+
+# Text a sweep can read. A snapshot this project stores as JSON is a dataset rather than an
+# instrument with provisions in it, and reading it as prose would report its keys as sections.
+SNAPSHOT_SUFFIXES = (".txt", ".md", ".html", ".htm")
+
+
+def read_snapshots(sources: Path) -> dict[str, str]:
+    if not sources.is_dir():
+        return {}
+    out = {}
+    for p in sorted(sources.iterdir()):
+        if p.is_file() and p.suffix.lower() in SNAPSHOT_SUFFIXES:
+            try:
+                out[p.name] = p.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+    return out
 
 
 def self_test() -> int:
@@ -539,6 +717,81 @@ def self_test() -> int:
         RECORD_ONLY.update(_saved_only)
     ok("...and the fixtures put the module constants back exactly as they were",
        SOURCE_TYPES == _saved_types and RECORD_ONLY == _saved_only)
+
+    # ---- THE PROVISION SWEEP, replayed against the run it exists for --------------------
+    # SYNTHETIC HALF. What a subject term is and what it is not.
+    _doc = {"story": "Austin ordered security equipment for its parks and forbade its city "
+                     "manager from considering any camera that depends upon artificial "
+                     "intelligence.",
+            CONTAINER: [{"text": "The clause binds the city manager.", "quote": "x"},
+                        {"text": "It names artificial intelligence.", "quote": "y"}]}
+    ok("the subject terms are the story's content runs the claims confirm",
+       subject_terms(_doc) == ["city manager", "artificial intelligence"], str(subject_terms(_doc)))
+    ok("...and a story phrase no claim states is not a subject term",
+       "security equipment" not in " | ".join(subject_terms(_doc)), str(subject_terms(_doc)))
+    ok("...and a story with no claims behind it yields no terms",
+       subject_terms({"story": _doc["story"], CONTAINER: []}) == [])
+
+    _sec = provisions("preamble text\n§ 2-19-3 COUNCIL APPROVAL.\nbody one\n"
+                      "§ 2-19-9 PROHIBITED.\nartificial intelligence tools\n")
+    ok("a document splits at its section headings",
+       [lab for lab, _ in _sec] == ["(before the first section)", "2-19-3", "2-19-9"], str(_sec))
+    ok("...and an unsectioned document is ONE provision, which is where this gate is silent",
+       len(provisions("a page of prose with no headings at all")) == 1)
+    ok("...and a section id cited inside a sentence opens no provision",
+       len(provisions("as required by § 2-19-3 the manager shall act")) == 1,
+       str(provisions("as required by § 2-19-3 the manager shall act")))
+
+    # REAL ARTIFACT HALF. The ordinance this run fetched, the claims file as it ships, and the
+    # same file with 2-19-9 taken back out of it. GATE_LESSONS 16: a fixture written by the
+    # author of the detector agrees with the detector, and only a real snapshot carries the
+    # shapes nobody thought to write down.
+    _run = REPO_ROOT / "runs" / "carousel" / "2026-09-08"
+    ok("the 2026-09-08 snapshots this replay needs are committed",
+       (_run / "sources" / "ordinance.txt").exists() and (_run / "claims.json").exists())
+    if (_run / "sources" / "ordinance.txt").exists():
+        _snaps = read_snapshots(_run / "sources")
+        _ship = json.loads((_run / "claims.json").read_text(encoding="utf-8"))
+        _found = unread_provisions(_ship, _snaps)
+        ok("the SHIPPED claims file leaves no provision naming its subject noun unread",
+           not any("artificial intelligence" in f for f in _found), str(_found))
+
+        # Take 2-19-9 back out, exactly as the run had it before a judge found the section.
+        _target = dict(provisions(_snaps["ordinance.txt"]))["2-19-9"]
+        _before = json.loads(json.dumps(_ship))
+        _before[CONTAINER] = [c for c in _before[CONTAINER]
+                              if not (_norm(c.get("quote", "")) and
+                                      _norm(c.get("quote", "")) in _target)
+                              and "2-19-9" not in str(c.get("text", ""))]
+        _before["rejected"] = [r for r in (_before.get("rejected") or [])
+                               if "2-19-9" not in json.dumps(r)]
+        _before["notes"] = [n for n in (_before.get("notes") or []) if "2-19-9" not in str(n)]
+        _back = unread_provisions(_before, _snaps)
+        ok("...and with 2-19-9 removed the sweep NAMES it against the deck's subject noun",
+           any("artificial intelligence" in f and "2-19-9" in f for f in _back), str(_back))
+        ok("...and the removal actually changed the file, so the red is not an empty result",
+           len(_before[CONTAINER]) < len(_ship[CONTAINER]),
+           f"{len(_before[CONTAINER])} vs {len(_ship[CONTAINER])}")
+
+        # THE DISPOSAL ARM. Writing the section into `rejected` is what quiets it, and that is
+        # the "explicitly reject" half of the judge's rule rather than a way to switch it off.
+        _dispose = json.loads(json.dumps(_before))
+        _dispose["rejected"] = list(_dispose["rejected"]) + [
+            {"finding": "Section 2-19-9 of the ordinance",
+             "reason": "read in full and not carried, because the deck argues from 2-19-3"}]
+        ok("...and naming that section in `rejected` quiets it",
+           not any("artificial intelligence" in f and "2-19-9" in f
+                   for f in unread_provisions(_dispose, _snaps)),
+           str(unread_provisions(_dispose, _snaps)))
+
+        # CALIBRATION, recorded as a number so a later change that makes this noisy shows up as
+        # a number rather than as a feeling. absence_check does the same thing for the same
+        # reason.
+        ok("the shipped deck raises at most two provision findings",
+           len(_found) <= 2, f"{len(_found)}: {_found}")
+
+    ok("a JSON dataset beside the prose snapshots is not swept as an instrument",
+       ".json" not in SNAPSHOT_SUFFIXES)
 
     if failures:
         print(f"\nclaims_check self-test: {failures} FAILED", file=sys.stderr)

@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · El Paso's legislative agenda still seeks protection for residential ratepayers from data-center utility costs.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · El Paso still carries residential ratepayer protection on its legislative agenda. The amendment is unchanged.
+- 2026-09-08 · El Paso still carries residential ratepayer protection from data center costs in its state legislative agenda. The amendment has not been revisited.
 - 2026-09-09 · The city's state legislative agenda still carries the ask that residential ratepayers be protected from large load costs, in the words the council adopted.
 
 ## Evidence

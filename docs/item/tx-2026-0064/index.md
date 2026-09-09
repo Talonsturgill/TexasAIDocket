@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · TCEQ's preliminary decision on the Abilene campus power plant remains open to public comment.
 - 2026-09-02 · Checked and unchanged. Still open, with no dated movement.
 - 2026-09-05 · The preliminary decision on the Crusoe gas plant still stands and the comment door is still open. A reader can still file.
+- 2026-09-08 · The state environmental agency's preliminary decision on the Crusoe gas plant at the Abilene campus still stands, and the comment room is still the way in.
 - 2026-09-09 · The comment window on Crusoe's gas plant at the Abilene data center is still open and the preliminary decision it rests on is unchanged.
 
 ## Evidence

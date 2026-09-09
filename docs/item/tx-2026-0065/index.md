@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The cooling water cap is still in the city's utilities chapter and the closed loop requirement still applies to every data center facility. The makeup water limit the ordinance sets is unaltered.
 - 2026-09-02 · The ordinance stands as adopted and the city's own data center page still carries it.
 - 2026-09-05 · San Angelo's cap on data center cooling water still stands in the ordinance as adopted.
+- 2026-09-08 · San Angelo's cap on data center cooling water is still on the books as the council passed it. The ordinance text is unchanged.
 - 2026-09-09 · San Angelo's cap on data center cooling water is still in the utilities chapter of the city code, with the closed-loop requirement intact.
 
 ## Evidence

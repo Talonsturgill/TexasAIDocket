@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Rice's proof-checked numerical-algorithm research award remains active in the federal record.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The Rice award still limits the algorithms AI may propose to the ones a proof checker certifies. The condition is unchanged.
+- 2026-09-08 · The Rice award still ties AI proposed numerical algorithms to a proof checker, and that condition is still how the work is described.
 - 2026-09-09 · The Rice award letting AI propose numerical algorithms only where a proof can follow is unchanged, and the proof condition is still part of it.
 
 ## Evidence

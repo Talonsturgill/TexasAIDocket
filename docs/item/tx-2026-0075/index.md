@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Pflugerville's charter amendment governing city use of artificial intelligence remains headed to voters.
 - 2026-09-02 · The comment window is still open, closing November 3rd.
 - 2026-09-05 · The Pflugerville charter amendment on the city's use of artificial intelligence is still set for the November ballot. The ordering is unchanged.
+- 2026-09-08 · Pflugerville's November ballot still carries the charter amendment on the city's use of artificial intelligence, and the charter review commission's report is still the document behind it. Nothing has been withdrawn from the ballot order.
 - 2026-09-09 · The comment window is still open, closing November 3rd, which is the day Pflugerville voters decide the charter section on the city's cameras.
 
 ## Evidence

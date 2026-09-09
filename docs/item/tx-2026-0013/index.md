@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Data centers remain absent from the Comptroller's published list of executed JETI agreements.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The Comptroller's list of current school district tax agreements still carries no data center. The absence is unchanged.
+- 2026-09-08 · The Comptroller's list of current JETI agreements still names no data center project. The absence is the finding and it has not changed.
 - 2026-09-09 · The comptroller's list of live JETI agreements still names no data center. What that list leaves out is the finding, and it has not changed.
 
 ## Evidence

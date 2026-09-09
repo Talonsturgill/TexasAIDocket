@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The paired House hearings on data centers and artificial intelligence in health care have concluded.
 - 2026-09-02 · The comment window closed on August 20th.
 - 2026-09-05 · Both House committees have held their sittings and neither has published a recommendation. What either concluded is still unconfirmed.
+- 2026-09-08 · Both House committees have now held their sittings on data centers and on AI in health care. Neither has published a report from them.
 - 2026-09-09 · The comment window closed on August 20th. Both House committees have held their sittings and neither has issued a report.
 
 ## Evidence

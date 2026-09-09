@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · The August 25th meeting has been held and the city's record of it now reads as minutes rather than as a notice. No item on it names an automated license plate reader. The special election is still set for November 3rd and the published wording still tells the voter the result does not bind the council.
 - 2026-09-02 · The ordinance stands and the special election it ordered is still set.
 - 2026-09-05 · The League City election on whether police may keep plate reader data is still ordered for November and the ordering is unchanged.
+- 2026-09-08 · League City's special election on whether police may keep using automated plate reader cameras is still ordered and still on the calendar the council set. Nothing has been filed to withdraw it.
 - 2026-09-09 · League City's special election on the police plate reader cameras is still ordered for November 3rd, and the ordinance ordering it is unchanged.
 
 ## Evidence

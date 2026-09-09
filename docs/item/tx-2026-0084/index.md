@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Amazon's selection of Austin for its warehouse-robotics factory remains announced without a city incentive request.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · Amazon's Austin robotics factory still stands as sited and the mayor's statement that no incentives were requested is unchanged.
+- 2026-09-08 · Amazon's Austin robotics factory is still going ahead on the terms announced, and the mayor's statement that no incentives were requested still stands.
 - 2026-09-09 · Amazon's Austin robotics factory is still sited where the company said, and no public proceeding has opened on it since.
 
 ## Evidence

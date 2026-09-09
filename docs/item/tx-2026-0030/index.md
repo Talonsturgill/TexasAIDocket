@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Austin's surveillance-technology chapter remains in the city code and continues to govern departmental adoption and review.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · Austin's surveillance technology chapter is still in the City Code as adopted. The reporting duties it created are unchanged.
+- 2026-09-08 · Austin's surveillance technology chapter is still in the city code as adopted. The ordinance number and the chapter it created are unchanged.
 - 2026-09-09 · Austin's surveillance technology ordinance still stands as Chapter 2-19 of the city code. The reporting duties it created have not been narrowed.
 
 ## Evidence

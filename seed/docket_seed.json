@@ -5973,6 +5973,643 @@
     ]
   },
   {
+    "title": "Austin bars its city manager from buying any park camera or drone that depends on artificial intelligence",
+    "summary": "Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It directs the City Manager to write a Parks Security Implementation Plan. It also directs the manager to acquire and deploy security equipment for city parks and recreation lands. The resolution lists the kinds of equipment contemplated. Security cameras are on that list. So are non-recording drones as first responders. So are lighting and access control and signage and radio. The resolution then forbids the City Manager from considering any camera or drone system that depends on artificial intelligence to conduct surveillance or analysis. Anything acquired has to comply with the surveillance technology ordinance the council adopted in April. Parks with a history of violent crime are prioritized for the first deployment. The City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee no later than December 9th, 2026. That committee meeting is the next public step a reader can attend.",
+    "topic": "surveillance-and-policing",
+    "decider": {
+      "name": "Austin City Council",
+      "type": "city"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Travis"
+      ],
+      "on_ercot": true,
+      "metro": "Austin-Round Rock-San Marcos, TX"
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-08-12",
+        "kind": "decided",
+        "note": "Resolution No. 20260812-017 adopted and attested by the City Clerk"
+      },
+      {
+        "date": "2026-12-09",
+        "kind": "hearing",
+        "note": "the date by which the City Manager owes a progress update to the Council Climate, Water, Environment, and Parks Committee"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "The progress update is owed to the Council Climate, Water, Environment, and Parks Committee, whose meetings are posted on the city's council calendar and are open to the public. The executed resolution is published in the city's document system and can be read in full.",
+      "url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The resolution forbids the City Manager from considering a camera or drone system that relies on artificial intelligence.",
+        "verbatim_quote": "The City Manager shall not consider acquisition of any camera or drone system that depends upon artificial intelligence to conduct surveillance or analysis.",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+        "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0129-c1"
+      },
+      {
+        "text": "The executed copy carries the resolution number.",
+        "verbatim_quote": "RESOLUTION NO. 20260812-017",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+        "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0129-c2"
+      },
+      {
+        "text": "Any surveillance technology the city buys under the resolution has to comply with the ordinance the council adopted in April, which sits in the city code.",
+        "verbatim_quote": "Any surveillance technology sought must be acquired, deployed, and used in full compliance with all requirements of Ordinance No. 20260423-029, codified at City Code Chapter 2-19",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+        "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0129-c3"
+      },
+      {
+        "text": "The resolution names the equipment the city may buy for its parks.",
+        "verbatim_quote": "potentially including but not limited to, security cameras, non-recording drones as first responders, lighting, access control/fencing/gates, signage and wayfinding, and radio communication systems",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+        "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0129-c4"
+      },
+      {
+        "text": "Parks with a history of violent crime get the equipment first.",
+        "verbatim_quote": "Parks with a history of violent crime shall be prioritized for the initial deployment of this equipment.",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+        "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0129-c5"
+      },
+      {
+        "text": "The resolution sets a date by which the City Manager owes the council committee a progress update.",
+        "verbatim_quote": "The City Manager shall provide a progress update on the direction given in this Resolution to the Council Climate, Water, Environment, and Parks Committee no later than December 9, 2026.",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
+        "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0129-c6"
+      },
+      {
+        "text": "The item was on the council's August 12th agenda and is described there.",
+        "verbatim_quote": "Approve a resolution directing the City Manager to develop a security implementation plan for City parks and recreation lands and facilities",
+        "source_url": "https://www.austintexas.gov/council/2026/20260812-reg",
+        "source_title": "Austin City Council agenda, August 12, 2026",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0129-c7"
+      }
+    ],
+    "id": "tx-2026-0129",
+    "last_verified": "2026-09-08",
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Admitted to the record. The executed resolution is posted in the city's document system and carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update."
+      }
+    ],
+    "confidence": "high"
+  },
+  {
+    "title": "National Science Foundation puts UT Austin's supercomputing center in an operating role for the national AI research resource",
+    "summary": "The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego, with the Texas Advanced Computing Center at The University of Texas at Austin named as the collaborating institution. The operations center is to coordinate resource providers, integrate computing and data, run the national portal and provide user support and training. The pilot it takes over has supported research projects nationwide since it launched. This puts a Texas public institution in a role that runs the front door to federal AI compute rather than only hosting a machine behind it.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "National Science Foundation",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Travis"
+      ],
+      "on_ercot": true,
+      "metro": "Austin-Round Rock-San Marcos, TX"
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-01",
+        "kind": "decided",
+        "note": "the date the National Science Foundation published the establishment of the operations center"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The National Science Foundation publishes the announcement and the program pages for the research resource. There is no comment window and no hearing attached to the establishment of the operations center.",
+      "url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The National Science Foundation names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center.",
+        "verbatim_quote": "Led by the San Diego Supercomputer Center at UC San Diego, in collaboration with the Texas Advanced Computing Center at The University of Texas at Austin, the operating center will bring complementary expertise and decades of experience developing and operating national-scale research infrastructure.",
+        "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+        "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0130-c1"
+      },
+      {
+        "text": "The agency states the scale of the pilot the operations center takes over.",
+        "verbatim_quote": "the pilot has supported over 800 research projects",
+        "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+        "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0130-c2"
+      }
+    ],
+    "id": "tx-2026-0130",
+    "last_verified": "2026-09-08",
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Admitted to the record. The agency's own announcement names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center."
+      }
+    ],
+    "confidence": "high"
+  },
+  {
+    "title": "Texas State University moves an AI pavement inspection method toward statewide highway use",
+    "summary": "Texas State University published on August 24th, 2026 that its project on artificial intelligence for pavement condition assessment has entered a second phase. The method reads two dimensional surface images paired with three dimensional depth data and finds cracking and other damage at pixel level rather than relying on a human rater's judgment. The university describes the second phase as closer to statewide deployment. Pavement condition ratings are what decide which roads get repair money, so moving that judgment from a rater to a model changes how the money is aimed.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "Texas State University",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Hays"
+      ],
+      "on_ercot": true,
+      "metro": "Austin-Round Rock-San Marcos, TX"
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-08-24",
+        "kind": "decided",
+        "note": "the date the university published that the project had entered its second phase"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The university publishes the research announcement. No comment window or hearing is attached to it, and the deployment decision would rest with the state transportation department rather than with the university.",
+      "url": "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The university says the project is in a second phase and closer to statewide deployment.",
+        "verbatim_quote": "is now in its second phase, closer to statewide deployment with faster, more precise pixel-level detection of pavement damage than manual inspections.",
+        "source_url": "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html",
+        "source_title": "TXST team develops more accurate way to evaluate road conditions",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0131-c1"
+      },
+      {
+        "text": "The university states the size of the road network the work is aimed at.",
+        "verbatim_quote": "703,000 lane miles of highways",
+        "source_url": "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html",
+        "source_title": "TXST team develops more accurate way to evaluate road conditions",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0131-c2"
+      }
+    ],
+    "id": "tx-2026-0131",
+    "last_verified": "2026-09-08",
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Admitted to the record. The university's announcement says the pavement assessment project has entered a second phase and is closer to statewide deployment."
+      }
+    ],
+    "confidence": "high"
+  },
+  {
+    "title": "Texas A&M tells its campus to run AI through a university portal rather than a public chatbot",
+    "summary": "Texas A&M University Technology Services published guidance on August 31st, 2026 naming TAMU AI Chat as the university approved way for faculty, staff and students to use commercial AI models. The single platform carries models from several vendors behind a university login. The university states the service supports information classified up to and including University-Confidential, which is what decides whether a researcher may put non-public university data into a model at all. It also states that conversations in the tool are not used to train external models. The same channel that protects the data is a channel the university controls, and the guidance does not say what the university does with the conversations itself.",
+    "topic": "health-and-education",
+    "decider": {
+      "name": "Texas A&M University Technology Services",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Brazos"
+      ],
+      "on_ercot": true,
+      "metro": "College Station-Bryan, TX"
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-08-31",
+        "kind": "decided",
+        "note": "the date the university published the guidance naming the approved platform"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The university publishes the guidance on its technology services news page. There is no comment window, and the platform itself is behind a university login.",
+      "url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The university states the platform carries models from several commercial vendors in one place.",
+        "verbatim_quote": "Unlike public AI services, TAMU AI Chat provides a single platform that offers access to multiple commercial AI models, including technologies from OpenAI, Anthropic, Google, and other providers.",
+        "source_url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+        "source_title": "TAMU AI Chat, Texas A&M Technology Services",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0132-c1"
+      },
+      {
+        "text": "The university states the data classification the platform is cleared for.",
+        "verbatim_quote": "supports information classified up to and including University-Confidential data",
+        "source_url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+        "source_title": "TAMU AI Chat, Texas A&M Technology Services",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0132-c2"
+      },
+      {
+        "text": "The university states that conversations in the tool are not used to train outside models.",
+        "verbatim_quote": "user conversations within TAMU AI Chat are not used to train external AI models",
+        "source_url": "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/",
+        "source_title": "TAMU AI Chat, Texas A&M Technology Services",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0132-c3"
+      }
+    ],
+    "id": "tx-2026-0132",
+    "last_verified": "2026-09-08",
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Admitted to the record. The university's guidance naming its approved AI platform is posted, and it states both the data classification the platform is cleared for and that conversations are not used to train outside models."
+      }
+    ],
+    "confidence": "high"
+  },
+  {
+    "title": "University of North Texas opens an undergraduate artificial intelligence degree",
+    "summary": "The University of North Texas is offering a Bachelor of Science in Artificial Intelligence through its Department of Computer Science and Engineering, with the curriculum starting in 2026. The university describes it as a four year curriculum built around the applications of AI development rather than as a concentration inside a computer science degree. A named undergraduate credential in artificial intelligence changes what a hiring manager in the Dallas Fort Worth area is reading on a resume.",
+    "topic": "health-and-education",
+    "decider": {
+      "name": "University of North Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Denton"
+      ],
+      "on_ercot": true,
+      "metro": "Dallas-Fort Worth-Arlington, TX"
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-07-01",
+        "kind": "effective",
+        "note": "the start the university states for the curriculum on its own program page"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The university publishes the degree plan and the department contact on its program page. Admission questions go to the department rather than through any public proceeding.",
+      "url": "https://engineering.unt.edu/cse/undergraduate/bsai.html",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The university states the curriculum's length and its start.",
+        "verbatim_quote": "This 4-year curriculum, starting in July 2026, is designed to help students master the applications of AI development",
+        "source_url": "https://engineering.unt.edu/cse/undergraduate/bsai.html",
+        "source_title": "Bachelor of Science in Artificial Intelligence, UNT College of Engineering",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0133-c1"
+      }
+    ],
+    "id": "tx-2026-0133",
+    "last_verified": "2026-09-08",
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Admitted to the record. The university's program page states the length of the curriculum and when it starts."
+      }
+    ],
+    "confidence": "high"
+  },
+  {
+    "title": "Katy ISD bars generative AI chat tools through sixth grade for the school year now underway",
+    "summary": "Katy Independent School District published an artificial intelligence framework for the 2026-27 school year that scaffolds access by grade. The district's own posting states the rationale in its assistant superintendent's words. Reporting on the framework describes students in kindergarten through sixth grade being allowed district approved instructional platforms under teacher guidance while being barred from generative chat tools. The district's own posting does not name the counties the district sits in, so the record can't yet say where this lands.",
+    "topic": "health-and-education",
+    "decider": {
+      "name": "Katy Independent School District",
+      "type": "school-district"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-07-20",
+        "kind": "decided",
+        "note": "the date the district published the framework"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The district publishes the framework announcement. Questions about classroom application go to the district rather than through a public proceeding.",
+      "url": "https://www.katyisd.org/news-details/~board/news-headlines-katy-independent-school-district-100/post/katy-isd-strikes-a-balance-with-technology-and-ai-in-the-classroom",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The district states the rationale for its framework in its own posting.",
+        "verbatim_quote": "Artificial intelligence is transforming the world our students will inherit, and it is our responsibility to prepare them to use these tools thoughtfully and with clear purpose.",
+        "source_url": "https://www.katyisd.org/news-details/~board/news-headlines-katy-independent-school-district-100/post/katy-isd-strikes-a-balance-with-technology-and-ai-in-the-classroom",
+        "source_title": "Katy ISD Strikes a Balance with Technology and AI in the Classroom",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0134-c1"
+      }
+    ],
+    "id": "tx-2026-0134",
+    "last_verified": "2026-09-08",
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Held rather than admitted. The district's own posting does not name the counties it sits in, and a decision published on no county page is a decision a reader looking for what is happening near them will not find."
+      }
+    ],
+    "confidence": "high"
+  },
+  {
+    "title": "Grid operator tells utilities which large loads made the first interconnection study batch and publishes no result",
+    "summary": "The grid operator issued a market notice on September 3rd, 2026 telling each interconnecting distribution and transmission service provider whether the large loads they submitted were conditionally included in the first study batch. Inclusion is conditional and can be lost. The notice opens a dispute route for a load reclassified from base load to studied load. The classifications went to the service providers rather than to the public, so which projects near a given Texas town were included is not published anywhere a resident can read. The batch applies across the grid operator's region, which is not the state, and no source names a county for it.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Electric Reliability Council of Texas",
+      "type": "special-district"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "on_ercot": true
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2026-09-03",
+        "kind": "filed",
+        "note": "the date the grid operator issued the market notice"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The market notice is published on the grid operator's notices page. The classifications themselves went to service providers and are not published.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The notice states that inclusion in the batch is conditional and can be lost.",
+        "verbatim_quote": "Failure to satisfy any applicable condition may disqualify the Large Load from Batch Zero.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_title": "ERCOT market notice M-A080326-04",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0135-c1"
+      }
+    ],
+    "id": "tx-2026-0135",
+    "last_verified": "2026-09-08",
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Held rather than admitted. The batch applies across the grid operator's region, which is not the state, and no source names a county for it."
+      }
+    ],
+    "confidence": "high"
+  },
+  {
+    "title": "Federal investigators opened a defect evaluation into a driverless system after crashes in Dallas and Austin",
+    "summary": "The Office of Defects Investigation at the National Highway Traffic Safety Administration opened a preliminary evaluation into the Avride automated driving system. The resume gives the date it was opened as the sixth of May, 2026. It was prompted by crash reports filed under the agency's standing general order. The resume says the crashes happened in Dallas and in Austin. The failure report summary gives a crash total and a single alleged minor injury. Investigators reviewed video of every crash. The video shows vehicles changing lanes into other vehicles and failing to slow for what was ahead of them. A person sat in the driver's seat during every one of those crashes while the system drove. The office also records its understanding that the same vehicles carry paying passengers on a ride-hailing platform in Dallas. The document makes no finding of defect. Its strongest statement is that the system's performance may indicate inappropriate assertiveness and insufficient competence. The agency's own investigation status pages would not answer a request this run, so the record can't say what state the evaluation is in today. What it can say is that it was opened and that the document reaches no conclusion.",
+    "topic": "defense-and-federal",
+    "decider": {
+      "name": "National Highway Traffic Safety Administration, Office of Defects Investigation",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Dallas",
+        "Travis"
+      ],
+      "on_ercot": true
+    },
+    "status": "pending",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-05-06",
+        "kind": "filed",
+        "note": "the date opened given on the ODI resume for the preliminary evaluation"
+      },
+      {
+        "date": "2025-12-03",
+        "kind": "effective",
+        "note": "the date the office understands public passenger service began in Dallas"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The resume is published in the agency's investigation document store and can be read in full. There is no comment window and no hearing attached to a preliminary evaluation. The agency's own investigation search pages would not answer a request this run, so a reader wanting today's status has to go to the agency directly.",
+      "url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+      "closes": null
+    },
+    "history": [
+      {
+        "date": "2026-09-08",
+        "note": "Admitted to the record. The resume was read in full this run and every claim below is quoted from it."
+      }
+    ],
+    "claims": [
+      {
+        "text": "The Office of Defects Investigation received reports of crashes involving automated vehicles with the Avride automated driving system engaged.",
+        "verbatim_quote": "The Office of Defects Investigation (ODI) has received several reports of crashes involving automated vehicles (AVs) equipped with the Avride automated driving system (ADS) engaged at the time of the crash.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c1"
+      },
+      {
+        "text": "The resume names the two Texas cities the crashes happened in.",
+        "verbatim_quote": "The crashes occurred in Dallas, Texas and Austin, Texas.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c2"
+      },
+      {
+        "text": "The resume gives the investigation number, what prompted it, and the date it was opened.",
+        "verbatim_quote": "Investigation: PE26003 Prompted By: SGO 2021-01 crash reports Date Opened: 05/06/2026",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c3"
+      },
+      {
+        "text": "The action recorded on the resume is to open a preliminary evaluation.",
+        "verbatim_quote": "Action: Open this Preliminary Evaluation",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c4"
+      },
+      {
+        "text": "The manufacturer named on the resume is Avride Inc.",
+        "verbatim_quote": "MANUFACTURER & PRODUCT INFORMATION Manufacturer: Avride Inc.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c5"
+      },
+      {
+        "text": "The resume names the product under investigation and gives an estimated population for it.",
+        "verbatim_quote": "Products: Avride Automated Driving System (ADS) Population: 200 (Estimated)",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c6"
+      },
+      {
+        "text": "The stated subject is conflict avoidance, driving behavior competence and assertiveness.",
+        "verbatim_quote": "Subject: Automated Driving System (ADS) conflict avoidance, driving behavior competence and assertiveness",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c7"
+      },
+      {
+        "text": "The problem described is lane changes into other vehicles and failures to avoid vehicles or objects in the roadway.",
+        "verbatim_quote": "Automated Vehicles (AVs) executing lane changes into other vehicles and failing to avoid vehicles or objects in the roadway, resulting in crashes",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c8"
+      },
+      {
+        "text": "The failure report summary gives the crash total.",
+        "verbatim_quote": "Crashes/Fires: 0 0 0 16 16 0",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c9"
+      },
+      {
+        "text": "The crashes resulted in property damage and one alleged minor injury.",
+        "verbatim_quote": "These crashes have resulted in property damage and one alleged minor injury.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c10"
+      },
+      {
+        "text": "A person sat in the driver's seat during every one of the crashes while the system drove.",
+        "verbatim_quote": "During each of these crashes, the AVs were operating with the ADS performing the dynamic driving task while under the supervision of an in-vehicle operator in the driver's seat.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c11"
+      },
+      {
+        "text": "The office states its understanding that the vehicles carry public passengers on a ride-hailing platform in Dallas, and gives the date that service began.",
+        "verbatim_quote": "Furthermore, ODI understands that Avride is operating some of its AVs on the Uber ride-hailing platform and has offered passenger service to the public since December 3, 2025 in Dallas where many of the reported crashes have occurred.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c12"
+      },
+      {
+        "text": "The office reviewed video of each crash and describes what the video shows.",
+        "verbatim_quote": "The videos show instances of the AVs changing lanes into the path of or directly into other vehicles traveling in an adjacent lane and in close proximity to an AV; failing to slow or stop for slow-moving or stopped vehicles in the lane and path ahead; failing to slow for or avoid vehicles entering the lane and path ahead; and striking stationary objects partially obstructing the lane and path ahead.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c13"
+      },
+      {
+        "text": "The strongest statement the document makes about cause is conditional.",
+        "verbatim_quote": "The ADS performance in these crashes may indicate inappropriate assertiveness and insufficient competence to execute these driving behaviors in a safe manner and may also constitute traffic safety violations.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c14"
+      },
+      {
+        "text": "The evaluation was opened to determine the scope, nature and severity of the potential problems and the risks to passengers and other road users.",
+        "verbatim_quote": "ODI has opened this Preliminary Evaluation to investigate the performance of the Avride ADS in order to determine the scope, nature and severity of the potential problems and to assess the potential safety risks to passengers and other road users.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c15"
+      },
+      {
+        "text": "The investigation may widen to other driving behaviors if evidence implicates them.",
+        "verbatim_quote": "If additional evidence received during this investigation implicates the competence of the Avride ADS with respect to other driving behaviors, these may be considered as part of this investigation as well.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
+        "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
+        "source_type": "primary_official",
+        "fetched": "2026-09-08",
+        "id": "tx-2026-0136-c16"
+      }
+    ],
+    "id": "tx-2026-0136",
+    "last_verified": "2026-09-08"
+  },
+  {
     "title": "A Houston Methodist study finds its case managers beat the hospital's AI at predicting discharge dates on the last day",
     "summary": "JAMA Network Open published a quality improvement study on September 3rd, 2026 comparing discharge dates produced by a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. The authors are at the Texas A and M School of Engineering Medicine in Houston and in the Department of Medicine at Houston Methodist Hospital. The study names no vendor and no product. It reports estimation accuracy rather than any effect on a patient, and says so.",
     "topic": "health-and-education",
@@ -6010,7 +6647,7 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c1"
+        "id": "tx-2026-0137-c1"
       },
       {
         "text": "The study states where the encounters came from and over what period.",
@@ -6019,7 +6656,7 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c2"
+        "id": "tx-2026-0137-c2"
       },
       {
         "text": "The study describes what produced the AI dates, without naming a vendor or a product.",
@@ -6028,7 +6665,7 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c3"
+        "id": "tx-2026-0137-c3"
       },
       {
         "text": "The study states its own finding, and names when an accurate estimate actually matters.",
@@ -6037,7 +6674,7 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c4"
+        "id": "tx-2026-0137-c4"
       },
       {
         "text": "The study warns against reading the admission result as evidence the tool knows what a clinician knows.",
@@ -6046,7 +6683,7 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c5"
+        "id": "tx-2026-0137-c5"
       },
       {
         "text": "The study names the limitation that cuts hardest against its own headline, which is that the case managers' own estimates were visible to the people acting on them.",
@@ -6055,7 +6692,7 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c6"
+        "id": "tx-2026-0137-c6"
       },
       {
         "text": "The study says what would have to happen before anyone concludes the tool is worth its implementation.",
@@ -6064,7 +6701,7 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c7"
+        "id": "tx-2026-0137-c7"
       },
       {
         "text": "The study reports the mean absolute error of each method at each of the three points it measured.",
@@ -6073,10 +6710,10 @@
         "source_title": "JAMA Network Open, Artificial Intelligence vs Case Manager Estimation of Discharge Dates for Hospitalized Patients",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0129-c8"
+        "id": "tx-2026-0137-c8"
       }
     ],
-    "id": "tx-2026-0129",
+    "id": "tx-2026-0137",
     "last_verified": "2026-09-09",
     "history": [
       {
@@ -6123,7 +6760,7 @@
         "source_title": "City of Lubbock, Regular City Council Meeting agenda, September 8th, 2026",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0130-c1"
+        "id": "tx-2026-0138-c1"
       },
       {
         "text": "The agenda states what the resolution beside it would do, and what it waits on.",
@@ -6132,7 +6769,7 @@
         "source_title": "City of Lubbock, Regular City Council Meeting agenda, September 8th, 2026",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0130-c2"
+        "id": "tx-2026-0138-c2"
       },
       {
         "text": "A speaker at the hearing said the pause the petition asked for was not what she wanted.",
@@ -6141,10 +6778,10 @@
         "source_title": "Fox 34, Lubbock City Council passes non binding resolution regarding data centers within city limits",
         "source_type": "journalism",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0130-c3"
+        "id": "tx-2026-0138-c3"
       }
     ],
-    "id": "tx-2026-0130",
+    "id": "tx-2026-0138",
     "last_verified": "2026-09-09",
     "history": [
       {
@@ -6193,7 +6830,7 @@
         "source_title": "ERCOT market notice M-A090226-01",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0131-c1"
+        "id": "tx-2026-0139-c1"
       },
       {
         "text": "The notice names who it is addressed to.",
@@ -6202,7 +6839,7 @@
         "source_title": "ERCOT market notice M-A090226-01",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0131-c2"
+        "id": "tx-2026-0139-c2"
       },
       {
         "text": "The notice states the three things the bill put into the statute, including the backup generation threshold.",
@@ -6211,7 +6848,7 @@
         "source_title": "ERCOT market notice M-A090226-01",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0131-c3"
+        "id": "tx-2026-0139-c3"
       },
       {
         "text": "The notice states its own subject in one line.",
@@ -6220,10 +6857,10 @@
         "source_title": "ERCOT market notice M-A090226-01",
         "source_type": "primary_official",
         "fetched": "2026-09-09",
-        "id": "tx-2026-0131-c4"
+        "id": "tx-2026-0139-c4"
       }
     ],
-    "id": "tx-2026-0131",
+    "id": "tx-2026-0139",
     "last_verified": "2026-09-09",
     "history": [
       {

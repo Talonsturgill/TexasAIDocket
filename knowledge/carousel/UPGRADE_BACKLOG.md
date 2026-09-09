@@ -1293,157 +1293,138 @@ turn that build green, and a checker edited to stop reporting is how a checker s
 The carve-out is a scope decision the ownership map already made; the parser change is a
 behaviour change and belongs in a phase that can force it red on its own terms.
 
+---
 
-## A frame may retype `compute.py`'s geometry, and two frames did
+# Left on the table by the 2026-09-08 retro (carousel no. 18)
 
-Found 2026-09-09, carousel no. 18, by a layout accident rather than by any check.
+Three upgrades shipped that day and are in `ledger/carousel/upgrades.json`. Everything below was
+designed and not built, either because three is the ceiling or because it is out of this lane.
+Each carries the measurement it was designed from, so the next session judges the evidence rather
+than the mood.
 
-`slides/slide-05.html` drew its plot at `330/812` by `660/1020`, which is **180 px per day**.
-`compute.py` held `250/900` by `380/980`, which is **300**. So every y coordinate `computed.json`
-published for that frame, four series points, eight interval bounds, the zero rule and both pixel
-gaps, described a plot no frame contained, and the frame worked from its own literals under a
-comment reading `// 300 px per day` above arithmetic that produces 180. `slides/slide-04.html`
-held `RUN_DEPTH 138, RUN_GAP 178` against `computed.json`'s `96` and `190`, under a comment
-reading `FROM compute.py`.
+## 1. `absence_check` cannot tell whether the locator beside a sentence could settle it
 
-CLAUDE.md's rule is that **every measurable length, fraction and coordinate comes from
-`compute.py` and nothing is eyeballed.** Two of nine frames quietly opted out and **four scoring
-panels did not see it.** `plan_render_check` compares STRINGS. `numeral_lint` reads published
-numerals and none of these was published. `aggregate_check` reads declarations rather than the
-drawing. Nothing in the suite compares a frame's geometry to the file that is supposed to own it.
+**Owner: `upgrade`. Not built because three is the ceiling, and it is the largest one left.**
 
-**Worse, the run corrected the record toward the wrong half.** Round 2's judge reported
-`aggregates.json` declaring 180 against `computed.json`'s 300; the run changed the declaration to
-300 and wrote a confident paragraph about it. 300 is the number nobody drew.
+Four sentences in deck no. 18 asserted a state of the world wider than the search behind them and
+`absence_check` passed all four. Every one was found by a reader rather than by a gate.
 
-**The upgrade is to remove the hand-sync, not to check it.** `render.py` already rewrites
-`@@ASSETS@@` in every slide before it loads, so it can inject the run's `computed.json` on the
-same pass and expose it as a frozen global. A frame then reads `TXC.slide5.px_per_day` instead of
-retyping it, and a divergence becomes impossible rather than detectable. The narrower version, a
-gate that parses each frame's top-level `var` declarations and fails when a name matching a
-`computed.json` key holds a different value, is worth less: it catches the shape that was found
-and not the class.
+| frame | printed | what the cited claim actually holds |
+|---|---|---|
+| 3 | `None of it is published yet.` | c5 says what the plan must establish. No search of the city's plan publication surface was made |
+| 4 | `Nothing is fitted yet.` | c10 says which parks go first. No claim records a deployment status |
+| 9 | `No count for the adopting vote is public.` | c19 says only that the CITY'S OWN record holds none |
+| 9 | the locator named the resolution beside a voting-record absence | a resolution's extent cannot settle a missing tally |
 
-**Owner: the engine, `.claude/skills/carousel-engine/render.py`.** `ownership.yaml` gives
-`upgrade` `.claude/skills/carousel-engine/**`, and **the host stops any session on every path
-under `.claude/`, whatever the map says.** So this is an upgrade no unattended run can make, which
-is exactly the disposition CLAUDE.md prescribes: write it down here and stop. A maintainer at a
-keyboard answers the one prompt.
+The gate reads whether a frame NAMES a document. It never compares the locator's subject against
+the sentence's subject. **Naming a search is not the same as naming the right one**, and three of
+the four above named a search that could not have answered them.
 
-## No gate reads the SUBJECT of a sentence, and three unlicensed actors reached frames
+**The shape that would work.** Resolve the frame's locator to the claim whose url or title it
+names, then require the sentence's own subject noun to appear in that claim's `quote` or `text`.
+The subject-noun machinery this retro built for the provision sweep, `subject_terms` and `_norm`
+in `claims_check.py`, is reusable as written and is the reason this is now a smaller job than it
+was this morning. Three of the four would have fired.
 
-Found 2026-09-09 across three separate scoring rounds of carousel no. 18, each time by a human
-style read of pixels against `claims.json`, never by a check.
+**The trap.** A locator that is structurally correct and a sentence that is correctly narrow will
+share few words. Calibrate against the four above AND against the repaired versions that shipped,
+and record the warning count per shipped deck the way `absence_check` already does, so a later
+change that makes it noisy reads as a number rather than as a feeling.
 
-- `OPEN ACCESS, AND FREE TO READ TODAY` on slide 9. No claim carries the study's access status.
-- "over **every** inpatient encounter discharged in the window" on slide 2. c1 quotes an inclusion
-  criterion, not a census, and the run's own c10 shows the compared sets are subsets. The first
-  comment carried the same predicate as "all from the same **open** record".
-- "**Houston Methodist** compared two ways of answering it, and **published** which one was
-  closer" on slide 1. c1 places only the ENCOUNTERS there, c6 gives the finding to "this quality
-  improvement study", and c14 and the deck's own slide 9 name JAMA Network Open as publisher.
+## 2. `label_guard` reads the L5 locator as a set of labels
 
-None carries a numeral, a new noun, a negative or a verbatim slot, so `numeral_lint`,
-`noun_trace`, `absence_check` and `verbatim_check` are each structurally blind, and
-`plan_render_check` proves a declared string APPEARS rather than that a forbidden one is absent.
-The ledger records the same shape on deck 9 (`MAYOR KIRK WATSON`) and deck 16 ("without imported
-rare earths").
+**Owner: `upgrade`. Not built because the harm is false positives rather than a shipped defect.**
 
-**The upgrade:** extract the grammatical subject and main verb of every declarative sentence a
-frame prints, and fail the build unless that subject appears as an agent of that act inside the
-QUOTE of one of the claims the frame cites. It is the only check proposed here that would have
-caught all three, and it is the one this suite most obviously lacks.
+Eight reported problems on deck no. 18, every one a word out of
+`RESOLUTION 20260812-017 / READ IN FULL, BOTH PAGES`: READ, FULL, BOTH, PAGES. The gate's own
+docstring says a label is a claim about what a body did, and not one of those is. Slide 9's
+locator did not fire only because `VOTING RECORD` and `LOADED` happen to appear in c19's text,
+which is luck rather than correctness, and luck is what entry 47 of GATE_LESSONS says to go and
+find the reason for.
 
-**Owner: `daily`** (`scripts/carousel/`). It is not built here because it needs a parser and a
-corpus of shipped frames to tune against, and a subject-extraction gate that cries wolf is a gate
-the next run scrolls past, which is entry 16's lesson. It should be built against the eighteen
-decks already in `runs/carousel/` and required to go red on all three strings above.
+The run's daily-lane answer was to set the locator's extent in lower case so the capitalised run
+is just the citation. It reads better and it cost the deck nothing, and it is still a deck bending
+itself around a gate's window. **The window should exclude the locator element by class**, which
+is one selector, and the self-test needs the real 2026-09-08 locator string as its fixture plus a
+genuine label on the same frame that must still fire.
 
-## `caption_check.py` never reads `brand.yaml`'s `banned_phrases`
+## 3. `dedupe_check` compares topic, entities and keywords and never compares INSTRUMENT
 
-Found 2026-09-09 by a scoring judge reading the config beside the checker.
+**Owner: `upgrade`. Raised by a scorer on 2026-09-08 and worth carrying.**
 
-`brand.yaml` lists 76 banned phrases and `caption_check.py` does not read that key at all. The
-word `actionable` is on the list and shipped to two published surfaces of carousel no. 18, the
-caption and slide 4, with every gate green. It was removed by hand once a judge named it.
+This is the third deck in nineteen days on municipal camera surveillance and `dedupe_check`
+returned 0.30. Different bodies and different decisions, so it is not a topic repeat by the
+ledger's definition, and a reader meets three camera decks in three weeks.
 
-Same shape as the light-deck cap before `check_register` existed: **a rule stated in config with
-nothing in between checking it**, which CLAUDE.md names three separate times as this repo's
-recurring defect. The fix is small: read the key, scan the deck's prose surfaces, and exempt
-anything inside a verbatim quotation, because the house rule already says a quote is never
-touched and `actionable` survives legitimately inside c6's own sentence in the first comment.
+The missing axis is the INSTRUMENT CLASS: a resolution, an ordinance, a contract, an order, a
+rule. It is derivable from the claims file's own document titles rather than from a typed list.
+Do not fold it into the existing score. A second signal averaged into a composite disappears; it
+belongs beside the score as its own line so a run reads "third camera deck in nineteen days" in
+words.
 
-**Owner: `upgrade`** (`scripts/carousel/caption_check.py`). Not built in the same commit as this
-run's other change to that file deliberately: that one narrowed a rule that was firing wrongly and
-came with four self-tests, and this one adds a rule that will fire on shipped copy. Bundling a
-loosening and a tightening in one commit makes both harder to reverse.
+## 4. The provision sweep is not in `shipped_check`'s registry
 
+**Owner: `upgrade`. Deliberate, and here so the next session decides rather than forgets.**
 
-## `shipped_check`'s `measured figures` cannot tell a luminance from a tolerance
+`claims_check`'s provision sweep runs at Phase 6, which is where it belongs, and
+`prompts/daily_routine.md` already invokes `claims_check --date`, so it is wired and is not an
+orphan. It is NOT in the `shipped_check` registry, which is what runs a gate over every deck this
+project has published.
 
-Found 2026-09-09, carousel no. 18, when the gate ran on a light deck for the first time.
+The reason is that only one shipped run, 2026-09-08, has committed its `sources/` snapshots at
+all. A registry entry would report "not applicable, the artifact it reads is absent" on seventeen
+of eighteen decks, and a row that is always grey is read exactly as fast as one that is always
+green. The prior question is whether a run should commit its snapshots, which is `daily` lane and
+a storage decision, not a gate decision.
 
-`g_measured` reads every number written beside the token `L*` in a run's prose and requires it to
-appear in that run's `measurements.json`, on the premise stated in its own docstring: **"Every one
-of those is a luminance this run measured, so every one has to be in the file."**
+## 5. `runs/carousel/2026-09-08/` carries no `measurements.json`
 
-The premise is false for two shapes. A SEPARATION between two hues deliberately held at one
-lightness is not a frame's luminance. A THRESHOLD, such as the contact comfort band `qa.py` sets,
-is not one either. Carousel no. 18's storyboard carried eight of them and the gate reported all
-eight.
+**Owner: `daily`. Found by this retro, reported, not fixable from here.**
 
-**The reason nobody hit it before is worse than the defect.** Deck 17 wrote the same phrases and
-passed, because its deck was DARK and `2.0`, `6.0` and `8.0` occur naturally among its own
-measured percentiles. So the gate accepts a tolerance whenever it coincidentally collides with a
-measurement and refuses it otherwise, which means its verdict on this class has been decided by
-the register of the deck rather than by anything about the prose.
+`shipped_check --self-test` asserts that every registered gate actually RUNS on the newest deck,
+and on 2026-09-08 it reports `missing ['measured figures']` because
+`runs/carousel/2026-09-08/measurements.json` does not exist. The gate that catches the highest
+recurrence defect in this repository, a printed L\* figure disagreeing with the measurement it
+came from, has nothing to read for this deck. `out/2026-09-08/measurements.json` exists, so this
+is a copy the ship phase did not make.
 
-**The upgrade:** read the token's ROLE, not just its presence. A number followed by `L*` and
-preceded by `within`, `at least`, `or better`, `separation`, `apart` or `of each other` is a
-tolerance and belongs to a different check, or to none. The narrow version is an exemption list of
-those lead-ins with a self-test carrying one fixture per shape, a real measured figure that must
-still fail when absent from `measurements.json`, and a tolerance that must pass.
+## PROPOSED GATE_LESSONS ENTRIES, which this lane may not write
 
-**Owner: `upgrade`** (`scripts/carousel/shipped_check.py`). Deliberately not built in the commit
-that hit it: that commit was turning a red build green, and editing a checker to stop reporting
-under exactly those conditions is how a checker stops being one. This repository already has that
-precedent written down two entries up, for `lesson_refs`' `CITE` parser, and the reasoning is the
-same. Carousel no. 18 reworded its own prose instead, which cost it nothing.
+`knowledge/shared/GATE_LESSONS.md` is `human` lane. The three upgrades this retro shipped each
+belong in it and none of them can be put there from here. They are drafted below so a maintainer
+pastes rather than reconstructs.
 
+**A block parser that stops at the first wrapped item.** `plan_render_check.acceptance_items`
+took the acceptance list with `^acceptance:\s*\n((?:  - .*\n)+)`. The repetition ends at the first
+line that is not `  - `, which is the continuation of an item long enough to wrap, so the block
+ended there and everything after it in that slide's list was never read. Measured on the
+2026-09-08 storyboard as first written: **17 items read of 52.** The items that survive are the
+SHORT ones, and a short item is the one least likely to quote a string, so the gate then reported
+`0 of 16 acceptance items carry a machine-checkable assertion`, which was true of what it could
+see and false of the plan. Its self-test passed throughout because the fixture writes every item
+on one line. **What to check instead.** When two modules read one format, they are one parser or
+they are a defect waiting: `dossier_check` read the same blocks with `yaml.safe_load` and counted
+all 52 the whole time. And a fixture for a line-oriented parser has to contain a line that wraps,
+because wrapping is the only thing the parser can get wrong.
 
-## The ask index is 644 chars over a ceiling only a maintainer can move, and it blocks a merge
+**A provenance line conditioned on a label.** `sources_block` appended "Day counts computed in
+compute.py from the source dates above" whenever an aggregate declared `kind: duration`. Every
+duration a source states in its own words is legitimately labelled `duration` too, so the
+sentence rode along on decks that performed no subtraction anywhere. It reached readers:
+`runs/carousel/2026-08-30/first_comment.txt` carries the line over two durations each marked
+`quoted_from` with a note reading "No arithmetic, no unit change, no hedge dropped". This is
+GATE_LESSONS 41 at the level of a provenance claim: a fact the build BRANCHES ON may not live in
+a label or in prose. It is conditioned on `from_date` and `to_date` now, which is what a computed
+span actually carries.
 
-Found 2026-09-09 by CI, on carousel no. 18's branch. **This is the finding that held the run.**
-
-`ask_pack.py`'s self-test measures the index every question pays for. It is **40,644 chars against
-a 40,000 ceiling.** Remove this run's three admissions and it is **40,092**, still over by 92, so
-the breach was already there when this run started.
-
-**The cause is that main is 81 commits behind.** The 2026-09-05 and 2026-09-07 runs never merged,
-so their admissions, `tx-2026-0122` through `tx-2026-0128`, are carried on this branch and counted
-here for the first time. The index breaks down as decisions 25,848, dossiers 9,674, reservoirs
-2,303, construction register 966, heads 1,845.
-
-**Why this run could not fix it.**
-
-- `ownership.yaml` gives `scripts/site/ask_*.py` to **`human`**. Not `daily`, not `upgrade`. So the
-  two fixes the file itself prescribes are both out of reach: rolling a family up, which is what it
-  says to do "before that number is touched", and the number itself, which it says is "never a fix
-  for a red build" anyway.
-- The only lever in the `daily` lane is the record's own copy, and that is the wrong trade. The
-  record's MEDIAN title is 112 characters and its p90 is 142. This run's three sit at 67, 71 and
-  103, already at or under the median. Cutting published record copy to fit an index budget damages
-  the product to satisfy a checker, and trimming every new title to 75 chars recovers about 280 of
-  the 644 while making ten items read unlike the other 105.
-
-**The upgrade, for a maintainer.** The dossier block is 9,674 chars for a family that was already
-rolled up once, on 2026-09-03, when it was the last family indexed a full line each. It is now the
-second largest block after the decisions themselves. Either roll it further, to a count and a
-pointer rather than a name and an id each, or accept that the decisions block grows with the record
-and the ceiling has to be re-derived from what a question can actually afford rather than held at a
-round number set when the record was smaller. **The second is a real decision about cost per query
-and it belongs to a person**, which is exactly why that file is `human` lane and why this run
-stopped here rather than editing it.
-
-Recorded rather than worked around, per CLAUDE.md: respect it, record it, and never work around a
-disallow.
+**Every gate asked whether the deck's output traced to a source, and none asked whether the
+source reached the deck.** Deck no. 18's thesis was refuted by section 2-19-9 of an ordinance the
+run had fetched in full, cited six other sections of, and never opened. A judge found it. So did
+the second one, an Actions Taken By Council page linked from an agenda the run had already
+fetched. **The whole pipeline is oriented one way.** `claims_check`, `aggregate_check`,
+`numeral_trace`, `noun_trace`, `locator_trace` and `absence_check` all ask whether what the deck
+PRINTS goes back to a source. Nothing asked whether what a SOURCE says came forward. The named
+failure mode in the retrieval literature is "supported but missed", and recall is the first thing
+to measure when omission is the risk. **What to check instead.** Take the deck's own subject nouns
+out of its story, sweep every fetched snapshot, and require every provision naming one to hold a
+claim's quote or to be named in `rejected`.

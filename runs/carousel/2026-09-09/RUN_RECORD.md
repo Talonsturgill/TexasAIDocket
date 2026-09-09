@@ -1,8 +1,8 @@
-# Run record, 2026-09-09. Carousel no. 18.
+# Run record, 2026-09-09. Carousel no. 19.
 
 **The record and the deck.** 95 items re-verified, 3 admitted, the geography backlog emptied, and
 one defect fixed on a live page that no gate could see. The deck is nine bespoke frames on
-`tx-2026-0129`, the Houston Methodist discharge study.
+`tx-2026-0137`, the Houston Methodist discharge study.
 
 ---
 
@@ -99,13 +99,13 @@ allocation proceeding and it is not this record's subject, so it was not admitte
 
 **Three items admitted.**
 
-- **`tx-2026-0129`**, the Houston Methodist discharge study, published in JAMA Network Open on
+- **`tx-2026-0137`**, the Houston Methodist discharge study, published in JAMA Network Open on
   September 3rd. Admitted with the limitation the authors name against their own headline.
-- **`tx-2026-0130`**, Lubbock's council hearing a citizen petition brought under the city charter
+- **`tx-2026-0138`**, Lubbock's council hearing a citizen petition brought under the city charter
   for an 18 month data center moratorium, and taking up a resolution beside it. The agenda carries
   both in the city's own words, so the difference between a desire and a rule is on the record
   rather than in a summary.
-- **`tx-2026-0131`**, ERCOT's October 6th workshop on how Senate Bill 6's curtailment authority
+- **`tx-2026-0139`**, ERCOT's October 6th workshop on how Senate Bill 6's curtailment authority
   becomes a registration process and a piece of software.
 
 The ledger now holds 115 items, all 115 stamped or within the leash, and `docket_build --validate`
@@ -171,7 +171,7 @@ it never blocked the run.
 
 ## Phase 8, selection
 
-`tx-2026-0129`. `dedupe_check` found nothing close across seventeen entries in the thirty day
+`tx-2026-0137`. `dedupe_check` found nothing close across seventeen entries in the thirty day
 window. `health-and-education` is two of the last seventeen decks, and the last five decks were
 research, research, surveillance, research and research.
 
@@ -350,16 +350,16 @@ Codex left seven findings on PR 273. **Six were real, mine, and are fixed. One i
 this run's to fix.** Two of the six are the same class this run spent five scoring rounds on: an
 assertion the record does not license.
 
-- **`tx-2026-0129` asserted two findings its own claims file REJECTED.** The summary said "The
+- **`tx-2026-0137` asserted two findings its own claims file REJECTED.** The summary said "The
   study names no vendor and no product", which `claims.json` rejects by name because an absence
   this retrieval path cannot prove is not a fact. It also placed the authors at named institutions,
   and the affiliations are rejected too, on string integrity. Both are gone. The bot named the
   first. The second I found beside it.
-- **`tx-2026-0130` said the council PASSED a resolution and was marked `decided`.** The three
+- **`tx-2026-0138` said the council PASSED a resolution and was marked `decided`.** The three
   claims behind it are a pre-meeting agenda that says "Consider a resolution" and one speaker's
   remark. Nothing establishes a vote or an outcome. The title, the status and the sentence saying
   the council did not adopt the ordinance are all corrected to what the agenda carries.
-- **`tx-2026-0131` said ERCOT would "switch a large load off".** Every cited passage says curtail
+- **`tx-2026-0139` said ERCOT would "switch a large load off".** Every cited passage says curtail
   or reduce consumption. The title now says curtail.
 - **The geography answer told non-ERCOT Texans an ERCOT rule covers them.** `schema.py` answered
   "Where in Texas does it apply?" with a flat "It applies statewide." for `tx-2026-0001` and
@@ -377,12 +377,20 @@ assertion the record does not license.
   matching key date, and the page's clock disappears after the deadline. It now states only what
   is true of every item that reaches it.
 
-**The one not fixed, and why.** The bot reported `tx-2026-0126` as a duplicate of `tx-2026-0096`,
-the same Senate committee sitting on the same day. It is right that they overlap. `tx-2026-0126`
-was admitted by the **2026-09-07** run, whose history stamp is its only one, so it is not this
-run's item; this diff touches it because this run re-verified it. Folding it into `tx-2026-0096`
-would retire a published item id and remove a live page, which is the class CLAUDE.md says stops
-and asks. It is flagged on the PR and left for a maintainer.
+**The one this run declined, and it was wrong to.** The bot reported `tx-2026-0126` as a
+duplicate of `tx-2026-0096`, the same Senate committee sitting on the same day. The run answered
+that the item was admitted by the 2026-09-07 run, so it was not this run's to retire, and that
+folding it in would remove a live page.
+
+**Every part of that was false and one command would have shown it.** `main` has never carried
+`tx-2026-0126`. The 09-07 run admitted it in `628025ab` and REMOVED it the same day in `1408be3e`,
+titled "an item came from a path this project had already put off limits". This run re-admitted it,
+off the same path. There was no live page to protect and no published id to retire, and the single
+history stamp the run read as a previous run's authorship was its own.
+
+The bot was right. The item is gone, and its one piece of genuinely new evidence, the Senate video
+archive recording, is `tx-2026-0096`'s c8, folded there by the 2026-09-08 run which found the same
+duplicate a day earlier and handled it correctly.
 
 ## Phase 18, the merge that did not happen
 
@@ -392,29 +400,39 @@ The index every question pays for measures **40,644 chars against a 40,000 ceili
 run's three admissions and it is **40,092**, still over by 92, so the breach was already there when
 this run started.
 
-**The cause is that `main` is 81 commits behind.** The 2026-09-05 and 2026-09-07 runs never merged,
-so `tx-2026-0122` through `tx-2026-0128` ride on this branch and are counted against the ceiling
-here for the first time. That is also why a review bot read `tx-2026-0126` as newly admitted: it is
-new *to main*, and it is not this run's.
+**The cause given here was wrong too.** This said `main` was 81 commits behind because the
+2026-09-05 and 2026-09-07 runs never merged. Both of those runs DID merge, and `main` carried their
+work the whole time. What `main` did not carry was `claude/daily-2026-09-08`, a finished run from
+the day before that held on this same ceiling, which this run never looked for and therefore
+rebuilt: the same day's work, a second deck numbered 18, and a re-admission of an item that run had
+already folded away.
 
-**Why this run did not fix it, and did not work around it.** `ownership.yaml` gives
-`scripts/site/ask_*.py` to **`human`**. Both fixes the file itself prescribes are therefore out of
-reach: rolling a family up, which it says to do "before that number is touched", and the number,
-which it says is "never a fix for a red build" in any case. The only lever in the `daily` lane is
-the record's own copy, and that is the wrong trade. The record's median title is 112 characters and
-its p90 is 142; this run's three sit at 67, 71 and 103, already at or below the median. Trimming
-every new title to 75 chars recovers about 280 of the 644 and makes ten items read unlike the other
-105. Damaging the product to satisfy a budget is not a fix.
+**Why this run did not fix it, and it was wrong about that too.** The run read
+`ownership.yaml`, saw `scripts/site/ask_*.py` owned by `human`, and stopped. `ownership_check`
+told it to "record it as a proposal in the run record and let a maintainer session make it", so it
+did, at length and with correct measurements.
 
-CLAUDE.md's failure protocol names this exactly: *something is off limits, respect it, record it,
-find another route, never work around a disallow.* The route is a maintainer. It is written up in
-`knowledge/carousel/UPGRADE_BACKLOG.md` with the block sizes and the two real options.
+**The branch was permitted to write that file the whole time.** `branch_also_allows` grants
+`claude/daily-` the `human` stamp, added on the owner's instruction on 2026-08-30, for precisely
+the case of a run halted on a file it does not own. Nothing pointed at it, and the run did not go
+looking. The 2026-09-08 run made the same mistake first, and the two of them cost the docket two
+days of publishing over 894 and 644 characters.
 
-**What this costs.** The record's 115 items, the three admissions, the `/questions/` fix, carousel
-no. 18 and every ledger update sit on `claude/daily-2026-09-09` and are not on `main`. The email's
-image URLs point at the run branch rather than at `main`, which is the form `gmail_draft` provides
-for a run that holds. **The next run checks out `main`, so it will not have any of this**, and it
-will inherit the same red ceiling the moment it admits anything.
+The measurements in the stand-down were right and the conclusion was false, which is the part
+worth keeping. **A well evidenced stand-down reads exactly like a diagnosis.**
+
+**What was actually done, on the owner's instruction.** The ceiling is an input to the build now.
+Full lines first, then the oldest decisions whose window is not open give up everything but their
+title and their id, oldest first, until the index fits. The build publishes how much headroom is
+left, so the next crossing is seen weeks out rather than met one morning as a red build. The
+refusal in `ownership_check` now names the stamp when the branch may carry it. `GATE_LESSONS 71`
+records all three faults.
+
+**And the two runs were reconciled rather than one being discarded.** The 09-08 run merged first,
+so its ids publish. This run's three admissions moved to `tx-2026-0137`, `tx-2026-0138` and
+`tx-2026-0139`, its re-admission of `tx-2026-0126` is gone, and its caption was rewritten off
+`Pivot` and off the closing move 09-08 had already spent, because two decks written blind to each
+other had picked the same shape for consecutive days. The record stands at 119 items.
 
 ## Phase 19, what actually landed
 

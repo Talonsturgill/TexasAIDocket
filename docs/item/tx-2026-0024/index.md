@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-04 · The commission's calendar feed still runs ahead of itself, with the next open meeting on Friday, September 11th, 2026 in the commissioners hearing room. Nothing on the feed moved between yesterday and today.
 - 2026-09-05 · The commission's calendar is still published as a live feed and still runs past the end of next year. The open meeting dates on it have not moved.
 - 2026-09-07 · The commission's calendar is still published as a live feed and still names its open meetings and its comment deadlines ahead of the day they fall. The entries the record quotes have not moved.
+- 2026-09-08 · The commission's calendar still publishes open meeting dates well into next year, so the schedule remains readable in advance by anyone who wants to attend.
 - 2026-09-09 · The commission's open meeting calendar is still published as a live feed running into 2027, so the dates a reader would plan around are still there to read.
 
 ## Evidence

@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · Houston Methodist's imaging model remains deployed ahead of radiologist review with its stated limitations intact.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The Houston hospital still runs the imaging model in front of its radiologists and still says in its own words that it is imperfect. The decider type is corrected here from special-district to company, because a special district is a unit of Texas local government and this is a private hospital system.
+- 2026-09-08 · Houston Methodist still runs the imaging AI in front of its radiologists and still says in its own words that the tool is imperfect.
 - 2026-09-09 · Houston Methodist still has the imaging model in front of its radiologists and still says in public that it is in use rather than in trial.
 
 ## Evidence

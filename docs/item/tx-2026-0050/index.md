@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · Checked and unchanged. The council's direction to staff still stands and the code amendment it asked for is still being written rather than adopted. Data centers are still not a distinct land use in the city's code.
 - 2026-09-02 · The motion stands as passed. The zoning amendment it directed staff to write has not come back to the council.
 - 2026-09-05 · Corpus Christi's direction to write the zoning prohibition still stands and no amendment has come back to the council.
+- 2026-09-08 · Corpus Christi's instruction to staff still stands. The zoning amendment prohibiting data centers in every district has not come back to the council, and neither has the moratorium process.
 - 2026-09-09 · Corpus Christi's direction to write a data center zoning amendment is still with staff and nothing has come back to the council.
 
 ## Evidence

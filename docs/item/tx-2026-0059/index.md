@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The regional water district still reports no data-center supply contract and a withdrawn Cedar Creek request.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The water district still says it has signed no data center supply contract and the Cedar Creek request is still withdrawn.
+- 2026-09-08 · The Tarrant Regional Water District still says it holds no data center water supply contract, and the Cedar Creek request is still withdrawn.
 - 2026-09-09 · Tarrant Regional Water District still says it has signed no water supply contract for a data center. That statement stands as the district published it.
 
 ## Evidence

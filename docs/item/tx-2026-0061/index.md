@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · San Marcos's citywide exclusion of data centers remains in its adopted land-development rules.
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · San Marcos still defines data centers in its land development code and still makes them ineligible across the city. The vote has not been revisited.
+- 2026-09-08 · San Marcos still defines data centers in its land development code and still makes them ineligible everywhere in the city.
 - 2026-09-09 · San Marcos still defines a data center in its land development code and still makes one a conditional use. The narrow vote that put it there has not been revisited.
 
 ## Evidence
