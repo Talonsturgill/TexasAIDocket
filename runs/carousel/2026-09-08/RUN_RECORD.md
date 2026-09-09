@@ -1044,5 +1044,18 @@ stamps this branch may carry, and a run that reads the first and not the second 
 work it was permitted to do. The hold section above is left exactly as it was written, because a
 run record that edits away its own wrong reasoning teaches nobody anything.
 
-Merged to `main` at `7b68d54d` with every check green on head `2d6ffc14`. The email was rebuilt
-against `main` and its image links no longer depend on this branch surviving.
+Merged to `main` at `7b68d54d` with every check green on head `2d6ffc14`.
+
+**The email was rebuilt against `main`, and the shipped payload is preserved rather than replaced.**
+`gmail_payload.json` is the artifact this run actually produced, holding and linking its own branch,
+and it stays byte for byte as it merged. The rebuilt one sits beside it as
+`gmail_payload_corrected.json`, which is the shape `runs/carousel/2026-09-04/` already used.
+
+That correction came from the review bot and it was right. The first attempt overwrote the shipped
+file, which is one of the three things `CLAUDE.md` says always stop and ask, and `AGENTS.md` states
+in four words: **`runs/` contains shipped run records and artifacts. Do not rewrite history.** The
+2026-09-04 commit that established the convention is titled "put the shipped payload back, and
+correct two claims the review was right about". **This run made the same mistake that commit exists
+to have fixed**, which is worth more than the fix: an archived artifact that says the run held is
+the evidence the run held, and a corrected copy beside it costs nothing while an overwrite costs
+the record.
