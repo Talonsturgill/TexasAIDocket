@@ -1,0 +1,2566 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "When does this patient go home?",
+          "x": 80,
+          "y": 206,
+          "w": 920,
+          "h": 215,
+          "font_px": 112,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              190,
+              637,
+              139
+            ],
+            [
+              80,
+              298,
+              726,
+              139
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Houston Methodist compared two ways of answering it, and published which one was closer when accurate estimations are most actionable for bed management.",
+          "x": 80,
+          "y": 512,
+          "w": 800,
+          "h": 182,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              510,
+              689,
+              48
+            ],
+            [
+              80,
+              556,
+              694,
+              48
+            ],
+            [
+              80,
+              601,
+              705,
+              48
+            ],
+            [
+              80,
+              647,
+              532,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 \u00b7 c6",
+          "x": 80,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the canopy column standing on the sunlit lane",
+          "shadow": [
+            [
+              286,
+              880,
+              120,
+              22
+            ]
+          ],
+          "ground": [
+            [
+              620,
+              880,
+              120,
+              22
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 3277,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 187.4,
+          "variance": 1508.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two answers, one date",
+          "x": 80,
+          "y": 158,
+          "w": 900,
+          "h": 94,
+          "font_px": 96,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              146,
+              818,
+              118
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS",
+          "x": 80,
+          "y": 352,
+          "w": 314,
+          "h": 71,
+          "font_px": 31,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 238, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              367,
+              270,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS",
+          "x": 80,
+          "y": 436,
+          "w": 335,
+          "h": 71,
+          "font_px": 31,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 238, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              451,
+              291,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The hospital's own staff, and a commercial clinician-assisted tool integrated with the EHR, over every inpatient encounter discharged in the window below.",
+          "x": 80,
+          "y": 556,
+          "w": 800,
+          "h": 172,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              554,
+              794,
+              45
+            ],
+            [
+              80,
+              597,
+              746,
+              45
+            ],
+            [
+              80,
+              640,
+              708,
+              45
+            ],
+            [
+              80,
+              683,
+              99,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUGUST 1ST, 2023",
+          "x": 104,
+          "y": 1132,
+          "w": 270,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1132,
+              270,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FEBRUARY 28TH, 2024",
+          "x": 655,
+          "y": 1132,
+          "w": 321,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              655,
+              1132,
+              321,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 \u00b7 c5",
+          "x": 80,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1564,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 171.1,
+          "variance": 326
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At admission, level",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 98,
+          "font_px": 100,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              155,
+              695,
+              124
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At admission the case managers and the tool sat within a fraction of a day of each other on error. Both marks are out at that distance, and the air between here and there is what a reader has to see through.",
+          "x": 80,
+          "y": 322,
+          "w": 790,
+          "h": 214,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              320,
+              748,
+              45
+            ],
+            [
+              80,
+              363,
+              723,
+              45
+            ],
+            [
+              80,
+              406,
+              722,
+              45
+            ],
+            [
+              80,
+              449,
+              785,
+              45
+            ],
+            [
+              80,
+              492,
+              134,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS",
+          "x": 80,
+          "y": 842,
+          "w": 235,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              842,
+              235,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "23.6%",
+          "x": 80,
+          "y": 882,
+          "w": 248,
+          "h": 111,
+          "font_px": 84,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              882,
+              248,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS",
+          "x": 600,
+          "y": 842,
+          "w": 253,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              842,
+              253,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "15.3%",
+          "x": 600,
+          "y": 882,
+          "w": 248,
+          "h": 111,
+          "font_px": 84,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              882,
+              248,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MATCHED THE EXACT DATE, AT ADMISSION",
+          "x": 80,
+          "y": 1004,
+          "w": 646,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1004,
+              646,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4",
+          "x": 80,
+          "y": 1245,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              29,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 806,
+          "w": 22,
+          "h": 22,
+          "by": "swatch",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 600,
+          "y": 806,
+          "w": 22,
+          "h": 22,
+          "by": "swatch",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "at admission the two methods sat level",
+          "reads": "same",
+          "a": [
+            [
+              392,
+              596,
+              58,
+              26
+            ]
+          ],
+          "b": [
+            [
+              630,
+              596,
+              58,
+              26
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1125,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 199,
+          "variance": 489
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On the last day, they were not",
+          "x": 80,
+          "y": 158,
+          "w": 920,
+          "h": 194,
+          "font_px": 100,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              144,
+              750,
+              124
+            ],
+            [
+              80,
+              241,
+              328,
+              124
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS 79.5%",
+          "x": 114,
+          "y": 486,
+          "w": 414,
+          "h": 44,
+          "font_px": 33,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              486,
+              414,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS 37.9%",
+          "x": 114,
+          "y": 760,
+          "w": 436,
+          "h": 44,
+          "font_px": 33,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              760,
+              436,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "WITHIN ONE DAY OF THE TRUE DATE 24 HOURS BEFORE DISCHARGE",
+          "x": 80,
+          "y": 1096,
+          "w": 920,
+          "h": 81,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1098,
+              569,
+              36
+            ],
+            [
+              80,
+              1139,
+              459,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2",
+          "x": 80,
+          "y": 1245,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              29,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 492,
+          "w": 20,
+          "h": 20,
+          "by": "swatch",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 766,
+          "w": 20,
+          "h": 20,
+          "by": "swatch",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the lit share of each run differs, 79.5 percent against 37.9 percent",
+          "reads": "differ",
+          "a": [
+            [
+              300,
+              528,
+              180,
+              44
+            ]
+          ],
+          "b": [
+            [
+              500,
+              806,
+              180,
+              44
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the near edge of the upper run",
+          "shadow": [
+            [
+              170,
+              652,
+              220,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              170,
+              706,
+              220,
+              16
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 2243,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 158.8,
+          "variance": 338.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One improved. One got worse.",
+          "x": 80,
+          "y": 148,
+          "w": 920,
+          "h": 178,
+          "font_px": 92,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              686,
+              113
+            ],
+            [
+              80,
+              225,
+              358,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Mean absolute error in days. The two never meet, and the gap between them is wider at the door than it was at the earlier reading.",
+          "x": 80,
+          "y": 340,
+          "w": 880,
+          "h": 115,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              338,
+              858,
+              41
+            ],
+            [
+              80,
+              376,
+              821,
+              41
+            ],
+            [
+              80,
+              415,
+              115,
+              41
+            ]
+          ],
+          "anc": [],
+          "occluded": {
+            "w": 19,
+            "h": 4,
+            "frac": 0.016,
+            "by": "swatch",
+            "by_text": ""
+          }
+        },
+        {
+          "text": "CASE MANAGERS 1.29 to 0.98",
+          "x": 112,
+          "y": 446,
+          "w": 490,
+          "h": 39,
+          "font_px": 29,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              446,
+              490,
+              39
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI 1.59 to 1.93",
+          "x": 112,
+          "y": 496,
+          "w": 283,
+          "h": 39,
+          "font_px": 29,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              496,
+              283,
+              39
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "48 HOURS",
+          "x": 196,
+          "y": 1038,
+          "w": 132,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              196,
+              1038,
+              132,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "24 HOURS",
+          "x": 834,
+          "y": 1038,
+          "w": 132,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              834,
+              1038,
+              132,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0",
+          "x": 80,
+          "y": 1006,
+          "w": 17,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1006,
+              17,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DAYS",
+          "x": 80,
+          "y": 1038,
+          "w": 66,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1038,
+              66,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 \u00b7 c6",
+          "x": 80,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 452,
+          "w": 19,
+          "h": 19,
+          "by": "swatch",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 502,
+          "w": 19,
+          "h": 19,
+          "by": "swatch",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the gap between the two series is wider at the right station than at the left",
+          "reads": "differ",
+          "a": [
+            [
+              262,
+              700,
+              72,
+              96
+            ]
+          ],
+          "b": [
+            [
+              830,
+              700,
+              72,
+              290
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1810,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 165.2,
+          "variance": 379.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Agreement is not understanding",
+          "x": 80,
+          "y": 158,
+          "w": 900,
+          "h": 190,
+          "font_px": 98,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              145,
+              631,
+              121
+            ],
+            [
+              80,
+              240,
+              547,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The strong admission correlation did not persist nearer discharge and should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay.",
+          "x": 80,
+          "y": 966,
+          "w": 920,
+          "h": 198,
+          "font_px": 40,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              966,
+              823,
+              49
+            ],
+            [
+              80,
+              1016,
+              854,
+              49
+            ],
+            [
+              80,
+              1065,
+              909,
+              49
+            ],
+            [
+              80,
+              1115,
+              587,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The study's authors, on their own result",
+          "x": 80,
+          "y": 1196,
+          "w": 645,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 61, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1196,
+              645,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7",
+          "x": 80,
+          "y": 1245,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              29,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the two shadows are the same length and the same value",
+          "reads": "same",
+          "a": [
+            [
+              250,
+              700,
+              120,
+              60
+            ]
+          ],
+          "b": [
+            [
+              650,
+              700,
+              120,
+              60
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the left solid on the lit clay",
+          "shadow": [
+            [
+              154,
+              644,
+              78,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              80,
+              1180,
+              78,
+              16
+            ]
+          ]
+        },
+        {
+          "what": "the right solid on the lit clay",
+          "shadow": [
+            [
+              490,
+              644,
+              290,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              420,
+              1200,
+              290,
+              16
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 1267,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 179.2,
+          "variance": 597.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 218, 202)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 218, 202)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One estimate was being read",
+          "x": 80,
+          "y": 146,
+          "w": 880,
+          "h": 178,
+          "font_px": 92,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(242, 234, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              820,
+              113
+            ],
+            [
+              80,
+              223,
+              160,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS",
+          "x": 80,
+          "y": 492,
+          "w": 255,
+          "h": 54,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 246, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              502,
+              221,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Estimates were part of usual care and visible to care teams, so they may be partly self-fulfilling and, in the authors' own word, advantaged nearer discharge.",
+          "x": 80,
+          "y": 552,
+          "w": 900,
+          "h": 113,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              550,
+              867,
+              41
+            ],
+            [
+              80,
+              588,
+              867,
+              41
+            ],
+            [
+              80,
+              626,
+              419,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS",
+          "x": 80,
+          "y": 966,
+          "w": 272,
+          "h": 54,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(16, 24, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              976,
+              238,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Accessible in the EHR but not enabled automatically. Nothing was shining on this one.",
+          "x": 80,
+          "y": 1030,
+          "w": 900,
+          "h": 76,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(230, 220, 202)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1028,
+              852,
+              41
+            ],
+            [
+              80,
+              1066,
+              334,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The study's authors, against their own result",
+          "x": 80,
+          "y": 1186,
+          "w": 725,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 175, 158)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1186,
+              725,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8",
+          "x": 80,
+          "y": 1245,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 175, 158)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              29,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 175, 158)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1150,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 69.6,
+          "variance": 3842.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the comparison never saw",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 182,
+          "font_px": 94,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              772,
+              116
+            ],
+            [
+              80,
+              228,
+              353,
+              116
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No baseline patient demographic data were available.",
+          "x": 80,
+          "y": 396,
+          "w": 900,
+          "h": 102,
+          "font_px": 42,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              395,
+              782,
+              52
+            ],
+            [
+              80,
+              446,
+              178,
+              52
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE STUDY FOLLOWED THE SQUIRE REPORTING GUIDELINE",
+          "x": 80,
+          "y": 1136,
+          "w": 866,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1136,
+              866,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 \u00b7 c12",
+          "x": 80,
+          "y": 1245,
+          "w": 130,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              130,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the ground inside the staked traverse is identical to the ground outside it",
+          "reads": "same",
+          "a": [
+            [
+              430,
+              720,
+              190,
+              120
+            ]
+          ],
+          "b": [
+            [
+              110,
+              1160,
+              190,
+              120
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the near corner stake driven into the clay",
+          "shadow": [
+            [
+              206,
+              1100,
+              110,
+              20
+            ]
+          ],
+          "ground": [
+            [
+              60,
+              1000,
+              110,
+              20
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 1575,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 174.4,
+          "variance": 267.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HARRIS COUNTY",
+          "x": 80,
+          "y": 84,
+          "w": 247,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              247,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What settles it",
+          "x": 80,
+          "y": 214,
+          "w": 900,
+          "h": 102,
+          "font_px": 106,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              199,
+              556,
+              131
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The authors say what has to happen before anyone decides the tool is worth what it takes to run it.",
+          "x": 80,
+          "y": 406,
+          "w": 830,
+          "h": 137,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              404,
+              705,
+              48
+            ],
+            [
+              80,
+              450,
+              789,
+              48
+            ],
+            [
+              80,
+              495,
+              95,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Warrants prospective, outcome-based evaluation.",
+          "x": 80,
+          "y": 640,
+          "w": 900,
+          "h": 107,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              639,
+              716,
+              54
+            ],
+            [
+              80,
+              693,
+              215,
+              54
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PUBLISHED SEPTEMBER 3RD, 2026 OPEN ACCESS, AND FREE TO READ TODAY",
+          "x": 80,
+          "y": 846,
+          "w": 900,
+          "h": 78,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              848,
+              520,
+              35
+            ],
+            [
+              80,
+              887,
+              628,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 \u00b7 c12 \u00b7 c14",
+          "x": 80,
+          "y": 1245,
+          "w": 202,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              202,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the benchmark monument standing on the prairie",
+          "shadow": [
+            [
+              560,
+              1188,
+              150,
+              22
+            ]
+          ],
+          "ground": [
+            [
+              200,
+              1188,
+              150,
+              22
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 849,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 210.4,
+          "variance": 1073.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

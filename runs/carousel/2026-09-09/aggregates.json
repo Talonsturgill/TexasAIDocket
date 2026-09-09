@@ -1,0 +1,130 @@
+{
+  "run": "2026-09-09",
+  "note": "Carousel no. 18 prints only figures its claims quote, so most of what follows is declared with `quoted_from` rather than `computed_by`. The two figures this deck DID compute in prose were caught by this gate and removed from the frames rather than declared, and both removals are recorded at the end. What the deck computes elsewhere is geometry, and that is listed under `geometry` below because it is drawn rather than printed.",
+  "aggregates": [
+    {
+      "phrase": "two ways",
+      "kind": "count",
+      "value": 2,
+      "from_claims": [
+        "c5",
+        "c6"
+      ],
+      "note": "The two methods the study compared. c5 names the AI side and c6 names both sides in the study's own words, and the study compares those two and nothing else."
+    },
+    {
+      "phrase": "Two answers",
+      "kind": "count",
+      "value": 2,
+      "from_claims": [
+        "c5",
+        "c6"
+      ],
+      "note": "The same count, on slide 2's hook, over the same two claims."
+    },
+    {
+      "phrase": "ONE DAY",
+      "kind": "duration",
+      "value": 1,
+      "quoted_from": "c2",
+      "quote": "fell within 1 day",
+      "note": "Set in the deck's own type rather than as a quotation, so it is declared here. No conversion is performed."
+    },
+    {
+      "phrase": "24 HOURS",
+      "kind": "duration",
+      "value": 24,
+      "quoted_from": "c2",
+      "quote": "At 24 hours",
+      "note": "The station the source names. Slides 4 and 5 both print it and neither restates it in days."
+    },
+    {
+      "phrase": "48 HOURS",
+      "kind": "duration",
+      "value": 48,
+      "quoted_from": "c3",
+      "quote": "48 hours",
+      "note": "The other station the source names, in the source's own unit."
+    }
+  ],
+  "geometry": [
+    {
+      "what": "the lit fraction of each run on slide 4",
+      "value": [
+        0.795,
+        0.379
+      ],
+      "from_claims": [
+        "c2"
+      ],
+      "computed_by": "compute.py divides each percentage in c2 by one hundred and draws the shadow edge at that fraction of the run's OWN length. Nothing is printed beside it, and it is declared anyway because a shadow edge at 0.795 asserts a percentage whether or not the percentage is printed."
+    },
+    {
+      "what": "slide 5's vertical scale in pixels per day",
+      "value": 180.0,
+      "from_claims": [
+        "c3"
+      ],
+      "computed_by": "compute.py divides the plot height by an axis top set from the largest confidence interval bound in the plot rather than the largest value, so no interval can run off the frame. The axis is anchored at zero and the zero is printed."
+    },
+    {
+      "what": "whether slide 5's two series intersect inside the plotted interval",
+      "value": "no",
+      "from_claims": [
+        "c3"
+      ],
+      "computed_by": "compute.py solves the intersection of the two linear segments and gets t = -0.4615, off the left of the plot. THE LINES DO NOT CROSS. Two of the three treatments described slide 5 as the crossing frame and the storyboard was written that way. The arithmetic ran before the drawing and overruled all three."
+    },
+    {
+      "what": "the separation of slide 3's two admission marks at feed scale, in pixels",
+      "value": 0.728,
+      "from_claims": [
+        "c4"
+      ],
+      "computed_by": "compute.py takes the difference between 4.20 and 4.27 days at the frame's own 26 px per day and scales it to 432px wide. It is sub-pixel, which is that frame's whole subject, and it is drawn true rather than widened."
+    },
+    {
+      "what": "the study window on slide 2, in days",
+      "value": 211,
+      "from_claims": [
+        "c1"
+      ],
+      "computed_by": "compute.py does date arithmetic between the two dates c1 quotes. Position along the phenology ramp is days elapsed at 4.3602 px per day, so the ramp IS the calendar rather than a gradient placed by eye."
+    },
+    {
+      "what": "the two sun altitudes on slide 6, in degrees",
+      "value": [
+        34.99,
+        23.11
+      ],
+      "from_claims": [],
+      "computed_by": "compute.py takes the arctangent of each solid's own height over one shared shadow length. This is the frame's own geometry rather than a fact about the world, which is why it cites no claim, and it is what makes two unlike solids throw one length."
+    }
+  ],
+  "deliberately_not_computed": [
+    {
+      "what": "any difference, ratio or delta between the two parties' figures",
+      "why": "The deck sets the pairs beside each other and lets the reader do the subtraction. No frame states a gap in days or in percentage points, so no arithmetic the source did not perform is published."
+    },
+    {
+      "what": "the three encounter counts at the three time points, c10",
+      "why": "CUT FROM THE DECK ENTIRELY, before anything was planned. They print with a thin space inside the thousands and numeral_lint reads 21 710 as the two numerals 21 and 710. The fact-checker had marked c10 medium confidence and warned twice that no ranking, subtraction or length may be asserted across the three. A figure that cannot be ranked, cannot be compared and cannot be set without fighting the numeral gate carries no argument."
+    },
+    {
+      "what": "forty eight hours expressed as two days",
+      "why": "aggregate_check caught slide 5 saying the gap was wider than it was 'two days earlier', which is a unit conversion this deck performed rather than a figure the study states. The frame now reads 'at the earlier reading' and both stations are named in the hours the source uses."
+    },
+    {
+      "what": "the time from admission to discharge, which slide 3 implied by saying 'Four days out'",
+      "why": "4.20 and 4.27 are the mean absolute ERROR at admission, not the length of a stay, and rounding either to 'four days out' asserts a time point the study never states. Caught by the same gate, in the same pass. The frame now reads 'At admission'."
+    },
+    {
+      "what": "the mean absolute error at admission, as printed figures",
+      "why": "Slide 3 draws that comparison as a sameness and prints only the exact-date rates, which are the one thing that did differ at admission. Printing both pairs on one frame would invite a difference the study never states."
+    },
+    {
+      "what": "any interval between the publication date and today",
+      "why": "No source performs it and no frame sets the two dates beside each other."
+    }
+  ]
+}

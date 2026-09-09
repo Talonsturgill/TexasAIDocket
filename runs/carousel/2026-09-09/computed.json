@@ -1,0 +1,203 @@
+{
+  "run": "2026-09-09",
+  "note": "Every value here is computed from claims.json. No numeral in this deck is typed.",
+  "frame": {
+    "w": 1080,
+    "h": 1350
+  },
+  "palette_oklch": {
+    "crust": {
+      "L": 0.72,
+      "C": 0.03,
+      "H": 70
+    },
+    "clay": {
+      "L": 0.34,
+      "C": 0.03,
+      "H": 60
+    },
+    "bluestem": {
+      "L": 0.62,
+      "C": 0.09,
+      "H": 48
+    },
+    "straw": {
+      "L": 0.78,
+      "C": 0.07,
+      "H": 72
+    },
+    "sky": {
+      "L": 0.88,
+      "C": 0.03,
+      "H": 235
+    },
+    "haze": {
+      "L": 0.92,
+      "C": 0.02,
+      "H": 80
+    },
+    "oakshade": {
+      "L": 0.3,
+      "C": 0.03,
+      "H": 160
+    },
+    "cloud": {
+      "L": 0.22,
+      "C": 0.02,
+      "H": 250
+    },
+    "ink": {
+      "L": 0.2,
+      "C": 0.02,
+      "H": 60
+    },
+    "manager": {
+      "L": 0.58,
+      "C": 0.1,
+      "H": 40
+    },
+    "tool": {
+      "L": 0.58,
+      "C": 0.05,
+      "H": 250
+    }
+  },
+  "palette": {
+    "crust": "#B1A291",
+    "clay": "#443428",
+    "bluestem": "#B37555",
+    "straw": "#D4B186",
+    "sky": "#C5DBE9",
+    "haze": "#ECE3D6",
+    "oakshade": "#203329",
+    "cloud": "#141B24",
+    "ink": "#1D140D",
+    "manager": "#AC654B",
+    "tool": "#647D97"
+  },
+  "ink_contrast": {
+    "crust": 7.29,
+    "straw": 9.01,
+    "sky": 12.68,
+    "haze": 14.27,
+    "bluestem": 4.83,
+    "manager": 4.07,
+    "tool": 4.25,
+    "oakshade": 1.35,
+    "cloud": 1.05
+  },
+  "type_safe_grounds": [
+    "bluestem",
+    "crust",
+    "haze",
+    "sky",
+    "straw"
+  ],
+  "party_lightness_equal": true,
+  "figures": {
+    "cm_within_1d_24h": 79.5,
+    "ai_within_1d_24h": 37.9,
+    "cm_mae_48h": 1.29,
+    "ai_mae_48h": 1.59,
+    "cm_mae_24h": 0.98,
+    "ai_mae_24h": 1.93,
+    "cm_mae_adm": 4.2,
+    "ai_mae_adm": 4.27,
+    "cm_exact_adm": 23.6,
+    "ai_exact_adm": 15.3
+  },
+  "slide2": {
+    "window_days": 211,
+    "ramp_x0": 80,
+    "ramp_x1": 1000,
+    "px_per_day": 4.3602
+  },
+  "slide3": {
+    "px_per_day": 26.0,
+    "gap_px": 1.82,
+    "gap_px_at_432": 0.728
+  },
+  "slide4": {
+    "run_len": 820,
+    "run_depth": 96,
+    "run_gap": 190,
+    "manager_edge_frac": 0.795,
+    "tool_edge_frac": 0.379,
+    "manager_edge_px": 651.9,
+    "tool_edge_px": 310.8
+  },
+  "slide5": {
+    "axis_top_days": 2.0,
+    "px_per_day": 300.0,
+    "x_48h": 250,
+    "x_24h": 900,
+    "manager": {
+      "y_48h": 593.0,
+      "y_24h": 686.0,
+      "ci_48h": [
+        584.0,
+        602.0
+      ],
+      "ci_24h": [
+        677.0,
+        692.0
+      ]
+    },
+    "tool": {
+      "y_48h": 503.0,
+      "y_24h": 401.0,
+      "ci_48h": [
+        497.0,
+        509.0
+      ],
+      "ci_24h": [
+        395.0,
+        407.0
+      ]
+    },
+    "zero_y": 980,
+    "cross_t": -0.4615,
+    "lines_cross_in_plot": false,
+    "gap_48h_days": 0.3,
+    "gap_24h_days": 0.95,
+    "gap_widens": true,
+    "gap_48h_px": 90.0,
+    "gap_24h_px": 285.0,
+    "manager_below_tool_at_both": true,
+    "manager_direction": "down",
+    "tool_direction": "up"
+  },
+  "slide6": {
+    "shadow_len": 300.0,
+    "solid_a_h": 210.0,
+    "solid_b_h": 128.0,
+    "sun_alt_a_deg": 34.99,
+    "sun_alt_b_deg": 23.11
+  },
+  "slide7": {
+    "sun_alt_deg": 34.0,
+    "cloud_base_px": 760.0,
+    "cloud_offset_px": 1126.7,
+    "occlusion_edge_deg": 27.0
+  },
+  "claims_used": [
+    "c1",
+    "c10",
+    "c11",
+    "c12",
+    "c13",
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c18",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9"
+  ]
+}

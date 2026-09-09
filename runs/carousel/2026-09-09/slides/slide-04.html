@@ -1,0 +1,201 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 4 — THE HERO. On the last day, they were not.
+     c2 is a PROPORTION and nothing else in this deck is. It is drawn as a fraction of a run's
+     OWN length rather than as a length in days, so it needs no scale at all and cannot compete
+     with slide 5, which is about lengths. This is the residual bar's discipline executed in
+     sunlight: one hue at one flat intensity on each side of the edge, no severity ramp anywhere,
+     no dial and no radial geometry.
+
+     A wide band of unmarked prairie separates the two runs so no ratio can be read BETWEEN them.
+     The reader compares each run against itself, which is what a percentage is. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#B1A291}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#1D140D}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:158px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:100px;line-height:0.97;color:#1D140D;letter-spacing:-.022em}
+
+  .rlab{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:33px;
+    letter-spacing:.06em;color:#1D140D;font-variant-numeric:tabular-nums}
+  .swatch{position:absolute;width:20px;height:20px}
+
+  .qual{position:absolute;left:80px;top:1096px;width:920px;line-height:1.5;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:27px;letter-spacing:.08em;
+    color:#1D140D}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the lit share of each run differs, 79.5 percent against 37.9 percent","reads":"differ","a":[[300,528,180,44]],"b":[[500,806,180,44]]}]'
+      data-contacts='[{"what":"the near edge of the upper run","shadow":[[170,652,220,16]],"ground":[[170,706,220,16]]}]'>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">04 / 09</div>
+
+  <h1>On the last day, they were&nbsp;not</h1>
+
+  <div class="swatch" style="left:80px;top:492px;background:#AC654B"></div>
+  <div class="rlab" style="left:114px;top:486px">CASE MANAGERS 79.5%</div>
+
+  <div class="swatch" style="left:80px;top:766px;background:#647D97"></div>
+  <div class="rlab" style="left:114px;top:760px">AI ESTIMATIONS 37.9%</div>
+
+  <div class="qual">WITHIN ONE DAY OF THE TRUE DATE<br>24 HOURS BEFORE DISCHARGE</div>
+
+  <div class="foot"><span>c2</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S + 4);
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save(); gg.globalCompositeOperation = 'overlay'; gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat'); gg.fillRect(0, 0, w, h); gg.restore();
+  }
+
+  // ---- FROM compute.py. Each run's edge sits at a fraction of THAT RUN's own length.
+  var RUN_LEN = 820, RUN_DEPTH = 96, RUN_GAP = 190;
+  var CM_FRAC = 0.795, AI_FRAC = 0.379;
+  var CM_EDGE = RUN_LEN * CM_FRAC;               // 651.9
+  var AI_EDGE = RUN_LEN * AI_FRAC;               // 310.8
+  var SKEW = 0.249;                              // plan oblique at 14 degrees, tan(14deg)
+  var RUN_X = 150;
+  var RUN1_Y = 552, RUN2_Y = RUN1_Y + RUN_DEPTH + RUN_GAP;
+
+  var LIT = '#CDBFA8';                           // Lake Charles dry crust, in sun
+  var SHADE = '#5C6B5A';                         // coastal live oak shade, one flat value
+
+  // ---- the ground the runs are laid on
+  var bg = g.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#BDB1A0');
+  bg.addColorStop(0.5, '#B1A291');
+  bg.addColorStop(1, '#A99A87');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+
+  // wind-laid prairie over the whole ground, thickest in the band BETWEEN the two runs, so the
+  // separator carries real texture and no rule, tick or axis a reader could measure across.
+  function prairie(y0, y1, density, alpha) {
+    for (var i = 0; i < density; i++) {
+      var x = R() * W, y = y0 + R() * (y1 - y0);
+      var lay = TX.simplex2(x * 0.0022, y * 0.0030);
+      var ang = -Math.PI / 2 + lay * 0.9;
+      var len = 12 + R() * 26;
+      g.strokeStyle = R() > 0.62 ? 'rgba(179,117,85,' + alpha + ')'
+                                 : 'rgba(146,132,108,' + alpha + ')';
+      g.lineWidth = 1.0 + R() * 1.4;
+      g.beginPath(); g.moveTo(x, y);
+      g.lineTo(x + Math.cos(ang) * len, y + Math.sin(ang) * len); g.stroke();
+    }
+  }
+  prairie(0, H, 3200, 0.34);
+  prairie(RUN1_Y + RUN_DEPTH + 8, RUN2_Y - 8, 2600, 0.55);
+
+  // ---- ONE RUN. A slab of the same pale ground in plan oblique, crossed by ONE hard cast edge
+  // at its own computed fraction. One hue at one intensity on each side. No gradient, no falloff,
+  // no glow, because a real soffit at eleven in the morning makes a hard edge.
+  function drawRun(y, edgePx, key) {
+    var x0 = RUN_X, x1 = RUN_X + RUN_LEN;
+    var topOff = RUN_DEPTH * SKEW;
+
+    function slab(fromX, toX, fill) {
+      g.fillStyle = fill;
+      g.beginPath();
+      g.moveTo(fromX + topOff, y);
+      g.lineTo(toX + topOff, y);
+      g.lineTo(toX, y + RUN_DEPTH);
+      g.lineTo(fromX, y + RUN_DEPTH);
+      g.closePath(); g.fill();
+    }
+    slab(x0, x0 + edgePx, LIT);
+    slab(x0 + edgePx, x1, SHADE);
+
+    // the run's own crust tooth, so a lit slab is a surface rather than a fill
+    g.save();
+    g.beginPath();
+    g.moveTo(x0 + topOff, y); g.lineTo(x1 + topOff, y);
+    g.lineTo(x1, y + RUN_DEPTH); g.lineTo(x0, y + RUN_DEPTH);
+    g.closePath(); g.clip();
+    for (var t = 0; t < 2600; t++) {
+      var tx = x0 + R() * RUN_LEN + topOff * R(), ty = y + R() * RUN_DEPTH;
+      var inShade = (tx - topOff * ((y + RUN_DEPTH - ty) / RUN_DEPTH)) > x0 + edgePx;
+      g.fillStyle = inShade ? 'rgba(20,30,20,0.16)' : 'rgba(80,62,42,0.14)';
+      g.fillRect(tx, ty, 1.6 + R() * 3.0, 1.2 + R() * 2.0);
+    }
+    g.restore();
+
+    // the near lip of the slab, lit, so the run sits ON the prairie rather than in it
+    g.strokeStyle = 'rgba(244,238,228,0.5)'; g.lineWidth = 2.5;
+    g.beginPath(); g.moveTo(x0, y + RUN_DEPTH); g.lineTo(x1, y + RUN_DEPTH); g.stroke();
+
+    // TWO PART CONTACT SHADOW under the near lip
+    var cgr = g.createLinearGradient(0, y + RUN_DEPTH, 0, y + RUN_DEPTH + 34);
+    cgr.addColorStop(0, 'rgba(29,20,13,0.42)');
+    cgr.addColorStop(1, 'rgba(29,20,13,0)');
+    g.fillStyle = cgr; g.fillRect(x0, y + RUN_DEPTH, RUN_LEN, 34);
+    g.fillStyle = 'rgba(29,20,13,0.36)';
+    g.fillRect(x0, y + RUN_DEPTH, RUN_LEN, 6);
+
+    // the edge itself, hard, full depth, no blur
+    g.strokeStyle = 'rgba(24,34,26,0.85)'; g.lineWidth = 3;
+    g.beginPath();
+    g.moveTo(x0 + edgePx + topOff, y);
+    g.lineTo(x0 + edgePx, y + RUN_DEPTH);
+    g.stroke();
+
+    // a small tick in the party's own hue at the run's start, so the run is identified on the
+    // frame as well as in the label, and NEITHER party is coded by value
+    g.fillStyle = key;
+    g.fillRect(x0 - 26, y + RUN_DEPTH - 30, 14, 30);
+  }
+
+  drawRun(RUN1_Y, CM_EDGE, '#AC654B');
+  drawRun(RUN2_Y, AI_EDGE, '#647D97');
+
+  grain(g, W, H, 200, 28, S + 4, 0.07);
+
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var z = 0; z < d2.length; z += 4 * 97) {
+    sum += (d2[z] * 0.2126 + d2[z + 1] * 0.7152 + d2[z + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 4, mean_luma: Math.round(sum / n),
+                      run_len: RUN_LEN,
+                      manager_edge_px: Math.round(CM_EDGE * 10) / 10,
+                      tool_edge_px: Math.round(AI_EDGE * 10) / 10,
+                      manager_edge_frac: CM_FRAC, tool_edge_frac: AI_FRAC,
+                      gap_between_runs: RUN_GAP, dials: 0};
+  resolve();
+});
+</script>
+</body></html>

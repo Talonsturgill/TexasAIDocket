@@ -1,0 +1,234 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 5 — THE TURN. One improved. One got worse.
+     A slope chart, because the library is right that the eye reads an angle and this claim is
+     one quantity at two times, twice over.
+
+     THE LINES DO NOT CROSS, and compute.py established that before the frame was drawn. Two of
+     the three treatments described this as the crossing frame. Solving the intersection puts it
+     at t = -0.46, off the left of the plot, in a region the study reports nothing about. The
+     case managers sit below the tool at both stations, so the series DIVERGE and the frame draws
+     a widening wedge. A crossing would have asserted an overtake that never happened.
+
+     The axis starts at ZERO and the zero is printed. A truncated axis here would be a lie told
+     with a true number. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#B1A291}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#1D140D}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:148px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:92px;line-height:0.97;color:#1D140D;letter-spacing:-.022em}
+  .dek{position:absolute;left:80px;top:340px;width:880px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:30px;line-height:1.28;color:#1D140D}
+
+  .ser{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:29px;
+    letter-spacing:.05em;color:#1D140D;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .swatch{position:absolute;width:19px;height:19px}
+  .ax{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:25px;
+    letter-spacing:.06em;color:#1D140D;font-variant-numeric:tabular-nums}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the gap between the two series is wider at the right station than at the left","reads":"differ","a":[[262,700,72,96]],"b":[[830,700,72,290]]}]'>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">05 / 09</div>
+
+  <h1>One improved. One got&nbsp;worse.</h1>
+  <p class="dek">Mean absolute error in days. The two never meet, and the gap between them is
+    wider at the door than it was at the earlier reading.</p>
+
+  <div class="swatch" style="left:80px;top:452px;background:#AC654B"></div>
+  <div class="ser" style="left:112px;top:446px">CASE MANAGERS 1.29 to 0.98</div>
+  <div class="swatch" style="left:80px;top:502px;background:#647D97"></div>
+  <div class="ser" style="left:112px;top:496px">AI 1.59 to 1.93</div>
+
+  <div class="ax" style="left:196px;top:1038px">48 HOURS</div>
+  <div class="ax" style="left:834px;top:1038px">24 HOURS</div>
+  <div class="ax" style="left:80px;top:1006px">0</div>
+  <div class="ax" style="left:80px;top:1038px">DAYS</div>
+
+  <div class="foot"><span>c3 &middot; c6</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S + 5);
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save(); gg.globalCompositeOperation = 'overlay'; gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat'); gg.fillRect(0, 0, w, h); gg.restore();
+  }
+
+  // ---- FROM compute.py. Axis anchored at zero, top set from the largest INTERVAL bound in the
+  // plot rather than the largest value, so no interval can run off the frame.
+  var PLOT_X0 = 250, PLOT_X1 = 900, PLOT_Y0 = 660, PLOT_Y1 = 1020;
+  var AXIS_TOP = 2.0, PX_PER_DAY = (PLOT_Y1 - PLOT_Y0) / AXIS_TOP;   // 300 px per day
+  function yOf(d) { return PLOT_Y1 - d * PX_PER_DAY; }
+
+  var CM = {a: 1.29, b: 0.98, ciA: [1.26, 1.32], ciB: [0.96, 1.01], hue: '#AC654B'};
+  var AI = {a: 1.59, b: 1.93, ciA: [1.57, 1.61], ciB: [1.91, 1.95], hue: '#647D97'};
+
+  // ---- the ground the board is staked into
+  var bg = g.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#B7AB99'); bg.addColorStop(1, '#A2937F');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  for (var pg = 0; pg < 3000; pg++) {
+    var px = R() * W, py = R() * H;
+    g.strokeStyle = R() > 0.66 ? 'rgba(179,117,85,0.30)' : 'rgba(140,126,102,0.30)';
+    g.lineWidth = 1 + R();
+    g.beginPath(); g.moveTo(px, py); g.lineTo(px + (R() - 0.5) * 7, py - 8 - R() * 20); g.stroke();
+  }
+
+  // ---- THE BOARD. Sun-bleached plywood, staked, standing in the weather. A raking key from the
+  // upper left puts a hairline cast under every batten and rule, which is what makes it an
+  // object rather than a background a chart floats on.
+  var BX = 128, BY = 560, BW = 824, BH = 560;
+  g.save();
+  var boardShadow = g.createLinearGradient(0, BY + BH, 0, BY + BH + 40);
+  boardShadow.addColorStop(0, 'rgba(29,20,13,0.40)');
+  boardShadow.addColorStop(1, 'rgba(29,20,13,0)');
+  g.fillStyle = boardShadow; g.fillRect(BX + 14, BY + BH, BW, 40);
+
+  var ply = g.createLinearGradient(BX, BY, BX + BW, BY + BH);
+  ply.addColorStop(0, '#DCCFB6');
+  ply.addColorStop(0.55, '#D4C6AC');
+  ply.addColorStop(1, '#C4B69B');
+  g.fillStyle = ply; g.fillRect(BX, BY, BW, BH);
+
+  // the ply's own grain, running long, sun-bleached
+  g.save();
+  g.beginPath(); g.rect(BX, BY, BW, BH); g.clip();
+  for (var gr = 0; gr < 380; gr++) {
+    var gy = BY + R() * BH;
+    g.strokeStyle = 'rgba(120,102,78,' + (0.05 + R() * 0.09) + ')';
+    g.lineWidth = 0.8 + R() * 2.2;
+    g.beginPath();
+    g.moveTo(BX, gy);
+    for (var xx = BX; xx < BX + BW; xx += 40) {
+      g.lineTo(xx, gy + TX.simplex2(xx * 0.006, gy * 0.02) * 5);
+    }
+    g.stroke();
+  }
+  g.restore();
+  g.restore();
+
+  // battens top and bottom, each with its own hairline cast
+  [BY + 10, BY + BH - 34].forEach(function (byy) {
+    g.fillStyle = '#C6B79C'; g.fillRect(BX, byy, BW, 24);
+    g.fillStyle = '#EDE2CC'; g.fillRect(BX, byy, BW, 3);
+    g.fillStyle = 'rgba(29,20,13,0.26)'; g.fillRect(BX, byy + 24, BW, 5);
+  });
+
+  // ---- the plot. Axis from ZERO, gridlines at each half day.
+  g.strokeStyle = 'rgba(29,20,13,0.20)'; g.lineWidth = 1.4;
+  for (var d = 0.5; d <= AXIS_TOP + 0.001; d += 0.5) {
+    var gy2 = yOf(d);
+    g.beginPath(); g.moveTo(PLOT_X0 - 40, gy2); g.lineTo(PLOT_X1 + 40, gy2); g.stroke();
+    g.fillStyle = 'rgba(29,20,13,0.30)'; g.fillRect(PLOT_X0 - 40, gy2 + 1.4, PLOT_X1 - PLOT_X0 + 80, 1);
+  }
+  // the zero rule, heavier, and its own cast so it reads as scored into the ply
+  g.strokeStyle = 'rgba(29,20,13,0.82)'; g.lineWidth = 4;
+  g.beginPath(); g.moveTo(PLOT_X0 - 60, PLOT_Y1); g.lineTo(PLOT_X1 + 60, PLOT_Y1); g.stroke();
+  g.fillStyle = 'rgba(255,250,240,0.55)'; g.fillRect(PLOT_X0 - 60, PLOT_Y1 + 4, PLOT_X1 - PLOT_X0 + 120, 2);
+
+  // the two station rules
+  [PLOT_X0, PLOT_X1].forEach(function (sx) {
+    g.strokeStyle = 'rgba(29,20,13,0.34)'; g.lineWidth = 2;
+    g.beginPath(); g.moveTo(sx, PLOT_Y0 - 10); g.lineTo(sx, PLOT_Y1 + 22); g.stroke();
+  });
+
+  // ---- THE WEDGE. The area between the two series, filled in the board's own bleached value,
+  // so the widening gap is an AREA at the frame's light extreme rather than a pair of lines.
+  g.fillStyle = 'rgba(252,247,236,0.62)';
+  g.beginPath();
+  g.moveTo(PLOT_X0, yOf(CM.a));
+  g.lineTo(PLOT_X1, yOf(CM.b));
+  g.lineTo(PLOT_X1, yOf(AI.b));
+  g.lineTo(PLOT_X0, yOf(AI.a));
+  g.closePath(); g.fill();
+  g.strokeStyle = 'rgba(29,20,13,0.10)'; g.lineWidth = 1; g.stroke();
+
+  // ---- the confidence intervals, AT TRUE SCALE. About 0.03 of a day is roughly nine pixels
+  // here, and drawing them larger would be a lie told with a true number.
+  function band(x, ci, hue) {
+    g.fillStyle = hue;
+    g.globalAlpha = 0.32;
+    g.fillRect(x - 15, yOf(ci[1]), 30, yOf(ci[0]) - yOf(ci[1]));
+    g.globalAlpha = 1;
+  }
+  band(PLOT_X0, CM.ciA, CM.hue); band(PLOT_X1, CM.ciB, CM.hue);
+  band(PLOT_X0, AI.ciA, AI.hue); band(PLOT_X1, AI.ciB, AI.hue);
+
+  // ---- the two series. Same lightness, differing in hue and chroma only, so neither party is
+  // coded good or bad by value.
+  function series(s) {
+    g.strokeStyle = s.hue; g.lineWidth = 7; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(PLOT_X0, yOf(s.a)); g.lineTo(PLOT_X1, yOf(s.b)); g.stroke();
+    [[PLOT_X0, s.a], [PLOT_X1, s.b]].forEach(function (pt) {
+      g.fillStyle = s.hue;
+      g.beginPath(); g.arc(pt[0], yOf(pt[1]), 13, 0, 6.2832); g.fill();
+      g.fillStyle = '#FBF6EC';
+      g.beginPath(); g.arc(pt[0], yOf(pt[1]), 5, 0, 6.2832); g.fill();
+    });
+  }
+  series(CM); series(AI);
+
+  // ---- the stakes, driven into the ground at the board's feet, with two-part contacts
+  [BX + 90, BX + BW - 90].forEach(function (sx) {
+    g.fillStyle = '#9C8D77'; g.fillRect(sx, BY + BH - 6, 22, 58);
+    g.fillStyle = '#87795F'; g.fillRect(sx + 16, BY + BH - 6, 6, 58);
+    var cgr = g.createRadialGradient(sx + 11, BY + BH + 52, 2, sx + 11, BY + BH + 52, 50);
+    cgr.addColorStop(0, 'rgba(29,20,13,0.44)');
+    cgr.addColorStop(1, 'rgba(29,20,13,0)');
+    g.fillStyle = cgr; g.fillRect(sx - 51, BY + BH + 10, 124, 84);
+    g.fillStyle = 'rgba(29,20,13,0.40)'; g.fillRect(sx - 2, BY + BH + 48, 26, 7);
+  });
+
+  grain(g, W, H, 200, 26, S + 5, 0.065);
+
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var z = 0; z < d2.length; z += 4 * 97) {
+    sum += (d2[z] * 0.2126 + d2[z + 1] * 0.7152 + d2[z + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 5, mean_luma: Math.round(sum / n),
+                      px_per_day: PX_PER_DAY, axis_top_days: AXIS_TOP,
+                      zero_printed: true,
+                      gap_48h_px: Math.round(Math.abs(yOf(AI.a) - yOf(CM.a)) * 10) / 10,
+                      gap_24h_px: Math.round(Math.abs(yOf(AI.b) - yOf(CM.b)) * 10) / 10,
+                      lines_cross_in_plot: false};
+  resolve();
+});
+</script>
+</body></html>

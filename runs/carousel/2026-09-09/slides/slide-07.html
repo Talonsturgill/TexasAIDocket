@@ -1,0 +1,240 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 7 — THE COUNTER-IMAGE AND THE DECK'S ONE DARK TURN.
+     The authors put the knife into their own result, and this frame carries it on its own slide.
+     One estimate was visible to the people acting on it. The other sat in the record and was
+     never switched on.
+
+     THE CAVEAT CUTS AGAINST THE LIT PARTY, so the copy prints "advantaged nearer discharge" in
+     as many words. Without that string a reader takes the light as praise and the frame says the
+     opposite of the claim.
+
+     The occlusion edge runs at 27 degrees, well outside the fifteen the excluded norther front
+     would need, and a lit band is held at the far horizon so every contact shadow has a lit
+     ground to subtract from. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#141B24}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#E4DACA}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#E4DACA;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:146px;width:880px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:92px;line-height:0.97;color:#F2EADC;letter-spacing:-.022em}
+
+  /* EACH HALF SITS ON THE GROUND IT BELONGS TO, in the ink that ground can carry. The lit
+     party's words are dark on the sunlit strip. The unread party's are pale on the shaded
+     ground. That is the frame's argument rather than a styling choice, and it is why the first
+     build failed contrast at 1.9: it set pale type over a strip that is deliberately bright. */
+  .half{position:absolute;left:80px;width:900px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:30px;line-height:1.26}
+  .lit{top:552px;color:#1D140D}
+  .dark{top:1030px;color:#E6DCCA}
+  .tag{position:absolute;left:80px;font-family:"JetBrains Mono",monospace;font-weight:700;
+    font-size:25px;letter-spacing:.08em;padding:10px 17px}
+  .tlit{top:492px;background:#8C4A32;color:#FBF6EC}
+  .tdark{top:966px;background:#647D97;color:#101820}
+
+  .attrib{position:absolute;left:80px;top:1186px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.02em;color:#B9AF9E}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#B9AF9E;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">07 / 09</div>
+
+  <h1>One estimate was being read</h1>
+
+  <div class="tag tlit">CASE MANAGERS</div>
+  <p class="half lit">Estimates were part of usual care and visible to care teams, so they may be
+    partly self-fulfilling and, in the authors' own word, advantaged nearer discharge.</p>
+
+  <div class="tag tdark">AI ESTIMATIONS</div>
+  <p class="half dark">Accessible in the EHR but not enabled automatically. Nothing was shining
+    on this one.</p>
+
+  <div class="attrib">The study's authors, against their own result</div>
+
+  <div class="foot"><span>c8</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S + 7);
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save(); gg.globalCompositeOperation = 'overlay'; gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat'); gg.fillRect(0, 0, w, h); gg.restore();
+  }
+
+  var HZ = 440;
+  var EDGE_DEG = 27.0;                              // well outside the norther front's fifteen
+  var LIT_TOP = 470, LIT_BOT = 706;                 // the strip still in sun, 19.7 percent of H
+
+  // ---- the sky, and the cumulus that is casting
+  var sky = g.createLinearGradient(0, 0, 0, HZ);
+  sky.addColorStop(0, '#0C1014');
+  sky.addColorStop(0.58, '#161D23');
+  sky.addColorStop(0.86, '#2C343C');
+  sky.addColorStop(1, '#5A6167');
+  g.fillStyle = sky; g.fillRect(0, 0, W, HZ);
+
+  // flat-bottomed cumulus with grey bases, so the shadow below is a real event
+  function cloud(cx0, cy0, scale, alpha) {
+    g.save();
+    g.globalAlpha = alpha;
+    var base = cy0;
+    for (var i = 0; i < 22; i++) {
+      var ang = (i / 22) * Math.PI;
+      var rx = 60 + R() * 130, ry = 40 + R() * 90;
+      var px = cx0 + Math.cos(ang) * 300 * scale + (R() - 0.5) * 60;
+      var py = base - Math.abs(Math.sin(ang)) * 130 * scale - R() * 40;
+      var lit2 = g.createLinearGradient(px, py - ry, px, py + ry);
+      lit2.addColorStop(0, '#B9BCB6');
+      lit2.addColorStop(1, '#6B7076');
+      g.fillStyle = lit2;
+      g.beginPath(); g.ellipse(px, py, rx * scale, ry * scale, 0, 0, 6.2832); g.fill();
+    }
+    g.fillStyle = '#575E64';
+    g.fillRect(cx0 - 320 * scale, base - 8, 640 * scale, 12);
+    g.restore();
+  }
+  // THE HOOK GETS A RESERVE THE WEATHER CANNOT ENTER. The first build let the cumulus reach up
+  // to y=130 and the hook sat on it, at 1.9 contrast on its worst point. The cloud drawing is
+  // clipped below the hook's own block, so a frame whose subject is a cloud still cannot put one
+  // behind its own headline.
+  var CLOUD_RESERVE = 388;
+  g.save();
+  g.beginPath(); g.rect(0, CLOUD_RESERVE, W, HZ - CLOUD_RESERVE); g.clip();
+  cloud(520, HZ - 6, 0.80, 0.94);
+  cloud(120, HZ - 26, 0.46, 0.62);
+  g.restore();
+
+  // ---- the lit horizon band, held so contact shadows have a lit ground to subtract from
+  var lit = g.createLinearGradient(0, HZ, 0, LIT_BOT);
+  lit.addColorStop(0, '#C4B79E');
+  lit.addColorStop(0.42, '#D6C9AE');
+  lit.addColorStop(1, '#B4A78E');
+  g.fillStyle = lit; g.fillRect(0, HZ, W, LIT_BOT - HZ);
+
+  // ---- THE SHADED GROUND. Everything below the occlusion edge.
+  var shade = g.createLinearGradient(0, LIT_BOT, 0, H);
+  shade.addColorStop(0, '#3E4139');
+  shade.addColorStop(0.5, '#2A2E2A');
+  shade.addColorStop(1, '#1B1F1E');
+  g.fillStyle = shade; g.fillRect(0, LIT_BOT - 40, W, H - LIT_BOT + 40);
+
+  // ---- THE OCCLUSION EDGE, diagonal at 27 degrees, with a computed penumbra. Never horizontal,
+  // so it can never be read as the excluded norther front.
+  var slope = Math.tan(EDGE_DEG * Math.PI / 180);
+  var PEN = 34;                                     // penumbra width, well over the 12px floor
+  var edgeAt = function (x) { return LIT_BOT - 46 + x * slope * 0.42; };
+  for (var s2 = 0; s2 < PEN; s2++) {
+    var a = s2 / PEN;
+    g.fillStyle = 'rgba(26,30,28,' + (0.055) + ')';
+    g.beginPath();
+    g.moveTo(0, edgeAt(0) + s2);
+    g.lineTo(W, edgeAt(W) + s2);
+    g.lineTo(W, H); g.lineTo(0, H);
+    g.closePath(); g.fill();
+  }
+  // the lit strip is repainted ABOVE the edge so nothing eats into it
+  g.save();
+  g.beginPath();
+  g.moveTo(0, HZ); g.lineTo(W, HZ);
+  g.lineTo(W, edgeAt(W)); g.lineTo(0, edgeAt(0));
+  g.closePath(); g.clip();
+  g.fillStyle = lit; g.fillRect(0, HZ, W, LIT_BOT - HZ + 120);
+  // sunlit prairie inside the strip
+  for (var lg = 0; lg < 2600; lg++) {
+    var lx = R() * W, ly = HZ + R() * 260;
+    g.strokeStyle = R() > 0.6 ? 'rgba(179,117,85,0.55)' : 'rgba(150,136,110,0.55)';
+    g.lineWidth = 1 + R() * 1.3;
+    g.beginPath(); g.moveTo(lx, ly); g.lineTo(lx + (R() - 0.5) * 6, ly - 6 - R() * 16); g.stroke();
+  }
+  g.restore();
+
+  // ---- THE TRODDEN PATH. The ground under the read instrument is worn by having been acted on.
+  // Ruts hold the deck's darkest values and their raised edges catch what light remains.
+  var PX0 = 640, PY0 = H, PX1 = 300, PY1 = edgeAt(300) + 30;
+  g.save();
+  g.beginPath();
+  g.moveTo(PX0 - 120, PY0); g.lineTo(PX0 + 120, PY0);
+  g.lineTo(PX1 + 34, PY1); g.lineTo(PX1 - 34, PY1);
+  g.closePath();
+  g.clip();
+  var path = g.createLinearGradient(0, PY1, 0, PY0);
+  path.addColorStop(0, '#33372F');
+  path.addColorStop(1, '#22261F');
+  g.fillStyle = path; g.fillRect(0, PY1 - 40, W, H - PY1 + 40);
+  // the ruts
+  for (var rt = 0; rt < 3; rt++) {
+    var f = 0.28 + rt * 0.22;
+    g.strokeStyle = 'rgba(10,13,10,0.72)'; g.lineWidth = 16 + rt * 3;
+    g.beginPath();
+    g.moveTo(PX1 - 34 + 68 * f, PY1);
+    g.lineTo(PX0 - 120 + 240 * f, PY0);
+    g.stroke();
+    g.strokeStyle = 'rgba(126,120,96,0.30)'; g.lineWidth = 3;
+    g.beginPath();
+    g.moveTo(PX1 - 34 + 68 * f - 10, PY1);
+    g.lineTo(PX0 - 120 + 240 * f - 16, PY0);
+    g.stroke();
+  }
+  g.restore();
+
+  // untrodden prairie either side of the path, so the wear is a comparison
+  for (var ug = 0; ug < 4200; ug++) {
+    var ux = R() * W, uy = edgeAt(ux) + 30 + R() * (H - edgeAt(ux) - 30);
+    var onPath = Math.abs(ux - (PX1 + (PX0 - PX1) * ((uy - PY1) / (PY0 - PY1)))) <
+                 (34 + 86 * ((uy - PY1) / (PY0 - PY1)));
+    if (onPath) { continue; }
+    g.strokeStyle = 'rgba(96,104,86,0.34)';
+    g.lineWidth = 1 + R() * 1.4;
+    g.beginPath(); g.moveTo(ux, uy); g.lineTo(ux + (R() - 0.5) * 7, uy - 8 - R() * 22); g.stroke();
+  }
+
+  grain(g, W, H, 200, 24, S + 7, 0.06);
+
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var z = 0; z < d2.length; z += 4 * 97) {
+    sum += (d2[z] * 0.2126 + d2[z + 1] * 0.7152 + d2[z + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 7, mean_luma: Math.round(sum / n),
+                      occlusion_edge_deg: EDGE_DEG, penumbra_px: PEN,
+                      lit_band_px: LIT_BOT - HZ,
+                      lit_band_pct_of_height: Math.round((LIT_BOT - HZ) / H * 1000) / 10};
+  resolve();
+});
+</script>
+</body></html>
