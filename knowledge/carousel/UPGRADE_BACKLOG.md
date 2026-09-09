@@ -1409,3 +1409,41 @@ that hit it: that commit was turning a red build green, and editing a checker to
 under exactly those conditions is how a checker stops being one. This repository already has that
 precedent written down two entries up, for `lesson_refs`' `CITE` parser, and the reasoning is the
 same. Carousel no. 18 reworded its own prose instead, which cost it nothing.
+
+
+## The ask index is 644 chars over a ceiling only a maintainer can move, and it blocks a merge
+
+Found 2026-09-09 by CI, on carousel no. 18's branch. **This is the finding that held the run.**
+
+`ask_pack.py`'s self-test measures the index every question pays for. It is **40,644 chars against
+a 40,000 ceiling.** Remove this run's three admissions and it is **40,092**, still over by 92, so
+the breach was already there when this run started.
+
+**The cause is that main is 81 commits behind.** The 2026-09-05 and 2026-09-07 runs never merged,
+so their admissions, `tx-2026-0122` through `tx-2026-0128`, are carried on this branch and counted
+here for the first time. The index breaks down as decisions 25,848, dossiers 9,674, reservoirs
+2,303, construction register 966, heads 1,845.
+
+**Why this run could not fix it.**
+
+- `ownership.yaml` gives `scripts/site/ask_*.py` to **`human`**. Not `daily`, not `upgrade`. So the
+  two fixes the file itself prescribes are both out of reach: rolling a family up, which is what it
+  says to do "before that number is touched", and the number itself, which it says is "never a fix
+  for a red build" anyway.
+- The only lever in the `daily` lane is the record's own copy, and that is the wrong trade. The
+  record's MEDIAN title is 112 characters and its p90 is 142. This run's three sit at 67, 71 and
+  103, already at or under the median. Cutting published record copy to fit an index budget damages
+  the product to satisfy a checker, and trimming every new title to 75 chars recovers about 280 of
+  the 644 while making ten items read unlike the other 105.
+
+**The upgrade, for a maintainer.** The dossier block is 9,674 chars for a family that was already
+rolled up once, on 2026-09-03, when it was the last family indexed a full line each. It is now the
+second largest block after the decisions themselves. Either roll it further, to a count and a
+pointer rather than a name and an id each, or accept that the decisions block grows with the record
+and the ceiling has to be re-derived from what a question can actually afford rather than held at a
+round number set when the record was smaller. **The second is a real decision about cost per query
+and it belongs to a person**, which is exactly why that file is `human` lane and why this run
+stopped here rather than editing it.
+
+Recorded rather than worked around, per CLAUDE.md: respect it, record it, and never work around a
+disallow.
