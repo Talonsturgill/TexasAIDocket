@@ -2246,3 +2246,77 @@ but it must prove the aggregate guard attached to that exact commit before publi
 validated, not the mutable label used to find it. A stale request is often neither success nor
 failure of the product; when a newer request supersedes it, encode that as a clean no-op. Red should
 mean broken, not merely overtaken.
+
+## 71. Two runs held on the same 644 characters, and the second argued the case in a pull request
+
+The docket published nothing on September 8th and nothing on September 9th. Both runs did a full
+day's work, both opened a pull request, and both stopped in the same place:
+
+```
+FAIL  the index is under its ceiling of 40000 chars  40,894   <- 09-08
+FAIL  the index is under its ceiling of 40000 chars  40,644   <- 09-09
+```
+
+Three separate faults had to line up, and each is a shape worth knowing on its own.
+
+**A bound crossed on a schedule was measured after the fact.** `MAX_INDEX_CHARS` is a real per
+question bill and the file has always said that raising it is never the fix for a red build. What
+nothing said is what a BUILDER should do the day the record outgrows it. So the index was assembled
+at whatever size the record implied and a self-test measured it afterwards.
+
+The record gains about three decisions a day. That bound was never going to be crossed once, it was
+going to be crossed every day from that day on, and the 09-08 pull request said so itself: main was
+already inside 174 characters before that run touched anything. A ceiling a growing input crosses on
+a schedule is not a tripwire, it is a design constraint, and the difference is whether the builder
+is told about it. It fits by construction now, oldest settled lines first, and publishes how much
+headroom is left so the next crossing is seen weeks out instead of met one morning.
+
+**The refusal that told both runs to stand down was wrong, and it was the machine saying it.**
+`ownership.yaml` gives `scripts/site/ask_pack.py` to `human`. Both runs read that, and both read
+this, printed by `ownership_check.report`:
+
+> An automation may not write outside its lane. If this change is genuinely needed, record it as a
+> proposal in the run record and let a maintainer session make it.
+
+That advice is right when a lane is out of reach. It was false here. `branch_also_allows` has
+granted `claude/daily-` the `human` stamp since 2026-08-30, on the owner's instruction, written
+into the map for exactly this case, with the reason stated in the file: *"a run that halts on a
+permission it cannot resolve has failed at the one thing it is for."*
+
+**The grant existed, was documented, was in force, and nothing pointed at it.** A rule a session
+must remember to go and look up is a rule it will not look up at 3am with nobody watching. The
+refusal now names the stamp when the branch may carry it, and says nothing when it may not.
+
+**And the rationalization got better the longer it was left.** The 09-09 run did not just hold. It
+wrote a pull request comment measuring the index by block, computing that trimming titles would
+recover under half the overage, quoting the file's own two remedies, and concluding the fix belonged
+to a maintainer. Every measurement in it was correct. The conclusion was false, and the quality of
+the argument is what made it survive. **A well evidenced stand-down reads exactly like a diagnosis.**
+Before writing one, check the thing that would make it wrong: not whether the lane is yours, but
+whether your branch may stamp the lane that owns it.
+
+**Neither run knew the other existed.** The 09-09 run branched from `main`, so it never saw
+`claude/daily-2026-09-08`. It rebuilt that day's work, numbered its deck 18 as well, re-admitted
+`tx-2026-0126` which the 09-07 run had removed for coming off a path this project will not fetch
+and which the 09-08 run had folded into `tx-2026-0096` as c8, and hit the same ceiling. When a
+review bot flagged the duplicate, the run declined it on a false provenance reading: it took the
+item's single history stamp to mean a previous run had admitted it, without checking whether `main`
+actually carried it. It did not.
+
+Entry 65 already ends with the sentence that would have prevented all of it, and it is prose:
+
+> The cost of leaving it is measured in days of shipped work, so it is worth checking for blocked
+> runs before starting anything else.
+
+**Generalises to.** Three, and they are separable.
+
+A checker that a growing input will fail on a schedule needs the builder to know its bound, or it
+stops being a gate and becomes a clock. Give the constraint to whatever can satisfy it, and publish
+the distance to the floor so the real decision is made on a calendar rather than at a red build.
+
+A refusal is advice, and advice that omits the reachable option is wrong advice however correct its
+diagnosis. When a checker knows both that a thing is refused and that the caller may be permitted to
+do it anyway, saying only the first is the checker choosing the worse of two true statements.
+
+And a run whose predecessor is still unmerged is not starting, it is forking. Check for blocked runs
+before doing the work, not after both have paid for it.
