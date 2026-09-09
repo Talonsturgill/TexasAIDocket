@@ -273,13 +273,33 @@ line is all there is to go on.
 This index is a list. It is not a model for how to write, so do not answer in this shape."""
 
 
-def index_line(it: dict, today: str) -> str:
+# THE NOTICE A SHORTENED LINE EARNS, and the reason it is not optional. A short line drops the
+# topic, the decider, the status, the place and the window. A model reading "no county here"
+# where the full line would have said "Bexar" will answer that the decision names no county,
+# which is the exact failure `INDEX_HEAD` already designs out for a MISSING item and would have
+# reintroduced one field down. So the head says what a short line is whenever one exists.
+SHORT_LINE_NOTE = """SOME LINES ARE SHORTENED, and a shortened line is a title and an id and
+nothing else. That is this index's budget talking, never a fact about the decision. A shortened
+line says nothing about its topic, its decider, its status, where it applies or whether a window
+is open, so an absence there is never a no and never a none. The full text below carries all of
+it. The oldest decisions whose window is not open are shortened first, so anything still open
+keeps its full line."""
+
+
+def index_line(it: dict, today: str, short: bool = False) -> str:
     """One decision, compressed to what tells a reader whether it is the one they mean.
 
     ID, title, topic, decider, status, place, window. Nothing else, and no figures beyond the
     closing date of a window that is open, because a line is not evidence and a number on it
     would authorise itself for an item whose body the model was never shown.
+
+    `short` drops everything but the title and the id. It is what `index()` spends when the
+    whole index will not fit its ceiling, and the two things it keeps are the two the safety
+    property needs: the reader learns the decision EXISTS and can cite it.
     """
+    if short:
+        return f"{it['title'].rstrip('.')}. [[{it['id']}]]"
+
     geo = it.get("geography") or {}
     pa = it.get("public_access") or {}
     dec = it.get("decider") or {}
@@ -321,10 +341,102 @@ def index(items: list, today: str, extra=()) -> str:
     reader has no way to see that happen. Handing over the complete list of what EXISTS costs
     a fraction of the bodies and deletes that failure rather than mitigating it. It also lets
     retrieval be generous, because being wrong about which bodies to send is now recoverable.
+
+    THE INDEX FITS ITS CEILING BY CONSTRUCTION, 2026-09-09, and before this it merely got
+    measured against one. The difference cost two days of shipped work.
+
+    `MAX_INDEX_CHARS` is a real bill: every question carries the whole index, so the number is
+    a cost bound rather than a style rule, and the file has always said that raising it is
+    never the fix for a red build. What it did not say is what a builder should DO on the day
+    the record outgrows it. Nothing did. So the index was assembled at whatever size the record
+    happened to imply, a self-test measured it afterwards, and the first run to cross the line
+    went red on a gate no lane it held could satisfy by editing the record.
+
+    That is the wrong shape for a bound that a growing record crosses ON A SCHEDULE. The
+    decisions are the last family still indexed a line each, and the record gains about three a
+    day, so the ceiling was never going to be crossed once. It was going to be crossed every
+    day from that day on, and each of those days is a day the docket does not publish.
+
+    So the ceiling is now an input to the build. Full lines first. If they do not fit, the
+    oldest decisions whose window is not open give up everything but their title and their id,
+    oldest first, until they do. What that spends is described rather than hidden, by
+    `SHORT_LINE_NOTE`, because a model that reads a short line as an empty one would answer
+    that a decision names no county.
+
+    THE GATE IS NOT DEFEATED BY THIS, which is the part worth checking rather than asserting.
+    It still fails when the index will not fit even with every eligible line short, and that is
+    the failure worth having: it means one line is pathological, or the open-window set alone
+    has outgrown the budget, and neither is fixed by trimming. What it no longer does is stop a
+    run for the ordinary fact that the record grew.
+
+    Returns the index. `index_fit` reports what it cost.
     """
-    parts = [INDEX_HEAD, "\n".join(index_line(it, today) for it in items)]
-    parts.extend(x for x in (extra or ()) if x)
-    return "\n\n".join(parts)
+    return index_fit(items, today, extra)[0]
+
+
+def index_fit(items: list, today: str, extra=()) -> tuple[str, int]:
+    """The index and the number of lines that had to be shortened to make it fit.
+
+    Split out from `index` so the pack can publish the count and a self-test can assert on it.
+    A build that shortens nothing returns 0, which is the state to expect and the one the
+    ordinary record produced for every run before 2026-09-09.
+    """
+    full = [index_line(it, today) for it in items]
+    tail = [x for x in (extra or ()) if x]
+
+    def assemble(lines, note):
+        head = INDEX_HEAD + ("\n\n" + SHORT_LINE_NOTE if note else "")
+        return "\n\n".join([head, "\n".join(lines)] + tail)
+
+    out = assemble(full, False)
+    if len(out) <= MAX_INDEX_CHARS:
+        return out, 0
+
+    # The notice is part of the bill, so it is paid before the first line is trimmed rather
+    # than discovered afterwards.
+    lines = list(full)
+    over = len(assemble(lines, True)) - MAX_INDEX_CHARS
+
+    # OLDEST FIRST, AND NEVER AN OPEN WINDOW. `items` is the record's own filed order, so
+    # index 0 is the oldest thing here. An open window is the one state a reader can still act
+    # on, so it keeps its full line however old it is and however tight the budget gets.
+    for i, it in enumerate(items):
+        if over <= 0:
+            break
+        if dk.window_state(it, today) == "open":
+            continue
+        lines[i] = index_line(it, today, short=True)
+        over -= len(full[i]) - len(lines[i])
+
+    shortened = sum(1 for a, b in zip(full, lines) if a != b)
+    return assemble(lines, bool(shortened)), shortened
+
+
+def index_headroom(items: list, today: str, extra=()) -> int:
+    """How many more decisions this index can take before shortening stops being enough.
+
+    THE FLOOR IS REAL AND IT IS ARITHMETIC, so it is published rather than discovered. A
+    shortened line is still a title and an id, so the index still grows with the record, just
+    more slowly. A fixed ceiling therefore always has a horizon, and the only question is
+    whether anybody sees it coming.
+
+    Nobody did, twice. This returns the number of additional decisions of the record's own
+    median line length that would still fit, so a run can say "seventy five to go" in its email
+    for weeks before it becomes a build that stops the docket. A negative number means the
+    floor is already breached and the decision below is due now.
+
+    THE DECISION IT DEFERS, NAMED SO THE DEFERRAL IS HONEST. When the floor arrives, the
+    choices are to raise `MAX_INDEX_CHARS` against a measured per-question bill, or to stop
+    sending every decision's line on every question. Both are real cost decisions about a real
+    product and neither is a thing to decide at 3am inside a run that wanted to ship a deck.
+    """
+    if not items:
+        return 0
+    idx, _ = index_fit(items, today, extra)
+    spare = MAX_INDEX_CHARS - len(idx)
+    floor = sorted(len(index_line(it, today, short=True)) + 1 for it in items)
+    typical = floor[len(floor) // 2]
+    return spare // typical if typical else 0
 
 
 def item_prose(it: dict, today: str) -> str:
@@ -1120,7 +1232,7 @@ def build(today: str = None, docs_dir=None) -> dict:
         [FACILITY_PACK_MARK, DECISIONS_MARK]
         + [facility_prose(d) for d in dossiers]
     ) if dossiers else "")
-    idx = index(items, today, extra=[
+    idx, idx_short = index_fit(items, today, extra=[
         ("THE DATA CENTER DOSSIERS. Every dossier the record holds, rolled up rather than listed, "
          "grouped by the county its filing names, each as its name and the id to cite it by, and "
          "the full dossier for the ones this question needs is below. "
@@ -1148,6 +1260,10 @@ def build(today: str = None, docs_dir=None) -> dict:
         # missing item is not there, is designed out instead of managed.
         "index": idx,
         "index_chars": len(idx),
+        # HOW MANY LINES THE CEILING COST THIS BUILD. Zero is the ordinary state. A number
+        # climbing run over run is the record outgrowing the budget in slow motion, which is a
+        # thing to decide about deliberately rather than to meet as a red build one morning.
+        "index_shortened": idx_short,
         "chars": len(pack) + len(facility_pack),
         "items": len(items),
         # WHAT THE PACK ACTUALLY HOLDS, BY FAMILY. `items` counts decisions and used to count
@@ -1625,6 +1741,70 @@ def self_test() -> int:
     check(f"the core pack is under its ceiling of {MAX_CHARS} chars",
           len(main_text) <= MAX_CHARS,
           f"{len(main_text)} chars, roughly {approx} tokens")
+
+    # THE CEILING IS AN INPUT NOW, AND THIS IS THE DEFECT IT REPLAYS. On 2026-09-08 and again
+    # on 2026-09-09 the index measured 40,644 against 40,000 and both runs held. Neither could
+    # fix it by editing the record, because the overage was the record's ordinary growth, and
+    # the docket published nothing for two days over 644 characters.
+    #
+    # These assert the fit is CONSTRUCTED rather than lucky, by building an index from a record
+    # inflated well past the ceiling and requiring it to come back inside.
+    print("the index fits its ceiling by construction, not by luck")
+    check("this build's index fits, and reports what that cost",
+          p["index_chars"] <= MAX_INDEX_CHARS and isinstance(p["index_shortened"], int),
+          f"{p['index_chars']:,} chars, {p['index_shortened']} lines shortened")
+    check("the notice is present exactly when a line was shortened",
+          (SHORT_LINE_NOTE.split("\n")[0] in p["index"]) == bool(p["index_shortened"]),
+          f"shortened {p['index_shortened']}")
+
+    def _grown(by: int):
+        out = list(items)
+        for k in range(by):
+            c = dict(items[k % len(items)])
+            c["id"] = f"tx-9{k:04d}"
+            out.append(c)
+        return out
+
+    head = index_headroom(items, p["generated"])
+    check("the build publishes how many more decisions the index can take",
+          head > 0, f"{head} more decisions of median length")
+
+    grown = _grown(max(head - 5, 1))
+    grown_idx, grown_short = index_fit(grown, p["generated"])
+    grown_lines = [l for l in grown_idx.splitlines() if l.rstrip().endswith("]]")]
+    check("a record grown to just inside that headroom still fits",
+          len(grown_idx) <= MAX_INDEX_CHARS,
+          f"{len(grown_idx):,} chars from {len(grown)} decisions")
+    check("and every one of its decisions still has a line to be found on",
+          len(grown_lines) == len(grown), f"{len(grown_lines)} of {len(grown)}")
+    check("and every one of them is still citable by id",
+          all(f"[[{c['id']}]]" in grown_idx for c in grown),
+          str([c["id"] for c in grown if f"[[{c['id']}]]" not in grown_idx][:3]))
+    check("and shortening it was necessary, so this proves the path and not the bypass",
+          grown_short > 0, f"{grown_short} shortened")
+
+    # THE FLOOR STILL FAILS, WHICH IS WHAT KEEPS THE GATE MEANINGFUL. Fitting by construction
+    # would be worth nothing if it also swallowed the case the ceiling exists for. Past the
+    # headroom the index is over and the build says so, because at that point the answer is a
+    # cost decision a person makes, not another character a builder can find.
+    over = _grown(head + 400)
+    over_idx, _ = index_fit(over, p["generated"])
+    check("and a record past the floor is still over the ceiling, loudly",
+          len(over_idx) > MAX_INDEX_CHARS,
+          f"{len(over_idx):,} chars from {len(over)} decisions")
+    check("headroom goes negative before that happens, so it is seen coming",
+          index_headroom(over, p["generated"]) <= 0,
+          str(index_headroom(over, p["generated"])))
+
+    # AN OPEN WINDOW IS THE ONE STATE A READER CAN STILL ACT ON. It keeps its full line however
+    # old it is, because a shortened line drops exactly the fact that the window is open.
+    open_ids = [it["id"] for it in items
+                if dk.window_state(it, p["generated"]) == "open"]
+    short_open = [i for i in open_ids
+                  if any(l.endswith(f"[[{i}]]") and l.count(",") == 0
+                         for l in p["index"].splitlines())]
+    check("no decision with an open window was shortened",
+          not short_open, str(short_open[:3]))
 
     print()
     print("ask_pack self-test clean" if ok[0] else "ask_pack self-test FAILED")
