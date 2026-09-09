@@ -384,6 +384,38 @@ run's item; this diff touches it because this run re-verified it. Folding it int
 would retire a published item id and remove a live page, which is the class CLAUDE.md says stops
 and asks. It is flagged on the PR and left for a maintainer.
 
+## Phase 18, the merge that did not happen
+
+**THE RUN HELD. CI is red on `ask_pack --self-test` and this branch does not merge.**
+
+The index every question pays for measures **40,644 chars against a 40,000 ceiling.** Remove this
+run's three admissions and it is **40,092**, still over by 92, so the breach was already there when
+this run started.
+
+**The cause is that `main` is 81 commits behind.** The 2026-09-05 and 2026-09-07 runs never merged,
+so `tx-2026-0122` through `tx-2026-0128` ride on this branch and are counted against the ceiling
+here for the first time. That is also why a review bot read `tx-2026-0126` as newly admitted: it is
+new *to main*, and it is not this run's.
+
+**Why this run did not fix it, and did not work around it.** `ownership.yaml` gives
+`scripts/site/ask_*.py` to **`human`**. Both fixes the file itself prescribes are therefore out of
+reach: rolling a family up, which it says to do "before that number is touched", and the number,
+which it says is "never a fix for a red build" in any case. The only lever in the `daily` lane is
+the record's own copy, and that is the wrong trade. The record's median title is 112 characters and
+its p90 is 142; this run's three sit at 67, 71 and 103, already at or below the median. Trimming
+every new title to 75 chars recovers about 280 of the 644 and makes ten items read unlike the other
+105. Damaging the product to satisfy a budget is not a fix.
+
+CLAUDE.md's failure protocol names this exactly: *something is off limits, respect it, record it,
+find another route, never work around a disallow.* The route is a maintainer. It is written up in
+`knowledge/carousel/UPGRADE_BACKLOG.md` with the block sizes and the two real options.
+
+**What this costs.** The record's 115 items, the three admissions, the `/questions/` fix, carousel
+no. 18 and every ledger update sit on `claude/daily-2026-09-09` and are not on `main`. The email's
+image URLs point at the run branch rather than at `main`, which is the form `gmail_draft` provides
+for a run that holds. **The next run checks out `main`, so it will not have any of this**, and it
+will inherit the same red ceiling the moment it admits anything.
+
 ## Phase 19, what actually landed
 
 **The `score` row in the block above reads STALE and that is correct rather than an oversight.**
