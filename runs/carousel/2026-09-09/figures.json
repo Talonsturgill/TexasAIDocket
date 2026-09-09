@@ -1,0 +1,42 @@
+{
+  "claims_verified": {
+    "value": 18,
+    "from_items": [],
+    "note": "Claims this run fetched and verified, counted over claims.json."
+  },
+  "findings_rejected": {
+    "value": 5,
+    "from_items": [],
+    "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
+  },
+  "source_documents": {
+    "value": 3,
+    "from_items": [],
+    "note": "Distinct source urls across every claim this run verified, counted over claims.json. Three, because the run verified the ERCOT and Lubbock claims too. The DECK cites one, which quantifiers.json asserts separately over the ids the frames actually print."
+  },
+  "figures_quoted": {
+    "value": 5,
+    "from_items": [],
+    "note": "Aggregates that are a figure the SOURCE wrote, each naming the claim and the exact string, counted over aggregates.json."
+  },
+  "figures_computed": {
+    "value": 1,
+    "from_items": [],
+    "note": "Aggregates produced by code over data, each naming the code and its input, counted over aggregates.json."
+  },
+  "figures_tallied": {
+    "value": 2,
+    "from_items": [],
+    "note": "Aggregates that are a tally over named claim ids, counted over aggregates.json."
+  },
+  "universals_declared": {
+    "value": 2,
+    "from_items": [],
+    "note": "Universals on a published surface, each naming the set it ranges over, counted over quantifiers.json."
+  },
+  "total_count": {
+    "value": 2,
+    "from_items": [],
+    "note": "The methods this study compares, which is what the topics angle's 'two' is about. Counted over the claim ids the deck's own count declarations tally, c5 naming the AI side and c6 naming both, rather than asserted in the prose."
+  }
+}

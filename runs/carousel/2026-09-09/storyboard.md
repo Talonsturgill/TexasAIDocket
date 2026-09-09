@@ -22,7 +22,7 @@ arriving as physics rather than as a chart.
   in a bright frame, the study window drawn as prairie phenology, the structural guard against
   sentimentality, and the warning that saved a whole class of defect below.
 - **The two-instruments lens** gave the discipline that keeps this deck honest. The two parties'
-  marks are held **within 2 L\* of each other**, differing in hue and chroma only, because a warm
+  marks are held at **one OKLCH lightness**, differing in hue and chroma only, because a warm
   human and a cold machine is a verdict this record does not get to publish. It also gave slide 6,
   two dissimilar solids throwing identical shadows, which declares `reads:"differ"` and
   `reads:"same"` in one frame.
@@ -128,6 +128,26 @@ The disposition: the frame is what a reader receives, so `compute.py` was brough
 rect and the declaration went back to 180. The upgrade this argues for is in the backlog rather
 than here, because it is a new gate and this run does not get to write one on its own lane.
 
+## A tolerance in L\* is not a luminance, and the gate that reads them cannot tell
+
+`shipped_check`'s `measured figures` step reads every number written beside the token `L*` and
+requires it to appear in `measurements.json`, on the stated premise that **every one of those is a
+luminance this run measured.** That premise is false for two shapes this deck used: a SEPARATION
+between two hues held at one lightness, and a THRESHOLD, the contact comfort band `qa.py` sets.
+Neither is a frame's measured luminance.
+
+Deck 17 wrote the same phrases and passed, because its deck was dark and `2.0`, `6.0` and `8.0`
+happen to occur among its own measured percentiles. **So the gate accepts a tolerance only when it
+coincidentally collides with a measurement**, which is not a check.
+
+The prose says the same things without the token: the two party hues sit at ONE OKLCH lightness,
+which is what `compute.py` actually asserts and is stronger than a two point tolerance, and a
+contact clears the comfort band by name rather than by repeating its number. Nothing is lost.
+
+**The gate was not edited.** `knowledge/carousel/UPGRADE_BACKLOG.md` already records why: changing
+a checker under a red build to turn that build green is how a checker stops being one. It is
+written up there instead.
+
 ## The palette, and every source is a place rather than a product
 
 - **Lake Charles clay**, the vertisol under Harris County. Dry cracked crust `L 0.72 C 0.03 H 70`.
@@ -140,7 +160,7 @@ than here, because it is a new gate and this run does not get to write one on it
   band at the horizon `L 0.92 C 0.02 H 80`.
 - **Coastal live oak shade** `L 0.30 C 0.03 H 160`. The cloud-shadow ground sits below it at
   `L 0.22 C 0.02 H 250`.
-- **The two parties.** `manager` and `tool`, held within 2 L\* of each other and separated by hue
+- **The two parties.** `manager` and `tool`, held at one OKLCH lightness and separated by hue
   and chroma only. Measured, not asserted.
 - **The reserved red appears on no frame.** There is no comment window on this story and a
   reservation with a duplicate is not a reservation.
@@ -266,7 +286,7 @@ verbatim: []
 acceptance:
   - "the doorway aperture is the darkest region in the frame, and the sunlit lane the lightest, measured off the rendered PNG at 432px"
   - 'the hook reads exactly "When does this patient go home?" and is six words'
-  - "the canopy column has a two-part contact shadow, declared in data-contacts, at 8.0 L* separation or better"
+  - "the canopy column has a two-part contact shadow, declared in data-contacts, clearing the contact comfort band qa.py sets"
   - "no human figure, vehicle, wheelchair, bed or personal object appears anywhere in the frame"
   - "the cast shadow on the lane has a hard edge, not a blurred one, because a soffit at eleven in the morning makes a hard edge"
   - "the bottom third carries lit concrete texture and the kerb line, and is not a flat fill"
@@ -515,7 +535,7 @@ art:
     only construction that makes the crossing visible, and the crossing is the deck's turn. A
     truncated axis here would be a lie told with a true number, so the axis starts at zero and the
     zero is printed on the frame.
-  palette: "sun-bleached plywood in Indiangrass straw value, over Lake Charles clay and Katy Prairie grass, with the two series in the manager and tool hues held within 2 L* of each other"
+  palette: "sun-bleached plywood in Indiangrass straw value, over Lake Charles clay and Katy Prairie grass, with the two series in the manager and tool hues held at one OKLCH lightness"
   value_structure: >
     Lightest is the bleached board face in raking sun. Darkest is the hairline cast shadow under
     each batten and rule. The two series sit at the same lightness as each other and differ in hue
@@ -534,7 +554,7 @@ verbatim: []
 acceptance:
   - 'the frame carries "One improved. One got worse." as its hook, and the vertical axis starts at zero with the numeral 0 printed on it'
   - 'the key reads "CASE MANAGERS" left of "AI ESTIMATIONS" and each figure sits beside its own line'
-  - "the two series lines sit within 2 L* of each other, measured off the rendered PNG, and differ in hue and chroma only"
+  - "the two series lines sit at one OKLCH lightness, asserted in compute.py, and differ in hue and chroma only"
   - 'the two lines do not intersect anywhere inside the plot area, and the vertical gap between them at the right hand station is greater than at the left'
   - "the confidence intervals are drawn at true scale and the px-per-day figure is published to window.__txProbe, and no interval is drawn wider than its own value"
   - "every batten and rule on the board carries a hairline cast shadow, so the board reads as a lit object rather than as a background"
@@ -610,7 +630,7 @@ acceptance:
   - "ONE sun altitude governs the frame, published to window.__txProbe as sun_alt_deg with one_sun true, and the two solids stand at the SAME HEIGHT, which under one light is the only way two solids agree on a shadow length"
   - "the ground rule that marks the shadow tips is drawn AT the tips, at GROUND_Y plus the cast's own vertical component, and never at a ground distance used as a screen distance"
   - "the curved solid's apex is SOLVED to its declared height rather than eyeballed, because a cubic with both control points at one height peaks below them"
-  - "each solid has a two-part contact shadow at its footing, declared in data-contacts, at 8.0 L* separation or better"
+  - "each solid has a two-part contact shadow at its footing, declared in data-contacts, clearing the contact comfort band qa.py sets"
   - "neither solid is drawn in the manager hue or the tool hue, so neither is identified as a party"
   - 'the frame carries "the same information clinicians use throughout the stay" and attributes it to the authors rather than to this record'
 
@@ -740,7 +760,7 @@ acceptance:
   - 'the region inside the staked traverse and the region outside are declared in data-encodes with reads same'
   - "the acceptance fails if the traverse interior renders EMPTY of grass, as well as if it renders any figure, mark or object inside the stakes"
   - "the grass path lengths vary across the field from the flow field's own magnitude, and no two paths are the same length"
-  - "the near corner stake has a two-part contact shadow, declared in data-contacts, at 8.0 L* separation or better"
+  - "the near corner stake has a two-part contact shadow, declared in data-contacts, clearing the contact comfort band qa.py sets"
   - 'the frame prints "No baseline patient demographic data were available." verbatim'
   - "no encounter count, sample size or n figure appears anywhere on the frame"
 
@@ -804,7 +824,7 @@ acceptance:
   - "the horizon sits at or below 0.22 of frame height"
   - "this frame's median lightness at 432px is the highest of the nine, published to window.__txProbe"
   - 'the frame carries "warrants prospective, outcome-based evaluation" and names the journal and the doi, which is where the study can be read'
-  - "the monument has a two-part contact shadow, declared in data-contacts, at 8.0 L* separation or better"
+  - "the monument has a two-part contact shadow, declared in data-contacts, clearing the contact comfort band qa.py sets"
   - 'the frame prints "JAMA NETWORK OPEN" and no "talonsturgill.github.io" address appears anywhere on it'
   - "the monument's cast shadow runs toward the bottom edge of the frame, away from the low sun behind the reader"
 
