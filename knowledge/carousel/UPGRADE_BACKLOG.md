@@ -1377,3 +1377,35 @@ touched and `actionable` survives legitimately inside c6's own sentence in the f
 run's other change to that file deliberately: that one narrowed a rule that was firing wrongly and
 came with four self-tests, and this one adds a rule that will fire on shipped copy. Bundling a
 loosening and a tightening in one commit makes both harder to reverse.
+
+
+## `shipped_check`'s `measured figures` cannot tell a luminance from a tolerance
+
+Found 2026-09-09, carousel no. 18, when the gate ran on a light deck for the first time.
+
+`g_measured` reads every number written beside the token `L*` in a run's prose and requires it to
+appear in that run's `measurements.json`, on the premise stated in its own docstring: **"Every one
+of those is a luminance this run measured, so every one has to be in the file."**
+
+The premise is false for two shapes. A SEPARATION between two hues deliberately held at one
+lightness is not a frame's luminance. A THRESHOLD, such as the contact comfort band `qa.py` sets,
+is not one either. Carousel no. 18's storyboard carried eight of them and the gate reported all
+eight.
+
+**The reason nobody hit it before is worse than the defect.** Deck 17 wrote the same phrases and
+passed, because its deck was DARK and `2.0`, `6.0` and `8.0` occur naturally among its own
+measured percentiles. So the gate accepts a tolerance whenever it coincidentally collides with a
+measurement and refuses it otherwise, which means its verdict on this class has been decided by
+the register of the deck rather than by anything about the prose.
+
+**The upgrade:** read the token's ROLE, not just its presence. A number followed by `L*` and
+preceded by `within`, `at least`, `or better`, `separation`, `apart` or `of each other` is a
+tolerance and belongs to a different check, or to none. The narrow version is an exemption list of
+those lead-ins with a self-test carrying one fixture per shape, a real measured figure that must
+still fail when absent from `measurements.json`, and a tolerance that must pass.
+
+**Owner: `upgrade`** (`scripts/carousel/shipped_check.py`). Deliberately not built in the commit
+that hit it: that commit was turning a red build green, and editing a checker to stop reporting
+under exactly those conditions is how a checker stops being one. This repository already has that
+precedent written down two entries up, for `lesson_refs`' `CITE` parser, and the reasoning is the
+same. Carousel no. 18 reworded its own prose instead, which cost it nothing.
