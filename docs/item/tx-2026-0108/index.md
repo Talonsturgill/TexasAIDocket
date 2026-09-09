@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved a net metering arrangement in Do
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The rehearing path moved. Commission Advising records that the commission voted not to place Ensign's motion on an open meeting agenda, so the curtailment conditions remain.
 - 2026-09-02 · Ensign Infrastructure's motion for rehearing is filed and the commission has since put a ballot memorandum on the docket, which is how the commissioners vote on it. The order telling the data center to shed its whole load stands until they do.
 - 2026-09-05 · The Armstrong County order still tells the data center to shed its whole load and the conditions are still in place. Nothing has been lifted.
+- 2026-09-08 · The order letting the Armstrong County data center share a wind farm's interconnection still stands with its load shedding conditions intact.
 
 ## Evidence
 

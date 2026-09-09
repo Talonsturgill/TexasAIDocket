@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs carries an interim 
 - Public access: Write to the decider
 - Take part: https://senate.texas.gov/cmte.php?c=700
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -28,6 +28,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · The Senate water committee's data-center hearing remains open to written public submissions through its stated close.
 - 2026-09-02 · The September 1st sitting was held. The committee's own page carries its recording. The second sitting stands for September 2nd, 2026 in hearing room E1.012, so the door is open today.
 - 2026-09-05 · Both sittings have been held and the Legislature's upcoming meetings listing no longer carries either of them, which is what a past hearing looks like on that page. The committee still holds the charge on cooling water and has published no recommendation. The door a reader could have walked through has shut and the question behind it is unanswered.
+- 2026-09-08 · Senate Water, Agriculture and Rural Affairs has still published no recommendation from either of its sittings on data center cooling water. The upcoming meetings list that first carried those dates has moved past them. The committee's own page is now the only place a reader can see that the sittings happened.
+- 2026-09-08 · The Senate's video archive carries a recording of the September 1st sitting under the committee's own name and date, so what the committee heard can be watched in full. No recommendation from either sitting has been published.
 
 ## Evidence
 
@@ -74,4 +76,10 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming
 > Wednesday, September 2, 2026 9:00 AM Water, Agriculture and Rural Affairs
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+
+### The Senate's own video archive carries the committee's September 1st sitting under that committee's name and date.
+
+> Senate Committee on Water, Agriculture, and Rural Affairs, September 1, 2026 | Texas Senate Video
+
+Source (primary_official): https://senate.texas.gov/videoplayer.php?vid=22662&lang=en
 

@@ -11,7 +11,7 @@ The University of Texas Medical Branch at Galveston contracted in December 2024 
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings/board-meeting-2026-08-12
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-01 · UTMB's expanded generative-artificial-intelligence platform remains before the regents without a later recorded disposition.
 - 2026-09-02 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-05 · The generative AI platform still covers all seven health institutions at its amended value. No fourth amendment has reached the regents.
+- 2026-09-08 · The UTMB generative AI platform still runs across all seven health institutions on the amended contract the regents approved.
 
 ## Evidence
 

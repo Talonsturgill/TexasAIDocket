@@ -15,7 +15,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf
 
-- Last checked: 2026-09-05
+- Last checked: 2026-09-08
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-08-29 · The commission decided this on August 28th, 2026. It amended the certificate to include the line and approved route 476 across the ten counties the application named. The two western applications were consolidated on the question of need and then severed so each took its own final order.
 - 2026-09-02 · The commission has severed part of the proceeding and the Attorney General has filed an amicus brief supporting a motion to defer the determination of need. Landowner letters are still arriving on the docket.
 - 2026-09-05 · The commission's filing index for the second line has taken further filings since the last reading and the amended certificate is unchanged.
+- 2026-09-08 · The Longshore Switch to Drill Hole Switch application still stands as approved and the case style still names the same west Texas counties. One more filing has been entered since the record last read the index.
 
 ## Evidence
 
@@ -107,6 +108,12 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 ### Letters from members of the public are still being filed on the docket.
 
 > Joanna Friebele Letter to the PUC Commissioners
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The filing index records the number of filings in this docket.
+
+> 509 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 

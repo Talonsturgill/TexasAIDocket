@@ -437,12 +437,55 @@ def section(body: str, key: str) -> str:
     return m.group(1) if m else ""
 
 
+# A continuation line inside a block list: indented FURTHER than the `  - ` that opened the
+# item, and not itself a new item. Four or more leading spaces, because `  - ` is two and every
+# storyboard that has ever wrapped an item aligned the continuation under the opening quote.
+_ACC_BLOCK = re.compile(r"^acceptance:[^\S\n]*\n((?:(?:  - |    +)\S.*\n)+)", re.M)
+
+
 def acceptance_items(body: str) -> list:
-    m = re.search(r"^acceptance:\s*\n((?:  - .*\n)+)", body, re.M)
+    """Every acceptance item in one dossier, INCLUDING the ones that wrap.
+
+    THE DEFECT THIS SHAPE EXISTS FOR. 2026-09-08, and it had been running since this gate was
+    written. The block was taken with `^acceptance:\\s*\\n((?:  - .*\\n)+)`, whose repetition
+    stops at the first line that does not begin with two spaces and a dash. An acceptance item
+    long enough to wrap continues on an indented line, so THE BLOCK ENDED AT THE FIRST WRAPPED
+    ITEM and every item after it in that slide's list was never read.
+
+    Measured on the 2026-09-08 storyboard as it was first written, at commit 7a32b69e:
+    **17 items read of 52 written.** The gate then reported `0 of 16 acceptance items carry a
+    machine-checkable assertion`, which was true of what it could see and false of the plan,
+    because the items that survive truncation are the SHORT ones and a short item is the one
+    least likely to quote a string. Three frames were outside their own declared median L* and
+    no gate said so, because every one of those declarations sits past a wrapped item.
+
+    Its old `--self-test` passed throughout, because the fixture it tests against writes every
+    item on one line. That is GATE_LESSONS 16 exactly: a fixture written by the author of the
+    detector agrees with the detector.
+
+    TWO PARSERS FOR ONE FORMAT WAS THE ROOT CAUSE, which is GATE_LESSONS 34. `dossier_check.py`
+    reads the same blocks with `yaml.safe_load` and counted all 52 the whole time. So the YAML
+    parse is the primary route here now and the regex is only the fallback for a block PyYAML
+    refuses, which keeps this gate working on a malformed dossier rather than reporting it
+    clean. The fallback is continuation aware, so both routes read the same list.
+    """
+    try:
+        import yaml                                     # noqa: PLC0415 - optional, see below
+        doc = yaml.safe_load(body)
+        if isinstance(doc, dict) and isinstance(doc.get("acceptance"), list):
+            return [str(x).strip() for x in doc["acceptance"] if str(x).strip()]
+    except Exception:
+        pass                                            # fall through to the text route
+    m = _ACC_BLOCK.search(body)
     if not m:
         return []
-    return [re.sub(r'^\s*-\s*"?|"?\s*$', "", ln).strip()
-            for ln in m.group(1).splitlines() if ln.strip().startswith("- ")]
+    items: list[str] = []
+    for ln in m.group(1).splitlines():
+        if ln.strip().startswith("- "):
+            items.append(ln.strip()[2:].strip())
+        elif items:
+            items[-1] += " " + ln.strip()
+    return [re.sub(r'^"|"$', "", it).strip() for it in items if it.strip()]
 
 
 def rendered_text(report: dict, n: int) -> str:
@@ -868,6 +911,71 @@ acceptance:
         f, w, s = check(SB, dd, R3)
         ok("an acceptance item forbidding a string the frame prints is CAUGHT",
            any("appears nowhere" in x for x in f), str(f))
+
+        # ---- THE WRAPPED ACCEPTANCE ITEM, 2026-09-08 ---------------------------------
+        # Replays the truncation directly. The fixture above writes every item on one line,
+        # which is exactly why this gate certified a third of every plan and stayed green.
+        WRAP_SB = """
+```yaml
+slide: 5
+job: >
+  the inversion
+type:
+  hook: "One office. The same day."
+  dek: "Two wordings."
+acceptance:
+  - "the differing words are marked in pecos and nothing else on the frame is, and the reason
+     is that a second marked run turns a comparison into a list"
+  - "the frame carries 'One office' as its display line"
+  - "the frame median L* measures 38 plus or minus 4"
+  - "the phrase 'flag red' appears nowhere on the frame"
+```
+"""
+        body5 = parse_dossiers(WRAP_SB)[5]
+        items = acceptance_items(body5)
+        ok("every acceptance item is read when one of them WRAPS",
+           len(items) == 4, f"read {len(items)}: {items}")
+        ok("...and the wrapped item is joined rather than cut at the line break",
+           items and items[0].endswith("turns a comparison into a list"), str(items[:1]))
+
+        # THE OLD PARSER, kept here as the thing this replaced, so the replay is visible rather
+        # than asserted. It stops at the first line that is not `  - `.
+        old = re.search(r"^acceptance:\s*\n((?:  - .*\n)+)", body5, re.M)
+        old_n = len([ln for ln in old.group(1).splitlines()
+                     if ln.strip().startswith("- ")]) if old else 0
+        ok("the parser this replaced would have read ONE of the four",
+           old_n == 1, f"old parser read {old_n}")
+
+        # ...and the three items past the wrap are actually CHECKED, not merely counted. The
+        # forbidden-string item is the last of the four and it is the one truncation ate.
+        (dd / "slide-05.html").write_text(GOOD, encoding="utf-8")
+        f, w, s = check(WRAP_SB, dd, R3)
+        ok("an item PAST the wrap is enforced, not just parsed",
+           any("appears nowhere" in x for x in f), str(f))
+
+        # BOTH ROUTES READ THE SAME LIST, on the real shipped storyboards rather than on a
+        # fixture. GATE_LESSONS 50: the synthetic half proves the logic, and only the half that
+        # goes and reads the real artifact would have gone red on the day this broke. If PyYAML
+        # is ever absent from a runner the fallback carries this gate, so the two must agree.
+        boards = sorted((REPO_ROOT / "runs" / "carousel").glob("2*/storyboard.md"))
+        drift, swept = [], 0
+        for bp in boards:
+            for n, body in parse_dossiers(bp.read_text(encoding="utf-8")).items():
+                swept += 1
+                m = _ACC_BLOCK.search(body)
+                fb: list = []
+                for ln in (m.group(1).splitlines() if m else []):
+                    if ln.strip().startswith("- "):
+                        fb.append(ln.strip()[2:].strip())
+                    elif fb:
+                        fb[-1] += " " + ln.strip()
+                fb = [re.sub(r'^"|"$', "", it).strip() for it in fb if it.strip()]
+                if len(fb) != len(acceptance_items(body)):
+                    drift.append(f"{bp.parent.name} slide {n}: "
+                                 f"yaml {len(acceptance_items(body))} vs text {len(fb)}")
+        ok(f"the yaml route and the text fallback agree over {swept} shipped dossier(s)",
+           not drift, "; ".join(drift[:4]))
+        ok("...and there were shipped dossiers to sweep", swept > 0, str(swept))
 
         # ---- DECLARED, the 2026-08-21 defect and every way it can go wrong ------------
         (dd / "slide-05.html").write_text(GOOD, encoding="utf-8")

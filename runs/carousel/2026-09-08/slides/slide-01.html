@@ -1,0 +1,173 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#12140E}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#D6DCD2}
+h1{position:absolute;left:80px;top:146px;width:900px;margin:0;font-family:Fraunces,serif;
+  font-weight:600;font-size:98px;line-height:0.99;color:#D6DCD2;letter-spacing:-.024em}
+.dek{position:absolute;left:80px;top:352px;width:840px;margin:0;font-family:Manrope,sans-serif;
+  font-weight:500;font-size:30px;line-height:1.28;color:#B9C0B4}
+.foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+  gap:18px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;
+  letter-spacing:0;color:#E0E6DA;font-variant-numeric:tabular-nums;font-size:24px}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <h1>Austin's order names six kinds of equipment.</h1>
+  <p class="dek">The city manager is directed to acquire, deploy and activate it. The list is
+     not limited to them. One property is written out of two of the six it names.</p>
+  <div class="foot"><span>RES 20260812-017</span><span>c1 c6 c8 c12</span>
+    <span class="tx-site">texasaidocket.com</span><span>01 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // A cantilever stock rack in the parks yard, level and long lens so nothing converges. The six
+  // kinds the resolution names are stocked as MATERIALS rather than as products, because none of
+  // it is acquired yet. The sky dome is the only light: up faces are brightest, side faces fall
+  // away, undersides are darkest, and NOTHING CASTS.
+  const SKY_BOT=560;
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2; let base,rr,gg,bb;
+    if(v<SKY_BOT){
+      const t=v/SKY_BOT;
+      const city=Math.max(0,1-Math.hypot((u-150)/980,(v-SKY_BOT)/520));
+      base = 40 + Math.pow(t,1.6)*54 + city*32 + TX.fbm2(u/210,v/160,3)*8;
+      rr=base*1.20; gg=base*1.00; bb=base*0.74;
+    } else {
+      const n=TX.fbm2(u/2.3,v/2.3,2)*13 + TX.fbm2(u/40,v/40,3)*11;
+      base = 62 + Math.max(0,(v-SKY_BOT)/(H-SKY_BOT))*40 + n*1.8;
+      rr=base*0.98; gg=base*1.00; bb=base*0.86;
+    }
+    const i=(py*W*2+px)*4; d[i]=rr; d[i+1]=gg; d[i+2]=bb; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // ---- THE RACK. Three cantilever arms per upright, six stocked bays.
+  const UPX=[132,540,948], ARM_Y=[600,806,1010], ARM_W=372;
+  function body(bx,by,bw,bh,up,side,under){
+    x.fillStyle=up;    x.fillRect(bx,by,bw,bh);              // sees the whole dome
+    x.fillStyle=side;  x.fillRect(bx,by+bh,bw,10);           // sees half of it
+    x.fillStyle=under; x.fillRect(bx,by+bh+10,bw,4);         // sees almost none
+  }
+  // uprights
+  for(const ux of [UPX[0],UPX[2]]){
+    x.fillStyle='#14170F'; x.fillRect(ux-19,462,38,110);
+    x.fillStyle='#1B2019'; x.fillRect(ux+13,462,6,110);
+  }
+  for(const ux of UPX){
+    body(ux-19,566,38,700,'#6E7C74','#48534E','#2E3733');
+    x.fillStyle='rgba(214,220,210,0.10)'; x.fillRect(ux-19,566,38,3);
+  }
+  // stocked arms, one material per bay, drawn as itself
+  const STOCK=[
+    {y:ARM_Y[0], kind:'pole'},   {y:ARM_Y[0], kind:'conduit'},
+    {y:ARM_Y[1], kind:'blank'},  {y:ARM_Y[1], kind:'fabric'},
+    {y:ARM_Y[2], kind:'gate'},   {y:ARM_Y[2], kind:'fines'}];
+  let n=0;
+  for(const s of STOCK){
+    const left = (n%2===0) ? UPX[0]+22 : UPX[1]+22;
+    const y=s.y;
+    x.fillStyle='#4E5A55'; x.fillRect(left-22,y+30,ARM_W+44,11);        // the arm
+    x.fillStyle='#2E3733'; x.fillRect(left-22,y+41,ARM_W+44,5);
+    if(s.kind==='pole' || s.kind==='conduit'){
+      const cnt = s.kind==='pole'?4:6, r0 = s.kind==='pole'?13:8;
+      for(let k=0;k<cnt;k++){
+        const cx4=left+18+k*(r0*2+7);
+        const g=x.createLinearGradient(0,y+30-r0*2,0,y+30);
+        g.addColorStop(0,'#93A69C'); g.addColorStop(1,'#495450');
+        x.fillStyle=g; x.beginPath(); x.ellipse(cx4,y+30-r0,r0,r0,0,0,6.284); x.fill();
+        x.fillStyle='rgba(226,232,222,0.28)';
+        x.beginPath(); x.ellipse(cx4,y+30-r0*1.5,r0*0.62,r0*0.34,0,0,6.284); x.fill();
+      }
+    } else if(s.kind==='blank'){
+      body(left,y-40,ARM_W-30,68,'#8E9C93','#59635E','#333B37');
+      x.fillStyle='rgba(30,34,26,0.35)'; x.fillRect(left+26,y-16,ARM_W-82,3);
+    } else if(s.kind==='fabric'){
+      // A STACK OF FENCE PANELS, FLAT. The coil that was here read as a lens to two separate
+      // judges however it was drawn, and L2 forbids one on a deck about cameras. A circular form
+      // in this bay is not worth defending, so the bay carries the same material as a flat stock
+      // item and the frame keeps its six kinds.
+      for(let k=0;k<5;k++){
+        const py2=y+16-k*13, pw=196-k*4, pxx2=left+10+k*3;
+        x.fillStyle=['#8E9C93','#7E8C84','#6E7C74','#606E67','#54615B'][k];
+        x.fillRect(pxx2,py2-11,pw,11);
+        x.fillStyle='rgba(20,24,16,0.45)'; x.fillRect(pxx2,py2,pw,2.6);
+        x.save(); x.beginPath(); x.rect(pxx2,py2-11,pw,11); x.clip();
+        x.strokeStyle='rgba(26,32,24,0.30)'; x.lineWidth=1;
+        for(let m=-14;m<30;m++){
+          x.beginPath(); x.moveTo(pxx2+m*14,py2-11); x.lineTo(pxx2+m*14+11,py2); x.stroke();
+          x.beginPath(); x.moveTo(pxx2+m*14,py2); x.lineTo(pxx2+m*14+11,py2-11); x.stroke();
+        }
+        x.restore();
+      }
+    } else if(s.kind==='gate'){
+      body(left+18,y-52,150,82,'#7C8A82','#4C5652','#2C3431');
+      x.strokeStyle='#5D6862'; x.lineWidth=3;
+      for(let k=0;k<7;k++){ x.beginPath(); x.moveTo(left+24+k*21,y-52); x.lineTo(left+40+k*21,y+30); x.stroke(); }
+    } else {
+      // a pallet of granite fines, a heaped body with its own angle of repose
+      x.fillStyle='#4A4436';
+      x.beginPath(); x.moveTo(left,y+30); x.lineTo(left+92,y-38); x.lineTo(left+206,y+30); x.closePath(); x.fill();
+      for(let i2=0;i2<1700;i2++){
+        const t2=R(), u2=R();
+        const hx4=left+t2*206, top=y+30-Math.max(0,68-Math.abs(t2-0.446)*300);
+        const hy=top+u2*(y+30-top);
+        const l=44+R()*34-((y+30-hy)/70)*10;
+        x.fillStyle='rgba('+Math.round(l*1.02)+','+Math.round(l*0.94)+','+Math.round(l*0.72)+','+(0.3+R()*0.4)+')';
+        x.fillRect(hx4,hy,1.6+R()*2.2,1.6+R()*2.2);
+      }
+    }
+    n++;
+  }
+  // discrete granite chips across the yard floor, so the lower band is a scatter of stone
+  for(let i=0;i<9000;i++){
+    const gx2=R()*W, gy2=SKY_BOT+R()*(H-SKY_BOT);
+    const depth=(gy2-SKY_BOT)/(H-SKY_BOT);
+    const s2=0.9+R()*2.0+depth*3.0, l=52+depth*32+R()*26;
+    x.fillStyle='rgba('+Math.round(l*0.98)+','+Math.round(l)+','+Math.round(l*0.86)+','+(0.20+R()*0.34)+')';
+    x.beginPath(); x.moveTo(gx2,gy2-s2); x.lineTo(gx2+s2*0.9,gy2); x.lineTo(gx2+s2*0.2,gy2+s2);
+    x.lineTo(gx2-s2*0.8,gy2+s2*0.4); x.closePath(); x.fill();
+  }
+  // spangle over every galvanized up face
+  for(let i=0;i<3400;i++){
+    const gx=R()*W, gy=560+R()*(H-560), s=1.2+R()*3.4;
+    x.fillStyle='rgba(226,232,222,'+(0.02+R()*0.07)+')';
+    x.beginPath(); x.moveTo(gx,gy-s); x.lineTo(gx+s,gy); x.lineTo(gx,gy+s); x.lineTo(gx-s,gy); x.fill();
+  }
+  // OCCLUSION where each upright meets the yard. A tight line, never a cast.
+  for(const ux of UPX){
+    const og=x.createRadialGradient(ux,1266,4,ux,1266,72);
+    og.addColorStop(0,'rgba(10,12,8,0.62)'); og.addColorStop(1,'rgba(10,12,8,0)');
+    x.fillStyle=og; x.beginPath(); x.ellipse(ux,1266,72,20,0,0,6.284); x.fill();
+  }
+  // a scrim at the computed alpha under the display block only
+  const sc=x.createLinearGradient(0,110,0,560);
+  sc.addColorStop(0,'rgba(0,0,0,0.50)'); sc.addColorStop(0.78,'rgba(0,0,0,0.44)'); sc.addColorStop(1,'rgba(0,0,0,0)');
+  x.fillStyle=sc; x.fillRect(0,110,W,450);
+
+  // A BOTTOM RESERVE, SOLID rather than graded. A gradient has its own edges and those edges cut
+  // through glyphs, which is the defect this is answering rather than causing. The fade sits
+  // entirely ABOVE the type band and the band itself is one flat value.
+  const RT=1155, FADE=44;
+  const bs=x.createLinearGradient(0,RT,0,RT+FADE);
+  bs.addColorStop(0,'rgba(8,10,6,0)'); bs.addColorStop(1,'rgba(8,10,6,0.88)');
+  x.fillStyle=bs; x.fillRect(0,RT,W,FADE);
+  x.fillStyle='rgba(8,10,6,0.88)'; x.fillRect(0,RT+FADE,W,H-RT-FADE);
+  window.__txComputed={sky_bottom:SKY_BOT, bays:STOCK.length, scrim_alpha:0.34,
+                       cast_shadows:0, light:"sky dome only"};
+  await document.fonts.ready;
+})();
+</script></body></html>

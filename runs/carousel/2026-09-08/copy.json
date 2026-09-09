@@ -1,0 +1,171 @@
+{
+ "run": "2026-09-08",
+ "note": "Built from the render report's own laid out text nodes rather than from the storyboard. Every string here is a string the browser actually set, and this file is rebuilt after every render round so it can't describe a deck that no longer exists.",
+ "slides": {
+  "S1": {
+   "hook": "Austin's order names six kinds of equipment.",
+   "dek": "The city manager is directed to acquire, deploy and activate it. The list is not limited to them. One property is written out of two of the six it names.",
+   "labels": [
+    "01 / 09",
+    "RES 20260812-017",
+    "TEXAS AI DOCKET",
+    "c1 c6 c8 c12",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c1",
+    "c6",
+    "c8",
+    "c12"
+   ]
+  },
+  "S2": {
+   "hook": "A plan is ordered. Its basis is named.",
+   "dek": "The implementation plan has to rest on a July 2025 security audit the parks department already had done.",
+   "labels": [
+    "02 / 09",
+    "RESOLUTION 20260812-017",
+    "TEXAS AI DOCKET",
+    "c3 c4",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c3",
+    "c4"
+   ]
+  },
+  "S3": {
+   "dek": "The resolution says what the plan must establish. The plan itself is not in it.",
+   "hook": "What the plan has to establish",
+   "labels": [
+    "03 / 09",
+    "FUNDING MECHANISMS",
+    "IMPLEMENTATION TIMELINES",
+    "PLANNED OPERATIONAL AND CAPITAL IMPROVEMENTS",
+    "PRIORITY LOCATIONS",
+    "RESOLUTION 20260812-017 / read in full, both pages",
+    "RESPONSIBLE PARTIES",
+    "TEXAS AI DOCKET",
+    "c5",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c5"
+   ]
+  },
+  "S4": {
+   "hook": "Which parks go first.",
+   "dek": "\"Parks with a history of violent crime shall be prioritized for the initial deployment of this equipment.\" The mount is bare.",
+   "labels": [
+    "04 / 09",
+    "RESOLUTION 20260812-017",
+    "TEXAS AI DOCKET",
+    "c10",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c10"
+   ]
+  },
+  "S5": {
+   "hook": "April had already listed the tools.",
+   "dek": "Artificial intelligence or machine learning tools sit among what is not permitted in City Code Chapter 2-19. The exception is whatever the city's own policy allows.",
+   "labels": [
+    "05 / 09",
+    "CITY CODE 2-19-9 NOT PERMITTED (B) ARTIFICIAL INTELLIGENCE",
+    "ORDINANCE 20260423-029 / section 2-19-9 read in full",
+    "TEXAS AI DOCKET",
+    "c7 c33 c34",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c7",
+    "c33",
+    "c34"
+   ]
+  },
+  "S6": {
+   "dek": "The clause reaches the foot of the resolution's first page.",
+   "labels": [
+    "06 / 09",
+    "RES 20260812-017",
+    "TEXAS AI DOCKET",
+    "The City Manager shall not",
+    "c8",
+    "camera or drone system that",
+    "consider acquisition of any",
+    "depends upon artificial",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c8"
+   ]
+  },
+  "S7": {
+   "dek": "The clause finishes at the top of page two. It reaches a camera or drone that depends on artificial intelligence to do those two things. April had already listed those tools as not permitted. That listing carries an exception and this clause carries none.",
+   "labels": [
+    "07 / 09",
+    "RESOLUTION 20260812-017 / read in full, both pages",
+    "TEXAS AI DOCKET",
+    "c9 c34",
+    "intelligence to conduct surveillance or analysis.",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c9",
+    "c34"
+   ]
+  },
+  "S8": {
+   "labels": [
+    "(1)",
+    "(10)",
+    "(2)",
+    "(3)",
+    "(4)",
+    "(5)",
+    "(6)",
+    "(7)",
+    "(8)",
+    "(9)",
+    "08 / 09",
+    "ORDINANCE 20260423-029 / SECTION 2-19-4",
+    "SECTION 2-19-4(C), TEN NUMBERED FACTORS",
+    "TEXAS AI DOCKET",
+    "a determination of minimal risk",
+    "any one of them shall weigh strongly against",
+    "c17 c18 c23 c24 c30 c31",
+    "including training of artificial intelligence",
+    "no less than four weeks before the city council meeting",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c17",
+    "c18",
+    "c23",
+    "c24",
+    "c30",
+    "c31"
+   ]
+  },
+  "S9": {
+   "hook": "DECEMBER 9TH, 2026",
+   "title": "Council Climate, Water, Environment, and Parks Committee",
+   "dek": "The city manager owes that committee a progress update by then. The action notes send the count to minutes approved later. The city's open voting record has not reached that meeting.",
+   "labels": [
+    "09 / 09",
+    "ACTION NOTES AND VOTING RECORD / both read in full",
+    "RES 20260812-017",
+    "TEXAS AI DOCKET",
+    "c11 c19 c40 c41",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c11",
+    "c19",
+    "c40",
+    "c41"
+   ]
+  }
+ }
+}

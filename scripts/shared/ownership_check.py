@@ -486,7 +486,61 @@ def check_per_commit(omap: OwnershipMap, branch: str, diff_range: str,
     return 0
 
 
-def report(violations: list[Violation], actor: str, n_files: int) -> int:
+def current_branch(cwd=None) -> str | None:
+    """The checked out branch, or None on a detached head or outside a repository.
+
+    The pre-commit hook calls the checker without `--branch`, because it resolves the actor
+    itself. `report` still needs the branch to say which lanes it may stamp, and asking git is
+    the only way to know from inside a hook. It never raises: a checker that dies looking up a
+    hint would be worse than one that prints no hint.
+    """
+    try:
+        out = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"],
+                             capture_output=True, text=True, cwd=cwd, timeout=10)
+    except Exception:
+        return None
+    name = (out.stdout or "").strip()
+    return name if out.returncode == 0 and name and name != "HEAD" else None
+
+
+def reachable(omap: "OwnershipMap", violations: list[Violation],
+              branch: str | None) -> dict[str, str]:
+    """Which refused paths this BRANCH could still write, and under which stamp.
+
+    THE ADVICE THIS FUNCTION EXISTS TO STOP GIVING, 2026-09-09. Until today a refusal ended
+    with "record it as a proposal in the run record and let a maintainer session make it", full
+    stop, whatever the branch was. That is right when a lane is genuinely out of reach and it is
+    WRONG WHENEVER `branch_also_allows` already grants it, which for `claude/daily-` has
+    included `human` since 2026-08-30, on the owner's instruction, for exactly this case.
+
+    What it cost. On 2026-09-08 and again on 2026-09-09 a run went red on
+    `scripts/site/ask_pack.py`, read `owner: human`, took this advice, wrote the proposal and
+    held. Both runs held on a file their own branch was permitted to write, and the second
+    argued the case at length in a pull request comment. The docket published nothing for two
+    days. The grant was in `ownership.yaml` the whole time and nothing pointed at it.
+
+    A rule that a session must remember to look up is a rule it will not look up at 3am with
+    nobody watching. The refusal now names the stamp, so the escape hatch is discovered at the
+    moment of refusal instead of a day later.
+
+    THIS WIDENS NOTHING. It reads the same grant the checker already enforces and prints it.
+    A branch with no grant gets no suggestion, `human` is never inferred where the map does not
+    give it, and a stamped commit is still checked against the lane it stamped.
+    """
+    if not branch:
+        return {}
+    allowed = omap.actors_allowed_on_branch(branch)
+    out: dict[str, str] = {}
+    for v in violations:
+        if not v.rule or not v.rule.owner:
+            continue
+        if v.rule.owner in allowed:
+            out[v.path] = v.rule.owner
+    return out
+
+
+def report(violations: list[Violation], actor: str, n_files: int,
+           omap: "OwnershipMap" = None, branch: str | None = None) -> int:
     if not violations:
         print(f"ownership: OK, {n_files} path(s) all inside '{actor}'")
         return 0
@@ -497,9 +551,27 @@ def report(violations: list[Violation], actor: str, n_files: int) -> int:
         if v.rule and v.rule.note:
             note = " ".join(v.rule.note.split())
             print(f"      why: {note}", file=sys.stderr)
-    print("\n  An automation may not write outside its lane. If this change is genuinely "
-          "needed,\n  record it as a proposal in the run record and let a maintainer session "
-          "make it.\n  The map is ownership.yaml.", file=sys.stderr)
+
+    reach = reachable(omap, violations, branch) if omap is not None else {}
+    if reach:
+        lanes = sorted(set(reach.values()))
+        print(f"\n  THIS BRANCH MAY STAMP {', '.join(repr(x) for x in lanes)}, so "
+              f"{len(reach)} of these\n  {'path is' if len(reach) == 1 else 'paths are'} "
+              f"reachable from here rather than blocked. `ownership.yaml` grants it to\n"
+              f"  this branch prefix in `branch_also_allows`. Declare it on the commit you are\n"
+              f"  already making, which costs no extra call:\n", file=sys.stderr)
+        for lane in lanes:
+            print(f"      TXDOCKET_ACTOR={lane} git commit -m \"...\"", file=sys.stderr)
+        print("\n  Use it for a defect this run caused or is blocked by, and SAY SO in the run\n"
+              "  record. The per commit report names every commit that did.", file=sys.stderr)
+        blocked = [v for v in violations if v.path not in reach]
+        if blocked:
+            print(f"\n  The other {len(blocked)} still cannot be written from here.",
+                  file=sys.stderr)
+    else:
+        print("\n  An automation may not write outside its lane. If this change is genuinely "
+              "needed,\n  record it as a proposal in the run record and let a maintainer "
+              "session make it.\n  The map is ownership.yaml.", file=sys.stderr)
     return 1
 
 
@@ -802,6 +874,36 @@ rules:
     print(f"  {'ok  ' if ok else 'FAIL'}  ...but never on a prefix the map does not grant it to")
     failures += 0 if ok else 1
 
+    # THE REFUSAL POINTS AT THE GRANT, which is the 2026-09-09 fix. Two consecutive runs held on
+    # a file their own branch was permitted to write, because the refusal said "let a maintainer
+    # session make it" and never said "you may stamp this". Both halves are asserted here: the
+    # hint appears where the map grants the lane, and is absent where it does not, so this can
+    # never become an instruction to stamp a lane the branch has not been given.
+    refused = check(omap, "carousel", ["CLAUDE.md"], diff=None, staged=False)
+    hint = reachable(omap, refused, "claude/carousel-2026-08-11")
+    ok = hint.get("CLAUDE.md") == "human"
+    print(f"  {'ok  ' if ok else 'FAIL'}  a refusal on a granted lane names the stamp to use"
+          f"{'' if ok else '  ' + repr(hint)}")
+    failures += 0 if ok else 1
+
+    ok = not reachable(omap, refused, "gridwatch/collect")
+    print(f"  {'ok  ' if ok else 'FAIL'}  ...and says nothing where the map grants nothing")
+    failures += 0 if ok else 1
+
+    ok = not reachable(omap, refused, None)
+    print(f"  {'ok  ' if ok else 'FAIL'}  ...and nothing at all when the branch is unknown")
+    failures += 0 if ok else 1
+
+    # A LANE THE BRANCH ALREADY IS is not an escape hatch, it is a bug in the caller, so it is
+    # never suggested. `gridwatch` owns the ledger and a gridwatch branch writing it does not
+    # reach this code at all; what must not happen is the hint telling an actor to stamp itself.
+    own = check(omap, "carousel", ["ledger/gridwatch/gridwatch.jsonl"], diff=None, staged=False)
+    hint2 = reachable(omap, own, "claude/carousel-2026-08-11")
+    ok = hint2.get("ledger/gridwatch/gridwatch.jsonl") == "gridwatch"
+    print(f"  {'ok  ' if ok else 'FAIL'}  a granted non-human lane is named the same way"
+          f"{'' if ok else '  ' + repr(hint2)}")
+    failures += 0 if ok else 1
+
     ok = omap.actors_allowed_on_branch("some/maintainer-branch") >= {"human"}
     print(f"  {'ok  ' if ok else 'FAIL'}  a branch matching no prefix is a maintainer session")
     failures += 0 if ok else 1
@@ -974,7 +1076,8 @@ def main() -> int:
         print(f"ownership: OK, nothing changed")
         return 0
 
-    return report(check(omap, actor, paths, args.diff, args.staged), actor, len(paths))
+    return report(check(omap, actor, paths, args.diff, args.staged), actor, len(paths),
+                  omap, args.branch or current_branch())
 
 
 if __name__ == "__main__":

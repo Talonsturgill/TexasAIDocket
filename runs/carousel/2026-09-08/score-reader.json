@@ -1,0 +1,40 @@
+{
+ "lens": "reader",
+ "round": 4,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.3
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.7
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.6
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.2
+  }
+ ],
+ "weighted_score": 6.93,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 1 so the cover states the prohibition itself rather than the equipment inventory, because a Texan scrolling past a headline about equipment counts never reaches the page turn on frames 6 and 7."
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#1A1E18}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#D6DCD2}
+#heads{position:absolute;left:0;right:0;top:0}
+.ch{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:24px;
+  letter-spacing:-.04em;color:#E6EBE2;line-height:1.16}
+.dek{position:absolute;left:96px;top:1006px;width:560px;margin:0;font-family:Manrope,sans-serif;
+  font-weight:500;font-size:28px;line-height:1.26;color:#14170F}
+.title{position:absolute;right:96px;bottom:236px;width:320px;text-align:right;
+  font-family:Fraunces,serif;font-weight:600;font-size:40px;line-height:1.06;color:#14170F;
+  letter-spacing:-.015em}
+.loc{position:absolute;left:80px;bottom:128px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.05em;color:#B6BEAF}
+.foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+  gap:18px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;
+  letter-spacing:.04em;color:#D6DCD2;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">TEXAS AI DOCKET</div>
+  <div id="heads"></div>
+  <p class="dek">The resolution says what the plan must establish. The plan itself is not in it.</p>
+  <div class="title">What the plan has to establish</div>
+  <div class="loc">RESOLUTION 20260812-017 / read in full, both pages</div>
+  <div class="foot"><span>c5</span>
+    <span class="tx-site">texasaidocket.com</span><span>03 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // A weathered pale enamel schedule board, near frontal at six degrees so its top edge and its
+  // thickness show. THE MOST ABSENT THING IN THE DECK IS ITS BRIGHTEST AREA. An unfilled field
+  // drawn dark ships as a redaction. A glossy surface reflecting the same dome that lights
+  // everything else reads as a surface and can never be mistaken for a hole.
+  const BT=132, BB=1176, BL=44, BR=1036, THICK=17;
+
+  // the granite yard behind the board, so the board is an object rather than a ground
+  const bg=x.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#15180F'); bg.addColorStop(1,'#2A2C22');
+  x.fillStyle=bg; x.fillRect(0,0,W,H);
+  for(let i=0;i<2600;i++){
+    const gx=R()*W, gy=R()*H, s=1+R()*3;
+    x.fillStyle='rgba(120,126,110,'+(0.03+R()*0.10)+')';
+    x.fillRect(gx,gy,s,s);
+  }
+
+  // the board's own thickness, seen because the camera is six degrees off frontal
+  x.fillStyle='#5E6A5B'; x.fillRect(BL-THICK, BT+8, THICK, BB-BT-8);
+  x.fillStyle='#43503F'; x.fillRect(BL-THICK, BB-2, BR-BL+THICK, 12);
+
+  // THE ENAMEL, with a MIRRORED SKY DOME across it. The dome is brightest low in the sky, so the
+  // reflection is brightest low on the board, which is the opposite of a lit surface and is what
+  // makes it read as gloss rather than as illumination.
+  const off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  const ox=off.getContext('2d');
+  const en=ox.createImageData(W*2,H*2), ed=en.data;
+  for(let py=BT*2;py<BB*2;py++){ for(let px=BL*2;px<BR*2;px++){
+    const u=px/2, v=py/2;
+    const t=(v-BT)/(BB-BT);
+    const mirror = 0.54 + Math.pow(t,1.35)*0.38;           // the dome, mirrored
+    const peel = TX.fbm2(u/9, v/9, 2)*7 + TX.fbm2(u/2.2, v/2.2, 2)*4;   // orange peel tooth
+    const wear = TX.fbm2(u/160, v/160, 3)*10;
+    const f = mirror;
+    const i=(py*W*2+px)*4;
+    ed[i]  =142*f+peel+wear; ed[i+1]=161*f+peel+wear; ed[i+2]=140*f+peel+wear; ed[i+3]=255;
+  }}
+  ox.putImageData(en,0,0);
+  x.drawImage(off,0,0,W,H);
+
+  // weather staining running down from each fixing bolt
+  const BOLTS=[[BL+96,BT+52],[BR-96,BT+52],[BL+96,BB-52],[BR-96,BB-52]];
+  for(const [bx,by] of BOLTS){
+    const st=x.createLinearGradient(0,by,0,by+230);
+    st.addColorStop(0,'rgba(58,64,50,0.36)'); st.addColorStop(1,'rgba(58,64,50,0)');
+    x.fillStyle=st; x.fillRect(bx-15,by,30,230);
+    x.fillStyle='#5A6355'; x.beginPath(); x.arc(bx,by,12,0,6.284); x.fill();
+    x.fillStyle='#7E8A79'; x.beginPath(); x.arc(bx-1.5,by-2,9,0,6.284); x.fill();
+    x.fillStyle='rgba(30,34,26,0.5)'; x.beginPath(); x.arc(bx,by+3.5,10.5,0.3,2.9); x.fill();
+  }
+
+  // ---- THE SCHEDULE. Five column heads carrying the resolution's own five terms, ruled, with
+  // every row beneath them EMPTY. The quantity column is the widest and the emptiest.
+  const TERMS=["PLANNED OPERATIONAL\nAND CAPITAL\nIMPROVEMENTS","PRIORITY\nLOCATIONS",
+               "RESPONSIBLE\nPARTIES","FUNDING\nMECHANISMS","IMPLEMENTATION\nTIMELINES"];
+  const X0=BL+34, X1=BR-34, HEAD_TOP=BT+62, HEAD_BOT=BT+236, ROW_BOT=BB-186;
+  const WIDTHS=[1.05,0.95,1.00,0.98,1.22];                  // the timelines column is the widest
+  const tot=WIDTHS.reduce((a,b)=>a+b,0);
+  let cx3=X0; const cols=[];
+  for(let i=0;i<TERMS.length;i++){ const w=(X1-X0)*WIDTHS[i]/tot; cols.push({x:cx3,w:w}); cx3+=w; }
+  x.strokeStyle='rgba(230,235,226,0.72)'; x.lineWidth=4;
+  x.beginPath(); x.moveTo(X0,HEAD_TOP-16); x.lineTo(X1,HEAD_TOP-16); x.stroke();
+  x.beginPath(); x.moveTo(X0,ROW_BOT); x.lineTo(X1,ROW_BOT); x.stroke();
+  x.lineWidth=1.6; x.strokeStyle='rgba(230,235,226,0.34)';
+  x.beginPath(); x.moveTo(X0,HEAD_BOT); x.lineTo(X1,HEAD_BOT); x.stroke();
+  const ROWS=11, rowH=(ROW_BOT-HEAD_BOT)/ROWS;
+  for(let r=1;r<ROWS;r++){
+    x.beginPath(); x.moveTo(X0,HEAD_BOT+rowH*r); x.lineTo(X1,HEAD_BOT+rowH*r); x.stroke();
+  }
+  for(const col of cols.slice(1)){
+    x.beginPath(); x.moveTo(col.x,HEAD_TOP-16); x.lineTo(col.x,ROW_BOT); x.stroke();
+  }
+
+  const host=document.getElementById('heads');
+  const placed=[];
+  for(let i=0;i<TERMS.length;i++){
+    const el=document.createElement('div'); el.className='ch';
+    el.innerHTML=TERMS[i].split('\n').map(s=>s).join('<br>');
+    el.style.left=Math.round(cols[i].x+14)+'px'; el.style.top=Math.round(HEAD_TOP)+'px';
+    el.style.width=Math.round(cols[i].w-28)+'px';
+    host.appendChild(el);
+    // A head that overruns its own rule is a head in the next column. The columns were sized
+    // from the longest word in each term rather than the type being shrunk under the 24px floor.
+    if(el.scrollWidth > cols[i].w-24){
+      window.__txHeadOverrun=(window.__txHeadOverrun||[]).concat([TERMS[i].replace(/\n/g,' ')]);
+    }
+    placed.push({term:TERMS[i].replace(/\n/g,' '),x:Math.round(cols[i].x),w:Math.round(cols[i].w)});
+  }
+  window.__txComputed={board:{BT,BB,BL,BR},columns:placed,rows:ROWS,
+    filled_cells:0, brightest_region:"the empty run of the five columns",
+    mirror:"a sky dome mirrored in gloss enamel, brightest LOW because the dome is"};
+  await document.fonts.ready;
+})();
+</script></body></html>

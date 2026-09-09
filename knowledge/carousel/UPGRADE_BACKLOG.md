@@ -1292,3 +1292,139 @@ Not built in the same commit deliberately. It would have changed the parser unde
 turn that build green, and a checker edited to stop reporting is how a checker stops being one.
 The carve-out is a scope decision the ownership map already made; the parser change is a
 behaviour change and belongs in a phase that can force it red on its own terms.
+
+---
+
+# Left on the table by the 2026-09-08 retro (carousel no. 18)
+
+Three upgrades shipped that day and are in `ledger/carousel/upgrades.json`. Everything below was
+designed and not built, either because three is the ceiling or because it is out of this lane.
+Each carries the measurement it was designed from, so the next session judges the evidence rather
+than the mood.
+
+## 1. `absence_check` cannot tell whether the locator beside a sentence could settle it
+
+**Owner: `upgrade`. Not built because three is the ceiling, and it is the largest one left.**
+
+Four sentences in deck no. 18 asserted a state of the world wider than the search behind them and
+`absence_check` passed all four. Every one was found by a reader rather than by a gate.
+
+| frame | printed | what the cited claim actually holds |
+|---|---|---|
+| 3 | `None of it is published yet.` | c5 says what the plan must establish. No search of the city's plan publication surface was made |
+| 4 | `Nothing is fitted yet.` | c10 says which parks go first. No claim records a deployment status |
+| 9 | `No count for the adopting vote is public.` | c19 says only that the CITY'S OWN record holds none |
+| 9 | the locator named the resolution beside a voting-record absence | a resolution's extent cannot settle a missing tally |
+
+The gate reads whether a frame NAMES a document. It never compares the locator's subject against
+the sentence's subject. **Naming a search is not the same as naming the right one**, and three of
+the four above named a search that could not have answered them.
+
+**The shape that would work.** Resolve the frame's locator to the claim whose url or title it
+names, then require the sentence's own subject noun to appear in that claim's `quote` or `text`.
+The subject-noun machinery this retro built for the provision sweep, `subject_terms` and `_norm`
+in `claims_check.py`, is reusable as written and is the reason this is now a smaller job than it
+was this morning. Three of the four would have fired.
+
+**The trap.** A locator that is structurally correct and a sentence that is correctly narrow will
+share few words. Calibrate against the four above AND against the repaired versions that shipped,
+and record the warning count per shipped deck the way `absence_check` already does, so a later
+change that makes it noisy reads as a number rather than as a feeling.
+
+## 2. `label_guard` reads the L5 locator as a set of labels
+
+**Owner: `upgrade`. Not built because the harm is false positives rather than a shipped defect.**
+
+Eight reported problems on deck no. 18, every one a word out of
+`RESOLUTION 20260812-017 / READ IN FULL, BOTH PAGES`: READ, FULL, BOTH, PAGES. The gate's own
+docstring says a label is a claim about what a body did, and not one of those is. Slide 9's
+locator did not fire only because `VOTING RECORD` and `LOADED` happen to appear in c19's text,
+which is luck rather than correctness, and luck is what entry 47 of GATE_LESSONS says to go and
+find the reason for.
+
+The run's daily-lane answer was to set the locator's extent in lower case so the capitalised run
+is just the citation. It reads better and it cost the deck nothing, and it is still a deck bending
+itself around a gate's window. **The window should exclude the locator element by class**, which
+is one selector, and the self-test needs the real 2026-09-08 locator string as its fixture plus a
+genuine label on the same frame that must still fire.
+
+## 3. `dedupe_check` compares topic, entities and keywords and never compares INSTRUMENT
+
+**Owner: `upgrade`. Raised by a scorer on 2026-09-08 and worth carrying.**
+
+This is the third deck in nineteen days on municipal camera surveillance and `dedupe_check`
+returned 0.30. Different bodies and different decisions, so it is not a topic repeat by the
+ledger's definition, and a reader meets three camera decks in three weeks.
+
+The missing axis is the INSTRUMENT CLASS: a resolution, an ordinance, a contract, an order, a
+rule. It is derivable from the claims file's own document titles rather than from a typed list.
+Do not fold it into the existing score. A second signal averaged into a composite disappears; it
+belongs beside the score as its own line so a run reads "third camera deck in nineteen days" in
+words.
+
+## 4. The provision sweep is not in `shipped_check`'s registry
+
+**Owner: `upgrade`. Deliberate, and here so the next session decides rather than forgets.**
+
+`claims_check`'s provision sweep runs at Phase 6, which is where it belongs, and
+`prompts/daily_routine.md` already invokes `claims_check --date`, so it is wired and is not an
+orphan. It is NOT in the `shipped_check` registry, which is what runs a gate over every deck this
+project has published.
+
+The reason is that only one shipped run, 2026-09-08, has committed its `sources/` snapshots at
+all. A registry entry would report "not applicable, the artifact it reads is absent" on seventeen
+of eighteen decks, and a row that is always grey is read exactly as fast as one that is always
+green. The prior question is whether a run should commit its snapshots, which is `daily` lane and
+a storage decision, not a gate decision.
+
+## 5. `runs/carousel/2026-09-08/` carries no `measurements.json`
+
+**Owner: `daily`. Found by this retro, reported, not fixable from here.**
+
+`shipped_check --self-test` asserts that every registered gate actually RUNS on the newest deck,
+and on 2026-09-08 it reports `missing ['measured figures']` because
+`runs/carousel/2026-09-08/measurements.json` does not exist. The gate that catches the highest
+recurrence defect in this repository, a printed L\* figure disagreeing with the measurement it
+came from, has nothing to read for this deck. `out/2026-09-08/measurements.json` exists, so this
+is a copy the ship phase did not make.
+
+## PROPOSED GATE_LESSONS ENTRIES, which this lane may not write
+
+`knowledge/shared/GATE_LESSONS.md` is `human` lane. The three upgrades this retro shipped each
+belong in it and none of them can be put there from here. They are drafted below so a maintainer
+pastes rather than reconstructs.
+
+**A block parser that stops at the first wrapped item.** `plan_render_check.acceptance_items`
+took the acceptance list with `^acceptance:\s*\n((?:  - .*\n)+)`. The repetition ends at the first
+line that is not `  - `, which is the continuation of an item long enough to wrap, so the block
+ended there and everything after it in that slide's list was never read. Measured on the
+2026-09-08 storyboard as first written: **17 items read of 52.** The items that survive are the
+SHORT ones, and a short item is the one least likely to quote a string, so the gate then reported
+`0 of 16 acceptance items carry a machine-checkable assertion`, which was true of what it could
+see and false of the plan. Its self-test passed throughout because the fixture writes every item
+on one line. **What to check instead.** When two modules read one format, they are one parser or
+they are a defect waiting: `dossier_check` read the same blocks with `yaml.safe_load` and counted
+all 52 the whole time. And a fixture for a line-oriented parser has to contain a line that wraps,
+because wrapping is the only thing the parser can get wrong.
+
+**A provenance line conditioned on a label.** `sources_block` appended "Day counts computed in
+compute.py from the source dates above" whenever an aggregate declared `kind: duration`. Every
+duration a source states in its own words is legitimately labelled `duration` too, so the
+sentence rode along on decks that performed no subtraction anywhere. It reached readers:
+`runs/carousel/2026-08-30/first_comment.txt` carries the line over two durations each marked
+`quoted_from` with a note reading "No arithmetic, no unit change, no hedge dropped". This is
+GATE_LESSONS 41 at the level of a provenance claim: a fact the build BRANCHES ON may not live in
+a label or in prose. It is conditioned on `from_date` and `to_date` now, which is what a computed
+span actually carries.
+
+**Every gate asked whether the deck's output traced to a source, and none asked whether the
+source reached the deck.** Deck no. 18's thesis was refuted by section 2-19-9 of an ordinance the
+run had fetched in full, cited six other sections of, and never opened. A judge found it. So did
+the second one, an Actions Taken By Council page linked from an agenda the run had already
+fetched. **The whole pipeline is oriented one way.** `claims_check`, `aggregate_check`,
+`numeral_trace`, `noun_trace`, `locator_trace` and `absence_check` all ask whether what the deck
+PRINTS goes back to a source. Nothing asked whether what a SOURCE says came forward. The named
+failure mode in the retrieval literature is "supported but missed", and recall is the first thing
+to measure when omission is the risk. **What to check instead.** Take the deck's own subject nouns
+out of its story, sweep every fetched snapshot, and require every provision naming one to hold a
+claim's quote or to be named in `rejected`.

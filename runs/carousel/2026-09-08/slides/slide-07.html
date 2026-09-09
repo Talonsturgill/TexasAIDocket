@@ -1,0 +1,105 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#BAA983}
+canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+.wrap{position:absolute;inset:0;width:1080px;height:1350px}
+.mast{position:absolute;top:916px;left:80px;font-family:"JetBrains Mono",monospace;font-weight:500;
+  font-size:26px;letter-spacing:.16em;color:#332D22}
+#head{position:absolute;left:0;right:0;top:132px}
+.cl{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;color:#201F22;
+  white-space:nowrap;letter-spacing:-.01em}
+.dek{position:absolute;left:80px;top:1000px;width:920px;margin:0;font-family:Manrope,sans-serif;
+  font-weight:500;font-size:31px;line-height:1.30;color:#201F22}
+.loc{position:absolute;left:80px;top:1186px;font-family:"JetBrains Mono",monospace;
+  font-weight:500;font-size:26px;letter-spacing:.05em;color:#332D22}
+.foot{position:absolute;bottom:80px;left:80px;right:80px;display:flex;justify-content:space-between;
+  gap:20px;white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:26px;
+  letter-spacing:.05em;color:#332D22;font-variant-numeric:tabular-nums}
+</style></head>
+<body>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div id="head"></div>
+  <div class="mast">TEXAS AI DOCKET</div>
+  <p class="dek">The clause finishes at the top of page two. It reaches a camera or drone that
+     depends on artificial intelligence to do those two things. April had already listed those
+     tools as not permitted. That listing carries an exception and this clause carries none.</p>
+  <div class="loc">RESOLUTION 20260812-017 / read in full, both pages</div>
+  <div class="foot"><span>c9 c34</span>
+    <span class="tx-site">texasaidocket.com</span><span>07 / 09</span></div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = (async () => {
+  "use strict";
+  const W=1080,H=1350,SEED=20260908;
+  const c=document.getElementById('art'); c.width=W*2; c.height=H*2;
+  const x=c.getContext('2d'); x.scale(2,2); TX.reseed(SEED); const R=TX.rng(SEED);
+
+  // THE INVERSION. The same print, one page on, lying in the OPEN where nothing occludes the
+  // sky. Under this deck's own law that makes it the brightest surface the deck can contain.
+  // Dead flat, zero perspective, and NO DRAWN LIGHT OF ANY KIND. The only value variation is
+  // the paper's own formation, its laid tooth, and one bounded swell where it lies over a stone.
+  const PRINT=[186,169,131];
+  const SWELL={cx:648, cy:906, rx:252, ry:186};      // the one place the sheet turns toward the sky
+  const img=x.createImageData(W*2,H*2), d=img.data;
+  for(let py=0;py<H*2;py++){ for(let px=0;px<W*2;px++){
+    const u=px/2, v=py/2;
+    // paper formation, two scales, plus a laid tooth running with the grain direction
+    const form = TX.fbm2(u/1.5, v/1.5, 2)*15 + TX.fbm2(u/58, v/58, 3)*9 + TX.fbm2(u/240,v/240,2)*5;
+    // the swell: a bounded relief, its own gradient, not a highlight
+    const dx=(u-SWELL.cx)/SWELL.rx, dy=(v-SWELL.cy)/SWELL.ry;
+    const r=Math.sqrt(dx*dx+dy*dy);
+    const swell = r<1 ? Math.pow(Math.cos(r*Math.PI/2), 0.78) : 0;
+    const laid = Math.sin(v*1.15)*2.6 + Math.sin(u*0.62)*1.7;
+    const f = 0.918 + swell*0.205;
+    const i=(py*W*2+px)*4;
+    d[i]  =PRINT[0]*f+form+laid; d[i+1]=PRINT[1]*f+form+laid; d[i+2]=PRINT[2]*f+form+laid; d[i+3]=255;
+  }}
+  x.putImageData(img,0,0);
+
+  // A PRESS DITHER on the toner: the body of page two set as real ruled lines of type at body
+  // scale, so the page is a page rather than a blank. Every line is dither, none is legible copy,
+  // and none of it asserts anything, which is why it is drawn rather than set.
+  const off=document.createElement('canvas'); off.width=W*2; off.height=H*2;
+  const ox=off.getContext('2d'); ox.scale(2,2);
+  const LINE_CHARS=[72,23,74,79,30,42,12,10,11];   // page two, lines 2 to 10, from the extraction
+  const CHAR_PX=920/81;                            // the measure divided by page two's longest line
+  const GAPS={1:26, 5:30, 6:34};                   // where the document itself breaks
+  // RULED LINES, NOT SIMULATED GLYPHS. A dither at body scale reads as blacked out text at 432px,
+  // which is the exact misread frame 3's whole design avoids, on the one frame whose job is that
+  // the sentence is complete and readable in the open. A rule says a document continues and
+  // asserts nothing about what it says.
+  let ly=300;
+  for(let li=0; li<LINE_CHARS.length; li++){
+    ox.fillStyle='rgba(32,31,34,0.46)';
+    ox.fillRect(80, ly-3, LINE_CHARS[li]*CHAR_PX, 3.4);
+    ly += 44 + (GAPS[li]||0);
+  }
+  x.drawImage(off,0,0,W,H);
+
+  // THE COMPLETING LINE, fitted to the measure rather than sized by hand, entering at the head.
+  const LINE="intelligence to conduct surveillance or analysis.";
+  const host=document.getElementById('head');
+  const el=document.createElement('div');
+  el.className='cl'; el.textContent=LINE; el.style.fontSize='100px'; host.appendChild(el);
+  const at100=el.getBoundingClientRect().width;
+  const size=Math.floor(100*(920/at100)*10)/10;
+  el.style.fontSize=size+'px';
+  el.style.left=Math.round((W-el.getBoundingClientRect().width)/2)+'px';
+  el.style.top='0px';
+
+  // the page's own head rule, above the line, where the running head would sit
+  x.strokeStyle='rgba(74,67,53,0.55)'; x.lineWidth=2;
+  x.beginPath(); x.moveTo(80,104); x.lineTo(1000,104); x.stroke();
+
+  // the swell's own edge, so it is a bounded surface change rather than a glow
+
+  window.__txComputed={line:LINE, fitted_px:size, measure_px:920, swell:SWELL,
+                       page_two_line_chars:[72,23,74,79,30,42,12,10,11],
+                       drawn_light:"none", perspective:"none"};
+  await document.fonts.ready;
+})();
+</script></body></html>

@@ -1258,7 +1258,20 @@ def telemetry(today: str) -> str:
         return ""
     place, middle, tail = frontchip.phrasing(r)
     middle = middle.format(through=ordinal(r["through"]))
-    return (f'<div class="tele">{e(place)}'
+    # THE FIRST SEGMENT IS A PROPER NAME AND THE PAGE SAYS SO, 2026-09-09. It is a station, a
+    # city, or the body that authored the reading, and on the day the drought candidate first
+    # led the rotation that body was the `US Drought Monitor`. `house_style_check` read the US
+    # in it as first person and turned `main` red on a front page that was correct.
+    #
+    # The name is not the thing to change. `drought_collect` attributes the Drought Monitor in
+    # the chip's first segment on purpose, because unlike a thermometer reading it is a panel's
+    # judgement, and `frontchip`'s own self-test requires the attribution to be there. Dropping
+    # it to satisfy a lint would publish an unattributed judgement, which is worse than the
+    # lint. So the page declares the name, the same way a facility dossier declares
+    # `Riot Corsicana Data Center I` for the roman numeral the same rule reads as `I`.
+    #
+    # It cannot widen by accident. Only this exact string is subtracted, never a pattern.
+    return (f'<div class="tele" data-proper-name="{e(place)}">{e(place)}'
             f'<span>{e(middle)}</span><span>{e(tail)}</span></div>')
 
 
