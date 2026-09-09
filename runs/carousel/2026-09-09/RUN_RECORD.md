@@ -346,4 +346,53 @@ for this date.** The artwork entry records it as a breach and requires the next 
 
 ## Phase 19, what actually landed
 
-<!-- written at email time -->
+**The `score` row in the block above reads STALE and that is correct rather than an oversight.**
+`score.json` predates the newest render, because four repairs went in after the round 5 judges had
+read:
+
+- the cover's SILL SLAB came out, which was a regression this run introduced in round 4 and which
+  all three judges then read as a window
+- `actionable` came off slide 4 and the caption, which is in `brand.yaml`'s `banned_phrases` and
+  which `caption_check.py` never reads
+- slide 6's ambient term was sized to contain its own gradient, which had been clipping into two
+  translucent boxes
+- slide 7's lit wedge was textured to the occlusion edge, having been flat fill below y=1100
+
+Three of the four are defects the round 5 judges named themselves, and the fourth is a house rule.
+None was rescored, because five rounds is the cap and past it a round may repair a hard fail and
+nothing else. **So 6.714 is a floor rather than a measurement of the deck that shipped**, and the
+right way to read the number is that the artifact is better than it on every axis a judge named and
+nobody has graded the difference.
+
+Permission audit: **1,225 tool calls, none waited on a human.** `scripts/shared/prompt_audit.py`
+reads `permissionDecisionMs` out of the Claude Code debug log, so this is measured rather than
+asserted, which is the 2026-09-02 lesson.
+
+`email_check --all` is green across all eighteen shipped runs, which is the check carousel no. 7
+went red on `main` for skipping. The payload was built and committed BEFORE the merge for the same
+reason.
+
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 18 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | PASS   | 9 slide(s), zero fails, zero warns |
+| aggregates     | PASS   | 8 declaration(s), 14 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 10.09 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | PASS   | 30 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 8 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
+| dossiers       | PASS   | 51,428 chars planned |
+| caption        | PASS   | 144 words |
+| craft floor    | PASS   | 9 frame(s), median 844, floor 152 |
+| plan vs render | PASS   | 13 of 58 acceptance item(s) checkable |
+| texan          | WARN   | places Houston / body NO / deadline yes / next step NO |
+| absences       | WARN   | 3 of 5 scoped to a named document, 2 unscoped |
+| numerals       | PASS   | 17 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
