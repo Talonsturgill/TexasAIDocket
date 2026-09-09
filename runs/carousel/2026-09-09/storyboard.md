@@ -280,7 +280,7 @@ risks:
 slide: 2
 job: >
   Name the two answerers and the only description the paper gives of the machine one, and draw
-  the seven months the comparison ran over as the ground's own calendar.
+  the 211 days the comparison ran over as the ground's own calendar.
 
 claims: [c1, c5]
 numerals: []
@@ -301,7 +301,7 @@ composition:
     modelled texture and a real edge rather than on furniture.
   focal: >
     The block of cured copper straw in the lower right quadrant, an AREA at the frame's warm
-    extreme and its highest chroma. It is where the seven months end.
+    extreme and its highest chroma. It is where the window ends.
 
 art:
   technique: "hachure field (TX.hachureField) over a low-relief prairie source, terminating at a hard mown edge rather than a fade"
@@ -317,7 +317,7 @@ art:
     left where the stroke density is highest. The clay crust between the culms is the mid value
     and it increases across the frame as the cover thins.
   motion: >
-    The eye travels left to right along the ramp, which is the direction the seven months run, and
+    The eye travels left to right along the ramp, which is the direction the window runs, and
     stops at the mown edge.
 
 type:
