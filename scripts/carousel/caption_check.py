@@ -127,8 +127,21 @@ OPENER = re.compile(r"(?:^|(?<=[.!?])\s+|\n)\s*(And|But)\b")
 # including at the end of a sentence and before a comma. It is exempt only where a digit or a
 # further Roman numeral follows the period, which is what an item identifier looks like and what
 # a pronoun never does.
+# A TOP LEVEL DOMAIN IS NOT A PRONOUN, and this is the third exemption of the same shape.
+#
+# The City of Lubbock publishes at `mylubbock.us`, so the source page for the September 8th
+# moratorium hearing built to `sources/mylubbock-us/`. A period and a hyphen are both word
+# boundaries, so `\bus\b` matched the TLD in the hostname, in the slug, in the canonical URL,
+# in the title and in four metadata fields, and reported first person on nine strings that
+# contain none. The only ways past it were to rename a source page after a domain the city
+# actually uses, or to switch the rule off.
+#
+# The anchor is the character in FRONT, exactly as with the agenda item number and the roman
+# numeral below: a pronoun never has a dot or a hyphen glued to its left. `us` is still first
+# person everywhere a writer could mean it, including at the start of a sentence, after a comma
+# and at the end of one.
 FIRST_PERSON = re.compile(r"\b(?:I(?!\.\s*[0-9IVX])|I'm|I've|I'll|we|we're|we've|we'll"
-                          r"|our|ours|us|my|mine)\b", re.IGNORECASE)
+                          r"|our|ours|(?<![.\-])us|my|mine)\b", re.IGNORECASE)
 # A ROMAN NUMERAL IS NOT A PRONOUN. "the 2027 State Water Plan (Phase I)" is the document's own
 # name, and reporting it as a writer talking about themselves sends an editor looking for a
 # first person that is not there. The anchor is the word in front, the same way an identifier
@@ -720,6 +733,21 @@ def self_test() -> int:
 
     def catches(text, needle):
         return any(needle in p for p in check(text))
+
+    # A TOP LEVEL DOMAIN IS NOT A PRONOUN, proved in BOTH directions beside the rule it narrows.
+    # The City of Lubbock publishes at mylubbock.us, so a source page built to
+    # sources/mylubbock-us/ and reported first person on nine hostname strings that contain none.
+    # An exemption that cannot be shown to still fail is an exemption that switched the rule off,
+    # so the two halves live together and CI runs both.
+    ok("a .us hostname is not read as first person",
+       not catches("The 1 document(s) from mylubbock.us that the record has checked.", "first person"),
+       str(check("The 1 document(s) from mylubbock.us that the record has checked."))[:120])
+    ok("...nor the slug a .us hostname builds to",
+       not catches("Documents published at mylubbock-us are listed on one page.", "first person"))
+    ok("...while a real first person 'us' still fails",
+       catches("The council told us the hearing was postponed.", "first person"))
+    ok("...and 'us' opening a sentence still fails",
+       catches("Us and them is not how a record speaks.", "first person"))
 
     clean = ("The commission set a hearing for August 11th. Comments close September 3rd at "
              "5:00 p.m. central. The filing runs 40 to 60 pages and can't be searched. "

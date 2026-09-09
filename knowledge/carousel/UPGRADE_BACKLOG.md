@@ -1292,3 +1292,88 @@ Not built in the same commit deliberately. It would have changed the parser unde
 turn that build green, and a checker edited to stop reporting is how a checker stops being one.
 The carve-out is a scope decision the ownership map already made; the parser change is a
 behaviour change and belongs in a phase that can force it red on its own terms.
+
+
+## A frame may retype `compute.py`'s geometry, and two frames did
+
+Found 2026-09-09, carousel no. 18, by a layout accident rather than by any check.
+
+`slides/slide-05.html` drew its plot at `330/812` by `660/1020`, which is **180 px per day**.
+`compute.py` held `250/900` by `380/980`, which is **300**. So every y coordinate `computed.json`
+published for that frame, four series points, eight interval bounds, the zero rule and both pixel
+gaps, described a plot no frame contained, and the frame worked from its own literals under a
+comment reading `// 300 px per day` above arithmetic that produces 180. `slides/slide-04.html`
+held `RUN_DEPTH 138, RUN_GAP 178` against `computed.json`'s `96` and `190`, under a comment
+reading `FROM compute.py`.
+
+CLAUDE.md's rule is that **every measurable length, fraction and coordinate comes from
+`compute.py` and nothing is eyeballed.** Two of nine frames quietly opted out and **four scoring
+panels did not see it.** `plan_render_check` compares STRINGS. `numeral_lint` reads published
+numerals and none of these was published. `aggregate_check` reads declarations rather than the
+drawing. Nothing in the suite compares a frame's geometry to the file that is supposed to own it.
+
+**Worse, the run corrected the record toward the wrong half.** Round 2's judge reported
+`aggregates.json` declaring 180 against `computed.json`'s 300; the run changed the declaration to
+300 and wrote a confident paragraph about it. 300 is the number nobody drew.
+
+**The upgrade is to remove the hand-sync, not to check it.** `render.py` already rewrites
+`@@ASSETS@@` in every slide before it loads, so it can inject the run's `computed.json` on the
+same pass and expose it as a frozen global. A frame then reads `TXC.slide5.px_per_day` instead of
+retyping it, and a divergence becomes impossible rather than detectable. The narrower version, a
+gate that parses each frame's top-level `var` declarations and fails when a name matching a
+`computed.json` key holds a different value, is worth less: it catches the shape that was found
+and not the class.
+
+**Owner: the engine, `.claude/skills/carousel-engine/render.py`.** `ownership.yaml` gives
+`upgrade` `.claude/skills/carousel-engine/**`, and **the host stops any session on every path
+under `.claude/`, whatever the map says.** So this is an upgrade no unattended run can make, which
+is exactly the disposition CLAUDE.md prescribes: write it down here and stop. A maintainer at a
+keyboard answers the one prompt.
+
+## No gate reads the SUBJECT of a sentence, and three unlicensed actors reached frames
+
+Found 2026-09-09 across three separate scoring rounds of carousel no. 18, each time by a human
+style read of pixels against `claims.json`, never by a check.
+
+- `OPEN ACCESS, AND FREE TO READ TODAY` on slide 9. No claim carries the study's access status.
+- "over **every** inpatient encounter discharged in the window" on slide 2. c1 quotes an inclusion
+  criterion, not a census, and the run's own c10 shows the compared sets are subsets. The first
+  comment carried the same predicate as "all from the same **open** record".
+- "**Houston Methodist** compared two ways of answering it, and **published** which one was
+  closer" on slide 1. c1 places only the ENCOUNTERS there, c6 gives the finding to "this quality
+  improvement study", and c14 and the deck's own slide 9 name JAMA Network Open as publisher.
+
+None carries a numeral, a new noun, a negative or a verbatim slot, so `numeral_lint`,
+`noun_trace`, `absence_check` and `verbatim_check` are each structurally blind, and
+`plan_render_check` proves a declared string APPEARS rather than that a forbidden one is absent.
+The ledger records the same shape on deck 9 (`MAYOR KIRK WATSON`) and deck 16 ("without imported
+rare earths").
+
+**The upgrade:** extract the grammatical subject and main verb of every declarative sentence a
+frame prints, and fail the build unless that subject appears as an agent of that act inside the
+QUOTE of one of the claims the frame cites. It is the only check proposed here that would have
+caught all three, and it is the one this suite most obviously lacks.
+
+**Owner: `daily`** (`scripts/carousel/`). It is not built here because it needs a parser and a
+corpus of shipped frames to tune against, and a subject-extraction gate that cries wolf is a gate
+the next run scrolls past, which is entry 16's lesson. It should be built against the eighteen
+decks already in `runs/carousel/` and required to go red on all three strings above.
+
+## `caption_check.py` never reads `brand.yaml`'s `banned_phrases`
+
+Found 2026-09-09 by a scoring judge reading the config beside the checker.
+
+`brand.yaml` lists 76 banned phrases and `caption_check.py` does not read that key at all. The
+word `actionable` is on the list and shipped to two published surfaces of carousel no. 18, the
+caption and slide 4, with every gate green. It was removed by hand once a judge named it.
+
+Same shape as the light-deck cap before `check_register` existed: **a rule stated in config with
+nothing in between checking it**, which CLAUDE.md names three separate times as this repo's
+recurring defect. The fix is small: read the key, scan the deck's prose surfaces, and exempt
+anything inside a verbatim quotation, because the house rule already says a quote is never
+touched and `actionable` survives legitimately inside c6's own sentence in the first comment.
+
+**Owner: `upgrade`** (`scripts/carousel/caption_check.py`). Not built in the same commit as this
+run's other change to that file deliberately: that one narrowed a rule that was firing wrongly and
+came with four self-tests, and this one adds a rule that will fire on shipped copy. Bundling a
+loosening and a tightening in one commit makes both harder to reverse.
