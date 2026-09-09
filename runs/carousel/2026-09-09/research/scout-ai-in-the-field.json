@@ -1,0 +1,24 @@
+{
+  "beat": "ai-in-the-field",
+  "findings": [
+    {
+      "headline": "Battalion Oil bought an equity stake in Collide and said it will run the company's AI operations system across its Permian upstream work.",
+      "what_happened": "Battalion Oil Corporation, a Houston-headquartered operator whose Monument Draw cube development program sits in Ward County, announced an equity investment in Collide Industrial Technologies Inc. and a Strategic Partner designation on September 8th, 2026. The release says deployment starts by unifying more than 100 terabytes of well files, land records, contracts and production history into a single queryable model, with Collide's Riggs work environment reaching Battalion production engineers at roughly day 90. Named first uses are gas marketing reconciliation, field invoice review, power usage and hedging, and well failure diagnostics. Financial terms were not disclosed and the investment is funded from balance sheet cash.",
+      "who_decided": "Battalion Oil Corporation (NYSE American: BATL)",
+      "when": "2026-09-08",
+      "where": {"counties": ["Harris", "Ward"], "statewide": false, "ercot": true},
+      "quote": "Collide has solved a problem that has stumped the industry for a decade: building AI that actually speaks petroleum engineering.",
+      "url": "https://www.globenewswire.com/news-release/2026/09/08/3358243/18320/en/battalion-oil-corporation-announces-strategic-investment-in-collide-the-ai-native-operations-system-for-oil-and-gas.html",
+      "source_type": "primary_corporate",
+      "confidence": "medium",
+      "why_it_matters_to_a_texan": "A Permian operator is putting its own cash behind software that will read its land records and well files, and the people whose job that reading currently is are its own production engineers in West Texas.",
+      "unverified": [
+        "The quote is attributed to CEO Matt Steele and was returned identically by two separate fetches, but neither returned raw untransformed page text, so byte-level verbatim fidelity is not established.",
+        "Nothing has been deployed yet. The release describes a plan with a day 90 milestone and reports no measured result.",
+        "The size of the equity stake and all financial terms are undisclosed in the release.",
+        "No independent journalism or SEC filing confirming the transaction was fetched."
+      ]
+    }
+  ],
+  "nothing_found": false
+}

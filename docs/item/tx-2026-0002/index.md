@@ -4,7 +4,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
-- Where: ERCOT region
+- Where: Statewide
 - Status: open
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending

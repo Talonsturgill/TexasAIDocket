@@ -1052,3 +1052,36 @@ cite. The committee codes come from `committees.php` and Water, Agriculture, and
 **`globenewswire.com` disconnected mid-request** on a release two scouts had read successfully
 minutes earlier, so a candidate resting on it was dropped rather than admitted on an unverifiable
 quote.
+
+## 2026-09-09, carousel no. 18
+
+**`capitol.texas.gov/Committees/MeetingsUpcoming.aspx` is a WINDOW, not an archive, and so is
+`MeetingsByCmte.aspx`.** Five items lost a quote there in one run, on
+`tx-2026-0077`, `tx-2026-0078`, `tx-2026-0096` and `tx-2026-0109`. Every one of them was a hearing
+whose date had passed, so the row had simply rolled off the list of what is still ahead. **A quote
+going missing on that page says the date passed and nothing about the world.** The hearing notices
+themselves stay posted at their own `tlodocs` urls, and `lrl.texas.gov`'s weekly interim-hearing
+pages keep the record after the fact, so both are the durable citation for a sitting that has
+already happened. A claim about a FUTURE hearing may cite the upcoming list. A claim about a past
+one should not.
+
+**Three hosts answer a bare User-Agent differently from a browser one.** `news.rice.edu` and
+`communityimpact.com` both return 406 to the re-verifier's agent and 200 to a browser string, and
+`taylortx.gov` returns 404 for a newsflash that has been taken down rather than for one that is
+merely unreachable. None of these is a robots decision and none was routed around. The registry's
+own note that a 402 or 403 is not a robots decision holds for 406 as well.
+
+**`webapi.legistar.com` returns a motion's text as one JSON string with `\r\n` escapes inside it.**
+A quote spanning more than one line of the original motion therefore never matches a naive text
+comparison, and reads as a quote the page no longer carries. Decoding the JSON document and
+turning those escapes back into real whitespace resolves it. This affected `tx-2026-0048` and
+`tx-2026-0050` and neither had actually moved.
+
+**A PDF from `sanangelo.gov`, `killeentexas.gov` or `mylubbock.us` breaks words across lines when
+its text is extracted.** A verbatim quote of any length therefore fails an exact substring test on
+a word boundary that exists only in the extraction. Comparing with every space removed answers the
+same question and cost nothing.
+
+**`interchange.puc.texas.gov` needs a browser User-Agent**, which the registry already says, and
+its filing-count strings ("5828 filing(s).") change every time somebody files, which is what makes
+them useful as a movement signal and useless as a stable quote.

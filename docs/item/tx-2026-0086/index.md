@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to the Texas A
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2534344
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The national user facility for robot designed alloys at College Station still stands as awarded and is still open to outside researchers.
 - 2026-09-08 · The Texas A and M national user facility for robot designed alloys still stands as awarded, and its user access terms are unchanged.
+- 2026-09-09 · The Texas A and M user facility where robots run the experiments is still funded as a national facility, open to researchers from outside the system.
 
 ## Evidence
 

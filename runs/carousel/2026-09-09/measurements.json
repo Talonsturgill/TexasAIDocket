@@ -1,0 +1,75 @@
+{
+  "run": "2026-09-09",
+  "measured_on": "the nine shipped PNGs resampled to 270 by 338, the grid every prior run used, imported from panel_ready.ARC_GRID",
+  "per_frame": [
+    {
+      "file": "slide-01.png",
+      "median_L": 69.6,
+      "mean_L": 68.9,
+      "p05": 29.6,
+      "p95": 90.2
+    },
+    {
+      "file": "slide-02.png",
+      "median_L": 71.1,
+      "mean_L": 69.1,
+      "p05": 51.4,
+      "p95": 78.6
+    },
+    {
+      "file": "slide-03.png",
+      "median_L": 88.2,
+      "mean_L": 84.2,
+      "p05": 66.6,
+      "p95": 91.6
+    },
+    {
+      "file": "slide-04.png",
+      "median_L": 66.4,
+      "mean_L": 63.5,
+      "p05": 23.1,
+      "p95": 77.2
+    },
+    {
+      "file": "slide-05.png",
+      "median_L": 68.2,
+      "mean_L": 67.8,
+      "p05": 50.3,
+      "p95": 83.2
+    },
+    {
+      "file": "slide-06.png",
+      "median_L": 76.8,
+      "mean_L": 72.2,
+      "p05": 41.4,
+      "p95": 80.3
+    },
+    {
+      "file": "slide-07.png",
+      "median_L": 29.3,
+      "mean_L": 38.9,
+      "p05": 11.8,
+      "p95": 77.8
+    },
+    {
+      "file": "slide-08.png",
+      "median_L": 73.7,
+      "mean_L": 74.1,
+      "p05": 56.8,
+      "p95": 90.6
+    },
+    {
+      "file": "slide-09.png",
+      "median_L": 89.6,
+      "mean_L": 82.1,
+      "p05": 51.9,
+      "p95": 92.5
+    }
+  ],
+  "deck_median_L": 71.1,
+  "deck_mean_L": 70.3,
+  "range_L": [
+    29.3,
+    89.6
+  ]
+}

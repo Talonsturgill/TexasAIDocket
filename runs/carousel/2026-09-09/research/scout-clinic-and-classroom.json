@@ -1,0 +1,40 @@
+{
+  "beat": "clinic-and-classroom",
+  "findings": [
+    {
+      "headline": "A Houston Methodist study found human case managers beat the hospital's AI at predicting discharge dates in the final day before a patient left.",
+      "what_happened": "JAMA Network Open published a quality improvement study on September 3rd comparing discharge dates estimated by a commercial AI tool built into the electronic health record against dates estimated by case managers during usual care, across inpatient encounters at Houston Methodist Hospital discharged between August 1, 2023 and February 28, 2024. At admission the two were close. At 24 hours before discharge the case managers were substantially more accurate. The authors are Havish S. Kantheti and Connor Dolan of Texas A&M School of Engineering Medicine in Houston and Jordan Dale of the Department of Medicine at Houston Methodist Hospital.",
+      "who_decided": "Houston Methodist Hospital and Texas A&M School of Engineering Medicine researchers, published in JAMA Network Open",
+      "when": "2026-09-03",
+      "where": {"counties": ["Harris"], "statewide": false, "ercot": false},
+      "quote": "At 24 hours, 79.5% of case manager estimations fell within 1 day vs 37.9% for AI estimations",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "why_it_matters_to_a_texan": "Discharge date estimates decide when a bed opens and when a family is told to come get someone, and this is a Texas hospital publishing that its own AI was worse than its staff at the moment the answer mattered most.",
+      "unverified": [
+        "The commercial AI vendor and product name are not identified in the article.",
+        "The fetched PMC page did not expose a labeled Conclusions and Relevance section.",
+        "Whether the tool is still in use at Houston Methodist today is not stated in the article.",
+        "Mean absolute error figures were not confirmed as verbatim source text."
+      ]
+    },
+    {
+      "headline": "The Mark Cuban Foundation ran a one week artificial intelligence course for adult students at Dallas College.",
+      "what_happened": "Spectrum News 1 reported on September 3rd that the Mark Cuban Foundation brought a one week AI course to adult learners at Dallas College, taught by Wren Hoffman of the foundation. The article says about 22 students took part.",
+      "who_decided": "Mark Cuban Foundation, in partnership with Dallas College",
+      "when": "2026-09-03",
+      "where": {"counties": ["Dallas"], "statewide": false, "ercot": false},
+      "quote": "AI is for everyone. It's not just for tech bros. It's not just for computer science learners",
+      "url": "https://spectrumlocalnews.com/tx/austin/news/2026/09/03/mark-cuban-foundation-brings-ai-classes-to-dallas-college",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "why_it_matters_to_a_texan": "This is AI training aimed at working adults at a community college rather than at computer science majors.",
+      "unverified": [
+        "No Dallas College board action or contract was located.",
+        "The exact program dates are not stated in the article."
+      ]
+    }
+  ],
+  "nothing_found": false
+}

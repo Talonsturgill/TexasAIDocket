@@ -366,11 +366,22 @@ class Result:
 # fail on day one would block every run until a lane it does not own was cleared by hand.
 # So the three known items are named here, they are the only ones exempt, and the list can
 # only shrink. A fourth unlocatable item fails immediately.
-GEOGRAPHY_BACKLOG = {
-    "tx-2026-0001": "ERCOT large-load interconnection, admitted before geography was checked",
-    "tx-2026-0002": "ERCOT large-load queue, same",
-    "tx-2026-0007": "ERCOT planning docket, same",
-}
+#
+# CLEARED IN FULL ON 2026-09-09, AND THE THIRD ENTRY IS THE ONE WORTH READING. It named
+# tx-2026-0007, which had already been set `statewide` at some earlier point, so the gate
+# would have passed it on its own for days. The exemption outlived the debt, and every build
+# went on printing a backlog line for work that was finished. **An exemption keyed by id and
+# never re-tested against the item cannot tell a debt from a memory of one**, which is the
+# GATE_LESSONS shape of a rule stated in one place with nothing checking it against the
+# other. The list is emptied rather than trimmed to two, so it can never do that again.
+#
+# The other two, tx-2026-0001 and tx-2026-0002, are commission rulemakings amending the
+# Texas Administrative Code. An administrative rule is an instrument of general
+# applicability rather than a sited thing, and the record already carries that same class as
+# statewide at tx-2026-0024, tx-2026-0107 and tx-2026-0114. They were admitted before the
+# geography rule existed and had simply never been classified either way. `on_ercot` is
+# still not what settled it, and still does not count.
+GEOGRAPHY_BACKLOG: dict[str, str] = {}
 
 # THE OTHER RATCHET, same reason and same lane. One item points a reader at an item that
 # fact checking culled. See `gate_cross_references`. Written as item -> the id it names, so
@@ -1239,11 +1250,19 @@ def self_test() -> int:
            gate_schema([base(id="tx-2026-9999",
                              geography={"statewide": False, "counties": [],
                                         "on_ercot": True})]), "FAIL")
-    expect("...while a backlogged item is exempt, so the routine is not blocked out of a "
-           "lane it does not own",
-           gate_schema([base(id="tx-2026-0001",
-                             geography={"statewide": False, "counties": [],
-                                        "on_ercot": True})]), "PASS")
+    # The exemption MECHANISM is proved against a temporary entry rather than against
+    # whatever the live list happens to hold. Until 2026-09-09 this test named a real
+    # backlogged id, so emptying the backlog broke a test of a mechanism that still works,
+    # and the only way to keep the test green was to keep the debt.
+    GEOGRAPHY_BACKLOG["tx-2026-9998"] = "a fixture, for this test only"
+    try:
+        expect("...while a backlogged item is exempt, so the routine is not blocked out of a "
+               "lane it does not own",
+               gate_schema([base(id="tx-2026-9998",
+                                 geography={"statewide": False, "counties": [],
+                                            "on_ercot": True})]), "PASS")
+    finally:
+        del GEOGRAPHY_BACKLOG["tx-2026-9998"]
     expect("a county that is not a Texas county is refused",
            gate_schema([base(geography={"statewide": False, "counties": ["Taylr"]})]), "FAIL")
     expect("...and a real one is accepted",
@@ -1346,9 +1365,13 @@ def self_test() -> int:
     # debt, it is a decision nobody revisits.
     check("backlog says nothing about a clean record",
           not backlog([base(id="tx-2026-9999")]))
-    check("backlog names an exempted geography gap",
-          any("tx-2026-0001" in ln for ln in backlog([base(id="tx-2026-0001",
-                                                          geography={"on_ercot": True})])))
+    GEOGRAPHY_BACKLOG["tx-2026-9998"] = "a fixture, for this test only"
+    try:
+        check("backlog names an exempted geography gap",
+              any("tx-2026-9998" in ln for ln in backlog([base(id="tx-2026-9998",
+                                                              geography={"on_ercot": True})])))
+    finally:
+        del GEOGRAPHY_BACKLOG["tx-2026-9998"]
     check("backlog names an exempted dangling pointer",
           any("tx-2026-0010" in ln for ln in backlog(
               [base(id="tx-2026-0006", summary="See item tx-2026-0010 for more.")])))

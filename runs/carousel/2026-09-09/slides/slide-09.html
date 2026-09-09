@@ -1,0 +1,165 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 9 — what settles it. The brightest frame in the deck and the emptiest.
+     Horizon at the bottom fifth, one benchmark monument, and air. The deck has been dense for
+     eight frames and a close that adds another drawing competes with the action.
+
+     A benchmark monument is the right object because it is a mark somebody set down so a LATER
+     survey could be taken from it, which is exactly what a prospective evaluation is, and it is
+     furniture a Texan has walked past.
+
+     texan_check says this story has no next step and will cap the deck without one. This frame
+     is the whole answer to that. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#D8E6EC}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#1D140D}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:214px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:106px;line-height:0.96;color:#1D140D;letter-spacing:-.024em}
+  .dek{position:absolute;left:80px;top:406px;width:830px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:35px;line-height:1.30;color:#1D140D}
+
+  .quote{position:absolute;left:80px;top:640px;width:900px;margin:0;
+    font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:44px;line-height:1.22;
+    color:#1D140D}
+
+  .stamp{position:absolute;left:80px;top:846px;width:900px;line-height:1.5;
+    font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.09em;color:#1D140D}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<body data-contacts='[{"what":"the benchmark monument standing on the prairie","shadow":[[560,1188,150,22]],"ground":[[200,1188,150,22]]}]'>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">09 / 09</div>
+
+  <h1>What settles it</h1>
+  <p class="dek">The authors say what has to happen before anyone decides the tool is worth what
+    it takes to run it.</p>
+
+  <p class="quote">Warrants prospective, outcome-based evaluation.</p>
+
+  <div class="stamp">PUBLISHED SEPTEMBER 3RD, 2026<br>OPEN ACCESS, AND FREE TO READ TODAY</div>
+
+  <div class="foot"><span>c9 &middot; c12 &middot; c14</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S + 9);
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save(); gg.globalCompositeOperation = 'overlay'; gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat'); gg.fillRect(0, 0, w, h); gg.restore();
+  }
+
+  var HZ = Math.round(H * 0.80);            // horizon at the bottom fifth, 0.80
+
+  // ---- the sky. The deck's brightest field, and most of the frame.
+  var sky = g.createLinearGradient(0, 0, 0, HZ);
+  sky.addColorStop(0, '#CFE0E9');
+  sky.addColorStop(0.55, '#E2E6E2');
+  sky.addColorStop(0.88, '#F2E9D8');
+  sky.addColorStop(1, '#EFE0C8');
+  g.fillStyle = sky; g.fillRect(0, 0, W, HZ);
+
+  // ---- the prairie, in low raking sun with the source behind the reader, so the ground carries
+  // a long gradient and every object throws toward the bottom edge.
+  var ground = g.createLinearGradient(0, HZ, 0, H);
+  ground.addColorStop(0, '#C0B296');
+  ground.addColorStop(0.45, '#B4A68A');
+  ground.addColorStop(1, '#A2947A');
+  g.fillStyle = ground; g.fillRect(0, HZ, W, H - HZ);
+
+  for (var i = 0; i < 4200; i++) {
+    var x = R() * W, y = HZ + R() * (H - HZ);
+    var d = (y - HZ) / (H - HZ);
+    g.strokeStyle = R() > 0.62 ? 'rgba(179,117,85,' + (0.22 + d * 0.34) + ')'
+                               : 'rgba(146,132,106,' + (0.22 + d * 0.34) + ')';
+    g.lineWidth = 0.9 + d * 1.8;
+    g.beginPath();
+    g.moveTo(x, y);
+    g.lineTo(x + (R() - 0.5) * (5 + d * 9), y - (5 + d * 26) * (0.5 + R() * 0.8));
+    g.stroke();
+  }
+
+  // ---- THE BENCHMARK MONUMENT. Off centre so the sky has somewhere to go. Its cast runs
+  // toward the reader, which is the direction the next reading has to come from.
+  var MX = 690, MW = 46, MH = 118, MY = HZ + 96;
+
+  // the cast, long and low, running to the bottom edge
+  g.fillStyle = 'rgba(30,40,32,0.52)';
+  g.beginPath();
+  g.moveTo(MX, MY);
+  g.lineTo(MX + MW, MY);
+  g.lineTo(MX + MW - 176, H);
+  g.lineTo(MX - 214, H);
+  g.closePath(); g.fill();
+
+  // the post, lit on its left face by the low sun behind the reader
+  var post = g.createLinearGradient(MX, 0, MX + MW, 0);
+  post.addColorStop(0, '#5D5648');
+  post.addColorStop(0.5, '#4A4438');
+  post.addColorStop(1, '#332F27');
+  g.fillStyle = post; g.fillRect(MX, MY - MH, MW, MH);
+
+  // the disc cap, brass, catching the raking light. The frame's one bright small thing.
+  g.fillStyle = '#8C7A52';
+  g.beginPath(); g.ellipse(MX + MW / 2, MY - MH, MW / 2 + 9, 11, 0, 0, 6.2832); g.fill();
+  g.fillStyle = '#C7B078';
+  g.beginPath(); g.ellipse(MX + MW / 2, MY - MH - 3, MW / 2 + 7, 9, 0, 0, 6.2832); g.fill();
+  g.strokeStyle = 'rgba(30,26,18,0.55)'; g.lineWidth = 1.6;
+  g.beginPath(); g.ellipse(MX + MW / 2, MY - MH - 3, MW / 2 - 2, 5, 0, 0, 6.2832); g.stroke();
+
+  // two-part contact at the base
+  var cg = g.createRadialGradient(MX + MW / 2, MY, 2, MX + MW / 2, MY, 96);
+  cg.addColorStop(0, 'rgba(29,20,13,0.42)');
+  cg.addColorStop(1, 'rgba(29,20,13,0)');
+  g.fillStyle = cg; g.fillRect(MX - 96, MY - 46, 192 + MW, 110);
+  g.fillStyle = 'rgba(12,9,6,0.88)'; g.fillRect(MX - 7, MY - 12, MW + 14, 24);
+
+  grain(g, W, H, 200, 24, S + 9, 0.055);
+
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var z = 0; z < d2.length; z += 4 * 97) {
+    sum += (d2[z] * 0.2126 + d2[z + 1] * 0.7152 + d2[z + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 9, mean_luma: Math.round(sum / n),
+                      horizon_frac: Math.round(HZ / H * 1000) / 1000,
+                      objects_in_frame: 1};
+  resolve();
+});
+</script>
+</body></html>

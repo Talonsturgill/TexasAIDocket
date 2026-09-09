@@ -1,0 +1,134 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2269,
+        0.4307,
+        0.8934
+      ],
+      "band_ratio": 1.6727,
+      "contacts": [
+        "'the canopy column standing on the sunlit lane': shadow L* 23.4 vs ground L* 68.1, dL 44.7 at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1197,
+        0.3256,
+        0.7426
+      ],
+      "band_ratio": 1.8036
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1492,
+        0.4958,
+        0.2537
+      ],
+      "band_ratio": 0.8528,
+      "encodings": [
+        "'at admission the two methods sat level': dE 0.0, AUC 0.50, visible 100%/100%, seen 240/230px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3845,
+        0.7479,
+        0.557
+      ],
+      "band_ratio": 0.9896,
+      "encodings": [
+        "'the lit share of each run differs, 79.5 percent against 37.9 percent': dE 16.0, AUC 1.00, visible 100%/100%, seen 1224/1224px at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3214,
+        0.5987,
+        0.7371
+      ],
+      "band_ratio": 1.3144,
+      "encodings": [
+        "'the gap between the two series is wider at the right station than at the left': dE 13.3, AUC 0.67, visible 100%/100%, seen 806/2938px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2857,
+        0.4265,
+        0.2739
+      ],
+      "band_ratio": 0.8397,
+      "encodings": [
+        "'the two shadows are the same length and the same value': dE 5.7, AUC 1.00, visible 100%/100%, seen 120/120px at 432w"
+      ],
+      "contacts": [
+        "'the left solid on the lit clay': shadow L* 32.0 vs ground L* 79.5, dL 47.5 at 432w",
+        "'the right solid on the lit clay': shadow L* 31.6 vs ground L* 77.4, dL 45.8 at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3214,
+        0.8634,
+        0.8401
+      ],
+      "band_ratio": 1.2309
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2395,
+        0.8466,
+        0.8419
+      ],
+      "band_ratio": 1.2918,
+      "encodings": [
+        "'the ground inside the staked traverse is identical to the ground outside it': dE 1.1, AUC 0.59, visible 100%/100%, seen 1824/1824px at 432w"
+      ],
+      "contacts": [
+        "'the near corner stake driven into the clay': shadow L* 22.7 vs ground L* 66.3, dL 43.6 at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.0546,
+        0.1891,
+        0.4669
+      ],
+      "band_ratio": 1.8878,
+      "contacts": [
+        "'the benchmark monument standing on the prairie': shadow L* 20.6 vs ground L* 67.3, dL 46.7 at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

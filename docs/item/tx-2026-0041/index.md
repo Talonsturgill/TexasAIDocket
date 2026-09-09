@@ -11,7 +11,7 @@ The City of Wichita Falls Planning and Zoning Commission approved a conditional 
 - Public access: Public meeting
 - Take part: https://www.wichitafallstx.gov/AgendaCenter
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-02 · The conditional use permit stands as approved and the prohibition on water intensive evaporative cooling is unchanged.
 - 2026-09-05 · The Wichita Falls conditional use permit for the Airport Drive site still stands as approved.
 - 2026-09-08 · The conditional use permit for the DataNovaX data center on Airport Drive still stands as the Wichita Falls commission approved it.
+- 2026-09-09 · The Wichita Falls conditional use permit for the Airport Drive data center still stands as approved.
 
 ## Evidence
 

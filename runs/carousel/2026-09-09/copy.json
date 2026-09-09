@@ -1,0 +1,175 @@
+{
+ "run": "2026-09-09",
+ "deck": 18,
+ "note": "Built from the render report's own laid out text nodes, identified by the FONT the browser resolved rather than by a class name. Rebuilt after every render round.",
+ "slides": {
+  "S1": {
+   "hook": "When does this patient go home?",
+   "dek": "A quality improvement study compared two ways of answering it at Houston Methodist, and reported which one was closer.",
+   "labels": [
+    "HOUSTON METHODIST",
+    "01 / 09",
+    "c1 · c6",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c1",
+    "c6"
+   ]
+  },
+  "S2": {
+   "hook": "Two answers, one date",
+   "dek": "The hospital's own staff, and a commercial clinician-assisted tool integrated with the EHR, over inpatient encounters discharged in the window below.",
+   "labels": [
+    "HOUSTON METHODIST",
+    "02 / 09",
+    "CASE MANAGERS",
+    "AI ESTIMATIONS",
+    "AUGUST 1ST, 2023",
+    "FEBRUARY 28TH, 2024",
+    "c1 · c5",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c1",
+    "c5"
+   ]
+  },
+  "S3": {
+   "hook": "At admission, level",
+   "dek": "At admission the case managers and the tool sat within a fraction of a day of each other on error.",
+   "labels": [
+    "HOUSTON METHODIST",
+    "03 / 09",
+    "CASE MANAGERS",
+    "4.20",
+    "AI ESTIMATIONS",
+    "4.27",
+    "MEAN ABSOLUTE ERROR IN DAYS, AT ADMISSION",
+    "c4",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c4"
+   ],
+   "bodies": [
+    "The case managers did match the exact date more often, 23.6% against 15.3%."
+   ]
+  },
+  "S4": {
+   "hook": "On the last day, they were not",
+   "dek": "The authors say this is the point where an accurate date counts for most in bed management.",
+   "labels": [
+    "HOUSTON METHODIST",
+    "04 / 09",
+    "CASE MANAGERS 79.5%",
+    "AI ESTIMATIONS 37.9%",
+    "WITHIN ONE DAY OF THE TRUE DATE 24 HOURS BEFORE DISCHARGE",
+    "c2 · c6",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c2",
+    "c6"
+   ]
+  },
+  "S5": {
+   "hook": "One improved. One got worse.",
+   "dek": "Mean absolute error in days. The two never meet.",
+   "labels": [
+    "HOUSTON METHODIST",
+    "05 / 09",
+    "HIGHER IS FURTHER FROM THE TRUE DATE",
+    "CASE MANAGERS",
+    "AI ESTIMATIONS",
+    "48 HOURS",
+    "24 HOURS",
+    "0",
+    "ERROR IN DAYS",
+    "c3 · c6",
+    "texasaidocket.com",
+    "1.29",
+    "0.98",
+    "1.59",
+    "1.93"
+   ],
+   "claims": [
+    "c3",
+    "c6"
+   ]
+  },
+  "S6": {
+   "hook": "Agreement is not understanding",
+   "dek": "",
+   "labels": [
+    "HOUSTON METHODIST",
+    "06 / 09",
+    "The study's authors, on their own result",
+    "c7",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c7"
+   ],
+   "bodies": [
+    "The strong admission correlation did not persist nearer discharge and should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay."
+   ]
+  },
+  "S7": {
+   "hook": "One estimate was being read",
+   "dek": "Estimates were part of usual care and visible to care teams. They may be partly self-fulfilling. The authors' own word for it is advantaged nearer discharge.",
+   "labels": [
+    "HOUSTON METHODIST",
+    "07 / 09",
+    "THE STUDY'S AUTHORS, AGAINST THEIR OWN RESULT",
+    "CASE MANAGERS",
+    "AI ESTIMATIONS",
+    "c8",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c8"
+   ],
+   "bodies": [
+    "Accessible in the EHR but not enabled automatically.",
+    "advantaged nearer discharge"
+   ]
+  },
+  "S8": {
+   "hook": "What the comparison never saw",
+   "dek": "",
+   "labels": [
+    "HOUSTON METHODIST",
+    "08 / 09",
+    "THE STUDY FOLLOWED THE SQUIRE REPORTING GUIDELINE",
+    "c11 · c12",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c11",
+    "c12"
+   ],
+   "bodies": [
+    "No baseline patient demographic data were available."
+   ]
+  },
+  "S9": {
+   "hook": "What settles it",
+   "dek": "The authors say what has to happen before anyone decides the tool's extra accuracy in some subgroups justifies the complexity of putting it in.",
+   "labels": [
+    "HOUSTON METHODIST",
+    "09 / 09",
+    "JAMA NETWORK OPEN, SEPTEMBER 3RD, 2026 DOI 10.1001/JAMANETWORKOPEN.2026.32033",
+    "c9 · c14",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c9",
+    "c14"
+   ],
+   "bodies": [
+    "Warrants prospective, outcome-based evaluation."
+   ]
+  }
+ }
+}

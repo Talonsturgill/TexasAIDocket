@@ -1,0 +1,218 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 3 — at admission, level.
+     The claim is a SAMENESS, and every other way of drawing sameness is a chart with two bars
+     that look alike, which asks a reader to measure and find nothing. Shimmer makes the sameness
+     physical. The two marks are not merely close, they are unresolvable through the air between
+     here and there, which is what 4.20 against 4.27 actually is at feed scale. compute.py puts
+     that separation at 0.728px in the 432px thumb.
+
+     The one thing that DID differ at admission is printed rather than drawn, on the near lit
+     panel, which is the only sharp thing in a deliberately soft frame. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#C5DBE9}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#1D140D}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:168px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:100px;line-height:0.98;color:#1D140D;letter-spacing:-.022em}
+  .dek{position:absolute;left:80px;top:322px;width:790px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:33px;line-height:1.30;color:#1D140D}
+
+  /* THE ONE SHARP THING. The exact-date rates, on the near lit panel below the shimmer band.
+     Case managers first, always. */
+  .lab{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:27px;
+    letter-spacing:.07em;color:#1D140D}
+  .fig{position:absolute;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:84px;
+    letter-spacing:-.01em;color:#1D140D;font-variant-numeric:tabular-nums}
+  .swatch{position:absolute;width:22px;height:22px}
+
+  .qual{position:absolute;left:80px;top:1004px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.09em;color:#1D140D}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"at admission the two methods sat level","reads":"same","a":[[392,596,58,26]],"b":[[630,596,58,26]]}]'>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">03 / 09</div>
+
+  <h1>At admission, level</h1>
+  <p class="dek">At admission the case managers and the tool sat within a fraction of a day of
+    each other on error. Both marks are out at that distance, and the air between here and there
+    is what a reader has to see through.</p>
+
+  <div class="lab" style="left:80px;top:842px">CASE MANAGERS</div>
+  <div class="swatch" style="left:80px;top:806px;background:#AC654B"></div>
+  <div class="fig" style="left:80px;top:882px">23.6%</div>
+
+  <div class="lab" style="left:600px;top:842px">AI ESTIMATIONS</div>
+  <div class="swatch" style="left:600px;top:806px;background:#647D97"></div>
+  <div class="fig" style="left:600px;top:882px">15.3%</div>
+
+  <div class="qual">MATCHED THE EXACT DATE, AT ADMISSION</div>
+
+  <div class="foot"><span>c4</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S + 3);
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save(); gg.globalCompositeOperation = 'overlay'; gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat'); gg.fillRect(0, 0, w, h); gg.restore();
+  }
+
+  var HZ = 594;                                   // horizon at 0.44
+  var SHIM_TOP = 470, SHIM_BOT = HZ + 22;         // the warp band. Type never enters it.
+  var NEAR_TOP = 760;                             // the sharp, unwarped near panel
+
+  // ---- draw the far world onto an offscreen buffer, then WARP THE FIELD, never the glyphs
+  var off = document.createElement('canvas');
+  off.width = W; off.height = SHIM_BOT + 40;
+  var o = off.getContext('2d');
+
+  var sky = o.createLinearGradient(0, 0, 0, HZ);
+  sky.addColorStop(0, '#C5DBE9');
+  sky.addColorStop(0.70, '#DCE5E3');
+  sky.addColorStop(1, '#ECE3D6');
+  o.fillStyle = sky; o.fillRect(0, 0, W, HZ);
+
+  // the far prairie, compressed into a narrow value range so the two marks have almost no
+  // contrast against what surrounds them
+  var far = o.createLinearGradient(0, HZ, 0, SHIM_BOT + 40);
+  far.addColorStop(0, '#D6C9B2');
+  far.addColorStop(1, '#CDBFA8');
+  o.fillStyle = far; o.fillRect(0, HZ, W, 60);
+
+  // THE TWO ADMISSION MARKS, on one scale, at 4.20 and 4.27 days. 26px per day from compute.py
+  // puts them 1.82px apart, which is 0.728px in the 432px thumb. The frame's whole subject is
+  // that this separation is not resolvable, so it is drawn true and never widened.
+  var PX_PER_DAY = 26.0, ORIGIN_X = 420;
+  var MX_CM = ORIGIN_X - 4.20 * PX_PER_DAY + 92;
+  var MX_AI = ORIGIN_X - 4.27 * PX_PER_DAY + 92;
+  [['#AC654B', MX_CM], ['#647D97', MX_AI]].forEach(function (p) {
+    o.fillStyle = p[0];
+    // Tall enough to be unmistakably an object rather than a stray pixel, and NEVER widened
+    // apart. The separation is the claim and it stays at its true 1.82px.
+    o.fillRect(p[1], HZ - 74, 7, 74);
+  });
+
+  // warp the buffer into the frame, row by row, amplitude rising with height above the horizon
+  var AMP = 5.6;                                  // under the 6px ceiling the library sets
+  for (var y = 0; y < SHIM_BOT + 40; y++) {
+    var above = Math.max(0, (SHIM_BOT - y)) / (SHIM_BOT - SHIM_TOP);
+    var k = y < SHIM_TOP ? 0 : Math.min(1, 1 - above);
+    var band = (y >= SHIM_TOP && y <= SHIM_BOT) ? 1 : 0;
+    var dx = band * AMP * Math.sin(y * 0.19 + TX.simplex2(y * 0.02, 3.1) * 3.0) *
+             (0.35 + 0.65 * k);
+    g.drawImage(off, 0, y, W, 1, dx, y, W, 1);
+  }
+  // THE WARP LEAVES A GAP AT EACH EDGE. Filling it with a single flat colour put two vertical
+  // blue bars down a warm frame, which is a seam pretending to be sky. Each row is instead
+  // extended with ITS OWN leftmost and rightmost pixel, so the fill can never disagree with the
+  // row it is extending.
+  for (var yy = 0; yy < SHIM_BOT + 40; yy++) {
+    g.drawImage(off, 0, yy, 2, 1, -12, yy, 26, 1);
+    g.drawImage(off, W - 2, yy, 2, 1, W - 14, yy, 26, 1);
+  }
+  g.drawImage(off, 0, 0, W, SHIM_TOP, 0, 0, W, SHIM_TOP);
+
+  // ---- the middle ground, still soft, between the shimmer band and the near panel
+  var mid = g.createLinearGradient(0, SHIM_BOT, 0, NEAR_TOP);
+  mid.addColorStop(0, '#CDBFA8');
+  mid.addColorStop(1, '#BFB09A');
+  g.fillStyle = mid; g.fillRect(0, SHIM_BOT, W, NEAR_TOP - SHIM_BOT);
+  for (var s2 = 0; s2 < 2200; s2++) {
+    var sx = R() * W, sy = SHIM_BOT + R() * (NEAR_TOP - SHIM_BOT);
+    g.strokeStyle = 'rgba(150,136,112,0.30)';
+    g.lineWidth = 1;
+    g.beginPath(); g.moveTo(sx, sy); g.lineTo(sx + (R() - 0.5) * 4, sy - 3 - R() * 6); g.stroke();
+  }
+
+  // ---- THE NEAR PANEL. Lit clay, sharp, unwarped. The frame's light extreme and its focal,
+  // and the band the eye finishes on.
+  var np = g.createLinearGradient(0, NEAR_TOP, 0, H);
+  np.addColorStop(0, '#C6BAA6');
+  np.addColorStop(0.4, '#D2C6B1');
+  np.addColorStop(1, '#C0B29C');
+  g.fillStyle = np; g.fillRect(0, NEAR_TOP, W, H - NEAR_TOP);
+
+  // desiccation cracks, so the near ground is modelled and unmistakably in focus
+  for (var ck = 0; ck < 18; ck++) {
+    var x0 = R() * W, y0 = NEAR_TOP + 20 + R() * (H - NEAR_TOP - 40);
+    g.strokeStyle = 'rgba(68,52,40,' + (0.20 + R() * 0.24) + ')';
+    g.lineWidth = 1.0 + R() * 1.8;
+    g.beginPath(); g.moveTo(x0, y0);
+    var px = x0, py = y0, dir = (R() - 0.5) * 0.9;
+    for (var seg = 0; seg < 4; seg++) {
+      dir += (R() - 0.5) * 0.5;
+      px += Math.cos(dir) * (50 + R() * 60);
+      py += Math.sin(dir) * (22 + R() * 24);
+      g.lineTo(px, py);
+    }
+    g.stroke();
+  }
+  // sharp near grass, in focus, against the soft middle distance
+  for (var ng = 0; ng < 2400; ng++) {
+    var gx = R() * W, gy = NEAR_TOP + R() * (H - NEAR_TOP);
+    g.strokeStyle = R() > 0.6 ? 'rgba(179,117,85,0.55)' : 'rgba(140,126,102,0.55)';
+    g.lineWidth = 1.1 + R() * 1.5;
+    g.beginPath(); g.moveTo(gx, gy); g.lineTo(gx + (R() - 0.5) * 9, gy - 8 - R() * 22); g.stroke();
+  }
+
+  // ---- the scale tick along the near panel, running to the frame edge, so the band carries a
+  // real instrument rather than a caption
+  g.strokeStyle = 'rgba(29,20,13,0.55)'; g.lineWidth = 3;
+  g.beginPath(); g.moveTo(0, NEAR_TOP + 18); g.lineTo(W, NEAR_TOP + 18); g.stroke();
+  for (var tk = 0; tk <= 12; tk++) {
+    var tx = tk * (W / 12);
+    g.lineWidth = tk % 3 === 0 ? 3 : 1.6;
+    g.beginPath(); g.moveTo(tx, NEAR_TOP + 18); g.lineTo(tx, NEAR_TOP + 18 + (tk % 3 === 0 ? 22 : 12));
+    g.stroke();
+  }
+
+  grain(g, W, H, 200, 28, S + 3, 0.072);
+
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var z = 0; z < d2.length; z += 4 * 97) {
+    sum += (d2[z] * 0.2126 + d2[z + 1] * 0.7152 + d2[z + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 3, mean_luma: Math.round(sum / n),
+                      mark_gap_px: Math.round(Math.abs(MX_CM - MX_AI) * 100) / 100,
+                      shimmer_amp: AMP, shimmer_band: [SHIM_TOP, SHIM_BOT]};
+  resolve();
+});
+</script>
+</body></html>

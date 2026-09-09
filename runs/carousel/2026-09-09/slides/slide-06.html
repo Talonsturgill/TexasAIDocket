@@ -1,0 +1,219 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 6 — agreement is not understanding.
+     Two solids of completely unlike geometry, at arm's length on lit clay under one declared
+     sun, throwing two shadows SOLVED to identical length. Each solid is a different height, so
+     each needs its own sun altitude to land the same shadow. That is exactly the claim: two
+     things can agree on an output and share nothing about the process behind it.
+
+     Declares BOTH directions in one frame. The solid regions read "differ" and the shadow
+     regions read "same". */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#B1A291}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#1D140D}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:158px;width:900px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:98px;line-height:0.97;color:#1D140D;letter-spacing:-.022em}
+
+  /* The authors' own sentence, attributed to them on the frame. */
+  .quote{position:absolute;left:80px;top:966px;width:920px;margin:0;
+    font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:40px;line-height:1.24;
+    color:#1D140D}
+  .attrib{position:absolute;left:80px;top:1196px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.02em;color:#4A3D2E}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<!-- THE SOLIDS-DIFFER DECLARATION IS GONE, DELIBERATELY. It said the two solids share no
+     geometry, which is a claim about SHAPE, and data-encodes measures CIELAB distance. Both
+     solids are drawn in the same clay values on purpose, so neither is coded as a party, and the
+     probe correctly reported them 1.9 dE apart. A declaration the gate can only answer wrongly
+     is worse than none: the frame's shape argument is carried by the drawing and by the pixel
+     critics, and what stays declared is the one thing a colour probe can actually settle, which
+     is that the two shadows are the same. Every rect below was MEASURED off the rendered PNG. -->
+<body data-encodes='[{"claim":"the two shadows are the same length and the same value","reads":"same","a":[[250,700,120,60]],"b":[[650,700,120,60]]}]'
+      data-contacts='[{"what":"the left solid on the lit clay","shadow":[[154,644,78,16]],"ground":[[80,1180,78,16]]},
+                      {"what":"the right solid on the lit clay","shadow":[[490,644,290,16]],"ground":[[420,1200,290,16]]}]'>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">06 / 09</div>
+
+  <h1>Agreement is not understanding</h1>
+
+  <p class="quote">The strong admission correlation did not persist nearer discharge and should
+    not be interpreted as evidence that the tool captured the same information clinicians use
+    throughout the stay.</p>
+  <div class="attrib">The study's authors, on their own result</div>
+
+  <div class="foot"><span>c7</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S + 6);
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save(); gg.globalCompositeOperation = 'overlay'; gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat'); gg.fillRect(0, 0, w, h); gg.restore();
+  }
+
+  // ---- FROM compute.py. One shadow length, two solid heights, so two sun altitudes.
+  var SHADOW_LEN = 300, A_H = 232, B_H = 92;
+  var GROUND_Y = 640;
+
+  // ---- lit clay, the frame's light extreme, with real desiccation cracks
+  var bg = g.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#C9BCA6');
+  bg.addColorStop(0.48, '#D3C7B0');
+  bg.addColorStop(1, '#BCAE98');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+
+  for (var ck = 0; ck < 22; ck++) {
+    var x0 = R() * W, y0 = 300 + R() * (H - 380);
+    g.strokeStyle = 'rgba(68,52,40,' + (0.14 + R() * 0.18) + ')';
+    g.lineWidth = 1.0 + R() * 2.0;
+    g.beginPath(); g.moveTo(x0, y0);
+    var px = x0, py = y0, dir = (R() - 0.5) * 1.0;
+    for (var seg = 0; seg < 4; seg++) {
+      dir += (R() - 0.5) * 0.55;
+      px += Math.cos(dir) * (60 + R() * 70);
+      py += Math.sin(dir) * (24 + R() * 26);
+      g.lineTo(px, py);
+    }
+    g.stroke();
+  }
+  for (var t = 0; t < 5600; t++) {
+    var tx = R() * W, ty = R() * H;
+    g.fillStyle = 'rgba(88,68,46,' + (0.03 + R() * 0.06) + ')';
+    g.fillRect(tx, ty, 1.6 + R() * 3.0, 1.2 + R() * 2.0);
+  }
+
+  var SHADE = 'rgba(38,52,42,0.62)';
+
+  // THE TWO SOLIDS HAVE TO BE UNMISTAKABLY DIFFERENT THINGS. The first build made both of them
+  // upright posts and the contact sheet showed two of the same object. The claim is that two
+  // things can agree on an output and share nothing about the process, so the shapes carry the
+  // argument and the shadows carry the agreement.
+  //
+  // A is TALL AND NARROW, a stepped prism. B is LOW AND BROAD, a slab with a curved back. Each
+  // casts 300 px along the ground, which is only possible because each stands under its own sun
+  // altitude, 34.99 and 23.11 degrees from compute.py.
+  var CAST_DX = 262, CAST_DY = 146;      // one ground direction, shared, so lengths are comparable
+
+  function cast(baseX, baseW) {
+    g.fillStyle = SHADE;
+    g.beginPath();
+    g.moveTo(baseX, GROUND_Y);
+    g.lineTo(baseX + baseW, GROUND_Y);
+    g.lineTo(baseX + baseW + CAST_DX, GROUND_Y + CAST_DY);
+    g.lineTo(baseX + CAST_DX, GROUND_Y + CAST_DY);
+    g.closePath(); g.fill();
+  }
+
+  function contact(baseX, baseW) {
+    var cg = g.createRadialGradient(baseX + baseW / 2, GROUND_Y, 2,
+                                    baseX + baseW / 2, GROUND_Y, baseW * 1.1 + 40);
+    cg.addColorStop(0, 'rgba(20,14,9,0.50)');
+    cg.addColorStop(1, 'rgba(20,14,9,0)');
+    g.fillStyle = cg;
+    g.fillRect(baseX - baseW, GROUND_Y - 46, baseW * 3, 104);
+    g.fillStyle = 'rgba(16,11,7,0.72)';
+    g.fillRect(baseX - 4, GROUND_Y - 9, baseW + 8, 19);
+  }
+
+  // ---- SOLID A. Tall, narrow, stepped. Three set-backs, hard arrises, nothing curved.
+  function solidA(x) {
+    var w = 86;
+    cast(x, w);
+    var steps = [[0, w, A_H], [11, w - 26, A_H * 0.66], [22, w - 52, A_H * 0.34]];
+    steps.forEach(function (st, i) {
+      var sx = x + st[0], sw = st[1], sh = st[2];
+      var lit = g.createLinearGradient(sx, 0, sx + sw, 0);
+      lit.addColorStop(0, i === 0 ? '#EBDFC8' : '#E2D5BE');
+      lit.addColorStop(0.62, '#C0B296');
+      lit.addColorStop(1, '#8E8069');
+      g.fillStyle = lit;
+      g.fillRect(sx, GROUND_Y - sh, sw, sh);
+      g.fillStyle = 'rgba(250,244,232,0.9)';
+      g.fillRect(sx, GROUND_Y - sh, sw, 5);
+    });
+    contact(x, w);
+  }
+
+  // ---- SOLID B. Low, broad, curved. More than three times A's footprint and well under half
+  // its height, so nothing about it reads as the same object at 432px.
+  function solidB(x) {
+    var w = 300;
+    cast(x, w);
+    var lit = g.createLinearGradient(x, GROUND_Y - B_H, x + w, GROUND_Y);
+    lit.addColorStop(0, '#EFE3CC');
+    lit.addColorStop(0.55, '#C6B89C');
+    lit.addColorStop(1, '#8A7C66');
+    g.fillStyle = lit;
+    g.beginPath();
+    g.moveTo(x, GROUND_Y);
+    g.lineTo(x, GROUND_Y - 30);
+    g.bezierCurveTo(x + w * 0.28, GROUND_Y - B_H - 16,
+                    x + w * 0.72, GROUND_Y - B_H - 16,
+                    x + w, GROUND_Y - 42);
+    g.lineTo(x + w, GROUND_Y);
+    g.closePath(); g.fill();
+    g.strokeStyle = 'rgba(252,247,238,0.92)'; g.lineWidth = 5;
+    g.beginPath();
+    g.moveTo(x, GROUND_Y - 30);
+    g.bezierCurveTo(x + w * 0.28, GROUND_Y - B_H - 16,
+                    x + w * 0.72, GROUND_Y - B_H - 16,
+                    x + w, GROUND_Y - 42);
+    g.stroke();
+    contact(x, w);
+  }
+
+  solidA(150);
+  solidB(486);
+
+  grain(g, W, H, 200, 26, S + 6, 0.065);
+
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var z = 0; z < d2.length; z += 4 * 97) {
+    sum += (d2[z] * 0.2126 + d2[z + 1] * 0.7152 + d2[z + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 6, mean_luma: Math.round(sum / n),
+                      shadow_len_a: SHADOW_LEN, shadow_len_b: SHADOW_LEN,
+                      shadow_lengths_equal: true,
+                      solid_h_a: A_H, solid_h_b: B_H,
+                      sun_alt_a_deg: 34.99, sun_alt_b_deg: 23.11};
+  resolve();
+});
+</script>
+</body></html>

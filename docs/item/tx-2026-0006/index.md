@@ -8,7 +8,7 @@ The Texas Responsible Artificial Intelligence Governance Act took effect on Janu
 - Status: decided
 - Public access: Write to the decider
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · The artificial intelligence statute is still in the Business and Commerce Code and the Attorney General is still the only office that may enforce it. No private right of action has appeared.
 - 2026-09-08 · TRAIGA still sits in the Business and Commerce Code as written, and enforcement still belongs to the Attorney General alone. No private right of action has appeared in the chapter.
+- 2026-09-09 · TRAIGA is still on the books as Chapter 552 of the Business and Commerce Code, and the Attorney General is still the only office that may enforce it. No private right of action has appeared.
 
 ## Evidence
 

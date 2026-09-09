@@ -1,0 +1,230 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 1 — the door.
+     A LIGHT deck, inverting five consecutive dark-interior decks. The doorway is the darkest
+     AREA in a bright frame, which is the physical truth of an unlit interior at eleven in the
+     morning and the exact inversion of the excluded lit-slot doorway construction.
+
+     THE FIRST BUILD PUT THE DEK ON THE DOOR. Type at 414 and the aperture at 470, so the dek
+     crossed the darkest region of the frame and the frame's own focal was underneath its own
+     paragraph. The fix is compositional rather than a scrim: the horizon drops to 0.62, all the
+     architecture lives in the lower third, and the whole upper half is an unpainted sky reserve
+     that no art enters. Nothing in this deck sets type over its own subject. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#C5DBE9}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#1D140D}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:206px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:112px;line-height:0.96;color:#1D140D;letter-spacing:-.024em}
+  .dek{position:absolute;left:80px;top:512px;width:800px;margin:0;font-family:Manrope,sans-serif;
+    font-weight:500;font-size:35px;line-height:1.30;color:#1D140D}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<body data-contacts='[{"what":"the canopy column standing on the sunlit lane","shadow":[[286,880,120,22]],"ground":[[620,880,120,22]]}]'>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">01 / 09</div>
+
+  <h1>When does this patient go&nbsp;home?</h1>
+  <p class="dek">Houston Methodist compared two ways of answering it, and published which one
+    was closer when accurate estimations are most actionable for bed management.</p>
+
+  <div class="foot"><span>c1 &middot; c6</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S);                       // a GENERATOR. TX.rng() * n is NaN and draws nothing.
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;       // 2x backing store, per the engine contract
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save();
+    gg.globalCompositeOperation = 'overlay';
+    gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat');
+    gg.fillRect(0, 0, w, h);
+    gg.restore();
+  }
+
+  var P = {
+    crust: '#B1A291', bluestem: '#B37555', straw: '#D4B186',
+    sky: '#C5DBE9', haze: '#ECE3D6', oakshade: '#203329', ink: '#1D140D'
+  };
+
+  var HZ = 838;                            // horizon at 0.62. The upper half is a type reserve.
+
+  // ---- sky, humid pale blue washing to a warm haze band at the horizon
+  var sky = g.createLinearGradient(0, 0, 0, HZ);
+  sky.addColorStop(0, P.sky);
+  sky.addColorStop(0.62, '#D7E2E4');
+  sky.addColorStop(1, P.haze);
+  g.fillStyle = sky; g.fillRect(0, 0, W, HZ);
+
+  // ---- the far verge, cured bluestem, one thin band at the horizon
+  g.save();
+  g.beginPath(); g.rect(0, HZ - 26, W, 30); g.clip();
+  g.fillStyle = P.straw; g.fillRect(0, HZ - 26, W, 30);
+  for (var v = 0; v < 700; v++) {
+    var vx = R() * W, vy = HZ - 4;
+    g.strokeStyle = R() > 0.6 ? P.bluestem : '#9C8E77';
+    g.lineWidth = 1 + R() * 0.7;
+    g.beginPath(); g.moveTo(vx, vy); g.lineTo(vx + (R() - 0.5) * 6, vy - 6 - R() * 16); g.stroke();
+  }
+  g.restore();
+
+  // ---- the lane, sunlit concrete running to the bottom edge
+  var lane = g.createLinearGradient(0, HZ, 0, H);
+  lane.addColorStop(0, '#C4B9A8');
+  lane.addColorStop(0.45, P.crust);
+  lane.addColorStop(1, '#BAAC99');
+  g.fillStyle = lane; g.fillRect(0, HZ, W, H - HZ);
+
+  // ---- THE CANOPY. A slab standing off the wall, seen close to square on, low in the frame.
+  var SOF_Y = 700, SOF_H = 52;              // the soffit slab
+  var FACE_Y = SOF_Y + SOF_H;               // the wall face below it
+  // wall face, in shade under the canopy so the whole block sits below the lane in value
+  var face = g.createLinearGradient(0, FACE_Y, 0, HZ);
+  face.addColorStop(0, '#8A7D6C');
+  face.addColorStop(1, '#9C8F7C');
+  g.fillStyle = face; g.fillRect(0, FACE_Y, W, HZ - FACE_Y);
+  // the soffit itself, lit on its top edge and falling into shade at its underside
+  var sof = g.createLinearGradient(0, SOF_Y, 0, FACE_Y);
+  sof.addColorStop(0, '#E0D4C0');
+  sof.addColorStop(0.30, '#C9BCA8');
+  sof.addColorStop(1, '#7E7160');
+  g.fillStyle = sof; g.fillRect(0, SOF_Y, W, SOF_H);
+  // the fascia's own lit lip, one hairline, so the slab has a real top
+  g.fillStyle = '#F0E7D6'; g.fillRect(0, SOF_Y, W, 5);
+
+  // ---- THE DOORWAY. The darkest AREA in the frame, off centre at 0.38 of the width.
+  var DX = Math.round(0.38 * W) - 98, DY = FACE_Y + 6, DW = 196, DH = HZ - FACE_Y - 6;
+  g.fillStyle = '#6B6052';                                   // the reveal, one step up
+  g.fillRect(DX - 13, DY, DW + 26, DH);
+  var ap = g.createLinearGradient(0, DY, 0, DY + DH);        // the unlit interior
+  ap.addColorStop(0, '#10161D');
+  ap.addColorStop(1, '#1B2128');
+  g.fillStyle = ap; g.fillRect(DX, DY, DW, DH);
+
+  // ---- the column, standing on the lane, and its HARD cast. A soffit at eleven in the
+  // morning makes a hard edge, so nothing here is blurred.
+  var COL_X = 286, COL_W = 30;
+  g.fillStyle = '#A5967F'; g.fillRect(COL_X, FACE_Y, COL_W, HZ - FACE_Y + 44);
+  g.fillStyle = '#8B7D69'; g.fillRect(COL_X + COL_W - 8, FACE_Y, 8, HZ - FACE_Y + 44);
+
+  // the canopy's own cast across the lane, hard edged, and the column's cast inside it
+  g.fillStyle = 'rgba(32,51,41,0.22)';
+  g.beginPath();
+  g.moveTo(0, HZ); g.lineTo(W, HZ); g.lineTo(W, HZ + 150); g.lineTo(0, HZ + 196);
+  g.closePath(); g.fill();
+  g.fillStyle = 'rgba(32,51,41,0.34)';
+  g.beginPath();
+  g.moveTo(COL_X + 2, HZ + 44);
+  g.lineTo(COL_X + COL_W + 4, HZ + 44);
+  g.lineTo(COL_X + COL_W + 132, H);
+  g.lineTo(COL_X + 74, H);
+  g.closePath(); g.fill();
+
+  // TWO PART CONTACT SHADOW at the column base. The ground under it is LIT, which is what
+  // gives the contact something to subtract from.
+  var cg = g.createRadialGradient(COL_X + COL_W / 2, HZ + 46, 2, COL_X + COL_W / 2, HZ + 46, 74);
+  cg.addColorStop(0, 'rgba(29,20,13,0.46)');
+  cg.addColorStop(1, 'rgba(29,20,13,0)');
+  g.fillStyle = cg; g.fillRect(COL_X - 74, HZ - 10, 148 + COL_W, 130);
+  g.fillStyle = 'rgba(29,20,13,0.44)';
+  g.fillRect(COL_X - 3, HZ + 40, COL_W + 6, 9);
+
+  // ---- concrete tooth on the lane, so the bottom band is modelled rather than filled
+  for (var t = 0; t < 6400; t++) {
+    var tx = R() * W, ty = HZ + R() * (H - HZ);
+    var d = (ty - HZ) / (H - HZ);
+    g.fillStyle = 'rgba(60,44,28,' + (0.03 + R() * 0.06 * d) + ')';
+    g.fillRect(tx, ty, 1.6 + R() * 2.4, 1.2 + R() * 1.6);
+  }
+  // saw-cut control joints, receding toward the reader
+  g.strokeStyle = 'rgba(60,44,28,0.17)'; g.lineWidth = 2.4;
+  [0.24, 0.55, 0.92].forEach(function (f) {
+    var y = HZ + (H - HZ) * f;
+    g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke();
+  });
+
+  // HUMIDITY IN THE AIR AND TOOTH IN THE GROUND, because a gradient is a promise of light and
+  // not of material. panel_ready measured the quietest patch of this frame at 3.24 residual
+  // against a 4.0 floor, which is a smooth ramp reading as an unfinished render on a phone.
+  //
+  // THE FIRST FIX DREW DISCRETE HAZE ELLIPSES AND MADE IT WORSE. Each one has a boundary, and
+  // six of them crossed the dek's glyph band as measurable edges, which reads as a strikethrough
+  // at feed width. Material has to arrive without an edge, so it is a low frequency field
+  // upscaled with smoothing rather than a set of shapes laid on top.
+  function mottle(gg, w, h, cell, k, seed, alpha) {
+    var n = Math.max(2, Math.round(w / cell));
+    var m = Math.max(2, Math.round(h / cell));
+    var cv = document.createElement('canvas');
+    cv.width = n; cv.height = m;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(n, m);
+    for (var yy = 0; yy < m; yy++) {
+      for (var xx = 0; xx < n; xx++) {
+        var v = TX.fbm2 ? TX.fbm2(xx * 0.22 + seed * 0.001, yy * 0.22, 4)
+                        : TX.simplex2(xx * 0.22, yy * 0.22);
+        var b = 128 + v * k;
+        var o = (yy * n + xx) * 4;
+        img.data[o] = img.data[o + 1] = img.data[o + 2] = b;
+        img.data[o + 3] = 255;
+      }
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save();
+    gg.globalCompositeOperation = 'overlay';
+    gg.globalAlpha = alpha;
+    gg.imageSmoothingEnabled = true;
+    gg.imageSmoothingQuality = 'high';
+    gg.drawImage(cv, 0, 0, w, h);
+    gg.restore();
+  }
+  mottle(g, W, H, 26, 92, S, 0.42);
+  mottle(g, W, H, 7, 66, S + 101, 0.34);
+
+  grain(g, W, H, 180, 48, S, 0.13);
+
+  // publish the frame's median lightness so the deck's value arc is measured rather than asserted
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var q = 0; q < d2.length; q += 4 * 97) {
+    sum += (d2[q] * 0.2126 + d2[q + 1] * 0.7152 + d2[q + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 1, mean_luma: Math.round(sum / n), horizon: HZ,
+                      door: [DX, DY, DW, DH]};
+  resolve();
+});
+</script>
+</body></html>

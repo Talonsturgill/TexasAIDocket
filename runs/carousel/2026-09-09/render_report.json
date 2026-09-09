@@ -1,0 +1,2731 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "When does this patient go home?",
+          "x": 80,
+          "y": 158,
+          "w": 920,
+          "h": 204,
+          "font_px": 106,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              143,
+              898,
+              131
+            ],
+            [
+              80,
+              245,
+              396,
+              131
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A quality improvement study compared two ways of answering it at Houston Methodist, and reported which one was closer.",
+          "x": 80,
+          "y": 400,
+          "w": 840,
+          "h": 129,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              398,
+              790,
+              45
+            ],
+            [
+              80,
+              441,
+              749,
+              45
+            ],
+            [
+              80,
+              484,
+              333,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 \u00b7 c6",
+          "x": 80,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the canopy column standing on the sunlit lane",
+          "shadow": [
+            [
+              120,
+              1170,
+              64,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              600,
+              1170,
+              64,
+              14
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 3043,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 175.1,
+          "variance": 2816.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two answers, one date",
+          "x": 80,
+          "y": 158,
+          "w": 900,
+          "h": 94,
+          "font_px": 96,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              146,
+              818,
+              118
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS",
+          "x": 80,
+          "y": 352,
+          "w": 314,
+          "h": 71,
+          "font_px": 31,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 238, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              367,
+              270,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS",
+          "x": 80,
+          "y": 436,
+          "w": 335,
+          "h": 71,
+          "font_px": 31,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(244, 238, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              451,
+              291,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The hospital's own staff, and a commercial clinician-assisted tool integrated with the EHR, over inpatient encounters discharged in the window below.",
+          "x": 80,
+          "y": 556,
+          "w": 800,
+          "h": 172,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              554,
+              794,
+              45
+            ],
+            [
+              80,
+              597,
+              655,
+              45
+            ],
+            [
+              80,
+              640,
+              725,
+              45
+            ],
+            [
+              80,
+              683,
+              99,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AUGUST 1ST, 2023",
+          "x": 104,
+          "y": 1132,
+          "w": 270,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              1132,
+              270,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FEBRUARY 28TH, 2024",
+          "x": 655,
+          "y": 1132,
+          "w": 321,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              655,
+              1132,
+              321,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 \u00b7 c5",
+          "x": 80,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1511,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 171.1,
+          "variance": 326
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At admission, level",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 98,
+          "font_px": 100,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              155,
+              695,
+              124
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At admission the case managers and the tool sat within a fraction of a day of each other on error.",
+          "x": 80,
+          "y": 322,
+          "w": 790,
+          "h": 86,
+          "font_px": 33,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              320,
+              748,
+              45
+            ],
+            [
+              80,
+              363,
+              723,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS",
+          "x": 80,
+          "y": 842,
+          "w": 235,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              842,
+              235,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4.20",
+          "x": 80,
+          "y": 882,
+          "w": 198,
+          "h": 111,
+          "font_px": 84,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              882,
+              198,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS",
+          "x": 600,
+          "y": 842,
+          "w": 253,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              842,
+              253,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4.27",
+          "x": 600,
+          "y": 882,
+          "w": 198,
+          "h": 111,
+          "font_px": 84,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              882,
+              198,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MEAN ABSOLUTE ERROR IN DAYS, AT ADMISSION",
+          "x": 80,
+          "y": 1004,
+          "w": 736,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1004,
+              736,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The case managers did match the exact date more often, 23.6% against 15.3%.",
+          "x": 80,
+          "y": 1074,
+          "w": 880,
+          "h": 73,
+          "font_px": 29,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1072,
+              860,
+              40
+            ],
+            [
+              80,
+              1109,
+              195,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4",
+          "x": 80,
+          "y": 1245,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              29,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 806,
+          "w": 22,
+          "h": 22,
+          "by": "swatch",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 600,
+          "y": 806,
+          "w": 22,
+          "h": 22,
+          "by": "swatch",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "at admission the two methods sat level",
+          "reads": "same",
+          "a": [
+            [
+              392,
+              596,
+              58,
+              26
+            ]
+          ],
+          "b": [
+            [
+              630,
+              596,
+              58,
+              26
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 937,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 215.5,
+          "variance": 257.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On the last day, they were not",
+          "x": 80,
+          "y": 158,
+          "w": 920,
+          "h": 194,
+          "font_px": 100,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              144,
+              750,
+              124
+            ],
+            [
+              80,
+              241,
+              328,
+              124
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS 79.5%",
+          "x": 114,
+          "y": 434,
+          "w": 414,
+          "h": 44,
+          "font_px": 33,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              434,
+              414,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS 37.9%",
+          "x": 114,
+          "y": 750,
+          "w": 436,
+          "h": 44,
+          "font_px": 33,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              114,
+              750,
+              436,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "WITHIN ONE DAY OF THE TRUE DATE 24 HOURS BEFORE DISCHARGE",
+          "x": 80,
+          "y": 1020,
+          "w": 920,
+          "h": 81,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1022,
+              569,
+              36
+            ],
+            [
+              80,
+              1063,
+              459,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The authors say this is the point where an accurate date counts for most in bed management.",
+          "x": 80,
+          "y": 1120,
+          "w": 900,
+          "h": 79,
+          "font_px": 31,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1118,
+              810,
+              42
+            ],
+            [
+              80,
+              1158,
+              532,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 \u00b7 c6",
+          "x": 80,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 440,
+          "w": 20,
+          "h": 20,
+          "by": "swatch",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 756,
+          "w": 20,
+          "h": 20,
+          "by": "swatch",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the lit share of each run differs, 79.5 percent against 37.9 percent",
+          "reads": "differ",
+          "a": [
+            [
+              400,
+              540,
+              180,
+              44
+            ]
+          ],
+          "b": [
+            [
+              500,
+              790,
+              180,
+              44
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1868,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 156.1,
+          "variance": 843.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One improved. One got worse.",
+          "x": 80,
+          "y": 148,
+          "w": 920,
+          "h": 178,
+          "font_px": 92,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              686,
+              113
+            ],
+            [
+              80,
+              225,
+              358,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Mean absolute error in days. The two never meet.",
+          "x": 80,
+          "y": 340,
+          "w": 880,
+          "h": 38,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              338,
+              686,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HIGHER IS FURTHER FROM THE TRUE DATE",
+          "x": 80,
+          "y": 432,
+          "w": 646,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              432,
+              646,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS",
+          "x": 196,
+          "y": 598,
+          "w": 223,
+          "h": 35,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              196,
+              598,
+              223,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI ESTIMATIONS",
+          "x": 688,
+          "y": 598,
+          "w": 240,
+          "h": 35,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              688,
+              598,
+              240,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "48 HOURS",
+          "x": 366,
+          "y": 1034,
+          "w": 132,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              366,
+              1033,
+              132,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "24 HOURS",
+          "x": 768,
+          "y": 1034,
+          "w": 132,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              768,
+              1033,
+              132,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0",
+          "x": 232,
+          "y": 1002,
+          "w": 17,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              232,
+              1001,
+              17,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERROR IN DAYS",
+          "x": 150,
+          "y": 964,
+          "w": 215,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              963,
+              215,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 \u00b7 c6",
+          "x": 80,
+          "y": 1245,
+          "w": 101,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1.29",
+          "x": 196,
+          "y": 767,
+          "w": 96,
+          "h": 43,
+          "font_px": 32,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              213,
+              767,
+              79,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0.98",
+          "x": 852,
+          "y": 823,
+          "w": 96,
+          "h": 43,
+          "font_px": 32,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              852,
+              823,
+              79,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1.59",
+          "x": 196,
+          "y": 713,
+          "w": 96,
+          "h": 43,
+          "font_px": 32,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              213,
+              713,
+              79,
+              43
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1.93",
+          "x": 852,
+          "y": 652,
+          "w": 96,
+          "h": 43,
+          "font_px": 32,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              852,
+              652,
+              79,
+              43
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 168,
+          "y": 606,
+          "w": 16,
+          "h": 16,
+          "by": "keysw",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 660,
+          "y": 606,
+          "w": 16,
+          "h": 16,
+          "by": "keysw",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 174,
+          "y": 779.8,
+          "w": 16,
+          "h": 16,
+          "by": "endsw",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 828,
+          "y": 835.6,
+          "w": 16,
+          "h": 16,
+          "by": "endsw",
+          "color": "rgb(172, 101, 75)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 174,
+          "y": 725.8,
+          "w": 16,
+          "h": 16,
+          "by": "endsw",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 828,
+          "y": 664.6,
+          "w": 16,
+          "h": 16,
+          "by": "endsw",
+          "color": "rgb(100, 125, 151)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the gap between the two series is wider at the right station than at the left",
+          "reads": "differ",
+          "a": [
+            [
+              336,
+              742,
+              64,
+              76
+            ]
+          ],
+          "b": [
+            [
+              742,
+              742,
+              64,
+              282
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1948,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 165.3,
+          "variance": 390.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Agreement is not understanding",
+          "x": 80,
+          "y": 872,
+          "w": 900,
+          "h": 190,
+          "font_px": 98,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              859,
+              631,
+              121
+            ],
+            [
+              80,
+              954,
+              547,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The strong admission correlation did not persist nearer discharge and should not be interpreted as evidence that the tool captured the same information clinicians use throughout the stay.",
+          "x": 80,
+          "y": 176,
+          "w": 920,
+          "h": 198,
+          "font_px": 40,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              176,
+              823,
+              49
+            ],
+            [
+              80,
+              226,
+              854,
+              49
+            ],
+            [
+              80,
+              275,
+              909,
+              49
+            ],
+            [
+              80,
+              325,
+              587,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The study's authors, on their own result",
+          "x": 80,
+          "y": 392,
+          "w": 645,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 61, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              392,
+              645,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7",
+          "x": 80,
+          "y": 1245,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              29,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the two shadows are the same length and the same value",
+          "reads": "same",
+          "a": [
+            [
+              286,
+              700,
+              26,
+              30
+            ]
+          ],
+          "b": [
+            [
+              586,
+              700,
+              26,
+              30
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the left solid on the lit clay",
+          "shadow": [
+            [
+              124,
+              644,
+              80,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              20,
+              644,
+              80,
+              14
+            ]
+          ]
+        },
+        {
+          "what": "the right solid on the lit clay",
+          "shadow": [
+            [
+              430,
+              644,
+              140,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              262,
+              644,
+              140,
+              14
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 1384,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 179.7,
+          "variance": 530.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 218, 202)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 218, 202)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One estimate was being read",
+          "x": 80,
+          "y": 146,
+          "w": 880,
+          "h": 178,
+          "font_px": 92,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(242, 234, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              134,
+              820,
+              113
+            ],
+            [
+              80,
+              223,
+              160,
+              113
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE STUDY'S AUTHORS, AGAINST THEIR OWN RESULT",
+          "x": 80,
+          "y": 344,
+          "w": 796,
+          "h": 35,
+          "font_px": 26,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              344,
+              796,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CASE MANAGERS",
+          "x": 80,
+          "y": 466,
+          "w": 255,
+          "h": 54,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 246, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              476,
+              221,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Estimates were part of usual care and visible to care teams. They may be partly self-fulfilling. The authors' own word for it is advantaged nearer discharge.",
+          "x": 80,
+          "y": 526,
+          "w": 900,
+          "h": 120,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              524,
+              827,
+              41
+            ],
+            [
+              80,
+              562,
+              879,
+              41
+            ],
+            [
+              611,
+              606,
+              8,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "advantaged nearer discharge",
+          "x": 80,
+          "y": 599,
+          "w": 531,
+          "h": 49,
+          "font_px": 40,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              599,
+              531,
+              49
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "AI ESTIMATIONS",
+          "x": 80,
+          "y": 980,
+          "w": 272,
+          "h": 54,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(16, 24, 32)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              990,
+              238,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Accessible in the EHR but not enabled automatically.",
+          "x": 80,
+          "y": 1044,
+          "w": 900,
+          "h": 38,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(230, 220, 202)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1042,
+              734,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8",
+          "x": 80,
+          "y": 1245,
+          "w": 29,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 175, 158)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              29,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 175, 158)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1702,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 90.6,
+          "variance": 3307.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the comparison never saw",
+          "x": 180,
+          "y": 140,
+          "w": 820,
+          "h": 182,
+          "font_px": 94,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              228,
+              127,
+              772,
+              116
+            ],
+            [
+              647,
+              218,
+              353,
+              116
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No baseline patient demographic data were available.",
+          "x": 180,
+          "y": 396,
+          "w": 820,
+          "h": 102,
+          "font_px": 42,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              218,
+              395,
+              782,
+              52
+            ],
+            [
+              822,
+              446,
+              178,
+              52
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE STUDY FOLLOWED THE SQUIRE REPORTING GUIDELINE",
+          "x": 80,
+          "y": 1136,
+          "w": 866,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1136,
+              866,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 \u00b7 c12",
+          "x": 80,
+          "y": 1245,
+          "w": 130,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              130,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the ground inside the staked traverse is identical to the ground outside it",
+          "reads": "same",
+          "a": [
+            [
+              500,
+              880,
+              190,
+              60
+            ]
+          ],
+          "b": [
+            [
+              40,
+              880,
+              190,
+              60
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the near corner stake driven into the clay",
+          "shadow": [
+            [
+              188,
+              1088,
+              24,
+              12
+            ]
+          ],
+          "ground": [
+            [
+              70,
+              1088,
+              24,
+              12
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 1740,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 184.2,
+          "variance": 866.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "HOUSTON METHODIST",
+          "x": 80,
+          "y": 84,
+          "w": 323,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              84,
+              323,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 877,
+          "y": 84,
+          "w": 123,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              877,
+              84,
+              123,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What settles it",
+          "x": 100,
+          "y": 214,
+          "w": 900,
+          "h": 102,
+          "font_px": 106,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              444,
+              199,
+              556,
+              131
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The authors say what has to happen before anyone decides the tool's extra accuracy in some subgroups justifies the complexity of putting it in.",
+          "x": 170,
+          "y": 406,
+          "w": 830,
+          "h": 137,
+          "font_px": 35,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              295,
+              404,
+              705,
+              48
+            ],
+            [
+              202,
+              450,
+              798,
+              48
+            ],
+            [
+              189,
+              495,
+              811,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Warrants prospective, outcome-based evaluation.",
+          "x": 100,
+          "y": 640,
+          "w": 900,
+          "h": 107,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Fraunces",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              284,
+              639,
+              716,
+              54
+            ],
+            [
+              785,
+              693,
+              215,
+              54
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "JAMA NETWORK OPEN, SEPTEMBER 3RD, 2026 DOI 10.1001/JAMANETWORKOPEN.2026.32033",
+          "x": 100,
+          "y": 812,
+          "w": 900,
+          "h": 78,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              318,
+              814,
+              682,
+              35
+            ],
+            [
+              318,
+              853,
+              682,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 \u00b7 c14",
+          "x": 80,
+          "y": 1245,
+          "w": 115,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1245,
+              115,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 755,
+          "y": 1245,
+          "w": 245,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(29, 20, 13)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              755,
+              1245,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the benchmark monument standing on the prairie",
+          "shadow": [
+            [
+              384,
+              1176,
+              42,
+              14
+            ]
+          ],
+          "ground": [
+            [
+              700,
+              1176,
+              42,
+              14
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 927,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 209.9,
+          "variance": 1141.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

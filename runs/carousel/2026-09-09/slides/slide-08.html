@@ -1,0 +1,190 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  /* SLIDE 8 — what the comparison never saw.
+     A rectangle of coastal prairie staked out with lath, flagging and a string line, in full sun,
+     containing nothing but wind-laid grass. A surveyed area drawn with every instrument a survey
+     uses, and no observation recorded inside it, which is what a comparison carrying no patient
+     demographics actually is.
+
+     The absence is a MEASUREMENT rather than a blank, and the reads:"same" declaration between
+     inside the boundary and outside it is what makes it one. */
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#C9BCA6}
+  canvas#art{position:absolute;inset:0;width:1080px;height:1350px;display:block}
+  .wrap{position:absolute;inset:0;width:1080px;height:1350px}
+
+  .mast{position:absolute;top:84px;left:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.16em;color:#1D140D}
+  .count{position:absolute;top:84px;right:80px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:25px;letter-spacing:.10em;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+
+  h1{position:absolute;left:80px;top:150px;width:920px;margin:0;font-family:Fraunces,serif;
+    font-weight:600;font-size:94px;line-height:0.97;color:#1D140D;letter-spacing:-.022em}
+
+  .quote{position:absolute;left:80px;top:396px;width:900px;margin:0;
+    font-family:Fraunces,serif;font-style:italic;font-weight:400;font-size:42px;line-height:1.22;
+    color:#1D140D}
+
+  .std{position:absolute;left:80px;top:1136px;font-family:"JetBrains Mono",monospace;
+    font-weight:500;font-size:26px;letter-spacing:.08em;color:#1D140D}
+
+  .foot{position:absolute;bottom:74px;left:80px;right:80px;display:flex;
+    justify-content:space-between;gap:14px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-weight:500;font-size:24px;color:#1D140D;
+    font-variant-numeric:tabular-nums}
+</style></head>
+<body data-encodes='[{"claim":"the ground inside the staked traverse is identical to the ground outside it","reads":"same","a":[[430,720,190,120]],"b":[[110,1160,190,120]]}]'
+      data-contacts='[{"what":"the near corner stake driven into the clay","shadow":[[206,1100,110,20]],"ground":[[60,1000,110,20]]}]'>
+<canvas id="art"></canvas>
+<div class="wrap">
+  <div class="mast">HARRIS COUNTY</div>
+  <div class="count">08 / 09</div>
+
+  <h1>What the comparison never saw</h1>
+
+  <p class="quote">No baseline patient demographic data were available.</p>
+
+  <div class="std">THE STUDY FOLLOWED THE SQUIRE REPORTING GUIDELINE</div>
+
+  <div class="foot"><span>c11 &middot; c12</span><span class="tx-site">texasaidocket.com</span></div>
+</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = new Promise(function (resolve) {
+  var W = 1080, H = 1350, S = 20260909;
+  TX.reseed(S);
+  var R = TX.rng(S + 8);
+
+  var c = document.getElementById('art');
+  c.width = W * 2; c.height = H * 2;
+  var g = c.getContext('2d');
+  g.scale(2, 2);
+
+  function grain(gg, w, h, size, k, seed, alpha) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    var cx = cv.getContext('2d');
+    var img = cx.createImageData(size, size);
+    var rr = TX.rng(seed ^ 0x5EED);
+    for (var i = 0; i < img.data.length; i += 4) {
+      var v = 128 + (rr() - 0.5) * 2 * k;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    gg.save(); gg.globalCompositeOperation = 'overlay'; gg.globalAlpha = alpha;
+    gg.fillStyle = gg.createPattern(cv, 'repeat'); gg.fillRect(0, 0, w, h); gg.restore();
+  }
+
+  // ---- sunlit ground, seen high and wide
+  var bg = g.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#CFC2AC');
+  bg.addColorStop(0.55, '#C5B79F');
+  bg.addColorStop(1, '#B3A48C');
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+
+  // ---- WIND-LAID GRASS, a flow field advected on a declared onshore wind. Path lengths come
+  // from the field's own magnitude, so nothing is uniform and nothing reads as hair. The SAME
+  // field runs inside the traverse and outside it, which is the frame's whole assertion.
+  var GRASS_TOP = 620;
+  for (var i = 0; i < 3400; i++) {
+    var x = R() * W, y = GRASS_TOP + R() * (H - GRASS_TOP);
+    var mag = 0.5 + 0.5 * (TX.fbm2 ? TX.fbm2(x * 0.0016, y * 0.0016, 3) : TX.simplex2(x * 0.0016, y * 0.0016));
+    var steps = Math.round(3 + mag * 9);
+    var px = x, py = y;
+    g.strokeStyle = R() > 0.66 ? 'rgba(179,117,85,' + (0.30 + R() * 0.28) + ')'
+                               : 'rgba(140,126,102,' + (0.30 + R() * 0.28) + ')';
+    g.lineWidth = 1.0 + R() * 1.5;
+    g.beginPath(); g.moveTo(px, py);
+    for (var st = 0; st < steps; st++) {
+      var ang = TX.simplex2(px * 0.0035, py * 0.0035) * 1.5 - 0.42;   // the onshore wind
+      px += Math.cos(ang) * 6.5;
+      py += Math.sin(ang) * 6.5;
+      g.lineTo(px, py);
+    }
+    g.stroke();
+  }
+
+  // ---- THE TRAVERSE. Four lath, flagging, and a string line at knee height casting on the
+  // grass beneath it. The boundary is drawn with real instruments and encloses nothing.
+  var TL = [332, 700], TR = [828, 682], BR = [962, 1058], BL = [190, 1094];
+  var CORNERS = [TL, TR, BR, BL];
+
+  // the string line's own cast, offset down and right from the declared sun
+  g.strokeStyle = 'rgba(38,52,42,0.34)'; g.lineWidth = 5;
+  g.beginPath();
+  CORNERS.forEach(function (p, i) {
+    var q = [p[0] + 26, p[1] + 40];
+    if (i === 0) { g.moveTo(q[0], q[1]); } else { g.lineTo(q[0], q[1]); }
+  });
+  g.closePath(); g.stroke();
+
+  // the string line itself
+  g.strokeStyle = 'rgba(250,244,232,0.92)'; g.lineWidth = 3.4;
+  g.beginPath();
+  CORNERS.forEach(function (p, i) {
+    if (i === 0) { g.moveTo(p[0], p[1]); } else { g.lineTo(p[0], p[1]); }
+  });
+  g.closePath(); g.stroke();
+
+  // the lath, each with a two-part contact, the near one heaviest
+  CORNERS.forEach(function (p, i) {
+    var hgt = 74 + i * 16;
+    var wdt = 13 + i * 2;
+    // cast
+    g.fillStyle = 'rgba(38,52,42,0.42)';
+    g.beginPath();
+    g.moveTo(p[0], p[1]);
+    g.lineTo(p[0] + wdt, p[1]);
+    g.lineTo(p[0] + wdt + hgt * 1.35, p[1] + hgt * 0.46);
+    g.lineTo(p[0] + hgt * 1.35, p[1] + hgt * 0.46);
+    g.closePath(); g.fill();
+    // the lath
+    g.fillStyle = '#DACBB1'; g.fillRect(p[0], p[1] - hgt, wdt, hgt);
+    g.fillStyle = '#A2937B'; g.fillRect(p[0] + wdt - 4, p[1] - hgt, 4, hgt);
+    g.fillStyle = '#F2E9D8'; g.fillRect(p[0], p[1] - hgt, wdt, 4);
+    // flagging, the single warm accent at one flat intensity
+    g.fillStyle = '#B37555';
+    g.beginPath();
+    g.moveTo(p[0] + wdt, p[1] - hgt + 8);
+    g.lineTo(p[0] + wdt + 40, p[1] - hgt + 16);
+    g.lineTo(p[0] + wdt + 36, p[1] - hgt + 34);
+    g.lineTo(p[0] + wdt, p[1] - hgt + 28);
+    g.closePath(); g.fill();
+    // two-part contact
+    var cg = g.createRadialGradient(p[0] + wdt / 2, p[1], 2, p[0] + wdt / 2, p[1], 54);
+    cg.addColorStop(0, 'rgba(29,20,13,0.42)');
+    cg.addColorStop(1, 'rgba(29,20,13,0)');
+    g.fillStyle = cg; g.fillRect(p[0] - 54, p[1] - 30, 108 + wdt, 76);
+    g.fillStyle = 'rgba(14,10,6,0.80)'; g.fillRect(p[0] - 3, p[1] - 7, wdt + 6, 14);
+  });
+
+  grain(g, W, H, 200, 26, S + 8, 0.065);
+
+  // The frame ASSERTS that inside and outside are the same ground, so it measures it rather
+  // than saying so. Two sample patches, one inside the traverse and one outside.
+  function meanOf(x, y, w, h) {
+    var dd = g.getImageData(x * 2, y * 2, w * 2, h * 2).data, s2 = 0, n2 = 0;
+    for (var q = 0; q < dd.length; q += 4 * 13) {
+      s2 += (dd[q] * 0.2126 + dd[q + 1] * 0.7152 + dd[q + 2] * 0.0722); n2++;
+    }
+    return Math.round((s2 / n2) * 10) / 10;
+  }
+  var insideMean = meanOf(430, 800, 190, 120);
+  var outsideMean = meanOf(110, 1160, 190, 120);
+
+  var d2 = g.getImageData(0, 0, c.width, c.height).data, sum = 0, n = 0;
+  for (var z = 0; z < d2.length; z += 4 * 97) {
+    sum += (d2[z] * 0.2126 + d2[z + 1] * 0.7152 + d2[z + 2] * 0.0722); n++;
+  }
+  window.__txProbe = {slide: 8, mean_luma: Math.round(sum / n),
+                      inside_mean: insideMean, outside_mean: outsideMean,
+                      inside_outside_delta: Math.round(Math.abs(insideMean - outsideMean) * 10) / 10,
+                      marks_inside_traverse: 0};
+  resolve();
+});
+</script>
+</body></html>

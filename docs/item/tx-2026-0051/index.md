@@ -11,7 +11,7 @@ Brazoria County Commissioners Court opened and closed a public hearing on the cr
 - Public access: Public meeting
 - Take part: https://brazoriacountytx.legistar.com/MainBody.aspx
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-09
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-02 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-05 · Brazoria County's denial of the reinvestment zone still stands and the four abatement applications that depended on it are still without a zone.
 - 2026-09-08 · Brazoria County's refusal of the reinvestment zone still stands, and the four abatement applications that depended on it have not been revived.
+- 2026-09-09 · The reinvestment zone the four data center parcels needed is still denied. Brazoria County has not been asked to reconsider it.
 
 ## Evidence
 

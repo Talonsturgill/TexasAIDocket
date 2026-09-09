@@ -1,0 +1,45 @@
+{
+  "beat": "power-and-compute",
+  "findings": [
+    {
+      "headline": "Lubbock City Council held the public hearing on a citizen petition for an 18-month data center moratorium and instead passed a non-binding resolution to wait for its own rules.",
+      "what_happened": "The council took public testimony on September 8th on a petition, submitted by the group Save Lubbock with more than 3,900 verified signatures, seeking an 18-month moratorium on high water use and high energy use data centers inside the city limits. Rather than adopting the petition's ordinance, the council unanimously passed a non-binding resolution offered by District 6 Councilman Tim Collins stating that large-scale data centers will not be developed inside the city until the council has adopted regulations protecting public resources, public health and safety.",
+      "who_decided": "Lubbock City Council",
+      "when": "2026-09-08",
+      "where": {"counties": ["Lubbock"], "statewide": false, "ercot": true},
+      "quote": "I don't want an 18-month moratorium. I want us to collectively say no to this.",
+      "url": "https://www.fox34.com/2026/09/09/lubbock-city-council-passes-non-binding-resolution-regarding-data-centers-within-city-limits/",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "why_it_matters_to_a_texan": "Lubbock Power and Light sits entirely inside ERCOT, so a city that decides to hold off on data centers is holding off on load the state grid has already been asked to plan for.",
+      "unverified": ["The City of Lubbock agenda PDF could not be converted to readable text, so the official agenda item wording and the resolution number were not obtained.", "The exact vote tally beyond the word unanimous.", "The everythinglubbock.com account carrying Councilman Collins's own words returned HTTP 403."]
+    },
+    {
+      "headline": "The Texas Senate Committee on Water, Agriculture and Rural Affairs took invited and public testimony on the water use of data center cooling.",
+      "what_happened": "The committee, chaired by Senator Charles Perry, met at 9:00 am on September 1st in Room E1.012 of the Capitol Extension on an interim charge titled Assessing the Water Demands of Energy-Intensive Technologies.",
+      "who_decided": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
+      "when": "2026-09-01",
+      "where": {"counties": ["Travis"], "statewide": true, "ercot": false},
+      "quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers. Make recommendations to improve transparency for local water providers and ensure industrial growth does not compromise the affordability of water for Texas residents and agricultural producers.",
+      "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.HTM",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "why_it_matters_to_a_texan": "The charge puts the cost of a household's water bill and a farmer's irrigation in the same sentence as data center cooling.",
+      "unverified": ["What was actually said in the hearing.", "Whether the committee took any vote or issued any recommendation on the day."]
+    },
+    {
+      "headline": "ERCOT set an October 6th workshop to present how it proposes to curtail large loads under Senate Bill 6, including registration requirements.",
+      "what_happened": "ERCOT issued market notice M-A090226-01 on September 2nd to Large Load Customers, Qualified Scheduling Entities, Transmission Service Providers and other stakeholders. The workshop will cover the proposed Large Load Curtailment Manager, the registration process, and draft revision requests covering curtailment tied to net metering projects under PURA section 39.169 and backup generation under section 37.0561(e).",
+      "who_decided": "Electric Reliability Council of Texas (ERCOT)",
+      "when": "2026-09-02",
+      "where": {"counties": [], "statewide": false, "ercot": true},
+      "quote": "On October 6, 2026 ERCOT will host a workshop to present the deployment mechanics, registration process, and draft revision requests for Large Load curtailment under Senate Bill 6 (SB6).",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A090226-01",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "why_it_matters_to_a_texan": "This is the step where the legal power to switch a data center off gets turned into an actual button, a registry and a piece of software.",
+      "unverified": ["A byte-for-byte match against the page source was not confirmed.", "The specific NPRR, NOGRR and PGRR numbers of the draft revision requests.", "Whether the workshop is open to the public or to registered market participants only."]
+    }
+  ],
+  "nothing_found": false
+}
