@@ -344,6 +344,46 @@ Two of three judges scored variety at 5.0 and 5.5 for it and both were right. **
 for this date.** The artwork entry records it as a breach and requires the next deck dark.
 
 
+### A review bot found six things on the public record and it was right about all six
+
+Codex left seven findings on PR 273. **Six were real, mine, and are fixed. One is real and is not
+this run's to fix.** Two of the six are the same class this run spent five scoring rounds on: an
+assertion the record does not license.
+
+- **`tx-2026-0129` asserted two findings its own claims file REJECTED.** The summary said "The
+  study names no vendor and no product", which `claims.json` rejects by name because an absence
+  this retrieval path cannot prove is not a fact. It also placed the authors at named institutions,
+  and the affiliations are rejected too, on string integrity. Both are gone. The bot named the
+  first. The second I found beside it.
+- **`tx-2026-0130` said the council PASSED a resolution and was marked `decided`.** The three
+  claims behind it are a pre-meeting agenda that says "Consider a resolution" and one speaker's
+  remark. Nothing establishes a vote or an outcome. The title, the status and the sentence saying
+  the council did not adopt the ordinance are all corrected to what the agenda carries.
+- **`tx-2026-0131` said ERCOT would "switch a large load off".** Every cited passage says curtail
+  or reduce consumption. The title now says curtail.
+- **The geography answer told non-ERCOT Texans an ERCOT rule covers them.** `schema.py` answered
+  "Where in Texas does it apply?" with a flat "It applies statewide." for `tx-2026-0001` and
+  `tx-2026-0002`. **The flag was not the defect and flipping it was not the fix**: reverting
+  `statewide` to false made `site_build` refuse to build, because `gate_schema` requires an item to
+  name counties or be statewide and there is no third value. The SENTENCE was wrong, and it now
+  answers with the ERCOT region when `on_ercot` is set.
+- **The shipped `claims.json` carried four claims belonging to other stories.** `load_runs` passes
+  every object in that file to `article_page`, so the published September 9th article announced 18
+  verified claims and appended the ERCOT and Lubbock findings beneath the hospital deck. Confirmed
+  by reading the built page. The file is scoped to the deck's own evidence now, and both record
+  items carry their own quotes and urls independently, so nothing was lost.
+- **A closed comment window promised a date the page may not carry.** The answer said the item page
+  carries the date the window closed; `gate_schema` requires `public_access.closes` and not a
+  matching key date, and the page's clock disappears after the deadline. It now states only what
+  is true of every item that reaches it.
+
+**The one not fixed, and why.** The bot reported `tx-2026-0126` as a duplicate of `tx-2026-0096`,
+the same Senate committee sitting on the same day. It is right that they overlap. `tx-2026-0126`
+was admitted by the **2026-09-07** run, whose history stamp is its only one, so it is not this
+run's item; this diff touches it because this run re-verified it. Folding it into `tx-2026-0096`
+would retire a published item id and remove a live page, which is the class CLAUDE.md says stops
+and asks. It is flagged on the PR and left for a maintainer.
+
 ## Phase 19, what actually landed
 
 **The `score` row in the block above reads STALE and that is correct rather than an oversight.**
@@ -378,7 +418,7 @@ reason.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 18 verified claim(s) |
+| claims         | PASS   | 14 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | PASS   | 9 slide(s), zero fails, zero warns |
 | aggregates     | PASS   | 8 declaration(s), 14 numeric phrase(s) in the render, all re-derived |
@@ -387,7 +427,7 @@ reason.
 | labels         | PASS   | 30 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 8 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
-| dossiers       | PASS   | 51,428 chars planned |
+| dossiers       | PASS   | 52,731 chars planned |
 | caption        | PASS   | 144 words |
 | craft floor    | PASS   | 9 frame(s), median 844, floor 152 |
 | plan vs render | PASS   | 13 of 58 acceptance item(s) checkable |

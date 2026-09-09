@@ -576,9 +576,15 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
         add(f"{t}. Can the public comment on it?",
             how or "A comment window is open. The item page carries the filing route.")
     elif room == "comment_closed":
+        # NO PROMISE ABOUT A DATE THIS ANSWER CANNOT SEE. It used to say the item page carries
+        # the date the window closed. `gate_schema` requires `public_access.closes` and does NOT
+        # require a matching `comment_closes` key date, and the page's clock disappears once the
+        # deadline passes, so an otherwise valid item can show no close date while this sentence
+        # promises one. A review bot found it on the same run that wrote the branch. The answer
+        # now states only what is true of every item that reaches it.
         add(f"{t}. Can the public take part?",
-            "The comment window on this decision has closed. The item page carries the date it "
-            "closed and the deciding body is still named and reachable.")
+            "The comment window on this decision has closed. The deciding body is still named on "
+            "the item page and is still reachable.")
     elif room == "open_meeting":
         add(f"{t}. Can the public take part?",
             how or "A public meeting is scheduled where testimony is possible.")
@@ -595,7 +601,19 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
     # twenty two of them is not an answer anybody reads.
     counties = _counties(it)
     if g.get("statewide"):
-        add(f"{t}. Where in Texas does it apply?", "It applies statewide.")
+        # AN ERCOT MARKET RULE DOES NOT APPLY IN EVERY COUNTY, and this answer used to say it
+        # did. `statewide` in this record means a statewide body acted and the door is open to
+        # any Texan, which is the reading tx-2026-0024 established. Applicability is a different
+        # question, and `on_ercot` is the record's own signal for it. A review bot found the two
+        # collapsed into one sentence on 2026-09-09, telling readers outside ERCOT that a rule
+        # governing the ERCOT region covers them.
+        #
+        # The flag is not the defect and flipping it is not the fix: gate_schema refuses an item
+        # that names no county and is not statewide, so there is no third value to set. The
+        # sentence is what was wrong.
+        add(f"{t}. Where in Texas does it apply?",
+            "It is a statewide body's action and it governs the ERCOT region rather than every "
+            "county." if g.get("on_ercot") else "It applies statewide.")
     elif g.get("metro") and not counties:
         add(f"{t}. Where in Texas does it apply?", f"It applies in the {g['metro']} area.")
     elif counties:

@@ -146,49 +146,6 @@
       "source_type": "primary_official",
       "retrieved": "2026-09-09",
       "confidence": "high"
-    },
-    {
-      "id": "c15",
-      "text": "ERCOT told the market it will hold a workshop on October 6th, 2026 covering how large load curtailment under Senate Bill 6 is meant to work.",
-      "quote": "On October 6, 2026 ERCOT will host a workshop to present the deployment mechanics, registration process, and draft revision requests for Large Load curtailment under Senate Bill 6 (SB6).",
-      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A090226-01",
-      "source_title": "ERCOT Market Notice M-A090226-01, September 2nd, 2026",
-      "source_type": "primary_official",
-      "retrieved": "2026-09-09",
-      "confidence": "high"
-    },
-    {
-      "id": "c16",
-      "text": "Senate Bill 6 put three large load provisions into PURA. One lets ERCOT order large loads to cut what they draw from the grid during emergency conditions. It applies where their backup generation covers a stated share of their own demand.",
-      "quote": "SB6 established several provisions in PURA related to Large Loads, including an authorization for the PUC to require Large Loads that co-locate with existing Generation Resources to reduce consumption during certain events (section 39.169); an authorization for ERCOT to require Large Loads with backup generation serving at least 50% of their load to curtail their grid consumption when necessary to mitigate actual or potential EEA conditions (section 37.0561(e)); and a requirement for the PUC to establish a large load demand management service (section 39.170).",
-      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A090226-01",
-      "source_title": "ERCOT Market Notice M-A090226-01, September 2nd, 2026",
-      "source_type": "primary_official",
-      "retrieved": "2026-09-09",
-      "confidence": "high",
-      "note": "The 50% threshold stays inside the quote. Copy may not restate it, round it or call it 'half'."
-    },
-    {
-      "id": "c17",
-      "text": "The council's own agenda states what the September 8th public hearing was on, and the part of the city charter a citizen petition brought it under.",
-      "quote": "Public Hearing - City Secretary: Conduct a public hearing in accordance with Chapter 1, Article IV, Section 1 of the City of Lubbock Charter, regarding an \"18-month moratorium on high-water-use and high-energy-use data centers in the City of Lubbock, Lubbock County, Texas.\"",
-      "url": "https://www.mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225",
-      "source_title": "City of Lubbock, Regular City Council Meeting agenda, September 8th, 2026",
-      "source_type": "primary_official",
-      "retrieved": "2026-09-09",
-      "confidence": "high",
-      "note": "Verified by exact string match against the text of the agenda PDF, extracted with pypdf in this run, alongside an altered control that correctly failed to match. The fact-checker could not read this document at all and rejected it as UNREADABLE rather than as false."
-    },
-    {
-      "id": "c18",
-      "text": "The agenda states what the resolution beside the hearing would do, and what it waits on.",
-      "quote": "Resolution - City Council: Consider a resolution expressing the City Council's desire that large-scale data centers not be developed within the municipal limits of the City of Lubbock, until the City Council has adopted regulations protecting public resources and the public health and safety.",
-      "url": "https://www.mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225",
-      "source_title": "City of Lubbock, Regular City Council Meeting agenda, September 8th, 2026",
-      "source_type": "primary_official",
-      "retrieved": "2026-09-09",
-      "confidence": "high",
-      "note": "Same verification as c17. A resolution states a desire and an ordinance states a rule, and this quote is what keeps the two apart."
     }
   ],
   "rejected": [
@@ -212,5 +169,6 @@
       "finding": "The shareholder securities suit against Innventure over an AI data center cooling deal",
       "reason": "No docket number, division or assigned judge was obtained, and a CourtListener RECAP search of the Southern District of Texas returned nothing, so the filing could not be confirmed against a primary court record."
     }
-  ]
+  ],
+  "note_on_scope": "c15 to c18 were verified by this run and belong to the ERCOT workshop notice and the Lubbock charter hearing, which are RECORD items (tx-2026-0131 and tx-2026-0130) rather than deck evidence. They sat here until a review bot pointed out that load_runs passes every object in this file to article_page, so the published September 9th article announced 18 verified claims and appended four findings about other stories beneath the hospital deck. Both record items carry their own claims with verbatim_quote, source_url and fetched, so nothing is lost by scoping this file to the deck's own evidence."
 }

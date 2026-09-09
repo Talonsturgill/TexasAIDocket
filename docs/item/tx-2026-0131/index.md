@@ -1,4 +1,4 @@
-# The grid operator sets an October 6th workshop on how it would actually switch a large load off under Senate Bill 6
+# The grid operator sets an October 6th workshop on how it would curtail a large load under Senate Bill 6
 
 ERCOT issued a market notice on September 2nd, 2026 setting a workshop for October 6th. The workshop presents the deployment mechanics, the registration process and the draft revision requests for curtailing large loads under Senate Bill 6. The notice names the three provisions the bill put into the Public Utility Regulatory Act. One lets the commission require a large load co-located with an existing generation resource to reduce consumption during certain events. One lets the grid operator require a large load with backup generation serving at least half its load to curtail grid consumption to head off an emergency. One requires the commission to establish a large load demand management service. The workshop is the step where a legal authority becomes a registry and a piece of software.
 

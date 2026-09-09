@@ -139,7 +139,7 @@
       ],
       "last_verified": "2026-09-09",
       "confidence": "high",
-      "notes_for_editor": "This is the rulemaking most directly downstream of SB 6 (89R). The docket record itself does not recite SB 6 in the case style, so the SB 6 linkage is asserted separately in the SB 6 item and should not be presented here as something the PUCT record states. The underlying proposal PDF is at https://interchange.puc.texas.gov/Documents/58000_9_1664204.PDF and was NOT parsed: no PDF text extractor was available in this environment. A follow up should read it and pull the four coincident peak allocation language directly. Party names are reproduced exactly as the Interchange spells them, including its truncation of long filing descriptions.",
+      "notes_for_editor": "This is the rulemaking most directly downstream of SB 6 (89R). The docket record itself does not recite SB 6 in the case style, so the SB 6 linkage is asserted separately in the SB 6 item and should not be presented here as something the PUCT record states. The underlying proposal PDF is at https://interchange.puc.texas.gov/Documents/58000_9_1664204.PDF and was NOT parsed: no PDF text extractor was available in this environment. A follow up should read it and pull the four coincident peak allocation language directly. Party names are reproduced exactly as the Interchange spells them, including its truncation of long filing descriptions. Geography is statewide on the reading tx-2026-0024 established, that a statewide body acted under the Texas Administrative Code and the comment door is open to any Texan. `on_ercot` carries that the rule governs the ERCOT market. A review bot read the generated answer as telling non-ERCOT Texans the rule covers them, and it was right about the SENTENCE: it said 'It applies statewide.' flat. The flag was not the defect and could not be the fix, because gate_schema refuses an item that names no county and is not statewide, so there is no third value. schema.py now answers the applicability question with the ERCOT region when on_ercot is set.",
       "history": [
         {
           "date": "2026-08-16",
@@ -412,7 +412,7 @@
       ],
       "last_verified": "2026-09-07",
       "confidence": "high",
-      "notes_for_editor": "The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF. A follow up should watch for the commission setting a reply comment deadline or moving the proposal to adoption, since the next dated event is the thing a reader would act on.",
+      "notes_for_editor": "The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF. A follow up should watch for the commission setting a reply comment deadline or moving the proposal to adoption, since the next dated event is the thing a reader would act on. Geography is statewide on the reading tx-2026-0024 established, that a statewide body acted under the Texas Administrative Code and the comment door is open to any Texan. `on_ercot` carries that the rule governs the ERCOT market. A review bot read the generated answer as telling non-ERCOT Texans the rule covers them, and it was right about the SENTENCE: it said 'It applies statewide.' flat. The flag was not the defect and could not be the fix, because gate_schema refuses an item that names no county and is not statewide, so there is no third value. schema.py now answers the applicability question with the ERCOT region when on_ercot is set.",
       "history": [
         {
           "date": "2026-08-19",
@@ -13760,7 +13760,7 @@
     },
     {
       "title": "Case managers beat Houston Methodist's discharge AI on the last day",
-      "summary": "JAMA Network Open published a quality improvement study on September 3rd, 2026. It compared discharge dates from a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. The authors are at the Texas A and M School of Engineering Medicine in Houston and in the Department of Medicine at Houston Methodist Hospital. The study names no vendor and no product. It reports estimation accuracy rather than any effect on a patient, and says so.",
+      "summary": "JAMA Network Open published a quality improvement study on September 3rd, 2026. It compared discharge dates from a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. It reports estimation accuracy rather than any effect on a patient, and says so.",
       "topic": "health-and-education",
       "decider": {
         "name": "Houston Methodist Hospital",
@@ -13872,8 +13872,8 @@
       ]
     },
     {
-      "title": "Lubbock heard a citizen petition for an 18 month data center moratorium and passed a resolution instead",
-      "summary": "The Lubbock City Council held a public hearing on September 8th, 2026 on a citizen petition brought under the city charter. The petition asks for an 18 month moratorium on high water use and high energy use data centers inside the city. The council did not adopt the petition's ordinance. It took up a separate resolution stating the council's desire that large scale data centers not be developed inside the municipal limits. That waits on the council adopting regulations to protect public resources and public health and safety. A resolution states a desire and an ordinance states a rule, and the two items sat next to each other on the same agenda.",
+      "title": "Lubbock heard a citizen petition for an 18 month data center moratorium",
+      "summary": "The Lubbock City Council held a public hearing on September 8th, 2026 on a citizen petition brought under the city charter. The petition asks for an 18 month moratorium on high water use and high energy use data centers inside the city. The same agenda carried a separate resolution stating the council's desire that large scale data centers not be developed inside the municipal limits. That resolution waits on the council adopting regulations to protect public resources and public health and safety. A resolution states a desire and an ordinance states a rule, and the two items sat next to each other on the same agenda. The agenda and one speaker at the hearing are what is on the record so far. Neither says what the council did with either item.",
       "topic": "data-centers",
       "decider": {
         "name": "Lubbock City Council",
@@ -13887,7 +13887,7 @@
         "on_ercot": true,
         "metro": "Lubbock, TX"
       },
-      "status": "decided",
+      "status": "pending",
       "confidence": "high",
       "key_dates": [
         {
@@ -13940,7 +13940,7 @@
       ]
     },
     {
-      "title": "The grid operator sets an October 6th workshop on how it would actually switch a large load off under Senate Bill 6",
+      "title": "The grid operator sets an October 6th workshop on how it would curtail a large load under Senate Bill 6",
       "summary": "ERCOT issued a market notice on September 2nd, 2026 setting a workshop for October 6th. The workshop presents the deployment mechanics, the registration process and the draft revision requests for curtailing large loads under Senate Bill 6. The notice names the three provisions the bill put into the Public Utility Regulatory Act. One lets the commission require a large load co-located with an existing generation resource to reduce consumption during certain events. One lets the grid operator require a large load with backup generation serving at least half its load to curtail grid consumption to head off an emergency. One requires the commission to establish a large load demand management service. The workshop is the step where a legal authority becomes a registry and a piece of software.",
       "topic": "power-and-the-grid",
       "decider": {

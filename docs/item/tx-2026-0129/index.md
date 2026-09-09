@@ -1,6 +1,6 @@
 # Case managers beat Houston Methodist's discharge AI on the last day
 
-JAMA Network Open published a quality improvement study on September 3rd, 2026. It compared discharge dates from a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. The authors are at the Texas A and M School of Engineering Medicine in Houston and in the Department of Medicine at Houston Methodist Hospital. The study names no vendor and no product. It reports estimation accuracy rather than any effect on a patient, and says so.
+JAMA Network Open published a quality improvement study on September 3rd, 2026. It compared discharge dates from a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. It reports estimation accuracy rather than any effect on a patient, and says so.
 
 - Topic: health-and-education
 - Decided by: Houston Methodist Hospital (company)

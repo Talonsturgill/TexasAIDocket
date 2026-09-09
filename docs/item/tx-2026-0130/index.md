@@ -1,13 +1,13 @@
-# Lubbock heard a citizen petition for an 18 month data center moratorium and passed a resolution instead
+# Lubbock heard a citizen petition for an 18 month data center moratorium
 
-The Lubbock City Council held a public hearing on September 8th, 2026 on a citizen petition brought under the city charter. The petition asks for an 18 month moratorium on high water use and high energy use data centers inside the city. The council did not adopt the petition's ordinance. It took up a separate resolution stating the council's desire that large scale data centers not be developed inside the municipal limits. That waits on the council adopting regulations to protect public resources and public health and safety. A resolution states a desire and an ordinance states a rule, and the two items sat next to each other on the same agenda.
+The Lubbock City Council held a public hearing on September 8th, 2026 on a citizen petition brought under the city charter. The petition asks for an 18 month moratorium on high water use and high energy use data centers inside the city. The same agenda carried a separate resolution stating the council's desire that large scale data centers not be developed inside the municipal limits. That resolution waits on the council adopting regulations to protect public resources and public health and safety. A resolution states a desire and an ordinance states a rule, and the two items sat next to each other on the same agenda. The agenda and one speaker at the hearing are what is on the record so far. Neither says what the council did with either item.
 
 - Topic: data-centers
 - Decided by: Lubbock City Council (city)
 - Where: Lubbock
 - Statistical areas:
   - Lubbock, TX
-- Status: decided
+- Status: pending
 - Public access: Public meeting
 - Take part: https://www.mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225
 

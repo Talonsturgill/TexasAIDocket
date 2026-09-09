@@ -1,6 +1,6 @@
 {
   "claims_verified": {
-    "value": 18,
+    "value": 14,
     "from_items": [],
     "note": "Claims this run fetched and verified, counted over claims.json."
   },
@@ -10,9 +10,9 @@
     "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
   },
   "source_documents": {
-    "value": 3,
+    "value": 1,
     "from_items": [],
-    "note": "Distinct source urls across every claim this run verified, counted over claims.json. Three, because the run verified the ERCOT and Lubbock claims too. The DECK cites one, which quantifiers.json asserts separately over the ids the frames actually print."
+    "note": "Distinct source urls behind the claims this deck rests on, counted over claims.json. One, which is what a single study is."
   },
   "figures_quoted": {
     "value": 5,
