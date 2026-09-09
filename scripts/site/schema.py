@@ -242,6 +242,13 @@ def authorised_numerals(it: dict, today: str) -> set:
 # incapable of disagreeing.
 import numeral_lint as _nl                                                        # noqa: E402
 
+# THE SAME ARGUMENT, FOR STATE RATHER THAN FOR NUMERALS. `docket_build.window_state` owns
+# whether a comment window is open TODAY, and it is imported here for exactly the reason
+# `numeral_lint` above is: a second copy of that arithmetic is a second copy that will
+# eventually disagree. `site_context` imports this module, so the helper is taken from
+# `docket_build`, which imports neither.
+import docket_build as _dk                                                        # noqa: E402
+
 
 def numerals_in(text: str) -> list:
     return _nl.NUMERAL.findall(text or "")
@@ -543,9 +550,35 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
     # claim only what that room actually means. Saying "no formal process" there was wrong on
     # real items and is a fault this project already paid for once.
     room, how = pa.get("room"), (pa.get("how") or "").strip()
+
+    # THE ROOM THE READER IS STANDING IN TODAY, NOT THE KIND OF ROOM THE LEDGER RECORDED.
+    #
+    # Found on 2026-09-09 by the Phase 7 look, on the live page. `/questions/` counted SIX
+    # decisions under "Where a comment window is open", described on that page as "The
+    # decisions taking written comment right now". Three of the six had shut, on August 11th,
+    # August 31st and the day before the build. Each of those three was also being told, in
+    # its own answer, that a comment window is open, and one of them carried a headline saying
+    # its deadline had been reached.
+    #
+    # This is the badge defect exactly, in a second place. `site_context.effective_room`
+    # already carries the fix and its docstring already carries the argument, which is that
+    # green on this site is a promise a door is open to a reader RIGHT NOW. The badge learned
+    # and the questions page did not, because nothing tied the two together. So the answer is
+    # not to repeat the arithmetic here, it is to ask the one function that owns it.
+    #
+    # A shut window is not silence. The record still holds what the window was and when it
+    # closed, and a reader who arrives late is better served by that than by a page that skips
+    # the question, which is the other thing GATE_LESSONS 44 warns about.
+    if room == "open_comment" and _dk.window_state(it, today) == "closed":
+        room = "comment_closed"
+
     if room == "open_comment":
         add(f"{t}. Can the public comment on it?",
             how or "A comment window is open. The item page carries the filing route.")
+    elif room == "comment_closed":
+        add(f"{t}. Can the public take part?",
+            "The comment window on this decision has closed. The item page carries the date it "
+            "closed and the deciding body is still named and reachable.")
     elif room == "open_meeting":
         add(f"{t}. Can the public take part?",
             how or "A public meeting is scheduled where testimony is possible.")
@@ -898,6 +931,32 @@ def self_test() -> int:
     ok("...and no geography answer is invented",
        not any("Where in Texas" in q for q, _ in bp), str([q for q, _ in bp]))
     ok("...but what the record does hold is still answered", len(bp) >= 3, str(len(bp)))
+
+    # A SHUT COMMENT WINDOW IS NOT AN OPEN ONE, and until 2026-09-09 nothing here could tell.
+    #
+    # `/questions/` published SIX decisions under "The decisions taking written comment right
+    # now" while three of the six had closed, one of them the day before the build, and each of
+    # those three was told in its own answer that a comment window was open. Every check in this
+    # file passed on that page, because all of them read the STORED room and none of them read
+    # the clock.
+    #
+    # Both directions are asserted, because a gate that only proves the shut case would pass a
+    # build that had stopped saying anything is ever open.
+    def _window(closes):
+        return {"id": "x", "title": "A dated window", "summary": "A summary.",
+                "topic": "state-policy", "status": "open", "decider": {}, "geography": {},
+                "key_dates": [{"date": closes, "kind": "comment_closes", "note": ""}],
+                "public_access": {"room": "open_comment", "closes": closes, "how": ""},
+                "claims": [], "last_verified": today}
+
+    shut = [q for q, _ in qa_pairs(ctx, _window("2026-08-01"), today)]
+    live = [q for q, _ in qa_pairs(ctx, _window("2026-12-01"), today)]
+    ok("a window that closed is not asked whether the public can comment on it",
+       not any("comment on it" in q for q in shut), str(shut))
+    ok("...and is still answered, on the question it can honestly answer",
+       any("take part" in q for q in shut), str(shut))
+    ok("...while a window still open IS asked whether the public can comment on it",
+       any("comment on it" in q for q in live), str(live))
 
     # SUBJECT AND VERB AGREE, over every answer the real ledger produces.
     #
