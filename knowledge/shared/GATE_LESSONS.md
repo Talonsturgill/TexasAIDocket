@@ -2389,3 +2389,70 @@ to be wrong.
 And an early warning nothing prints is not an early warning. Entry 71 asked for the distance to be
 published and the run that answered it wrote a function. Wiring it to a surface a person reads is
 the part that was the deliverable, and it is the part that was skipped.
+
+## 73. A whole family of questions went dark for a week, and the harness printed all passed every day
+
+`tests/ask_worker_retrieval.mjs` scores the ask box's retriever against a gold set built from
+the record. On 2026-09-10 it was asked, for the first time in a week, to explain a number:
+
+```
+construction  n=61  sent 4.9%  first 4.9%
+```
+
+Fifty eight of sixty one county construction questions had no longer been putting the county's
+own block in the prompt at all. "Dallas county construction" retrieved six blocks and
+`county-dallas` was not among them. The recorded baseline for that kind was `sent 100`.
+
+**It started on 2026-09-03, when a hundred and fifty data center dossiers were admitted.** The
+retriever gives each family a corroboration bar of two discriminating words. Inside the sixty
+one blocks each titled "Construction registered in X County", the words "county" and
+"construction" are that family's own boilerplate and correctly fall below the informativeness
+floor, so one word is left and the bar was never reachable. The county family scored its own
+block FIRST in its own fused list, with one term, and then discarded it for having one.
+
+That had always been true. What carried those questions was the floor, the fallback that runs
+when nothing anywhere corroborated, and it is conditioned on the whole slice coming back short.
+The dossiers gave the facility family enough blocks to corroborate on its own, the slice stopped
+coming back short, the floor stopped running, and the one family the question actually named
+lost its seat in silence.
+
+**A rescue conditioned on the SIZE of the result is a rescue that disappears exactly when the
+record grows.** Nothing changed in the county family, in its blocks, or in the code that scores
+it. A different family got bigger.
+
+**And the harness measured it correctly every single run and reported `all passed`.** The
+per-kind rows were computed. They were printed. The only thing compared against the recorded
+baseline was three TOTALS, and a whole family falling from 100 to 4.9 moved the overall `sent`
+from 98.3 to 90.7. Seven points reads as drift, and the run before it had drifted too, because
+the baseline had been recorded when the record held 98 items and now held 123.
+
+```
+  sent    98.3 ->  90.7  -7.6      <- what the harness compared
+  construction  100 -> 4.9  -95.1  <- what had actually happened
+```
+
+**A TOTAL IS AN AVERAGE AND AN AVERAGE HIDES A ZERO.** Both numbers were true. One of them was
+about the product.
+
+**The stale fixture is the second half and it is not a separate fault.** The gold set is
+generated from the record at run time and the baseline is a committed file, so every admission
+moves the comparison a little. That is by design and it is fine, right up to the point where
+everything is always moving a bit, at which point a real collapse is indistinguishable from a
+Tuesday. Drift is what makes a real signal unreadable.
+
+**Generalises to.** Three, and the third is the one that costs the most.
+
+Compare what you compute. The rows existed, cost nothing, and were already on the screen. A
+harness that computes a per-kind breakdown and compares only the total has decided that the
+breakdown is for humans, and humans read the total.
+
+An average over kinds is not a measure of a product with kinds. Whatever is scored by category
+needs a per-category floor that fails, separate from the aggregate that drifts. The floor here
+is not a tight threshold and must not become one, for the reason that file already gives about
+measurements people learn to route around. It asks only whether something that used to work has
+STOPPED working, which is a broken product rather than a worse number.
+
+And a fallback is load bearing exactly when nobody is looking at it. Where a path exists to
+rescue a case the main path cannot serve, the condition on that path is a live dependency of
+the case, and it belongs in the case's own gate. This one was gated on an unrelated family's
+document count without anybody choosing that.

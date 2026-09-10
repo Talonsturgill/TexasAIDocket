@@ -347,6 +347,7 @@ head("H. the regression that is not allowed");
 ok("a question sharing nothing with the record sends no decision at all",
   nonsenseAnswered.length === 0, nonsenseAnswered.slice(0, 2).join(" | "));
 
+
 // ---------------------------------------------------------------- baselines
 const against = flag("--against");
 if (against && fs.existsSync(against)) {
@@ -357,9 +358,56 @@ if (against && fs.existsSync(against)) {
     console.log(`  ${label.padEnd(22)} ${String(b).padStart(6)} -> ${String(a).padStart(6)}` +
                 `  ${d === 0 ? "same" : (d > 0 ? "+" : "") + d}`);
   };
+  // EVERY ROW, NOT THREE TOTALS. The rows existed and were printed for the current run only,
+  // so a reader had to hold the baseline file in their head to see a family go dark. They are
+  // compared here for the same reason they are computed, which is that the totals cannot show
+  // which half of the record stopped working.
+  console.log("  by kind, sent then first");
+  const kindNames = [...new Set([...Object.keys(was.by_kind || {}),
+                                 ...Object.keys(now.by_kind)])].sort();
+  for (const kind of kindNames) {
+    const b = (was.by_kind || {})[kind], a = now.by_kind[kind];
+    const cell = (x, y) => {
+      if (x == null) return "new";
+      if (y == null) return "gone";
+      const d = +(y - x).toFixed(1);
+      return `${x} -> ${y}${d === 0 ? "" : (d > 0 ? "  +" : "  ") + d}`;
+    };
+    console.log(`    ${kind.padEnd(16)} ${cell(b && b.sent, a && a.sent).padEnd(22)}` +
+                `${cell(b && b.first, a && a.first)}`);
+  }
+  console.log("  overall");
   move("sent", now.total.sent, was.total.sent);
   move("first", now.total.first, was.total.first);
   move("mean tokens", now.tokens.mean, was.tokens.mean);
+
+  // AND A FAMILY GOING DARK, which is the one this file watched happen and did not report.
+  //
+  // On 2026-09-03 a hundred and fifty dossiers were admitted. From that build until 2026-09-10
+  // `construction` scored `sent 4.9`, down from 100, which means fifty eight of sixty one county
+  // construction questions no longer had the county's own block in the prompt at all. This file
+  // measured it correctly every single run and printed `all passed`, because the only thing it
+  // compared against the baseline was three TOTALS, and a whole family collapsing moved the total
+  // by seven points and looked like drift.
+  //
+  // A TOTAL IS AN AVERAGE AND AN AVERAGE HIDES A ZERO. The per kind rows were already computed
+  // and already printed. Nothing read them.
+  //
+  // This is deliberately NOT a tight threshold, for the reason section H opens with. It does not
+  // police drift and it never asks whether a kind got better. It asks whether a kind that used to
+  // work has STOPPED working, which is a broken product rather than a worse number, and half is
+  // far enough below any real movement that reaching it means something is off rather than
+  // slightly worse.
+  const COLLAPSE = 0.5;
+  const gone = [];
+  for (const [kind, before] of Object.entries(was.by_kind || {})) {
+    const after = now.by_kind[kind];
+    if (!after) { gone.push(`${kind} is not scored any more`); continue; }
+    if (before.sent >= 50 && after.sent < before.sent * COLLAPSE) {
+      gone.push(`${kind} sent ${before.sent} -> ${after.sent}`);
+    }
+  }
+  ok("no kind that used to work has stopped working", gone.length === 0, gone.join(" | "));
 }
 const baseline = flag("--baseline");
 if (baseline) {

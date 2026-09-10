@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-OSLZ5CCR2QAxZ0EmcvZCji9nlNKo/ppG1ao86i6vTZU=' 'sha256-mB8WsUj8bRDHy7QteufEULzxz6omcNpy4H/ddldmFwM=' 'sha256-VcadWbz1Dv96Dtva6/g3j2rjIra+p5oIwlKvHAcpiOo=' 'sha256-YIpRnI/6qU6nNuugZQGgKy8EGBG9DP7tTIdDHEc/gtQ=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-OSLZ5CCR2QAxZ0EmcvZCji9nlNKo/ppG1ao86i6vTZU=' 'sha256-mB8WsUj8bRDHy7QteufEULzxz6omcNpy4H/ddldmFwM=' 'sha256-D0rlpZ8W87Ot/T9bSlA6wo9IVjfMGlwWa/yHvrBhpv0=' 'sha256-YIpRnI/6qU6nNuugZQGgKy8EGBG9DP7tTIdDHEc/gtQ=' 'sha256-lUdIgctNtjcGmdnpl1l2te9lG9RBPZIap0Jc+JGXCmc=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The record · Texas AI Docket</title>
@@ -178,6 +178,29 @@ var askFrame = new Set(("what which who whom whose when where why how whether " 
   "want wants need needs please thanks thank hello " +
   "anything something everything nothing anyone someone everyone " +
   "just also very really still even ever never always").split(" "));
+
+/* HOW MANY OF THIS QUERY'S WORDS COULD CORROBORATE IN THIS INDEX AT ALL.
+   `terms` below counts the discriminating words a DOCUMENT matched. This counts the
+   discriminating words the QUERY HAS here, which is the ceiling on what any document in this
+   index could possibly score. A caller insisting on more corroboration than this number is
+   insisting on evidence that cannot exist, and it will get silence rather than a weaker
+   answer. Same threshold as `terms`, from the same constant, because a second copy of it is
+   two answers that agree until somebody tunes one of them.
+
+   A WORD NO DOCUMENT CARRIES COUNTS, AND THAT IS THE POINT. An unfamiliar word is a reason to
+   want more corroboration rather than less, so "dallas county construction marathon" keeps the
+   full bar in every family while "dallas county construction" does not. */
+function askReach(idx, query) {
+  var qs = askTokens(query).filter(function (w) {
+    return w.length > 2 && !askFrame.has(w);
+  });
+  var n = 0;
+  qs.forEach(function (w) {
+    var df = idx.df[w] || 0;
+    if (Math.log(1 + (idx.N - df + 0.5) / (df + 0.5)) >= 1.0) n += 1;
+  });
+  return n;
+}
 
 function askBm25(idx, query) {
   var qs = askTokens(query).filter(function (w) {
