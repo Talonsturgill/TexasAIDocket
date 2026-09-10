@@ -217,6 +217,18 @@ jobs:
       - name: Every entity resolves and every group states its reason
         run: python3 scripts/site/entities.py
 
+      # THE SAME PROBLEM IN THE DOCKET, and it was live for as long as anybody has been asking.
+      # The record spelled the National Science Foundation three ways and every surface counted
+      # them as three agencies, so a reader asking what the NSF had decided was handed four of
+      # its thirteen decisions and no reason to doubt it. The gate that matters is the second
+      # one: a decider whose name ends another decider's name is a body about to split, and it
+      # has to be declared the same or distinct, with a reason, before it can pass.
+      - name: Decider resolution self-test (one body, however many ways the record spells it)
+        run: python3 scripts/site/deciders.py --self-test
+
+      - name: Every decider resolves and every collision is declared
+        run: python3 scripts/site/deciders.py
+
       # THE SECOND STATE REGISTER. The parser drops every person in a filing before anything
       # reaches a file, and the gate checks again on what landed. The grouping self-tests carry
       # the three real shapes that would overstate a buildout: a designation filed twice, a range

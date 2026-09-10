@@ -2456,3 +2456,67 @@ And a fallback is load bearing exactly when nobody is looking at it. Where a pat
 rescue a case the main path cannot serve, the condition on that path is a live dependency of
 the case, and it belongs in the case's own gate. This one was gated on an unrelated family's
 document count without anybody choosing that.
+
+## 74. One agency, three spellings, and every reader got a third of it with total confidence
+
+The record holds 123 decisions and 84 distinct decider strings. Three of those strings are one
+federal agency:
+
+```
+National Science Foundation                    4 decisions
+U.S. National Science Foundation               5 decisions
+United States National Science Foundation      4 decisions
+```
+
+A reader asking what the National Science Foundation had decided got four of thirteen. Which
+four depended on which spelling they happened to type, the box named the agency back to them
+correctly, and nothing anywhere said the other nine existed. Two more bodies were split the same
+way by a leading "The".
+
+**Every gate passed, every day, because no gate was looking at identity.** The schema contract
+checks that `decider.name` is a string. `numeral_lint` checks figures. The eval scored the router
+at `decider 100` for most of its life, because it built its gold cases from the same strings and
+asked the router to give them back. **A gold set generated from a field cannot see that the field
+holds two names for one thing.** It asked "National Science Foundation" and wanted "National
+Science Foundation", and got it, and both were wrong about the world.
+
+**The one number that did move was read as something else.** When the record grew a second and
+third spelling the eval fell to `decider 95.2`, and the miss it printed looked like a string
+comparison problem:
+
+```
+[decider] "U.S. National Science Foundation"  want by_decider:U.S. National Science Foundation
+                                               got by_decider:National Science Foundation
+```
+
+That reads as a router picking the wrong one of two names. It is a record holding two names for
+one agency, and the difference is that the first has a fix in the router and the second does not.
+The first fix would have made the eval green and left a reader with four of thirteen decisions.
+
+**This repo had already solved it, in the other ledger.** `entities.py` exists because the
+Comptroller's register spells Oracle two ways, and it carries the whole design: a mechanical
+layer with no judgment in it, a curated layer where every judgment states its reason, and a
+display name taken from the source rather than invented. Nothing pointed from the docket at it.
+The second ledger repeated the first ledger's fault with the solution committed twelve files
+away.
+
+**Generalises to.** Four.
+
+An identifier that is a free text name is two facts, what the thing is called and which thing it
+is, and a schema that checks the first has checked nothing about the second. Anywhere a name is
+used to GROUP, the grouping needs its own resolution and its own gate.
+
+A gold set derived from a field inherits that field's mistakes as its expectations. It can
+measure whether a lookup finds what is there and never whether what is there is right. The fix
+here was to make the question the filed spelling and the answer the body, so a router that
+resolves them is scored as correct rather than wrong twice.
+
+The gate worth having is the one that catches the NEXT one. Merging the NSF today is worth
+little on its own, so what actually ships is the rule that a decider name ending another decider
+name must be declared the same body or a distinct one, with a reason. There are four such pairs
+today, two of each, and the fifth fails the build the day it arrives.
+
+And when a repo has already solved a problem in one ledger, the second ledger does not know.
+`entities.py` had the doctrine, the two layer split and the display rule, and the docket carried
+the same defect for as long as it had two spellings of anything. Solving it once is not the same
+as solving it, and the cheap half of the cure is a pointer from each place the shape can occur.

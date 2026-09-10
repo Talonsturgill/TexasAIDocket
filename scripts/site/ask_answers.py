@@ -49,6 +49,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import ask_retrieval                                              # noqa: E402
+import deciders as dcd
 import docket_build as dk                                          # noqa: E402
 
 TOPIC_WORDS = {
@@ -120,6 +121,10 @@ def index(items: list, today: str) -> dict:
         for c in m["counties"]:
             of_county.setdefault(c, []).append(m["id"])
 
+    # ONE BODY, HOWEVER MANY WAYS THE RECORD SPELLS IT. Resolved once here rather than in the
+    # browser, so the page and the written lane cannot disagree about who decided something.
+    body = dcd.resolve(dcd.counts_of(items))
+
     out = []
     for it in items:
         g = it.get("geography") or {}
@@ -135,6 +140,11 @@ def index(items: list, today: str) -> dict:
             "summary": it.get("summary", ""),
             "topic": it["topic"],
             "decider": it["decider"]["name"],
+            # THE BODY, AS AGAINST THE SPELLING THIS DECISION'S SOURCE USED. Grouping and
+            # filtering read this one and a reader still sees the string that was filed. See
+            # deciders.py for why the record keeps three names for the National Science
+            # Foundation and why this file does not pick one of them to publish.
+            "decider_id": body.get(it["decider"]["name"], it["decider"]["name"]),
             "decider_type": it["decider"]["type"],
             "status": it["status"],
             "counties": g.get("counties") or [],
@@ -158,13 +168,40 @@ def index(items: list, today: str) -> dict:
         # The catalogue reads this one and promises nothing about the rest.
         "metros_touched": sorted({mid for i in out for mid in i["metros"]}),
         "topics": sorted({i["topic"] for i in out}),
-        "deciders": sorted({i["decider"] for i in out}),
+        # THE BODIES, NOT THE SPELLINGS. One entry per body, so the catalogue asks "What has the
+        # National Science Foundation decided?" once rather than three times with a third of the
+        # answer behind each.
+        "deciders": sorted({i["decider_id"] for i in out}),
+        # EVERY SPELLING A READER MIGHT TYPE, longest first so the most specific one wins.
+        #
+        # The direct-match loop below reads this. It used to walk `deciders` and keep the LAST
+        # substring hit, which on "U.S. National Science Foundation" was decided by where the
+        # three spellings happened to fall in an alphabetical list. A reader who typed the
+        # agency's own current name got the four decisions filed under its older one.
+        #
+        # Sorted by the length of the normalised string so the loop can stop at its first hit
+        # and that hit is the most specific. The ordering is not identity, so it does not have
+        # to agree with the browser's `norm` to the byte, only to rank the same way.
+        "decider_alias": [[name, bod] for name, bod in
+                          sorted(body.items(),
+                                 key=lambda kv: (-len(_loose(kv[0])), kv[0]))],
         "statuses": sorted({i["status"] for i in out}),
         "topic_words": TOPIC_WORDS,
     }
 
 
 # --------------------------------------------------------------------------- the catalogue
+def _loose(s: str) -> str:
+    """The browser's own `norm`, for RANKING ONLY.
+
+    It decides which alias the direct-match loop tries first and never which alias matches, so
+    a divergence from the browser copy costs an ordering and never an answer. Identity lives in
+    deciders.py and there is exactly one of it.
+    """
+    import re as _re
+    return _re.sub(r"\s+", " ", _re.sub(r"[^a-z0-9 ]+", " ", str(s).lower())).strip()
+
+
 def catalogue(idx: dict) -> list[dict]:
     """Every question the record can actually answer, with the route that answers it.
 
@@ -355,8 +392,23 @@ __RETRIEVER__
 
        So the word "county" decides it. A reader who writes it means the county, and a
        reader who writes a bare city name means the place they live, which is the area. */
-    var saysCounty = /\bcounty\b/.test(nq);
-    if (saysCounty) IDX.counties.forEach(function (c) {
+    /* A BODY'S WHOLE NAME, TYPED AND NOTHING ELSE, IS SETTLED BEFORE ANY PLACE IS LOOKED FOR.
+       "University of Texas at Austin" contains the city of Austin, so the metro loop below
+       claimed it and a reader asking about the university was routed to a metropolitan area and
+       then, when the catalogue outscored that, to the supercomputing centre housed inside it.
+       The place rules underneath are right and are untouched: this fires only when the ENTIRE
+       query is one body's name, which is not a hint about a place, it is the name of the thing
+       being asked about. A partial mention still goes through the ordinary precedence below. */
+    var directExact = false;
+    (IDX.decider_alias || []).some(function (pair) {
+      if (nq !== norm(pair[0])) return false;
+      direct = { view: "by_decider", arg: pair[1] };
+      directExact = true;
+      return true;
+    });
+
+    var saysCounty = !direct && /\bcounty\b/.test(nq);
+    if (saysCounty && !direct) IDX.counties.forEach(function (c) {
       if (nq.indexOf(norm(c)) >= 0) direct = { view: "by_county", arg: c };
     });
     if (!direct) (IDX.metros || []).forEach(function (m) {
@@ -368,15 +420,31 @@ __RETRIEVER__
     if (!direct) IDX.counties.forEach(function (c) {
       if (nq.indexOf(norm(c)) >= 0) direct = { view: "by_county", arg: c };
     });
-    if (!direct) IDX.deciders.forEach(function (d) {
-      if (norm(query).indexOf(norm(d)) >= 0) direct = { view: "by_decider", arg: d };
+    /* THE LONGEST SPELLING THAT FITS, and it used to be whichever one sorted last.
+       This walked IDX.deciders and reassigned on every substring hit, so the winner was decided
+       by alphabetical order. The record spells the National Science Foundation three ways, and a
+       reader typing the agency's own current name, "U.S. National Science Foundation", was
+       routed to the four decisions filed under the bare name instead of the thirteen the agency
+       has. IDX.decider_alias carries every spelling, longest first, and maps each to the body,
+       so the first hit is the most specific one and it resolves to one body either way. */
+    if (!direct) (IDX.decider_alias || []).some(function (pair) {
+      if (nq.indexOf(norm(pair[0])) < 0) return false;
+      direct = { view: "by_decider", arg: pair[1] };
+      return true;
     });
     if (!direct) Object.keys(IDX.topic_words).forEach(function (t) {
       IDX.topic_words[t].forEach(function (w) {
         if (!direct && norm(query).indexOf(norm(w)) >= 0) direct = { view: "by_topic", arg: t };
       });
     });
-    if (direct && (!top || top.score < 2.5)) return direct;
+    /* A NAME TYPED IN FULL BEATS A FUZZY MATCH ON A LONGER NAME THAT CONTAINS IT.
+       "University of Texas at Austin" is a body in this record and so is "Texas Advanced
+       Computing Center, The University of Texas at Austin". The catalogue entry for the centre
+       contains every word of the university's name and several more, so it scored higher on the
+       university's own name and a reader asking about the university was handed a supercomputing
+       centre. This is not the 2.5 threshold being wrong. It is that a whole name typed exactly is
+       not a fuzzy signal at all, so it does not belong in a contest with one. */
+    if (direct && (directExact || !top || top.score < 2.5)) return direct;
     /* CORROBORATION IS FOR NAMING ONE DECISION, and only for that.
        A single stem match used to be enough to clear the floor, which is how a question about
        marathon training got a confident answer about a research grant. Two words agreeing is
@@ -437,6 +505,9 @@ __RETRIEVER__
         bits.push(it.days_left === 0 ? "closes today"
           : it.days_left + (it.days_left === 1 ? " day left" : " days left"));
       bits.push(it.decider);
+      /* AND THE BODY'S OWN NAME, so a reader who types the spelling this decision was NOT filed
+         under still reaches it. Pushed only when it differs, so nothing is weighted twice. */
+      if (it.decider_id && it.decider_id !== it.decider) bits.push(it.decider_id);
       return "<li>" + link(it) + '<br><span class="meta">' + esc(bits.join(" · ")) +
              "</span></li>";
     }).join("") + "</ul>";
@@ -525,7 +596,9 @@ __RETRIEVER__
                route.arg.replace(/-/g, " ");
         break;
       case "by_decider":
-        sel = all.filter(function (i) { return i.decider === route.arg; });
+        /* ON THE BODY, NOT THE SPELLING. Filtering the filed string returned a third of the
+           National Science Foundation's decisions and said so with confidence. */
+        sel = all.filter(function (i) { return (i.decider_id || i.decider) === route.arg; });
         head = sel.length + " " + plural(sel.length, "item", "items") + " from " + route.arg;
         break;
       case "by_status":

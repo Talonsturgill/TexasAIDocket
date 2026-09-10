@@ -1,0 +1,32 @@
+{
+  "_spec": 1,
+  "_why": "Mechanical resolution in scripts/site/deciders.py joins decider names that differ only by case, punctuation or a leading definite article, and that needs no judgment. Saying that two DIFFERENT strings name the same public body is a judgment, so it is written here where it can be read and argued with rather than buried in a regex. Every entry states its reason. An entry with no reason fails the gate.",
+  "_rule": "Members are named by their exact string in ledger/docket.json. A member the record does not contain is ignored rather than invented, so this file can name a body before it appears. No display name is written here. The name a group publishes is the spelling the record itself uses most, ties broken by the longest, so what a reader sees is a string a source actually filed rather than one this project tidied up.",
+  "_why_not_mechanical": "A leading U.S. or United States is NOT stripped mechanically, and the temptation to do it is why this file exists. The U.S. Chamber of Commerce is not a local chamber of commerce, and a rule that collapsed them would be wrong in a way nothing here would catch. The definite article is different. No two bodies in this record are distinguished by it, and English does not carry identity in an article.",
+  "same": [
+    {
+      "note": "One federal agency filed three ways. It has been the National Science Foundation since 1950 and began putting U.S. in front of its own name in 2024, and this record's sources span that change, so the spelling follows whichever source a decision came off. Splitting it hands a reader asking what the NSF has decided a third of the answer.",
+      "members": [
+        "National Science Foundation",
+        "U.S. National Science Foundation",
+        "United States National Science Foundation"
+      ]
+    }
+  ],
+  "distinct": [
+    {
+      "note": "The Texas Advanced Computing Center is a centre inside the university and decides in its own name. Collapsing it into the university would file a supercomputing centre's decisions under the institution that houses it.",
+      "members": [
+        "University of Texas at Austin",
+        "Texas Advanced Computing Center, The University of Texas at Austin"
+      ]
+    },
+    {
+      "note": "The Texas Politics Project is a research unit that publishes in its own name. Its polling is not a decision of the university.",
+      "members": [
+        "University of Texas at Austin",
+        "Texas Politics Project at the University of Texas at Austin"
+      ]
+    }
+  ]
+}

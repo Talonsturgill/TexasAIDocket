@@ -108,6 +108,12 @@ def load_items(path: Path | None = None) -> list[dict]:
     return json.loads(p.read_text(encoding="utf-8"))["items"]
 
 
+def bodies(items: list[dict]) -> dict:
+    """Every decider spelling in the record, mapped to the body that publishes under it."""
+    import deciders as dcd
+    return dcd.resolve(dcd.counts_of(items))
+
+
 def vocabulary(items: list[dict]) -> set[str]:
     """Every content word the record uses anywhere. A nonsense case may share none of it."""
     v: set[str] = set()
@@ -225,6 +231,7 @@ def _rarest(text: str, corpus: list[str], n: int) -> list[str]:
 def build(items: list[dict]) -> list[dict]:
     """Every case, each carrying the kind it belongs to so failures are readable by kind."""
     vocab = vocabulary(items)
+    body = bodies(items)
     cases: list[dict] = []
 
     for it in items:
@@ -251,9 +258,16 @@ def build(items: list[dict]) -> list[dict]:
         for c in (geo.get("counties") or [])[:1]:
             cases.append({"kind": "county", "q": f"{c} county", "view": "by_county", "arg": c})
 
+        # THE QUESTION IS THE SPELLING THIS DECISION WAS FILED UNDER. The ANSWER is the body.
+        #
+        # The record spells the National Science Foundation three ways and this asked for the
+        # spelling back, so a router that resolved all three to one agency would have been marked
+        # wrong twice for being right. Every spelling still gets asked, which is the point, and
+        # each of them has to reach the same body.
         d = (it.get("decider") or {}).get("name")
         if d:
-            cases.append({"kind": "decider", "q": d, "view": "by_decider", "arg": d})
+            cases.append({"kind": "decider", "q": d, "view": "by_decider",
+                          "arg": body.get(d, d)})
 
         t = it.get("topic")
         if t:

@@ -309,9 +309,15 @@ def tally(items: list, today: str) -> str:
     already below, which is why it can be checked by reading the rest of the pack.
     """
     from collections import Counter
+    import deciders as dcd
     topics = Counter(it["topic"] for it in items)
     statuses = Counter(it["status"] for it in items)
-    deciders = Counter(it["decider"]["name"] for it in items)
+    # COUNTED BY BODY, NOT BY SPELLING. The record files the National Science Foundation three
+    # ways, so counting the strings published "National Science Foundation 4" beside two more
+    # rows for the same agency, and a reader asking how much it has decided was given a third of
+    # the answer three times over. deciders.py resolves it and states the one judgment involved.
+    body = dcd.resolve(dcd.counts_of(items))
+    deciders = Counter(body.get(it["decider"]["name"], it["decider"]["name"]) for it in items)
     open_now = [it for it in items if dk.window_state(it, today) == "open"]
     counties = Counter(c for it in items
                        for c in ((it.get("geography") or {}).get("counties") or []))
