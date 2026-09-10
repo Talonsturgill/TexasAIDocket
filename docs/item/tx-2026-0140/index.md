@@ -22,6 +22,7 @@ The National Highway Traffic Safety Administration opened Audit Query AQ26002 on
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-10 · The agency's opening resume is published and carries the docket number, the date, the estimated population and the scope in the agency's own words. The audit is open and nothing has been reported closed.
+- 2026-09-10 · Corrected. The claim naming the two officials on the resume called one of them the approver. The resume's own words are Reviewer, and the claim now reads reviewer. The access note advertised filing a vehicle safety complaint. No source here describes that route. The note now says what the link reaches.
 
 ## Evidence
 
@@ -93,7 +94,7 @@ Source (primary_official): https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17
 
 Source (primary_official): https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf
 
-### The resume names the investigator and the approver.
+### The resume names the investigator and the reviewer.
 
 > Investigator: Syed Rahaman Reviewer: Neil Dold
 

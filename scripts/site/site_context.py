@@ -1011,7 +1011,8 @@ def load_runs() -> list:
         prose = []
         for key in sorted(normalise_slide_keys(planned), key=lambda k: k[0]):
             said = [_CLAIM_STAMP.sub(" ", " ".join(s.split())).strip()
-                    for s in _slide_strings(key[1]) if _reads_as_prose(s)]
+                    for s in _join_wrapped(_slide_strings(key[1]), claims)
+                    if _reads_as_prose(s, claims)]
             said = [{"quote": _is_quotation(s, claims), "text": s} for s in said if s]
             if said:
                 prose.append(said)
@@ -1123,16 +1124,109 @@ _CLAIM_STAMP = re.compile(
     re.IGNORECASE)
 
 
-def _reads_as_prose(text: str) -> bool:
+def _continues(head: str, tail: str, claims: list) -> bool:
+    """Is `tail` the rest of the sentence `head` started, broken across two laid-out lines.
+
+    FIVE TESTS, AND EVERY ONE OF THEM WAS EARNED BY A WRONG JOIN. A first pass asked only that
+    the head carry no terminal stop and the tail open on a lowercase letter, and rebuilding the
+    site with it stitched nonsense into nine article pages that had been merely incomplete:
+    "Art of Thinking as the district states it as the district calls it optional" out of three
+    separate labels, and a stat line welded to the quotation printed beneath it. Fabricating a
+    sentence is a worse failure than dropping one, so the rule is narrow by construction.
+
+      the head opens on a CAPITAL          a sentence starts somewhere, and a fragment that
+                                           opens lowercase is a label in a column, not an opener
+      the head has no terminal stop        it is unfinished
+      the head is not prose on its own     only an orphan is rescued, never two published lines
+      the tail opens LOWERCASE             it is the continuation of something
+      the tail ENDS on a stop              the two halves complete one sentence between them
+      the tail is not a QUOTATION          a source's own words set under a label are two things
+                                           the design deliberately put next to each other
+    """
+    if not head or not tail:
+        return False
+    if not (head[:1].isalpha() and head[:1].isupper()):
+        return False
+    if head.rstrip("\"'”’)]").endswith((".", "?", "!")):
+        return False
+    if _reads_as_prose(head):
+        return False
+    if len(head.split()) < 3 or len(tail.split()) < 2:
+        return False
+    if not (tail[:1].isalpha() and tail[:1].islower()):
+        return False
+    if not tail.rstrip("\"'”’)]").endswith((".", "?", "!")):
+        return False
+    return not _is_quotation(tail, claims)
+
+
+def _join_wrapped(strings: list, claims: list | None = None) -> list:
+    """Rejoin a sentence the LAYOUT broke into two text nodes, before anything reads it.
+
+    THE ARTICLE PAGE PUBLISHED HALF SENTENCES, and the half it published was the tail. Slide 7
+    of deck 20 set two sentences flush left across two lines each, which reaches `copy.json` as
+    four separate strings: "The rules a reader is judged by", "are themselves being rewritten.",
+    "The Cybercab is carrying riders", "while that is still unfinished." `_reads_as_prose` then
+    did exactly what it was written to do. It dropped each opener, which carries no terminal
+    punctuation and so reads as a label, and it kept each continuation, which ends in a full
+    stop and so reads as a sentence. The transcript went live saying "are themselves being
+    rewritten." with nothing to say what was.
+
+    The shape is GATE_LESSONS' oldest: a test that is right about the string in front of it and
+    blind to the fact that the string is half of something. The cure is not a cleverer prose
+    test, because no test on one fragment can see the other. It is to put the sentence back
+    together first, which is a decision about the SEQUENCE and belongs here rather than there.
+
+    Conservative on purpose, and `_continues` states each test and the wrong join that bought
+    it. Across the ten decks published to this date the rule fires four times, on four sentences
+    a reader would recognise, and leaves the other thirty-four adjacent pairs alone.
+    """
+    claims = claims or []
+    out: list = []
+    for raw in strings:
+        s = " ".join(str(raw).split())
+        if not s:
+            continue
+        if out and _continues(out[-1], s, claims):
+            out[-1] = out[-1] + " " + s
+        else:
+            out.append(s)
+    return out
+
+
+# A block the design set in lowercase ON PURPOSE, which announces itself by restarting in
+# lowercase after its own full stop: "…are one printed sentence. the council called it…". Two
+# published decks write their footnote blocks this way, and they are running prose, complete and
+# readable. One fragment is not the same thing as a style, and this is what tells them apart.
+_LOWER_RESTART = re.compile(r"[.!?][\"'”’)\]]?\s+[a-z]")
+
+
+def _reads_as_prose(text: str, claims: list | None = None) -> bool:
     """Whether a slide string belongs in the story, as opposed to on the slide.
 
-    TWO TESTS, AND THE CASE ONE IS DOING THE REAL WORK. A first pass used length and terminal
+    THREE TESTS, AND THE CASE ONE IS DOING THE REAL WORK. A first pass used length and terminal
     punctuation alone, which is enough to sort a label from a sentence but not enough to sort a
     TAG from one: "SITE PLAN NOT PUBLIC." is four words ending in a full stop. The design
     doctrine sets tags, kickers and labels in capitals and writes body prose in sentence case,
     so the case is the signal, and it is the design's own signal rather than one invented here.
+
+    THE THIRD TEST IS THE OTHER END OF THE SAME SIGNAL, and the length shortcut was letting a
+    long label through it. A string that OPENS on a lowercase letter is a continuation or a
+    caption, never the start of a sentence, and "compounds screened in one drug discovery
+    project, in about a week" was published as a paragraph of its own for a fortnight on the
+    strength of being 64 characters long. So an opener in lowercase has to earn it, by ending
+    on a stop or by being lowercase throughout as a setting rather than by accident.
+
+    A QUOTATION IS EXEMPT, which is why this needs the claims. A source's own words are lifted
+    mid sentence all the time, they are set as a blockquote rather than as this project's prose,
+    and half the quotations on the published decks open lowercase.
     """
     t = _CLAIM_STAMP.sub(" ", " ".join(str(text).split())).strip()
+    if (claims is not None and t[:1].isalpha() and t[:1].islower()
+            and not t.rstrip("\"'”’)]").endswith((".", "?", "!"))
+            and not _LOWER_RESTART.search(t)
+            and not _is_quotation(text, claims)):
+        return False
     if not t:
         return False
     letters = [ch for ch in t if ch.isalpha()]
