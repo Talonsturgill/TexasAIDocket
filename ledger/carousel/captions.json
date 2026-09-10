@@ -19,12 +19,12 @@
     "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
   },
   "opening_moves_recent": [
-    "the before and after",
-    "the plain question",
     "the place",
     "the number that is wrong",
     "the correction",
-    "the quiet decision"
+    "the quiet decision",
+    "the two things",
+    "the who"
   ],
   "entries": [
     {
@@ -324,14 +324,35 @@
         "#SQUIRE"
       ],
       "critic_note": "REWRITTEN IN ROUND 4 AFTER THE SAME JUDGE ASKED TWICE. The shipped caption is the third version. The first opened 'Three clinicians compared a hospital's software against its own case managers' and was wrong twice in one line: c13's byline reads MD, BS, MD so CLINICIANS overstated it, and c5 calls the thing a commercial clinician-assisted tool rather than the hospital's own build. The second fixed both and still opened on a method summary, which the reader judge called the flattest first line in seventeen ledger entries. The third leads on the result and carries c6's reason in its second line. Two further fixes went in with it: 'At admission neither' was contradicted by the run's own c4, which says the case managers matched the exact date more often at admission, and the close asked 'How many stays sit inside that blank?', a question c10 answers and this run cut. THE WORD `actionable` ALSO SHIPPED IN VERSION TWO AND IS IN brand.yaml's banned_phrases. caption_check.py does not read that key, so nothing caught it and a judge did. It survives in the first comment only inside c6's verbatim quote, where the house rule says a quote is never touched. THE FIRST FILING OF THIS ENTRY USED FREEHAND MOVE NAMES, 'the result first', 'Turn and caveat' and 'name what the record cannot answer', and ledger_check refused all three: a freehand name cannot be excluded by a list of real ones, which is how three excluded moves shipped on 2026-08-25."
+    },
+    {
+      "date": "2026-09-10",
+      "carousel_no": 20,
+      "opening_move": "the who",
+      "structure": "Clock",
+      "closing_move": "point at the record, plainly, without a call to action",
+      "first_line": "Tesla certified its own Cybercab.",
+      "words": 121,
+      "commas": 3,
+      "commas_per_100w": 2.48,
+      "chars": 741,
+      "hashtags": [
+        "#AQ26002",
+        "#FMVSS",
+        "#Part555"
+      ],
+      "critic_note": "THE CRITIC RETURNED NEITHER CANDIDATE AND WAS RIGHT ON BOTH COUNTS. Candidate B asserted 'That list is not in the public file', an absence no document in the record establishes, and its first paragraph put a car with no brake pedal next to the Office of Defects above the fold with the defusal below it. Candidate A published 'paid', which appears in NO claim: c7 says commercial deployment and c12 says putting passengers in it, and the word was building an implicit contrast with Zoox's exemption that no claim supports. BOTH DEFECTS WERE ALREADY RENDERED ONTO THE COVER when the critic found them, along with c10's stripped qualifiers, and all three were fixed on the frame as well as in the copy. The critic also found that this ledger's own rolling exclusion lists had drifted from the entries beneath them and mis-briefed the room. They are DERIVED now."
     }
   ],
   "structures_recent": [
-    "Ledger",
-    "Zoom out",
-    "Pivot"
+    "Pivot",
+    "Two columns",
+    "Clock"
   ],
   "closing_moves_recent": [
-    "ask the one question the decision leaves open"
-  ]
+    "ask the one question the decision leaves open",
+    "Name what is still not public, and how big that is",
+    "point at the record, plainly, without a call to action"
+  ],
+  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED from `entries` by out/<date>/update_ledgers.py every run. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

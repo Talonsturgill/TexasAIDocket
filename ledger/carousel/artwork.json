@@ -1277,6 +1277,104 @@
         "SLIDE 9 IS THE THINNEST FRAME FOR THE FIFTH CONSECUTIVE DECK, which decks 13, 14, 15, 16 and 17 each wrote down and none has paid. Draw the close FIRST next time.",
         "THE TYPE MOVED ON THREE FRAMES AND IT MOVED IN ROUND 3. Deck 15 asked for three moves PLANNED IN THE STORYBOARD rather than repaired late, and two of the three here are right-alignment, the cheapest move on the shelf."
       ]
+    },
+    {
+      "date": "2026-09-10",
+      "carousel_no": 20,
+      "written_from": "panel_ready's measured value arc, machine_qa.json, bespoke_check's pairwise matrix, render_report.json and the gates' exit codes. The value block is MEASURED off the nine shipped PNGs at 432px.",
+      "register": "A CALICHE TWO-TRACK ON THE EDWARDS PLATEAU WEST OF AUSTIN, TWENTY MINUTES AFTER SUNSET. One grazing key from the west at 4 degrees above grade, declared once in compute.py and read by every relief call and every shadow solver on all nine frames. The defining chromatic move is a WARM-COOL SPLIT ACROSS ONE MATERIAL: road base in direct last light is rose, and the same stone under the dome only is violet-grey. Deck 18 had no key and therefore no split. Deck 19 was midday.",
+      "structural_laws": [
+        "WHAT IS IN FORCE IS DRAWN. WHAT IS PROPOSED IS ONLY TYPE. The Department of Transportation's proposal appears on frames 4 and 7 and is never given a body, a shadow or a lit surface, so the deck structurally cannot predict.",
+        "ATTRIBUTION. A party's own statement is a SHEET LAID ON THE GROUND with a declared two-part contact shadow. The agency's record is set into the frame with no carrier. Sheets exist on frames 3, 6 and 8 and nowhere else.",
+        "NO VANISHING POINT AND NO VEHICLE IN ANY OF NINE FRAMES. Not one camera sits where a driver would. This discharges the deck's hard editorial constraint as GEOMETRY rather than as wording, which is the only form of it a repair round cannot argue away."
+      ],
+      "techniques": [
+        "s1 Big Bend dusk field over a wire-relief rut heightfield, the camera looking ACROSS the two-track so the ruts are two troughs and nothing converges",
+        "s2 a measured field table over an unlit ground, with an engraved intaglio bed carrying the bottom third, which is form without any key light on a frame that has none",
+        "s3 TXCARVE wind-worked road base with a two-part contact under a cool sheet and a cobble",
+        "s4 norther front over wire relief on a shut wire gap gate whose four wires carry the four controls the standards assume, counted from c10's own list",
+        "s5 stipple at 3 degrees grazing incidence across the first pass of one tyre in loose dust",
+        "s6 an untruncated ground dimension whose TERMINATOR WIDTHS are the record's own precision, a full year wide at 2022 and one month wide at July 2026",
+        "s7 a hachure field driven from the same rut heightfield's real gradient, lifting toward the foot against a ground that darkens",
+        "s8 an engraved contour bed under two plates from one constant set, no ground and no light",
+        "s9 true plan, straight down, wire relief over a rut heightfield, with a cattle guard cropped at both frame edges so no rail total is countable"
+      ],
+      "palette": {
+        "roadbase_sun": "#C4736D",
+        "roadbase_sky": "#655F82",
+        "rut": "#2A2233",
+        "cedar": "#171C18",
+        "post": "#584049",
+        "guard_pipe": "#96A2B4",
+        "dust_lit": "#E9C0B8",
+        "sheet": "#DCDCE2",
+        "sheet_shade": "#6B6E80",
+        "sky_ember": "#B4664F",
+        "sky_high": "#1B1830",
+        "_measured": "CIELAB against the 80 distinct hexes in the last eight decks' entries, and the metric was CALIBRATED first: a random colour's nearest neighbour has a median dE of 29.2 there and only about one in ten falls under 10.4. Four tokens moved on that measurement. Three near-neutrals could not clear dE 10 and are kept with that stated: sheet 6.2, guard_pipe 7.5, sheet_shade 7.9.",
+        "_flag_red": "UNSPENT. The reserved red is for a dated door and this record opens none."
+      },
+      "value": {
+        "planned": [
+          26,
+          12,
+          58,
+          16,
+          9,
+          34,
+          11,
+          20,
+          33
+        ],
+        "measured": [
+          18.1,
+          9.6,
+          52.3,
+          24.9,
+          7.1,
+          24.0,
+          18.5,
+          7.5,
+          41.6
+        ],
+        "deck_median_L": 18.5,
+        "measured_on": "the nine shipped PNGs, by panel_ready.measured_arc, at the moment this ledger was written",
+        "note": "The dark-deck debt from no. 19's avoid_next is PAID, with room. The floor is slide 5 at 7.1 and the inversion is slide 3 at 52.3, 33.8 above the deck median. Slide 3 first came in at 35.7 and was rescued, because an inversion a reader cannot feel is not one. THIS LIST IS MEASURED BY THE SCRIPT THAT WRITES IT and was a typed literal until 2026-09-10, which is the stale-declaration defect the round 1 panel charged this deck for, sitting in the file that warns about it."
+      },
+      "type_skeletons": "FIVE across nine, planned in the storyboard rather than repaired in a scoring round. A on 1, 5, 9. B, a field table with no hook where the top rule is the head, on 2 and 6. C, one shared measure with a hanging indent, on 3 and 8. D, display type at the deck's largest size filling the top band, on 4. E, four flush-left lines at one size as a single mass, on 7. Right-alignment is used nowhere as a substitute for a layout decision.",
+      "bespoke": {
+        "median_pairwise": 0.1822,
+        "pairs": 36,
+        "closest_pair": [
+          "slide-01.html",
+          "slide-05.html"
+        ],
+        "closest_value": 0.5129,
+        "verdict": "ok",
+        "_measured_by": "bespoke_check.measure, on the injected frames this run rendered"
+      },
+      "construction": {
+        "plated_frames": [
+          "slide-01.png",
+          "slide-03.png",
+          "slide-04.png",
+          "slide-08.png"
+        ],
+        "of": 9,
+        "threshold_share": 0.5,
+        "exit": 0,
+        "_measured_by": "construction_check.check, on the nine shipped PNGs",
+        "_note": "How much of the deck one primitive carries, read off the pixels. This gate is not in guards.yml and was not run on this deck until scoring round 3, by which time it had been red the whole run."
+      },
+      "avoid_next": [
+        "THE DECK MAY GO LIGHT AGAIN AND THE COUNTED WINDOW IS WHY. Decks 14 and 19 were the two light decks in the eight-run window and this one at deck median 18.5 clears the debt. Check the window before choosing, and MEASURE the deck median rather than asserting it, which is what deck 19 got wrong by miscounting its own ledger twice.",
+        "A GATE NOBODY RUNS IS A GATE THAT IS RED. construction_check.py is not in guards.yml and is not named in the routine's phase list, so this run reached scoring round 3 before it was run once, and it was red the whole time at 5 of 9 frames carrying one primitive against a threshold of half. The four decks before this one measured 2, 1, 4 and 1, so the finding was real rather than a drifted threshold. Run every gate in scripts/carousel by exit code before the first panel, not the ones the routine happens to list.",
+        "A REPORT THAT PREDATES THE ARTIFACT IT DESCRIBES READS AS NO CHANGE AT ALL. panel_ready takes its contrast numbers from machine_qa.json, and on this run that file was seven minutes older than the PNGs, so a whole round of colour fixes measured as nothing. qa.py now runs inside build.sh on every render. Before believing any report, check its mtime against the newest artifact it reads.",
+        "putImageData IGNORES THE CANVAS TRANSFORM. A scanline written after g.scale(2,2) lands in a quadrant, and the frame comes back at a fifth of its planned value with zero render errors. Write the field at device resolution and put it once.",
+        "THE SECOND REPAIR OF A FRAME IS WHERE THE DECK'S OWN LAW GETS BROKEN. This cover's second build gave the ruts the slight convergence a long lens really has, and the frame immediately read as the view down a road from a driver's seat, which is the one thing this deck's first structural law forbids. Director C had named that exact repair in advance as one to refuse at the plan. Read every repair against the LAW, not only against the defect it was meant to cure.",
+        "DECLARE A PALETTE TOKEN AND THEN DRAW IT. plan_render_check found three declared tokens no frame contained as a literal, on three separate frames, and the plan and the frames had drifted apart in twelve places in total by the first full render.",
+        "SLIDE 9 WAS DRAWN FIRST AND IT STILL TOOK TWO REBUILDS AFTER THAT. Drawing the close first is necessary and it is not sufficient. Budget a rebuild for it anyway."
+      ]
     }
   ]
 }

@@ -594,6 +594,39 @@
       ],
       "instrument": "a peer-reviewed clinical study",
       "note": "dedupe_check clean at 17 entries in the ledger over a 30 day window, nothing close. The `health-and-education` beat is 2 of the 17 decks in the window and is not the most recent."
+    },
+    {
+      "date": "2026-09-10",
+      "carousel_no": 20,
+      "docket_item": "tx-2026-0140",
+      "topic": "NHTSA Audit Query AQ26002, opened the day Tesla began commercial deployment of the Cybercab in Austin, examining the process and technical data behind Tesla's own certification that a vehicle with no permanently attached manual controls meets every applicable Federal Motor Vehicle Safety Standard",
+      "angle": "the certification rather than the driving, and specifically the word inapplicable. The deck's whole discipline is that an audit query examines paperwork, so no frame draws a vehicle and no camera sits where a driver would",
+      "entities": [
+        "National Highway Traffic Safety Administration",
+        "Office of Defects Investigation",
+        "Tesla, Inc.",
+        "Tesla Cybercab",
+        "Jonathan Morrison",
+        "Zoox",
+        "Department of Transportation",
+        "Austin",
+        "Travis County"
+      ],
+      "entities_note": "Written from claims.json rather than from memory. Every name appears in a fetched quote. Travis County is the record's own geography for tx-2026-0140 and Austin is named in the resume's summary sentence.",
+      "keywords": [
+        "AQ26002",
+        "audit query",
+        "FMVSS",
+        "self-certification",
+        "inapplicable",
+        "Part 555",
+        "temporary exemption",
+        "manual controls",
+        "robotaxi",
+        "Cybercab",
+        "Office of Defects Investigation",
+        "estimated population"
+      ]
     }
   ]
 }
