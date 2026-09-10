@@ -325,12 +325,29 @@ def leak_problems(page_html: str) -> list:
 # A paragraph of the project's own prose, inside a running-prose block. `class="meta"` marks a
 # chip, a counter or a citation line, which are data and not sentences, and a `<blockquote>` is a
 # source's own words, which may legitimately open mid sentence on a lowercase letter.
-_PROSE_BLOCK = re.compile(r'<div class="prose">(.*?)</div>', re.S)
-_OWN_PARA = re.compile(r"<p(?![^>]*\bclass=)[^>]*>(.*?)</p>", re.S)
+#
+# `prose` AS A CLASS TOKEN, NOT AS THE WHOLE ATTRIBUTE, and the first draft of this gate got
+# that wrong in the way that leaves a checker green. It matched `class="prose"` exactly, which
+# is 2,665 of the site's running-prose blocks and misses 215 more: `prose facilitypage`,
+# `prose companypage`, `prose dcpage`, `prose regchanges`, `prose construction` and
+# `prose companyindex`. Every one of those is reader copy under the same rules, so an orphan on
+# any of them would have shipped under a passing gate. GATE_LESSONS' recurring shape again, and
+# it was caught by a reviewer rather than by the gate's own self-test, which used the one form
+# the pattern happened to match.
+_PROSE_BLOCK = re.compile(r'<div class="[^"]*\bprose\b[^"]*">(.*?)</div>', re.S)
+_PARA = re.compile(r"<p([^>]*)>(.*?)</p>", re.S)
+# THE EXEMPTION IS METADATA, AND ONLY METADATA. `cite`, `meta` and `srcline` are citation and
+# chip rows, which are data rather than sentences, and `data-prose="data"` is the site's own
+# mark for the same thing. The first draft exempted every paragraph carrying ANY class, which
+# waved through `gap`, `lede`, `blede`, `qnote` and `wnote`, 53 paragraphs of running prose.
+_META_PARA = re.compile(r'\bclass="[^"]*\b(?:cite|meta|srcline)\b|data-prose="data"')
 # A block the design set in lowercase ON PURPOSE announces itself by restarting in lowercase
 # after its own full stop. Two published decks write their footnote blocks that way, and they
 # are running prose rather than a fragment. `site_context._LOWER_RESTART` is the same rule.
 _LOWER_RESTART = re.compile(r"[.!?][\"'”’)\]]?\s+[a-z]")
+# xAI is a party to filings in this record, and iPhone and eBay are the same shape. A name
+# spelled with a small first letter opens a complete sentence. `site_context._LOWER_NAME` too.
+_LOWER_NAME = re.compile(r"^[a-z][a-z]{0,3}[A-Z]")
 
 
 def orphan_problems(page_html: str) -> list:
@@ -350,9 +367,12 @@ def orphan_problems(page_html: str) -> list:
     """
     out = []
     for block in _PROSE_BLOCK.findall(page_html):
-        for para in _OWN_PARA.findall(block):
+        for attrs, para in _PARA.findall(block):
+            if _META_PARA.search(attrs):
+                continue
             t = _html.unescape(TAG.sub(" ", para)).strip()
-            if t[:1].isalpha() and t[:1].islower() and not _LOWER_RESTART.search(t):
+            if (t[:1].isalpha() and t[:1].islower()
+                    and not _LOWER_NAME.match(t) and not _LOWER_RESTART.search(t)):
                 out.append(f"{t[:60]!r} is a paragraph opening on a lowercase letter, so it "
                            f"reads as the tail of a sentence whose subject is not on the page. "
                            f"A slide that wraps one sentence over two lines reaches the "
@@ -442,6 +462,23 @@ def self_test() -> int:
              '</div></main>')
     ok("a whole sentence passes", not orphan_problems(whole), str(orphan_problems(whole)))
     ok("a quotation may open mid sentence", "certified those" not in "".join(orphan_problems(whole)))
+    # THE FOUR BLIND SPOTS A REVIEWER FOUND IN THE FIRST DRAFT OF THIS GATE.
+    styled = ('<main><div class="prose facilitypage">'
+              '<p class="gap">while that is still unfinished.</p></div></main>')
+    ok("a prose block with a second class is still read", len(orphan_problems(styled)) == 1,
+       str(orphan_problems(styled)))
+    metaonly = ('<main><div class="prose dcpage">'
+                '<p class="meta">c12 c18 c19</p>'
+                '<p class="cite">texasaidocket.com</p>'
+                '<p class="srcline">gov.texas.gov/news</p>'
+                '<p data-prose="data">august 11th, 2026</p></div></main>')
+    ok("a metadata row is exempt and nothing else is", not orphan_problems(metaonly),
+       str(orphan_problems(metaonly)))
+    named = ('<main><div class="prose">'
+             '<p>xAI filed an application with the commission.</p>'
+             '<p>eBay is not a party to it.</p></div></main>')
+    ok("a name spelled with a small first letter is a sentence", not orphan_problems(named),
+       str(orphan_problems(named)))
     lowered = ('<main><div class="prose">'
                '<p>the clause and the question are one printed sentence. the council called it '
                'on August 11th, 2026</p></div></main>')
@@ -490,6 +527,37 @@ def self_test() -> int:
     ok("a lowercase fragment is never treated as an opener",
        site_context._join_wrapped(["the ballot names a device", "at fixed locations."])
        == ["the ballot names a device", "at fixed locations."])
+    ok("a Title Case label never opens a sentence",
+       site_context._join_wrapped(["Why This Matters", "the deadline passed."])
+       == ["Why This Matters", "the deadline passed."])
+    ok("...and a sentence-cased opener carrying a proper noun still joins",
+       site_context._join_wrapped(
+           ["The Cybercab is carrying riders", "while that is still unfinished."])
+       == ["The Cybercab is carrying riders while that is still unfinished."])
+    # Both are over the length shortcut and neither ends on a stop, so the only thing that can
+    # separate them is the capital inside the first word.
+    ok("a name spelled with a small first letter reads as prose",
+       site_context._reads_as_prose(
+           "xAI filed an application with the commission and the commission docketed it", []))
+    ok("...and the long label beside it still does not",
+       not site_context._reads_as_prose(
+           "compounds screened in one drug discovery project, in about a week", []))
+
+    # dateModified is the page's, last_verified is the source's, and a correction moves only one.
+    import schema                                                  # noqa: PLC0415
+    corrected = {"last_verified": "2026-09-08",
+                 "history": [{"date": "2026-09-08", "note": "Admitted."},
+                             {"date": "2026-09-10", "note": "Corrected."}]}
+    ok("a correction moves the page's modification date",
+       schema.item_modified(corrected, "2026-09-11") == "2026-09-10")
+    ok("...and never past the last thing the item actually holds",
+       schema.item_modified({"last_verified": "2026-09-10"}, "2026-09-11") == "2026-09-10")
+    ok("...and a re-verification later than any history line still wins",
+       schema.item_modified({"last_verified": "2026-09-11",
+                             "history": [{"date": "2026-09-08"}]}, "2026-09-11")
+       == "2026-09-11")
+    ok("an item holding no dates falls back to the build date",
+       schema.item_modified({}, "2026-09-11") == "2026-09-11")
     ok("neither of the halves survives the prose test alone",
        not site_context._reads_as_prose("The rules a reader is judged by")
        and site_context._reads_as_prose("are themselves being rewritten."))

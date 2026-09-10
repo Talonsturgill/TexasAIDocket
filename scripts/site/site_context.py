@@ -1136,16 +1136,32 @@ def _continues(head: str, tail: str, claims: list) -> bool:
 
       the head opens on a CAPITAL          a sentence starts somewhere, and a fragment that
                                            opens lowercase is a label in a column, not an opener
+      the head is not TITLE CASE           "Why This Matters" opens on a capital and carries no
+                                           stop, and welding the lowercase line under it makes
+                                           a sentence nobody wrote. Sentence case is the
+                                           doctrine's mark for body copy, so at least one word
+                                           after the first has to be lowercase
       the head has no terminal stop        it is unfinished
       the head is not prose on its own     only an orphan is rescued, never two published lines
       the tail opens LOWERCASE             it is the continuation of something
       the tail ENDS on a stop              the two halves complete one sentence between them
       the tail is not a QUOTATION          a source's own words set under a label are two things
                                            the design deliberately put next to each other
+
+    WHAT IS STILL POSSIBLE, stated rather than left for somebody to find. A sentence-cased
+    label with a lowercase word in it, sitting immediately above a lowercase line that ends on
+    a stop, would still be joined. No test on two flattened strings can rule that out, because
+    `_slide_strings` has already thrown away which component each came from. The defence is
+    that the joined text has to read as one sentence to survive `_reads_as_prose`, and that the
+    gate in `house_style_check` reads the served page. If a wrong join ever ships, the fix is
+    to carry component identity out of the render report rather than to add a seventh test here.
     """
     if not head or not tail:
         return False
     if not (head[:1].isalpha() and head[:1].isupper()):
+        return False
+    words = head.split()
+    if len(words) > 1 and all(w[:1].isupper() or not w[:1].isalpha() for w in words[1:]):
         return False
     if head.rstrip("\"'”’)]").endswith((".", "?", "!")):
         return False
@@ -1199,6 +1215,12 @@ def _join_wrapped(strings: list, claims: list | None = None) -> list:
 # published decks write their footnote blocks this way, and they are running prose, complete and
 # readable. One fragment is not the same thing as a style, and this is what tells them apart.
 _LOWER_RESTART = re.compile(r"[.!?][\"'”’)\]]?\s+[a-z]")
+# A NAME THAT IS SPELLED WITH A SMALL FIRST LETTER, and this record is full of them. xAI is a
+# party to filings here, and iPhone and eBay are the same shape. "xAI filed an application." is
+# a complete sentence with its subject present, and reading its first character as proof of a
+# missing subject would reject accurate copy. A continuation never looks like this: the mark is
+# a capital INSIDE the first word.
+_LOWER_NAME = re.compile(r"^[a-z][a-z]{0,3}[A-Z]")
 
 
 def _reads_as_prose(text: str, claims: list | None = None) -> bool:
@@ -1223,6 +1245,7 @@ def _reads_as_prose(text: str, claims: list | None = None) -> bool:
     """
     t = _CLAIM_STAMP.sub(" ", " ".join(str(text).split())).strip()
     if (claims is not None and t[:1].isalpha() and t[:1].islower()
+            and not _LOWER_NAME.match(t)
             and not t.rstrip("\"'”’)]").endswith((".", "?", "!"))
             and not _LOWER_RESTART.search(t)
             and not _is_quotation(text, claims)):
