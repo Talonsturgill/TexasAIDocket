@@ -2520,3 +2520,62 @@ And when a repo has already solved a problem in one ledger, the second ledger do
 `entities.py` had the doctrine, the two layer split and the display rule, and the docket carried
 the same defect for as long as it had two spellings of anything. Solving it once is not the same
 as solving it, and the cheap half of the cure is a pointer from each place the shape can occur.
+
+## 75. A second copy of a word list deleted the test this engine was built to pass
+
+`scripts/site/ask_eval.py` builds the gold set the ask box is scored against. Its negatives are
+the cases that matter most, because a box that answers everything scores perfectly on recall and
+is worthless, and the file says so at length. Eight nonsense phrases are listed, each checked at
+build time against the record's own vocabulary so that a phrase which quietly becomes meaningful
+is dropped rather than scored as a false positive forever.
+
+Five of the eight were being dropped. Not one of them for a topical reason:
+
+```
+what is the airspeed velocity of an unladen swallow    shares: what
+who won the world cup in nineteen eighty six           shares: nineteen, world
+what time does the pharmacy close on sunday            shares: close, does, time, what
+best way to train for a marathon                       shares: train
+lyrics to a song about a lonely astronaut              shares: about
+```
+
+**Three of those five were dropped for sharing a question word.** "What". "Does". "About". And
+the first of them is the phrase this engine was built to refuse. The file's own docstring cites
+it: the box once answered "what is the airspeed velocity of an unladen swallow" with a confident
+item about air quality permits, and that is why negatives are measured at all. It had been
+quietly out of the set.
+
+**The retriever had already solved this and the eval could not reach it.** `askFrame` in
+`ask_retrieval.py` is the closed class of English words that turn a statement into a question,
+and the file carries a careful argument about why it is not a stopword list. Interrogatives,
+auxiliaries, modals, pronouns, articles, prepositions. "They are not about the subject in this
+record, they are not about the subject in any record, and they are not going to become about
+it." The retriever drops them from a query before it scores anything, so a phrase sharing only
+those with the record shares nothing the router can see.
+
+**That list lived inside a JavaScript string literal**, emitted for the browser and the worker.
+Python could not read it. So `ask_eval.py` kept a shorter one of its own, `NOISE`, and `NOISE`
+had no "what", no "about" and no "does".
+
+**And the assertion that caught it was not wired to anything.** `ask_eval.py --self-test`
+requires at least four negatives. It had been failing on three. `tests/ask_eval.mjs`, which
+SCORES against the gold set, has been in `guards.yml` for months; the script that BUILDS the
+gold set was never added. So the instrument went out of calibration, said so, and said it only
+to whoever happened to run it by hand.
+
+**Generalises to.** Three.
+
+A list that exists in one language and is needed in two becomes two lists, and the second one is
+always shorter. The cure is not to sync them. It is to keep one and put it where both can reach
+it, which here meant hoisting the frame words into a Python constant that `js()` substitutes,
+exactly as `K1`, `B`, `RRF_K` and `INFORMATIVE` were already handled. The generated retriever
+came out byte for byte identical, which is the proof the move changed nothing.
+
+A filter is only correct relative to what it is protecting. This one asked whether a phrase
+shared a word with the record, when the question it needed to ask was whether it shared a word
+the ROUTER WOULD WEIGH. Those differ by exactly the frame of a question, which is most of what a
+person types and none of what a retriever scores.
+
+And a test set is an instrument. `tests/ask_eval.mjs` was wired because it produces a number
+somebody reads. `ask_eval.py --self-test` was not, because it only checks that the number means
+something. Whichever half is unwired is the half that drifts, and the number keeps printing.

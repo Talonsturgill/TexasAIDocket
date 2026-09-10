@@ -752,6 +752,15 @@ jobs:
       - name: Ask engine self-test (routes not cached answers, and it phones nobody)
         run: python3 scripts/site/ask_answers.py --self-test
 
+      # THE GOLD SET'S OWN BUILDER, AND IT WAS THE ONE ASK SELF-TEST NOTHING RAN.
+      #
+      # `tests/ask_eval.mjs` scores the router against this set and has been wired for months.
+      # The script that BUILDS the set was not, so when its negatives fell under their floor it
+      # went red on a laptop and nowhere else. A gold set is an instrument, and an instrument
+      # nobody calibrates is the one that reads whatever it likes. GATE_LESSONS 14 and 75.
+      - name: The gold set is built, and it still has negatives in it
+        run: python3 scripts/site/ask_eval.py --self-test
+
       # The record the written answer lane reads, and the key it is marked against. Both are
       # published daily and both are paid for on every question, so both are gated.
       #
