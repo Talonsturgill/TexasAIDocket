@@ -62,11 +62,11 @@
       "bands": [
         0.6723,
         0.8277,
-        0.557
+        0.6029
       ],
-      "band_ratio": 0.8193,
+      "band_ratio": 0.8656,
       "contacts": [
-        "'the sheet lying on lit road base': shadow L* 29.0 vs ground L* 52.7, dL 23.8 at 432w"
+        "'the sheet lying on lit road base': shadow L* 34.6 vs ground L* 52.7, dL 18.2 at 432w"
       ]
     },
     {
@@ -130,10 +130,10 @@
       ],
       "bands": [
         0.0756,
-        0.6113,
-        0.8125
+        0.6155,
+        0.8419
       ],
-      "band_ratio": 1.5806
+      "band_ratio": 1.6004
     },
     {
       "file": "slide-07.html",
@@ -181,13 +181,13 @@
       "file": "slide-09.html",
       "fails": [],
       "warns": [
-        "tiny-text: 'AQ26002' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'AQ26002 49 CFR 552.3' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'c1 c2 c20 c22 c25' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
         "tiny-text: '09 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
-        "outside safe zone: 'AQ26002' at 80,1265 99x29 (margin 80px)",
-        "outside safe zone: 'c1 c2 c20 c22 c25' at 259,1265 241x29 (margin 80px)",
-        "outside safe zone: 'texasaidocket.com' at 580,1265 241x29 (margin 80px)",
+        "outside safe zone: 'AQ26002 49 CFR 552.3' at 80,1265 284x29 (margin 80px)",
+        "outside safe zone: 'c1 c2 c20 c22 c25' at 382,1265 241x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 641,1265 241x29 (margin 80px)",
         "outside safe zone: '09 / 09' at 901,1265 99x29 (margin 80px)"
       ],
       "bands": [

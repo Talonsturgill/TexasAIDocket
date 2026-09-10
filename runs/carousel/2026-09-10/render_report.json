@@ -270,7 +270,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 6415,
+      "render_ms": 7459,
       "ok": true,
       "canvases": [
         {
@@ -927,7 +927,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1477,
+      "render_ms": 975,
       "ok": true,
       "canvases": [
         {
@@ -1226,7 +1226,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 3528,
+      "render_ms": 2947,
       "ok": true,
       "canvases": [
         {
@@ -1239,8 +1239,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 146.3,
-          "variance": 3346.4
+          "mean": 146.7,
+          "variance": 3260
         }
       ],
       "breather": false,
@@ -1644,7 +1644,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1593,
+      "render_ms": 1600,
       "ok": true,
       "canvases": [
         {
@@ -1912,7 +1912,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5698,
+      "render_ms": 5367,
       "ok": true,
       "canvases": [
         {
@@ -2464,7 +2464,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1528,
+      "render_ms": 1628,
       "ok": true,
       "canvases": [
         {
@@ -2477,8 +2477,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 71.6,
-          "variance": 1938.6
+          "mean": 71.8,
+          "variance": 1946.8
         }
       ],
       "breather": false,
@@ -2719,7 +2719,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3931,
+      "render_ms": 1319,
       "ok": true,
       "canvases": [
         {
@@ -3052,7 +3052,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 6963,
+      "render_ms": 6993,
       "ok": true,
       "canvases": [
         {
@@ -3080,7 +3080,7 @@
       "overflow_warnings": [
         {
           "kind": "tiny-text",
-          "text": "AQ26002",
+          "text": "AQ26002 49 CFR 552.3",
           "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
         },
         {
@@ -3180,10 +3180,10 @@
           "anc": []
         },
         {
-          "text": "AQ26002",
+          "text": "AQ26002 49 CFR 552.3",
           "x": 80,
           "y": 1265,
-          "w": 99,
+          "w": 284,
           "h": 29,
           "font_px": 22,
           "weight": "500",
@@ -3195,7 +3195,7 @@
             [
               80,
               1265,
-              99,
+              284,
               29
             ]
           ],
@@ -3203,7 +3203,7 @@
         },
         {
           "text": "c1 c2 c20 c22 c25",
-          "x": 259,
+          "x": 382,
           "y": 1265,
           "w": 241,
           "h": 29,
@@ -3215,7 +3215,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              259,
+              382,
               1265,
               241,
               29
@@ -3225,7 +3225,7 @@
         },
         {
           "text": "texasaidocket.com",
-          "x": 580,
+          "x": 641,
           "y": 1265,
           "w": 241,
           "h": 29,
@@ -3237,7 +3237,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              580,
+              641,
               1265,
               241,
               29
@@ -3332,7 +3332,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 4490,
+      "render_ms": 3139,
       "ok": true,
       "canvases": [
         {

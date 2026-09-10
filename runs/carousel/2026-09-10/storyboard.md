@@ -214,8 +214,21 @@ composition:
     edges, so the band is drawn ground rather than a flat fill under type. The hook and dek sit on
     that open ground and the furniture row runs across the foot.
   focal: >
-    the ember band, an area of roughly 890 by 230 px carrying the frame's LIGHT extreme, bounded
-    left and right by cedar mass. Lightest is the ember band's top tenth. Darkest is the cedar
+    the lit caliche band immediately under the treeline, an area of roughly 1080 by 95 px carrying
+    the frame's LIGHT extreme at measured L* 44 against the ember band's 30. Darkest is the cedar
+
+    CORRECTED IN ROUND 6, AND THE FRAME HAD BEEN REFUTING THIS DECLARATION SINCE ROUND 1. The plan
+    named the ember band and said its top tenth was the lightest thing here. It is not, and the
+    measurement is not close: the caliche strip under the horizon reads L* 44 and the ember band
+    reads 30, and `construction_check` independently picks that same strip out as this frame's
+    largest bright region. Two judges in two separate rounds said the declared focal was refuted
+    by the pixels, and the second one was reading a frame that had already been corrected once for
+    this. The declaration moved to the area that actually wins the eye rather than the art moving
+    to a band the frame does not lead with, which is what SLIDE_DOSSIER_SPEC's focal law asks for:
+    name the lightest thing in the frame, and if the focal is neither extreme it will lose.
+    The old text follows so the correction is legible.
+    WAS: the ember band, an area of roughly 890 by 230 px carrying the frame's LIGHT extreme,
+    bounded left and right by cedar mass, lightest at its top tenth. Darkest is the cedar
     mass at both edges. The focal is the lightest.
 
     CORRECTED AFTER ROUND 1. The first declaration named the rut crowns and then conceded one
