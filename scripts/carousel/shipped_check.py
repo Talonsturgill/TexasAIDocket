@@ -798,9 +798,10 @@ def run(only: str | None = None) -> int:
     # THE IMPORT SPY, and it is here rather than in `gate_wiring` because this loop is the only
     # place the measurement exists. `gate_wiring` asks whether every carousel gate is run by
     # something, and one of the three answers it accepts is "this registry loaded it". That
-    # answer is MEASURED, not grepped, because a mention is not a reference and GATE_LESSONS 14
-    # is the record of what counting a mention bought: every gate satisfied `port_audit`
-    # permanently off its own `--self-test` line.
+    # answer is MEASURED, not grepped, because a mention is not a reference and
+    # GATE_LESSONS entry 14 ("A self-test is not wiring") is the record of what counting a
+    # mention bought: every gate satisfied `port_audit` permanently off its own
+    # `--self-test` line.
     #
     # Two routes into this suite and both are watched. An ordinary `import` lands in
     # `sys.modules`. `spec_from_file_location` does not, and that is how `g_construction` loads

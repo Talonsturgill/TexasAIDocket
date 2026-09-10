@@ -26,9 +26,10 @@ Adding two names fixes today and leaves the mechanism that produced today intact
 WHAT COUNTS AS WIRED, AND WHY THE THIRD ROUTE IS MEASURED RATHER THAN GREPPED
 
   guards.yml    a real invocation. A `--self-test` line is NOT one, and that filter is the whole
-                lesson of GATE_LESSONS 14: `port_audit` counted a script as wired if anything
-                named it, every gate is named on a `--self-test` line, so for the entire class of
-                file the check mattered most for it could not fail.
+                lesson of GATE_LESSONS entry 14 ("A self-test is not wiring").
+                `port_audit` counted a script as wired if anything named it, every gate is
+                named on a `--self-test` line, so for the entire class of file the check
+                mattered most for it could not fail.
   the routine    the same rule. A phase that runs the gate in anger.
   shipped_check  the registry the upgrade lane owns. One step in `guards.yml` calls that file, so
                  a gate registered there is genuinely run by CI against published artifacts.
@@ -168,7 +169,8 @@ def self_test() -> int:
     ok("...and the finding names the repair the upgrade lane can actually make",
        all("shipped_check.py" in x for x in both_missing), str(both_missing))
 
-    # ---- A SELF-TEST LINE IS NOT WIRING, which is GATE_LESSONS 14 and the reason the whole
+    # ---- A SELF-TEST LINE IS NOT WIRING, which is GATE_LESSONS
+    # entry 14 ("A self-test is not wiring") and the reason the whole
     # census exists. `port_audit` counted a mention, every gate is mentioned on a self-test line,
     # and so the check could not fail for the class of file it was written for.
     only_st = "          python3 scripts/carousel/verbatim_check.py --self-test\n"
@@ -219,7 +221,8 @@ def self_test() -> int:
     #
     # This file is graded by its own rule and the answer it gets is "shipped_check loaded it".
     # That answer is worth nothing unless shipped_check RUNS it and ACTS on what it says, which
-    # is the exact inference GATE_LESSONS 14 refuses to let a checker make about itself. So a
+    # is the exact inference GATE_LESSONS
+    # entry 14 ("A self-test is not wiring") refuses to let a checker make about itself. So a
     # finding is planted and the wired step is asked what it does with one. It must land in the
     # fatal list on stderr rather than in the notes on stdout, because a note is a thing a green
     # build prints.
@@ -242,7 +245,9 @@ def self_test() -> int:
     # A NARROWED SWEEP MUST REFUSE TO GRADE RATHER THAN GRADE WRONG. A gate that postdates an
     # older deck returns before importing anything, so over that deck the measurement is short
     # and every missing gate would be reported as an orphan. Saying which kind of absence this
-    # is out loud is GATE_LESSONS 37: a skip meaning "not covered at all" is not a skip.
+    # is out loud is
+    # GATE_LESSONS entry 37 ("A law with no mechanism, reported as a skip"). A skip that
+    # means "not covered at all" is not a skip.
     older = [p.name for p in sc.shipped_runs()][:-1]
     if older:
         out = io.StringIO()

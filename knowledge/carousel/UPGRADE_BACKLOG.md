@@ -1583,3 +1583,109 @@ stopped here rather than editing it.
 
 Recorded rather than worked around, per CLAUDE.md: respect it, record it, and never work around a
 disallow.
+
+---
+
+## 2026-09-10, carousel no. 20. What Phase 17 could not reach, and the two it left
+
+Three upgrades landed. `verbatim_check`'s calibration is named rather than computed from recency,
+`gate_wiring.py` refuses a carousel gate that nothing runs, and `panel_ready` reports a value arc
+it could not READ as its own state. Each is in `ledger/carousel/upgrades.json` with its
+verification and its revert. What follows is what did not land.
+
+### The ranked number two, and it is out of lane
+
+**`prompt_audit.py` cannot see a run that stopped WITHOUT prompting.** Measured this run: 1,224
+dispatches, none waited on a human, and the slowest `permissionDecisionMs` in the whole log is
+44 ms. The session still stopped mid run, twice, by ENDING ITS TURN to write progress reports,
+and the owner's words for that were that the run had stopped and asked for permission. On their
+side those are the same event.
+
+The tool exits 0 on "none waited on a human" and the routine puts that sentence in the email as
+evidence the run never stopped. It measures PERMISSION WAITS and nothing else, so a turn that
+simply ends leaves no line for it to read and the audit reports clean on exactly the failure that
+was observed.
+
+**The measurement is in the same log.** The wall-clock gap between one turn's LAST
+`tool_dispatch_start` and the next turn's FIRST is seconds for a continuing run and however long
+the human took for a stopped one. Two populations orders of magnitude apart, which is the same
+shape as the finding that made `prompt_audit` possible at all. Report it as a THIRD STATE rather
+than folding it into clean, and keep the tool's existing discipline of never printing a command.
+
+`scripts/shared/prompt_audit.py` resolves to `daily` under `ownership.yaml`, not to `upgrade`, so
+this run does not get to make it. **Owner: `daily`.**
+
+### The census stops at one directory, and nothing measures the other two
+
+`gate_wiring.py` walks `scripts/carousel/*.py` only. That is the suite this lane builds and the
+suite that produced both orphans, and the limit is written into the file rather than left to be
+discovered. `scripts/shared/**` and `scripts/site/**` have no equivalent, and
+`scripts/shared/guards_shape.py` was the suggested home for this whole check precisely because it
+is where a wider version belongs. **Owner: `daily`.**
+
+### A gate that only speaks after the deck has shipped cannot change the deck
+
+`construction_check` and `verbatim_check` are now run by `shipped_check`, which is what clears the
+wiring census, and `shipped_check` reads PUBLISHED artifacts. The deck is already out. Both belong
+in a phase of `prompts/daily_routine.md` so a run meets them before it renders, which is where the
+5-of-9 finding would have been worth something. `prompts/daily_routine.md` is `human` lane and a
+run rewriting the instructions it is executing is how a machine drifts without anyone noticing.
+**Owner: `human`.**
+
+### Three GATE_LESSONS entries, drafted so a maintainer pastes rather than reconstructs
+
+`knowledge/shared/GATE_LESSONS.md` is `human` lane. The instruction to log a gate change there and
+the ownership map disagree, and the map wins, which is the same disposition 2026-09-08 recorded.
+
+**A gate pinned to "the newest" is pinned to nothing.** `verbatim_check`'s last assertion required
+the newest shipped deck to draw no discovery note. True the day it was written, because the newest
+deck then WAS the deck the gate was calibrated against. Every night after that it asked a different
+question, and the night a deck legitimately drew a note the gate's own self-test went red on a
+clean checkout with nobody having touched it. Nothing found out, because nothing ran the file.
+**What to check instead.** A calibration is a statement about ONE artifact and the artifact is
+named. Assert the named artifact is still present, so a corpus that has lost it fails rather than
+passing on nothing, and assert the OTHER direction as well: a soft half that found nothing anywhere
+satisfies "the calibrated deck draws no note" perfectly. **Generalises to** any assertion whose
+subject is computed by recency, size or position rather than named. Newest, largest, first,
+`[-1]`. The subject moves and the sentence does not.
+
+**A gate in no list is a gate that is red, and the lists are owned by somebody else.**
+`construction_check` was in `guards.yml` in no form and in the routine in no phase. It ran for the
+first time in scoring round 3, because a session went looking, and it had been red the whole run at
+5 of 9 frames against a threshold of half. `verbatim_check` had the same gap. This is entry 14 one
+level up: not a check whose evidence was a mention, but a check with no invocation at all. **What
+to check instead.** Enumerate the gates from the DIRECTORY and require each to be run by something,
+where "run by something" is a real invocation and never a `--self-test` line. **And note why this
+kept happening.** Both lists are `human` owned and the actor that WRITES a carousel gate is
+`upgrade`, so the actor that builds a gate is structurally unable to connect it. A rule that makes
+an unattended run depend on a permission it cannot grant itself is not fixable by remembering
+harder. `shipped_check.py` is the registry that removes the dependency, and the census is what
+makes forgetting it visible.
+
+**One return value meaning "clean" and "could not look".** `panel_ready.check_value_arc` returned
+an empty list both when a deck cleared its planned value arc and when the storyboard declared one
+the parser could not see, so the group heading printed `ok the deck comes out within one Munsell
+step of its own planned value arc` in both cases. The parser needed the word `planned` and the list
+of numbers on ONE line, and the plan put them on two. The arc got measured at all only because a
+session read the honest note above the row. **What to check instead.** Where a checker can fail to
+READ its subject, that is a third outcome and it goes in the failure list, never in the same empty
+list as a pass. This is entry 37 in the space of return values rather than of workflow steps: a
+skip meaning "not covered at all" is not a skip. **The trap in the fix** is that the third state
+has to be told from the ordinary silence, and here that is a span naming a PLANNED arc that carries
+a comma list the parser could not reach. Nine of fifteen storyboards declare no arc and a gate red
+on all of them would have been switched off.
+
+### Two that are in lane and were left, because three is the ceiling
+
+**`caption_check.py` never reads `brand.yaml`'s 76 `banned_phrases`.** `grep -n "banned"
+scripts/carousel/caption_check.py` returns nothing, and carousel no. 19's `avoid_next` already
+names this as a defect that shipped a banned phrase to two surfaces behind a green gate. A rule
+stated in config with nothing in between checking it, which is this repository's oldest shape.
+In lane, and the next thing this backlog would take.
+
+**`ledger_check.py` could assert one `carousel_no` per date, increasing with the dates.** This run
+found 2026-09-09 stamped `carousel_no 18` in `topics.json`, `artwork.json` and `captions.json`,
+the same number as 2026-09-08, then jumping to 20. `runs/carousel/2026-09-09/RUN_RECORD.md` opens
+"Carousel no. 19.", so 19 is what shipped. The number is a pure function of the run, it is typed
+once per ledger file, and nothing checks the three agree with each other or with the run record.
+`ledger_check` already reads all three files. Two assertions, one small commit.
