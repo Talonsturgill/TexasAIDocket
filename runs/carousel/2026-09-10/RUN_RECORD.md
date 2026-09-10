@@ -192,3 +192,196 @@ or crash data, and to say why. That instruction is what keeps this deck distinct
 it is a constraint on the art as much as on the copy.
 
 `texan_check` at selection: places Austin and Travis County, body yes, next step yes.
+
+## Phases 9 to 14, the deck
+
+### The directors room, and two of the three corrected the showrunner
+
+Three treatments, three lenses. **Lens C, THE PATH ALREADY WALKED, is the spine**, and the
+deciding argument is not taste. Carousel no. 19's `avoid_next` says *"Draw the next deck in the
+Big Bend dusk family and do not reach for a light ground until the counted window holds none."*
+Lens A was a shop interior under a raking LED strip and lens B a fabrication table under an unseen
+overhead source. Both were dark. **Neither was Big Bend dusk.** C is a caliche two-track on the
+Edwards Plateau twenty minutes after sunset and its cover technique is the dusk field itself.
+
+C also carries the strongest answer to this deck's hardest constraint, and it answers it as
+GEOMETRY rather than as wording: **no vanishing point in nine frames, so not one camera sits where
+a driver would.** A caption can be argued with. A camera position can't. Grafted from B and made
+absolute: **no vehicle in nine frames**, not whole, not in part, not in silhouette. Grafted from
+A, its own stated risk, adopted verbatim as this deck's editorial law: *if a judge reads any frame
+as a safety finding, that frame is rebuilt, not relabelled.*
+
+**Director C corrected a factual error in my brief, and it is the second correction this run.** I
+told C that Zoox "was investigated" after self-certifying. **That is nowhere in `claims.json`.**
+c20 is the 2022 self-certification, c21 is "then went through the official process and filed", c22
+is the July 2026 approval, and the fact-checker's `rejected` list had already thrown out the
+reporter's characterisation about commercialisation being slowed. No frame says it. The first
+correction was the fact-checker throwing out my "instead of" framing on the same two claims.
+
+### The palette was MEASURED before it was drawn, and the metric was calibrated first
+
+Director C warned that this register's colours sit where decks 18 and 19 already sat, and named it
+as the failure deck 10 shipped. Measured in CIELAB against the 80 distinct hexes in the last eight
+decks' ledger entries, **all eleven proposed tokens came back inside dE 10.**
+
+**That number means nothing without a baseline, so a baseline was computed before anything moved.**
+Against those same 80 hexes a RANDOM colour's nearest neighbour has a median dE of 29.2, and only
+about one in ten falls under 10.4. Eleven of eleven under 10 is a real signal rather than an
+artefact of a dense corpus. Calibration probes: pure magenta 94.5, chartreuse 73.9, mid grey 2.4.
+
+Four tokens moved, and each move is also physically truer for twenty minutes after sunset, when
+caliche is lit by a rose sky band rather than a yellow sun.
+
+| token | was | dE | now | dE |
+|---|---|---|---|---|
+| `roadbase_sun` | `#E0A97E` | 8.9 | **`#C4736D`** | 13.1 |
+| `roadbase_sky` | `#7A7488` | 9.8 | **`#655F82`** | 15.9 |
+| `dust_lit` | `#F4DCC0` | 5.8 | **`#E9C0B8`** | 11.9 |
+| `post` | `#5A4A44` | 6.9 | **`#584049`** | 11.5 |
+
+**Three could NOT be moved past dE 10 and are kept with that stated rather than hidden.** `sheet`
+at 6.2, `sheet_shade` at 7.9 and `guard_pipe` at 7.5 are near-neutrals, and the last eight decks
+have colonised the desaturated grey-blue region thoroughly. Every candidate tested came back
+inside 10. A variety judge comparing those three is comparing greys, and this deck's separation
+argument for them is structural rather than chromatic.
+
+`bond` was replaced by a COOL `sheet` for a reason other than distance. Decks 12, 13 and 14 shipped
+three consecutive creams and no. 19 shipped a fourth. The dE against a prior is only 6.2 and the
+material family is different, which is the repetition a variety judge actually charges for.
+
+Kept deliberately: `sky_ember` at 3.4 and `sky_high` at 0.0 are `brand.yaml` tokens and are
+SUPPOSED to recur. `cedar` at 3.3 and `rut` at 7.7 are near-blacks, and below about L* 12 the eye
+is not resolving hue.
+
+### Nothing in a frame is a literal, and the mechanism was proven before nine frames leaned on it
+
+Carousel no. 19's `avoid_next` names hand-synced literals as the defect four scoring panels did not
+see. `compute.py` lifts every figure OUT OF a claim quote by pattern rather than retyping it beside
+one, and raises rather than falling back if a quote stops carrying its figure.
+`inject_computed.py` then writes the whole computed block into each frame in place of a
+`<!--@@COMPUTED@@-->` marker, so **there is no number in a frame to go stale.** `--check` fails on
+any marker left unreplaced and on any frame that never asked for the block.
+
+**It was proven on a throwaway probe frame before a single real slide depended on it**, and the
+probe rendered `4` read from `window.C.absent_control_count`. The frames are authored in `src/` and
+staged into `slides/`, so injection is never a half-applied edit.
+
+### What the gates caught, in the order they caught it, and every one was mine
+
+- **`dossier_check` refused the first plan on SIX frames** for a bottom third carrying only flat
+  furniture. All six bands were rewritten before any code was written. That is the dead lower zone
+  the sibling shipped six times, killed at the stage where it costs a paragraph.
+- **The cover took three builds and the second one broke the deck's own first law.** Parallel ruts
+  read as drapery. Given the slight convergence a long lens really has, the frame immediately read
+  as the view down a road from a seat. **Director C had named that exact repair in advance as one
+  to refuse at the plan rather than argue at round four**, so it was refused: the shipped camera
+  looks ACROSS the track, where nothing converges and a driver's read is geometrically impossible.
+- **`putImageData` ignores the canvas transform.** Scanlines written after `g.scale(2,2)` landed in
+  a quadrant and the cover came back at median L* 3.2 against a planned 26. The field is now
+  written at device resolution and put once.
+- **`plan_render_check` found twelve places my plan and my frames had drifted apart**, including
+  three declared palette tokens no frame actually drew. Frames were changed where the plan was
+  right and the plan where the frames were.
+- **`verbatim_check` caught a dropped narrowing word inside a verbatim slot.** The dossier declared
+  `filed for a temporary exemption from eight Federal Motor Vehicle Safety Standards` and c21 says
+  `a temporary PART 555 exemption from eight...`. That is HIGH QUALITY IMAGES exactly, which three
+  judges found on 2026-09-04 and no other gate could see.
+- **`numeral_trace` caught the rotating footer cell** printing 49 and 555 on two frames citing
+  claims that carry neither figure. The cells now read FMVSS and ZOOX, 2022, both traceable to
+  claims those frames cite.
+- **`panel_ready` opened at 32 findings.** Contrast was systemic: the furniture palette was chosen
+  for restraint and almost every line measured under the rubric's 4.5 floor.
+
+### THE RUN'S WORST HALF HOUR, and it is a measurement error rather than a craft one
+
+A whole round of colour fixes came back reading as no change at all. `panel_ready` takes its
+contrast numbers from `machine_qa.json`, and that file was **seven minutes older than the PNGs it
+was describing**, because `qa.py` had not been re-run after the render. The fixes had worked the
+whole time. The same report, read fresh, went from 30 contrast failures to 9.
+
+That is the STALE row `gate_status` exists to catch, arriving one stage earlier and with nothing
+watching for it. **`qa.py` now runs inside `build.sh` on every render, full or `--only`**, so a
+report can no longer predate the artifact it describes.
+
+### The value arc, measured off the shipped PNGs rather than asserted
+
+```
+planned    26   12   58   16    9   34   11   20   33
+measured 28.5  9.6 52.4 24.7  7.4 42.6 17.7 12.0 45.0
+```
+
+Deck median **24.7** against a planned 20, which pays the artwork ledger's dark-deck debt with
+room. The shape holds: the floor is slide 5 at 7.4 and the inversion is slide 3 at 52.4, **28 L*
+above the deck median**. Frames 4, 6 and 9 came in 7 to 12 lighter than planned and the plan is
+NOT rewritten to hide it.
+
+The inversion had to be rescued. Slide 3 first measured 35.7, only 11 above the deck median, and
+an inversion a reader can't feel is not one. The sheet was enlarged and its ground pool lifted.
+
+### The close was drawn first, and then rebuilt twice
+
+Five consecutive decks have written down that slide 9 is the thinnest frame and none has paid it.
+This one drew the close before the cover. It still took two rebuilds after that: the guard's rails
+ran through the hook's glyph band and `qa.py` read them as a strikethrough four times over, and the
+first shading pass made the ruts read as lit vertical columns rather than as troughs from above.
+A rut in true plan is darker than the crown at its floor and takes the key on ONE lip.
+
+### The deck's known ceiling, stated rather than papered over
+
+`texan_check` reports **NEXT STEP NO**, and the record is why. AQ26002 carries no comment window,
+no hearing and no deadline anywhere in `claims.json`. The close gives the reader the thing the
+record actually holds, which is a published resume and a number to read it by. **The reserved flag
+red is unspent for the same reason**, because it is for a dated door and this record opens none.
+Manufacturing one would have been the drawing asserting something the record does not.
+
+## Phase 10, the caption room, and the critic returned NEITHER
+
+Two directors, distinct assigned opening moves, and a critic that refused both and demanded one
+rewrite. It was right on both counts and it found two things I had already rendered onto a frame.
+
+- **"paid" appears in NO claim.** c7 says commercial deployment and c12 says putting passengers in
+  it. Neither says anyone paid, and the word was building an implicit contrast with Zoox's
+  exemption, which c21 ties to charging for rides. **It was on the cover's dek at the time.**
+- **c10's qualifiers are load bearing.** The source says the vehicles lack PERMANENTLY ATTACHED,
+  CONVENTIONAL manual controls. A car with no brake PEDAL still has brakes, and "no brake pedal"
+  beside the word Defects is the safety implication this deck may not make. The cover carried the
+  stripped version.
+- Candidate B asserted "That list is not in the public file", which is an absence no document in
+  the record establishes.
+
+The shipped caption is the rewrite: opening move **the who**, structure **Clock**, closing move
+**point at the record plainly**. 124 words, 767 characters, three hashtags, and all 76 of
+`brand.yaml`'s banned phrases checked by hand, because `caption_check.py` does not read that key.
+
+### THE CRITIC ALSO FOUND A LEDGER BUG, and it mis-briefed the room
+
+`ledger/carousel/captions.json` handed the caption directors a **stale exclusion list**.
+`structures_recent` reads `["Ledger", "Zoom out", "Pivot"]` when the last three shipped are Zoom
+out, Pivot and **Two columns**. `closing_moves_recent` carries one entry when no. 19 shipped
+"Name what is still not public, and how big that is". So the room was told Ledger was off the
+table when it is not, and never told that Two columns and B's own close are. Both lists are
+brought current in this run's ledger update.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 23 verified claim(s) |
+| render         | WARN   | 9 slide(s), 39 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 81 warn(s) |
+| aggregates     | PASS   | 2 declaration(s), 3 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.14 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 104 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 15 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
+| dossiers       | PASS   | 49,615 chars planned |
+| caption        | PASS   | 124 words |
+| craft floor    | WARN   | 9 frame(s), median 701, floor 126, 1 quiet |
+| plan vs render | PASS   | 12 of 72 acceptance item(s) checkable |
+| texan          | WARN   | places Austin / body yes / deadline yes / next step NO |
+| absences       | WARN   | 2 of 4 scoped to a named document, 2 unscoped |
+| numerals       | PASS   | 17 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
