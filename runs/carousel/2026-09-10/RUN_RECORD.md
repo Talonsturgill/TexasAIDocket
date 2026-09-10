@@ -362,6 +362,68 @@ out, Pivot and **Two columns**. `closing_moves_recent` carries one entry when no
 table when it is not, and never told that Two columns and B's own close are. Both lists are
 brought current in this run's ledger update.
 
+## Phase 15, the panel, and it took four rounds
+
+| round | integrity | craft | reader | median | spread | hard fails | verdict |
+|---|---|---|---|---|---|---|---|
+| 1 | | | | 6.808 | | 2 | HOLD |
+| 2 | 6.768 | 6.074 | 6.640 | 6.570 | 0.694 | 2 | HOLD |
+| 3 | 6.816 | 6.656 | 6.660 | 6.772 | 0.160 | 0 | HOLD |
+
+**Round 2 is the low point and both of its hard fails were made by round 1's own repairs.** One
+was a label added in a round 1 repair that dropped c10's qualifiers and stated in the deck's voice
+what the agency had recorded. The other was a curly apostrophe that entered `first_comment.txt`
+from a `document` field added to `claims.json` in the same round. Neither existed before the run
+tried to fix something else.
+
+**Round 3 is where the panel started agreeing.** The spread closed from 0.694 to 0.160 and the
+hard fails went to zero, which is the more useful number than the median: three judges reading the
+same deck a point apart are not looking at the same object yet, and at 0.16 they are.
+
+### What round 3 found that no gate did, and every one of these was true
+
+- `ledger/docket.json` published tx-2026-0140 as opening "on the day paid driverless rides began in
+  Austin". **No claim on the item carries the word paid** and none describes how the vehicle
+  drives. The carousel struck the same word from its own cover in round 1 for that exact reason,
+  and the record kept its own copy of it. This is the run's most serious finding, because the
+  record is the more important of the two deliverables.
+- `claims.json` said eight of eleven PDF-only claims were independently corroborated. **The file
+  records six**, and two of the five that are not are the deck's own quote plates.
+- `aggregates.json` said slide 9 "draws exactly two marks leaving one cattle guard". It draws
+  **three**: a worn rut pair, which is two marks and one route, plus one unworn pass. The count of
+  two is a count of ROUTES and is right; the sentence claiming the drawing and the count were the
+  same assertion was refuted by the frame it described.
+- Slide 3 set the AGENCY's own sentence in quotation marks under **TESLA, TO NHTSA** beneath the
+  headline **The company said so itself**. c8 reads "Tesla notified the Agency that it certified
+  those Cybercab vehicles as compliant", which is the agency recording Tesla, and **slide 8 sets
+  the identical case correctly**. The deck had the right formula and did not apply it here.
+- Slide 6's dimension typed X0=140 and X1=940, an 884 px span that at the file's own 13 px per
+  month reads as **68 months against a record holding 55**. A drawn length that contradicts its own
+  declared scale is the compute-not-generate law broken in the one place a reader can check with a
+  ruler. Round 2 named it and round 3 left it alone.
+- Four acceptance items asserted `data-encodes` and `data-contacts` declarations **that no frame in
+  the deck ever made**, so `encodings` and `contacts` were empty arrays on all nine frames and four
+  of the plan's most checkable assertions were checking nothing.
+- Slide 8's measure sat **22 px off centre inside its own plate**. Round 3 solved that frame's
+  vertical fit and never re-solved the horizontal one.
+- Slide 9's date chip was anchored so it ran **across both worn rut bands**, printing the new
+  route's date on the old route. Its action line rendered six pixels into the footer row.
+- Slide 4's mono line CONVENTIONAL MANUAL CONTROLS, NAMING ran **across the top of the left stay**.
+- Slide 2's gloss ended at y 1001 with PROBLEM DESCRIPTION starting at 1000, a **zero pixel gap**,
+  and the engraved bed's top edge cut between its two lines, with 445 px of dead ground above it.
+- The 2026-09-09 entry in all three variety ledgers was stamped `carousel_no: 18`, the same as
+  2026-09-08, so **carousel no. 19 had no entry**. Found by the reader judge reading the dedupe
+  window rather than looking for it.
+
+### One round 3 finding was checked and refuted
+
+The craft judge reported slide 4's two stay casts "run in OPPOSITE lateral directions converging
+above the horizon, which is a point-source read and a vanishing point against the deck's own first
+structural law". `src/slide-04.html`'s `stay()` draws one polygon offset by `cx`, from a 52 px top
+to a 112 px bottom displaced right by 120 to 232 px, and it is called twice with the same shape.
+Both casts run east and they are parallel. **Nothing was changed**, and it is recorded here because
+a judge's finding taken on trust is how a correct frame gets rebuilt.
+
 ## Gate status
 
 <!-- gate-status:begin -->
