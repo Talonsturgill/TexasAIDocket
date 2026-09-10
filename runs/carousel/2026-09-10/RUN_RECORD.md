@@ -618,3 +618,61 @@ its own copy of "paid" until round 3. Same field, same item, same shape, twice i
 | numerals       | PASS   | 19 numeral(s) over 9 frame(s), every one reachable |
 | completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
+
+## AFTER THE MERGE, and a review bot read the record better than the record's own gates did
+
+Nine findings arrived on pull request no. 280 from the Codex reviewer, after it had merged. Bot
+findings are bug reports, so each was checked against its own source before anything was touched.
+Seven were real. One was superseded by work later in the same run. One is the owner's to decide.
+
+**The record was wrong in five places, and every one of them is the same defect.** A sentence in
+a title, a summary or an access note that no claim under it carries.
+
+```
+tx-2026-0126   the title and the summary reported the hearing as HELD. Every claim under it
+               comes from the posted notice, which reads "will meet". Re-fetched today, and the
+               notice still reads "will meet"
+tx-2026-0140   "the approver", where the resume says "Reviewer: Neil Dold". Its access note
+               advertised filing a vehicle safety complaint, a route no source here describes
+tx-2026-0130   the operations center's four duties, and "the front door to federal AI compute".
+               The duties are quoted on tx-2026-0121 and this entry does not carry them
+tx-2026-0024   two claims titled with the September 4th deadline entry while quoting two others
+tx-2026-0002   the same wrong title, on a claim that quotes the filing index rather than the
+               feed. Not in the review. Found beside the two that were
+```
+
+**`docket_build --validate` passes on all five and is right to.** It checks that every claim has
+a quote and a source, that every numeral traces, that the narration and the house style hold. It
+has never checked that a summary's assertions are entailed by the claims beneath it, because that
+is a reading task rather than a shape test, and a gate that tried it in prose would be a gate that
+guesses. What did catch it was an adversarial reader with the sources in front of it.
+
+**The article pages were publishing half sentences.** The transcript is assembled from the deck's
+own laid-out text nodes, and slide 7 set two sentences flush left over two lines each. The prose
+test kept the half that ends in a full stop and dropped the half that does not, so the live page
+read *"are themselves being rewritten."* with nothing on it to say what was.
+
+That one is a gate's shape rather than a reading task, and it is GATE_LESSONS' oldest form: a
+component correct about the string in front of it and blind to the string being half of something.
+`_join_wrapped` puts the sentence back together first, `_reads_as_prose` gained the other end of
+the same case signal, and `house_style_check` now reads the served page for a paragraph opening
+on a lowercase letter. **The gate found two more live instances the join alone did not cover**,
+which is the whole argument for reading the served bytes rather than the builder's intermediate.
+
+The first join rule was LOOSER and rebuilding the site with it welded nonsense into nine other
+article pages, three separate labels into one sentence on one of them. That is recorded here
+because the wrong version passed everything except a diff read by eye, and the six tests the rule
+now carries are each named after the join that bought them.
+
+### PROPOSALS, because the map puts both out of this lane
+
+**`tx-2026-0130` duplicates `tx-2026-0121`.** Same NSF announcement, same URL, same date, same
+decider, admitted four days apart. `ownership.yaml` says of `ledger/docket.json` that items are
+never deleted, and the record has no supersession field, so this is the owner's call and not a
+routine's. Its unsupported sentences are corrected so the duplicate is at least accurate while it
+stands. **The dedupe gate reads recent history and did not stop this**, which is worth a look on
+its own terms.
+
+**This belongs in `knowledge/shared/GATE_LESSONS.md` and that file is `human` lane.** The entry it
+wants is the article page one, under the heading the fault actually has: a transcript assembled
+out of laid-out text nodes publishes what the layout did, not what the writer wrote.
