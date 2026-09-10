@@ -1,0 +1,49 @@
+{
+  "judge": "craft",
+  "round": 5,
+  "date": "2026-09-10",
+  "weighted_score": 7.19,
+  "hard_fails": [],
+  "ship": true,
+  "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited.",
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.2,
+      "why": "Slide 6's filing contact is genuinely repaired (one soft mass plus a tight edge core, holds at 432px) and slide 3's is partly repaired (constant density along the bottom edge still reads as a soft drop at 432px). Against that, the frame that most needed work is untouched: slide 1 carries a razor-straight full-width seam at y=875/1350 that clips the cedar treeline mid-tree. Slide 9's cattle guard, the plan's declared most strongly modeled body, has no contact shadow anywhere. Slide 8 measures bands 0.353/0.376/0.366, ratio 1.0023, the deck's flattest. Slide 3's cobble is a flat pale ellipse with no contact core, refuting the frame's own declared darkest. Slide 6's dimension runs over bare caliche, refuting the technique argument that it sits on a modeled body. Credit where earned: slide 5's raking stipple is the best frame in the deck; slide 4's four labelled wires passing behind their plates is inventive and cleanly executed; eight of nine frames have real band separation."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.0,
+      "why": "Every numeral traces. The storyboard records c24's withdrawal because nothing cited it, the FMVSS-not-555 footer correction on slide 4, and the explicit rejection of 'Zoox was investigated' as absent from claims.json. One self-declared acceptance item is refuted by the render report: slide 3's 'the certifying sentence is the largest type on the frame' at font_px 41 against the hook's 74."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.4,
+      "why": "A reader gets what happened, who, where and now what to do: slide 9's dek carries 49 CFR 552.3 and the sentence that any interested person may petition NHTSA, and the footer gives the file number to quote. Slide 2 pre-empts both misreads with the agency's own POPULATION and DEPLOYED rows adjacent. What holds the score down is that the door has no office, no URL and no date, which the deck is honest about rather than dressing up."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.2,
+      "why": "Real build with a real turn: the 46 L* inversion from the near-black resume at slide 2 into the bright sheet at slide 3 is felt rather than declared, and slide 7's four flush-left lines at one size are the deck's genuine pivot. Costs: slide 6's dek opens 'Zoox self-certified in 2022' one frame after slide 5's dek said the same thing, and slide 8 is the deck's flattest frame sitting immediately before the payoff."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.3,
+      "why": "'Certified by its maker. Audited that day.' and 'Nothing in this record says what happens next.' are both better than competent. No boosterism, no doom, no first person, ordinal dates, no colons or dashes in published copy. One wobble in the deck's largest type: slide 7's 'The rules a reader is judged by' puts the reader where the vehicle belongs."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.8,
+      "why": "The palette was measured in CIELAB against 80 hexes from the last eight decks before it was drawn, four tokens moved past dE 10, and three near-neutrals were kept with the distance stated rather than hidden. Nine distinct techniques across nine frames. The cool sheet against four consecutive cream decks is a real separation."
+    }
+  ],
+  "one_sentence_fix": "Kill slide 1's horizon seam by feathering the dusk-field canvas into the relief canvas along the treeline's own alpha instead of compositing at a hard pixel row, because it is on the cover, it has survived two rounds of being named, and the corrected focal declaration now points directly at it.",
+  "the_verdict_in_its_own_words": "7.19 is an acceptable deck, not a good one. The criterion carrying the most weight, artwork_craft at 0.28, is 6.2 and under the bar on its own, and it is under the bar because five rounds of scoring bought two shadow repairs while a razor-straight seam ran across the cover the whole time. This run used the panel as a design loop, and the defect the panel kept naming was the one nobody drew their way out of."
+}

@@ -136,18 +136,19 @@
         33
       ],
       "measured": [
-        17.9,
+        18.1,
         9.6,
         52.3,
-        24.7,
-        7.0,
-        44.8,
-        17.8,
-        7.4,
-        41.5
+        24.8,
+        7.1,
+        24.6,
+        14.7,
+        7.5,
+        41.7
       ],
       "unit": "median L*",
-      "note": "MEASURED OFF THE NINE SHIPPED PNGs AT 432px, AFTER THE ROUND 1 REPAIR, and re-measured rather than carried forward, because a stale measurement in a declaration file is the exact defect the round 1 panel charged this deck for. Deck median 17.9 against a planned 20, which pays the artwork ledger's dark-deck debt with room. The shape holds: the floor is slide 5 at 7.0 and the inversion is slide 3 at 52.3, 34 above the deck median. Slide 8 dropped from 12.0 to 7.4 when its plates were given per-pixel tooth, and slide 1 from 28.5 to 17.9 when its sky was given material, so both are consequences of answering panel_ready's worked-ground floor and both are recorded rather than smoothed."
+      "note": "MEASURED OFF THE NINE SHIPPED PNGs AT 432px, AFTER THE ROUND 1 REPAIR, and re-measured rather than carried forward, because a stale measurement in a declaration file is the exact defect the round 1 panel charged this deck for. Deck median 17.9 against a planned 20, which pays the artwork ledger's dark-deck debt with room. The shape holds: the floor is slide 5 at 7.0 and the inversion is slide 3 at 52.3, 34 above the deck median. Slide 8 dropped from 12.0 to 7.4 when its plates were given per-pixel tooth, and slide 1 from 28.5 to 17.9 when its sky was given material, so both are consequences of answering panel_ready's worked-ground floor and both are recorded rather than smoothed. STALE UNTIL THE FIFTH ROUND, WHICH IS THE WHOLE OF THIS FILE'S RECURRING DEFECT. This array was measured after the round 1 repair and every round after redrew a frame without re-measuring it, so it declared slide 6 at 44.8 while the frame measured 24.6 and gave three different deck medians across two committed files. It is written by the run's own measurement now.",
+      "deck_median": 18.1
     }
   ],
   "quoted_figures_not_aggregates": [
@@ -260,12 +261,13 @@
       "assembled_from": "c25",
       "document": "49 CFR 552.3, Filing of petitions, Cornell Legal Information Institute",
       "appears_on": [
+        9,
         "caption.txt"
       ],
       "from_claims": [
         "c25"
       ],
-      "note": "A CITATION IN THE CAPTION, and it walked past this file's completeness claim because that claim is checked AGAINST THE RENDER and the caption is not a frame. Same shape as 49 CFR Part 555, whose entry sits three above this one, and found by the round 5 integrity judge rather than by any gate. The published surfaces are the nine frames AND the caption AND the first comment, and only the first of those three is what `appears_on` has ever been checked against."
+      "note": "A CITATION IN THE CAPTION, and it walked past this file's completeness claim because that claim is checked AGAINST THE RENDER and the caption is not a frame. Same shape as 49 CFR Part 555, whose entry sits three above this one, and found by the round 5 integrity judge rather than by any gate. The published surfaces are the nine frames AND the caption AND the first comment, and only the first of those three is what `appears_on` has ever been checked against. APPEARS_ON WAS WRONG THE ROUND IT WAS WRITTEN. It said caption.txt alone, and the same round put the string in slide 9's footer as C.part_552_cell. A repair that leaves its own declaration behind is this file's defect three rounds running."
     }
   ]
 }

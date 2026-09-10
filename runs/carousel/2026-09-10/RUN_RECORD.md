@@ -527,26 +527,89 @@ drawn thing in the deck and it is the value arc's floor. A future run acting on 
 delete the deck's darkest frame and its best texture to fix a sentence. **Rewrite slide 5's dek.
 Do not cut slide 5.**
 
+## THE CAP ROUND, and what the completion gate said that the prose did not
+
+The routine's prose says a deck past the cap ships at whatever the median is. `run_complete.py`
+disagreed and it was right: it read **four** recorded rounds against a cap of five and said *"the
+5 round cap ends the search and it has not been reached, so keep working the deck"*. A run that
+had stopped there would have shipped under the bar with a round of its allowance unspent, and the
+gate is the only thing that would have known.
+
+So one more round was worked, on the three things the round 5 panel named first.
+
+| round | integrity | craft | reader | median | spread | hard fails |
+|---|---|---|---|---|---|---|
+| 5 | 6.448 | 6.776 | 6.610 | 6.760 | 0.328 | 0 |
+| **cap** | **6.422** | **7.190** | **6.726** | **6.582** | **0.768** | **0** |
+
+**The median went DOWN and the spread doubled**, which is the honest result and is worth more
+than the number. Craft went 6.776 to 7.190 and voted to ship. Integrity went 6.448 to 6.422 and
+found six declaration defects, two of them made by this round's own repairs. The two judges are
+not disagreeing about the deck. They are looking at different layers of it, and the layer that
+describes the deck to itself is the one that keeps failing.
+
+### What the cap round fixed
+
+- **The two-part contact was two drop shadows on both frames that had one.** Slide 3 tested the
+  sheet once at one offset with a hard in-or-out test for BOTH parts, which is why both came out
+  as uniform hard-edged bands down the same two edges, the named failure of the technique in
+  `TECHNIQUE_LIBRARY.md`. The body is a penumbra now, accumulated over six samples stepped along
+  the key's own axis, and the core is a narrow falloff band at the sheet's lower edge. Slide 6's
+  filing carried two polygons at two offsets and two angles, which read as misregistration.
+  **The craft judge calls slide 6 genuinely repaired and slide 3 improved but not landed.**
+- **The door got an address.** Slide 9's footer cell read `AQ26002` alone, so a reader had a right
+  and nowhere to file it. It reads `AQ26002   49 CFR 552.3` now, which is the convention slide 6
+  already used. The reader judge credits it and says it still does not close the gap, because
+  552.3 is where the rule is WRITTEN and the rule itself says the petition goes to the
+  Administrator, whom no frame names.
+- **Slide 1's declared focal was refuted by its own pixels in two separate rounds.** The lit
+  caliche strip measures L* 44 against the ember band's 30, and `construction_check` independently
+  picks that strip out as the frame's largest bright region. **The declaration moved and the art
+  did not, and the craft judge says plainly that the art should have moved**, because the
+  corrected focal now points at a 95 px strip whose top edge is the frame's razor seam.
+
+### And the cap round made two of its own, in the file that keeps making them
+
+The integrity judge found six declaration defects and named two as this round's work.
+`aggregates.json` declared 49 CFR 552.3 on `caption.txt` alone in the same round that put it on
+slide 9's footer. Slide 1's corrected focal left `value_structure` and `motion` still naming the
+ember band four lines below it. Both are corrected, along with a value arc that had been measured
+after round 1 and never re-measured, which is why three different deck medians sat in two
+committed files, none of them the deck's.
+
+**Its one-sentence fix is the run's own conclusion about itself**: derive `appears_on`, the
+dossier's `type.labels` and every measured L* FROM `render_report.json` instead of writing them,
+because `compute.py` already proved that the only way a value stops going stale is to leave the
+frame no copy to hold.
+
+### The record's second copy of a word, and it is the more important deliverable
+
+`tx-2026-0140`'s summary read *"The Cybercab has no brake pedal, no gas pedal, no steering wheel
+and no mirrors"*, dropping c10's qualifiers PERMANENTLY ATTACHED and CONVENTIONAL. **This deck's
+own round 2 called dropping those two words a HARD FAIL** on slide 4, and the deck has carried
+them correctly ever since. The record kept its own copy of the loose version, exactly as it kept
+its own copy of "paid" until round 3. Same field, same item, same shape, twice in one run.
+
 ## Gate status
 
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
 | claims         | PASS   | 24 verified claim(s) |
-| render         | WARN   | 9 slide(s), 40 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 82 warn(s) |
-| aggregates     | PASS   | 2 declaration(s), 2 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.82 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| render         | WARN   | 9 slide(s), 39 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 80 warn(s) |
+| aggregates     | PASS   | 4 declaration(s), 4 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.79 MB, vector |
+| score          | FAIL   | 6.582, below threshold |
+| labels         | PASS   | 62 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 104 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 14 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
-| dossiers       | PASS   | 52,429 chars planned |
-| caption        | PASS   | 124 words |
+| dossiers       | PASS   | 61,568 chars planned |
+| caption        | PASS   | 143 words |
 | craft floor    | WARN   | 9 frame(s), median 701, floor 126, 1 quiet |
-| plan vs render | PASS   | 12 of 72 acceptance item(s) checkable |
+| plan vs render | PASS   | 12 of 77 acceptance item(s) checkable |
 | texan          | WARN   | places Austin / body yes / deadline yes / next step NO |
-| absences       | WARN   | 4 of 6 scoped to a named document, 2 unscoped |
-| numerals       | PASS   | 17 numeral(s) over 9 frame(s), every one reachable |
+| absences       | WARN   | 4 of 5 scoped to a named document, 1 unscoped |
+| numerals       | PASS   | 19 numeral(s) over 9 frame(s), every one reachable |
 | completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->

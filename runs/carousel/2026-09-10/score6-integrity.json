@@ -1,0 +1,49 @@
+{
+  "judge": "integrity",
+  "round": 5,
+  "date": "2026-09-10",
+  "weighted_score": 6.422,
+  "hard_fails": [],
+  "ship": false,
+  "_note": "Returned verbatim by a read-only scorer and written by the showrunner. Unedited. It scored artwork_craft from the frame sources and the render report, saying so, because it could not reach the PNGs.",
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.3,
+      "why": "Nine genuinely distinct techniques and real computed geometry. But three things three rounds of judges asked for and none was done: slide 1's horizon seam, slide 9's unworn pass reading as a block at 432px, and the two-part contact shadow, which is one of the deck's three declared structural laws. This round answered a two-round-old pixel finding on slide 1 by moving the declaration rather than the art, then left value_structure contradicting the move. SCORED WITHOUT THE PNGs, which it could not locate."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 6.2,
+      "why": "Every fact traces and every numeral is lifted out of a quote by regex rather than retyped; the rejected list is exemplary; the record's paid defect is gone. Against: six declaration defects, two of them made by this round's own repairs, plus the 552.3 compression and slide 9's adjacency, both stretches."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.4,
+      "why": "Names Travis County, the Office of Defects Investigation, AQ26002, September 3rd 2026 and Austin, and slide 2's POPULATION and DEPLOYED adjacency kills the deck's worst misread with the document's own words. But the door the deck hands over is a CFR citation with no address, no form and no deadline. A right, not an instruction."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.8,
+      "why": "Real inversion at 3, real turn at 7 where the frame's focal is its dark extreme, and a close that draws the comparison rather than stating it. Cuttable material remains: slide 5's dek and slide 6's dek both carry c20's 2022 self-certification one frame apart."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "Spare and on register. 'An audit query is neither a defect investigation nor a recall' is the best sentence in the deck and it is placed second, where it does the most work. But six frames are footered TRAVIS COUNTY or AUSTIN and all nine are drawn as Edwards Plateau ranch country."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.7,
+      "why": "The palette was measured in CIELAB against 80 prior hexes with a calibrated baseline first, four tokens moved, three kept with the reason stated. Five type skeletons across nine frames. Against: three near-neutrals under dE 10, and the autonomous-vehicle beat 20 days after carousel no. 5."
+    }
+  ],
+  "one_sentence_fix": "Derive aggregates.json's appears_on, the dossier's type.labels and every measured L* in the storyboard FROM render_report.json instead of writing them, because compute.py already proved that the only way a value stops going stale is to leave the frame no copy to hold, and three consecutive rounds have now shipped a repair whose own declaration was left behind.",
+  "the_finding_it_called_most_useful": "ledger/docket.json's tx-2026-0140 summary reads 'The Cybercab has no brake pedal, no gas pedal, no steering wheel and no mirrors', dropping c10's qualifiers PERMANENTLY ATTACHED and CONVENTIONAL, which this deck's own round 2 called a hard fail on slide 4 and which the deck now carries correctly. Same shape as the 'paid' defect round 3 found in the same field. The record is the more important deliverable."
+}

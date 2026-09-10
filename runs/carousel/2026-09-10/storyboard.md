@@ -247,11 +247,11 @@ art:
     cedar #171C18 at both edges, sky_ember #B4664F and sky_high #1B1830 in the band. Drawn from
     caliche and ashe juniper on the Edwards Plateau west of Austin, twenty minutes after sunset.
   value_structure: >
-    Planned median L* 26. Lightest is the ember band at about 62, darkest is the cedar mass at
+    Planned median L* 26. Lightest is the lit caliche strip under the treeline at a measured 44, and the ember band is 30, darkest is the cedar mass at
     about 5. The rut crowns sit at about 44 and the type ground under the hook is held at or below
     16 so foil-value type clears 4.5 to 1 without a scrim.
   motion: >
-    The eye enters on the ember band, drops to the lit crowns, and runs down them out of the
+    The eye enters on the lit caliche strip under the treeline, drops to the lit crowns, and runs down them out of the
     bottom of the frame toward the reader's own thumb.
 type:
   hook: "Certified by its maker. Audited that day."
@@ -641,9 +641,12 @@ acceptance:
 # `construction_check` is what found it, on its first run of this deck. It read the pale band as
 # the frame's largest solid bright rectangle, ahead of the filing the frame is about, and the deck
 # stood at 5 of 9 frames carrying one primitive against a threshold of half. It stands at 4 of 9.
-# THE COST, STATED: this frame measures median L* 24 against a planned 34. It measured 44 before,
-# so the miss is the same size in the other direction and the deck median is unmoved at 18.5
-# against a plan of 20. The arc was NOT rewritten to match.
+# THE COST, STATED, AND MEASURED AT THE END RATHER THAN WHEN IT WAS WRITTEN: this frame measures
+# median L* 24.6 against a planned 34. It measured 44 before, so the miss is the same size in the
+# other direction, and the deck median is 18.1 against a plan of 20. The arc was NOT rewritten to
+# match. The figures in this comment were restated three times in two files before the fifth
+# round's integrity judge counted them and found three different deck medians, none of them the
+# deck's, so these are the run's last measurement rather than a number somebody carried forward.
 risks:
   - "an axis is truncated, which is a lie told with a true number"
   - "a reader reads the two routes as alternatives rather than as a sequence, which the ordering and the banned word list are there to prevent"
