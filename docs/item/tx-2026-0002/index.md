@@ -9,7 +9,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-07
+- Last checked: 2026-09-10
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-03 · The comment window on the proposed Large Load Demand Management Service rule closes tomorrow, September 4th, 2026. The commission's calendar feed still carries that deadline as a dated entry of its own, and the proposal for publication of new section 25.521 stands as filed. Anyone meaning to file has one day left. The feed's own project strings are quotable again, now that the check reads a feed whose HTML is escaped inside its XML. The project a deadline belongs to is carried by a claim rather than by a summary alone.
 - 2026-09-04 · Today is the deadline. The filing index moved from 34 filings to 37. The three that arrived are comments on the proposal itself and the last two were filed the day before the window shuts. The Office of Public Utility Counsel, which represents residential and small commercial customers, filed on September 3rd. Texas Industrial Energy Consumers, which represents large industrial load, filed the same day. Nothing about the rule text or the deadline has changed.
 - 2026-09-07 · The window shut. The filing index moved from 37 filings to 64, and almost all of that arrived on the deadline day itself. Oncor, AEP Texas, CenterPoint Energy Houston Electric and Texas New Mexico Power all filed. So did the grid operator, NRG, Vistra, ENGIE and the Lower Colorado River Authority. The Sierra Club filed. The Data Center Coalition filed. Google filed under its own name. A supplemental comment from a member of the public was entered on September 6th, after the deadline. The index is still taking filings even though the dated way in has passed. What the commission does with any of it is not scheduled.
+- 2026-09-10 · The filing index still stands where the record left it and the case style has not changed. The commission's calendar feed no longer carries the September 4th deadline. That is what the feed does once a date has passed. The two entries the record quoted from it have been replaced by two the index still carries. The Texas Register acknowledgement filed under the control number still states the September 4th deadline, so the shut window stays readable from a source that keeps its own history.
 
 ## Evidence
 
@@ -57,11 +58,11 @@ Source (primary_official): https://interchange.puc.texas.gov/search/documents/?c
 
 Source (primary_official): https://interchange.puc.texas.gov/search/documents/?controlNumber=58482&itemNumber=31
 
-### The commission's calendar feed carries the September 4th public comment deadline as its own dated entry.
+### The project ran an earlier round of questions for comment under its own deadline, before the proposal for publication.
 
-> Public Comment Deadline - Friday, September 4, 2026
+> Staff Memo and Questions for Comment w/April 8 Deadline
 
-Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
 ### A filing in the project carries an objection to incentives in its description.
 
@@ -105,11 +106,11 @@ Source (primary_official): https://tcss.legis.texas.gov/resources/UT/htm/UT.39.h
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
-### The commission's calendar feed names this project beside its September 4th deadline.
+### The staff memo that set the comment deadline reached the commission as a numbered open meeting item.
 
-> Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+> OM Item No. 29 - Staff Memo & PFP w/Sept. 4 Comment Deadline
 
-Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 
 ### The Office of Public Utility Counsel filed comments on the proposal for publication.
 

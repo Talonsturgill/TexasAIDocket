@@ -1,0 +1,46 @@
+{
+  "weighted_score": 6.61,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Put the address on the door: print 49 CFR 552.3 in slide 9's footer strip the way slide 6 already prints 49 CFR PART 555, and replace the unexecutable 'Read its resume by the number' with a route a reader can actually walk, because a stated right with no where and no how is still a lookup dressed as an action.",
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.5
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 6.8
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.5
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.5
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.0
+    }
+  ],
+  "two_findings_not_in_the_round_summaries": [
+    "Six frames are footered TRAVIS COUNTY or AUSTIN and the drawn world across all nine is ranch country, against the opening law of knowledge/shared/TEXAS_VERNACULAR.md. The no-vehicle rule did not require abandoning Austin.",
+    "slide 7's 'The rules a reader is judged by' is not supported by c18 or c19 in the way it reads, because FMVSS bind manufacturers rather than drivers."
+  ],
+  "judge": "reader",
+  "round": 5,
+  "date": "2026-09-10",
+  "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

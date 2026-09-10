@@ -11,7 +11,7 @@ In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's 
 - Public access: Public meeting
 - Take part: https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
 
-- Last checked: 2026-09-07
+- Last checked: 2026-09-10
 
 ## Dates
 
@@ -24,6 +24,7 @@ In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-07 · Admitted. The court's own case page sets oral argument for the morning of October 6th, 2026. The briefs on the merits are filed on both sides and three amicus filings are in, two of them from the trades whose work the answer decides.
+- 2026-09-10 · The mandamus is still set for argument on October 6th and the court has not moved the date. Nothing new has been docketed that would change what is to be argued.
 
 ## Evidence
 

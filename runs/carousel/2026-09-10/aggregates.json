@@ -1,0 +1,271 @@
+{
+  "run": "2026-09-10",
+  "note": "FOUR entries are declared here and only THREE are numbers this deck invented. The invented ones are the count of two departures on slide 9, and the two document counts in the first comment's header, which `sources_block --build` writes from the claims file rather than a person and which were undeclared until round 4 caught them, for the second time in this project's history. The fourth, eight federal standards, is the SOURCE'S own word carried through, and it is listed because the gate is right to ask about any figure that could have been a tally. Every other figure the deck prints is QUOTED, and those are under `quoted_figures_not_aggregates` so a later run can see they were looked at rather than missed. THIS LIST CLAIMED COMPLETENESS AND WAS NOT COMPLETE IN ROUND 1, omitting 49 CFR Part 555, which is why the claim of completeness is now checked against the render rather than asserted. Two strings are produced by code from a quote rather than typed, the ordinal date and the list of absent controls, and both are recorded there with the computation that made them. What the deck computes elsewhere is geometry, under `geometry`, because it is drawn rather than printed and a reader can still measure it.",
+  "aggregates": [
+    {
+      "phrase": "TWO DEPARTURES",
+      "kind": "count",
+      "value": 2,
+      "from_claims": [
+        "c1",
+        "c2",
+        "c20",
+        "c21",
+        "c22"
+      ],
+      "computed_by": "the deck, over the two routes the record holds end to end",
+      "appears_on": [
+        9
+      ],
+      "note": "THE ONE NUMBER THIS DECK INVENTS, and it is a count over a set the deck names on its own frames. The two are the route Zoox finished, which c20 opens in 2022, c21 carries through the Part 555 filing and c22 closes with final approval in July 2026, and the route that opened on September 3rd, 2026, which c2 dates and c1 numbers. CORRECTED 2026-09-10, and the correction is the whole reason this key is checked against the render. This note read 'slide 9 draws exactly two marks leaving one cattle guard, one worn and one unworn', and the frame draws THREE marks: a worn RUT PAIR, which is two marks and one route, plus a single unworn pass, which is one mark and one route. The count of two is a count of ROUTES and it is right. The sentence that said the drawing and the count are the same assertion was refuted by the frame it described, which the round 3 integrity judge found. No third route is claimed and none is drawn."
+    },
+    {
+      "phrase": "eight federal standards",
+      "kind": "count",
+      "value": 8,
+      "quoted_from": "c21",
+      "quote": "filed for a temporary Part 555 exemption from eight Federal Motor Vehicle Safety Standards",
+      "from_claims": [
+        "c21"
+      ],
+      "appears_on": [
+        6,
+        "caption"
+      ],
+      "note": "NOT INVENTED, BUT THE GATE IS RIGHT TO ASK. The count is the source's own and is set as the source spells it, as a word rather than a digit. What made it read as computed is that the CAPTION shortens the source's noun to 'eight federal standards', which is a narrowing of the NOUN and not of the count. CORRECTED AFTER ROUND 1: this note previously claimed the full phrase already stood on slide 6's field table row, and copy.json proved it did not. The frame now prints 'eight Federal Motor Vehicle Safety Standards' in full, so the claim this note makes is true of the artifact rather than of the intention. No arithmetic is performed on the figure and it is never compared to any total."
+    },
+    {
+      "phrase": "three official records",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "sources_block --build, counting DISTINCT source_url values whose claims carry source_type primary_official",
+      "set": "the NHTSA opening resume for AQ26002, 49 CFR 555.1 and 49 CFR 552.3",
+      "appears_on": [
+        "first_comment.txt"
+      ],
+      "from_claims": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10",
+        "c11",
+        "c23",
+        "c25"
+      ],
+      "note": "A COUNT OF DOCUMENTS, and `sources_block --build` writes it into the first comment's header from the claims file rather than from a person. It is declared here because it is still a number the deck computed, and because THIS IS THE SECOND TIME the same header has arrived undeclared: CLAUDE.md records a 2026-09-04 run where --build overwrote first_comment.txt with two counts nothing declared, and that run reworded the header by hand. A hand reword is undone by the next --build, which is why this run declared the counts instead."
+    },
+    {
+      "phrase": "two news reports",
+      "kind": "count",
+      "value": 2,
+      "computed_by": "sources_block --build, counting DISTINCT source_url values whose claims carry source_type secondary_reported",
+      "set": "Electrek and TechCrunch, both fetched 2026-09-10",
+      "appears_on": [
+        "first_comment.txt"
+      ],
+      "from_claims": [
+        "c12",
+        "c13",
+        "c14",
+        "c15",
+        "c16",
+        "c17",
+        "c18",
+        "c19",
+        "c20",
+        "c21",
+        "c22"
+      ],
+      "note": "A COUNT OF DOCUMENTS, and `sources_block --build` writes it into the first comment's header from the claims file rather than from a person. It is declared here because it is still a number the deck computed, and because THIS IS THE SECOND TIME the same header has arrived undeclared: CLAUDE.md records a 2026-09-04 run where --build overwrote first_comment.txt with two counts nothing declared, and that run reworded the header by hand. A hand reword is undone by the next --build, which is why this run declared the counts instead."
+    }
+  ],
+  "geometry": [
+    {
+      "what": "slide 6's dimension terminator widths",
+      "value": [
+        192,
+        16
+      ],
+      "unit": "design px",
+      "computed_by": "compute.py DIM_TERM_W_LEFT and DIM_TERM_W_RIGHT, at DIM_PX_PER_MONTH = 16",
+      "note": "THE WIDTHS ARE THE RECORD'S OWN PRECISION. c20 gives a year with no month, so the left terminator is twelve months wide. c22 gives a month, so the right is one month wide. A dimension drawn with two identical ticks would print a precision the record does not hold, which on this project is the same class of error as a truncated axis. The ratio is 12 to 1 and it is stated in the frame's acceptance list so a render that flattens it fails. STALE FROM ROUND 4 UNTIL ROUND 5 CAUGHT IT. This entry read [156, 13] at 13.0 px per month for a whole scoring round after compute.py had been changed to 16, 192 and 16, because round 4 fixed the frame's endpoints and did not walk its own declaration. That is the identical defect rounds 1 and 3 charged this deck for, made by the repair for it. The axis is C.dim_months at C.dim_px_per_month, outer edge to outer edge, so the drawn length is exactly the span it measures.",
+      "span": 880,
+      "months": 55
+    },
+    {
+      "what": "slide 4's norther front break",
+      "value": 837,
+      "unit": "design px from the top",
+      "computed_by": "compute.py NORTHER_BREAK_Y at 0.62 of frame height",
+      "note": "Computed so it can never land on the vertical centre, which is this atmosphere's named failure in the technique library. The gate's two stays are bedded on it."
+    },
+    {
+      "what": "slide 9's terminus and the unmarked band",
+      "value": [
+        0,
+        736
+      ],
+      "unit": "design px from the top, the pass's own column",
+      "computed_by": "compute.py TERMINUS_Y and GUARD_TOP_Y",
+      "note": "INVERTED IN ROUND 1 AND TWO JUDGES CAUGHT IT. This entry named [736, 830], which is exactly where the unworn pass IS drawn, and called it the region carrying no mark. The pass runs from the cattle guard UP to the terminus, so the unmarked region is the column ABOVE the terminus. compute.py now carries both, `unmarked_band` and `marked_band`, so the two can never be confused again. The pass STOPS rather than fading, because a fade would turn a measured fact into an impression."
+    },
+    {
+      "what": "the key azimuth, shared by every relief call and every shadow solver on all nine frames",
+      "value": 205.0,
+      "unit": "degrees, screen space",
+      "computed_by": "compute.py KEY_AZIMUTH_DEG",
+      "note": "One constant, injected into every frame, so nine different techniques cannot disagree about where the light is. Wire relief's named failure is the light direction disagreeing with the declared value structure."
+    },
+    {
+      "what": "the deck's value arc, measured off the nine shipped PNGs at 432px",
+      "planned": [
+        26,
+        12,
+        58,
+        16,
+        9,
+        34,
+        11,
+        20,
+        33
+      ],
+      "measured": [
+        17.9,
+        9.6,
+        52.3,
+        24.7,
+        7.0,
+        44.8,
+        17.8,
+        7.4,
+        41.5
+      ],
+      "unit": "median L*",
+      "note": "MEASURED OFF THE NINE SHIPPED PNGs AT 432px, AFTER THE ROUND 1 REPAIR, and re-measured rather than carried forward, because a stale measurement in a declaration file is the exact defect the round 1 panel charged this deck for. Deck median 17.9 against a planned 20, which pays the artwork ledger's dark-deck debt with room. The shape holds: the floor is slide 5 at 7.0 and the inversion is slide 3 at 52.3, 34 above the deck median. Slide 8 dropped from 12.0 to 7.4 when its plates were given per-pixel tooth, and slide 1 from 28.5 to 17.9 when its sky was given material, so both are consequences of answering panel_ready's worked-ground floor and both are recorded rather than smoothed."
+    }
+  ],
+  "quoted_figures_not_aggregates": [
+    {
+      "phrase": "September 3rd, 2026",
+      "kind": "date",
+      "value": "2026-09-03",
+      "computed_by": "out/2026-09-10/compute.py ordinal(), from the resume's own `Date Opened: 09/03/2026` field parsed out of c2's quote",
+      "from_claims": [
+        "c2"
+      ],
+      "appears_on": [
+        1,
+        2,
+        9
+      ],
+      "note": "A date reformat is a computation. The document prints 09/03/2026 and the house style is month first with the ordinal, so the string on the frame is produced by code from the quote rather than typed beside it. c7's summary sentence independently carries 'On September 3, 2026' and agrees."
+    },
+    {
+      "phrase": "brake pedal, gas pedal, steering wheel and mirrors",
+      "kind": "count",
+      "value": 4,
+      "computed_by": "out/2026-09-10/compute.py ABSENT_CONTROL_COUNT, len() over the list split out of c10's verbatim quote",
+      "from_claims": [
+        "c10"
+      ],
+      "appears_on": [
+        1,
+        4
+      ],
+      "note": "THE COUNT NAMES THE SET IT COUNTED AND THAT SET IS ONE THE DECK ACTUALLY READ. The set is the clause inside c10's own quote, `such as a brake pedal, gas pedal, steering wheel, and mirrors`, and nothing else. Slide 4 draws exactly this many wires and gives each one of these names, both from the same computed list, so the drawing and the count cannot disagree. The source's `such as` is not a closed enumeration, which is why no frame says `the four things` or `all four`."
+    },
+    {
+      "phrase": "1,000 (Estimated)",
+      "kind": "count",
+      "value": 1000,
+      "quoted_from": "c5",
+      "quote": "Population: 1,000 (Estimated)",
+      "appears_on": [
+        2
+      ],
+      "note": "NOT AN AGGREGATE AND DELIBERATELY NOT PRESENTED AS ONE. It is the document's own covered population, printed with the document's own comma and its own qualifier at the same cap height. The frame sets `a small number`, c7's phrase for what was actually deployed on the day, in the row directly beneath it, so a reader who takes this as cars on Austin streets has to skip a line to do it."
+    },
+    {
+      "phrase": "eight federal standards",
+      "kind": "count",
+      "value": 8,
+      "quoted_from": "c21",
+      "quote": "a temporary Part 555 exemption from eight Federal Motor Vehicle Safety Standards",
+      "appears_on": [
+        6,
+        "caption"
+      ],
+      "note": "Set as the source spells it rather than as a digit, and it is the source's count of what ONE exemption covered. The deck performs no arithmetic on it and never compares it to any total."
+    },
+    {
+      "phrase": "2022",
+      "kind": "date",
+      "value": "2022",
+      "quoted_from": "c20",
+      "quote": "In 2022, Amazon-owned autonomous vehicle company Zoox self-certified its cube-like robotaxi",
+      "appears_on": [
+        5,
+        6
+      ],
+      "note": "A bare year, carried as a bare year. NO SPAN IS COMPUTED between this and July 2026 anywhere in the deck, and that is the point of slide 6's asymmetric terminators."
+    },
+    {
+      "phrase": "July 2026",
+      "kind": "date",
+      "value": "2026-07",
+      "quoted_from": "c22",
+      "quote": "Zoox received final approval for that exemption in July 2026",
+      "appears_on": [
+        6
+      ],
+      "note": "A month with no day, carried as a month with no day."
+    },
+    {
+      "phrase": "AQ26002",
+      "kind": "identifier",
+      "value": "AQ26002",
+      "quoted_from": "c1",
+      "quote": "Investigation: AQ26002",
+      "appears_on": [
+        2,
+        9
+      ],
+      "note": "A docket number, lifted from the resume's own Investigation line by compute.py rather than retyped."
+    },
+    {
+      "phrase": "49 CFR Part 555",
+      "kind": "identifier",
+      "value": "49 CFR Part 555",
+      "appears_on": [
+        6
+      ],
+      "note": "AN IDENTIFIER ASSEMBLED FROM A DOCUMENT'S OWN CITATION, NOT A QUOTED PHRASE, and it took three rounds to say so. Round 1 cited c23 with a quote carrying no '49', no 'CFR' and no '555'. Round 2 re-pointed it at c21, whose quote says 'Part 555' and still carries neither '49' nor 'CFR', so the same defect survived in a smaller form and the round 3 integrity judge caught it. Nothing quotes this string, because it is a CITATION: c23 is title 49, part 555, section 1 of the Code of Federal Regulations, at law.cornell.edu/cfr/text/49/555.1, and the deck writes that document's number the way a citation is written. c21 is what puts Zoox under it. The string is computed as `part_555` in compute.py and injected, so the frame does not type it either.",
+      "from_claims": [
+        "c23",
+        "c21"
+      ],
+      "assembled_from": "c23",
+      "document": "49 CFR 555.1, Purpose and scope, Cornell Legal Information Institute"
+    },
+    {
+      "phrase": "49 CFR 552.3",
+      "kind": "identifier",
+      "value": "49 CFR 552.3",
+      "assembled_from": "c25",
+      "document": "49 CFR 552.3, Filing of petitions, Cornell Legal Information Institute",
+      "appears_on": [
+        "caption.txt"
+      ],
+      "from_claims": [
+        "c25"
+      ],
+      "note": "A CITATION IN THE CAPTION, and it walked past this file's completeness claim because that claim is checked AGAINST THE RENDER and the caption is not a frame. Same shape as 49 CFR Part 555, whose entry sits three above this one, and found by the round 5 integrity judge rather than by any gate. The published surfaces are the nine frames AND the caption AND the first comment, and only the first of those three is what `appears_on` has ever been checked against."
+    }
+  ]
+}

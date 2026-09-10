@@ -1,0 +1,188 @@
+{
+  "run": "2026-09-10",
+  "deck": 20,
+  "note": "Derived from render_report.json's own laid-out text nodes by build_copy.py. Never authored by hand, so it cannot drift from the frames. Rebuilt every round.",
+  "slides": {
+    "S1": {
+      "hook": "Certified by its maker. Audited that day.",
+      "dek": "Tesla put a small number of Cybercabs into commercial service in Austin on September 3rd, 2026. The agency records no permanently attached conventional manual controls, naming brake pedal, gas pedal, steering wheel and mirrors.",
+      "labels": [
+        "AUSTIN, SEPTEMBER 3RD",
+        "TEXAS AI DOCKET",
+        "TRAVIS COUNTY",
+        "c7 c8 c10 c12 c16",
+        "texasaidocket.com",
+        "01 / 09"
+      ],
+      "claims": [
+        "c7",
+        "c8",
+        "c10",
+        "c12",
+        "c16"
+      ]
+    },
+    "S2": {
+      "hook": "An audit query is neither a defect investigation nor a recall.",
+      "dek": "Examination of the process and technical data on which Tesla relied when certifying the Cybercab and related issues.",
+      "labels": [
+        "OPENING RESUME",
+        "TEXAS AI DOCKET",
+        "INVESTIGATION",
+        "AQ26002",
+        "DATE OPENED",
+        "September 3rd, 2026",
+        "ACTION",
+        "Open Audit Query (AQ)",
+        "POPULATION",
+        "1,000 (Estimated)",
+        "DEPLOYED",
+        "a small number",
+        "PROBLEM DESCRIPTION",
+        "c1 c3 c5 c6 c7",
+        "texasaidocket.com",
+        "02 / 09"
+      ],
+      "claims": [
+        "c1",
+        "c3",
+        "c5",
+        "c6",
+        "c7"
+      ]
+    },
+    "S3": {
+      "hook": "Tesla certified it and told the agency",
+      "dek": "\"certified those Cybercab vehicles as compliant with all applicable Federal Motor Vehicle Safety Standards\"",
+      "labels": [
+        "WHAT TESLA TOLD THE AGENCY",
+        "TESLA, AS THE AGENCY RECORDS IT",
+        "NHTSA's stated subject is the process and the technical data behind that sentence.",
+        "TRAVIS COUNTY",
+        "c8 c11",
+        "texasaidocket.com",
+        "03 / 09"
+      ],
+      "claims": [
+        "c8",
+        "c11"
+      ]
+    },
+    "S4": {
+      "hook": "Until that work is finished the existing standards remain in force.",
+      "dek": "The Department of Transportation has proposed removing the manual-controls requirement for vehicles designed to drive themselves.",
+      "labels": [
+        "THE RULES ASSUME A DRIVER",
+        "THE AGENCY RECORDS NO PERMANENTLY ATTACHED CONVENTIONAL MANUAL CONTROLS, NAMING",
+        "PROPOSED, NOT IN FORCE",
+        "FMVSS",
+        "c10 c15 c18 c19",
+        "texasaidocket.com",
+        "04 / 09",
+        "BRAKE PEDAL",
+        "GAS PEDAL",
+        "STEERING WHEEL",
+        "MIRRORS"
+      ],
+      "claims": [
+        "c10",
+        "c15",
+        "c18",
+        "c19"
+      ]
+    },
+    "S5": {
+      "hook": "This construction is not new",
+      "dek": "In 2022 Zoox self-certified a robotaxi that also has no steering wheel and no pedals.",
+      "labels": [
+        "THE FIRST PASS",
+        "ZOOX, 2022",
+        "c20",
+        "texasaidocket.com",
+        "05 / 09"
+      ],
+      "claims": [
+        "c20"
+      ]
+    },
+    "S6": {
+      "hook": "eight Federal Motor Vehicle Safety Standards",
+      "dek": "Zoox self-certified in 2022. It later filed for a temporary exemption under Part 555 and received final approval in July 2026.",
+      "labels": [
+        "THE ROUTE THROUGH",
+        "TEXAS AI DOCKET",
+        "FILED UNDER",
+        "49 CFR Part 555",
+        "STANDARDS COVERED",
+        "FINAL APPROVAL",
+        "49 CFR PART 555",
+        "c20 c21 c22 c23",
+        "texasaidocket.com",
+        "06 / 09",
+        "ORIGIN, DRAWN"
+      ],
+      "claims": [
+        "c20",
+        "c21",
+        "c22",
+        "c23"
+      ]
+    },
+    "S7": {
+      "hook": "The rules a reader is judged by",
+      "dek": "are themselves being rewritten.",
+      "labels": [
+        "THE GROUND IS MOVING",
+        "The Cybercab is carrying riders",
+        "while that is still unfinished.",
+        "TRAVIS COUNTY",
+        "c12 c18 c19",
+        "texasaidocket.com",
+        "07 / 09"
+      ],
+      "claims": [
+        "c12",
+        "c18",
+        "c19"
+      ]
+    },
+    "S8": {
+      "hook": "Nothing in this record says what happens next.",
+      "dek": "\"NHTSA fully supports the safe development and deployment of automated vehicles. But as the federal regulator, we need to ensure that all of our laws are followed.\"",
+      "labels": [
+        "BOTH PARTIES",
+        "TEXAS AI DOCKET",
+        "JONATHAN MORRISON, NHTSA ADMINISTRATOR",
+        "\"plans to gradually expand commercial deployment of the Cybercab\"",
+        "TESLA, AS THE AGENCY RECORDS IT",
+        "TRAVIS COUNTY",
+        "c9 c17",
+        "texasaidocket.com",
+        "08 / 09"
+      ],
+      "claims": [
+        "c9",
+        "c17"
+      ]
+    },
+    "S9": {
+      "hook": "One route has ruts. One started on September 3rd.",
+      "dek": "The audit is open. Read its resume by the number. Any interested person may petition NHTSA to decide whether a vehicle meets an applicable standard.",
+      "labels": [
+        "TWO DEPARTURES, ONE TRAILHEAD",
+        "AQ26002",
+        "c1 c2 c20 c22 c25",
+        "texasaidocket.com",
+        "09 / 09",
+        "September 3rd, 2026"
+      ],
+      "claims": [
+        "c1",
+        "c2",
+        "c20",
+        "c22",
+        "c25"
+      ]
+    }
+  }
+}

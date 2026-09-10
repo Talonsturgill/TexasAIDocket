@@ -1,0 +1,46 @@
+{
+  "weighted_score": 6.776,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild the two-part contact shadow so it reads as contact rather than offset: the sheet on 3, the filing on 6 and both plates on 8 all render a uniform hard-edged band down the right and bottom edges, which is TXCARVE's named failure, and since the attribution law is one of this deck's three declared structural laws, that one class of fix repairs a third of the frames.",
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.0
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.2
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.0
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.8
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.0
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.4
+    }
+  ],
+  "the_two_notes_for_the_showrunner": [
+    "Round 4 was net-neutral to negative on craft. Four of the five changes were typographic nudges, the slide 2 hairline is invisible at 432px, and the slide 8 line move traded one proximity error for a worse one. None touched a drawing.",
+    "SLIDE 5 IS NOT THE CUTTABLE FRAME. Three judges have now said it is, and they are charging the art for a copy defect. Slide 5's surface is the best in the deck and it is the arc's floor. Its DEK is the duplicate. A future run acting on the accumulated verdict would delete the deck's darkest frame and its best texture to fix a sentence."
+  ],
+  "judge": "craft",
+  "round": 5,
+  "date": "2026-09-10",
+  "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

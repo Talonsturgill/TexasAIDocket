@@ -11,7 +11,7 @@ Carson County Commissioners Court approved a tax abatement agreement with Fermi 
 - Public access: Public meeting
 - Take part: https://www.newschannel10.com/2025/10/28/carson-county-approves-tax-abatement-fermi-america-development/
 
-- Last checked: 2026-09-07
+- Last checked: 2026-09-10
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-02 · The phased abatement stands as approved and the county has recorded no amendment to it.
 - 2026-09-05 · Carson County's phased abatement for the Fermi America development still stands. The station's account of the vote sits behind a wall that would not open, so the commissioners' own words are unconfirmed.
 - 2026-09-07 · The agreement now has a primary source behind it. The company's quarterly report to federal securities regulators, filed August 14th, 2026, states that Carson County approved a 10-year property tax abatement and established a reinvestment zone for the campus. That description and the Amarillo station's account of an agreement covering 15 phases that could extend for up to 25 years do not describe the same length. Neither document reconciles them. The county's own signed agreement is what would settle it and it is not published. The Amarillo station's own crawl rules now exclude automated readers, so its five quotes stand unconfirmed today.
+- 2026-09-10 · The company's own filing with the federal securities regulator is still published. It still records that Carson County approved a property tax abatement and established a reinvestment zone for the Project Matador campus in October 2025. It still describes that campus as the company's first, in Carson County, built around private grid generation. The Amarillo station's account still can't be read by an automated reader, so the phase count and the outer span it reports stay unconfirmed. The county's own signed agreement that would settle the difference is still not published.
 
 ## Evidence
 

@@ -1,6 +1,6 @@
 # PUCT open meeting calendar published as a live feed through mid 2027
 
-The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up, and a meeting comes off the feed once it is held. The August meetings the feed used to lead with have been held and are gone. The next open meeting listed is Friday, September 11th, 2026 in the commissioners hearing room. The feed carries two public comment deadlines, Project 58482 on September 4th, 2026 and Project 59550 on September 17th, 2026. It also carries a workshop on September 22nd, 2026. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.
+The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up, and an entry comes off the feed once its date has passed. The September 4th comment deadline for Project 58482 has gone that way since the record last read the feed. The next open meeting listed is Friday, September 11th, 2026 in the commissioners hearing room. The only comment deadline still on the feed is Project 59550 on September 17th, 2026. It also carries a workshop on September 22nd, 2026, and it carries the grid operator's own board meetings at a separate address. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -9,7 +9,7 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-10
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-07 · The commission's calendar is still published as a live feed and still names its open meetings and its comment deadlines ahead of the day they fall. The entries the record quotes have not moved.
 - 2026-09-08 · The commission's calendar still publishes open meeting dates well into next year, so the schedule remains readable in advance by anyone who wants to attend.
 - 2026-09-09 · The commission's open meeting calendar is still published as a live feed running into 2027, so the dates a reader would plan around are still there to read.
+- 2026-09-10 · The calendar is still published as a live feed and still runs into 2027, so the dates a reader would plan around are still there to read. The September 4th comment deadline has come off it now that the date has passed, the same way a held meeting does. That leaves Project 59550 on September 17th as the only comment deadline the feed still carries. The feed also lists the grid operator's own board meetings, at an address that is not the commissioners hearing room.
 
 ## Evidence
 
@@ -50,9 +51,9 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-### The feed carries a public comment deadline as a dated entry of its own.
+### The feed carries the grid operator's own board meetings beside the commission's.
 
-> Public Comment Deadline - Friday, September 4, 2026
+> Open Meeting ERCOT - Monday, September 14, 2026
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
@@ -80,9 +81,9 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-### The feed names the project each comment deadline belongs to, which is the part a reader can act on.
+### A grid operator entry gives a different address from the hearing room and names the boardroom.
 
-> Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )
+> 8000 Metropolis Drive (Building E) ( Open To Public ) Boardroom A
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 

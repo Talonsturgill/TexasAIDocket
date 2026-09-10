@@ -455,6 +455,78 @@ proposal in `knowledge/carousel/UPGRADE_BACKLOG.md` is to measure the wall-clock
 turn's last dispatch and the next turn's first, out of the same log, which separates a continuing
 run from a stopped one by the same three orders of magnitude that made this tool possible at all.
 
+## THE FINAL PANEL, and the deck ships under its own bar
+
+| round | integrity | craft | reader | median | spread | hard fails |
+|---|---|---|---|---|---|---|
+| 1 | | | | 6.808 | | 2 |
+| 2 | 6.768 | 6.074 | 6.640 | 6.570 | 0.694 | 2 |
+| 3 | 6.816 | 6.656 | 6.660 | 6.772 | 0.160 | 0 |
+| 4 | | | 6.700 | | | 0 |
+| 5 | 6.448 | 6.776 | 6.610 | **6.760** | 0.328 | **0** |
+
+**The median is per criterion and then weighted, which `panel.py` computes and nobody computes by
+hand.** The median of the three totals is 6.61. The median of each criterion, weighted, is 6.76.
+Those are different numbers and the second is the rubric's.
+
+**It ships at 6.76 against a bar of 6.8, under by 0.04, with zero hard fails from any judge across
+the last three rounds.** `config/carousel/scoring_rubric.yaml` sets `max_rounds` 5 and the
+routine's rule at the cap is that a round may repair a HARD FAIL and nothing else, with everything
+else going in the run record and the deck shipping at whatever the median is, said out loud. That
+is what happened.
+
+**Round 4 was net neutral to negative on craft and its own judge said so.** Four of five changes
+were typographic. The slide 2 hairline the round added is invisible at 432 px, checked on the
+thumb, and the slide 8 line move traded one proximity error for a worse one. That is the pattern
+the rubric's own header warns about: a round that closes what the last round named while the
+expensive thing sits untouched.
+
+### What round 5 repaired, and none of it was craft
+
+Five declarations contradicted the code they name. A false statement in a committed file is not a
+craft note and the cap does not protect it.
+
+- `aggregates.json` declared slide 6's terminators as **156 and 13 px at 13.0 px per month** for a
+  whole scoring round after `compute.py` had been changed to 16, 192 and 16. **Round 4's own repair
+  made this defect**, by fixing the frame's endpoints and not walking its own declaration, which is
+  the identical charge rounds 1 and 3 brought against this deck.
+- `slide-09.html`'s probe published `unmarked_band:[TERM, GUARD]`, which is MARKED_BAND. That is
+  the exact inversion `compute.py` carries a comment saying can never recur, recurring because the
+  probe kept its own copy. It reads `C.unmarked_band` now.
+- The caption prints **49 CFR 552.3** and nothing declared it, because `aggregates.json`'s
+  completeness claim is checked against the RENDER and the caption is not a frame. Its exact
+  analogue, 49 CFR Part 555, sits three entries above it, declared at length.
+- Slide 7's chip read **c18 c19** beneath "The Cybercab is carrying riders". Neither claim carries
+  that. c18 is the proposal to remove manual controls and c19 is that existing standards remain in
+  force. **c12** is the claim that says passengers are in it. Corrected on the frame and the plan.
+- The storyboard said **23 verified against 24** in the file and restated a deck median rather than
+  measuring it. Both are read from their own source now.
+
+### What three rounds of judges asked for and this run did NOT do
+
+- **Slide 1's cover.** A razor-straight full-width seam at the horizon, and a declared focal (the
+  ember band) that the lit caliche band below it is measurably lighter than.
+- **Slide 9's unworn pass**, which carries half the close's argument and reads at 432 px as a
+  block rather than a tyre print in dust.
+- **The two-part contact shadow on frames 3, 6 and 8**, which the craft judge calls TXCARVE's own
+  named failure and which is one of this deck's three declared structural laws. One class of fix
+  for a third of the frames, and the largest single thing left on the table.
+- **The door's address.** Slide 9 says any interested person may petition NHTSA and never prints
+  49 CFR 552.3, while slide 6 already prints 49 CFR PART 555 in its own footer, so the deck has the
+  convention and did not use it on the one frame that needed it.
+- **Austin.** Six frames are footered TRAVIS COUNTY or AUSTIN and the drawn world across all nine
+  is ranch country, against the opening law of `knowledge/shared/TEXAS_VERNACULAR.md`. The
+  no-vehicle rule did not require leaving the city.
+
+### And one accumulated verdict that is WRONG, recorded so the next run does not act on it
+
+**Three judges across two rounds called slide 5 cuttable. Round 5's craft judge read the same
+evidence and reached the opposite conclusion, and it is right.** The duplication is real, c20 is
+restated by slide 6's dek one frame later, but it is a COPY defect. Slide 5's surface is the best
+drawn thing in the deck and it is the value arc's floor. A future run acting on the tally would
+delete the deck's darkest frame and its best texture to fix a sentence. **Rewrite slide 5's dek.
+Do not cut slide 5.**
+
 ## Gate status
 
 <!-- gate-status:begin -->
