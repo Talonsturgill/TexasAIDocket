@@ -83,6 +83,50 @@ from pathlib import Path
 # BM25's two constants, at the values the literature settled on. They are not tuned here and
 # should not be tuned without the eval in front of you: `tests/ask_eval.mjs` is what says
 # whether a change to them is an improvement or somebody's afternoon.
+# THE FRAME OF A QUESTION, AS DATA RATHER THAN AS A STRING INSIDE THE JAVASCRIPT.
+#
+# It was a literal in `js()`, so it existed only in the browser and the worker. The gold
+# set builder needs the same list to decide whether a nonsense phrase really shares
+# anything with the record, could not have it, and kept a shorter one of its own. That
+# second list was missing "what", so the phrase this retriever was written against, "what
+# is the airspeed velocity of an unladen swallow", was dropped from the gold set for
+# sharing a question word with the record. See GATE_LESSONS.
+#
+# A Python constant substituted into the JavaScript, exactly as K1, B, RRF_K and
+# INFORMATIVE already are. The grouping below is the original one and it carries meaning,
+# interrogatives then auxiliaries then modals and so on, so it is kept rather than
+# rewrapped, and `js()` emits the same shape it always did.
+FRAME_GROUPS = (
+    "what which who whom whose when where why how whether",
+    "is are was were be been being am do does did done doing",
+    "can could will would shall should must ought",
+    "have has had having",
+    "the and but for nor yet so than that this these those there here",
+    "about above across after against along among around before behind below beneath beside",
+    "between beyond during except from inside into near onto outside over through throughout",
+    "under underneath until upon with within without",
+    "all any both each either few many more most much neither none once only other some such",
+    "her hers him his its our ours she her their theirs them they you your yours mine my",
+    "tell tells told say says said know knows get gets got give gives show shows",
+    "want wants need needs please thanks thank hello",
+    "anything something everything nothing anyone someone everyone",
+    "just also very really still even ever never always",
+)
+
+FRAME = " ".join(FRAME_GROUPS).split()
+
+
+def frame() -> frozenset:
+    """The closed class of words that turn a statement into a question.
+
+    Interrogatives, auxiliaries, modals, pronouns, articles, prepositions. Not about the
+    subject in this record, not about it in any record, and not going to become about it.
+    That is what makes it safe to hand to a caller asking a different question from the
+    retriever, which is what `ask_eval.py` does with it.
+    """
+    return frozenset(FRAME)
+
+
 K1 = 1.2
 B = 0.75
 # RRF's damping. 60 is the value from the paper that introduced it. Its only job is to stop the
@@ -140,20 +184,7 @@ function askIndex(items) {
    which is long and is not a reader's to download, is in scripts/site/ask_retrieval.py under
    THE FRAME OF A QUESTION. Short version: IDF cannot tell "how" from a rare topical word, and
    "how" is in nearly every question a person types. "may" is absent because it is a month. */
-var askFrame = new Set(("what which who whom whose when where why how whether " +
-  "is are was were be been being am do does did done doing " +
-  "can could will would shall should must ought " +
-  "have has had having " +
-  "the and but for nor yet so than that this these those there here " +
-  "about above across after against along among around before behind below beneath beside " +
-  "between beyond during except from inside into near onto outside over through throughout " +
-  "under underneath until upon with within without " +
-  "all any both each either few many more most much neither none once only other some such " +
-  "her hers him his its our ours she her their theirs them they you your yours mine my " +
-  "tell tells told say says said know knows get gets got give gives show shows " +
-  "want wants need needs please thanks thank hello " +
-  "anything something everything nothing anyone someone everyone " +
-  "just also very really still even ever never always").split(" "));
+var askFrame = new Set(ASK_FRAME_WORDS);
 
 /* HOW MANY OF THIS QUERY'S WORDS COULD CORROBORATE IN THIS INDEX AT ALL.
    `terms` below counts the discriminating words a DOCUMENT matched. This counts the
@@ -227,6 +258,9 @@ function askFuse(lists) {
     .sort(function (a, b) { return b.score - a.score || (a.id < b.id ? -1 : 1); });
 }
 """.replace("K1", str(K1)).replace("B *", f"{B} *").replace("1 - B", f"1 - {B}") \
+   .replace("ASK_FRAME_WORDS", ('(' + '" +\n  "'.join(f + " " if i < len(FRAME_GROUPS) - 1 else f
+                          for i, f in enumerate(FRAME_GROUPS)).join(['"', '"'])
+        + ').split(" ")')) \
    .replace("RRF_K", str(RRF_K)).replace("INFORMATIVE", str(INFORMATIVE))
 
 

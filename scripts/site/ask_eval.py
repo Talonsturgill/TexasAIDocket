@@ -70,6 +70,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
+# THE FRAME OF A QUESTION, TAKEN FROM THE RETRIEVER RATHER THAN KEPT AGAIN HERE. A word the
+# router discards before it scores anything cannot be evidence that a phrase is about this
+# record. See ask_retrieval.FRAME for why that list is a closed class and not a stopword list.
+import ask_retrieval as _ar                                          # noqa: E402
+_FRAME = _ar.frame()
+
 # Words that carry no signal about WHICH decision is meant. A query trimmed to these is a query
 # about nothing, and a case built from one would score the router on noise.
 NOISE = {
@@ -278,7 +284,21 @@ def build(items: list[dict]) -> list[dict]:
     # nonsense because the record grew into it is dropped here rather than scored forever as a
     # failure the router cannot fix.
     for q in NONSENSE:
-        shared = sorted(set(content_words(q)) & vocab)
+        # WHAT THE ROUTER WOULD ACTUALLY WEIGH, which is not every word the phrase contains.
+        #
+        # This asked whether the phrase shared ANY content word with the record and dropped it if
+        # so, and `content_words` only knows the short NOISE list above. That list is missing
+        # "what", "about" and "does", so five of these eight phrases were being dropped for
+        # sharing a question word, and one of the five is the phrase this whole engine was built
+        # against. "What is the airspeed velocity of an unladen swallow" left the gold set
+        # because the record contains the word "what", and the count fell under the floor below
+        # while the set looked like it was simply getting stricter.
+        #
+        # The retriever drops the frame of a question from a query before scoring anything, so a
+        # phrase sharing only frame words shares nothing the router can see. `ask_retrieval.FRAME`
+        # is that list, it is a closed class of English rather than a judgment about this record,
+        # and taking it from there rather than keeping a second copy is the whole point.
+        shared = sorted(set(content_words(q)) & (vocab - _FRAME))
         if shared:
             continue
         cases.append({"kind": "nonsense", "q": q, "item": None, "expect_none": True})

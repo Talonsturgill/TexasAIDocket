@@ -13,7 +13,7 @@
   "decider": {
    "n": 84,
    "sent": 100,
-   "first": 89.3
+   "first": 92.9
   },
   "facility": {
    "n": 120,
@@ -31,7 +31,7 @@
    "first": 100
   },
   "nonsense": {
-   "n": 3,
+   "n": 5,
    "sent": 100,
    "first": 100
   },
@@ -57,13 +57,13 @@
   }
  },
  "total": {
-  "n": 840,
+  "n": 842,
   "sent": 97.9,
-  "first": 90.2
+  "first": 90.6
  },
  "tokens": {
-  "whole": 103703,
-  "mean": 16042,
-  "cached": 13145
+  "whole": 103730,
+  "mean": 16027,
+  "cached": 13137
  }
 }
