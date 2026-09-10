@@ -70,14 +70,54 @@ MAX_CHARS = 420_000
 
 # THE INDEX CEILING is where the money is. Every question carries the whole index whatever it
 # asked, which is the safety property this design is built on and the reason it can never be a
-# slice. At roughly 4 characters a token 40,000 is about 10,000 tokens a question. It is
-# CACHED, so a repeat question reads it at a tenth of the price, and a cold one pays in full.
+# slice. At roughly 4 characters a token this is about 15,000 tokens a question. It is CACHED,
+# so a repeat question reads it at a tenth of the price, and a cold one pays in full.
 #
-# Raising this is a real decision about a real bill, unlike the number above it. The way to
-# make room is to roll a family up rather than to index it line by line, which is what the
-# construction register and the reservoirs already do, and what a family arriving later should
-# do before this number is touched.
-MAX_INDEX_CHARS = 40_000
+# Raising this is a real decision about a real bill, unlike the number above it.
+#
+# RAISED FROM 40,000 TO 60,000 ON 2026-09-10, on the owner's instruction, against the measured
+# bill rather than a guess.
+#
+# THE CEILING IS A CAP AND NOT A TARGET, which is the part worth being clear about, because it
+# decides what this actually costs. The index is whatever the record implies, and today at 119
+# decisions that is 41,454 characters. Raising the bound does not spend a penny by itself. What
+# it does is stop `index_fit` shortening lines that fit anyway, and let the record grow into the
+# room before anything has to give.
+#
+# So the bill today barely moves, and it moves in the right direction for the reader: 21 lines
+# were being shortened to a title and an id under the old bound and none are now, which means
+# every decision is back to carrying its topic, its decider, its status and its place on the
+# line the model always sees.
+#
+# On `claude-sonnet-5` at $2.00 a million input tokens, cache write 1.25x and cache read 0.1x,
+# at the worker's hundred question daily cap:
+#
+#     index size                              39,980 -> 41,454     (the ceiling is 60,000)
+#     lines shortened to fit                      21 -> 0
+#     per question, cold                     $0.0250 -> $0.0259
+#     per question, inside the 5 minute cache $0.0020 -> $0.0021
+#     per day at the cap, half of them warm    $1.35  -> $1.40
+#     per month at the cap, half warm         $40.48  -> $41.97
+#
+# The eventual bill, if the record ever fills the new bound, is about half again as much as the
+# old one. That is the real number being signed for and it arrives gradually rather than at
+# once. What it buys now is a horizon of 244 more decisions, which is about eighty days at three
+# admissions a day, against the twenty nine days the old bound had left.
+#
+# WHY THE OLD PARAGRAPH HERE WAS NOT ENOUGH. It said the way to make room is to roll a family up
+# rather than index it line by line, and that every family arriving later should do that before
+# this number is touched. That was true and it was already spent: the dossiers rolled up on
+# 2026-09-03, and the construction register and the reservoirs were rolled before them. The last
+# family still indexed a line each is the DECISIONS, and they are the one family that cannot be
+# rolled away, because the index's whole promise is that the model knows every decision exists.
+#
+# So the advice ran out, and on 2026-09-08 and 2026-09-09 two consecutive daily runs went red on
+# this number and held, and the docket published nothing for two days. `index_fit` below is the
+# answer to the immediate failure and this number is the answer to the horizon. Neither is the
+# answer to the shape: a shortened line is still a title and an id, so the index still grows
+# with the record, and `index_headroom` publishes how far off the next wall is so it is seen
+# rather than met.
+MAX_INDEX_CHARS = 60_000
 
 # The facility bodies remain complete for normal retrieval. They are carried beside the core
 # pack because one hundred fifty dossiers no longer fit inside its retrieval-off context bound.
