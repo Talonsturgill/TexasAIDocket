@@ -99,10 +99,30 @@ MAX_CHARS = 420_000
 #     per day at the cap, half of them warm    $1.35  -> $1.40
 #     per month at the cap, half warm         $40.48  -> $41.97
 #
+# AND WHAT THE SHAPE BLOCK ADDED ON TOP OF IT, 2026-09-10, on the same prices and the same cap.
+# The county counts are 1,599 characters that every question now carries whatever it asked, and
+# that is the price of the third rung being survivable rather than merely cheap:
+#
+#     index size                              41,454 -> 43,053
+#     per question, cold                     $0.0259 -> $0.0269
+#     per day at the cap, half of them warm    $1.40  ->  $1.45
+#     per month at the cap, half warm         $41.97 -> $43.59
+#
+# One dollar sixty two a month, and it is the whole of what the reshape costs today. What it
+# removes is a wall the record was going to meet in 223 admissions and had already met twice.
+#
 # The eventual bill, if the record ever fills the new bound, is about half again as much as the
-# old one. That is the real number being signed for and it arrives gradually rather than at
-# once. What it buys now is a horizon of 244 more decisions, which is about eighty days at three
-# admissions a day, against the twenty nine days the old bound had left.
+# old one. That is the real number being signed for and it arrives gradually rather than at once.
+#
+# THE HORIZON THIS PARAGRAPH ORIGINALLY CLAIMED WAS WRONG, AND IT IS LEFT HERE CORRECTED RATHER
+# THAN QUIETLY EDITED, because it is the number the raise was signed against. It said the raise
+# bought "a horizon of 244 more decisions, which is about eighty days". It bought 223, and the
+# figure a builder would have read the morning after was 84, which is when the first line starts
+# being shortened. `index_headroom` produced the 244 by dividing spare room by a median short
+# line, which ignores that the lines already here get shortened too, and by being CALLED without
+# the three rolled families that ship inside the same index, which is 12,941 characters it never
+# saw. The two errors ran in opposite directions and very nearly cancelled, which is the only
+# reason 244 looked like a measurement. See GATE_LESSONS.
 #
 # WHY THE OLD PARAGRAPH HERE WAS NOT ENOUGH. It said the way to make room is to roll a family up
 # rather than index it line by line, and that every family arriving later should do that before
@@ -112,11 +132,63 @@ MAX_CHARS = 420_000
 # rolled away, because the index's whole promise is that the model knows every decision exists.
 #
 # So the advice ran out, and on 2026-09-08 and 2026-09-09 two consecutive daily runs went red on
-# this number and held, and the docket published nothing for two days. `index_fit` below is the
-# answer to the immediate failure and this number is the answer to the horizon. Neither is the
-# answer to the shape: a shortened line is still a title and an id, so the index still grows
-# with the record, and `index_headroom` publishes how far off the next wall is so it is seen
-# rather than met.
+# this number and held, and the docket published nothing for two days.
+#
+# ---------------------------------------------------------------------------------------------
+# THE ADVICE THAT REPLACED IT, 2026-09-10. ROLLING A FAMILY UP IS NO LONGER THE ANSWER AND THIS
+# NUMBER IS NO LONGER THE THING A GROWING RECORD RUNS INTO.
+#
+# Read this before touching the constant, because the first two remedies this file offered are
+# both spent and the next session will otherwise reach for one of them again.
+#
+# THE MEASUREMENT THAT SETTLED IT. Seven candidate index shapes were built against the real
+# record on 2026-09-10 and each was rebuilt at 419 decisions to take its slope:
+#
+#     full lines, as they were                     224 a line   221 chars per admission
+#     title and id only, which is rung 2           129 a line   126 chars per admission
+#     short lines plus an inverted facet list      252 a line   192 chars per admission
+#     facet lists carrying ids, no titles          129 a line    72 chars per admission
+#     full lines grouped by decider                223 a line   184 chars per admission
+#     facet COUNTS, no per decision entry           44 a line     6 chars per admission
+#
+# EVERY SHAPE THAT KEEPS A TITLE FOR EVERY DECISION GROWS AT 126 CHARACTERS AN ADMISSION OR MORE,
+# and half of a line is its title. Inverting the facets does not help, because an id costs about
+# what a county name costs, so writing the id under the county costs what writing the county
+# after the title cost. The only shapes slower than 126 are the ones with no per decision entry,
+# and a legend of short codes was measured and rejected separately at a net 700 characters, on a
+# record where distinct deciders were still arriving at 0.62 an admission.
+#
+# So a fixed per question budget and a per decision resident line have exactly one outcome and
+# the only question was ever the date. Raising the ceiling moves the date. It has never been the
+# fix and it is not the fix now.
+#
+# WHAT THE INDEX DOES INSTEAD. It has three rungs and it spends them in order. Full lines, then
+# the oldest settled lines cut to a title and an id, then the oldest settled lines dropped
+# altogether. Ahead of all three sits `index_manifest`, a complete count of the record by county
+# whose size is set by how many of the 254 Texas counties appear rather than by how many
+# decisions do. That block is what makes the third rung survivable, and `index()` states in full
+# what the guarantee used to be and what it is now.
+#
+# WHAT THAT COST AND BOUGHT, measured on the same record on the same day:
+#
+#     index today                          41,454 -> 43,053    the shape block is 1,599 of it
+#     full lines until                        +84 -> +75        admissions from 119
+#     every decision still named until       +223 -> +207
+#     the index stops fitting at             +223 -> nothing inside 4,096 admissions
+#
+# Nine admissions of full lines and sixteen of naming, traded for the wall going away. The wall
+# is what cost two days of shipped work and it is the failure mode this file is here to prevent.
+#
+# SO THIS NUMBER IS NOW A CAP ON THE BILL AND NOT A DEADLINE. Nothing a growing record does runs
+# into it. `index_headroom` says how far each rung is, `build` publishes it, and `main` prints it
+# beside a rate computed off the record's own history. If the horizon ever needs to be longer,
+# the lever is the shape of a line, and the honest one is the title, since titles are 13,361 of
+# the 15,384 character floor. A shorter title must be DERIVED and gated for uniqueness, never
+# typed, and it is written down as the next move rather than made here.
+#
+# RAISING THIS AGAIN IS STILL NOT A FIX. It was raised once, from 40,000 to 60,000, against a
+# measured bill and the owner's instruction. A second raise would be buying a deadline that no
+# longer exists, and a cost bound bought twice stops being one.
 MAX_INDEX_CHARS = 60_000
 
 # The facility bodies remain complete for normal retrieval. They are carried beside the core
@@ -284,12 +356,18 @@ def tally(items: list, today: str) -> str:
 # framed. It is also paid for on every question forever.
 #
 # So the prompt states what is true and this comment holds why.
-INDEX_HEAD = """THE INDEX. Everything the record holds, in four sections.
+INDEX_HEAD = """THE INDEX. Everything the record holds, in five sections.
 
-Every decision, one line each, in the order they are filed. Each line carries the decision's
-title, then its topic, its decider, its status, the counties it names or that it is statewide,
-whether it sits on the ERCOT grid, and whether a public window is open, and it ends with the id
-to cite it by.
+THE SHAPE OF THE RECORD comes first and it is COMPLETE. It counts every decision the record
+holds, BY COUNTY, whatever the lines below do. A county absent from that list is one the record
+names nowhere. A county present carries the count printed beside it, and that count is the
+record's own, never a count of the lines below. THE COUNTS above the index are complete in the
+same way for topic, for status and for every decider that has decided more than once.
+
+Then every decision the budget can name, one line each, in the order they are filed. Each line
+carries the decision's title, then its topic, its decider, its status, the counties it names or
+that it is statewide, whether it sits on the ERCOT grid, and whether a public window is open,
+and it ends with the id to cite it by.
 
 Then the data center dossiers, the construction register and the reservoirs, each ROLLED UP
 rather than listed, because a hundred and fifty dossiers, sixty one counties and a hundred and
@@ -303,7 +381,8 @@ Dossiers whose filing publishes no county are printed together at the end of the
 ANSWER FROM THESE LINES WHENEVER THEY CARRY WHAT WAS ASKED. A question about which decisions
 name a county, who decided something, what is open, what a decision is called, how full a
 reservoir is or how much construction a county has is answered here, completely, and looking
-for it in the full text below is the slower way to get it wrong.
+for it in the full text below is the slower way to get it wrong. A question about HOW MANY is
+answered from the counts, never by adding up lines.
 
 The full text of whatever is most likely to answer this question follows below, and it is a
 SLICE. Something appearing here with no text below is still real and still carried by this
@@ -318,12 +397,112 @@ This index is a list. It is not a model for how to write, so do not answer in th
 # where the full line would have said "Bexar" will answer that the decision names no county,
 # which is the exact failure `INDEX_HEAD` already designs out for a MISSING item and would have
 # reintroduced one field down. So the head says what a short line is whenever one exists.
+#
+# WHAT CHANGED ON 2026-09-10. The note used to say an absence on a short line "is never a no and
+# never a none" and then point at the full text below, which is a SLICE and is exactly what the
+# short line's decision is least likely to be in. That was true advice with nowhere to send the
+# model. `index_manifest` is where it sends it now, and the manifest is complete, so a short
+# line's county and decider are not lost any more. They are one lookup away and the lookup is
+# exact.
 SHORT_LINE_NOTE = """SOME LINES ARE SHORTENED, and a shortened line is a title and an id and
 nothing else. That is this index's budget talking, never a fact about the decision. A shortened
 line says nothing about its topic, its decider, its status, where it applies or whether a window
-is open, so an absence there is never a no and never a none. The full text below carries all of
-it. The oldest decisions whose window is not open are shortened first, so anything still open
-keeps its full line."""
+is open, so an absence there is never a no and never a none. THE SHAPE OF THE RECORD above still
+counts every one of them by county, and THE COUNTS above still count every one of them by topic
+and by status, so those questions are answered from a count and never from what a shortened line
+stopped saying. The oldest decisions whose window is not open are shortened first, so anything
+still open keeps its full line."""
+
+
+# THE NOTICE AN UNLISTED DECISION EARNS, and this rung is the one that changes the promise.
+#
+# A shortened line still names the decision. An unlisted one does not appear at all, so the
+# model can neither name it nor cite it unless retrieval sends its body. That is a REAL
+# reduction in what this index guarantees and it is written here rather than left for a reader
+# to discover, because the whole reason the index is sent whole is that the failure it prevents
+# is invisible from the outside.
+#
+# WHAT SURVIVES IT, and this is the part that makes the rung acceptable rather than merely
+# cheap. `index_manifest` counts every decision the record holds by county, whatever the lines
+# did, and `tally` counts them by topic and by status. So the answer to "does the record cover
+# Erath County" is still exact and still complete when every Erath line is gone. What is lost is naming them without
+# retrieval, and the note says so in as many words so the model reports the gap instead of
+# reading it as a none.
+UNLISTED_NOTE = """{n} OF THE OLDEST SETTLED DECISIONS ARE NOT LISTED BELOW, out of {total}.
+That is this index's budget and never a fact about the record. THE SHAPE OF THE RECORD above
+counts all {total} by county, including every one of the {n}, and THE COUNTS above count all
+{total} by topic and by status. Those counts are the record's own and are right even where no
+line matches them. Never answer that the record holds nothing for a county the shape above
+counts. Say the count, name the ones that do have a line or a body
+below, and say plainly that the older ones are not in front of you. Nothing with an open window
+is ever unlisted, and nothing recent is unlisted while an older settled decision could go
+first."""
+
+
+# THE ONE FACET THE SHAPE CARRIES, AND THE MEASUREMENT THAT PICKED IT.
+#
+# The preamble's `tally` already counts the topics, the statuses, the deciders appearing more
+# than once, the statewide items and the ERCOT items, and the preamble and the index travel in
+# the same cached block on every question. Counting those again here would be paying twice for
+# one fact.
+#
+# WHAT `tally` DOES NOT CARRY is the county NAMES and the deciders appearing exactly once. Both
+# are what a shortened or an unlisted line takes away, so both were in the first version of this
+# block, and the second one measured them instead of reasoning about them.
+#
+#     decisions ->  20   40   60   80  100  119
+#     distinct counties   26   43   50   59   62   63    one new in the last 19 admissions
+#     distinct deciders   14   30   46   59   68   83    0.62 new per admission, no bend
+#
+# COUNTIES SATURATE AND DECIDERS DO NOT, and that is the whole of the decision. Texas has 254
+# counties and the record has found 63 of them, so the county list costs 692 characters today
+# and about 2,789 if every county in the state ever appears. That is a bounded structure and it
+# is what this block is for. Distinct deciders were still arriving at 0.62 per admission after
+# 119 decisions, at about 42 characters each, so a complete decider list is 26 characters per
+# ADMITTED DECISION. That is linear growth in the always sent block, which is the exact defect
+# this whole change exists to remove, so it would have been the fix carrying the bug.
+#
+# WHAT A DECIDER QUESTION FALLS BACK ON, said rather than left implicit. Retrieval, and it is
+# measured at `decider sent 100` on the gold set against `county sent 86.7`. The county list is
+# here because counties are the facet retrieval MISSES. Deciders are the facet it finds, and
+# `tally` still names every decider that has decided more than once.
+MANIFEST_HEAD = ("THE SHAPE OF THE RECORD. Every county the record names, with the number of "
+                 "decisions naming it, counted from the whole record and never from the lines "
+                 "below. A county missing from this list is one the record names nowhere. A "
+                 "county present carries every decision counted beside it, whether or not one "
+                 "of them has a line. The counts by topic, by status and by decider are in THE "
+                 "COUNTS above and they are complete in the same way.")
+
+
+def index_manifest(items: list) -> str:
+    """The record's county coverage, at a size set by how many counties exist rather than how
+    many decisions do.
+
+    THIS IS THE PART OF THE INDEX THAT DOES NOT GROW WITH THE RECORD, which is the whole point
+    of it. A per decision line costs about 224 characters and there is no cheaper honest way to
+    write one, because half of it is the title and a title is what lets a model match a question
+    to a decision at all. Measured on 2026-09-10 across seven candidate shapes, every design
+    that keeps a title for every decision forever grows at 126 characters an admission or more,
+    and the only ones slower than that are the ones with no per decision entry at all.
+
+    So the index stops trying to be one thing. The SHAPE is complete and bounded. The LINES are
+    complete while the budget holds and degrade oldest first when it does not. A question about
+    whether the record covers a county is answered from the shape and is always exact. A
+    question about what a decision is called is answered from the lines and from the bodies
+    retrieval sends, and the notes above say when that is not everything.
+
+    NOTHING HERE IS A NEW FACT AND NO NUMBER HERE WAS TYPED. Every count is a count of the same
+    items the lines below are built from, taken in Python, exactly as `tally` has always taken
+    the topic and status counts. The compute-not-generate law is the reason this is a function
+    rather than a paragraph.
+    """
+    from collections import Counter
+    counties = Counter(c for it in items
+                       for c in ((it.get("geography") or {}).get("counties") or []))
+    if not counties:
+        return MANIFEST_HEAD
+    return MANIFEST_HEAD + "\n" + "By county, " + ", ".join(
+        f"{k} {v}" for k, v in sorted(counties.items())) + "."
 
 
 def index_line(it: dict, today: str, short: bool = False) -> str:
@@ -376,107 +555,286 @@ def index_line(it: dict, today: str, short: bool = False) -> str:
 def index(items: list, today: str, extra=()) -> str:
     """The whole index, which is the block the model always gets whatever else it does not.
 
-    THIS IS THE SAFETY PROPERTY OF RETRIEVING AT ALL. A retrieval chatbot's worst failure is
-    not missing a passage, it is answering as though the missing thing does not exist, and a
-    reader has no way to see that happen. Handing over the complete list of what EXISTS costs
-    a fraction of the bodies and deletes that failure rather than mitigating it. It also lets
-    retrieval be generous, because being wrong about which bodies to send is now recoverable.
+    THE SAFETY PROPERTY, AND IT WAS NARROWED ON 2026-09-10 RATHER THAN QUIETLY KEPT. A retrieval
+    chatbot's worst failure is not missing a passage, it is answering as though the missing
+    thing does not exist, and a reader has no way to see that happen. What deletes that failure
+    is handing over the complete list of what EXISTS, and it costs a fraction of the bodies.
 
-    THE INDEX FITS ITS CEILING BY CONSTRUCTION, 2026-09-09, and before this it merely got
-    measured against one. The difference cost two days of shipped work.
+    WHAT IT USED TO PROMISE. Every decision has a line, so the model can always name it, always
+    cite it, and can never read an absence as a none.
 
-    `MAX_INDEX_CHARS` is a real bill: every question carries the whole index, so the number is
-    a cost bound rather than a style rule, and the file has always said that raising it is
-    never the fix for a red build. What it did not say is what a builder should DO on the day
-    the record outgrows it. Nothing did. So the index was assembled at whatever size the record
-    happened to imply, a self-test measured it afterwards, and the first run to cross the line
-    went red on a gate no lane it held could satisfy by editing the record.
+    WHAT IT PROMISES NOW, in the same terms, so the reduction is legible rather than inferred.
 
-    That is the wrong shape for a bound that a growing record crosses ON A SCHEDULE. The
-    decisions are the last family still indexed a line each, and the record gains about three a
-    day, so the ceiling was never going to be crossed once. It was going to be crossed every
-    day from that day on, and each of those days is a day the docket does not publish.
+      * The record's SHAPE is complete and exact. Every county the record names and every body
+        that has decided anything is listed with the number of decisions it carries, counted in
+        Python from the record itself. So the box can never answer that the record holds nothing
+        for a county or a decider it holds something for, and a counting question is answered
+        from a count rather than by adding up lines. This part does not degrade at any budget
+        and it does not grow with the record.
+      * Every decision a reader can still act on keeps a FULL line, always. An open window is
+        never shortened and never unlisted.
+      * Every other decision keeps a line naming and citing it for as long as the budget holds
+        one, oldest settled first to give it up. `index_shortened` and `index_unlisted` publish
+        what each build spent, and `index_headroom` publishes how far the next rung is.
 
-    So the ceiling is now an input to the build. Full lines first. If they do not fit, the
-    oldest decisions whose window is not open give up everything but their title and their id,
-    oldest first, until they do. What that spends is described rather than hidden, by
-    `SHORT_LINE_NOTE`, because a model that reads a short line as an empty one would answer
-    that a decision names no county.
+    WHAT THE READER WOULD SEE IN THE WORST CASE, which is the honest way to state a reduction.
+    Ask about a county whose decisions are all old and settled and all missed by retrieval, and
+    today the box names them. Past rung 3 it says the record holds four for that county and that
+    the older ones are not in front of it, then offers to look. That is worse than naming them
+    and it is not the invisible failure. The reader is told the size of what was not shown.
 
-    THE GATE IS NOT DEFEATED BY THIS, which is the part worth checking rather than asserting.
-    It still fails when the index will not fit even with every eligible line short, and that is
-    the failure worth having: it means one line is pathological, or the open-window set alone
-    has outgrown the budget, and neither is fixed by trimming. What it no longer does is stop a
-    run for the ordinary fact that the record grew.
+    WHY IT COULD NOT STAY AS IT WAS. Measured on 2026-09-10 across seven candidate shapes, every
+    design that keeps a title for every decision forever grows at 126 characters an admission or
+    more, because half a line is its title and a title is what lets a model match a question to
+    a decision. A fixed per question budget and a linearly growing resident index have one
+    outcome and the only question was the date. See `index_manifest` and `index_fit`.
+
+    IT ALSO LETS RETRIEVAL BE GENEROUS, unchanged, because being wrong about which bodies to
+    send is still recoverable for everything the index still names.
 
     Returns the index. `index_fit` reports what it cost.
     """
     return index_fit(items, today, extra)[0]
 
 
-def index_fit(items: list, today: str, extra=()) -> tuple[str, int]:
-    """The index and the number of lines that had to be shortened to make it fit.
+def index_fit(items: list, today: str, extra=()) -> tuple[str, int, int]:
+    """The index, the number of lines shortened, and the number dropped from the list entirely.
 
-    Split out from `index` so the pack can publish the count and a self-test can assert on it.
-    A build that shortens nothing returns 0, which is the state to expect and the one the
-    ordinary record produced for every run before 2026-09-09.
+    Split out from `index` so the pack can publish what the budget cost and a self-test can
+    assert on it. A build that spends nothing returns two zeros, which is the state to expect
+    and the one every build before 2026-09-09 produced.
+
+    THREE RUNGS, SPENT IN ORDER, AND THE THIRD IS THE ONE THAT CHANGES THE PROMISE.
+
+      1  every decision gets a full line
+      2  the oldest settled decisions give up everything but a title and an id
+      3  the oldest settled decisions give up their line altogether
+
+    Rung 2 arrived on 2026-09-09 and it is not a shape, it is a discount. A short line is still
+    a title and an id, so an index built entirely of them still grows with the record and still
+    meets a wall, 223 admissions out as this was written. Rung 3 is the shape, because it is the
+    only rung whose cost per admitted decision goes to zero, and it goes to zero for exactly the
+    reason it is uncomfortable, which is that it stops naming things.
+
+    WHAT MAKES RUNG 3 SURVIVABLE is that it is the only thing that was ever going to work and
+    that `index_manifest` runs ahead of it. The shape counts every decision by county and by
+    decider whatever the lines did, so the failure the whole design exists to delete, a box
+    answering that the record holds nothing for a county it holds four for, is still deleted at
+    rung 3. What rung 3 gives up is NAMING an old settled decision the retriever did not send,
+    and `UNLISTED_NOTE` says so to the model rather than leaving it to infer a none.
+
+    NEVER AN OPEN WINDOW, AT EITHER RUNG. `items` is the record's own filed order, so index 0 is
+    the oldest thing here, and an open window is the one state a reader can still act on.
     """
+    manifest = index_manifest(items)
     full = [index_line(it, today) for it in items]
     tail = [x for x in (extra or ()) if x]
+    total = len(items)
 
-    def assemble(lines, note):
-        head = INDEX_HEAD + ("\n\n" + SHORT_LINE_NOTE if note else "")
-        return "\n\n".join([head, "\n".join(lines)] + tail)
+    def assemble(lines, note, unlisted):
+        head = INDEX_HEAD
+        if note:
+            head += "\n\n" + SHORT_LINE_NOTE
+        if unlisted:
+            head += "\n\n" + UNLISTED_NOTE.format(n=unlisted, total=total)
+        body = "\n".join(l for l in lines if l)
+        return "\n\n".join([head, manifest] + ([body] if body else []) + tail)
 
-    out = assemble(full, False)
+    out = assemble(full, False, 0)
     if len(out) <= MAX_INDEX_CHARS:
-        return out, 0
+        return out, 0, 0
 
-    # The notice is part of the bill, so it is paid before the first line is trimmed rather
+    # THE NOTICE IS PART OF THE BILL, so it is paid before the first line is trimmed rather
     # than discovered afterwards.
     lines = list(full)
-    over = len(assemble(lines, True)) - MAX_INDEX_CHARS
-
-    # OLDEST FIRST, AND NEVER AN OPEN WINDOW. `items` is the record's own filed order, so
-    # index 0 is the oldest thing here. An open window is the one state a reader can still act
-    # on, so it keeps its full line however old it is and however tight the budget gets.
-    for i, it in enumerate(items):
+    eligible = [i for i, it in enumerate(items) if dk.window_state(it, today) != "open"]
+    over = len(assemble(lines, True, 0)) - MAX_INDEX_CHARS
+    for i in eligible:
         if over <= 0:
             break
-        if dk.window_state(it, today) == "open":
-            continue
-        lines[i] = index_line(it, today, short=True)
+        lines[i] = index_line(items[i], today, short=True)
         over -= len(full[i]) - len(lines[i])
 
     shortened = sum(1 for a, b in zip(full, lines) if a != b)
-    return assemble(lines, bool(shortened)), shortened
+    out = assemble(lines, bool(shortened), 0)
+    if len(out) <= MAX_INDEX_CHARS:
+        return out, shortened, 0
+
+    # RUNG 3. Everything eligible is already short, so what is left is to stop listing the
+    # oldest of them. The count rides inside the notice, so the notice's own length moves with
+    # it, and a closed form would be a guess. Estimate from the short line lengths, then walk
+    # the estimate until the assembled text actually fits, which is a handful of iterations
+    # rather than one assembly per decision.
+    unlisted = 0
+    short_len = [len(l) + 1 for l in lines]
+    room = MAX_INDEX_CHARS - len(assemble(lines, True, 1))
+    while room < 0 and unlisted < len(eligible):
+        room += short_len[eligible[unlisted]]
+        unlisted += 1
+
+    def drop(n):
+        cut = set(eligible[:n])
+        return [("" if i in cut else l) for i, l in enumerate(lines)]
+
+    while unlisted <= len(eligible):
+        kept = drop(unlisted)
+        out = assemble(kept, any(a != b for a, b in zip(full, kept) if b), unlisted)
+        if len(out) <= MAX_INDEX_CHARS:
+            return out, sum(1 for a, b in zip(full, kept) if b and a != b), unlisted
+        unlisted += 1
+
+    # NOTHING ELIGIBLE IS LEFT AND IT STILL DOES NOT FIT, which is the failure worth having.
+    # It means the open windows alone, or the rolled families, or the shape itself has outgrown
+    # the budget, and none of those is fixed by another character a builder can find. The gate
+    # above this goes red and a person decides.
+    return out, sum(1 for a, b in zip(full, kept) if b and a != b), len(eligible)
 
 
-def index_headroom(items: list, today: str, extra=()) -> int:
-    """How many more decisions this index can take before shortening stops being enough.
+# HOW FAR THE HORIZON SEARCH LOOKS. Four thousand admissions is about four years at the rate
+# the record has been running, which is further out than any number here should be trusted, and
+# far enough that a `fits` answer inside it means something really is wrong with the shape.
+PROBE = 4096
 
-    THE FLOOR IS REAL AND IT IS ARITHMETIC, so it is published rather than discovered. A
-    shortened line is still a title and an id, so the index still grows with the record, just
-    more slowly. A fixed ceiling therefore always has a horizon, and the only question is
-    whether anybody sees it coming.
 
-    Nobody did, twice. This returns the number of additional decisions of the record's own
-    median line length that would still fit, so a run can say "seventy five to go" in its email
-    for weeks before it becomes a build that stops the docket. A negative number means the
-    floor is already breached and the decision below is due now.
+def index_headroom(items: list, today: str, extra=()) -> dict:
+    """How far this index is from each rung, in decisions the record would have to admit.
 
-    THE DECISION IT DEFERS, NAMED SO THE DEFERRAL IS HONEST. When the floor arrives, the
-    choices are to raise `MAX_INDEX_CHARS` against a measured per-question bill, or to stop
-    sending every decision's line on every question. Both are real cost decisions about a real
-    product and neither is a thing to decide at 3am inside a run that wanted to ship a deck.
+    THREE NUMBERS BECAUSE THERE ARE THREE RUNGS, and the middle one is the one a person should
+    be told about, since it is where the guarantee moves rather than where the detail thins.
+
+        full      admissions until the first line loses its topic, decider, status and county
+        named     admissions until the first decision stops being listed at all
+        fits      admissions until the index will not fit even with rung 3 fully spent, or
+                  None when nothing inside `probe` breaks it, which is the state rung 3 is for
+        probe     how far this looked, published so a None is read as "not within this" rather
+                  than as "never"
+
+    MEASURED BY BUILDING, NOT BY DIVIDING, and the arithmetic version of this was wrong twice
+    over. It read `spare // median short line`, which is wrong in one direction because it
+    ignores that the lines already here get shortened too and that recovers room, and it was
+    CALLED without the rolled families that ship inside the same index, which is wrong in the
+    other direction by 12,941 characters. On 2026-09-10 it reported 244 where the record's real
+    distance to the wall was 223, and the two errors nearly cancelling is the only reason
+    anybody could have read it and felt informed. See GATE_LESSONS.
+
+    So this admits synthetic decisions of the record's own median line length and asks
+    `index_fit` what happened, which is the same question the build asks. A record with no
+    decisions has no median and returns zeros rather than guessing.
     """
     if not items:
-        return 0
-    idx, _ = index_fit(items, today, extra)
-    spare = MAX_INDEX_CHARS - len(idx)
-    floor = sorted(len(index_line(it, today, short=True)) + 1 for it in items)
-    typical = floor[len(floor) // 2]
-    return spare // typical if typical else 0
+        return {"full": 0, "named": 0, "fits": 0}
+
+    # THE MEDIAN LINE, AND IT IS A REAL RECORD ROW RATHER THAN A MADE UP ONE. A synthetic
+    # decision assembled from average field lengths would not survive `index_line`, and a
+    # decision with an open window would be ineligible for either rung and would flatter every
+    # answer below.
+    settled = [it for it in items if dk.window_state(it, today) != "open"] or list(items)
+    settled = sorted(settled, key=lambda it: len(index_line(it, today)))
+    seed = settled[len(settled) // 2]
+
+    def grown(n):
+        out = list(items)
+        for k in range(n):
+            clone = dict(seed)
+            clone["id"] = f"tx-0000-{k:04d}"
+            out.append(clone)
+        return out
+
+    memo = {}
+
+    def spent(n):
+        """Whether an index built from `n` extra decisions fits, and what each rung cost.
+
+        MEMOISED because three binary searches over the same probe range ask about the same
+        `n` repeatedly, and each answer costs a full index build over a record that may be
+        several hundred decisions long.
+        """
+        if n not in memo:
+            idx, short, unlisted = index_fit(grown(n), today, extra)
+            memo[n] = (len(idx) <= MAX_INDEX_CHARS, short, unlisted)
+        return memo[n]
+
+    def last_true(pred, hi=PROBE):
+        """The largest n in 0..hi for which pred holds, given pred is monotone falling.
+
+        Returns -1 when the predicate is already false at zero, which reads as "this rung is
+        breached now" rather than as a distance.
+        """
+        if not pred(0):
+            return -1
+        lo = 0
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if pred(mid):
+                lo = mid
+            else:
+                hi = mid - 1
+        return lo
+
+    # EVERY RUNG ASKS WHETHER IT FITS FIRST, and the first version of this did not. It asked
+    # only what `index_fit` had SPENT, so a record whose whole set of windows was open, which
+    # nothing may shorten and nothing may unlist, came back spending zero at both rungs and
+    # reported the full probe as its horizon. An index 105,800 characters over its ceiling
+    # published "room for 4,096 more decisions". A distance measured without asking whether the
+    # thing is already broken is the shape half of GATE_LESSONS is about.
+    full = last_true(lambda n: spent(n) == (True, 0, 0))
+    named = last_true(lambda n: spent(n)[0] and spent(n)[2] == 0)
+
+    def fits(n):
+        return spent(n)[0]
+
+    # A CAPPED SEARCH IS NOT A MEASUREMENT AND IS NOT PUBLISHED AS ONE. Rung 3 gives up a line
+    # rather than the budget, so on the decisions alone this search runs to its own ceiling and
+    # stops. Returning that ceiling as a number would be reporting the probe's length as the
+    # record's horizon, which is the shape of half the entries in GATE_LESSONS.
+    edge = last_true(fits, PROBE)
+    return {"full": full, "named": named,
+            "fits": None if edge >= PROBE else edge, "probe": PROBE}
+
+
+# HOW FAST THE RECORD ADMITS, MEASURED OFF THE RECORD RATHER THAN ASSERTED.
+#
+# Every horizon here is a count of decisions, which is exact. Turning it into DAYS needs a rate,
+# and "about three a day" is the kind of number this project does not get to type. So the rate
+# is computed, and the rule that computes it is stated rather than tuned.
+#
+# THE MEDIAN OF DAILY COUNTS, NOT THE MEAN, over a trailing window. The record was seeded on
+# 2026-08-19 with 46 items in one day, and a mean over any window containing that day describes
+# the seeding rather than the routine. A median is unmoved by it. The window is four weeks
+# because that is long enough to cover the days a run does not ship and short enough that a
+# change in cadence shows up inside a month.
+ADMISSION_WINDOW_DAYS = 28
+
+
+def admissions_per_day(items: list, today: str) -> float:
+    """The record's own recent admission rate, as a modeled figure and labelled one.
+
+    Each decision's admission date is the first stamp in its own history. A decision with no
+    history is not counted, since guessing one would put a made up date into a rate that gets
+    published.
+    """
+    from collections import Counter
+    try:
+        end = _dt.date.fromisoformat(today)
+    except (TypeError, ValueError):
+        return 0.0
+    start = end - _dt.timedelta(days=ADMISSION_WINDOW_DAYS - 1)
+    seen = Counter()
+    for it in items:
+        hist = it.get("history") or []
+        stamp = (hist[0] or {}).get("date") if hist else None
+        try:
+            day = _dt.date.fromisoformat(stamp)
+        except (TypeError, ValueError):
+            continue
+        if start <= day <= end:
+            seen[day] += 1
+    daily = sorted(seen.get(start + _dt.timedelta(days=k), 0)
+                   for k in range(ADMISSION_WINDOW_DAYS))
+    if not daily:
+        return 0.0
+    mid = len(daily) // 2
+    return float(daily[mid] if len(daily) % 2 else (daily[mid - 1] + daily[mid]) / 2)
 
 
 def item_prose(it: dict, today: str) -> str:
@@ -1272,14 +1630,19 @@ def build(today: str = None, docs_dir=None) -> dict:
         [FACILITY_PACK_MARK, DECISIONS_MARK]
         + [facility_prose(d) for d in dossiers]
     ) if dossiers else "")
-    idx, idx_short = index_fit(items, today, extra=[
+    index_extra = [
         ("THE DATA CENTER DOSSIERS. Every dossier the record holds, rolled up rather than listed, "
          "grouped by the county its filing names, each as its name and the id to cite it by, and "
          "the full dossier for the ones this question needs is below. "
          + facility_index_block(dossiers)) if dossiers else "",
         county_head,
         water_head,
-    ])
+    ]
+    idx, idx_short, idx_unlisted = index_fit(items, today, extra=index_extra)
+    # THE HORIZON IS BUILT WITH THE SAME `extra` THE INDEX SHIPS WITH, which is the whole of what
+    # was wrong with it before. It was computed against an index missing the three rolled
+    # families, so it described a 28,507 character index while a 41,454 character one went out.
+    headroom = index_headroom(items, today, index_extra)
     return {
         "generated": today,
         "system": SYSTEM,
@@ -1294,16 +1657,32 @@ def build(today: str = None, docs_dir=None) -> dict:
         # retrieval-off escape hatch remains bounded. The worker indexes both fields and can
         # still send any full dossier body a normal question retrieves.
         "facility_pack": facility_pack,
-        # THE INDEX, which is what makes sending a slice safe rather than merely cheaper. Every
-        # decision gets a line whatever the retriever thinks, so the model always knows what
-        # EXISTS and the retrieval failure that a reader cannot see, answering as though the
-        # missing item is not there, is designed out instead of managed.
+        # THE INDEX, which is what makes sending a slice safe rather than merely cheaper. The
+        # SHAPE at the top of it counts every decision the record holds, by county and by
+        # decider, whatever the retriever thinks and whatever the budget did to the lines, so
+        # the retrieval failure a reader cannot see, answering as though the missing item is not
+        # there, is designed out rather than managed. Every decision also gets a line for as
+        # long as the budget holds one, and `index_unlisted` below is how many it did not.
         "index": idx,
         "index_chars": len(idx),
         # HOW MANY LINES THE CEILING COST THIS BUILD. Zero is the ordinary state. A number
         # climbing run over run is the record outgrowing the budget in slow motion, which is a
         # thing to decide about deliberately rather than to meet as a red build one morning.
         "index_shortened": idx_short,
+        # HOW MANY DECISIONS THE CEILING COST THIS BUILD A LINE ALTOGETHER. Zero is the ordinary
+        # state and it is the state that means the index still names everything the record
+        # holds. Anything above zero is the guarantee in `index()` operating in its reduced
+        # form, and `UNLISTED_NOTE` is in the index saying so to the model.
+        "index_unlisted": idx_unlisted,
+        # HOW FAR THE NEXT RUNG IS, PUBLISHED RATHER THAN COMPUTABLE. This existed as a function
+        # from 2026-09-09 and nothing ever called it outside its own self-test, so the early
+        # warning entry 71 asked for was written and never wired to anything a person reads.
+        # `main` prints it and the run's email carries it.
+        "index_headroom": headroom,
+        # THE RATE THAT TURNS THOSE COUNTS INTO DAYS, MODELED and labelled. See
+        # `admissions_per_day` for the rule, which is a median over four weeks rather than a
+        # mean, because the record's seeding day would otherwise set the cadence.
+        "admissions_per_day": admissions_per_day(items, today),
         "chars": len(pack) + len(facility_pack),
         "items": len(items),
         # WHAT THE PACK ACTUALLY HOLDS, BY FAMILY. `items` counts decisions and used to count
@@ -1700,6 +2079,38 @@ def self_test() -> int:
              if any(u in l for l in idx.splitlines() if l.rstrip().endswith("]]"))]
     check("no measurement rides on an index line, only identifiers and a closing date",
           not units, str(units))
+    # THE SHAPE'S COUNTS ARE THE RECORD'S OWN, CHECKED RATHER THAN TRUSTED. Every one of them is
+    # a numeral in the block the model reads on every question, and the worker authorises the
+    # numerals in what it was shown, so a wrong count here is a wrong figure a reader can be
+    # given with a citation attached. `tally` has always taken its counts this way and nothing
+    # ever asserted that the taking was right. This does, county by county.
+    from collections import Counter as _Counter
+    true_counties = _Counter(c for it in items
+                             for c in ((it.get("geography") or {}).get("counties") or []))
+    shape = index_manifest(items)
+    wrong = [f"{c} {n}" for c, n in true_counties.items() if f"{c} {n}" not in shape]
+    check("every county count in the shape block is the record's own, taken in Python",
+          not wrong, str(sorted(wrong)[:3]))
+    check("and the shape names every county the record names, and no other",
+          len(_re.findall(r"[A-Z][A-Za-z .'-]*? \d", shape.split("By county, ")[-1]))
+          == len(true_counties),
+          f"{len(true_counties)} counties")
+    check("the shape block travels inside the index, so it is paid for on every question",
+          shape in idx, f"{len(shape):,} chars")
+    # THE HEAD MAY NOT PROMISE A FACET THE BLOCK DOES NOT CARRY, and it did for one commit.
+    # `index_manifest` was narrowed to counties on the measurement that distinct deciders were
+    # still arriving at 0.62 an admission, and `INDEX_HEAD` went on telling the model the shape
+    # counted "the body that decided it" as well. A promise in a prompt that the data does not
+    # keep is the same defect as an index line that says nothing, one level up, and it is the
+    # one this whole file exists to design out. Reading the built pack is what caught it, which
+    # is why the check now lives here instead of in a reviewer's attention.
+    promised = [w for w in ("By county,", "By decider,", "By topic,", "By status,")
+                if w in shape]
+    claimed = [w for w in ("BY COUNTY", "BY DECIDER", "BY TOPIC", "BY STATUS")
+               if w in INDEX_HEAD]
+    check("the head claims exactly the facets the shape block carries, and no other",
+          [w.upper().rstrip(",") for w in promised] == claimed,
+          f"{promised} carried against {claimed} claimed")
     check("the index is a fraction of the bodies it stands in for",
           p["index_chars"] < p["chars"] // 4,
           f"{p['index_chars']} against {p['chars']}")
@@ -1790,54 +2201,138 @@ def self_test() -> int:
     # These assert the fit is CONSTRUCTED rather than lucky, by building an index from a record
     # inflated well past the ceiling and requiring it to come back inside.
     print("the index fits its ceiling by construction, not by luck")
-    check("this build's index fits, and reports what that cost",
-          p["index_chars"] <= MAX_INDEX_CHARS and isinstance(p["index_shortened"], int),
-          f"{p['index_chars']:,} chars, {p['index_shortened']} lines shortened")
-    check("the notice is present exactly when a line was shortened",
+    check("this build's index fits, and reports what each rung cost",
+          p["index_chars"] <= MAX_INDEX_CHARS and isinstance(p["index_shortened"], int)
+          and isinstance(p["index_unlisted"], int),
+          f'{p["index_chars"]:,} chars, {p["index_shortened"]} shortened, '
+          f'{p["index_unlisted"]} unlisted')
+    check("the shortened notice is present exactly when a line was shortened",
           (SHORT_LINE_NOTE.split("\n")[0] in p["index"]) == bool(p["index_shortened"]),
           f"shortened {p['index_shortened']}")
+    check("the unlisted notice is present exactly when a decision lost its line",
+          ("ARE NOT LISTED BELOW" in p["index"]) == bool(p["index_unlisted"]),
+          f"unlisted {p['index_unlisted']}")
 
-    def _grown(by: int):
-        out = list(items)
+    def _grown(by: int, items_=None):
+        out = list(items_ if items_ is not None else items)
+        base = items_ if items_ is not None else items
         for k in range(by):
-            c = dict(items[k % len(items)])
+            c = dict(base[k % len(base)])
             c["id"] = f"tx-9{k:04d}"
             out.append(c)
         return out
 
-    head = index_headroom(items, p["generated"])
-    check("the build publishes how many more decisions the index can take",
-          head > 0, f"{head} more decisions of median length")
+    # THE EXTRA IS THE ONE THE INDEX SHIPS WITH, and leaving it out is what made the published
+    # horizon wrong by seventy percent. See `index_headroom`.
+    dossier_block = ("THE DATA CENTER DOSSIERS. Every dossier the record holds, rolled up rather "
+                     "than listed, grouped by the county its filing names, each as its name and "
+                     "the id to cite it by, and the full dossier for the ones this question "
+                     "needs is below. " + facility_index_block(_dossiers)) if _dossiers else ""
+    _cb, _ch, _wb, _wh = families()[1:]
+    ship_extra = [dossier_block, _ch, _wh]
 
-    grown = _grown(max(head - 5, 1))
-    grown_idx, grown_short = index_fit(grown, p["generated"])
+    head = index_headroom(items, p["generated"], ship_extra)
+    check("the build publishes how far each rung is, measured against the index it ships",
+          head["full"] > 0 and head["named"] >= head["full"],
+          f'{head["full"]} at full lines, {head["named"]} before one goes unnamed')
+    check("and the horizon in the pack is the one measured with the rolled families in it",
+          p["index_headroom"] == head, f'{p["index_headroom"]} against {head}')
+    check("and a rate to read it by, measured off the record rather than assumed",
+          p["admissions_per_day"] >= 0, f'{p["admissions_per_day"]:g} a day')
+
+    grown = _grown(max(head["full"] + 5, 1))
+    grown_idx, grown_short, grown_unlisted = index_fit(grown, p["generated"], ship_extra)
     grown_lines = [l for l in grown_idx.splitlines() if l.rstrip().endswith("]]")]
-    check("a record grown to just inside that headroom still fits",
+    check("a record grown just past the full-line rung still fits",
           len(grown_idx) <= MAX_INDEX_CHARS,
           f"{len(grown_idx):,} chars from {len(grown)} decisions")
+    check("and shortening it was necessary, so this proves the path and not the bypass",
+          grown_short > 0, f"{grown_short} shortened")
+    check("and nothing was unlisted while shortening was still enough",
+          grown_unlisted == 0, f"{grown_unlisted} unlisted")
     check("and every one of its decisions still has a line to be found on",
           len(grown_lines) == len(grown), f"{len(grown_lines)} of {len(grown)}")
     check("and every one of them is still citable by id",
           all(f"[[{c['id']}]]" in grown_idx for c in grown),
           str([c["id"] for c in grown if f"[[{c['id']}]]" not in grown_idx][:3]))
-    check("and shortening it was necessary, so this proves the path and not the bypass",
-          grown_short > 0, f"{grown_short} shortened")
 
-    # THE FLOOR STILL FAILS, WHICH IS WHAT KEEPS THE GATE MEANINGFUL. Fitting by construction
-    # would be worth nothing if it also swallowed the case the ceiling exists for. Past the
-    # headroom the index is over and the build says so, because at that point the answer is a
-    # cost decision a person makes, not another character a builder can find.
-    over = _grown(head + 400)
-    over_idx, _ = index_fit(over, p["generated"])
-    check("and a record past the floor is still over the ceiling, loudly",
-          len(over_idx) > MAX_INDEX_CHARS,
-          f"{len(over_idx):,} chars from {len(over)} decisions")
-    check("headroom goes negative before that happens, so it is seen coming",
-          index_headroom(over, p["generated"]) <= 0,
-          str(index_headroom(over, p["generated"])))
+    # ------------------------------------------------------------------ RUNG 3
+    #
+    # THE THREE FAILURES THIS INDEX EXISTS TO DELETE, PLANTED AT THE SIZE WHERE THE OLD DESIGN
+    # LOST THEM. Everything above runs at a record the budget still fits comfortably, so it
+    # proves nothing about the rung that changes the promise. These build a record far past the
+    # point where every eligible line is already short, which is where the design before
+    # 2026-09-10 simply went red and stopped the docket, and check what a reader would get.
+    #
+    # EACH ONE IS RUN TWICE, against the shape that shipped before this change and against the
+    # shape that ships now. The `was` half is the planted failure and it must go red, because a
+    # check that passes on both is measuring the record rather than the design. That is the
+    # oldest shape in GATE_LESSONS and it is cheap to avoid here.
+    print("the three failures the index deletes, planted past the old design's floor")
+    deep = _grown(600)
+    deep_idx, deep_short, deep_unlisted = index_fit(deep, p["generated"], ship_extra)
+    check("a record far past the old wall still produces an index that fits",
+          len(deep_idx) <= MAX_INDEX_CHARS,
+          f"{len(deep_idx):,} chars from {len(deep)} decisions")
+    check("and it says how many decisions it could not list, rather than going quiet",
+          deep_unlisted > 0 and str(deep_unlisted) in deep_idx,
+          f"{deep_unlisted} unlisted")
 
-    # AN OPEN WINDOW IS THE ONE STATE A READER CAN STILL ACT ON. It keeps its full line however
-    # old it is, because a shortened line drops exactly the fact that the window is open.
+    def _old_shape(its):
+        """The index as it was built before 2026-09-10. Full lines, then short ones, no shape
+        block and no rung 3. Kept here so each planted failure is scored against the design it
+        replaces rather than asserted about in a comment."""
+        full_ = [index_line(it, p["generated"]) for it in its]
+        lines = [index_line(it, p["generated"], short=True) for it in its]
+        return "\n\n".join([INDEX_HEAD + "\n\n" + SHORT_LINE_NOTE, "\n".join(lines)]
+                           + [x for x in ship_extra if x]), full_
+
+    old_idx, _ = _old_shape(deep)
+
+    # FAILURE ONE. A reader asks whether the record covers a named county. Under the old shape
+    # at this size every line is short, so no county appears in the index at all and a box
+    # reading it answers that the record holds nothing for a county it holds several for.
+    from collections import Counter as _C
+    deep_counties = _C(c for it in deep
+                       for c in ((it.get("geography") or {}).get("counties") or []))
+    # SCORED ON THE SHAPE BLOCK AND NOT ON THE WHOLE INDEX, because the construction register's
+    # rolled head names counties too and would answer this check for the wrong reason. A county
+    # found there is a county with construction in it, which says nothing about whether the
+    # record holds a DECISION naming it.
+    deep_shape = index_manifest(deep)
+    missing_new = [c for c in deep_counties if f"{c} {deep_counties[c]}" not in deep_shape]
+    missing_old = [c for c in deep_counties if c not in old_idx]
+    check("county coverage survives, so the box can never answer none where the record holds one",
+          not missing_new, str(sorted(missing_new)[:3]))
+    check("and the shape block is what carries it, so the check is not answered by the register",
+          deep_shape in deep_idx and len(deep_shape) < len(deep_idx),
+          f"{len(deep_shape):,} of {len(deep_idx):,}")
+    check("...and the old shape lost it here, which is what makes that check a gate",
+          len(missing_old) > 0, f"{len(missing_old)} of {len(deep_counties)} counties lost")
+
+    # FAILURE THREE. A counting question answered from the bodies that happened to be shown
+    # rather than from the record. The count beside a county is the record's own, taken in
+    # Python, and it has to stay right at a size where most of those decisions have no line.
+    worst = max(deep_counties, key=lambda c: deep_counties[c])
+    check("and every county count is the record's own, not a count of the lines that survived",
+          f"{worst} {deep_counties[worst]}" in deep_idx,
+          f"{worst} {deep_counties[worst]}")
+
+    # FAILURE TWO. A reader asks about a decision by name. This is the one the new shape does
+    # NOT fully keep, and the test says so rather than dressing it up. What it must keep is that
+    # the index never lets an absence read as a none, so the notice has to be present, has to
+    # carry the true count, and has to reach the model.
+    check("what rung 3 gives up is naming, and the index says so rather than going silent",
+          "ARE NOT LISTED BELOW" in deep_idx and str(len(deep)) in deep_idx,
+          f"{deep_unlisted} of {len(deep)} unlisted")
+    named = sum(1 for l in deep_idx.splitlines() if l.rstrip().endswith("]]"))
+    check("and everything it does not name, it counts, so the two add up to the record",
+          named + deep_unlisted >= len(deep),
+          f"{named} named plus {deep_unlisted} unlisted against {len(deep)}")
+
+    # AN OPEN WINDOW IS THE ONE STATE A READER CAN STILL ACT ON, at either rung. It keeps its
+    # full line however old it is, because a shortened line drops exactly the fact that the
+    # window is open and an unlisted one drops the decision.
     open_ids = [it["id"] for it in items
                 if dk.window_state(it, p["generated"]) == "open"]
     short_open = [i for i in open_ids
@@ -1845,6 +2340,31 @@ def self_test() -> int:
                          for l in p["index"].splitlines())]
     check("no decision with an open window was shortened",
           not short_open, str(short_open[:3]))
+    deep_open = [it["id"] for it in deep if dk.window_state(it, p["generated"]) == "open"]
+    check("and none was unlisted either, at a record ten times the size",
+          all(f"[[{i}]]" in deep_idx for i in deep_open),
+          str([i for i in deep_open if f"[[{i}]]" not in deep_idx][:3]))
+
+    # THE GATE CAN STILL GO RED, WHICH IS THE PART THAT WOULD OTHERWISE HAVE BEEN LOST. Rung 3
+    # gives up a line rather than the budget, so a bigger record no longer overflows and the
+    # ceiling check would have become a comment. What must still fail is the case the ceiling is
+    # actually for, which is the budget being spent by something no rung can give up. Every
+    # window open is that case, because an open window is never shortened and never unlisted.
+    print("and the ceiling can still go red, on the case no rung can give up")
+    forced = []
+    for k in range(600):
+        c = dict(items[k % len(items)])
+        c["id"] = f"tx-8{k:04d}"
+        c["public_access"] = {"room": "open_comment", "opens": "2026-01-01",
+                              "closes": "2099-01-01"}
+        forced.append(c)
+    forced_idx, _fs, _fu = index_fit(forced, p["generated"], ship_extra)
+    check("a record whose windows are all open overflows the ceiling and says so",
+          len(forced_idx) > MAX_INDEX_CHARS,
+          f"{len(forced_idx):,} chars from {len(forced)} open decisions")
+    check("and the horizon reports zero room rather than a number",
+          index_headroom(forced, p["generated"], ship_extra)["full"] <= 0,
+          str(index_headroom(forced, p["generated"], ship_extra)))
 
     print()
     print("ask_pack self-test clean" if ok[0] else "ask_pack self-test FAILED")
@@ -1874,6 +2394,20 @@ def main() -> int:
     print(f"  index {p['index_chars']:,} chars, roughly {round(p['index_chars'] / 4)} tokens "
           f"on EVERY question, ceiling {MAX_INDEX_CHARS:,}")
     print("  blocks " + ", ".join(f"{k} {v}" for k, v in sorted(p["families"].items())))
+    # THE HORIZON, PRINTED WHERE A PERSON READS IT. It was a function nothing called from
+    # 2026-09-09 to 2026-09-10, so the early warning existed and warned nobody.
+    h, rate = p["index_headroom"], p["admissions_per_day"]
+    days = (lambda n: f", about {round(n / rate)} days at {rate:g} a day" if rate else "")
+    print(f"  this build spent {p['index_shortened']} shortened lines and "
+          f"{p['index_unlisted']} unlisted decisions")
+    print(f"  room for {h['full']} more decisions at full lines{days(h['full'])}")
+    print(f"  room for {h['named']} more before one stops being named{days(h['named'])}")
+    if h["fits"] is None:
+        print(f"  no size within {h['probe']:,} more decisions stops the index fitting, which "
+              f"is what giving up a line rather than the budget buys")
+    else:
+        print(f"  room for {h['fits']} more before the index will not fit at "
+              f"all{days(h['fits'])}")
     return 0
 
 

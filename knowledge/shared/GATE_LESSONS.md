@@ -2320,3 +2320,72 @@ do it anyway, saying only the first is the checker choosing the worse of two tru
 
 And a run whose predecessor is still unmerged is not starting, it is forking. Check for blocked runs
 before doing the work, not after both have paid for it.
+
+## 72. The early warning was measured against an index that never shipped, and two errors cancelled
+
+Entry 71 ends by asking for one thing: publish the distance to the floor "so the real decision is
+made on a calendar rather than at a red build". The run that answered it wrote `index_headroom` in
+`scripts/site/ask_pack.py` the same day, and the comment above `MAX_INDEX_CHARS` reported what it
+said as the horizon the ceiling raise was buying:
+
+> What it buys now is a horizon of 244 more decisions, which is about eighty days at three
+> admissions a day.
+
+Three things were wrong with that number and the third is why nobody could see the first two.
+
+**It was called without the `extra` the index ships with.** `index_fit` takes the three rolled
+families, the dossiers, the construction register and the reservoirs, as an argument. `build`
+passes them. The self-test's call to `index_headroom` did not, so it measured a 28,507 character
+index while a 41,454 character one went out the door. That is 12,941 characters of room it counted
+twice.
+
+**Its model of the ceiling was wrong in the other direction.** It computed `spare // median short
+line`, which assumes the only thing that changes is new lines arriving. What actually happens is
+that the lines already there get shortened as the budget tightens, and every one of those recovers
+about 95 characters. So even given the right index it would have under-reported.
+
+**The two ran opposite ways and very nearly cancelled.** Rebuilt correctly, the record's real
+distance to the wall was 223 decisions. The published figure was 244. A number nine percent off is
+not a number anybody audits, and it looked exactly like the measurement entry 71 had asked for.
+
+```
+index_headroom as the self-test called it     244
+index_headroom with the families it ships with 143
+the record's actual distance to the wall       223
+admissions until the first line is shortened    84
+```
+
+**And it was never published at all.** `build` returns `index_chars` and `index_shortened` and
+does not return the headroom. `main` does not print it. Nothing in the site, the ledger or the
+email carried it. The only caller in the repository was the self-test that computed it wrongly,
+and its whole assertion was `head > 0`. So the early warning existed, was wrong, and warned
+nobody, for the day and a half between being written and being read.
+
+**Its self-test could not have caught it.** `head > 0` is true of 244, true of 143, and true of
+any positive number a broken derivation returns. A gate on the SIGN of a measurement is a gate on
+whether the code ran.
+
+**One more, found while fixing it, and it is the same shape one level down.** The rewritten
+`index_headroom` asked what each rung had SPENT rather than whether the index FIT. Handed a record
+whose every window was open, which nothing may shorten and nothing may unlist, it reported the
+full probe length as the horizon for an index 105,800 characters over its ceiling. A distance
+measured without first asking whether the thing is already broken reads as reassuring precisely
+when it is worthless.
+
+**Generalises to.** Three.
+
+A derived figure has two subjects, the thing it describes and the thing it was computed from, and
+a gate that reads only the figure cannot tell them apart. Assert that the horizon was measured
+against the artefact that shipped, by identity, not by plausibility. The check that now does it is
+one line: the pack's published horizon must equal the horizon recomputed with the same `extra` the
+index was built with.
+
+A number that is nine percent right is worse than one that is ninety percent wrong, because the
+second gets looked at. Where two errors can cancel, the cheap defence is to measure the thing by
+BUILDING it rather than by modelling it. `index_headroom` now admits synthetic decisions and asks
+`index_fit` what happened, which is the same question the build asks, so there is no second model
+to be wrong.
+
+And an early warning nothing prints is not an early warning. Entry 71 asked for the distance to be
+published and the run that answered it wrote a function. Wiring it to a surface a person reads is
+the part that was the deliverable, and it is the part that was skipped.
