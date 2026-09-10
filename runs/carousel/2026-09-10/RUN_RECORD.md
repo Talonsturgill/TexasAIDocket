@@ -307,13 +307,18 @@ report can no longer predate the artifact it describes.
 
 ```
 planned    26   12   58   16    9   34   11   20   33
-measured 28.5  9.6 52.4 24.7  7.4 42.6 17.7 12.0 45.0
+measured 18.1  9.6 52.3 24.8  7.1 24.6 14.7  7.5 41.7
 ```
 
-Deck median **24.7** against a planned 20, which pays the artwork ledger's dark-deck debt with
-room. The shape holds: the floor is slide 5 at 7.4 and the inversion is slide 3 at 52.4, **28 L*
-above the deck median**. Frames 4, 6 and 9 came in 7 to 12 lighter than planned and the plan is
-NOT rewritten to hide it.
+Deck median **18.1** against a planned 20. The shape holds: the floor is slide 5 at 7.1 and the inversion is slide 3 at 52.3, **34.2 L* above the deck median**. The plan is NOT rewritten to hide the misses.
+
+**THESE FIGURES WERE WRONG IN THIS FILE UNTIL THE LAST HOUR OF THE RUN, and that is the run's
+own recurring defect rather than a typo.** This block was measured after round 1 and every round
+after it redrew a frame without re-measuring, so the record carried slide 6 at 42.6 where it
+measures 24.6 and a deck median of 24.7 where it is 18.1. The fifth round's integrity judge
+counted three different deck medians across two committed files, none of them the deck's. Every
+L* in this run's prose is now written from `measurements.json`, and `shipped_check`'s measured
+figures gate reads the shipped bytes and refuses any number beside an `L*` that is not in it.
 
 The inversion had to be rescued. Slide 3 first measured 35.7, only 11 above the deck median, and
 an inversion a reader can't feel is not one. The sheet was enlarged and its ground pool lifted.

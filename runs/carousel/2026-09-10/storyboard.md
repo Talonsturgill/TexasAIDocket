@@ -156,7 +156,7 @@ read"* under a group heading that reads as a pass. The plan had said `## The val
 and then put the list on the NEXT line, and `ARC_INLINE` matches `planned` followed by
 `[^\n.]*?`, so a newline between the word and the numbers is a plan no machine compares. Put
 back on one line, the gate runs and the deck clears it, measured 18.1 against a planned 20.
-Biggest junction 46 L* between 2 and 3, and 42 between 3 and 4. That inversion is what a reader
+Biggest junction 42.7 L* between 2 and 3, measured at the end rather than when this line was written. That inversion is what a reader
 remembers the deck by, and it is placed EARLY and never returned to, which breaks the
 bright-sheet-at-slide-5 rut decks 1, 3, 13, 15 and 16 all sat in.
 
@@ -215,12 +215,12 @@ composition:
     that open ground and the furniture row runs across the foot.
   focal: >
     the lit caliche band immediately under the treeline, an area of roughly 1080 by 95 px carrying
-    the frame's LIGHT extreme at measured L* 44 against the ember band's 30. Darkest is the cedar
+    the frame's LIGHT extreme at measured L* 44.3 against the ember band's 22. Darkest is the cedar
 
     CORRECTED IN ROUND 6, AND THE FRAME HAD BEEN REFUTING THIS DECLARATION SINCE ROUND 1. The plan
     named the ember band and said its top tenth was the lightest thing here. It is not, and the
-    measurement is not close: the caliche strip under the horizon reads L* 44 and the ember band
-    reads 30, and `construction_check` independently picks that same strip out as this frame's
+    measurement is not close: the caliche strip under the horizon reads L* 44.3 and the ember band
+    reads 22, and `construction_check` independently picks that same strip out as this frame's
     largest bright region. Two judges in two separate rounds said the declared focal was refuted
     by the pixels, and the second one was reading a frame that had already been corrected once for
     this. The declaration moved to the area that actually wins the eye rather than the art moving
@@ -247,7 +247,7 @@ art:
     cedar #171C18 at both edges, sky_ember #B4664F and sky_high #1B1830 in the band. Drawn from
     caliche and ashe juniper on the Edwards Plateau west of Austin, twenty minutes after sunset.
   value_structure: >
-    Planned median L* 26. Lightest is the lit caliche strip under the treeline at a measured 44, and the ember band is 30, darkest is the cedar mass at
+    Planned median L* 26. Lightest is the lit caliche strip under the treeline at a measured 44.3, and the ember band is 22, darkest is the cedar mass at
     about 5. The rut crowns sit at about 44 and the type ground under the hook is held at or below
     16 so foil-value type clears 4.5 to 1 without a scrim.
   motion: >
@@ -392,7 +392,7 @@ art:
   value_structure: >
     Planned median L* 58, the deck's brightest frame and its one inversion, placed at 3 and never
     returned to. Lightest is the sheet face at about 87, darkest is the cobble contact core at
-    about 8. The 46 L* junction from frame 2 to frame 3 is the largest in the deck.
+    about 8. The 42.7 L* junction from frame 2 to frame 3 is the largest in the deck.
   motion: >
     Down the sheet's sentence, left into the cobble, then out along the cast to the east.
 type:
