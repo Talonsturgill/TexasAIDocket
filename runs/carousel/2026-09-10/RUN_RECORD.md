@@ -367,21 +367,21 @@ brought current in this run's ledger update.
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 23 verified claim(s) |
-| render         | WARN   | 9 slide(s), 39 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 81 warn(s) |
-| aggregates     | PASS   | 2 declaration(s), 3 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.14 MB, vector |
-| score          | ABSENT | score.json not written yet |
+| claims         | PASS   | 24 verified claim(s) |
+| render         | WARN   | 9 slide(s), 40 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 82 warn(s) |
+| aggregates     | PASS   | 2 declaration(s), 2 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.82 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 104 published string(s) read from one list, every universal names its set |
-| verbatim       | PASS   | 15 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
-| dossiers       | PASS   | 49,615 chars planned |
+| verbatim       | PASS   | 14 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
+| dossiers       | PASS   | 52,429 chars planned |
 | caption        | PASS   | 124 words |
 | craft floor    | WARN   | 9 frame(s), median 701, floor 126, 1 quiet |
 | plan vs render | PASS   | 12 of 72 acceptance item(s) checkable |
 | texan          | WARN   | places Austin / body yes / deadline yes / next step NO |
-| absences       | WARN   | 2 of 4 scoped to a named document, 2 unscoped |
+| absences       | WARN   | 4 of 6 scoped to a named document, 2 unscoped |
 | numerals       | PASS   | 17 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
