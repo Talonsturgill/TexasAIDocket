@@ -46,6 +46,12 @@ const PACK = JSON.parse(execFileSync(PYTHON,
   { encoding: "utf-8", maxBuffer: 64 << 20 }));
 const GOLD = JSON.parse(execFileSync(PYTHON, ["scripts/site/ask_eval.py"],
   { encoding: "utf-8", maxBuffer: 32 << 20 }));
+// WHO DECIDED SOMETHING, RESOLVED BY THE ONE THING THAT KNOWS. The record spells the National
+// Science Foundation three ways and a decider case now asks each spelling and expects the body,
+// so comparing the filed string would mark a correct route wrong twice out of three. Shelled out
+// rather than reimplemented, for the same reason the pack and the gold set are.
+const BODY = JSON.parse(execFileSync(PYTHON, ["scripts/site/deciders.py", "--map"],
+  { encoding: "utf-8", maxBuffer: 8 << 20 }));
 const LEDGER = JSON.parse(fs.readFileSync("ledger/docket.json", "utf-8"));
 const ITEMS_RAW = Array.isArray(LEDGER) ? LEDGER : LEDGER.items;
 const byId = new Map(ITEMS_RAW.map((it) => [it.id, it]));
@@ -284,7 +290,10 @@ const matches = (c, id) => {
   if (c.view === "by_county") {
     return ((it.geography || {}).counties || []).includes(c.arg);
   }
-  if (c.view === "by_decider") return (it.decider || {}).name === c.arg;
+  if (c.view === "by_decider") {
+    const filed = (it.decider || {}).name;
+    return (BODY[filed] || filed) === c.arg;
+  }
   if (c.view === "by_topic") return it.topic === c.arg;
   return false;
 };
