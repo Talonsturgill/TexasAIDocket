@@ -318,23 +318,40 @@ ARC_INLINE = re.compile(r"\bplanned\b[^\n.]*?((?:-?\d+(?:\.\d+)?\s*,\s*){3,}-?\d
                         re.I)
 
 
-def planned_arc(storyboard: str) -> list:
-    """The planned per frame median L*, or `[]` when the deck declares none.
+# THE TRAP INSIDE `ARC_INLINE`, NAMED HERE BECAUSE THIS IS WHERE SOMEBODY WILL READ IT.
+#
+# `ARC_INLINE` matches `planned` followed by `[^\n.]*?` and then the list, so the word and the
+# numbers have to be on ONE LINE. On 2026-09-10 the plan wrote `## The value arc, planned` and
+# put the nine values on the next line, and the parser read that deck as declaring no arc at all.
+# The row printed `ok`, because a deck that declares nothing and a deck that clears its arc came
+# out of `check_value_arc` as the same empty list.
+#
+# These two patterns are how the third case is told apart from the other two. A span that names a
+# PLANNED arc and carries a comma list of four or more numbers has a plan in it. If the parser
+# above could not reach that list, the plan was written in a form no machine compares, and that
+# is a finding rather than silence.
+#
+# Commas only, deliberately, and 2026-09-03 is why. That storyboard narrates a value arc line
+# separated by middots inside a paragraph explaining that the line was WRONG. It is prose about
+# an arc rather than a declaration of one, and a looser pattern would report it as a defect.
+ARC_LIST_ANYWHERE = re.compile(r"(?:-?\d+(?:\.\d+)?\s*,\s*){3,}-?\d+(?:\.\d+)?")
+ARC_PLAN_WORD = re.compile(r"\bplanned\b", re.I)
 
-    A DECK THAT DECLARES NO ARC IS THE ORDINARY CASE, not a misread file. Nine of fifteen shipped
-    storyboards declare nothing this can read, so a gate that treated silence as a defect would be
-    red on most of what this project has published, and a row that is always red is ignored
-    exactly as fast as one that is always green.
+
+def arc_spans(storyboard: str) -> list:
+    """Every stretch of the plan that names the value arc, scoped the way the parser reads it.
+
+    The span runs from the START OF THE CUE'S OWN PARAGRAPH to the next markdown heading, or a
+    thousand two hundred characters, whichever comes first. Scoped so a number elsewhere in the
+    plan cannot be read as an arc value.
+
+    IT STARTS AT THE PARAGRAPH AND NOT AT THE CUE, and that is not tidiness. 2026-08-30 writes
+    `Planned value arc, 34, 22, 40, ...`, where the word the parser keys on sits BEFORE the cue,
+    so a span beginning at the cue read that deck as declaring nothing. The first version of this
+    did exactly that and its own self-test caught it.
     """
+    out = []
     for m in ARC_CUE.finditer(storyboard):
-        # The span runs from the START OF THE CUE'S OWN PARAGRAPH to the next markdown heading, or
-        # a thousand characters, whichever comes first. Scoped so a number elsewhere in the plan
-        # cannot be read as an arc value.
-        #
-        # IT STARTS AT THE PARAGRAPH AND NOT AT THE CUE, and that is not tidiness. 2026-08-30
-        # writes `Planned value arc, 34, 22, 40, ...`, where the word this parser keys on sits
-        # BEFORE the cue, so a span beginning at the cue read that deck as declaring nothing. The
-        # first version of this function did exactly that and its own self-test caught it.
         head = storyboard.rfind("\n\n", 0, m.start())
         start = head + 2 if head >= 0 else 0
         tail = storyboard[start:]
@@ -343,7 +360,58 @@ def planned_arc(storyboard: str) -> list:
         # would otherwise close the span before its own paragraph.
         after = m.start() - start + len(m.group(0))
         cut = re.search(r"^#{1,6}[ \t]", tail[after:], re.M)
-        span = tail[:(after + cut.start() if cut else min(len(tail), 1200))]
+        out.append(tail[:(after + cut.start() if cut else min(len(tail), 1200))])
+    return out
+
+
+def unreadable_plan(storyboard: str) -> list:
+    """Spans that declare a planned arc the parser above cannot reach. The third state.
+
+    Empty for a storyboard that declares no arc, which is the ordinary case, and empty for one
+    whose arc parses. Non-empty only where the plan is demonstrably in the file and demonstrably
+    out of the parser's reach.
+    """
+    if planned_arc(storyboard):
+        return []
+    out = []
+    for span in arc_spans(storyboard):
+        if not ARC_PLAN_WORD.search(span):
+            continue
+        lst = ARC_LIST_ANYWHERE.search(span)
+        if lst:
+            out.append(" ".join(lst.group(0).split())[:120])
+    return out
+
+
+def arc_unread_finding(stuck: list) -> str:
+    """The third state's one line, written once so the self-test can hold the REAL message.
+
+    A message the test keeps its own copy of is a message the test agrees with rather than
+    reads, which is how `caption_check`'s month rule stayed green over a form the site never
+    rendered.
+    """
+    return (f"this storyboard DECLARES a planned value arc and this gate could not read it, so "
+            f"the deck's register was compared against nothing while the row above it read as a "
+            f"pass. The list is right there: {stuck[0]}. ARC_INLINE matches `planned` followed "
+            f"by `[^\\n.]*?`, so the word and the numbers must be on ONE LINE, and a newline "
+            f"between them is a plan no machine compares. Put the list back on the line that "
+            f"carries the word, or use the fenced `F1  24  the lane` form "
+            f"SLIDE_DOSSIER_SPEC.md gives")
+
+
+def planned_arc(storyboard: str) -> list:
+    """The planned per frame median L*, or `[]` when the deck declares none.
+
+    A DECK THAT DECLARES NO ARC IS THE ORDINARY CASE, not a misread file. Nine of fifteen shipped
+    storyboards declare nothing this can read, so a gate that treated silence as a defect would be
+    red on most of what this project has published, and a row that is always red is ignored
+    exactly as fast as one that is always green.
+
+    A DECK THAT DECLARES ONE THIS CANNOT READ IS NOT THAT CASE, and telling the two apart is
+    `unreadable_plan`'s whole job. Returning `[]` for both is the defect this file met on
+    2026-09-10.
+    """
+    for span in arc_spans(storyboard):
         fenced = re.search(r"```[a-z]*\n(.*?)```", span, re.S)
         if fenced:
             rows = ARC_FRAME_LINE.findall(fenced.group(1))
@@ -419,8 +487,20 @@ def check_value_arc(base: Path) -> list:
     sb = base / "storyboard.md"
     if not sb.exists():
         return []
-    planned = planned_arc(sb.read_text(encoding="utf-8"))
+    text = sb.read_text(encoding="utf-8")
+    planned = planned_arc(text)
     if not planned:
+        # THE THIRD STATE, ADDED 2026-09-10, AND THE ROW USED TO PRINT `ok` FOR IT.
+        #
+        # A declared arc nobody could read and a deck that cleared its arc came out of here as
+        # the same empty list, so the group heading read `ok the deck comes out within one
+        # Munsell step of its own planned value arc` in both cases. That run only measured its
+        # arc at all because a session happened to read the note above and go looking. This is
+        # GATE_LESSONS' oldest shape, a green banner measuring something narrower than the thing
+        # it appears to certify, and the repair is one line in the storyboard.
+        stuck = unreadable_plan(text)
+        if stuck:
+            return [arc_unread_finding(stuck)]
         # SAID OUT LOUD RATHER THAN PASSED OVER. Nine of fifteen shipped storyboards declare no
         # arc, so this is ordinary, and a run that declares one gets it checked.
         print("      (this storyboard declares no value arc this gate can read, so the deck's "
@@ -620,6 +700,50 @@ def self_test() -> int:
            f"({len(arc)} of {frames})", len(arc) == frames, str(arc))
     ok("the parse rule was calibrated against real storyboards rather than only fixtures",
        parsed >= 2, f"{parsed} shipped storyboard(s) declare a readable arc")
+
+    # ---- THE THIRD STATE, REPLAYED ON THE SHAPE THAT PRODUCED IT (2026-09-10) ----------
+    #
+    # The line below is carousel no. 20's plan as it stood when `panel_ready` was first run
+    # against it, taken from that run's own account in runs/carousel/2026-09-10/storyboard.md
+    # rather than invented here. The word `planned` is in the heading and the nine values are on
+    # the NEXT line, and the row above it printed `ok`.
+    STUCK = ("## The value arc, planned\n"
+             "26, 12, 58, 16, 9, 34, 11, 20, 33, from `compute.py VALUE_ARC`.\n"
+             "Deck median **20**, one frame over 50.\n")
+    ok("the 2026-09-10 shape, planned on one line and the list on the next, parses to nothing",
+       planned_arc(STUCK) == [], str(planned_arc(STUCK)))
+    ok("...and it is now reported as a DECLARED arc that could not be read",
+       bool(unreadable_plan(STUCK)), "the third state collapsed back into a pass")
+    ok("...and the finding names the one-line rule, which is the trap",
+       "ONE LINE" in arc_unread_finding(unreadable_plan(STUCK)),
+       arc_unread_finding(unreadable_plan(STUCK)))
+
+    # THE REPAIR THAT RUN MADE clears it, which is what makes the finding actionable rather than
+    # a row somebody learns to scroll past.
+    REPAIRED = ("## The value arc\n"
+                "Planned per frame median L*, 26, 12, 58, 16, 9, 34, 11, 20, 33, from "
+                "`compute.py VALUE_ARC`.\nDeck median **20**, one frame over 50.\n")
+    ok("...and the one-line repair reads as nine planned values",
+       planned_arc(REPAIRED) == [26, 12, 58, 16, 9, 34, 11, 20, 33], str(planned_arc(REPAIRED)))
+    ok("...so a deck whose arc parses raises no third-state finding",
+       not unreadable_plan(REPAIRED), str(unreadable_plan(REPAIRED)))
+
+    # AND THE TWO CASES THIS MUST NOT FIRE ON, because a row that is always red is ignored
+    # exactly as fast as one that is always green.
+    ok("a storyboard declaring no arc at all raises no finding",
+       not unreadable_plan("## The frames\n\nNothing about lightness here.\n"))
+    ok("2026-09-03's measurement-only paragraph is not read as an unreadable plan",
+       not unreadable_plan(MEASURED_ONLY), str(unreadable_plan(MEASURED_ONLY)))
+
+    # AGAINST EVERY SHIPPED STORYBOARD, because a fixture written beside a detector agrees with
+    # it. None of the twenty may raise this, and 2026-09-03 is the one that nearly did: it
+    # narrates a wrong arc line in prose, separated by middots, which is why the pattern that
+    # decides this takes commas only.
+    noisy = [p.name for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*"))
+             if (p / "storyboard.md").exists()
+             and unreadable_plan((p / "storyboard.md").read_text(encoding="utf-8"))]
+    ok("no shipped storyboard is reported as declaring an arc nobody could read", not noisy,
+       str(noisy))
 
     # EVERY CHECK MUST BE REACHABLE. A gate whose loader silently returns nothing reports clean
     # forever, which is the shape craft_floor shipped when it read a key qa.py never wrote.
