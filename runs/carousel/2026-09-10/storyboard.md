@@ -330,10 +330,6 @@ verbatim:
   - c5: "1,000 (Estimated)"
   - c7: "a small number"
   - c6: "Examination of the process and technical data on which Tesla relied when certifying the Cybercab and related issues."
-acceptance:
-  - "the POPULATION row's value reads exactly '1,000 (Estimated)' and the qualifier is set at the same cap height as the numeral, measured from getBoundingClientRect rather than typed"
-  - "the DEPLOYED row's value reads exactly 'a small number' and sits directly beneath the POPULATION row with no rule of more than hairline weight between them"
-  - "the ACTION row's value reads exactly 'Open Audit Query (AQ)', and below the table the deck's own gloss reads exactly 'An audit query is neither a defect investigation nor a recall.'"
   # THE ITEM WAS INVERTED IN ROUND 1. It required those two phrases to be ABSENT, on the reasoning
   # that naming them at all primes the misread. All three judges read the frame the other way: the
   # labels INVESTIGATION and PROBLEM DESCRIPTION prime it anyway, and c3's own negation was the one
@@ -344,12 +340,16 @@ acceptance:
   # whose stated attribution law is that the agency's record gets no carrier. It is c3's substance
   # in the deck's words, so it is set in the body face where the deck speaks. The item above moved
   # with it rather than staying where the sentence used to be.
-  - "this frame carries no plate, and every string on it is html type over the canvas rather than a hand-sized box"
-  - "the table carries five label rows and no row is empty, and the negation is set below the table in the body face rather than inside the document's value column"
   # THE SUBJECT ROW CAME OFF IN ROUND 1. It printed the resume's own Subject line with no claim
   # behind it, which the integrity judge found. The line is now admitted as c24 and the row was
   # dropped rather than kept, because the negation row beneath ACTION is worth more of this
   # frame's 65 word ceiling than a restatement of the deck's own title.
+acceptance:
+  - "the POPULATION row's value reads exactly '1,000 (Estimated)' and the qualifier is set at the same cap height as the numeral, measured from getBoundingClientRect rather than typed"
+  - "the DEPLOYED row's value reads exactly 'a small number' and sits directly beneath the POPULATION row with no rule of more than hairline weight between them"
+  - "the ACTION row's value reads exactly 'Open Audit Query (AQ)', and below the table the deck's own gloss reads exactly 'An audit query is neither a defect investigation nor a recall.'"
+  - "this frame carries no plate, and every string on it is html type over the canvas rather than a hand-sized box"
+  - "the table carries five label rows and no row is empty, and the negation is set below the table in the body face rather than inside the document's value column"
   - "the numeral 1,000 appears on this frame exactly once"
 risks:
   - "a plate is hand-sized and clips the PROBLEM DESCRIPTION block, which is the one string that runs long"
@@ -859,20 +859,20 @@ type:
   # cell carries the docket on frames 2 and 9, and the first draft of this list contradicted it.
 verbatim:
   - c1: "AQ26002"
-acceptance:
-  - "the unworn pass terminates at C.terminus_y within 12 px, and the dust just below the terminus measures at least 4.0 dE from the unmarked ground ABOVE it at 432 px wide, declared through data-encodes with reads set to differ"
   # THE SAME INVERSION compute.py's UNMARKED_BAND comment records, in the acceptance item derived
   # from it. This said BELOW, and below the terminus is exactly where the pass IS drawn. The pass
   # runs from the cattle guard UP and stops, so the ground carrying no mark is the column above it.
-  - "the unworn pass's own column ABOVE the terminus, C.unmarked_band, carries no drawn mark of any kind"
   # INVERTED IN ROUNDS 1 AND 2. BELOW the terminus is where the pass and the cattle guard are
   # drawn. compute.py carries both bands by name now so the two can never be confused again.
-  - "the worn rut pair runs off the top frame edge and the single pass does not"
-  - "the cattle guard runs off both left and right frame edges, and its rail count equals C.guard_rails"
   # THE FIRST VERSION CLAIMED A LEFT AND RIGHT CROP HIDES THE RAIL COUNT. It does not, because the
   # rails run horizontally, so cropping the ends hides nothing and the same list said 13 rails two
   # items later. The crop is still right for the drawing, since a guard that stops inside the frame
   # is a prop rather than a crossing. The claim about it was simply false.
+acceptance:
+  - "the unworn pass terminates at C.terminus_y within 12 px, and the dust just below the terminus measures at least 4.0 dE from the unmarked ground ABOVE it at 432 px wide, declared through data-encodes with reads set to differ"
+  - "the unworn pass's own column ABOVE the terminus, C.unmarked_band, carries no drawn mark of any kind"
+  - "the worn rut pair runs off the top frame edge and the single pass does not"
+  - "the cattle guard runs off both left and right frame edges, and its rail count equals C.guard_rails"
   - "exactly one unworn pass is drawn, one tyre wide, with no second track beside it"
   - "no glyph of the hook or the dek sits on a lit rut crown"
   - "the date on the frame equals C.opened_ordinal and the docket string equals C.docket"
