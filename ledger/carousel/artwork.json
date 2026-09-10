@@ -1330,21 +1330,21 @@
         "measured": [
           18.1,
           9.6,
-          52.3,
-          24.9,
+          52.4,
+          24.8,
           7.1,
-          24.0,
-          18.5,
+          24.1,
+          14.6,
           7.5,
-          41.6
+          41.5
         ],
-        "deck_median_L": 18.5,
+        "deck_median_L": 18.1,
         "measured_on": "the nine shipped PNGs, by panel_ready.measured_arc, at the moment this ledger was written",
-        "note": "The dark-deck debt from no. 19's avoid_next is PAID, with room. The floor is slide 5 at 7.1 and the inversion is slide 3 at 52.3, 33.8 above the deck median. Slide 3 first came in at 35.7 and was rescued, because an inversion a reader cannot feel is not one. THIS LIST IS MEASURED BY THE SCRIPT THAT WRITES IT and was a typed literal until 2026-09-10, which is the stale-declaration defect the round 1 panel charged this deck for, sitting in the file that warns about it."
+        "note": "The dark-deck debt from no. 19's avoid_next is PAID, with room. The floor is slide 5 at 7.1 and the inversion is slide 3 at 52.4, 34.3 above the deck median. Slide 3 first came in at 35.7 and was rescued, because an inversion a reader cannot feel is not one. THIS LIST IS MEASURED BY THE SCRIPT THAT WRITES IT and was a typed literal until 2026-09-10, which is the stale-declaration defect the round 1 panel charged this deck for, sitting in the file that warns about it."
       },
       "type_skeletons": "FIVE across nine, planned in the storyboard rather than repaired in a scoring round. A on 1, 5, 9. B, a field table with no hook where the top rule is the head, on 2 and 6. C, one shared measure with a hanging indent, on 3 and 8. D, display type at the deck's largest size filling the top band, on 4. E, four flush-left lines at one size as a single mass, on 7. Right-alignment is used nowhere as a substitute for a layout decision.",
       "bespoke": {
-        "median_pairwise": 0.1822,
+        "median_pairwise": 0.1815,
         "pairs": 36,
         "closest_pair": [
           "slide-01.html",
@@ -1368,7 +1368,7 @@
         "_note": "How much of the deck one primitive carries, read off the pixels. This gate is not in guards.yml and was not run on this deck until scoring round 3, by which time it had been red the whole run."
       },
       "avoid_next": [
-        "THE DECK MAY GO LIGHT AGAIN AND THE COUNTED WINDOW IS WHY. Decks 14 and 19 were the two light decks in the eight-run window and this one at deck median 18.5 clears the debt. Check the window before choosing, and MEASURE the deck median rather than asserting it, which is what deck 19 got wrong by miscounting its own ledger twice.",
+        "THE DECK MAY GO LIGHT AGAIN AND THE COUNTED WINDOW IS WHY. Decks 14 and 19 were the two light decks in the eight-run window and this one at deck median 18.1 clears the debt. Check the window before choosing, and MEASURE the deck median rather than asserting it, which is what deck 19 got wrong by miscounting its own ledger twice.",
         "A GATE NOBODY RUNS IS A GATE THAT IS RED. construction_check.py is not in guards.yml and is not named in the routine's phase list, so this run reached scoring round 3 before it was run once, and it was red the whole time at 5 of 9 frames carrying one primitive against a threshold of half. The four decks before this one measured 2, 1, 4 and 1, so the finding was real rather than a drifted threshold. Run every gate in scripts/carousel by exit code before the first panel, not the ones the routine happens to list.",
         "A REPORT THAT PREDATES THE ARTIFACT IT DESCRIBES READS AS NO CHANGE AT ALL. panel_ready takes its contrast numbers from machine_qa.json, and on this run that file was seven minutes older than the PNGs, so a whole round of colour fixes measured as nothing. qa.py now runs inside build.sh on every render. Before believing any report, check its mtime against the newest artifact it reads.",
         "putImageData IGNORES THE CANVAS TRANSFORM. A scanline written after g.scale(2,2) lands in a quadrant, and the frame comes back at a fifth of its planned value with zero render errors. Write the field at device resolution and put it once.",
