@@ -91,6 +91,18 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
+# THE CALIBRATION, NAMED RATHER THAN INFERRED FROM RECENCY.
+#
+# This gate was written for the repaired deck of 2026-09-04, carousel no. 15, and the whole
+# argument for the discovery half warning rather than failing is a measurement over the shipped
+# corpus: three groups across the decks below, and none on the deck it was written for. Both
+# halves of that measurement are assertions in the self-test, and both name their decks.
+#
+# `runs/carousel/**` is append-only, so these four answers are fixed forever. Anything computed
+# from "the newest deck" is not, which is the defect these two constants exist to remove.
+CALIBRATED_ON = "2026-09-04"
+DISCOVERY_FIRES_ON = ("2026-08-16", "2026-08-25", "2026-09-03")
+
 # THE DECLARATION. One spelling, and the spec says so, because two spellings of one idea is how
 # `sources_block` ended up accepting a neighbour gate's flag as a prefix and reading nothing.
 #
@@ -546,10 +558,32 @@ def self_test() -> int:
     ok("the calibration read a real corpus rather than nothing", checked >= 10, str(checked))
     print(f"       discovery notes across {checked} shipped deck(s): "
           f"{noisy if noisy else 'none'}")
-    newest = next((p.name for p in reversed(shipped_runs)
-                   if (p / "render_report.json").exists()), None)
-    ok(f"the newest shipped deck ({newest}) draws NO discovery note, so this gate does not fire "
-       f"on a repaired deck", newest not in dict(noisy), str(noisy))
+
+    # THE ASSERTION BELOW USED TO SAY "the newest shipped deck", AND IT WENT RED ON ITS OWN.
+    #
+    # It computed the newest run directory and required it to draw no discovery note. That was
+    # true the day it was written, because the newest deck then WAS the repaired 2026-09-04 deck
+    # this gate was calibrated against. It is a claim pinned to a target that moves every night.
+    # Carousel no. 19 legitimately drew one note on frame 5, so on 2026-09-10 this file's own
+    # self-test was red on a clean checkout, and it had gone red without anybody touching it.
+    #
+    # A calibration is a statement about ONE artifact. It is named. `runs/carousel/**` is
+    # append-only history, so this deck's answer can never change, and a repo that has lost it
+    # is a repo where this assertion must fail rather than quietly pass on nothing.
+    ok(f"the calibration deck {CALIBRATED_ON} is still in the corpus",
+       CALIBRATED_ON in {p.name for p in shipped_runs}, "the named deck is gone")
+    ok(f"the deck this gate was calibrated for ({CALIBRATED_ON}) draws NO discovery note, so the "
+       f"soft half does not fire on a repaired deck",
+       CALIBRATED_ON not in dict(noisy), str(noisy))
+
+    # AND THE OTHER DIRECTION, which the old assertion never had. A discovery half that found
+    # nothing anywhere would have satisfied the line above perfectly, and a soft half that cannot
+    # fire is a decoration. These three decks are the groups this file's own header names as the
+    # calibration corpus, they are shipped history, and each is a real all-caps label standing
+    # beside a quoted one. If the detector stops seeing them it has stopped working.
+    for name in DISCOVERY_FIRES_ON:
+        ok(f"the discovery half still fires on {name}, which the header names as calibration",
+           name in dict(noisy), str(noisy))
 
     # THIS GATE HAS NO SOFTENING FLAG. Built from parts so the needle does not match itself.
     src = Path(__file__).read_text(encoding="utf-8")

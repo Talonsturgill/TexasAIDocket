@@ -46,6 +46,7 @@ import argparse
 import io
 import json
 import contextlib
+import importlib.util
 import re
 import sys
 from pathlib import Path
@@ -664,6 +665,38 @@ def g_completion(d: Path):
     return list(m.check(d, m.threshold(), m.max_rounds()) or [])
 
 
+def g_verbatim(d: Path):
+    """Every fragment a frame sets as a source's own words, against the claim it names.
+
+    REGISTERED ON 2026-09-10, AND THE REASON IS THE POINT. `verbatim_check` was the one file in
+    scripts/carousel that nothing in this repository ran: absent from `guards.yml`, absent from
+    every phase of the routine, absent from this registry. Its own `--self-test` had been red on
+    a clean checkout of main for days, over an assertion pinned to "the newest shipped deck",
+    and nothing found out because nothing opened the file. `gate_wiring.py` is the census that
+    now refuses that state, and this entry is what clears it.
+
+    THE DECLARED HALF ONLY. The discovery half warns by design, because a machine cannot tell an
+    authored label from a paraphrase, and a warning is not a finding a sweep over already
+    published work can act on.
+
+    HISTORY rather than CURRENT, which is safe for the reason the gate's own self-test asserts
+    deck by deck across all twenty: the declared half fires only on a dossier that DECLARES a
+    fragment, so a deck drawn before `SLIDE_DOSSIER_SPEC.md` grew its `verbatim:` key declares
+    none and is clean rather than retroactively judged.
+    """
+    import verbatim_check as m
+    sb, cj, rp = d / "storyboard.md", d / "claims.json", d / "render_report.json"
+    if not (sb.exists() and cj.exists() and rp.exists()):
+        return None
+    dossiers = m.parse_dossiers(sb.read_text(encoding="utf-8"))
+    if not dossiers:
+        return None
+    claims = json.loads(cj.read_text(encoding="utf-8")).get("claims") or []
+    fails, _declared, _slides = m.check_declared(
+        dossiers, claims, json.loads(rp.read_text(encoding="utf-8")))
+    return list(fails)
+
+
 GATES = [
     ("copy sync", g_copy_sync, HISTORY),
     ("quotations", g_quotations, HISTORY),
@@ -698,6 +731,7 @@ GATES = [
     # writer existed has no file for the gate to ask.
     ("measured figures", g_measured, CURRENT),
     ("ledgers", g_ledgers, CURRENT),
+    ("verbatim", g_verbatim, HISTORY),
     # CURRENT, because it is a property of the deck being made now and because every deck older
     # than it was drawn without it. See its own docstring for why bespoke_check, which was
     # already green, could not see this: that file compares drawing CODE and a reader sees the
@@ -760,10 +794,49 @@ def run(only: str | None = None) -> int:
         return 0
     newest = shipped_runs()[-1].name
     fatal, notes = [], []
-    for d in runs:
-        f, n = check_run(d, d.name == newest)
-        fatal += f
-        notes += n
+
+    # THE IMPORT SPY, and it is here rather than in `gate_wiring` because this loop is the only
+    # place the measurement exists. `gate_wiring` asks whether every carousel gate is run by
+    # something, and one of the three answers it accepts is "this registry loaded it". That
+    # answer is MEASURED, not grepped, because a mention is not a reference and
+    # GATE_LESSONS entry 14 ("A self-test is not wiring") is the record of what counting a
+    # mention bought: every gate satisfied `port_audit` permanently off its own
+    # `--self-test` line.
+    #
+    # Two routes into this suite and both are watched. An ordinary `import` lands in
+    # `sys.modules`. `spec_from_file_location` does not, and that is how `g_construction` loads
+    # its gate, so a spy watching only the first would have called `construction_check` unwired
+    # and been wrong about one of the two gates the census was written for.
+    before, spec_seen = set(sys.modules), set()
+    _original = importlib.util.module_from_spec
+
+    def _spy(spec):
+        spec_seen.add(spec.name)
+        return _original(spec)
+
+    importlib.util.module_from_spec = _spy
+    try:
+        for d in runs:
+            f, n = check_run(d, d.name == newest)
+            fatal += f
+            notes += n
+    finally:
+        importlib.util.module_from_spec = _original
+
+    # THE CENSUS IS GRADED ONLY WHEN THE SWEEP COVERED THE NEWEST DECK, and this is a real
+    # condition rather than a convenience. A gate that does not apply to an older deck returns
+    # before it imports anything, so a narrowed sweep genuinely loads less and would report
+    # gates as unwired that are wired. A skip that means "not covered at all" belongs in the
+    # failure list and not in a note, so this one says which it is out loud.
+    if only in (None, newest):
+        import gate_wiring as _gw
+        loaded = ((set(sys.modules) - before) | spec_seen) & set(_gw.gates())
+        fatal += [f"gate wiring: {p}" for p in _gw.check(loaded)]
+    else:
+        notes.append(f"gate wiring: NOT TAKEN. --run {only} is a narrowed sweep and a gate that "
+                     f"does not apply to that deck never loads, so the census would be wrong "
+                     f"rather than merely absent. Run with no --run to take it")
+
     for n in notes:
         print(f"  note  {n}")
     if fatal:

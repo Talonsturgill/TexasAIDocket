@@ -1,0 +1,54 @@
+{
+  "weighted_score": 6.448,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Make aggregates.json's geometry and identifier entries IMPORT their values from computed.json instead of restating them in prose, and make the caption a numeral-lint subject alongside the render, because every one of the four scoring rounds has found a declaration contradicting the file it names, round 4's own dimension repair created the newest one, and the caption is where '49 CFR 552.3' walked past a completeness claim that only checks frames.",
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.5
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 5.5
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.8
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 7.0
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 7.2
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.0
+    }
+  ],
+  "findings_acted_on_in_round_5": [
+    "aggregates.json geometry declared slide 6's terminators as [156, 13] at 13.0 px per month for a whole round after compute.py had been changed to 16, 192 and 16. CORRECTED, and it now carries the span and the month count too.",
+    "slide-09.html's probe published unmarked_band:[TERM, GUARD], which is MARKED_BAND, the exact inversion compute.py says can never recur. CORRECTED to read C.unmarked_band and C.marked_band.",
+    "the caption prints 49 CFR 552.3 and nothing declared it, because the completeness claim is checked against the RENDER and the caption is not a frame. DECLARED.",
+    "slide 7's chip read c18 c19 beneath 'The Cybercab is carrying riders', which neither claim carries. c12 does. CORRECTED on the frame and in the dossier.",
+    "storyboard said 23 verified against 24 in the file, and restated a deck median rather than measuring it. BOTH CORRECTED, the median is measured by the script that writes it."
+  ],
+  "findings_not_acted_on": [
+    "slide 1's razor-straight full-width horizon seam and its declared focal being refuted by the lit caliche band below it.",
+    "slide 9's unworn pass reading as a block rather than a tyre print at feed scale.",
+    "the second autonomous-vehicle deck inside the 30 day window, with no angle_note acknowledging carousel 5 of 2026-08-21."
+  ],
+  "judge": "integrity",
+  "round": 5,
+  "date": "2026-09-10",
+  "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

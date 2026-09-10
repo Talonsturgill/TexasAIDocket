@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 2,
-    "generated": "2026-09-09",
+    "generated": "2026-09-10",
     "gates": [
       "claims",
       "cross references",
@@ -263,9 +263,9 @@
         },
         {
           "id": "tx-2026-0002-c4",
-          "text": "The commission's calendar feed carries the September 4th public comment deadline as its own dated entry.",
-          "verbatim_quote": "Public Comment Deadline - Friday, September 4, 2026",
-          "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+          "text": "The project ran an earlier round of questions for comment under its own deadline, before the proposal for publication.",
+          "verbatim_quote": "Staff Memo and Questions for Comment w/April 8 Deadline",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
           "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
           "source_type": "primary_official",
           "fetched": "2026-08-28"
@@ -335,9 +335,9 @@
         },
         {
           "id": "tx-2026-0002-c12",
-          "text": "The commission's calendar feed names this project beside its September 4th deadline.",
-          "verbatim_quote": "Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )",
-          "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+          "text": "The staff memo that set the comment deadline reached the commission as a numbered open meeting item.",
+          "verbatim_quote": "OM Item No. 29 - Staff Memo & PFP w/Sept. 4 Comment Deadline",
+          "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
           "source_title": "Public Utility Commission of Texas calendar feed",
           "source_type": "primary_official",
           "fetched": "2026-09-03"
@@ -415,7 +415,7 @@
           "fetched": "2026-09-07"
         }
       ],
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "confidence": "high",
       "notes_for_editor": "The proposed rule text is at https://interchange.puc.texas.gov/Documents/58482_30_1669532.PDF. A follow up should watch for the commission setting a reply comment deadline or moving the proposal to adoption, since the next dated event is the thing a reader would act on. Geography is statewide on the reading tx-2026-0024 established, that a statewide body acted under the Texas Administrative Code and the comment door is open to any Texan. `on_ercot` carries that the rule governs the ERCOT market. A review bot read the generated answer as telling non-ERCOT Texans the rule covers them, and it was right about the SENTENCE: it said 'It applies statewide.' flat. The flag was not the defect and could not be the fix, because gate_schema refuses an item that names no county and is not statewide, so there is no third value. schema.py now answers the applicability question with the ERCOT region when on_ercot is set.",
       "history": [
@@ -469,6 +469,10 @@
         {
           "date": "2026-09-07",
           "note": "The window shut. The filing index moved from 37 filings to 64, and almost all of that arrived on the deadline day itself. Oncor, AEP Texas, CenterPoint Energy Houston Electric and Texas New Mexico Power all filed. So did the grid operator, NRG, Vistra, ENGIE and the Lower Colorado River Authority. The Sierra Club filed. The Data Center Coalition filed. Google filed under its own name. A supplemental comment from a member of the public was entered on September 6th, after the deadline. The index is still taking filings even though the dated way in has passed. What the commission does with any of it is not scheduled."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The filing index still stands where the record left it and the case style has not changed. The commission's calendar feed no longer carries the September 4th deadline. That is what the feed does once a date has passed. The two entries the record quoted from it have been replaced by two the index still carries. The Texas Register acknowledgement filed under the control number still states the September 4th deadline, so the shut window stays readable from a source that keeps its own history."
         }
       ]
     },
@@ -1657,7 +1661,7 @@
     {
       "id": "tx-2026-0024",
       "title": "PUCT open meeting calendar published as a live feed through mid 2027",
-      "summary": "The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up, and a meeting comes off the feed once it is held. The August meetings the feed used to lead with have been held and are gone. The next open meeting listed is Friday, September 11th, 2026 in the commissioners hearing room. The feed carries two public comment deadlines, Project 58482 on September 4th, 2026 and Project 59550 on September 17th, 2026. It also carries a workshop on September 22nd, 2026. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.",
+      "summary": "The Public Utility Commission publishes its open meetings and public comment deadlines as a machine readable feed. Every entry is marked open to the public and names the room. The schedule runs into 2027, so a reader can see in advance when the commission will take up large load and transmission matters. The listings move as the calendar firms up, and an entry comes off the feed once its date has passed. The September 4th comment deadline for Project 58482 has gone that way since the record last read the feed. The next open meeting listed is Friday, September 11th, 2026 in the commissioners hearing room. The only comment deadline still on the feed is Project 59550 on September 17th, 2026. It also carries a workshop on September 22nd, 2026, and it carries the grid operator's own board meetings at a separate address. No feed entry names a docket number, so the agenda published for each meeting is where a reader finds out what will be taken up.",
       "topic": "power-and-the-grid",
       "decider": {
         "name": "Public Utility Commission of Texas",
@@ -1715,8 +1719,8 @@
         },
         {
           "id": "tx-2026-0024-c2",
-          "text": "The feed carries a public comment deadline as a dated entry of its own.",
-          "verbatim_quote": "Public Comment Deadline - Friday, September 4, 2026",
+          "text": "The feed carries the grid operator's own board meetings beside the commission's.",
+          "verbatim_quote": "Open Meeting ERCOT - Monday, September 14, 2026",
           "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
           "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
           "source_type": "primary_official",
@@ -1760,8 +1764,8 @@
         },
         {
           "id": "tx-2026-0024-c7",
-          "text": "The feed names the project each comment deadline belongs to, which is the part a reader can act on.",
-          "verbatim_quote": "Public Comment Deadline - Friday, September 4, 2026 Project 58482 Commissioners Hearing Room 7-100 ( Open To Public )",
+          "text": "A grid operator entry gives a different address from the hearing room and names the boardroom.",
+          "verbatim_quote": "8000 Metropolis Drive (Building E) ( Open To Public ) Boardroom A",
           "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
           "source_title": "Public Utility Commission of Texas calendar feed",
           "source_type": "primary_official",
@@ -1777,7 +1781,7 @@
           "fetched": "2026-09-03"
         }
       ],
-      "last_verified": "2026-09-09",
+      "last_verified": "2026-09-10",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -1851,6 +1855,10 @@
           "date": "2026-09-09",
           "note": "The commission's open meeting calendar is still published as a live feed running into 2027, so the dates a reader would plan around are still there to read.",
           "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The calendar is still published as a live feed and still runs into 2027, so the dates a reader would plan around are still there to read. The September 4th comment deadline has come off it now that the date has passed, the same way a held meeting does. That leaves Project 59550 on September 17th as the only comment deadline the feed still carries. The feed also lists the grid operator's own board meetings, at an address that is not the commissioners hearing room."
         }
       ]
     },
@@ -3258,7 +3266,7 @@
         }
       ],
       "id": "tx-2026-0036",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-08-19",
@@ -3288,6 +3296,10 @@
         {
           "date": "2026-09-07",
           "note": "The San Antonio station's account still carries the sheriff's own words on why the contract ended. The cost of replacing vandalized cameras is still the reason he gives rather than the technology itself. The Seguin newspaper's account can no longer be read, because that publisher's crawl rules now exclude automated readers, so three quotes drawn from it are unconfirmed today. Three the station carries in its own words now stand beside them and they do not differ."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The San Antonio station's account still carries the sheriff's stated reason, which is the cost of replacing vandalized cameras rather than a change of view about the technology. It still records that every Flock camera in Seguin was vandalized and that the county is refusing to pay to replace them. The Seguin newspaper's account still can't be read by an automated reader, so the quotes drawn from it stay unconfirmed, and nothing the station carries differs from them."
         }
       ]
     },
@@ -3536,7 +3548,7 @@
         }
       ],
       "id": "tx-2026-0038",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-08-19",
@@ -3571,6 +3583,11 @@
           "date": "2026-09-07",
           "checked": true,
           "note": "The board's own signed minutes still carry the vote and still record it as unanimous. The water in the agreement is still effluent rather than drinking water, and the interim general manager who recommended it is still the name on the recommendation."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The board's approval of the effluent supply agreement still stands, and the agreement is still the one the record quotes. Nothing has been filed against it and no later action has replaced it.",
+          "checked": true
         }
       ]
     },
@@ -4513,7 +4530,7 @@
         }
       ],
       "id": "tx-2026-0046",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-08-19",
@@ -4543,6 +4560,10 @@
         {
           "date": "2026-09-07",
           "note": "The agreement now has a primary source behind it. The company's quarterly report to federal securities regulators, filed August 14th, 2026, states that Carson County approved a 10-year property tax abatement and established a reinvestment zone for the campus. That description and the Amarillo station's account of an agreement covering 15 phases that could extend for up to 25 years do not describe the same length. Neither document reconciles them. The county's own signed agreement is what would settle it and it is not published. The Amarillo station's own crawl rules now exclude automated readers, so its five quotes stand unconfirmed today."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The company's own filing with the federal securities regulator is still published. It still records that Carson County approved a property tax abatement and established a reinvestment zone for the Project Matador campus in October 2025. It still describes that campus as the company's first, in Carson County, built around private grid generation. The Amarillo station's account still can't be read by an automated reader, so the phase count and the outer span it reports stay unconfirmed. The county's own signed agreement that would settle the difference is still not published."
         }
       ]
     },
@@ -9575,7 +9596,7 @@
           "fetched": "2026-08-23"
         }
       ],
-      "last_verified": "2026-09-09",
+      "last_verified": "2026-09-10",
       "confidence": "high",
       "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
       "history": [
@@ -9616,6 +9637,11 @@
         {
           "date": "2026-09-09",
           "note": "The Rice award letting AI propose numerical algorithms only where a proof can follow is unchanged, and the proof condition is still part of it.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The award to Rice is still on the foundation's own record. It still names the same principal investigator and still carries the same purpose, which is letting a model propose numerical algorithms. Nothing about the award has been amended.",
           "checked": true
         }
       ]
@@ -10265,7 +10291,7 @@
         }
       ],
       "id": "tx-2026-0098",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-08-26",
@@ -10286,6 +10312,11 @@
         {
           "date": "2026-09-07",
           "note": "The funding agency's own award record still carries READINESS as active, with its program and its dates unchanged. Rice is still named alongside SUNY Poly and the University of Texas at Austin, and the laboratory is still described there as meant to run with minimal human intervention.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The Rice laboratory award still stands as made, and the description of a model that designs the experiment and reads the result is still the foundation's own. Nothing has moved on it.",
           "checked": true
         }
       ]
@@ -11958,7 +11989,7 @@
           "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-09-09",
+      "last_verified": "2026-09-10",
       "confidence": "high",
       "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
       "history": [
@@ -11988,6 +12019,11 @@
         {
           "date": "2026-09-09",
           "note": "The comment window is still open, closing September 17th, on the first five year review of the grid's system-wide offer caps.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The five year review of the offer caps is still taking written comment, and the deadline the commission set is still September 17th. The questions staff asked are unchanged, so a party that has not filed still has the same window and the same questions to answer.",
           "checked": true
         }
       ]
@@ -12916,7 +12952,7 @@
       "confidence": "high",
       "notes_for_editor": "The city's Legistar record shows MatterPassedDate as null and the status as agenda ready, so this item deliberately does not say the council adopted anything. A local broadcaster reported the item adopted as amended without objection. That is worth chasing to the approved minutes on a later run rather than publishing as a vote now.",
       "id": "tx-2026-0115",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-09-03",
@@ -12925,6 +12961,11 @@
         {
           "date": "2026-09-07",
           "note": "The city's legislative record still carries file number 26-2329 as agenda ready with no date of passage. Nothing here says the council has voted, so the land development code still says what it said before the resolution was filed.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The land code amendment is still down for the council to take up and no date has been set for it. The staff work behind it has not been withdrawn and nothing has been posted that would move it.",
           "checked": true
         }
       ]
@@ -13097,7 +13138,7 @@
       "confidence": "high",
       "notes_for_editor": "Published as statewide on the same reading as the other federal comment windows in this record, which apply in Texas without naming a county. federalregister.gov HTML redirected this client to an unblock page, and govinfo served the identical document cleanly.",
       "id": "tx-2026-0118",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-09-03",
@@ -13110,6 +13151,11 @@
         {
           "date": "2026-09-07",
           "note": "The commodities regulator's request for comment on listing compute derivatives is still open, and October 20th, 2026 is still the date it closes. Anyone who wants to answer the question still can.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The federal request for comment on compute derivatives is still open, with October 20th still the closing date. The questions the regulator asked about what an exchange should weigh before listing such a contract are unchanged.",
           "checked": true
         }
       ]
@@ -13194,7 +13240,7 @@
       "confidence": "high",
       "notes_for_editor": "The provost's page states the requirement and the required statement. It does not publish a count of how many courses chose each designation, and no such count was found, so the record makes no claim about the split.",
       "id": "tx-2026-0117",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-09-03",
@@ -13203,6 +13249,11 @@
         {
           "date": "2026-09-07",
           "note": "The provost's requirement still stands for the term that began August 24th, 2026. Every syllabus still has to name AI permitted or prohibited or partially permitted, so the answer a student gets still depends on which class they walked into.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The syllabus requirement still stands as adopted, and the university still states it in the same terms. No exception has been published and no revision has been posted against it.",
           "checked": true
         }
       ]
@@ -13368,11 +13419,16 @@
           "date": "2026-09-07",
           "note": "The machine's own documentation still gives its status as a controlled beta and still says access is invitation-only and approved through System governance. General availability onboarding is still written in the future tense.",
           "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The shared supercomputer still holds its place on the world list at the same rank, and the system's description is unchanged. Nothing has been published that revises either.",
+          "checked": true
         }
       ],
       "notes_for_editor": "Published statewide rather than by county, and the reason is on the page rather than in an inference. No source fetched names a county or a city for the West Campus Data Center. The TOP500 site field credits the Texas A&M University System, the chancellor describes the reach as 12 universities and eight state agencies, and that System spans the state, so statewide is what the sources support. A county would be a guess from a headquarters address. Two things this item deliberately does not say. It does not call VISION the fastest university supercomputer in the United States, because TOP500 publishes no university category and that framing belongs to the System rather than to the list. It does not report a dated Board of Regents vote, because none was found and the newsroom's assertion carries no meeting date or agenda item. The regents minutes are published only as PDFs and could not be text extracted this run, so a later run with a PDF extractor should go and get the item number. A vocabulary note for the next run. The three TOP500 claims are stored as primary_official because the docket's vocabulary has no slot for an authoritative third party dataset. claims_check.py carries a 'data' source type and docket_build.py does not, so the same claim needs two different words depending on which gate reads it. TOP500 is the primary publication of the benchmark result rather than a report about one, so primary_official is the honest fit among the three available.",
       "id": "tx-2026-0119",
-      "last_verified": "2026-09-07"
+      "last_verified": "2026-09-10"
     },
     {
       "title": "Homeland Security tested facial biometric capture on pedestrians walking out of the country at the Progreso International Bridge",
@@ -13527,7 +13583,7 @@
       "confidence": "high",
       "notes_for_editor": "The account carries superlatives and no measurement. Nothing in it states an accuracy rate, a count of images captured, a retention period, or whether either system will be deployed.",
       "id": "tx-2026-0120",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-09-04",
@@ -13537,6 +13593,10 @@
           "date": "2026-09-07",
           "checked": true,
           "note": "The article stands as published on September 1st, 2026. The opt-out lane, the signs in English and Spanish, the after-dark testing and the named capture platforms are all still on the page. The account still reports how well the cameras performed without publishing a rate."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The assessment's own published account is still up and still describes the pedestrian exit lane test at the international bridge. It still states that image capture of pedestrians walking through the border exit area exceeded expectations in both day and night conditions. It still states that United States citizens were given a lane out of the image collection if they did not want to take part."
         }
       ]
     },
@@ -13994,11 +14054,16 @@
         }
       ],
       "id": "tx-2026-0127",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-09-07",
           "note": "Admitted. The court's own case page sets oral argument for the morning of October 6th, 2026. The briefs on the merits are filed on both sides and three amicus filings are in, two of them from the trades whose work the answer decides."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The mandamus is still set for argument on October 6th and the court has not moved the date. Nothing new has been docketed that would change what is to be argued.",
+          "checked": true
         }
       ]
     },
@@ -14121,11 +14186,16 @@
         }
       ],
       "id": "tx-2026-0125",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-09-07",
           "note": "Admitted. The center's own Frontera guide, last updated September 3rd, 2026, says the queues close permanently on October 1st, 2026 and that the file systems stay reachable for moving data off. The successor machine's guide, last updated August 12th, 2026, still carries a notice dated in July saying it is limited only to internal users."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Frontera's queues are still scheduled to close permanently on October 1st, and the notice to users still reads as it did. No extension has been announced.",
+          "checked": true
         }
       ]
     },
@@ -14198,11 +14268,16 @@
         }
       ],
       "id": "tx-2026-0128",
-      "last_verified": "2026-09-07",
+      "last_verified": "2026-09-10",
       "history": [
         {
           "date": "2026-09-07",
           "note": "Admitted. The city's own account of the September 1st, 2026 meeting says the commission took up the process for a temporary moratorium. The same account says staff told it the land development code has no rules for data centers. Nothing in that account records a vote."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The temporary moratorium on data centers is still before the city and still unscheduled. The staff recommendation behind it has not been withdrawn.",
+          "checked": true
         }
       ]
     },
@@ -14952,6 +15027,396 @@
         {
           "date": "2026-09-09",
           "note": "Admitted on the market notice. The draft revision requests it previews have not been filed."
+        }
+      ]
+    },
+    {
+      "title": "A Texas Senate committee took testimony on how much water data center cooling uses and whether local water providers are told",
+      "summary": "The Senate Committee on Water, Agriculture and Rural Affairs met at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. Senator Charles Perry chairs it. The posted notice sets one interim charge. It is examining current water consumption rates for high consumption cooling technologies including data centers. The charge directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. Public testimony was limited to two minutes and written testimony went to the committee clerk. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills decides what to recommend.",
+      "topic": "land-water-and-permitting",
+      "decider": {
+        "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "on_ercot": null
+      },
+      "status": "pending",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-09-01",
+          "kind": "hearing",
+          "note": "Public hearing on the interim charge"
+        }
+      ],
+      "public_access": {
+        "room": "open_meeting",
+        "how": "The committee posts its notice with the room, the hour and the charge before it meets, and it took invited and public testimony. Public testimony was limited to two minutes. Written testimony goes to the committee clerk, whose address is on the notice, so a Texan who could not be in Austin could still be read into the record.",
+        "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm"
+      },
+      "claims": [
+        {
+          "text": "The posted notice states the committee, the hour, the date, the room and the chair.",
+          "verbatim_quote": "COMMITTEE: Water, Agriculture and Rural Affairs TIME & DATE: 9:00 AM, Tuesday, September 1, 2026 PLACE: E1.012 (Hearing Room) CHAIR: Senator Charles Perry",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+          "source_type": "primary_official",
+          "fetched": "2026-09-07",
+          "id": "tx-2026-0126-c1"
+        },
+        {
+          "text": "The interim charge names the technology it is examining and what it asks the committee to recommend.",
+          "verbatim_quote": "Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers. Make recommendations to improve transparency for local water providers and ensure industrial growth does not compromise the affordability of water for Texas residents and agricultural producers.",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+          "source_type": "primary_official",
+          "fetched": "2026-09-07",
+          "id": "tx-2026-0126-c2"
+        },
+        {
+          "text": "The notice states how long a member of the public could speak.",
+          "verbatim_quote": "Public testimony is limited to 2 minutes.",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+          "source_type": "primary_official",
+          "fetched": "2026-09-07",
+          "id": "tx-2026-0126-c3"
+        }
+      ],
+      "id": "tx-2026-0126",
+      "last_verified": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-07",
+          "note": "Admitted. The committee's posted notice sets the hearing for September 1st, 2026 and carries the interim charge in full. The charge names data centers and asks the committee to recommend ways to improve transparency for local water providers."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "The committee's schedule still records that it took testimony on water use for data center cooling and on whether local water providers are told. No report has been published from it and no further hearing is posted.",
+          "checked": true
+        }
+      ]
+    },
+    {
+      "title": "National Science Foundation puts UT Austin's supercomputing center in an operating role for the national AI research resource",
+      "summary": "The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is named as the collaborating institution. The operations center is to coordinate resource providers, integrate computing and data, run the national portal and provide user support and training. The pilot it takes over has supported research projects nationwide since it launched. This puts a Texas public institution in a role that runs the front door to federal AI compute rather than only hosting a machine behind it.",
+      "topic": "research-and-science",
+      "decider": {
+        "name": "National Science Foundation",
+        "type": "federal"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Travis"
+        ],
+        "on_ercot": true,
+        "metro": "Austin-Round Rock-San Marcos, TX"
+      },
+      "status": "decided",
+      "key_dates": [
+        {
+          "date": "2026-09-01",
+          "kind": "decided",
+          "note": "the date the National Science Foundation published the establishment of the operations center"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The National Science Foundation publishes the announcement and the program pages for the research resource. There is no comment window and no hearing attached to the establishment of the operations center.",
+        "url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The National Science Foundation names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center.",
+          "verbatim_quote": "Led by the San Diego Supercomputer Center at UC San Diego, in collaboration with the Texas Advanced Computing Center at The University of Texas at Austin, the operating center will bring complementary expertise and decades of experience developing and operating national-scale research infrastructure.",
+          "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+          "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
+          "source_type": "primary_official",
+          "fetched": "2026-09-08",
+          "id": "tx-2026-0130-c1"
+        },
+        {
+          "text": "The agency states the scale of the pilot the operations center takes over.",
+          "verbatim_quote": "the pilot has supported over 800 research projects",
+          "source_url": "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial",
+          "source_title": "NSF establishes operations center for the National Artificial Intelligence Research Resource",
+          "source_type": "primary_official",
+          "fetched": "2026-09-08",
+          "id": "tx-2026-0130-c2"
+        }
+      ],
+      "id": "tx-2026-0130",
+      "last_verified": "2026-09-08",
+      "history": [
+        {
+          "date": "2026-09-08",
+          "note": "Admitted to the record. The agency's own announcement names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center."
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "title": "Federal regulators open an audit of how Tesla certified the Cybercab, on the day commercial deployment began in Austin",
+      "summary": "The National Highway Traffic Safety Administration opened Audit Query AQ26002 on September 3rd, 2026, the same day Tesla began commercial deployment of the Cybercab in Austin. The agency records that the vehicles lack permanently attached, conventional manual controls, naming a brake pedal, a gas pedal, a steering wheel and mirrors. Tesla certified the vehicle itself as meeting every applicable Federal Motor Vehicle Safety Standard and told the agency it had done so. The audit does not ask how the vehicle drives. It examines the process and the technical data behind that certification. The agency says it will consider how far that certification rested on Tesla deciding that certain standards do not apply. The vehicle was built without the controls those standards were written for. The estimated population is a thousand vehicles and Tesla has told the agency it plans to add more vehicles and more locations.",
+      "topic": "defense-and-federal",
+      "decider": {
+        "name": "National Highway Traffic Safety Administration, Office of Defects Investigation",
+        "type": "federal"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Travis"
+        ],
+        "on_ercot": true
+      },
+      "status": "open",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-09-03",
+          "kind": "filed",
+          "note": "Audit Query AQ26002 opened, and commercial deployment began in Austin the same day"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The agency publishes the opening resume for the audit at its own investigation site. Anyone can read the scope, the docket number and the estimated population in the agency's own words. An audit query takes no public comment. What a member of the public can do is read the resume and file a vehicle safety complaint with the same office.",
+        "url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf"
+      },
+      "claims": [
+        {
+          "text": "The agency's own resume gives the audit its docket number and its subject.",
+          "verbatim_quote": "Investigation: AQ26002",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c1"
+        },
+        {
+          "text": "The resume dates the opening of the audit.",
+          "verbatim_quote": "Date Opened: 09/03/2026",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c2"
+        },
+        {
+          "text": "The resume estimates how many vehicles the audit covers.",
+          "verbatim_quote": "Population: 1,000 (Estimated)",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c3"
+        },
+        {
+          "text": "The resume states what the audit is examining.",
+          "verbatim_quote": "Examination of the process and technical data on which Tesla relied when certifying the Cybercab and related issues.",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c4"
+        },
+        {
+          "text": "The resume says where and when the deployment began.",
+          "verbatim_quote": "On September 3, 2026, Tesla began commercial deployment with a small number of its Cybercab vehicles in Austin, Texas.",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c5"
+        },
+        {
+          "text": "The resume records that the manufacturer certified the vehicle itself.",
+          "verbatim_quote": "Tesla notified the Agency that it certified those Cybercab vehicles as compliant with all applicable Federal Motor Vehicle Safety Standards (FMVSS).",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c6"
+        },
+        {
+          "text": "The resume lists the controls the vehicle does not have.",
+          "verbatim_quote": "The vehicles lack permanently attached, conventional manual controls, such as a brake pedal, gas pedal, steering wheel, and mirrors.",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c7"
+        },
+        {
+          "text": "The resume names the question about which standards were treated as inapplicable.",
+          "verbatim_quote": "Among other things, NHTSA will consider the extent to which Tesla’s certification depended on determinations that certain FMVSS are inapplicable to the Cybercab.",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c8"
+        },
+        {
+          "text": "The resume records what the manufacturer says comes next.",
+          "verbatim_quote": "Tesla also notified the Agency that it plans to gradually expand commercial deployment of the Cybercab to include additional vehicles and locations.",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c9"
+        },
+        {
+          "text": "The resume names what prompted the audit.",
+          "verbatim_quote": "Prompted By: Public Information",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c10"
+        },
+        {
+          "text": "The resume names the action the office took.",
+          "verbatim_quote": "Action: Open Audit Query (AQ)",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c11"
+        },
+        {
+          "text": "The resume names the investigator and the approver.",
+          "verbatim_quote": "Investigator: Syed Rahaman Reviewer: Neil Dold",
+          "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+          "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0140-c12"
+        }
+      ],
+      "id": "tx-2026-0140",
+      "last_verified": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "note": "The agency's opening resume is published and carries the docket number, the date, the estimated population and the scope in the agency's own words. The audit is open and nothing has been reported closed."
+        }
+      ]
+    },
+    {
+      "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the chip rather than in the cloud",
+      "summary": "The University of Texas at San Antonio published on September 8th, 2026 that it has a field ready prototype flood warning node. The node is for street level water and the team is led by Chen Pan. It harvests its own solar power and carries temperature, humidity, light and precipitation sensing plus four optical water level sensors at different heights. It runs a compressed machine learning model on the microcontroller itself rather than sending readings to a server. It reports over long range radio instead of a cell tower, so it keeps warning when the grid and the network are down, which is when the water rises. The work was funded in part by a Texas Coastal Management Program grant from the National Oceanic and Atmospheric Administration. It is a prototype and the announcement names no place that has installed one.",
+      "topic": "research-and-science",
+      "decider": {
+        "name": "The University of Texas at San Antonio",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": false,
+        "counties": [
+          "Bexar"
+        ],
+        "on_ercot": true
+      },
+      "status": "decided",
+      "confidence": "high",
+      "key_dates": [
+        {
+          "date": "2026-09-08",
+          "kind": "filed",
+          "note": "The university published the prototype and its funding source"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The university publishes the account of the system, names the researchers and names the federal program that funded it. There is no comment window and no meeting. A reader who wants the underlying method contacts the laboratory the announcement names.",
+        "url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/"
+      },
+      "claims": [
+        {
+          "text": "The university describes what the system is.",
+          "verbatim_quote": "Researchers at The University of Texas at San Antonio have developed a self-sustaining, artificial intelligence-powered flood warning system designed to spot dangerous water accumulation at the street level.",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c1"
+        },
+        {
+          "text": "The announcement names the researcher leading the work and his college.",
+          "verbatim_quote": "Led by Chen Pan , PhD, assistant professor of electrical engineering in the Margie and Bill Klesse College of Engineering and Integrated Design, the team engineered a field-ready prototype that combines solar energy harvesting, multi-sensor environmental tracking, long-range wireless radios and on-device machine learning.",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c2"
+        },
+        {
+          "text": "The researcher states why the system carries its own power.",
+          "verbatim_quote": "In many rural areas or coastal communities, power infrastructure can fail right when severe weather strikes,",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c3"
+        },
+        {
+          "text": "The announcement states where the model runs.",
+          "verbatim_quote": "This on-device AI evaluates current and recent sensor data to predict localized, imminent flood risk without relying on a central server.",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c4"
+        },
+        {
+          "text": "The announcement gives the accuracy figure and says what kind of figure it is.",
+          "verbatim_quote": "So far, the AI has performed well, achieving 98.82% validation accuracy in initial assessments post-training.",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c5"
+        },
+        {
+          "text": "The announcement names the federal program that paid for it.",
+          "verbatim_quote": "This project was funded in part by a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration (NOAA).",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c6"
+        },
+        {
+          "text": "The announcement says what the sensing package carries.",
+          "verbatim_quote": "The resulting prototype combines temperature, humidity, light and precipitation sensing, as well as four optical water-level sensors mounted at varying heights.",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c7"
+        },
+        {
+          "text": "The announcement names the problem the existing gauges have.",
+          "verbatim_quote": "Existing commercial flood-monitoring stations also come with drawbacks, from prohibitively high costs to reliance on grid power or frequent battery replacements, which leaves them vulnerable during multi-day storms or power outages.",
+          "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+          "source_title": "UT San Antonio Today",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0141-c8"
+        }
+      ],
+      "id": "tx-2026-0141",
+      "last_verified": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "note": "The university's account is published and names the researchers, the sensing package, where the model runs and the federal program that funded the work. It is a prototype and no installation site is named."
         }
       ]
     }

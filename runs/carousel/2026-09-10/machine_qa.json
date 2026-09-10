@@ -1,0 +1,207 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'TRAVIS COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c7 c8 c10 c12 c16' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '01 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'TRAVIS COUNTY' at 80,1265 184x29 (margin 80px)",
+        "outside safe zone: 'c7 c8 c10 c12 c16' at 316,1265 241x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 608,1265 241x29 (margin 80px)",
+        "outside safe zone: '01 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.9097,
+        0.8782,
+        0.7647
+      ],
+      "band_ratio": 0.9029,
+      "encodings": [
+        "'the near rut lit shoulder is tellable from its trough interior at feed scale': dE 28.9, AUC 1.00, visible 100%/100%, seen 1344/3024px at 432w"
+      ]
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'AQ26002' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c1 c3 c5 c6 c7' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '02 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'AQ26002' at 80,1265 99x29 (margin 80px)",
+        "outside safe zone: 'c1 c3 c5 c6 c7' at 273,1265 199x29 (margin 80px)",
+        "busy art under text (bg edge density 0.03) beneath 'c1 c3 c5 c6 c7' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'texasaidocket.com' at 566,1265 241x29 (margin 80px)",
+        "busy art under text (bg edge density 0.03) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: '02 / 09' at 901,1265 99x29 (margin 80px)",
+        "busy art under text (bg edge density 0.03) beneath '02 / 09' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.0588,
+        0.1429,
+        0.4136
+      ],
+      "band_ratio": 1.9276
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'TRAVIS COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c8 c11' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '03 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'TRAVIS COUNTY' at 80,1265 184x29 (margin 80px)",
+        "outside safe zone: 'c8 c11' at 368,1265 85x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 556,1265 241x29 (margin 80px)",
+        "outside safe zone: '03 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.6723,
+        0.8277,
+        0.6029
+      ],
+      "band_ratio": 0.8656,
+      "contacts": [
+        "'the sheet lying on lit road base': shadow L* 34.6 vs ground L* 52.7, dL 18.2 at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'FMVSS' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c10 c15 c18 c19' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '04 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'THE RULES ASSUME A DRIVER' at 80,84 940x197 (margin 80px)",
+        "outside safe zone: 'FMVSS' at 80,1265 71x29 (margin 80px)",
+        "outside safe zone: 'c10 c15 c18 c19' at 249,1265 213x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 561,1265 241x29 (margin 80px)",
+        "outside safe zone: '04 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.2185,
+        0.2311,
+        0.75
+      ],
+      "band_ratio": 1.8039
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ZOOX, 2022' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c20' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '05 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "busy art under text (bg edge density 0.10) beneath 'This construction is not new' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "outside safe zone: 'ZOOX, 2022' at 80,1265 142x29 (margin 80px)",
+        "outside safe zone: 'c20' at 354,1265 43x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 528,1265 241x29 (margin 80px)",
+        "outside safe zone: '05 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.4916,
+        0.9895,
+        0.7812
+      ],
+      "band_ratio": 1.0343,
+      "encodings": [
+        "'the stipple on the crest is tellable from the field 200 px off it at feed scale': dE 16.4, AUC 0.98, visible 100%/100%, seen 512/512px at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: '49 CFR PART 555' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c20 c21 c22 c23' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '06 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ORIGIN, DRAWN' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: '49 CFR PART 555' at 80,1265 213x29 (margin 80px)",
+        "outside safe zone: 'c20 c21 c22 c23' at 344,1265 213x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 608,1265 241x29 (margin 80px)",
+        "outside safe zone: '06 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.0756,
+        0.6155,
+        0.8419
+      ],
+      "band_ratio": 1.6004
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'TRAVIS COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c12 c18 c19' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '07 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'TRAVIS COUNTY' at 80,1265 184x29 (margin 80px)",
+        "outside safe zone: 'c12 c18 c19' at 344,1265 156x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 580,1265 241x29 (margin 80px)",
+        "outside safe zone: '07 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.1954,
+        0.6933,
+        0.8971
+      ],
+      "band_ratio": 1.4731
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'JONATHAN MORRISON, NHTSA ADMINISTRATOR' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TESLA, AS THE AGENCY RECORDS IT' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TRAVIS COUNTY' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c9 c17' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '08 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'TRAVIS COUNTY' at 80,1265 184x29 (margin 80px)",
+        "outside safe zone: 'c9 c17' at 368,1265 85x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 556,1265 241x29 (margin 80px)",
+        "outside safe zone: '08 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.3529,
+        0.3761,
+        0.3658
+      ],
+      "band_ratio": 1.0023
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'AQ26002 49 CFR 552.3' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c1 c2 c20 c22 c25' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'texasaidocket.com' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '09 / 09' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'AQ26002 49 CFR 552.3' at 80,1265 284x29 (margin 80px)",
+        "outside safe zone: 'c1 c2 c20 c22 c25' at 382,1265 241x29 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 641,1265 241x29 (margin 80px)",
+        "outside safe zone: '09 / 09' at 901,1265 99x29 (margin 80px)"
+      ],
+      "bands": [
+        0.9496,
+        0.9496,
+        0.7537
+      ],
+      "band_ratio": 0.8581,
+      "encodings": [
+        "'the unworn pass below the terminus is tellable from the unmarked ground above it at feed s': dE 31.0, AUC 0.99, visible 100%/100%, seen 1058/1012px at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 80,
+  "verdict": "WARN"
+}

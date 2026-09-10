@@ -1,0 +1,3356 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "TRAVIS COUNTY",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c7 c8 c10 c12 c16",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "01 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "AUSTIN, SEPTEMBER 3RD",
+          "x": 80,
+          "y": 96,
+          "w": 404,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(235, 218, 213)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              96,
+              404,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 726,
+          "y": 96,
+          "w": 274,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(235, 218, 213)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              96,
+              274,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Certified by its maker. Audited that day.",
+          "x": 82,
+          "y": 898,
+          "w": 920,
+          "h": 154,
+          "font_px": 78,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(248, 226, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              888,
+              695,
+              96
+            ],
+            [
+              82,
+              965,
+              536,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla put a small number of Cybercabs into commercial service in Austin on September 3rd, 2026. The agency records no permanently attached conventional manual controls, naming brake pedal, gas pedal, steering wheel and mirrors.",
+          "x": 82,
+          "y": 1074,
+          "w": 900,
+          "h": 138,
+          "font_px": 27,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(235, 213, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1072,
+              817,
+              37
+            ],
+            [
+              82,
+              1107,
+              856,
+              37
+            ],
+            [
+              82,
+              1141,
+              895,
+              37
+            ],
+            [
+              82,
+              1176,
+              343,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TRAVIS COUNTY",
+          "x": 80,
+          "y": 1265,
+          "w": 184,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              184,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8 c10 c12 c16",
+          "x": 316,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              316,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 608,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              608,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the near rut lit shoulder is tellable from its trough interior at feed scale",
+          "reads": "differ",
+          "a": [
+            [
+              200,
+              766,
+              420,
+              20
+            ]
+          ],
+          "b": [
+            [
+              200,
+              806,
+              420,
+              44
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 7459,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 52.6,
+          "variance": 700.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "AQ26002",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c1 c3 c5 c6 c7",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "02 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "OPENING RESUME",
+          "x": 80,
+          "y": 141,
+          "w": 273,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(184, 195, 208)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              273,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 707,
+          "y": 141,
+          "w": 293,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(184, 195, 208)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              707,
+              141,
+              293,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "INVESTIGATION",
+          "x": 80,
+          "y": 292,
+          "w": 330,
+          "h": 83,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 155, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              319,
+              237,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AQ26002",
+          "x": 410,
+          "y": 292,
+          "w": 590,
+          "h": 83,
+          "font_px": 33,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              410,
+              311,
+              139,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DATE OPENED",
+          "x": 80,
+          "y": 375,
+          "w": 330,
+          "h": 83,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 155, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              402,
+              201,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 3rd, 2026",
+          "x": 410,
+          "y": 375,
+          "w": 590,
+          "h": 83,
+          "font_px": 33,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              410,
+              394,
+              376,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ACTION",
+          "x": 80,
+          "y": 458,
+          "w": 330,
+          "h": 83,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 155, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              485,
+              110,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Open Audit Query (AQ)",
+          "x": 410,
+          "y": 458,
+          "w": 590,
+          "h": 83,
+          "font_px": 33,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              410,
+              477,
+              416,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "POPULATION",
+          "x": 80,
+          "y": 541,
+          "w": 330,
+          "h": 81,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 155, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              579,
+              183,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1,000 (Estimated)",
+          "x": 410,
+          "y": 541,
+          "w": 590,
+          "h": 81,
+          "font_px": 52,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 211, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              410,
+              552,
+              187,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "(Estimated)",
+          "x": 597,
+          "y": 552,
+          "w": 343,
+          "h": 69,
+          "font_px": 52,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(184, 195, 208)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              597,
+              552,
+              343,
+              69
+            ]
+          ],
+          "anc": [
+            9
+          ]
+        },
+        {
+          "text": "DEPLOYED",
+          "x": 80,
+          "y": 621,
+          "w": 330,
+          "h": 81,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 155, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              647,
+              146,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a small number",
+          "x": 410,
+          "y": 621,
+          "w": 590,
+          "h": 81,
+          "font_px": 52,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 211, 201)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              410,
+              620,
+              437,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An audit query is neither a defect investigation nor a recall.",
+          "x": 80,
+          "y": 803,
+          "w": 920,
+          "h": 84,
+          "font_px": 33,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(240, 220, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              801,
+              818,
+              45
+            ],
+            [
+              80,
+              843,
+              96,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROBLEM DESCRIPTION",
+          "x": 80,
+          "y": 1000,
+          "w": 347,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 155, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1000,
+              347,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Examination of the process and technical data on which Tesla relied when certifying the Cybercab and related issues.",
+          "x": 80,
+          "y": 1078,
+          "w": 920,
+          "h": 77,
+          "font_px": 30,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(235, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1076,
+              874,
+              41
+            ],
+            [
+              80,
+              1114,
+              784,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AQ26002",
+          "x": 80,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c3 c5 c6 c7",
+          "x": 273,
+          "y": 1265,
+          "w": 199,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              273,
+              1265,
+              199,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 566,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              566,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 118,
+          "w": 920,
+          "h": 5,
+          "by": "head",
+          "color": "rgb(150, 162, 180)",
+          "decorative": false,
+          "skip": [
+            0,
+            1
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 373.5,
+          "w": 330,
+          "h": 1,
+          "by": "k",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            2
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 410,
+          "y": 373.5,
+          "w": 590,
+          "h": 1,
+          "by": "v",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            3
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 456.5,
+          "w": 330,
+          "h": 1,
+          "by": "k",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            4
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 410,
+          "y": 456.5,
+          "w": 590,
+          "h": 1,
+          "by": "v",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            5
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 539.5,
+          "w": 330,
+          "h": 1,
+          "by": "k",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            6
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 410,
+          "y": 539.5,
+          "w": 590,
+          "h": 1,
+          "by": "v",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            7
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 620.1,
+          "w": 330,
+          "h": 1,
+          "by": "k",
+          "color": "rgba(58, 69, 80, 0.55)",
+          "decorative": false,
+          "skip": [
+            8
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 410,
+          "y": 620.1,
+          "w": 590,
+          "h": 1,
+          "by": "v",
+          "color": "rgba(58, 69, 80, 0.55)",
+          "decorative": false,
+          "skip": [
+            9,
+            10
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 700.7,
+          "w": 330,
+          "h": 1,
+          "by": "k",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            11
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 410,
+          "y": 700.7,
+          "w": 590,
+          "h": 1,
+          "by": "v",
+          "color": "rgb(58, 69, 80)",
+          "decorative": false,
+          "skip": [
+            12
+          ]
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 975,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 28.2,
+          "variance": 55.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "TRAVIS COUNTY",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c8 c11",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "03 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "WHAT TESLA TOLD THE AGENCY",
+          "x": 80,
+          "y": 92,
+          "w": 494,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 230, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              92,
+              494,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla certified it and told the agency",
+          "x": 80,
+          "y": 142,
+          "w": 900,
+          "h": 148,
+          "font_px": 74,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(246, 236, 230)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              133,
+              870,
+              91
+            ],
+            [
+              80,
+              207,
+              220,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"certified those Cybercab vehicles as compliant with all applicable Federal Motor Vehicle Safety Standards\"",
+          "x": 214,
+          "y": 498,
+          "w": 700,
+          "h": 152,
+          "font_px": 41,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(43, 42, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              214,
+              498,
+              686,
+              50
+            ],
+            [
+              214,
+              549,
+              698,
+              50
+            ],
+            [
+              214,
+              600,
+              610,
+              50
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TESLA, AS THE AGENCY RECORDS IT",
+          "x": 214,
+          "y": 872,
+          "w": 700,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 61, 76)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              214,
+              872,
+              521,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NHTSA's stated subject is the process and the technical data behind that sentence.",
+          "x": 80,
+          "y": 1138,
+          "w": 920,
+          "h": 78,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(36, 30, 40)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1137,
+              850,
+              41
+            ],
+            [
+              80,
+              1176,
+              309,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TRAVIS COUNTY",
+          "x": 80,
+          "y": 1265,
+          "w": 184,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 34, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              184,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c11",
+          "x": 368,
+          "y": 1265,
+          "w": 85,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(34, 28, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              368,
+              1265,
+              85,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 556,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 34, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              556,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 34, 48)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [
+        {
+          "what": "the sheet lying on lit road base",
+          "shadow": [
+            [
+              300,
+              1020,
+              300,
+              16
+            ]
+          ],
+          "ground": [
+            [
+              300,
+              1058,
+              300,
+              20
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 2947,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 146.7,
+          "variance": 3260
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "FMVSS",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c10 c15 c18 c19",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "04 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE RULES ASSUME A DRIVER",
+          "x": 80,
+          "y": 84,
+          "w": 940,
+          "h": 197,
+          "font_px": 106,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(227, 180, 168)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              67,
+              541,
+              131
+            ],
+            [
+              80,
+              166,
+              874,
+              131
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE AGENCY RECORDS NO PERMANENTLY ATTACHED CONVENTIONAL MANUAL CONTROLS, NAMING",
+          "x": 80,
+          "y": 488,
+          "w": 920,
+          "h": 68,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 240, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              488,
+              735,
+              34
+            ],
+            [
+              80,
+              522,
+              630,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PROPOSED, NOT IN FORCE",
+          "x": 80,
+          "y": 318,
+          "w": 391,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(173, 164, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              318,
+              391,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Department of Transportation has proposed removing the manual-controls requirement for vehicles designed to drive themselves.",
+          "x": 80,
+          "y": 377,
+          "w": 620,
+          "h": 98,
+          "font_px": 25,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(198, 190, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              375,
+              565,
+              35
+            ],
+            [
+              80,
+              408,
+              541,
+              35
+            ],
+            [
+              80,
+              440,
+              451,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Until that work is finished the existing standards remain in force.",
+          "x": 380,
+          "y": 1096,
+          "w": 620,
+          "h": 75,
+          "font_px": 29,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(242, 224, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              490,
+              1094,
+              510,
+              40
+            ],
+            [
+              648,
+              1131,
+              352,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FMVSS",
+          "x": 80,
+          "y": 1265,
+          "w": 71,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              71,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c10 c15 c18 c19",
+          "x": 249,
+          "y": 1265,
+          "w": 213,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              249,
+              1265,
+              213,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 561,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              561,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BRAKE PEDAL",
+          "x": 268,
+          "y": 619,
+          "w": 205,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 221, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              619,
+              205,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GAS PEDAL",
+          "x": 268,
+          "y": 674,
+          "w": 167,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 221, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              674,
+              167,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "STEERING WHEEL",
+          "x": 268,
+          "y": 730,
+          "w": 260,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 221, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              730,
+              260,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MIRRORS",
+          "x": 268,
+          "y": 785,
+          "w": 130,
+          "h": 36,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 221, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              785,
+              130,
+              36
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 252,
+          "y": 610,
+          "w": 236.6,
+          "h": 54,
+          "by": "rect",
+          "color": "rgb(26, 21, 32)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 252,
+          "y": 665,
+          "w": 199.4,
+          "h": 54,
+          "by": "rect",
+          "color": "rgb(26, 21, 32)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 252,
+          "y": 721,
+          "w": 292.4,
+          "h": 54,
+          "by": "rect",
+          "color": "rgb(26, 21, 32)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 252,
+          "y": 776,
+          "w": 162.2,
+          "h": 54,
+          "by": "rect",
+          "color": "rgb(26, 21, 32)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1600,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 63.6,
+          "variance": 666.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "ZOOX, 2022",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c20",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "05 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE FIRST PASS",
+          "x": 80,
+          "y": 96,
+          "w": 270,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(235, 218, 213)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              96,
+              270,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2022",
+          "x": 875,
+          "y": 92,
+          "w": 125,
+          "h": 69,
+          "font_px": 52,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(201, 182, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              875,
+              92,
+              125,
+              69
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This construction is not new",
+          "x": 80,
+          "y": 924,
+          "w": 880,
+          "h": 166,
+          "font_px": 84,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              914,
+              765,
+              103
+            ],
+            [
+              80,
+              997,
+              138,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In 2022 Zoox self-certified a robotaxi that also has no steering wheel and no pedals.",
+          "x": 80,
+          "y": 1125,
+          "w": 880,
+          "h": 77,
+          "font_px": 29,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(205, 188, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1124,
+              840,
+              40
+            ],
+            [
+              80,
+              1162,
+              284,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ZOOX, 2022",
+          "x": 80,
+          "y": 1265,
+          "w": 142,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              142,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c20",
+          "x": 354,
+          "y": 1265,
+          "w": 43,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              354,
+              1265,
+              43,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 528,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              528,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the stipple on the crest is tellable from the field 200 px off it at feed scale",
+          "reads": "differ",
+          "a": [
+            [
+              760,
+              686,
+              80,
+              40
+            ]
+          ],
+          "b": [
+            [
+              817,
+              878,
+              80,
+              40
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5367,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.2,
+          "variance": 667.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "49 CFR PART 555",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c20 c21 c22 c23",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "06 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "ORIGIN, DRAWN",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE ROUTE THROUGH",
+          "x": 80,
+          "y": 135,
+          "w": 332,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(184, 195, 208)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              332,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 707,
+          "y": 135,
+          "w": 293,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(184, 195, 208)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              707,
+              135,
+              293,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FILED UNDER",
+          "x": 80,
+          "y": 196,
+          "w": 340,
+          "h": 66,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 134, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              214,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "49 CFR Part 555",
+          "x": 420,
+          "y": 196,
+          "w": 580,
+          "h": 66,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 220, 226)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              420,
+              210,
+              243,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "STANDARDS COVERED",
+          "x": 80,
+          "y": 262,
+          "w": 340,
+          "h": 100,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 134, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              280,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "eight Federal Motor Vehicle Safety Standards",
+          "x": 420,
+          "y": 262,
+          "w": 580,
+          "h": 100,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 220, 226)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              420,
+              276,
+              551,
+              36
+            ],
+            [
+              420,
+              310,
+              146,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FINAL APPROVAL",
+          "x": 80,
+          "y": 362,
+          "w": 340,
+          "h": 66,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(142, 134, 160)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              380,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "July 2026",
+          "x": 420,
+          "y": 362,
+          "w": 580,
+          "h": 66,
+          "font_px": 27,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 220, 226)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              420,
+              376,
+              146,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Zoox self-certified in 2022. It later filed for a temporary exemption under Part 555 and received final approval in July 2026.",
+          "x": 80,
+          "y": 499,
+          "w": 920,
+          "h": 75,
+          "font_px": 29,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(207, 198, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              497,
+              887,
+              40
+            ],
+            [
+              80,
+              535,
+              739,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "49 CFR PART 555",
+          "x": 80,
+          "y": 1265,
+          "w": 213,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              213,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c20 c21 c22 c23",
+          "x": 344,
+          "y": 1265,
+          "w": 213,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              344,
+              1265,
+              213,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 608,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              608,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2022",
+          "x": 100,
+          "y": 1163,
+          "w": 78,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              1163,
+              78,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "July 2026",
+          "x": 804,
+          "y": 1163,
+          "w": 176,
+          "h": 40,
+          "font_px": 30,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              804,
+              1163,
+              176,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ORIGIN, DRAWN",
+          "x": 100,
+          "y": 1036,
+          "w": 192,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(239, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              1036,
+              192,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 112,
+          "w": 920,
+          "h": 5,
+          "by": "head",
+          "color": "rgb(150, 162, 180)",
+          "decorative": false,
+          "skip": [
+            0,
+            1
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 261,
+          "w": 340,
+          "h": 1,
+          "by": "k",
+          "color": "rgb(58, 51, 72)",
+          "decorative": false,
+          "skip": [
+            2
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 420,
+          "y": 261,
+          "w": 580,
+          "h": 1,
+          "by": "v",
+          "color": "rgb(58, 51, 72)",
+          "decorative": false,
+          "skip": [
+            3
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 360.9,
+          "w": 340,
+          "h": 1,
+          "by": "k",
+          "color": "rgb(58, 51, 72)",
+          "decorative": false,
+          "skip": [
+            4
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 420,
+          "y": 360.9,
+          "w": 580,
+          "h": 1,
+          "by": "v",
+          "color": "rgb(58, 51, 72)",
+          "decorative": false,
+          "skip": [
+            5
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 427.4,
+          "w": 340,
+          "h": 1,
+          "by": "k",
+          "color": "rgb(58, 51, 72)",
+          "decorative": false,
+          "skip": [
+            6
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 420,
+          "y": 427.4,
+          "w": 580,
+          "h": 1,
+          "by": "v",
+          "color": "rgb(58, 51, 72)",
+          "decorative": false,
+          "skip": [
+            7
+          ]
+        },
+        {
+          "kind": "fill",
+          "x": 88,
+          "y": 1156,
+          "w": 102.4,
+          "h": 54,
+          "by": "rect",
+          "color": "rgb(25, 20, 40)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 791.6,
+          "y": 1156,
+          "w": 200.4,
+          "h": 54,
+          "by": "rect",
+          "color": "rgb(25, 20, 40)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 88,
+          "y": 1029,
+          "w": 216.4,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(25, 20, 40)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1628,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 71.8,
+          "variance": 1946.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "TRAVIS COUNTY",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c12 c18 c19",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "07 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE GROUND IS MOVING",
+          "x": 80,
+          "y": 92,
+          "w": 385,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(235, 218, 213)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              92,
+              385,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The rules a reader is judged by",
+          "x": 80,
+          "y": 566,
+          "w": 920,
+          "h": 70,
+          "font_px": 54,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              567,
+              721,
+              67
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "are themselves being rewritten.",
+          "x": 80,
+          "y": 636,
+          "w": 920,
+          "h": 70,
+          "font_px": 54,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              637,
+              745,
+              67
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Cybercab is carrying riders",
+          "x": 80,
+          "y": 706,
+          "w": 920,
+          "h": 70,
+          "font_px": 54,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              707,
+              748,
+              67
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "while that is still unfinished.",
+          "x": 80,
+          "y": 777,
+          "w": 920,
+          "h": 70,
+          "font_px": 54,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(233, 192, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              778,
+              663,
+              67
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TRAVIS COUNTY",
+          "x": 80,
+          "y": 1265,
+          "w": 184,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              184,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c18 c19",
+          "x": 344,
+          "y": 1265,
+          "w": 156,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              344,
+              1265,
+              156,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 580,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              580,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1319,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 41.9,
+          "variance": 285
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "JONATHAN MORRISON, NHTSA ADMINISTRATOR",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "TESLA, AS THE AGENCY RECORDS IT",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "TRAVIS COUNTY",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c9 c17",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "08 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "BOTH PARTIES",
+          "x": 80,
+          "y": 92,
+          "w": 231,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(235, 218, 213)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              92,
+              231,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 726,
+          "y": 92,
+          "w": 274,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(235, 218, 213)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              726,
+              92,
+              274,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"NHTSA fully supports the safe development and deployment of automated vehicles. But as the federal regulator, we need to ensure that all of our laws are followed.\"",
+          "x": 132,
+          "y": 260,
+          "w": 816,
+          "h": 184,
+          "font_px": 37,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(35, 38, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              260,
+              765,
+              45
+            ],
+            [
+              154,
+              306,
+              784,
+              45
+            ],
+            [
+              154,
+              352,
+              755,
+              45
+            ],
+            [
+              154,
+              398,
+              480,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "JONATHAN MORRISON, NHTSA ADMINISTRATOR",
+          "x": 132,
+          "y": 471,
+          "w": 629,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(46, 51, 58)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              471,
+              629,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nothing in this record says what happens next.",
+          "x": 80,
+          "y": 1178,
+          "w": 920,
+          "h": 41,
+          "font_px": 30,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(211, 218, 226)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              213,
+              1178,
+              655,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"plans to gradually expand commercial deployment of the Cybercab\"",
+          "x": 132,
+          "y": 928,
+          "w": 816,
+          "h": 92,
+          "font_px": 37,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(35, 38, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              928,
+              668,
+              45
+            ],
+            [
+              154,
+              974,
+              495,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TESLA, AS THE AGENCY RECORDS IT",
+          "x": 132,
+          "y": 1047,
+          "w": 513,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(46, 51, 58)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              1047,
+              513,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TRAVIS COUNTY",
+          "x": 80,
+          "y": 1265,
+          "w": 184,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              184,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c17",
+          "x": 368,
+          "y": 1265,
+          "w": 85,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              368,
+              1265,
+              85,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 556,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              556,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6993,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 91.6,
+          "variance": 8206.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "AQ26002 49 CFR 552.3",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c1 c2 c20 c22 c25",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "09 / 09",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TWO DEPARTURES, ONE TRAILHEAD",
+          "x": 80,
+          "y": 92,
+          "w": 558,
+          "h": 34,
+          "font_px": 25,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(251, 239, 234)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              92,
+              558,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One route has ruts. One started on September 3rd.",
+          "x": 80,
+          "y": 1026,
+          "w": 920,
+          "h": 126,
+          "font_px": 62,
+          "weight": "600",
+          "family": "Fraunces",
+          "color": "rgb(251, 232, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1019,
+              920,
+              77
+            ],
+            [
+              80,
+              1082,
+              417,
+              77
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The audit is open. Read its resume by the number. Any interested person may petition NHTSA to decide whether a vehicle meets an applicable standard.",
+          "x": 80,
+          "y": 1165,
+          "w": 920,
+          "h": 63,
+          "font_px": 25,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(246, 230, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1163,
+              910,
+              35
+            ],
+            [
+              80,
+              1195,
+              877,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AQ26002 49 CFR 552.3",
+          "x": 80,
+          "y": 1265,
+          "w": 284,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1265,
+              284,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c20 c22 c25",
+          "x": 382,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 192, 190)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              382,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 641,
+          "y": 1265,
+          "w": 241,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 203, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              641,
+              1265,
+              241,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 901,
+          "y": 1265,
+          "w": 99,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 208, 205)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              901,
+              1265,
+              99,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 3rd, 2026",
+          "x": 661,
+          "y": 663,
+          "w": 325,
+          "h": 35,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 224, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              661,
+              663,
+              325,
+              35
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 647.1,
+          "y": 655,
+          "w": 352.9,
+          "h": 51,
+          "by": "rect",
+          "color": "rgb(32, 24, 42)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the unworn pass below the terminus is tellable from the unmarked ground above it at feed s",
+          "reads": "differ",
+          "a": [
+            [
+              620,
+              742,
+              116,
+              56
+            ]
+          ],
+          "b": [
+            [
+              620,
+              566,
+              116,
+              56
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3139,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 88.5,
+          "variance": 1291.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

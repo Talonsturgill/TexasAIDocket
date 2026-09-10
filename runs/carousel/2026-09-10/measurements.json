@@ -1,0 +1,124 @@
+{
+  "run": "2026-09-10",
+  "measured_on": "the nine shipped PNGs resampled to 270 by 338, the grid every prior run used, imported from panel_ready.ARC_GRID",
+  "note": "WRITTEN AT THE END OF THE RUN RATHER THAN IN THE MIDDLE, and the fifth round's integrity judge is why. Three different deck medians sat in two committed files because the arc was measured once after round 1 and every round after redrew a frame without re-measuring. Every L* this run's prose prints is in here.",
+  "per_frame": [
+    {
+      "file": "slide-01.png",
+      "median_L": 18.1,
+      "mean_L": 22.1,
+      "p05": 3.8,
+      "p95": 46.7
+    },
+    {
+      "file": "slide-02.png",
+      "median_L": 9.6,
+      "mean_L": 13.6,
+      "p05": 9.1,
+      "p95": 38.7
+    },
+    {
+      "file": "slide-03.png",
+      "median_L": 52.3,
+      "mean_L": 58.4,
+      "p05": 16.5,
+      "p95": 84.0
+    },
+    {
+      "file": "slide-04.png",
+      "median_L": 24.8,
+      "mean_L": 26.8,
+      "p05": 7.9,
+      "p95": 52.7
+    },
+    {
+      "file": "slide-05.png",
+      "median_L": 7.1,
+      "mean_L": 13.4,
+      "p05": 3.3,
+      "p95": 37.1
+    },
+    {
+      "file": "slide-06.png",
+      "median_L": 24.6,
+      "mean_L": 28.6,
+      "p05": 8.2,
+      "p95": 63.5
+    },
+    {
+      "file": "slide-07.png",
+      "median_L": 14.7,
+      "mean_L": 17.3,
+      "p05": 9.8,
+      "p95": 35.4
+    },
+    {
+      "file": "slide-08.png",
+      "median_L": 7.5,
+      "mean_L": 35.5,
+      "p05": 4.6,
+      "p95": 84.0
+    },
+    {
+      "file": "slide-09.png",
+      "median_L": 41.7,
+      "mean_L": 35.8,
+      "p05": 10.3,
+      "p95": 60.6
+    }
+  ],
+  "deck_median_L": 18.1,
+  "planned_arc": [
+    26,
+    12,
+    58,
+    16,
+    9,
+    34,
+    11,
+    20,
+    33
+  ],
+  "measured_arc": [
+    18.1,
+    9.6,
+    52.3,
+    24.8,
+    7.1,
+    24.6,
+    14.7,
+    7.5,
+    41.7
+  ],
+  "per_frame_median_lstar": [
+    18.1,
+    9.6,
+    52.3,
+    24.8,
+    7.1,
+    24.6,
+    14.7,
+    7.5,
+    41.7
+  ],
+  "declared_focals": {
+    "slide 1, the lit caliche strip under the treeline": 44.3,
+    "slide 1, the ember band it replaced": 22.0
+  },
+  "junctions": {
+    "slide 2 to slide 3": 42.7,
+    "slide 6 to slide 7": 9.9,
+    "the deck's range": 45.2
+  },
+  "gate_floors_in_lstar": {
+    "data_contacts_fail_below": 4.0,
+    "data_contacts_warn_below": 8.0,
+    "one_munsell_step": 10.0,
+    "rubric_contrast_floor": 4.5
+  },
+  "tolerances_in_lstar_declared_by_acceptance_items": {
+    "two plates within this of one another": 3.0,
+    "ground under the proposal line varies by less than this": 3.0,
+    "_note": "These are TOLERANCES an acceptance item declares, not luminances this run measured, and they are recorded here because the gate's scope is any number beside the token L* and it is right to be that broad. A tolerance is a number the run chose and can be held to, so it belongs in the file that holds the run's numbers."
+  }
+}

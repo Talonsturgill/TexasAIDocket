@@ -1,0 +1,32 @@
+{
+  "claims_verified": {
+    "value": 24,
+    "from_items": [],
+    "note": "Claims this run fetched and verified, counted over claims.json."
+  },
+  "findings_rejected": {
+    "value": 9,
+    "from_items": [],
+    "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
+  },
+  "source_documents": {
+    "value": 5,
+    "from_items": [],
+    "note": "Distinct source urls behind the claims this deck rests on, counted over claims.json. Three official records and two news reports."
+  },
+  "figures_quoted": {
+    "value": 9,
+    "from_items": [],
+    "note": "Figures the deck prints that it QUOTED rather than computed, counted over aggregates.json."
+  },
+  "figures_computed": {
+    "value": 4,
+    "from_items": [],
+    "note": "Numbers this deck computed from other numbers, each declared with the claim ids it was counted from."
+  },
+  "frames": {
+    "value": 9,
+    "from_items": [],
+    "note": "Frames in the shipped deck."
+  }
+}

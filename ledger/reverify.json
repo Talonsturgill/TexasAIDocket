@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-09",
+    "generated": "2026-09-10",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -205,6 +205,16 @@
         "tx-2026-0073-c7"
       ]
     },
+    "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm": {
+      "etag": "\"826f4c7c59c7dc1:0\"",
+      "last_modified": "Wed, 08 Apr 2026 13:13:26 GMT",
+      "hash": "d96f144c7547402dc0d82140e71f6324f4bcdf6555cf11fdbde0e6b9fc835724",
+      "proven": [
+        "tx-2026-0126-c1",
+        "tx-2026-0126-c2",
+        "tx-2026-0126-c3"
+      ]
+    },
     "https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C4102026082009001.PDF": {
       "etag": "\"3fc6eac25dd1:0\"",
       "last_modified": "Wed, 05 Aug 2026 18:55:53 GMT",
@@ -302,10 +312,40 @@
         "tx-2026-0113-c3"
       ]
     },
+    "https://docs.tacc.utexas.edu/basics/conduct/": {
+      "etag": "\"6a999d70-254e4\"",
+      "last_modified": "Thu, 03 Sep 2026 16:16:48 GMT",
+      "hash": "82cd442f0d76702494efbdfff3ef75362d9493061c55a3b836c98ecf4d8fee31",
+      "proven": [
+        "tx-2026-0125-c7",
+        "tx-2026-0125-c8",
+        "tx-2026-0125-c9"
+      ]
+    },
+    "https://docs.tacc.utexas.edu/hpc/frontera/": {
+      "etag": "\"6a999d70-4c0ef\"",
+      "last_modified": "Thu, 03 Sep 2026 16:16:48 GMT",
+      "hash": "4e2f7a02ab6ee9f91d6c969bfe5c6671a7f008c508b5daf9dd9c90effecdfca1",
+      "proven": [
+        "tx-2026-0125-c1",
+        "tx-2026-0125-c2",
+        "tx-2026-0125-c3"
+      ]
+    },
+    "https://docs.tacc.utexas.edu/hpc/horizon/": {
+      "etag": "\"6a999d70-23793\"",
+      "last_modified": "Thu, 03 Sep 2026 16:16:48 GMT",
+      "hash": "a59fc862cc6967c563ddaaf59e2d41e6b12c5db1e981a64ed5a4d9155dbacbc7",
+      "proven": [
+        "tx-2026-0125-c4",
+        "tx-2026-0125-c5",
+        "tx-2026-0125-c6"
+      ]
+    },
     "https://docs.vision.tamus.edu/": {
-      "etag": "\"6a9729bd-37d4\"",
-      "last_modified": "Tue, 01 Sep 2026 19:38:37 GMT",
-      "hash": "5e9bf1f0f30cb7a17e660d185192beab417dead7dee653d0b6fb5dd23d5f3b4f",
+      "etag": "\"6aa1e55f-37d4\"",
+      "last_modified": "Wed, 09 Sep 2026 23:01:51 GMT",
+      "hash": "14ad63eedce5831092c9e38deaad6d8954fe42aba4506bf8303567b1be34b05d",
       "proven": [
         "tx-2026-0119-c10",
         "tx-2026-0119-c9"
@@ -474,6 +514,13 @@
         "tx-2026-0002-c11",
         "tx-2026-0002-c13",
         "tx-2026-0002-c14",
+        "tx-2026-0002-c15",
+        "tx-2026-0002-c16",
+        "tx-2026-0002-c17",
+        "tx-2026-0002-c18",
+        "tx-2026-0002-c19",
+        "tx-2026-0002-c20",
+        "tx-2026-0002-c8",
         "tx-2026-0024-c5"
       ]
     },
@@ -613,8 +660,8 @@
     },
     "https://news.tamus.edu/stories/texas-am-system-home-to-nations-fastest-university-supercomputer/": {
       "etag": null,
-      "last_modified": "Mon, 07 Sep 2026 06:25:06 GMT",
-      "hash": "07c00aec93c21e278bce4ccfc682e05aaaefb2333acd5104c3323bca6c7bfa15",
+      "last_modified": "Thu, 10 Sep 2026 06:18:23 GMT",
+      "hash": "38db3ba0dcf5c5c903c8f3440266e50f864f4f7db55002546ac094ac2d63f43c",
       "proven": [
         "tx-2026-0119-c4",
         "tx-2026-0119-c5",
@@ -705,7 +752,7 @@
     "https://provost.utexas.edu/the-office/academic-affairs/your-syllabus-at-ut-austin/": {
       "etag": null,
       "last_modified": null,
-      "hash": "226e4500f782ce2a7cae7e704fc0fc61e7b078c5ed5c20a9449d967474092b2a",
+      "hash": "d3cc1c8b1a1f8408813b009c83be7c52d54219e0999396e70cb8d51e2dd2c03d",
       "proven": [
         "tx-2026-0117-c1",
         "tx-2026-0117-c2",
@@ -716,7 +763,7 @@
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
-      "hash": "9602d88e4a6adc2c89ad12c5ec0052f367baa1d5736daa3f2badf3013d6d001e",
+      "hash": "d9634388e77d1b1f194eb2881e7c54af12d0cd541623e02dcc8adf1537b69417",
       "proven": [
         "tx-2026-0002-c12",
         "tx-2026-0002-c4",
@@ -738,9 +785,9 @@
       "proven": []
     },
     "https://registrar.utexas.edu/calendars/26-27": {
-      "etag": "W/\"1788494238\"",
-      "last_modified": "Fri, 04 Sep 2026 03:57:18 GMT",
-      "hash": "383ea504b923846daa8d0e80c84663197eb190c3cc5affa6238f58dbb3cc166c",
+      "etag": "W/\"1788958777\"",
+      "last_modified": "Wed, 09 Sep 2026 12:59:37 GMT",
+      "hash": "77e21a37acf7a0adb087d625dcb7bb2791f034b6a5f99bcaa901cd385ed82e88",
       "proven": [
         "tx-2026-0117-c5"
       ]
@@ -754,10 +801,21 @@
         "tx-2026-0070-c2"
       ]
     },
+    "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup": {
+      "etag": null,
+      "last_modified": "Thu, 10 Sep 2026 06:18:27 GMT",
+      "hash": "7370fc834a8ef469a54617cf4d104223c2b3bd5ee3fea3ce20368479ee5441b2",
+      "proven": [
+        "tx-2026-0127-c1",
+        "tx-2026-0127-c2",
+        "tx-2026-0127-c3",
+        "tx-2026-0127-c4"
+      ]
+    },
     "https://seguingazette.com/news/sheriff-ends-county-s-flock-safety-contract/article_6747d32d-f659-4c2c-b14a-cac72fd18913.html": {
-      "etag": "W/dc04ca4c2d1d5ae84ba71bb40bb1da0e",
+      "etag": "W/9d52aeeb138114a721862c7db19c2b4d",
       "last_modified": "Tue, 11 Aug 2026 21:09:28 GMT",
-      "hash": "983f0dd29aec882ab0d02b763af61ffa39f666032119d3ac5f05e0a742f114df",
+      "hash": "9732f7b3f4d52fb0e9f86febb5cd699c8e0ca3562b3491f087faee0dcc6ca578",
       "proven": []
     },
     "https://senate.texas.gov/cmte.php?c=525": {
@@ -866,7 +924,7 @@
     "https://top500.org/system/180452/": {
       "etag": null,
       "last_modified": null,
-      "hash": "5f6730961936a366b6cc5c594d0ee6ef139285bf9a2bf1318820f567b4a465a2",
+      "hash": "fe8865c12bdd0883fe15da781e18439dba6d0393b984a87de50e17e09b43c8a9",
       "proven": [
         "tx-2026-0119-c1",
         "tx-2026-0119-c2",
@@ -876,7 +934,7 @@
     "https://vision.tamus.edu/": {
       "etag": null,
       "last_modified": null,
-      "hash": "0218d8712973a0a4c17536618b1c50a68f6b62fa5b096228b5d07f01f6d06ab5",
+      "hash": "bc859f1f9b9577acb05317589bc5a96dcc75916666358f7bd6c082aa90540a99",
       "proven": [
         "tx-2026-0119-c11"
       ]
@@ -884,7 +942,7 @@
     "https://vision.tamus.edu/testing/": {
       "etag": null,
       "last_modified": null,
-      "hash": "5016d5d86dddbe35546f63111bad6838b14103ade411185ba9d00e1bb12df349",
+      "hash": "64ea7e64670e53b6c5fc9cc78a9ba71e938a0c4febf86539376617557e28a1a0",
       "proven": [
         "tx-2026-0119-c12"
       ]
@@ -892,7 +950,7 @@
     "https://vision.tamus.edu/usecases/": {
       "etag": null,
       "last_modified": null,
-      "hash": "4162f6b0d3cf4f91a6ab95c04a725163660d61e84d4c21cfd81b16ba33907115",
+      "hash": "54867f2f775c028f956815f3745c4c9caad371bffd619aeca7939a184b327c85",
       "proven": [
         "tx-2026-0119-c13"
       ]
@@ -1134,9 +1192,9 @@
       ]
     },
     "https://www.aect.net/southwest-power-pool-spp": {
-      "etag": "W/\"a29a4a0753354117ab155558044489be--gzip\"",
+      "etag": "W/\"4cf2db47bd093f43fc5b593312058966--gzip\"",
       "last_modified": null,
-      "hash": "44207aa3a324d8dde1ef8a431c287e4250512e221ed463299b5692c559ee1694",
+      "hash": "c4bd6d0f5e98a55bdc665e4e747d2612ea27b3064511717a321a03c353845a87",
       "proven": [
         "tx-2026-0046-c6",
         "tx-2026-0047-c7"
@@ -1169,9 +1227,9 @@
       ]
     },
     "https://www.austintexas.gov/council/2026/20260827-reg": {
-      "etag": "W/\"1788934893-gzip\"",
-      "last_modified": "Wed, 09 Sep 2026 06:21:33 GMT",
-      "hash": "d184d67d410ae5611b1b6aa5653c7c6111cb1cb3c484a27ee1e42a1ce3d1b856",
+      "etag": "W/\"1789021129-gzip\"",
+      "last_modified": "Thu, 10 Sep 2026 06:18:49 GMT",
+      "hash": "7456c8491b7725766b27ebcec92ac0887b8c585ffd3bb621ebc212edf185cddd",
       "proven": [
         "tx-2026-0106-c1",
         "tx-2026-0106-c2",
@@ -1195,6 +1253,17 @@
       "proven": [
         "tx-2026-0088-c2",
         "tx-2026-0088-c3"
+      ]
+    },
+    "https://www.brownsvilletx.gov/m/newsflash/home/detail/3425": {
+      "etag": null,
+      "last_modified": "Thu, 10 Sep 2026 06:18:51 GMT",
+      "hash": "6d6526b132ad3cf76e4636ad75295d195cee8ce55b7e194de67d280d59bd1b25",
+      "proven": [
+        "tx-2026-0128-c1",
+        "tx-2026-0128-c2",
+        "tx-2026-0128-c3",
+        "tx-2026-0128-c4"
       ]
     },
     "https://www.click2houston.com/news/local/2026/05/29/'y'all-are-playing-games':-discussion-over-harris-county's-flock-camera-contract-renewal-turns-tense/": {
@@ -1373,11 +1442,14 @@
       ]
     },
     "https://www.ksat.com/news/local/2026/08/08/guadalupe-county-terminates-contract-with-flock-safety-citing-public-scrutiny/": {
-      "etag": "W/\"5622e-Cw8Q5cJvA7JZJ6Ydu5NHQhtDphI\"",
-      "last_modified": "Mon, 07 Sep 2026 06:25:17 GMT",
-      "hash": "ac78c88305295393e77fe823f2def22797f005c3e5c39fc68142f2fe5065cef5",
+      "etag": "W/\"5658e-02JkPK9zGPDExPHmaAEp7IgvrH0\"",
+      "last_modified": "Thu, 10 Sep 2026 06:18:52 GMT",
+      "hash": "a6c912bddabfeaab740f49f6f5ae3b7b02ab3d37410e62d7c429e2d4b64d3257",
       "proven": [
-        "tx-2026-0036-c4"
+        "tx-2026-0036-c4",
+        "tx-2026-0036-c5",
+        "tx-2026-0036-c6",
+        "tx-2026-0036-c7"
       ]
     },
     "https://www.ksat.com/news/texas/2026/06/30/san-marcos-becomes-the-first-texas-city-to-ban-data-centers-testing-its-local-control/": {
@@ -1412,9 +1484,9 @@
       ]
     },
     "https://www.newschannel10.com/2025/10/28/carson-county-approves-tax-abatement-fermi-america-development/": {
-      "etag": "W/\"2dd3e-RpAZS/YOCsGFdYGDxZ5eSHb7BM0\"",
-      "last_modified": "Mon, 07 Sep 2026 06:25:18 GMT",
-      "hash": "a715db3533aa09196178c0fd309f791d7a388c0dbb9eede11f8920aafb9cc8b7",
+      "etag": "W/\"2ddc1-AB0lHjuQghnvdLmOTnr6NM4tMB8\"",
+      "last_modified": "Thu, 10 Sep 2026 06:18:55 GMT",
+      "hash": "5b5f64a1f7fedf0d9ca5bfda99f2b4a136154877ee0f2b779d02bcc6447886bb",
       "proven": [
         "tx-2026-0046-c2",
         "tx-2026-0046-c3",
@@ -1519,10 +1591,19 @@
         "tx-2026-0061-c3"
       ]
     },
+    "https://www.sec.gov/Archives/edgar/data/2071778/000207177826000051/frmi-20260630.htm": {
+      "etag": null,
+      "last_modified": "Fri, 14 Aug 2026 20:43:32 GMT",
+      "hash": "8f6611bdf85f7d92b3a67e3941715e6626094770fb4fa849c6f3f4a3197a7344",
+      "proven": [
+        "tx-2026-0046-c7",
+        "tx-2026-0046-c8"
+      ]
+    },
     "https://www.tarleton.edu/news/nations-fastest-university-supercomputer-opens-new-doors-for-tarleton-state-research/": {
       "etag": null,
       "last_modified": null,
-      "hash": "5a80c59fb5eba2d56b7c9e677458c9032fdd5927ad987a661e299aeacd0eb265",
+      "hash": "4659cf6117f00f64dc81410b50358dd8656ccd86602c29b02ee29202096bb26c",
       "proven": [
         "tx-2026-0119-c8"
       ]

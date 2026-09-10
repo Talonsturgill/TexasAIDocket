@@ -1304,4 +1304,72 @@
   ],
   "what_was_not_done_and_why": "Three is the ceiling and it was reached. `absence_check`'s missing subject comparison is the largest thing left and is the first item in the backlog, and the subject-noun machinery built here for the provision sweep is reusable for it as written, which makes it a smaller job tomorrow than it was this morning. `label_guard`'s locator window was left because its harm is false positives rather than a shipped defect, and because the run had already answered it in the daily lane by setting the locator's extent in lower case. Nothing was loosened. Four steps of `guards_local --fast` were red before this phase started and are red after it, all four on `daily` lane artifacts this lane may not touch: the email payload Phase 18 has not built, the missing measurements.json above, two record sentences over the thirty word backstop, and the ask index over its character ceiling."
  }
+ ,
+
+ "2026-09-10": {
+  "phase": "retro and upgrade, deck no. 20, actor `upgrade`",
+  "revert_commit": "three commits, one per upgrade, each revertible on its own. 8544349c verbatim_check's calibration, 30d250d8 the gate wiring census plus verbatim_check's registration, 06677c07 panel_ready's third state. Only the second touches two files, and they are the census and the registry entry that clears the one orphan it finds, which is one behaviour.",
+  "what_this_phase_chose_and_why": "Two of the three run's-cost candidates lived in scripts/shared/, which ownership.yaml resolves to `daily` and not to this lane, so the ranked number two (prompt_audit cannot see a run that stopped without prompting) is a proposal rather than an upgrade. What landed is the ranked number one, split in two because its halves revert independently, and the ranked number three. The suggested home for the wiring check was scripts/shared/guards_shape.py and that is out of lane too. It went to scripts/carousel/gate_wiring.py instead, wired through shipped_check.py, which is the mechanism this repository already built for exactly this problem and says so in its own header: the actor that WRITES a carousel gate cannot edit guards.yml or the routine, so the registry that lane owns is the only place a new gate can be connected from inside a run.",
+  "upgrades": [
+   {
+    "what": "verbatim_check's self-test names the deck it was calibrated for, 2026-09-04, instead of computing `the newest shipped deck`. Two assertions added: the named deck must still be IN the corpus, and the discovery half must still fire on the three decks the file's own header calls its calibration groups.",
+    "why": "The gate's --self-test was RED on a clean checkout of main and had been for days. The last assertion required the newest shipped deck to draw no discovery note, which was true the day it was written because the newest deck then WAS the calibrated one. Carousel no. 19 legitimately drew one note on frame 5. A claim pinned to a target that moves every night.",
+    "files": [
+     "scripts/carousel/verbatim_check.py"
+    ],
+    "verification": "python3 scripts/carousel/verbatim_check.py --self-test, exit 0. Three red replays, run in-process against a loaded copy of the module: naming a deck that IS noisy fires the pin, stubbing check_discovered to return nothing fires all three positive cases, and naming a deck that is not in runs/carousel fires the presence assertion. Output kept at out/2026-09-10/tmp/verbatim_red.txt.",
+    "revert": "8544349c",
+    "how_i_would_know_this_was_wrong": "If a future run repairs the discovery half's false positives and 2026-08-16, 2026-08-25 or 2026-09-03 stops drawing a note, DISCOVERY_FIRES_ON goes red on a correct improvement. That is the right failure, because it forces the calibration corpus in the header and the constant to be rewritten together, and it is the failure to watch for."
+   },
+   {
+    "what": "scripts/carousel/gate_wiring.py refuses any file in scripts/carousel declaring --self-test that is run by nothing. Three routes count as wiring: a real invocation in guards.yml, a real invocation in the routine, or shipped_check's gate loop actually loading it. verbatim_check registered in shipped_check's GATES as `verbatim`, declared half only, HISTORY scope, which clears the one live orphan.",
+    "why": "construction_check.py is in guards.yml in no form and in the routine in no phase. This run reached scoring round 3 before anything ran it and it had been red the whole time at 5 of 9 frames carrying one primitive against a threshold of half. verbatim_check had the same gap, and that is why its own self-test could sit red for days: guards_local reads guards.yml, so it did not run the gate either, and the self-test that would have flagged it is in the file nothing opened. Adding two names to two hand maintained lists fixes today and leaves the mechanism intact, and the mechanism is that both lists are human owned while the actor that writes a carousel gate is upgrade.",
+    "files": [
+     "scripts/carousel/gate_wiring.py",
+     "scripts/carousel/shipped_check.py"
+    ],
+    "verification": "python3 scripts/carousel/gate_wiring.py --self-test, exit 0, seventeen assertions. The defect is replayed on the two gates that produced it, and the three near-misses that would have made it a decoration are each tested: a --self-test line is not wiring, a self-test invocation split across a line continuation is not wiring, and a gate named in a sentence of prose is not wiring. Its own wiring is proved by behaviour rather than asserted, by planting a finding and requiring shipped_check to put it in the FATAL list on stderr rather than in the notes. End to end, unregistering the verbatim entry in-process makes `shipped_check.py` exit 1 naming verbatim_check.py and the repair.",
+    "revert": "30d250d8",
+    "how_i_would_know_this_was_wrong": "If the census starts reporting a gate that a maintainer has genuinely wired somewhere this does not read, for instance a new workflow file or a cron job. The answer then is a fourth route measured the same way, never a name added to an exemption list. And the third route is the one to distrust: it says a gate is wired because shipped_check LOADED it, which is true and is not the same as shipped_check asking it a useful question. shipped_check's own reachability assertion is what covers that, and if the two ever disagree this one is the weaker."
+   },
+   {
+    "what": "panel_ready reports a declared value arc it could not READ as its own state instead of as a pass. unreadable_plan tells that case from a deck that declares no arc and from one whose arc parses, and the finding names the ONE LINE rule inside ARC_INLINE that is the trap.",
+    "why": "check_value_arc returned an empty list both when the deck cleared its arc and when the storyboard declared one the parser could not see, so the group heading read `ok  the deck comes out within one Munsell step of its own planned value arc` in both cases. This run's plan wrote `## The value arc, planned` and put the nine values on the NEXT line. The arc got measured at all only because a session happened to read the honest note above the row and go looking.",
+    "files": [
+     "scripts/carousel/panel_ready.py"
+    ],
+    "verification": "python3 scripts/carousel/panel_ready.py --self-test, exit 0. The 2026-09-10 shape is replayed from that run's own account of it in runs/carousel/2026-09-10/storyboard.md rather than invented beside the detector: it parses to nothing, it is reported as the third state, the finding names the one-line rule, and the one-line repair clears it. Asserted over all twenty shipped storyboards that none raises it, which is the assertion that decided the pattern takes commas only, because 2026-09-03 narrates a wrong arc line separated by middots. Replayed end to end through run() against a fixture directory: NOT READY and exit 1 before the repair, and the gate proceeds to measurement after it.",
+    "revert": "06677c07",
+    "how_i_would_know_this_was_wrong": "If a run writes a legitimate plan in a third form that carries the word planned and a comma list the parser cannot reach, this reports a correct storyboard as a defect and blocks the panel. The fix then is to teach planned_arc the third form, never to loosen unreadable_plan, because a plan the parser cannot read is exactly what this exists to surface."
+   }
+  ],
+  "proposals_out_of_lane": [
+   {
+    "what": "prompt_audit cannot see a run that stopped WITHOUT prompting. Measured this run: 1,224 dispatches, none waited on a human, slowest permissionDecisionMs 44 ms, and the session still stopped mid run twice by ENDING ITS TURN to write progress reports. The tool exits 0 on `none waited on a human` and the routine puts that sentence in the email as evidence the run never stopped. The measurement is in the same debug log: the wall-clock gap between one turn's LAST tool_dispatch_start and the next turn's FIRST, which is seconds for a continuing run and however long the human took for a stopped one. Report it as a THIRD STATE rather than folding it into clean, and keep the tool's discipline of never printing a command.",
+    "owner": "daily",
+    "why": "scripts/shared/prompt_audit.py resolves to `daily` under ownership.yaml, not to this lane. This was the ranked number two candidate and it is the one this phase most wanted."
+   },
+   {
+    "what": "A wiring census over scripts/shared and scripts/site, the same shape as gate_wiring.py. This one is deliberately scoped to scripts/carousel because that is the suite this lane builds, and the limit is stated in the file. Nothing measures the other two directories.",
+    "owner": "daily",
+    "why": "scripts/shared/** and scripts/site/** are the daily lane's, and guards_shape.py, the natural home, is one of them."
+   },
+   {
+    "what": "construction_check.py and verbatim_check.py named in a phase of prompts/daily_routine.md, so a run meets them BEFORE it renders rather than after it ships. gate_wiring now refuses the state where nothing runs them, and shipped_check runs both, but shipped_check runs over PUBLISHED artifacts. A gate that only speaks after the deck has shipped cannot change the deck.",
+    "owner": "human",
+    "why": "prompts/daily_routine.md is human lane and a run rewriting the instructions it is currently executing is how a machine drifts without anyone noticing."
+   },
+   {
+    "what": "A GATE_LESSONS entry for each of the three above, drafted in full in knowledge/carousel/UPGRADE_BACKLOG.md so a maintainer pastes rather than reconstructs.",
+    "owner": "human",
+    "why": "knowledge/shared/GATE_LESSONS.md is human lane. The instruction to log a gate change there and the ownership map disagree, and the map wins. Same disposition as 2026-09-08."
+   },
+   {
+    "what": "shipped_check --self-test is red on this run's deck, reporting `missing ['measured figures', 'ledgers']`, and the full sweep is red on `labels: label_guard needs compute.py and claims.json in the run directory` and on `completion: THE DECK DID NOT SHIP, 6.76 against a 6.8 threshold in 4 rounds`. All three predate this phase and were verified as predating it by stashing the change and re-running. None is in this lane.",
+    "owner": "daily",
+    "why": "artifacts the ship phase writes into runs/carousel/2026-09-10/, and a score. Nothing a gate can fix."
+   }
+  ],
+  "what_was_not_done_and_why": "Three is the ceiling and it was reached. caption_check never reading brand.yaml's 76 banned_phrases is real, is in this lane, and was left, because the ceiling was already spent on two defects that had each already cost a scoring round and one that had a gate sitting red on main. ledger_check asserting one carousel_no per date across the three variety ledgers is also real and also in this lane and is written up in the backlog with the 2026-09-09 evidence. Nothing was loosened. No threshold was typed. The one number this phase touched is a DATE, 2026-09-04, which names an artifact rather than setting a bar."
+ }
 }

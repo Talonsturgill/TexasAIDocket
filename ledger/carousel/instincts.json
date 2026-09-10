@@ -685,6 +685,30 @@
       "evidence": "Deck no. 14. Two repair passes rewrote ledger/docket.json at indent 2 where docket_build writes indent 1, turning a twelve line correction into an 11,778 line diff that no reviewer could read. The change itself was right both times. Nothing in the suite caught it, because every gate reads the parsed record and the shape was never in question.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "repair-walks-its-own-declaration",
+      "learned": "2026-09-10",
+      "instinct": "A repair that changes a computed value must walk every file that DECLARES that value, in the same commit, or the declaration becomes the next round's defect.",
+      "evidence": "Round 4 recomputed slide 6's dimension endpoints and left aggregates.json declaring the old 156 and 13 px at 13.0 px per month. Round 5's integrity judge found it and called it the identical defect rounds 1 and 3 had charged, made by the repair for it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "gate-not-in-guards-is-red",
+      "learned": "2026-09-10",
+      "instinct": "Before the first panel, run EVERY gate in scripts/carousel by exit code, not the ones the routine's phase list happens to name.",
+      "evidence": "construction_check.py is in neither guards.yml nor the routine, so it went unrun until scoring round 3 and was red the whole time at 5 of 9 frames against a half threshold. The four decks before this one measured 2, 1, 4 and 1, so the finding was real.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "declared-mechanism-must-exist",
+      "learned": "2026-09-10",
+      "instinct": "When an acceptance item names a MECHANISM, grep the frames for that mechanism before scoring. An item asserting a declaration nobody made reads exactly like one that holds.",
+      "evidence": "Four items on this deck asserted regions declared through data-encodes and data-contacts and no frame carried either attribute, so render_report's encodings and contacts were empty on all nine and plan_render_check passed anyway.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

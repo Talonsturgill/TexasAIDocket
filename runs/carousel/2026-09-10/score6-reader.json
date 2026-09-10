@@ -1,0 +1,49 @@
+{
+  "judge": "reader",
+  "round": 5,
+  "date": "2026-09-10",
+  "weighted_score": 6.726,
+  "hard_fails": [],
+  "ship": false,
+  "_note": "Returned verbatim by a read-only scorer and written by the showrunner. Unedited.",
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.9,
+      "why": "Real light and real dark, and the arc is measured rather than asserted. Slide 4 is the deck's one genuinely good idea drawn rather than written, the federal standards as a four-wire fence. Against that, three things a reader sees: slide 1's horizon is a razor-straight full-width seam that reads as two pictures stacked; slide 9's unworn pass, which carries half the close's argument, reads as a pale block; slide 8 is two grey plates on black and is the least made frame in the deck."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.0,
+      "why": "Every numeral traces. Attribution discipline is better than this account usually manages. claims.json's rejected block is exemplary and self-incriminating in the right direction. Two stretches keep this off 8: slide 9's dek compresses c25, and slide 7's headline carries a claim strip none of which supports the premise that a reader is judged by FMVSS."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.4,
+      "why": "The round 4 fix is real and I credit it: slide 9's footer now reads AQ26002 and 49 CFR 552.3, matching slide 6's convention, and it turns an asserted right into something a reader can verify. It does not close the gap. 552.3 is where the rule is WRITTEN, not where the petition GOES, and on the frame the string runs inside one continuous 22px mono line straight into claim-id chrome. Slide 6's precedent works because Part 555 ALSO appears in a FILED UNDER row at display size."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.6,
+      "why": "The cover earns its swipe. On the standing dispute the reader's seat resolves it: the duplication is felt at 6, not at 5. Slide 5 buys the turn and the value arc's floor. Cut 6's first sentence, keep 5."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "'One route has ruts. One started on September 3rd.' is a Texan sentence. The cost is the one TEXAS_VERNACULAR.md opens on: the drawn world is Edwards Plateau ranch country across nine of nine frames for a story about a robotaxi picking people up on city streets."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 6.7,
+      "why": "dedupe_check returned nothing at threshold and a faint 0.21 against carousel no. 5, and the certification-not-driving distinction is enforced in the art rather than only in prose. Against it: eleven of eleven proposed tokens started inside dE 10 of recent decks and three shipped that way, and this is a fourth consecutive dark deck."
+    }
+  ],
+  "one_sentence_fix": "Rewrite slide 7's headline from 'The rules a reader is judged by' to the rules the CAR is judged by, because FMVSS bind manufacturers and not the person in the seat.",
+  "note_for_the_next_run": "texan_check's NEXT STEP NO is NOT independent evidence about the door, because its ACTION regex has no 'petition' alternative and could not have seen it however well it was built."
+}

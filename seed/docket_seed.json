@@ -799,7 +799,7 @@
   {
     "id": "tx-2026-0009",
     "title": "DIR must run an AI regulatory sandbox letting state agencies test systems outside normal rules",
-    "summary": "The Department of Information Resources is required to establish a programme letting eligible public entities contract with registered vendors to test AI systems before deployment, expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year, which makes November 30th, 2026 the first reporting date.",
+    "summary": "The Department of Information Resources is required to establish a program letting eligible public entities contract with registered vendors to test AI systems before deployment, expressly without full compliance with otherwise applicable regulations. Vendors apply, and participants file quarterly reports. The department must report to the Legislature by November 30th of each even numbered year, which makes November 30th, 2026 the first reporting date.",
     "topic": "state-policy",
     "decider": {
       "name": "Texas Department of Information Resources",
@@ -842,7 +842,7 @@
       },
       {
         "id": "tx-2026-0009-c2",
-        "text": "The department must establish and administer the programme.",
+        "text": "The department must establish and administer the program.",
         "verbatim_quote": "(b) The department shall establish and administer a program to support eligible entities in contracting with vendors to engage in research, development, training, testing, and other pre-deployment activities related to artificial intelligence systems",
         "source_url": "https://tcss.legis.texas.gov/resources/GV/htm/GV.2054.htm",
         "source_title": "Texas Government Code Sec. 2054.706(b)",
@@ -879,7 +879,7 @@
     ],
     "last_verified": "2026-08-11",
     "confidence": "high",
-    "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the programme up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
+    "notes_for_editor": "CORRECTION TO A COMMON BELIEF, please keep it in the published item. The regulatory sandbox is widely attributed to TRAIGA. It is not in TRAIGA. It is Section 2054.706, added by SB 1964, and it took effect September 1st, 2025, four months before TRAIGA did. Whether DIR has actually stood the program up was NOT verified: no DIR page was fetched. That is the obvious follow up and the honest hook is the November 30th, 2026 report."
   },
   {
     "id": "tx-2026-0010",
@@ -1075,7 +1075,7 @@
   {
     "id": "tx-2026-0013",
     "title": "Comptroller's JETI current agreements list contains no data center project",
-    "summary": "The Texas Jobs, Energy, Technology and Innovation Act is the state's school district property tax incentive programme. The Comptroller publishes the current executed agreements. Every project type on that list is manufacturing, power generation or extraction. No agreement on the published list is a data center.",
+    "summary": "The Texas Jobs, Energy, Technology and Innovation Act is the state's school district property tax incentive program. The Comptroller publishes the current executed agreements. Every project type on that list is manufacturing, power generation or extraction. No agreement on the published list is a data center.",
     "topic": "data-centers",
     "decider": {
       "name": "Texas Comptroller of Public Accounts",
@@ -1117,7 +1117,7 @@
     ],
     "last_verified": "2026-08-11",
     "confidence": "high",
-    "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation programme only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
+    "notes_for_editor": "Verified: prior research was right. The project type strings are reproduced verbatim and in the order the page prints them, including the page's own mid word truncations, so a checker can diff them against the live table. The row count is deliberately not stated in prose: it should be computed by the build from the captured rows rather than typed. CAVEAT ON SCOPE, which the item must carry: JETI is the school district value limitation program only. A data center can still receive city or county tax abatements under Local Government Code Chapter 312, Chapter 380 or 381 agreements, and freeport exemptions, none of which appear on this page. The honest claim is that data centers are absent from THIS list, not that they get no Texas tax breaks."
   },
   {
     "id": "tx-2026-0014",
@@ -6866,6 +6866,266 @@
       {
         "date": "2026-09-09",
         "note": "Admitted on the market notice. The draft revision requests it previews have not been filed."
+      }
+    ]
+  },
+  {
+    "title": "Federal regulators open an audit of how Tesla certified the Cybercab, on the day paid driverless rides began in Austin",
+    "summary": "The National Highway Traffic Safety Administration opened Audit Query AQ26002 on September 3rd, 2026, the same day Tesla began commercial deployment of the Cybercab in Austin. The Cybercab has no brake pedal, no gas pedal, no steering wheel and no mirrors. Tesla certified the vehicle itself as meeting every applicable Federal Motor Vehicle Safety Standard and told the agency it had done so. The audit does not ask how the vehicle drives. It examines the process and the technical data behind that certification, and it says the agency will consider how far the certification rested on Tesla deciding that certain standards do not apply to a car built without the controls those standards were written for. The estimated population is a thousand vehicles and Tesla has told the agency it plans to add more vehicles and more locations.",
+    "topic": "defense-and-federal",
+    "decider": {
+      "name": "National Highway Traffic Safety Administration, Office of Defects Investigation",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Travis"
+      ],
+      "on_ercot": true
+    },
+    "status": "open",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-09-03",
+        "kind": "filed",
+        "note": "Audit Query AQ26002 opened, and commercial deployment began in Austin the same day"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The agency publishes the opening resume for the audit at its own investigation site, so anyone can read the scope, the docket number and the estimated population in the agency's own words. An audit query takes no public comment. What a member of the public can do is read the resume and file a vehicle safety complaint with the same office.",
+      "url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf"
+    },
+    "claims": [
+      {
+        "text": "The agency's own resume gives the audit its docket number and its subject.",
+        "verbatim_quote": "Investigation: AQ26002",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c1"
+      },
+      {
+        "text": "The resume dates the opening of the audit.",
+        "verbatim_quote": "Date Opened: 09/03/2026",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c2"
+      },
+      {
+        "text": "The resume estimates how many vehicles the audit covers.",
+        "verbatim_quote": "Population: 1,000 (Estimated)",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c3"
+      },
+      {
+        "text": "The resume states what the audit is examining.",
+        "verbatim_quote": "Examination of the process and technical data on which Tesla relied when certifying the Cybercab and related issues.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c4"
+      },
+      {
+        "text": "The resume says where and when the deployment began.",
+        "verbatim_quote": "On September 3, 2026, Tesla began commercial deployment with a small number of its Cybercab vehicles in Austin, Texas.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c5"
+      },
+      {
+        "text": "The resume records that the manufacturer certified the vehicle itself.",
+        "verbatim_quote": "Tesla notified the Agency that it certified those Cybercab vehicles as compliant with all applicable Federal Motor Vehicle Safety Standards (FMVSS).",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c6"
+      },
+      {
+        "text": "The resume lists the controls the vehicle does not have.",
+        "verbatim_quote": "The vehicles lack permanently attached, conventional manual controls, such as a brake pedal, gas pedal, steering wheel, and mirrors.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c7"
+      },
+      {
+        "text": "The resume names the question about which standards were treated as inapplicable.",
+        "verbatim_quote": "Among other things, NHTSA will consider the extent to which Tesla’s certification depended on determinations that certain FMVSS are inapplicable to the Cybercab.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c8"
+      },
+      {
+        "text": "The resume records what the manufacturer says comes next.",
+        "verbatim_quote": "Tesla also notified the Agency that it plans to gradually expand commercial deployment of the Cybercab to include additional vehicles and locations.",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c9"
+      },
+      {
+        "text": "The resume names what prompted the audit.",
+        "verbatim_quote": "Prompted By: Public Information",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c10"
+      },
+      {
+        "text": "The resume names the action the office took.",
+        "verbatim_quote": "Action: Open Audit Query (AQ)",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c11"
+      },
+      {
+        "text": "The resume names the investigator and the approver.",
+        "verbatim_quote": "Investigator: Syed Rahaman Reviewer: Neil Dold",
+        "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
+        "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0140-c12"
+      }
+    ],
+    "id": "tx-2026-0140",
+    "last_verified": "2026-09-10",
+    "history": [
+      {
+        "date": "2026-09-10",
+        "note": "The agency's opening resume is published and carries the docket number, the date, the estimated population and the scope in the agency's own words. The audit is open and nothing has been reported closed."
+      }
+    ]
+  },
+  {
+    "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the chip rather than in the cloud",
+    "summary": "The University of Texas at San Antonio published on September 8th, 2026 that a team led by Chen Pan has a field ready prototype flood warning node for street level water. It harvests its own solar power, carries temperature, humidity, light and precipitation sensing plus four optical water level sensors at different heights, and runs a compressed machine learning model on the microcontroller itself rather than sending readings to a server. It reports over long range radio instead of a cell tower, so it keeps warning when the grid and the network are down, which is when the water rises. The work was funded in part by a Texas Coastal Management Program grant from the National Oceanic and Atmospheric Administration. It is a prototype and the announcement names no place that has installed one.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "The University of Texas at San Antonio",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Bexar"
+      ],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "confidence": "high",
+    "key_dates": [
+      {
+        "date": "2026-09-08",
+        "kind": "filed",
+        "note": "The university published the prototype and its funding source"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The university publishes the account of the system, names the researchers and names the federal program that funded it. There is no comment window and no meeting. A reader who wants the underlying method contacts the laboratory the announcement names.",
+      "url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/"
+    },
+    "claims": [
+      {
+        "text": "The university describes what the system is.",
+        "verbatim_quote": "Researchers at The University of Texas at San Antonio have developed a self-sustaining, artificial intelligence-powered flood warning system designed to spot dangerous water accumulation at the street level.",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c1"
+      },
+      {
+        "text": "The announcement names the researcher leading the work and his college.",
+        "verbatim_quote": "Led by Chen Pan , PhD, assistant professor of electrical engineering in the Margie and Bill Klesse College of Engineering and Integrated Design, the team engineered a field-ready prototype that combines solar energy harvesting, multi-sensor environmental tracking, long-range wireless radios and on-device machine learning.",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c2"
+      },
+      {
+        "text": "The researcher states why the system carries its own power.",
+        "verbatim_quote": "In many rural areas or coastal communities, power infrastructure can fail right when severe weather strikes,",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c3"
+      },
+      {
+        "text": "The announcement states where the model runs.",
+        "verbatim_quote": "This on-device AI evaluates current and recent sensor data to predict localized, imminent flood risk without relying on a central server.",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c4"
+      },
+      {
+        "text": "The announcement gives the accuracy figure and says what kind of figure it is.",
+        "verbatim_quote": "So far, the AI has performed well, achieving 98.82% validation accuracy in initial assessments post-training.",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c5"
+      },
+      {
+        "text": "The announcement names the federal program that paid for it.",
+        "verbatim_quote": "This project was funded in part by a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration (NOAA).",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c6"
+      },
+      {
+        "text": "The announcement says what the sensing package carries.",
+        "verbatim_quote": "The resulting prototype combines temperature, humidity, light and precipitation sensing, as well as four optical water-level sensors mounted at varying heights.",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c7"
+      },
+      {
+        "text": "The announcement names the problem the existing gauges have.",
+        "verbatim_quote": "Existing commercial flood-monitoring stations also come with drawbacks, from prohibitively high costs to reliance on grid power or frequent battery replacements, which leaves them vulnerable during multi-day storms or power outages.",
+        "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_title": "UT San Antonio Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-10",
+        "id": "tx-2026-0141-c8"
+      }
+    ],
+    "id": "tx-2026-0141",
+    "last_verified": "2026-09-10",
+    "history": [
+      {
+        "date": "2026-09-10",
+        "note": "The university's account is published and names the researchers, the sensing package, where the model runs and the federal program that funded the work. It is a prototype and no installation site is named."
       }
     ]
   }

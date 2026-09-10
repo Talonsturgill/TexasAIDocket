@@ -9,7 +9,7 @@ VISION is the Texas A&M University System's shared AI computing platform. The Ju
 - Public access: Write to the decider
 - Take part: https://vision.tamus.edu/testing/
 
-- Last checked: 2026-09-07
+- Last checked: 2026-09-10
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-03 · Admitted. The System's shared AI machine is on the June 2026 TOP500 at number 66 with a measured 34.82 petaflops against a 51.16 peak. Its own documentation gives the current status as a controlled beta and says access is invitation-only and approved through System governance. General availability onboarding is expected in the coming weeks and starts with institutions that have finished technical integration.
 - 2026-09-07 · The machine's own documentation still gives its status as a controlled beta and still says access is invitation-only and approved through System governance. General availability onboarding is still written in the future tense.
+- 2026-09-10 · The shared supercomputer still holds its place on the world list at the same rank, and the system's description is unchanged. Nothing has been published that revises either.
 
 ## Evidence
 
