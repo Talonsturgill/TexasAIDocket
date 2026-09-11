@@ -142,21 +142,56 @@ DOC_TERMS = {t: occurrences(ATT_TEXT, t)
 # The knowledge statements the course text declares, counted from its own numbering. The document
 # runs (1) to (10) and skips (6), so the COUNT and the HIGHEST NUMBER are different figures and
 # the frames must not confuse them.
+# THE CHARACTER CLASS DROPPED A WHOLE CHAPTER, and the frame built on it published a hole in
+# the standards that does not exist. `(6) Budgeting: Spending and Planning.` carries a COLON,
+# which `[A-Za-z ,\-&]` excluded, so the heading never matched, (6) never entered this list, and
+# `knowledge_missing` came back as [6]. A review bot read the committed snapshot and found it.
+#
+# The lesson is not "add a colon to the class". It is that an enumeration parsed out of prose
+# must be VALIDATED AGAINST ITS OWN SEQUENCE rather than trusted, because a regex that misses one
+# heading looks exactly like a document that skips one number. The assertion below is what makes
+# the difference visible: a gap in a printed sequence is now a thing this file refuses to report
+# without saying so, instead of a finding it hands to a frame.
 KNOWLEDGE_NUMBERS = sorted({int(n) for n, _ in re.findall(
-    r"\((\d+)\)\s+([A-Z][A-Za-z ,\-&]{8,120}?)\.\s*The student", ATT_TEXT)})
+    r"\((\d+)\)\s+([A-Z][^()]{8,120}?)\.\s*The student", ATT_TEXT)})
 N_KNOWLEDGE = len(KNOWLEDGE_NUMBERS)
 KNOWLEDGE_HIGHEST = max(KNOWLEDGE_NUMBERS) if KNOWLEDGE_NUMBERS else 0
 KNOWLEDGE_MISSING = [n for n in range(1, KNOWLEDGE_HIGHEST + 1) if n not in KNOWLEDGE_NUMBERS]
 
+# A GAP IS EXTRAORDINARY AND A PARSER MISS IS ORDINARY, so a reported gap has to be corroborated
+# before any frame is allowed to draw it. The document prints each missing number somewhere even
+# when this pattern does not match its heading, so if the bare "(N)" token IS in the text, the gap
+# is this parser's and not the document's, and that is a defect rather than a finding.
+_FALSE_GAPS = [n for n in KNOWLEDGE_MISSING if re.search(r"\(%d\)\s+[A-Z]" % n, ATT_TEXT)]
+if _FALSE_GAPS:
+    raise SystemExit(
+        "compute.py: the heading parser reports chapter(s) %s missing, but the document prints "
+        "them. That is this parser failing to match a heading, not the standard skipping a "
+        "number, and a frame built on it would publish a hole that does not exist. Fix the "
+        "pattern. Do NOT publish the gap." % _FALSE_GAPS)
+
 # THE DOCUMENT'S OWN SIZE, measured off the fetched file rather than read off a screen. The fact
 # checker refused to give a page count and was right to: it observed one and a model-observed
 # count is a model-produced numeral. A count taken by code from the bytes is a different thing.
-try:
-    import pypdf  # noqa: F401
-    _pdf = HERE / "tmp" / "sboe_pfl.pdf"
-    PAGE_COUNT = len(pypdf.PdfReader(str(_pdf)).pages) if _pdf.exists() else None
-except Exception:
-    PAGE_COUNT = None
+#
+# IT IS READ FROM A COMMITTED MANIFEST RATHER THAN FROM THE PDF, and that is the repair for a
+# real defect a review bot found. The first version read `HERE/tmp/sboe_pfl.pdf`, which lives
+# under `out/` and is gitignored, so on the fresh checkout this run's handoff is written for it
+# would have silently become None and slide 3 would have divided by a null page count and drawn
+# no page boxes at all. The count is measured by code at fetch time, written into
+# `sources/MANIFEST.json`, and committed beside the snapshot it describes.
+#
+# It RAISES rather than defaulting, because a missing provenance file is a broken run and an
+# unusable value that renders is worse than one that stops.
+_MANIFEST = SOURCES / "MANIFEST.json"
+if not _MANIFEST.exists():
+    raise SystemExit(f"compute.py: {_MANIFEST} is missing. The page count is measured at fetch "
+                     f"time and committed; it is not re-derived from a file out/ throws away.")
+_MAN = json.loads(_MANIFEST.read_text(encoding="utf-8"))["snapshots"]
+if "pdf_pages" not in _MAN.get(ATTACHMENT, {}):
+    raise SystemExit(f"compute.py: {_MANIFEST} carries no pdf_pages for {ATTACHMENT}. A frame "
+                     f"reads this; it may not be None.")
+PAGE_COUNT = int(_MAN[ATTACHMENT]["pdf_pages"])
 
 # Words in the whole standard, counted the one way the stipple field on frame 3 draws them.
 DOC_WORDS = len(re.findall(r"[A-Za-z][A-Za-z'-]*", ATT_TEXT))
@@ -196,6 +231,30 @@ for _t in FOOTPRINT_TERMS:
             "fraction": round(_wi / DOC_WORDS, 5) if DOC_WORDS else None,
         })
 FOOTPRINT_POSITIONS.sort(key=lambda d: d["word_index"])
+
+
+# WHAT THE CLAUSE SENDS A STUDENT TO, AND WHAT IT SENDS THEM WITH, both parsed out of c14's own
+# quote rather than transcribed beside it. Frame 4 draws one lit slot per evaluation and one line
+# per instrument, so both counts are assertions the frame makes in its largest elements. The first
+# build hand-typed the list and counted the transcription, which is the defect a review bot named:
+# omitting, duplicating or keeping a stale item would have rendered and passed.
+def _split_list(fragment: str) -> list[str]:
+    """A comma list ending 'and X', with the Oxford comma the document uses."""
+    parts = [p.strip() for p in re.split(r",\s*", fragment) if p.strip()]
+    if parts:
+        parts[-1] = re.sub(r"^and\s+", "", parts[-1]).strip()
+    return [p for p in parts if p]
+
+_C14 = q("c14")
+_m = re.search(r"using (.+?) to evaluate (.+?)\s*\(E, S\);", _C14)
+if not _m:
+    raise SystemExit("compute.py: c14's quote no longer has the shape 'using ... to evaluate "
+                     "... (E, S);'. Frame 4 draws one slot per evaluation, so this may not be "
+                     "guessed at. The quote reads:\n  " + _C14)
+INSTRUMENTS = _split_list(_m.group(1))
+EVALUATIONS = _split_list(_m.group(2))
+N_INSTRUMENTS = len(INSTRUMENTS)
+N_EVALUATIONS = len(EVALUATIONS)
 
 # THE ABSENCE, counted rather than asserted. Every one of these must be zero for the deck's
 # counter-image frame to stand, and this file raises if any is not.
@@ -260,6 +319,10 @@ OUT = {
 
     "doc_terms": DOC_TERMS,
     "page_count": PAGE_COUNT,
+    "instruments": INSTRUMENTS,
+    "n_instruments": N_INSTRUMENTS,
+    "evaluations": EVALUATIONS,
+    "n_evaluations": N_EVALUATIONS,
     "doc_words": DOC_WORDS,
     "footprint": FOOTPRINT,
     "footprint_terms": list(FOOTPRINT_TERMS),
@@ -297,5 +360,7 @@ if __name__ == "__main__":
           f" missing {KNOWLEDGE_MISSING}")
     print(f"  release technology hits {N_RELEASE_HITS} {RELEASE_HITS}")
     print(f"  release summary {RELEASE_SUMMARY_WORDS} words, ending '{AND_MORE}'")
+    print(f"  c14 sends the student with {N_INSTRUMENTS} instrument(s) to evaluate "
+          f"{N_EVALUATIONS} thing(s): {EVALUATIONS}")
     print(f"  item date line {ITEM_DATE_LONG}, effective {EFFECTIVE_DAYS} days after filing,"
           f" implemented {SCHOOL_YEAR}")

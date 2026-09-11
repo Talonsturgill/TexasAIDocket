@@ -29,9 +29,9 @@
 <div class="layer">
   <div class="kick">THE COURSE TEXT</div>
   <div class="count">02 / 09</div>
-  <h1 class="hook" id="hook">Nine numbered chapters. There is no sixth.</h1>
-  <p class="dek">The course text runs its knowledge statements to a number higher than it has
-     chapters, and skips one. Three of the nine name a machine.</p>
+  <h1 class="hook" id="hook">Ten chapters. The machine is in three.</h1>
+  <p class="dek">Every chapter of the course text is a thing a student must be able to do with
+     money. Seven of them never mention a machine.</p>
   <div class="chap" id="ch0" style="left:80px;top:1004px">CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL</div>
   <div class="chap" id="ch1" style="left:392px;top:1004px">CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING</div>
   <div class="chap" id="ch2" style="left:704px;top:1004px">SAVING AND INVESTING</div>
@@ -89,6 +89,23 @@ const C = {
     "machine learning": 0
   },
   "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
   "doc_words": 3525,
   "footprint": {
     "artificial intelligence": 1,
@@ -138,16 +155,15 @@ const C = {
     3,
     4,
     5,
+    6,
     7,
     8,
     9,
     10
   ],
-  "n_knowledge": 9,
+  "n_knowledge": 10,
   "knowledge_highest": 10,
-  "knowledge_missing": [
-    6
-  ],
+  "knowledge_missing": [],
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -247,19 +263,13 @@ window.renderReady = new Promise(async (resolve) => {
 
   // ---- THE RUN OF CELLS. Every number the document prints gets a filled slab. Every number it
   // skips is cut clean through to the plenum behind the wall.
+  if (GONE.length) throw new Error('slide-02: the document skips no chapter. This frame draws '
+    + 'no gap, and compute.py raises before a false one can reach it.');
   for(let n=1;n<=HIGH;n++){
-    const x=cellX(n), y=Y0, isVoid = GONE.indexOf(n)>=0, isMark = MARK.indexOf(n)>=0;
+    const x=cellX(n), y=Y0, isMark = MARK.indexOf(n)>=0;
     // the reveal: a recess cut into the block, its head in shade and its sill catching the throw
     cx.fillStyle='rgba(14,51,71,0.30)'; cx.fillRect(x-6,y-6,CW+12,CH+12);
-    if(isVoid){
-      // cut through. The plenum behind the wall, and NOTHING else: no slab, no label, no arris.
-      cx.fillStyle='#0E3347'; cx.fillRect(x,y,CW,CH);
-      // the block's own grain continues across the opening's edge, so the void is a hole in a
-      // surface rather than a tile laid on one
-      const gg=cx.createLinearGradient(x,y,x,y+CH);
-      gg.addColorStop(0,'rgba(0,0,0,0.30)'); gg.addColorStop(1,'rgba(0,0,0,0)');
-      cx.fillStyle=gg; cx.fillRect(x,y,CW,CH);
-    } else {
+    {
       // the slab, flush to the wall, lit from above
       const gs=cx.createLinearGradient(x,y,x,y+CH);
       gs.addColorStop(0, isMark? 'rgba(204,242,228,0.96)' : 'rgba(152,205,180,0.80)');
@@ -272,8 +282,9 @@ window.renderReady = new Promise(async (resolve) => {
       TXCARVE.contactShadow(cx,{x:x+CW/2, y:y+CH+4, w:CW*0.62, color:'#0E3347',
                                 dirDeg:90, tightAlpha:0.50, wideAlpha:0.16, tightBlur:3, wideBlur:18});
     }
-    // the number, cut into the sill below each cell
-    cx.fillStyle = isVoid? 'rgba(14,51,71,0.34)' : 'rgba(14,51,71,0.72)';
+    // the number, cut into the sill below each cell. The three that carry the machine are the
+    // only ones the overhead reaches, so LIGHT does the pointing rather than a colour.
+    cx.fillStyle = isMark? 'rgba(14,51,71,0.88)' : 'rgba(14,51,71,0.52)';
     cx.font='500 25px "JetBrains Mono", monospace'; cx.textAlign='center';
     cx.fillText('('+n+')', x+CW/2, y+CH+46);
   }
@@ -330,12 +341,13 @@ window.renderReady = new Promise(async (resolve) => {
 
   document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
   TX.fitText(document.getElementById('hook'),{min:62,max:100,maxLines:2});
-  // THE VOID IS GROUND. Asserted against a pure block column, so a frame that fills it
-  // contradicts its own declaration.
-  const vx = cellX(GONE[0]);
+  // THE THREE THE MACHINE SITS IN ARE THE ONLY ONES THE LIGHT REACHES, asserted rather than
+  // claimed. A frame that lights every cell equally contradicts its own declaration.
+  const mx = cellX(MARK[0]);
+  const ux = cellX(MARK.indexOf(1)<0 ? 1 : 2);
   document.body.setAttribute('data-encodes', JSON.stringify([
-    {claim:"the skipped chapter's cell carries no figure ink",
-     reads:"same", a:[[vx, Y0, CW, CH]], b:[[vx, 206, CW, CH]]}
+    {claim:"a chapter carrying the machine reads differently from one that does not",
+     reads:"differ", a:[[mx, Y0, CW, CH]], b:[[ux, Y0, CW, CH]]}
   ]));
   resolve(true);
 });

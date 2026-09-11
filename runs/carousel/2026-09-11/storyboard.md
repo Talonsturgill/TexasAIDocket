@@ -95,10 +95,13 @@ must not resemble.
 `data-encodes` on the rect `[300,560,480,300]` with `"reads":"differ"` against a second rect in
 the same frame. Grafted from lens C.
 
-**4. THE VOID IS GROUND.** Slide 2's cut-through (6) slot declares `data-encodes` with
-`"reads":"same"` between the void and a pure-ground column. Grafted from lens B.
+**4. A MARKED CHAPTER IS TELLABLE FROM AN UNMARKED ONE.** Slide 2 declares `data-encodes` with
+`"reads":"differ"` between a lit chapter cell and an unlit one. **This law replaced one that
+rested on a falsehood.** It was "the void is ground", asserting `"same"` between a gap at chapter
+six and pure ground, and there is no gap. See slide 2's risks.
 
-**5. NO FOURTH ABSENCE.** Three, and no repair adds one.
+**5. NO FOURTH ABSENCE.** Slide 2's was never real, so the deck now draws two: slide 3's five
+points in a wash and slide 7's six counted zeros. Fewer, and no repair adds one back.
 
 ## THE PALETTE, MEASURED RATHER THAN ESTIMATED
 
@@ -264,8 +267,8 @@ risks:
 ```yaml
 slide: 2
 job: >
-  Show the shape of the document the sentence lives inside, including its hole, so the reader
-  learns the machine was not given a chapter before being told which chapters it is in.
+  Show the shape of the document the sentence lives inside, so the reader learns the machine was
+  never given a chapter of its own before being told which three chapters carry it.
 claims: [c12, c13, c19, c20, c21]
 numerals:
   - computed_by: "compute.py n_knowledge, counted from the course text's own numbering in sources/"
@@ -274,11 +277,11 @@ numerals:
   - value_from: c13
 composition:
   structure: >
-    Flat frontal on a painted CMU wall at seated eye height, ten cells recessed into the block
-    in one horizontal run, nine of them filled with a slab flush to the wall and the sixth cut
-    clean through to void. Frontal rather than oblique because the claim is about a SEQUENCE
-    with a gap in it, and any perspective would make the far cells smaller and turn a gap into a
-    vanishing point.
+    Flat frontal on a painted CMU wall at seated eye height, ten cells recessed into the block in
+    one horizontal run, every one of them filled with a slab flush to the wall, and the three
+    that carry the machine the only ones the overhead throw reaches. Frontal rather than oblique
+    because the claim is about a SEQUENCE and which members of it are marked, and any perspective
+    would make the far cells smaller and turn a position into a distance.
   bands: >
     TOP third, the headline across clean block with the mortar joints raking under the overhead
     source. MIDDLE third, the run of ten cells with the void at position six. BOTTOM third, the base course of the block meeting the VCT, the rubber cove base modelled
@@ -286,9 +289,10 @@ composition:
     taking a graded specular smear of the fixture toward the camera. The chapter names sit
     on that smear.
   focal: >
-    The empty sixth cell, an AREA of 88 by 210 design px plus its reveal in the middle band. It is the
-    one place the light dies in a frame that is otherwise evenly lit, which is the focal law's
-    second test.
+    The run of three lit cells, an AREA of about 500 by 210 design px spanning positions three,
+    four and seven in the middle band. They carry the frame's highest value and the unlit cells
+    beside them the lowest, so the focal is one extreme of the range.
+
 art:
   technique: "Wind-worked carve, TXCARVE, with declared two-part contact shadows at every reveal."
   why_this_technique: >
@@ -309,8 +313,8 @@ art:
     Left to right along the run of cells, stopped at the void, then down to the three chapter
     names that say which cells carry the machine.
 type:
-  hook: "Nine numbered chapters. There is no sixth."
-  dek: "The course text runs its knowledge statements to a number higher than it has chapters, and skips one. Three of the nine name a machine."
+  hook: "Ten chapters. The machine is in three."
+  dek: "Every chapter of the course text is a thing a student must be able to do with money. Seven of them never mention a machine."
   labels: ["THE COURSE TEXT", "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL", "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING", "SAVING AND INVESTING", "one-half credit", "c12 c13 c19 c20 c21", "texasaidocket.com", "02 / 09"]
 verbatim:
   - c19: "Careers, Postsecondary Education, and Earning Potential"
@@ -318,8 +322,8 @@ verbatim:
   - c21: "Saving and Investing"
   - c13: "one-half credit"
 acceptance:
-  - "exactly ten cells are drawn and the sixth from the left is cut through to void"
-  - "the void measures 88 by 210 design px, is painted in slate #0E3347, and carries no slab, no label and no edge highlight"
+  - "exactly ten cells are drawn, every one carries a slab, and no cell is cut through to void"
+  - "the three lit cells are the ones computed.json names in chapters, and no fourth cell is lit"
   - "the void declares data-encodes with reads \"same\" against a pure block #B0D8C2 column, so a frame that fills it contradicts its own assertion"
   - "at least three cells declare data-contacts and every declared pair holds at least 8.0 L* of separation, above the 4.0 floor"
   - "the three chapter names read exactly \"Careers, Postsecondary Education, and Earning Potential\", \"Consumer Economics and Financial Decision-Making\" and \"Saving and Investing\""
@@ -327,7 +331,7 @@ acceptance:
   - "the wall reads as painted masonry at 432px, with mortar joints visible, and not as a flat swatch"
 risks:
   - "Ten recesses in a row is a rhythm that can read as decoration rather than as a document. The three marked cells are the only ones the overhead throw actually lands on, so the light does the pointing rather than a colour."
-  - "The void could read as a printing fault. It is empty of FIGURE, not of ground: the block's own grain and the cast shadow gradient run through it uninterrupted, and the data-encodes probe is what proves it."
+  - "THIS FRAME PUBLISHED A FALSEHOOD IN ITS FIRST BUILD and it is recorded here rather than quietly repaired. Its centrepiece was a gap at chapter six, and there is no gap: compute.py's heading pattern excluded the colon in \"(6) Budgeting: Spending and Planning.\" so the chapter never entered the list. A review bot read the committed snapshot and found it. The frame is rebuilt rather than relabelled, compute.py now raises when a reported gap is contradicted by the document, and the frame throws if one ever reaches it."
 ```
 
 ```yaml

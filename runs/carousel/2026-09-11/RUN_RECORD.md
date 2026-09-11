@@ -38,6 +38,61 @@ no video file and no test. Not re-run, because `gates` blocks the merge regardle
 
 ---
 
+## A REVIEW BOT FOUND A FABRICATION THIS RUN HAD ALREADY COMMITTED
+
+**Six findings arrived on the pull request after the first push. Every one was checked against
+the source and five were real.** The first is the serious one and it is the kind of defect this
+whole project exists to prevent.
+
+**`compute.py` invented a hole in the standards.** Its heading pattern was
+`\((\d+)\)\s+([A-Z][A-Za-z ,\-&]{8,120}?)\.\s*The student`, and the character class has no
+colon in it. The document prints **`(6) Budgeting: Spending and Planning.`**, so that heading
+never matched, chapter six never entered `knowledge_numbers`, and `knowledge_missing` came back
+as `[6]`.
+
+**Slide 2's entire centrepiece was that gap.** Its hook read *"Nine numbered chapters. There is
+no sixth."* and it cut a void clean through a wall to draw it. **The standard skips no chapter.
+There are ten.** The frame is rebuilt rather than relabelled, and it now draws ten filled cells
+with the three that carry the machine as the only ones the light reaches.
+
+**The public record never carried it.** `tx-2026-0142` says "three separate chapters", which is
+true, and publishes no chapter count. The falsehood was confined to the deck, the storyboard and
+this record, all of which are corrected above.
+
+**What makes this worth more than the fix**: a number produced by code, from data, is exactly
+what this project's law asks for, and this one was still wrong. The law stops a model typing a
+figure. It does not stop a parser missing a heading, and **a regex that misses one heading looks
+exactly like a document that skips one number.** `compute.py` now corroborates: if a reported gap
+is contradicted by the document printing that number anywhere, it RAISES rather than handing the
+gap to a frame. Slide 2 throws as well, so the two disagree loudly rather than quietly agreeing.
+
+The other four real findings, all fixed:
+
+- **Slide 3 deleted 200 of 3,525 data marks.** It skipped about one dot in eighteen to make the
+  lines look ragged, on a frame whose whole promise is one dot per word, which overstated the
+  five lifted occurrences against a denominator that was no longer the document. Every word is
+  drawn now and the frame throws if the count disagrees.
+- **`compute.py` read its page count from a gitignored file.** It measured
+  `out/<date>/tmp/sboe_pfl.pdf`, which is exactly the file `out/` throws away, so on the fresh
+  checkout this run's own handoff is written for it would have silently produced `None` and slide
+  3 would have divided by a null page count. The count is measured at fetch time into a committed
+  `sources/MANIFEST.json` now, and compute RAISES rather than emitting null.
+- **Slide 4 counted its own transcription.** Its eight lit slots came from a hand-typed array with
+  a placeholder that never read the claim, so an omitted or stale item would have rendered and
+  passed. `compute.py` parses both the three instruments and the eight evaluations out of c14's
+  own quote and raises if the quote stops having that shape.
+- **`tx-2026-0144` left a public webinar off the calendar.** The energy department's notice sets a
+  webinar on September 16th, before its October 9th deadline, and `key_dates` is what the
+  calendar, the next-action surface and the feeds read.
+
+**One finding was about judgement rather than fact, and it was right too.** `tx-2026-0142`'s title
+said Texas *writes* AI tools into a required course, which states what the adopted rule contains,
+while every supporting quote comes from an attachment headed *Text of Proposed New*. The title now
+describes the action, which is certain, and names its evidence. The status stays `decided` because
+the adoption itself is confirmed by the board's own release.
+
+---
+
 **The record is complete and gated ON THIS BRANCH. The deck did not ship.** This run stops on the degradation ladder's
 rung (d): record updated in full, no deck, post-mortem here and in the email.
 

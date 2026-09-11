@@ -1,4 +1,4 @@
-# Texas writes using AI tools into a required high school course, and tells the same student to appraise the algorithm
+# The board takes a required high school money course to final adoption, and the text it published names AI tools in three of its chapters
 
 The State Board of Education took the new Applied Personal Financial Literacy standards to second reading and final adoption. Its item for that is dated September 4th, 2026, and it publishes one attachment. That text tells a student to research career pathways using artificial intelligence tools. It tells the same student to explain how algorithm driven recommendations influence spending. It then asks that student to appraise automated investment platforms by analyzing their algorithmic limitations. Districts implement the course beginning with the school year that opens in 2027. The board found that the rule takes effect 20 days after filing with the Texas Register.
 
@@ -20,6 +20,7 @@ The State Board of Education took the new Applied Personal Financial Literacy st
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-11 · Admitted to the record. The second reading and final adoption item publishes one attachment and that text carries artificial intelligence tools, algorithm driven recommendations and automated investment platforms in three separate chapters. The rule as filed with the Texas Register has not been read, so whether that language survived the filing is unconfirmed.
+- 2026-09-11 · Corrected on the day it was admitted. The title had said Texas writes AI tools into a required course, which states what the adopted rule contains. What is established is the action and the text the item publishes, and the attachment heads itself as proposed text. The title now says so. The status still reads decided because the adoption itself is confirmed by the board's own release.
 
 ## Evidence
 

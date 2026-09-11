@@ -15,6 +15,7 @@ The Department of Energy published a request for information on September 9th, 2
 ## Dates
 
 - 2026-09-09 · comment opens: Request for information published
+- 2026-09-16 · hearing: Public meeting by webinar, which falls before the comment deadline
 - 2026-10-09 · comment closes: Written responses due
 
 ## How this decision moved
@@ -22,6 +23,7 @@ The Department of Energy published a request for information on September 9th, 2
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-11 · Admitted to the record. The window is open and dated, so a Texan who wants a say on how grid equipment and remote access get restricted has until October 9th to file. The notice itself never names Texas.
+- 2026-09-11 · The public webinar on September 16th is on the record's calendar now. It falls before the October 9th deadline and is the first thing a reader can attend. The calendar and the feeds read key dates rather than the access note.
 
 ## Evidence
 

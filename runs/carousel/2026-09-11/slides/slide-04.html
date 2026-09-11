@@ -90,6 +90,23 @@ const C = {
     "machine learning": 0
   },
   "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
   "doc_words": 3525,
   "footprint": {
     "artificial intelligence": 1,
@@ -139,16 +156,15 @@ const C = {
     3,
     4,
     5,
+    6,
     7,
     8,
     9,
     10
   ],
-  "n_knowledge": 9,
+  "n_knowledge": 10,
   "knowledge_highest": 10,
-  "knowledge_missing": [
-    6
-  ],
+  "knowledge_missing": [],
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -231,12 +247,13 @@ window.renderReady = new Promise(async (resolve) => {
 
   // THE EIGHT LIT SLOTS. The count comes from the clause's own list, split on its commas, so a
   // quote that stops carrying eight items raises here rather than drifting away from the frame.
-  const EVALS = (function(){
-    const q = C ? null : null;
-    // the clause names what the student evaluates, after the word "evaluate"
-    return ["income growth","employment trends","global competition","comparative advantage",
-            "technological change","creative destruction","required skills","possible employers"];
-  })();
+  // THE SLOT LIST IS COMPUTED, not transcribed. compute.py parses it out of c14's own quote and
+  // RAISES if the quote stops having that shape, so a frame cannot draw a count of its own
+  // typing. The first build hand-typed this array and counted the transcription, which is the
+  // defect a review bot named: an omitted or stale item would have rendered and passed.
+  const EVALS = C.evaluations.map(function(t){ return t.toUpperCase(); });
+  if (EVALS.length !== C.n_evaluations) throw new Error('slide-04: evaluation count disagrees');
+
   (function slots(){
     const N=EVALS.length, SW=104, GAP=14;
     const RUN=N*SW+(N-1)*GAP, X0=Math.round((1080-RUN)/2), Y=402, H=196;
