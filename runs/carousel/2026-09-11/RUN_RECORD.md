@@ -1,6 +1,6 @@
 # Run record — 2026-09-11
 
-## THE RUN DOES NOT MERGE, AND THE RECORD IS NOT LIVE
+## THE RUN MERGED, AND THE WALL IT STOPPED AT IS GONE
 
 **`ask_pack --self-test` goes red on this branch and the wall is real.** The core pack measures
 **421,427 characters against a ceiling of 420,000**. Measured on both sides of the diff:
@@ -59,6 +59,30 @@ branch grows the site from 700 pages to 705, and the suites running before `vide
 browser take measurably longer, the nav suite alone going from about 37 to about 49 seconds. A
 longer-lived browser process makes the late fixture likelier to be reclaimed. That is plausible
 and unproven, and a wrong explanation in a run record is worse than none.
+
+---
+
+## THE ASK PACK CEILING, AND THE ONE COMMIT THIS RUN STAMPED `human`
+
+**`MAX_CHARS` was not raised.** The core pack got the rungs `index_fit` has had since
+2026-09-09, and `scripts/site/ask_pack.py` is `human` lane, so the commit carries
+`Actor: human` on the `branch_also_allows` grant. `ownership.yaml` asks a run that uses it to say
+so here, so this is that.
+
+**Why a run took it.** The owner directed the fix twice, and the map's own note says the grant
+exists because a hardcoded refusal is one no map edit can answer with nobody watching. The run was
+blocked on a file it does not own, which is exactly the case the grant is written for.
+
+**The pack gets two rungs where the index gets three**, and the reason is a contract rather than
+taste. The worker cuts this field into one block per decision and asserts there are exactly as
+many blocks as decisions, which `workers/ask/test.js` runs from the other side. **A pack that
+drops a body breaks a worker deployed by hand, by pasting, while this file rebuilds itself every
+day.** So every decision keeps a block and the rung reduces what is INSIDE one. All 168 of the
+worker's assertions pass against the new pack.
+
+Today the pack measures 419,129 characters with one body reduced, and there is room for 1,090 more
+decisions. **The ceiling can still go red**, and the self-test proves it on the case no rung can
+give up: a record whose windows are all open reduces nothing and overflows at 1,851,922.
 
 ---
 
