@@ -27,6 +27,12 @@ try {
     await page.clock.install({time:new Date(state.checked_at)});
     await page.goto(url);
     await page.evaluate(()=>document.fonts.ready);
+    // A reduced-motion animation can still have a staggered delay. The mocked JS clock
+    // does not advance the compositor clock; finish finite entrance animations before
+    // measuring geometry so the test cannot compare two different entrance frames.
+    await page.evaluate(()=>document.getAnimations().forEach(animation=>{
+      if (animation.effect?.getComputedTiming().iterations !== Infinity) animation.finish();
+    }));
     const chip=page.locator('.news-chip');
     if (!state.selected) {
       assert.equal(await chip.count(),0); await page.close();continue;
@@ -42,8 +48,8 @@ try {
       return {width:r.width,height:r.height,right:r.right,inside:el.scrollWidth<=el.clientWidth+1,
               gap:h.top-r.bottom,overflow:document.documentElement.scrollWidth>innerWidth};
     });
-    assert.ok(sizes.inside && sizes.height>=44 && sizes.right<=width && !sizes.overflow,JSON.stringify({width,...sizes}));
-    assert.ok(sizes.gap>=15,JSON.stringify({width,...sizes}));
+    assert.ok(sizes.inside && sizes.height>=44 && sizes.right<=width && !sizes.overflow,JSON.stringify({viewport:width,...sizes}));
+    assert.ok(sizes.gap>=15,JSON.stringify({viewport:width,...sizes}));
     await chip.focus();
     assert.equal(await chip.evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
     await page.clock.fastForward(Date.parse(state.expires_at)-Date.parse(state.checked_at)+200);
