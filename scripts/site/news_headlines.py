@@ -178,14 +178,14 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
     rows = sorted(unique.values(), key=lambda a: a['url'])
     ranked = rank(rows, now)
     selected = ranked[0] if ranked else None
-    return {'schema_version': 1, 'checked_at': stamp(now), 'provider': 'GDELT and publisher RSS',
+    return {'_spec': 1, 'checked_at': stamp(now), 'provider': 'GDELT and publisher RSS',
             'feed_url': FEED, 'response_sha256': hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest(),
             'articles': rows, 'selected': selected,
             'expires_at': stamp(instant(selected['first_seen_at']) + MAX_AGE) if selected else None}
 
 
 def validate(data: dict) -> None:
-    if data.get('schema_version') != 1 or data.get('provider') != 'GDELT and publisher RSS':
+    if data.get('_spec') != 1 or data.get('provider') != 'GDELT and publisher RSS':
         raise ValueError('unknown news snapshot')
     now = instant(data['checked_at'])
     ranked = rank(data['articles'], now)

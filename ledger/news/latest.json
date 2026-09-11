@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "_spec": 1,
   "checked_at": "2026-09-11T23:29:44Z",
   "provider": "GDELT and publisher RSS",
   "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260910232829&enddatetime=20260911232829",
