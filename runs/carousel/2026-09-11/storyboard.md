@@ -717,14 +717,7 @@ verbatim:
 # c23 is still CITED on the frame and it is quoted in full in the first comment. What comes out is
 # only the promise that this frame prints it, which `verbatim_check` is right to hold the run to:
 # a declaration for a string nobody drew describes a frame the run did not make.
-acceptance:
-  - "the projected rectangle carries the release sentence reading exactly \"The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.\""
-  - "the beam's falloff ends within 60 design px below the last line of the sentence, so the three expectations below it are demonstrably unlit"
-  - "exactly six searched terms are listed with a count of zero each, and every count is read from computed.json release_hits"
-  - "the words buried, hidden, quietly, concealed and suppressed appear nowhere on the frame"
-  - "the projected rectangle is painted in troffer #CCF2E4 and is the highest median L* of any region in the nine frames"
-  - "the three expectations below the falloff are painted in wax #98CDB4 on a room lifted off black, and carry no glow, no outline and no plate"
-  # AMENDED AFTER THE FINAL RENDER, 2026-09-11. The item below asked for a median above 68 and
+  # AMENDED AFTER THE FINAL RENDER, 2026-09-11. The last acceptance item asked for a median above 68 and
   # measurements.json read 46.3 before the room was lifted off black and reads 50.5 after, so the item is rewritten to say what the frame measures rather
   # than what it was meant to. The bottom third of the frame carries the three expectations in
   # the room's own dark, and that dark is a third of the frame. The inversion held and the
@@ -732,6 +725,13 @@ acceptance:
   # AFTER ROUND 1 the grade carries a declared shadow lift of 0.014, 0.020, 0.028 beside the
   # bloom, because the deck's second law says no L* 8 in the room and the grade's toe was
   # crushing every dark on this frame under it whatever value it was painted at.
+acceptance:
+  - "the projected rectangle carries the release sentence reading exactly \"The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.\""
+  - "the beam's falloff ends within 60 design px below the last line of the sentence, so the three expectations below it are demonstrably unlit"
+  - "exactly six searched terms are listed with a count of zero each, and every count is read from computed.json release_hits"
+  - "the words buried, hidden, quietly, concealed and suppressed appear nowhere on the frame"
+  - "the projected rectangle is painted in troffer #CCF2E4 and is the highest median L* of any region in the nine frames"
+  - "the three expectations below the falloff are painted in wax #98CDB4 on a room lifted off black, and carry no glow, no outline and no plate"
   - "the frame's median L* was planned above 68 and measures 50.5 in measurements.json. NOT MET. The 6 to 7 swipe is still the deck's one inversion, from 18.3 into 50.5, and the miss is stated here rather than met"
 risks:
   - "TXPOST is a finish and never a rescue. The frame's value structure is built and reviewed at full contrast first, the pre-bloom PNG is kept beside the graded one, and the bloom strength is a number declared in this dossier rather than tuned until it looks right."
