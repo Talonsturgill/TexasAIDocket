@@ -1,0 +1,426 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root{--troffer:#CCF2E4;--block:#B0D8C2;--wax:#98CDB4;--floor:#5E8578;
+        --desk:#9C6B5A;--enamel:#12486C;--slate:#0E3347;}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--slate)}
+  body{position:relative;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .layer{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .grain{position:absolute;left:0;top:0;width:1080px;height:1350px;background-repeat:repeat;
+         mix-blend-mode:overlay;opacity:.085;pointer-events:none}
+  .kick{position:absolute;left:88px;top:88px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.09em;color:#CCF2E4}
+  .count{position:absolute;right:88px;top:88px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.09em;color:#CCF2E4}
+  /* THE HOOK IS DARK BECAUSE THE GROUND UNDER IT IS THE SKY. The first build set it in troffer
+     over a band measuring L* 90 and the gate read 1.3:1, which is not a near miss, it is
+     invisible. */
+  .hook{position:absolute;left:88px;top:214px;width:840px;font-family:Fraunces,serif;font-weight:700;
+        font-size:86px;line-height:1.04;color:#0E3347;margin:0;letter-spacing:-.016em}
+  /* THE THREE ROWS FIT THE LIT FACE. The first build gave the value column 682px for a 43
+     character line, the EFFECTIVE row wrapped, and CREDIT was pushed down onto the source line.
+     A figure a reader cannot read is not published. */
+  .dates{position:absolute;left:88px;top:1046px;width:912px}
+  .row{display:flex;align-items:baseline;gap:16px;margin-bottom:18px}
+  .rk{font-family:"JetBrains Mono",monospace;font-size:24px;letter-spacing:.10em;color:#1C4438;
+      width:186px;flex:0 0 186px}
+  .rv{font-family:"JetBrains Mono",monospace;font-size:26px;font-weight:600;color:#0A2B3A;
+      letter-spacing:.01em;white-space:nowrap}
+  .src{position:absolute;left:88px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+       letter-spacing:.07em;color:#A9D4C2}
+  .tx-site{position:absolute;right:88px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.07em;color:#A9D4C2}
+</style>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain" data-decorative="1"></div>
+<div class="layer">
+  <div class="kick">IMPLEMENTATION</div>
+  <div class="count">08 / 09</div>
+  <h1 class="hook" id="hook"></h1>
+  <div class="dates" id="dates"></div>
+  <div class="src">c3 c12 c13</div>
+  <div class="tx-site">texasaidocket.com</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "run": "2026-09-11",
+  "deck": 21,
+  "docket_item": "tx-2026-0142",
+  "credit_words": "one-half credit",
+  "effective_days": 20,
+  "school_year": "2027 to 2028",
+  "school_year_from": 2027,
+  "school_year_to": 2028,
+  "item_date_iso": "2026-09-04",
+  "item_date_long": "September 4th, 2026",
+  "item_date_short": "SEPTEMBER 4TH",
+  "house_bill": "27",
+  "legislature": "89",
+  "session_year": 2025,
+  "machine_expectations": [
+    "c14",
+    "c15",
+    "c16"
+  ],
+  "n_machine_expectations": 3,
+  "chapters": [
+    3,
+    4,
+    7
+  ],
+  "n_chapters": 3,
+  "ai_worded": [
+    "c14"
+  ],
+  "n_ai_worded": 1,
+  "machine_stems": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot-advisor"
+  ],
+  "doc_terms": {
+    "artificial intelligence": 1,
+    "artificial": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1,
+    "machine learning": 0
+  },
+  "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
+  "influences": [
+    "social media influencers",
+    "algorithm-driven recommendations",
+    "financial technology platforms",
+    "traditional advertising"
+  ],
+  "n_influences": 4,
+  "algo_influence": "algorithm-driven recommendations",
+  "analyses": [
+    "fee structures",
+    "investment strategies",
+    "algorithmic limitations",
+    "suitability for different investor profiles"
+  ],
+  "n_analyses": 4,
+  "robot_advisor": "robot-advisors",
+  "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
+  "doc_words": 3525,
+  "footprint": {
+    "artificial intelligence": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1
+  },
+  "footprint_terms": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot"
+  ],
+  "n_footprint_terms": 4,
+  "n_footprint_occurrences": 5,
+  "footprint_share_per_10k": 14.2,
+  "footprint_positions": [
+    {
+      "term": "artificial intelligence",
+      "word_index": 1331,
+      "fraction": 0.37759
+    },
+    {
+      "term": "algorithm",
+      "word_index": 1614,
+      "fraction": 0.45787
+    },
+    {
+      "term": "automated",
+      "word_index": 2675,
+      "fraction": 0.75887
+    },
+    {
+      "term": "robot",
+      "word_index": 2679,
+      "fraction": 0.76
+    },
+    {
+      "term": "algorithm",
+      "word_index": 2689,
+      "fraction": 0.76284
+    }
+  ],
+  "knowledge_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_knowledge": 10,
+  "knowledge_highest": 10,
+  "knowledge_missing": [],
+  "release_hits": {
+    "artificial": 0,
+    "algorithm": 0,
+    "automated": 0,
+    "machine learning": 0,
+    "technolog": 0,
+    "AI": 0
+  },
+  "n_release_hits": 0,
+  "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+  "release_summary_words": 18,
+  "and_more": "and more",
+  "canvas_w": 1080,
+  "canvas_h": 1350,
+  "margin": 80,
+  "content_w": 920,
+  "gutter": 28,
+  "card_w": 288,
+  "card_x": [
+    80,
+    396,
+    712
+  ],
+  "spine_top": 330,
+  "spine_bottom": 1140,
+  "spine_pitch": 90.0,
+  "spine_y": {
+    "1": 330.0,
+    "2": 420.0,
+    "3": 510.0,
+    "4": 600.0,
+    "5": 690.0,
+    "6": 780.0,
+    "7": 870.0,
+    "8": 960.0,
+    "9": 1050.0,
+    "10": 1140.0
+  },
+  "spine_marked": [
+    510.0,
+    600.0,
+    870.0
+  ]
+};
+/* @@END COMPUTED@@ */
+</script>
+<script>
+window.renderReady = new Promise(async (resolve) => {
+  await document.fonts.ready;
+  const SEED = 20260911 + 8;
+  TX.reseed(SEED);
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+
+  // THE DECK'S EYE LINE. Frames 8 and 9 both put a real horizontal on it, which is what turns a
+  // structural law into something a reader can check by scrolling back.
+  const HORIZON=742;
+  // THE SILL CARRIES THE DATES, so its lit face has to be deep enough to hold all three rows.
+  // The first build ran the third row off the face and into the return, and the gate measured
+  // 1.2:1 on it. A figure a reader cannot read is not published.
+  const SILL=1000;
+  const FACE=1240;          // where the lit face ends and the return begins
+
+  // ---- BEYOND THE GLASS: sky, then the bus loop, then the asphalt that does the work.
+  (function outside(){
+    const gs=cx.createLinearGradient(0,150,0,HORIZON);
+    gs.addColorStop(0,'rgba(176,216,194,0.98)');
+    gs.addColorStop(0.62,'rgba(200,232,216,0.99)');
+    gs.addColorStop(1,'rgba(224,246,236,1)');
+    cx.fillStyle=gs; cx.fillRect(0,0,1080,HORIZON);
+    // the far treeline sitting ON the horizon, so the eye line is a real edge and not an idea
+    cx.fillStyle='rgba(94,133,120,0.88)';
+    cx.beginPath(); cx.moveTo(0,HORIZON);
+    for(let x=0;x<=1080;x+=9){
+      const n=TX.fbm2(x/230,4.1,{octaves:3});
+      cx.lineTo(x,HORIZON-16-n*24);
+    }
+    cx.lineTo(1080,HORIZON); cx.closePath(); cx.fill();
+    // the asphalt
+    const ga=cx.createLinearGradient(0,HORIZON,0,SILL);
+    ga.addColorStop(0,'rgba(168,208,192,0.99)');
+    ga.addColorStop(0.45,'rgba(152,205,180,0.99)');
+    ga.addColorStop(1,'rgba(120,166,150,0.99)');
+    cx.fillStyle=ga; cx.fillRect(0,HORIZON,1080,SILL-HORIZON);
+    // THE BUS LOOP, AND THE REASON IT IS THERE. Shimmer is a horizontal displacement, so it is
+    // invisible on a surface that has no vertical edges to bend: the first build warped a smooth
+    // asphalt gradient and nothing moved. Three buses and a shelter standing ON the horizon give
+    // the warp something to act on, and they are what a school bus loop holds at 7:12 anyway.
+    (function loop(){
+      cx.fillStyle='rgba(64,100,92,0.94)';
+      [[92,140,44],[300,168,50],[560,126,40],[762,150,46]].forEach(function(b){
+        const x=b[0], w=b[1], h=b[2];
+        cx.fillRect(x,HORIZON-h,w,h);
+        cx.fillStyle='rgba(44,76,70,0.94)';
+        cx.fillRect(x,HORIZON-h,w,Math.round(h*0.34));
+        cx.fillStyle='rgba(64,100,92,0.94)';
+      });
+      // the shelter's posts, the thinnest verticals out there and the ones the heat bends most
+      cx.fillStyle='rgba(50,84,78,0.92)';
+      [960,1004,1048].forEach(function(x){ cx.fillRect(x,HORIZON-96,7,96); });
+      cx.fillRect(950,HORIZON-102,112,9);
+    })();
+    // the bus loop kerb, the frame's ONE warm and the only thing out there that is not surface
+    cx.fillStyle='rgba(156,107,90,0.92)'; cx.fillRect(0,HORIZON+58,1080,13);
+    cx.fillStyle='rgba(112,74,62,0.90)'; cx.fillRect(0,HORIZON+71,1080,7);
+    // lane paint, receding, which gives the asphalt a rate
+    for(let i=0;i<6;i++){
+      const y=HORIZON+104+i*26+i*i*4.2;
+      cx.fillStyle='rgba(226,248,238,'+(0.26+0.040*i)+')';
+      for(let k=0;k<4;k++) cx.fillRect(120+k*250+i*10, y, 92+i*16, 3+i*0.6);
+    }
+  })();
+
+  // ============================================================ THE HEAT SHIMMER
+  //
+  // THIS IS THE FRAME THAT CARRIES TEXAS WITHOUT A PLACE NAME. A school year that opens in the
+  // middle of August under a hundred degrees is a Texas fact, and shimmer is the one instrument
+  // in the library that says so without a county, a coordinate or a locator map.
+  //
+  // WARP THE FIELD, NEVER THE GLYPHS. The library's named failure is shimmer touching type, so
+  // this runs on the CANVAS only and every string on this frame is a DOM node in a separate
+  // stratum with no shared transform. The amplitude is measured and asserted below.
+  const AMP_CAP=6;
+  let ampMax=0;
+  (function shimmer(){
+    const top=HORIZON-150, bot=SILL;
+    const src=cx.getImageData(0,top*2,2160,(bot-top)*2);
+    const out=cx.createImageData(src.width,src.height);
+    for(let y=0;y<src.height;y++){
+      const yy=top+y/2;
+      // amplitude grows with height ABOVE the horizon, which is how rising air actually behaves
+      const h=Math.max(0,(HORIZON-yy))/150;
+      const grow=yy>HORIZON ? 0.34 : (0.34+0.66*h);
+      const amp=AMP_CAP*grow*(yy>HORIZON?1:1);
+      const n=TX.simplex2(yy/9.5, 3.7)*0.7 + TX.simplex2(yy/3.1, 11.3)*0.3;
+      const dx=Math.round(n*amp*2);          // device px, canvas is at 2x
+      if(Math.abs(dx)/2>ampMax) ampMax=Math.abs(dx)/2;
+      for(let x=0;x<src.width;x++){
+        const sxp=Math.min(src.width-1,Math.max(0,x+dx));
+        const si=(y*src.width+sxp)*4, di=(y*src.width+x)*4;
+        out.data[di]=src.data[si]; out.data[di+1]=src.data[si+1];
+        out.data[di+2]=src.data[si+2]; out.data[di+3]=src.data[si+3];
+      }
+    }
+    const t=cx.getTransform(); cx.setTransform(1,0,0,1,0,0);
+    cx.putImageData(out,0,top*2); cx.setTransform(t);
+  })();
+  if(ampMax>AMP_CAP) throw new Error('slide-08: shimmer amplitude '+ampMax+' exceeds the '+AMP_CAP+'px cap');
+  window.__shimmer={amp:ampMax, cap:AMP_CAP};
+
+  // ---- THE GLAZING. Frame, mullion and the room's own troffers reflected as a faint double,
+  // which is the second subject and what ties this frame back to slide 1 across the whole deck.
+  (function glazing(){
+    // the head is deep enough to carry the kicker and the counter inside the safe zone
+    cx.fillStyle='rgba(78,116,104,0.99)';
+    cx.fillRect(0,0,1080,150);                 // window head
+    cx.fillStyle='rgba(94,133,120,0.99)';
+    cx.fillRect(0,0,58,SILL); cx.fillRect(1022,0,58,SILL);
+    cx.fillStyle='rgba(94,133,120,0.99)'; cx.fillRect(526,150,26,SILL-150);
+    cx.strokeStyle='rgba(204,242,228,0.50)'; cx.lineWidth=2.2;
+    cx.beginPath(); cx.moveTo(0,151.5); cx.lineTo(1080,151.5); cx.stroke();
+    cx.beginPath(); cx.moveTo(527.5,150); cx.lineTo(527.5,SILL); cx.stroke();
+    // THE REFLECTED FIXTURE DOUBLE, off-axis so it reads as reflection and not as a light, and on
+    // the RIGHT half because on the left it sat behind the headline and read as a pale box
+    // somebody had left under the type.
+    cx.save(); cx.globalAlpha=0.26;
+    [[600,232],[600,326]].forEach(function(p){
+      const g=cx.createLinearGradient(0,p[1],0,p[1]+48);
+      g.addColorStop(0,'rgba(230,252,244,0.95)');
+      g.addColorStop(1,'rgba(204,242,228,0.10)');
+      cx.fillStyle=g; cx.fillRect(p[0],p[1],330,48);
+    });
+    cx.restore();
+  })();
+
+  // ---- THE SILL, modelled across its depth. The window stop stands proud with a highlight on
+  // its top arris, and the sill's return falls to slate underneath.
+  (function sill(){
+    // the window stop, standing proud with a highlight on its top arris
+    cx.fillStyle='rgba(126,172,152,0.99)'; cx.fillRect(0,SILL,1080,18);
+    cx.strokeStyle='rgba(240,255,248,0.88)'; cx.lineWidth=3;
+    cx.beginPath(); cx.moveTo(0,SILL+1.5); cx.lineTo(1080,SILL+1.5); cx.stroke();
+    // the lit face, deep enough to carry the dates and even enough to read them on
+    const g=cx.createLinearGradient(0,SILL+18,0,FACE);
+    g.addColorStop(0,'rgba(200,234,218,0.995)');
+    g.addColorStop(0.52,'rgba(188,226,208,0.995)');
+    g.addColorStop(1,'rgba(174,214,196,0.995)');
+    cx.fillStyle=g; cx.fillRect(0,SILL+18,1080,FACE-SILL-18);
+    // THE RETURN, and the sill's own cast shadow on the wall directly beneath it. The first
+    // build declared a contact across the return's gradient, where the upper rect was LIGHTER
+    // than the lower one, so the measured delta came back negative and the sill floated.
+    cx.fillStyle='rgba(8,30,42,0.96)'; cx.fillRect(0,FACE,1080,26);
+    const gs=cx.createLinearGradient(0,FACE+26,0,FACE+74);
+    gs.addColorStop(0,'rgba(8,30,42,0.90)'); gs.addColorStop(1,'rgba(8,30,42,0)');
+    cx.fillStyle=gs; cx.fillRect(0,FACE+26,1080,48);
+    // the wall below, lit by the room's own troffers, which is the ground the shadow reads on
+    const gw=cx.createLinearGradient(0,FACE+26,0,1350);
+    gw.addColorStop(0,'rgba(70,116,104,0)');
+    gw.addColorStop(0.62,'rgba(96,146,128,0.52)');
+    gw.addColorStop(1,'rgba(120,170,150,0.66)');
+    cx.fillStyle=gw; cx.fillRect(0,FACE+26,1080,1350-FACE-26);
+  })();
+
+  // ============================================================ THE DATES, ALL COMPUTED
+  //
+  // Every figure here is read from computed.json and none is typed on this frame. The year renders
+  // in the house's own form rather than the document's hyphenated one, which is why the frame reads
+  // C.school_year instead of carrying the quote.
+  document.getElementById('hook').textContent =
+    'Districts teach it from the school year that opens in ' + C.school_year_from + '.';
+  const rows=[
+    ['IMPLEMENTED',   C.school_year + ' school year'],
+    ['EFFECTIVE',     C.effective_days + ' days after filing with the Texas Register'],
+    ['CREDIT',        C.credit_words]
+  ];
+  const box=document.getElementById('dates');
+  rows.forEach(function(r){
+    const d=document.createElement('div'); d.className='row';
+    const k=document.createElement('div'); k.className='rk'; k.textContent=r[0];
+    const v=document.createElement('div'); v.className='rv'; v.textContent=r[1];
+    d.appendChild(k); d.appendChild(v); box.appendChild(d);
+  });
+  // The document's own hyphenated year is a quote, and this frame is not quoting.
+  if(document.body.innerText.indexOf(C.school_year_from+'-'+C.school_year_to)>=0)
+    throw new Error('slide-08: the hyphenated school year reached a frame that is not quoting it');
+
+  document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
+  TX.fitText(document.getElementById('hook'),{min:58,max:92,maxLines:3});
+
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"the warped asphalt band reads differently from the unwarped sill below it",
+     reads:"differ", a:[[300,760,480,200]], b:[[300,1000,480,120]]}
+  ]));
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the sill against the wall below it", shadow:[[300,FACE+4,300,18]],
+     ground:[[300,1320,300,18]]}
+  ]));
+  resolve(true);
+});
+</script>

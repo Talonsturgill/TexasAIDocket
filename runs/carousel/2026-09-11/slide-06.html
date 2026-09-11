@@ -1,0 +1,557 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root{--troffer:#CCF2E4;--block:#B0D8C2;--wax:#98CDB4;--floor:#5E8578;
+        --desk:#9C6B5A;--enamel:#12486C;--slate:#0E3347;}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#081F2C}
+  body{position:relative;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .layer{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  /* THE CLAUSE SITS ABOVE THE FURNITURE LAYER. Both are absolutely positioned and .layer comes
+     later in the document, so with no z-index it painted over all six lines of the clause and the
+     gate reported every one of them as covered by an opaque DOM block. */
+  svg.type{position:absolute;left:0;top:0;width:1080px;height:1350px;overflow:visible;z-index:2}
+  .layer{z-index:1}
+  .grain{position:absolute;left:0;top:0;width:1080px;height:1350px;background-repeat:repeat;
+         mix-blend-mode:overlay;opacity:.085;pointer-events:none}
+  .kick{position:absolute;left:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.09em;color:#8FC6B0;line-height:1.5}
+  .kick b{display:block;font-weight:500;color:#6FA891;font-size:24px}
+  .count{position:absolute;right:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.09em;color:#8FC6B0}
+  .hook{position:absolute;left:80px;top:158px;width:840px;font-family:Fraunces,serif;font-weight:700;
+        font-size:90px;line-height:1.04;color:var(--block);margin:0;letter-spacing:-.016em}
+  .verb{position:absolute;left:80px;top:494px;font-family:"JetBrains Mono",monospace;font-size:25px;
+        letter-spacing:.14em;color:#6FA891}
+  .tb{position:absolute;font-family:"JetBrains Mono",monospace;letter-spacing:.10em;color:#7FB9A4}
+  .tb1{right:92px;top:1084px;font-size:24px;text-align:right;color:#C6E6D6}
+  .tb2{right:92px;top:1128px;font-size:24px;text-align:right}
+  .tb3{right:92px;top:1164px;font-size:24px;text-align:right}
+  .src{position:absolute;left:88px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+       letter-spacing:.07em;color:#CDE9DC}
+  .tx-site{position:absolute;right:92px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.07em;color:#CDE9DC}
+</style>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain" data-decorative="1"></div>
+<svg class="type" id="clause" viewBox="0 0 1080 1350"></svg>
+<div class="layer">
+  <div class="kick">KNOWLEDGE STATEMENT (7)<b>SAVING AND INVESTING</b></div>
+  <div class="count">06 / 09</div>
+  <h1 class="hook" id="hook">Chapter seven says find where it stops working.</h1>
+  <div class="verb">THE VERB IS APPRAISE</div>
+  <div class="tb tb2">SECOND READING AND FINAL ADOPTION</div>
+  <div class="src">c16 c21</div>
+  <div class="tx-site">texasaidocket.com</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script src="@@ASSETS@@/js/txengrave.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "run": "2026-09-11",
+  "deck": 21,
+  "docket_item": "tx-2026-0142",
+  "credit_words": "one-half credit",
+  "effective_days": 20,
+  "school_year": "2027 to 2028",
+  "school_year_from": 2027,
+  "school_year_to": 2028,
+  "item_date_iso": "2026-09-04",
+  "item_date_long": "September 4th, 2026",
+  "item_date_short": "SEPTEMBER 4TH",
+  "house_bill": "27",
+  "legislature": "89",
+  "session_year": 2025,
+  "machine_expectations": [
+    "c14",
+    "c15",
+    "c16"
+  ],
+  "n_machine_expectations": 3,
+  "chapters": [
+    3,
+    4,
+    7
+  ],
+  "n_chapters": 3,
+  "ai_worded": [
+    "c14"
+  ],
+  "n_ai_worded": 1,
+  "machine_stems": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot-advisor"
+  ],
+  "doc_terms": {
+    "artificial intelligence": 1,
+    "artificial": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1,
+    "machine learning": 0
+  },
+  "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
+  "influences": [
+    "social media influencers",
+    "algorithm-driven recommendations",
+    "financial technology platforms",
+    "traditional advertising"
+  ],
+  "n_influences": 4,
+  "algo_influence": "algorithm-driven recommendations",
+  "analyses": [
+    "fee structures",
+    "investment strategies",
+    "algorithmic limitations",
+    "suitability for different investor profiles"
+  ],
+  "n_analyses": 4,
+  "robot_advisor": "robot-advisors",
+  "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
+  "doc_words": 3525,
+  "footprint": {
+    "artificial intelligence": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1
+  },
+  "footprint_terms": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot"
+  ],
+  "n_footprint_terms": 4,
+  "n_footprint_occurrences": 5,
+  "footprint_share_per_10k": 14.2,
+  "footprint_positions": [
+    {
+      "term": "artificial intelligence",
+      "word_index": 1331,
+      "fraction": 0.37759
+    },
+    {
+      "term": "algorithm",
+      "word_index": 1614,
+      "fraction": 0.45787
+    },
+    {
+      "term": "automated",
+      "word_index": 2675,
+      "fraction": 0.75887
+    },
+    {
+      "term": "robot",
+      "word_index": 2679,
+      "fraction": 0.76
+    },
+    {
+      "term": "algorithm",
+      "word_index": 2689,
+      "fraction": 0.76284
+    }
+  ],
+  "knowledge_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_knowledge": 10,
+  "knowledge_highest": 10,
+  "knowledge_missing": [],
+  "release_hits": {
+    "artificial": 0,
+    "algorithm": 0,
+    "automated": 0,
+    "machine learning": 0,
+    "technolog": 0,
+    "AI": 0
+  },
+  "n_release_hits": 0,
+  "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+  "release_summary_words": 18,
+  "and_more": "and more",
+  "canvas_w": 1080,
+  "canvas_h": 1350,
+  "margin": 80,
+  "content_w": 920,
+  "gutter": 28,
+  "card_w": 288,
+  "card_x": [
+    80,
+    396,
+    712
+  ],
+  "spine_top": 330,
+  "spine_bottom": 1140,
+  "spine_pitch": 90.0,
+  "spine_y": {
+    "1": 330.0,
+    "2": 420.0,
+    "3": 510.0,
+    "4": 600.0,
+    "5": 690.0,
+    "6": 780.0,
+    "7": 870.0,
+    "8": 960.0,
+    "9": 1050.0,
+    "10": 1140.0
+  },
+  "spine_marked": [
+    510.0,
+    600.0,
+    870.0
+  ]
+};
+/* @@END COMPUTED@@ */
+</script>
+<script>
+window.renderReady = new Promise(async (resolve) => {
+  await document.fonts.ready;
+  const SEED = 20260911 + 6;
+  TX.reseed(SEED);
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+  const SVGNS='http://www.w3.org/2000/svg';
+
+  // ---- THE PAINTED CMU WALL, with the FRONT BANK OFF. The only light in the frame is the back
+  // bank's spill entering from the upper right, which is a real classroom state rather than a
+  // lighting effect: it is what a teacher does before a projector comes on, and it is what sets
+  // up the swipe into slide 7.
+  (function wall(){
+    cx.fillStyle='#0B2635'; cx.fillRect(0,0,1080,1350);
+    const g=cx.createRadialGradient(980,-80,40,980,-80,1180);
+    g.addColorStop(0,'rgba(176,216,194,0.62)');
+    g.addColorStop(0.34,'rgba(140,186,168,0.26)');
+    g.addColorStop(0.70,'rgba(30,72,96,0.10)');
+    g.addColorStop(1,'rgba(8,31,44,0)');
+    cx.fillStyle=g; cx.fillRect(0,0,1080,1350);
+    // the block coursing, running bond, only as deep as the spill reaches
+    const BW=214,BH=104; cx.lineWidth=1.3;
+    for(let row=0,y=-40;y<1160;row++,y+=BH){
+      const off=(row%2)?BW/2:0;
+      const lit=Math.max(0,1-Math.hypot(900-540,y+40)/1150);
+      cx.strokeStyle='rgba(6,22,32,'+(0.30+0.26*lit)+')';
+      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+      cx.strokeStyle='rgba(176,216,194,'+(0.05+0.13*lit)+')';
+      cx.beginPath(); cx.moveTo(0,y+1.6); cx.lineTo(1080,y+1.6); cx.stroke();
+      for(let x=-BW+off;x<1160;x+=BW){
+        const l2=Math.max(0,1-Math.hypot(900-x,y+40)/1150);
+        cx.strokeStyle='rgba(6,22,32,'+(0.28+0.24*l2)+')';
+        cx.beginPath(); cx.moveTo(x,y); cx.lineTo(x,y+BH); cx.stroke();
+      }
+    }
+  })();
+
+  // ============================================================ THE CLAUSE, SET AND MEASURED
+  //
+  // THE SENTENCE IS CARRIED, NOT RETYPED. compute.py hands over c16's own clause with only the
+  // trailing code list dropped, and this wraps it. A hand-typed copy on the frame would be a
+  // second original that no gate compares against the first, and the line breaks would silently
+  // decide which of the four analysed terms survive whole.
+  const svg=document.getElementById('clause');
+  const CLAUSE=C.appraise_clause;
+  if(CLAUSE.indexOf(C.robot_advisor)<0) throw new Error('slide-06: the clause lost '+C.robot_advisor);
+  if(CLAUSE.indexOf('robo-advisor')>=0 && CLAUSE.indexOf('robot-advisor')<0)
+    throw new Error('slide-06: the frame is about to print robo-advisors, which is not what the document prints');
+
+  // THE LINE HEIGHT CLEARS THE PLATE HEIGHT. At 47 the plates overlapped by 2px and each one
+  // painted an opaque strip across the descenders of the line above it, which the gate read as
+  // six labels painted over. A plate is padding plus a laid-out line, so the leading has to be
+  // larger than both together rather than larger than the type alone.
+  const FS=33, LH=58, MAXW=792, X0=126, Y0=584;
+
+  // THE ITALIC FACE IS LOADED BEFORE ANYTHING IS MEASURED. `document.fonts.ready` at the top of
+  // this script resolves before this clause exists, so it says nothing about a face this frame
+  // had not asked for yet. Everything here was being measured against a synthesised oblique and
+  // then relaid in the real one, which widened every line by about 50px after the plates were
+  // sized. Three rounds of plate arithmetic chased that and none of them could have fixed it.
+  await document.fonts.load('italic 500 ' + 33 + 'px Manrope');
+  await document.fonts.load('italic 800 ' + 33 + 'px Manrope');
+  await document.fonts.ready;
+
+  // measure with a throwaway <text> in the same face, so the wrap is the SHIPPED metric
+  const probe=document.createElementNS(SVGNS,'text');
+  probe.setAttribute('x',-9999); probe.setAttribute('y',-9999);
+  probe.setAttribute('font-family','Manrope,sans-serif');
+  probe.setAttribute('font-size',FS); probe.setAttribute('font-style','italic');
+  probe.setAttribute('font-weight','500');
+  svg.appendChild(probe);
+  function w(s){ probe.textContent=s; return probe.getComputedTextLength(); }
+
+  // THE FOUR ANALYSED THINGS ARE THE ONLY EMPHASIS, and each one has to survive the wrap WHOLE.
+  // The first build wrapped on spaces and split "suitability for different investor profiles"
+  // across two lines, which its own check caught: three of four terms lit and the fourth went
+  // dark. So the clause is tokenised with each term as ONE ATOM before anything is measured, and
+  // a line break can no longer land inside a term.
+  const TERMS=C.analyses;
+  if(TERMS.length!==C.n_analyses) throw new Error('slide-06: analysed-thing count disagrees');
+
+  const QUOTED='"'+CLAUSE+'"';
+  const atoms=[];
+  (function tokenise(){
+    let rest=QUOTED, guard=0;
+    function words(s){
+      s.split(/\s+/).forEach(function(t){ if(t) atoms.push({t:t, lit:false}); });
+    }
+    while(rest.length && guard++<400){
+      let best=null, bi=Infinity;
+      for(const term of TERMS){ const k=rest.indexOf(term); if(k>=0 && k<bi){bi=k;best=term;} }
+      if(best===null){ words(rest); break; }
+      const head=rest.slice(0,bi);
+      // whatever trails the head without a space belongs to the term's own atom
+      const m=head.match(/(\S*)$/);
+      const glue=m?m[1]:'';
+      words(head.slice(0,head.length-glue.length));
+      atoms.push({t:glue+best, lit:true, term:best});
+      rest=rest.slice(bi+best.length);
+      // and whatever follows without a space stays with it
+      const m2=rest.match(/^(\S*)/);
+      if(m2 && m2[1]){ atoms[atoms.length-1].t+=m2[1]; rest=rest.slice(m2[1].length); }
+    }
+  })();
+  if(atoms.filter(function(a){return a.lit;}).length!==TERMS.length)
+    throw new Error('slide-06: tokenising found '+atoms.filter(function(a){return a.lit;}).length+
+                    ' of '+TERMS.length+' analysed terms');
+
+  const lines=[]; let cur=[];
+  function lineText(ls){ return ls.map(function(a){return a.t;}).join(' '); }
+  for(const a of atoms){
+    const trial=cur.concat([a]);
+    if(cur.length && w(lineText(trial))>MAXW){ lines.push(cur); cur=[a]; } else cur=trial;
+  }
+  if(cur.length) lines.push(cur);
+  // no atom may be wider than the measure, or the wrap silently overflows instead of breaking
+  for(const a of atoms) if(w(a.t)>MAXW)
+    throw new Error('slide-06: the atom "'+a.t+'" is wider than the measure');
+  probe.remove();
+
+  // Each line is set from its own atoms, so a lit term is one tspan and can never straddle a
+  // break. The count is re-asserted on what actually reached the page.
+  let lit=0;
+  const textEls=[];
+  lines.forEach(function(ln,i){
+    const t=document.createElementNS(SVGNS,'text');
+    t.setAttribute('x',X0); t.setAttribute('y',Y0+i*LH);
+    t.setAttribute('font-family','Manrope,sans-serif');
+    t.setAttribute('font-size',FS); t.setAttribute('font-style','italic');
+    t.setAttribute('font-weight','500'); t.setAttribute('fill','#CCF2E4');
+    ln.forEach(function(a,j){
+      const lead=(j?' ':'');
+      if(a.lit){
+        if(lead) t.appendChild(document.createTextNode(lead));
+        // THE EMPHASIS IS WEIGHT, NOT VALUE. Setting the four terms in white against a clause set
+        // in troffer put two bright runs inside otherwise even lines, and the gate read the ring
+        // around each of them as art crossing the letterforms at 37 and 40 percent. Weight 800
+        // against 500 is unmistakable at feed width and leaves the line one even value.
+        const sp=document.createElementNS(SVGNS,'tspan');
+        sp.setAttribute('font-weight','800');
+        sp.textContent=a.t; t.appendChild(sp); lit++;
+      }else{
+        t.appendChild(document.createTextNode(lead+a.t));
+      }
+    });
+    svg.appendChild(t); textEls.push(t);
+  });
+  if(lit!==TERMS.length)
+    throw new Error('slide-06: lit '+lit+' of '+TERMS.length+' analysed terms');
+
+  // THE PLATE IS MEASURED, NEVER TYPED. Every rect behind the clause comes from the laid-out box
+  // of the line it backs, so there is no plate width in this file to drift from the type.
+  //
+  // ONE MEASURE FOR ALL SIX, taken from the widest line that ACTUALLY LAID OUT rather than from
+  // the width the wrap aimed at. The first build plated each line to its own box and every one of
+  // the six still spilled to the right, because the emphasised terms set at weight 800 while the
+  // wrap was measured at 500. So the plates are built by TX.svgPlate from the laid-out text, then
+  // squared off to the widest line's real box, which fixes the spill and gives the knocked-out
+  // block one left edge instead of six ragged ones. Nothing here is a typed width.
+  // THE PLATE IS SOLID, at alpha 1. At 0.955 the block coursing behind it bled through and the
+  // gate read 40 percent of the ring around one line as art crossing the letterforms. The dossier
+  // asks for a clause knocked out of a SOLID plate, so this is the drawing agreeing with the plan
+  // rather than a value tuned until a check went quiet.
+  const plates=TX.svgPlateAll(textEls,{padX:[26,26],padY:[12,14],fill:'rgb(8,28,40)'});
+
+  // ALL SIX PLATES SHARE ONE MEASURE, taken from the widest line's CLIENT BOX, which is the
+  // metric the gate reads containment with. One edge rather than six ragged ones is also what
+  // keeps the short lines plated: the gate samples a ring around each label, and a plate cut to a
+  // short line's own width leaves that ring sitting on the engraved wall.
+  const PADL=26, PADR=30;
+  let left=1e9, right=0;
+  textEls.forEach(function(t){
+    const b=t.getBoundingClientRect();
+    left=Math.min(left,b.left); right=Math.max(right,b.right);
+  });
+  plates.forEach(function(r){
+    r.setAttribute('x',(left-PADL).toFixed(2));
+    r.setAttribute('width',(right-left+PADL+PADR).toFixed(2));
+  });
+  // and the containment is re-proved on the boxes that shipped, not on the ones that were planned
+  textEls.forEach(function(t,i){
+    const b=t.getBoundingClientRect(), r=plates[i];
+    const px=+r.getAttribute('x'), pw=+r.getAttribute('width');
+    if(b.left<px-0.5 || b.right>px+pw+0.5)
+      throw new Error('slide-06: line '+i+' is not contained by its own plate');
+  });
+  const box=plates.reduce(function(a,r){
+    const x=+r.getAttribute('x'), y=+r.getAttribute('y');
+    const rw=+r.getAttribute('width'), rh=+r.getAttribute('height');
+    return {x0:Math.min(a.x0,x), y0:Math.min(a.y0,y),
+            x1:Math.max(a.x1,x+rw), y1:Math.max(a.y1,y+rh)};
+  },{x0:1e9,y0:1e9,x1:-1e9,y1:-1e9});
+  window.__plate=box;
+
+  // ============================================================ THE ENGRAVED WALL
+  //
+  // ENGRAVE THE GROUND, NEVER THE MESSAGE. The library's named failure is line density fighting
+  // the type, so every glyph box on this frame is RESERVED with a margin well past the dossier's
+  // 120 design px before a single line is laid.
+  const KEEP=132;
+  function boxOf(el){
+    const r=el.getBoundingClientRect();
+    return [r.left-KEEP, r.top-KEEP, r.width+KEEP*2, r.height+KEEP*2];
+  }
+  const reserved=[];
+  document.querySelectorAll('.kick,.count,.hook,.verb,.tb,.src,.site').forEach(function(el){
+    reserved.push(boxOf(el));
+  });
+  reserved.push([box.x0-KEEP, box.y0-KEEP, (box.x1-box.x0)+KEEP*2, (box.y1-box.y0)+KEEP*2]);
+
+  const eng=TXENGRAVE.create({seed:SEED, light:{azDeg:38, elDeg:30}});
+  eng.reserve(reserved);
+  eng.surface(cx,{
+    region:[0,0,1080,1350],
+    // the form is the wall's own shallow relief, so the lay bends around the block coursing
+    form:function(x,y){ return TX.fbm2(x/420,y/420,{octaves:3})*0.6; },
+    // tone follows the back bank's spill: engraved where the wall is dark, open where it is lit
+    tone:function(x,y){
+      const d=Math.hypot(980-x,-80-y)/1180;
+      return Math.max(0.04,Math.min(0.96,d));
+    },
+    budget:{main:7.4, cross:13.0, dots:true},
+    alpha:0.46, feather:24,
+    inkLo:'#0A2231', inkHi:'#6EA890', wMax:2.6
+  });
+  window.__engrave=eng.stats;
+
+  // ---- THE FLOOR BOUNCE. A dark room is not an empty one: the VCT under the front bank throws a
+  // weak return back onto the lower wall, and without it the bottom third of this frame carried
+  // 15 percent of its own craft density and no contact could read against it, because a shadow
+  // needs a lit ground to be subtracted from. Light the ground first, then cast.
+  (function bounce(){
+    const g=cx.createLinearGradient(0,1010,0,1350);
+    g.addColorStop(0,'rgba(96,146,128,0)');
+    g.addColorStop(0.45,'rgba(96,146,128,0.20)');
+    g.addColorStop(1,'rgba(126,176,152,0.34)');
+    cx.fillStyle=g; cx.fillRect(0,1010,1080,340);
+  })();
+
+  // ---- THE MARKER TRAY, bottom third, in modelled section. Its rolled lip catches the spill and
+  // its underside throws the hard shadow line onto the lit block beneath.
+  const TRAY_Y=1024;
+  (function tray(){
+    const Y=TRAY_Y;
+    TXCARVE.contactShadow(cx,{x:540,y:Y+34,w:460,color:'#03101A',
+                              dirDeg:90,tightAlpha:0.62,wideAlpha:0.26,tightBlur:5,wideBlur:30});
+    const g=cx.createLinearGradient(0,Y,0,Y+22);
+    g.addColorStop(0,'rgba(176,216,194,0.97)');
+    g.addColorStop(0.42,'rgba(110,158,140,0.96)');
+    g.addColorStop(1,'rgba(20,52,68,0.96)');
+    cx.fillStyle=g; cx.fillRect(0,Y,1080,22);
+    cx.strokeStyle='rgba(222,248,236,0.72)'; cx.lineWidth=2.4;
+    cx.beginPath(); cx.moveTo(0,Y+1.3); cx.lineTo(1080,Y+1.3); cx.stroke();
+    // the hard underside line, which is the only true black in the frame
+    cx.fillStyle='rgba(3,12,19,0.96)'; cx.fillRect(0,Y+22,1080,10);
+    const gu=cx.createLinearGradient(0,Y+32,0,Y+84);
+    gu.addColorStop(0,'rgba(5,20,30,0.95)'); gu.addColorStop(1,'rgba(5,20,30,0)');
+    cx.fillStyle=gu; cx.fillRect(0,Y+32,1080,52);
+  })();
+
+  // ---- THE VCT ITSELF, entering at the bottom of the frame. It is what the bounce comes from,
+  // and it gives the bottom third a rate rather than leaving it a flat dark band.
+  (function vct(){
+    const FY=1236;
+    const g=cx.createLinearGradient(0,FY,0,1350);
+    g.addColorStop(0,'rgba(52,92,84,0.96)');
+    g.addColorStop(1,'rgba(96,142,126,0.96)');
+    cx.fillStyle=g; cx.fillRect(0,FY,1080,1350-FY);
+    cx.fillStyle='rgba(3,12,19,0.72)'; cx.fillRect(0,FY-5,1080,6);
+    cx.save(); cx.beginPath(); cx.rect(0,FY,1080,1350-FY); cx.clip();
+    for(let x=-420;x<1560;x+=118){
+      cx.strokeStyle='rgba(6,24,34,0.28)'; cx.lineWidth=1.5;
+      cx.beginPath(); cx.moveTo(540+(x-540)*0.34,FY); cx.lineTo(x,1350); cx.stroke();
+    }
+    for(let i=1;i<5;i++){
+      const y=FY+Math.pow(i/5,1.7)*(1350-FY);
+      cx.strokeStyle='rgba(6,24,34,0.22)'; cx.lineWidth=1.4;
+      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+    }
+    cx.restore();
+  })();
+
+  // ---- THE NEATLINE AND TITLE BLOCK. The survey register the doctrine names, and the reason the
+  // frame reads as a working document rather than a poster. Rules only, no box around the type.
+  // THE NEATLINE STOPS SHORT OF THE FURNITURE. The first build ran its inner rule at y 1297.5 and
+  // straight through the site line, which the gate reads as a strikethrough at feed width.
+  (function neatline(){
+    cx.strokeStyle='rgba(126,176,158,0.60)'; cx.lineWidth=1.6;
+    cx.strokeRect(44.5,44.5,991,1174);
+    cx.strokeStyle='rgba(126,176,158,0.34)'; cx.lineWidth=1;
+    cx.strokeRect(52.5,52.5,975,1158);
+    // the title block's own rules, sitting under the tray's shadow on the right
+    cx.strokeStyle='rgba(126,176,158,0.52)'; cx.lineWidth=1.4;
+    // THE LEFT RULE CLEARS THE LONGEST ROW. At x 596 it ran straight through "SECOND READING AND
+    // FINAL ADOPTION", which is a strikethrough whatever it is a drawing of.
+    cx.beginPath(); cx.moveTo(486,1074); cx.lineTo(1036,1074); cx.stroke();
+    cx.beginPath(); cx.moveTo(486,1074); cx.lineTo(486,1198); cx.stroke();
+    cx.beginPath(); cx.moveTo(486,1198); cx.lineTo(1036,1198); cx.stroke();
+    cx.strokeStyle='rgba(126,176,158,0.24)'; cx.lineWidth=1;
+    cx.beginPath(); cx.moveTo(486,1116); cx.lineTo(1036,1116); cx.stroke();
+    cx.beginPath(); cx.moveTo(486,1156); cx.lineTo(1036,1156); cx.stroke();
+  })();
+
+  document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
+  TX.fitText(document.getElementById('hook'),{min:58,max:94,maxLines:3});
+
+  // THE PLATE READS DIFFERENTLY FROM THE ENGRAVED WALL BESIDE IT, asserted on the shared rect.
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"the clause plate reads differently from the engraved wall beside it",
+     reads:"differ", a:[[300,560,480,300]], b:[[40,180,240,160]]}
+  ]));
+  // The shadow rect sits in the tray's hard undershadow and the ground rect on the block the
+  // floor bounce lights, which is the pair the first build did not have anywhere on the frame.
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the marker tray against the block", shadow:[[220,TRAY_Y+24,240,16]],
+     ground:[[220,1186,240,16]]}
+  ]));
+  resolve(true);
+});
+</script>

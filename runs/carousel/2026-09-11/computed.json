@@ -61,6 +61,23 @@
   "possible employers"
  ],
  "n_evaluations": 8,
+ "influences": [
+  "social media influencers",
+  "algorithm-driven recommendations",
+  "financial technology platforms",
+  "traditional advertising"
+ ],
+ "n_influences": 4,
+ "algo_influence": "algorithm-driven recommendations",
+ "analyses": [
+  "fee structures",
+  "investment strategies",
+  "algorithmic limitations",
+  "suitability for different investor profiles"
+ ],
+ "n_analyses": 4,
+ "robot_advisor": "robot-advisors",
+ "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
  "doc_words": 3525,
  "footprint": {
   "artificial intelligence": 1,
@@ -128,6 +145,7 @@
   "AI": 0
  },
  "n_release_hits": 0,
+ "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
  "release_summary_words": 18,
  "and_more": "and more",
  "canvas_w": 1080,

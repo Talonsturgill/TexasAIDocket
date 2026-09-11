@@ -1,0 +1,379 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root{--troffer:#CCF2E4;--block:#B0D8C2;--wax:#98CDB4;--floor:#5E8578;
+        --desk:#9C6B5A;--enamel:#12486C;--slate:#0E3347;}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--slate)}
+  body{position:relative;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .layer{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .grain{position:absolute;left:0;top:0;width:1080px;height:1350px;background-repeat:repeat;
+         mix-blend-mode:overlay;opacity:.085;pointer-events:none}
+  .kick{position:absolute;left:80px;top:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.09em;color:#8FC6B0;line-height:1.55}
+  .kick b{display:block;font-weight:500;color:#6FA891;font-size:24px}
+  .count{position:absolute;right:80px;top:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.09em;color:#8FC6B0}
+  .cite{position:absolute;left:80px;top:236px;width:900px;font-family:"JetBrains Mono",monospace;
+        font-size:25px;line-height:1.62;letter-spacing:.03em;color:#7FB9A4}
+  .cite b{color:#CCF2E4;font-weight:600}
+  .hook{position:absolute;left:80px;top:452px;width:880px;font-family:Fraunces,serif;font-weight:700;
+        font-size:88px;line-height:1.04;color:#CCF2E4;margin:0;letter-spacing:-.016em}
+  .closing{position:absolute;left:80px;top:806px;width:884px;font-size:34px;line-height:1.38;
+           color:#0E3347;margin:0;font-weight:500}
+  .nslab{position:absolute;left:80px;top:1042px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.14em;color:#1E4C42}
+  .next{position:absolute;left:80px;top:1086px;width:884px;font-size:31px;line-height:1.34;
+        color:#0E3347;margin:0;font-weight:600}
+  .tb{position:absolute;right:80px;bottom:96px;text-align:right;font-family:"JetBrains Mono",monospace;
+      font-size:24px;letter-spacing:.09em;color:#14506B;line-height:1.55}
+  .tx-site{position:absolute;right:80px;bottom:56px;text-align:right;font-family:"JetBrains Mono",monospace;
+      font-size:24px;letter-spacing:.09em;color:#14506B}
+  .src{position:absolute;left:80px;bottom:56px;font-family:"JetBrains Mono",monospace;font-size:24px;
+       letter-spacing:.07em;color:#14506B}
+  .star{position:absolute;right:80px;bottom:150px;width:34px;height:34px}
+</style>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain" data-decorative="1"></div>
+<div class="layer">
+  <div class="kick">19 TAC SECTION 113.26<b>APPLIED PERSONAL FINANCIAL LITERACY</b></div>
+  <div class="count">09 / 09</div>
+  <div class="cite" id="cite"></div>
+  <h1 class="hook" id="hook">The rule is made. The filed text is not yet read.</h1>
+  <p class="closing" id="closing"></p>
+  <div class="nslab">NEXT STEP</div>
+  <p class="next">Ask your district who is staffing the three machine expectations.</p>
+  <svg class="star" viewBox="0 0 24 24" aria-hidden="true" data-decorative="1">
+    <path d="M12 1.6l2.6 7.9h8.3l-6.7 4.9 2.6 7.9-6.8-4.9-6.8 4.9 2.6-7.9-6.7-4.9h8.3z" fill="#14506B"/>
+  </svg>
+  <div class="tb" id="tb"></div>
+  <div class="tx-site">texasaidocket.com</div>
+  <div class="src">c1 c2 c5 c11</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "run": "2026-09-11",
+  "deck": 21,
+  "docket_item": "tx-2026-0142",
+  "credit_words": "one-half credit",
+  "effective_days": 20,
+  "school_year": "2027 to 2028",
+  "school_year_from": 2027,
+  "school_year_to": 2028,
+  "item_date_iso": "2026-09-04",
+  "item_date_long": "September 4th, 2026",
+  "item_date_short": "SEPTEMBER 4TH",
+  "house_bill": "27",
+  "legislature": "89",
+  "session_year": 2025,
+  "machine_expectations": [
+    "c14",
+    "c15",
+    "c16"
+  ],
+  "n_machine_expectations": 3,
+  "chapters": [
+    3,
+    4,
+    7
+  ],
+  "n_chapters": 3,
+  "ai_worded": [
+    "c14"
+  ],
+  "n_ai_worded": 1,
+  "machine_stems": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot-advisor"
+  ],
+  "doc_terms": {
+    "artificial intelligence": 1,
+    "artificial": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1,
+    "machine learning": 0
+  },
+  "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
+  "influences": [
+    "social media influencers",
+    "algorithm-driven recommendations",
+    "financial technology platforms",
+    "traditional advertising"
+  ],
+  "n_influences": 4,
+  "algo_influence": "algorithm-driven recommendations",
+  "analyses": [
+    "fee structures",
+    "investment strategies",
+    "algorithmic limitations",
+    "suitability for different investor profiles"
+  ],
+  "n_analyses": 4,
+  "robot_advisor": "robot-advisors",
+  "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
+  "doc_words": 3525,
+  "footprint": {
+    "artificial intelligence": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1
+  },
+  "footprint_terms": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot"
+  ],
+  "n_footprint_terms": 4,
+  "n_footprint_occurrences": 5,
+  "footprint_share_per_10k": 14.2,
+  "footprint_positions": [
+    {
+      "term": "artificial intelligence",
+      "word_index": 1331,
+      "fraction": 0.37759
+    },
+    {
+      "term": "algorithm",
+      "word_index": 1614,
+      "fraction": 0.45787
+    },
+    {
+      "term": "automated",
+      "word_index": 2675,
+      "fraction": 0.75887
+    },
+    {
+      "term": "robot",
+      "word_index": 2679,
+      "fraction": 0.76
+    },
+    {
+      "term": "algorithm",
+      "word_index": 2689,
+      "fraction": 0.76284
+    }
+  ],
+  "knowledge_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_knowledge": 10,
+  "knowledge_highest": 10,
+  "knowledge_missing": [],
+  "release_hits": {
+    "artificial": 0,
+    "algorithm": 0,
+    "automated": 0,
+    "machine learning": 0,
+    "technolog": 0,
+    "AI": 0
+  },
+  "n_release_hits": 0,
+  "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+  "release_summary_words": 18,
+  "and_more": "and more",
+  "canvas_w": 1080,
+  "canvas_h": 1350,
+  "margin": 80,
+  "content_w": 920,
+  "gutter": 28,
+  "card_w": 288,
+  "card_x": [
+    80,
+    396,
+    712
+  ],
+  "spine_top": 330,
+  "spine_bottom": 1140,
+  "spine_pitch": 90.0,
+  "spine_y": {
+    "1": 330.0,
+    "2": 420.0,
+    "3": 510.0,
+    "4": 600.0,
+    "5": 690.0,
+    "6": 780.0,
+    "7": 870.0,
+    "8": 960.0,
+    "9": 1050.0,
+    "10": 1140.0
+  },
+  "spine_marked": [
+    510.0,
+    600.0,
+    870.0
+  ]
+};
+/* @@END COMPUTED@@ */
+</script>
+<script>
+window.renderReady = new Promise(async (resolve) => {
+  await document.fonts.ready;
+  const SEED = 20260911 + 9;
+  TX.reseed(SEED);
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+
+  // THE BREAK SITS ON THE DECK'S EYE LINE, 67px below the vertical centre. The library's named
+  // failure for this atmosphere is the break landing on the centre and cutting the slide in half,
+  // and that offset is the whole difference between a horizon and a division.
+  const BREAK=742;
+  if(BREAK===Math.round(1350/2)) throw new Error('slide-09: the break is at the vertical centre');
+
+  // ---- ABOVE THE BREAK: the cold ceiling plane. Nothing below it in the deck is darker.
+  (function above(){
+    const g=cx.createLinearGradient(0,0,0,BREAK);
+    g.addColorStop(0,'rgba(8,30,43,1)');
+    g.addColorStop(0.58,'rgba(12,44,62,1)');
+    g.addColorStop(1,'rgba(17,58,79,1)');
+    cx.fillStyle=g; cx.fillRect(0,0,1080,BREAK);
+    // the tee bar grid, receding toward the break so the plane has a direction
+    for(let i=0;i<9;i++){
+      const y=BREAK-(BREAK-26)*Math.pow(1-i/9,1.7);
+      cx.strokeStyle='rgba(126,176,158,'+(0.05+0.012*i)+')'; cx.lineWidth=1.5;
+      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+    }
+    for(let x=-120;x<1260;x+=168){
+      cx.strokeStyle='rgba(126,176,158,0.07)'; cx.lineWidth=1.4;
+      cx.beginPath(); cx.moveTo(x,0); cx.lineTo(540+(x-540)*0.16,BREAK); cx.stroke();
+    }
+  })();
+
+  // ---- THE BREAK ITSELF. Hard on top, soft underneath, which is what a norther front does and
+  // is why the library keeps it for a frame about a boundary rather than for weather.
+  (function front(){
+    const g=cx.createLinearGradient(0,BREAK,0,BREAK+128);
+    g.addColorStop(0,'rgba(204,242,228,0.96)');
+    g.addColorStop(0.16,'rgba(176,216,194,0.92)');
+    g.addColorStop(1,'rgba(152,205,180,0.99)');
+    cx.fillStyle=g; cx.fillRect(0,BREAK,1080,128);
+    cx.fillStyle='rgba(230,252,244,0.92)'; cx.fillRect(0,BREAK-2.5,1080,3);
+  })();
+
+  // ---- BELOW THE BREAK: the lit floor in raking tile, the joints receding.
+  (function below(){
+    const g=cx.createLinearGradient(0,BREAK+128,0,1350);
+    g.addColorStop(0,'rgba(152,205,180,0.99)');
+    g.addColorStop(0.42,'rgba(164,212,188,0.99)');
+    g.addColorStop(1,'rgba(132,182,162,0.99)');
+    cx.fillStyle=g; cx.fillRect(0,BREAK+128,1080,1350-BREAK-128);
+    cx.save();
+    cx.beginPath(); cx.rect(0,BREAK,1080,1350-BREAK); cx.clip();
+    for(let i=0;i<13;i++){
+      const y=BREAK+40+Math.pow(i/13,1.9)*(1350-BREAK);
+      cx.strokeStyle='rgba(14,51,71,0.13)'; cx.lineWidth=1.4;
+      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+    }
+    for(let x=-400;x<1600;x+=142){
+      cx.strokeStyle='rgba(14,51,71,0.11)'; cx.lineWidth=1.4;
+      cx.beginPath(); cx.moveTo(540+(x-540)*0.30,BREAK); cx.lineTo(x,1350); cx.stroke();
+    }
+    cx.restore();
+    // ONE DESK LEG'S TWO-PART CONTACT, and it stands in the clear band between the closing line
+    // and the next step rather than under either of them. The first build put its foot at y 1176,
+    // inside the reserve laid down for the next step, so the wash lifted the shadow and the ground
+    // to within 0.3 L* of each other and the leg floated.
+    TXCARVE.contactShadow(cx,{x:168,y:986,w:58,color:'#062330',
+                              dirDeg:74,tightAlpha:0.62,wideAlpha:0.24,tightBlur:4,wideBlur:24});
+    const gl=cx.createLinearGradient(152,0,186,0);
+    gl.addColorStop(0,'rgba(14,51,71,0.86)');
+    gl.addColorStop(0.42,'rgba(120,166,150,0.66)');
+    gl.addColorStop(1,'rgba(14,51,71,0.80)');
+    cx.fillStyle=gl; cx.fillRect(152,BREAK+96,34,986-BREAK-96);
+  })();
+
+  // ============================================================ THE CITATION AND THE CLOSE
+  //
+  // The instrument, named in full, with the date parsed from the item's own line by compute.py.
+  document.getElementById('cite').innerHTML =
+    'SECOND READING AND FINAL ADOPTION<br>'
+    + 'TEXAS STATE BOARD OF EDUCATION &nbsp;<b>' + C.item_date_long + '</b>';
+
+  // WHAT THIS RECORD KNOWS THAT A READER WOULD NOT, said plainly. A close that admits the filed
+  // text is unread is not a hedge. It is the one thing worth reading this record for.
+  document.getElementById('closing').textContent =
+    'What was filed with the Texas Register has not been checked against the attachment the '
+    + 'board acted on.';
+
+  // THE SITE LINE IS AN ELEMENT IN THE SOURCE, not a string this script assembles. coherence_check
+  // reads the slide FILE, so a footer built at render time is invisible to the one gate that
+  // exists to prove every frame carries the brand's own URL.
+  document.getElementById('tb').textContent = 'TEXAS AI DOCKET  NO. ' + C.deck;
+
+  // THE BARE WORD IS NOT WHAT HAPPENED. The board took a second reading and a final adoption, and
+  // "adopted" on its own loses the half of that which a reader would check.
+  if(/\badopted\b/i.test(document.body.innerText))
+    throw new Error('slide-09: the bare word "adopted" reached the close');
+  // No date on this frame may be presented as a deadline, because the record has none.
+  for(const w of ['deadline','comment by','closes','last day'])
+    if(document.body.innerText.toLowerCase().indexOf(w)>=0)
+      throw new Error('slide-09: "'+w+'" manufactures a door this record does not have');
+
+  // A RESERVE UNDER EVERY LINE THAT SITS ON THE TILE. The floor below the break is built out of
+  // raking joints, and a joint crossing a glyph band reads as a strikethrough at feed width. The
+  // first build ran three of them through the closing line and three more through the next step.
+  // This lays the floor's own colour back over the joints under the type, heavily feathered, so
+  // it reads as the falloff a real floor has rather than as a plate. No joint is removed anywhere
+  // it is not under a glyph, and nothing moves.
+  TX.fitText(document.getElementById('hook'),{min:56,max:94,maxLines:3});
+  function reserve(sel,rgb,a,pad,blur){
+    document.querySelectorAll(sel).forEach(function(el){
+      const r=el.getBoundingClientRect();
+      if(!(r.width>1&&r.height>1)) return;
+      cx.save(); cx.filter='blur('+(blur||24)+'px)';
+      cx.fillStyle='rgba('+rgb+','+a+')';
+      cx.fillRect(r.left-pad,r.top-pad,r.width+pad*2,r.height+pad*2);
+      cx.restore();
+    });
+  }
+  // Softer and wider than the first build's, which left four visible rectangular smudges. A
+  // reserve that can be SEEN has stopped being lighting and become a patch.
+  reserve('.closing,.next,.nslab','176,220,200',0.72,64,46);
+  reserve('.tb,.src','176,220,200',0.66,48,38);
+  reserve('.hook,.cite,.kick,.count','11,42,58',0.70,64,46);
+
+  document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
+
+  window.__break=BREAK;
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"the cold plane above the break reads differently from the lit floor below it",
+     reads:"differ", a:[[300,520,480,180]], b:[[300,900,480,180]]}
+  ]));
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the desk leg on the tile", shadow:[[140,982,80,18]], ground:[[420,982,80,18]]}
+  ]));
+  resolve(true);
+});
+</script>

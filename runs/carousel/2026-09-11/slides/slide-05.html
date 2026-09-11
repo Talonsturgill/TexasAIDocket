@@ -1,0 +1,540 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root{--troffer:#CCF2E4;--block:#B0D8C2;--wax:#98CDB4;--floor:#5E8578;
+        --desk:#9C6B5A;--enamel:#12486C;--slate:#0E3347;}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:#071F2D}
+  body{position:relative;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .layer{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .grain{position:absolute;left:0;top:0;width:1080px;height:1350px;background-repeat:repeat;
+         mix-blend-mode:overlay;opacity:.085;pointer-events:none}
+  .kick{position:absolute;left:88px;top:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.09em;color:#CCF2E4;line-height:1.55}
+  .kick b{display:block;font-weight:500;color:#8FC6B0;font-size:24px}
+  .count{position:absolute;right:88px;top:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.09em;color:#CCF2E4}
+  .hook{position:absolute;left:88px;top:320px;width:824px;font-family:Fraunces,serif;font-weight:700;
+        font-size:88px;line-height:1.03;color:#CCF2E4;margin:0;letter-spacing:-.016em}
+  .digital{position:absolute;left:88px;top:944px;font-family:"JetBrains Mono",monospace;font-size:24px;
+           letter-spacing:.14em;color:#6FA891}
+  .verb{position:absolute;left:88px;top:996px;font-family:"JetBrains Mono",monospace;font-size:25px;
+        letter-spacing:.14em;color:#7FB9A4}
+  .clause{position:absolute;left:88px;top:1044px;width:904px;font-size:29px;line-height:1.40;
+          color:#DCF4EA;margin:0;font-style:italic;font-weight:500}
+  .clause em{font-style:italic;font-weight:800;color:#FFFFFF}
+  .src{position:absolute;left:88px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+       letter-spacing:.07em;color:#7FB9A4}
+  .tx-site{position:absolute;right:88px;bottom:84px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.07em;color:#7FB9A4}
+</style>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain" data-decorative="1"></div>
+<div class="layer">
+  <div class="kick">KNOWLEDGE STATEMENT (4)<b>CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING</b></div>
+  <div class="count">05 / 09</div>
+  <h1 class="hook" id="hook">Chapter four turns it around.</h1>
+  <div class="digital">"in a digital age"</div>
+  <div class="verb">THE VERB IS EXPLAIN</div>
+  <p class="clause">"explain how consumerism and marketing strategies, including social media
+     influencers, <em>algorithm-driven recommendations</em>, financial technology platforms, and
+     traditional advertising, influence spending behavior"</p>
+  <div class="src">c15 c17 c20</div>
+  <div class="tx-site">texasaidocket.com</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "run": "2026-09-11",
+  "deck": 21,
+  "docket_item": "tx-2026-0142",
+  "credit_words": "one-half credit",
+  "effective_days": 20,
+  "school_year": "2027 to 2028",
+  "school_year_from": 2027,
+  "school_year_to": 2028,
+  "item_date_iso": "2026-09-04",
+  "item_date_long": "September 4th, 2026",
+  "item_date_short": "SEPTEMBER 4TH",
+  "house_bill": "27",
+  "legislature": "89",
+  "session_year": 2025,
+  "machine_expectations": [
+    "c14",
+    "c15",
+    "c16"
+  ],
+  "n_machine_expectations": 3,
+  "chapters": [
+    3,
+    4,
+    7
+  ],
+  "n_chapters": 3,
+  "ai_worded": [
+    "c14"
+  ],
+  "n_ai_worded": 1,
+  "machine_stems": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot-advisor"
+  ],
+  "doc_terms": {
+    "artificial intelligence": 1,
+    "artificial": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1,
+    "machine learning": 0
+  },
+  "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
+  "influences": [
+    "social media influencers",
+    "algorithm-driven recommendations",
+    "financial technology platforms",
+    "traditional advertising"
+  ],
+  "n_influences": 4,
+  "algo_influence": "algorithm-driven recommendations",
+  "analyses": [
+    "fee structures",
+    "investment strategies",
+    "algorithmic limitations",
+    "suitability for different investor profiles"
+  ],
+  "n_analyses": 4,
+  "robot_advisor": "robot-advisors",
+  "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
+  "doc_words": 3525,
+  "footprint": {
+    "artificial intelligence": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1
+  },
+  "footprint_terms": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot"
+  ],
+  "n_footprint_terms": 4,
+  "n_footprint_occurrences": 5,
+  "footprint_share_per_10k": 14.2,
+  "footprint_positions": [
+    {
+      "term": "artificial intelligence",
+      "word_index": 1331,
+      "fraction": 0.37759
+    },
+    {
+      "term": "algorithm",
+      "word_index": 1614,
+      "fraction": 0.45787
+    },
+    {
+      "term": "automated",
+      "word_index": 2675,
+      "fraction": 0.75887
+    },
+    {
+      "term": "robot",
+      "word_index": 2679,
+      "fraction": 0.76
+    },
+    {
+      "term": "algorithm",
+      "word_index": 2689,
+      "fraction": 0.76284
+    }
+  ],
+  "knowledge_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_knowledge": 10,
+  "knowledge_highest": 10,
+  "knowledge_missing": [],
+  "release_hits": {
+    "artificial": 0,
+    "algorithm": 0,
+    "automated": 0,
+    "machine learning": 0,
+    "technolog": 0,
+    "AI": 0
+  },
+  "n_release_hits": 0,
+  "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+  "release_summary_words": 18,
+  "and_more": "and more",
+  "canvas_w": 1080,
+  "canvas_h": 1350,
+  "margin": 80,
+  "content_w": 920,
+  "gutter": 28,
+  "card_w": 288,
+  "card_x": [
+    80,
+    396,
+    712
+  ],
+  "spine_top": 330,
+  "spine_bottom": 1140,
+  "spine_pitch": 90.0,
+  "spine_y": {
+    "1": 330.0,
+    "2": 420.0,
+    "3": 510.0,
+    "4": 600.0,
+    "5": 690.0,
+    "6": 780.0,
+    "7": 870.0,
+    "8": 960.0,
+    "9": 1050.0,
+    "10": 1140.0
+  },
+  "spine_marked": [
+    510.0,
+    600.0,
+    870.0
+  ]
+};
+/* @@END COMPUTED@@ */
+</script>
+<script>
+window.renderReady = new Promise(async (resolve) => {
+  await document.fonts.ready;
+  const SEED = 20260911 + 5;
+  TX.reseed(SEED);
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+
+  // ============================================================ THE CORRIDOR
+  //
+  // ONE VANISHING POINT AND FOUR PLANES BUILT OFF IT. The first build clipped each wall to a
+  // triangle running to the corner, which drew a bowtie rather than a corridor: the two wedges met
+  // in the middle and the eye read a dark X across the frame. A corridor is a FAR OPENING with
+  // four quads around it, and every plane here is derived from that one rectangle.
+  const OPEN={l:312, r:768, t:530, b:786};
+  const NEAR_DARK=930;                        // where the near floor leaves the throw
+  // THE FIXTURE RUN OWNS ONE BAND AND THE HEADLINE OWNS THE ONE BELOW IT. The first build spread
+  // the run across the whole ceiling, so it crossed both the kicker and every line of the hook and
+  // the gate read 801px of the headline as struck through. Each block of type on this frame sits
+  // on a plane that is even by construction rather than on one patched afterwards.
+  const LAMP_T=176, LAMP_B=300;
+
+  function quad(p, fill){
+    cx.beginPath(); cx.moveTo(p[0][0],p[0][1]);
+    for(let i=1;i<p.length;i++) cx.lineTo(p[i][0],p[i][1]);
+    cx.closePath(); cx.fillStyle=fill; cx.fill();
+  }
+
+  // ---- CEILING, slate, with the troffer run receding. The fixtures stay HIGH so the headline
+  // below them sits on an even plane and needs no wash laid over the art to be readable.
+  (function ceiling(){
+    const g=cx.createLinearGradient(0,0,0,OPEN.t);
+    g.addColorStop(0,'rgba(10,36,50,1)'); g.addColorStop(1,'rgba(16,56,76,1)');
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(0,0); cx.lineTo(1080,0); cx.lineTo(OPEN.r,OPEN.t); cx.lineTo(OPEN.l,OPEN.t);
+    cx.closePath(); cx.clip();
+    cx.fillStyle=g; cx.fillRect(0,0,1080,OPEN.t);
+    for(let i=0;i<3;i++){
+      const t0=i/3, t1=(i+0.46)/3;
+      const y0=LAMP_T+t0*(LAMP_B-LAMP_T), y1=LAMP_T+t1*(LAMP_B-LAMP_T);
+      const s0=1-(y0-0)/OPEN.t, s1=1-(y1-0)/OPEN.t;
+      const hw0=s0*252+40, hw1=s1*252+40;
+      const a=0.95-0.20*i;
+      cx.beginPath();
+      cx.moveTo(540-hw0,y0); cx.lineTo(540+hw0,y0);
+      cx.lineTo(540+hw1,y1); cx.lineTo(540-hw1,y1); cx.closePath();
+      const gf=cx.createLinearGradient(0,y0,0,y1);
+      gf.addColorStop(0,'rgba(204,242,228,'+a+')');
+      gf.addColorStop(1,'rgba(152,205,180,'+(a*0.48)+')');
+      cx.fillStyle=gf; cx.fill();
+      // the fixture's own spill, which stops well above the headline band
+      const gs=cx.createLinearGradient(0,y1,0,y1+70);
+      gs.addColorStop(0,'rgba(204,242,228,0.16)');
+      gs.addColorStop(1,'rgba(204,242,228,0)');
+      cx.fillStyle=gs; cx.fillRect(540-hw1-40,y1,(hw1+40)*2,70);
+    }
+    cx.restore();
+  })();
+
+  // ---- THE TWO LOCKER BANKS. enamel #12486C on BOTH sides and no third wall colour anywhere,
+  // per the dossier. Each is one quad from the frame edge to the far opening.
+  function bank(side){
+    const ex = side<0 ? 0 : 1080;
+    const ox = side<0 ? OPEN.l : OPEN.r;
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(ex,0); cx.lineTo(ox,OPEN.t); cx.lineTo(ox,OPEN.b); cx.lineTo(ex,1350);
+    cx.closePath(); cx.clip();
+    const g=cx.createLinearGradient(ex,0,ox,0);
+    g.addColorStop(0,'rgba(8,32,50,1)');
+    g.addColorStop(0.55,'rgba(18,72,108,1)');
+    g.addColorStop(1,'rgba(26,88,124,1)');
+    cx.fillStyle=g; cx.fillRect(Math.min(ex,ox),0,1080,1350);
+    // door pitch, every line aimed at the opening so the bank has a rate
+    for(let i=1;i<18;i++){
+      const t=Math.pow(i/18,1.55);
+      const x=ex+(ox-ex)*t;
+      const yTop=0+(OPEN.t-0)*t, yBot=1350+(OPEN.b-1350)*t;
+      cx.strokeStyle='rgba(5,22,36,'+(0.46-0.018*i)+')'; cx.lineWidth=2.1;
+      cx.beginPath(); cx.moveTo(x,yTop); cx.lineTo(x,yBot); cx.stroke();
+      cx.strokeStyle='rgba(128,192,216,'+(0.17-0.007*i)+')'; cx.lineWidth=1.1;
+      cx.beginPath(); cx.moveTo(x+2.2,yTop); cx.lineTo(x+2.2,yBot); cx.stroke();
+    }
+    // the top rail and the vent band, both running to the opening
+    cx.strokeStyle='rgba(150,206,226,0.24)'; cx.lineWidth=2.6;
+    cx.beginPath(); cx.moveTo(ex,96); cx.lineTo(ox,OPEN.t+16); cx.stroke();
+    cx.strokeStyle='rgba(5,22,36,0.42)'; cx.lineWidth=3.2;
+    cx.beginPath(); cx.moveTo(ex,620); cx.lineTo(ox,OPEN.t+96); cx.stroke();
+    cx.restore();
+  }
+  bank(-1); bank(1);
+
+  // ---- THE FAR OPENING. The end of the run, the brightest thing at depth, and the source every
+  // population arrives from.
+  (function opening(){
+    const g=cx.createLinearGradient(0,OPEN.t,0,OPEN.b);
+    g.addColorStop(0,'rgba(204,242,228,0.92)');
+    g.addColorStop(0.55,'rgba(152,205,180,0.72)');
+    g.addColorStop(1,'rgba(120,170,150,0.80)');
+    cx.fillStyle=g; cx.fillRect(OPEN.l,OPEN.t,OPEN.r-OPEN.l,OPEN.b-OPEN.t);
+    cx.strokeStyle='rgba(230,252,244,0.42)'; cx.lineWidth=2;
+    cx.strokeRect(OPEN.l+0.5,OPEN.t+0.5,OPEN.r-OPEN.l-1,OPEN.b-OPEN.t-1);
+  })();
+
+  // ---- THE FLOOR, with the wax specular smear running out of the opening toward the reader.
+  const FL = {
+    lx: function(y){ return OPEN.l*(1-(y-OPEN.b)/(1350-OPEN.b)); },
+    rx: function(y){ return OPEN.r+(1080-OPEN.r)*((y-OPEN.b)/(1350-OPEN.b)); }
+  };
+  (function floor(){
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(0,1350); cx.lineTo(OPEN.l,OPEN.b); cx.lineTo(OPEN.r,OPEN.b); cx.lineTo(1080,1350);
+    cx.closePath(); cx.clip();
+    const g=cx.createLinearGradient(0,OPEN.b,0,1350);
+    g.addColorStop(0,'rgba(104,146,132,1)');
+    g.addColorStop(0.34,'rgba(94,133,120,1)');
+    g.addColorStop(1,'rgba(30,64,74,1)');
+    cx.fillStyle=g; cx.fillRect(0,OPEN.b,1080,1350-OPEN.b);
+    const gs=cx.createLinearGradient(0,OPEN.b,0,1350);
+    gs.addColorStop(0,'rgba(204,242,228,0.80)');
+    gs.addColorStop(0.30,'rgba(152,205,180,0.50)');
+    gs.addColorStop(0.70,'rgba(152,205,180,0.14)');
+    gs.addColorStop(1,'rgba(152,205,180,0)');
+    cx.fillStyle=gs;
+    cx.beginPath();
+    cx.moveTo(468,OPEN.b); cx.lineTo(612,OPEN.b);
+    cx.lineTo(880,1350); cx.lineTo(200,1350); cx.closePath(); cx.fill();
+    // THE JOINTS STOP WHERE THE THROW DOES. Below that the floor is in shadow and has no visible
+    // joint anyway, and the one at y 956 was running through "in a digital age".
+    for(let i=1;i<12;i++){
+      const y=OPEN.b+(1350-OPEN.b)*Math.pow(i/12,1.95);
+      if(y>NEAR_DARK-52) break;
+      cx.strokeStyle='rgba(10,38,52,0.16)'; cx.lineWidth=1.5;
+      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+    }
+    cx.restore();
+  })();
+
+  // ============================================================ THE FOUR POPULATIONS
+  //
+  // ONE PER INFLUENCE THE CLAUSE NAMES, and the list is PARSED from c15's own quote by compute.py
+  // rather than typed here. Frame 4's first build hand-typed its list and counted the
+  // transcription, which is the defect a review bot named.
+  const POPS=C.influences;
+  if(POPS.length!==C.n_influences) throw new Error('slide-05: influence count disagrees');
+  if(POPS.length!==4) throw new Error('slide-05: the composition is four populations and c15 now names '+POPS.length);
+
+  // THE MACHINE IS PICKED BY WORDING, NOT BY INDEX, so the frame terminates the right stream even
+  // if the standard reorders its list.
+  const ALGO_I=POPS.indexOf(C.algo_influence);
+  if(ALGO_I<0) throw new Error('slide-05: the algorithm influence is not in the list');
+
+  // FOUR SEEDS AND FOUR PATH LENGTHS. The library's named failure is uniform lengths reading as
+  // hair, and the first build shipped exactly that: 104 streamlines a population at one weight
+  // swept across the whole frame and read as combed fibre rather than as a corridor emptying.
+  // What fixes it is not more variation in the noise, it is FEWER and HEAVIER strokes that taper,
+  // stay inside the corridor, and differ in length by construction. The ratio is asserted here.
+  const STEP_PX=5.0;
+  const STEPS=[210, 250, 640, 170];
+  const SEEDS=[11, 29, 47, 73];
+  const ratio=Math.max.apply(null,STEPS)/Math.min.apply(null,STEPS);
+  if(ratio<3) throw new Error('slide-05: path lengths vary by only '+ratio.toFixed(2)+'x');
+
+  const CONV={x:540, y:812, r:146};
+  const exited=[0,0,0,0];
+
+  function streamline(px,py,steps,seedOff,isAlgo){
+    const pts=[[px,py]]; let x=px,y=py,alive=true;
+    for(let s=0;s<steps;s++){
+      const n=TX.simplex2((x+seedOff*137)/300,(y+seedOff*61)/300);
+      let ax=x-540, ay=y-644;
+      const m=Math.max(1e-3,Math.hypot(ax,ay)); ax/=m; ay/=m;
+      // THE THREE PASSING STREAMS FAN LESS. At 1.5 they left the corridor within a few steps and
+      // swept across both locker banks as wide arcs, which reads as weather rather than as a
+      // corridor's contents.
+      let dx=ax*0.78+Math.cos(n*Math.PI*1.2)*0.46;
+      let dy=ay*0.92+Math.sin(n*Math.PI*1.2)*0.30+0.92;
+      if(isAlgo){
+        // AND THE ONE THAT TERMINATES GOES STRAIGHT THERE. Repulsion from the opening plus
+        // attraction to the pool made it arc back upward, and forty of those drawn together read
+        // as seaweed growing out of the floor rather than as a stream arriving at a person.
+        const bx=CONV.x-x, by=CONV.y-y, bm=Math.max(1e-3,Math.hypot(bx,by));
+        dx=bx/bm*2.8+Math.cos(n*Math.PI)*0.34;
+        dy=by/bm*2.8+Math.sin(n*Math.PI)*0.20;
+        if(bm<CONV.r*0.30) break;
+      }
+      const dm=Math.max(1e-3,Math.hypot(dx,dy));
+      x+=dx/dm*STEP_PX; y+=dy/dm*STEP_PX;
+      pts.push([x,y]);
+      if(x<-40||x>1120||y<-40||y>1390){ alive=false; break; }
+    }
+    return {pts:pts, alive:alive};
+  }
+
+  (function flow(){
+    cx.save();
+    // the streams stay INSIDE the corridor. Outside it they were never a corridor's contents.
+    cx.beginPath();
+    cx.moveTo(0,0); cx.lineTo(1080,0); cx.lineTo(1080,1350); cx.lineTo(0,1350); cx.closePath();
+    cx.rect(0,0,1080,NEAR_DARK);
+    cx.clip('evenodd');
+    cx.restore();
+    // THE STREAMS STAY IN THE CORRIDOR. Clipped to the volume the opening actually leads into,
+    // so nothing crosses a locker bank it was never inside.
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(OPEN.l,OPEN.t); cx.lineTo(OPEN.r,OPEN.t);
+    cx.lineTo(1080,1350); cx.lineTo(0,1350); cx.closePath();
+    cx.clip();
+    const rand=TX.rng(SEED);
+    cx.lineCap='round';
+    for(let p=0;p<POPS.length;p++){
+      const isAlgo=(p===ALGO_I);
+      const N=isAlgo?30:22;
+      for(let k=0;k<N;k++){
+        const a=rand()*Math.PI*2, rr=Math.sqrt(rand());
+        const sx=540+Math.cos(a)*rr*((OPEN.r-OPEN.l)/2-16);
+        const sy=644+Math.sin(a)*rr*((OPEN.b-OPEN.t)/2-16);
+        const st=streamline(sx,sy,STEPS[p],SEEDS[p]+k*0.021,isAlgo);
+        if(st.pts.length<4) continue;
+        if(!isAlgo && !st.alive) exited[p]++;
+        // TAPERED, so a stream reads as something moving rather than as a fibre. Drawn segment by
+        // segment because a canvas path cannot vary its width along its own length.
+        for(let i=1;i<st.pts.length;i++){
+          const t=i/st.pts.length;
+          cx.beginPath();
+          cx.moveTo(st.pts[i-1][0],st.pts[i-1][1]);
+          cx.lineTo(st.pts[i][0],st.pts[i][1]);
+          if(isAlgo){
+            cx.lineWidth=1.4+5.2*(1-t);
+            cx.strokeStyle='rgba(8,30,44,'+(0.30+0.42*(1-t)).toFixed(3)+')';
+          }else{
+            cx.lineWidth=1.0+3.4*t;
+            cx.strokeStyle='rgba(214,246,234,'+(0.05+0.20*t).toFixed(3)+')';
+          }
+          cx.stroke();
+        }
+      }
+    }
+    cx.restore();
+  })();
+
+  // THE CONVERGENCE. The one dark mass in the frame, and where the machine stream stops.
+  (function convergence(){
+    const g=cx.createRadialGradient(CONV.x,CONV.y,6,CONV.x,CONV.y,CONV.r);
+    g.addColorStop(0,'rgba(5,20,31,0.94)');
+    g.addColorStop(0.5,'rgba(7,26,38,0.66)');
+    g.addColorStop(1,'rgba(10,38,53,0)');
+    cx.fillStyle=g; cx.beginPath(); cx.arc(CONV.x,CONV.y,CONV.r,0,6.2832); cx.fill();
+  })();
+
+  for(let p=0;p<POPS.length;p++){
+    if(p===ALGO_I) continue;
+    if(exited[p]===0) throw new Error('slide-05: population '+p+' ('+POPS[p]+') never exits the frame');
+  }
+  window.__pops={n:POPS.length, algo:ALGO_I, steps:STEPS, ratio:ratio, exited:exited};
+
+  // ---- WHERE EACH BANK MEETS THE TILE. Drawn inside the floor's own quad and running from the
+  // bank edge INWARD, so the contact is a real light-to-dark transition rather than a claim.
+  (function baseContacts(){
+    cx.save();
+    cx.beginPath();
+    cx.moveTo(0,1350); cx.lineTo(OPEN.l,OPEN.b); cx.lineTo(OPEN.r,OPEN.b); cx.lineTo(1080,1350);
+    cx.closePath(); cx.clip();
+    // THE WEDGE IS DRAWN IN STRIPS, so it stops above the label band: the seam between two strips
+    // is a faint horizontal edge, and one of them was landing across "in a digital age". Below the
+    // throw there is no visible contact to draw anyway.
+    for(let y=OPEN.b+6;y<NEAR_DARK-18;y+=4){
+      const t=(y-OPEN.b)/(1350-OPEN.b);
+      const xl=FL.lx(y), xr=FL.rx(y), w=14+46*t;
+      const gl=cx.createLinearGradient(xl,0,xl+w,0);
+      gl.addColorStop(0,'rgba(3,14,22,0.72)'); gl.addColorStop(1,'rgba(3,14,22,0)');
+      cx.fillStyle=gl; cx.fillRect(xl,y,w,4.5);
+      const gr=cx.createLinearGradient(xr,0,xr-w,0);
+      gr.addColorStop(0,'rgba(3,14,22,0.72)'); gr.addColorStop(1,'rgba(3,14,22,0)');
+      cx.fillStyle=gr; cx.fillRect(xr-w,y,w,4.5);
+    }
+    cx.restore();
+  })();
+
+  // ---- THE NEAR FLOOR LEAVES THE THROW. This is what carries the clause, and it is a real state
+  // of the room rather than a wash laid over the art to make type readable. The first build
+  // painted blurred rectangles under every line and they shipped as visible smudges in four
+  // corners of the frame. A plane that is genuinely dark needs nothing laid on top of it.
+  (function nearDark(){
+    const g=cx.createLinearGradient(0,NEAR_DARK-120,0,1350);
+    g.addColorStop(0,'rgba(7,26,38,0)');
+    g.addColorStop(0.42,'rgba(7,26,38,0.86)');
+    g.addColorStop(1,'rgba(6,22,32,0.985)');
+    cx.fillStyle=g; cx.fillRect(0,NEAR_DARK-120,1080,1350-NEAR_DARK+120);
+  })();
+
+  document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
+  TX.fitText(document.getElementById('hook'),{min:62,max:98,maxLines:2});
+
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"the convergence reads differently from the locker bank beside it",
+     reads:"differ", a:[[300,560,480,300]], b:[[60,140,200,160]]}
+  ]));
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the left locker bank meeting the tile", shadow:[[0,870,40,16]], ground:[[300,870,40,16]]},
+    {what:"the right locker bank meeting the tile", shadow:[[1040,870,40,16]], ground:[[780,870,40,16]]}
+  ]));
+  resolve(true);
+});
+</script>

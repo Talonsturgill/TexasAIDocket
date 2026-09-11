@@ -256,6 +256,58 @@ EVALUATIONS = _split_list(_m.group(2))
 N_INSTRUMENTS = len(INSTRUMENTS)
 N_EVALUATIONS = len(EVALUATIONS)
 
+# THE SAME TREATMENT FOR c15 AND c16, and for the same reason rather than for symmetry. Frame 5
+# draws one flow population per influence the clause names and frame 6 emphasises one term per
+# thing it asks the student to analyse, so on both frames a COUNT is the largest thing on the
+# frame. A hand-typed list would render at whatever length it was typed at, which is exactly what
+# frame 4 did before a review bot read it.
+_C15 = q("c15")
+_m15 = re.search(r"including (.+?), influence spending behavior", _C15)
+if not _m15:
+    raise SystemExit("compute.py: c15's quote no longer has the shape 'including ..., influence "
+                     "spending behavior'. Frame 5 draws one flow population per influence, so "
+                     "this may not be guessed at. The quote reads:\n  " + _C15)
+INFLUENCES = _split_list(_m15.group(1))
+N_INFLUENCES = len(INFLUENCES)
+
+# WHICH ONE IS THE MACHINE, decided by matching the document's own wording rather than by index.
+# Frame 5 terminates exactly one population at the convergence and it must be this one. Picking
+# it by position would survive the document reordering its list and draw the wrong thing.
+_ALGO = [i for i in INFLUENCES if "algorithm" in i.lower()]
+if len(_ALGO) != 1:
+    raise SystemExit(
+        "compute.py: c15 names %d algorithm-worded influence(s), and frame 5's whole composition "
+        "is that exactly one of the four terminates. %r" % (len(_ALGO), INFLUENCES))
+ALGO_INFLUENCE = _ALGO[0]
+
+_C16 = q("c16")
+_m16 = re.search(r"by analyzing (.+?)\s*\(E, S\);", _C16)
+if not _m16:
+    raise SystemExit("compute.py: c16's quote no longer has the shape 'by analyzing ... (E, S);'. "
+                     "Frame 6 emphasises one term per analysed thing. The quote reads:\n  " + _C16)
+ANALYSES = _split_list(_m16.group(1))
+N_ANALYSES = len(ANALYSES)
+
+# THE DOCUMENT'S OWN SPELLING, pulled rather than typed. The standard prints "robot-advisors" and
+# the world writes "robo-advisors", so frame 6's acceptance item turns on one character that a
+# writer would silently correct. `pull` raises when the pattern stops matching.
+ROBOT_ADVISOR = pull("c16", r"(robot-advisors)", "the document's spelling of robot-advisors")
+
+# THE CLAUSE ITSELF, CARRIED RATHER THAN RETYPED. Frame 6 sets this sentence as its subject and
+# lights the four analysed things inside it, so it wraps the string at render time and finds each
+# term by searching the text. A hand-typed copy on the frame would be a second original that no
+# gate compares against the first, and the line breaks would silently decide which terms stay
+# whole. Only the trailing code list the standard appends to every expectation is dropped.
+APPRAISE_CLAUSE = re.sub(r"\s*\(E, S\);\s*$", "", _C16).strip()
+if not APPRAISE_CLAUSE.startswith("appraise") or ROBOT_ADVISOR not in APPRAISE_CLAUSE:
+    raise SystemExit("compute.py: c16's clause did not survive trimming intact:\n  " + APPRAISE_CLAUSE)
+for _a in ANALYSES:
+    if _a not in APPRAISE_CLAUSE:
+        raise SystemExit(
+            "compute.py: %r is parsed out of c16 as an analysed thing but is not findable in the "
+            "clause frame 6 sets. The frame lights each one by searching the text, so a term it "
+            "cannot find would go dark with nothing failing." % _a)
+
 # THE ABSENCE, counted rather than asserted. Every one of these must be zero for the deck's
 # counter-image frame to stand, and this file raises if any is not.
 ABSENCE_TERMS = ("artificial", "algorithm", "automated", "machine learning", "technolog")
@@ -323,6 +375,13 @@ OUT = {
     "n_instruments": N_INSTRUMENTS,
     "evaluations": EVALUATIONS,
     "n_evaluations": N_EVALUATIONS,
+    "influences": INFLUENCES,
+    "n_influences": N_INFLUENCES,
+    "algo_influence": ALGO_INFLUENCE,
+    "analyses": ANALYSES,
+    "n_analyses": N_ANALYSES,
+    "robot_advisor": ROBOT_ADVISOR,
+    "appraise_clause": APPRAISE_CLAUSE,
     "doc_words": DOC_WORDS,
     "footprint": FOOTPRINT,
     "footprint_terms": list(FOOTPRINT_TERMS),
@@ -337,6 +396,11 @@ OUT = {
 
     "release_hits": RELEASE_HITS,
     "n_release_hits": N_RELEASE_HITS,
+    # THE SENTENCE ITSELF, carried for the same reason frame 6's clause is. Frame 7 sets the
+    # release's own summary as its subject and marks the two words the three expectations are
+    # inside of, so it finds them by searching the string rather than by being handed a copy
+    # somebody typed beside the original.
+    "release_summary": RELEASE_SUMMARY,
     "release_summary_words": RELEASE_SUMMARY_WORDS,
     "and_more": AND_MORE,
 
@@ -362,5 +426,9 @@ if __name__ == "__main__":
     print(f"  release summary {RELEASE_SUMMARY_WORDS} words, ending '{AND_MORE}'")
     print(f"  c14 sends the student with {N_INSTRUMENTS} instrument(s) to evaluate "
           f"{N_EVALUATIONS} thing(s): {EVALUATIONS}")
+    print(f"  c15 names {N_INFLUENCES} influence(s) on spending: {INFLUENCES}")
+    print(f"    of those the machine is {ALGO_INFLUENCE!r}, and frame 5 terminates that one alone")
+    print(f"  c16 asks the student to analyse {N_ANALYSES} thing(s): {ANALYSES}")
+    print(f"    and the document spells it {ROBOT_ADVISOR!r}, never 'robo-advisors'")
     print(f"  item date line {ITEM_DATE_LONG}, effective {EFFECTIVE_DAYS} days after filing,"
           f" implemented {SCHOOL_YEAR}")

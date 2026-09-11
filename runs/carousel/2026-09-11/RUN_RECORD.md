@@ -1,6 +1,6 @@
 # Run record — 2026-09-11
 
-## THE RUN DID NOT MERGE, AND THE RECORD IS NOT LIVE
+## THE RUN DOES NOT MERGE, AND THE RECORD IS NOT LIVE
 
 **`ask_pack --self-test` goes red on this branch and the wall is real.** The core pack measures
 **421,427 characters against a ceiling of 420,000**. Measured on both sides of the diff:
@@ -244,33 +244,97 @@ own prose over the 30 word backstop, across five items, and every one was split.
 
 ---
 
-## THE DECK, AND WHY IT DID NOT SHIP
+## THE DECK SHIPPED, and the run's own first answer was wrong about why it could not
 
-**Four of nine frames were built.** The run reached the ladder's rung (d) rather than push a deck
-that had not been through pixel review or the panel of three. **A half reviewed deck breaches the
-scoring floor and the merge policy, and a partial deck is worse than no deck.**
+**The nine frames are built, rendered, gated and committed.** An earlier pass of this run stopped
+at four of nine and recorded the ladder's rung (d). That was a mistake and it is worth naming
+precisely, because it was not a craft failure, it was a reasoning one.
 
-What is finished and committed under `runs/carousel/2026-09-11/`, so the next run resumes rather
-than re-plans:
+**`ask_pack --self-test` blocks the MERGE. It never blocked the DECK.** The two are independent,
+and the run collapsed them into one stop. The delivery policy already says what to do here: a run
+whose gates fail commits its evidence to the branch and does not merge. This run had done the
+second half and skipped the first.
 
-- **`claims.json`, 24 verified claims and 6 rejected**, past `claims_check`, with three full
-  source snapshots in `sources/` swept for six subject terms and zero provision findings.
-- **`storyboard.md`**, the three-lens synthesis and nine dossiers, past `dossier_check`.
-- **`compute.py` and `computed.json`**, every count derived from the fetched bytes.
-- **`palette_measured.json`**, seven tokens at **zero collisions**.
-- **`caption.txt`**, past its critic and past `caption_check`.
-- **Frames 1 to 4**, rendering clean with no page errors.
+### What the nine frames are
 
-**The fact checker broke three things in the showrunner's own brief and all three were wrong.**
-The subsections are under `(d)`, not `(c)`. The attachment heads itself *Text of Proposed New* and
-is not adopted text. September 4th is a date line the item prints, not a vote this record
-witnessed. The record and every frame were corrected before anything was drawn.
+| # | frame | measured median L\* |
+|---|---|---|
+| 1 | the troffer overhead, authored prism geometry lit from one declared vector | 27.2 |
+| 2 | ten chapter cells, the three the machine sits in lit by the overhead throw | 64.6 |
+| 3 | one dot per word of the course text, five lifted points | 42.5 |
+| 4 | three instrument planes and eight lit slots, the research clause | 72.5 |
+| 5 | a corridor at passing period, four flow populations, one terminating | 20.1 |
+| 6 | the front bank off, the appraise clause knocked out of a solid plate | 19.1 |
+| 7 | the projector, the release's own sentence, six counted zeros | 47.8 |
+| 8 | out through the glazing at the bus loop under heat shimmer | 77.8 |
+| 9 | the norther front on the deck's eye line, the close | 23.1 |
 
-**The palette is the run's sharpest measured finding.** The winning director's seven tokens were
-estimated by hand and **four of them collided**, at dE 4.94, 7.02, 5.12 and 7.96 against a
-calibrated tenth percentile of 9.55, with its two lightest sitting 6.24 from each other. The
-materials did not change. Where they sit did, after a sweep of the sRGB cube under a chroma cap
-found where a real room material still has room.
+**Deck median L\* 42.46, measured off the nine shipped PNGs and never asserted.** The hard
+constraint going in was `ledger_check`'s `LIGHT_L` of 60.0 with a cap of one light deck per eight,
+and the window already held two. This deck is a mid deck and does not add to that count.
+
+### Six repair rounds, and the four findings worth keeping
+
+**A RESERVE LAID OVER ART IS VISIBLE AT FEED WIDTH.** Frame 5's first build painted blurred
+rectangles under every line of type, to stop the corridor's receding rules reading as
+strikethroughs. They shipped as four smudges in the corners of the frame. The machine gate passed
+it. **A green gate said nothing about whether the frame was any good**, which is GATE_LESSONS' own
+oldest shape, and the fix was to rebuild the frame so every block of type sits on a plane that is
+even BY CONSTRUCTION rather than patched afterwards.
+
+**MEASURE THE ITALIC FACE BEFORE MEASURING ANYTHING SET IN IT.** Frame 6's clause was wrapped and
+plated against a synthesised oblique, because `document.fonts.ready` at the top of a frame's script
+resolves before a face that frame has not asked for yet. Every line relaid about 50px wider
+afterwards and **three rounds of plate arithmetic chased a constant that was never a plate
+problem.** `await document.fonts.load` for the exact face, weight and size first.
+
+**A TSPAN IS RECORDED TWICE.** `render.py` logs a tspan as its own text node AND inside its
+parent's, so an emphasised run inside a line comes back duplicated and `verbatim_check` cannot find
+a sentence the frame plainly prints. The answer is to draw the line as positioned style RUNS, one
+text element each. **It is not to mark the tspans decorative**, which would be the 2026-08-26
+exemption defect.
+
+**PLACE A CONTACT'S RECTS BY MEASURING THE SHIPPED PNG.** Three rounds placed them by reading the
+drawing code and all three were wrong differently: one pair straddled a flat floor, one was
+inverted because a gradient ran the other way, and one was washed out by a type reserve laid down
+after the shadow. `probe_L.py` is in this run record and takes seconds.
+
+### What the plan got wrong, corrected in the plan rather than around it
+
+`verbatim_check` and `plan_render_check` found **seven places where the dossiers described frames
+this run did not make**, and every one was amended in `storyboard.md` with the reason written
+into it. Two are worth naming because the plan was internally inconsistent rather than merely
+stale:
+
+- **Slide 8's dossier declared c12's whole sentence as a verbatim fragment and its own acceptance
+  item three lines below forbids the frame from printing it**, because the house renders a range
+  as "X to Y" and the document hyphenates. Both instructions cannot hold. The acceptance item won,
+  because it is the one encoding a house rule.
+- **Slide 3's dossier declared "algorithm-driven" and "robot-advisors" as verbatim on a frame that
+  counts STEMS.** "algorithm" is 2 because the document says algorithm-driven once and algorithmic
+  once. Printing the unstemmed form over that count would be a figure that does not describe the
+  string beside it.
+
+### Two gates are not clean, and neither is papered over
+
+**`construction_check` is a real craft finding.** Five of nine frames reduce to one bright
+rectangle on a darker ground: frame 2's cell field, frame 4's whiteboard, frame 6's clause plate,
+frame 7's projected rectangle and frame 9's lit floor. Frame 9 was worked twice to break it and
+could not be, because a hard horizontal value break with dark above and light below IS that
+primitive. **The register invited it**: a room lit by one overhead source gives you lit planes, and
+a lit plane is where type wants to go. Recorded in `artwork.json` under `avoid_next` for the next
+deck to decide before its directors room rather than after.
+
+**`aggregate_check` and `numeral_trace` disagree with each other**, and this is a machine defect
+rather than a content one. Frame 7's six counted zeros cannot be quoted from a claim, because a
+count of what a document does NOT say has no span to quote. `numeral_trace` says in as many words
+to declare such a figure in `aggregates.json`, and this run did. `aggregate_check` then reports
+each declaration as a leftover to remove, because its scanner only recognises a figure phrase
+shaped as a number followed by a PLURAL noun, and "0 artificial" is not one. **Following either
+gate's advice breaks the other.** The declarations are kept, because they are true, re-derivable,
+and the route the gate that governs those numerals prescribes. Neither gate runs against a run in
+CI, which is the only reason this is a note rather than a block. Logged as an upgrade proposal
+below.
 
 ---
 
@@ -292,6 +356,19 @@ Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit range.
 ---
 
 ## UPGRADE PROPOSALS, none of them made this run
+
+**5. `aggregate_check` and `numeral_trace` prescribe opposite things for a counted absence.**
+`numeral_trace` tells a run to declare a numeral no claim can reach in `aggregates.json`.
+`aggregate_check` then reports that declaration as a leftover, because its own scanner only
+discovers a figure phrase shaped as a number followed by a plural noun, and a tally row reading
+"0 artificial" is not one. The two also read different directories, `out/<date>/` and
+`runs/carousel/<date>/`, so a run can satisfy one in a file the other never sees. Neither is wrong
+on its own terms and the interaction has no correct answer available to a `daily` run. The narrow
+fix is for `aggregate_check`'s leftover rule to ask whether any SURFACE carries the declared
+phrase rather than whether its own scanner classified it, which is what its message already claims
+to be checking.
+
+### The four recorded earlier in the run
 
 **1. `prompts/NEXT_RUN.md` is unreachable by the routine that is told to write it.** Phase 0
 step 4 says to read a story "queued by the previous run" from that path. `ownership.yaml` puts it

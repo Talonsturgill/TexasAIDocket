@@ -1,0 +1,171 @@
+{
+ "run": "2026-09-11",
+ "note": "Three kinds of figure reach a surface here. Some are quoted from a claim and say so. Some are counted by compute.py from a fetched document, and the computation is named rather than the number being asserted. The six zeros on slide 7 are the third kind and the awkward one, because a count of what a document does NOT say cannot be quoted from it: compute.py counts them over the served bytes and RAISES rather than publishing if any is non-zero, so the frame cannot draw a zero the snapshot does not support.",
+ "aggregates": [
+  {
+   "phrase": "Ten chapters",
+   "kind": "count",
+   "value": 10,
+   "computed_by": "compute.py N_KNOWLEDGE, the number of numbered knowledge statements its heading pattern finds in the attachment snapshot. It also corroborates: if a reported gap in the numbering is contradicted by the document printing that number anywhere, compute.py raises instead of handing the gap to a frame. That guard exists because the first build's pattern excluded a heading carrying a colon and published a missing chapter six that does not exist.",
+   "from_claims": [
+    "c19",
+    "c20",
+    "c21"
+   ],
+   "note": "Slide 2's hook."
+  },
+  {
+   "phrase": "Four terms",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py N_FOOTPRINT_TERMS, the machine-naming stems with at least one occurrence in the course text. The stem is what is counted, so algorithm covers algorithm-driven and algorithmic alike, which is why the frame prints the stem beside the count rather than either full word.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "note": "Slide 3's dek."
+  },
+  {
+   "phrase": "Three of the five",
+   "kind": "ratio",
+   "value": 3,
+   "computed_by": "compute.py FOOTPRINT_POSITIONS, the word index of each of the five occurrences in the course text. Three of them fall between word 2675 and word 2689, which is inside c16's single clause, and the other two are 1331 and 1614. The frame draws each mark at its own measured position, so the claim is visible rather than asserted.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "note": "Slide 3's dek.",
+   "of": 5
+  },
+  {
+   "phrase": "three hands",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c19",
+   "quote": "(3) Careers, Postsecondary Education, and Earning Potential",
+   "note": "Slide 4's hook, 'Chapter three hands it over'. The three is the chapter's own number as the document prints it, not a count of anything."
+  },
+  {
+   "phrase": "four turns",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c20",
+   "quote": "(4) Consumer Economics and Financial Decision-Making",
+   "note": "Slide 5's hook. Same shape as slide 4's."
+  },
+  {
+   "phrase": "seven says",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c21",
+   "quote": "(7) Saving and Investing",
+   "note": "Slide 6's hook. Same shape again."
+  },
+  {
+   "phrase": "20 days",
+   "kind": "duration",
+   "value": 20,
+   "quoted_from": "c3",
+   "quote": "an effective date of 20 days after filing with the Texas Register",
+   "note": "Slide 8's sill and the caption. No conversion is performed and the figure is lifted from the motion's own words by compute.py rather than typed."
+  },
+  {
+   "phrase": "three machine expectations",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "compute.py N_MACHINE_EXPECTATIONS over MACHINE_EXPECTATIONS, the student expectations whose own quotes contain one of the machine stems. It is derived from the quotes rather than chosen, which is why the deck never calls them AI expectations: only one of the three says artificial intelligence in as many words.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "note": "Slide 9's next step."
+  },
+  {
+   "phrase": "three expectations",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the same computation as the row above.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "note": "The caption."
+  },
+  {
+   "phrase": "eighteen words",
+   "kind": "count",
+   "value": 18,
+   "computed_by": "compute.py RELEASE_SUMMARY_WORDS, the whitespace-split length of c22's sentence. The caption spells it because it opens a clause, and the figure is the computation's rather than a writer's estimate of how short the sentence felt.",
+   "from_claims": [
+    "c22"
+   ],
+   "note": "The caption."
+  },
+  {
+   "phrase": "0 artificial",
+   "kind": "count",
+   "value": 0,
+   "computed_by": "compute.py RELEASE_HITS['artificial'], counted over the served bytes of the board's news release snapshot in sources/sboe-news-release.txt with navigation and footer included. compute.py RAISES if any of the six is non-zero.",
+   "from_claims": [
+    "c22"
+   ],
+   "note": "Slide 7. The same computation produces the five rows below."
+  },
+  {
+   "phrase": "0 algorithm",
+   "kind": "count",
+   "value": 0,
+   "computed_by": "compute.py RELEASE_HITS['algorithm'], same snapshot and same raise.",
+   "from_claims": [
+    "c22"
+   ]
+  },
+  {
+   "phrase": "0 automated",
+   "kind": "count",
+   "value": 0,
+   "computed_by": "compute.py RELEASE_HITS['automated'], same snapshot and same raise.",
+   "from_claims": [
+    "c22"
+   ]
+  },
+  {
+   "phrase": "0 machine learning",
+   "kind": "count",
+   "value": 0,
+   "computed_by": "compute.py RELEASE_HITS['machine learning'], same snapshot and same raise.",
+   "from_claims": [
+    "c22"
+   ]
+  },
+  {
+   "phrase": "0 technolog",
+   "kind": "count",
+   "value": 0,
+   "computed_by": "compute.py RELEASE_HITS['technolog'], a STEM rather than a word, so it catches technology, technological and technologies alike. Same snapshot and same raise.",
+   "from_claims": [
+    "c22"
+   ]
+  },
+  {
+   "phrase": "0 AI",
+   "kind": "count",
+   "value": 0,
+   "computed_by": "compute.py RELEASE_HITS['AI'], matched as a whole token with word boundaries so it cannot be satisfied by the letters inside another word. Same snapshot and same raise.",
+   "from_claims": [
+    "c22"
+   ]
+  },
+  {
+   "phrase": "TEXAS AI DOCKET NO. 21",
+   "kind": "serial",
+   "value": 21,
+   "computed_by": "computed.json deck, the run's own position in the carousel series. It is a serial number and not a measurement of anything in the record, which is why no claim carries it and why it is declared here.",
+   "note": "Slide 9's colophon."
+  }
+ ]
+}

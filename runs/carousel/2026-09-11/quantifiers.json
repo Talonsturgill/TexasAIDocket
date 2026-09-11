@@ -1,0 +1,19 @@
+{
+ "run": "2026-09-11",
+ "note": "One universal is printed in this run and it is the caption's, over the six terms the release was searched for. The set is named here because a quantifier is a claim about a set, and the measurement behind it is the same one slide 7 draws.",
+ "quantifiers": [
+  {
+   "phrase": "None of them",
+   "about": "search terms",
+   "from_items": [
+    "artificial",
+    "algorithm",
+    "automated",
+    "machine learning",
+    "technolog",
+    "AI"
+   ],
+   "measured_by": "compute.py RELEASE_HITS counts each of these six over the served bytes of the board's news release, navigation and footer included, and RAISES rather than publishing if any one of them is not zero. The caption's sentence names three of the six and the frame prints all six with their counts, so the universal is over a set the deck shows rather than one the reader is asked to take on trust."
+  }
+ ]
+}

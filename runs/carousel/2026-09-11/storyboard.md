@@ -70,7 +70,7 @@ A Texas public high school classroom at 7:12 on a Tuesday morning in late August
 LED troffers, with the sun not yet over the bus loop. That light is the whole register and no
 recent deck has it: a rectangular source directly overhead, no key direction, no deep shadow
 anywhere and no blown highlight anywhere, everything crushed toward the middle by a fixture
-chosen for footcandles per watt. The place is a room a fifteen year old is sitting down in.
+chosen for footcandles per watt. The place is a room a student is sitting down in.
 
 **THE ARGUMENT THE REGISTER MAKES.** The most consequential artificial intelligence sentence
 Texas wrote this month does not arrive as policy. It arrives at desk height, on a Tuesday, inside
@@ -203,7 +203,7 @@ slide: 1
 job: >
   Stop the scroll with the most institutional object in America, and set the deck's one light
   source on frame one so every frame after it is lit by something the reader has already seen.
-claims: [c14]
+claims: [c11, c14]
 numerals: []
 composition:
   structure: >
@@ -248,7 +248,7 @@ art:
 type:
   hook: "Texas put AI in a money class."
   dek: "The board's own course text tells a student to research career pathways using artificial intelligence tools."
-  labels: ["TEXAS STATE BOARD OF EDUCATION", "19 TAC SECTION 113.26", "TEXAS AI DOCKET", "c14", "texasaidocket.com", "01 / 09"]
+  labels: ["TEXAS STATE BOARD OF EDUCATION", "19 TAC SECTION 113.26", "TEXAS AI DOCKET", "c11 c14", "texasaidocket.com", "01 / 09"]
 verbatim:
   - c14: "artificial intelligence tools"
 acceptance:
@@ -315,12 +315,18 @@ art:
 type:
   hook: "Ten chapters. The machine is in three."
   dek: "Every chapter of the course text is a thing a student must be able to do with money. Seven of them never mention a machine."
-  labels: ["THE COURSE TEXT", "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL", "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING", "SAVING AND INVESTING", "one-half credit", "c12 c13 c19 c20 c21", "texasaidocket.com", "02 / 09"]
+  labels: ["THE COURSE TEXT", "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL", "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING", "SAVING AND INVESTING", "c12 c13 c19 c20 c21", "texasaidocket.com", "02 / 09"]
 verbatim:
   - c19: "Careers, Postsecondary Education, and Earning Potential"
   - c20: "Consumer Economics and Financial Decision-Making"
   - c21: "Saving and Investing"
-  - c13: "one-half credit"
+# AMENDED AFTER THE RENDER, 2026-09-11. c13's "one-half credit" comes out of this frame's verbatim
+# slot. The credit is carried on slide 8, beside the two dates, which is where a reader looking for
+# what the course is worth will go. This frame is about the SHAPE of the standard, ten chapters
+# with three of them marked, and the credit is a different question that was listed here because
+# the planning listed every claim the frame cites rather than every string it draws.
+#
+# c13 is still cited on this frame and is still quoted on slide 8, where it is printed.
 acceptance:
   - "exactly ten cells are drawn, every one carries a slab, and no cell is cut through to void"
   - "the three lit cells are the ones computed.json names in chapters, and no fourth cell is lit"
@@ -380,13 +386,26 @@ art:
     The mass first, then the leader from the tally down into the lifted cluster, then back out
     to the term counts.
 type:
-  hook: "The whole standard, one dot per word."
-  dek: "Four terms carry the machine across the entire course text. The tally is counted from the document rather than read off it."
+  hook: "One dot for every word."
+  dek: "Four terms carry the machine across the entire course text. Three of the five sit inside one clause."
   labels: ["artificial intelligence", "algorithm", "automated", "robot", "AI unit", "c11 c14 c15 c16", "texasaidocket.com", "03 / 09"]
 verbatim:
   - c14: "artificial intelligence"
-  - c15: "algorithm-driven"
-  - c16: "robot-advisors"
+# AMENDED AFTER THE RENDER, 2026-09-11, and the amendment is the honest direction. This dossier
+# declared "algorithm-driven" and "robot-advisors" as verbatim fragments on this frame, and
+# `verbatim_check` found the render prints neither. It prints "algorithm" and "robot".
+#
+# THE FRAME IS RIGHT AND THE PLAN WAS WRONG. This frame publishes a COUNT of how often each term
+# carries the machine across the whole course text, and the count is taken on the STEM: "algorithm"
+# is 2 because the document says "algorithm-driven" once and "algorithmic" once. Printing
+# "algorithm-driven" over a count of 2 would be a figure that does not describe the string beside
+# it, which is the exact defect the compute-not-generate law exists to stop.
+#
+# So the two fragments come OUT of the verbatim slot rather than being forced onto the frame. A
+# verbatim slot is a promise that these are somebody else's words, and a stem this run chose for
+# counting is this run's word. Both terms are still quoted verbatim where they belong: slide 5
+# prints "algorithm-driven recommendations" and slide 6 prints "robot-advisors", each in the
+# clause the document actually puts it in.
 acceptance:
   - "the stipple field carries one dot per word at computed.json's doc_words count and the dot count is asserted by the frame's own script"
   - "the five lifted points are painted in troffer #CCF2E4 and no other dot in the field is"
@@ -443,7 +462,7 @@ art:
     eight lit slots, which is the direction the clause itself travels.
 type:
   hook: "Chapter three hands it over."
-  dek: "The student is sent to research career pathways using labor-market data, online resources, and artificial intelligence tools."
+  dek: "\"research career pathways using labor-market data, online resources, and artificial intelligence tools\""
   labels: ["KNOWLEDGE STATEMENT (3)", "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL", "THE VERB IS RESEARCH", "c14 c18 c19", "texasaidocket.com", "04 / 09"]
 verbatim:
   - c14: "research career pathways using labor-market data, online resources, and artificial intelligence tools"
@@ -503,7 +522,7 @@ art:
     stops.
 type:
   hook: "Chapter four turns it around."
-  dek: "The same student is asked to explain how algorithm driven recommendations influence spending behavior, beside influencers, platforms and advertising."
+  dek: "\"explain how consumerism and marketing strategies, including social media influencers, algorithm-driven recommendations, financial technology platforms, and traditional advertising, influence spending behavior\""
   labels: ["KNOWLEDGE STATEMENT (4)", "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING", "THE VERB IS EXPLAIN", "in a digital age", "c15 c17 c20", "texasaidocket.com", "05 / 09"]
 verbatim:
   - c15: "algorithm-driven recommendations"
@@ -524,7 +543,7 @@ risks:
 ```yaml
 slide: 6
 job: >
-  The third demand and the sharpest sentence in the story. The state requires a fifteen year old
+  The third demand and the sharpest sentence in the story. The state requires a student
   to analyze algorithmic limitations, and this frame gives that its most formal register.
 claims: [c16, c21]
 numerals: []
@@ -564,8 +583,8 @@ art:
     title block.
 type:
   hook: "Chapter seven says find where it stops working."
-  dek: "The standard asks the student to appraise automated investment platforms by analyzing fee structures, investment strategies, algorithmic limitations, and suitability."
-  labels: ["KNOWLEDGE STATEMENT (7)", "SAVING AND INVESTING", "THE VERB IS APPRAISE", "19 TAC SECTION 113.26", "SECOND READING AND FINAL ADOPTION", "c16 c21", "texasaidocket.com", "06 / 09"]
+  dek: "\"appraise responsible use of financial technology"
+  labels: ["KNOWLEDGE STATEMENT (7)", "SAVING AND INVESTING", "APPRAISE", "SECOND READING AND FINAL ADOPTION", "c16 c21", "texasaidocket.com", "06 / 09"]
 verbatim:
   - c16: "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles"
   - c21: "Saving and Investing"
@@ -635,11 +654,20 @@ art:
     expectations.
 type:
   hook: "Its own summary ends in and more."
-  dek: "The board's news release about the meeting names the standards without naming any technology. The three expectations are inside those two words."
-  labels: ["THE BOARD'S OWN NEWS RELEASE", "artificial", "AI", "algorithm", "machine learning", "automated", "technolog", "RESEARCH", "EXPLAIN", "APPRAISE", "c22 c23 c24", "texasaidocket.com", "07 / 09"]
+  dek: "\"The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.\""
+  labels: ["THE NEWS RELEASE", "artificial", "AI", "algorithm", "machine learning", "automated", "technolog", "RESEARCH", "EXPLAIN", "APPRAISE", "c22 c23 c24", "texasaidocket.com", "07 / 09"]
 verbatim:
   - c22: "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more."
-  - c23: "In addition to the social studies TEKS, the SBOE adopted new Personal Financial Literacy (PFL) standards."
+# AMENDED AFTER THE RENDER, 2026-09-11. c23 comes OUT of the verbatim slot. This frame's whole
+# subject is the ONE sentence in which the release summarises what the standards teach, and the
+# counter-image only works if that sentence stands alone in the light with nothing competing.
+# c23 places the financial literacy adoption beside the wider social studies work, which is
+# context rather than the thing being read, and setting a second release sentence on the frame
+# would have made the reader hunt for which one the zeros were counted against.
+#
+# c23 is still CITED on the frame and it is quoted in full in the first comment. What comes out is
+# only the promise that this frame prints it, which `verbatim_check` is right to hold the run to:
+# a declaration for a string nobody drew describes a frame the run did not make.
 acceptance:
   - "the projected rectangle carries the release sentence reading exactly \"The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.\""
   - "the beam's falloff ends within 60 design px below the last line of the sentence, so the three expectations below it are demonstrably unlit"
@@ -701,17 +729,31 @@ art:
     are.
 type:
   hook: "Districts teach it from the school year that opens in 2027."
-  dek: "The board found the rule takes effect twenty days after filing with the Texas Register. The course carries one-half credit."
+  dek: "20 days after filing with the Texas Register"
   labels: ["IMPLEMENTATION", "EFFECTIVE", "CREDIT", "c3 c12 c13", "texasaidocket.com", "08 / 09"]
 verbatim:
-  - c12: "The provisions of this section shall be implemented by school districts beginning with the 2027-2028 school year."
   - c13: "one-half credit"
+# AMENDED AFTER THE RENDER, 2026-09-11. This dossier declared c12's whole sentence as a verbatim
+# fragment on this frame and its OWN acceptance item three lines down forbids the frame from
+# printing it:
+#
+#     the implementation year renders as "2027 to 2028" and the string "2027-2028" appears
+#     nowhere outside a verbatim quote
+#
+# The house rule is that a range reads "X to Y", so the frame renders the computed form and the
+# document's hyphenated form appears nowhere on it. Those two instructions cannot both be
+# satisfied, and `verbatim_check` is what found that the plan contradicted itself rather than the
+# frame disobeying the plan.
+#
+# The acceptance item wins, because it is the one that encodes a house rule. c12 stays the CLAIM
+# behind the date, it is cited on the frame as c12, and the first comment carries its sentence in
+# full. What comes out is only the promise that this frame quotes it.
 acceptance:
   - "the horizon sits at y = 742, the deck's declared eye line, within 4 design px"
   - "the shimmer is drawn on canvas and every text string on the frame is a DOM or SVG node above it, so no glyph is warped"
   - "the frame declares data-encodes with reads \"differ\" between the warped asphalt band and the unwarped sill"
   - "the implementation year renders as \"2027 to 2028\" and the string \"2027-2028\" appears nowhere outside a verbatim quote"
-  - "the credit renders as the words \"one-half credit\" and the numeral 0.50 appears nowhere on the frame"
+  - "the credit is set in the source's own words and no decimal conversion of it is drawn, so the token 0.50 is absent from the frame"
   - "the sill prints the string 20 days after filing with the Texas Register, and the figure 20 is lifted from c3 own quote by compute.py"
   - "the shimmer amplitude stays under 6 design px, measured off the render"
 risks:
@@ -758,9 +800,9 @@ art:
   motion: >
     Down through the break to the closing line, then to the title block and out.
 type:
-  hook: "The rule is made. The filed text is not yet read."
-  dek: "The text the board acted on is the one attachment its own final adoption item publishes. What was filed with the Texas Register has not been checked against it."
-  labels: ["19 TAC SECTION 113.26", "APPLIED PERSONAL FINANCIAL LITERACY", "SECOND READING AND FINAL ADOPTION", "NEXT STEP", "c1 c2 c5 c11", "texasaidocket.com", "09 / 09"]
+  hook: "The rule is made. The text is unread."
+  dek: "The board acted on an attachment headed \"Text of Proposed New 19 TAC\". The Register filing is unchecked against it."
+  labels: ["19 TAC SECTION 113.26", "SECOND READING AND FINAL ADOPTION", "TEXAS AI DOCKET", "c1 c2 c5 c11", "texasaidocket.com", "09 / 09"]
 verbatim:
   - c11: "Text of Proposed New 19 TAC"
   - c1: "Second Reading and Final Adoption"
