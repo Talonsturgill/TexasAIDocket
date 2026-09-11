@@ -67,9 +67,26 @@ ok("every block comes back out of the cut",
 ok("the ids survive the cut intact",
   items.every((it) => /^[a-z0-9-]+$/.test(it.id)),
   JSON.stringify(items.filter((it) => !/^[a-z0-9-]+$/.test(it.id)).slice(0, 2)));
-ok("the decisions come out first, in the record's own order",
-  JSON.stringify(items.slice(0, ITEMS_RAW.length).map((i) => i.id))
-  === JSON.stringify(ITEMS_RAW.map((i) => i.id)));
+// THE TWO BODY FIELDS PARTITION THE DECISIONS, and this used to assert that the core held all
+// of them in order. That was true while the core held every body and it stopped being the
+// contract on 2026-09-11, when `pack_fit` began handing the oldest settled bodies to the sibling
+// field to keep the core under its ceiling. The property that actually matters to this file is
+// unchanged and is asserted directly: every decision comes out of the cut exactly once, so every
+// one of them is retrievable, whichever field is carrying it.
+//
+// Written as a property rather than as an order so it does not go red on the day the first body
+// moves, which is the shape of a gate that has quietly become a clock.
+const cutTx = items.filter((it) => familyOf(it.id) === "tx").map((it) => it.id);
+ok("every decision comes out of the cut exactly once, whichever field carries it",
+  JSON.stringify([...cutTx].sort()) === JSON.stringify(ITEMS_RAW.map((i) => i.id).sort()),
+  `${cutTx.length} decisions cut, ${ITEMS_RAW.length} in the record`);
+ok("and the ones the core kept are in the record's own order",
+  JSON.stringify(splitRecord(PACK).coreItems.filter((it) => familyOf(it.id) === "tx")
+    .map((it) => it.id))
+  === JSON.stringify(ITEMS_RAW.map((i) => i.id).filter((id) => {
+    const carried = PACK.pack_carried || 0;
+    return !ITEMS_RAW.slice(0, carried).some((r) => r.id === id);
+  })));
 // THE FAMILIES THE BUILDER DECLARED ARE THE FAMILIES THE CUT PRODUCES, which is the assertion
 // that catches a family silently losing its blocks. familyOf is the worker's own, so the two
 // sides cannot drift into disagreeing about what a family is.

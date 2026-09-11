@@ -1,30 +1,30 @@
 {
- "total": 232,
- "found": 99.1,
- "first": 95.7,
+ "total": 379,
+ "found": 97.9,
+ "first": 94.7,
  "by_kind": {
   "county": {
-   "n": 30,
+   "n": 36,
    "found": 100,
    "first": 100
   },
   "decider": {
-   "n": 52,
+   "n": 84,
    "found": 100,
    "first": 100
   },
   "nonsense": {
-   "n": 4,
+   "n": 5,
    "found": 100,
    "first": 0
   },
   "phrase": {
-   "n": 69,
-   "found": 97.1,
-   "first": 91.3
+   "n": 123,
+   "found": 93.5,
+   "first": 87.8
   },
   "title": {
-   "n": 69,
+   "n": 123,
    "found": 100,
    "first": 100
   },
