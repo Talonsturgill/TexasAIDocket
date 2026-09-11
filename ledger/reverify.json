@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-10",
+    "generated": "2026-09-11",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -351,6 +351,24 @@
         "tx-2026-0119-c9"
       ]
     },
+    "https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/": {
+      "etag": null,
+      "last_modified": "Fri, 11 Sep 2026 06:20:30 GMT",
+      "hash": "f94199fd47067a0de620081be1d57c6f602e519809c1c349aef06b92b97b35cf",
+      "proven": [
+        "tx-2026-0132-c1",
+        "tx-2026-0132-c2",
+        "tx-2026-0132-c3"
+      ]
+    },
+    "https://engineering.unt.edu/cse/undergraduate/bsai.html": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "2edb06129950390a571488c2c116c0b8176c733df9a1232612d314c99fa4d08c",
+      "proven": [
+        "tx-2026-0133-c1"
+      ]
+    },
     "https://ftp.puc.texas.gov/public/puct-info/agency/om/082026Final.pdf": {
       "etag": "\"a174b351330dd1:0\"",
       "last_modified": "Wed, 19 Aug 2026 19:44:54 GMT",
@@ -669,6 +687,15 @@
         "tx-2026-0119-c7"
       ]
     },
+    "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html": {
+      "etag": "\"e595d2bc01dfab5a5887f409264edc5b948b2a1d\"",
+      "last_modified": "Thu, 10 Sep 2026 08:24:41 GMT",
+      "hash": "52c1b76087e935d3bca1da9f2e9c9d8f32de2ccddeb1ac23499fccb001475816",
+      "proven": [
+        "tx-2026-0131-c1",
+        "tx-2026-0131-c2"
+      ]
+    },
     "https://news.utexas.edu/2026/02/19/ut-launches-new-school-of-computing-uniting-computer-and-data-science-statistics-information-disciplines/": {
       "etag": null,
       "last_modified": null,
@@ -846,6 +873,24 @@
         "tx-2026-0096-c1",
         "tx-2026-0096-c2"
       ]
+    },
+    "https://services.austintexas.gov/edims/document.cfm?id=473428": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "f307cb490e0bc7efa3cc88019f60c0d76ebed8d1e0421932fee86d71a1d8288f",
+      "proven": []
+    },
+    "https://services.austintexas.gov/edims/document.cfm?id=479192": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "dc6108a431ed5806c52728edbbc9d323f07fc078ea9816c4ed9823188c1f7a98",
+      "proven": []
+    },
+    "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf": {
+      "etag": "\"67d7cef0030f72565bffe52921a80577\"",
+      "last_modified": "Fri, 08 May 2026 05:03:34 GMT",
+      "hash": "37de56d2dac3ad8e0af52a545ffd2862ceeb8c2fbb522c8a100ab0607ccd100c",
+      "proven": []
     },
     "https://taylortx.new.swagit.com/videos/396213": {
       "etag": "W/\"0fed446d15bc93222c88c95fd52b4ada\"",
@@ -1226,6 +1271,14 @@
         "tx-2026-0030-c2"
       ]
     },
+    "https://www.austintexas.gov/council/2026/20260812-reg": {
+      "etag": "W/\"1789107656-gzip\"",
+      "last_modified": "Fri, 11 Sep 2026 06:20:56 GMT",
+      "hash": "939c010f35a4aa56e8318400525d88d509cb0272ec8331cd837bfc823713fe75",
+      "proven": [
+        "tx-2026-0129-c7"
+      ]
+    },
     "https://www.austintexas.gov/council/2026/20260827-reg": {
       "etag": "W/\"1789021129-gzip\"",
       "last_modified": "Thu, 10 Sep 2026 06:18:49 GMT",
@@ -1301,7 +1354,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-13928.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "70be3cb5d5d6661b87e5f2ab7c9751feeec81e627135d63f4928dbfaa655b86d",
+      "hash": "e6e6839a69091c0647702c429ecc0bcf1b0816b6ff009dd026c631c9ada86bcb",
       "proven": [
         "tx-2026-0016-c2"
       ]
@@ -1318,7 +1371,7 @@
     "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions": {
       "etag": null,
       "last_modified": null,
-      "hash": "56f2c4ccba26dc5f477f5b8987a17771a891ed3964b7048e5d89c5a12b6cda72",
+      "hash": "60041d1e164c2ef628c7f24b766ed74026636cc7c1e9a456e7d1a55ff4aef20f",
       "proven": []
     },
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
@@ -1518,13 +1571,15 @@
       ]
     },
     "https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial": {
-      "etag": "\"1788757564\"",
-      "last_modified": "Mon, 07 Sep 2026 05:06:04 GMT",
-      "hash": "127880cd1ac748b573479b54a56667e28514fcdf526a8ffadd4fc0c77d216418",
+      "etag": "\"1789107659\"",
+      "last_modified": "Fri, 11 Sep 2026 06:20:59 GMT",
+      "hash": "2087b0544a2b9b86a49139512415f2da9b39f81d831f916b1b1d6e55c967a0b3",
       "proven": [
         "tx-2026-0121-c1",
         "tx-2026-0121-c2",
-        "tx-2026-0121-c3"
+        "tx-2026-0121-c3",
+        "tx-2026-0130-c1",
+        "tx-2026-0130-c2"
       ]
     },
     "https://www.nsf.gov/news/nsf-announces-first-awards-advance-ai-cybersecurity": {
