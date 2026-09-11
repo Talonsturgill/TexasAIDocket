@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-09-11-the-warning-stays-local",
+      "date": "2026-09-11",
+      "title": "The warning stays local",
+      "caption": "UT San Antonio researchers built a field-ready flood-warning prototype that keeps evaluating sensor data when power, cell service and cloud links fail. The inference happens on the node, then LoRa carries a report to a local hub. Initial validation is not a deployed warning network, and field weatherization still comes next.",
+      "video": "/runs/2026-09-11/dispatch.mp4",
+      "poster": "/runs/2026-09-11/poster.png",
+      "video_mobile": "/runs/2026-09-11/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-09-11/poster-540.jpg",
+      "county": "Bexar",
+      "beat": "weather-and-emergency"
+    },
+    {
       "id": "2026-09-10-the-seat-stays-empty",
       "date": "2026-09-10",
       "title": "The seat stays empty",
