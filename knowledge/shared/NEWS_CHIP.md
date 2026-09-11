@@ -24,7 +24,8 @@ proxy**, not measured reader traffic, a comprehensive census, or a promise of an
 statewide number one. Broad keyword filters can miss stories; the allowlist can be expanded.
 
 GDELT's `seendate` is an indexing time, not a verified publication time. We never label it as
-publication. An old dated article URL is rejected. A URL's first observation is retained for a
+publication. RSS uses the publisher's own timestamp as its freshness anchor. An old dated
+article URL is rejected. A URL's first observation is retained for a
 week, so a repeated result cannot keep refreshing its own expiry. The linked publisher owns the
 headline; the site quotes it unchanged in a `cite`, with visible publisher attribution. Discovery
 is credited to The GDELT Project and publisher RSS in the link's description and the committed snapshot.

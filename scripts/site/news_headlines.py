@@ -3,7 +3,7 @@
 
 GDELT provides discovery metadata, not readership counts or a verified publication date.
 We rank recent coverage from named newsrooms, group sister outlets, and retain the publisher's
-headline verbatim. No article bodies are fetched. See knowledge/shared/NEWS_CHIP.md.
+headline verbatim. Only headline metadata is retained; article pages are never fetched. See knowledge/shared/NEWS_CHIP.md.
 """
 from __future__ import annotations
 
@@ -171,7 +171,10 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
     for old in (previous or {}).get('articles', []):
         if dt.timedelta(0) <= now - instant(old['first_seen_at']) < dt.timedelta(days=7):
             rows.append(old)
-    unique = {a['url']: a for a in rows}
+    unique = {}
+    for article in rows:
+        current = unique.setdefault(article['url'], dict(article))
+        current['first_seen_at'] = min(current['first_seen_at'], article['first_seen_at'])
     rows = sorted(unique.values(), key=lambda a: a['url'])
     ranked = rank(rows, now)
     selected = ranked[0] if ranked else None
@@ -285,7 +288,10 @@ def rss_articles(body: bytes) -> list[dict]:
         raise ValueError('publisher did not return an RSS feed')
     for item in root.findall('./channel/item'):
         try:
-            published = email.utils.parsedate_to_datetime(item.findtext('pubDate')).astimezone(UTC)
+            published = email.utils.parsedate_to_datetime(item.findtext('pubDate'))
+            if published.tzinfo is None:
+                raise ValueError('RSS publication time has no timezone')
+            published = published.astimezone(UTC)
             rows.append({'title': item.findtext('title'), 'url': item.findtext('link'),
                          'language': 'English', 'seendate': published.strftime('%Y%m%dT%H%M%SZ')})
         except (TypeError, ValueError, AttributeError):
@@ -371,9 +377,11 @@ def self_test() -> int:
             p = {'articles': [{'title': row()['title'], 'url': row()['url'], 'language': 'English', 'seendate': '20260911T190000Z'}]}
             s = snapshot(p, now.replace(microsecond=123456))
             validate(s)
+            p['articles'][0]['title'] = 'Texas expands Project Nexus to test electric air taxis'
             p['articles'][0]['seendate'] = '20260912T200000Z'
             later = snapshot(p, now+dt.timedelta(days=1), s)
             self.assertEqual(later['expires_at'], s['expires_at'])
+            self.assertEqual(later['selected']['title'], p['articles'][0]['title'])
             p['articles'][0]['seendate'] = '20260913T200000Z'
             self.assertIsNone(snapshot(p, now+dt.timedelta(days=2), later)['selected'])
             broken = copy.deepcopy(s)
@@ -394,6 +402,7 @@ def self_test() -> int:
             body = b'<rss><channel><item><title>UNT to launch an AI college</title><link>https://dallasinnovates.com/college/</link><pubDate>Fri, 11 Sep 2026 18:00:00 +0000</pubDate></item><item><title>Undated</title></item></channel></rss>'
             articles = rss_articles(body)
             self.assertEqual(len(articles), 1)
+            self.assertEqual(rss_articles(body.replace(b' +0000', b'')), [])
             with self.assertRaises(ValueError): rss_articles(b'<html>unavailable</html>')
             self.assertEqual(articles[0]['seendate'], '20260911T180000Z')
             self.assertIsNotNone(snapshot({'articles': articles}, now)['selected'])
