@@ -1085,3 +1085,30 @@ same question and cost nothing.
 **`interchange.puc.texas.gov` needs a browser User-Agent**, which the registry already says, and
 its filing-count strings ("5828 filing(s).") change every time somebody files, which is what makes
 them useful as a movement signal and useless as a stable quote.
+
+## 2026-09-11, carousel no. 20
+
+**`federalregister.gov` serves its API to this client and 302s its HTML documents to a block
+page.** `https://www.federalregister.gov/documents/2026/07/10/2026-13928/...` answered 302 to
+`https://unblock.federalregister.gov/`, which is a bot wall rather than a robots decision and was
+not routed around. The keyless API at `https://www.federalregister.gov/api/v1/documents/<doc>.json`
+answered 200 on the same document in the same minute and carries the abstract verbatim, plus
+`comments_close_on`, which is the field a run actually needs. This is why `tx-2026-0016` read as
+unverifiable on the re-verifier for several runs while the document itself was fine. **A claim
+resting on a Federal Register notice should carry the API record as a second claim**, so the fact
+stays machine-checkable when the HTML side walls off.
+
+**PDF extraction inserts the page footer into the middle of a sentence that spans a page break.**
+Austin's `services.austintexas.gov/edims/document.cfm?id=479192` puts "Page 1 of 2" between the
+words "artificial" and "intelligence" in the resolution's central prohibition, and drops the space
+in "December 9,2026". Two of `tx-2026-0129`'s claims read as missing until the footer was stripped
+and the thousands-style comma normalised. Both quotes are on the page exactly as the record holds
+them. This is the same shape as the San Angelo and Lubbock line-break note above, one layer up.
+
+**`static.nhtsa.gov/odi/inv/...` answers a browser User-Agent and `api.nhtsa.gov/investigations`
+ignores its own filter parameters.** All sixteen quotes on `tx-2026-0136` re-verified against the
+opening resume PDF this run, after an earlier run recorded the agency's status pages as
+unanswering. The API accepted `nhtsaActionNumber=PE26003` and `makeSlug=avride` and returned the
+full unfiltered set of 4,179 either way, so **it cannot be used to ask whether one investigation
+has closed.** The conventional closing-resume path (`INCLA-<id>.pdf`) 404s, which is weak evidence
+and was recorded as unconfirmed rather than as a finding.
