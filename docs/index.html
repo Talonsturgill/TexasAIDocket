@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-L9/NryT+PFfW+z5gYAWMk3mDuKgTp2JLrntsRiogEe4=' 'sha256-VCmcCZ76fWjko6HgKXCLy5YszPdXE7+83XWN1HRVn6Q=' 'sha256-YIpRnI/6qU6nNuugZQGgKy8EGBG9DP7tTIdDHEc/gtQ=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-L9/NryT+PFfW+z5gYAWMk3mDuKgTp2JLrntsRiogEe4=' 'sha256-VCmcCZ76fWjko6HgKXCLy5YszPdXE7+83XWN1HRVn6Q=' 'sha256-AOTaUjdhjlyrNbmq7Nsdai5zL/ORFjxrqvYdy/00AKI=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -25,6 +25,8 @@
 <meta name="theme-color" content="#00205B">
 <link rel="stylesheet" href="site.css?v=6d29a87ae4">
 <link rel="stylesheet" href="home.css?v=26cc0cd6a6">
+<link rel="stylesheet" href="voice-input.css?v=449e0422ec22">
+<script defer src="voice-input.js?v=449e0422ec22"></script>
 <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="Texas AI Docket" href="atom.xml">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","@id":"https://texasaidocket.com/#website","name":"Texas AI Docket","url":"https://texasaidocket.com","inLanguage":"en-US","publisher":{"@id":"https://texasaidocket.com/#org"}},{"@context":"https://schema.org","@type":"Organization","@id":"https://texasaidocket.com/#org","name":"Texas AI Docket","url":"https://texasaidocket.com/","description":"A public, fact-checked record of decisions about artificial intelligence in Texas.","logo":{"@type":"ImageObject","@id":"https://texasaidocket.com/#logo","url":"https://texasaidocket.com/apple-touch-icon.png","contentUrl":"https://texasaidocket.com/apple-touch-icon.png","width":180,"height":180},"sameAs":["https://www.linkedin.com/company/texasaidocket/","https://www.facebook.com/Texasaidocket","https://www.instagram.com/texasaidocket","https://www.youtube.com/@TexasAIDocket","https://x.com/TexasAIDocket","https://www.tiktok.com/@texas.ai.docket"]},{"@context":"https://schema.org","@type":"Dataset","@id":"https://texasaidocket.com/record/#dataset","name":"Texas AI Docket, the tracked record","description":"Every tracked decision about artificial intelligence in Texas, with the body that decides, the dates that matter, whether the public has a way in, and a fetched source behind every fact.","url":"https://texasaidocket.com/record/","license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"inLanguage":"en-US","creator":{"@id":"https://texasaidocket.com/#org"},"publisher":{"@id":"https://texasaidocket.com/#org"},"dateModified":"2026-09-11","keywords":["Texas","artificial intelligence","data centers","ERCOT","public records","state policy"],"spatialCoverage":{"@type":"State","name":"Texas"},"variableMeasured":[{"@type":"PropertyValue","name":"status","description":"Whether the decision is pending, decided or withdrawn."},{"@type":"PropertyValue","name":"public_access","description":"Whether a member of the public has a dated way to take part."},{"@type":"PropertyValue","name":"claims","description":"Each fact with its verbatim quote and the source it was fetched from."}],"temporalCoverage":"2021-06-08/2027-09-01"}]</script>
@@ -766,6 +768,18 @@ function askFuse(lists) {
   var thread = document.getElementById("askthread");
   if (!form || !input || !send || !thread) return;
 
+  // Keep the resting hint readable beside both controls on a narrow phone.
+  var COMPACT = window.matchMedia ? window.matchMedia("(max-width:30rem)") : null;
+  function firstPlaceholder() {
+    return COMPACT && COMPACT.matches ? "Ask about AI in Texas" : "Ask about anything about AI in Texas";
+  }
+  input.placeholder = firstPlaceholder();
+  if (COMPACT) COMPACT.addEventListener("change", function () {
+    if (input.placeholder === "Ask about anything about AI in Texas" || input.placeholder === "Ask about AI in Texas") {
+      input.placeholder = firstPlaceholder();
+    }
+  });
+
   var busy = false;
   /* THE CEILING'S TIMER LIVES HERE AND NOT IN THE HANDLER, so every path that ends an answer
      can cancel it. It used to be declared inside the send handler, where `finish` could reach
@@ -1048,7 +1062,7 @@ function askFuse(lists) {
     thread.hidden = true;
     box.classList.remove("answering");
     input.value = "";
-    input.placeholder = "Ask about anything about AI in Texas";
+    input.placeholder = firstPlaceholder();
     /* A suggested follow-up changes the control's ACCESSIBLE name. Clearing the visible
        field without clearing that name left a fresh arrow announcing a suggestion that no
        longer existed after Start over. */

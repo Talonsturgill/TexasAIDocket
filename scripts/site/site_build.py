@@ -117,6 +117,8 @@ def build(out: Path, today: str) -> dict:
     listed = context.listed
 
     w("site.css", theme.css())
+    w("voice-input.css", voice_input.CSS)
+    w("voice-input.js", voice_input.SCRIPT)
     # THE THREE SERIES GO OUT FIRST, BEFORE ANY PAGE IS RENDERED, and the order is load
     # bearing rather than tidy.
     #

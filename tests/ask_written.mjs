@@ -960,4 +960,6 @@ if (fail) {
 console.log(fail === 0 ? `ask_written: all passed, ${pass} checks`
                        : `ask_written: FAILED, ${fail} of ${pass + fail}`);
 await b.close();
+// Keep the shared dictation contract in the existing browser CI lane.
+if (!fail) await import('./voice_input.mjs');
 process.exit(fail ? 1 : 0);
