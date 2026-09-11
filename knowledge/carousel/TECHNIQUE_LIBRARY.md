@@ -287,6 +287,47 @@ frames and a weak strip. Open the contact sheet before the pixel critics, not af
 
 ---
 
+## SUBJECTS — the illustration system (2026-09-11)
+
+Everything above this line is a SURFACE: what a frame is made of. Nothing above it is what a
+frame is a picture of, and after twenty one decks the judges' finding was that the frames were
+surfaces with a headline on them. These entries are subjects. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
+is the doctrine, `examples/editorial-deck/` is the demonstration, and every one of these is a
+library under `assets/js/`. **Every frame names one of the ten layouts and one drawn subject
+before it names a surface.**
+
+**Scene bench** — `TXSCENE`. A camera at eye height over a ground plane with a horizon, one
+declared light, objects placed at TRUE SCALE in metres with ground shadows cast from that
+light. The structural cure for "an object in a void": a thing stands on something, at a size,
+beside something whose size the reader knows. *Fails when:* the subject is placed at a
+distance that leaves it 30 px tall on a phone. Bring it in until it owns its rect.
+
+**Figures** — `TXFIG`. People as pictograms, eight head canon, eleven poses, hats and held
+things, a front view for counts, seeded crowds. A figure gives every object beside it a size
+and turns a statistic into a count of people. *Fails when:* figures and furniture share one
+grey in the twin and merge into a mass, or a figure is placed where the claim has no person.
+
+**The catalogue** — `TXOBJ`. Forty four Texas objects at true scale, buses to the Capitol,
+pump jacks to a dais, with `wire` and `fence` helpers. `examples/objects/catalogue-*.jpg`
+shows them all beside a person. *Fails when:* an object is used as a symbol rather than a
+subject (a small pump jack in a corner is clip art; a pump jack at 7 m filling the frame is a
+picture), or when a subject not in the catalogue is drawn as a slab instead of in parts.
+
+**The print** — `TXINK.print`. Paper, one ink, a screen (halftone, line, hatch, stipple), a
+contour plate out of register, one accent laid flat. The surface that says a hand made it.
+*Fails when:* the screen runs under type (keep the reserve dark by construction or fade it
+with `TXINK.reserve`), the cell drops under 4 and becomes texture, or nine frames share one
+screen.
+
+**The ten layouts** — `TXLAYOUT`. FULL_BLEED, SPLIT_HORIZON, TYPE_AS_OBJECT, OBJECT_AND_CAPTION,
+DIAGRAM, GRID, DOCUMENT, MAP, CLOSE_CROP, FIGURE_SCALE, rotated so no two frames in a row share
+one and at least five appear. *Fails when:* the sequence is not checked before the dossiers,
+which is why `TXLAYOUT.check` runs in Node before a dossier exists, and when a layout is
+declared and the rect it names turns out to hold a plate, which is what `layout_check.py`
+measures.
+
+---
+
 ## HOW TO CHOOSE
 
 In order.

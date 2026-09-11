@@ -1372,4 +1372,54 @@
   ],
   "what_was_not_done_and_why": "Three is the ceiling and it was reached. caption_check never reading brand.yaml's 76 banned_phrases is real, is in this lane, and was left, because the ceiling was already spent on two defects that had each already cost a scoring round and one that had a gate sitting red on main. ledger_check asserting one carousel_no per date across the three variety ledgers is also real and also in this lane and is written up in the backlog with the 2026-09-09 evidence. Nothing was loosened. No threshold was typed. The one number this phase touched is a DATE, 2026-09-04, which names an artifact rather than setting a bar."
  }
+ ,"2026-09-11 upgrade": {
+  "phase": "upgrade session on the owner's instruction, not a routine's retro phase",
+  "instruction": "Right now the artwork for this automation is very mediocre. Make a concerted effort for a session to upgrade the ability, the strategies, the skills, the agents doing the artwork via coding, so that tomorrow's carousel is ten times better than anything before it.",
+  "diagnosis": "Twenty one decks, and three judges found the same thing under every one in different words: a small primitive floating in a gradient with a headline above it, one skeleton on every frame, techniques that are surfaces rather than subjects, nothing at a size, nobody in the picture, and frames 7 to 9 thinnest every time. Every gate was green while they said so, because every gate asked whether what was on the frame was right and none asked whether there was an image on it.",
+  "upgrades": [
+   {
+    "what": "assets/js/txscene.js, the scene bench: a pinhole camera at eye height over a ground plane with a horizon, one declared light, objects placed at true scale in metres with ground shadows cast from that light, boxes, strips, grids, and sprite tools",
+    "verified": "rendered through render.py, a bus at 12 m beside a person at 1.7 m at the sizes the arithmetic says; node tests/txlayout.mjs asserts the projection"
+   },
+   {
+    "what": "assets/js/txfig.js, people as pictograms: eight head canon, eleven poses, hats, held things, a front view for counts, seeded crowds",
+    "verified": "a pose sheet rendered and read; every pose builds under node"
+   },
+   {
+    "what": "assets/js/txobjects.js, forty four Texas objects at true scale, buses to the Capitol, pump jacks to a dais, with wire and fence helpers, and examples/objects/catalogue-*.jpg showing every one beside a figure",
+    "verified": "both catalogue pages rendered and read; every object builds with a positive footprint under node"
+   },
+   {
+    "what": "assets/js/txink.js, the print register: paper, four screens (halftone, line, hatch, stipple), a contour plate, duotone, posterise, misregistered press, a hand wobble for SVG paths, and TXINK.print which does a frame in one call, plus TXINK.reserve for the furniture bands",
+    "verified": "a four screen sheet rendered and read; nine frames printed through it"
+   },
+   {
+    "what": "assets/js/txlayout.js, the ten layout archetypes and the rotation rules on two single-line declarations, TXLAYOUT.check for a planner in node, TXLAYOUT.mount for the fixed furniture",
+    "verified": "node tests/txlayout.mjs, and the Python gate's self-test parses the file and asserts the tables agree"
+   },
+   {
+    "what": "scripts/carousel/layout_check.py, the gate: rotation, rect area, bleeds, detail inside the rect on the pixels, a silhouette at thumb scale, the accent's presence and restraint, with --require for the routine and a scope note for decks before the system; wired into guards.yml and registered CURRENT in shipped_check with LAYOUT_SINCE 2026-09-11",
+    "verified": "35 self-test assertions pass; carousel no. 21 given full frame rects fails on seven of nine frames; the example deck passes on all six measures"
+   },
+   {
+    "what": "examples/editorial-deck/, nine frames re-drawing carousel no. 21 through the system, eight distinct layouts, four screens, one accent, with a storyboard carrying the three new dossier keys, webp renders and a contact sheet",
+    "verified": "qa.py WARN with no FAIL; layout_check --require clean"
+   },
+   {
+    "what": "knowledge/carousel/ILLUSTRATION_SYSTEM.md, the doctrine; the primary image law in DESIGN_DOCTRINE.md; the three image keys in SLIDE_DOSSIER_SPEC.md; a SUBJECTS section in TECHNIQUE_LIBRARY.md; artwork_craft's asks and scale in scoring_rubric.yaml",
+    "verified": "read back; sensitive_paths and actor_stamp_shape clean"
+   },
+   {
+    "what": "prompts/daily_routine.md phases 9, 11, 12 and 12b: the doctrine and the contact sheet read before the directors room, nine subjects and layouts pitched before a surface, the rotation checked in node before a dossier exists, frames 7 to 9 built first, image before type, layout_check --require before any critic and again after the last round, both critics on every round",
+    "verified": "linters clean; the phases read back"
+   },
+   {
+    "what": ".claude/agents/carousel-treatment-director.md, carousel-pixel-critic.md and carousel-flow-critic.md: the director pitches frames with layout, subject, objects, screen and bleeds; the pixel critic grades the primary image law off the thumb; the flow critic reads the rotation, the screens, the accent and the close against the open",
+    "verified": "edited by a maintainer at a keyboard, the one lane that can reach that path; read back"
+   }
+  ],
+  "lane": "maintainer, on a development branch, so every path was reachable including the two under .claude/ that the upgrade lane owns and can't edit unattended",
+  "cost_stated": "the print step costs 1 to 6 seconds a frame at 2x inside the 30 second cap; the gate's thresholds were set on one deck that fails them and one that passes, and are named in the backlog for re-measurement after three shipped decks",
+  "what_was_not_done_and_why": "MAP and TYPE_AS_OBJECT have no example frame because the reference story had no place and no single phrase; the catalogue is forty four objects and the backlog names the next eleven; a light paper deck has not been rendered through the print because the brand caps light decks at one in eight and the first is weeks away. All in knowledge/carousel/UPGRADE_BACKLOG.md."
+ }
 }

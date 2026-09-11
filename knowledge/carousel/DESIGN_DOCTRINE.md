@@ -23,6 +23,30 @@ marks than the far field or there is no depth to read.
 **Crests catch light.** A few dozen small specular points at the top of the value range do more
 for material than hundreds more contour lines.
 
+## The primary image, which comes before any of the above
+
+**Every frame carries one drawn subject that owns at least thirty percent of the frame, reads as
+one silhouette at feed size, and on most frames runs off at least one edge.** Added 2026-09-11,
+after twenty one decks in which three judges found "an object in a void", "assembled, not
+drawn" and "the same page nine times" under every one, while every gate stayed green. A value
+structure, a contact shadow and a leader are properties of an image. They are not an image. The
+rules below apply to a frame once it has one.
+
+A subject is a THING, drawn at true scale on the scene bench beside something whose size a
+reader knows. A field, a haze, a gradient and a grain are what a subject stands in. The layout
+of the frame, where the image goes and how much of the page it takes, is one of ten archetypes
+chosen per frame and rotated across the deck. `knowledge/carousel/ILLUSTRATION_SYSTEM.md` is
+the whole of it, `assets/js/txlayout.js` is the table, and `scripts/carousel/layout_check.py`
+reads the pixels afterwards.
+
+**The surface is a print, not a screen.** Paper, one ink, a screen that turns tone into marks a
+reader can see, a contour a pixel out of register, one accent laid flat on top. A soft gradient
+under flat vector shapes with grain over it is the surface every judged deck had, and it is what
+"placed rather than made" looks like.
+
+**Somebody is in the picture** whenever the claim has a person in it. A figure at true scale
+gives every object beside it a size and gives the reader somewhere to stand.
+
 ## Composition
 
 **The frame has three horizontal bands and all three must work.** A slide with everything in

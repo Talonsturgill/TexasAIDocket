@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- EDITORIAL DECK, frame 3 of 9. Archetype FIGURE_SCALE.
+     A student at true scale on the Capitol's south walk, the building at 60 metres, camera at
+     standing eye height with a low horizon so the dome leaves the top of the frame. The type
+     sits top left in the sky the composition keeps empty. Stipple screen, which gives stone
+     its grain. One accent: the flag. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --night:#0F0C1C; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#E0956A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--night); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:560px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:88px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:352px; width:430px; font-size:27px; line-height:1.42; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The board acts under statute.</h1>
+<p class="dek">The statute the board cites makes it responsible for graduation requirements, and treats the half credit as one a student must comply with.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The statute behind the item", counter: "03 / 09", src: "c8 c9   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 88, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var cam = { w: W, h: H, eye: 1.6, horizon: 905, f: 720, fogZ: 1e9, light: { az: -55, el: 34 } };
+    var S2;
+    var cap = TXOBJ.sprite("capitol");
+    var student = TXFIG.figure({ pose: "walk", height: 1.66, hold: "bag" });
+    var oak = TXOBJ.sprite("live_oak", { seed: 9, spread: 17, height: 12 });
+    TXINK.print(cx, {
+      ground: "#0F0C1C", ink: "#EDE6D6", fibre: 0.05, seed: 23,
+      screen: { mode: "stipple", cell: 5, perCell: 7, weight: 1.1, gamma: 1.05 },
+      edges: { threshold: 18, width: 1.3, alpha: 0.75, dx: -1.0, dy: 0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam)); S2 = S;
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        S.ground({ near: 0.8, far: 400, fill: "#3C3C3C" });
+        // the walk: a pale granite path up the middle, and lawn either side
+        S.strip({ X: 4, w: 9, near: 0.8, far: 70, fill: "#8A8A8A" });
+        S.gridZ({ dz: 3, from: 3, to: 70, ink: "rgba(0,0,0,0.35)", width: 1.2 });
+        var inks = { ink: "#D6D6D6", paper: "#1A1A1A", accent: "#D6D6D6" };
+        S.shadow(cap, { X: 30, Z: 62, ink: "#000", alpha: 0.5 });
+        S.sprite(cap, { X: 30, Z: 62, inks: inks, fade: false });
+        S.shadow(oak, { X: -34, Z: 40, ink: "#000", alpha: 0.5 });
+        S.sprite(oak, { X: -34, Z: 40, inks: { ink: "#9A9A9A", paper: "#1A1A1A", accent: "#9A9A9A" }, fade: false });
+        // a few people on the walk at their own depths, so the scale reads twice
+        var far1 = TXFIG.figure({ pose: "walk", height: 1.75 }), far2 = TXFIG.figure({ pose: "stand", height: 1.62, hold: "phone" });
+        S.shadow(far1, { X: 8, Z: 24, ink: "#000", alpha: 0.5 }); S.sprite(far1, { X: 8, Z: 24, inks: inks, mirror: true });
+        S.shadow(far2, { X: 1.5, Z: 15, ink: "#000", alpha: 0.5 }); S.sprite(far2, { X: 1.5, Z: 15, inks: inks });
+        S.shadow(student, { X: -1.2, Z: 5.2, ink: "#000", alpha: 0.55 });
+        S.sprite(student, { X: -1.2, Z: 5.2, inks: inks, fade: false });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#0F0C1C", bottom: 170 });
+        // the one accent: the flag on the dome's pole, flat colour
+        var p = S2.project(30 + 0.4, 84.5, 62);
+        c.save(); c.fillStyle = "#E0956A"; c.beginPath(); c.moveTo(p[0], p[1] - 30); c.lineTo(p[0] + 58, p[1] - 16); c.lineTo(p[0], p[1] - 2); c.closePath(); c.fill(); c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

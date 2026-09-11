@@ -1689,3 +1689,33 @@ the same number as 2026-09-08, then jumping to 20. `runs/carousel/2026-09-09/RUN
 "Carousel no. 19.", so 19 is what shipped. The number is a pure function of the run, it is typed
 once per ledger file, and nothing checks the three agree with each other or with the run record.
 `ledger_check` already reads all three files. Two assertions, one small commit.
+
+---
+
+## PROPOSALS FROM THE ILLUSTRATION SYSTEM SESSION, 2026-09-11
+
+The system shipped whole in one session (five libraries, a gate, an example deck, the doctrine,
+the routine's art phases and the three art agents). What it deliberately left for a later run,
+each with the reason it was left:
+
+- **Two archetypes have no example frame.** MAP and TYPE_AS_OBJECT are in the table and in the
+  gate and neither appears in `examples/editorial-deck/`, because the reference story had no
+  place and no single phrase that carried it. The next deck that plans either should render it
+  at the example's standard and the frame can be added to the example deck as a tenth and
+  eleventh reference, outside the nine.
+- **The catalogue is forty four objects and it is not finished.** Missing, in the order a
+  docket story is likely to want them: a courthouse interior (a bench, a witness stand), a
+  county commissioners' court dais at its real length, a police cruiser, a semi with a sensor
+  mast for the autonomous freight beat, a cell tower, a hospital corridor, an ERCOT style
+  control room console, a voting line stanchion, a school marquee sign with a paper panel a
+  frame can mount type on, a gas flare stack, a rail car. A run that draws one in metres from
+  parts puts the part list here so the next session can move it into `txobjects.js`.
+- **`TXINK.screen` costs 1 to 6 seconds a frame at 2x.** Fine under the 30 second cap, but a
+  frame that screens twice will feel it. A worker thread or a cached luma map would halve it.
+- **The layout gate's thresholds were set on one deck that fails them and one that passes.**
+  Detail 0.25, silhouette 0.08 and 0.50, GRID pieces 4, accent 0.2 to 8 percent. After three
+  shipped decks under the system, re-measure and write the numbers down beside the ones here.
+- **A light-paper deck has not been rendered through `TXINK.print`.** The pipeline chooses the
+  blend by the ground's luminance and the screens are not inverted on light paper, so it should
+  work, and it is untested. The brand caps light decks at one in eight, so the first one is
+  weeks away and should be built the day before it is needed rather than on the day.

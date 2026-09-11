@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- EDITORIAL DECK, frame 9 of 9. Archetype FULL_BLEED.
+     The close. Night over a small Texas town at true scale: the water tower, a grain of
+     houses, the transmission line, a pump jack, the long road to the horizon, all under a sky
+     that the type sits in. The constellation is fixed here: wordmark, star, site. One accent:
+     one lit window. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --night:#0F0C1C; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#E0956A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--night); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:380px; width:800px; font-size:28px; line-height:1.4; color:var(--dim); }
+  .mark { position:absolute; left:80px; top:1086px; font-family:"Fraunces", serif; font-weight:700; font-size:40px; letter-spacing:0.02em; color:var(--ink); }
+  .star { position:absolute; left:80px; top:1048px; width:26px; height:26px; }
+  .date { position:absolute; left:80px; top:1146px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; color:var(--dim); white-space:nowrap; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The rule is made. The credit is required.</h1>
+<p class="dek">The board acted on an attachment headed "Text of Proposed New 19 TAC". The filed rule is unchecked here.</p>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 8.1h8.5l-6.9 5 2.7 8.2L12 17.9 4.8 22.9l2.7-8.2-6.9-5h8.5z" fill="#EDE6D6"/></svg>
+<div class="mark">TEXAS AI DOCKET</div>
+<div class="date">Item dated September 4th, 2026</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "19 TAC section 113.26", counter: "09 / 09", src: "c1 c2 c5 c9 c11   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 96, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var cam = { w: W, h: H, eye: 2.2, horizon: 700, f: 640, fogZ: 1e9, light: { az: 60, el: 22 } };
+    var tower = TXOBJ.sprite("water_tower"), jack = TXOBJ.sprite("pump_jack", { angle: -6 }), tx = TXOBJ.sprite("transmission_tower"), oak = TXOBJ.sprite("live_oak", { seed: 21 }), mesq = TXOBJ.sprite("mesquite", { seed: 3 });
+    var S2, litWin;
+    TXINK.print(cx, {
+      ground: "#0F0C1C", ink: "#EDE6D6", fibre: 0.05, seed: 29,
+      screen: { mode: "stipple", cell: 5, perCell: 6, weight: 1.0, gamma: 1.0 },
+      edges: { threshold: 18, width: 1.3, alpha: 0.8, dx: -1.0, dy: 0.9 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam)); S2 = S;
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        // the last light on the horizon
+        var sky = a.createLinearGradient(0, 520, 0, 700); sky.addColorStop(0, "#000000"); sky.addColorStop(1, "#3A3A3A");
+        a.fillStyle = sky; a.fillRect(0, 0, W, 700);
+        S.ground({ near: 1.0, far: 1200, fill: "#2E2E2E" });
+        S.strip({ X: 3, w: 7, near: 1.0, far: 1200, fill: "#4C4C4C" });
+        S.gridZ({ dz: 8, from: 6, to: 200, ink: "rgba(0,0,0,0.3)", width: 1 });
+        var dim = { ink: "#7E7E7E", paper: "#141414", accent: "#7E7E7E" }, inks = { ink: "#CFCFCF", paper: "#141414", accent: "#CFCFCF" };
+        [[-120, 420], [-40, 470], [60, 520]].forEach(function (p) { S.sprite(tx, { X: p[0], Z: p[1], inks: dim, fade: false }); });
+        TXOBJ.wire(S, [-120, 420, 40], [-40, 470, 40], { ink: "#6A6A6A", width: 1, sag: 3 }); TXOBJ.wire(S, [-40, 470, 40], [60, 520, 40], { ink: "#6A6A6A", width: 1, sag: 3 });
+        S.sprite(tower, { X: 42, Z: 170, inks: inks, fade: false });
+        var house = TXOBJ.sprite("house", { seed: 2 }), house2 = TXOBJ.sprite("house", { seed: 5, style: "two_story" });
+        [[-60, 120], [-38, 105], [30, 110], [58, 96], [-22, 140]].forEach(function (p, i) { var h = i % 2 ? house2 : house; S.shadow(h, { X: p[0], Z: p[1], ink: "#000", alpha: 0.5 }); S.sprite(h, { X: p[0], Z: p[1], inks: inks, fade: false }); });
+        litWin = S.rectBox({ X: 30, Z: 110 }, { x: -6.8, y: 0.9, w: 1.4, h: 1.4 });
+        S.shadow(jack, { X: -28, Z: 48, ink: "#000", alpha: 0.5 }); S.sprite(jack, { X: -28, Z: 48, inks: inks, fade: false });
+        S.shadow(oak, { X: 26, Z: 36, ink: "#000", alpha: 0.5 }); S.sprite(oak, { X: 26, Z: 36, inks: dim, fade: false });
+        S.shadow(mesq, { X: -9, Z: 20, ink: "#000", alpha: 0.5 }); S.sprite(mesq, { X: -9, Z: 20, inks: inks, fade: false });
+        TXOBJ.fence(S, [-60, 14], [60, 30], { step: 3.5, wires: 4, ink: "#8A8A8A", inks: { ink: "#8A8A8A", paper: "#141414" }, shadowAlpha: 0.3 });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#0F0C1C", bottom: 360, bottomSolid: 320 });
+        c.fillStyle = "#E0956A"; c.fillRect(litWin.x, litWin.y, litWin.w, litWin.h);
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

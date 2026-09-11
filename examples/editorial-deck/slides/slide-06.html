@@ -1,0 +1,102 @@
+<!doctype html>
+<!-- EDITORIAL DECK, frame 6 of 9. Archetype DIAGRAM.
+     One student at one desk, drawn large and close, annotated. Three leader lines run from
+     three mono labels to the three things the three expectations name: the screen the student
+     researches on, the phone that recommends, the platform that invests. The labels are the
+     type and the drawing is the thing explained. Hatch screen, the engraver's register. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --night:#0F0C1C; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#E0956A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--night); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:92px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .note { position:absolute; width:340px; font-family:"JetBrains Mono", monospace; font-size:24px; line-height:1.5; letter-spacing:0.05em; color:var(--dim); }
+  .note b { display:block; font-family:"Fraunces", serif; font-weight:700; font-size:40px; letter-spacing:0; line-height:1.05; color:var(--ink); margin-bottom:6px; }
+  .note em { font-style:normal; color:var(--accent); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three verbs, three chapters, one desk.</h1>
+<div class="note" id="n1" style="left:80px;top:400px"><b>Research</b>chapter three. career pathways, using <em>artificial intelligence tools</em></div>
+<div class="note" id="n2" style="left:80px;top:640px"><b>Explain</b>chapter four. how <em>algorithm-driven recommendations</em> influence spending</div>
+<div class="note" id="n3" style="left:80px;top:880px"><b>Appraise</b>chapter seven. <em>automated investment platforms</em> and their limits</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The three expectations", counter: "06 / 09", src: "c14 c15 c16   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 92, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // a long lens, close: 300 px a metre, camera at seated eye height
+    var cam = { w: W, h: H, eye: 1.05, horizon: 900, f: 900, fogZ: 1e9, light: { az: -50, el: 42 } };
+    var Z = 3.2, DX = 1.15;    // the desk sits right of centre so the labels own the left
+    var desk = TXOBJ.sprite("desk"), chair = TXOBJ.sprite("office_chair");
+    var student = TXFIG.figure({ pose: "sit", seat: 0.46, height: 1.66, hold: "phone" });
+    // a second screen propped on the desk: the platform
+    var tablet = TXSCENE.sprite([{ type: "rect", x: 0.52, y: 0.76, w: 0.05, h: 0.22, fill: "ink" }, { type: "rect", x: 0.34, y: 0.78, w: 0.36, h: 0.24, r: 0.015, fill: "ink" }, { type: "rect", x: 0.36, y: 0.80, w: 0.32, h: 0.20, fill: "paper", noShadow: true },
+      { type: "poly", pts: [[0.39, 0.83], [0.47, 0.90], [0.53, 0.86], [0.60, 0.95], [0.65, 0.92]], fill: "ink", stroke: true, strokePx: 2, noShadow: true }]);
+    var S2, targets = {};
+    TXINK.print(cx, {
+      ground: "#0F0C1C", ink: "#EDE6D6", fibre: 0.05, seed: 26,
+      screen: { mode: "hatch", cell: 7, angle: 38, weight: 1.0, gamma: 1.0 },
+      edges: { threshold: 20, width: 1.5, alpha: 0.9, dx: 1.2, dy: -0.9 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam)); S2 = S;
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        S.ground({ near: 1.2, far: 14, fill: "#3A3A3A" });
+        S.gridZ({ dz: 0.6, from: 1.5, to: 14, ink: "rgba(0,0,0,0.4)", width: 1 });
+        S.gridX({ dx: 0.6, from: -6, to: 6, near: 1.2, far: 14, ink: "rgba(0,0,0,0.3)", width: 1 });
+        // one pool of light on the desk, and the floor falls to black toward the notes
+        var pool = a.createRadialGradient(W / 2 + DX * S.ppm(Z), S.groundY(Z) - 60, 120, W / 2 + DX * S.ppm(Z), S.groundY(Z) - 60, 720);
+        pool.addColorStop(0, "rgba(0,0,0,0)"); pool.addColorStop(0.55, "rgba(0,0,0,0.55)"); pool.addColorStop(1, "rgba(0,0,0,1)");
+        a.fillStyle = pool; a.fillRect(0, S.groundY(14), W, H - S.groundY(14));
+        var inks = { ink: "#DADADA", paper: "#0E0E0E", accent: "#DADADA" };
+        S.shadow(chair, { X: DX - 1.05, Z: Z + 0.2, ink: "#000", alpha: 0.5 }); S.sprite(chair, { X: DX - 1.05, Z: Z + 0.2, inks: { ink: "#8E8E8E", paper: "#0E0E0E" } });
+        S.shadow(student, { X: DX - 0.95, Z: Z + 0.1, ink: "#000", alpha: 0.5 }); S.sprite(student, { X: DX - 0.95, Z: Z + 0.1, inks: inks });
+        S.shadow(desk, { X: DX, Z: Z, ink: "#000", alpha: 0.5 }); S.sprite(desk, { X: DX, Z: Z, inks: inks });
+        S.sprite(tablet, { X: DX, Z: Z, inks: inks });
+        // where the leaders land, in frame px
+        targets.screen = S.rectBox({ X: DX, Z: Z }, { x: -0.5, y: 0.93, w: 0.56, h: 0.36 });
+        targets.phone = S.rectBox({ X: DX - 0.95, Z: Z + 0.1 }, { x: student.hand[0] - 0.01, y: student.hand[1] - 0.02, w: 0.05, h: 0.09 });
+        targets.tablet = S.rectBox({ X: DX, Z: Z }, { x: 0.34, y: 0.78, w: 0.36, h: 0.24 });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#0F0C1C", bottom: 170, bottomSolid: 120 });
+        // the leaders: from each note's right edge to its target, a dot at the end, drawn flat
+        // in the ink and kept clear of every glyph band
+        var pairs = [["n1", targets.screen], ["n2", targets.phone], ["n3", targets.tablet]];
+        c.save(); c.strokeStyle = "#EDE6D6"; c.fillStyle = "#E0956A"; c.lineWidth = 2;
+        pairs.forEach(function (pr) {
+          var el = document.getElementById(pr[0]).getBoundingClientRect(), t = pr[1];
+          var x0 = el.right + 26, y0 = el.top + 22, x1 = t.x + t.w / 2, y1 = t.y + t.h / 2;
+          var mx = x0 + (x1 - x0) * 0.45;
+          c.beginPath(); c.moveTo(x0, y0); c.lineTo(mx, y0); c.lineTo(x1, y1); c.stroke();
+          c.beginPath(); c.arc(x1, y1, 11, 0, Math.PI * 2); c.fill();
+          c.beginPath(); c.arc(x0, y0, 6, 0, Math.PI * 2); c.fill();
+        });
+        c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

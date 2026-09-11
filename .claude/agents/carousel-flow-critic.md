@@ -28,6 +28,17 @@ Only then, if you need to, a full-size render.
   cut with nothing lost?
 - **The cover and the close.** Does the first frame earn a swipe? Does the last one land, or
   just stop?
+- **The rotation, since 2026-09-11.** Every dossier declares one of ten layouts
+  (`knowledge/carousel/ILLUSTRATION_SYSTEM.md`), and the deck is supposed to turn the page:
+  no two frames in a row laid out the same way, at least five layouts across nine, most frames
+  with an image running off an edge. Read the contact sheet and say whether it does. Nine
+  frames with a headline at the top and a drawing under it is the finding this rule exists
+  for, and it is a must-fix by slide number.
+- **The screens and the accent.** The print register varies with the layout: halftone, line,
+  hatch, stipple. Nine of one is one drawing nine times in a new way. The one accent should
+  appear on three to six frames, small, and nowhere else.
+- **Frames 7 to 9 against 1 to 3.** The close is where every judged deck went thin. If the
+  last three frames carry less drawing than the first three, say so by number.
 
 ## What you return
 
@@ -37,6 +48,7 @@ Only then, if you need to, a full-size render.
   "momentum": "where it builds and where it stalls, by slide number",
   "the_turn": "which slide, or none",
   "rhythm": "the density and weight pattern across the nine",
+  "rotation": "the nine layouts as you read them off the sheet, and whether they turn the page",
   "must_fix": [{"slides": [4, 5], "problem": "...", "fix": "..."}],
   "cuttable": ["slides that could go with nothing lost"]
 }
