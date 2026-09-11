@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-09-10",
+ "read": "2026-09-11",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "3d7268f122632a13",
+ "digest": "4801a5224028d947",
  "facilities": [
   {
    "name": "NADC",
@@ -1232,7 +1232,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Databank Holdings LTD"
+    "Databank Holdings LTD",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1245,7 +1246,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Databank Holdings LTD"
+    "Databank Holdings LTD",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1258,7 +1260,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Databank Holdings LTD"
+    "Databank Holdings LTD",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1271,7 +1274,8 @@
     "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "Databank Holdings LTD"
+    "Databank Holdings LTD",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1601,15 +1605,16 @@
    "name": "EDC Fort Worth, LLC",
    "effective": "2026-01-09",
    "owners": [
-    "EDC Fort Worth, LLC"
+    "EDC Fort Worth LLC"
    ],
    "occupants": [
-    "EDC Fort Worth, LLC"
+    "Oracle America Cloud Services LLC"
    ],
    "operators": [
-    "EDC Fort Worth, LLC",
-    "CDE Acquisitions, LLC",
-    "EDC OPCO, LLC"
+    "Oracle America, Inc.",
+    "EDC Fort Worth LLC",
+    "EDC OPCO LLC",
+    "CDE Acquisitions LLC"
    ]
   },
   {
