@@ -382,8 +382,7 @@ a.stat:hover { background:color-mix(in srgb,var(--accent) 8%,transparent);
     inset 0 -2px 3px color-mix(in srgb,var(--night) 55%,transparent),
     0 5px 0 var(--deep),
     0 6px 0 color-mix(in srgb,var(--accent) 32%,var(--deep)),
-    0 20px 34px -10px color-mix(in srgb,var(--night) 90%,transparent),
-    0 8px 48px -12px color-mix(in srgb,var(--accent) 24%,transparent);
+    0 16px 24px -14px color-mix(in srgb,var(--night) 90%,transparent);
 }
 .home .askbox .composer::before {
   background:linear-gradient(165deg,
