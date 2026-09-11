@@ -114,7 +114,10 @@ NODE_SUITE_MARKERS = ("node tests/",)
 # rule in CLAUDE.md. Never beside the log, so that "the log" and "the verdict" cannot be
 # confused for one another by a reader in a hurry.
 VERDICT = REPO_ROOT / "out" / "gates" / "verdict.json"
-VERDICT_VERSION = 1
+# BUMPED TO 2 ON 2026-09-11, when the digest began reading content and the verdict began
+# carrying `state_at_start`. A version 1 verdict was written by a runner whose staleness guard
+# could not see an edit to an already-modified file, so it is refused rather than read.
+VERDICT_VERSION = 2
 
 
 def _tree_state() -> dict:
@@ -122,9 +125,37 @@ def _tree_state() -> dict:
 
     HEAD alone is not enough and that is not hypothetical. The run this mechanism comes from
     ran the suite on one branch, switched branches, and still had the first branch's log on
-    disk under a name that said nothing about either. `git status --porcelain` folded in
-    catches the other half, an edit made after the suite ran, which is the more common way a
-    verdict goes stale on one branch.
+    disk under a name that said nothing about either.
+
+    THE DIGEST READS CONTENT, and until 2026-09-11 it read a PATH LIST and this docstring
+    claimed the other thing. It was `sha256` of `git status --porcelain`, which prints status
+    codes and paths and never content, so it moved when the SET of changed files moved and
+    stood still when one of them was edited again:
+
+        clean tree                   |          |  e3b0c44298fc1c14
+        f.txt modified, content A    | M f.txt  |  bcd768a79fc3bf5b
+        same file, content B         | M f.txt  |  bcd768a79fc3bf5b
+
+    Same digest, different tree. That is the ORDINARY local workflow rather than a corner
+    case, because the tree is already dirty when the suite starts: edit a file, start the
+    suite, notice something and edit the same file while it runs. The guard bit only when a
+    path appeared or disappeared, which is the rarer half of what it was written to catch.
+
+    So three inputs, and each is here for a case the others miss.
+
+      the path list    `--porcelain -z --untracked-files=all`, which catches a file appearing
+                       or disappearing and is the half that already worked. `-z` so a path
+                       with a space or a quote in it is not re-spelled, and `all` so an
+                       untracked directory is listed as its files rather than collapsed.
+      tracked content  `git diff HEAD`, which is every modification to a tracked file whether
+                       staged or not. This is the half that was missing.
+      untracked bytes  read here, because a diff against HEAD cannot see a file git does not
+                       track yet. Gitignored paths are excluded by git itself, so `out/` and
+                       its scratch never reach this.
+
+    IT IS CHEAP ENOUGH TO RUN TWICE, which matters because it now runs at the start of a suite
+    as well as at the end. Measured on this repo, `status` is 18 ms and a `git diff HEAD`
+    carrying 1.5 MB of changes is 29 ms, against a suite that takes twenty minutes.
 
     A checkout with no git at all returns nulls and `--verdict` then refuses, because a
     verdict that cannot say what it judged is not a verdict.
@@ -138,13 +169,26 @@ def _tree_state() -> dict:
         return r.stdout if r.returncode == 0 else None
 
     head = git("rev-parse", "HEAD")
-    # --porcelain rather than a diff: it names untracked files too, and a new file is exactly
-    # the kind of change that turns a green suite red.
-    dirty = git("status", "--porcelain")
-    if head is None or dirty is None:
+    dirty = git("status", "--porcelain", "-z", "--untracked-files=all")
+    tracked = git("diff", "HEAD")
+    if head is None or dirty is None or tracked is None:
         return {"head": None, "tree": None}
-    return {"head": head.strip(),
-            "tree": hashlib.sha256(dirty.encode("utf-8")).hexdigest()[:16]}
+
+    h = hashlib.sha256()
+    h.update(dirty.encode("utf-8"))
+    h.update(tracked.encode("utf-8"))
+    # A RENAME'S SECOND FIELD IS A BARE PATH with no status code, so filtering on the `?? `
+    # prefix picks the untracked entries and nothing else. The path is hashed beside its bytes
+    # so that two untracked files swapping contents is still a change.
+    for rel in (e[3:] for e in dirty.split("\0") if e.startswith("?? ")):
+        h.update(rel.encode("utf-8"))
+        try:
+            h.update((REPO_ROOT / rel).read_bytes())
+        except OSError:
+            # A path git listed and this cannot read is still a fact about the tree, and a
+            # stable one, so it is recorded rather than silently skipped.
+            h.update(b"<unreadable>")
+    return {"head": head.strip(), "tree": h.hexdigest()[:16]}
 
 
 def _clear_verdict() -> None:
@@ -198,6 +242,25 @@ def read_verdict() -> int:
         print("guards_local: cannot read this tree's git state, so a verdict cannot be "
               "matched to it. Refusing.", file=sys.stderr)
         return 2
+
+    # DID THE SUBJECT HOLD STILL WHILE THE SUITE RAN. The end stamp alone cannot answer this,
+    # because `finish()` reads the tree after the last step and an edit made in between is
+    # simply baked in. A run whose tree moved under it did not test the tree it ended on and
+    # did not test the one it started on either, so it has no subject and cannot be spent.
+    started = v.get("state_at_start")
+    if started is None:
+        print("guards_local: the verdict does not say what tree the suite STARTED on, so it "
+              "cannot say the tree held still. Refusing. Re-run the suite.", file=sys.stderr)
+        return 2
+    if started != was:
+        print("guards_local: the tree CHANGED while the suite was running, so this verdict "
+              "has no subject.\n"
+              f"  at the start: {(started.get('head') or '?')[:12]} tree {started.get('tree')}\n"
+              f"  at the end:   {(was.get('head') or '?')[:12]} tree {was.get('tree')}\n"
+              "  Steps before the edit judged different bytes from the steps after it. "
+              "Re-run the suite on a tree that stays put.", file=sys.stderr)
+        return 2
+
     if now != was:
         what = ("a different commit" if now["head"] != was.get("head")
                 else "edits made since the suite ran")
@@ -449,6 +512,12 @@ def main() -> int:
     # back the previous run's result for a tree it no longer describes.
     _clear_verdict()
 
+    # THE TREE AS IT IS BEFORE THE FIRST STEP. `finish()` reads it again at the end, and
+    # `read_verdict` refuses the verdict if the two disagree. Without this the runner can only
+    # see an edit made AFTER it finished, never one made while it was working, and the second
+    # is the easier mistake to make because the suite is slow enough to invite it.
+    start_state = _tree_state()
+
     failed: list[tuple[Step, str]] = []
     skipped: list[tuple[Step, str]] = []
     ran = 0
@@ -515,6 +584,7 @@ def main() -> int:
             "version": VERDICT_VERSION,
             "exit": code,
             "state": _tree_state(),
+            "state_at_start": start_state,
             "invocation": {"fast": bool(args.fast), "only": args.only,
                            "strict": bool(args.strict)},
             "passed": ran,
@@ -558,6 +628,8 @@ def self_test() -> int:
         if not cond:
             failures += 1
 
+    import contextlib
+    import io
     import tempfile
 
     def parse(text: str) -> list[Step]:
@@ -714,6 +786,55 @@ jobs:
        any("house_style_check.py" in s.run and "--self-test" not in s.run for s in steps()),
        "the step that caught the defect this file exists for is missing from the run list")
 
+    # ------------------------------------------------- the tree digest, which must see CONTENT
+    #
+    # WHAT THE STALENESS GUARD IS FOR is refusing a verdict earned on other bytes, and the
+    # digest is the whole of how it knows. `git status --porcelain` prints status codes and
+    # PATHS and never content, so it moves when the SET of changed files moves and not when one
+    # of them is edited again. That is the normal local workflow rather than a corner case: edit
+    # a file, start the suite, edit the same file while it runs.
+    #
+    # These run against a throwaway repo, so the digest is exercised on a tree this self-test
+    # owns rather than on the one the author is working in.
+    global REPO_ROOT
+    real_root = REPO_ROOT
+    seen = {}
+    with tempfile.TemporaryDirectory() as td:
+        REPO_ROOT = Path(td)
+
+        def g(*a):
+            subprocess.run(("git", *a), cwd=REPO_ROOT, capture_output=True, text=True,
+                           timeout=30)
+
+        g("init", "-q", "-b", "main", ".")
+        g("config", "user.email", "selftest@example.invalid")
+        g("config", "user.name", "self test")
+        (REPO_ROOT / "f.txt").write_text("one\n", encoding="utf-8")
+        g("add", "f.txt")
+        g("commit", "-qm", "init")
+        seen["clean"] = _tree_state()
+        (REPO_ROOT / "f.txt").write_text("one\nAAAA\n", encoding="utf-8")
+        seen["edited"] = _tree_state()
+        (REPO_ROOT / "f.txt").write_text("one\nBBBBBBBBBBBBBBBB\n", encoding="utf-8")
+        seen["edited twice"] = _tree_state()
+        (REPO_ROOT / "new.txt").write_text("x\n", encoding="utf-8")
+        seen["untracked added"] = _tree_state()
+        (REPO_ROOT / "new.txt").write_text("yyyy\n", encoding="utf-8")
+        seen["untracked edited"] = _tree_state()
+    REPO_ROOT = real_root
+
+    ok("a clean tree and a modified one do not share a digest",
+       seen["clean"]["tree"] != seen["edited"]["tree"])
+    # THE ONE THIS SECTION EXISTS FOR, and the case the path list cannot see.
+    ok("editing a file that was ALREADY modified moves the digest",
+       seen["edited"]["tree"] != seen["edited twice"]["tree"],
+       f'{seen["edited"]["tree"]} then {seen["edited twice"]["tree"]}')
+    ok("a new untracked file moves the digest",
+       seen["edited twice"]["tree"] != seen["untracked added"]["tree"])
+    ok("editing an untracked file the runner already saw moves the digest",
+       seen["untracked added"]["tree"] != seen["untracked edited"]["tree"],
+       f'{seen["untracked added"]["tree"]} then {seen["untracked edited"]["tree"]}')
+
     # ---------------------------------------------------------- the verdict, fail-closed
     #
     # EVERY CASE BELOW IS A STATE A HALF-FINISHED RUN CAN LEAVE ON DISK, and the assertion is
@@ -729,6 +850,7 @@ jobs:
         VERDICT = Path(td) / "verdict.json"
         here = _tree_state()
         green = {"version": VERDICT_VERSION, "exit": 0, "state": here,
+                 "state_at_start": here,
                  "invocation": {"fast": False, "only": None, "strict": False},
                  "passed": 120, "failed": [], "skipped": []}
 
@@ -765,6 +887,25 @@ jobs:
            verdict_of({**green, "state": {"head": "0" * 40, "tree": here["tree"]}}) != 0)
         ok("a verdict from the same commit with a different working tree is refused",
            verdict_of({**green, "state": {**here, "tree": "deadbeefdeadbeef"}}) != 0)
+
+        # THE TREE MOVED WHILE THE SUITE WAS RUNNING, which the end stamp alone cannot see.
+        # `finish()` records the tree as it is when the last step ends, so an edit made DURING
+        # a run is baked into the verdict and reads as current. A run whose subject changed
+        # under it has not tested any one tree, and that is a different fault from a verdict
+        # that has simply gone out of date, so it gets its own refusal and its own words.
+        moved = {**green, "state_at_start": {**here, "tree": "0123456789abcdef"}}
+        said = io.StringIO()
+        with contextlib.redirect_stderr(said):
+            code = verdict_of(moved)
+        ok("a tree that changed DURING the run is refused", code != 0)
+        # FAIL CLOSED ON A VERDICT THAT CANNOT ANSWER THE QUESTION. A current-version verdict
+        # with no start stamp is malformed rather than old, and silence about whether the tree
+        # held still is not the same as it having held still.
+        ok("a verdict that never recorded a starting tree is refused",
+           verdict_of({k: val for k, val in green.items() if k != "state_at_start"}) != 0)
+        ok("...and it says so in its own words rather than the stale ones",
+           "while the suite was running" in said.getvalue(),
+           said.getvalue().strip().splitlines()[0] if said.getvalue().strip() else "(silent)")
 
         # NARROWING. --fast defers the node suites, which is exactly where two of this repo's
         # CI failures have lived. A fast run answering for a full one would reinstate the bug.

@@ -2405,8 +2405,21 @@ def self_test() -> int:
           f"{len(core_tx)} in the core, {len(sib_tx)} carried, {len(order)} in the record")
     check("the core carries the decisions it kept, in the record's own order",
           core_tx == [i for i in order if i not in set(sib_tx)])
-    check("the sibling field carries exactly what the budget handed it, oldest first",
-          sib_tx == order[:carried], f"{sib_tx[:3]} against {order[:carried][:3]}")
+    # OLDEST SETTLED FIRST, WHICH IS THE MOVABLE PREFIX AND NOT THE RECORD'S. This asserted
+    # `order[:carried]`, the unfiltered record prefix, and that is only the same list while no
+    # open window sits inside it. `tx-2026-0075` is at record index 61 and its window is open
+    # until November 3rd, so the two lists diverge the moment `carried` reaches 62, which is
+    # about 62 admissions past the first rung. The check would then have gone red on a pack
+    # `pack_fit` had built correctly, and a gate that fails on a correct build stops the daily
+    # run for no reason. Caught in review on the day it merged, before it could fire.
+    #
+    # The property is the same one, said against the sequence the budget actually draws from.
+    settled = [it["id"] for it in items if dk.window_state(it, p["generated"]) != "open"]
+    check("the sibling field carries exactly what the budget handed it, oldest settled first",
+          sib_tx == settled[:carried], f"{sib_tx[:3]} against {settled[:carried][:3]}")
+    check("...and never a decision a reader can still act on, whatever the budget cost",
+          not (set(sib_tx) - set(settled)),
+          str(sorted(set(sib_tx) - set(settled))[:3]))
     check("and every dossier is still in the sibling field",
           len([i for i in ids_by_section["facility"] if familyOf(i) == "facility"])
           == p["families"]["facility"],
