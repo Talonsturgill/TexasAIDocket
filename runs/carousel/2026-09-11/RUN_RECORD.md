@@ -467,6 +467,20 @@ occurrence sits in the three chapters the expectations name, the stem printed as
 the post's first line naming the board, two textbooks where a bag had read as a mouse, bay lines and
 bus windows on frame 8 and an intaglio on frame 6 drawn at a value that reaches the pixels.
 
+**Round 3 shipped at 6.938, judges 6.832, 6.918 and 6.99, spread 0.158, no hard fail.** All three said
+the same thing in their own words: an acceptable deck and not a good one, every numeral and quote
+re-derived by hand from the snapshots, the round 2 fault gone, and the drawing thinnest where the
+argument ends. What they leave for the next deck, unedited from their cards and carried into the
+artwork ledger: frame 6's intaglio still does not reach the pixels at feed size and a rule of its
+title block runs close to its own label, frame 8's buses read as benches, frame 9 is two planes and
+two books, and the next step is written in the deck's vocabulary rather than a parent's. The
+integrity judge's one-sentence fix is upstream of every gate and is the one worth doing first: the
+item page's attachment href is not recorded in the manifest, so nothing committed proves the
+September item links the June-folder PDF every quote rests on. The reader judge called the caption
+ledger's opening move a relabel, which is answered in the ledger entry rather than argued here.
+`score.json` is the panel's arithmetic and `run_complete` reads 1 run shipped against a 6.8
+threshold, on the third of five rounds.
+
 ## Source findings
 
 Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit range.
@@ -546,7 +560,7 @@ no-confidence-number rule exists to prevent.
 | qa             | WARN   | 0 fail(s), 37 warn(s) |
 | aggregates     | PASS   | 12 declaration(s), 13 numeric phrase(s) in the render, all re-derived |
 | assembly       | ABSENT | final/assemble_report.json not written yet |
-| score          | ABSENT | score.json not written yet |
+| score          | PASS   | 6.938 |
 | labels         | PASS   | 64 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 113 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 16 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
@@ -557,5 +571,5 @@ no-confidence-number rule exists to prevent.
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
 | absences       | WARN   | 0 of 1 scoped to a named document, 1 unscoped |
 | numerals       | PASS   | 33 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->

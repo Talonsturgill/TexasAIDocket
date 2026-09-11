@@ -1,0 +1,49 @@
+{
+ "judge": "reader",
+ "round": 3,
+ "date": "2026-09-11",
+ "weighted_score": 6.99,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rewrite frame 9's next step and the post's close in the words a parent would actually say to a district, naming the thing to ask about (who teaches students to appraise a robot-advisor when the course opens in the 2027 to 2028 year) rather than 'the three expectations', which is the deck's own internal jargon and the one line a reader is told to act on.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.0,
+   "why": "The room register holds across nine frames and two of them are genuinely made: frame 5's corridor with the flow converging on the wax smear (encoding dE 43.4) and frame 7's projected rectangle at dE 76.6 against the room. Frame 1's prism field resolves as separate pyramids at the thumb. The rest is competent rather than memorable. Frame 8's buses are four flat boxes with dots for wheels and the live oak crown reads as blobs at 432px, frame 9 is a type frame with two small books, and frame 3's eight stipple pages are the right idea drawn plainly. measurements.json shows the planned value arc did not hold on five frames (frame 4 at 72.4 against 56, frame 5 at 20.1 against 40, frame 8 at 76.5 against 60, frame 9 at 23.0 against 46, and the declared inversion landing at 50.5 against 74), so the deck has range by accident more than by plan."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces. Frame 3's tally (1, 2, 1, 1, 0) sums to the five dots drawn, three of them clustered on one page as c16's clause requires. The caption's eighteen words count out by hand on c22's sentence. Frame 8's 20 days is c3's own quote, 2027 to 2028 is c12 rendered as a range, and the credit row is c13 plus c9. All three sources are primary and fetched. Two soft stretches, neither a fail: frame 2's dek asserts every chapter 'is a thing a student must be able to do with money', a characterisation no claim carries, and frame 6's hook glosses 'algorithmic limitations' as 'find where it stops working', which is the deck's reading rather than the document's. Frame 9's 'The rule is made' sits on c23's 'the SBOE adopted' while its own dek says the filed rule is unchecked, and the two are reconciled honestly on the frame."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A Texan reading once learns that the State Board of Education finalised a required half credit money course, that its text expects students to use AI tools, explain algorithm-driven recommendations and appraise robot-advisors, that districts teach it from the 2027 to 2028 year, and that the board's release said none of it. That is a real story with a named body. What the reader can't do is act: texan_check reports places NONE, deadline NO, next step NO, and frame 9's only instruction, 'Ask your district who is staffing the three expectations', hands the reader a phrase from the deck's own vocabulary rather than a question they could put to a principal. The caption's closing question is better ('Which districts have a teacher ready to grade that appraisal') and the frame should have carried that wording instead."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The cover earns the swipe, frames 4 to 6 escalate through research, explain, appraise, and frame 7 is a true turn where the reader learns the board's own summary left it all out. It reads well in order. Frames 2 and 3 both make the same point, that the footprint is small, and a reader in the feed gets it from one of them. The riddle hooks on 4 and 5 ('hands it over', 'turns it around') mean nothing until the quote beneath is read, so two frames in a row ask the reader to work before they are told why."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Clean and on register, no colons, no dashes, one comma in 132 words, the year correctly dropped from 'September 4th' in the post. It is flat and a little precious. 'The machine' as the deck's word for AI on frames 2 and 3 and 'Four terms carry the machine' is house style talking to itself, and 'technolog(y)' on frame 7 is a grep stem printed on a slide. Nothing in the copy sounds like it came from Texas beyond the word Texas on frame 1 and 'your district' on frame 9. A reader would guess a careful editor wrote it, not a Texan."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The subject is new to the window (no SBOE, no curriculum entry in topics.json since 08-16), the mint and seafoam classroom palette sits at deck median 42.0 in a window with nothing between 31.5 and 71.1, and the opening 'the before and after' and structure 'Ledger' are both outside their exclusion windows. The one familiar move is the turn itself: frame 7 and the post's fourth paragraph are again 'what the document does not say', the habit the ledger's own angle_notes on decks 11, 14 and 15 flagged. Here it is the turn rather than the spine, which is the right place for it, and it is still recognisably the house move."
+  }
+ ],
+ "the_verdict_in_its_own_words": "This ships and it is an acceptable deck, not a good one. The facts are tight, every number on a frame and in the post traces to a fetched primary source, and round 2's hard fail on frame 9 is genuinely gone. A Texan in the feed learns something true and specific about a required course their kid will sit in from fall 2027, and the projector frame is the one they will remember. What they can't do is anything with it, because the record has no place, no deadline and no door, and the deck's one instruction is written in its own vocabulary. The 6.99 is what a careful, correct, slightly self-regarding deck scores, and the honest read of a 6.99 against a 6.8 bar is that it cleared by two tenths on integrity while the reader-facing criteria all sat under seven.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

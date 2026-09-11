@@ -1462,8 +1462,24 @@
     "MEASURE THE ITALIC FACE BEFORE MEASURING ANYTHING SET IN IT. Frame 6's clause was wrapped and plated against a synthesised oblique because document.fonts.ready at the top of the script resolves before a face the frame has not asked for yet. Every line relaid about 50px wider afterwards and three rounds of plate arithmetic chased it. await document.fonts.load for the exact face, weight and size first.",
     "A TSPAN IS RECORDED TWICE. render.py logs a tspan as its own text node AND inside its parent's, so an emphasised run inside a line comes back duplicated and verbatim_check cannot find a sentence the frame plainly prints. Draw a line as positioned style RUNS, one text element each, and never mark the tspans decorative to quieten it.",
     "PLACE A CONTACT'S RECTS BY MEASURING THE SHIPPED PNG. Three rounds placed them by reading the drawing code and all three were wrong differently: one pair straddled a flat floor, one was inverted by a gradient running the other way, and one was washed out by a type reserve laid down after the shadow. probe_L.py is in this run record and takes seconds.",
-    "SPEND THE DETAIL BUDGET SOMEWHERE OTHER THAN A LIT RECTANGLE. Four of this deck's nine frames still reduce to one bright plane on a darker ground, and the register invited it: a room lit by one overhead source gives you lit planes, and a lit plane is where type wants to go. Frame 9 could not be broken at all, because a hard horizontal value break with dark above and light below IS that primitive. The next deck in a built interior should decide, BEFORE the directors room, which frames earn their detail from something that is not a rectangle of light."
-   ]
+    "SPEND THE DETAIL BUDGET SOMEWHERE OTHER THAN A LIT RECTANGLE. Four of this deck's nine frames still reduce to one bright plane on a darker ground, and the register invited it: a room lit by one overhead source gives you lit planes, and a lit plane is where type wants to go. Frame 9 could not be broken at all, because a hard horizontal value break with dark above and light below IS that primitive. The next deck in a built interior should decide, BEFORE the directors room, which frames earn their detail from something that is not a rectangle of light.",
+    "A DECLARED TECHNIQUE THAT KEEPS OUT OF EVERY TYPE BOX BY 132PX ON A TYPE-HEAVY FRAME IS NOT ON THE FRAME. Frame 6's intaglio was raised from alpha 0.46 to 0.74 after round 2 and the round 3 craft judge still read three stray wisps, because the keep-out left it nowhere to be. Declare the engraving on a frame with open ground, or give the frame a ground the engraving can hold.",
+    "THE LAST THREE FRAMES ARE THE THINNEST FOR THE SIXTH DECK RUNNING, by all three judges' count. Spend the detail budget where the argument ends before the directors room, not after the panel."
+   ],
+   "panel": {
+    "rounds": 3,
+    "scores": [
+     6.508,
+     6.192,
+     6.938
+    ],
+    "shipped_at": 6.938,
+    "one_sentence_fixes": {
+     "integrity": "Record the item page's actual attachment href in sources/MANIFEST.json and assert in compute.py that it equals c11's June-folder URL, because every quoted expectation rests on that PDF being the second reading text.",
+     "craft": "Redraw frame 6 so the declared white-line intaglio is actually present as a worked ground at 432px rather than stray wisps on a flat gradient, and pull the title block's left rule clear of its label.",
+     "reader": "Write the next step in the words a parent would say to a district, naming the thing to ask about, rather than the deck's own vocabulary."
+    }
+   }
   }
  ]
 }
