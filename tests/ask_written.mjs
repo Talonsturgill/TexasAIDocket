@@ -139,6 +139,10 @@ ok("and stays to one short line", note.trim().length < 40, note);
 ok("no booking link under the field",
   (await page.locator(".asknote a").count()) === 0);
 ok("feedback is offered instead", await page.locator("#askfbopen").isVisible());
+await page.click("#askfbopen");
+ok("there is no attachment option before a conversation exists",
+  await page.locator("#askfbattachrow").isHidden());
+await page.click("#askfbclose");
 ok("the starters are offered", (await page.locator(".chips button").count()) > 0);
 // The promise is only true if nothing has actually gone out yet.
 ok("no request has been made", seen.length === 0);
@@ -412,8 +416,8 @@ await page.press("#askq", "Enter");
 await page.waitForSelector(".askfrom", { timeout: 8000 });
 
 ok("feedback is still reachable after an answer",
-  await page.locator(".askfrom button", { hasText: "Send feedback" }).isVisible());
-await page.locator(".askfrom button", { hasText: "Send feedback" }).click();
+  await page.locator(".askfrom button", { hasText: "Request a Feature" }).isVisible());
+await page.locator(".askfrom button", { hasText: "Request a Feature" }).click();
 await page.waitForTimeout(200);
 ok("the dialog opens", await page.locator("#askfb").isVisible());
 ok("the attach row appears once there is an exchange",
@@ -436,7 +440,7 @@ ok("the reader is thanked", (await page.locator("#askfbmsg").textContent()).incl
 
 // Unticking has to actually withhold it, or the checkbox is decoration.
 await page.waitForTimeout(1800);
-await page.locator(".askfrom button", { hasText: "Send feedback" }).click();
+await page.locator(".askfrom button", { hasText: "Request a Feature" }).click();
 await page.waitForTimeout(200);
 await page.uncheck("#askfbattach");
 ok("unticking hides the preview too", await page.locator("#askfbctxview").isHidden());

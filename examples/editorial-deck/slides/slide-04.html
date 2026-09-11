@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- EDITORIAL DECK, frame 4 of 9. Archetype OBJECT_AND_CAPTION.
+     One object, a school bus at true scale seven metres from the camera at dusk, bleeding
+     both sides, with the lot, a fence line, a pole and an oak to place it in Texas. The caption
+     is short and sits under the bus on the lot's dark near ground. Halftone at a coarse cell
+     because the object is large. One accent: the warning lamps and the stop arm. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --night:#0F0C1C; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#E0956A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--night); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:84px; line-height:1.02; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:352px; width:860px; font-size:27px; line-height:1.42; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Taught from the school year that opens in 2027.</h1>
+<p class="dek">One half credit on completion, and a curriculum requirement rather than an elective by the statute the board cites.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Implementation", counter: "04 / 09", src: "c9 c12 c13   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 84, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var cam = { w: W, h: H, eye: 1.3, horizon: 700, f: 700, fogZ: 1e9, light: { az: -68, el: 16 } };
+    var bus = TXOBJ.sprite("school_bus"), pole = TXOBJ.sprite("utility_pole", { transformer: true }), oak = TXOBJ.sprite("live_oak", { seed: 3 });
+    var S2, busAt = { X: 1.8, Z: 6.6, mirror: true };
+    TXINK.print(cx, {
+      ground: "#0F0C1C", ink: "#EDE6D6", fibre: 0.06, seed: 24,
+      screen: { mode: "halftone", cell: 8, angle: 30, gamma: 1.1, floor: 0.05 },
+      edges: { threshold: 20, width: 1.6, alpha: 0.85, dx: 1.4, dy: -1.0 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam)); S2 = S;
+        // dusk sky: a low glow band on the horizon, dark above
+        var sky = a.createLinearGradient(0, 420, 0, 700); sky.addColorStop(0, "#000000"); sky.addColorStop(0.7, "#1C1C1C"); sky.addColorStop(1, "#5A5A5A");
+        a.fillStyle = sky; a.fillRect(0, 0, W, 700);
+        S.ground({ near: 0.8, far: 400, fill: "#4A4A4A", fadeToSky: false });
+        var lot = a.createLinearGradient(0, 700, 0, H); lot.addColorStop(0, "rgba(255,255,255,0.12)"); lot.addColorStop(0.5, "rgba(0,0,0,0)"); lot.addColorStop(1, "rgba(0,0,0,0.35)");
+        a.fillStyle = lot; a.fillRect(0, 700, W, H - 700);
+        S.gridZ({ dz: 2, from: 1.5, to: 40, ink: "rgba(0,0,0,0.25)", width: 1 });
+        var inks = { ink: "#DCDCDC", paper: "#141414", accent: "#DCDCDC" };
+        S.shadow(oak, { X: -22, Z: 42, ink: "#000", alpha: 0.5 }); S.sprite(oak, { X: -22, Z: 42, inks: { ink: "#8C8C8C", paper: "#141414", accent: "#8C8C8C" } });
+        TXOBJ.fence(S, [-40, 30], [40, 30], { step: 3.2, wires: 4, ink: "#A0A0A0", inks: { ink: "#A0A0A0", paper: "#141414" }, shadowAlpha: 0.3 });
+        S.shadow(pole, { X: 14, Z: 22, ink: "#000", alpha: 0.5 }); S.sprite(pole, { X: 14, Z: 22, inks: inks });
+        TXOBJ.wire(S, [14, 22, 11.1], [90, 70, 11.1], { ink: "#A0A0A0", width: 1.4, sag: 1.2 });
+        // the bus, with its long dusk shadow across the lot
+        S.shadow(bus, { X: busAt.X, Z: busAt.Z, ink: "#000", alpha: 0.6, mirror: true });
+        S.sprite(bus, { X: busAt.X, Z: busAt.Z, inks: inks, mirror: true, fade: false });
+        // a driver by the door
+        var drv = TXFIG.figure({ pose: "stand", height: 1.74, hat: "cap" });
+        S.shadow(drv, { X: -3.9, Z: 5.4, ink: "#000", alpha: 0.6 }); S.sprite(drv, { X: -3.9, Z: 5.4, inks: inks, mirror: true });
+        var kid = TXFIG.figure({ pose: "walk", height: 1.5, hold: "bag" });
+        S.shadow(kid, { X: 3.6, Z: 4.6, ink: "#000", alpha: 0.6 }); S.sprite(kid, { X: 3.6, Z: 4.6, inks: inks });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#0F0C1C", bottom: 170, bottomSolid: 120 });
+        // the accent plate: the lamps, drawn from the same sprite at the same place
+        S2.ctx = c;
+        var lit = TXSCENE.sprite([
+          { type: "rect", x: 5.55, y: 2.55, w: 0.3, h: 0.35, fill: "accent" },
+          { type: "rect", x: -5.9, y: 2.55, w: 0.3, h: 0.35, fill: "accent" },
+          { type: "rect", x: 5.75, y: 1.0, w: 0.22, h: 0.3, fill: "accent" },
+          { type: "poly", pts: [[-6.05, 1.6], [-6.75, 1.6], [-6.95, 1.85], [-6.95, 2.15], [-6.75, 2.4], [-6.05, 2.4]], fill: "accent" }
+        ]);
+        var over = TXSCENE.create(c, Object.assign({ sky: "#0F0C1C" }, cam));
+        over.sprite(lit, { X: busAt.X, Z: busAt.Z, mirror: true, fade: false, inks: { ink: "#E0956A", paper: "#0F0C1C", accent: "#E0956A" } });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

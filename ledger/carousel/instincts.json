@@ -709,6 +709,14 @@
       "evidence": "Four items on this deck asserted regions declared through data-encodes and data-contacts and no frame carried either attribute, so render_report's encodings and contacts were empty on all nine and plan_render_check passed anyway.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "illustration-image-first-2026-09-11",
+      "learned": "2026-09-11",
+      "instinct": "Draw the subject before the type on every frame, at true scale, in one of ten rotated layouts, printed in paper and ink.",
+      "evidence": "Upgrade session 2026-09-11. Carousel no. 21 given full frame rects fails layout_check on seven of nine frames on detail or silhouette; the example deck built image first passes all six measures and qa.py with no FAIL.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

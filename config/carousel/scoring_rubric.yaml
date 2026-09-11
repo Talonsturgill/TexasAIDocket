@@ -55,13 +55,20 @@ criteria:
   - name: artwork_craft
     weight: 0.28
     asks: >
-      Is the art genuinely made, or assembled? Does each frame have a real light and a real
-      dark rather than one mid band? Is the detail budgeted per region rather than spread
-      evenly? Would a designer look at this and want to know how it was drawn?
+      Is there an IMAGE on every frame, a drawn subject that owns the frame, reads as one
+      silhouette at feed size and runs off an edge on most frames, or is there a headline with
+      a small drawing under it? Is the subject a thing at true scale, with a size a reader can
+      check against a person, or a slab in a void? Does the surface read as a print, paper and
+      ink and a visible screen and a drawn edge, or as a gradient with shapes on it? Does the
+      deck turn the page, a different layout on every frame, or is it one skeleton nine times?
+      Does each frame have a real light and a real dark rather than one mid band? Is the detail
+      budgeted where the argument lands rather than where it starts? Would a designer look at
+      this and want to know how it was drawn? knowledge/carousel/ILLUSTRATION_SYSTEM.md is the
+      standard, and examples/editorial-deck/contact_sheet.jpg is what a 7 looks like.
     scoring:
-      9: "A frame a reader would screenshot. The technique serves the claim and could not be swapped out."
-      7: "Competent and consistent. Nothing wrong with it, nothing memorable in it."
-      5: "One drawing with different arguments, or a template with the story poured in."
+      9: "A frame a reader would screenshot. A subject drawn at true scale in a print register, the technique serving the claim, and no other frame in the deck laid out the same way."
+      7: "An image on every frame, the rotation held, competent and consistent. Nothing wrong with it, nothing memorable in it."
+      5: "One drawing with different arguments, a template with the story poured in, or a headline over a small object floating in a gradient."
       3: "Decoration that would fit any story."
 
   - name: claim_integrity

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-RHe8XmKRt0WBqASXH/2GFhgBHxunx8IFEJcYrZhzc6c=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-AOTaUjdhjlyrNbmq7Nsdai5zL/ORFjxrqvYdy/00AKI=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-RHe8XmKRt0WBqASXH/2GFhgBHxunx8IFEJcYrZhzc6c=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-qiugxgbNJQyVlTI1yl2YTjVeovhYKdu6iuFdN1D4hDA=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
 <link rel="stylesheet" href="site.css?v=6d29a87ae4">
-<link rel="stylesheet" href="home.css?v=26cc0cd6a6">
+<link rel="stylesheet" href="home.css?v=398a790245">
 <link rel="stylesheet" href="voice-input.css?v=449e0422ec22">
 <script defer src="voice-input.js?v=449e0422ec22"></script>
 <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
@@ -80,7 +80,7 @@
              placeholder="Ask about anything about AI in Texas">
       <button type="submit"><span class="vh">Ask</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </form>
-    <p class="asknote">Model in training. <button type="button" class="asklink" id="askfbopen">Send feedback</button></p>
+    <p class="asknote">Model in training. <button type="button" class="asklink" id="askfbopen">Request a Feature</button></p>
     <div class="chips" data-voice="reader"><button type="button" data-ask="What can I still comment on?">What can I still comment on?</button><button type="button" data-ask="What is happening in Abilene?">What is happening in Abilene?</button><button type="button" data-ask="What is in the record about data centers?">What is in the record about data centers?</button></div>
     <!-- Turnstile renders here, and only after the field is focused. A reader who never asks
          anything never fetches Cloudflare's script, which is what keeps the note above
@@ -89,17 +89,19 @@
   </div>
   <dialog class="askfb" id="askfb" aria-labelledby="askfbh">
   <form id="askfbform" method="POST" action="https://formsubmit.co/ajax/228f72bce4f9b0e50b49d8d501374771">
-    <h2 id="askfbh">Model in training</h2>
-    <p class="askfbnote">The search writes from the published record and is checked against it line by line. If an answer missed something or read oddly, that is worth knowing.</p>
-    <label class="askfbl" for="askfbtext">What happened</label>
+    <h2 id="askfbh">Request a Feature</h2>
+    <p class="askfbnote">Suggest a feature or an improvement to the search.</p>
+    <label class="askfbl" for="askfbtext">What would you like to see?</label>
     <textarea id="askfbtext" name="feedback" rows="4" required
-              placeholder="The answer missed a filing, or read oddly, or stopped short"></textarea>
+              placeholder="Describe the feature or improvement"></textarea>
     <label class="askfbl" for="askfbmail">Email, only if a reply is wanted</label>
     <input id="askfbmail" name="email" type="email" autocomplete="email" placeholder="Optional">
-    <label class="askfbcheck" id="askfbattachrow" hidden>
-      <input type="checkbox" id="askfbattach" checked>
-      <span>Attach the last question and answer</span>
-    </label>
+    <div id="askfbattachrow" hidden>
+      <label class="askfbcheck">
+        <input type="checkbox" id="askfbattach" checked>
+        <span>Attach the last question and answer</span>
+      </label>
+    </div>
     <pre class="askfbctx" id="askfbctxview" hidden></pre>
     <input type="hidden" name="_subject" value="Texas AI Docket, feedback on the search">
     <input type="hidden" name="_captcha" value="false">
@@ -1262,7 +1264,7 @@ function askFuse(lists) {
     var say = document.createElement("button");
     say.type = "button";
     say.className = "askagain";
-    say.textContent = "Send feedback";
+    say.textContent = "Request a Feature";
     say.addEventListener("click", function () {
       var open = document.getElementById("askfbopen");
       if (open) open.click();
@@ -1581,7 +1583,7 @@ function askFuse(lists) {
       var say = document.createElement("button");
       say.type = "button";
       say.className = "askagain";
-      say.textContent = "Send feedback";
+      say.textContent = "Request a Feature";
       say.addEventListener("click", function () {
         var open = document.getElementById("askfbopen");
         if (open) open.click();
