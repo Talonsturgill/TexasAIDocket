@@ -1098,6 +1098,9 @@ def latest_article(runs: list, items: list) -> str:
 
     story_link = (f'<a href="item/{e(r["story"])}/">the decision it is about</a>'
                   if r.get("story") else "")
+    # The loader falls back to the run date when no title was supplied.
+    # The publication badge already carries that date.
+    heading = f'<h3>{e(r["title"])}</h3>' if r["title"] != r["date"] else ""
 
     return f"""
 <section data-reveal>
@@ -1111,7 +1114,7 @@ def latest_article(runs: list, items: list) -> str:
       <p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(
         _dt.date.fromisoformat(r["date"])))}</span>
         <span>{r["slides"]} slides</span></p>
-      <h3>{e(r["title"])}</h3>
+{heading}
       <p>{e(blurb)}</p>
       <div class="ctarow">
         <a class="cta ghost" href="articles/{e(r["date"])}/">Read it</a>
@@ -1383,7 +1386,7 @@ def home(items: list, today: str) -> str:
     body = f"""
 <section class="hero rise">
   {telemetry(today)}
-  <h1><span class="brandline">Texas AI Docket</span>AI is coming <em>South</em>.</h1>
+  <h1>AI is coming <em>South</em>.</h1>
   <p class="herolede">Every AI decision in Texas and the source behind it.</p>
   <div class="ctarow">
     <a class="cta solid" href="record/">The docket</a>
