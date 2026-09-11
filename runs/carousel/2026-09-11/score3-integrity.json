@@ -1,0 +1,49 @@
+{
+ "judge": "integrity",
+ "round": 3,
+ "date": "2026-09-11",
+ "weighted_score": 6.832,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Record the item page's actual attachment href in sources/MANIFEST.json and assert in compute.py that it equals c11's June-folder URL, because every quoted expectation on frames 1 to 7 and the whole post rests on that PDF being the second reading text while the item itself says changes were recommended since first reading and the text snapshot strips the link that would prove it.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.6,
+   "why": "One room, one light, and it holds together on the contact sheet, with frame 7's projected rectangle at dE 76.6 the one frame a reader would keep. Against that, the deck's own ledger entry admits four of nine frames reduce to a lit rectangle on a dark ground, frame 5's flow reads as one dark bristle bunch rather than four populations at 432px, frame 8's buses are four flat boxes with two dots each under a blob crown, and frame 9 is a value break with two textbooks on an empty floor. Frame 7 measured 50.5 against a planned 74 and the storyboard says so. Competent, not memorable."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.4,
+   "why": "I read all 24 quotes against the three byte snapshots and every one is present verbatim after whitespace repair, including c17 across a line break and c1 across two blank lines. Every count on frames 2, 3 and 7 re-derives from the attachment and release text (algorithm 2 at 4C and 7J, AI heading count 0, release hits 0 including nav and footer, summary 18 words), the three lifted points on frame 3 land in page block 7 where word 2675 to 2689 of 3525 falls, and frame 9 now prints only c5's date line. Three things keep it under 8: the attachment c11 quotes sits at a June meeting URL while c7 records changes since first reading, and nothing committed proves the September item links that file; frame 6 prints SECOND READING AND FINAL ADOPTION without citing c1 and frame 7 prints RESEARCH EXPLAIN APPRAISE without citing c14 c15 c16; and frame 9's hook 'The rule is made' leans on c23's release while claims.json's own not_established list says which body voted is unresolved."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.8,
+   "why": "A Texan learns the body, the section, that the half credit is a curriculum requirement under HB 27 (frame 8 CREDIT row, c9), and the 2027 to 2028 start. The record names no district and no county and the deck honestly draws none. The stake is stated generally: 'Ask your district who is staffing the three expectations' is a next step with no door, no date and an odd verb, and the caption's closing question about a teacher ready to grade an appraisal is the only place the concrete classroom cost is named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "Ten chapters to five dots to three clauses is a real zoom, the three verbs RESEARCH EXPLAIN APPRAISE are set up on 4 to 6 and paid off unlit under the projector on 7, and the 18.3 to 50.5 swipe lands the turn where the plan said. Frame 9 is the thinnest frame for the sixth consecutive deck by the ledger's own count, and the close's headline promises a requirement its dek then hedges."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "'Texas put AI in a money class' and 'Its own summary ends in and more' are plain and Texan in the right way, and no frame accuses the board of hiding anything. The caption passes every mechanical rule I checked (no colon, no dash, one comma, year dropped on September 4th, question close, three tags). It reads a little flat after the first line, 'Chapter three hands it over' is cute rather than plain, and 'staffing the three expectations' is not how anyone at a district talks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The mint and teal palette clears the measured collision line and the seated eye height register is new. Against that, deck 11 on 08-29, inside the 14 day window, was already an institutional interior on waxed VCT with a specular wear path, every technique here (parallax planes, TXENGRAVE, stipple, flow field, norther front, dust column, heat shimmer) shipped inside the last month, and the caption ledger names its opening 'the before and after' when 'The State Board of Education adopted a money class' is the body named plainly, which is 'the who', shipped on 2026-09-10 and inside the six run exclusion. CAPTION_CRAFT.md says not to clear a rotation by relabelling."
+  }
+ ],
+ "the_verdict_in_its_own_words": "I tried to refute this deck and could not find a numeral, a quote or an absence that the committed bytes do not carry: the counts on frames 2, 3 and 7 re-derive by hand from the snapshots, every quote is verbatim, the round 2 hard fail is gone from frame 9 and from the post, and the topic sits on nothing in the 30 day window. So there is no hard fail and it ships, at 6.832, which clears 6.8 by three hundredths and is an acceptable deck rather than a good one. The integrity risk that remains is upstream of every gate: the quoted course text lives at a June meeting URL, the item says changes were recommended since first reading, and the run's proof that the September item links that exact file is a sentence in the rejected list rather than a recorded href. The craft ceiling is the register itself, which the ledger entry already admits gives you lit rectangles, and the caption ledger has relabelled a 'the who' opening as 'the before and after' to clear an exclusion, which the doctrine names as the exact way a variety engine stops being one.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

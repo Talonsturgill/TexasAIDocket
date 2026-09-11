@@ -1,0 +1,107 @@
+{
+ "claims_verified": {
+  "value": 24,
+  "from_items": [],
+  "note": "Claims this run fetched and verified, counted over claims.json."
+ },
+ "findings_rejected": {
+  "value": 6,
+  "from_items": [],
+  "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
+ },
+ "source_documents": {
+  "value": 3,
+  "from_items": [
+   "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+   "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+   "https://sboe.texas.gov/state-board-of-education/sboe-news/texas-state-board-of-education-completes-k-12-social-studies-teks-revision-adopts-new-personal-financial-literacy-standards"
+  ],
+  "note": "Distinct source urls behind the claims this deck rests on, counted over claims.json. The board item, its one attachment and the news release."
+ },
+ "figures_quoted": {
+  "value": 4,
+  "from_items": [
+   "three hands",
+   "four turns",
+   "seven says",
+   "20 days"
+  ],
+  "note": "Aggregates that are a figure the SOURCE wrote, each naming the claim and the exact string, counted over aggregates.json."
+ },
+ "figures_computed": {
+  "value": 1,
+  "from_items": [
+   "TEXAS AI DOCKET NO. 21"
+  ],
+  "note": "Aggregates produced by code over data with no claim-id tally behind them, counted over aggregates.json."
+ },
+ "figures_tallied": {
+  "value": 12,
+  "from_items": [
+   "Ten chapters",
+   "Four terms",
+   "Three of the five",
+   "three machine expectations",
+   "three expectations",
+   "eighteen words",
+   "0 artificial",
+   "0 algorithm",
+   "0 automated",
+   "0 machine learning",
+   "0 technolog",
+   "0 AI"
+  ],
+  "note": "Aggregates computed over a named set of claim ids, counted over aggregates.json."
+ },
+ "machine_expectations": {
+  "value": 3,
+  "from_items": [
+   "c14",
+   "c15",
+   "c16"
+  ],
+  "note": "Student expectations whose own quote contains one of the machine stems, derived by compute.py from the quotes rather than chosen. Only one of the three says artificial intelligence in as many words, which is why no surface calls them AI expectations."
+ },
+ "chapters_marked": {
+  "value": 3,
+  "from_items": [
+   "3",
+   "4",
+   "7"
+  ],
+  "note": "The numbered knowledge statements those three expectations sit in, out of ten."
+ },
+ "knowledge_statements": {
+  "value": 10,
+  "from_items": [
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6",
+   "7",
+   "8",
+   "9",
+   "10"
+  ],
+  "note": "Numbered knowledge statements in the course text, counted by compute.py from the attachment's own headings, with a corroboration guard that raises rather than publishing a gap the document contradicts."
+ },
+ "release_summary_words": {
+  "value": 18,
+  "from_items": [],
+  "note": "The whitespace-split length of the board's own summary sentence, c22."
+ },
+ "release_technology_hits": {
+  "value": 0,
+  "from_items": [
+   "AI",
+   "algorithm",
+   "artificial",
+   "automated",
+   "machine learning",
+   "technolog"
+  ],
+  "note": "Occurrences of six machine-naming terms across the served bytes of the news release. compute.py raises rather than publishing if any is non-zero."
+ }
+}

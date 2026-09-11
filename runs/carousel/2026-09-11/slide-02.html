@@ -1,0 +1,416 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root{--troffer:#CCF2E4;--block:#B0D8C2;--wax:#98CDB4;--floor:#5E8578;
+        --desk:#9C6B5A;--enamel:#12486C;--slate:#0E3347;}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--slate)}
+  body{position:relative;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .layer{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .grain{position:absolute;left:0;top:0;width:1080px;height:1350px;background-repeat:repeat;
+         mix-blend-mode:overlay;opacity:.085;pointer-events:none}
+  .kick{position:absolute;left:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.09em;color:var(--slate);line-height:1.5}
+  .count{position:absolute;right:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.09em;color:var(--slate)}
+  .hook{position:absolute;left:80px;top:132px;width:880px;font-family:Fraunces,serif;font-weight:700;
+        font-size:96px;line-height:1.03;color:var(--slate);margin:0;letter-spacing:-.016em}
+  .dek{position:absolute;left:80px;top:352px;width:800px;font-size:30px;line-height:1.42;
+       color:#1a4a5e;margin:0}
+  .chap{position:absolute;font-family:"JetBrains Mono",monospace;font-size:21px;letter-spacing:.05em;
+        color:#0E3347;line-height:1.32;width:266px;font-weight:500}
+  .src{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
+       letter-spacing:.07em;color:#CCF2E4}
+  .tx-site{position:absolute;right:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.07em;color:#CCF2E4}
+</style>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain" data-decorative="1"></div>
+<div class="layer">
+  <div class="kick">THE COURSE TEXT</div>
+  <div class="count">02 / 09</div>
+  <h1 class="hook" id="hook">Ten chapters. The machine is in three.</h1>
+  <p class="dek" id="dek">Every chapter of the course text is a thing a student must be able to do with
+     money. Seven of them carry none of the four machine terms.</p>
+  <div class="chap" id="ch0" style="left:80px;top:1004px">CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL</div>
+  <div class="chap" id="ch1" style="left:392px;top:1004px">CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING</div>
+  <div class="chap" id="ch2" style="left:704px;top:1004px">SAVING AND INVESTING</div>
+  <div class="src">c12 c13 c19 c20 c21</div>
+  <div class="tx-site">texasaidocket.com</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "run": "2026-09-11",
+  "deck": 21,
+  "docket_item": "tx-2026-0142",
+  "credit_words": "one-half credit",
+  "effective_days": 20,
+  "school_year": "2027 to 2028",
+  "school_year_from": 2027,
+  "school_year_to": 2028,
+  "item_date_iso": "2026-09-04",
+  "item_date_long": "September 4th, 2026",
+  "item_date_short": "SEPTEMBER 4TH",
+  "house_bill": "27",
+  "legislature": "89",
+  "session_year": 2025,
+  "machine_expectations": [
+    "c14",
+    "c15",
+    "c16"
+  ],
+  "n_machine_expectations": 3,
+  "chapters": [
+    3,
+    4,
+    7
+  ],
+  "n_chapters": 3,
+  "ai_worded": [
+    "c14"
+  ],
+  "n_ai_worded": 1,
+  "machine_stems": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot-advisor"
+  ],
+  "doc_terms": {
+    "artificial intelligence": 1,
+    "artificial": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1,
+    "machine learning": 0
+  },
+  "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
+  "influences": [
+    "social media influencers",
+    "algorithm-driven recommendations",
+    "financial technology platforms",
+    "traditional advertising"
+  ],
+  "n_influences": 4,
+  "algo_influence": "algorithm-driven recommendations",
+  "analyses": [
+    "fee structures",
+    "investment strategies",
+    "algorithmic limitations",
+    "suitability for different investor profiles"
+  ],
+  "n_analyses": 4,
+  "robot_advisor": "robot-advisors",
+  "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
+  "doc_words": 3525,
+  "footprint": {
+    "artificial intelligence": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1
+  },
+  "footprint_terms": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot"
+  ],
+  "n_footprint_terms": 4,
+  "n_footprint_occurrences": 5,
+  "footprint_share_per_10k": 14.2,
+  "footprint_positions": [
+    {
+      "term": "artificial intelligence",
+      "word_index": 1331,
+      "fraction": 0.37759
+    },
+    {
+      "term": "algorithm",
+      "word_index": 1614,
+      "fraction": 0.45787
+    },
+    {
+      "term": "automated",
+      "word_index": 2675,
+      "fraction": 0.75887
+    },
+    {
+      "term": "robot",
+      "word_index": 2679,
+      "fraction": 0.76
+    },
+    {
+      "term": "algorithm",
+      "word_index": 2689,
+      "fraction": 0.76284
+    }
+  ],
+  "knowledge_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_knowledge": 10,
+  "knowledge_highest": 10,
+  "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "footprint_chapters": [
+    3,
+    4,
+    7
+  ],
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
+  "release_hits": {
+    "artificial": 0,
+    "algorithm": 0,
+    "automated": 0,
+    "machine learning": 0,
+    "technolog": 0,
+    "AI": 0
+  },
+  "n_release_hits": 0,
+  "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+  "release_summary_words": 18,
+  "and_more": "and more",
+  "canvas_w": 1080,
+  "canvas_h": 1350,
+  "margin": 80,
+  "content_w": 920,
+  "gutter": 28,
+  "card_w": 288,
+  "card_x": [
+    80,
+    396,
+    712
+  ],
+  "spine_top": 330,
+  "spine_bottom": 1140,
+  "spine_pitch": 90.0,
+  "spine_y": {
+    "1": 330.0,
+    "2": 420.0,
+    "3": 510.0,
+    "4": 600.0,
+    "5": 690.0,
+    "6": 780.0,
+    "7": 870.0,
+    "8": 960.0,
+    "9": 1050.0,
+    "10": 1140.0
+  },
+  "spine_marked": [
+    510.0,
+    600.0,
+    870.0
+  ]
+};
+/* @@END COMPUTED@@ */
+</script>
+<script>
+window.renderReady = new Promise(async (resolve) => {
+  await document.fonts.ready;
+  const SEED = 20260911 + 2;
+  TX.reseed(SEED);
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+
+  // ---- geometry, from the document's own numbering. NOTHING here is a typed count.
+  const HIGH = C.knowledge_highest;                 // the document runs to this number
+  const HAVE = C.knowledge_numbers;                 // the numbers it actually prints
+  const GONE = C.knowledge_missing;                 // the ones it skips
+  const MARK = C.chapters;                          // the three that name a machine
+  const CW = 88, GAP = 14, CH = 210;
+  const RUN = HIGH*CW + (HIGH-1)*GAP;
+  const X0 = Math.round((1080 - RUN)/2), Y0 = 560;
+  const cellX = n => X0 + (n-1)*(CW+GAP);
+
+  // ---- painted CMU, frontal, with mortar joints raking under the overhead source
+  (function wall(){
+    cx.fillStyle='#B0D8C2'; cx.fillRect(0,0,1080,1350);
+    // the overhead source falls off toward the floor
+    const g=cx.createLinearGradient(0,0,0,1350);
+    g.addColorStop(0,'rgba(204,242,228,0.30)');
+    g.addColorStop(0.26,'rgba(14,51,71,0.10)');
+    g.addColorStop(0.62,'rgba(14,51,71,0.34)');
+    g.addColorStop(1,'rgba(14,51,71,0.62)');
+    cx.fillStyle=g; cx.fillRect(0,0,1080,1350);
+    // block courses: 16 wide by 8 high nominal, raking joints
+    const BW=196, BH=98;
+    cx.lineWidth=1.5;
+    for(let row=0, y=-40; y<1350; row++, y+=BH){
+      const off = (row%2)? BW/2 : 0;
+      cx.strokeStyle='rgba(14,51,71,0.13)';
+      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+      cx.strokeStyle='rgba(204,242,228,0.20)';
+      cx.beginPath(); cx.moveTo(0,y+1.6); cx.lineTo(1080,y+1.6); cx.stroke();
+      for(let x=-BW+off; x<1140; x+=BW){
+        cx.strokeStyle='rgba(14,51,71,0.11)';
+        cx.beginPath(); cx.moveTo(x,y); cx.lineTo(x,y+BH); cx.stroke();
+      }
+    }
+    // the block's own tooth
+    // THE TOOTH IS MEASURED, NOT DECLARED. panel_ready reads the residual over an open patch of
+    // ground after the local mean is removed, and at alpha 0.05 the first build's 5200 specks
+    // measured 3.80 against a 4.0 floor on the quietest patch, which is a gradient promising a
+    // material it does not carry. Painted block is pitted, so the pits are drawn at a value a
+    // reader can see, and under the 28 step qa.py counts as a structured edge behind type.
+    const r=TX.rng(SEED);
+    cx.globalAlpha=0.20;
+    for(let i=0;i<14000;i++){
+      const x=r()*1080, y=r()*1350, s=0.7+r()*2.0;
+      cx.fillStyle = r()>0.5 ? '#0E3347' : '#CCF2E4';
+      cx.fillRect(x,y,s,s);
+    }
+    cx.globalAlpha=1;
+  })();
+
+  // ---- THE RUN OF CELLS. Every number the document prints gets a filled slab. Every number it
+  // skips is cut clean through to the plenum behind the wall.
+  if (GONE.length) throw new Error('slide-02: the document skips no chapter. This frame draws '
+    + 'no gap, and compute.py raises before a false one can reach it.');
+  for(let n=1;n<=HIGH;n++){
+    const x=cellX(n), y=Y0, isMark = MARK.indexOf(n)>=0;
+    // the reveal: a recess cut into the block, its head in shade and its sill catching the throw
+    cx.fillStyle='rgba(14,51,71,0.30)'; cx.fillRect(x-6,y-6,CW+12,CH+12);
+    {
+      // the slab, flush to the wall, lit from above
+      const gs=cx.createLinearGradient(x,y,x,y+CH);
+      gs.addColorStop(0, isMark? 'rgba(204,242,228,0.96)' : 'rgba(152,205,180,0.80)');
+      gs.addColorStop(1, isMark? 'rgba(152,205,180,0.72)' : 'rgba(94,133,120,0.62)');
+      cx.fillStyle=gs; cx.fillRect(x,y,CW,CH);
+      // top arris
+      cx.strokeStyle='rgba(204,242,228,0.55)'; cx.lineWidth=1.6;
+      cx.beginPath(); cx.moveTo(x,y+0.8); cx.lineTo(x+CW,y+0.8); cx.stroke();
+      // the slab's own cast into the reveal below it, TWO PART
+      TXCARVE.contactShadow(cx,{x:x+CW/2, y:y+CH+4, w:CW*0.62, color:'#0E3347',
+                                dirDeg:90, tightAlpha:0.50, wideAlpha:0.16, tightBlur:3, wideBlur:18});
+    }
+    // the number, cut into the sill below each cell. The three that carry the machine are the
+    // only ones the overhead reaches, so LIGHT does the pointing rather than a colour.
+    cx.fillStyle = isMark? 'rgba(14,51,71,0.88)' : 'rgba(14,51,71,0.52)';
+    cx.font='500 25px "JetBrains Mono", monospace'; cx.textAlign='center';
+    cx.fillText('('+n+')', x+CW/2, y+CH+46);
+  }
+
+  // ---- leaders from the three marked cells down to their chapter names
+  cx.strokeStyle='rgba(14,51,71,0.45)'; cx.lineWidth=1.6;
+  const targets=[80+133, 392+133, 704+133];
+  MARK.forEach(function(n,i){
+    const sx=cellX(n)+CW/2, sy=Y0+CH+62, tx=targets[i], ty=994;
+    cx.beginPath(); cx.moveTo(sx,sy); cx.lineTo(sx,sy+26); cx.lineTo(tx,sy+26); cx.lineTo(tx,ty); cx.stroke();
+    cx.fillStyle='rgba(14,51,71,0.70)';
+    cx.beginPath(); cx.arc(sx,sy,3.4,0,6.2832); cx.fill();
+  });
+
+  // a lit band under the three chapter names, so the type has a ground rather than a wall
+  (function nameBand(){
+    const g=cx.createLinearGradient(0,980,0,1146);
+    g.addColorStop(0,'rgba(204,242,228,0.00)');
+    g.addColorStop(0.30,'rgba(204,242,228,0.44)');
+    g.addColorStop(1,'rgba(204,242,228,0.14)');
+    cx.fillStyle=g; cx.fillRect(0,980,1080,166);
+  })();
+
+  // ---- BOTTOM THIRD: the base course meeting the VCT, a cove base with its own reveal and a
+  // shadow line of floor contact, and the waxed tile taking a graded specular smear.
+  (function baseAndFloor(){
+    const BASE=1146, FLOOR=1196;
+    // rubber cove base, its top reveal catching the throw
+    const gb=cx.createLinearGradient(0,BASE,0,FLOOR);
+    gb.addColorStop(0,'rgba(60,105,112,0.94)'); gb.addColorStop(1,'rgba(14,51,71,0.94)');
+    cx.fillStyle=gb; cx.fillRect(0,BASE,1080,FLOOR-BASE);
+    cx.strokeStyle='rgba(204,242,228,0.34)'; cx.lineWidth=2;
+    cx.beginPath(); cx.moveTo(0,BASE+1); cx.lineTo(1080,BASE+1); cx.stroke();
+    // the shadow line where the base meets the floor
+    cx.fillStyle='rgba(14,51,71,0.72)'; cx.fillRect(0,FLOOR-4,1080,5);
+    // waxed VCT with a graded specular smear of the fixture running toward the camera
+    const gf=cx.createLinearGradient(0,FLOOR,0,1350);
+    gf.addColorStop(0,'rgba(30,70,88,0.92)'); gf.addColorStop(1,'rgba(14,51,71,0.86)');
+    cx.fillStyle=gf; cx.fillRect(0,FLOOR,1080,1350-FLOOR);
+    const sm=cx.createLinearGradient(300,FLOOR,760,1350);
+    sm.addColorStop(0,'rgba(204,242,228,0.00)');
+    sm.addColorStop(0.38,'rgba(204,242,228,0.30)');
+    sm.addColorStop(1,'rgba(204,242,228,0.02)');
+    cx.save(); cx.beginPath(); cx.moveTo(392,FLOOR); cx.lineTo(700,FLOOR);
+    cx.lineTo(880,1350); cx.lineTo(180,1350); cx.closePath(); cx.fillStyle=sm; cx.fill(); cx.restore();
+    // tile joints
+    cx.strokeStyle='rgba(14,51,71,0.20)'; cx.lineWidth=1.4;
+    for(let i=-6;i<14;i++){
+      const xt=i*150+40;
+      cx.beginPath(); cx.moveTo(xt,FLOOR); cx.lineTo(xt-(540-xt)*0.34,1350); cx.stroke();
+    }
+    for(let y=FLOOR+56;y<1350;y+=74){ cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke(); }
+  })();
+
+  document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
+  // THE SEVEN IS COMPUTED. compute.py N_SILENT_CHAPTERS is n_knowledge minus n_chapters, the
+  // dek is set from it here, and a source whose typed text disagrees with the computation throws
+  // rather than rendering. Round 1's integrity judge found the first build typing it.
+  (function silent(){
+    const el=document.getElementById('dek');
+    const want='Every chapter of the course text is a thing a student must be able to do with money. '
+      + C.silent_chapters_word + ' of them carry none of the four machine terms.';
+    if(el.textContent.replace(/\s+/g,' ').trim()!==want) throw new Error('slide-02: the dek disagrees with compute.py');
+    el.textContent=want;
+  })();
+  TX.fitText(document.getElementById('hook'),{min:62,max:100,maxLines:2});
+  // THE THREE THE MACHINE SITS IN ARE THE ONLY ONES THE LIGHT REACHES, asserted rather than
+  // claimed. A frame that lights every cell equally contradicts its own declaration.
+  const mx = cellX(MARK[0]);
+  const ux = cellX(MARK.indexOf(1)<0 ? 1 : 2);
+  // THE SLABS STAND ON THE WALL, MEASURED. The dossier's acceptance list asked for at least three
+  // declared contacts and the first build declared none, which round 1's craft judge read off
+  // render_report. Shadow in the slab's own cast into the reveal, ground on the wall below the
+  // leaders, placed by measuring the render: 39.5 against 61.4 L* on every marked cell.
+  document.body.setAttribute('data-contacts', JSON.stringify(MARK.map(function(n){
+    const x=cellX(n);
+    return {what:"chapter "+n+"'s slab against the reveal below it",
+            shadow:[[x+8, Y0+CH+2, CW-16, 10]], ground:[[x+8, 870, CW-16, 12]]};
+  })));
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"a chapter carrying the machine reads differently from one that does not",
+     reads:"differ", a:[[mx, Y0, CW, CH]], b:[[ux, Y0, CW, CH]]}
+  ]));
+  resolve(true);
+});
+</script>

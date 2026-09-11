@@ -1,0 +1,36 @@
+{
+ "run": "2026-09-11",
+ "note": "Two universals are printed in this run, the caption's None of them and frame 2's Every chapter. The sets are named here because a quantifier is a claim about a set, and the measurements behind them are the ones slides 7 and 2 draw.",
+ "quantifiers": [
+  {
+   "phrase": "None of them",
+   "about": "search terms",
+   "from_items": [
+    "artificial",
+    "algorithm",
+    "automated",
+    "machine learning",
+    "technolog",
+    "AI"
+   ],
+   "measured_by": "compute.py RELEASE_HITS counts each of these six over the served bytes of the board's news release, navigation and footer included, and RAISES rather than publishing if any one of them is not zero. The caption's sentence names three of the six and the frame prints all six with their counts, so the universal is over a set the deck shows rather than one the reader is asked to take on trust."
+  },
+  {
+   "phrase": "Every chapter",
+   "about": "knowledge statements",
+   "from_items": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+   ],
+   "measured_by": "compute.py KNOWLEDGE_HEADINGS parses the ten (d)(N) headings and their 'The student' lead out of the course text, validated against its own numbering, so the set frame 2's dek ranges over is the document's own enumeration. Declared after round 2's integrity judge named it undeclared."
+  }
+ ]
+}

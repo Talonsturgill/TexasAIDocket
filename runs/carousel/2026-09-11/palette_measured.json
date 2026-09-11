@@ -1,0 +1,81 @@
+{
+ "calibration": {
+  "n": 20000,
+  "seed": 20260911,
+  "p10": 9.55,
+  "p25": 15.69,
+  "median": 27.23,
+  "p75": 49.75
+ },
+ "pool_size": 81,
+ "tokens": [
+  {
+   "token": "troffer",
+   "hex": "#CCF2E4",
+   "nearest_prior": "#E2EAE8",
+   "dE76": 12.22,
+   "L*": 92.5,
+   "verdict": "close",
+   "dE_to_reserved_red": 99.24
+  },
+  {
+   "token": "block",
+   "hex": "#B0D8C2",
+   "nearest_prior": "#D6DCD2",
+   "dE76": 14.39,
+   "L*": 83.0,
+   "verdict": "close",
+   "dE_to_reserved_red": 95.61
+  },
+  {
+   "token": "wax",
+   "hex": "#98CDB4",
+   "nearest_prior": "#A3BCC0",
+   "dE76": 19.21,
+   "L*": 78.2,
+   "verdict": "clear",
+   "dE_to_reserved_red": 97.79
+  },
+  {
+   "token": "floor",
+   "hex": "#5E8578",
+   "nearest_prior": "#879C90",
+   "dE76": 12.13,
+   "L*": 52.4,
+   "verdict": "close",
+   "dE_to_reserved_red": 86.79
+  },
+  {
+   "token": "desk",
+   "hex": "#9C6B5A",
+   "nearest_prior": "#B37555",
+   "dE76": 11.92,
+   "L*": 49.9,
+   "verdict": "close",
+   "dE_to_reserved_red": 50.0
+  },
+  {
+   "token": "enamel",
+   "hex": "#12486C",
+   "nearest_prior": "#2B343E",
+   "dE76": 19.95,
+   "L*": 29.0,
+   "verdict": "clear",
+   "dE_to_reserved_red": 89.51
+  },
+  {
+   "token": "slate",
+   "hex": "#0E3347",
+   "nearest_prior": "#2B343E",
+   "dE76": 9.72,
+   "L*": 19.7,
+   "verdict": "close",
+   "dE_to_reserved_red": 86.89
+  }
+ ],
+ "closest_pair_inside_deck": {
+  "a": "block",
+  "b": "wax",
+  "dE76": 6.87
+ }
+}

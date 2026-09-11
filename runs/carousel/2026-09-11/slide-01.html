@@ -1,0 +1,425 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root{
+    --troffer:#CCF2E4; --block:#B0D8C2; --wax:#98CDB4; --floor:#5E8578;
+    --desk:#9C6B5A; --enamel:#12486C; --slate:#0E3347;
+  }
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--slate)}
+  body{position:relative;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .layer{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .kick{position:absolute;left:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.09em;color:var(--block);line-height:1.5}
+  .kick b{display:block;font-weight:500;color:var(--wax)}
+  .count{position:absolute;right:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.09em;color:var(--block)}
+  .hook{position:absolute;left:80px;top:612px;width:920px;font-family:Fraunces,serif;
+        font-weight:700;font-size:118px;line-height:1.02;color:var(--troffer);margin:0;
+        letter-spacing:-.018em}
+  .dek{position:absolute;left:80px;top:930px;width:830px;font-size:31px;line-height:1.45;
+       color:var(--block);margin:0;font-weight:400}
+  .src{position:absolute;left:80px;bottom:62px;font-family:"JetBrains Mono",monospace;font-size:24px;
+       letter-spacing:.07em;color:var(--troffer)}
+  .tx-site{position:absolute;right:80px;bottom:62px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.07em;color:var(--troffer)}
+  .star{position:absolute;left:80px;top:150px;width:26px;height:26px}
+  .grain{position:absolute;left:0;top:0;width:1080px;height:1350px;background-repeat:repeat;
+         mix-blend-mode:overlay;opacity:.085;pointer-events:none}
+</style>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain" data-decorative="1"></div>
+<div class="layer">
+  <div class="kick">TEXAS STATE BOARD OF EDUCATION<b>19 TAC SECTION 113.26</b></div>
+  <svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 8.1h8.5l-6.9 5 2.7 8.2L12 17.9 4.8 22.9l2.7-8.2-6.9-5h8.5z" fill="#98CDB4"/></svg>
+  <div class="count">01 / 09</div>
+  <h1 class="hook" id="hook">Texas put AI in a money class.</h1>
+  <p class="dek">The board's own course text tells a student to research career pathways using
+    <em>artificial intelligence tools</em>.</p>
+  <div class="src">c11 c14 &nbsp; TEXAS AI DOCKET</div>
+  <div class="tx-site" id="site">texasaidocket.com</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txsdf.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "run": "2026-09-11",
+  "deck": 21,
+  "docket_item": "tx-2026-0142",
+  "credit_words": "one-half credit",
+  "effective_days": 20,
+  "school_year": "2027 to 2028",
+  "school_year_from": 2027,
+  "school_year_to": 2028,
+  "item_date_iso": "2026-09-04",
+  "item_date_long": "September 4th, 2026",
+  "item_date_short": "SEPTEMBER 4TH",
+  "house_bill": "27",
+  "legislature": "89",
+  "session_year": 2025,
+  "machine_expectations": [
+    "c14",
+    "c15",
+    "c16"
+  ],
+  "n_machine_expectations": 3,
+  "chapters": [
+    3,
+    4,
+    7
+  ],
+  "n_chapters": 3,
+  "ai_worded": [
+    "c14"
+  ],
+  "n_ai_worded": 1,
+  "machine_stems": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot-advisor"
+  ],
+  "doc_terms": {
+    "artificial intelligence": 1,
+    "artificial": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1,
+    "machine learning": 0
+  },
+  "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
+  "influences": [
+    "social media influencers",
+    "algorithm-driven recommendations",
+    "financial technology platforms",
+    "traditional advertising"
+  ],
+  "n_influences": 4,
+  "algo_influence": "algorithm-driven recommendations",
+  "analyses": [
+    "fee structures",
+    "investment strategies",
+    "algorithmic limitations",
+    "suitability for different investor profiles"
+  ],
+  "n_analyses": 4,
+  "robot_advisor": "robot-advisors",
+  "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
+  "doc_words": 3525,
+  "footprint": {
+    "artificial intelligence": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1
+  },
+  "footprint_terms": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot"
+  ],
+  "n_footprint_terms": 4,
+  "n_footprint_occurrences": 5,
+  "footprint_share_per_10k": 14.2,
+  "footprint_positions": [
+    {
+      "term": "artificial intelligence",
+      "word_index": 1331,
+      "fraction": 0.37759
+    },
+    {
+      "term": "algorithm",
+      "word_index": 1614,
+      "fraction": 0.45787
+    },
+    {
+      "term": "automated",
+      "word_index": 2675,
+      "fraction": 0.75887
+    },
+    {
+      "term": "robot",
+      "word_index": 2679,
+      "fraction": 0.76
+    },
+    {
+      "term": "algorithm",
+      "word_index": 2689,
+      "fraction": 0.76284
+    }
+  ],
+  "knowledge_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_knowledge": 10,
+  "knowledge_highest": 10,
+  "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
+  "release_hits": {
+    "artificial": 0,
+    "algorithm": 0,
+    "automated": 0,
+    "machine learning": 0,
+    "technolog": 0,
+    "AI": 0
+  },
+  "n_release_hits": 0,
+  "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+  "release_summary_words": 18,
+  "and_more": "and more",
+  "canvas_w": 1080,
+  "canvas_h": 1350,
+  "margin": 80,
+  "content_w": 920,
+  "gutter": 28,
+  "card_w": 288,
+  "card_x": [
+    80,
+    396,
+    712
+  ],
+  "spine_top": 330,
+  "spine_bottom": 1140,
+  "spine_pitch": 90.0,
+  "spine_y": {
+    "1": 330.0,
+    "2": 420.0,
+    "3": 510.0,
+    "4": 600.0,
+    "5": 690.0,
+    "6": 780.0,
+    "7": 870.0,
+    "8": 960.0,
+    "9": 1050.0,
+    "10": 1140.0
+  },
+  "spine_marked": [
+    510.0,
+    600.0,
+    870.0
+  ]
+};
+/* @@END COMPUTED@@ */
+</script>
+<script>
+window.renderReady = new Promise(async (resolve) => {
+  await document.fonts.ready;
+  const SEED = 20260911;
+  TX.reseed(SEED);
+  const cv = document.getElementById('art'), cx = cv.getContext('2d');
+  cx.scale(2,2);
+
+  // ================= THE CEILING, AUTHORED GEOMETRY =================
+  // A 4000K troffer is a rectangular source behind a prismatic acrylic lens, and a prismatic
+  // lens is a REGULAR GRID OF PYRAMIDS. Every facet's value is N dot L against ONE declared
+  // light vector, computed here rather than painted, so the frame's light is a number.
+  const LIGHT = TX.norm ? null : null;
+  const L3 = (function(){ const v=[0.18,0.86,0.48]; const m=Math.hypot(v[0],v[1],v[2]);
+                          return [v[0]/m,v[1]/m,v[2]/m]; })();
+
+  const PITCH = 54;                 // design px between pyramid apexes. Above the 6px moire floor.
+  const LENS = {x: 150, y: 176, w: 702, h: 378};   // the 2x4 troffer's lens, off centre upper left
+  const TEE  = 22;                  // tee bar flange width
+
+  // A TRANSMITTING facet is not an opaque one. Light arrives from behind the lens, so every
+  // facet carries most of the source and the normal only modulates it. A hard N dot L here is
+  // what made the first render read as a dark grille instead of a fixture.
+  function transmit(nx, ny, nz, base){
+    const n = Math.hypot(nx,ny,nz) || 1;
+    const d = Math.max(0, (nx/n)*L3[0] + (ny/n)*L3[1] + (nz/n)*L3[2]);
+    const k = 0.70 + 0.30 * Math.pow(d, 0.55);
+    return 'rgb(' + Math.round(Math.min(255,base[0]*k)) + ',' + Math.round(Math.min(255,base[1]*k)) + ',' + Math.round(Math.min(255,base[2]*k)) + ')';
+  }
+  function shade(nx, ny, nz, base){
+    const n = Math.hypot(nx,ny,nz) || 1;
+    const d = Math.max(0, (nx/n)*L3[0] + (ny/n)*L3[1] + (nz/n)*L3[2]);
+    const k = 0.20 + 0.80 * Math.pow(d, 0.78);   // opaque surfaces: N dot L with a floor
+    return 'rgb(' + Math.round(base[0]*k) + ',' + Math.round(base[1]*k) + ',' + Math.round(base[2]*k) + ')';
+  }
+
+  // ---- the plenum behind everything
+  cx.fillStyle = '#0E3347'; cx.fillRect(0,0,1080,1350);
+
+  // ---- the ceiling plane, falling away from the fixture
+  (function ceiling(){
+    const g = cx.createRadialGradient(LENS.x+LENS.w/2, LENS.y+LENS.h/2, 60,
+                                      LENS.x+LENS.w/2, LENS.y+LENS.h/2, 980);
+    g.addColorStop(0,   'rgba(152,205,180,0.52)');
+    g.addColorStop(0.30,'rgba(94,133,120,0.26)');
+    g.addColorStop(1,   'rgba(14,51,71,0)');
+    cx.fillStyle = g; cx.fillRect(0,0,1080,900);
+  })();
+
+  // ---- the tee bar grid. Two rails crossing, each a flange with a lit top arris.
+  (function teebar(){
+    const rails = [
+      {x0:-40, y0:236, x1:1120, y1:196},          // running right, slight perspective rake
+      {x0:-40, y0:688, x1:1120, y1:624},
+      {x0:842, y0:206, x1:904,  y1:1000},
+      {x0:1008,y0:206, x1:1076, y1:1000}
+    ];
+    rails.forEach(function(r,i){
+      const dx=r.x1-r.x0, dy=r.y1-r.y0, len=Math.hypot(dx,dy);
+      const px=-dy/len*TEE, py=dx/len*TEE;
+      cx.beginPath();
+      cx.moveTo(r.x0-px/2, r.y0-py/2); cx.lineTo(r.x1-px/2, r.y1-py/2);
+      cx.lineTo(r.x1+px/2, r.y1+py/2); cx.lineTo(r.x0+px/2, r.y0+py/2); cx.closePath();
+      // the flange face is nearly normal to the room, so its N dot L is low and constant
+      cx.fillStyle = shade(0, 0.28, 0.96, [176,216,194]); cx.fill();
+      // its top arris catches the source
+      cx.strokeStyle = 'rgba(204,242,228,0.28)'; cx.lineWidth = 1.6;
+      cx.beginPath(); cx.moveTo(r.x0-px/2, r.y0-py/2); cx.lineTo(r.x1-px/2, r.y1-py/2); cx.stroke();
+    });
+  })();
+
+  // ---- the housing reveal around the lens, a shallow return into the ceiling
+  (function reveal(){
+    const m = 13;
+    cx.fillStyle = shade(0, 0.45, 0.89, [120,166,150]);
+    cx.fillRect(LENS.x-m, LENS.y-m, LENS.w+2*m, LENS.h+2*m);
+    cx.fillStyle = 'rgba(14,51,71,0.55)';
+    cx.fillRect(LENS.x-m, LENS.y+LENS.h, LENS.w+2*m, m);   // the return in shade
+  })();
+
+  // ---- THE PRISM FIELD. One pyramid per cell, four facets each, every facet computed.
+  (function prisms(){
+    cx.save();
+    cx.beginPath(); cx.rect(LENS.x, LENS.y, LENS.w, LENS.h); cx.clip();
+    const cols = Math.ceil(LENS.w / PITCH), rows = Math.ceil(LENS.h / PITCH);
+    const H = 0.62;                                   // apex height as a fraction of half-pitch
+    const base = [204,242,228];                       // troffer, the lens material
+    for (let j = 0; j < rows; j++){
+      for (let i = 0; i < cols; i++){
+        const x0 = LENS.x + i*PITCH, y0 = LENS.y + j*PITCH;
+        const cxp = x0 + PITCH/2, cyp = y0 + PITCH/2;
+        // the four facets, each with its own outward normal
+        const facets = [
+          {p:[[x0,y0],[x0+PITCH,y0]],           n:[0,-H,1]},   // up-facing
+          {p:[[x0+PITCH,y0],[x0+PITCH,y0+PITCH]], n:[H,0,1]},  // right-facing
+          {p:[[x0+PITCH,y0+PITCH],[x0,y0+PITCH]], n:[0,H,1]},  // down-facing
+          {p:[[x0,y0+PITCH],[x0,y0]],           n:[-H,0,1]}    // left-facing
+        ];
+        // the fixture is brighter at its centre, so the lens carries a real falloff across it
+        const rr = Math.hypot((cxp-(LENS.x+LENS.w/2))/(LENS.w/2), (cyp-(LENS.y+LENS.h/2))/(LENS.h/2));
+        const fall = Math.max(0.74, 1 - 0.24*rr*rr);
+        facets.forEach(function(f){
+          cx.beginPath();
+          cx.moveTo(f.p[0][0], f.p[0][1]); cx.lineTo(f.p[1][0], f.p[1][1]);
+          cx.lineTo(cxp, cyp); cx.closePath();
+          const col = transmit(f.n[0], f.n[1], f.n[2], [base[0]*fall, base[1]*fall, base[2]*fall]);
+          cx.fillStyle = col; cx.fill();
+        });
+      }
+    }
+    // the acrylic's own thickness reads as a hairline at every cell boundary
+    cx.strokeStyle = 'rgba(14,51,71,0.09)'; cx.lineWidth = 1;
+    for (let i = 0; i <= cols; i++){ cx.beginPath(); cx.moveTo(LENS.x+i*PITCH, LENS.y); cx.lineTo(LENS.x+i*PITCH, LENS.y+LENS.h); cx.stroke(); }
+    for (let j = 0; j <= rows; j++){ cx.beginPath(); cx.moveTo(LENS.x, LENS.y+j*PITCH); cx.lineTo(LENS.x+LENS.w, LENS.y+j*PITCH); cx.stroke(); }
+    cx.restore();
+  })();
+
+  // ---- the plenum falls off below the ceiling band into slate
+  const g = cx.createLinearGradient(0, 560, 0, 1060);
+  g.addColorStop(0, 'rgba(14,51,71,0)');
+  g.addColorStop(0.34, 'rgba(14,51,71,0.80)');
+  g.addColorStop(1, 'rgba(14,51,71,1)');
+  cx.fillStyle = g; cx.fillRect(0, 600, 1080, 460);
+
+  // ---- BOTTOM THIRD: the head of the far wall and a cabinet run, modelled.
+  // Cabinet top takes the throw, the front falls to shade, a duct crosses above and contacts it.
+  (function cabinetRun(){
+    const topY = 1128, frontY = 1180;
+    // cabinet top surface, lit
+    const gt = cx.createLinearGradient(0, topY, 0, frontY);
+    gt.addColorStop(0, 'rgba(152,205,180,0.62)');
+    gt.addColorStop(1, 'rgba(94,133,120,0.55)');
+    cx.fillStyle = gt; cx.fillRect(0, topY, 1080, frontY - topY);
+    // the duct's contact shadow ON the cabinet top: soft core plus a tight line
+    const cs = cx.createLinearGradient(0, topY, 0, topY + 34);
+    cs.addColorStop(0, 'rgba(14,51,71,0.72)');
+    cs.addColorStop(1, 'rgba(14,51,71,0)');
+    cx.fillStyle = cs; cx.fillRect(40, topY, 700, 34);
+    cx.fillStyle = 'rgba(14,51,71,0.85)'; cx.fillRect(40, topY, 700, 3);
+    // cabinet front face, in shade, with a door reveal rhythm
+    const gf = cx.createLinearGradient(0, frontY, 0, 1350);
+    gf.addColorStop(0, 'rgba(94,133,120,0.50)');
+    gf.addColorStop(1, 'rgba(14,51,71,0.96)');
+    cx.fillStyle = gf; cx.fillRect(0, frontY, 1080, 1350 - frontY);
+    cx.strokeStyle = 'rgba(14,51,71,0.55)'; cx.lineWidth = 2;
+    for (let x = 96; x < 1080; x += 168){ cx.beginPath(); cx.moveTo(x, frontY+6); cx.lineTo(x, 1350); cx.stroke(); }
+    // the top arris catches a narrow highlight
+    cx.strokeStyle = 'rgba(204,242,228,0.34)'; cx.lineWidth = 2;
+    cx.beginPath(); cx.moveTo(0, frontY); cx.lineTo(1080, frontY); cx.stroke();
+    // the duct itself, crossing above the cabinet
+    const gd = cx.createLinearGradient(0, 1052, 0, 1122);
+    gd.addColorStop(0, 'rgba(94,133,120,0.30)');
+    gd.addColorStop(0.5, 'rgba(152,205,180,0.44)');
+    gd.addColorStop(1, 'rgba(14,51,71,0.70)');
+    cx.save(); cx.translate(0, 0); cx.beginPath();
+    cx.moveTo(40, 1058); cx.lineTo(740, 1032); cx.lineTo(740, 1104); cx.lineTo(40, 1124); cx.closePath();
+    cx.fillStyle = gd; cx.fill(); cx.restore();
+  })();
+
+  // ---- grain, as a repeating DOM tile. NEVER a full-frame canvas fill: the printed PDF
+  // embeds full-frame noise as an incompressible bitmap, and a repeated tile embeds once.
+  document.getElementById('grain').style.backgroundImage = 'url(' + TX.grainTile(256, 30, SEED) + ')';
+
+  TX.fitText(document.getElementById('hook'), { min: 76, max: 126, maxLines: 3 });
+
+  // A RESERVE UNDER THE HEADLINE. The plenum carries the cabinet run's top edge straight across
+  // the hook's glyph band, and an edge through a line of type reads as a strikethrough at feed
+  // width whatever it is a drawing of. This lays the plenum's own colour back over that edge
+  // under the glyphs only, feathered, so it reads as falloff. The type is unmoved and the edge
+  // survives everywhere it is not behind a letter. Fitted first, because fitText changes the box.
+  (function reserveHook(){
+    const r=document.getElementById('hook').getBoundingClientRect();
+    cx.save(); cx.filter='blur(32px)';
+    cx.fillStyle='rgba(11,40,56,0.93)';
+    cx.fillRect(r.left-56,r.top-46,r.width+112,r.height+92);
+    cx.restore();
+  })();
+  resolve(true);
+});
+</script>

@@ -1,0 +1,69 @@
+{
+  "beat": "research-and-machines",
+  "note": "The carousel-scout agent has Read, WebSearch and WebFetch and NO write tool, so it returned this inline and the showrunner persisted it. Logged for the retro.",
+  "findings": [
+    {
+      "headline": "NSF funded a Texas A&M engineering station project to build AI digital twins of small and mid-sized drinking water systems.",
+      "what_happened": "NSF's Division of Civil, Mechanical, and Manufacturing Innovation made award 2640086 to the Texas A&M Engineering Experiment Station in College Station on September 9th, 2026, with a start date of September 15th, 2026 and an expiration of August 31st, 2029. The award record lists estimated total and FY 2026 obligated amounts of $122,169 and names Sudipta Chowdhury as principal investigator.",
+      "who_decided": "U.S. National Science Foundation, Directorate for Engineering, Division of Civil, Mechanical, and Manufacturing Innovation; awardee Texas A&M Engineering Experiment Station",
+      "when": "2026-09-09",
+      "where": {"counties": ["Brazos"], "statewide": false, "ercot": true},
+      "quote": "The objective of this project is to support research on a new AI-enabled cyber-physical-social paradigm for predicting, managing, and mitigating cascading disruptions in freshwater infrastructure systems. Freshwater infrastructure, including intakes, treatment facilities, storage assets, distribution networks, sensing platforms, and utility operations, is becoming increasingly difficult to manage due to aging assets, deferred maintenance, climate-driven hazards, power outages, and water-quality variability.",
+      "quote_2": "Current utility practices often rely on monitoring systems, historical records, and reactive emergency protocols that provide limited ability to anticipate how local anomalies escalate into broader service disruptions.",
+      "url": "https://api.nsf.gov/services/v1/awards/2640086.json?printFields=abstractText",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "The NSF HTML award page returned 'No Award Specified' to this fetcher; the record was read from the keyless NSF awards API.",
+        "No Texas county, utility or water system is named in the abstract. Brazos is stated because the Texas A&M Engineering Experiment Station campus sits there, not because the award names it.",
+        "Whether any Texas water utility has agreed to participate."
+      ]
+    },
+    {
+      "headline": "A UT San Antonio engineering lab built a solar-powered flood sensor that runs its AI on the device and reports it hit 98.82 percent validation accuracy.",
+      "what_happened": "UT San Antonio published on September 8th, 2026 that Chen Pan, an assistant professor of electrical engineering in the Klesse College of Engineering and Integrated Design, built a self-powered flood warning station that harvests solar energy, carries four optical water-level sensors and runs a TinyML model on the device rather than in the cloud. It reports over LoRa radio to a web dashboard and the parts for one prototype station cost roughly $150 to $220.",
+      "who_decided": "The University of Texas at San Antonio, funded in part through the Texas Coastal Management Program and NOAA Office for Coastal Management under NOAA Award No. NA23NOS4190249",
+      "when": "2026-09-08",
+      "where": {"counties": ["Bexar", "Nueces"], "statewide": false, "ercot": true},
+      "quote": "In many rural areas or coastal communities, power infrastructure can fail right when severe weather strikes. Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.",
+      "quote_2": "So far, the AI has performed well, achieving 98.82% validation accuracy in initial assessments post-training.",
+      "quote_3": "This project was funded in part by a Texas Coastal Management Program grant approved by the Texas Land Commissioner, providing financial assistance under the Coastal Zone Management Act of 1972, as amended, awarded by the National Oceanic and Atmospheric Administration (NOAA), Office for Coastal Management, pursuant to NOAA Award No. NA23NOS4190249.",
+      "quote_4": "Our ultimate goal is to get this technology deployed where it's needed most. Whether along the Gulf Coast, across rural Texas counties or in urban drainage basins, smart self-powered sensing can give communities the early awareness they need to stay safe.",
+      "url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "counter_image": "The university's own words put the figure at validation accuracy in initial assessments after training, which is a bench number and not a record of catching a real flood. The article says the team is pursuing patent protection, so nothing is installed on a public road yet.",
+      "unverified": [
+        "No installed location, county or partner city is named anywhere in the article. Bexar is listed because UT San Antonio is there and Nueces because the two co-investigators are at Texas A&M University-Corpus Christi. Neither is a deployment site.",
+        "Whether the 98.82 percent figure comes from field data or from a laboratory or simulated dataset.",
+        "No peer-reviewed paper is linked and none was located this run."
+      ]
+    },
+    {
+      "headline": "UNT took a $20 million gift and will name a college of artificial intelligence and advanced analytics after the donors.",
+      "what_happened": "The University of North Texas announced on September 8th, 2026 that Anuradha and Vikas Sinha gave $20 million and that UNT will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics. The gift creates six permanent endowments. Kinshuk is named as dean of the college.",
+      "who_decided": "University of North Texas, with donors Anuradha and Vikas Sinha",
+      "when": "2026-09-08",
+      "where": {"counties": ["Denton"], "statewide": false, "ercot": true},
+      "quote": "In recognition of the Sinhas' commitment, UNT will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics, establishing an academic hub focused on the development, application and responsible use of artificial intelligence, intelligent systems and data analytics.",
+      "quote_2": "The gift will create six permanent endowments supporting college leadership, student scholarships, endowed professorships, entrepreneurship and incubation, advanced research and emerging technologies.",
+      "url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "No launch, approval or opening date appears on the page.",
+        "No UNT System Board of Regents agenda item or minute approving the naming was fetched this run.",
+        "Enrollment, degree programs and whether the college is newly created or a renaming are not on the page."
+      ]
+    }
+  ],
+  "dead_ends": [
+    "NSF's HTML award page is JavaScript driven and returned 'No Award Specified'. The keyless api.nsf.gov JSON endpoint is the working route.",
+    "tacc.utexas.edu was NOT fetched. SOURCES_REGISTRY records its robots.txt as disallowing our client domain-wide.",
+    "UT Dallas WindSTAR, NSF CyberAICorps and the DOE Genesis Mission Texas awards are all dated before the window and were dropped.",
+    "news.rice.edu and stories.tamu.edu carried no AI, computing or robotics item in September 2026 on their first index page."
+  ]
+}

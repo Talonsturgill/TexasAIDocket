@@ -1,0 +1,204 @@
+{
+ "run": "2026-09-11",
+ "deck": 21,
+ "note": "Derived from render_report.json's own laid-out text nodes by build_copy.py. Never authored by hand, so it cannot drift from the frames. Rebuilt every round.",
+ "slides": {
+  "S1": {
+   "hook": "Texas put AI in a money class.",
+   "dek": "The board's own course text tells a student to research career pathways using artificial intelligence tools.",
+   "labels": [
+    "TEXAS STATE BOARD OF EDUCATION 19 TAC SECTION 113.26",
+    "19 TAC SECTION 113.26",
+    "01 / 09",
+    "artificial intelligence tools",
+    "c11 c14 TEXAS AI DOCKET",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c11",
+    "c14"
+   ]
+  },
+  "S2": {
+   "hook": "Ten chapters. The machine is in three.",
+   "dek": "Every chapter of the course text is a thing a student must be able to do with money. Seven of them carry none of the four machine terms.",
+   "labels": [
+    "THE COURSE TEXT",
+    "02 / 09",
+    "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+    "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING",
+    "SAVING AND INVESTING",
+    "c12 c13 c19 c20 c21",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c12",
+    "c13",
+    "c19",
+    "c20",
+    "c21"
+   ]
+  },
+  "S3": {
+   "hook": "One dot for every word.",
+   "dek": "Four terms carry the machine across the entire course text. Three of the five sit inside one clause.",
+   "labels": [
+    "THE WHOLE STANDARD",
+    "03 / 09",
+    "artificial intelligence",
+    "1",
+    "algorithm",
+    "2",
+    "automated",
+    "1",
+    "robot",
+    "1",
+    "AI unit",
+    "0",
+    "c11 c14 c15 c16",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c11",
+    "c14",
+    "c15",
+    "c16"
+   ]
+  },
+  "S4": {
+   "hook": "Chapter three hands it over.",
+   "dek": "\"research career pathways using labor-market data, online resources, and artificial intelligence tools\"",
+   "labels": [
+    "KNOWLEDGE STATEMENT (3) CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+    "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+    "04 / 09",
+    "THE VERB IS RESEARCH",
+    "artificial intelligence tools",
+    "c14 c18 c19",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c14",
+    "c18",
+    "c19"
+   ]
+  },
+  "S5": {
+   "hook": "Chapter four turns it around.",
+   "dek": "\"explain how consumerism and marketing strategies, including social media influencers, algorithm-driven recommendations, financial technology platforms, and traditional advertising, influence spending behavior\"",
+   "labels": [
+    "KNOWLEDGE STATEMENT (4) CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING",
+    "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING",
+    "05 / 09",
+    "\"in a digital age\"",
+    "THE VERB IS EXPLAIN",
+    "algorithm-driven recommendations",
+    "c15 c17 c20",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c15",
+    "c17",
+    "c20"
+   ]
+  },
+  "S6": {
+   "hook": "Chapter seven says find where it stops working.",
+   "dek": "\"appraise responsible use of financial technology",
+   "labels": [
+    "through automated investment platforms,",
+    "including robot-advisors and micro-investing apps,",
+    "by analyzing",
+    "fee structures, investment strategies,",
+    "algorithmic limitations,",
+    "and",
+    "suitability for different investor profiles\"",
+    "KNOWLEDGE STATEMENT (7) SAVING AND INVESTING",
+    "SAVING AND INVESTING",
+    "06 / 09",
+    "APPRAISE",
+    "SECOND READING AND FINAL ADOPTION",
+    "c16 c21",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c16",
+    "c21"
+   ]
+  },
+  "S7": {
+   "hook": "Its own summary ends in \"and more.\"",
+   "dek": "\"The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.\"",
+   "labels": [
+    "ZERO HITS IN THE RELEASE",
+    "07 / 09",
+    "0 artificial",
+    "0",
+    "0 algorithm",
+    "0",
+    "0 automated",
+    "0",
+    "0 machine learning",
+    "0",
+    "0 technolog(y)",
+    "0",
+    "0 AI",
+    "0",
+    "and more",
+    "RESEARCH",
+    "EXPLAIN",
+    "APPRAISE",
+    "c22 c23 c24",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c22",
+    "c23",
+    "c24"
+   ]
+  },
+  "S8": {
+   "hook": "Districts teach it from the school year that opens in 2027.",
+   "dek": "one-half credit and a curriculum requirement",
+   "labels": [
+    "IMPLEMENTATION",
+    "08 / 09",
+    "TAUGHT FROM",
+    "2027 to 2028 school year",
+    "MOTION",
+    "effective 20 days after filing",
+    "CREDIT",
+    "c3 c9 c12 c13",
+    "texasaidocket.com"
+   ],
+   "claims": [
+    "c3",
+    "c9",
+    "c12",
+    "c13"
+   ]
+  },
+  "S9": {
+   "hook": "The rule is made. The credit is required.",
+   "dek": "The board acted on an attachment headed \"Text of Proposed New 19 TAC\". The filed rule is unchecked here.",
+   "labels": [
+    "19 TAC SECTION 113.26",
+    "09 / 09",
+    "SECOND READING AND FINAL ADOPTION Item dated September 4th, 2026",
+    "September 4th, 2026",
+    "Ask your district who is staffing the three expectations.",
+    "TEXAS AI DOCKET",
+    "texasaidocket.com",
+    "c1 c2 c5 c9 c11 c23"
+   ],
+   "claims": [
+    "c1",
+    "c2",
+    "c5",
+    "c9",
+    "c11",
+    "c23"
+   ]
+  }
+ }
+}

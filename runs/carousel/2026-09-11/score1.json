@@ -1,0 +1,107 @@
+{
+ "weighted_score": 6.508,
+ "judges": [
+  6.146,
+  6.36,
+  6.68
+ ],
+ "spread": 0.534,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.4,
+   "weight": 0.28,
+   "judges": [
+    6.4,
+    6.0,
+    6.6
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.5,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    6.5,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.18,
+   "judges": [
+    6.3,
+    6.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.5,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.5,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.5,
+    6.3
+   ]
+  }
+ },
+ "hard_fails": [
+  "Frame 3 prints a typed numeral. slides/slide-03.html line 247 writes '<span>AI unit</span><span>0</span>' as a string literal, nine lines under the comment 'the tally, built from computed.json. Nothing here is typed.' No compute.py value, no computed.json key and no aggregates.json row produces a count for 'AI unit'. The storyboard's slide 3 acceptance item asks for the row to 'carry a count of zero', so the zero was planned as a typed figure. It clears numeral_trace only because ZERO HITS, a count over a different document, puts 0 in the allowed set. That is a numeral on a slide that traces to no claim and no computation.",
+  "Frame 2 prints an arithmetic result nobody computed. slides/slide-02.html line 34 types 'Seven of them never mention a machine.' Seven is n_knowledge minus n_chapters, done in a slide string. compute.py has no such value, aggregates.json declares 'Ten chapters' and 'Four terms' as figures but not this one, and the storyboard's slide 2 numerals list does not name it. The digit passes the gate because 'seven says', the chapter number from c21, is a different figure that happens to share it. Same condition as above.",
+  "Frame 8 and the caption present the effective date as settled. The sill reads 'EFFECTIVE  20 days after filing with the Texas Register' and the caption reads 'The rule takes effect 20 days after filing.' c3's own text says 'The motion asked the board to find' that, the item page (sources/sboe-item3-second-reading.txt) calls it 'The proposed effective date' and says a two-thirds vote is required to set it, c23 establishes adoption but not that finding, and claims.json's not_established list leaves the vote unresolved. The fact-checker kept the hedge and the deck dropped it on two surfaces. That is an unverified fact presented as verified.",
+  "Frame 6 renders c16's verbatim clause with two run boundaries fused, 'by analyzingfee structures' and 'algorithmic limitations,and' (out/2026-09-11/render/slide-06.png, the knocked-out plate, lines 4 and 5), so the string on the frame is not the string in the source, on the frame the storyboard calls the story's sharpest sentence, while the post's line 9 states 'The deck carries all three verbatim.' Every word is present, so this is a rendering defect rather than a fabrication, and it passed verbatim_check because that gate reads the laid-out text nodes and not the pixels. Frame 4's quote carries the same class of defect the other way, a double space before 'artificial' and a space before its closing quote mark. A verbatim block a reader can see is misspaced, on a product whose public promise is verbatim fidelity, is a fault and not a preference."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Frame 3 prints a typed numeral. slides/slide-03.html line 247 writes '<span>AI unit</span><span>0</span>' as a string literal, nine lines under the comment 'the tally, built from computed.json. Nothing here is typed.' No compute.py value, no computed.json key and no aggregates.json row produces a count for 'AI unit'. The storyboard's slide 3 acceptance item asks for the row to 'carry a count of zero', so the zero was planned as a typed figure. It clears numeral_trace only because ZERO HITS, a count over a different document, puts 0 in the allowed set. That is a numeral on a slide that traces to no claim and no computation."
+  },
+  {
+   "judge": 1,
+   "fail": "Frame 2 prints an arithmetic result nobody computed. slides/slide-02.html line 34 types 'Seven of them never mention a machine.' Seven is n_knowledge minus n_chapters, done in a slide string. compute.py has no such value, aggregates.json declares 'Ten chapters' and 'Four terms' as figures but not this one, and the storyboard's slide 2 numerals list does not name it. The digit passes the gate because 'seven says', the chapter number from c21, is a different figure that happens to share it. Same condition as above."
+  },
+  {
+   "judge": 1,
+   "fail": "Frame 8 and the caption present the effective date as settled. The sill reads 'EFFECTIVE  20 days after filing with the Texas Register' and the caption reads 'The rule takes effect 20 days after filing.' c3's own text says 'The motion asked the board to find' that, the item page (sources/sboe-item3-second-reading.txt) calls it 'The proposed effective date' and says a two-thirds vote is required to set it, c23 establishes adoption but not that finding, and claims.json's not_established list leaves the vote unresolved. The fact-checker kept the hedge and the deck dropped it on two surfaces. That is an unverified fact presented as verified."
+  },
+  {
+   "judge": 3,
+   "fail": "Frame 6 renders c16's verbatim clause with two run boundaries fused, 'by analyzingfee structures' and 'algorithmic limitations,and' (out/2026-09-11/render/slide-06.png, the knocked-out plate, lines 4 and 5), so the string on the frame is not the string in the source, on the frame the storyboard calls the story's sharpest sentence, while the post's line 9 states 'The deck carries all three verbatim.' Every word is present, so this is a rendering defect rather than a fabrication, and it passed verbatim_check because that gate reads the laid-out text nodes and not the pixels. Frame 4's quote carries the same class of defect the other way, a double space before 'artificial' and a space before its closing quote mark. A verbatim block a reader can see is misspaced, on a product whose public promise is verbatim fidelity, is a fault and not a preference."
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.36 against a 6.8 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.36,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.36 against a 6.8 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds": 1
+}

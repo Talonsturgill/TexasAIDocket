@@ -1,0 +1,88 @@
+{
+  "beat": "policy-and-money",
+  "note": "Scout has no write tool; returned inline and the showrunner persisted it.",
+  "findings": [
+    {
+      "headline": "The Department of Energy opened a request for information on securing the bulk-power system, naming artificial intelligence as a driver of electricity dependence, with responses due October 9th",
+      "who_decided": "United States Department of Energy, Office of Cybersecurity, Energy Security, and Emergency Response",
+      "when": "2026-09-09",
+      "docket": "DOE-HQ-2026-1123 (Federal Register document 2026-18370)",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "Written responses, data, and information are requested and will be accepted on or before October 9, 2026. If you anticipate difficulty in submitting responses within that period, contact the person listed in FOR FURTHER INFORMATION CONTACT as soon as possible. DOE will hold a public meeting via webinar on Wednesday, September 16, 2026, from 3 to 4 p.m. EDT.",
+      "quote_2": "the rapid growth of advanced manufacturing, data centers, artificial intelligence, and defense production has increased the Nation's dependence on abundant, reliable electricity",
+      "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "The document does not name Texas or ERCOT anywhere. The Texas link is inferential and must not be asserted on this source.",
+        "The August 26th, 2026 Executive order itself was not fetched this run."
+      ]
+    },
+    {
+      "headline": "NTIA opened a comment window asking whether its household internet survey should collect more data on artificial intelligence, closing November 9th",
+      "who_decided": "National Telecommunications and Information Administration, U.S. Department of Commerce",
+      "when": "2026-09-09",
+      "docket": "OMB Control Number 0660-0021 (Federal Register document 2026-18303)",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "To ensure consideration, comments regarding this proposed information collection must be received on or before November 9, 2026.",
+      "quote_2": "Is there a need for more data around artificial intelligence (AI)?",
+      "quote_3": "Are there particular areas that need more data, such as AI use at work or home, or attitudes towards AI?",
+      "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "The document does not name Texas and gives no state-level breakout.",
+        "This is a different collection from the American Community Survey AI question window already in the record."
+      ]
+    },
+    {
+      "headline": "A patent suit over artificial intelligence technology was filed against OpenAI in the Eastern District of Texas and assigned to Judge James Rodney Gilstrap",
+      "who_decided": "Many Worlds 2T Innovations LLC, filing in the U.S. District Court for the Eastern District of Texas",
+      "when": "2026-08-31",
+      "docket": "2:26-cv-00774 (E.D. Tex.)",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "OpenAI's artificial intelligence tools directly implement the technological",
+      "url": "https://www.courtlistener.com/api/rest/v4/search/?q=%22artificial+intelligence%22&type=r&court=txed&case_name=OpenAI&filed_after=2026-08-25&highlight=on",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "The complaint PDF was not fetched. The quoted words are CourtListener's indexed excerpt and are a truncated fragment. Do NOT ship as a sentence.",
+        "The county was not determined. No division or county is stated in the fetched record.",
+        "No ruling has issued. This is a filing, not a decision."
+      ]
+    },
+    {
+      "headline": "The Census Bureau asked OMB to repeat the artificial intelligence supplement on the survey that measures business AI use, and to move two AI questions into the core",
+      "who_decided": "U.S. Census Bureau, U.S. Department of Commerce",
+      "when": "2026-09-09",
+      "docket": "OMB Control Number 0607-1022 (Federal Register document 2026-18304)",
+      "where": {"counties": [], "statewide": false, "ercot": false},
+      "quote": "This submission seeks an amendment to OMB approval for three requests. First, the Census Bureau requests approval to repeat the artificial intelligence (AI) supplement with minor content changes.",
+      "quote_2": "Two of these questions (Generative AI usage and the impact of AI on the total number of employees) are being moved from the AI supplement.",
+      "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18304.txt",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "No dated comment close appears in the notice text and the Federal Register API returned a null comments_close_on.",
+        "The document does not name Texas."
+      ]
+    }
+  ],
+  "sources_that_would_not_answer": [
+    "texasattorneygeneral.gov returned HTTP 402 to this agent.",
+    "The Texas Register's subsection pages returned 403 while its table of contents returned 200. sos.texas.gov/texreg/archive/September112026/ returned 403.",
+    "Every Harris County Commissioners Court agenda path returned 404.",
+    "apps.hhs.texas.gov procurement forecast PDF returned 503 on two attempts.",
+    "puc.texas.gov calendar RSS returned 503, matching the power-and-compute scout.",
+    "capitol.texas.gov/tlodocs/ is robots-disallowed and lrl.texas.gov is off limits whole-host, so the September 14th and 15th House and Senate State Affairs interim hearings are visible as dates and rooms but their charge text could not be read from a permitted source."
+  ],
+  "leads_for_a_browser_client": [
+    "The Texas AG press page.",
+    "The Harris County Flock contract special meeting called for September 6th.",
+    "The HHSC 'Rural Texas Strong Initiative 3: Lone Star Advanced AI and Telehealth' procurement forecast entry."
+  ]
+}

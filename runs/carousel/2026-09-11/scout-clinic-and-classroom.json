@@ -1,0 +1,68 @@
+{
+  "beat": "clinic-and-classroom",
+  "note": "Scout has no write tool; returned inline and the showrunner persisted it.",
+  "findings": [
+    {
+      "headline": "Texas wrote the use of artificial intelligence tools into a required high school course standard.",
+      "what_happened": "The State Board of Education took new 19 TAC 113.26, Applied Personal Financial Literacy (One-Half Credit), Adopted 2026, to second reading and final adoption at its September 2026 meeting in Austin. The text presented for final adoption requires students to research career pathways using artificial intelligence tools, and a second expectation requires them to explain how algorithm-driven recommendations influence spending. The course implements House Bill 27 and is to be implemented beginning with the 2027-2028 school year.",
+      "who_decided": "Texas State Board of Education",
+      "when": "2026-09-04",
+      "where": {"counties": [], "statewide": true, "ercot": false},
+      "quote": "research career pathways using labor-market data, online resources, and artificial intelligence tools to evaluate income growth, employment trends, global competition, comparative advantage, technological change, creative destruction, required skills, and possible employers (E, S);",
+      "url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+      "corroborating_url": "https://sboe.texas.gov/state-board-of-education/sboe-news/texas-state-board-of-education-completes-k-12-social-studies-teks-revision-adopts-new-personal-financial-literacy-standards",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "The final adopted text as amended from the floor on September 4th. The adopted rule had not appeared in the Texas Register as of the September 11, 2026 issue, so the AI expectation cannot be confirmed to have survived unamended.",
+        "The recorded vote count. The board's own September 8th release confirms adoption of the standards but states no vote count and does not mention artificial intelligence.",
+        "Reporting says HB 2400 bars districts from using AI to provide direct instruction to students. The statute was not fetched."
+      ]
+    },
+    {
+      "headline": "The University of North Texas is naming a college after artificial intelligence on a private gift.",
+      "who_decided": "University of North Texas",
+      "when": "2026-09-08",
+      "where": {"counties": ["Denton"], "statewide": false, "ercot": false},
+      "quote": "A $20 million gift from Anuradha and Vikas Sinha will accelerate the University of North Texas' work in artificial intelligence and advanced analytics, creating new opportunities for students and faculty in fields rapidly reshaping industries, professions and society.",
+      "quote_2": "Our goal is not simply to teach students how to use new technologies. We want them to understand them, question them and be prepared to shape what those technologies become.",
+      "url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "note": "Also found independently by the research-and-machines scout.",
+      "unverified": [
+        "Whether the UNT System Board of Regents has approved the naming, and on what date.",
+        "Which degree programs move into the college, and when it opens."
+      ]
+    },
+    {
+      "headline": "UT Physicians is moving from two ambient AI pilots to one platform across its practice.",
+      "who_decided": "UT Physicians and McGovern Medical School at UTHealth Houston",
+      "when": "2026-09-09",
+      "where": {"counties": ["Harris"], "statewide": false, "ercot": true},
+      "quote": "Following pilot programs involving DAX and Abridge, UT Physicians is working toward adopting Epic's ambient listening platform as a unified system.",
+      "quote_2": "Faculty development efforts are also helping educators understand how AI can augment teaching while addressing concerns surrounding overreliance on technology.",
+      "url": "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "The date the Epic rollout starts, how many clinicians or clinics are covered, and whether any contract has been signed. The post says 'working toward'.",
+        "Whether DAX and Abridge are being dropped entirely."
+      ]
+    }
+  ],
+  "sources_that_would_not_answer": [
+    "The SBOE agenda PDF and the Texas A&M System regents binder both exceed the fetcher's size limit. Worked around via the individual committee item attachment and news.tamus.edu respectively.",
+    "https://www.sos.state.tx.us/texreg/archive/September112026/index.shtml returned 403. The working path is /texreg/sos/index.html reached from the index page. The September 11, 2026 issue carries no SBOE, TEA or Medical Board entry and nothing on artificial intelligence.",
+    "tacc.utexas.edu left alone per the registry's domain-wide disallow.",
+    "ClinicalTrials.gov v2 returned an empty studies array for Texas plus AI terms over two start windows. Whether that is a real absence or a filter syntax error was not established, so nothing rests on it."
+  ],
+  "dropped_for_exclusion": [
+    "UT Dell Medical Center AI-native hospital timeline vote (university system hospital capital program).",
+    "Houston ISD Future 2.",
+    "The Houston Methodist discharge date study, which resurfaced as PMID 42690661."
+  ]
+}

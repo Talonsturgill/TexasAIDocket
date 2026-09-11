@@ -1,0 +1,65 @@
+{
+  "beat": "ai-in-the-field",
+  "note": "Scout has no write tool; returned inline and the showrunner persisted it.",
+  "findings": [
+    {
+      "headline": "Battalion Oil bought a stake in Collide and signed a subscription to run its AI system across the company's upstream operations.",
+      "who_decided": "Battalion Oil Corporation (NYSE American: BATL)",
+      "when": "2026-09-08",
+      "where": {"counties": ["Ward"], "statewide": false, "ercot": true},
+      "quote": "Battalion sees Riggs as a natural fit for its Monument Draw cube development program in Ward County, Texas and in the continued efforts to consolidate accretive assets in and out of the basin.",
+      "quote_2": "\"Collide has solved a problem that has stumped the industry for a decade: building AI that actually speaks petroleum engineering,\" said Matt Steele, Chief Executive Officer of Battalion.",
+      "url": "https://www.globenewswire.com/news-release/2026/09/08/3358243/18320/en/battalion-oil-corporation-announces-strategic-investment-in-collide-the-ai-native-operations-system-for-oil-and-gas.html",
+      "date_read": "2026-09-11",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "counter_image": "The release says Riggs reaches Battalion's production engineers at approximately day 90, so nothing has changed on the lease yet.",
+      "unverified": [
+        "Whether any Collide-driven change has been made at a Ward County well. The release describes a deployment beginning, not a result.",
+        "The dollar size of the equity investment is not stated.",
+        "The source does not state which grid serves Ward County."
+      ]
+    },
+    {
+      "headline": "Merlin flew its AI autonomy platform on a Cessna Caravan at TxDOT's Project Nexus kickoff at Alliance Airport.",
+      "who_decided": "Merlin, Inc. (NASDAQ: MRLN), at an event convened by the Texas Department of Transportation",
+      "when": "2026-09-10",
+      "where": {"counties": [], "statewide": false, "ercot": true},
+      "quote": "TxDOT invited Merlin to the event as a supporting participant, enabling Merlin to demonstrate core capabilities of its AI-powered autonomy platform, the Merlin Pilot™, including autonomous takeoff and landing, AI-powered Air Traffic Control communications, and dynamic autonomous in-flight re-planning and threat avoidance.",
+      "url": "https://www.globenewswire.com/news-release/2026/09/10/3359959/0/en/merlin-demonstrates-autonomous-flight-capabilities-at-texas-department-of-transportation-project-nexus-eipp-kickoff-event.html",
+      "date_read": "2026-09-11",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "unverified": [
+        "NO fetched source names the county of Alliance Airport. TxDOT datelines Fort Worth and Merlin says 'the Alliance Airport'. Tarrant would be an inference from a city name, which the brief forbids. Airport land is also commonly described as extending into Denton County.",
+        "Whether a pilot was aboard during the demonstration.",
+        "Merlin is described as an invited guest and is NOT listed by TxDOT as an eIPP award partner."
+      ]
+    },
+    {
+      "headline": "TxDOT launched phase one of Project Nexus at Fort Worth Alliance Airport, and phase one flies helicopters and fixed-wing planes rather than electric aircraft.",
+      "who_decided": "Texas Department of Transportation",
+      "when": "2026-09-10",
+      "where": {"counties": [], "statewide": true, "ercot": true},
+      "quote": "This first phase will test across the state using traditional aircraft such as helicopters and fixed-wing planes.",
+      "quote_2": "These initial flights will not carry passengers and are designed to collect data, validate routes and support the safe development of future advanced air mobility operations.",
+      "url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "No fetched source names the county of Fort Worth Alliance Airport.",
+        "TxDOT's Advanced Air Mobility page, fetched the same day, still says initial operations are 'planned to commence in the fall or winter of 2026', which does not match the newsroom release's launch date.",
+        "'Autonomous flight technologies' appears in TxDOT's list of operational concepts for the NATIONWIDE projects, not specifically for Texas.",
+        "robots.txt for www.txdot.gov returned HTTP 404, so no crawl directive was found for the host."
+      ]
+    }
+  ],
+  "leads_checked_and_dropped": [
+    "Bedrock Robotics autonomous excavators. Bedrock's own post does not contain the word Texas, carries no publication date and names no county. The Texas anchor exists only in journalism.",
+    "Bot Auto and Ryan Transportation Houston to Dallas lane. Dates to February 25th, 2026 and the lane is on the excluded list.",
+    "Joby Aviation eIPP flights. Same event as the TxDOT finding, and the aircraft is electric rather than autonomous.",
+    "Exxon automated drilling in the Permian. Reporting dates to August 24th and the sourcing found was wire journalism.",
+    "Project Watershed 250. Just outside ten days and a cybersecurity program rather than AI doing field work."
+  ]
+}

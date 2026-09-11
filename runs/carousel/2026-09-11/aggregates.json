@@ -1,0 +1,125 @@
+{
+ "run": "2026-09-11",
+ "note": "Every figure the deck prints that a claim did not quote is declared here with its computation, so numeral_trace can reach it and aggregate_check can re-derive it. The six zeros on slide 7 share one declaration, ZERO HITS, for a reason the note on that row states.",
+ "aggregates": [
+  {
+   "phrase": "Ten chapters",
+   "kind": "count",
+   "value": 10,
+   "computed_by": "compute.py N_KNOWLEDGE, the number of numbered knowledge statements its heading pattern finds in the attachment snapshot. It also corroborates: if a reported gap in the numbering is contradicted by the document printing that number anywhere, compute.py raises instead of handing the gap to a frame. That guard exists because the first build's pattern excluded a heading carrying a colon and published a missing chapter six that does not exist.",
+   "from_claims": [
+    "c19",
+    "c20",
+    "c21"
+   ],
+   "note": "Slide 2's hook."
+  },
+  {
+   "phrase": "Four terms",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py N_FOOTPRINT_TERMS, the machine-naming stems with at least one occurrence in the course text. The stem is what is counted, so algorithm covers algorithm-driven and algorithmic alike, which is why the frame prints the stem beside the count rather than either full word.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "note": "Slide 3's dek."
+  },
+  {
+   "phrase": "Three of the five",
+   "kind": "ratio",
+   "value": 3,
+   "computed_by": "compute.py FOOTPRINT_POSITIONS, the word index of each of the five occurrences in the course text. Three of them fall between word 2675 and word 2689, which is inside c16's single clause, and the other two are 1331 and 1614. The frame draws each mark at its own measured position, so the claim is visible rather than asserted.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "note": "Slide 3's dek.",
+   "of": 5
+  },
+  {
+   "phrase": "three hands",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c19",
+   "quote": "(3) Careers, Postsecondary Education, and Earning Potential",
+   "note": "Slide 4's hook, 'Chapter three hands it over'. The three is the chapter's own number as the document prints it, not a count of anything."
+  },
+  {
+   "phrase": "four turns",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c20",
+   "quote": "(4) Consumer Economics and Financial Decision-Making",
+   "note": "Slide 5's hook. Same shape as slide 4's."
+  },
+  {
+   "phrase": "seven says",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c21",
+   "quote": "(7) Saving and Investing",
+   "note": "Slide 6's hook. Same shape again."
+  },
+  {
+   "phrase": "20 days",
+   "kind": "duration",
+   "value": 20,
+   "quoted_from": "c3",
+   "quote": "an effective date of 20 days after filing with the Texas Register",
+   "note": "Slide 8's sill and the caption. No conversion is performed and the figure is lifted from the motion's own words by compute.py rather than typed."
+  },
+  {
+   "phrase": "three expectations",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "the same computation as the row above.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "note": "The caption."
+  },
+  {
+   "phrase": "eighteen words",
+   "kind": "count",
+   "value": 18,
+   "computed_by": "compute.py RELEASE_SUMMARY_WORDS, the whitespace-split length of c22's sentence. The caption spells it because it opens a clause, and the figure is the computation's rather than a writer's estimate of how short the sentence felt.",
+   "from_claims": [
+    "c22"
+   ],
+   "note": "The caption."
+  },
+  {
+   "phrase": "ZERO HITS",
+   "kind": "count",
+   "value": 0,
+   "computed_by": "compute.py N_RELEASE_HITS, the sum of RELEASE_HITS over six machine-naming terms counted across the served bytes of the board's news release snapshot, navigation and footer included. compute.py RAISES rather than publishing if the sum is not zero, so the frame cannot print this over a release that mentions the machine.",
+   "from_claims": [
+    "c22"
+   ],
+   "note": "Slide 7's kicker, and the value every row of its tally shares. The six per-term zeros beneath it are the same computation shown term by term, and they are not declared one by one because the scanner reads a figure phrase as a number before a plural noun and a tally row reads the other way round. This one declaration is what carries the value 0 into numeral_trace's allowed set for all six."
+  },
+  {
+   "phrase": "three official records",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "sources_block.py, the number of distinct source urls behind every claim id the deck prints, counted over claims.json. figures.json carries the same count as source_documents.",
+   "from_claims": [
+    "c2",
+    "c11",
+    "c22"
+   ],
+   "note": "The first comment's provenance line. One claim per document, the board item, its attachment and the news release."
+  },
+  {
+   "phrase": "four machine terms",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py N_FOOTPRINT_TERMS, 4 terms with at least one occurrence in the course text, and FOOTPRINT_CHAPTERS asserts every occurrence sits in the three chapters the expectations name"
+  }
+ ]
+}

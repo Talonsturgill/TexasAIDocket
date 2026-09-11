@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 2,
-    "generated": "2026-09-10",
+    "generated": "2026-09-11",
     "gates": [
       "claims",
       "cross references",
@@ -1560,8 +1560,8 @@
     },
     {
       "id": "tx-2026-0016",
-      "title": "Federal comment window open on adding AI questions to the American Time Use Survey",
-      "summary": "The Bureau of Labor Statistics has proposed adding questions about artificial intelligence to the American Time Use Survey. Public comment is open under the Paperwork Reduction Act. Comments close September 8th, 2026. The survey is a main federal instrument for measuring how people actually spend working time, so what it asks about AI shapes what is later knowable.",
+      "title": "Federal comment window has closed on adding AI questions to the American Time Use Survey",
+      "summary": "The Bureau of Labor Statistics proposed adding questions about artificial intelligence to the American Time Use Survey and took public comment on it under the Paperwork Reduction Act. That window closed September 8th, 2026, and no decision on whether the questions go into the survey has been published. The survey is a main federal instrument for measuring how people actually spend working time, so what it asks about AI shapes what is later knowable.",
       "topic": "research-and-science",
       "decider": {
         "name": "United States Bureau of Labor Statistics",
@@ -1573,7 +1573,7 @@
         "metro": null,
         "on_ercot": false
       },
-      "status": "open",
+      "status": "pending",
       "key_dates": [
         {
           "date": "2026-07-10",
@@ -1588,7 +1588,7 @@
       ],
       "public_access": {
         "room": "open_comment",
-        "how": "Comments go to the Department of Labor through the method given on the Federal Register notice, until September 8th, 2026. Paperwork Reduction Act notices are among the easiest federal comment routes for a member of the public to use.",
+        "how": "The comment window has closed. The notice stays on the federal register, where anyone can read the proposed collection and the instructions it gave for filing. The next step is the bureau's own request to the Office of Management and Budget.",
         "url": "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions",
         "closes": "2026-09-08"
       },
@@ -1609,10 +1609,10 @@
           "source_url": "https://www.federalregister.gov/api/v1/documents/2026-13928.json",
           "source_title": "Federal Register API, document 2026-13928, fields type, publication_date, comments_close_on",
           "source_type": "primary_official",
-          "fetched": "2026-09-07"
+          "fetched": "2026-09-11"
         }
       ],
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
       "history": [
@@ -1659,6 +1659,10 @@
           "date": "2026-09-08",
           "note": "The federal notice proposing AI questions on the American Time Use Survey is still posted and still taking comment. Everything the notice says about how to file is unchanged.",
           "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The comment window closed on September 8th, 2026. The record had carried the window as open and the notice's own close date has now passed. What a reader can do here has changed from filing a comment to reading the notice. The bureau has published no decision on whether the questions go into the survey."
         }
       ]
     },
@@ -1785,7 +1789,7 @@
           "fetched": "2026-09-03"
         }
       ],
-      "last_verified": "2026-09-10",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -1867,6 +1871,11 @@
         {
           "date": "2026-09-10",
           "note": "Corrected. Two claims carried a source title naming the September 4th comment deadline entry. Each quotes a different entry title on the same feed, so both now read entry title."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The commission's calendar feed still publishes its open meetings with the hearing room named in each entry. The grid operator's own board meeting still sits on that same feed beside the commission's, dated September 14th, 2026.",
+          "checked": true
         }
       ]
     },
@@ -9604,7 +9613,7 @@
           "fetched": "2026-08-23"
         }
       ],
-      "last_verified": "2026-09-10",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
       "history": [
@@ -9650,6 +9659,11 @@
         {
           "date": "2026-09-10",
           "note": "The award to Rice is still on the foundation's own record. It still names the same principal investigator and still carries the same purpose, which is letting a model propose numerical algorithms. Nothing about the award has been amended.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The award record still stands as the foundation published it. The condition it sets is unchanged, which is that a machine proposed algorithm counts only once the proof assistant has certified its correctness and its cost.",
           "checked": true
         }
       ]
@@ -11997,7 +12011,7 @@
           "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-09-10",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
       "history": [
@@ -12032,6 +12046,11 @@
         {
           "date": "2026-09-10",
           "note": "The five year review of the offer caps is still taking written comment, and the deadline the commission set is still September 17th. The questions staff asked are unchanged, so a party that has not filed still has the same window and the same questions to answer.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The review is still open and the staff memorandum still stands as filed, asking whether the system-wide offer cap programs need updating. Comments are still due September 17th.",
           "checked": true
         }
       ]
@@ -13054,7 +13073,7 @@
       "confidence": "high",
       "notes_for_editor": "Legistar histories returned an empty array for this city this run and the event action fields were null. This record carries the agenda and the date the city publishes and no vote, because none is published.",
       "id": "tx-2026-0116",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-03",
@@ -13078,6 +13097,11 @@
         {
           "date": "2026-09-08",
           "note": "The Dallas Public Safety Committee still has the police plate reader briefing on its calendar, and no briefing document has been posted.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The city's own record still carries the plate reader item as a briefing rather than an action the committee votes on. Nothing has been added to the item, and the presenters listed against it are unchanged.",
           "checked": true
         }
       ]
@@ -13670,7 +13694,7 @@
       "confidence": "high",
       "notes_for_editor": "The dollar value of the cooperative award and any share flowing to UT Austin are not stated on the announcement.",
       "id": "tx-2026-0121",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-04",
@@ -13684,6 +13708,11 @@
         {
           "date": "2026-09-08",
           "note": "The foundation's announcement of September 1st, 2026 stands as published. The operations center it established is still led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is still named as the collaborating institution. The announcement still states no dollar figure.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The foundation's announcement still stands. The operations center is still led from San Diego with the Texas Advanced Computing Center at UT Austin named as the collaborating institution.",
           "checked": true
         }
       ]
@@ -14331,7 +14360,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c1"
         },
         {
@@ -14340,7 +14369,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c2"
         },
         {
@@ -14349,7 +14378,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c3"
         },
         {
@@ -14358,7 +14387,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c4"
         },
         {
@@ -14367,7 +14396,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c5"
         },
         {
@@ -14376,7 +14405,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c6"
         },
         {
@@ -14399,11 +14428,16 @@
         }
       ],
       "id": "tx-2026-0129",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
           "note": "Admitted to the record. The executed resolution is posted in the city's document system. It carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The executed resolution is unchanged. Its bar on any camera or drone system that depends upon artificial intelligence still stands in the adopted text. So does the progress update the City Manager owes the council committee.",
+          "checked": true
         }
       ],
       "confidence": "high"
@@ -14459,11 +14493,16 @@
         }
       ],
       "id": "tx-2026-0131",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
           "note": "Admitted to the record. The university's announcement says the pavement assessment project has entered a second phase and is closer to statewide deployment."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The university's account of the second phase is unchanged, and it still describes the method as closer to statewide deployment than to a trial. Nothing new has been published about when a highway agency would adopt it.",
+          "checked": true
         }
       ],
       "confidence": "high"
@@ -14528,11 +14567,16 @@
         }
       ],
       "id": "tx-2026-0132",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
           "note": "Admitted to the record. The university's guidance naming its approved AI platform is posted. It states both the data classification the platform is cleared for and that conversations are not used to train outside models."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The guidance still names the university portal as the approved route and still states the data classification it is cleared for. The promise that conversations there are not used to train outside models is unchanged.",
+          "checked": true
         }
       ],
       "confidence": "high"
@@ -14573,7 +14617,7 @@
         }
       ],
       "id": "tx-2026-0133",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
@@ -14582,6 +14626,11 @@
         {
           "date": "2026-09-08",
           "note": "The university's page states that the four year curriculum starts in July 2026 and names no day within that month, so the record carries the month and no date.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The degree page is unchanged and the curriculum still starts this year. The department still describes it as a named four year degree rather than a concentration inside computer science.",
           "checked": true
         }
       ],
@@ -14627,6 +14676,11 @@
           "date": "2026-09-08",
           "note": "The agency's own investigation status pages would not answer, so what state the preliminary evaluation is in today is not on the record. The resume gives December 3rd, 2025 as the office's understanding of when public passenger service began in Dallas. That is a fact about the service rather than a step in this evaluation.",
           "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The opening resume answered this run, and every line the record quotes from it is unchanged. No closing resume has been published, so whether the preliminary evaluation is still running is unconfirmed.",
+          "checked": true
         }
       ],
       "claims": [
@@ -14636,7 +14690,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c1"
         },
         {
@@ -14645,7 +14699,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c2"
         },
         {
@@ -14654,7 +14708,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c3"
         },
         {
@@ -14663,7 +14717,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c4"
         },
         {
@@ -14672,7 +14726,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c5"
         },
         {
@@ -14681,7 +14735,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c6"
         },
         {
@@ -14690,7 +14744,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c7"
         },
         {
@@ -14699,7 +14753,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c8"
         },
         {
@@ -14708,7 +14762,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c9"
         },
         {
@@ -14717,7 +14771,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c10"
         },
         {
@@ -14726,7 +14780,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c11"
         },
         {
@@ -14735,7 +14789,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c12"
         },
         {
@@ -14744,7 +14798,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c13"
         },
         {
@@ -14753,7 +14807,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c14"
         },
         {
@@ -14762,7 +14816,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c15"
         },
         {
@@ -14771,12 +14825,12 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c16"
         }
       ],
       "id": "tx-2026-0136",
-      "last_verified": "2026-09-08"
+      "last_verified": "2026-09-11"
     },
     {
       "title": "Case managers beat Houston Methodist's discharge AI on the last day",
@@ -15181,7 +15235,7 @@
         }
       ],
       "id": "tx-2026-0130",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
@@ -15190,6 +15244,11 @@
         {
           "date": "2026-09-10",
           "note": "Corrected. The summary listed the duties of the operations center and called the Texas role the front door to federal AI compute. Neither sentence had a source under it, and both are gone."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The agency page putting the Austin supercomputing center in an operating role has not changed. What the pilot handed over is still described the same way, and no further institution has been added to the collaboration.",
+          "checked": true
         }
       ],
       "confidence": "high"
@@ -15455,6 +15514,355 @@
         {
           "date": "2026-09-10",
           "note": "The university's account is published and names the researchers, the sensing package, where the model runs and the federal program that funded the work. It is a prototype and no installation site is named."
+        }
+      ]
+    },
+    {
+      "title": "ERCOT starts sending the Batch Zero questionnaires, and a data center that does not answer comes off the list",
+      "summary": "ERCOT issued a market notice on September 9th, 2026. It states that the grid operator has begun sending Batch Zero Verification Requests for Information. They go to a majority of the large load entities whose loads were conditionally included in Batch Zero. The notice states that completing the verification is a condition of staying in Batch Zero. Batch Zero is the group of large loads whose place in the interconnection study was frozen pending the audit the Governor directed in August.",
+      "topic": "power-and-the-grid",
+      "decider": {
+        "name": "Electric Reliability Council of Texas",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": true
+      },
+      "status": "pending",
+      "key_dates": [
+        {
+          "date": "2026-09-09",
+          "kind": "filed",
+          "note": "Market notice issued"
+        }
+      ],
+      "public_access": {
+        "room": "contact_only",
+        "how": "The verification runs between the grid operator and the interconnecting entities through ERCOT's own platform, so there is no comment window on it. ERCOT publishes its market notices openly and lists a contact on each one.",
+        "url": "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The grid operator states it has begun issuing the verification requests.",
+          "verbatim_quote": "In accordance with this directive, ERCOT has begun issuing Batch Zero Verification Requests for Information (RFIs) to a majority of Interconnecting Large Load Entities (ILLEs) with a Large Load that has been conditionally included in Batch Zero.",
+          "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01",
+          "source_title": "ERCOT Market Notice M-A090926-01",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0143-c1"
+        },
+        {
+          "text": "Staying in Batch Zero depends on completing the verification.",
+          "verbatim_quote": "Successful completion of the verification process is a condition for the Large Load's inclusion in Batch Zero.",
+          "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01",
+          "source_title": "ERCOT Market Notice M-A090926-01",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0143-c2"
+        }
+      ],
+      "confidence": "high",
+      "notes_for_editor": "This is the Governor's August 3rd audit directive moving rather than a new decision. The count of entities that received an RFI is not published and the notice says only a majority.",
+      "id": "tx-2026-0143",
+      "last_verified": "2026-09-11",
+      "history": [
+        {
+          "date": "2026-09-11",
+          "note": "Admitted to the record. The grid operator has moved from announcing the audit to running it. The notice states plainly that a load which does not complete the verification loses its place in Batch Zero."
+        }
+      ]
+    },
+    {
+      "title": "Federal energy department opens comment on securing the grid and names AI as why demand grew, closing October 9th",
+      "summary": "The Department of Energy published a request for information on September 9th, 2026. It implements an August 26th executive order on securing the United States bulk power system. The notice asks about covered equipment and transactions and about foreign produced bulk power system electric equipment. It also asks about remote access practices and federal procurement. The notice names advanced manufacturing and data centers and artificial intelligence and defense production as what increased the nation's dependence on reliable electricity. Written responses are accepted through October 9th, 2026 and a public webinar is set for September 16th.",
+      "topic": "defense-and-federal",
+      "decider": {
+        "name": "United States Department of Energy",
+        "type": "federal"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": false
+      },
+      "status": "open",
+      "key_dates": [
+        {
+          "date": "2026-09-09",
+          "kind": "comment_opens",
+          "note": "Request for information published"
+        },
+        {
+          "date": "2026-09-16",
+          "kind": "hearing",
+          "note": "Public meeting by webinar, which falls before the comment deadline"
+        },
+        {
+          "date": "2026-10-09",
+          "kind": "comment_closes",
+          "note": "Written responses due"
+        }
+      ],
+      "public_access": {
+        "room": "open_comment",
+        "how": "Written responses go to the Department of Energy by the method given in the Federal Register notice, through October 9th, 2026. The department is also holding a public webinar on September 16th, 2026.",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+        "closes": "2026-10-09"
+      },
+      "claims": [
+        {
+          "text": "The notice gives the date responses are due and the date of the public webinar.",
+          "verbatim_quote": "Written responses, data, and information are requested and will be accepted on or before October 9, 2026. If you anticipate difficulty in submitting responses within that period, contact the person listed in FOR FURTHER INFORMATION CONTACT as soon as possible. DOE will hold a public meeting via webinar on Wednesday, September 16, 2026, from 3 to 4 p.m. EDT.",
+          "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+          "source_title": "Federal Register, Department of Energy request for information, docket DOE-HQ-2026-1123",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0144-c1"
+        },
+        {
+          "text": "The department names artificial intelligence among the things that raised the country's demand for reliable electricity.",
+          "verbatim_quote": "the rapid growth of advanced manufacturing, data centers, artificial intelligence, and defense production has increased the Nation's dependence on abundant, reliable electricity",
+          "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+          "source_title": "Federal Register, Department of Energy request for information, docket DOE-HQ-2026-1123",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0144-c2"
+        }
+      ],
+      "confidence": "high",
+      "notes_for_editor": "The notice never says Texas or ERCOT. It is admitted as statewide because it is a federal comment window any Texan may file in, exactly like the other federal windows on this record, and no Texas specific claim rests on it.",
+      "id": "tx-2026-0144",
+      "last_verified": "2026-09-11",
+      "history": [
+        {
+          "date": "2026-09-11",
+          "note": "Admitted to the record. The window is open and dated, so a Texan who wants a say on how grid equipment and remote access get restricted has until October 9th to file. The notice itself never names Texas."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The public webinar on September 16th is on the record's calendar now. It falls before the October 9th deadline and is the first thing a reader can attend. The calendar and the feeds read key dates rather than the access note."
+        }
+      ]
+    },
+    {
+      "title": "Federal survey office asks whether the household internet survey should start measuring AI use, closing November 9th",
+      "summary": "The National Telecommunications and Information Administration submitted its Internet Use Survey to the Office of Management and Budget for renewal on September 9th, 2026. It asked the public directly whether more data is needed on artificial intelligence. The notice names AI use at work or home and attitudes toward AI as areas it is asking about. Comments must be received on or before November 9th, 2026.",
+      "topic": "defense-and-federal",
+      "decider": {
+        "name": "National Telecommunications and Information Administration",
+        "type": "federal"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": false
+      },
+      "status": "open",
+      "key_dates": [
+        {
+          "date": "2026-09-09",
+          "kind": "comment_opens",
+          "note": "Notice published"
+        },
+        {
+          "date": "2026-11-09",
+          "kind": "comment_closes",
+          "note": "Comments due"
+        }
+      ],
+      "public_access": {
+        "room": "open_comment",
+        "how": "Comments go to the National Telecommunications and Information Administration by the method given in the Federal Register notice, through November 9th, 2026. This is the survey that would produce a count of how many households use AI, so what it asks is decided now.",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+        "closes": "2026-11-09"
+      },
+      "claims": [
+        {
+          "text": "The notice gives the date comments are due.",
+          "verbatim_quote": "To ensure consideration, comments regarding this proposed information collection must be received on or before November 9, 2026.",
+          "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+          "source_title": "Federal Register, NTIA Internet Use Survey, OMB Control Number 0660-0021",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0145-c1"
+        },
+        {
+          "text": "The agency puts the question to the public in as many words.",
+          "verbatim_quote": "Is there a need for more data around artificial intelligence (AI)?",
+          "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+          "source_title": "Federal Register, NTIA Internet Use Survey, OMB Control Number 0660-0021",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0145-c2"
+        },
+        {
+          "text": "The agency names the areas it is asking whether to measure.",
+          "verbatim_quote": "Are there particular areas that need more data, such as AI use at work or home, or attitudes towards AI?",
+          "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+          "source_title": "Federal Register, NTIA Internet Use Survey, OMB Control Number 0660-0021",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0145-c3"
+        }
+      ],
+      "confidence": "high",
+      "notes_for_editor": "A different collection from the American Time Use Survey window the record already carries at tx-2026-0016, which closed September 8th.",
+      "id": "tx-2026-0145",
+      "last_verified": "2026-09-11",
+      "history": [
+        {
+          "date": "2026-09-11",
+          "note": "Admitted to the record. The agency is asking the public whether the household internet survey should start measuring artificial intelligence at all. Whether anyone can later count how many Texans use it is being decided in this window."
+        }
+      ]
+    },
+    {
+      "title": "The board takes a required high school money course to final adoption, and the text it published names AI tools in three of its chapters",
+      "summary": "The State Board of Education took the new Applied Personal Financial Literacy standards to second reading and final adoption. Its item for that is dated September 4th, 2026, and it publishes one attachment. That text tells a student to research career pathways using artificial intelligence tools. It tells the same student to explain how algorithm driven recommendations influence spending. It then asks that student to appraise automated investment platforms by analyzing their algorithmic limitations. Districts implement the course beginning with the school year that opens in 2027. The board found that the rule takes effect 20 days after filing with the Texas Register.",
+      "topic": "health-and-education",
+      "decider": {
+        "name": "Texas State Board of Education",
+        "type": "state-agency"
+      },
+      "geography": {
+        "statewide": true,
+        "counties": [],
+        "metro": null,
+        "on_ercot": false
+      },
+      "status": "decided",
+      "key_dates": [
+        {
+          "date": "2026-09-04",
+          "kind": "decided",
+          "note": "The date line the board's second reading and final adoption item prints above the two bodies listed as acting on it"
+        }
+      ],
+      "public_access": {
+        "room": "closed",
+        "how": "The rulemaking room is shut. The text the board acted on is published as the item's own attachment and the rule takes effect 20 days after it is filed with the Texas Register. A reader who wants to act on what a course teaches takes it to a school district, which chooses the instructional materials the standards are taught from.",
+        "url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+        "closes": null
+      },
+      "claims": [
+        {
+          "text": "The board's motion put the new course standards to second reading and final adoption and set when the rule takes effect.",
+          "verbatim_quote": "Approve for second reading and final adoption proposed new 19 TAC Chapter 113, Texas Essential Knowledge and Skills for Social Studies, Subchapter C, High School, §113.26, Applied Personal Financial Literacy, (One-Half Credit), Adopted 2026; and Make an affirmative finding that immediate adoption of proposed new 19 TAC Chapter 113, Texas Essential Knowledge and Skills for Social Studies, Subchapter C, High School, §113.26, Applied Personal Financial Literacy, (One-Half Credit), Adopted 2026, is necessary and shall have an effective date of 20 days after filing with the Texas Register.",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+          "source_title": "Texas State Board of Education, September 2026 Committee of the Full Board Item 3, motion text",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0142-c1"
+        },
+        {
+          "text": "The standard tells a student to use artificial intelligence tools as one of the ways they research a career.",
+          "verbatim_quote": "research career pathways using labor-market data, online resources, and artificial intelligence tools to evaluate income growth, employment trends, global competition, comparative advantage, technological change, creative destruction, required skills, and possible employers (E, S);",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+          "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0142-c2"
+        },
+        {
+          "text": "The same standard tells the student to explain how an algorithm driven recommendation moves their spending.",
+          "verbatim_quote": "explain how consumerism and marketing strategies, including social media influencers, algorithm-driven recommendations, financial technology platforms, and traditional advertising, influence spending behavior and financial decision-making (Geo/C, E, S);",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+          "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0142-c3"
+        },
+        {
+          "text": "A third expectation asks the student to judge an automated adviser by what its algorithm can't do.",
+          "verbatim_quote": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles (E, S);",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+          "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0142-c4"
+        },
+        {
+          "text": "The standard names the school year districts must be teaching it by.",
+          "verbatim_quote": "The provisions of this section shall be implemented by school districts beginning with the 2027-2028 school year.",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+          "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0142-c5"
+        },
+        {
+          "text": "The course carries half a credit.",
+          "verbatim_quote": "Students shall be awarded one-half credit for successful completion of this course.",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+          "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0142-c6"
+        },
+        {
+          "text": "The board's own announcement of the meeting states what the new standards teach and does not mention artificial intelligence.",
+          "verbatim_quote": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-news/texas-state-board-of-education-completes-k-12-social-studies-teks-revision-adopts-new-personal-financial-literacy-standards",
+          "source_title": "Texas State Board of Education news release, September 8th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11",
+          "id": "tx-2026-0142-c7"
+        },
+        {
+          "id": "tx-2026-0142-c8",
+          "text": "The statute the board acts under makes it responsible for graduation requirements.",
+          "verbatim_quote": "requires the State Board of Education (SBOE) to establish curriculum and graduation requirements.",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+          "source_title": "Texas State Board of Education, second reading and final adoption item, statutory authority",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11"
+        },
+        {
+          "id": "tx-2026-0142-c9",
+          "text": "The statute treats the half credit in personal financial literacy as a curriculum requirement a student must comply with.",
+          "verbatim_quote": "requires the SBOE to allow a student to comply with the curriculum requirement for a one-half credit in personal financial literacy by successfully completing an advanced placement (AP) course",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+          "source_title": "Texas State Board of Education, second reading and final adoption item, statutory authority",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11"
+        },
+        {
+          "id": "tx-2026-0142-c10",
+          "text": "The board item names the attachment it publishes as the text of the proposed new section.",
+          "verbatim_quote": "Attachment: Text of Proposed New 19 TAC Chapter 113",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+          "source_title": "Texas State Board of Education, second reading and final adoption item, attachment line",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11"
+        },
+        {
+          "id": "tx-2026-0142-c11",
+          "text": "The item records that the text changed after first reading.",
+          "verbatim_quote": "Changes are recommended since approved for first reading.",
+          "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+          "source_title": "Texas State Board of Education, second reading and final adoption item, summary",
+          "source_type": "primary_official",
+          "fetched": "2026-09-11"
+        }
+      ],
+      "confidence": "high",
+      "notes_for_editor": "The attachment heads itself Text of Proposed New and its url sits in the June meeting folder, and the item itself records that changes were recommended since first reading. It is the ONE attachment the second reading and final adoption item publishes, which is what this record says and all it says. The rule as filed with the Texas Register was not fetched, so nothing here claims the artificial intelligence language survived into the filed rule. The item prints both an August 31st committee heading and a September 4th date line and never joins either to either body.",
+      "id": "tx-2026-0142",
+      "last_verified": "2026-09-11",
+      "history": [
+        {
+          "date": "2026-09-11",
+          "note": "Admitted to the record. The second reading and final adoption item publishes one attachment and that text carries artificial intelligence tools, algorithm driven recommendations and automated investment platforms in three separate chapters. The rule as filed with the Texas Register has not been read, so whether that language survived the filing is unconfirmed."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "Corrected on the day it was admitted. The title had said Texas writes AI tools into a required course, which states what the adopted rule contains. What is established is the action and the text the item publishes, and the attachment heads itself as proposed text. The title now says so. The status still reads decided because the adoption itself is confirmed by the board's own release."
         }
       ]
     }

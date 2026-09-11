@@ -1,0 +1,89 @@
+{
+ "weighted_score": 6.192,
+ "judges": [
+  5.998,
+  6.04,
+  6.168
+ ],
+ "spread": 0.17,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.28,
+   "judges": [
+    6.4,
+    5.5,
+    6.3
+   ]
+  },
+  "claim_integrity": {
+   "score": 5.0,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    5.0,
+    5.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.18,
+   "judges": [
+    6.3,
+    6.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.0,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.6,
+   "weight": 0.12,
+   "judges": [
+    6.6,
+    7.0,
+    6.4
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "Frame 9's next step reads 'Ask your district who is staffing the three AI expectations.' That sentence is claims.json's own rejected finding ('The course text carries three expectations about artificial intelligence', refused because only c14 contains the words). compute.py line 132 says 'the reason no frame may call all three AI expectations', figures.json machine_expectations says 'no surface calls them AI expectations', and the storyboard says in bold 'No frame says the three are AI expectations.' The closing frame's only instruction to the reader is the fact the run's own fact checker declined to verify, cited to c1 c2 c5 c11, none of which mentions an expectation. It is not in slide 9's dossier type block, which is how every gate missed it. An unverified fact presented as verified.",
+  "slide 9 prints \"Ask your district who is staffing the three AI expectations.\" claims.json's own rejected list refuses exactly this finding (\"The course text carries three expectations about artificial intelligence\", reason: only c14 contains the words artificial intelligence, c15 says algorithm-driven, c16 says algorithmic, automated and robot-advisors, where the line falls is an editorial choice) and storyboard line 50 says in as many words \"No frame says the three are AI expectations.\" The close's only actionable line presents the run's own unverified characterisation as verified",
+  "Frame 9 prints 'Ask your district who is staffing the three AI expectations.' The run's own record forbids that noun three times over. claims.json lists 'The course text carries three expectations about artificial intelligence' under rejected, reason 'Only c14 contains the words artificial intelligence'. computed.json puts n_ai_worded at 1 against n_machine_expectations at 3. figures.json's machine_expectations note reads 'Only one of the three says artificial intelligence in as many words, which is why no surface calls them AI expectations', and storyboard line 50 says in bold 'No frame says the three are AI expectations.' Round 1's repair changed 'machine expectations' to 'AI expectations' on this frame, which moved the deck's one call to action onto the finding its own fact checker refused, a count of three attached to a noun the run's own numbers put at one. Frame 3's 'AI unit 0' row argues the document has no AI category, and frame 9 then hands the reader one."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Frame 9's next step reads 'Ask your district who is staffing the three AI expectations.' That sentence is claims.json's own rejected finding ('The course text carries three expectations about artificial intelligence', refused because only c14 contains the words). compute.py line 132 says 'the reason no frame may call all three AI expectations', figures.json machine_expectations says 'no surface calls them AI expectations', and the storyboard says in bold 'No frame says the three are AI expectations.' The closing frame's only instruction to the reader is the fact the run's own fact checker declined to verify, cited to c1 c2 c5 c11, none of which mentions an expectation. It is not in slide 9's dossier type block, which is how every gate missed it. An unverified fact presented as verified."
+  },
+  {
+   "judge": 2,
+   "fail": "slide 9 prints \"Ask your district who is staffing the three AI expectations.\" claims.json's own rejected list refuses exactly this finding (\"The course text carries three expectations about artificial intelligence\", reason: only c14 contains the words artificial intelligence, c15 says algorithm-driven, c16 says algorithmic, automated and robot-advisors, where the line falls is an editorial choice) and storyboard line 50 says in as many words \"No frame says the three are AI expectations.\" The close's only actionable line presents the run's own unverified characterisation as verified"
+  },
+  {
+   "judge": 3,
+   "fail": "Frame 9 prints 'Ask your district who is staffing the three AI expectations.' The run's own record forbids that noun three times over. claims.json lists 'The course text carries three expectations about artificial intelligence' under rejected, reason 'Only c14 contains the words artificial intelligence'. computed.json puts n_ai_worded at 1 against n_machine_expectations at 3. figures.json's machine_expectations note reads 'Only one of the three says artificial intelligence in as many words, which is why no surface calls them AI expectations', and storyboard line 50 says in bold 'No frame says the three are AI expectations.' Round 1's repair changed 'machine expectations' to 'AI expectations' on this frame, which moved the deck's one call to action onto the finding its own fact checker refused, a count of three attached to a noun the run's own numbers put at one. Frame 3's 'AI unit 0' row argues the document has no AI category, and frame 9 then hands the reader one."
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "rounds": 2
+}

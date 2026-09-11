@@ -1,0 +1,100 @@
+{
+  "beat": "what-texas-makes",
+  "note": "Scout has no write tool; returned inline and the showrunner persisted it.",
+  "findings": [
+    {
+      "headline": "Wiwynn and Amazon said they will expand the Socorro plant that builds Amazon's data center server racks.",
+      "who_decided": "Amazon.com, Inc. (Gary Szilagyi, VP of Annapurna Labs) and Wiwynn Corporation (William Lin, President and CEO)",
+      "when": "2026-09-09",
+      "where": {"counties": ["El Paso"], "statewide": false, "ercot": false},
+      "quote": "Wiwynn's new advanced manufacturing facility represents a major new chapter in our global manufacturing footprint and an important milestone for Amazon, Texas, and the entire U.S. supply chain. Through our over $1.6 billion investment in the Texas facility, we are expanding our ability to address the growing demand of U.S. customers, reinforce the resilience of the global supply chain, and create high-value career opportunities as we continue to grow in partnership with the local community.",
+      "additional_quotes": [
+        "Amazon's investments in Texas have created more than 86,000 jobs across the state. Wiwynn's new facility further expands this positive impact and shows what's possible when we work with our manufacturers to strengthen the U.S. supply chain. We're proud to deliver cutting-edge chips as part of this investment, supporting the creation of nearly 1,000 advanced manufacturing roles that will help strengthen both the Texas and U.S. economies.",
+        "Wiwynn supports Amazon's data center infrastructure by manufacturing and integrating server systems and racks."
+      ],
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "drawable": "A rack frame on a Socorro assembly line with the Franklin Mountains behind it, and the grid seam beside it. El Paso County is the one corner of Texas whose new AI factory does not plug into ERCOT.",
+      "counter_image": "Amazon's own line counts jobs, not machines. The release says nothing about what share of the work on the line is automated, or what the plant pays.",
+      "unverified": [
+        "The aboutamazon.com page carries no visible publication date stamp. The 2026-09-09 date comes from wire and trade coverage, not from the page itself.",
+        "The county is not named in the release. Socorro's county was confirmed from the Texas Municipal League city directory.",
+        "Whether the expanded plant uses AI or robotics on its own line is not stated anywhere in the release."
+      ],
+      "date_read": "2026-09-11"
+    },
+    {
+      "headline": "Enphase said power modules for its solid state transformer rack are now being built on its line in Arlington.",
+      "who_decided": "Enphase Energy, Inc.",
+      "when": "2026-09-08",
+      "where": {"counties": ["Tarrant"], "statewide": false, "ercot": true},
+      "quote": "Enphase Energy, Inc. (NASDAQ: ENPH), a global energy technology company, today announced that power modules for its IQ® Solid-State Transformer (IQ SST) are now being built in the United States to assemble and validate full-scale IQ SST racks.",
+      "additional_quotes": [
+        "A 4 kW power module is small, but put hundreds of them together and you have a multi-megawatt IQ SST rack,",
+        "A video of the power modules coming off the Enphase line in Arlington, Texas, is available here.",
+        "Full-system demonstrations of IQ SST racks are expected in November 2026, with customer pilots planned for 2027."
+      ],
+      "url": "https://www.globenewswire.com/news-release/2026/09/08/3357594/20176/en/enphase-advances-iq-solid-state-transformer-development-for-ai-data-centers-with-power-modules-now-being-built-in-texas.html",
+      "source_type": "primary_corporate",
+      "confidence": "high",
+      "counter_image": "Nothing is running. The company's own line says full-system demonstrations are expected in November 2026 and customer pilots in 2027.",
+      "unverified": [
+        "newsroom.enphase.com returned HTTP 503, so the cited page is the GlobeNewswire distribution of the same company release.",
+        "The release does not say whether the Arlington site is owned by Enphase or run by a contract manufacturer, and gives no headcount."
+      ],
+      "date_read": "2026-09-11"
+    },
+    {
+      "headline": "A Korean chemicals maker asked the Foreign-Trade Zones Board for duty free authority to produce semiconductor grade photoresist thinner at its Killeen plant.",
+      "who_decided": "Foreign-Trade Zones Board, U.S. Department of Commerce (docket B-110-2026), on a filing by Dongjin Semichem Texas, Inc.",
+      "when": "2026-09-10",
+      "where": {"counties": ["Bell"], "statewide": false, "ercot": true},
+      "quote": "The proposed finished product is semiconductor-grade photoresist thinner (duty rate is duty-free).",
+      "additional_quotes": [
+        "Dongjin Semichem Texas, Inc. submitted a notification of proposed production activity to the FTZ Board (the Board) for its facility in Killeen, Texas within FTZ 183.",
+        "The notification conforming to the requirements of the Board's regulations (15 CFR 400.22) was received on September 3, 2026."
+      ],
+      "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/10/2026-18490.txt",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "counter_image": "This is a request, not an approval. The Board has not ruled.",
+      "unverified": [
+        "The HTML page 302'd to unblock.federalregister.gov. The quotes come from the plain-text render of the same document number.",
+        "The notice does not name any customer.",
+        "Killeen's county was confirmed as Bell from trade coverage, not from the notice. Killeen's city limits may extend into Coryell County; not checked."
+      ],
+      "date_read": "2026-09-11"
+    },
+    {
+      "headline": "FAA published its final environmental finding covering an additional Starship reentry trajectory for landing at Starbase.",
+      "who_decided": "Federal Aviation Administration, Office of Commercial Space Transportation (docket FAA-2026-6968)",
+      "when": "2026-09-04",
+      "where": {"counties": ["Cameron"], "statewide": false, "ercot": true},
+      "quote": "Starship reentry contingency operations in the Pacific Ocean as well as airspace closures for an additional Starship reentry trajectory for landing at Starbase in Texas",
+      "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/04/2026-18135.txt",
+      "source_type": "primary_official",
+      "confidence": "medium",
+      "unverified": [
+        "THIS FINDING CONTAINS NO AI ELEMENT. Drop it for a deck that needs an AI decision.",
+        "faa.gov returned HTTP 403, so the FONSI/ROD itself was not read.",
+        "The notice does not name Cameron County or Boca Chica."
+      ],
+      "date_read": "2026-09-11"
+    }
+  ],
+  "deliberately_excluded": [
+    "Samsung Taylor 2nm capacity and yield reporting. Every version traces to unnamed industry sources with no Samsung primary statement.",
+    "Coherent's CHIPS letter of intent for Sherman, dated June 2026, outside the window.",
+    "Wistron's Fort Worth NVIDIA plant, opened July 21st, 2026, outside the window.",
+    "Ichor Systems FTZ 183 notification for Austin, published August 24th, 2026, outside the window.",
+    "SpaceX turbine blade foundry reporting, traced only to a post on X with no primary filing."
+  ],
+  "sources_notes": [
+    "faa.gov returned HTTP 403 to this fetcher.",
+    "federalregister.gov HTML document pages 302 to unblock.federalregister.gov. The /documents/full_text/text/ renders and the /api/v1/ endpoints answer 200.",
+    "defense.gov/News/Contracts/ returned HTTP 403.",
+    "press.aboutamazon.com paths 404; the working host is www.aboutamazon.com/news/...",
+    "newsroom.enphase.com returned HTTP 503 this run."
+  ]
+}

@@ -1,0 +1,427 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root{--troffer:#CCF2E4;--block:#B0D8C2;--wax:#98CDB4;--floor:#5E8578;
+        --desk:#9C6B5A;--enamel:#12486C;--slate:#0E3347;}
+  html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--slate)}
+  body{position:relative;font-family:Manrope,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .layer{position:absolute;left:0;top:0;width:1080px;height:1350px}
+  .grain{position:absolute;left:0;top:0;width:1080px;height:1350px;background-repeat:repeat;
+         mix-blend-mode:overlay;opacity:.085;pointer-events:none}
+  .kick{position:absolute;left:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.09em;color:var(--slate);line-height:1.5}
+  .kick b{display:block;font-weight:500;color:#1a4a5e;font-size:24px}
+  .count{position:absolute;right:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
+         letter-spacing:.09em;color:var(--slate)}
+  .hook{position:absolute;left:80px;top:150px;width:800px;font-family:Fraunces,serif;font-weight:700;
+        font-size:98px;line-height:1.03;color:var(--slate);margin:0;letter-spacing:-.016em}
+  .verb{position:absolute;left:138px;top:706px;font-family:"JetBrains Mono",monospace;font-size:25px;
+        letter-spacing:.14em;color:#2a6478}
+  .clause{position:absolute;left:138px;top:760px;width:812px;font-size:31px;line-height:1.42;
+          color:#0E3347;margin:0;font-style:italic;font-weight:500}
+  .clause em{font-style:italic;font-weight:800;color:#0E3347;background:rgba(204,242,228,.92);
+             padding:0 5px;margin:0 -5px;border-radius:2px}
+  .src{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
+       letter-spacing:.07em;color:var(--troffer)}
+  .tx-site{position:absolute;right:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
+        letter-spacing:.07em;color:var(--troffer)}
+</style>
+<canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
+<div class="grain" id="grain" data-decorative="1"></div>
+<div class="layer">
+  <div class="kick">KNOWLEDGE STATEMENT (3)<b>CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL</b></div>
+  <div class="count">04 / 09</div>
+  <h1 class="hook" id="hook">Chapter three hands it over.</h1>
+  <div class="verb">THE VERB IS RESEARCH</div>
+  <p class="clause">"research career pathways using labor-market data, online resources, and
+     <em>artificial intelligence tools</em>"</p>
+  <div class="src">c14 c18 c19</div>
+  <div class="tx-site">texasaidocket.com</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcarve.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "run": "2026-09-11",
+  "deck": 21,
+  "docket_item": "tx-2026-0142",
+  "credit_words": "one-half credit",
+  "effective_days": 20,
+  "school_year": "2027 to 2028",
+  "school_year_from": 2027,
+  "school_year_to": 2028,
+  "item_date_iso": "2026-09-04",
+  "item_date_long": "September 4th, 2026",
+  "item_date_short": "SEPTEMBER 4TH",
+  "house_bill": "27",
+  "legislature": "89",
+  "session_year": 2025,
+  "machine_expectations": [
+    "c14",
+    "c15",
+    "c16"
+  ],
+  "n_machine_expectations": 3,
+  "chapters": [
+    3,
+    4,
+    7
+  ],
+  "n_chapters": 3,
+  "ai_worded": [
+    "c14"
+  ],
+  "n_ai_worded": 1,
+  "machine_stems": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot-advisor"
+  ],
+  "doc_terms": {
+    "artificial intelligence": 1,
+    "artificial": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1,
+    "machine learning": 0
+  },
+  "page_count": 8,
+  "instruments": [
+    "labor-market data",
+    "online resources",
+    "artificial intelligence tools"
+  ],
+  "n_instruments": 3,
+  "evaluations": [
+    "income growth",
+    "employment trends",
+    "global competition",
+    "comparative advantage",
+    "technological change",
+    "creative destruction",
+    "required skills",
+    "possible employers"
+  ],
+  "n_evaluations": 8,
+  "influences": [
+    "social media influencers",
+    "algorithm-driven recommendations",
+    "financial technology platforms",
+    "traditional advertising"
+  ],
+  "n_influences": 4,
+  "algo_influence": "algorithm-driven recommendations",
+  "analyses": [
+    "fee structures",
+    "investment strategies",
+    "algorithmic limitations",
+    "suitability for different investor profiles"
+  ],
+  "n_analyses": 4,
+  "robot_advisor": "robot-advisors",
+  "appraise_clause": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles",
+  "doc_words": 3525,
+  "footprint": {
+    "artificial intelligence": 1,
+    "algorithm": 2,
+    "automated": 1,
+    "robot": 1
+  },
+  "footprint_terms": [
+    "artificial intelligence",
+    "algorithm",
+    "automated",
+    "robot"
+  ],
+  "n_footprint_terms": 4,
+  "n_footprint_occurrences": 5,
+  "footprint_share_per_10k": 14.2,
+  "footprint_positions": [
+    {
+      "term": "artificial intelligence",
+      "word_index": 1331,
+      "fraction": 0.37759
+    },
+    {
+      "term": "algorithm",
+      "word_index": 1614,
+      "fraction": 0.45787
+    },
+    {
+      "term": "automated",
+      "word_index": 2675,
+      "fraction": 0.75887
+    },
+    {
+      "term": "robot",
+      "word_index": 2679,
+      "fraction": 0.76
+    },
+    {
+      "term": "algorithm",
+      "word_index": 2689,
+      "fraction": 0.76284
+    }
+  ],
+  "knowledge_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "n_knowledge": 10,
+  "knowledge_highest": 10,
+  "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
+  "release_hits": {
+    "artificial": 0,
+    "algorithm": 0,
+    "automated": 0,
+    "machine learning": 0,
+    "technolog": 0,
+    "AI": 0
+  },
+  "n_release_hits": 0,
+  "release_summary": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+  "release_summary_words": 18,
+  "and_more": "and more",
+  "canvas_w": 1080,
+  "canvas_h": 1350,
+  "margin": 80,
+  "content_w": 920,
+  "gutter": 28,
+  "card_w": 288,
+  "card_x": [
+    80,
+    396,
+    712
+  ],
+  "spine_top": 330,
+  "spine_bottom": 1140,
+  "spine_pitch": 90.0,
+  "spine_y": {
+    "1": 330.0,
+    "2": 420.0,
+    "3": 510.0,
+    "4": 600.0,
+    "5": 690.0,
+    "6": 780.0,
+    "7": 870.0,
+    "8": 960.0,
+    "9": 1050.0,
+    "10": 1140.0
+  },
+  "spine_marked": [
+    510.0,
+    600.0,
+    870.0
+  ]
+};
+/* @@END COMPUTED@@ */
+</script>
+<script>
+window.renderReady = new Promise(async (resolve) => {
+  await document.fonts.ready;
+  const SEED = 20260911 + 4;
+  TX.reseed(SEED);
+  const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
+
+  // THREE DECLARED PLANES, each at least 9 L* apart. The claim is three named instruments on one
+  // side and eight named evaluations on the other, and that is a relationship in SPACE. No arrow
+  // is drawn anywhere on this frame.
+  const PLANE = [
+    {name:'far wall',   y:300, h:430, fill:'#B0D8C2', L:83.0},
+    {name:'whiteboard', y:520, h:300, fill:'#98CDB4', L:78.2},
+    {name:'near desk',  y:1054,h:296, fill:'#9C6B5A', L:49.9}
+  ];
+
+  // ---- FAR PLANE: painted block, and the band of eight lit slots
+  (function farWall(){
+    cx.fillStyle='#B0D8C2'; cx.fillRect(0,0,1080,1060);
+    const g=cx.createLinearGradient(0,0,0,1060);
+    g.addColorStop(0,'rgba(204,242,228,0.16)');
+    g.addColorStop(0.34,'rgba(14,51,71,0.20)');
+    g.addColorStop(1,'rgba(14,51,71,0.58)');
+    cx.fillStyle=g; cx.fillRect(0,0,1080,1060);
+    // THE BLOCK'S OWN TOOTH, drawn at a value panel_ready can measure. The first build carried
+    // none, so the far plane was a gradient with joints on it rather than a painted material.
+    (function tooth(){
+      const r=TX.rng(SEED+11); cx.save(); cx.globalAlpha=0.16;
+      for(let i=0;i<9000;i++){
+        const x=r()*1080, y=r()*1060, s=0.7+r()*2.0;
+        cx.fillStyle = r()>0.5 ? '#0E3347' : '#CCF2E4';
+        cx.fillRect(x,y,s,s);
+      }
+      cx.restore();
+    })();
+    const BW=196,BH=98; cx.lineWidth=1.4;
+    for(let row=0,y=-30;y<1060;row++,y+=BH){
+      const off=(row%2)?BW/2:0;
+      cx.strokeStyle='rgba(14,51,71,0.11)';
+      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+      for(let x=-BW+off;x<1140;x+=BW){
+        cx.beginPath(); cx.moveTo(x,y); cx.lineTo(x,y+BH); cx.stroke();
+      }
+    }
+  })();
+
+  // THE EIGHT LIT SLOTS. The count comes from the clause's own list, split on its commas, so a
+  // quote that stops carrying eight items raises here rather than drifting away from the frame.
+  // THE SLOT LIST IS COMPUTED, not transcribed. compute.py parses it out of c14's own quote and
+  // RAISES if the quote stops having that shape, so a frame cannot draw a count of its own
+  // typing. The first build hand-typed this array and counted the transcription, which is the
+  // defect a review bot named: an omitted or stale item would have rendered and passed.
+  const EVALS = C.evaluations.map(function(t){ return t.toUpperCase(); });
+  if (EVALS.length !== C.n_evaluations) throw new Error('slide-04: evaluation count disagrees');
+
+  (function slots(){
+    const N=EVALS.length, SW=104, GAP=14;
+    const RUN=N*SW+(N-1)*GAP, X0=Math.round((1080-RUN)/2), Y=402, H=196;
+    for(let i=0;i<N;i++){
+      const x=X0+i*(SW+GAP);
+      cx.fillStyle='rgba(14,51,71,0.26)'; cx.fillRect(x-5,Y-5,SW+10,H+10);
+      const gs=cx.createLinearGradient(x,Y,x,Y+H);
+      gs.addColorStop(0,'rgba(204,242,228,0.98)');
+      gs.addColorStop(0.55,'rgba(204,242,228,0.80)');
+      gs.addColorStop(1,'rgba(152,205,180,0.58)');
+      cx.fillStyle=gs; cx.fillRect(x,Y,SW,H);
+      cx.strokeStyle='rgba(204,242,228,0.70)'; cx.lineWidth=1.4;
+      cx.beginPath(); cx.moveTo(x,Y+0.7); cx.lineTo(x+SW,Y+0.7); cx.stroke();
+      // each slot's own label, set small down the slot in the wall's own dark
+      cx.save(); cx.translate(x+SW/2, Y+H-16); cx.rotate(-Math.PI/2);
+      cx.fillStyle='rgba(14,51,71,0.74)'; cx.font='500 17px "JetBrains Mono", monospace';
+      cx.textAlign='left'; cx.fillText(EVALS[i].toUpperCase(), 0, 5); cx.restore();
+    }
+    window.__slotCount = N;
+  })();
+
+  // ---- MIDDLE PLANE: the whiteboard. It is the LIGHTEST plane in the frame and it carries the
+  // clause, so the type sits on its own ground rather than on art. No list is drawn on canvas
+  // here: the first build put one under the verb label and the two overprinted.
+  (function whiteboard(){
+    const X=104, Y=660, W=872, H=352;
+    TXCARVE.contactShadow(cx,{x:X+W/2,y:Y+H+8,w:W*0.30,color:'#0E3347',
+                              dirDeg:90,tightAlpha:0.44,wideAlpha:0.15,tightBlur:4,wideBlur:24});
+    const g=cx.createLinearGradient(0,Y,0,Y+H);
+    g.addColorStop(0,'rgba(214,246,234,0.99)');
+    g.addColorStop(0.60,'rgba(196,236,220,0.99)');
+    g.addColorStop(1,'rgba(164,214,196,0.99)');
+    cx.fillStyle=g; cx.fillRect(X,Y,W,H);
+    // THE GHOSTING. A whiteboard in use since August carries erased marker as a fine dark residue
+    // and the eraser's own drag as faint horizontal smears. The first build's board measured 0.59
+    // residual on the quietest patch, which is a gradient and not a surface. The residue is held
+    // under the 28 luminance step qa.py counts as a structured edge, so it is texture behind the
+    // clause and never a mark competing with it.
+    (function ghosting(){
+      const r=TX.rng(SEED+23); cx.save();
+      cx.beginPath(); cx.rect(X+2,Y+2,W-4,H-4); cx.clip();
+      cx.globalAlpha=0.05; cx.fillStyle='#0E3347';
+      for(let i=0;i<46;i++){
+        const sx=X+r()*W, sy=Y+r()*H, sw=60+r()*200, sh=2+r()*3;
+        cx.fillRect(sx,sy,sw,sh);
+      }
+      cx.globalAlpha=0.14;
+      for(let i=0;i<3600;i++){
+        const x=X+r()*W, y=Y+r()*H, s=0.8+r()*2.2;
+        cx.fillRect(x,y,s,s);
+      }
+      cx.restore();
+    })();
+    // the aluminium trim, lit on its top arris
+    cx.strokeStyle='rgba(255,255,255,0.70)'; cx.lineWidth=3;
+    cx.beginPath(); cx.moveTo(X,Y+1.5); cx.lineTo(X+W,Y+1.5); cx.stroke();
+    cx.strokeStyle='rgba(14,51,71,0.30)'; cx.lineWidth=1.6;
+    cx.strokeRect(X+0.8,Y+0.8,W-1.6,H-1.6);
+    // the marker tray in section, its rolled lip catching the overhead
+    cx.fillStyle='rgba(120,166,150,0.99)'; cx.fillRect(X,Y+H,W,18);
+    cx.strokeStyle='rgba(230,252,244,0.72)'; cx.lineWidth=2.4;
+    cx.beginPath(); cx.moveTo(X,Y+H+1.4); cx.lineTo(X+W,Y+H+1.4); cx.stroke();
+    cx.fillStyle='rgba(14,51,71,0.78)'; cx.fillRect(X,Y+H+18,W,6);
+  })();
+
+  // ---- BOTTOM THIRD, NEAR PLANE: the desk tablet across its bullnosed front edge, the edge
+  // taking a narrow highlight and the underside falling to slate, with a two-part contact below.
+  (function nearDesk(){
+    const Y=1054, H=48;
+    TXCARVE.contactShadow(cx,{x:540,y:Y+H+30,w:300,color:'#0E3347',
+                              dirDeg:90,tightAlpha:0.50,wideAlpha:0.18,tightBlur:5,wideBlur:26});
+    const g=cx.createLinearGradient(0,Y,0,Y+H);
+    g.addColorStop(0,'rgba(186,132,112,0.99)');
+    g.addColorStop(0.42,'rgba(156,107,90,0.99)');
+    g.addColorStop(1,'rgba(96,62,52,0.99)');
+    cx.fillStyle=g; cx.fillRect(0,Y,1080,H);
+    cx.strokeStyle='rgba(230,200,180,0.55)'; cx.lineWidth=2.4;
+    cx.beginPath(); cx.moveTo(0,Y+1.2); cx.lineTo(1080,Y+1.2); cx.stroke();
+    // underside, falling to slate
+    const gu=cx.createLinearGradient(0,Y+H,0,1350);
+    gu.addColorStop(0,'rgba(60,40,34,0.98)'); gu.addColorStop(0.5,'rgba(14,51,71,0.96)');
+    gu.addColorStop(1,'rgba(14,51,71,1)');
+    cx.fillStyle=gu; cx.fillRect(0,Y+H,1080,1350-Y-H);
+    // the apron under the tablet, and the groove along it
+    const ga=cx.createLinearGradient(0,Y+H,0,Y+H+54);
+    ga.addColorStop(0,'rgba(120,80,66,0.99)'); ga.addColorStop(1,'rgba(38,44,58,0.99)');
+    cx.fillStyle=ga; cx.fillRect(0,Y+H,1080,54);
+    cx.fillStyle='rgba(14,51,71,0.72)'; cx.fillRect(96,Y+H+20,540,9);
+    cx.strokeStyle='rgba(204,242,228,0.16)'; cx.lineWidth=1.4;
+    cx.beginPath(); cx.moveTo(96,Y+H+30); cx.lineTo(636,Y+H+30); cx.stroke();
+    // THE FLOOR BOUNCE UNDER THE DESK. A shadow is a subtraction and there was nothing here left
+    // to subtract: the whole zone under the apron measured a flat L* 19 and the gate read the
+    // tablet as floating. The VCT returns a weak bounce under a desk, which is true of the room
+    // and is what gives the shadow a ground to be darker than.
+    const gb=cx.createLinearGradient(0,1176,0,1350);
+    gb.addColorStop(0,'rgba(90,140,124,0)');
+    gb.addColorStop(0.55,'rgba(90,140,124,0.22)');
+    gb.addColorStop(1,'rgba(116,166,146,0.38)');
+    cx.fillStyle=gb; cx.fillRect(0,1176,1080,174);
+    // the support leg, lit on one side, with its own two-part contact on the tile
+    TXCARVE.contactShadow(cx,{x:757,y:1330,w:60,color:'#0E3347',
+                              dirDeg:76,tightAlpha:0.46,wideAlpha:0.16,tightBlur:4,wideBlur:22});
+    const gl=cx.createLinearGradient(742,0,772,0);
+    gl.addColorStop(0,'rgba(14,51,71,0.92)');
+    gl.addColorStop(0.36,'rgba(152,205,180,0.62)');
+    gl.addColorStop(1,'rgba(14,51,71,0.86)');
+    cx.fillStyle=gl; cx.fillRect(742,Y+H+54,30,1350-Y-H-54);
+  })();
+
+  document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
+  TX.fitText(document.getElementById('hook'),{min:64,max:104,maxLines:2});
+
+  // THE THREE POSTURES ARE THREE DRAWINGS, asserted on the shared rect.
+  document.body.setAttribute('data-encodes', JSON.stringify([
+    {claim:"the posture rect on this frame reads differently from the wall beside it",
+     reads:"differ", a:[[300,560,480,300]], b:[[40,180,240,160]]}
+  ]));
+  // THE RECTS ARE MEASURED OFF THE SHIPPED PNG, not reasoned about from the drawing code. The
+  // first build's pair straddled the whiteboard itself and came back with the shadow LIGHTER than
+  // the ground. See out/2026-09-11/probe_L.py.
+  document.body.setAttribute('data-contacts', JSON.stringify([
+    {what:"the whiteboard on the wall", shadow:[[300,1030,240,14]], ground:[[940,1030,110,14]]},
+    {what:"the desk tablet", shadow:[[300,1150,240,16]], ground:[[300,1310,240,16]]}
+  ]));
+  resolve(true);
+});
+</script>

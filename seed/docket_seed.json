@@ -7128,5 +7128,384 @@
         "note": "The university's account is published and names the researchers, the sensing package, where the model runs and the federal program that funded the work. It is a prototype and no installation site is named."
       }
     ]
+  },
+  {
+    "title": "Texas writes using AI tools into a high school course standard, and tells the same student to appraise the algorithm",
+    "summary": "The State Board of Education approved the new Applied Personal Financial Literacy standards at 19 TAC Section 113.26 for second reading and final adoption at its September 2026 meeting in Austin. The half credit course text tells a student to research career pathways using artificial intelligence tools. It tells the same student to explain how algorithm driven recommendations influence spending. It then asks that student to appraise automated investment platforms by analyzing their algorithmic limitations. Districts implement the course beginning with the school year that opens in 2027. The board found that the rule takes effect 20 days after filing with the Texas Register.",
+    "topic": "health-and-education",
+    "decider": {
+      "name": "Texas State Board of Education",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-04",
+        "kind": "decided",
+        "note": "Second reading and final adoption at the September 2026 board meeting"
+      }
+    ],
+    "public_access": {
+      "room": "closed",
+      "how": "The board has adopted the standards, so the rulemaking room is shut. The adopted text is posted as the item attachment and the rule takes effect 20 days after it is filed with the Texas Register. A reader who wants to act on what a course teaches takes it to a school district, which chooses the instructional materials the standards are taught from.",
+      "url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The board's motion put the new course standards to second reading and final adoption and set when the rule takes effect.",
+        "verbatim_quote": "Approve for second reading and final adoption proposed new 19 TAC Chapter 113, Texas Essential Knowledge and Skills for Social Studies, Subchapter C, High School, §113.26, Applied Personal Financial Literacy, (One-Half Credit), Adopted 2026; and Make an affirmative finding that immediate adoption of proposed new 19 TAC Chapter 113, Texas Essential Knowledge and Skills for Social Studies, Subchapter C, High School, §113.26, Applied Personal Financial Literacy, (One-Half Credit), Adopted 2026, is necessary and shall have an effective date of 20 days after filing with the Texas Register.",
+        "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3",
+        "source_title": "Texas State Board of Education, September 2026 Committee of the Full Board Item 3, motion text",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0142-c1"
+      },
+      {
+        "text": "The standard tells a student to use artificial intelligence tools as one of the ways they research a career.",
+        "verbatim_quote": "research career pathways using labor-market data, online resources, and artificial intelligence tools to evaluate income growth, employment trends, global competition, comparative advantage, technological change, creative destruction, required skills, and possible employers (E, S);",
+        "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+        "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0142-c2"
+      },
+      {
+        "text": "The same standard tells the student to explain how an algorithm driven recommendation moves their spending.",
+        "verbatim_quote": "explain how consumerism and marketing strategies, including social media influencers, algorithm-driven recommendations, financial technology platforms, and traditional advertising, influence spending behavior and financial decision-making (Geo/C, E, S);",
+        "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+        "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0142-c3"
+      },
+      {
+        "text": "A third expectation asks the student to judge an automated adviser by what its algorithm can't do.",
+        "verbatim_quote": "appraise responsible use of financial technology through automated investment platforms, including robot-advisors and micro-investing apps, by analyzing fee structures, investment strategies, algorithmic limitations, and suitability for different investor profiles (E, S);",
+        "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+        "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0142-c4"
+      },
+      {
+        "text": "The standard names the school year districts must be teaching it by.",
+        "verbatim_quote": "The provisions of this section shall be implemented by school districts beginning with the 2027-2028 school year.",
+        "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+        "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0142-c5"
+      },
+      {
+        "text": "The course carries half a credit.",
+        "verbatim_quote": "Students shall be awarded one-half credit for successful completion of this course.",
+        "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-june/1cofb3-chap11326-applied-pfl-attach.pdf",
+        "source_title": "Texas Essential Knowledge and Skills, 19 TAC Section 113.26, Applied Personal Financial Literacy, adopted text attachment",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0142-c6"
+      },
+      {
+        "text": "The board's own announcement of the meeting states what the new standards teach and does not mention artificial intelligence.",
+        "verbatim_quote": "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.",
+        "source_url": "https://sboe.texas.gov/state-board-of-education/sboe-news/texas-state-board-of-education-completes-k-12-social-studies-teks-revision-adopts-new-personal-financial-literacy-standards",
+        "source_title": "Texas State Board of Education news release, September 8th, 2026",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0142-c7"
+      }
+    ],
+    "confidence": "high",
+    "notes_for_editor": "The September second reading item links the same attachment PDF that was filed in June, so the text read here is the text taken to final adoption. The adopted rule had not appeared in the Texas Register as of the September 11th, 2026 issue, which is expected given the 20 day effective date finding. A floor amendment is not ruled out by this record and no run should assert that none was made.",
+    "id": "tx-2026-0142",
+    "last_verified": "2026-09-11",
+    "history": [
+      {
+        "date": "2026-09-11",
+        "note": "Admitted to the record. The September second reading item links the same adopted text attachment filed in June and that text carries all three artificial intelligence expectations. The adopted rule has not yet appeared in the Texas Register, which the board's own finding on a 20 day effective date accounts for."
+      }
+    ]
+  },
+  {
+    "title": "ERCOT starts sending the Batch Zero questionnaires, and a data center that does not answer comes off the list",
+    "summary": "ERCOT issued a market notice on September 9th, 2026 stating it has begun sending Batch Zero Verification Requests for Information to a majority of the large load entities whose loads were conditionally included in Batch Zero. The notice states that completing the verification is a condition of staying in Batch Zero. Batch Zero is the group of large loads whose place in the interconnection study was frozen pending the audit the Governor directed in August.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Electric Reliability Council of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": true
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "filed",
+        "note": "Market notice issued"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The verification runs between the grid operator and the interconnecting entities through ERCOT's own platform, so there is no comment window on it. ERCOT publishes its market notices openly and lists a contact on each one.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The grid operator states it has begun issuing the verification requests.",
+        "verbatim_quote": "In accordance with this directive, ERCOT has begun issuing Batch Zero Verification Requests for Information (RFIs) to a majority of Interconnecting Large Load Entities (ILLEs) with a Large Load that has been conditionally included in Batch Zero.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01",
+        "source_title": "ERCOT Market Notice M-A090926-01",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0143-c1"
+      },
+      {
+        "text": "Staying in Batch Zero depends on completing the verification.",
+        "verbatim_quote": "Successful completion of the verification process is a condition for the Large Load's inclusion in Batch Zero.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01",
+        "source_title": "ERCOT Market Notice M-A090926-01",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0143-c2"
+      }
+    ],
+    "confidence": "high",
+    "notes_for_editor": "This is the Governor's August 3rd audit directive moving rather than a new decision. The count of entities that received an RFI is not published and the notice says only a majority.",
+    "id": "tx-2026-0143",
+    "last_verified": "2026-09-11",
+    "history": [
+      {
+        "date": "2026-09-11",
+        "note": "Admitted to the record. The grid operator has moved from announcing the audit to running it, and the notice states plainly that a load which does not complete the verification loses its place in Batch Zero."
+      }
+    ]
+  },
+  {
+    "title": "Federal energy department opens comment on securing the grid and names AI as why demand grew, closing October 9th",
+    "summary": "The Department of Energy published a request for information on September 9th, 2026. It implements an August 26th executive order on securing the United States bulk power system. The notice asks about covered equipment and transactions and about foreign produced bulk power system electric equipment. It also asks about remote access practices and federal procurement. The notice names advanced manufacturing and data centers and artificial intelligence and defense production as what increased the nation's dependence on reliable electricity. Written responses are accepted through October 9th, 2026 and a public webinar is set for September 16th.",
+    "topic": "defense-and-federal",
+    "decider": {
+      "name": "United States Department of Energy",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "comment_opens",
+        "note": "Request for information published"
+      },
+      {
+        "date": "2026-10-09",
+        "kind": "comment_closes",
+        "note": "Written responses due"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Written responses go to the Department of Energy by the method given in the Federal Register notice, through October 9th, 2026. The department is also holding a public webinar on September 16th, 2026.",
+      "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+      "closes": "2026-10-09"
+    },
+    "claims": [
+      {
+        "text": "The notice gives the date responses are due and the date of the public webinar.",
+        "verbatim_quote": "Written responses, data, and information are requested and will be accepted on or before October 9, 2026. If you anticipate difficulty in submitting responses within that period, contact the person listed in FOR FURTHER INFORMATION CONTACT as soon as possible. DOE will hold a public meeting via webinar on Wednesday, September 16, 2026, from 3 to 4 p.m. EDT.",
+        "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+        "source_title": "Federal Register, Department of Energy request for information, docket DOE-HQ-2026-1123",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0144-c1"
+      },
+      {
+        "text": "The department names artificial intelligence among the things that raised the country's demand for reliable electricity.",
+        "verbatim_quote": "the rapid growth of advanced manufacturing, data centers, artificial intelligence, and defense production has increased the Nation's dependence on abundant, reliable electricity",
+        "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt",
+        "source_title": "Federal Register, Department of Energy request for information, docket DOE-HQ-2026-1123",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0144-c2"
+      }
+    ],
+    "confidence": "high",
+    "notes_for_editor": "The notice never says Texas or ERCOT. It is admitted as statewide because it is a federal comment window any Texan may file in, exactly like the other federal windows on this record, and no Texas specific claim rests on it.",
+    "id": "tx-2026-0144",
+    "last_verified": "2026-09-11",
+    "history": [
+      {
+        "date": "2026-09-11",
+        "note": "Admitted to the record. The window is open and dated, so a Texan who wants a say on how grid equipment and remote access get restricted has until October 9th to file. The notice itself never names Texas."
+      }
+    ]
+  },
+  {
+    "title": "Federal survey office asks whether the household internet survey should start measuring AI use, closing November 9th",
+    "summary": "The National Telecommunications and Information Administration submitted its Internet Use Survey to the Office of Management and Budget for renewal on September 9th, 2026 and asked the public directly whether more data is needed on artificial intelligence. The notice names AI use at work or home and attitudes toward AI as areas it is asking about. Comments must be received on or before November 9th, 2026.",
+    "topic": "defense-and-federal",
+    "decider": {
+      "name": "National Telecommunications and Information Administration",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "metro": null,
+      "on_ercot": false
+    },
+    "status": "open",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "comment_opens",
+        "note": "Notice published"
+      },
+      {
+        "date": "2026-11-09",
+        "kind": "comment_closes",
+        "note": "Comments due"
+      }
+    ],
+    "public_access": {
+      "room": "open_comment",
+      "how": "Comments go to the National Telecommunications and Information Administration by the method given in the Federal Register notice, through November 9th, 2026. This is the survey that would produce a count of how many households use AI, so what it asks is decided now.",
+      "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+      "closes": "2026-11-09"
+    },
+    "claims": [
+      {
+        "text": "The notice gives the date comments are due.",
+        "verbatim_quote": "To ensure consideration, comments regarding this proposed information collection must be received on or before November 9, 2026.",
+        "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+        "source_title": "Federal Register, NTIA Internet Use Survey, OMB Control Number 0660-0021",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0145-c1"
+      },
+      {
+        "text": "The agency puts the question to the public in as many words.",
+        "verbatim_quote": "Is there a need for more data around artificial intelligence (AI)?",
+        "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+        "source_title": "Federal Register, NTIA Internet Use Survey, OMB Control Number 0660-0021",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0145-c2"
+      },
+      {
+        "text": "The agency names the areas it is asking whether to measure.",
+        "verbatim_quote": "Are there particular areas that need more data, such as AI use at work or home, or attitudes towards AI?",
+        "source_url": "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt",
+        "source_title": "Federal Register, NTIA Internet Use Survey, OMB Control Number 0660-0021",
+        "source_type": "primary_official",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0145-c3"
+      }
+    ],
+    "confidence": "high",
+    "notes_for_editor": "A different collection from the American Time Use Survey window the record already carries at tx-2026-0016, which closed September 8th.",
+    "id": "tx-2026-0145",
+    "last_verified": "2026-09-11",
+    "history": [
+      {
+        "date": "2026-09-11",
+        "note": "Admitted to the record. The agency is asking the public whether the household internet survey should start measuring artificial intelligence at all, so whether anyone can later count how many Texans use it is being decided in this window."
+      }
+    ]
+  },
+  {
+    "title": "Amazon and Wiwynn say they will expand the El Paso County plant that builds the racks going into AI data centers",
+    "summary": "Amazon and Wiwynn announced an expansion of Wiwynn's manufacturing operations in Socorro, the Taiwanese contract manufacturer's first plant in the United States. Wiwynn builds and integrates the server systems and racks that go into Amazon's data centers. Wiwynn's chief executive puts the investment at over 1.6 billion dollars and Amazon's vice president of Annapurna Labs states the number of advanced manufacturing roles it supports. Socorro is in El Paso County, which is the one corner of Texas that is not on the ERCOT grid.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Amazon.com, Inc. and Wiwynn Corporation",
+      "type": "company"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "El Paso"
+      ],
+      "metro": "El Paso, TX",
+      "on_ercot": false
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "filed",
+        "note": "Joint announcement published"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "Neither release names a vote, a hearing or a public body acting on this. A resident who wants a say goes to the City of Socorro or El Paso County, either of which would hear a zoning or abatement matter if one is brought.",
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "Wiwynn's chief executive states the size of the investment in the Texas facility.",
+        "verbatim_quote": "Through our over $1.6 billion investment in the Texas facility, we are expanding our ability to address the growing demand",
+        "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+        "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0146-c1"
+      },
+      {
+        "text": "Amazon states the number of manufacturing roles the investment supports.",
+        "verbatim_quote": "supporting the creation of nearly 1,000 advanced manufacturing roles that will help strengthen both the",
+        "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+        "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0146-c2"
+      },
+      {
+        "text": "The release states what the plant makes for Amazon's data centers.",
+        "verbatim_quote": "Wiwynn supports Amazon's data center infrastructure by manufacturing and integrating server systems and racks",
+        "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+        "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0146-c3"
+      },
+      {
+        "text": "The release names the town the plant is in.",
+        "verbatim_quote": "Amazon and Wiwynn announced an expansion of Wiwynn's manufacturing operations in Socorro, Texas.",
+        "source_url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+        "source_title": "Amazon news release, Amazon and Wiwynn expand Texas manufacturing",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-11",
+        "id": "tx-2026-0146-c4"
+      }
+    ],
+    "confidence": "medium",
+    "notes_for_editor": "The release carries NO publication date on the page, confirmed by a second fetch, so the September 9th date rests on wire coverage that was not fetched. It does not name the county either. El Paso County is from the Texas Municipal League directory entry for Socorro. Held at medium until the date is on a document. The release says nothing about whether the line itself uses AI or robotics.",
+    "id": "tx-2026-0146",
+    "last_verified": "2026-09-11",
+    "history": [
+      {
+        "date": "2026-09-11",
+        "note": "Admitted to the record. The plant that builds the racks going into Amazon's data centers is being expanded. The release carries no publication date of its own, so the day it was announced is unconfirmed."
+      }
+    ]
   }
 ]

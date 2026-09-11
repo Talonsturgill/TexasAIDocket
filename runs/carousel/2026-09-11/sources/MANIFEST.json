@@ -1,0 +1,20 @@
+{
+ "note": "Provenance for the snapshots beside this file, MEASURED BY CODE AT FETCH TIME on 2026-09-11 and committed, so a figure about the source document does not depend on a file that out/ throws away. compute.py reads pdf_pages from here and FAILS if it is absent, rather than emitting null into a frame.",
+ "fetched": "2026-09-11",
+ "snapshots": {
+  "sboe-113-26-attachment.txt": {
+   "chars": 26333,
+   "sha256": "a63153456f51a9ac",
+   "pdf_pages": 8,
+   "pdf_sha256": "f2c9faceafe380d0"
+  },
+  "sboe-item3-second-reading.txt": {
+   "chars": 16909,
+   "sha256": "07f14a63b16ef75b"
+  },
+  "sboe-news-release.txt": {
+   "chars": 4338,
+   "sha256": "b6ab2e6bc6e778ab"
+  }
+ }
+}

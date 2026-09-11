@@ -11,7 +11,7 @@ The Dallas City Council Public Safety Committee has put an update on the Dallas 
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/cityofdallas/matters/25839
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-11
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Dallas committee still has the plate reader briefing on its calendar. It has not been heard.
 - 2026-09-07 · The plate reader briefing is still on the Public Safety Committee's calendar for September 8th, 2026. The city's record still lists it as a briefing rather than as an action item. It has not been heard.
 - 2026-09-08 · The Dallas Public Safety Committee still has the police plate reader briefing on its calendar, and no briefing document has been posted.
+- 2026-09-11 · The city's own record still carries the plate reader item as a briefing rather than an action the committee votes on. Nothing has been added to the item, and the presenters listed against it are unchanged.
 
 ## Evidence
 

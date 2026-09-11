@@ -1,0 +1,51 @@
+{
+ "judge": "reader",
+ "round": 1,
+ "date": "2026-09-11",
+ "weighted_score": 6.68,
+ "hard_fails": [
+  "Frame 6 renders c16's verbatim clause with two run boundaries fused, 'by analyzingfee structures' and 'algorithmic limitations,and' (out/2026-09-11/render/slide-06.png, the knocked-out plate, lines 4 and 5), so the string on the frame is not the string in the source, on the frame the storyboard calls the story's sharpest sentence, while the post's line 9 states 'The deck carries all three verbatim.' Every word is present, so this is a rendering defect rather than a fabrication, and it passed verbatim_check because that gate reads the laid-out text nodes and not the pixels. Frame 4's quote carries the same class of defect the other way, a double space before 'artificial' and a space before its closing quote mark. A verbatim block a reader can see is misspaced, on a product whose public promise is verbatim fidelity, is a fault and not a preference."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Put the stake on a frame rather than only in the post, since no slide ever says this half credit is required of every Texas high school graduate, and recut frame 9's hook so 'The text is unread' cannot be read as the board not having read its own rule, then draw frame 6's clause as one text node per line so its verbatim renders with its spaces.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.6,
+   "why": "Frame 1's prism field is authored geometry that reads as a troffer at 432px, and frame 5's corridor is the one frame a reader would stop on. Against that, construction_check reads 4 of 9 frames as one bright plate on a darker ground and they are the right four to worry about: frame 8's window is four dark slabs, a scribbled tree and a row of dashes on a mint field and reads at thumb as rafts on a lake rather than a bus loop, frame 9 is a two tone break its own ledger entry says could not be broken at all, and frame 7's lower half is a dead zone machine_qa flags at 10 percent of craft density. Two focal defects. On frame 3 the fifth lifted point, the 'artificial intelligence' occurrence at fraction 0.378 in computed.json footprint_positions, falls at the top edge of block 4 under the tally plate's lower edge, so a reader counts four points against a dek that says five and the hidden one is the term the deck is about. On frame 6 the knocked-out clause renders 'analyzingfee' and 'limitations,and'. Frame 4's eight labels are rotated 90 degrees, canvas raster, and unreadable at feed size."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Three primary official sources and nothing else, every numeral on every frame present in computed.json (doc_words 3525, footprint 1 2 1 1, release_summary_words 18, effective_days 20, school_year 2027 to 2028, item_date September 4th), the absence method written down in claims.json, and a first comment whose three URLs let a reader check any claim. What holds it at 7: frame 6's verbatim renders non verbatim while caption line 9 promises verbatim, which is the hard fail; the caption's 'It is a graduation requirement, not an elective' reads 'graduation' into c9's 'curriculum requirement ... a student must comply with' by inference rather than by quote; and frame 9's hook 'The text is unread' asserts a reading no claim carries, since c11 says only that the attachment heads itself 'Proposed New', and the dek beneath scopes it to the Register filing only for a reader who gets that far. The first comment also prints 'September 11th' after each source title in the slot where a document date sits and then corrects itself on line 9."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "By frame 3 a Texan knows the body from frame 1's kicker, that it is a money class, and that the course text sends a student to AI tools, which is enough to keep swiping. What no frame ever says is the stake: that this half credit is required of every Texas high school graduate. 'Graduation requirement, not an elective' lives only in caption line 5, frame 8 prints 'one-half credit' without the word required, and 'final adoption' first appears on frame 6 in a title block set at colophon size. Frame 9's next step, 'Ask your district who is staffing the three machine expectations', is a real thing to do with no deadline and it is phrased in docket vocabulary a parent would not use. The record carries no place and no deadline and the deck honestly invents neither, which is right and still costs what the rubric's 9 line names."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "The cover earns the swipe in seven words, frames 2 and 3 shrink the footprint, 4 to 6 quote the three postures, 7 turns on the release, 8 lands the dates, 9 closes. The 6 to 7 inversion measures 17.5 into 46.3 in measurements.json and is felt at thumb. Two things slow it. Frames 4 and 5 open on riddles, 'Chapter three hands it over' and 'Chapter four turns it around', whose meaning lives in the storyboard's tool versus force metaphor and not on the frame, so a reader gets three quotes with two unexplained headlines over them. Frames 2 and 3 make one point twice, three chapters of ten and five words of 3,525, and the second is the stronger."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "The post reads as an analyst who knows what HB 27 is, and its second paragraph is the best writing in the package: 'appraise robot-advisors by fee structure and algorithmic limitation' is specific and dry, and it closes on a question a district would actually have to answer. It is flat where it opens, since 'House Bill 27 asked for personal finance' means nothing to a reader who cannot name the bill, and line 9, 'The deck carries all three verbatim', is a sentence about the deck rather than about Texas, the same self reference deck 16 cut. On the frames, 'Its own summary ends in and more.' needs quotation marks it does not have to parse at a glance, and 'machine expectations' on frame 9 is house jargon. No banned phrase, no colon, no dash, no year on the post's date, three niche tags."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The seafoam classroom palette measures clear of the last eight decks at dE 9.72 to 19.95, the mid value band at 41.3 is genuinely unoccupied, and a seated eye height on all nine frames is a constraint no prior deck used. Against that, every technique but the prism field has shipped inside the window, and three of them shipped yesterday on deck 20 (stipple s5, norther front s4, engraved bed s2 and s8), with the norther front closing both decks. The turn, six counted zeros in an official summary, is the third 'the document never says the word' move in thirty days after 08-22 (data center) and 08-26 (AI in the agenda book), a habit topics.json has flagged four times. A Texas school interior is the third in the window after 08-18 (Houston ISD) and 08-29 (an institutional interior on VCT under a mineral fibre ceiling)."
+  }
+ ],
+ "the_verdict_in_its_own_words": "A Texan meeting this once in the feed learns that the state board wrote artificial intelligence into a personal finance course and that the board's own announcement said nothing about it, and that is a real, well sourced story told in a register no recent deck has used. What they do not learn from the nine frames is the thing that makes it their business, that every graduate from the 2027 to 2028 school year on has to take this class, because that sentence lives only in the post. Frames 4 and 5 hand them riddles for headlines, frame 3 hides the one AI dot under its own tally, frame 8 is the weakest drawing in the deck, and frame 9 closes on a line that a reader will take as the board not reading its own rule when the record says only that this docket has not checked the filing. The weighted score is 6.68 against a 6.8 bar, and independent of the number the deck does not ship, because frame 6 renders a verbatim statute clause with two word pairs fused on the frame the storyboard calls the story's sharpest sentence while the post promises the deck carries it verbatim. That is a five minute fix and it was invisible to every gate because the gate reads nodes and a reader reads pixels.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

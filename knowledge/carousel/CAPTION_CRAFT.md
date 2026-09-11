@@ -25,6 +25,36 @@ count commas. Only a reader can tell that the machine has stopped thinking.
 
 ---
 
+## Dates
+
+**Two rules, and the automation enforces both.** `caption_check.py` fails the caption on either.
+
+**THE ORDINAL, ALWAYS.** "September 5th", never "September 5". The house rule in `CLAUDE.md` has
+said so since the beginning and the caption is the surface that keeps forgetting, because a writer
+copying a date out of a filing copies the filing's form. A filing writes "September 5, 2026"
+because a filing is a legal instrument. A caption is not.
+
+**NO YEAR ON A DATE IN THE POST'S OWN YEAR**, 2026-09-11, on the owner's instruction. Write
+"The item is dated September 4th", never "September 4th, 2026", when the post goes out in 2026.
+
+The reason is not brevity for its own sake. It is that the year is not WRONG, it is REDUNDANT: a
+reader works it out from the fact that they are reading the post this week, and the first two lines
+of a LinkedIn post are the only real estate this surface has. Four characters and a comma spent
+telling somebody something they already know is four characters not spent on the thing they do not.
+
+**The year stays on every other date**, which is the half that makes this a rule about redundancy
+rather than a rule against years. A bill from the 89th Legislature in 2025, a filing from 2019, a
+deadline in 2027, all keep their year, and that is exactly when a reader needs one.
+
+**THIS IS A POST RULE AND NOT A SITE RULE.** `caption_check.check()` is also fed the website, and
+the site is a permanent archive a reader reaches years later out of a search result, where a bare
+"September 5th" on a record page would be ambiguous precisely when it matters most. So the check
+lives in `post_shape_problems` beside the other rules that are true of a feed and false of an
+archive, and `sources_block.py` takes the run's year from the run directory's own name rather than
+from the clock, so rebuilding an old run's first comment still renders what that run published.
+
+---
+
 ## Opening moves
 
 The caption room is handed an assignment and the ledger's exclusions. **The last six runs' opening

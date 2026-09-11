@@ -1,0 +1,199 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'TEXAS STATE BOARD OF EDUCATION 19 TAC SE' at 80,64 497x72 (margin 80px)",
+        "outside safe zone: '01 / 09' at 884,64 116x31 (margin 80px)",
+        "outside safe zone: 'c11 c14 TEXAS AI DOCKET' at 80,1257 402x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1257 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.4706,
+        0.3508,
+        0.3658
+      ],
+      "band_ratio": 0.9275
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTE' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SAVING AND INVESTING' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'THE COURSE TEXT' at 80,64 248x36 (margin 80px)",
+        "outside safe zone: '02 / 09' at 884,64 116x31 (margin 80px)",
+        "outside safe zone: 'c12 c13 c19 c20 c21' at 80,1259 306x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.4223,
+        0.5924,
+        0.7831
+      ],
+      "band_ratio": 1.2888,
+      "encodings": [
+        "'a chapter carrying the machine reads differently from one that does not': dE 18.4, AUC 0.97, visible 100%/100%, seen 2940/3024px at 432w"
+      ],
+      "contacts": [
+        "'chapter 3's slab against the reveal below it': shadow L* 39.5 vs ground L* 61.4, dL 22.0 at 432w",
+        "'chapter 4's slab against the reveal below it': shadow L* 39.1 vs ground L* 61.5, dL 22.4 at 432w",
+        "'chapter 7's slab against the reveal below it': shadow L* 39.5 vs ground L* 61.8, dL 22.3 at 432w"
+      ]
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'THE WHOLE STANDARD' at 80,64 298x31 (margin 80px)",
+        "outside safe zone: '03 / 09' at 884,64 116x31 (margin 80px)",
+        "outside safe zone: 'c11 c14 c15 c16' at 80,1259 241x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.2458,
+        0.3529,
+        0.5735
+      ],
+      "band_ratio": 1.4372,
+      "encodings": [
+        "'the lifted occurrences read differently from the field around them': dE 4.9, AUC 0.92, visible 100%/100%, seen 216/198px at 432w"
+      ]
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "canvas raster text 'INCOME GROWTH' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'EMPLOYMENT TRENDS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'GLOBAL COMPETITION' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'COMPARATIVE ADVANTAGE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'TECHNOLOGICAL CHANGE' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'CREATIVE DESTRUCTION' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'REQUIRED SKILLS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "canvas raster text 'POSSIBLE EMPLOYERS' drawn via fillText -- ships as a bitmap in the vector PDF (invisible to the LinkedIn ranker, copy_sync, and accessibility); move meaningful labels to DOM/SVG",
+        "outside safe zone: 'KNOWLEDGE STATEMENT (3) CAREERS, POSTSEC' at 80,64 911x72 (margin 80px)",
+        "outside safe zone: '04 / 09' at 884,64 116x31 (margin 80px)",
+        "outside safe zone: 'c14 c18 c19' at 80,1259 177x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.6197,
+        0.5168,
+        0.6324
+      ],
+      "band_ratio": 1.0689,
+      "encodings": [
+        "'the posture rect on this frame reads differently from the wall beside it': dE 15.2, AUC 0.71, visible 92%/100%, seen 21196/6144px at 432w"
+      ],
+      "contacts": [
+        "'the whiteboard on the wall': shadow L* 29.8 vs ground L* 48.6, dL 18.8 at 432w",
+        "'the desk tablet': shadow L* 18.3 vs ground L* 33.2, dL 14.9 at 432w"
+      ]
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.4538,
+        0.813,
+        0.5974
+      ],
+      "band_ratio": 0.9631,
+      "encodings": [
+        "'the convergence reads differently from the locker bank beside it': dE 43.4, AUC 0.95, visible 100%/100%, seen 23040/5120px at 432w"
+      ],
+      "contacts": [
+        "'the left locker bank meeting the tile': shadow L* 13.7 vs ground L* 44.8, dL 31.2 at 432w",
+        "'the right locker bank meeting the tile': shadow L* 13.7 vs ground L* 39.2, dL 25.5 at 432w"
+      ]
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'KNOWLEDGE STATEMENT (7) SAVING AND INVES' at 80,64 381x72 (margin 80px)",
+        "outside safe zone: '06 / 09' at 884,64 116x31 (margin 80px)"
+      ],
+      "bands": [
+        0.4118,
+        0.3067,
+        0.3217
+      ],
+      "band_ratio": 0.9309,
+      "encodings": [
+        "'the wall in the back bank's spill reads differently from the wall the spill does not reach': dE 9.9, AUC 0.93, visible 100%/100%, seen 2464/2000px at 432w"
+      ],
+      "contacts": [
+        "'the marker tray against the block': shadow L* 9.7 vs ground L* 21.3, dL 11.6 at 432w"
+      ]
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: 'ZERO HITS IN THE RELEASE' at 80,52 397x31 (margin 80px)",
+        "outside safe zone: '07 / 09' at 884,52 116x31 (margin 80px)",
+        "outside safe zone: 'c22 c23 c24' at 80,1259 177x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
+      ],
+      "bands": [
+        0.1807,
+        0.1387,
+        0.2298
+      ],
+      "band_ratio": 1.241,
+      "encodings": [
+        "'the lit rectangle reads differently from the room beneath the falloff': dE 76.6, AUC 0.99, visible 100%/100%, seen 23040/18432px at 432w"
+      ],
+      "contacts": [
+        "'the marker tray under the board': shadow L* 5.3 vs ground L* 27.4, dL 22.1 at 432w"
+      ]
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1597,
+        0.1975,
+        0.3364
+      ],
+      "band_ratio": 1.4256,
+      "encodings": [
+        "'the warped asphalt band reads differently from the unwarped sill below it': dE 13.2, AUC 0.80, visible 100%/100%, seen 15360/9216px at 432w"
+      ],
+      "contacts": [
+        "'the sill against the wall below it': shadow L* 10.6 vs ground L* 43.0, dL 32.4 at 432w"
+      ]
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "outside safe zone: '19 TAC SECTION 113.26' at 80,60 348x37 (margin 80px)",
+        "outside safe zone: '09 / 09' at 884,60 116x31 (margin 80px)",
+        "outside safe zone: 'texasaidocket.com' at 718,1263 282x31 (margin 80px)",
+        "outside safe zone: 'c1 c2 c5 c9 c11 c23' at 80,1263 306x31 (margin 80px)"
+      ],
+      "bands": [
+        0.0441,
+        0.3613,
+        0.3474
+      ],
+      "band_ratio": 1.3606,
+      "encodings": [
+        "'the cold plane above the break reads differently from the lit floor below it': dE 65.7, AUC 0.86, visible 100%/100%, seen 13824/13824px at 432w"
+      ],
+      "contacts": [
+        "'the books on the tile': shadow L* 45.9 vs ground L* 77.4, dL 31.5 at 432w"
+      ]
+    }
+  ],
+  "fails": 0,
+  "warns": 37,
+  "verdict": "WARN"
+}

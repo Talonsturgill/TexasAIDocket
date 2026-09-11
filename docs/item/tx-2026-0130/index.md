@@ -11,7 +11,7 @@ The National Science Foundation announced on September 1st, 2026 that it is esta
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-11
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-08 · Admitted to the record. The agency's own announcement names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center.
 - 2026-09-10 · Corrected. The summary listed the duties of the operations center and called the Texas role the front door to federal AI compute. Neither sentence had a source under it, and both are gone.
+- 2026-09-11 · The agency page putting the Austin supercomputing center in an operating role has not changed. What the pilot handed over is still described the same way, and no further institution has been added to the collaboration.
 
 ## Evidence
 

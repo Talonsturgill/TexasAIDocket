@@ -1,0 +1,49 @@
+{
+ "judge": "craft",
+ "round": 3,
+ "date": "2026-09-11",
+ "weighted_score": 6.918,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Redraw frame 6 so the declared white-line intaglio is actually present as a worked ground at 432px rather than three stray hair-strand wisps on a flat gradient, and pull the title block's left rule clear of SECOND READING AND FINAL ADOPTION, which starts at x 434 and runs through a box edge near x 486.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.3,
+   "why": "One frame a reader would screenshot: frame 7, the projected sheet at dE 76.6 against the room with RESEARCH, EXPLAIN, APPRAISE sitting unlit under the tray, and it is the deck's argument drawn rather than captioned. Frame 5 is the second real drawing, contacts at 31.2 and 25.5 L*, though the dark burst reads as radiating OUT of the convergence rather than arriving into it, so the frame's verb is ambiguous. Then the misses. Frame 6 declares TXENGRAVE intaglio at alpha 0.74 and the render carries a flat gradient wall with a block grid and three stray curved wisps at the top centre and lower left that read as hair on the lens, not as a worked ground, which is deck 13's frame 8 finding again. Its title block label starts at x 434 and its box's left rule falls near x 486, so a rule cuts through the deck's one filing register line at both sizes. Frame 3 declares a camera looking down at pages on a floor and draws eight slabs each casting an ellipse BELOW itself, so they read as standing tombstones, and the desk leg runs off the bottom edge with no glide contact despite the dossier's band. Frame 8's four buses are rounded boxes with a strip and two dots that read as benches at 432, with an unexplained four-legged object right of the mullion. Frame 9 is two planes, type, and two books under a soft ellipse about three times their footprint under a declared no-key overhead source, which is a drop shadow. Frame 1's lens measures p95 79.9 against troffer 92.5, so the deck's declared only light source is dimmer than frame 7's projection. The deck's second law says nothing under L* 19.7 and frame 6's plate is rgb(8,28,40) and frame 7's tray shadow measures 5.3. construction_check reads 4 of 9 as one bright plate and the ledger's own avoid_next admits it. Value structure per frame is genuinely good, palette discipline is the best thing here, and the detail budget is spent on 5 and 7 and starved on 6, 8 and 9."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Three primary official sources, 24 claims, every numeral on nine frames traced: cell numbers on 2 to n_knowledge, the 1 2 1 1 0 tally on 3 to footprint and n_ai_headings, six zeros on 7 to release_hits, 20 days to c3, 2027 to 2028 built from c12, September 4th to c5, and the caption's eighteen words to release_summary_words (counted, it is 18). 113.26 traces only to the attachment's source_title rather than a quote. The hooks on 4, 5 and 6 are editorial paraphrases (hands it over, turns it around, find where it stops working) set beside the verbatim clause each time, which is the honest arrangement. Nothing asserted that a fetched page does not support, and the unchecked filing is said out loud on frame 9."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.8,
+   "why": "A Texan learns the body (SBOE), the instrument (19 TAC 113.26), the item date, the three expectations quoted in the document's own words, the start year and that the half credit is a requirement. Frame 9 gives a next step a district parent can use. What it does not do is make the stake concrete: the thesis is that a news release omitted a word, and frame 7 carries that beautifully while the deck never says in plain terms what a student or a district loses or gains. No county, no district, no deadline, and the record genuinely has none, so the deck refuses to invent one, which is right and still costs the reader a reason to care beyond curiosity."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Cover, shape (2), footprint (3), three postures (4, 5, 6), the counter-image (7), dates (8), close (9). The 6 to 7 swipe is a measured 32.2 L* step and it lands on the deck's best frame, so the turn is real. Frames 2 and 3 make one point twice (the machine is small in the document) and frame 8 is a dates slab, so there is something cuttable. The close reads flat after 7 because it is the deck's thinnest drawing, which the ledger has now written down for six decks running."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Hooks are short and declarative, the caption opens on the board and House Bill 27 and closes on a question a Texan would actually ask about staffing in the 2027 to 2028 school year. Clean on every house rule I checked, no colons, no dashes, no first person, no sentence opening on And or But, the year dropped from the post's own date. A little flat and a little coined: 'the machine' as a name for AI is a deck's affectation rather than a Texan's word, and there is no regional specificity anywhere because the record has none."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The register is new to the ledger, a school interior under troffer light at a measured mid median of 42.0 in a band no prior deck occupied, and the seven tokens are measured clear of the last eight decks' 81 hexes. Against that, every technique is a library staple reused inside the window: norther front closed deck 12 and sat on deck 20's frame 4, engraving on 16 and 20, stipple on 16 and 20, flow field and domain warp on 19, parallax planes on 15, and the bright inversion on a sheet-like frame is the ledger's own named tic. The ledger entry records ONE type skeleton for nine frames, and only frames 7 and 9 move the hook, which is the same debt decks 14, 15 and 19 wrote down."
+  }
+ ],
+ "the_verdict_in_its_own_words": "This deck ships at 6.918 and that is an acceptable deck, not a good one. Its palette is the most disciplined thing this project has drawn in weeks, its value arc is measured rather than asserted and it holds, and frame 7 is a genuine picture of the story's argument. Around that one frame the drawing thins out exactly where the ledger has been warning for six decks: frame 6 declares an engraving that is not in the pixels and runs a rule through its own label, frame 8 is flat cutouts, frame 9 is two planes and a drop shadow, and four of nine frames reduce to a lit rectangle. I looked for a hard fail and did not find one, every numeral traces and every source is primary, so the no I am not saying is about faults and the yes I am saying is about a number that clears the bar by a tenth.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}
