@@ -1,0 +1,129 @@
+<!doctype html>
+<!-- ATELIER 03 — Topographic signal.
+     Construction study: one macro threshold deforms a deterministic field; micro contours
+     reward full-size viewing but are not asked to carry the whole composition. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { position: relative; }
+  .atelier-label { position: absolute; left: 82px; top: 82px; z-index: 20;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase; }
+  .atelier-id { position: absolute; right: 82px; top: 78px; z-index: 20;
+    font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 760; letter-spacing: -.04em; }
+  .atelier-footer { position: absolute; left: 82px; right: 82px; bottom: 82px; z-index: 30;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 500; letter-spacing: .05em; }
+  .atelier-footer::before { content: ""; position: absolute; left: 0; right: 0; top: -18px;
+    height: 1px; background: currentColor; opacity: .32; }
+  .atelier-footer .mode { opacity: .68; }
+</style>
+<style>
+  body { background: #f7f0e7; color: #171421; font-family: "Space Grotesk", sans-serif; }
+  canvas { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .atelier-label, .atelier-id, .atelier-footer { color: #171421; }
+  .title {
+    position: absolute; left: 82px; top: 142px; z-index: 14; width: 860px;
+    font-family: "Archivo", sans-serif; font-size: 113px; line-height: .84;
+    font-weight: 880; font-stretch: 76%; letter-spacing: -.066em; text-transform: uppercase;
+  }
+  .title .move { color: #b90d35; }
+  .legend {
+    position: absolute; left: 82px; top: 380px; z-index: 14; display: flex; gap: 26px;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .legend span::before { content: ""; display: inline-block; width: 31px; height: 9px;
+    margin-right: 10px; vertical-align: 2px; background: #171421; }
+  .legend .threshold::before { background: #f03b52; }
+  .header-reserve { position: absolute; left: 0; right: 0; top: 0; height: 430px;
+    z-index: 12; background: #f7f0e7; }
+  .footer-reserve { position: absolute; left: 0; right: 0; bottom: 0; height: 116px;
+    z-index: 12; background: #f7f0e7; }
+</style>
+</head>
+<body>
+  <canvas id="field" width="2160" height="2700"></canvas>
+  <div class="header-reserve"></div>
+  <div class="footer-reserve"></div>
+  <div class="atelier-label">Code atelier · behavioral field</div>
+  <div class="atelier-id">03</div>
+  <h1 class="title" data-overlap-ok>The threshold<br><span class="move">moves</span></h1>
+  <div class="legend"><span>field</span><span class="threshold">threshold</span></div>
+  <div class="atelier-footer"><span>Texas AI Docket</span><span class="mode">ILLUSTRATIVE SYSTEM · SEE DOSSIER</span></div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = document.fonts.ready.then(() => {
+  const c = document.getElementById('field'); const g = c.getContext('2d'); g.scale(2,2);
+  const R = TX.rng(2026082903); TX.reseed(2026082903);
+
+  g.fillStyle = '#f7f0e7'; g.fillRect(0,0,1080,1350);
+
+  // One off-center attractor is the macro composition. Noise only modulates its edge.
+  const cx = 725, cy = 820;
+  const ringCount = 72;
+  for (let ring = ringCount; ring >= 0; ring--) {
+    const t = ring / ringCount;
+    const base = 78 + ring * 8.8;
+    const points = 190;
+    g.beginPath();
+    for (let i = 0; i <= points; i++) {
+      const a = (i / points) * Math.PI * 2;
+      const directional = 1 + .21 * Math.sin(a - .7) + .09 * Math.cos(a*2 + .9);
+      const n = TX.fbm2(Math.cos(a)*1.12 + ring*.019, Math.sin(a)*1.12 - ring*.014, 4);
+      const r = base * directional + n * (9 + ring*.12);
+      const x = cx + Math.cos(a) * r * 1.03;
+      const y = cy + Math.sin(a) * r * .78;
+      if (i === 0) g.moveTo(x,y); else g.lineTo(x,y);
+    }
+    g.closePath();
+    const thresholdBand = ring >= 27 && ring <= 31;
+    g.strokeStyle = thresholdBand ? '#f03b52' : (ring % 7 === 0 ? '#171421' : 'rgba(23,20,33,.44)');
+    g.lineWidth = thresholdBand ? (ring === 29 ? 10 : 5) : (ring % 7 === 0 ? 3.2 : 1.15);
+    g.stroke();
+  }
+
+  // Directional interruption: the threshold has a visible consequence, not just a color.
+  g.save();
+  g.beginPath(); g.rect(0, 500, 1080, 760); g.clip();
+  for (let i = 0; i < 36; i++) {
+    const y0 = 540 + i*19;
+    g.beginPath(); g.moveTo(-30, y0);
+    for (let x = 0; x <= 1120; x += 18) {
+      const dx = x-cx, dy = y0-cy; const d = Math.sqrt(dx*dx + dy*dy);
+      const push = Math.max(0, 1-d/460);
+      const y = y0 + Math.sin(x*.012+i*.43)*4 - push*92*Math.sin(Math.atan2(dy,dx));
+      g.lineTo(x,y);
+    }
+    g.strokeStyle = i % 9 === 0 ? 'rgba(58,58,221,.56)' : 'rgba(58,58,221,.14)';
+    g.lineWidth = i % 9 === 0 ? 2.5 : .8; g.stroke();
+  }
+  g.restore();
+
+  // A white core produces a blunt silhouette at phone size.
+  const core = g.createRadialGradient(cx-55,cy-80,20,cx,cy,126);
+  core.addColorStop(0,'#ffffff'); core.addColorStop(.76,'#fff8ee'); core.addColorStop(1,'rgba(247,240,231,0)');
+  g.fillStyle = core; g.beginPath(); g.ellipse(cx,cy,155,116,-.12,0,Math.PI*2); g.fill();
+  g.strokeStyle='#171421'; g.lineWidth=3; g.beginPath(); g.ellipse(cx,cy,91,66,-.12,0,Math.PI*2); g.stroke();
+  g.fillStyle='#f03b52'; g.beginPath(); g.arc(cx+30,cy-12,11,0,Math.PI*2); g.fill();
+
+  // Registration marks connect field art with measurement without pretending this is data.
+  g.strokeStyle='#171421'; g.lineWidth=2;
+  [[85,520],[994,520],[85,1135],[994,1135]].forEach(([x,y])=>{
+    g.beginPath(); g.moveTo(x-13,y); g.lineTo(x+13,y); g.moveTo(x,y-13); g.lineTo(x,y+13); g.stroke();
+  });
+
+  // Sparse flecks create a printed surface; fixed seed preserves reviewable pixels.
+  for (let i=0;i<460;i++) {
+    g.fillStyle = 'rgba(23,20,33,' + (.018+R()*.045) + ')';
+    g.fillRect(R()*1080,R()*1350,.5+R()*1.5,.5+R()*1.5);
+  }
+});
+</script>
+</body>
+</html>

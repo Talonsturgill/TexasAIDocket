@@ -1,0 +1,142 @@
+<!doctype html>
+<!-- ATELIER 01 — Evidence monolith.
+     Construction study: extreme object crop, lit edge, embedded record marks and type as
+     counterforce. The record lines are illustrative marks, not fabricated document text. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { position: relative; }
+  .atelier-label { position: absolute; left: 82px; top: 58px; z-index: 20;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase; }
+  .atelier-id { position: absolute; right: 82px; top: 78px; z-index: 20;
+    font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 760; letter-spacing: -.04em; }
+  .atelier-footer { position: absolute; left: 82px; right: 82px; bottom: 82px; z-index: 30;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 500; letter-spacing: .05em; }
+  .atelier-footer::before { content: ""; position: absolute; left: 0; right: 0; top: -18px;
+    height: 1px; background: currentColor; opacity: .32; }
+  .atelier-footer .mode { opacity: .68; }
+</style>
+<style>
+  body { background: #dbe7ff; color: #13111a; font-family: "Archivo", sans-serif; }
+  canvas { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+  .atelier-label, .atelier-id, .atelier-footer { color: #15131b; }
+  .title {
+    position: absolute; left: 82px; top: 204px; width: 292px; z-index: 15;
+    font-family: "Archivo", sans-serif; font-size: 86px; line-height: .84;
+    font-weight: 880; font-stretch: 82%; letter-spacing: -.064em; text-transform: uppercase;
+  }
+  .title span { display: block; }
+  .title .thin { font-weight: 310; font-stretch: 68%; letter-spacing: -.075em; }
+  .method {
+    position: absolute; left: 82px; top: 648px; width: 245px; z-index: 15;
+    font-family: "Manrope", sans-serif; font-size: 28px; line-height: 1.32;
+    font-weight: 650; color: #35314a;
+  }
+</style>
+</head>
+<body>
+  <canvas id="art" width="2160" height="2700"></canvas>
+  <div class="atelier-label">Code atelier · evidence object</div>
+  <div class="atelier-id">01</div>
+  <h1 class="title"><span>The</span><span class="thin">record</span><span>has</span><span>weight</span></h1>
+  <p class="method">A filing becomes a monumental optical object: cropped, dimensional and
+    physically marked by its own evidence layer.</p>
+  <div class="atelier-footer"><span>Texas AI Docket</span><span class="mode">CONSTRUCTION STUDY · NOT DATA</span></div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script>
+window.renderReady = document.fonts.ready.then(() => {
+  const c = document.getElementById('art');
+  const g = c.getContext('2d');
+  g.scale(2, 2);
+  const R = TX.rng(2026082901);
+
+  function poly(points) {
+    g.beginPath(); g.moveTo(points[0][0], points[0][1]);
+    for (let i = 1; i < points.length; i++) g.lineTo(points[i][0], points[i][1]);
+    g.closePath();
+  }
+
+  // Luminous gallery air. The radial events make the dark object read in a pale world.
+  const bg = g.createLinearGradient(0, 0, 1080, 1350);
+  bg.addColorStop(0, '#eef5ff'); bg.addColorStop(.46, '#cbd8fb'); bg.addColorStop(1, '#b8aee9');
+  g.fillStyle = bg; g.fillRect(0, 0, 1080, 1350);
+  const aura = g.createRadialGradient(830, 510, 20, 830, 510, 600);
+  aura.addColorStop(0, 'rgba(255,255,255,.92)'); aura.addColorStop(.32, 'rgba(132,222,255,.28)');
+  aura.addColorStop(1, 'rgba(99,53,169,0)'); g.fillStyle = aura; g.fillRect(220, 0, 860, 1160);
+
+  // Ground first, then shadow: the contact reads because it subtracts from a lit surface.
+  const pool = g.createRadialGradient(700, 1120, 30, 700, 1120, 520);
+  pool.addColorStop(0, 'rgba(255,255,255,.72)'); pool.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = pool; g.fillRect(160, 820, 920, 500);
+  g.save(); g.filter = 'blur(25px)'; g.fillStyle = 'rgba(34,18,70,.36)';
+  g.beginPath(); g.ellipse(710, 1138, 390, 72, -.03, 0, Math.PI * 2); g.fill(); g.restore();
+
+  const front = [[415,126],[1016,268],[904,1193],[304,1068]];
+  const back  = [[459,92],[1060,232],[948,1160],[904,1193],[1016,268],[415,126]];
+
+  // Prismatic top/right thickness.
+  poly(back); const side = g.createLinearGradient(420, 90, 1050, 1160);
+  side.addColorStop(0, '#ff9fb5'); side.addColorStop(.18, '#ffe6d7');
+  side.addColorStop(.55, '#6a63c7'); side.addColorStop(1, '#31224f');
+  g.fillStyle = side; g.fill();
+  g.strokeStyle = 'rgba(255,255,255,.72)'; g.lineWidth = 2; g.stroke();
+
+  // Obsidian/ink front with a controlled iridescent center.
+  poly(front); const face = g.createLinearGradient(320, 220, 980, 1100);
+  face.addColorStop(0, '#171522'); face.addColorStop(.27, '#27243a');
+  face.addColorStop(.53, '#0d101a'); face.addColorStop(.76, '#2b163d'); face.addColorStop(1, '#11101a');
+  g.fillStyle = face; g.fill();
+  g.save(); poly(front); g.clip();
+
+  const sheen = g.createLinearGradient(380, 320, 960, 820);
+  sheen.addColorStop(0, 'rgba(87,223,255,0)'); sheen.addColorStop(.42, 'rgba(87,223,255,.06)');
+  sheen.addColorStop(.49, 'rgba(255,72,140,.30)'); sheen.addColorStop(.55, 'rgba(255,210,157,.10)');
+  sheen.addColorStop(.73, 'rgba(120,75,255,0)'); g.fillStyle = sheen; g.fillRect(260, 80, 840, 1180);
+
+  // Illustrative evidence marks are physically engraved into the face.
+  for (let i = 0; i < 72; i++) {
+    const y = 196 + i * 12.7;
+    const x = 474 + (y - 196) * -.115 + R() * 25;
+    const w = 210 + R() * 330;
+    g.beginPath(); g.moveTo(x, y); g.lineTo(Math.min(x + w, 965 - (y - 260) * .08), y + w * .025);
+    g.strokeStyle = i % 11 === 0 ? 'rgba(255,88,145,.75)' : 'rgba(205,228,255,' + (.08 + R()*.20) + ')';
+    g.lineWidth = i % 11 === 0 ? 2.8 : .7 + R() * 1.2; g.stroke();
+  }
+  for (let i = 0; i < 11; i++) {
+    const x = 535 + i * 34; const y = 330 + i * 41;
+    g.fillStyle = i % 3 ? 'rgba(116,229,255,.36)' : 'rgba(255,79,139,.8)';
+    g.fillRect(x, y, 7, 7);
+  }
+
+  // Fine flaws and trapped particles create scale without reading as a generic grain pass.
+  for (let i = 0; i < 680; i++) {
+    const x = 305 + R() * 720, y = 110 + R() * 1090;
+    g.fillStyle = R() > .92 ? 'rgba(255,143,190,.38)' : 'rgba(223,236,255,.11)';
+    const s = .4 + R() * 1.5; g.fillRect(x, y, s, s);
+  }
+  g.restore();
+
+  // The hero edge is the brightest event in the frame.
+  g.beginPath(); g.moveTo(415,126); g.lineTo(304,1068); g.lineTo(904,1193);
+  const rim = g.createLinearGradient(350, 130, 320, 1080);
+  rim.addColorStop(0, '#ffffff'); rim.addColorStop(.35, '#7cecff'); rim.addColorStop(.72, '#ff4f91'); rim.addColorStop(1, '#ffcf9f');
+  g.strokeStyle = rim; g.lineWidth = 6; g.shadowColor = '#77dfff'; g.shadowBlur = 20; g.stroke(); g.shadowBlur = 0;
+
+  // Airborne scale cues outside the object.
+  for (let i = 0; i < 95; i++) {
+    const x = 330 + R() * 720, y = 80 + R() * 1120;
+    if (x < 400 && y > 140 && y < 1070) continue;
+    g.fillStyle = 'rgba(255,255,255,' + (.13 + R()*.42) + ')';
+    g.beginPath(); g.arc(x, y, .5 + R()*2.4, 0, Math.PI*2); g.fill();
+  }
+});
+</script>
+</body>
+</html>
