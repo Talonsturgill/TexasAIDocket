@@ -66,6 +66,28 @@ DOCS = Path(REPO) / "docs"
 # sends the whole pack, so this is the size of the worst question the box can be asked to
 # answer with retrieval switched off, about 100,000 tokens, roughly 20 cents. It is a
 # break-glass and it is allowed to be expensive. It is not allowed to be unbounded.
+#
+# AND IT IS AN INPUT TO THE BUILD NOW RATHER THAN A MEASUREMENT TAKEN AFTERWARDS, 2026-09-11.
+# See `pack_fit`. The core is assembled to fit this number, oldest settled bodies handed to the
+# sibling field when it needs the room, and `pack_headroom` publishes how far the first handover
+# is so the next one is seen rather than met.
+#
+# THE INDEX EARNED THAT SENTENCE ON 2026-09-09 AND THIS NUMBER DID NOT, which is the whole of why
+# 2026-09-11 went red. Both ceilings had the same shape, a fixed bound with an input that grows
+# past it on a schedule, and only one of them was given to the builder. Two days later a complete
+# record carrying a real public correction measured 421,546 against 420,000 and could not merge,
+# and `main` was holding three admissions of room, at a median settled body of 2,646
+# characters.
+#
+# WHAT IT DOES NOT MEAN IS THAT THE INDEX'S REMEDY WAS COPIED. An index line is read only in the
+# index, so shortening one costs what the line stops saying. A body is read by the RETRIEVER, so
+# a body the core gives up would be a body no question could ever retrieve. `pack_fit` moves a
+# body to the sibling field instead, which costs the break-glass path and costs normal retrieval
+# nothing, and it says so at length. Same shape, different remedy, and the difference is what
+# else reads the thing being given up.
+#
+# RAISING THIS IS STILL NOT A FIX. That is the rule at the top of the file and 2026-09-11 is the
+# day it was honoured rather than argued with.
 MAX_CHARS = 420_000
 
 # THE INDEX CEILING is where the money is. Every question carries the whole index whatever it
@@ -843,6 +865,210 @@ def admissions_per_day(items: list, today: str) -> float:
     return float(daily[mid] if len(daily) % 2 else (daily[mid - 1] + daily[mid]) / 2)
 
 
+# THE NOTICE A CARRIED BODY EARNS, and it is written for a reader of the JSON rather than for
+# the model, because the sibling field's preamble is the one piece of published text the worker
+# never sends. `splitRecord` keeps the CORE's preamble and discards the sibling's, so this can
+# say what happened without teaching the model anything.
+CARRIED_NOTE = ("SOME DECISION BODIES ARE CARRIED HERE RATHER THAN IN THE CORE. The oldest "
+                "settled go first, because the core is the size of the retrieval-off question "
+                "and it has a ceiling. A body here is retrieved exactly as it was before. "
+                "See pack_fit.")
+
+
+def pack_fit(preamble_parts: list, bodies: list, tail_blocks: list,
+             facility_bodies: list, movable: list) -> tuple[str, str, int]:
+    """The two published body fields, and how many decision bodies the core had to hand over.
+
+    THE PACK FITS ITS CEILING BY CONSTRUCTION, 2026-09-11, and before this it merely got measured
+    against one. That is the same sentence `index` earned on 2026-09-09 and it was earned the
+    same way. The daily run of 2026-09-11 admitted four decisions, `ask_pack --self-test` went
+    red at 421,546 against 420,000, and a complete record carrying a real public correction could
+    not merge. `main` itself was holding three admissions of room, at a median settled body of
+    2,646 characters, so this was never going to be crossed once and then done with.
+
+    WHY THIS MOVES A BODY RATHER THAN SHORTENING ONE, which is where it stops being a copy of
+    `index_fit` and the difference is the whole design.
+
+    An index line is only ever read in the index. Shortening one costs what the line stops
+    saying. A decision BODY is different: `splitRecord` builds the retriever's item list out of
+    these fields, so a body the core gave up is a body that can never be retrieved for any
+    question, not merely one the break-glass path stops carrying. Reducing a body would make the
+    record's own evidence thinner on exactly the question that body answers.
+
+    Measured on 2026-09-11 against the real record, moving the twenty oldest settled bodies to
+    the sibling field freed 57,311 characters of core, left all 472 blocks in the retriever's
+    list, left every family count unchanged, and a moved decision was still retrieved FIRST by
+    its own name. Nothing about normal retrieval moved at all.
+
+    So there is no middle rung, and the measurement above is what settles it rather than a
+    preference for one number of rungs over another. A move frees a whole body and costs the
+    break-glass path alone. A reduction frees a fraction of one and costs EVERY ordinary answer
+    about that decision, because what is left is what retrieval sends. Moving dominates reducing
+    at every ratio, so a reduced-body rung could only ever be reached after moving had run out,
+    and moving runs out exactly when nothing is settled, which is the case no rung can help.
+
+    WHAT THE MOVE DOES COST, said plainly, because it costs something. `ASK_RETRIEVAL=off` sends
+    the core plus the complete index and nothing else. A decision whose body has moved is still
+    in that index, with its title, its topic, its decider, its status, its counties and the id to
+    cite it by, so the break-glass path can still say the decision exists and name it. What it
+    can no longer do on that path alone is quote the decision's claims. That is a real reduction
+    in a break-glass path and it is the only reduction here.
+
+    AND THE SENTENCE ABOVE STOPS BEING TRUE AT DEPTH, which is the safety argument this needed
+    and it did not survive being written down. `index_fit` rung 3 stops LISTING a decision, and
+    its `eligible` is character for character the same rule as `movable` here, oldest settled
+    first over the same items. So the two rungs give up the same decisions in the same order.
+    This one fires between the 4th and the 10th admission and the index's between the 229th and
+    the 232nd, so `carried >= unlisted` always and EVERY unlisted decision has also had its body
+    carried. Measured by growing the record with its own median settled body:
+
+        admissions   unlisted   carried   in neither field
+              +228          0       215                  0
+              +240         16       227                 16
+              +900        661       887                661
+
+    On `ASK_RETRIEVAL=off` past that point a decision can be neither named nor quoted. THIS IS
+    NOT A LOSS AGAINST THE OLD SHAPE AND THE FIRST DRAFT OF THIS PARAGRAPH SAID IT WAS. The old
+    core held every body, so it stops fitting at the 4th admission, about 225 of them before
+    rung 3 first fires. Measured at +600 it is 2,128,528 characters against a 420,000 ceiling,
+    which is a red build and no pack at all. There is no record size at which the old shape kept
+    a decision this one gives up, so the comparison is this against NOTHING rather than this
+    against something better.
+
+    THE OBVIOUS FIX WAS MEASURED AND REJECTED. Forbid the core from carrying a body the index
+    unlisted, and the core must then keep a body for every unlisted decision. The build goes RED
+    at +363 admissions, about 121 days at this record's 3 a day. That trades a degraded
+    break-glass path for a STOPPED DAILY ROUTINE, which is the failure this whole change exists
+    to remove, so it is the wrong way round.
+
+    Sending the carried bodies on the break-glass path was rejected for the same reason, one
+    step earlier. At the depth where any body is carried, the carried bodies are by definition
+    larger than the room the core did not have.
+
+    SO THE GUARANTEE IS THE ONE `index_fit` ALREADY RESTS ON, stated here rather than assumed.
+    `index_manifest` counts every decision by county from the items themselves and DOES NOT
+    DEGRADE AT ANY BUDGET, and `UNLISTED_NOTE` states how many of the total are unlisted. The
+    reader is told the size of what was not shown. The failure is announced and counted, never
+    silent, and that is the property the self-test checks at depth rather than this paragraph.
+
+    NEVER AN OPEN WINDOW, AT ANY RUNG, and oldest first otherwise. `movable` is the caller's list
+    of indices into `bodies` that may be handed over, in the order they may go. `items` is the
+    record's own filed order, so index 0 is the oldest thing here.
+
+    Returns the core pack, the sibling field, and the number of bodies moved.
+    """
+    def core_of(kept_idx):
+        return "\n\n".join(preamble_parts + [DECISIONS_MARK]
+                            + [bodies[i] for i in kept_idx] + tail_blocks)
+
+    def sibling_of(moved_idx):
+        carried = [bodies[i] for i in moved_idx]
+        if not carried and not facility_bodies:
+            return ""
+        head = [FACILITY_PACK_MARK + ("\n\n" + CARRIED_NOTE if carried else ""), DECISIONS_MARK]
+        return "\n\n".join(head + carried + facility_bodies)
+
+    # HOW LONG THE CORE WOULD BE, WITHOUT BUILDING IT. `"\n\n".join` is the sum of the pieces
+    # plus two characters between each, so this is the same assembly counted rather than a model
+    # of it. It exists because handing bodies over one at a time and rebuilding a four hundred
+    # thousand character string each time is minutes of work for an answer arithmetic gives in
+    # microseconds, and `pack_headroom` asks this question thousands of times.
+    #
+    # IT IS CHECKED AGAINST THE BUILT STRING BEFORE ANYTHING IS RETURNED. An arithmetic shortcut
+    # that quietly disagrees with the assembly is how `index_headroom` reported 244 where the
+    # truth was 223, so this one is not trusted, it is verified, and the walk below takes over
+    # if it is ever wrong.
+    fixed = sum(len(x) for x in preamble_parts) + len(DECISIONS_MARK) \
+        + sum(len(x) for x in tail_blocks)
+    pieces = len(preamble_parts) + 1 + len(tail_blocks)
+
+    def core_len(n_moved: int, dropped: int) -> int:
+        return fixed + dropped + 2 * (pieces + len(bodies) - n_moved - 1)
+
+    body_len = [len(b) for b in bodies]
+    kept_total = sum(body_len)
+
+    if core_len(0, kept_total) <= MAX_CHARS:
+        core = core_of(range(len(bodies)))
+        if len(core) <= MAX_CHARS:
+            return core, sibling_of([]), 0
+
+    moved, dropped = [], kept_total
+    for i in movable:
+        moved.append(i)
+        dropped -= body_len[i]
+        if core_len(len(moved), dropped) <= MAX_CHARS:
+            break
+
+    cut = set(moved)
+    core = core_of([k for k in range(len(bodies)) if k not in cut])
+    # THE WALK, which runs only when the arithmetic was wrong or nothing movable was left. One
+    # more body at a time until it fits, so a disagreement costs time rather than a wrong pack.
+    rest = [i for i in movable if i not in cut]
+    while len(core) > MAX_CHARS and rest:
+        moved.append(rest.pop(0))
+        cut = set(moved)
+        core = core_of([k for k in range(len(bodies)) if k not in cut])
+
+    # NOTHING MOVABLE IS LEFT AND IT STILL DOES NOT FIT, which is the failure worth having. It
+    # means the preamble, the open windows and the rolled families have outgrown the budget on
+    # their own, and none of those is fixed by another character a builder can find.
+    return core, sibling_of(moved), len(moved)
+
+
+def pack_headroom(preamble_parts: list, bodies: list, tail_blocks: list,
+                  facility_bodies: list, movable: list, today: str) -> dict:
+    """How far the core is from each rung, in decisions the record would have to admit.
+
+        full    admissions until the first body has to be carried in the sibling field
+        fits    admissions until the core will not fit even with every movable body handed
+                over, or None when nothing inside `probe` breaks it
+
+    MEASURED BY BUILDING, NOT BY DIVIDING, and `index_headroom` carries the long version of why.
+    Short version: the arithmetic one was wrong in two directions at once and the errors nearly
+    cancelled, which is the only reason anybody read it and felt informed. This admits synthetic
+    bodies of the record's own median length and asks `pack_fit` what happened, which is the same
+    question the build asks.
+    """
+    if not bodies:
+        return {"full": 0, "fits": 0, "probe": PROBE}
+
+    # A REAL BODY OF MEDIAN LENGTH, never one assembled from average field lengths. The median is
+    # taken over the bodies that may actually move, because a synthetic admission is settled the
+    # day after it lands and an open one would flatter every answer below.
+    pool = sorted((bodies[i] for i in movable), key=len) or sorted(bodies, key=len)
+    seed = pool[len(pool) // 2]
+
+    memo = {}
+
+    def spent(n):
+        if n not in memo:
+            grown = list(bodies) + [seed] * n
+            # A synthetic body is settled, so it joins the movable list at the end, which is
+            # where an admission lands in the record's own filed order.
+            grow_movable = list(movable) + list(range(len(bodies), len(bodies) + n))
+            core, _sib, moved = pack_fit(preamble_parts, grown, tail_blocks,
+                                         facility_bodies, grow_movable)
+            memo[n] = (len(core) <= MAX_CHARS, moved)
+        return memo[n]
+
+    def last_true(pred, hi=PROBE):
+        if not pred(0):
+            return -1
+        lo = 0
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if pred(mid):
+                lo = mid
+            else:
+                hi = mid - 1
+        return lo
+
+    full = last_true(lambda n: spent(n) == (True, 0))
+    edge = last_true(lambda n: spent(n)[0])
+    return {"full": full, "fits": None if edge >= PROBE else edge, "probe": PROBE}
+
+
 def item_prose(it: dict, today: str) -> str:
     """One decision, as the model should read it.
 
@@ -907,157 +1133,6 @@ def item_prose(it: dict, today: str) -> str:
         f"confidence {it.get('confidence', 'not recorded')}",
     ]
     return head + "\n" + "\n".join(b for b in body if b)
-
-
-# =================================================================================================
-# THE CORE PACK'S OWN RUNGS, 2026-09-11.
-#
-# WHAT THIS FIXES. `MAX_CHARS` went red at 421,546 on a record of 127 decisions and the docket
-# published nothing for a day, because the overage was the record's ordinary growth and no run may
-# edit a decision to fit a cache ceiling. `main` was under four admissions from the same wall, so
-# this was never one PR's problem: it was the next run's, and the one after that.
-#
-# The index met this exact wall on 2026-09-08 and 2026-09-09 and `index_fit` is the answer that
-# was written for it. This is that answer, applied to the pack, and it is deliberately NOT a copy.
-#
-# WHY THE PACK GETS TWO RUNGS AND THE INDEX GETS THREE. The index may stop LISTING a decision
-# because `index_manifest` runs ahead of it and still counts every one by county and by decider, so
-# the failure the whole design deletes survives. The pack cannot, for a different and harder
-# reason: the worker cuts this field into one block per decision and asserts there are exactly as
-# many blocks as decisions. See THE SPLIT CONTRACT below, which `workers/ask/test.js` runs from the
-# other side. **A pack that drops a body breaks a deployed worker**, and the worker is deployed by
-# hand, by pasting, while this file rebuilds itself every day. So every decision keeps a block, and
-# the rung reduces what is INSIDE one.
-#
-#   1  every decision gets its full prose
-#   2  the oldest settled decisions keep their head, their status and a pointer, and give up
-#      their facts, their summary, their dates, their access and their claims
-#
-# WHAT A READER GETS IN THE WORST CASE, which is the honest way to state a reduction. This field is
-# sent whole only when `ASK_RETRIEVAL=off`, which is the break-glass. On that path a reduced
-# decision still arrives with its id, its title and its status, and **the complete index arrives
-# with it**, so the box can still name it, cite it and say what it is. What it cannot do is quote
-# that decision's own summary without retrieval switched back on. Under NORMAL retrieval nothing
-# changes at all, because the worker fetches the block it needs.
-#
-# NEVER AN OPEN WINDOW. `items` is the record's filed order, so index 0 is the oldest thing here,
-# and a decision a reader can still act on keeps its full body at any budget.
-PACK_SHORT_NOTE = """SOME DECISION BODIES BELOW ARE REDUCED. {n} of the oldest settled decisions, \
-out of {total}, carry their id, their title and their status and not their detail, because the \
-whole record does not fit in one send. Every one of them is still listed in full in the index \
-above, and their detail is still on the record. Where a question turns on one of them, say which \
-decision it is and that its detail is not in front of you."""
-
-
-def item_prose_short(it: dict, today: str) -> str:
-    """One decision reduced to what a model needs to NAME it rather than to answer from it.
-
-    The head line is byte identical to `item_prose`'s, because the worker's splitter keys on it.
-    """
-    dec = it.get("decider") or {}
-    return (f"[[{it['id']}]] {it['title']}\n"
-            f"The decider is {dec.get('name', 'not recorded')}. "
-            f"Its status is {it.get('status', 'unknown')}. "
-            f"This decision's detail is not in this send and is on the record.")
-
-
-def pack_fit(items: list, today: str, head=(), tail=()) -> tuple[str, int]:
-    """The core pack, and how many decision bodies the ceiling cost this build.
-
-    Split out from `build` so the pack can publish what the budget spent and a self-test can assert
-    on it, exactly as `index_fit` is. A build that spends nothing returns zero, which is the state
-    to expect and the one every build before 2026-09-11 produced.
-    """
-    full = [item_prose(it, today) for it in items]
-    head = [h for h in head if h]
-    tail = [t for t in tail if t]
-
-    def assemble(bodies, shortened):
-        parts = list(head)
-        if shortened:
-            parts.append(PACK_SHORT_NOTE.format(n=shortened, total=len(items)))
-        parts.append(DECISIONS_MARK)
-        return "\n\n".join(parts + bodies + tail)
-
-    out = assemble(full, 0)
-    if len(out) <= MAX_CHARS:
-        return out, 0
-
-    # THE NOTICE IS PART OF THE BILL, so it is paid before the first body is cut rather than
-    # discovered afterwards. `index_fit` learned this the same way.
-    bodies = list(full)
-    eligible = [i for i, it in enumerate(items) if dk.window_state(it, today) != "open"]
-    over = len(assemble(bodies, 1)) - MAX_CHARS
-    for i in eligible:
-        if over <= 0:
-            break
-        bodies[i] = item_prose_short(items[i], today)
-        over -= len(full[i]) - len(bodies[i])
-
-    shortened = sum(1 for a, b in zip(full, bodies) if a != b)
-    out = assemble(bodies, shortened)
-    if len(out) <= MAX_CHARS:
-        return out, shortened
-
-    # EVERYTHING ELIGIBLE IS ALREADY SHORT AND IT STILL DOES NOT FIT, which is the failure worth
-    # having. It means the open windows alone, or the preamble, or the rolled families have
-    # outgrown the budget, and none of those is fixed by another character a builder can find. The
-    # gate above this goes red and a person decides.
-    return out, shortened
-
-
-def pack_headroom(items: list, today: str, head=(), tail=()) -> dict:
-    """How far this pack is from each rung, in decisions the record would have to admit.
-
-        full   admissions until the first decision body is reduced
-        fits   admissions until the pack will not fit even with every settled body reduced, or
-               None when nothing inside `probe` breaks it
-        probe  how far this looked, published so a None reads as "not within this" and never
-               as "never"
-
-    MEASURED BY BUILDING, NOT BY DIVIDING. `index_headroom`'s docstring is the record of why: its
-    arithmetic version was wrong in two directions at once and the errors nearly cancelled, which
-    is the only reason anybody read it and felt informed.
-    """
-    if not items:
-        return {"full": 0, "fits": 0, "probe": PROBE}
-
-    # A REAL RECORD ROW RATHER THAN A MADE UP ONE, and a SETTLED one, because a synthetic decision
-    # with an open window would be ineligible for the rung and would flatter every answer below.
-    settled = [it for it in items if dk.window_state(it, today) != "open"] or list(items)
-    settled = sorted(settled, key=lambda it: len(item_prose(it, today)))
-    seed = settled[len(settled) // 2]
-
-    memo = {}
-
-    def spent(n):
-        if n not in memo:
-            grown = list(items)
-            for k in range(n):
-                clone = dict(seed)
-                clone["id"] = f"tx-0000-{k:04d}"
-                grown.append(clone)
-            text, short = pack_fit(grown, today, head, tail)
-            memo[n] = (len(text) <= MAX_CHARS, short)
-        return memo[n]
-
-    def last_true(pred, hi=PROBE):
-        if not pred(0):
-            return -1
-        lo = 0
-        while lo < hi:
-            mid = (lo + hi + 1) // 2
-            if pred(mid):
-                lo = mid
-            else:
-                hi = mid - 1
-        return lo
-
-    # EVERY RUNG ASKS WHETHER IT FITS FIRST. `index_headroom` shipped without that and published
-    # "room for 4,096 more decisions" over an index 105,800 characters past its ceiling.
-    full = last_true(lambda n: spent(n) == (True, 0))
-    edge = last_true(lambda n: spent(n)[0], PROBE)
-    return {"full": full, "fits": None if edge >= PROBE else edge, "probe": PROBE}
 
 
 def _feed(name: str, docs_dir=None):
@@ -1777,15 +1852,19 @@ def build(today: str = None, docs_dir=None) -> dict:
     if wx:
         parts.append("THE WEATHER RECORD.\n\n" + wx)
 
-    # THE PACK GOES THROUGH ITS OWN RUNG, the way the index has since 2026-09-09. `parts` is the
-    # preamble and everything after the mark is assembled by `pack_fit`, which reduces the oldest
-    # settled bodies only when the whole will not otherwise fit.
-    pack, pack_shortened = pack_fit(items, today, head=parts,
-                                    tail=list(county_blocks) + list(water_blocks))
-    facility_pack = ("\n\n".join(
-        [FACILITY_PACK_MARK, DECISIONS_MARK]
-        + [facility_prose(d) for d in dossiers]
-    ) if dossiers else "")
+    # THE CEILING IS AN INPUT NOW, the way the index's has been since 2026-09-09. `parts` above
+    # is the preamble and it is never given up. See `pack_fit` for what is, and for why a body
+    # MOVES rather than shrinking.
+    bodies = [item_prose(it, today) for it in items]
+    tail_blocks = list(county_blocks) + list(water_blocks)
+    facility_bodies = [facility_prose(d) for d in dossiers]
+    # OLDEST SETTLED FIRST, AND NEVER AN OPEN WINDOW. `items` is the record's own filed order, so
+    # index 0 is the oldest thing here, and an open window is the one state a reader can still
+    # act on, so its body stays in the core however old it is.
+    movable = [i for i, it in enumerate(items) if dk.window_state(it, today) != "open"]
+    pack, facility_pack, carried = pack_fit(parts, bodies, tail_blocks,
+                                            facility_bodies, movable)
+    pack_room = pack_headroom(parts, bodies, tail_blocks, facility_bodies, movable, today)
     index_extra = [
         ("THE DATA CENTER DOSSIERS. Every dossier the record holds, rolled up rather than listed, "
          "grouped by the county its filing names, each as its name and the id to cite it by, and "
@@ -1809,15 +1888,6 @@ def build(today: str = None, docs_dir=None) -> dict:
         # nothing in this repo to show for it. ASK_RETRIEVAL=off sends this bounded core plus
         # the complete index. Facility bodies stay available to normal retrieval below.
         "pack": pack,
-        # HOW MANY DECISION BODIES THE CEILING COST THIS BUILD. Zero is the ordinary state and it
-        # is the state that means every decision is in this field in full. Anything above zero is
-        # `pack_fit`'s rung operating, and `PACK_SHORT_NOTE` is in the pack saying so to the model.
-        "pack_shortened": pack_shortened,
-        # HOW FAR THE NEXT RUNG IS, PUBLISHED RATHER THAN COMPUTABLE. The index's equivalent
-        # existed as a function for a day and nothing called it, so the early warning was written
-        # and never wired to anything a person reads. `main` prints this one.
-        "pack_headroom": pack_headroom(items, today, head=parts,
-                                       tail=list(county_blocks) + list(water_blocks)),
         # THE COMPLETE FACILITY BODIES. Kept beside the core rather than inside it so the
         # retrieval-off escape hatch remains bounded. The worker indexes both fields and can
         # still send any full dossier body a normal question retrieves.
@@ -1844,6 +1914,14 @@ def build(today: str = None, docs_dir=None) -> dict:
         # warning entry 71 asked for was written and never wired to anything a person reads.
         # `main` prints it and the run's email carries it.
         "index_headroom": headroom,
+        # HOW MANY DECISION BODIES THE CORE HANDED TO THE SIBLING FIELD. Zero is the ordinary
+        # state and it means the retrieval-off path still carries every body. Anything above
+        # zero is that path carrying an index line for those decisions instead, which is the
+        # only thing `pack_fit` gives up and the reason it gives up nothing else.
+        "pack_carried": carried,
+        # HOW FAR THE CORE IS FROM EACH RUNG. `index_headroom` existed as a function nothing
+        # called for a day and warned nobody, so this is published from the start.
+        "pack_headroom": pack_room,
         # THE RATE THAT TURNS THOSE COUNTS INTO DAYS, MODELED and labelled. See
         # `admissions_per_day` for the rule, which is a median over four weeks rather than a
         # mean, because the record's seeding day would otherwise set the cadence.
@@ -2127,8 +2205,13 @@ def self_test() -> int:
     print("the record is all there")
     items = dk.load(LEDGER)
     check("every decision is in the pack", p["items"] == len(items), f"{p['items']} items")
-    missing = [it["id"] for it in items if f"[[{it['id']}]]" not in main_text]
-    check("every decision is citable by id", not missing, str(missing[:3]))
+    # CITABLE FROM WHAT THE WORKER READS, which is both published body fields rather than the
+    # core alone. `splitRecord` builds one item list out of the two, so a body the core handed
+    # over is retrieved exactly as it was. This asserted the core only, and it was the right
+    # assertion while the core held every body.
+    missing = [it["id"] for it in items if f"[[{it['id']}]]" not in text]
+    check("every decision is citable by id, from whichever field carries it",
+          not missing, str(missing[:3]))
 
     print("the house voice, because the model writes what it reads")
     # A colon inside a quoted source is the source's and is left alone, so the check runs on
@@ -2308,10 +2391,38 @@ def self_test() -> int:
     check("there are exactly as many blocks as the pack says it holds",
           len(blocks) == p["blocks"], f"{len(blocks)} blocks, {p['blocks']} declared")
     ids = [b[2:b.index("]]")] for b in blocks]
-    check("the decisions come out first, in the record's own order",
-          ids_by_section["core"][:len(items)] == [it["id"] for it in items])
-    check("every facility body is in the facility field",
-          len(ids_by_section["facility"]) == p["families"]["facility"],
+    # THE SPLIT CONTRACT AS IT IS NOW, and both of these used to say something narrower that was
+    # true only while the core held every decision body. `pack_fit` hands the oldest settled
+    # bodies to the sibling field when the ceiling needs it, so the shape to assert is that the
+    # two fields PARTITION the decisions, in the record's own order on each side, rather than
+    # that one of them holds all of them.
+    carried = p["pack_carried"]
+    core_tx = [i for i in ids_by_section["core"] if familyOf(i) == "tx"]
+    sib_tx = [i for i in ids_by_section["facility"] if familyOf(i) == "tx"]
+    order = [it["id"] for it in items]
+    check("the two body fields partition the decisions, none lost and none written twice",
+          sorted(core_tx + sib_tx) == sorted(order),
+          f"{len(core_tx)} in the core, {len(sib_tx)} carried, {len(order)} in the record")
+    check("the core carries the decisions it kept, in the record's own order",
+          core_tx == [i for i in order if i not in set(sib_tx)])
+    # OLDEST SETTLED FIRST, WHICH IS THE MOVABLE PREFIX AND NOT THE RECORD'S. This asserted
+    # `order[:carried]`, the unfiltered record prefix, and that is only the same list while no
+    # open window sits inside it. `tx-2026-0075` is at record index 61 and its window is open
+    # until November 3rd, so the two lists diverge the moment `carried` reaches 62, which is
+    # about 62 admissions past the first rung. The check would then have gone red on a pack
+    # `pack_fit` had built correctly, and a gate that fails on a correct build stops the daily
+    # run for no reason. Caught in review on the day it merged, before it could fire.
+    #
+    # The property is the same one, said against the sequence the budget actually draws from.
+    settled = [it["id"] for it in items if dk.window_state(it, p["generated"]) != "open"]
+    check("the sibling field carries exactly what the budget handed it, oldest settled first",
+          sib_tx == settled[:carried], f"{sib_tx[:3]} against {settled[:carried][:3]}")
+    check("...and never a decision a reader can still act on, whatever the budget cost",
+          not (set(sib_tx) - set(settled)),
+          str(sorted(set(sib_tx) - set(settled))[:3]))
+    check("and every dossier is still in the sibling field",
+          len([i for i in ids_by_section["facility"] if familyOf(i) == "facility"])
+          == p["families"]["facility"],
           str(len(ids_by_section["facility"])))
     check("every id is unique", len(set(ids)) == len(ids),
           f"{len(ids) - len(set(ids))} repeated")
@@ -2358,6 +2469,108 @@ def self_test() -> int:
           len(main_text) <= MAX_CHARS,
           f"{len(main_text)} chars, roughly {approx} tokens")
 
+    # ------------------------------------------------------------------ THE CORE'S OWN RUNGS
+    #
+    # THE PACK FITS ITS CEILING BY CONSTRUCTION TOO, 2026-09-11, and the defect it replays is the
+    # index's defect one field over. The daily run of that morning admitted four decisions and
+    # this self-test went red at 421,546 against 420,000. A complete record carrying a real
+    # public correction could not merge, `main` itself was holding three admissions of room, and
+    # nothing about that was going to get better on its own.
+    #
+    # These assert the fit is CONSTRUCTED rather than lucky, and each planted case is scored
+    # against the shape that shipped BEFORE this change as well as the one that ships now. A
+    # check that passes on both is measuring the record rather than the design.
+    print("the core pack fits its ceiling by construction, not by luck")
+    today_ = p["generated"]
+    _pcb, _pch, _pwb, _pwh = families()[1:]
+    _bodies = [item_prose(it, today_) for it in items]
+    _tail = list(_pcb) + list(_pwb)
+    _fac = [facility_prose(d) for d in _dossiers]
+    _movable = [i for i, it in enumerate(items)
+                if dk.window_state(it, today_) != "open"]
+    _pre = p["pack"].split("\n\n" + DECISIONS_MARK + "\n\n", 1)[0].split("\n\n")
+
+    def _old_core_shape(bodies):
+        """The core as it was assembled before 2026-09-11. Every body, no rungs, no ceiling."""
+        return "\n\n".join(_pre + [DECISIONS_MARK] + bodies + _tail)
+
+    check("this build's core fits, and reports what the budget cost",
+          p["chars"] and len(p["pack"]) <= MAX_CHARS and isinstance(p["pack_carried"], int),
+          f'{len(p["pack"]):,} chars, {p["pack_carried"]} bodies carried')
+    check("the carried notice is present exactly when a body was handed over",
+          (CARRIED_NOTE.split("\n")[0] in (p.get("facility_pack") or ""))
+          == bool(p["pack_carried"]),
+          f'carried {p["pack_carried"]}')
+
+    room = p["pack_headroom"]
+    check("the build publishes how far the first rung is",
+          isinstance(room.get("full"), int), str(room))
+    check("and it is measured against the core this build actually shipped",
+          room == pack_headroom(_pre, _bodies, _tail, _fac, _movable, today_), str(room))
+
+    def _grown_bodies(n):
+        """The record's own median movable body, admitted n more times."""
+        pool = sorted((_bodies[i] for i in _movable), key=len) or sorted(_bodies, key=len)
+        seed = pool[len(pool) // 2]
+        return _bodies + [seed] * n, _movable + list(range(len(_bodies), len(_bodies) + n))
+
+    # JUST PAST THE FIRST RUNG. The core still fits, and handing a body over was NECESSARY, so
+    # this proves the path rather than the bypass.
+    gb, gm = _grown_bodies(max(room["full"] + 2, 1))
+    g_core, g_sib, g_carried = pack_fit(_pre, gb, _tail, _fac, gm)
+    check("a record grown just past the first rung still fits",
+          len(g_core) <= MAX_CHARS, f"{len(g_core):,} chars from {len(gb)} bodies")
+    check("and handing a body over was necessary, so this proves the path not the bypass",
+          g_carried > 0 and len(_old_core_shape(gb)) > MAX_CHARS,
+          f"{g_carried} carried, the old shape would be {len(_old_core_shape(gb)):,}")
+    check("...and the old shape went red there, which is what makes that a gate",
+          len(_old_core_shape(gb)) > MAX_CHARS, f"{len(_old_core_shape(gb)):,}")
+
+    # FAR PAST IT. Every movable body has been handed over and the core still fits, and it says
+    # how many it could not carry rather than going quiet.
+    deep_b, deep_m = _grown_bodies(600)
+    d_core, d_sib, d_carried = pack_fit(_pre, deep_b, _tail, _fac, deep_m)
+    check("a record far past the first rung still fits",
+          len(d_core) <= MAX_CHARS, f"{len(d_core):,} chars from {len(deep_b)} bodies")
+    check("and it carried a great many bodies rather than going quiet about it",
+          d_carried > g_carried, f"{d_carried} carried")
+    check("...and the old shape is far over there, more than three times the ceiling",
+          len(_old_core_shape(deep_b)) > MAX_CHARS * 3, f"{len(_old_core_shape(deep_b)):,}")
+    # NOTHING IS LOST, WHICH IS THE WHOLE REASON THIS MOVES RATHER THAN SHRINKS. Every body is
+    # in one field or the other, and the sibling field's are whole.
+    d_core_ids = [b[2:b.index("]]")] for b in d_core.split("\n\n" + DECISIONS_MARK + "\n\n", 1)[1]
+                  .split("\n\n") if b.startswith("[[")]
+    d_sib_ids = [b[2:b.index("]]")] for b in d_sib.split("\n\n" + DECISIONS_MARK + "\n\n", 1)[1]
+                 .split("\n\n") if b.startswith("[[")]
+    check("every body is still published, in one field or the other",
+          len(d_core_ids) + len(d_sib_ids) == len(deep_b) + len(_tail) + len(_fac),
+          f"{len(d_core_ids)} + {len(d_sib_ids)} against {len(deep_b) + len(_tail) + len(_fac)}")
+
+    # AN OPEN WINDOW IS THE ONE STATE A READER CAN STILL ACT ON, so its body stays in the core
+    # however old it is and however tight the budget gets.
+    _open = [it["id"] for it in items if dk.window_state(it, today_) == "open"]
+    check("no decision with an open window was carried, at any rung",
+          all(f"[[{i}]]" in d_core for i in _open),
+          str([i for i in _open if f"[[{i}]]" not in d_core][:3]))
+
+    # THE CEILING CAN STILL GO RED, on the case no rung can give up. Every window open is that
+    # case, because an open window's body is never handed over.
+    print("and the core's ceiling can still go red, on the case no rung can give up")
+    forced = []
+    for k in range(400):
+        c = dict(items[k % len(items)])
+        c["id"] = f"tx-8{k:04d}"
+        c["public_access"] = {"room": "open_comment", "opens": "2026-01-01",
+                              "closes": "2099-01-01"}
+        forced.append(c)
+    f_bodies = [item_prose(it, today_) for it in forced]
+    f_core, _fs, f_carried = pack_fit(_pre, f_bodies, _tail, _fac, [])
+    check("a record whose windows are all open overflows the core and says so",
+          len(f_core) > MAX_CHARS, f"{len(f_core):,} chars, {f_carried} carried")
+    check("and the horizon reports no room rather than a number",
+          pack_headroom(_pre, f_bodies, _tail, _fac, [], today_)["full"] <= 0,
+          str(pack_headroom(_pre, f_bodies, _tail, _fac, [], today_)))
+
     # THE CEILING IS AN INPUT NOW, AND THIS IS THE DEFECT IT REPLAYS. On 2026-09-08 and again
     # on 2026-09-09 the index measured 40,644 against 40,000 and both runs held. Neither could
     # fix it by editing the record, because the overage was the record's ordinary growth, and
@@ -2395,63 +2608,6 @@ def self_test() -> int:
                      "needs is below. " + facility_index_block(_dossiers)) if _dossiers else ""
     _cb, _ch, _wb, _wh = families()[1:]
     ship_extra = [dossier_block, _ch, _wh]
-
-    # ------------------------------------------------------------------ THE PACK'S OWN RUNG
-    #
-    # THE DEFECT THIS REPLAYS. On 2026-09-11 the pack measured 421,546 against 420,000 and the run
-    # held. It could not fix it by editing the record, because the overage was the record's
-    # ordinary growth, and `main` was under four admissions from the same wall, so the next run and
-    # the one after would have held too. These assert the fit is CONSTRUCTED rather than lucky, by
-    # building a pack from a record inflated well past the ceiling and requiring it to come back
-    # inside with every decision still carrying a block.
-    print("the pack fits its ceiling by construction, not by luck")
-    check("this build's pack fits, and reports what the rung cost",
-          len(p["pack"]) <= MAX_CHARS and isinstance(p["pack_shortened"], int),
-          f'{len(p["pack"]):,} chars, {p["pack_shortened"]} reduced')
-    check("the reduction notice is present exactly when a body was reduced",
-          ("SOME DECISION BODIES BELOW ARE REDUCED" in p["pack"]) == (p["pack_shortened"] > 0),
-          f'{p["pack_shortened"]} reduced')
-    check("and a horizon that says how far the rung is, measured against the pack it ships",
-          set(p["pack_headroom"]) == {"full", "fits", "probe"},
-          str(p["pack_headroom"]))
-
-    _pre = ["THE TEXAS AI DOCKET, a self test preamble."]
-    _tail = [_ch, _wh]
-    pgrown = _grown(900)
-    ptext, pshort = pack_fit(pgrown, p["generated"], head=_pre, tail=_tail)
-    pblocks = [b for b in ptext.split("\n\n") if b.startswith("[[")]
-    check("a record far past the wall still produces a pack that fits",
-          len(ptext) <= MAX_CHARS, f"{len(ptext):,} chars from {len(pgrown)} decisions")
-    check("and reducing it was NECESSARY, so this proves the rung and not the bypass",
-          pshort > 0, f"{pshort} reduced")
-    check("and it says how many bodies it reduced rather than going quiet",
-          str(pshort) in ptext, f"{pshort} reduced")
-
-    # THE SPLIT CONTRACT IS WHY THE PACK HAS NO UNLIST RUNG. The worker cuts this field into one
-    # block per decision and asserts there are exactly as many blocks as decisions, so a pack that
-    # drops a body breaks a worker that is deployed BY HAND while this file rebuilds every day.
-    check("EVERY decision still has a block, at any budget, because the worker's splitter needs one",
-          len([b for b in pblocks if b.startswith("[[tx-")]) == len(pgrown),
-          f"{len([b for b in pblocks if b.startswith('[[tx-')])} of {len(pgrown)}")
-    check("and every reduced block still carries its id, its title line and its status",
-          all(("Its status is" in b) for b in pblocks if b.startswith("[[tx-")),
-          "one or more blocks lost their status")
-
-    # AN OPEN WINDOW IS THE ONE STATE A READER CAN STILL ACT ON, so it keeps its body at any
-    # budget. Built as a record whose windows are ALL open, which nothing may reduce.
-    _open = []
-    for k in range(700):
-        c = dict(items[k % len(items)]); c["id"] = f"tx-7{k:04d}"
-        # the same shape `index_fit`'s own forced fixture uses. `window_state` reads
-        # `public_access`, and a key date alone does not open a window.
-        c["public_access"] = {"room": "open_comment", "opens": "2026-01-01",
-                              "closes": "2099-01-01"}
-        _open.append(c)
-    otext, oshort = pack_fit(_open, p["generated"], head=_pre, tail=_tail)
-    check("a record whose windows are ALL open reduces nothing and overflows, saying so",
-          oshort == 0 and len(otext) > MAX_CHARS,
-          f"{oshort} reduced, {len(otext):,} chars")
-
 
     head = index_headroom(items, p["generated"], ship_extra)
     check("the build publishes how far each rung is, measured against the index it ships",
@@ -2552,6 +2708,45 @@ def self_test() -> int:
           named + deep_unlisted >= len(deep),
           f"{named} named plus {deep_unlisted} unlisted against {len(deep)}")
 
+    # ------------------------------------------ AND THE CORE'S RUNG GIVES UP THE SAME DECISIONS
+    #
+    # `index_fit`'s `eligible` and `pack_fit`'s `movable` are the identical rule in the identical
+    # order, and the core's rung fires between the 4th and the 10th admission where this one
+    # fires between the 229th and the 232nd. So every unlisted decision has ALSO had its body
+    # carried, and on `ASK_RETRIEVAL=off` it is then neither named nor quoted. That is not a loss
+    # against the shape before 2026-09-11, which is red from the 4th admission and produces no
+    # pack at all here. See `pack_fit` for the measured table and for why coupling the two rungs
+    # was rejected, which is that it puts the build back over its ceiling at +363 admissions.
+    #
+    # WHAT IS ASSERTED IS THE GUARANTEE AND NOT THE ABSENCE OF THE OVERLAP. The overlap is real,
+    # so this states it rather than leaving the checks above to be read as saying more than they
+    # do. What a reader is owed is that the gap is ANNOUNCED and COUNTED, and that is the rest.
+    deep_bodies = [item_prose(it, p["generated"]) for it in deep]
+    deep_movable = [i for i, it in enumerate(deep)
+                    if dk.window_state(it, p["generated"]) != "open"]
+    dc_core, _dc_sib, dc_carried = pack_fit(_pre, deep_bodies, _tail, _fac, deep_movable)
+    by_id = {it["id"]: it for it in deep}
+    blind = [it["id"] for it in deep
+             if f"[[{it['id']}]]" not in deep_idx and f"[[{it['id']}]]" not in dc_core]
+    check("at this depth the core's rung gives up the same decisions this one did",
+          len(blind) == deep_unlisted and dc_carried >= deep_unlisted,
+          f"{len(blind)} in neither field, {deep_unlisted} unlisted, {dc_carried} carried")
+    old_core = _old_core_shape(deep_bodies)
+    check("...and the old core is not the better alternative here, it is a red build and no pack",
+          bool(blind) and all(f"[[{i}]]" in old_core for i in blind)
+          and len(old_core) > MAX_CHARS,
+          f"{len(blind)} decisions the old core holds, at {len(old_core):,} chars against a "
+          f"{MAX_CHARS:,} ceiling")
+    blind_counties = {c for i in blind
+                      for c in ((by_id[i].get("geography") or {}).get("counties") or [])}
+    check("and every county a blinded decision names is still counted in full by the shape block",
+          all(f"{c} {deep_counties[c]}" in deep_shape for c in blind_counties),
+          str(sorted(c for c in blind_counties
+                     if f"{c} {deep_counties[c]}" not in deep_shape)[:3]))
+    check("and the index still states how many of the total it did not list",
+          UNLISTED_NOTE.format(n=deep_unlisted, total=len(deep)) in deep_idx,
+          f"{deep_unlisted} of {len(deep)}")
+
     # AN OPEN WINDOW IS THE ONE STATE A READER CAN STILL ACT ON, at either rung. It keeps its
     # full line however old it is, because a shortened line drops exactly the fact that the
     # window is open and an unlisted one drops the decision.
@@ -2630,21 +2825,22 @@ def main() -> int:
     else:
         print(f"  room for {h['fits']} more before the index will not fit at "
               f"all{days(h['fits'])}")
-
-    # THE PACK'S OWN HORIZON, PRINTED FOR THE SAME REASON. The index's was written on 2026-09-09
-    # and wired to nothing a person reads until the next day, and the pack had no horizon at all
-    # until it went red on 2026-09-11 with `main` under four admissions from the same wall.
-    ph = p["pack_headroom"]
-    print(f"  the pack spent {p['pack_shortened']} reduced decision "
-          f"{'body' if p['pack_shortened'] == 1 else 'bodies'}")
+    ph, nc = p["pack_headroom"], p["pack_carried"]
+    print(f"  the core handed {nc} decision {'body' if nc == 1 else 'bodies'} to the "
+          f"sibling field")
+    # A SPENT RUNG READS AS A SPENT RUNG, never as a negative count. `last_true` answers -1 for
+    # "this build is already past it", and printing that verbatim put "room for -1 more
+    # decisions" in front of a person on the first record that needed the rung at all.
     if ph["full"] < 0:
-        print("    the full-body rung is BREACHED now, which is what the reduction above is")
+        print("  no room left to hold every body in the core, which is this rung being spent")
     else:
-        print(f"    room for {ph['full']} more before the first body is reduced{days(ph['full'])}")
+        print(f"  room for {ph['full']} more decisions with every body in the "
+              f"core{days(ph['full'])}")
     if ph["fits"] is None:
-        print(f"    no size within {ph['probe']:,} more decisions stops the pack fitting")
+        print(f"  no size within {ph['probe']:,} more decisions stops the core fitting, which "
+              f"is what moving a body rather than the budget buys")
     else:
-        print(f"    room for {ph['fits']} more before the pack will not fit at "
+        print(f"  room for {ph['fits']} more before the core will not fit at "
               f"all{days(ph['fits'])}")
     return 0
 

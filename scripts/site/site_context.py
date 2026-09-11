@@ -47,6 +47,7 @@ import csp                                                        # noqa: E402
 import numeral_lint                                                # noqa: E402
 import docket_calendar as dcal                                     # noqa: E402
 import theme                                                       # noqa: E402
+import voice_input                                                 # noqa: E402
 import facility_dossier
 import entities
 import registry_changes
@@ -722,6 +723,7 @@ def page(*, title: str, desc: str, body: str, depth: int, active: str,
 {og.head_html(p, SITE_URL, SITE_NAME, title, desc, og_image, og_alt)}
 {favicon.head_html(p)}
 <link rel="stylesheet" href="{p}site.css?v={_css_version()}">{_extra_sheet(extra_css, p)}
+{voice_input.head(p)}
 <link rel="preload" href="{p}fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="alternate" type="application/atom+xml" title="{e(SITE_NAME)}" href="{p}atom.xml">
 <script type="application/ld+json">{json.dumps(ld, separators=(",", ":"))}</script>
