@@ -337,6 +337,36 @@ def dataset_node(ctx: Ctx, items: list, today: str) -> dict:
     return node
 
 
+def _is_iso_date(s: str) -> bool:
+    try:
+        _dt.date.fromisoformat(s)
+    except (TypeError, ValueError):
+        return False
+    return True
+
+
+def item_modified(it: dict, today: str) -> str:
+    """When this item's PAGE last changed, which is not the same day its source was checked.
+
+    `last_verified` answers "when was this re-read against the source", and it is the right
+    field for that and the wrong one for `dateModified`. A correction changes the published text
+    without re-reading anything: on 2026-09-10 `tx-2026-0130` lost two sentences its own claims
+    did not carry, and its `last_verified` stayed at the 8th because nothing was re-fetched.
+    The item page then went out with materially different prose and JSON-LD saying it had not
+    been modified since the 8th, which is a promise to a crawler that the page is stale.
+
+    Moving `last_verified` forward instead would have been the worse fix. It would say the
+    source was checked on a day it was not, and the staleness gate reads that field.
+
+    So the page's modification date is the later of the two dates the item actually holds, and
+    the two questions stay separate.
+    """
+    dates = [d for d in [it.get("last_verified")]
+             + [h.get("date") for h in (it.get("history") or []) if isinstance(h, dict)]
+             if isinstance(d, str) and _is_iso_date(d)]
+    return max(dates) if dates else today
+
+
 def report_node(ctx: Ctx, it: dict, today: str) -> dict:
     """One tracked decision, with everything the record holds about it."""
     ds = _dates(it)
@@ -357,7 +387,7 @@ def report_node(ctx: Ctx, it: dict, today: str) -> dict:
         "author": {"@id": ctx.url("#org")},
         "publisher": {"@id": ctx.url("#org")},
         "isPartOf": {"@id": ctx.url("record/#dataset")},
-        "dateModified": it.get("last_verified") or today,
+        "dateModified": item_modified(it, today),
         "keywords": sorted({ctx.topic_label(it["topic"]), "Texas",
                             "artificial intelligence"} | ({dec["name"]} if dec.get("name")
                                                           else set())),

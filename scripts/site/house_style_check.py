@@ -322,6 +322,64 @@ def leak_problems(page_html: str) -> list:
             if hit not in _CITED]
 
 
+# A paragraph of the project's own prose, inside a running-prose block. `class="meta"` marks a
+# chip, a counter or a citation line, which are data and not sentences, and a `<blockquote>` is a
+# source's own words, which may legitimately open mid sentence on a lowercase letter.
+#
+# `prose` AS A CLASS TOKEN, NOT AS THE WHOLE ATTRIBUTE, and the first draft of this gate got
+# that wrong in the way that leaves a checker green. It matched `class="prose"` exactly, which
+# is 2,665 of the site's running-prose blocks and misses 215 more: `prose facilitypage`,
+# `prose companypage`, `prose dcpage`, `prose regchanges`, `prose construction` and
+# `prose companyindex`. Every one of those is reader copy under the same rules, so an orphan on
+# any of them would have shipped under a passing gate. GATE_LESSONS' recurring shape again, and
+# it was caught by a reviewer rather than by the gate's own self-test, which used the one form
+# the pattern happened to match.
+_PROSE_BLOCK = re.compile(r'<div class="[^"]*\bprose\b[^"]*">(.*?)</div>', re.S)
+_PARA = re.compile(r"<p([^>]*)>(.*?)</p>", re.S)
+# THE EXEMPTION IS METADATA, AND ONLY METADATA. `cite`, `meta` and `srcline` are citation and
+# chip rows, which are data rather than sentences, and `data-prose="data"` is the site's own
+# mark for the same thing. The first draft exempted every paragraph carrying ANY class, which
+# waved through `gap`, `lede`, `blede`, `qnote` and `wnote`, 53 paragraphs of running prose.
+_META_PARA = re.compile(r'\bclass="[^"]*\b(?:cite|meta|srcline)\b|data-prose="data"')
+# A block the design set in lowercase ON PURPOSE announces itself by restarting in lowercase
+# after its own full stop. Two published decks write their footnote blocks that way, and they
+# are running prose rather than a fragment. `site_context._LOWER_RESTART` is the same rule.
+_LOWER_RESTART = re.compile(r"[.!?][\"'”’)\]]?\s+[a-z]")
+# xAI is a party to filings in this record, and iPhone and eBay are the same shape. A name
+# spelled with a small first letter opens a complete sentence. `site_context._LOWER_NAME` too.
+_LOWER_NAME = re.compile(r"^[a-z][a-z]{0,3}[A-Z]")
+
+
+def orphan_problems(page_html: str) -> list:
+    """Paragraphs that open on a lowercase letter, which is a sentence missing its subject.
+
+    THIS SHIPPED. The article page for deck 20 published "are themselves being rewritten." and
+    "while that is still unfinished." as paragraphs of their own, with nothing on the page to
+    say what was being rewritten or what was unfinished. The transcript is assembled from the
+    deck's own laid-out text nodes, slide 7 set two sentences flush left across two lines each,
+    and the prose test in `site_context` kept the half that ended in a full stop and dropped the
+    half that did not. `_join_wrapped` puts the sentence back together now.
+
+    That fix is in the builder, so this is the check that it happened. It reads the SERVED page
+    rather than the builder's intermediate, because the whole shape of this defect was a
+    component that was right about the string in front of it, and the only place the reader's
+    sentence actually exists is the HTML.
+    """
+    out = []
+    for block in _PROSE_BLOCK.findall(page_html):
+        for attrs, para in _PARA.findall(block):
+            if _META_PARA.search(attrs):
+                continue
+            t = _html.unescape(TAG.sub(" ", para)).strip()
+            if (t[:1].isalpha() and t[:1].islower()
+                    and not _LOWER_NAME.match(t) and not _LOWER_RESTART.search(t)):
+                out.append(f"{t[:60]!r} is a paragraph opening on a lowercase letter, so it "
+                           f"reads as the tail of a sentence whose subject is not on the page. "
+                           f"A slide that wraps one sentence over two lines reaches the "
+                           f"transcript as two strings: see _join_wrapped in site_context")
+    return out
+
+
 def check_site(docs: Path) -> dict[str, list[str]]:
     out: dict[str, list[str]] = {}
     for page in sorted(docs.rglob("*.html")):
@@ -334,6 +392,7 @@ def check_site(docs: Path) -> dict[str, list[str]]:
         # An exemption that reports nothing when it is misused is a hole with a comment over it.
         problems += time_chip_problems(text)
         problems += leak_problems(text)
+        problems += orphan_problems(text)
         problems += [f"{p} (in the page metadata, which is what a search result shows)"
                      for p in caption_check.check(page_metadata(text))]
         # The rate is judged per PAGE, which is the unit a reader actually reads. A single
@@ -387,6 +446,135 @@ def self_test() -> int:
                        '</main>')
     ok("text marked as the reader's own voice is exempt", "What can I" not in voiced, voiced)
     ok("...and only what is marked", "August 11th" in voiced)
+
+    # THE ORPHAN SENTENCE, replayed. Deck 20's article page published these two paragraphs.
+    orphan = ('<main><div class="prose">'
+              '<p>The Cybercab is carrying riders</p>'
+              '<p>while that is still unfinished.</p>'
+              '</div></main>')
+    hits = orphan_problems(orphan)
+    ok("a paragraph opening on a lowercase letter is caught", len(hits) == 1, str(hits))
+    ok("...and the paragraph above it is not", "while that" in hits[0] if hits else False)
+    whole = ('<main><div class="prose">'
+             '<p>The Cybercab is carrying riders while that is still unfinished.</p>'
+             '<blockquote>certified those Cybercab vehicles as compliant</blockquote>'
+             '<p class="meta"><span class="tag">Published September 10th</span></p>'
+             '</div></main>')
+    ok("a whole sentence passes", not orphan_problems(whole), str(orphan_problems(whole)))
+    ok("a quotation may open mid sentence", "certified those" not in "".join(orphan_problems(whole)))
+    # THE FOUR BLIND SPOTS A REVIEWER FOUND IN THE FIRST DRAFT OF THIS GATE.
+    styled = ('<main><div class="prose facilitypage">'
+              '<p class="gap">while that is still unfinished.</p></div></main>')
+    ok("a prose block with a second class is still read", len(orphan_problems(styled)) == 1,
+       str(orphan_problems(styled)))
+    metaonly = ('<main><div class="prose dcpage">'
+                '<p class="meta">c12 c18 c19</p>'
+                '<p class="cite">texasaidocket.com</p>'
+                '<p class="srcline">gov.texas.gov/news</p>'
+                '<p data-prose="data">august 11th, 2026</p></div></main>')
+    ok("a metadata row is exempt and nothing else is", not orphan_problems(metaonly),
+       str(orphan_problems(metaonly)))
+    named = ('<main><div class="prose">'
+             '<p>xAI filed an application with the commission.</p>'
+             '<p>eBay is not a party to it.</p></div></main>')
+    ok("a name spelled with a small first letter is a sentence", not orphan_problems(named),
+       str(orphan_problems(named)))
+    lowered = ('<main><div class="prose">'
+               '<p>the clause and the question are one printed sentence. the council called it '
+               'on August 11th, 2026</p></div></main>')
+    ok("a block set in lowercase throughout is a style, not a fragment",
+       not orphan_problems(lowered), str(orphan_problems(lowered)))
+
+    # THE BUILDER SIDE, so the gate and the fix are proved by one command. `_join_wrapped` is
+    # what stops the halves reaching the page at all, and `orphan_problems` is what stops a
+    # future break shipping if it ever regresses.
+    sys.path.insert(0, str(REPO_ROOT / "scripts" / "site"))
+    import site_context                                            # noqa: PLC0415
+    joined = site_context._join_wrapped([
+        "The rules a reader is judged by", "are themselves being rewritten.",
+        "THE GROUND IS MOVING",
+        "The Cybercab is carrying riders", "while that is still unfinished.",
+        "TRAVIS COUNTY", "texasaidocket.com", "07 / 09"])
+    ok("a wrapped sentence is rejoined",
+       "The rules a reader is judged by are themselves being rewritten." in joined, str(joined))
+    ok("...both of them", "The Cybercab is carrying riders while that is still unfinished."
+       in joined, str(joined))
+    ok("a capitalised tag between two sentences is not swallowed",
+       "THE GROUND IS MOVING" in joined, str(joined))
+    ok("furniture after the last sentence is left alone",
+       "TRAVIS COUNTY" in joined and "texasaidocket.com" in joined, str(joined))
+    ok("a completed sentence never absorbs what follows it",
+       site_context._join_wrapped(["It closed on August 11th.", "and it did not reopen."])
+       == ["It closed on August 11th.", "and it did not reopen."])
+    # THE FOUR WRONG JOINS a looser rule made, replayed off the decks that produced them.
+    ok("a run of labels is not welded into a sentence",
+       site_context._join_wrapped(
+           ["Art of Thinking", "as the district states it", "as the district calls it optional"])
+       == ["Art of Thinking", "as the district states it", "as the district calls it optional"])
+    ok("a label is never welded to the quotation set under it",
+       site_context._join_wrapped(
+           ["About 27 acres, and what stands on them",
+            "a transformative new academic medical destination on the campus."],
+           [{"quote": "a transformative new academic medical destination on the campus"}])
+       == ["About 27 acres, and what stands on them",
+           "a transformative new academic medical destination on the campus."])
+    ok("a published line never absorbs the one after it",
+       site_context._join_wrapped(
+           ["Approximately 90 percent of the new power requests are data centers",
+            "more than five times."])
+       == ["Approximately 90 percent of the new power requests are data centers",
+           "more than five times."])
+    ok("a lowercase fragment is never treated as an opener",
+       site_context._join_wrapped(["the ballot names a device", "at fixed locations."])
+       == ["the ballot names a device", "at fixed locations."])
+    ok("a Title Case label never opens a sentence",
+       site_context._join_wrapped(["Why This Matters", "the deadline passed."])
+       == ["Why This Matters", "the deadline passed."])
+    ok("...and a sentence-cased opener carrying a proper noun still joins",
+       site_context._join_wrapped(
+           ["The Cybercab is carrying riders", "while that is still unfinished."])
+       == ["The Cybercab is carrying riders while that is still unfinished."])
+    # Both are over the length shortcut and neither ends on a stop, so the only thing that can
+    # separate them is the capital inside the first word.
+    ok("a name spelled with a small first letter reads as prose",
+       site_context._reads_as_prose(
+           "xAI filed an application with the commission and the commission docketed it", []))
+    ok("...and the long label beside it still does not",
+       not site_context._reads_as_prose(
+           "compounds screened in one drug discovery project, in about a week", []))
+
+    # dateModified is the page's, last_verified is the source's, and a correction moves only one.
+    import schema                                                  # noqa: PLC0415
+    corrected = {"last_verified": "2026-09-08",
+                 "history": [{"date": "2026-09-08", "note": "Admitted."},
+                             {"date": "2026-09-10", "note": "Corrected."}]}
+    ok("a correction moves the page's modification date",
+       schema.item_modified(corrected, "2026-09-11") == "2026-09-10")
+    ok("...and never past the last thing the item actually holds",
+       schema.item_modified({"last_verified": "2026-09-10"}, "2026-09-11") == "2026-09-10")
+    ok("...and a re-verification later than any history line still wins",
+       schema.item_modified({"last_verified": "2026-09-11",
+                             "history": [{"date": "2026-09-08"}]}, "2026-09-11")
+       == "2026-09-11")
+    ok("an item holding no dates falls back to the build date",
+       schema.item_modified({}, "2026-09-11") == "2026-09-11")
+    ok("neither of the halves survives the prose test alone",
+       not site_context._reads_as_prose("The rules a reader is judged by")
+       and site_context._reads_as_prose("are themselves being rewritten."))
+    # THE LONG LABEL that reached the page on length alone, and the three things that spare a
+    # lowercase opener from the same test.
+    label = "compounds screened in one drug discovery project, in about a week"
+    ok("a long label opening lowercase is not prose",
+       not site_context._reads_as_prose(label, []))
+    ok("...and it still passes when nothing knows the claims",
+       site_context._reads_as_prose(label), "the rule needs the claims to exempt a quotation")
+    ok("a lowercase opener that ends on a stop is prose",
+       site_context._reads_as_prose("are themselves being rewritten.", []))
+    ok("a block set in lowercase throughout is prose",
+       site_context._reads_as_prose(
+           "the commission recommends it. the council ordered an election", []))
+    ok("a quotation lifted mid sentence is still prose",
+       site_context._reads_as_prose(label, [{"quote": label}]))
 
     # THE DATE CHIP EXEMPTION, PROVEN IN BOTH DIRECTIONS. It is worthless if it only ever
     # passes: the reason it exists is that a calendar tile is not a sentence, and the reason it

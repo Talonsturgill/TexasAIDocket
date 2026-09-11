@@ -1,6 +1,6 @@
 # National Science Foundation puts UT Austin's supercomputing center in an operating role for the national AI research resource
 
-The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is named as the collaborating institution. The operations center is to coordinate resource providers, integrate computing and data, run the national portal and provide user support and training. The pilot it takes over has supported research projects nationwide since it launched. This puts a Texas public institution in a role that runs the front door to federal AI compute rather than only hosting a machine behind it.
+The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is named as the collaborating institution. The pilot the operations center takes over has supported over 800 research projects. That names a Texas public institution on the center that operates the national resource rather than only on a machine behind it.
 
 - Topic: research-and-science
 - Decided by: National Science Foundation (federal)
@@ -22,6 +22,7 @@ The National Science Foundation announced on September 1st, 2026 that it is esta
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-08 · Admitted to the record. The agency's own announcement names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center.
+- 2026-09-10 · Corrected. The summary listed the duties of the operations center and called the Texas role the front door to federal AI compute. Neither sentence had a source under it, and both are gone.
 
 ## Evidence
 

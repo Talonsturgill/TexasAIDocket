@@ -266,7 +266,7 @@
           "text": "The project ran an earlier round of questions for comment under its own deadline, before the proposal for publication.",
           "verbatim_quote": "Staff Memo and Questions for Comment w/April 8 Deadline",
           "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
-          "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
+          "source_title": "PUCT Interchange, Filings for 58482, document title",
           "source_type": "primary_official",
           "fetched": "2026-08-28"
         },
@@ -473,6 +473,10 @@
         {
           "date": "2026-09-10",
           "note": "The filing index still stands where the record left it and the case style has not changed. The commission's calendar feed no longer carries the September 4th deadline. That is what the feed does once a date has passed. The two entries the record quoted from it have been replaced by two the index still carries. The Texas Register acknowledgement filed under the control number still states the September 4th deadline, so the shut window stays readable from a source that keeps its own history."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Corrected. One claim carried a source title naming the commission's calendar feed. The claim quotes the commission's filing index for control number 58482, and the source title now names that."
         }
       ]
     },
@@ -1722,7 +1726,7 @@
           "text": "The feed carries the grid operator's own board meetings beside the commission's.",
           "verbatim_quote": "Open Meeting ERCOT - Monday, September 14, 2026",
           "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
-          "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
+          "source_title": "PUCT calendar RSS, entry title",
           "source_type": "primary_official",
           "fetched": "2026-08-28"
         },
@@ -1740,7 +1744,7 @@
           "text": "The feed carries workshops alongside its meetings and its deadlines.",
           "verbatim_quote": "Workshop - Tuesday, September 22, 2026",
           "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
-          "source_title": "PUCT calendar RSS, entry titled Public Comment Deadline - Friday, September 4, 2026",
+          "source_title": "PUCT calendar RSS, entry title",
           "source_type": "primary_official",
           "fetched": "2026-08-28"
         },
@@ -1859,6 +1863,10 @@
         {
           "date": "2026-09-10",
           "note": "The calendar is still published as a live feed and still runs into 2027, so the dates a reader would plan around are still there to read. The September 4th comment deadline has come off it now that the date has passed, the same way a held meeting does. That leaves Project 59550 on September 17th as the only comment deadline the feed still carries. The feed also lists the grid operator's own board meetings, at an address that is not the commissioners hearing room."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Corrected. Two claims carried a source title naming the September 4th comment deadline entry. Each quotes a different entry title on the same feed, so both now read entry title."
         }
       ]
     },
@@ -15031,8 +15039,8 @@
       ]
     },
     {
-      "title": "A Texas Senate committee took testimony on how much water data center cooling uses and whether local water providers are told",
-      "summary": "The Senate Committee on Water, Agriculture and Rural Affairs met at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012 at the Capitol. Senator Charles Perry chairs it. The posted notice sets one interim charge. It is examining current water consumption rates for high consumption cooling technologies including data centers. The charge directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. Public testimony was limited to two minutes and written testimony went to the committee clerk. A hearing is not a decision. It is the stage at which the committee that writes the state's water bills decides what to recommend.",
+      "title": "A Texas Senate committee set a hearing on how much water data center cooling uses and whether local water providers are told",
+      "summary": "The Senate Committee on Water, Agriculture and Rural Affairs posted notice that it would meet at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012. Senator Charles Perry chairs it. The notice sets one interim charge and says the committee will hear invited and public testimony on it. The charge is to examine current water consumption rates for high consumption cooling technologies including data centers. It directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. The notice limits public testimony to two minutes and routes written testimony to the committee clerk. A notice sets a hearing rather than reporting one. It says nothing about what the committee heard or what it will recommend.",
       "topic": "land-water-and-permitting",
       "decider": {
         "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
@@ -15049,12 +15057,12 @@
         {
           "date": "2026-09-01",
           "kind": "hearing",
-          "note": "Public hearing on the interim charge"
+          "note": "Hearing set by the committee's posted notice"
         }
       ],
       "public_access": {
         "room": "open_meeting",
-        "how": "The committee posts its notice with the room, the hour and the charge before it meets, and it took invited and public testimony. Public testimony was limited to two minutes. Written testimony goes to the committee clerk, whose address is on the notice, so a Texan who could not be in Austin could still be read into the record.",
+        "how": "The committee posts its notice with the room, the hour and the charge before it meets. The notice says the committee will hear invited and public testimony and it limits each speaker to two minutes. It also told anyone submitting written testimony to give 15 copies to the committee clerk and email a digital copy to the address the notice prints. That route was open for the hearing the notice set and nothing fetched here describes a window after it.",
         "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm"
       },
       "claims": [
@@ -15077,13 +15085,31 @@
           "id": "tx-2026-0126-c2"
         },
         {
-          "text": "The notice states how long a member of the public could speak.",
+          "text": "The notice states how long a member of the public may speak.",
           "verbatim_quote": "Public testimony is limited to 2 minutes.",
           "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
           "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
           "source_type": "primary_official",
           "fetched": "2026-09-07",
           "id": "tx-2026-0126-c3"
+        },
+        {
+          "text": "The notice states that the committee will meet and what it will hear.",
+          "verbatim_quote": "The Senate Committee on Water, Agriculture, and Rural Affairs will meet Tuesday, September 1, 2026 at 9:00 am to hear invited and public testimony on the following interim charges",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0126-c4"
+        },
+        {
+          "text": "The notice tells a member of the public how to submit written testimony.",
+          "verbatim_quote": "If submitting written testimony, please provide 15 copies to the committee clerk with your name and/or the name of your organization on each copy, and email a digital copy to the clerk of the committee",
+          "source_url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm",
+          "source_title": "Texas Legislature Online, Senate Notice of Public Hearing",
+          "source_type": "primary_official",
+          "fetched": "2026-09-10",
+          "id": "tx-2026-0126-c5"
         }
       ],
       "id": "tx-2026-0126",
@@ -15097,12 +15123,16 @@
           "date": "2026-09-10",
           "note": "The committee's schedule still records that it took testimony on water use for data center cooling and on whether local water providers are told. No report has been published from it and no further hearing is posted.",
           "checked": true
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Corrected, and this retracts the line above it. That line says the committee's schedule records that it took testimony. The schedule holds the posted notice, which reads that the committee will meet, and no source under it reports what the committee heard. The title and the summary said the hearing was held and now describe the notice. Two claims were added, for the sentence that sets the meeting and for the instruction on written testimony."
         }
       ]
     },
     {
       "title": "National Science Foundation puts UT Austin's supercomputing center in an operating role for the national AI research resource",
-      "summary": "The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is named as the collaborating institution. The operations center is to coordinate resource providers, integrate computing and data, run the national portal and provide user support and training. The pilot it takes over has supported research projects nationwide since it launched. This puts a Texas public institution in a role that runs the front door to federal AI compute rather than only hosting a machine behind it.",
+      "summary": "The National Science Foundation announced on September 1st, 2026 that it is establishing an operations center for the National Artificial Intelligence Research Resource. The center is led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is named as the collaborating institution. The pilot the operations center takes over has supported over 800 research projects. That names a Texas public institution on the center that operates the national resource rather than only on a machine behind it.",
       "topic": "research-and-science",
       "decider": {
         "name": "National Science Foundation",
@@ -15156,6 +15186,10 @@
         {
           "date": "2026-09-08",
           "note": "Admitted to the record. The agency's own announcement names the Texas Advanced Computing Center at UT Austin as the collaborating institution on the operations center."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Corrected. The summary listed the duties of the operations center and called the Texas role the front door to federal AI compute. Neither sentence had a source under it, and both are gone."
         }
       ],
       "confidence": "high"
@@ -15186,7 +15220,7 @@
       ],
       "public_access": {
         "room": "contact_only",
-        "how": "The agency publishes the opening resume for the audit at its own investigation site. Anyone can read the scope, the docket number and the estimated population in the agency's own words. An audit query takes no public comment. What a member of the public can do is read the resume and file a vehicle safety complaint with the same office.",
+        "how": "The agency publishes the opening resume for the audit and the link here reaches it. Anyone can read the scope, the docket number and the estimated population in the agency's own words. An audit query takes no public comment, so there is no window to file into and no hearing to attend.",
         "url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf"
       },
       "claims": [
@@ -15290,7 +15324,7 @@
           "id": "tx-2026-0140-c11"
         },
         {
-          "text": "The resume names the investigator and the approver.",
+          "text": "The resume names the investigator and the reviewer.",
           "verbatim_quote": "Investigator: Syed Rahaman Reviewer: Neil Dold",
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-AQ26002-17078.pdf",
           "source_title": "NHTSA Office of Defects Investigation opening resume, AQ26002",
@@ -15305,6 +15339,10 @@
         {
           "date": "2026-09-10",
           "note": "The agency's opening resume is published and carries the docket number, the date, the estimated population and the scope in the agency's own words. The audit is open and nothing has been reported closed."
+        },
+        {
+          "date": "2026-09-10",
+          "note": "Corrected. The claim naming the two officials on the resume called one of them the approver. The resume's own words are Reviewer, and the claim now reads reviewer. The access note advertised filing a vehicle safety complaint. No source here describes that route. The note now says what the link reaches."
         }
       ]
     },
