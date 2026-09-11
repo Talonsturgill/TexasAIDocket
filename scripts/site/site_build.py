@@ -706,6 +706,56 @@ def self_test() -> int:
     check("...and carries one complete video entry",
           _video.count("<video:video>") == 1, _video)
 
+    # A FAILED RUN KEEPS ITS EVIDENCE AND MUST NOT BECOME AN ARTICLE. Carousel no. 17 was held
+    # on a standing hard fail after five rounds, yet its run directory carried the same copy and
+    # images as a shipped deck. Presence alone therefore published the sentence the panel had
+    # refused. Exercise the real loader against all four completion paths rather than testing a
+    # second approximation of the rule here. The cap and owner override cases are the negative
+    # control: both can honestly retain `ship: false` while still being authorised to publish.
+    _real_repo_root = _context.REPO_ROOT
+    with tempfile.TemporaryDirectory() as td:
+        _context.REPO_ROOT = Path(td)
+        _runs_root = Path(td) / "runs" / "carousel"
+
+        def _fake_run(date, score=None):
+            _d = _runs_root / date
+            _d.mkdir(parents=True)
+            (_d / "copy.json").write_text(json.dumps({
+                "document_title": date,
+                "slides": [{"headline": "A sentence long enough to be a useful preview."}],
+            }), encoding="utf-8")
+            (_d / "slide-01.png").write_bytes(b"fixture")
+            if score is not None:
+                (_d / "score.json").write_text(json.dumps(score), encoding="utf-8")
+
+        try:
+            _fake_run("2026-01-05", {"weighted_score": 9.0, "ship": False,
+                                      "hard_fails": ["unsupported closure"], "rounds": 5})
+            _fake_run("2026-01-04", {"weighted_score": 6.5, "ship": False,
+                                      "hard_fails": [], "rounds": 2})
+            _fake_run("2026-01-03", {"weighted_score": 6.5, "ship": False,
+                                      "hard_fails": [], "rounds": 5})
+            _fake_run("2026-01-02", {"weighted_score": 6.5, "ship": False,
+                                      "hard_fails": [], "rounds": 2,
+                                      "owner_override": {"instruction": "ship it",
+                                                         "date": "2026-01-02"}})
+            _fake_run("2026-01-01")
+            _loaded = load_runs()
+        finally:
+            _context.REPO_ROOT = _real_repo_root
+
+    _loaded_dates = {r["date"] for r in _loaded}
+    check("held run evidence never becomes a published article",
+          "2026-01-05" not in _loaded_dates and "2026-01-04" not in _loaded_dates,
+          repr(sorted(_loaded_dates)))
+    check("cap, owner override and legacy publication paths remain intact",
+          _loaded_dates == {"2026-01-01", "2026-01-02", "2026-01-03"},
+          repr(sorted(_loaded_dates)))
+    _fake_articles = articles_page(_loaded, "2026-01-05")
+    check("the built article index carries no route to held evidence",
+          "2026-01-05/" not in _fake_articles and "2026-01-04/" not in _fake_articles,
+          _fake_articles[:300])
+
     # THE TOPIC VOCABULARY LIVES IN TWO FILES AND THEY HAVE TO AGREE.
     #
     # `docket_build.TOPICS` decides what the record may admit. `TOPIC_BLURBS` decides what
