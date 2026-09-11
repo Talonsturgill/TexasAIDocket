@@ -329,7 +329,7 @@ physical system on a scale of days. They are siblings, not parent and child. The
 | Repo | Owns |
 |---|---|
 | `TexasAIDispatch` | the video engine and its renders |
-| `TexasAIScanner` | the Bottleneck Scanner: its method, its four agents and its renderer. It has NO backend on purpose. The form here posts to FormSubmit, the scan runs locally, and the report goes into a Gmail draft that a human sends. Nothing about a requester is ever stored or published |
+| `TexasAIScanner` | the Bottleneck Scanner: its method, four agents, renderer, and private backend. The public form posts to its Cloudflare Worker, which verifies Turnstile, enforces caps, fires the routine, and keeps private progress in D1. FormSubmit remains the network-failure fallback. The routine puts the report in a Gmail draft for a human to send; requester data never enters this repo or a public page |
 
 `TexasAIDispatch` writes exactly one file here, `docs/videos/videos.json`, via its publish
 step. Nothing else in this repo may write it, and no build here may reformat it.
