@@ -7,16 +7,14 @@
         "outside safe zone: 'TEXAS STATE BOARD OF EDUCATION 19 TAC SE' at 80,64 497x72 (margin 80px)",
         "outside safe zone: '01 / 09' at 884,64 116x31 (margin 80px)",
         "outside safe zone: 'c11 c14 TEXAS AI DOCKET' at 80,1257 402x31 (margin 80px)",
-        "low contrast ~2.2 on 'c11 c14 TEXAS AI DOCKET' (est.)",
-        "outside safe zone: 'texasaidocket.com' at 727,1257 273x31 (margin 80px)",
-        "low contrast ~2.2 on 'texasaidocket.com' (est.)"
+        "outside safe zone: 'texasaidocket.com' at 727,1257 273x31 (margin 80px)"
       ],
       "bands": [
         0.4706,
         0.3508,
-        0.3824
+        0.3658
       ],
-      "band_ratio": 0.9549
+      "band_ratio": 0.9275
     },
     {
       "file": "slide-02.html",
@@ -31,13 +29,18 @@
         "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
       ],
       "bands": [
-        0.3529,
-        0.4727,
-        0.579
+        0.4328,
+        0.5987,
+        0.7831
       ],
-      "band_ratio": 1.2235,
+      "band_ratio": 1.2775,
       "encodings": [
         "'a chapter carrying the machine reads differently from one that does not': dE 18.4, AUC 0.97, visible 100%/100%, seen 2940/3024px at 432w"
+      ],
+      "contacts": [
+        "'chapter 3's slab against the reveal below it': shadow L* 39.5 vs ground L* 61.4, dL 22.0 at 432w",
+        "'chapter 4's slab against the reveal below it': shadow L* 39.1 vs ground L* 61.5, dL 22.4 at 432w",
+        "'chapter 7's slab against the reveal below it': shadow L* 39.5 vs ground L* 61.8, dL 22.3 at 432w"
       ]
     },
     {
@@ -47,18 +50,16 @@
         "outside safe zone: 'THE WHOLE STANDARD' at 80,64 298x31 (margin 80px)",
         "outside safe zone: '03 / 09' at 884,64 116x31 (margin 80px)",
         "outside safe zone: 'c11 c14 c15 c16' at 80,1259 241x31 (margin 80px)",
-        "low contrast ~1.7 on 'c11 c14 c15 c16' (est.)",
-        "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)",
-        "low contrast ~1.7 on 'texasaidocket.com' (est.)"
+        "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
       ],
       "bands": [
-        0.2185,
-        0.4391,
-        0.5772
+        0.1954,
+        0.3739,
+        0.5735
       ],
-      "band_ratio": 1.3772,
+      "band_ratio": 1.4717,
       "encodings": [
-        "'the lifted occurrences read differently from the field around them': dE 5.3, AUC 0.93, visible 100%/100%, seen 216/198px at 432w"
+        "'the lifted occurrences read differently from the field around them': dE 4.9, AUC 0.92, visible 100%/100%, seen 216/198px at 432w"
       ]
     },
     {
@@ -79,13 +80,13 @@
         "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
       ],
       "bands": [
-        0.4958,
-        0.3697,
-        0.3346
+        0.6197,
+        0.5168,
+        0.6324
       ],
-      "band_ratio": 0.8426,
+      "band_ratio": 1.0689,
       "encodings": [
-        "'the posture rect on this frame reads differently from the wall beside it': dE 15.9, AUC 0.71, visible 92%/100%, seen 21196/6144px at 432w"
+        "'the posture rect on this frame reads differently from the wall beside it': dE 15.2, AUC 0.71, visible 92%/100%, seen 21196/6144px at 432w"
       ],
       "contacts": [
         "'the whiteboard on the wall': shadow L* 29.8 vs ground L* 48.6, dL 18.8 at 432w",
@@ -95,21 +96,19 @@
     {
       "file": "slide-05.html",
       "fails": [],
-      "warns": [
-        "worst-point contrast 3.0 on '\"in a digital age\"' (box mean 5.2) -- below the rubric's 4.5 line somewhere along the run of the text"
-      ],
+      "warns": [],
       "bands": [
         0.4538,
         0.813,
-        0.6029
+        0.5974
       ],
-      "band_ratio": 0.9689,
+      "band_ratio": 0.9631,
       "encodings": [
         "'the convergence reads differently from the locker bank beside it': dE 43.4, AUC 0.95, visible 100%/100%, seen 23040/5120px at 432w"
       ],
       "contacts": [
-        "'the left locker bank meeting the tile': shadow L* 13.2 vs ground L* 44.1, dL 30.9 at 432w",
-        "'the right locker bank meeting the tile': shadow L* 13.0 vs ground L* 38.6, dL 25.6 at 432w"
+        "'the left locker bank meeting the tile': shadow L* 13.7 vs ground L* 44.8, dL 31.2 at 432w",
+        "'the right locker bank meeting the tile': shadow L* 13.7 vs ground L* 39.2, dL 25.5 at 432w"
       ]
     },
     {
@@ -117,61 +116,56 @@
       "fails": [],
       "warns": [
         "outside safe zone: 'KNOWLEDGE STATEMENT (7) SAVING AND INVES' at 80,64 381x72 (margin 80px)",
-        "worst-point contrast 4.5 on 'SAVING AND INVESTING' (box mean 5.4) -- below the rubric's 4.5 line somewhere along the run of the text",
-        "outside safe zone: '06 / 09' at 884,64 116x31 (margin 80px)",
-        "low contrast ~2.5 on '06 / 09' (est.)"
+        "outside safe zone: '06 / 09' at 884,64 116x31 (margin 80px)"
       ],
       "bands": [
-        0.3718,
-        0.3046,
-        0.3217
+        0.4118,
+        0.3067,
+        0.318
       ],
-      "band_ratio": 0.9683,
+      "band_ratio": 0.9238,
       "encodings": [
-        "'the clause plate reads differently from the engraved wall beside it': dE 7.4, AUC 0.82, visible 0%/100%, seen 0/6144px at 432w"
+        "'the wall in the back bank's spill reads differently from the wall the spill does not reach': dE 9.9, AUC 0.93, visible 100%/100%, seen 2464/2000px at 432w"
       ],
       "contacts": [
-        "'the marker tray against the block': shadow L* 4.2 vs ground L* 19.2, dL 15.0 at 432w"
+        "'the marker tray against the block': shadow L* 9.7 vs ground L* 21.3, dL 11.6 at 432w"
       ]
     },
     {
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 78% of this slide's own average craft density (top 17% / mid 13% / bottom 10% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
-        "outside safe zone: 'THE NEWS RELEASE' at 80,52 265x31 (margin 80px)",
+        "top-loaded composition: the bottom third carries 73% of this slide's own average craft density (top 18% / mid 14% / bottom 10% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "outside safe zone: 'ZERO HITS IN THE RELEASE' at 80,52 397x31 (margin 80px)",
         "outside safe zone: '07 / 09' at 884,52 116x31 (margin 80px)",
         "outside safe zone: 'c22 c23 c24' at 80,1259 177x31 (margin 80px)",
         "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
       ],
       "bands": [
-        0.1723,
-        0.1282,
-        0.1048
+        0.1807,
+        0.1387,
+        0.1011
       ],
-      "band_ratio": 0.7837,
+      "band_ratio": 0.7307,
       "encodings": [
-        "'the lit rectangle reads differently from the room beneath the falloff': dE 85.0, AUC 1.00, visible 100%/100%, seen 23040/18432px at 432w"
+        "'the lit rectangle reads differently from the room beneath the falloff': dE 76.6, AUC 0.99, visible 100%/100%, seen 23040/18432px at 432w"
       ],
       "contacts": [
-        "'the marker tray under the board': shadow L* 0.0 vs ground L* 17.6, dL 17.6 at 432w"
+        "'the marker tray under the board': shadow L* 5.3 vs ground L* 27.4, dL 22.1 at 432w"
       ]
     },
     {
       "file": "slide-08.html",
       "fails": [],
-      "warns": [
-        "worst-point contrast 3.4 on 'Districts teach it from the school year ' (box mean 9.4) -- below the rubric's 4.5 line somewhere along the run of the text",
-        "art touching glyphs (6% of the ring around 'Districts teach it from the school year ', spanning 61%) -- pixel critic verify the label is not crossed"
-      ],
+      "warns": [],
       "bands": [
-        0.1828,
-        0.1071,
-        0.3842
+        0.1597,
+        0.1639,
+        0.3603
       ],
-      "band_ratio": 1.6563,
+      "band_ratio": 1.54,
       "encodings": [
-        "'the warped asphalt band reads differently from the unwarped sill below it': dE 13.8, AUC 0.81, visible 100%/100%, seen 15360/9216px at 432w"
+        "'the warped asphalt band reads differently from the unwarped sill below it': dE 13.5, AUC 0.80, visible 100%/100%, seen 15360/9216px at 432w"
       ],
       "contacts": [
         "'the sill against the wall below it': shadow L* 10.6 vs ground L* 43.0, dL 32.4 at 432w"
@@ -188,19 +182,19 @@
       ],
       "bands": [
         0.0441,
-        0.3403,
-        0.2849
+        0.3697,
+        0.3401
       ],
-      "band_ratio": 1.2611,
+      "band_ratio": 1.3318,
       "encodings": [
-        "'the cold plane above the break reads differently from the lit floor below it': dE 67.4, AUC 0.90, visible 100%/100%, seen 13824/13824px at 432w"
+        "'the cold plane above the break reads differently from the lit floor below it': dE 66.3, AUC 0.85, visible 100%/100%, seen 13824/13824px at 432w"
       ],
       "contacts": [
-        "'the desk leg on the tile': shadow L* 59.4 vs ground L* 78.8, dL 19.4 at 432w"
+        "'the bag on the tile': shadow L* 46.4 vs ground L* 78.8, dL 32.4 at 432w"
       ]
     }
   ],
   "fails": 0,
-  "warns": 47,
+  "warns": 38,
   "verdict": "WARN"
 }

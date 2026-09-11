@@ -1,0 +1,158 @@
+{
+  "run": "2026-09-11",
+  "measured_on": "the nine shipped PNGs resampled to 270 by 338, the grid every prior run used, imported from panel_ready.ARC_GRID",
+  "note": "WRITTEN AFTER THE LAST RENDER, which was the round 1 repair. Every figure here was re-measured after it. It replaces deck_L.json, which measured the same frames on a 216 wide grid. Two grids is two homes for one figure, so the ledger, the run record and the storyboard print only what is in here.",
+  "per_frame": [
+    {
+      "file": "slide-01.png",
+      "median_L": 27.2,
+      "mean_L": 36.3,
+      "p05": 14.9,
+      "p95": 79.9
+    },
+    {
+      "file": "slide-02.png",
+      "median_L": 65.0,
+      "mean_L": 62.4,
+      "p05": 26.1,
+      "p95": 83.1
+    },
+    {
+      "file": "slide-03.png",
+      "median_L": 42.0,
+      "mean_L": 40.3,
+      "p05": 18.8,
+      "p95": 59.9
+    },
+    {
+      "file": "slide-04.png",
+      "median_L": 72.4,
+      "mean_L": 64.9,
+      "p05": 21.1,
+      "p95": 92.1
+    },
+    {
+      "file": "slide-05.png",
+      "median_L": 20.1,
+      "mean_L": 27.2,
+      "p05": 11.7,
+      "p95": 69.7
+    },
+    {
+      "file": "slide-06.png",
+      "median_L": 18.3,
+      "mean_L": 23.0,
+      "p05": 9.3,
+      "p95": 62.4
+    },
+    {
+      "file": "slide-07.png",
+      "median_L": 50.5,
+      "mean_L": 53.9,
+      "p05": 9.3,
+      "p95": 93.5
+    },
+    {
+      "file": "slide-08.png",
+      "median_L": 76.9,
+      "mean_L": 67.7,
+      "p05": 23.3,
+      "p95": 91.5
+    },
+    {
+      "file": "slide-09.png",
+      "median_L": 23.7,
+      "mean_L": 44.4,
+      "p05": 12.5,
+      "p95": 81.4
+    }
+  ],
+  "deck_median_L": 42.0,
+  "planned_arc": [
+    38.0,
+    62.0,
+    44.0,
+    56.0,
+    40.0,
+    28.0,
+    74.0,
+    60.0,
+    46.0
+  ],
+  "measured_arc": [
+    27.2,
+    65.0,
+    42.0,
+    72.4,
+    20.1,
+    18.3,
+    50.5,
+    76.9,
+    23.7
+  ],
+  "per_frame_median_lstar": [
+    27.2,
+    65.0,
+    42.0,
+    72.4,
+    20.1,
+    18.3,
+    50.5,
+    76.9,
+    23.7
+  ],
+  "palette_tokens_lstar": {
+    "troffer #CCF2E4": 92.5,
+    "block #B0D8C2": 83.0,
+    "wax #98CDB4": 78.2,
+    "floor #5E8578": 52.4,
+    "desk #9C6B5A": 49.9,
+    "enamel #12486C": 29.0,
+    "slate #0E3347": 19.7
+  },
+  "token_separations_lstar": {
+    "block to wax, the closest pair inside the deck": 4.8
+  },
+  "junctions": {
+    "slide 6 to slide 7, the declared inversion": 32.2,
+    "the deck's range": 58.6
+  },
+  "darkest_frame": {
+    "slide": 6,
+    "L": 18.3
+  },
+  "brightest_frame": {
+    "slide": 8,
+    "L": 76.9
+  },
+  "light_cap": {
+    "LIGHT_L": 60.0,
+    "window_before_this_run_oldest_first": [
+      20.4,
+      73.1,
+      22.5,
+      16.5,
+      11.4,
+      31.5,
+      71.1,
+      18.1
+    ],
+    "this_deck": 42.0
+  },
+  "gate_floors_in_lstar": {
+    "data_contacts_fail_below": 4.0,
+    "data_contacts_warn_below": 8.0,
+    "one_munsell_step": 10.0,
+    "rubric_contrast_floor": 4.5
+  },
+  "tolerances_in_lstar_declared_by_acceptance_items": {
+    "slide 4, the three planes hold at least this much separation": 9.0,
+    "slide 6, its median measures below": 32.0,
+    "slide 7, its median measures above": 68.0,
+    "_note": "These are thresholds an acceptance item declares, not luminances this run measured. A threshold is a number the run chose and can be held to, so it belongs in the file that holds the run's numbers."
+  },
+  "deepest_five_percent_lstar": {
+    "note": "p05 per frame, the figure the deck's second law is held to. The law says a room under a troffer ceiling has no L* 8 in it.",
+    "min_over_frames": 9.3
+  }
+}

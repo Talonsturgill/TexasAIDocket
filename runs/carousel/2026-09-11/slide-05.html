@@ -17,7 +17,7 @@
   .hook{position:absolute;left:88px;top:320px;width:824px;font-family:Fraunces,serif;font-weight:700;
         font-size:88px;line-height:1.03;color:#CCF2E4;margin:0;letter-spacing:-.016em}
   .digital{position:absolute;left:88px;top:944px;font-family:"JetBrains Mono",monospace;font-size:24px;
-           letter-spacing:.14em;color:#6FA891}
+           letter-spacing:.14em;color:#B0D8C2}
   .verb{position:absolute;left:88px;top:996px;font-family:"JetBrains Mono",monospace;font-size:25px;
         letter-spacing:.14em;color:#7FB9A4}
   .clause{position:absolute;left:88px;top:1044px;width:904px;font-size:29px;line-height:1.40;
@@ -185,6 +185,21 @@ const C = {
   "n_knowledge": 10,
   "knowledge_highest": 10,
   "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -518,9 +533,11 @@ window.renderReady = new Promise(async (resolve) => {
   // corners of the frame. A plane that is genuinely dark needs nothing laid on top of it.
   (function nearDark(){
     const g=cx.createLinearGradient(0,NEAR_DARK-120,0,1350);
-    g.addColorStop(0,'rgba(7,26,38,0)');
-    g.addColorStop(0.42,'rgba(7,26,38,0.86)');
-    g.addColorStop(1,'rgba(6,22,32,0.985)');
+    // Its end sits at rgb 9,32,46 rather than the first build's 6,22,32, because the deck's
+    // second law says no L* 8 in the room and round 1 measured this frame's p05 at 7.8.
+    g.addColorStop(0,'rgba(9,32,46,0)');
+    g.addColorStop(0.42,'rgba(9,32,46,0.86)');
+    g.addColorStop(1,'rgba(9,32,46,0.985)');
     cx.fillStyle=g; cx.fillRect(0,NEAR_DARK-120,1080,1350-NEAR_DARK+120);
   })();
 

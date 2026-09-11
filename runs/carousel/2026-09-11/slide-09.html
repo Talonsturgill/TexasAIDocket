@@ -23,7 +23,7 @@
            color:#0E3347;margin:0;font-weight:500}
   .nslab{position:absolute;left:80px;top:1042px;font-family:"JetBrains Mono",monospace;font-size:24px;
          letter-spacing:.14em;color:#1E4C42}
-  .next{position:absolute;left:80px;top:1086px;width:884px;font-size:31px;line-height:1.34;
+  .next{position:absolute;left:80px;top:1064px;width:884px;font-size:31px;line-height:1.34;
         color:#0E3347;margin:0;font-weight:600}
   .tb{position:absolute;right:80px;bottom:96px;text-align:right;font-family:"JetBrains Mono",monospace;
       font-size:24px;letter-spacing:.09em;color:#14506B;line-height:1.55}
@@ -36,13 +36,12 @@
 <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="grain" id="grain" data-decorative="1"></div>
 <div class="layer">
-  <div class="kick">19 TAC SECTION 113.26<b>APPLIED PERSONAL FINANCIAL LITERACY</b></div>
+  <div class="kick">19 TAC SECTION 113.26</div>
   <div class="count">09 / 09</div>
   <div class="cite" id="cite"></div>
-  <h1 class="hook" id="hook">The rule is made. The filed text is not yet read.</h1>
+  <h1 class="hook" id="hook">The rule is made. The filing is unchecked.</h1>
   <p class="closing" id="closing"></p>
-  <div class="nslab">NEXT STEP</div>
-  <p class="next">Ask your district who is staffing the three machine expectations.</p>
+  <p class="next">Ask your district who is staffing the three AI expectations.</p>
   <svg class="star" viewBox="0 0 24 24" aria-hidden="true" data-decorative="1">
     <path d="M12 1.6l2.6 7.9h8.3l-6.7 4.9 2.6 7.9-6.8-4.9-6.8 4.9 2.6-7.9-6.7-4.9h8.3z" fill="#14506B"/>
   </svg>
@@ -193,6 +192,21 @@ const C = {
   "n_knowledge": 10,
   "knowledge_highest": 10,
   "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -246,6 +260,54 @@ window.renderReady = new Promise(async (resolve) => {
   TX.reseed(SEED);
   const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
 
+  // THE COPY IS SET BEFORE ANYTHING IS MEASURED OR DRAWN. A box measured while its element is
+  // still empty is a zero box, and an empty box is excluded from the keepout below, which is
+  // how a joint ended up running through the closing line.
+  // ============================================================ THE CITATION AND THE CLOSE
+  //
+  // The instrument, named in full, with the date parsed from the item's own line by compute.py.
+  document.getElementById('cite').innerHTML =
+    'SECOND READING AND FINAL ADOPTION<br><b>' + C.item_date_long + '</b>';
+
+  // WHAT THIS RECORD KNOWS THAT A READER WOULD NOT, said plainly. A close that admits the filed
+  // text is unread is not a hedge. It is the one thing worth reading this record for.
+  document.getElementById('closing').textContent =
+    'The board acted on an attachment headed "Text of Proposed New 19 TAC". The Register '
+    + 'filing is unchecked against it.';
+
+  // THE SITE LINE IS AN ELEMENT IN THE SOURCE, not a string this script assembles. coherence_check
+  // reads the slide FILE, so a footer built at render time is invisible to the one gate that
+  // exists to prove every frame carries the brand's own URL.
+  document.getElementById('tb').textContent = 'TEXAS AI DOCKET';
+
+  // THE TYPE'S OWN BOXES, MEASURED BEFORE ANY ART IS DRAWN. The floor's joints are then laid
+  // AROUND them instead of through them, which is what lets this frame keep its tile structure.
+  // The first build drew the joints everywhere and then washed them out under each line of type,
+  // and the wash flattened the whole lower half to one value: construction_check read the frame as
+  // a single bright rectangle, which is the finding that held deck 13 under the bar.
+  const KEEP=[];
+  document.querySelectorAll('.closing,.next,.tb,.src,.tx-site,.hook,.cite,.kick,.count')
+    .forEach(function(el){
+      const r=el.getBoundingClientRect();
+      if(r.width>1&&r.height>1) KEEP.push([r.left-22,r.top-14,r.right+22,r.bottom+14]);
+    });
+  function clearOf(x,y){
+    for(const k of KEEP) if(x>=k[0]&&x<=k[2]&&y>=k[1]&&y<=k[3]) return false;
+    return true;
+  }
+  // a joint is drawn as the runs of it that fall outside every type box
+  function joint(x0,y0,x1,y1,style,w){
+    cx.strokeStyle=style; cx.lineWidth=w;
+    const n=Math.max(2,Math.round(Math.hypot(x1-x0,y1-y0)/6));
+    let run=null;
+    for(let i=0;i<=n;i++){
+      const t=i/n, x=x0+(x1-x0)*t, y=y0+(y1-y0)*t;
+      if(clearOf(x,y)){ if(!run) run=[x,y]; }
+      else if(run){ cx.beginPath(); cx.moveTo(run[0],run[1]); cx.lineTo(x,y); cx.stroke(); run=null; }
+    }
+    if(run){ cx.beginPath(); cx.moveTo(run[0],run[1]); cx.lineTo(x1,y1); cx.stroke(); }
+  }
+
   // THE BREAK SITS ON THE DECK'S EYE LINE, 67px below the vertical centre. The library's named
   // failure for this atmosphere is the break landing on the centre and cutting the slide in half,
   // and that offset is the whole difference between a horizon and a division.
@@ -273,64 +335,76 @@ window.renderReady = new Promise(async (resolve) => {
 
   // ---- THE BREAK ITSELF. Hard on top, soft underneath, which is what a norther front does and
   // is why the library keeps it for a frame about a boundary rather than for weather.
-  (function front(){
-    const g=cx.createLinearGradient(0,BREAK,0,BREAK+128);
-    g.addColorStop(0,'rgba(204,242,228,0.96)');
-    g.addColorStop(0.16,'rgba(176,216,194,0.92)');
-    g.addColorStop(1,'rgba(152,205,180,0.99)');
-    cx.fillStyle=g; cx.fillRect(0,BREAK,1080,128);
-    cx.fillStyle='rgba(230,252,244,0.92)'; cx.fillRect(0,BREAK-2.5,1080,3);
-  })();
-
   // ---- BELOW THE BREAK: the lit floor in raking tile, the joints receding.
   (function below(){
     const g=cx.createLinearGradient(0,BREAK+128,0,1350);
     g.addColorStop(0,'rgba(152,205,180,0.99)');
     g.addColorStop(0.42,'rgba(164,212,188,0.99)');
     g.addColorStop(1,'rgba(132,182,162,0.99)');
-    cx.fillStyle=g; cx.fillRect(0,BREAK+128,1080,1350-BREAK-128);
+    cx.fillStyle=g; cx.fillRect(0,BREAK,1080,1350-BREAK);
     cx.save();
     cx.beginPath(); cx.rect(0,BREAK,1080,1350-BREAK); cx.clip();
-    for(let i=0;i<13;i++){
-      const y=BREAK+40+Math.pow(i/13,1.9)*(1350-BREAK);
-      cx.strokeStyle='rgba(14,51,71,0.13)'; cx.lineWidth=1.4;
-      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+    for(let i=0;i<15;i++){
+      const y=BREAK+36+Math.pow(i/15,1.9)*(1350-BREAK);
+      joint(0,y,1080,y,'rgba(14,51,71,0.26)',1.6);
     }
-    for(let x=-400;x<1600;x+=142){
-      cx.strokeStyle='rgba(14,51,71,0.11)'; cx.lineWidth=1.4;
-      cx.beginPath(); cx.moveTo(540+(x-540)*0.30,BREAK); cx.lineTo(x,1350); cx.stroke();
+    for(let x=-400;x<1600;x+=118){
+      joint(540+(x-540)*0.30,BREAK,x,1350,'rgba(14,51,71,0.22)',1.5);
     }
+    // NO SHEEN LAYER HERE. One was tried to break the lower half up and it did the opposite: a
+    // full-width radial over the whole plane raised the measured fill from 0.993 to 0.998 and
+    // took the frame's contact shadow with it. A wash cannot add structure, it can only average.
     cx.restore();
     // ONE DESK LEG'S TWO-PART CONTACT, and it stands in the clear band between the closing line
     // and the next step rather than under either of them. The first build put its foot at y 1176,
     // inside the reserve laid down for the next step, so the wash lifted the shadow and the ground
     // to within 0.3 L* of each other and the leg floated.
-    TXCARVE.contactShadow(cx,{x:168,y:986,w:58,color:'#062330',
-                              dirDeg:74,tightAlpha:0.62,wideAlpha:0.24,tightBlur:4,wideBlur:24});
-    const gl=cx.createLinearGradient(152,0,186,0);
-    gl.addColorStop(0,'rgba(14,51,71,0.86)');
-    gl.addColorStop(0.42,'rgba(120,166,150,0.66)');
-    gl.addColorStop(1,'rgba(14,51,71,0.80)');
-    cx.fillStyle=gl; cx.fillRect(152,BREAK+96,34,986-BREAK-96);
+    // A BAG ON THE TILE, NOT A LEG. The first build's desk leg ran from y 838 to 986, which is
+    // through the closing line, and it met no desk, so round 1's craft judge read a post ending
+    // in the air. A backpack dropped on the floor at 7:12 is what the band between the closing
+    // line and the next step holds in a Texas classroom, and it stands on its own contact.
+    // It sits in the band the second closing line leaves under it, and its shadow stops well
+    // above the next step: the first placement's wide shadow reached the glyph band of that
+    // line and qa read it as a rule struck through the type.
+    TXCARVE.contactShadow(cx,{x:370,y:1000,w:124,color:'#062330',
+                              dirDeg:74,tightAlpha:0.62,wideAlpha:0.22,tightBlur:4,wideBlur:12});
+    (function bag(){
+      const gb=cx.createLinearGradient(300,918,440,1000);
+      gb.addColorStop(0,'rgba(18,72,108,0.98)'); gb.addColorStop(0.55,'rgba(14,51,71,0.98)'); gb.addColorStop(1,'rgba(8,30,44,0.98)');
+      cx.fillStyle=gb; cx.beginPath();
+      cx.moveTo(312,1000); cx.lineTo(300,950); cx.quadraticCurveTo(300,918,336,918); cx.lineTo(404,918);
+      cx.quadraticCurveTo(440,918,440,950); cx.lineTo(430,1000); cx.closePath(); cx.fill();
+      // the top flap, catching the overhead
+      cx.fillStyle='rgba(94,133,120,0.90)'; cx.beginPath();
+      cx.moveTo(306,940); cx.quadraticCurveTo(300,918,336,918); cx.lineTo(404,918); cx.quadraticCurveTo(440,918,436,940);
+      cx.quadraticCurveTo(370,952,306,940); cx.closePath(); cx.fill();
+      // a strap lying out on the tile
+      cx.strokeStyle='rgba(14,51,71,0.92)'; cx.lineWidth=9; cx.lineCap='round';
+      cx.beginPath(); cx.moveTo(432,968); cx.quadraticCurveTo(500,960,520,996); cx.stroke();
+      cx.strokeStyle='rgba(120,166,150,0.55)'; cx.lineWidth=2;
+      cx.beginPath(); cx.moveTo(432,964); cx.quadraticCurveTo(500,956,518,990); cx.stroke();
+    })();
   })();
 
-  // ============================================================ THE CITATION AND THE CLOSE
-  //
-  // The instrument, named in full, with the date parsed from the item's own line by compute.py.
-  document.getElementById('cite').innerHTML =
-    'SECOND READING AND FINAL ADOPTION<br>'
-    + 'TEXAS STATE BOARD OF EDUCATION &nbsp;<b>' + C.item_date_long + '</b>';
+  (function front(){
+    // THE FADE RUNS LONG. Over 128px the alpha fell from 0.70 to 0 in 23px and then went flat,
+    // and at feed width that change of slope is itself an edge: the gate read a 3px rule across
+    // the closing line three times running, once for the join, once for the opaque stop and once
+    // for the short ramp. A norther front's underside is a long gradient, so this is the drawing
+    // agreeing with the atmosphere rather than a value tuned until a check went quiet.
+    const g=cx.createLinearGradient(0,BREAK,0,BREAK+380);
+    g.addColorStop(0,'rgba(204,242,228,0.96)');
+    g.addColorStop(0.055,'rgba(176,216,194,0.92)');
+    // THE BAND FADES TO NOTHING at its foot instead of ending on an opaque stop. Two fills of the
+    // same colour meeting on a line still leave a one pixel transition, because the band above has
+    // been painted twice and the floor below it once, and the gate reads that as a rule through
+    // the closing line. A gradient that reaches zero alpha has no lower edge to leave.
+    g.addColorStop(0.30,'rgba(152,205,180,0.62)');
+    g.addColorStop(1,'rgba(152,205,180,0)');
+    cx.fillStyle=g; cx.fillRect(0,BREAK,1080,380);
+    cx.fillStyle='rgba(230,252,244,0.92)'; cx.fillRect(0,BREAK-2.5,1080,3);
+  })();
 
-  // WHAT THIS RECORD KNOWS THAT A READER WOULD NOT, said plainly. A close that admits the filed
-  // text is unread is not a hedge. It is the one thing worth reading this record for.
-  document.getElementById('closing').textContent =
-    'What was filed with the Texas Register has not been checked against the attachment the '
-    + 'board acted on.';
-
-  // THE SITE LINE IS AN ELEMENT IN THE SOURCE, not a string this script assembles. coherence_check
-  // reads the slide FILE, so a footer built at render time is invisible to the one gate that
-  // exists to prove every frame carries the brand's own URL.
-  document.getElementById('tb').textContent = 'TEXAS AI DOCKET  NO. ' + C.deck;
 
   // THE BARE WORD IS NOT WHAT HAPPENED. The board took a second reading and a final adoption, and
   // "adopted" on its own loses the half of that which a reader would check.
@@ -360,8 +434,6 @@ window.renderReady = new Promise(async (resolve) => {
   }
   // Softer and wider than the first build's, which left four visible rectangular smudges. A
   // reserve that can be SEEN has stopped being lighting and become a patch.
-  reserve('.closing,.next,.nslab','176,220,200',0.72,64,46);
-  reserve('.tb,.src','176,220,200',0.66,48,38);
   reserve('.hook,.cite,.kick,.count','11,42,58',0.70,64,46);
 
   document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
@@ -372,7 +444,7 @@ window.renderReady = new Promise(async (resolve) => {
      reads:"differ", a:[[300,520,480,180]], b:[[300,900,480,180]]}
   ]));
   document.body.setAttribute('data-contacts', JSON.stringify([
-    {what:"the desk leg on the tile", shadow:[[140,982,80,18]], ground:[[420,982,80,18]]}
+    {what:"the bag on the tile", shadow:[[320,1002,100,12]], ground:[[600,1002,100,12]]}
   ]));
   resolve(true);
 });

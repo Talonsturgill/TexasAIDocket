@@ -26,9 +26,9 @@
   .sentence em{font-style:italic;font-weight:800;color:#0B2B3C;
                border-bottom:3px solid rgba(14,51,71,.55)}
   .gone{position:absolute;left:112px;font-family:"JetBrains Mono",monospace;font-size:30px;
-        letter-spacing:.10em;color:#5E8578;white-space:nowrap}
+        letter-spacing:.10em;color:#98CDB4;white-space:nowrap}
   .g1{top:986px} .g2{top:1052px} .g3{top:1118px}
-  .gone i{font-style:normal;color:#4C6E64;font-size:26px}
+  .gone i{font-style:normal;color:#7FB39C;font-size:26px}
   .src{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
        letter-spacing:.07em;color:#7FB9A4}
   .tx-site{position:absolute;right:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
@@ -37,9 +37,9 @@
 <canvas id="art" width="2160" height="2700" style="width:1080px;height:1350px"></canvas>
 <div class="grain" id="grain" data-decorative="1"></div>
 <div class="layer">
-  <div class="kick">THE NEWS RELEASE</div>
+  <div class="kick">ZERO HITS IN THE RELEASE</div>
   <div class="count">07 / 09</div>
-  <h1 class="hook" id="hook">Its own summary ends in and more.</h1>
+  <h1 class="hook" id="hook">Its own summary ends in "and more."</h1>
   <div class="zeros" id="zeros"></div>
   <p class="sentence" id="sentence"></p>
   <div class="gone g1">RESEARCH</div>
@@ -191,6 +191,21 @@ const C = {
   "n_knowledge": 10,
   "knowledge_highest": 10,
   "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -251,7 +266,10 @@ window.renderReady = new Promise(async (resolve) => {
 
   // ---- THE ROOM, front bank off.
   (function room(){
-    cx.fillStyle='#081B26'; cx.fillRect(0,0,1080,1350);
+    // THE ROOM IS LIT, DIMLY, which is the frame's own argument: a projected image in a lit room
+    // has no black point. The first build painted the room at L* 6 with a p05 of 1.9, under a
+    // deck law that says there is no black in it, and round 1's craft judge measured both.
+    cx.fillStyle='#0C2A3A'; cx.fillRect(0,0,1080,1350);
     // tee bar grid above the board, receding
     for(let i=0;i<5;i++){
       const y=18+i*30;
@@ -329,9 +347,9 @@ window.renderReady = new Promise(async (resolve) => {
     const g=cx.createLinearGradient(0,FALLOFF-6,0,FALLOFF+62);
     g.addColorStop(0,'rgba(152,205,180,0.86)');
     g.addColorStop(0.22,'rgba(40,84,98,0.92)');
-    g.addColorStop(1,'rgba(5,19,28,1)');
+    g.addColorStop(1,'rgba(11,38,52,1)');
     cx.fillStyle=g; cx.fillRect(0,FALLOFF-6,1080,68);
-    cx.fillStyle='#05131C'; cx.fillRect(0,FALLOFF+62,1080,1350-FALLOFF-62);
+    cx.fillStyle='#0B2634'; cx.fillRect(0,FALLOFF+62,1080,1350-FALLOFF-62);
     // THE FLOOR BOUNCE. A shadow is a subtraction, so it needs a lit ground to be subtracted
     // from. The first build cast the tray onto a room measuring L* 1.5 and the gate said so:
     // there was nothing left to take away and the tray floated. The VCT under the front of the
@@ -347,9 +365,13 @@ window.renderReady = new Promise(async (resolve) => {
     cx.fillStyle='rgba(58,96,90,0.95)'; cx.fillRect(0,Y,1080,20);
     cx.strokeStyle='rgba(152,205,180,0.42)'; cx.lineWidth=2;
     cx.beginPath(); cx.moveTo(0,Y+1.2); cx.lineTo(1080,Y+1.2); cx.stroke();
-    cx.fillStyle='rgba(2,8,13,0.98)'; cx.fillRect(0,Y+20,1080,14);
+    // THE UNDERSIDE IS THE DARKEST THING IN THE FRAME AND IT IS NOT BLACK. The deck's second law
+    // says a room under a troffer ceiling has no L* 8 in it, and round 1 measured this strip at
+    // L* 1.9, a full-width band the law forbade. rgb 8,28,40 sits near L* 10 and still reads as
+    // the tray's own shadow against the room and the bounce below it.
+    cx.fillStyle='rgba(8,28,40,0.96)'; cx.fillRect(0,Y+20,1080,14);
     const gs=cx.createLinearGradient(0,Y+34,0,Y+96);
-    gs.addColorStop(0,'rgba(2,8,13,0.92)'); gs.addColorStop(1,'rgba(2,8,13,0)');
+    gs.addColorStop(0,'rgba(8,28,40,0.92)'); gs.addColorStop(1,'rgba(8,28,40,0)');
     cx.fillStyle=gs; cx.fillRect(0,Y+34,1080,62);
   })();
 
@@ -396,7 +418,14 @@ window.renderReady = new Promise(async (resolve) => {
   // full contrast first. These three numbers are declared here rather than tuned until it looked
   // right, and they are the last thing that touches the canvas.
   const BLOOM={strength:0.30, threshold:0.74, radius:26};
-  TXPOST.grade(cx,{bloom:BLOOM});
+  // THE SHADOW LIFT IS THE FRAME'S OWN ARGUMENT. A projected image in a lit room has no black
+  // point, and the grade's contrast and filmic toe were crushing every dark this frame drew
+  // back under L* 8, whatever value it was painted at: round 1 measured a p05 of 1.9, and a
+  // tray underside repainted at L* 10 still came out at 6.7. So the lift is declared here,
+  // beside the bloom, as a number the frame is held to rather than a look tuned by eye.
+  const LIFT=[0.014,0.020,0.028];
+  TXPOST.grade(cx,{bloom:BLOOM, lift:LIFT});
+  window.__lift=LIFT;
   window.__bloom=BLOOM;
 
   document.body.setAttribute('data-encodes', JSON.stringify([

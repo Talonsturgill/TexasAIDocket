@@ -91,9 +91,13 @@ A camera position guarantees this and no caption claims it. It is the deck's who
 under a troffer ceiling has no L\* 8 in it, and the recent decks that do are the ones this deck
 must not resemble.
 
-**3. THE THREE POSTURES ARE THREE DRAWINGS, ASSERTED.** Slides 4, 5 and 6 each declare
+**3. THE THREE POSTURES ARE THREE DRAWINGS, ASSERTED.** Slides 4 and 5 each declare
 `data-encodes` on the rect `[300,560,480,300]` with `"reads":"differ"` against a second rect in
-the same frame. Grafted from lens C.
+the same frame. Slide 6 declared the same rect and render.py reported it 0 percent visible, because
+the rect sits under that frame's SVG plates and the probe reads canvas, so its declaration is now
+the wall in the spill against the wall the spill does not reach, and the clause plate is measured
+by the contrast walk line by line. Amended after round 1, whose two judges read the empty probe
+off the report. Grafted from lens C.
 
 **4. A MARKED CHAPTER IS TELLABLE FROM AN UNMARKED ONE.** Slide 2 declares `data-encodes` with
 `"reads":"differ"` between a lit chapter cell and an unlit one. **This law replaced one that
@@ -170,10 +174,35 @@ gate.** Lens B planned a median of exactly 60, which is the threshold. This deck
 | 8 | 60 | glazing, asphalt, shimmer |
 | 9 | 46 | the norther-front break at the eye line |
 
+Planned per frame median L\*, 38, 62, 44, 56, 40, 28, 74, 60, 46. One line, because
+`panel_ready.py` reads the plan off the line that carries the word planned and a table is a
+plan no machine compares.
+
 **Planned deck median L\* 46**, the median of the nine. **MEASURED off the nine rendered PNGs
 before the panel and reported in the ledger, never asserted**, per deck 20's note. The single
 deliberate inversion is the **28 to 74 jump across the swipe from 6 to 7**, and it lands exactly
-on the counter-image. That is the frame a reader remembers the deck by.
+on the counter-image. That is the frame a reader remembers the deck by. **Measured after the final
+render, the jump is 18.3 into 50.5, a step of 32.2 L\*.** Frame 7 landed at 50.5 against its planned
+74, so the inversion held and the altitude did not, and slide 7's own acceptance list says so.
+
+## AMENDED AFTER ROUND 1
+
+Three judges read the deck at 6.36, 6.68 and 6.15 with four hard fails between them, and every
+one of the fails was a measurement rather than a taste. Frame 6 rendered its verbatim clause with
+two word spaces fused, because SVG collapses a run's leading space unless told to keep it. Frame 3
+typed the zero beside AI unit and frame 2 typed the seven, both under comments swearing nothing
+was typed, and both cleared numeral_trace because a different computation put the same digit in
+the allowed set. Frame 8 and the post stated an effective date the record carries only as what
+the motion asked. All four are repaired in the frames and in compute.py, and the dossiers above
+carry the amendments where they land. Two findings both judges agreed on were repaired with them:
+the tally plate on frame 3 lay over the one mark for artificial intelligence, and frame 9's desk
+leg met no desk. Frame 7's room was lifted off black to keep the deck's own second law, frame 9's
+hook now says what the record says, and frame 6's probe reads canvas it can see.
+
+**One finding was not taken, and the reason is written down.** The craft judge asked for frame 1's
+lens to be the frame's lightest area. The lens is a rectangle, and brightening every facet turns it
+into the fifth plate construction_check counts, which is a red build. The two gates pull opposite
+ways on that frame and the cover stays as it is.
 
 ## HOW THE SCORE IS CARRIED WITHOUT A TEXAS PLACE
 
@@ -274,6 +303,7 @@ numerals:
   - computed_by: "compute.py n_knowledge, counted from the course text's own numbering in sources/"
   - computed_by: "compute.py knowledge_highest, the highest number the document prints"
   - computed_by: "compute.py knowledge_missing, the numbers it skips"
+  - computed_by: "compute.py n_silent_chapters, n_knowledge minus n_chapters, and silent_chapters_word is that count as a word. The dek is set from the injected block and the frame throws if its source disagrees"
   - value_from: c13
 composition:
   structure: >
@@ -350,12 +380,13 @@ numerals:
   - computed_by: "compute.py doc_words, counted from the course text in sources/"
   - computed_by: "compute.py page_count, len(PdfReader.pages) on the fetched file"
   - computed_by: "compute.py footprint, occurrences of four terms over the whole text"
+  - computed_by: "compute.py n_ai_headings, the knowledge statement headings that name a machine, counted over knowledge_headings"
   - computed_by: "compute.py n_footprint_occurrences and n_footprint_terms, which are DIFFERENT figures"
 composition:
   structure: >
     Looking down at the floor from a seated student's eye height at the deck's steepest pitch,
     the document laid out as eight page-shaped blocks of stipple on waxed VCT. One dot per word.
-    The blocks are laid two across and four down so the whole document is in frame at once,
+    The blocks are laid four across and two down so the whole document is in frame at once,
     because the claim is a RATIO and a ratio cut off by a crop is not a ratio.
   bands: >
     TOP third, the headline and the term tally in mono tabular. MIDDLE third, the eight stipple
@@ -410,7 +441,7 @@ acceptance:
   - "the stipple field carries one dot per word at computed.json's doc_words count and the dot count is asserted by the frame's own script"
   - "the five lifted points are painted in troffer #CCF2E4 and no other dot in the field is"
   - "the frame declares data-encodes with reads \"differ\" between a rect on the lifted cluster and a rect on adjacent unlifted field, holding above 4.0 dE at 432px"
-  - "the row labelled \"AI unit\" carries a count of zero and no bar, mark or dot beside it"
+  - "the row labelled \"AI unit\" carries computed.json n_ai_headings, a count over the ten knowledge statement headings that comes to zero, and no bar, mark or dot beside it"
   - "every term count on the frame is read from computed.json footprint and none is typed"
   - "the eight page blocks are all fully inside the frame, so the ratio is not cropped"
 risks:
@@ -592,7 +623,7 @@ acceptance:
   - "the frame prints \"robot-advisors\" and never \"robo-advisors\", which is what the document prints"
   - "the engraved line appears ONLY on the wall behind the plate, and no engraved line comes within 120 design px of any glyph"
   - "the clause sits on a solid plate built by TX.svgPlate from the laid-out text, with no hand-typed plate width in the slide source"
-  - "the frame declares data-encodes on the rect [300,560,480,300] with reads \"differ\" against a second rect"
+  - "the frame declares data-encodes with reads \"differ\" on the wall in the back bank's spill against the wall the spill does not reach, on canvas the probe can see. The rect [300,560,480,300] the deck's third law names sits under this frame's SVG plates and measured nothing"
   - "the title block reads \"SECOND READING AND FINAL ADOPTION\" and never the bare word \"adopted\""
   - "no weekday appears anywhere on this frame"
   - "the frame's median L* measures below 32, so the swipe into slide 7 is the deck's declared inversion"
@@ -641,21 +672,21 @@ art:
     shipped within the last week.
   palette: >
     troffer #CCF2E4 for the projected rectangle and the beam, slate #0E3347 for the room, wax
-    #98CDB4 for the whiteboard edge outside the rectangle, floor #5E8578 for the three
-    expectations below the falloff.
+    #98CDB4 for the whiteboard edge outside the rectangle, wax #98CDB4 for the three
+    expectations below the falloff, on a room lifted off black.
   value_structure: >
     troffer #CCF2E4 at L* 92.5 in the projected rectangle is the lightest thing in the DECK, not
-    just the frame. slate #0E3347 at L* 19.7 is the room. The three expectations sit at floor
-    #5E8578, L* 52.4, lit by nothing. Planned frame median L* 74, THE BRIGHTEST FRAME IN THE
+    just the frame. slate #0E3347 at L* 19.7 is the room. The three expectations sit at wax
+    #98CDB4, L* 78.2, in the room's own ambient and lit by nothing the projector throws. Planned frame median L* 74, THE BRIGHTEST FRAME IN THE
     DECK, arriving straight off the darkest.
   motion: >
     The beam brings the eye in from the upper right, lands it in the rectangle, runs it along
     the sentence to "and more", and drops it off the end of the falloff onto the three
     expectations.
 type:
-  hook: "Its own summary ends in and more."
+  hook: "Its own summary ends in \"and more.\""
   dek: "\"The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.\""
-  labels: ["THE NEWS RELEASE", "artificial", "AI", "algorithm", "machine learning", "automated", "technolog", "RESEARCH", "EXPLAIN", "APPRAISE", "c22 c23 c24", "texasaidocket.com", "07 / 09"]
+  labels: ["ZERO HITS IN THE RELEASE", "artificial", "AI", "algorithm", "machine learning", "automated", "technolog", "RESEARCH", "EXPLAIN", "APPRAISE", "c22 c23 c24", "texasaidocket.com", "07 / 09"]
 verbatim:
   - c22: "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more."
 # AMENDED AFTER THE RENDER, 2026-09-11. c23 comes OUT of the verbatim slot. This frame's whole
@@ -674,8 +705,16 @@ acceptance:
   - "exactly six searched terms are listed with a count of zero each, and every count is read from computed.json release_hits"
   - "the words buried, hidden, quietly, concealed and suppressed appear nowhere on the frame"
   - "the projected rectangle is painted in troffer #CCF2E4 and is the highest median L* of any region in the nine frames"
-  - "the three expectations below the falloff are painted in floor #5E8578 and carry no glow, no outline and no plate"
-  - "the frame's median L* measures above 68, so the 6 to 7 swipe is the deck's one inversion"
+  - "the three expectations below the falloff are painted in wax #98CDB4 on a room lifted off black, and carry no glow, no outline and no plate"
+  # AMENDED AFTER THE FINAL RENDER, 2026-09-11. The item below asked for a median above 68 and
+  # measurements.json read 46.3 before the room was lifted off black and reads 50.5 after, so the item is rewritten to say what the frame measures rather
+  # than what it was meant to. The bottom third of the frame carries the three expectations in
+  # the room's own dark, and that dark is a third of the frame. The inversion held and the
+  # altitude did not, and a plan that claimed otherwise would be the ledger's oldest avoid_next.
+  # AFTER ROUND 1 the grade carries a declared shadow lift of 0.014, 0.020, 0.028 beside the
+  # bloom, because the deck's second law says no L* 8 in the room and the grade's toe was
+  # crushing every dark on this frame under it whatever value it was painted at.
+  - "the frame's median L* was planned above 68 and measures 50.5 in measurements.json. NOT MET. The 6 to 7 swipe is still the deck's one inversion, from 18.3 into 50.5, and the miss is stated here rather than met"
 risks:
   - "TXPOST is a finish and never a rescue. The frame's value structure is built and reviewed at full contrast first, the pre-bloom PNG is kept beside the graded one, and the bloom strength is a number declared in this dossier rather than tuned until it looks right."
   - "This frame could read as an accusation that the board concealed something. IT DID NOT. A summary omits. The frame prints the counted zeros and the release's own sentence and nothing else, and if the caption room editorialises here the record's standing is what pays."
@@ -729,8 +768,8 @@ art:
     are.
 type:
   hook: "Districts teach it from the school year that opens in 2027."
-  dek: "20 days after filing with the Texas Register"
-  labels: ["IMPLEMENTATION", "EFFECTIVE", "CREDIT", "c3 c12 c13", "texasaidocket.com", "08 / 09"]
+  dek: "effective 20 days after filing"
+  labels: ["IMPLEMENTATION", "MOTION", "CREDIT", "c3 c12 c13", "texasaidocket.com", "08 / 09"]
 verbatim:
   - c13: "one-half credit"
 # AMENDED AFTER THE RENDER, 2026-09-11. This dossier declared c12's whole sentence as a verbatim
@@ -748,13 +787,20 @@ verbatim:
 # The acceptance item wins, because it is the one that encodes a house rule. c12 stays the CLAIM
 # behind the date, it is cited on the frame as c12, and the first comment carries its sentence in
 # full. What comes out is only the promise that this frame quotes it.
+# AMENDED AFTER THE PANEL_READY REPAIR ROUND, 2026-09-11. A live oak crown now hangs into the
+# right of the near light with its trunk behind the mullion, and the mullion itself stands at
+# x 900 rather than down the centre. Both are true of a classroom window on a Texas bus loop and
+# both were drawn for a measurement: the headline's third line ran across the centre mullion at
+# 3.4 contrast, and the sky between the headline and the horizon read as one bright rectangle on
+# the shipped webp, filling 0.73 of its own box, after the PNG had passed on the accident of the
+# headline's descenders. The three judges of round 1 read the frame before the crown was drawn.
 acceptance:
   - "the horizon sits at y = 742, the deck's declared eye line, within 4 design px"
   - "the shimmer is drawn on canvas and every text string on the frame is a DOM or SVG node above it, so no glyph is warped"
   - "the frame declares data-encodes with reads \"differ\" between the warped asphalt band and the unwarped sill"
   - "the implementation year renders as \"2027 to 2028\" and the string \"2027-2028\" appears nowhere outside a verbatim quote"
   - "the credit is set in the source's own words and no decimal conversion of it is drawn, so the token 0.50 is absent from the frame"
-  - "the sill prints the string 20 days after filing with the Texas Register, and the figure 20 is lifted from c3 own quote by compute.py"
+  - "the sill's second row is labelled MOTION and prints 20 days after filing, with the figure 20 lifted from c3 own quote by compute.py"
   - "the shimmer amplitude stays under 6 design px, measured off the render"
 risks:
   - "Heat shimmer touching glyphs is the library's named failure and the single most likely QA fail in this deck. Warp the field, never the glyphs, and the type layer is a separate DOM stratum with no shared transform."
@@ -777,9 +823,7 @@ composition:
     boundary drawn once.
   bands: >
     TOP third, the cold ceiling plane above the break with the citation in mono. MIDDLE third,
-    the break itself at the eye line with the closing line under it. BOTTOM third, the lit floor in raking tile, the VCT joints receding and one desk leg's
-    two-part contact shadow anchoring the left, with the next step, the title block and the
-    star at colophon scale set on the lit tile between the joints.
+    the break itself at the eye line with the closing line under it. BOTTOM third, the lit floor in raking tile, the VCT joints receding and a backpack on the tile with its two-part contact where it meets the wax, in the band between the closing line and the next step.
   focal: >
     The lit floor band beneath the break, an AREA of about 900 by 300 design px carrying the
     closing line. It is the lightest area in the frame and the ceiling plane above the break is
@@ -800,7 +844,7 @@ art:
   motion: >
     Down through the break to the closing line, then to the title block and out.
 type:
-  hook: "The rule is made. The text is unread."
+  hook: "The rule is made. The filing is unchecked."
   dek: "The board acted on an attachment headed \"Text of Proposed New 19 TAC\". The Register filing is unchecked against it."
   labels: ["19 TAC SECTION 113.26", "SECOND READING AND FINAL ADOPTION", "TEXAS AI DOCKET", "c1 c2 c5 c11", "texasaidocket.com", "09 / 09"]
 verbatim:
@@ -816,5 +860,5 @@ acceptance:
   - "no numeral on this frame is absent from computed.json or from a claim quote"
 risks:
   - "The library's failure is the break landing on the vertical centre and cutting the slide in half. It lands at y = 742, which is 67px below centre, and that offset is what makes it a horizon rather than a division."
-  - "A close that admits the filed text is unread can read as a hedge. It is the opposite: it is the one thing this record knows that a reader would not, and stating it is why the record is worth reading."
+  - "A close that admits the filing is unchecked can read as a hedge. It is the opposite: it is the one thing this record knows that a reader would not, and stating it is why the record is worth reading."
 ```

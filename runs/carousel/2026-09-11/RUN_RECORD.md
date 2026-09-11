@@ -1,9 +1,10 @@
 # Run record — 2026-09-11
 
-## THE RUN MERGED, AND THE WALL IT STOPPED AT IS GONE
+## THE WALL THIS RUN STOPPED AT, AND HOW IT WENT
 
-**`ask_pack --self-test` goes red on this branch and the wall is real.** The core pack measures
-**421,427 characters against a ceiling of 420,000**. Measured on both sides of the diff:
+**`ask_pack --self-test` went red on this branch and the wall was real.** Before the fix in the
+next section, the core pack measured **421,427 characters against a ceiling of 420,000**, on both
+sides of the diff:
 
 | record | items | core pack | verdict |
 |---|---|---|---|
@@ -14,8 +15,8 @@ Four admissions cost 10,580 characters, about **2,645 an admission**, so `main` 
 admissions** from this wall and this run made four. Nothing warned, because the pack has no
 headroom probe of the kind `index_headroom` gives the index.
 
-**This run did not fix it and the reason is the file's own line 26**, of both ceilings: *"Raising
-either ceiling is never a fix for a red build."* The other routes are worse. Dropping a true
+**The ceiling did not move, and the reason is the file's own line 26**, of both ceilings: *"Raising
+either ceiling is never a fix for a red build."* The other routes were worse. Dropping a true
 admission would corrupt the record to satisfy a cache ceiling. Rolling a family up does not
 reach, because the register is 23,783 and the reservoirs 29,892 of 421,427, so roughly **364,000
 of the pack is the decisions themselves** and rolling those up is the break-glass path ceasing to
@@ -25,11 +26,9 @@ be the record.
 assertion: two runs in September held over 644 characters of the record's ordinary growth, and
 the owner's resolution was to raise `MAX_INDEX_CHARS` against a measured bill. `MAX_CHARS` guards
 the `ASK_RETRIEVAL=off` break-glass that nobody pays for on an ordinary question, so its cost is
-not the index's cost. **That is the owner's call, and `scripts/site/ask_pack.py` is not this
-lane's file.**
-
-**ONE ACTION CLEARS IT.** Decide whether `MAX_CHARS` moves, or whether the pack gets rungs the
-way the index has.
+not the index's cost. **That was the owner's call, and `scripts/site/ask_pack.py` is not this
+lane's file.** The owner made it, twice, in the session, and the pack got rungs the way the index
+has. The next section is that commit.
 
 `browser-layout` is also red, and **this run called it wrong once before getting it right.**
 
@@ -169,8 +168,9 @@ the adoption itself is confirmed by the board's own release.
 
 ---
 
-**The record is complete and gated ON THIS BRANCH. The deck did not ship.** This run stops on the degradation ladder's
-rung (d): record updated in full, no deck, post-mortem here and in the email.
+**The record is complete and gated, and the deck shipped in full.** An earlier pass of this run
+recorded the degradation ladder's rung (d) here, record updated and no deck, and that was wrong
+for the reason the deck section below gives: the pack ceiling blocked the merge and never the deck.
 
 ---
 
@@ -312,16 +312,19 @@ second half and skipped the first.
 | # | frame | measured median L\* |
 |---|---|---|
 | 1 | the troffer overhead, authored prism geometry lit from one declared vector | 27.2 |
-| 2 | ten chapter cells, the three the machine sits in lit by the overhead throw | 64.6 |
-| 3 | one dot per word of the course text, five lifted points | 42.5 |
-| 4 | three instrument planes and eight lit slots, the research clause | 72.5 |
+| 2 | ten chapter cells, the three the machine sits in lit by the overhead throw | 65 |
+| 3 | one dot per word of the course text, five lifted points | 42 |
+| 4 | three instrument planes and eight lit slots, the research clause | 72.4 |
 | 5 | a corridor at passing period, four flow populations, one terminating | 20.1 |
-| 6 | the front bank off, the appraise clause knocked out of a solid plate | 19.1 |
-| 7 | the projector, the release's own sentence, six counted zeros | 47.8 |
-| 8 | out through the glazing at the bus loop under heat shimmer | 77.8 |
-| 9 | the norther front on the deck's eye line, the close | 23.1 |
+| 6 | the front bank off, the appraise clause knocked out of a solid plate | 18.3 |
+| 7 | the projector, the release's own sentence, six counted zeros | 50.5 |
+| 8 | out through the glazing at the bus loop under heat shimmer | 76.9 |
+| 9 | the norther front on the deck's eye line, the close | 23.7 |
 
-**Deck median L\* 42.46, measured off the nine shipped PNGs and never asserted.** The hard
+**Deck median L\* 42, measured off the nine shipped PNGs on the 270 by 338 grid every prior run
+used, written by measurements.json and never asserted.** The table above is that file's `measured_arc`,
+re-measured after the panel_ready repair round re-rendered seven frames and frame 8 took its crown. An earlier deck_L.json measured the same frames
+on a 216 wide grid and is superseded, because two grids is two homes for one figure. The hard
 constraint going in was `ledger_check`'s `LIGHT_L` of 60.0 with a cap of one light deck per eight,
 and the window already held two. This deck is a mid deck and does not add to that count.
 
@@ -388,18 +391,59 @@ as craft debt a run could record and ship past. `shipped_check` runs in CI over 
 and for a CURRENT run this gate is a hard failure rather than a note, so the debt was a red build
 wearing a note's clothes. The run found that out from the CI log rather than from its own reasoning.
 
-**`aggregate_check` and `numeral_trace` disagree with each other**, and this is a machine defect
-rather than a content one. Frame 7's six counted zeros cannot be quoted from a claim, because a
-count of what a document does NOT say has no span to quote. `numeral_trace` says in as many words
-to declare such a figure in `aggregates.json`, and this run did. `aggregate_check` then reports
-each declaration as a leftover to remove, because its scanner only recognises a figure phrase
-shaped as a number followed by a PLURAL noun, and "0 artificial" is not one. **Following either
-gate's advice breaks the other.** The declarations are kept, because they are true, re-derivable,
-and the route the gate that governs those numerals prescribes. Neither gate runs against a run in
-CI, which is the only reason this is a note rather than a block. Logged as an upgrade proposal
-below.
+**`aggregate_check` and `numeral_trace` disagreed with each other for most of the run, and both are
+clean now.** Frame 7's six counted zeros can't be quoted from a claim, because a count of what a
+document does NOT say has no span to quote. `numeral_trace` says to declare such a figure in
+`aggregates.json`, and `aggregate_check` reported each of six "0 artificial" declarations as a
+leftover, because its scanner recognises a figure phrase shaped as a number word followed by a
+plural noun and not a bare digit before a term. The fix was on the frame rather than in either
+gate: the kicker now reads ZERO HITS IN THE RELEASE, which is one declaration both scanners find,
+the six per-term zeros trace to `computed.json release_hits` through it, and the colophon's serial
+came off frame 9 because it was a numeral that named nothing. The upgrade proposal below stays,
+because two gates that read one file differently is still a defect in the machine.
 
 ---
+
+## THE PANEL, AND THE ROUND BEFORE IT THAT NO JUDGE SHOULD HAVE HAD TO SEE
+
+**`panel_ready` was red on nine counts before a scorer was spawned, and every one was a measurement.**
+Seven footer and label lines sat under the rubric's 4.5 contrast floor at their worst cell, on frames
+1, 3, 5, 6 and 8, and two grounds the dossiers called worked measured as gradients, frame 2's block at
+3.80 residual against a 4.0 floor and frame 4's whiteboard at 0.59. Each was repaired at the source
+rather than with a plate: the footers went to troffer, frame 6's ceiling line took the grazing
+falloff a ceiling fixture actually gives a wall's top course and its counter sat in it, frame 8's
+mullion moved out from under the headline, frame 2's block got a pitted tooth a reader can see and
+frame 4's whiteboard the ghosting a board in use since August carries. Two of those repairs flipped
+`construction_check` from four plates to five, once on frame 6 and once on frame 3, because dimming
+one region moves the frame's median and the threshold with it. Frame 6's near floor became dark tile
+with the back bank's three reflections on it, and frame 8's sky took a live oak crown at the window,
+which is also the drawing that stopped the sky reading as one rectangle on the shipped webp after the
+PNG had passed on the accident of the headline's descenders. Four of nine, under the line, on both
+formats.
+
+**Round 1 held at 6.508 with four hard fails, and every fail was a measurement too.** Judges 6.146,
+6.36 and 6.68, spread 0.534, one contested criterion, claim integrity, where the integrity judge gave
+4.5 and the reader 7.0. The fails, in `score1.json` beside this file:
+
+- Frame 3 typed the zero beside AI unit and frame 2 typed the seven of them, both under comments
+  swearing nothing was typed. Both cleared `numeral_trace` because a different computation put the
+  same digit in the allowed set. `compute.py` now counts both, `n_ai_headings` over the ten knowledge
+  statement headings and `n_silent_chapters` as the difference, and the frames read the injected
+  block, frame 2 throwing if its own source disagrees.
+- Frame 8's row and the post stated an effective date the record carries only as what the motion
+  asked the board to find. The row is labelled MOTION now and the post says the motion asked.
+- Frame 6 rendered the story's sharpest sentence with two word spaces fused, because SVG collapses a
+  run's leading space unless told to keep it, and `verbatim_check` reads text nodes rather than
+  pixels. `xml:space` is preserved on every run now.
+
+Two findings all three judges agreed on went with them: the tally plate on frame 3 lay over the one
+mark for artificial intelligence, so the frame whose whole job is five points showed four at feed
+size, and frame 9's desk leg met no desk. The post lost a graduation requirement c9 calls a curriculum
+requirement and a sentence about the deck itself, frame 7's room was lifted off black with a declared
+shadow lift in the grade so the deck's own second law holds on every frame at p05 9.3 or above, frame
+9's hook says what the record says, and frame 6's probe reads canvas it can see. One craft finding was
+declined in writing: brightening frame 1's lens turns it into the fifth plate `construction_check`
+counts, and the two gates pull opposite ways on that frame.
 
 ## Source findings
 
@@ -476,20 +520,20 @@ no-confidence-number rule exists to prevent.
 | gate | status | detail |
 |---|---|---|
 | claims         | PASS   | 24 verified claim(s) |
-| render         | WARN   | 4 slide(s), 13 overflow warning(s) |
-| qa             | ABSENT | render/machine_qa.json not written yet |
-| aggregates     | ABSENT | aggregate_report.json not written yet |
+| render         | WARN   | 9 slide(s), 3 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 38 warn(s) |
+| aggregates     | PASS   | 11 declaration(s), 12 numeric phrase(s) in the render, all re-derived |
 | assembly       | ABSENT | final/assemble_report.json not written yet |
 | score          | ABSENT | score.json not written yet |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 52,882 chars planned |
-| caption        | PASS   | 140 words |
-| craft floor    | PASS   | 4 frame(s), median 1887, floor 340 |
-| plan vs render | FAIL   | 6 of 60 acceptance item(s) checkable, 3 frame(s) off plan |
-| texan          | ABSENT | no copy yet |
-| absences       | ABSENT | no copy yet |
-| numerals       | ABSENT | no copy, claims or render yet |
+| labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 113 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 16 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 60,846 chars planned |
+| caption        | PASS   | 137 words |
+| craft floor    | WARN   | 9 frame(s), median 2231, floor 402, 1 quiet |
+| plan vs render | WARN   | 5 of 60 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
+| absences       | WARN   | 0 of 1 scoped to a named document, 1 unscoped |
+| numerals       | PASS   | 33 numeral(s) over 9 frame(s), every one reachable |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->

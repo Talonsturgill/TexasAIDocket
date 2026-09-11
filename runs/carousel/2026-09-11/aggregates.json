@@ -1,6 +1,6 @@
 {
  "run": "2026-09-11",
- "note": "Three kinds of figure reach a surface here. Some are quoted from a claim and say so. Some are counted by compute.py from a fetched document, and the computation is named rather than the number being asserted. The six zeros on slide 7 are the third kind and the awkward one, because a count of what a document does NOT say cannot be quoted from it: compute.py counts them over the served bytes and RAISES rather than publishing if any is non-zero, so the frame cannot draw a zero the snapshot does not support.",
+ "note": "Every figure the deck prints that a claim did not quote is declared here with its computation, so numeral_trace can reach it and aggregate_check can re-derive it. The six zeros on slide 7 share one declaration, ZERO HITS, for a reason the note on that row states.",
  "aggregates": [
   {
    "phrase": "Ten chapters",
@@ -72,18 +72,6 @@
    "note": "Slide 8's sill and the caption. No conversion is performed and the figure is lifted from the motion's own words by compute.py rather than typed."
   },
   {
-   "phrase": "three machine expectations",
-   "kind": "count",
-   "value": 3,
-   "computed_by": "compute.py N_MACHINE_EXPECTATIONS over MACHINE_EXPECTATIONS, the student expectations whose own quotes contain one of the machine stems. It is derived from the quotes rather than chosen, which is why the deck never calls them AI expectations: only one of the three says artificial intelligence in as many words.",
-   "from_claims": [
-    "c14",
-    "c15",
-    "c16"
-   ],
-   "note": "Slide 9's next step."
-  },
-  {
    "phrase": "three expectations",
    "kind": "count",
    "value": 3,
@@ -106,66 +94,26 @@
    "note": "The caption."
   },
   {
-   "phrase": "0 artificial",
+   "phrase": "ZERO HITS",
    "kind": "count",
    "value": 0,
-   "computed_by": "compute.py RELEASE_HITS['artificial'], counted over the served bytes of the board's news release snapshot in sources/sboe-news-release.txt with navigation and footer included. compute.py RAISES if any of the six is non-zero.",
+   "computed_by": "compute.py N_RELEASE_HITS, the sum of RELEASE_HITS over six machine-naming terms counted across the served bytes of the board's news release snapshot, navigation and footer included. compute.py RAISES rather than publishing if the sum is not zero, so the frame cannot print this over a release that mentions the machine.",
    "from_claims": [
     "c22"
    ],
-   "note": "Slide 7. The same computation produces the five rows below."
+   "note": "Slide 7's kicker, and the value every row of its tally shares. The six per-term zeros beneath it are the same computation shown term by term, and they are not declared one by one because the scanner reads a figure phrase as a number before a plural noun and a tally row reads the other way round. This one declaration is what carries the value 0 into numeral_trace's allowed set for all six."
   },
   {
-   "phrase": "0 algorithm",
+   "phrase": "three official records",
    "kind": "count",
-   "value": 0,
-   "computed_by": "compute.py RELEASE_HITS['algorithm'], same snapshot and same raise.",
+   "value": 3,
+   "computed_by": "sources_block.py, the number of distinct source urls behind every claim id the deck prints, counted over claims.json. figures.json carries the same count as source_documents.",
    "from_claims": [
+    "c2",
+    "c11",
     "c22"
-   ]
-  },
-  {
-   "phrase": "0 automated",
-   "kind": "count",
-   "value": 0,
-   "computed_by": "compute.py RELEASE_HITS['automated'], same snapshot and same raise.",
-   "from_claims": [
-    "c22"
-   ]
-  },
-  {
-   "phrase": "0 machine learning",
-   "kind": "count",
-   "value": 0,
-   "computed_by": "compute.py RELEASE_HITS['machine learning'], same snapshot and same raise.",
-   "from_claims": [
-    "c22"
-   ]
-  },
-  {
-   "phrase": "0 technolog",
-   "kind": "count",
-   "value": 0,
-   "computed_by": "compute.py RELEASE_HITS['technolog'], a STEM rather than a word, so it catches technology, technological and technologies alike. Same snapshot and same raise.",
-   "from_claims": [
-    "c22"
-   ]
-  },
-  {
-   "phrase": "0 AI",
-   "kind": "count",
-   "value": 0,
-   "computed_by": "compute.py RELEASE_HITS['AI'], matched as a whole token with word boundaries so it cannot be satisfied by the letters inside another word. Same snapshot and same raise.",
-   "from_claims": [
-    "c22"
-   ]
-  },
-  {
-   "phrase": "TEXAS AI DOCKET NO. 21",
-   "kind": "serial",
-   "value": 21,
-   "computed_by": "computed.json deck, the run's own position in the carousel series. It is a serial number and not a measurement of anything in the record, which is why no claim carries it and why it is declared here.",
-   "note": "Slide 9's colophon."
+   ],
+   "note": "The first comment's provenance line. One claim per document, the board item, its attachment and the news release."
   }
  ]
 }

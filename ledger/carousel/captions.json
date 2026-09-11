@@ -351,16 +351,16 @@
    "structure": "Ledger",
    "closing_move": "Ask the one question the decision leaves open.",
    "first_line": "House Bill 27 asked for personal finance.",
-   "words": 137,
-   "commas": 3,
-   "commas_per_100w": 2.19,
-   "chars": 894,
+   "words": 134,
+   "commas": 1,
+   "commas_per_100w": 0.75,
+   "chars": 878,
    "hashtags": [
     "#SBOE",
     "#HB27",
     "#TexasTEKS"
    ],
-   "critic_note": "THE CRITIC FOUND A REAL LEDGER DEFECT RATHER THAN A PROSE ONE, and it is the reason this entry's opening and closing moves are the ones they are. Both candidates opened on the object and closed by asking the question the decision leaves open, and both moves were inside their own exclusion window. The caption also asserts one universal, None of them, and quantifiers.json names the six-term set it is over rather than leaving a reader to trust it.",
+   "critic_note": "THE CRITIC FOUND A REAL LEDGER DEFECT RATHER THAN A PROSE ONE, and it is the reason this entry's opening and closing moves are the ones they are. Both candidates opened on the object and closed by asking the question the decision leaves open, and both moves were inside their own exclusion window. The caption also asserts one universal, None of them, and quantifiers.json names the six-term set it is over rather than leaving a reader to trust it. AFTER ROUND 1 the post lost two sentences the record did not carry, a graduation requirement c9 calls a curriculum requirement, and an effective date the motion asked for rather than the board settled, and the counts here were re-measured off the file.",
    "move_note": "Named off CAPTION_CRAFT.md's own menus rather than freehand. ledger_check refuses a move name that is not on a menu, because a name nobody else uses cannot be excluded by a list of real ones, which is how three excluded moves shipped on 2026-08-25. The caption opens on what House Bill 27 asked for and turns to what the adopted text actually says, it runs what is known then what is not then the size of the gap, and it ends on the question the adoption leaves open."
   }
  ],

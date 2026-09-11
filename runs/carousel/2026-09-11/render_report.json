@@ -181,7 +181,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(94, 133, 120)",
+          "color": "rgb(204, 242, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -203,7 +203,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(94, 133, 120)",
+          "color": "rgb(204, 242, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -224,7 +224,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 3396,
+      "render_ms": 2302,
       "ok": true,
       "canvases": [
         {
@@ -600,9 +600,67 @@
           "b_visible_frac": 1
         }
       ],
-      "contacts": [],
+      "contacts": [
+        {
+          "what": "chapter 3's slab against the reveal below it",
+          "shadow": [
+            [
+              249,
+              772,
+              72,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              249,
+              870,
+              72,
+              12
+            ]
+          ]
+        },
+        {
+          "what": "chapter 4's slab against the reveal below it",
+          "shadow": [
+            [
+              351,
+              772,
+              72,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              351,
+              870,
+              72,
+              12
+            ]
+          ]
+        },
+        {
+          "what": "chapter 7's slab against the reveal below it",
+          "shadow": [
+            [
+              657,
+              772,
+              72,
+              10
+            ]
+          ],
+          "ground": [
+            [
+              657,
+              870,
+              72,
+              12
+            ]
+          ]
+        }
+      ],
       "nondeterminism": [],
-      "render_ms": 6129,
+      "render_ms": 6255,
       "ok": true,
       "canvases": [
         {
@@ -615,8 +673,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 149.3,
-          "variance": 1580
+          "mean": 149.2,
+          "variance": 1580.6
         }
       ],
       "breather": false,
@@ -739,7 +797,7 @@
         {
           "text": "artificial intelligence",
           "x": 706,
-          "y": 206,
+          "y": 170,
           "w": 282,
           "h": 89,
           "font_px": 24,
@@ -751,13 +809,13 @@
           "lines": [
             [
               706,
-              212,
+              176,
               144,
               31
             ],
             [
               706,
-              256,
+              220,
               173,
               31
             ]
@@ -767,7 +825,7 @@
         {
           "text": "1",
           "x": 988,
-          "y": 206,
+          "y": 170,
           "w": 14,
           "h": 89,
           "font_px": 24,
@@ -779,7 +837,7 @@
           "lines": [
             [
               988,
-              212,
+              176,
               14,
               31
             ]
@@ -789,7 +847,7 @@
         {
           "text": "algorithm",
           "x": 706,
-          "y": 296,
+          "y": 260,
           "w": 130,
           "h": 44,
           "font_px": 24,
@@ -801,7 +859,7 @@
           "lines": [
             [
               706,
-              302,
+              266,
               130,
               31
             ]
@@ -811,7 +869,7 @@
         {
           "text": "2",
           "x": 988,
-          "y": 296,
+          "y": 260,
           "w": 14,
           "h": 44,
           "font_px": 24,
@@ -823,7 +881,7 @@
           "lines": [
             [
               988,
-              302,
+              266,
               14,
               31
             ]
@@ -833,7 +891,7 @@
         {
           "text": "automated",
           "x": 706,
-          "y": 341,
+          "y": 305,
           "w": 130,
           "h": 44,
           "font_px": 24,
@@ -845,7 +903,7 @@
           "lines": [
             [
               706,
-              347,
+              311,
               130,
               31
             ]
@@ -855,7 +913,7 @@
         {
           "text": "1",
           "x": 988,
-          "y": 341,
+          "y": 305,
           "w": 14,
           "h": 44,
           "font_px": 24,
@@ -867,7 +925,7 @@
           "lines": [
             [
               988,
-              347,
+              311,
               14,
               31
             ]
@@ -877,7 +935,7 @@
         {
           "text": "robot",
           "x": 706,
-          "y": 387,
+          "y": 351,
           "w": 72,
           "h": 44,
           "font_px": 24,
@@ -889,7 +947,7 @@
           "lines": [
             [
               706,
-              393,
+              357,
               72,
               31
             ]
@@ -899,7 +957,7 @@
         {
           "text": "1",
           "x": 988,
-          "y": 387,
+          "y": 351,
           "w": 14,
           "h": 44,
           "font_px": 24,
@@ -911,7 +969,7 @@
           "lines": [
             [
               988,
-              393,
+              357,
               14,
               31
             ]
@@ -921,7 +979,7 @@
         {
           "text": "AI unit",
           "x": 706,
-          "y": 442,
+          "y": 406,
           "w": 101,
           "h": 44,
           "font_px": 24,
@@ -933,7 +991,7 @@
           "lines": [
             [
               706,
-              448,
+              412,
               101,
               31
             ]
@@ -943,7 +1001,7 @@
         {
           "text": "0",
           "x": 988,
-          "y": 442,
+          "y": 406,
           "w": 14,
           "h": 44,
           "font_px": 24,
@@ -955,7 +1013,7 @@
           "lines": [
             [
               988,
-              448,
+              412,
               14,
               31
             ]
@@ -971,7 +1029,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(94, 133, 120)",
+          "color": "rgb(204, 242, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -993,7 +1051,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(94, 133, 120)",
+          "color": "rgb(204, 242, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1014,7 +1072,7 @@
         {
           "kind": "border",
           "x": 706,
-          "y": 294.8,
+          "y": 258.8,
           "w": 296,
           "h": 1,
           "by": "DIV",
@@ -1028,7 +1086,7 @@
         {
           "kind": "border",
           "x": 706,
-          "y": 340.2,
+          "y": 304.2,
           "w": 296,
           "h": 1,
           "by": "DIV",
@@ -1042,7 +1100,7 @@
         {
           "kind": "border",
           "x": 706,
-          "y": 385.6,
+          "y": 349.6,
           "w": 296,
           "h": 1,
           "by": "DIV",
@@ -1056,7 +1114,7 @@
         {
           "kind": "border",
           "x": 706,
-          "y": 431,
+          "y": 395,
           "w": 296,
           "h": 1,
           "by": "DIV",
@@ -1094,7 +1152,7 @@
       ],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5706,
+      "render_ms": 5336,
       "ok": true,
       "canvases": [
         {
@@ -1107,8 +1165,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 87.2,
-          "variance": 987.1
+          "mean": 86.4,
+          "variance": 930.9
         }
       ],
       "breather": false,
@@ -1266,7 +1324,7 @@
               42
             ],
             [
-              869,
+              857,
               805,
               13,
               42
@@ -1276,9 +1334,9 @@
         },
         {
           "text": "artificial intelligence tools",
-          "x": 456,
+          "x": 451,
           "y": 805,
-          "w": 413,
+          "w": 411,
           "h": 42,
           "font_px": 31,
           "weight": "800",
@@ -1288,7 +1346,7 @@
           "overlap_ok": false,
           "lines": [
             [
-              462,
+              456,
               805,
               401,
               42
@@ -1453,7 +1511,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 3864,
+      "render_ms": 3520,
       "ok": true,
       "canvases": [
         {
@@ -1466,8 +1524,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 157.6,
-          "variance": 3129.1
+          "mean": 157.1,
+          "variance": 3083.4
         }
       ],
       "breather": false,
@@ -1586,7 +1644,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(111, 168, 145)",
+          "color": "rgb(176, 216, 194)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -1805,7 +1863,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 3499,
+      "render_ms": 3310,
       "ok": true,
       "canvases": [
         {
@@ -1818,8 +1876,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 54.8,
-          "variance": 1544.1
+          "mean": 56.7,
+          "variance": 1464.7
         }
       ],
       "breather": false,
@@ -1925,7 +1983,7 @@
           "text": "fee structures, investment strategies,",
           "x": 318,
           "y": 723,
-          "w": 621,
+          "w": 627,
           "h": 45,
           "font_px": 33,
           "weight": "800",
@@ -1937,7 +1995,7 @@
             [
               318,
               723,
-              621,
+              627,
               45
             ]
           ],
@@ -1969,7 +2027,7 @@
           "text": "and",
           "x": 509,
           "y": 781,
-          "w": 62,
+          "w": 69,
           "h": 45,
           "font_px": 33,
           "weight": "500",
@@ -1981,7 +2039,7 @@
             [
               509,
               781,
-              62,
+              69,
               45
             ]
           ],
@@ -2040,7 +2098,7 @@
           "font_px": 24,
           "weight": "500",
           "family": "JetBrains Mono",
-          "color": "rgb(111, 168, 145)",
+          "color": "rgb(143, 198, 176)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2064,7 +2122,7 @@
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(143, 198, 176)",
+          "color": "rgb(204, 242, 228)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2208,7 +2266,7 @@
           "kind": "fill",
           "x": 100,
           "y": 537,
-          "w": 868.3,
+          "w": 874.8,
           "h": 71,
           "by": "rect",
           "color": "rgb(8, 28, 40)",
@@ -2219,7 +2277,7 @@
           "kind": "fill",
           "x": 100,
           "y": 595,
-          "w": 868.3,
+          "w": 874.8,
           "h": 71,
           "by": "rect",
           "color": "rgb(8, 28, 40)",
@@ -2230,7 +2288,7 @@
           "kind": "fill",
           "x": 100,
           "y": 653,
-          "w": 868.3,
+          "w": 874.8,
           "h": 71,
           "by": "rect",
           "color": "rgb(8, 28, 40)",
@@ -2241,7 +2299,7 @@
           "kind": "fill",
           "x": 100,
           "y": 711,
-          "w": 868.3,
+          "w": 874.8,
           "h": 71,
           "by": "rect",
           "color": "rgb(8, 28, 40)",
@@ -2252,7 +2310,7 @@
           "kind": "fill",
           "x": 100,
           "y": 769,
-          "w": 868.3,
+          "w": 874.8,
           "h": 71,
           "by": "rect",
           "color": "rgb(8, 28, 40)",
@@ -2263,7 +2321,7 @@
           "kind": "fill",
           "x": 100,
           "y": 827,
-          "w": 868.3,
+          "w": 874.8,
           "h": 71,
           "by": "rect",
           "color": "rgb(8, 28, 40)",
@@ -2273,25 +2331,25 @@
       ],
       "encodings": [
         {
-          "claim": "the clause plate reads differently from the engraved wall beside it",
+          "claim": "the wall in the back bank's spill reads differently from the wall the spill does not reach",
           "reads": "differ",
           "a": [
             [
-              300,
-              560,
-              480,
-              300
+              720,
+              450,
+              220,
+              70
             ]
           ],
           "b": [
             [
               40,
-              180,
-              240,
-              160
+              600,
+              50,
+              250
             ]
           ],
-          "a_visible_frac": 0,
+          "a_visible_frac": 1,
           "b_visible_frac": 1
         }
       ],
@@ -2317,7 +2375,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 3128,
+      "render_ms": 2977,
       "ok": true,
       "canvases": [
         {
@@ -2330,8 +2388,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 47.1,
-          "variance": 482.7
+          "mean": 43.9,
+          "variance": 262
         }
       ],
       "breather": false,
@@ -2346,10 +2404,10 @@
       "fonts_missing": [],
       "text_nodes": [
         {
-          "text": "THE NEWS RELEASE",
+          "text": "ZERO HITS IN THE RELEASE",
           "x": 80,
           "y": 52,
-          "w": 265,
+          "w": 397,
           "h": 31,
           "font_px": 24,
           "weight": "400",
@@ -2361,7 +2419,7 @@
             [
               80,
               52,
-              265,
+              397,
               31
             ]
           ],
@@ -2390,7 +2448,7 @@
           "anc": []
         },
         {
-          "text": "Its own summary ends in and more.",
+          "text": "Its own summary ends in \"and more.\"",
           "x": 112,
           "y": 210,
           "w": 830,
@@ -2411,7 +2469,7 @@
             [
               112,
               295,
-              457,
+              518,
               112
             ]
           ],
@@ -2766,7 +2824,7 @@
           "font_px": 30,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(94, 133, 120)",
+          "color": "rgb(152, 205, 180)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2788,7 +2846,7 @@
           "font_px": 30,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(94, 133, 120)",
+          "color": "rgb(152, 205, 180)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2810,7 +2868,7 @@
           "font_px": 30,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(94, 133, 120)",
+          "color": "rgb(152, 205, 180)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
@@ -2933,7 +2991,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 2820,
+      "render_ms": 2791,
       "ok": true,
       "canvases": [
         {
@@ -2946,8 +3004,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 126.1,
-          "variance": 10481.2
+          "mean": 136.6,
+          "variance": 8983.7
         }
       ],
       "breather": false,
@@ -3084,7 +3142,7 @@
           "anc": []
         },
         {
-          "text": "EFFECTIVE",
+          "text": "MOTION",
           "x": 88,
           "y": 1102,
           "w": 186,
@@ -3099,17 +3157,17 @@
             [
               88,
               1102,
-              151,
+              101,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "20 days after filing with the Texas Register",
+          "text": "effective 20 days after filing",
           "x": 290,
           "y": 1099,
-          "w": 698,
+          "w": 476,
           "h": 35,
           "font_px": 26,
           "weight": "600",
@@ -3121,7 +3179,7 @@
             [
               290,
               1099,
-              698,
+              476,
               35
             ]
           ],
@@ -3266,7 +3324,7 @@
         }
       ],
       "nondeterminism": [],
-      "render_ms": 1671,
+      "render_ms": 1604,
       "ok": true,
       "canvases": [
         {
@@ -3279,8 +3337,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 169.3,
-          "variance": 2857.1
+          "mean": 167.4,
+          "variance": 2879
         }
       ],
       "breather": false,
@@ -3385,7 +3443,7 @@
           ]
         },
         {
-          "text": "The rule is made. The text is unread.",
+          "text": "The rule is made. The filing is unchecked.",
           "x": 80,
           "y": 452,
           "w": 880,
@@ -3406,7 +3464,7 @@
             [
               80,
               540,
-              523,
+              713,
               115
             ]
           ],
@@ -3447,11 +3505,11 @@
           "anc": []
         },
         {
-          "text": "Ask your district who is staffing the three machine expectations.",
+          "text": "Ask your district who is staffing the three AI expectations.",
           "x": 80,
           "y": 1064,
           "w": 884,
-          "h": 83,
+          "h": 42,
           "font_px": 31,
           "weight": "600",
           "family": "Manrope",
@@ -3462,23 +3520,17 @@
             [
               80,
               1063,
-              738,
-              42
-            ],
-            [
-              80,
-              1105,
-              205,
+              851,
               42
             ]
           ],
           "anc": []
         },
         {
-          "text": "TEXAS AI DOCKET NO. 21",
-          "x": 636,
+          "text": "TEXAS AI DOCKET",
+          "x": 752,
           "y": 1217,
-          "w": 364,
+          "w": 248,
           "h": 37,
           "font_px": 24,
           "weight": "400",
@@ -3488,9 +3540,9 @@
           "overlap_ok": false,
           "lines": [
             [
-              636,
+              752,
               1220,
-              364,
+              248,
               31
             ]
           ],
@@ -3571,27 +3623,27 @@
       ],
       "contacts": [
         {
-          "what": "the desk leg on the tile",
+          "what": "the bag on the tile",
           "shadow": [
             [
-              140,
-              982,
-              80,
-              18
+              320,
+              1002,
+              100,
+              12
             ]
           ],
           "ground": [
             [
-              420,
-              982,
-              80,
-              18
+              600,
+              1002,
+              100,
+              12
             ]
           ]
         }
       ],
       "nondeterminism": [],
-      "render_ms": 2969,
+      "render_ms": 3141,
       "ok": true,
       "canvases": [
         {
@@ -3604,8 +3656,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 100.9,
-          "variance": 5016.4
+          "mean": 99.9,
+          "variance": 4913.5
         }
       ],
       "breather": false,

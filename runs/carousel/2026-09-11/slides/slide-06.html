@@ -16,9 +16,9 @@
          mix-blend-mode:overlay;opacity:.085;pointer-events:none}
   .kick{position:absolute;left:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
         letter-spacing:.09em;color:#8FC6B0;line-height:1.5}
-  .kick b{display:block;font-weight:500;color:#6FA891;font-size:24px}
+  .kick b{display:block;font-weight:500;color:#8FC6B0;font-size:24px}
   .count{position:absolute;right:80px;top:64px;font-family:"JetBrains Mono",monospace;font-size:24px;
-         letter-spacing:.09em;color:#8FC6B0}
+         letter-spacing:.09em;color:var(--troffer)}
   .hook{position:absolute;left:80px;top:158px;width:840px;font-family:Fraunces,serif;font-weight:700;
         font-size:90px;line-height:1.04;color:var(--block);margin:0;letter-spacing:-.016em}
   .verb{position:absolute;left:80px;top:494px;font-family:"JetBrains Mono",monospace;font-size:25px;
@@ -189,6 +189,21 @@ const C = {
   "n_knowledge": 10,
   "knowledge_highest": 10,
   "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -279,6 +294,15 @@ window.renderReady = new Promise(async (resolve) => {
     g.addColorStop(0.70,'rgba(30,72,96,0.10)');
     g.addColorStop(1,'rgba(8,31,44,0)');
     cx.fillStyle=g; cx.fillRect(0,0,1080,1350);
+    // THE GRAZING FALLOFF AT THE CEILING LINE. The spill comes off a ceiling fixture behind the
+    // camera, so the wall's top course takes it at a grazing angle and is the DIM strip, not the
+    // bright one. The first build's radial was centred above the frame and put the brightest
+    // wall in the frame under the counter, which measured 2.5 against the rubric's 4.5.
+    const gz=cx.createLinearGradient(0,0,0,176);
+    gz.addColorStop(0,'rgba(6,22,32,0.74)');
+    gz.addColorStop(0.55,'rgba(6,22,32,0.58)');
+    gz.addColorStop(1,'rgba(6,22,32,0)');
+    cx.fillStyle=gz; cx.fillRect(0,0,1080,176);
     // the block coursing, running bond, only as deep as the spill reaches
     const BW=214,BH=104; cx.lineWidth=1.3;
     for(let row=0,y=-40;y<1160;row++,y+=BH){
@@ -405,6 +429,11 @@ window.renderReady = new Promise(async (resolve) => {
     t.setAttribute('font-family','Manrope,sans-serif');
     t.setAttribute('font-size',FS); t.setAttribute('font-style','italic');
     t.setAttribute('font-weight',weight); t.setAttribute('fill','#CCF2E4');
+    // A RUN STARTS WITH ITS OWN SPACE, and SVG collapses a leading space unless told not to.
+    // Round 1's reader judge read 'analyzingfee structures' off the frame: the space between
+    // two runs was in the string and not on the page, on the story's sharpest sentence.
+    t.setAttributeNS('http://www.w3.org/XML/1998/namespace','xml:space','preserve');
+    t.style.whiteSpace='pre';
     return t;
   }
   // one probe per weight, so an advance is measured in the face it will actually be set in
@@ -414,6 +443,7 @@ window.renderReady = new Promise(async (resolve) => {
     pr.setAttribute('font-family','Manrope,sans-serif');
     pr.setAttribute('font-size',FS); pr.setAttribute('font-style','italic');
     pr.setAttribute('font-weight',weight);
+    pr.setAttributeNS('http://www.w3.org/XML/1998/namespace','xml:space','preserve'); pr.style.whiteSpace='pre';
     pr.textContent=str; svg.appendChild(pr);
     const w=pr.getComputedTextLength(); pr.remove(); return w;
   }
@@ -522,7 +552,7 @@ window.renderReady = new Promise(async (resolve) => {
   const TRAY_Y=1024;
   (function tray(){
     const Y=TRAY_Y;
-    TXCARVE.contactShadow(cx,{x:540,y:Y+34,w:460,color:'#03101A',
+    TXCARVE.contactShadow(cx,{x:540,y:Y+34,w:460,color:'#0A2230',
                               dirDeg:90,tightAlpha:0.62,wideAlpha:0.26,tightBlur:5,wideBlur:30});
     const g=cx.createLinearGradient(0,Y,0,Y+22);
     g.addColorStop(0,'rgba(176,216,194,0.97)');
@@ -531,10 +561,12 @@ window.renderReady = new Promise(async (resolve) => {
     cx.fillStyle=g; cx.fillRect(0,Y,1080,22);
     cx.strokeStyle='rgba(222,248,236,0.72)'; cx.lineWidth=2.4;
     cx.beginPath(); cx.moveTo(0,Y+1.3); cx.lineTo(1080,Y+1.3); cx.stroke();
-    // the hard underside line, which is the only true black in the frame
-    cx.fillStyle='rgba(3,12,19,0.96)'; cx.fillRect(0,Y+22,1080,10);
+    // the hard underside line, the darkest thing in the frame and not black: the deck's second
+    // law says a room under a troffer ceiling has no L* 8 in it, and round 1 measured this strip
+    // under it. rgb 8,28,40 sits near L* 10 and still reads as the tray's own shadow
+    cx.fillStyle='rgba(8,28,40,0.96)'; cx.fillRect(0,Y+22,1080,10);
     const gu=cx.createLinearGradient(0,Y+32,0,Y+84);
-    gu.addColorStop(0,'rgba(5,20,30,0.95)'); gu.addColorStop(1,'rgba(5,20,30,0)');
+    gu.addColorStop(0,'rgba(8,28,40,0.95)'); gu.addColorStop(1,'rgba(8,28,40,0)');
     cx.fillStyle=gu; cx.fillRect(0,Y+32,1080,52);
   })();
 
@@ -542,11 +574,27 @@ window.renderReady = new Promise(async (resolve) => {
   // and it gives the bottom third a rate rather than leaving it a flat dark band.
   (function vct(){
     const FY=1236;
+    // THE NEAR FLOOR IS UNDER THE BANK THAT IS OFF. The first build graded the tile brighter
+    // toward the camera, and construction_check then read the bottom band as the frame's one
+    // solid bright rectangle, filling 0.78 of its own box, once the ceiling line was dimmed.
+    // A waxed floor under a dark front bank is dark, and what is bright on it is the BACK
+    // bank's own reflection, which a row of troffers throws as separate pools with dark tile
+    // between them. Three pools, each its own shape, below the footer line.
     const g=cx.createLinearGradient(0,FY,0,1350);
-    g.addColorStop(0,'rgba(52,92,84,0.96)');
-    g.addColorStop(1,'rgba(96,142,126,0.96)');
+    g.addColorStop(0,'rgba(36,68,64,0.96)');
+    g.addColorStop(1,'rgba(46,82,76,0.96)');
     cx.fillStyle=g; cx.fillRect(0,FY,1080,1350-FY);
-    cx.fillStyle='rgba(3,12,19,0.72)'; cx.fillRect(0,FY-5,1080,6);
+    [270,540,810].forEach(function(cxp){
+      const top=1272, tw=108, bw=172;
+      const gp=cx.createLinearGradient(0,top,0,1350);
+      gp.addColorStop(0,'rgba(176,216,194,0.06)');
+      gp.addColorStop(0.5,'rgba(176,216,194,0.30)');
+      gp.addColorStop(1,'rgba(204,242,228,0.56)');
+      cx.fillStyle=gp; cx.beginPath();
+      cx.moveTo(cxp-tw/2,top); cx.lineTo(cxp+tw/2,top); cx.lineTo(cxp+bw/2,1350); cx.lineTo(cxp-bw/2,1350);
+      cx.closePath(); cx.fill();
+    });
+    cx.fillStyle='rgba(8,28,40,0.72)'; cx.fillRect(0,FY-5,1080,6);
     // THE JOINTS READ. At alpha 0.22 they were drawn and invisible, and construction_check
     // measured this band as one solid bright rectangle filling 0.993 of its own box, which is the
     // finding that held deck 13 under the bar. A waxed VCT floor under a dark room HAS visible
@@ -554,11 +602,11 @@ window.renderReady = new Promise(async (resolve) => {
     // buys. They are laid around the furniture rather than through it.
     cx.save(); cx.beginPath(); cx.rect(0,FY,1080,1350-FY); cx.clip();
     for(let x=-420;x<1560;x+=104){
-      joint(540+(x-540)*0.34,FY,x,1350,'rgba(4,16,24,0.82)',2.4);
+      joint(540+(x-540)*0.34,FY,x,1350,'rgba(8,28,40,0.82)',2.4);
     }
     for(let i=1;i<6;i++){
       const y=FY+Math.pow(i/6,1.7)*(1350-FY);
-      joint(0,y,1080,y,'rgba(4,16,24,0.74)',2.2);
+      joint(0,y,1080,y,'rgba(8,28,40,0.74)',2.2);
     }
     cx.restore();
   })();
@@ -589,8 +637,13 @@ window.renderReady = new Promise(async (resolve) => {
 
   // THE PLATE READS DIFFERENTLY FROM THE ENGRAVED WALL BESIDE IT, asserted on the shared rect.
   document.body.setAttribute('data-encodes', JSON.stringify([
-    {claim:"the clause plate reads differently from the engraved wall beside it",
-     reads:"differ", a:[[300,560,480,300]], b:[[40,180,240,160]]}
+    // THE PROBE READS CANVAS, and the rect the deck's third law named sat under this frame's SVG
+    // plates, so render.py reported a_visible_frac 0 and the law was asserted against nothing.
+    // Both judges of round 1 read that off the report. The clause plate is an SVG rect the
+    // contrast walk already measures line by line, so what the canvas probe can honestly assert
+    // on this frame is the wall: lit by the back bank's spill against unlit.
+    {claim:"the wall in the back bank's spill reads differently from the wall the spill does not reach",
+     reads:"differ", a:[[720,450,220,70]], b:[[40,600,50,250]]}
   ]));
   // The shadow rect sits in the tray's hard undershadow and the ground rect on the block the
   // floor bounce lights, which is the pair the first build did not have anywhere on the frame.

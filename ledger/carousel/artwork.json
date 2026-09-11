@@ -1384,12 +1384,12 @@
   {
    "date": "2026-09-11",
    "carousel_no": 21,
-   "written_from": "machine_qa.json, render_report.json, bespoke_check, coherence_check and the gates' exit codes. The value block is MEASURED off the nine shipped PNGs at 216px by deck_L.json, never planned and never asserted.",
+   "written_from": "machine_qa.json, render_report.json, bespoke_check, coherence_check and the gates' exit codes. The value block is MEASURED off the nine shipped PNGs by measurements.json on the 270 by 338 grid every prior run used, never planned and never asserted.",
    "register": "A TEXAS PUBLIC HIGH SCHOOL CLASSROOM AT 7:12 ON A TUESDAY MORNING IN LATE AUGUST, under 4000K LED troffers, sun not yet over the bus loop. A rectangular source directly overhead: no key direction, no deep shadow and no blown highlight anywhere, everything crushed toward the middle by a fixture chosen for footcandles per watt. The camera sits at a seated student's eye height on all nine frames and never leaves it.",
    "structural_laws": [
     "THE FORTY-FOUR INCH LAW. Every frame is drawn from a seated eye height. Any frame showing a horizon or an eye line puts it at y = 742, and frames 8 and 9 both do. The figure never prints on a slide.",
     "THERE IS NO BLACK IN THIS DECK. The darkest token is slate at L* 19.7. A room under a troffer ceiling has no L* 8 in it.",
-    "THE THREE POSTURES ARE THREE DRAWINGS, ASSERTED. Frames 4, 5 and 6 each declare data-encodes on the identical rect [300,560,480,300] with reads differ, so the deck is held to its own claim at 432px rather than asserting it in prose.",
+    "THE THREE POSTURES ARE THREE DRAWINGS, ASSERTED. Frames 4 and 5 each declare data-encodes on the identical rect [300,560,480,300] with reads differ. Frame 6 declared it too and the probe reported it 0 percent visible, because that rect sits under the frame's SVG plates and the probe reads canvas, so after round 1 its declaration is the wall in the spill against the wall the spill does not reach, and its clause plate is measured by the contrast walk.",
     "A MARKED CHAPTER IS TELLABLE FROM AN UNMARKED ONE. Frame 2 declares differ between a lit chapter cell and an unlit one. THIS LAW REPLACED ONE THAT RESTED ON A FALSEHOOD: the original was 'the void is ground', over a gap at chapter six that does not exist.",
     "NO FOURTH ABSENCE. Two are drawn, frame 3's five points in a wash and frame 7's six counted zeros."
    ],
@@ -1428,28 +1428,28 @@
    },
    "value": {
     "per_slide_median_L": [
-     27.22,
-     64.62,
-     42.46,
-     72.45,
-     20.11,
-     19.09,
-     47.84,
-     77.77,
-     23.05
+     27.2,
+     65.0,
+     42.0,
+     72.4,
+     20.1,
+     18.3,
+     50.5,
+     76.9,
+     23.7
     ],
-    "deck_median_L": 42.46,
-    "measured_at_px": 216,
+    "deck_median_L": 42.0,
     "darkest_frame": {
      "slide": 6,
-     "L": 19.09
+     "L": 18.3
     },
     "brightest_frame": {
      "slide": 8,
-     "L": 77.77
+     "L": 76.9
     },
-    "light_cap_note": "LIGHT_L is 60.0 and this deck measures 42.46, so it does not add to the light count. The window held 2 in 8 against a cap of 1 before this run.",
-    "planned_vs_measured": "The storyboard planned a deck median of 46 and the deck measures 42.46. Frame 7 was planned at 74 and measures 47.8, which is the one real miss: its bottom third carries the three expectations in the room's own dark, and that dark is a third of the frame. The declared inversion survives it, at 19.1 on frame 6 into 47.8 on frame 7."
+    "light_cap_note": "LIGHT_L is 60.0 and this deck measures 42, so it does not add to the light count. The window held 2 in 8 against a cap of 1 before this run.",
+    "planned_vs_measured": "The storyboard planned a deck median of 46 and the deck measures 42. Frame 7 was planned at 74 and measures 50.5, which is the one real miss: its bottom third carries the three expectations in the room's own dim, and that room is a third of the frame. The declared inversion survives it, at 18.3 on frame 6 into 50.5 on frame 7, a step of 32.2. Frame 7's own acceptance item asked for a median above 68 and the frame does not meet it, which the storyboard says in as many words.",
+    "measured_on": "the nine shipped PNGs resampled to 270 by 338, panel_ready.ARC_GRID, by measurements.json"
    },
    "type_skeletons": [
     "kicker top left, counter top right, claim-id source line bottom left, site line read from brand.yaml",

@@ -1,0 +1,49 @@
+{
+ "judge": "craft",
+ "round": 1,
+ "date": "2026-09-11",
+ "weighted_score": 6.36,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 7 first so the projected rectangle is measurably the deck's brightest frame, with the beam drawn as a real column through the room and the lower third lit enough that the three expectations sit in a room rather than on black, then give frames 8 and 9 the detail budget frames 1 to 5 got, because the inversion the storyboard says a reader remembers the deck by measured 17.5 into 46.3 with the peak landing on the dates frame instead, and the argument's last three frames are its three plainest for the sixth deck running.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0,
+   "why": "The room holds as one room across nine frames, which is the deck's real achievement, and the seafoam and slate palette is the first thing in the window that reads as a Texas school corridor. Against that, the things I was asked to look at mostly came back short. Frame 1's lens reads as a quilted tile pattern rather than a lit fixture, its facets sit around mid value while the frame's p95 is 79.9, so the declared troffer at L* 92.5 is not the lightest area and the flat orthographic lens sits under tee bars drawn in perspective. Frame 2 declares TXCARVE with two part contact shadows at every reveal and its acceptance list asks for at least three declared data-contacts, and render_report shows contacts: [] on that slide, with a single soft ellipse under each cell that the library itself calls a drop shadow. Frames 2 and 4 are one construction on the contact sheet, a pale block wall, a row of tall cells across the middle and a warm or dark base, so the three posture law is guarded by a probe and the two frames before it are guarded by nothing. Frame 3's dots are a regular lattice that never greys into the wash the dossier says is the finding, the page blocks carry ellipse shadows that make them stand rather than lie on the tile, and I can find four lifted points with certainty while the fifth, if it is the faint dot near x 1320 y 722 in the displayed render, sits under the translucent tally plate on a frame whose entire content is five points. Frame 6 prints the deck's sharpest sentence as 'by analyzingfee structures,' and 'algorithmic limitations,and', which render_report confirms by geometry, the run at x 126 with width 194 ends at 320 and the bold run starts at 318, the run at 126 with width 383 ends at 509 and 'and' starts at 509, so two word spaces are missing on a verbatim quote, and the same frame's data-encodes probe reports a_visible_frac 0, meaning the three drawings law was checked against a region nothing could see. Frame 7's dust column is a 200 px stub at the top edge, the rectangle reads as a whiteboard on a tray, machine_qa's own warn says the bottom third carries 78 percent of the frame's density in a dead lower zone, its contact probe measured shadow L* 0.0 and measurements.json gives p05 1.9, inside a deck whose second structural law says there is no black in it and whose ledger entry now records that law as kept. Frame 9's desk leg stands on a measured contact and ends in the air at the top of the dek with no desk above it. Seven of nine frames miss their planned median by more than one Munsell step, 1 by 10.8, 4 by 16.4, 5 by 20.0, 6 by 10.5, 7 by 27.7, 8 by 18.2 and 9 by 24.2, and panel_ready's 'within one Munsell step' is a statement about the deck median at 41.3 against 46, not about the arc. Competent and consistent with several things wrong in it, which is under the rubric's 7."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral on every frame traces, the three sources are primary and fetched, the term counts and the eighteen word release sentence are computed and I re-counted the sentence at eighteen. What pulls it down is a stretch and two render level breaks of the verbatim promise. The caption's 'It is a graduation requirement, not an elective.' rests on c9, whose quote says 'curriculum requirement for a one-half credit in personal financial literacy', and on c8's general statute language, so the word graduation is the caption's and not the record's, which is the rubric's 5 line exactly. Frame 6 prints c16 with two word spaces missing, so the string a reader sees is not the document's string. Frame 7 prints '0 technolog' with nothing on the frame saying it is a stem, so a reader is handed what looks like a typo and the explanation lives only in the first comment. The storyboard says four frames put a horizon at y 742 and the ledger entry says two, and the ledger records 'THERE IS NO BLACK IN THIS DECK' as a kept law beside a measurement file showing p05 of 7.8, 7.5 and 1.9 on frames 5, 6 and 7, so durable memory carries a reading the deck's own numbers refute."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A Texan learns what happened, the SBOE took 19 TAC 113.26 to second reading and final adoption, when it is dated, September 4th on frame 9, that it starts in the 2027 to 2028 school year and takes effect 20 days after filing on frame 8, and that the release did not mention the machine on frame 7. What they cannot learn is why it matters to them beyond the omission, because the deck never says what a district has to do or spend to teach an appraisal of robot-advisors, and the storyboard concedes texan_check reports no place, no deadline and no next step in the record. Frame 9's 'Ask your district who is staffing the three machine expectations.' is the one concrete door and it is a good one. Stakes stated generally, accurately, and no county because there is none to name."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "It reads in order and there is a turn at 7. Two things cost it. Frames 2, 3 and 4 are three consecutive rows or grids of rectangles on a wall or a floor, ten cells, eight blocks, eight slots, so the deck sags before it reaches the postures rather than at them. The declared inversion, the swipe from the darkest frame into the brightest, shipped as 17.5 into 46.3 and the brightest frame is 8 at 78.2, so the biggest jump in the deck is from the counter-image onto the dates and the peak lands on the frame the plan gave the least to. Frame 4 restates frame 2's construction and frame 3 could fold into it."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "'Texas put AI in a money class.', 'Chapter three hands it over.', 'The rule is made. The text is unread.' and the caption's 'House Bill 27 asked for personal finance.' are plain and Texan and nobody would call them a press release. Two display strings read as errors to a scanning reader, frame 7's 'Its own summary ends in and more.' at 91 px with no quotation marks around the two words it is quoting, and frame 7's '0 technolog'. There is no regional specificity anywhere on a frame, and the storyboard's answer that a placeless story carries Texas in its material is a designer's argument a reader in a feed never receives. Clean, on register, a little flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The register is new, an institutional interior under a rectangular overhead source with the camera at seated height, and the palette was measured against the last eight decks and clears the collision line on all seven tokens, which is more than most entries in the ledger can say. Under that new roof the techniques are the library's regulars from inside the window, a norther front break on 9 after decks 12 and 20, engraving on 6 after 13, 16 and 20, heat shimmer on 8 after 19, stipple on 3 after 16 and 20, a flow field on 5 after 19, and a counted absence of zeros on 7 as the house's recurring opening move. The storyboard built frame 7 specifically to carry a document's copy without drawing paper because flat copy and a field print both shipped last week, and the render reads as a whiteboard with a sentence on it, so the move it set out to avoid is the one it landed in by execution. Distinct with more than one familiar move."
+  }
+ ],
+ "the_verdict_in_its_own_words": "This deck is one room, drawn nine times, and the room is the best thing in it. The trouble is that the plan's two big promises, that the three postures are three drawings and that the counter-image arrives as the brightest frame off the darkest, are one probe and one miss respectively. Frame 7 measured 46.3 against a planned 74 and the storyboard says so honestly, but honesty about a miss is not the frame landing. Meanwhile the detail budget went to the prism, the cells, the stipple and the corridor, and frames 7, 8 and 9 are a pale rectangle over black, a window onto an empty lot and two bands with a legless desk, which is the sixth deck in a row whose thinnest frames close the argument. Add the fused words on frame 6's verbatim, the absent contacts on frame 2, the fifth point under frame 3's tally plate and a measured L* 0.0 in a deck whose law says no black, and this is a competent deck with several specific things wrong in it. It sits at 6.36, under the bar, with no hard fail I can name, so my no is about the number and the fix is frame 7 first.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

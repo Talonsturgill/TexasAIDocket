@@ -157,6 +157,23 @@ KNOWLEDGE_NUMBERS = sorted({int(n) for n, _ in re.findall(
 N_KNOWLEDGE = len(KNOWLEDGE_NUMBERS)
 KNOWLEDGE_HIGHEST = max(KNOWLEDGE_NUMBERS) if KNOWLEDGE_NUMBERS else 0
 KNOWLEDGE_MISSING = [n for n in range(1, KNOWLEDGE_HIGHEST + 1) if n not in KNOWLEDGE_NUMBERS]
+# THE HEADINGS THEMSELVES, kept so a frame can count over them rather than assert about them.
+KNOWLEDGE_HEADINGS = [h.strip() for _n, h in sorted(
+    re.findall(r"\((\d+)\)\s+([A-Z][^()]{8,120}?)\.\s*The student", ATT_TEXT), key=lambda r: int(r[0]))]
+if len(KNOWLEDGE_HEADINGS) != N_KNOWLEDGE:
+    raise SystemExit(f"compute: {len(KNOWLEDGE_HEADINGS)} headings against {N_KNOWLEDGE} numbers")
+# ROUND 1'S INTEGRITY JUDGE FOUND TWO TYPED FIGURES under comments swearing nothing was typed.
+# Frame 2's dek printed "Seven of them" as a word in a slide string, n_knowledge minus n_chapters
+# done nowhere, and frame 3's tally printed "AI unit 0" as a literal. Both cleared numeral_trace
+# because a different computation happened to put the same digit in the allowed set. They are
+# computed here now and the frames read them from the injected block.
+N_SILENT_CHAPTERS = N_KNOWLEDGE - N_CHAPTERS
+_NUMBER_WORDS = ("zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
+                 "nine", "ten", "eleven", "twelve")
+SILENT_CHAPTERS_WORD = _NUMBER_WORDS[N_SILENT_CHAPTERS].capitalize()
+# A heading that names the machine, by any of the stems the footprint counts, plus the bare token.
+_AI_TOKENS = tuple(s.lower() for s in MACHINE_STEMS) + ("machine learning", " ai ", "artificial")
+N_AI_HEADINGS = sum(1 for h in KNOWLEDGE_HEADINGS if any(t in f" {h.lower()} " for t in _AI_TOKENS))
 
 # A GAP IS EXTRAORDINARY AND A PARSER MISS IS ORDINARY, so a reported gap has to be corroborated
 # before any frame is allowed to draw it. The document prints each missing number somewhere even
@@ -393,6 +410,10 @@ OUT = {
     "n_knowledge": N_KNOWLEDGE,
     "knowledge_highest": KNOWLEDGE_HIGHEST,
     "knowledge_missing": KNOWLEDGE_MISSING,
+    "knowledge_headings": KNOWLEDGE_HEADINGS,
+    "n_silent_chapters": N_SILENT_CHAPTERS,
+    "silent_chapters_word": SILENT_CHAPTERS_WORD,
+    "n_ai_headings": N_AI_HEADINGS,
 
     "release_hits": RELEASE_HITS,
     "n_release_hits": N_RELEASE_HITS,

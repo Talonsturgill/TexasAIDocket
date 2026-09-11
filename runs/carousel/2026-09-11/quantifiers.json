@@ -1,6 +1,6 @@
 {
  "run": "2026-09-11",
- "note": "One universal is printed in this run and it is the caption's, over the six terms the release was searched for. The set is named here because a quantifier is a claim about a set, and the measurement behind it is the same one slide 7 draws.",
+ "note": "Two universals are printed in this run and both are the caption's. The sets are named here because a quantifier is a claim about a set, and the measurements behind them are the ones slides 7 and 4 to 6 draw.",
  "quantifiers": [
   {
    "phrase": "None of them",
@@ -14,6 +14,16 @@
     "AI"
    ],
    "measured_by": "compute.py RELEASE_HITS counts each of these six over the served bytes of the board's news release, navigation and footer included, and RAISES rather than publishing if any one of them is not zero. The caption's sentence names three of the six and the frame prints all six with their counts, so the universal is over a set the deck shows rather than one the reader is asked to take on trust."
+  },
+  {
+   "phrase": "All three",
+   "about": "machine expectations",
+   "from_items": [
+    "research",
+    "explain",
+    "appraise"
+   ],
+   "measured_by": "compute.py MACHINE_EXPECTATIONS is the set of expectation claims whose quotes carry a machine stem, c14, c15 and c16, and N_MACHINE_EXPECTATIONS is 3. The caption's sentence says all three sit inside the release's two closing words, which is a claim about that set and not about what any source says. Round 1's integrity judge found it undeclared."
   }
  ]
 }

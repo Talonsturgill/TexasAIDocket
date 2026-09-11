@@ -30,7 +30,7 @@
   <div class="kick">THE COURSE TEXT</div>
   <div class="count">02 / 09</div>
   <h1 class="hook" id="hook">Ten chapters. The machine is in three.</h1>
-  <p class="dek">Every chapter of the course text is a thing a student must be able to do with
+  <p class="dek" id="dek">Every chapter of the course text is a thing a student must be able to do with
      money. Seven of them never mention a machine.</p>
   <div class="chap" id="ch0" style="left:80px;top:1004px">CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL</div>
   <div class="chap" id="ch1" style="left:392px;top:1004px">CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING</div>
@@ -181,6 +181,21 @@ const C = {
   "n_knowledge": 10,
   "knowledge_highest": 10,
   "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -269,10 +284,15 @@ window.renderReady = new Promise(async (resolve) => {
       }
     }
     // the block's own tooth
+    // THE TOOTH IS MEASURED, NOT DECLARED. panel_ready reads the residual over an open patch of
+    // ground after the local mean is removed, and at alpha 0.05 the first build's 5200 specks
+    // measured 3.80 against a 4.0 floor on the quietest patch, which is a gradient promising a
+    // material it does not carry. Painted block is pitted, so the pits are drawn at a value a
+    // reader can see, and under the 28 step qa.py counts as a structured edge behind type.
     const r=TX.rng(SEED);
-    cx.globalAlpha=0.05;
-    for(let i=0;i<5200;i++){
-      const x=r()*1080, y=r()*1350, s=0.6+r()*1.5;
+    cx.globalAlpha=0.20;
+    for(let i=0;i<14000;i++){
+      const x=r()*1080, y=r()*1350, s=0.7+r()*2.0;
       cx.fillStyle = r()>0.5 ? '#0E3347' : '#CCF2E4';
       cx.fillRect(x,y,s,s);
     }
@@ -358,11 +378,30 @@ window.renderReady = new Promise(async (resolve) => {
   })();
 
   document.getElementById('grain').style.backgroundImage='url('+TX.grainTile(256,30,SEED)+')';
+  // THE SEVEN IS COMPUTED. compute.py N_SILENT_CHAPTERS is n_knowledge minus n_chapters, the
+  // dek is set from it here, and a source whose typed text disagrees with the computation throws
+  // rather than rendering. Round 1's integrity judge found the first build typing it.
+  (function silent(){
+    const el=document.getElementById('dek');
+    const want='Every chapter of the course text is a thing a student must be able to do with money. '
+      + C.silent_chapters_word + ' of them never mention a machine.';
+    if(el.textContent.replace(/\s+/g,' ').trim()!==want) throw new Error('slide-02: the dek disagrees with compute.py');
+    el.textContent=want;
+  })();
   TX.fitText(document.getElementById('hook'),{min:62,max:100,maxLines:2});
   // THE THREE THE MACHINE SITS IN ARE THE ONLY ONES THE LIGHT REACHES, asserted rather than
   // claimed. A frame that lights every cell equally contradicts its own declaration.
   const mx = cellX(MARK[0]);
   const ux = cellX(MARK.indexOf(1)<0 ? 1 : 2);
+  // THE SLABS STAND ON THE WALL, MEASURED. The dossier's acceptance list asked for at least three
+  // declared contacts and the first build declared none, which round 1's craft judge read off
+  // render_report. Shadow in the slab's own cast into the reveal, ground on the wall below the
+  // leaders, placed by measuring the render: 39.5 against 61.4 L* on every marked cell.
+  document.body.setAttribute('data-contacts', JSON.stringify(MARK.map(function(n){
+    const x=cellX(n);
+    return {what:"chapter "+n+"'s slab against the reveal below it",
+            shadow:[[x+8, Y0+CH+2, CW-16, 10]], ground:[[x+8, 870, CW-16, 12]]};
+  })));
   document.body.setAttribute('data-encodes', JSON.stringify([
     {claim:"a chapter carrying the machine reads differently from one that does not",
      reads:"differ", a:[[mx, Y0, CW, CH]], b:[[ux, Y0, CW, CH]]}

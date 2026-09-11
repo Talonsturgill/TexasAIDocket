@@ -1,0 +1,53 @@
+{
+ "judge": "integrity",
+ "round": 1,
+ "date": "2026-09-11",
+ "weighted_score": 6.146,
+ "hard_fails": [
+  "Frame 3 prints a typed numeral. slides/slide-03.html line 247 writes '<span>AI unit</span><span>0</span>' as a string literal, nine lines under the comment 'the tally, built from computed.json. Nothing here is typed.' No compute.py value, no computed.json key and no aggregates.json row produces a count for 'AI unit'. The storyboard's slide 3 acceptance item asks for the row to 'carry a count of zero', so the zero was planned as a typed figure. It clears numeral_trace only because ZERO HITS, a count over a different document, puts 0 in the allowed set. That is a numeral on a slide that traces to no claim and no computation.",
+  "Frame 2 prints an arithmetic result nobody computed. slides/slide-02.html line 34 types 'Seven of them never mention a machine.' Seven is n_knowledge minus n_chapters, done in a slide string. compute.py has no such value, aggregates.json declares 'Ten chapters' and 'Four terms' as figures but not this one, and the storyboard's slide 2 numerals list does not name it. The digit passes the gate because 'seven says', the chapter number from c21, is a different figure that happens to share it. Same condition as above.",
+  "Frame 8 and the caption present the effective date as settled. The sill reads 'EFFECTIVE  20 days after filing with the Texas Register' and the caption reads 'The rule takes effect 20 days after filing.' c3's own text says 'The motion asked the board to find' that, the item page (sources/sboe-item3-second-reading.txt) calls it 'The proposed effective date' and says a two-thirds vote is required to set it, c23 establishes adoption but not that finding, and claims.json's not_established list leaves the vote unresolved. The fact-checker kept the hedge and the deck dropped it on two surfaces. That is an unverified fact presented as verified."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Put the deck's two typed figures through compute.py and aggregates.json (a computed n_knowledge minus n_chapters for frame 2's 'Seven', and either a machine-stem count over the ten knowledge-statement headings for frame 3's 'AI unit' row or the already computed 'machine learning 0' in its place), then restore c3's hedge on frame 8 and in the caption so the effective date reads as what the motion asked rather than what the board settled, because all three cleared every gate by coincidence.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.4,
+   "why": "Frame 1's prism troffer and frame 7's projected rectangle are made drawings and the seven-token palette is coherent and measured. The rest is thinner than the storyboard says. On frame 3 the reserveTally block in slides/slide-03.html paints a 0.90 alpha slate rect blurred 26px from about y 176 to y 513 under the tally, and the script places the 'artificial intelligence' mark at word 1331, which is page 4 line 0, about x 892 y 487, so the reserve is painted over the one mark the cover is built on. The dek says five, the full render shows a faint fifth at the plate's foot, and the 432 thumb shows four. Frame 6's clause plate renders 'by analyzingfee structures' and 'limitations,and' with no spaces at full size and at the thumb, on the frame the plan calls the sharpest sentence in the story. Frame 5's four flow populations read as one dark splash. construction_check reads 4 of 9 frames as one bright plate, machine_qa calls frame 7 top-loaded with the lower third dead, frame 7 measured 46.3 against a planned 74, frame 4 ships its eight evaluation labels as canvas raster, frame 6's data-encodes probe reports 'visible 0%/100%, seen 0/6144px' so half of it measured nothing, and the storyboard's slide 3 says two pages across and four down while the frame draws COLS=4."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 4.5,
+   "why": "What holds. The quoted strings on frames 4, 5, 6 and 7 match c14, c15, c16 and c22 character for character, the six zeros on frame 7 match computed.json release_hits and I found none of artificial, algorithm, automated, machine learning, technolog or a standalone AI anywhere in sources/sboe-news-release.txt, and the frame 3 counts (artificial intelligence 1 across a line break, algorithm 2 as algorithm-driven and algorithmic, automated 1, robot 1) match the attachment snapshot by hand. What does not. Two typed figures and one dropped hedge, listed under hard_fails. The caption's 'It is a graduation requirement, not an elective' rests on no claim, since c9 gives a half credit requirement a student may meet with an AP course and the item page's background about HB 27 was never claimed. The caption's 'All three expectations sit inside and more' is a second universal that quantifiers.json does not declare, and the run's own c21 puts the appraise expectation under Saving and Investing while the release's sentence says invest. Frame 9's hook 'The text is unread' says more than its dek, which only says the Register filing is unchecked. The release is searched for six stems including technolog while the course text is credited with four, and the attachment contains technolog five times. The first comment lists no claim ids for the caption's HB 27 and graduation requirement sentences (c6, c8, c9 are absent)."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.3,
+   "why": "A reader learns the body, the section number, the item's date line, the implementation year and the credit from frames 8 and 9, and frame 9's 'Ask your district who is staffing the three machine expectations' is a real next step. The record names no county and no district and the deck rightly draws none, and it says out loud that there is no door to walk through. The stake a parent actually needs, that the half credit is required rather than elective, is stated only in the caption and traces to no claim. The only date-shaped row on any frame, EFFECTIVE 20 days after filing, is the unverified one."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Cover, the document's shape, the footprint, three postures, the release, the dates, the close. It reads in order, the 6 to 7 junction measures 28.8 L* in measurements.json, and frame 7 is the turn. Frames 4, 5 and 6 run one hook skeleton, 'Chapter N verbs it', which is a template inside the deck. Frame 9's hook lands harder than its dek can carry."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "The post is clean on every house rule I checked. 'September 4th' carries no year, '2027 to 2028' keeps its years, no dash, no colon or semicolon, no cannot, no first person, no sentence opens on And or But, three hashtags alone on the last line, ends on a question, captions.json records 894 characters and 3 commas. 'Texas put AI in a money class.' is a good plain seven-word line. 'Chapter' for a knowledge statement, inside a document that is itself Chapter 113, is an outsider's noun, and a reader who follows c19 to the source will not find a chapter three. 'The text is unread.' is a flourish the record does not carry. No regional specificity, because the record has none."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The palette is measured clear of the 81 prior hexes and the seated eye height school interior is a register no entry in the fourteen day window has. Topic clear of the 30 day window. The technique list is library staples, and stipple, parallax planes, flow field, white line engraving, the dust column, heat shimmer and the norther front all appear in the ledger's first two entries. The caption's close is 'ask the one question' for the eleventh time in 21 entries. The deck's middle and its turn again rest on what a document does not say, frame 3's five points, frame 7's zeros and the typed AI unit row, which the angle notes on decks 11, 14 and 15 asked the run to stop doing."
+  }
+ ],
+ "the_verdict_in_its_own_words": "The deck's verbatim spine holds. Every quoted clause on frames 4 through 7 is the source's own string, the six zeros are real against the served bytes, and the term counts survive a hand check of the attachment. What does not hold is the deck's own law that no figure is typed. Frame 3 types the zero beside AI unit and frame 2 types the seven, both under a comment and a dossier swearing nothing is typed, and both cleared numeral_trace because a different computation happened to put the same digit in the allowed set, which is the gate shape GATE_LESSONS exists to name. Frame 8 and the caption then state an effective date the record only records as a motion's request that needed a two-thirds vote nobody verified. Those three are hard fails, the fix is a few lines of compute.py and one restored hedge, and the weighted score of 6.146 is under the 6.8 bar on its own. The craft finding worth carrying forward is that the tally plate on frame 3 is painted over the one mark for artificial intelligence, so the frame whose whole job is to show five points shows four at feed size and hides the one the cover is about.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

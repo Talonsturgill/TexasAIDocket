@@ -21,7 +21,7 @@
   .clause{position:absolute;left:138px;top:760px;width:812px;font-size:31px;line-height:1.42;
           color:#0E3347;margin:0;font-style:italic;font-weight:500}
   .clause em{font-style:italic;font-weight:800;color:#0E3347;background:rgba(204,242,228,.92);
-             padding:0 6px;border-radius:2px}
+             padding:0 5px;margin:0 -5px;border-radius:2px}
   .src{position:absolute;left:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
        letter-spacing:.07em;color:var(--troffer)}
   .tx-site{position:absolute;right:80px;bottom:60px;font-family:"JetBrains Mono",monospace;font-size:24px;
@@ -182,6 +182,21 @@ const C = {
   "n_knowledge": 10,
   "knowledge_highest": 10,
   "knowledge_missing": [],
+  "knowledge_headings": [
+    "Fundamental Concepts of Economics Related to PFL",
+    "Personal Financial Planning, Goal Setting, and Decision-Making",
+    "Careers, Postsecondary Education, and Earning Potential",
+    "Consumer Economics and Financial Decision-Making",
+    "Earning Income",
+    "Budgeting: Spending and Planning",
+    "Saving and Investing",
+    "Credit and Debt",
+    "Risk Management and Insurance",
+    "Entrepreneurship and Personal Financial Opportunity"
+  ],
+  "n_silent_chapters": 7,
+  "silent_chapters_word": "Seven",
+  "n_ai_headings": 0,
   "release_hits": {
     "artificial": 0,
     "algorithm": 0,
@@ -252,6 +267,17 @@ window.renderReady = new Promise(async (resolve) => {
     g.addColorStop(0.34,'rgba(14,51,71,0.20)');
     g.addColorStop(1,'rgba(14,51,71,0.58)');
     cx.fillStyle=g; cx.fillRect(0,0,1080,1060);
+    // THE BLOCK'S OWN TOOTH, drawn at a value panel_ready can measure. The first build carried
+    // none, so the far plane was a gradient with joints on it rather than a painted material.
+    (function tooth(){
+      const r=TX.rng(SEED+11); cx.save(); cx.globalAlpha=0.16;
+      for(let i=0;i<9000;i++){
+        const x=r()*1080, y=r()*1060, s=0.7+r()*2.0;
+        cx.fillStyle = r()>0.5 ? '#0E3347' : '#CCF2E4';
+        cx.fillRect(x,y,s,s);
+      }
+      cx.restore();
+    })();
     const BW=196,BH=98; cx.lineWidth=1.4;
     for(let row=0,y=-30;y<1060;row++,y+=BH){
       const off=(row%2)?BW/2:0;
@@ -305,6 +331,26 @@ window.renderReady = new Promise(async (resolve) => {
     g.addColorStop(0.60,'rgba(196,236,220,0.99)');
     g.addColorStop(1,'rgba(164,214,196,0.99)');
     cx.fillStyle=g; cx.fillRect(X,Y,W,H);
+    // THE GHOSTING. A whiteboard in use since August carries erased marker as a fine dark residue
+    // and the eraser's own drag as faint horizontal smears. The first build's board measured 0.59
+    // residual on the quietest patch, which is a gradient and not a surface. The residue is held
+    // under the 28 luminance step qa.py counts as a structured edge, so it is texture behind the
+    // clause and never a mark competing with it.
+    (function ghosting(){
+      const r=TX.rng(SEED+23); cx.save();
+      cx.beginPath(); cx.rect(X+2,Y+2,W-4,H-4); cx.clip();
+      cx.globalAlpha=0.05; cx.fillStyle='#0E3347';
+      for(let i=0;i<46;i++){
+        const sx=X+r()*W, sy=Y+r()*H, sw=60+r()*200, sh=2+r()*3;
+        cx.fillRect(sx,sy,sw,sh);
+      }
+      cx.globalAlpha=0.14;
+      for(let i=0;i<3600;i++){
+        const x=X+r()*W, y=Y+r()*H, s=0.8+r()*2.2;
+        cx.fillRect(x,y,s,s);
+      }
+      cx.restore();
+    })();
     // the aluminium trim, lit on its top arris
     cx.strokeStyle='rgba(255,255,255,0.70)'; cx.lineWidth=3;
     cx.beginPath(); cx.moveTo(X,Y+1.5); cx.lineTo(X+W,Y+1.5); cx.stroke();
