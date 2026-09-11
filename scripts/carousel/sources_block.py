@@ -70,10 +70,21 @@ MONTHS = ["January", "February", "March", "April", "May", "June",
 ID_LINE = re.compile(r"\bc\d+\b")
 
 
-def ordinal_date(iso: str) -> str:
-    """`2026-08-19` to `August 19th, 2026`. House style, month first, ordinal day."""
+def ordinal_date(iso: str, context_year: int | None = None) -> str:
+    """`2026-08-19` to `August 19th, 2026`. House style, month first, ordinal day.
+
+    A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR, 2026-09-11, on the owner's instruction. Pass
+    `context_year` and a date inside it renders `August 19th`, because a reader works the year out
+    from the fact that they are reading the post this week. This block printed the same four
+    characters and a comma seven times in one first comment.
+
+    The year STAYS on every other date, which is the half that makes this a rule about redundancy
+    rather than a rule against years. A source published in 2019 still says 2019, and that is
+    exactly when a reader needs it.
+    """
     y, m, d = (int(x) for x in iso.split("-"))
-    return f"{MONTHS[m - 1]} {d}{ORDINALS.get(d, 'th')}, {y}"
+    head = f"{MONTHS[m - 1]} {d}{ORDINALS.get(d, 'th')}"
+    return head if context_year == y else f"{head}, {y}"
 
 
 # THE SHAPES THE CLAIMS FILE HAS ACTUALLY SHIPPED IN. The 2026-08-16 run wrote `url` and
@@ -110,7 +121,8 @@ def deck_claim_ids(copy: dict) -> list[str]:
     return sorted(out, key=lambda c: int(c[1:]))
 
 
-def provenance_line(docs: list[dict], fetched: "str | list[str]") -> str:
+def provenance_line(docs: list[dict], fetched: "str | list[str]",
+                    context_year: int | None = None) -> str:
     """The first line of the source block, COUNTED and never asserted.
 
     Until 2026-08-25 this read "Sources, all primary and fetched <date>". That run's own claims
@@ -181,18 +193,22 @@ def provenance_line(docs: list[dict], fetched: "str | list[str]") -> str:
         _, _, d = ymd(iso)
         return f"{d}{ORDINALS.get(d, 'th')}"
     if len(days) == 1:
-        when = f"all fetched {ordinal_date(days[0])}"
+        when = f"all fetched {ordinal_date(days[0], context_year)}"
     elif len(days) == 2:
         (y0, m0, _), (y1, m1, _) = ymd(days[0]), ymd(days[1])
         if (y0, m0) == (y1, m1):
-            when = f"fetched {MONTHS[m0 - 1]} {day(days[0])} and {day(days[1])}, {y0}"
+            tail = "" if context_year == y0 else f", {y0}"
+            when = f"fetched {MONTHS[m0 - 1]} {day(days[0])} and {day(days[1])}{tail}"
         elif y0 == y1:
+            tail = "" if context_year == y0 else f", {y0}"
             when = (f"fetched {MONTHS[m0 - 1]} {day(days[0])} and "
-                    f"{MONTHS[m1 - 1]} {day(days[1])}, {y0}")
+                    f"{MONTHS[m1 - 1]} {day(days[1])}{tail}")
         else:
-            when = f"fetched {ordinal_date(days[0])} and {ordinal_date(days[1])}"
+            when = (f"fetched {ordinal_date(days[0], context_year)} and "
+                    f"{ordinal_date(days[1], context_year)}")
     else:
-        when = f"fetched between {ordinal_date(days[0])} and {ordinal_date(days[-1])}"
+        when = (f"fetched between {ordinal_date(days[0], context_year)} and "
+                f"{ordinal_date(days[-1], context_year)}")
     return f"Sources, {grade}, {when}."
 
 
@@ -214,7 +230,11 @@ def build(run_dir: Path) -> str:
     if not retrieved:
         raise SystemExit("sources_block: no claim carries a retrieved date")
 
-    lines = [provenance_line([by_id[ids[0]] for ids in groups.values()], retrieved)]
+    # THE POST'S OWN YEAR. A date inside it prints without one, because the reader has it
+    # already. Taken from the run directory's name rather than from the clock, so rebuilding an
+    # old run's block years later still renders what that run published.
+    ctx = int(run_dir.name[:4]) if run_dir.name[:4].isdigit() else None
+    lines = [provenance_line([by_id[ids[0]] for ids in groups.values()], retrieved, ctx)]
     for url, ids in groups.items():
         c = by_id[ids[0]]
         title = field(c, TITLE_KEYS)
@@ -222,7 +242,7 @@ def build(run_dir: Path) -> str:
             raise SystemExit(f"sources_block: {c['id']} has no document title. Add a `document` "
                              f"field to claims.json for {url}")
         when = field(c, DATE_KEYS)
-        lines.append(f"{title}, {ordinal_date(when)}. {' '.join(ids)}"
+        lines.append(f"{title}, {ordinal_date(when, ctx)}. {' '.join(ids)}"
                      if when else f"{title}. {' '.join(ids)}")
         lines.append(url)
     # ONLY IF THE RUN ACTUALLY COMPUTED ONE. This sentence was appended unconditionally, so the
@@ -390,6 +410,13 @@ def self_test() -> int:
 
     ok("a date takes the ordinal, month first", ordinal_date("2026-08-19") == "August 19th, 2026",
        ordinal_date("2026-08-19"))
+    # A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR, 2026-09-11, on the owner's instruction.
+    ok("a date inside the post's own year drops the year",
+       ordinal_date("2026-08-19", 2026) == "August 19th", ordinal_date("2026-08-19", 2026))
+    ok("...and a date outside it keeps the year, which is when a reader needs it",
+       ordinal_date("2019-08-19", 2026) == "August 19th, 2019", ordinal_date("2019-08-19", 2026))
+    ok("...and no context year behaves exactly as before",
+       ordinal_date("2026-08-19") == "August 19th, 2026")
     ok("...and the irregular ones are right",
        [ordinal_date(f"2026-08-0{d}") for d in (1, 2, 3)]
        == ["August 1st, 2026", "August 2nd, 2026", "August 3rd, 2026"])

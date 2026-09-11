@@ -63,6 +63,7 @@ a 29 percent cut where 10 percent was asked for.
 from __future__ import annotations
 
 import argparse
+import datetime as _dt
 import json
 import re
 import sys
@@ -83,6 +84,23 @@ BARE_DATE = re.compile(rf"\b(?:{MONTHS})\s+\d{{1,2}}\b(?!\s*(?:st|nd|rd|th)\b)",
 DAY_FIRST = re.compile(rf"\b\d{{1,2}}(?:st|nd|rd|th)?\s+(?:{MONTHS})\b", re.IGNORECASE)
 OF_MONTH = re.compile(rf"\bthe\s+\d{{1,2}}(?:st|nd|rd|th)\s+of\s+(?:{MONTHS})\b", re.IGNORECASE)
 CANNOT = re.compile(r"\bcannot\b", re.IGNORECASE)
+
+# A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR, 2026-09-11, on the owner's instruction.
+#
+# "the board acted on September 5th, 2026" in a post published in September 2026 spends four
+# characters and a comma telling a reader something they worked out from the fact that they are
+# reading it this week. The year is not wrong, it is REDUNDANT, and redundancy in the first two
+# lines of a LinkedIn post is paid for in the only currency that surface has.
+#
+# POST LEVEL AND NOWHERE ELSE. `check()` also judges the website, and the site is a permanent
+# archive that a reader reaches years later from a search result, where a bare "September 5th"
+# on a record page would be ambiguous exactly when it matters most. So this lives in
+# `post_shape_problems` beside the other rules that are true of a feed and false of an archive.
+#
+# The year STAYS on any date outside the post's own year, which is what makes this a rule about
+# redundancy rather than a rule against years.
+DATED_YEAR = re.compile(rf"\b(?:{MONTHS})\s+\d{{1,2}}(?:st|nd|rd|th),?\s*(\d{{4}})\b",
+                        re.IGNORECASE)
 
 # BRITISH SPELLING, WHICH IS INVISIBLE UNTIL SOMEBODY FROM TEXAS READS IT.
 #
@@ -380,7 +398,7 @@ def hashtags_required() -> int:
     return n
 
 
-def post_shape_problems(text: str) -> list[str]:
+def post_shape_problems(text: str, today: str | None = None) -> list[str]:
     """The three `linkedin_post` rules that live in brand.yaml and had no gate (2026-08-25).
 
     Length, the link rule and the required ending. All three were stated in config, all three
@@ -433,6 +451,19 @@ def post_shape_problems(text: str) -> list[str]:
             f"close may set the fact up first. The one substance that cannot survive this rule is "
             f"stopping on the strongest fact, and getting that back is a brand.yaml change a "
             f"maintainer makes")
+
+    # A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR. See DATED_YEAR above for why this is post
+    # level and not in `check()`.
+    year = (today or _dt.date.today().isoformat())[:4]
+    for m in DATED_YEAR.finditer(body):
+        if m.group(1) != year:
+            continue
+        shown = m.group(0)
+        problems.append(
+            f"{shown!r} prints the year and the post is published in {year}. A reader works that "
+            f"out from the fact that they are reading it this week, so drop it and write "
+            f"{shown.split(',')[0].rstrip()!r}. The year stays on any date outside {year}, which "
+            f"is what makes this a rule about redundancy rather than a rule against years")
 
     return problems
 
@@ -1038,6 +1069,32 @@ def self_test() -> int:
            * 4)[: _hi - len(_tags) - 40] + " Is that worth it?\n\n" + _tags
     ok("a caption inside the band, ending on a question, with no link, is clean",
        not post_shape_problems(_ok), str(post_shape_problems(_ok))[:160])
+
+    # A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR, 2026-09-11, on the owner's instruction.
+    # Both halves are asserted, because a rule that only ever fires is a rule against years.
+    _base = ("Something happened in Bexar County and the record says so plainly. " * 4)
+    def _dated(d):
+        return (_base[: _hi - len(_tags) - 60] + f" The board acted on {d}. "
+                "Is that worth it?\n\n" + _tags)
+    ok("a date in the post's own year FAILS when it prints the year",
+       any("prints the year" in x
+           for x in post_shape_problems(_dated("September 5th, 2026"), "2026-09-11")),
+       str(post_shape_problems(_dated("September 5th, 2026"), "2026-09-11"))[:160])
+    ok("...and the same date without its year is clean",
+       not any("prints the year" in x
+               for x in post_shape_problems(_dated("September 5th"), "2026-09-11")))
+    ok("...and a date OUTSIDE the post's year keeps its year and stays clean",
+       not any("prints the year" in x
+               for x in post_shape_problems(_dated("September 5th, 2019"), "2026-09-11")),
+       str(post_shape_problems(_dated("September 5th, 2019"), "2026-09-11"))[:160])
+    ok("...and the message names the form to write instead, rather than only the rule",
+       any("September 5th'" in x
+           for x in post_shape_problems(_dated("September 5th, 2026"), "2026-09-11")))
+    # THE SITE IS THE EXCEPTION AND IT IS DELIBERATE. `check()` also judges record pages, which a
+    # reader reaches years later out of a search result.
+    ok("the year rule is POST level and never reaches check(), which judges the website",
+       not any("prints the year" in x for x in check("The board acted on September 5th, 2026.")),
+       str(check("The board acted on September 5th, 2026."))[:160])
     _long = ("Something happened in Bexar County and the record says so plainly. " * 20
              + "Is that worth it?\n\n" + _tags)
     ok("...a caption over the band FAILS",
