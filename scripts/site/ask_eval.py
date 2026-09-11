@@ -70,6 +70,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 LEDGER = REPO_ROOT / "ledger" / "docket.json"
 
+# THE FRAME OF A QUESTION, TAKEN FROM THE RETRIEVER RATHER THAN KEPT AGAIN HERE. A word the
+# router discards before it scores anything cannot be evidence that a phrase is about this
+# record. See ask_retrieval.FRAME for why that list is a closed class and not a stopword list.
+import ask_retrieval as _ar                                          # noqa: E402
+_FRAME = _ar.frame()
+
 # Words that carry no signal about WHICH decision is meant. A query trimmed to these is a query
 # about nothing, and a case built from one would score the router on noise.
 NOISE = {
@@ -106,6 +112,12 @@ def content_words(text: str, least: int = 4) -> list[str]:
 def load_items(path: Path | None = None) -> list[dict]:
     p = path or LEDGER
     return json.loads(p.read_text(encoding="utf-8"))["items"]
+
+
+def bodies(items: list[dict]) -> dict:
+    """Every decider spelling in the record, mapped to the body that publishes under it."""
+    import deciders as dcd
+    return dcd.resolve(dcd.counts_of(items))
 
 
 def vocabulary(items: list[dict]) -> set[str]:
@@ -225,6 +237,7 @@ def _rarest(text: str, corpus: list[str], n: int) -> list[str]:
 def build(items: list[dict]) -> list[dict]:
     """Every case, each carrying the kind it belongs to so failures are readable by kind."""
     vocab = vocabulary(items)
+    body = bodies(items)
     cases: list[dict] = []
 
     for it in items:
@@ -251,9 +264,16 @@ def build(items: list[dict]) -> list[dict]:
         for c in (geo.get("counties") or [])[:1]:
             cases.append({"kind": "county", "q": f"{c} county", "view": "by_county", "arg": c})
 
+        # THE QUESTION IS THE SPELLING THIS DECISION WAS FILED UNDER. The ANSWER is the body.
+        #
+        # The record spells the National Science Foundation three ways and this asked for the
+        # spelling back, so a router that resolved all three to one agency would have been marked
+        # wrong twice for being right. Every spelling still gets asked, which is the point, and
+        # each of them has to reach the same body.
         d = (it.get("decider") or {}).get("name")
         if d:
-            cases.append({"kind": "decider", "q": d, "view": "by_decider", "arg": d})
+            cases.append({"kind": "decider", "q": d, "view": "by_decider",
+                          "arg": body.get(d, d)})
 
         t = it.get("topic")
         if t:
@@ -264,7 +284,21 @@ def build(items: list[dict]) -> list[dict]:
     # nonsense because the record grew into it is dropped here rather than scored forever as a
     # failure the router cannot fix.
     for q in NONSENSE:
-        shared = sorted(set(content_words(q)) & vocab)
+        # WHAT THE ROUTER WOULD ACTUALLY WEIGH, which is not every word the phrase contains.
+        #
+        # This asked whether the phrase shared ANY content word with the record and dropped it if
+        # so, and `content_words` only knows the short NOISE list above. That list is missing
+        # "what", "about" and "does", so five of these eight phrases were being dropped for
+        # sharing a question word, and one of the five is the phrase this whole engine was built
+        # against. "What is the airspeed velocity of an unladen swallow" left the gold set
+        # because the record contains the word "what", and the count fell under the floor below
+        # while the set looked like it was simply getting stricter.
+        #
+        # The retriever drops the frame of a question from a query before scoring anything, so a
+        # phrase sharing only frame words shares nothing the router can see. `ask_retrieval.FRAME`
+        # is that list, it is a closed class of English rather than a judgment about this record,
+        # and taking it from there rather than keeping a second copy is the whole point.
+        shared = sorted(set(content_words(q)) & (vocab - _FRAME))
         if shared:
             continue
         cases.append({"kind": "nonsense", "q": q, "item": None, "expect_none": True})

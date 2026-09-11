@@ -67,6 +67,29 @@ var askFrame = new Set(("what which who whom whose when where why how whether " 
   "anything something everything nothing anyone someone everyone " +
   "just also very really still even ever never always").split(" "));
 
+/* HOW MANY OF THIS QUERY'S WORDS COULD CORROBORATE IN THIS INDEX AT ALL.
+   `terms` below counts the discriminating words a DOCUMENT matched. This counts the
+   discriminating words the QUERY HAS here, which is the ceiling on what any document in this
+   index could possibly score. A caller insisting on more corroboration than this number is
+   insisting on evidence that cannot exist, and it will get silence rather than a weaker
+   answer. Same threshold as `terms`, from the same constant, because a second copy of it is
+   two answers that agree until somebody tunes one of them.
+
+   A WORD NO DOCUMENT CARRIES COUNTS, AND THAT IS THE POINT. An unfamiliar word is a reason to
+   want more corroboration rather than less, so "dallas county construction marathon" keeps the
+   full bar in every family while "dallas county construction" does not. */
+function askReach(idx, query) {
+  var qs = askTokens(query).filter(function (w) {
+    return w.length > 2 && !askFrame.has(w);
+  });
+  var n = 0;
+  qs.forEach(function (w) {
+    var df = idx.df[w] || 0;
+    if (Math.log(1 + (idx.N - df + 0.5) / (df + 0.5)) >= 1.0) n += 1;
+  });
+  return n;
+}
+
 function askBm25(idx, query) {
   var qs = askTokens(query).filter(function (w) {
     return w.length > 2 && !askFrame.has(w);
@@ -116,4 +139,5 @@ function askFuse(lists) {
     .sort(function (a, b) { return b.score - a.score || (a.id < b.id ? -1 : 1); });
 }
 
-export { askTokens, askDoc, askIndex, askBm25, askFuse, askFrame };
+export { askTokens, askDoc, askIndex, askBm25, askFuse, askFrame,
+         askReach };

@@ -3,27 +3,27 @@
   "construction": {
    "n": 61,
    "sent": 100,
-   "first": 77
+   "first": 100
   },
   "county": {
-   "n": 30,
-   "sent": 86.7,
-   "first": 40
+   "n": 36,
+   "sent": 83.3,
+   "first": 25
   },
   "decider": {
-   "n": 52,
+   "n": 84,
    "sent": 100,
-   "first": 96.2
+   "first": 92.9
   },
   "facility": {
-   "n": 36,
-   "sent": 86.1,
-   "first": 61.1
+   "n": 120,
+   "sent": 90,
+   "first": 85.8
   },
   "facility_phrase": {
-   "n": 48,
+   "n": 144,
    "sent": 100,
-   "first": 95.8
+   "first": 91
   },
   "metro_water": {
    "n": 19,
@@ -31,24 +31,24 @@
    "first": 100
   },
   "nonsense": {
-   "n": 4,
+   "n": 5,
    "sent": 100,
    "first": 100
   },
   "phrase": {
-   "n": 69,
+   "n": 123,
    "sent": 100,
-   "first": 98.6
+   "first": 95.9
   },
   "reservoir": {
    "n": 119,
    "sent": 100,
-   "first": 95.8
+   "first": 99.2
   },
   "title": {
-   "n": 69,
+   "n": 123,
    "sent": 100,
-   "first": 98.6
+   "first": 91.9
   },
   "topic_item": {
    "n": 8,
@@ -57,13 +57,13 @@
   }
  },
  "total": {
-  "n": 515,
-  "sent": 98.3,
-  "first": 88.9
+  "n": 842,
+  "sent": 97.9,
+  "first": 90.6
  },
  "tokens": {
-  "whole": 84052,
-  "mean": 11804,
-  "cached": 9183
+  "whole": 103730,
+  "mean": 16027,
+  "cached": 13137
  }
 }

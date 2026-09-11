@@ -31,6 +31,13 @@ TWO LAYERS, AND THE LINE BETWEEN THEM IS THE POINT
      judgment. It is a correct one, and it is still a judgment, so it is written down where it can
      be read and disagreed with rather than buried in a regex.
 
+THE DOCKET HAS THE SAME PROBLEM AND `scripts/site/deciders.py` IS THIS FILE'S ANSWER TO IT.
+The record spelled the National Science Foundation three ways and every surface counted three
+agencies, which is the comma problem above with a different ledger under it. That file borrows
+the two layer split and the source's own display name from here, and differs in two places it
+states. If a third ledger ever grows a free text name that anything GROUPS by, it belongs in the
+same shape, and the pointer is here so the next one does not have to rediscover the first two.
+
 The page shows both numbers and says which is which. A reader who trusts only the mechanical
 layer gets a defensible figure; a reader who wants the corporate picture gets that too.
 

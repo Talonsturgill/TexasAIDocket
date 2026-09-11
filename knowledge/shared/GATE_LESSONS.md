@@ -2389,3 +2389,193 @@ to be wrong.
 And an early warning nothing prints is not an early warning. Entry 71 asked for the distance to be
 published and the run that answered it wrote a function. Wiring it to a surface a person reads is
 the part that was the deliverable, and it is the part that was skipped.
+
+## 73. A whole family of questions went dark for a week, and the harness printed all passed every day
+
+`tests/ask_worker_retrieval.mjs` scores the ask box's retriever against a gold set built from
+the record. On 2026-09-10 it was asked, for the first time in a week, to explain a number:
+
+```
+construction  n=61  sent 4.9%  first 4.9%
+```
+
+Fifty eight of sixty one county construction questions had no longer been putting the county's
+own block in the prompt at all. "Dallas county construction" retrieved six blocks and
+`county-dallas` was not among them. The recorded baseline for that kind was `sent 100`.
+
+**It started on 2026-09-03, when a hundred and fifty data center dossiers were admitted.** The
+retriever gives each family a corroboration bar of two discriminating words. Inside the sixty
+one blocks each titled "Construction registered in X County", the words "county" and
+"construction" are that family's own boilerplate and correctly fall below the informativeness
+floor, so one word is left and the bar was never reachable. The county family scored its own
+block FIRST in its own fused list, with one term, and then discarded it for having one.
+
+That had always been true. What carried those questions was the floor, the fallback that runs
+when nothing anywhere corroborated, and it is conditioned on the whole slice coming back short.
+The dossiers gave the facility family enough blocks to corroborate on its own, the slice stopped
+coming back short, the floor stopped running, and the one family the question actually named
+lost its seat in silence.
+
+**A rescue conditioned on the SIZE of the result is a rescue that disappears exactly when the
+record grows.** Nothing changed in the county family, in its blocks, or in the code that scores
+it. A different family got bigger.
+
+**And the harness measured it correctly every single run and reported `all passed`.** The
+per-kind rows were computed. They were printed. The only thing compared against the recorded
+baseline was three TOTALS, and a whole family falling from 100 to 4.9 moved the overall `sent`
+from 98.3 to 90.7. Seven points reads as drift, and the run before it had drifted too, because
+the baseline had been recorded when the record held 98 items and now held 123.
+
+```
+  sent    98.3 ->  90.7  -7.6      <- what the harness compared
+  construction  100 -> 4.9  -95.1  <- what had actually happened
+```
+
+**A TOTAL IS AN AVERAGE AND AN AVERAGE HIDES A ZERO.** Both numbers were true. One of them was
+about the product.
+
+**The stale fixture is the second half and it is not a separate fault.** The gold set is
+generated from the record at run time and the baseline is a committed file, so every admission
+moves the comparison a little. That is by design and it is fine, right up to the point where
+everything is always moving a bit, at which point a real collapse is indistinguishable from a
+Tuesday. Drift is what makes a real signal unreadable.
+
+**Generalises to.** Three, and the third is the one that costs the most.
+
+Compare what you compute. The rows existed, cost nothing, and were already on the screen. A
+harness that computes a per-kind breakdown and compares only the total has decided that the
+breakdown is for humans, and humans read the total.
+
+An average over kinds is not a measure of a product with kinds. Whatever is scored by category
+needs a per-category floor that fails, separate from the aggregate that drifts. The floor here
+is not a tight threshold and must not become one, for the reason that file already gives about
+measurements people learn to route around. It asks only whether something that used to work has
+STOPPED working, which is a broken product rather than a worse number.
+
+And a fallback is load bearing exactly when nobody is looking at it. Where a path exists to
+rescue a case the main path cannot serve, the condition on that path is a live dependency of
+the case, and it belongs in the case's own gate. This one was gated on an unrelated family's
+document count without anybody choosing that.
+
+## 74. One agency, three spellings, and every reader got a third of it with total confidence
+
+The record holds 123 decisions and 84 distinct decider strings. Three of those strings are one
+federal agency:
+
+```
+National Science Foundation                    4 decisions
+U.S. National Science Foundation               5 decisions
+United States National Science Foundation      4 decisions
+```
+
+A reader asking what the National Science Foundation had decided got four of thirteen. Which
+four depended on which spelling they happened to type, the box named the agency back to them
+correctly, and nothing anywhere said the other nine existed. Two more bodies were split the same
+way by a leading "The".
+
+**Every gate passed, every day, because no gate was looking at identity.** The schema contract
+checks that `decider.name` is a string. `numeral_lint` checks figures. The eval scored the router
+at `decider 100` for most of its life, because it built its gold cases from the same strings and
+asked the router to give them back. **A gold set generated from a field cannot see that the field
+holds two names for one thing.** It asked "National Science Foundation" and wanted "National
+Science Foundation", and got it, and both were wrong about the world.
+
+**The one number that did move was read as something else.** When the record grew a second and
+third spelling the eval fell to `decider 95.2`, and the miss it printed looked like a string
+comparison problem:
+
+```
+[decider] "U.S. National Science Foundation"  want by_decider:U.S. National Science Foundation
+                                               got by_decider:National Science Foundation
+```
+
+That reads as a router picking the wrong one of two names. It is a record holding two names for
+one agency, and the difference is that the first has a fix in the router and the second does not.
+The first fix would have made the eval green and left a reader with four of thirteen decisions.
+
+**This repo had already solved it, in the other ledger.** `entities.py` exists because the
+Comptroller's register spells Oracle two ways, and it carries the whole design: a mechanical
+layer with no judgment in it, a curated layer where every judgment states its reason, and a
+display name taken from the source rather than invented. Nothing pointed from the docket at it.
+The second ledger repeated the first ledger's fault with the solution committed twelve files
+away.
+
+**Generalises to.** Four.
+
+An identifier that is a free text name is two facts, what the thing is called and which thing it
+is, and a schema that checks the first has checked nothing about the second. Anywhere a name is
+used to GROUP, the grouping needs its own resolution and its own gate.
+
+A gold set derived from a field inherits that field's mistakes as its expectations. It can
+measure whether a lookup finds what is there and never whether what is there is right. The fix
+here was to make the question the filed spelling and the answer the body, so a router that
+resolves them is scored as correct rather than wrong twice.
+
+The gate worth having is the one that catches the NEXT one. Merging the NSF today is worth
+little on its own, so what actually ships is the rule that a decider name ending another decider
+name must be declared the same body or a distinct one, with a reason. There are four such pairs
+today, two of each, and the fifth fails the build the day it arrives.
+
+And when a repo has already solved a problem in one ledger, the second ledger does not know.
+`entities.py` had the doctrine, the two layer split and the display rule, and the docket carried
+the same defect for as long as it had two spellings of anything. Solving it once is not the same
+as solving it, and the cheap half of the cure is a pointer from each place the shape can occur.
+
+## 75. A second copy of a word list deleted the test this engine was built to pass
+
+`scripts/site/ask_eval.py` builds the gold set the ask box is scored against. Its negatives are
+the cases that matter most, because a box that answers everything scores perfectly on recall and
+is worthless, and the file says so at length. Eight nonsense phrases are listed, each checked at
+build time against the record's own vocabulary so that a phrase which quietly becomes meaningful
+is dropped rather than scored as a false positive forever.
+
+Five of the eight were being dropped. Not one of them for a topical reason:
+
+```
+what is the airspeed velocity of an unladen swallow    shares: what
+who won the world cup in nineteen eighty six           shares: nineteen, world
+what time does the pharmacy close on sunday            shares: close, does, time, what
+best way to train for a marathon                       shares: train
+lyrics to a song about a lonely astronaut              shares: about
+```
+
+**Three of those five were dropped for sharing a question word.** "What". "Does". "About". And
+the first of them is the phrase this engine was built to refuse. The file's own docstring cites
+it: the box once answered "what is the airspeed velocity of an unladen swallow" with a confident
+item about air quality permits, and that is why negatives are measured at all. It had been
+quietly out of the set.
+
+**The retriever had already solved this and the eval could not reach it.** `askFrame` in
+`ask_retrieval.py` is the closed class of English words that turn a statement into a question,
+and the file carries a careful argument about why it is not a stopword list. Interrogatives,
+auxiliaries, modals, pronouns, articles, prepositions. "They are not about the subject in this
+record, they are not about the subject in any record, and they are not going to become about
+it." The retriever drops them from a query before it scores anything, so a phrase sharing only
+those with the record shares nothing the router can see.
+
+**That list lived inside a JavaScript string literal**, emitted for the browser and the worker.
+Python could not read it. So `ask_eval.py` kept a shorter one of its own, `NOISE`, and `NOISE`
+had no "what", no "about" and no "does".
+
+**And the assertion that caught it was not wired to anything.** `ask_eval.py --self-test`
+requires at least four negatives. It had been failing on three. `tests/ask_eval.mjs`, which
+SCORES against the gold set, has been in `guards.yml` for months; the script that BUILDS the
+gold set was never added. So the instrument went out of calibration, said so, and said it only
+to whoever happened to run it by hand.
+
+**Generalises to.** Three.
+
+A list that exists in one language and is needed in two becomes two lists, and the second one is
+always shorter. The cure is not to sync them. It is to keep one and put it where both can reach
+it, which here meant hoisting the frame words into a Python constant that `js()` substitutes,
+exactly as `K1`, `B`, `RRF_K` and `INFORMATIVE` were already handled. The generated retriever
+came out byte for byte identical, which is the proof the move changed nothing.
+
+A filter is only correct relative to what it is protecting. This one asked whether a phrase
+shared a word with the record, when the question it needed to ask was whether it shared a word
+the ROUTER WOULD WEIGH. Those differ by exactly the frame of a question, which is most of what a
+person types and none of what a retriever scores.
+
+And a test set is an instrument. `tests/ask_eval.mjs` was wired because it produces a number
+somebody reads. `ask_eval.py --self-test` was not, because it only checks that the number means
+something. Whichever half is unwired is the half that drifts, and the number keeps printing.

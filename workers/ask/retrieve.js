@@ -21,7 +21,8 @@
 // scripts/site/ask_retrieval.py, the same source the page embeds. Two implementations that
 // agree today is the failure this repo keeps relearning under new names.
 
-import { askBm25, askFuse, askIndex, askTokens, askFrame } from "./retriever.js";
+import { askBm25, askFuse, askIndex, askReach, askTokens, askFrame }
+  from "./retriever.js";
 
 // The pack's own shape, asserted on the producing side by ask_pack.py's self-test and on this
 // side by workers/ask/test.js. Both run in CI. A cut this file makes on a shape the builder
@@ -360,10 +361,19 @@ export function pickItems(query, items, opts = {}) {
     for (const r of fusedRows) score[r.id] = r.score;
     const fused = fusedRows.map((r) => r.id);
     const strong = fused.filter((id) => (terms[id] || 0) >= need);
+    // WHETHER THIS FAMILY COULD HAVE CLEARED THE BAR AT ALL, which is a different question
+    // from whether it did. See the seat below, which is the only thing that reads it.
+    // MAX AND NOT MIN, and the first version of this said min and was wrong in a way that
+    // showed up as an impossible number. `terms` above is the MAX over the body view and the
+    // head view, because a block is corroborated if either view corroborated it. Reading the
+    // ceiling off the min mixed the two views, and a family reported reach=1 while six of its
+    // blocks scored terms=2, which cannot happen when reach is a ceiling on terms. Both sides
+    // read the same view now.
+    const reach = Math.max(askReach(bodyIdx, query), askReach(headIdx, query));
     const share = breadth
       ? (BREADTH_SHARE[family] ?? BREADTH_DEFAULT)
       : (SHARE[family] ?? SHARE_DEFAULT);
-    lists.push({ family, take: strong.slice(0, share), strong, fused,
+    lists.push({ family, take: strong.slice(0, share), strong, fused, reach,
                  affinity: affinity(query, group, globalIdx, items.length),
                  muted: mute ? askFuse([rawBody, rawHead]).map((r) => r.id) : [] });
     // WHAT A FAMILY DID NOT USE GOES BACK IN THE POT. A question about one decision should
@@ -405,6 +415,44 @@ export function pickItems(query, items, opts = {}) {
   // so the block most likely to answer leads and the rest of the slice still spans everything
   // that matched. A question that names no family strongly leaves the affinities close and the
   // fused score breaks the tie, which is the old behaviour and the right one there.
+  // A BAR NO BLOCK IN THIS FAMILY COULD CLEAR IS NOT A BAR, IT IS A MUTE.
+  //
+  // `need` is two corroborating words and it is the right number for a family where the
+  // question HAS two words to corroborate on. The counties are the family where it never does.
+  // "Dallas county construction" is three words, and inside the sixty one blocks each titled
+  // "Construction registered in X County" the words "county" and "construction" are that
+  // family's own boilerplate and correctly fall under the informativeness floor. One word is
+  // left, so the family's best possible hit scores one, two was unreachable, and the family the
+  // question named twice returned nothing at all. Measured on 2026-09-10, `county-dallas` was
+  // ranked FIRST in the county family's own fused list and then thrown away, and the gold set
+  // scored `construction sent 4.9`.
+  //
+  // THE FLOOR BELOW USED TO CATCH THIS AND STOPPED, WHICH IS WHY IT WAS 100 AND IS NOT NOW.
+  // It runs only when the whole slice came back short, and that was true of these questions
+  // until the hundred and fifty dossiers landed on 2026-09-03. After that the dossiers and the
+  // decisions corroborated and filled the slice on their own, so the slice was no longer short,
+  // so the floor stopped running, and the one family that was actually named lost its seat in
+  // silence. A rescue conditioned on the SIZE of the result is a rescue that disappears exactly
+  // when the record grows.
+  //
+  // So a family the bar could not have admitted gets one seat on its own evidence, whatever the
+  // other families did. One, not a share, because one discriminating word is thin and the floor
+  // is still there to add depth when the slice is short. It joins the round robin below rather
+  // than being appended, so `affinity` decides where it lands, which is first on a question that
+  // names it twice.
+  //
+  // GATED ON THE SAME UNKNOWN WORD THE FLOOR IS GATED ON, and for the same reason. A word this
+  // record has never heard points somewhere else, and a thin hit plus a word pointing elsewhere
+  // is the coincidence this retriever refuses to dress up as an answer.
+  if (strange.unknown === 0) {
+    for (const l of lists) {
+      if (!l.take.length && l.reach < need && l.fused.length) {
+        l.take = l.fused.slice(0, 1);
+        l.rescued = true;
+      }
+    }
+  }
+
   const ordered = [...lists].sort((a, b) => (b.affinity - a.affinity)
     || ((score[b.take[0]] || 0) - (score[a.take[0]] || 0))
     || (a.family < b.family ? -1 : 1));

@@ -106,7 +106,10 @@ const resolved = await page.evaluate((rs) => rs.map((r) => {
     return all.filter((i) => (i.counties || []).some((c) => want.has(norm(c)))).map((i) => i.id);
   }
   if (r.view === "by_decider") {
-    return all.filter((i) => norm(i.decider) === norm(r.arg)).map((i) => i.id);
+    // ON THE BODY, NOT THE SPELLING. The record files the National Science Foundation three
+    // ways, so resolving a route by the string it returned counted a third of that agency's
+    // decisions and marked a correct route wrong for the other two.
+    return all.filter((i) => norm(i.decider_id || i.decider) === norm(r.arg)).map((i) => i.id);
   }
   if (r.view === "by_topic") return all.filter((i) => i.topic === r.arg).map((i) => i.id);
   return all.map((i) => i.id);
