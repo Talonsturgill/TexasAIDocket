@@ -1,0 +1,121 @@
+{
+ "run": "2026-09-11",
+ "deck": 21,
+ "docket_item": "tx-2026-0142",
+ "credit_words": "one-half credit",
+ "effective_days": 20,
+ "school_year": "2027 to 2028",
+ "school_year_from": 2027,
+ "school_year_to": 2028,
+ "item_date_iso": "2026-09-04",
+ "item_date_long": "September 4th, 2026",
+ "item_date_short": "SEPTEMBER 4TH",
+ "house_bill": "27",
+ "legislature": "89",
+ "session_year": 2025,
+ "machine_expectations": [
+  "c14",
+  "c15",
+  "c16"
+ ],
+ "n_machine_expectations": 3,
+ "chapters": [
+  3,
+  4,
+  7
+ ],
+ "n_chapters": 3,
+ "ai_worded": [
+  "c14"
+ ],
+ "n_ai_worded": 1,
+ "machine_stems": [
+  "artificial intelligence",
+  "algorithm",
+  "automated",
+  "robot-advisor"
+ ],
+ "doc_terms": {
+  "artificial intelligence": 1,
+  "artificial": 1,
+  "algorithm": 2,
+  "automated": 1,
+  "robot": 1,
+  "machine learning": 0
+ },
+ "page_count": 8,
+ "doc_words": 3525,
+ "footprint": {
+  "artificial intelligence": 1,
+  "algorithm": 2,
+  "automated": 1,
+  "robot": 1
+ },
+ "footprint_terms": [
+  "artificial intelligence",
+  "algorithm",
+  "automated",
+  "robot"
+ ],
+ "n_footprint_terms": 4,
+ "n_footprint_occurrences": 5,
+ "footprint_share_per_10k": 14.2,
+ "knowledge_numbers": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  7,
+  8,
+  9,
+  10
+ ],
+ "n_knowledge": 9,
+ "knowledge_highest": 10,
+ "knowledge_missing": [
+  6
+ ],
+ "release_hits": {
+  "artificial": 0,
+  "algorithm": 0,
+  "automated": 0,
+  "machine learning": 0,
+  "technolog": 0,
+  "AI": 0
+ },
+ "n_release_hits": 0,
+ "release_summary_words": 18,
+ "and_more": "and more",
+ "canvas_w": 1080,
+ "canvas_h": 1350,
+ "margin": 80,
+ "content_w": 920,
+ "gutter": 28,
+ "card_w": 288,
+ "card_x": [
+  80,
+  396,
+  712
+ ],
+ "spine_top": 330,
+ "spine_bottom": 1140,
+ "spine_pitch": 90.0,
+ "spine_y": {
+  "1": 330.0,
+  "2": 420.0,
+  "3": 510.0,
+  "4": 600.0,
+  "5": 690.0,
+  "6": 780.0,
+  "7": 870.0,
+  "8": 960.0,
+  "9": 1050.0,
+  "10": 1140.0
+ },
+ "spine_marked": [
+  510.0,
+  600.0,
+  870.0
+ ]
+}

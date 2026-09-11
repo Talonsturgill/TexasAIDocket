@@ -1,0 +1,62 @@
+{
+  "beat": "power-and-compute",
+  "note": "Scout has no write tool; returned inline and the showrunner persisted it.",
+  "findings": [
+    {
+      "headline": "ERCOT began sending Batch Zero verification questionnaires to large load developers on September 9th, and a project that does not answer is dropped from the study.",
+      "who_decided": "Electric Reliability Council of Texas, Inc. (ERCOT)",
+      "when": "2026-09-09",
+      "control_number": "Market Notice M-A090926-01 (references M-A080326-01)",
+      "where": {"counties": [], "statewide": true, "ercot": true},
+      "quote": "In accordance with this directive, ERCOT has begun issuing Batch Zero Verification Requests for Information (RFIs) to a majority of Interconnecting Large Load Entities (ILLEs) with a Large Load that has been conditionally included in Batch Zero.",
+      "quote_2": "Successful completion of the verification process is a condition for the Large Load's inclusion in Batch Zero.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A090926-01",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "unverified": [
+        "The 'ten Business Days' deadline phrasing could not be confirmed by a second client.",
+        "How many ILLEs received an RFI. The notice says only 'a majority'.",
+        "Adjacency: a deck already shipped on the Governor's August 3rd audit directive and the Batch Zero classification deadline. This is that thread moving."
+      ]
+    },
+    {
+      "headline": "ERCOT scheduled an October 6th workshop to show how it will curtail large loads under Senate Bill 6 and named the tool that will do it.",
+      "who_decided": "Electric Reliability Council of Texas, Inc. (ERCOT)",
+      "when": "2026-09-02",
+      "control_number": "Market Notice M-A090226-01",
+      "where": {"counties": [], "statewide": true, "ercot": true},
+      "quote": "On October 6, 2026 ERCOT will host a workshop to present the deployment mechanics, registration process, and draft revision requests for Large Load curtailment under Senate Bill 6 (SB6).",
+      "quote_2": "ERCOT will present the proposed deployment mechanics for Large Load curtailment (including the Large Load Curtailment Manager (LLCM)), the proposed registration requirements and process, and the draft revision requests (NPRR, NOGRR, and PGRR) that implement these concepts.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A090226-01",
+      "date_read": "2026-09-11",
+      "source_type": "primary_official",
+      "confidence": "high",
+      "already_in_record": "tx-2026-0139"
+    },
+    {
+      "headline": "Lubbock's city council voted unanimously on September 8th to hold off on large scale data centers until the city writes rules for them.",
+      "who_decided": "Lubbock City Council",
+      "when": "2026-09-08",
+      "where": {"counties": ["Lubbock"], "statewide": false, "ercot": true},
+      "quote": "that no data centers be developed within the municipal limits of the City of Lubbock until the City Manager has developed and the City Council has adopted adequate regulations protecting public resources and the public health and safety",
+      "url": "https://texasscorecard.com/local/lubbock-city-council-moves-to-regulate-data-center-construction/",
+      "date_read": "2026-09-11",
+      "source_type": "journalism",
+      "confidence": "medium",
+      "already_in_record": "tx-2026-0138"
+    }
+  ],
+  "sources_that_would_not_answer": [
+    {"host": "interchange.puc.texas.gov", "result": "HTTP 503 on every request, including the docket search form, the legacy /Search/Filings path, the site root, and a direct /Documents/*.PDF link. No robots disallow. A client level block or an outage, not a policy one. No PUCT filing or order could be cited this run."},
+    {"host": "www.puc.texas.gov", "result": "HTTP 503 on the site root, the open meeting page, and the calendar RSS at /agency/calendar/GetCalendarRss.aspx. The highest value poll in the registry produced nothing."},
+    {"host": "www.bellcountytx.com and cms3.revize.com", "result": "Agenda PDFs fetch as binary and could not be read."},
+    {"host": "www.mylubbock.us", "result": "Agenda Center listing is HTML and readable. The agenda PDF is not, with or without ?html=true."},
+    {"host": "www.everythinglubbock.com", "result": "HTTP 403."}
+  ],
+  "leads_not_pursued": [
+    "PUCT Docket 59611, El Paso Electric's proposed Schedule 27 High Load Factor Large Power Service for customers of 75 MW or larger. El Paso is WECC, not ERCOT, which makes it the sharpest grid contrast available. Unchecked because the PUCT hosts were down.",
+    "Forney City Council, Kaufman County, reported to have directed staff to amend zoning to prohibit data centers in all districts. PDF agenda system unreadable.",
+    "ERCOT posted BZ Verification RFI Attestation forms dated September 2nd and an Exhibit List dated September 9th to the Large Load Integration page. These are .docx and .xlsx and were not opened."
+  ]
+}

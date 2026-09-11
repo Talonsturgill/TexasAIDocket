@@ -1,0 +1,273 @@
+#!/usr/bin/env python3
+"""compute.py — every numeral and every measurable length in carousel no. 21.
+
+THE LAW. No numeral this project publishes is typed by a person or produced by a language model.
+Arithmetic, unit conversion, percentages, ratios, deltas, rankings, date maths and rounding all
+happen here, and the frames read `computed.json`.
+
+THE INSTINCT, which is broader than the law. Any position or length a reader could MEASURE goes
+through here, not only the ones that carry a printed number.
+
+THE DEBT THIS FILE PAYS, inherited from carousel no. 19 and no. 20. Two frames of no. 19 held
+hand-synced literals that had drifted from their compute.py and four scoring panels did not see
+it, because a literal that is merely WRONG looks exactly like a literal that is right. No frame
+in this deck retypes a value: `inject_computed.py` writes the block below into each frame in
+place of a marker, so there is no number in a frame to go stale.
+
+WHAT IS DIFFERENT ABOUT THIS DECK. Its story is a COUNT, and the fact checker refused to supply
+one. Its words:
+
+    "The count is not in the source and a count produced by a language model is forbidden by the
+     compute-not-generate law. Have code grep the PDF text if you want the figure."
+
+So this file greps. Every count below is taken either out of a verified claim quote or out of the
+committed source snapshots in `sources/`, which are the bytes actually fetched on 2026-09-11.
+Nothing here is read off a screen and retyped.
+"""
+from __future__ import annotations
+
+import datetime as dt
+import json
+import re
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+DOC = json.loads((HERE / "claims.json").read_text(encoding="utf-8"))
+CLAIMS = {c["id"]: c for c in DOC["claims"]}
+SOURCES = HERE / "sources"
+
+ATTACHMENT = "sboe-113-26-attachment.txt"
+ITEM = "sboe-item3-second-reading.txt"
+RELEASE = "sboe-news-release.txt"
+
+
+def q(cid: str) -> str:
+    """The verified quote for a claim, whitespace normalised. Raises on an unknown id."""
+    return re.sub(r"\s+", " ", CLAIMS[cid]["quote"]).strip()
+
+
+def pull(cid: str, pattern: str, label: str) -> str:
+    """Lift a substring out of a claim's own quote. Raises rather than falling back."""
+    m = re.search(pattern, q(cid))
+    if not m:
+        raise SystemExit(
+            f"compute.py: {label} is no longer in {cid}'s quote. The quote reads:\n  {q(cid)}\n"
+            f"Fix the claim or fix this pattern. Do NOT retype the value here.")
+    return m.group(1)
+
+
+def snapshot(name: str) -> str:
+    """The bytes fetched on 2026-09-11, normalised the one way every count below uses.
+
+    Line-break hyphenation is repaired first: the attachment's text layer splits 'artificial /
+    intelligence' across a page break and drops the hyphen in 'decision- / making'. A count taken
+    before that repair undercounts, which is exactly the shape of error this file exists to stop.
+    """
+    raw = (SOURCES / name).read_text(encoding="utf-8", errors="replace")
+    raw = re.sub(r"Page \d+ of \d+", " ", raw)
+    raw = re.sub(r"-\s*\n\s*", "", raw)          # hyphen split across a line
+    return re.sub(r"\s+", " ", raw).strip()
+
+
+ATT_TEXT = snapshot(ATTACHMENT)
+ITEM_TEXT = snapshot(ITEM)
+REL_TEXT = snapshot(RELEASE)
+
+
+def occurrences(text: str, term: str) -> int:
+    return len(re.findall(re.escape(term), text, flags=re.I))
+
+
+# ----------------------------------------------------------------- the figures the source prints
+
+# The credit value, as the course text's own words. Kept as a STRING because the document writes
+# it in words and a frame that printed 0.5 would be quoting nobody.
+CREDIT_WORDS = pull("c13", r"awarded (one-half credit) for successful completion", "the credit value")
+
+# The effective date rule, lifted out of the motion rather than retyped beside it.
+EFFECTIVE_DAYS = int(pull("c3", r"effective date of (\d+) days after filing", "the effective-date interval"))
+
+# The implementation school year, out of the course text's own subsection (a).
+_YEAR_SPAN = pull("c12", r"beginning with the (\d{4}-\d{4}) school year", "the implementation school year")
+YEAR_FROM, YEAR_TO = (int(v) for v in _YEAR_SPAN.split("-"))
+# House style: a range reads "X to Y" and never "X-Y". Built here so no frame types the dash.
+SCHOOL_YEAR = f"{YEAR_FROM} to {YEAR_TO}"
+
+# The board item's own date line, parsed rather than read off a calendar.
+_ITEM_DATE = pull("c5", r"^([A-Z][a-z]+ \d{1,2}, \d{4}) COMMITTEE", "the item's date line")
+ITEM_DATE = dt.datetime.strptime(_ITEM_DATE, "%B %d, %Y").date()
+
+
+def ordinal(n: int) -> str:
+    return f"{n}{'th' if 11 <= n % 100 <= 13 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
+# House style: month first, with the ordinal. Never a bare "September 4".
+ITEM_DATE_LONG = f"{ITEM_DATE.strftime('%B')} {ordinal(ITEM_DATE.day)}, {ITEM_DATE.year}"
+ITEM_DATE_SHORT = f"{ITEM_DATE.strftime('%B').upper()} {ordinal(ITEM_DATE.day).upper()}"
+
+# The bill the rule implements, out of the item's own summary.
+HOUSE_BILL = pull("c6", r"House Bill \(HB\) (\d+), 89th Texas Legislature", "the house bill number")
+LEGISLATURE = pull("c6", r"(\d+)th Texas Legislature", "the legislature ordinal")
+SESSION_YEAR = int(pull("c6", r"Texas Legislature, Regular Session, (\d{4})", "the session year"))
+
+# ------------------------------------------------------------------- the counts, all from bytes
+
+# THE THREE EXPECTATIONS. Not typed. A claim counts as carrying machine language when its own
+# verified quote contains one of these stems, and the set is declared here so it can be argued
+# with rather than assumed.
+MACHINE_STEMS = ("artificial intelligence", "algorithm", "automated", "robot-advisor")
+EXPECTATION_CLAIMS = ("c14", "c15", "c16")
+
+MACHINE_EXPECTATIONS = sorted(
+    cid for cid in EXPECTATION_CLAIMS
+    if any(s in q(cid).lower() for s in MACHINE_STEMS))
+N_MACHINE_EXPECTATIONS = len(MACHINE_EXPECTATIONS)
+
+# The chapters they sit in, lifted out of each claim's own subsection identifier.
+CHAPTERS = sorted({int(re.match(r"\(d\)\((\d+)\)", CLAIMS[cid]["subsection"]).group(1))
+                   for cid in MACHINE_EXPECTATIONS})
+N_CHAPTERS = len(CHAPTERS)
+
+# Which of the three actually says "artificial intelligence", which is the distinction the fact
+# checker insisted on and the reason no frame may call all three AI expectations.
+AI_WORDED = [cid for cid in MACHINE_EXPECTATIONS if "artificial intelligence" in q(cid).lower()]
+N_AI_WORDED = len(AI_WORDED)
+
+# Term counts over the whole eight page course text, not over the part the deck quotes.
+DOC_TERMS = {t: occurrences(ATT_TEXT, t)
+             for t in ("artificial intelligence", "artificial", "algorithm", "automated",
+                       "robot", "machine learning")}
+
+# The knowledge statements the course text declares, counted from its own numbering. The document
+# runs (1) to (10) and skips (6), so the COUNT and the HIGHEST NUMBER are different figures and
+# the frames must not confuse them.
+KNOWLEDGE_NUMBERS = sorted({int(n) for n, _ in re.findall(
+    r"\((\d+)\)\s+([A-Z][A-Za-z ,\-&]{8,120}?)\.\s*The student", ATT_TEXT)})
+N_KNOWLEDGE = len(KNOWLEDGE_NUMBERS)
+KNOWLEDGE_HIGHEST = max(KNOWLEDGE_NUMBERS) if KNOWLEDGE_NUMBERS else 0
+KNOWLEDGE_MISSING = [n for n in range(1, KNOWLEDGE_HIGHEST + 1) if n not in KNOWLEDGE_NUMBERS]
+
+# THE DOCUMENT'S OWN SIZE, measured off the fetched file rather than read off a screen. The fact
+# checker refused to give a page count and was right to: it observed one and a model-observed
+# count is a model-produced numeral. A count taken by code from the bytes is a different thing.
+try:
+    import pypdf  # noqa: F401
+    _pdf = HERE / "tmp" / "sboe_pfl.pdf"
+    PAGE_COUNT = len(pypdf.PdfReader(str(_pdf)).pages) if _pdf.exists() else None
+except Exception:
+    PAGE_COUNT = None
+
+# Words in the whole standard, counted the one way the stipple field on frame 3 draws them.
+DOC_WORDS = len(re.findall(r"[A-Za-z][A-Za-z'-]*", ATT_TEXT))
+
+# The machine's whole footprint in the document. Four TERMS, and the number of TIMES they occur,
+# which are different figures and no frame may confuse them. "artificial intelligence" is two
+# words and one term, which is exactly why "five words" would have been wrong.
+FOOTPRINT_TERMS = ("artificial intelligence", "algorithm", "automated", "robot")
+FOOTPRINT = {t: occurrences(ATT_TEXT, t) for t in FOOTPRINT_TERMS}
+N_FOOTPRINT_TERMS = len([t for t, n in FOOTPRINT.items() if n])
+N_FOOTPRINT_OCCURRENCES = sum(FOOTPRINT.values())
+FOOTPRINT_SHARE_PER_10K = (round(N_FOOTPRINT_OCCURRENCES / DOC_WORDS * 10000, 1)
+                           if DOC_WORDS else None)
+
+# THE ABSENCE, counted rather than asserted. Every one of these must be zero for the deck's
+# counter-image frame to stand, and this file raises if any is not.
+ABSENCE_TERMS = ("artificial", "algorithm", "automated", "machine learning", "technolog")
+RELEASE_HITS = {t: occurrences(REL_TEXT, t) for t in ABSENCE_TERMS}
+RELEASE_HITS["AI"] = len(re.findall(r"\bAI\b", REL_TEXT))
+if any(RELEASE_HITS.values()):
+    raise SystemExit(
+        "compute.py: the release snapshot is no longer silent about technology. "
+        f"{ {k: v for k, v in RELEASE_HITS.items() if v} }. The deck's counter-image frame rests "
+        "on this absence and must be rebuilt rather than relabelled.")
+N_RELEASE_HITS = sum(RELEASE_HITS.values())
+
+# The release's own summary of the standards, and its length, which is the whole counter-image.
+RELEASE_SUMMARY = q("c22")
+RELEASE_SUMMARY_WORDS = len(RELEASE_SUMMARY.split())
+# The two words the three expectations are inside of.
+AND_MORE = pull("c22", r"(and more)\.$", "the release's closing phrase")
+
+# ------------------------------------------------------------------------------- frame geometry
+
+# THE COLUMN RULE. The three chapter cards on frame 5 are laid out from one gutter constant so no
+# frame types an x. Width is the content box, not the canvas.
+CANVAS_W, CANVAS_H = 1080, 1350
+MARGIN = 80
+CONTENT_W = CANVAS_W - 2 * MARGIN
+GUTTER = 28
+CARD_W = (CONTENT_W - GUTTER * (N_CHAPTERS - 1)) // N_CHAPTERS
+CARD_X = [MARGIN + i * (CARD_W + GUTTER) for i in range(N_CHAPTERS)]
+
+# THE SPINE. Frame 4 draws every knowledge statement the document declares as one row, so the row
+# pitch is a function of the count rather than a number somebody liked.
+SPINE_TOP, SPINE_BOTTOM = 330, 1140
+SPINE_PITCH = (SPINE_BOTTOM - SPINE_TOP) / (KNOWLEDGE_HIGHEST - 1) if KNOWLEDGE_HIGHEST > 1 else 0
+SPINE_Y = {n: round(SPINE_TOP + SPINE_PITCH * (n - 1), 2) for n in range(1, KNOWLEDGE_HIGHEST + 1)}
+SPINE_MARKED = [SPINE_Y[n] for n in CHAPTERS]
+
+OUT = {
+    "run": "2026-09-11",
+    "deck": 21,
+    "docket_item": DOC["docket_item"],
+
+    "credit_words": CREDIT_WORDS,
+    "effective_days": EFFECTIVE_DAYS,
+    "school_year": SCHOOL_YEAR,
+    "school_year_from": YEAR_FROM,
+    "school_year_to": YEAR_TO,
+    "item_date_iso": ITEM_DATE.isoformat(),
+    "item_date_long": ITEM_DATE_LONG,
+    "item_date_short": ITEM_DATE_SHORT,
+    "house_bill": HOUSE_BILL,
+    "legislature": LEGISLATURE,
+    "session_year": SESSION_YEAR,
+
+    "machine_expectations": MACHINE_EXPECTATIONS,
+    "n_machine_expectations": N_MACHINE_EXPECTATIONS,
+    "chapters": CHAPTERS,
+    "n_chapters": N_CHAPTERS,
+    "ai_worded": AI_WORDED,
+    "n_ai_worded": N_AI_WORDED,
+    "machine_stems": list(MACHINE_STEMS),
+
+    "doc_terms": DOC_TERMS,
+    "page_count": PAGE_COUNT,
+    "doc_words": DOC_WORDS,
+    "footprint": FOOTPRINT,
+    "footprint_terms": list(FOOTPRINT_TERMS),
+    "n_footprint_terms": N_FOOTPRINT_TERMS,
+    "n_footprint_occurrences": N_FOOTPRINT_OCCURRENCES,
+    "footprint_share_per_10k": FOOTPRINT_SHARE_PER_10K,
+    "knowledge_numbers": KNOWLEDGE_NUMBERS,
+    "n_knowledge": N_KNOWLEDGE,
+    "knowledge_highest": KNOWLEDGE_HIGHEST,
+    "knowledge_missing": KNOWLEDGE_MISSING,
+
+    "release_hits": RELEASE_HITS,
+    "n_release_hits": N_RELEASE_HITS,
+    "release_summary_words": RELEASE_SUMMARY_WORDS,
+    "and_more": AND_MORE,
+
+    "canvas_w": CANVAS_W, "canvas_h": CANVAS_H, "margin": MARGIN,
+    "content_w": CONTENT_W, "gutter": GUTTER, "card_w": CARD_W, "card_x": CARD_X,
+    "spine_top": SPINE_TOP, "spine_bottom": SPINE_BOTTOM,
+    "spine_pitch": round(SPINE_PITCH, 3), "spine_y": SPINE_Y, "spine_marked": SPINE_MARKED,
+}
+
+if __name__ == "__main__":
+    (HERE / "computed.json").write_text(json.dumps(OUT, indent=1) + "\n", encoding="utf-8")
+    print(f"compute.py: wrote computed.json")
+    print(f"  machine expectations {N_MACHINE_EXPECTATIONS} {MACHINE_EXPECTATIONS}"
+          f" in chapters {CHAPTERS}")
+    print(f"  of those, {N_AI_WORDED} says 'artificial intelligence' in as many words: {AI_WORDED}")
+    print(f"  course text term counts {DOC_TERMS}")
+    print(f"  document {PAGE_COUNT} page(s), {DOC_WORDS} words; the machine's footprint is "
+          f"{N_FOOTPRINT_OCCURRENCES} occurrence(s) of {N_FOOTPRINT_TERMS} term(s) {FOOTPRINT}")
+    print(f"  knowledge statements {N_KNOWLEDGE}, numbered to {KNOWLEDGE_HIGHEST},"
+          f" missing {KNOWLEDGE_MISSING}")
+    print(f"  release technology hits {N_RELEASE_HITS} {RELEASE_HITS}")
+    print(f"  release summary {RELEASE_SUMMARY_WORDS} words, ending '{AND_MORE}'")
+    print(f"  item date line {ITEM_DATE_LONG}, effective {EFFECTIVE_DAYS} days after filing,"
+          f" implemented {SCHOOL_YEAR}")
