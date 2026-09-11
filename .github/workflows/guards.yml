@@ -368,6 +368,12 @@ jobs:
       - name: Docket ingest self-test (an undated comment window is demoted, never published)
         run: python3 scripts/site/docket_ingest.py --self-test
 
+      - name: News headline selection self-test
+        run: python3 scripts/site/news_headlines.py --self-test
+
+      - name: News headline matches its recorded evidence
+        run: python3 scripts/site/news_headlines.py --check
+
       - name: Front chip self-test (the rotation, and no day of the year left empty)
         run: python3 scripts/site/frontchip.py --self-test
 
@@ -1301,6 +1307,9 @@ jobs:
           # rather than a hairline fit, because the two chromium builds on a dev box measure the
           # same string four percent apart and a two pixel fit is a verdict about the binary.
           SITE=docs node tests/table_fit.mjs
+
+      - name: News headline stays readable and retires stale links
+        run: SITE=docs node tests/news_headline.mjs
 
       - name: The site fits the screen it is on
         run: |
