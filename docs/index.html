@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-RHe8XmKRt0WBqASXH/2GFhgBHxunx8IFEJcYrZhzc6c=' 'sha256-VCmcCZ76fWjko6HgKXCLy5YszPdXE7+83XWN1HRVn6Q=' 'sha256-qiugxgbNJQyVlTI1yl2YTjVeovhYKdu6iuFdN1D4hDA=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-RHe8XmKRt0WBqASXH/2GFhgBHxunx8IFEJcYrZhzc6c=' 'sha256-g/qng8VBBDriv/+lSn+3P4ej3KgGTfNe2R3ntC5W7sw=' 'sha256-qiugxgbNJQyVlTI1yl2YTjVeovhYKdu6iuFdN1D4hDA=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -263,6 +263,20 @@ function askFuse(lists) {
     return (s || "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
   }
 
+  /* A NAME IS MENTIONED WHEN IT APPEARS AS WORDS, NOT AS LETTERS INSIDE ONE.
+     Every place and body match below was `nq.indexOf(norm(name)) >= 0`, a raw substring test,
+     so the city of Mission, Texas was "mentioned" by the word "admission". Measured on
+     2026-09-11, a reader who typed "accurate admission beat", three rare words from one
+     decision's body, was routed to the McAllen-Edinburg-Mission metropolitan area.
+
+     `norm` has already reduced everything to lower case words separated by single spaces, so
+     a word boundary is a space and padding both sides is the whole test. A multi word name
+     still has to appear in full and in order, exactly as before. */
+  function mentions(nq, name) {
+    var n = norm(name);
+    return !!n && (" " + nq + " ").indexOf(" " + n + " ") >= 0;
+  }
+
   /* STOPWORDS ARE DROPPED BEFORE SCORING, and this is the difference between a useful box and
      a dishonest one. Nearly every catalogued question contains "what" and "the", so a query
      made entirely of noise still shared words with the catalogue and scored above zero. Asked
@@ -324,9 +338,9 @@ function askFuse(lists) {
     if (!qw.length) return null;
     var top = null, topView = null;
     CAT.forEach(function (c) {
-      var cw = words(c.q), score = 0, hitTerms = 0;
+      var cw = words(c.q), score = 0, hitTerms = 0, exactTerms = 0;
       qw.forEach(function (w) {
-        if (cw.indexOf(w) >= 0) { score += idf(w); hitTerms += 1; return; }
+        if (cw.indexOf(w) >= 0) { score += idf(w); hitTerms += 1; exactTerms += 1; return; }
         /* A PREFIX MATCH NEEDS ENOUGH PREFIX TO MEAN SOMETHING.
            This was any shared opening character, which is a fine rule for "permit" against
            "permits" and a bad one for "air" against "airspeed". The record grew a beat of TCEQ
@@ -352,10 +366,11 @@ function askFuse(lists) {
            rarity counts. */
         if (stemmed) { score += idf(stemmed) * 0.5; hitTerms += 1; }
       });
-      if (!top || score > top.score) top = { c: c, score: score, terms: hitTerms };
+      if (!top || score > top.score)
+        top = { c: c, score: score, terms: hitTerms, exact: exactTerms };
       /* THE BEST NON-ITEM CANDIDATE, kept so the two-term rule below can fall back to it. */
       if (c.route && c.route.view !== "item" && (!topView || score > topView.score))
-        topView = { c: c, score: score, terms: hitTerms };
+        topView = { c: c, score: score, terms: hitTerms, exact: exactTerms };
     });
     /* A direct mention of a county, a topic word or a decider outranks a fuzzy catalogue
        match, because it is what the reader actually said. */
@@ -388,16 +403,16 @@ function askFuse(lists) {
 
     var saysCounty = !direct && /\bcounty\b/.test(nq);
     if (saysCounty && !direct) IDX.counties.forEach(function (c) {
-      if (nq.indexOf(norm(c)) >= 0) direct = { view: "by_county", arg: c };
+      if (mentions(nq, c)) direct = { view: "by_county", arg: c };
     });
     if (!direct) (IDX.metros || []).forEach(function (m) {
       if (direct) return;
-      var hit = nq.indexOf(norm(m.name)) >= 0 ||
-                (m.aliases || []).some(function (a) { return nq.indexOf(norm(a)) >= 0; });
+      var hit = mentions(nq, m.name) ||
+                (m.aliases || []).some(function (a) { return mentions(nq, a); });
       if (hit) direct = { view: "by_metro", arg: m.id };
     });
     if (!direct) IDX.counties.forEach(function (c) {
-      if (nq.indexOf(norm(c)) >= 0) direct = { view: "by_county", arg: c };
+      if (mentions(nq, c)) direct = { view: "by_county", arg: c };
     });
     /* THE LONGEST SPELLING THAT FITS, and it used to be whichever one sorted last.
        This walked IDX.deciders and reassigned on every substring hit, so the winner was decided
@@ -407,13 +422,13 @@ function askFuse(lists) {
        has. IDX.decider_alias carries every spelling, longest first, and maps each to the body,
        so the first hit is the most specific one and it resolves to one body either way. */
     if (!direct) (IDX.decider_alias || []).some(function (pair) {
-      if (nq.indexOf(norm(pair[0])) < 0) return false;
+      if (!mentions(nq, pair[0])) return false;
       direct = { view: "by_decider", arg: pair[1] };
       return true;
     });
     if (!direct) Object.keys(IDX.topic_words).forEach(function (t) {
       IDX.topic_words[t].forEach(function (w) {
-        if (!direct && norm(query).indexOf(norm(w)) >= 0) direct = { view: "by_topic", arg: t };
+        if (!direct && mentions(nq, w)) direct = { view: "by_topic", arg: t };
       });
     });
     /* A NAME TYPED IN FULL BEATS A FUZZY MATCH ON A LONGER NAME THAT CONTAINS IT.
@@ -438,10 +453,35 @@ function askFuse(lists) {
        sixty nine is a strong claim and needs two words behind it. Answering with a view over
        the whole record is a weak claim, it is nearly always the right shape when a reader asks
        something broad, and one decisive word is enough for it. */
+    /* AND EVERY ROUTE NEEDS AT LEAST ONE WORD THE READER ACTUALLY TYPED.
+       The paragraph above is right about how much evidence each SIZE of claim needs, and this
+       is the hole underneath it: it never asked what KIND of evidence was on offer. A stem
+       match is already worth half an exact one in the score, which is this file saying it is
+       weaker. It could still be the SOLE evidence for an answer, and on 2026-09-11 all eight
+       phrase misses in the gold set were exactly that, a reader typing three rare words out of
+       one decision's body:
+
+         "areas attitudes budget"       areas -> area (in 31 entries)      by_metro abilene
+         "cast centered corley"         centered -> center (in 38)         by_decider TACC
+         "1964 awareness governmental"  governmental -> government (in 5)  by_decider DOGE
+         "accessible bookable executes" access + book, two stems, no exact  the wrong decision
+
+       The last one is the same fault one size up. Two stem coincidences satisfied the two term
+       rule and NAMED A DECISION, which is the strong claim that rule exists to protect.
+
+       So one condition covers both, and it is the file's own "one word is a coincidence"
+       written for kind rather than count. Stem matching keeps its whole job, which is
+       corroborating a word the reader did type. "TCEQ permits" still reaches the permit
+       entries. "What can I still comment on?" is untouched, because "comment" is typed.
+
+       THE COST OF GETTING THIS WRONG WAS THE BODY SEARCH NEVER RUNNING. That path exists for a
+       reader who remembers a detail rather than a headline, and it answers all eight of these
+       correctly, each at rank 1 with three terms and a score near 14 against its floor of 4.
+       Something was returned here first, so the better answer below was never asked for. */
     var names_one = top && top.c.route && top.c.route.view === "item";
-    var chosen = top && top.score >= FLOOR && (!names_one || top.terms >= 2)
+    var chosen = top && top.score >= FLOOR && top.exact >= 1 && (!names_one || top.terms >= 2)
       ? top.c.route
-      : (topView && topView.score >= FLOOR ? topView.c.route : direct);
+      : (topView && topView.score >= FLOOR && topView.exact >= 1 ? topView.c.route : direct);
     if (chosen) return chosen;
 
     /* NOTHING MATCHED THE CATALOGUE, SO SEARCH THE DECISIONS THEMSELVES.
