@@ -372,6 +372,41 @@ a.stat .l { text-decoration:underline;
 a.stat:hover { background:color-mix(in srgb,var(--accent) 8%,transparent);
   transform:translateY(-2px); }
 
+/* A RAISED SEARCH SURFACE. The lit rim, lower lip and cast shadow give the field depth even
+   before interaction. Its face uses the two contrast-checked panel grounds. Keep this on the
+   homepage: the Scanner shares the composer class but is a different instrument. */
+.home .askbox .composer {
+  padding:.6rem .6rem .6rem 1.3rem; border-radius:2rem;
+  background:linear-gradient(180deg,var(--raised),var(--surface));
+  box-shadow:inset 0 2px 1px color-mix(in srgb,var(--ink-bright) 12%,transparent),
+    inset 0 -2px 3px color-mix(in srgb,var(--night) 55%,transparent),
+    0 5px 0 var(--deep),
+    0 6px 0 color-mix(in srgb,var(--accent) 32%,var(--deep)),
+    0 16px 24px -14px color-mix(in srgb,var(--night) 90%,transparent);
+}
+.home .askbox .composer::before {
+  background:linear-gradient(165deg,
+    color-mix(in srgb,var(--ink-bright) 62%,var(--accent)),
+    color-mix(in srgb,var(--accent) 52%,var(--surface)) 28%,
+    var(--rule-strong) 62%,color-mix(in srgb,var(--accent) 62%,var(--surface)));
+}
+.home .askbox .composer:focus-within {
+  outline:2px solid color-mix(in srgb,var(--accent) 68%,transparent); outline-offset:4px;
+}
+.home .askbox .composer button[type="submit"] {
+  width:44px; height:44px; flex:0 0 44px;
+  box-shadow:inset 0 2px 1px color-mix(in srgb,var(--ink-bright) 48%,transparent),
+    inset 0 -2px 2px color-mix(in srgb,var(--night) 22%,transparent),
+    0 3px 0 color-mix(in srgb,var(--accent-deep) 65%,var(--night)),
+    0 7px 12px -3px var(--night);
+  transition:transform .16s ease,filter .16s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .home .askbox .composer button[type="submit"]:hover { transform:translateY(-1px); filter:brightness(1.08); }
+}
+.home .askbox .composer button[type="submit"]:active { transform:translateY(2px); }
+.home .askbox .asknote { margin-top:1.1rem; }
+
 /* ONE QUIET GROUND. Text contrast is measured against the panel's flat colour. The only gradient
    is the two pixel signal along its top edge, where no type can land. */
 .open-now { min-width:0; width:100%; align-self:end; position:relative; overflow:hidden;
@@ -466,6 +501,9 @@ a.stat:hover { background:color-mix(in srgb,var(--accent) 8%,transparent);
   .open-now-more { padding-inline:.95rem; }
 }
 @media (prefers-reduced-motion:reduce) {
+  .home .askbox .composer button[type="submit"],
+  .home .askbox .composer button[type="submit"]:hover,
+  .home .askbox .composer button[type="submit"]:active { transition:none; transform:none; }
   a.stat, .open-now-item, .open-now-go, .open-now-more::after { transition:none; }
   a.stat:hover, .open-now-item:hover .open-now-go, .open-now-more:hover::after { transform:none; }
 }

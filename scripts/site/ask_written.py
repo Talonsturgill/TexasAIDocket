@@ -136,7 +136,7 @@ COPY = {
     "again":        "Start over",
     "send":         "Ask",
     "accept":       "Use the suggested question",
-    "feedback":     "Send feedback",
+    "feedback":     "Request a Feature",
     "too_long":     "That answer ran longer than the space for it and stops here.",
     "fb_sending":   "Sending",
     "fb_thanks":    "Thanks. That goes straight to a person.",
@@ -162,11 +162,11 @@ def note_html() -> str:
     sentence about plumbing sitting where a reader is deciding what to ask.
 
     Owner's call both times. What is left is the thing a reader can act on: the answers come
-    from a model that is still being worked on, and here is how to say when one is wrong.
+    from a model that is still being worked on, and here is how to suggest an improvement.
     """
     return (
         '<p class="asknote">Model in training. '
-        '<button type="button" class="asklink" id="askfbopen">Send feedback</button></p>'
+        f'<button type="button" class="asklink" id="askfbopen">{COPY["feedback"]}</button></p>'
     )
 
 
@@ -189,21 +189,20 @@ def dialog_html(action: str) -> str:
     return (
         '<dialog class="askfb" id="askfb" aria-labelledby="askfbh">\n'
         f'  <form id="askfbform" method="POST" action="{action}">\n'
-        '    <h2 id="askfbh">Model in training</h2>\n'
-        '    <p class="askfbnote">The search writes from the published record and is checked '
-        'against it line by line. If an answer missed something or read oddly, that is worth '
-        'knowing.</p>\n'
-        '    <label class="askfbl" for="askfbtext">What happened</label>\n'
+        f'    <h2 id="askfbh">{COPY["feedback"]}</h2>\n'
+        '    <p class="askfbnote">Suggest a feature or an improvement to the search.</p>\n'
+        '    <label class="askfbl" for="askfbtext">What would you like to see?</label>\n'
         '    <textarea id="askfbtext" name="feedback" rows="4" required\n'
-        '              placeholder="The answer missed a filing, or read oddly, or stopped '
-        'short"></textarea>\n'
+        '              placeholder="Describe the feature or improvement"></textarea>\n'
         '    <label class="askfbl" for="askfbmail">Email, only if a reply is wanted</label>\n'
         '    <input id="askfbmail" name="email" type="email" autocomplete="email" '
         'placeholder="Optional">\n'
-        '    <label class="askfbcheck" id="askfbattachrow" hidden>\n'
-        '      <input type="checkbox" id="askfbattach" checked>\n'
-        '      <span>Attach the last question and answer</span>\n'
-        '    </label>\n'
+        '    <div id="askfbattachrow" hidden>\n'
+        '      <label class="askfbcheck">\n'
+        '        <input type="checkbox" id="askfbattach" checked>\n'
+        '        <span>Attach the last question and answer</span>\n'
+        '      </label>\n'
+        '    </div>\n'
         '    <pre class="askfbctx" id="askfbctxview" hidden></pre>\n'
         f'    <input type="hidden" name="_subject" value="{FEEDBACK_SUBJECT}">\n'
         '    <input type="hidden" name="_captcha" value="false">\n'
@@ -1412,7 +1411,7 @@ def self_test() -> int:
     # read. What survives is the one fact a reader cannot discover by using the box: that
     # pressing sends. Losing that clause would leave a page that quietly calls a model.
     check("it says the model is still being worked on", "Model in training" in note)
-    check("feedback is offered", 'id="askfbopen"' in note and "Send feedback" in note)
+    check("feature requests are offered", 'id="askfbopen"' in note and COPY["feedback"] in note)
     # It is one short sentence and a control. Anything longer went unread twice.
     check("and it stays short", len(re.sub(r"<[^>]+>", "", note)) < 40, note)
 
