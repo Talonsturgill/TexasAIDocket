@@ -11,7 +11,7 @@ Texas State University published on August 24th, 2026 that its project on artifi
 - Public access: Write to the decider
 - Take part: https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-11
 
 ## Dates
 
@@ -22,6 +22,7 @@ Texas State University published on August 24th, 2026 that its project on artifi
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-08 · Admitted to the record. The university's announcement says the pavement assessment project has entered a second phase and is closer to statewide deployment.
+- 2026-09-11 · The university's account of the second phase is unchanged, and it still describes the method as closer to statewide deployment than to a trial. Nothing new has been published about when a highway agency would adopt it.
 
 ## Evidence
 

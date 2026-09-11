@@ -171,6 +171,32 @@ N_FOOTPRINT_OCCURRENCES = sum(FOOTPRINT.values())
 FOOTPRINT_SHARE_PER_10K = (round(N_FOOTPRINT_OCCURRENCES / DOC_WORDS * 10000, 1)
                            if DOC_WORDS else None)
 
+# WHERE THE MACHINE ACTUALLY SITS IN THE DOCUMENT. Frame 3 lifts five points out of a field of
+# one dot per word, and a point placed where it looked good would be a drawing about nothing. Each
+# occurrence's position is its own word index over the document's word count, so the five marks
+# land where the terms land.
+_WORDS = [m for m in re.finditer(r"[A-Za-z][A-Za-z'-]*", ATT_TEXT)]
+def _word_index_at(char_pos: int) -> int:
+    lo, hi = 0, len(_WORDS)
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if _WORDS[mid].start() < char_pos:
+            lo = mid + 1
+        else:
+            hi = mid
+    return lo
+
+FOOTPRINT_POSITIONS = []
+for _t in FOOTPRINT_TERMS:
+    for _m in re.finditer(re.escape(_t), ATT_TEXT, flags=re.I):
+        _wi = _word_index_at(_m.start())
+        FOOTPRINT_POSITIONS.append({
+            "term": _t,
+            "word_index": _wi,
+            "fraction": round(_wi / DOC_WORDS, 5) if DOC_WORDS else None,
+        })
+FOOTPRINT_POSITIONS.sort(key=lambda d: d["word_index"])
+
 # THE ABSENCE, counted rather than asserted. Every one of these must be zero for the deck's
 # counter-image frame to stand, and this file raises if any is not.
 ABSENCE_TERMS = ("artificial", "algorithm", "automated", "machine learning", "technolog")
@@ -240,6 +266,7 @@ OUT = {
     "n_footprint_terms": N_FOOTPRINT_TERMS,
     "n_footprint_occurrences": N_FOOTPRINT_OCCURRENCES,
     "footprint_share_per_10k": FOOTPRINT_SHARE_PER_10K,
+    "footprint_positions": FOOTPRINT_POSITIONS,
     "knowledge_numbers": KNOWLEDGE_NUMBERS,
     "n_knowledge": N_KNOWLEDGE,
     "knowledge_highest": KNOWLEDGE_HIGHEST,
@@ -263,6 +290,7 @@ if __name__ == "__main__":
           f" in chapters {CHAPTERS}")
     print(f"  of those, {N_AI_WORDED} says 'artificial intelligence' in as many words: {AI_WORDED}")
     print(f"  course text term counts {DOC_TERMS}")
+    print("  the five marks land at word " + ", ".join(str(d["word_index"]) for d in FOOTPRINT_POSITIONS))
     print(f"  document {PAGE_COUNT} page(s), {DOC_WORDS} words; the machine's footprint is "
           f"{N_FOOTPRINT_OCCURRENCES} occurrence(s) of {N_FOOTPRINT_TERMS} term(s) {FOOTPRINT}")
     print(f"  knowledge statements {N_KNOWLEDGE}, numbered to {KNOWLEDGE_HIGHEST},"

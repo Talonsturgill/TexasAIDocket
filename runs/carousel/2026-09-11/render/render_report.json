@@ -1,0 +1,1530 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "c14 TEXAS AI DOCKET",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "TEXAS STATE BOARD OF EDUCATION 19 TAC SECTION 113.26",
+          "x": 80,
+          "y": 64,
+          "w": 497,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(176, 216, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              66,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "19 TAC SECTION 113.26",
+          "x": 80,
+          "y": 100,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              102,
+              348,
+              31
+            ]
+          ],
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 64,
+          "w": 116,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(176, 216, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              64,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas put AI in a money class.",
+          "x": 80,
+          "y": 612,
+          "w": 920,
+          "h": 256,
+          "font_px": 125.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              598,
+              805,
+              155
+            ],
+            [
+              80,
+              726,
+              625,
+              155
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The board's own course text tells a student to research career pathways using artificial intelligence tools.",
+          "x": 80,
+          "y": 930,
+          "w": 830,
+          "h": 90,
+          "font_px": 31,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(176, 216, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              931,
+              780,
+              42
+            ],
+            [
+              80,
+              976,
+              328,
+              42
+            ],
+            [
+              774,
+              976,
+              8,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "artificial intelligence tools",
+          "x": 408,
+          "y": 976,
+          "w": 366,
+          "h": 42,
+          "font_px": 31,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(176, 216, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              408,
+              976,
+              366,
+              42
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "c14 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1259,
+          "w": 310,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(94, 133, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1259,
+              310,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 749,
+          "y": 1259,
+          "w": 251,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(94, 133, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              749,
+              1259,
+              251,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2517,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 81.8,
+          "variance": 2049.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "SAVING AND INVESTING",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c12 c13 c19 c20 c21",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE COURSE TEXT",
+          "x": 80,
+          "y": 64,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              66,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 64,
+          "w": 116,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              64,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nine numbered chapters. There is no sixth.",
+          "x": 80,
+          "y": 132,
+          "w": 880,
+          "h": 177,
+          "font_px": 86,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              123,
+              878,
+              106
+            ],
+            [
+              80,
+              212,
+              586,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The course text runs its knowledge statements to a number higher than it has chapters, and skips one. Three of the nine name a machine.",
+          "x": 80,
+          "y": 352,
+          "w": 800,
+          "h": 128,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(26, 74, 94)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              352,
+              707,
+              41
+            ],
+            [
+              80,
+              395,
+              780,
+              41
+            ],
+            [
+              80,
+              437,
+              386,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+          "x": 80,
+          "y": 1004,
+          "w": 266,
+          "h": 111,
+          "font_px": 21,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1004,
+              109,
+              27
+            ],
+            [
+              80,
+              1032,
+              177,
+              27
+            ],
+            [
+              80,
+              1059,
+              191,
+              27
+            ],
+            [
+              80,
+              1087,
+              232,
+              27
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING",
+          "x": 392,
+          "y": 1004,
+          "w": 266,
+          "h": 83,
+          "font_px": 21,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              392,
+              1004,
+              246,
+              27
+            ],
+            [
+              392,
+              1032,
+              177,
+              27
+            ],
+            [
+              392,
+              1059,
+              205,
+              27
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SAVING AND INVESTING",
+          "x": 704,
+          "y": 1004,
+          "w": 266,
+          "h": 55,
+          "font_px": 21,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              704,
+              1004,
+              137,
+              27
+            ],
+            [
+              704,
+              1032,
+              123,
+              27
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c13 c19 c20 c21",
+          "x": 80,
+          "y": 1261,
+          "w": 280,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1261,
+              280,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 749,
+          "y": 1261,
+          "w": 251,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              749,
+              1261,
+              251,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "(1)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(2)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(3)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(4)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(5)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(6)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(7)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(8)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(9)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "(10)",
+          "fn": "fillText",
+          "font": "500 25px \"JetBrains Mono\", monospace"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the skipped chapter's cell carries no figure ink",
+          "reads": "same",
+          "a": [
+            [
+              547,
+              560,
+              88,
+              210
+            ]
+          ],
+          "b": [
+            [
+              547,
+              206,
+              88,
+              210
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4309,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 148.1,
+          "variance": 1723.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "c11 c14 c15 c16",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "THE WHOLE STANDARD",
+          "x": 80,
+          "y": 64,
+          "w": 298,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              64,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 64,
+          "w": 116,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              64,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One dot for every word.",
+          "x": 80,
+          "y": 126,
+          "w": 560,
+          "h": 174,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              117,
+              390,
+              103
+            ],
+            [
+              80,
+              204,
+              403,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four terms carry the machine across the entire course text. Three of the five sit inside one clause.",
+          "x": 80,
+          "y": 340,
+          "w": 560,
+          "h": 119,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(176, 216, 194)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              340,
+              518,
+              38
+            ],
+            [
+              80,
+              380,
+              490,
+              38
+            ],
+            [
+              80,
+              420,
+              229,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "artificial intelligence",
+          "x": 706,
+          "y": 206,
+          "w": 282,
+          "h": 89,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              706,
+              212,
+              144,
+              31
+            ],
+            [
+              706,
+              256,
+              173,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1",
+          "x": 988,
+          "y": 206,
+          "w": 14,
+          "h": 89,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              988,
+              212,
+              14,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "algorithm",
+          "x": 706,
+          "y": 296,
+          "w": 130,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              706,
+              302,
+              130,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2",
+          "x": 988,
+          "y": 296,
+          "w": 14,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              988,
+              302,
+              14,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "automated",
+          "x": 706,
+          "y": 341,
+          "w": 130,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              706,
+              347,
+              130,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1",
+          "x": 988,
+          "y": 341,
+          "w": 14,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              988,
+              347,
+              14,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "robot",
+          "x": 706,
+          "y": 387,
+          "w": 72,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              706,
+              393,
+              72,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "1",
+          "x": 988,
+          "y": 387,
+          "w": 14,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              988,
+              393,
+              14,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AI unit",
+          "x": 706,
+          "y": 442,
+          "w": 101,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              706,
+              448,
+              101,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0",
+          "x": 988,
+          "y": 442,
+          "w": 14,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 205, 180)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              988,
+              448,
+              14,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c14 c15 c16",
+          "x": 80,
+          "y": 1261,
+          "w": 221,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(94, 133, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1261,
+              221,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 749,
+          "y": 1261,
+          "w": 251,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(94, 133, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              749,
+              1261,
+              251,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 706,
+          "y": 294.8,
+          "w": 296,
+          "h": 1,
+          "by": "DIV",
+          "color": "rgba(204, 242, 228, 0.22)",
+          "decorative": false,
+          "skip": [
+            4,
+            5
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 706,
+          "y": 340.2,
+          "w": 296,
+          "h": 1,
+          "by": "DIV",
+          "color": "rgba(204, 242, 228, 0.22)",
+          "decorative": false,
+          "skip": [
+            6,
+            7
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 706,
+          "y": 385.6,
+          "w": 296,
+          "h": 1,
+          "by": "DIV",
+          "color": "rgba(204, 242, 228, 0.22)",
+          "decorative": false,
+          "skip": [
+            8,
+            9
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 706,
+          "y": 431,
+          "w": 296,
+          "h": 1,
+          "by": "DIV",
+          "color": "rgba(204, 242, 228, 0.22)",
+          "decorative": false,
+          "skip": [
+            10,
+            11
+          ]
+        }
+      ],
+      "encodings": [
+        {
+          "claim": "the lifted occurrences read differently from the field around them",
+          "reads": "differ",
+          "a": [
+            [
+              716,
+              802,
+              46,
+              28
+            ]
+          ],
+          "b": [
+            [
+              716,
+              868,
+              46,
+              28
+            ]
+          ],
+          "a_visible_frac": 1,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4644,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 89.7,
+          "variance": 902.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "THE VERB IS RESEARCH",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c14 c18 c19",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "texasaidocket.com",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "KNOWLEDGE STATEMENT (3) CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+          "x": 80,
+          "y": 64,
+          "w": 812,
+          "h": 68,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              66,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL",
+          "x": 80,
+          "y": 100,
+          "w": 812,
+          "h": 32,
+          "font_px": 21,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 74, 94)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              102,
+              812,
+              27
+            ]
+          ],
+          "anc": [
+            0
+          ]
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 64,
+          "w": 116,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              64,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Chapter three hands it over.",
+          "x": 80,
+          "y": 150,
+          "w": 800,
+          "h": 213,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              578,
+              127
+            ],
+            [
+              80,
+              246,
+              542,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE VERB IS RESEARCH",
+          "x": 138,
+          "y": 706,
+          "w": 340,
+          "h": 30,
+          "font_px": 23,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 100, 120)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              138,
+              706,
+              340,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"research career pathways using labor-market data, online resources, and artificial intelligence tools\"",
+          "x": 138,
+          "y": 760,
+          "w": 812,
+          "h": 88,
+          "font_px": 31,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              138,
+              761,
+              752,
+              42
+            ],
+            [
+              138,
+              805,
+              318,
+              42
+            ],
+            [
+              869,
+              805,
+              13,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "artificial intelligence tools",
+          "x": 456,
+          "y": 805,
+          "w": 413,
+          "h": 42,
+          "font_px": 31,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(14, 51, 71)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              462,
+              805,
+              401,
+              42
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "c14 c18 c19",
+          "x": 80,
+          "y": 1261,
+          "w": 162,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1261,
+              162,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 749,
+          "y": 1261,
+          "w": 251,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(204, 242, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              749,
+              1261,
+              251,
+              29
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [
+        {
+          "text": "INCOME GROWTH",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "EMPLOYMENT TRENDS",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "GLOBAL COMPETITION",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "COMPARATIVE ADVANTAGE",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "TECHNOLOGICAL CHANGE",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "CREATIVE DESTRUCTION",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "REQUIRED SKILLS",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        },
+        {
+          "text": "POSSIBLE EMPLOYERS",
+          "fn": "fillText",
+          "font": "500 17px \"JetBrains Mono\", monospace"
+        }
+      ],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [
+        {
+          "claim": "the posture rect on this frame reads differently from the wall beside it",
+          "reads": "differ",
+          "a": [
+            [
+              300,
+              560,
+              480,
+              300
+            ]
+          ],
+          "b": [
+            [
+              40,
+              180,
+              240,
+              160
+            ]
+          ],
+          "a_visible_frac": 0.92,
+          "b_visible_frac": 1
+        }
+      ],
+      "contacts": [
+        {
+          "what": "the whiteboard on the wall",
+          "shadow": [
+            [
+              300,
+              906,
+              480,
+              26
+            ]
+          ],
+          "ground": [
+            [
+              300,
+              960,
+              480,
+              26
+            ]
+          ]
+        },
+        {
+          "what": "the desk tablet",
+          "shadow": [
+            [
+              300,
+              1116,
+              480,
+              26
+            ]
+          ],
+          "ground": [
+            [
+              300,
+              1180,
+              480,
+              26
+            ]
+          ]
+        }
+      ],
+      "nondeterminism": [],
+      "render_ms": 2434,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 155.6,
+          "variance": 3536.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

@@ -60,6 +60,33 @@
  "n_footprint_terms": 4,
  "n_footprint_occurrences": 5,
  "footprint_share_per_10k": 14.2,
+ "footprint_positions": [
+  {
+   "term": "artificial intelligence",
+   "word_index": 1331,
+   "fraction": 0.37759
+  },
+  {
+   "term": "algorithm",
+   "word_index": 1614,
+   "fraction": 0.45787
+  },
+  {
+   "term": "automated",
+   "word_index": 2675,
+   "fraction": 0.75887
+  },
+  {
+   "term": "robot",
+   "word_index": 2679,
+   "fraction": 0.76
+  },
+  {
+   "term": "algorithm",
+   "word_index": 2689,
+   "fraction": 0.76284
+  }
+ ],
  "knowledge_numbers": [
   1,
   2,

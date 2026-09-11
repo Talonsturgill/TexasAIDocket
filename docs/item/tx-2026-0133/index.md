@@ -11,7 +11,7 @@ The University of North Texas is offering a Bachelor of Science in Artificial In
 - Public access: Write to the decider
 - Take part: https://engineering.unt.edu/cse/undergraduate/bsai.html
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-11
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-08 · Admitted to the record. The university's program page states the length of the curriculum and when it starts.
 - 2026-09-08 · The university's page states that the four year curriculum starts in July 2026 and names no day within that month, so the record carries the month and no date.
+- 2026-09-11 · The degree page is unchanged and the curriculum still starts this year. The department still describes it as a named four year degree rather than a concentration inside computer science.
 
 ## Evidence
 

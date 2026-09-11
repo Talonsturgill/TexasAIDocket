@@ -9,7 +9,7 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-09-10
+- Last checked: 2026-09-11
 
 ## Dates
 
@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The commission's open meeting calendar is still published as a live feed running into 2027, so the dates a reader would plan around are still there to read.
 - 2026-09-10 · The calendar is still published as a live feed and still runs into 2027, so the dates a reader would plan around are still there to read. The September 4th comment deadline has come off it now that the date has passed, the same way a held meeting does. That leaves Project 59550 on September 17th as the only comment deadline the feed still carries. The feed also lists the grid operator's own board meetings, at an address that is not the commissioners hearing room.
 - 2026-09-10 · Corrected. Two claims carried a source title naming the September 4th comment deadline entry. Each quotes a different entry title on the same feed, so both now read entry title.
+- 2026-09-11 · The commission's calendar feed still publishes its open meetings with the hearing room named in each entry. The grid operator's own board meeting still sits on that same feed beside the commission's, dated September 14th, 2026.
 
 ## Evidence
 

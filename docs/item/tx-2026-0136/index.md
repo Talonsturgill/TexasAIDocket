@@ -12,7 +12,7 @@ The Office of Defects Investigation at the National Highway Traffic Safety Admin
 - Public access: Write to the decider
 - Take part: https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf
 
-- Last checked: 2026-09-08
+- Last checked: 2026-09-11
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-08 · Admitted to the record. The resume was read in full this run and every claim below is quoted from it.
 - 2026-09-08 · The agency's own investigation status pages would not answer, so what state the preliminary evaluation is in today is not on the record. The resume gives December 3rd, 2025 as the office's understanding of when public passenger service began in Dallas. That is a fact about the service rather than a step in this evaluation.
+- 2026-09-11 · The opening resume answered this run, and every line the record quotes from it is unchanged. No closing resume has been published, so whether the preliminary evaluation is still running is unconfirmed.
 
 ## Evidence
 
