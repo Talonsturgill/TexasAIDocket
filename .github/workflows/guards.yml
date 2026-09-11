@@ -471,6 +471,15 @@ jobs:
           # budget to rebuild four slides was gone.
           python3 scripts/carousel/dossier_check.py --self-test
 
+      - name: Layout gate self-test (the primary image law and the archetype rotation)
+        run: |
+          # Twenty one decks used one skeleton on every frame and every gate was green, because
+          # each asked whether what was on the frame was right and none asked where the image
+          # was or how much of the page it took. This one reads the pixels inside the rect the
+          # plan declared, and its self-test also proves the gate's copy of the archetype table
+          # still agrees with the browser's in assets/js/txlayout.js.
+          python3 scripts/carousel/layout_check.py --self-test
+
       - name: Copy sync self-test (the record still says what the deck says)
         run: |
           # Pixel review is where display text gets edited straight into a slide's HTML, and
@@ -1228,6 +1237,14 @@ jobs:
           # No browser needed: the UMD libraries load under node, which is the point of
           # testing the projection here rather than only inside a rendered slide.
           node tests/txgeo.mjs
+
+      - name: The illustration libraries load, and every catalogue object has a footprint
+        run: |
+          # The scene bench, the figures, the catalogue and the layout table are read by a
+          # planner in node before any slide exists and by a slide in Chromium after. A
+          # library that throws on load, or an object with no width, would otherwise be
+          # found by the next scheduled run at frame 7.
+          node tests/txlayout.mjs
 
   browser-layout:
     # Whether it fits the screen and can be read on it.

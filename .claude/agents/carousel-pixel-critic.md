@@ -94,6 +94,25 @@ slide used.
   act on. If it is being used as an accent, that is a must-fix. A reservation with a duplicate is
   not a reservation.
 
+## The primary image law, checked before the global standards (2026-09-11)
+
+`knowledge/carousel/ILLUSTRATION_SYSTEM.md` is the standard and `examples/editorial-deck/` is
+what meeting it looks like. Every dossier now declares `layout`, `primary_image` and `accent`.
+Grade them off the thumb:
+
+- **Is the subject the dossier named actually there**, at the place and size its rect declares,
+  and can you say what it IS at 432 px in one word: a bus, a dais, a page, a person at a desk?
+  If the answer is a headline over a small shape, that is a must-fix on its own, whatever the
+  checklist says.
+- **Does it read as one silhouette** against the ground at thumb scale, and does it run off
+  the edges the dossier says it does?
+- **Is it drawn at a size**: is there something in the frame a reader can measure it against,
+  and do the objects agree about how big they are?
+- **Is it printed, not placed**: is there a visible screen (dots, lines, hatch, stipple), a
+  drawn edge, paper, or is it flat vector shapes over a gradient with grain on top?
+- **Is the layout the one declared**, and is it a different one from the frame before?
+- **Is the accent the one accent**, on this frame only where the dossier says, and small?
+
 ## The global standards
 
 - **Does the art carry the claim, or decorate it?** A frame that would work equally well for a

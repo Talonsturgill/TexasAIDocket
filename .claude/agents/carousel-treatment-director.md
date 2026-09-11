@@ -23,16 +23,41 @@ work and should not try to guess it. The showrunner picks one and grafts the bes
   "concept": "one sentence a person could repeat from memory",
   "why_this_story_this_way": "the argument. Two or three sentences",
   "spine": ["slide 1 does this", "slide 2 does this", "..."],
+  "frames": [
+    {"slide": 1, "layout": "FULL_BLEED", "subject": "a classroom at seated eye height, three rows of student desks with students, drawn on the bench", "objects": ["student_desk", "figure:sit"], "screen": "halftone 6", "bleeds": ["left", "right", "bottom"]},
+    {"slide": 2, "layout": "DOCUMENT", "subject": "...", "objects": [], "screen": "line 5", "bleeds": ["bottom"]}
+  ],
+  "accent": "one hex from config/brand.yaml, never the flag red, and which three to six frames carry it",
   "visual_system": {
     "structure": "how the frame is organised, and why this story wants that",
     "techniques": ["named, from the technique library, one or more per slide"],
     "palette": "drawn from the material world of THIS story's region",
-    "camera": "how the eye moves through the deck"
+    "camera": "eye height, horizon and light, declared once for the deck, and where it changes"
   },
   "the_one_image": "the frame a reader would screenshot, described precisely",
   "risks": ["what could make this fall flat"]
 }
 ```
+
+## THE IMAGE COMES FIRST, and this is the law since 2026-09-11
+
+Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` before anything else, and look at
+`examples/editorial-deck/contact_sheet.jpg`, which is what a 7 looks like, and
+`examples/objects/catalogue-1.jpg` and `catalogue-2.jpg`, which is what the engine can draw at
+true scale. Twenty one decks were pitched as surfaces, a technique and a palette and a
+structure, and every judge found an object in a void under a headline. **You pitch nine
+SUBJECTS and nine LAYOUTS before you pitch a surface.**
+
+- A subject is a THING a reader knows the size of: a bus, a dais, a pump jack, a page of the
+  rule, a person at a desk. Name it from the catalogue, or say in metres what is to be drawn
+  instead. A field, a haze, a gradient and a grain are not subjects.
+- A layout is one of the ten in `assets/js/txlayout.js`: FULL_BLEED, SPLIT_HORIZON,
+  TYPE_AS_OBJECT, OBJECT_AND_CAPTION, DIAGRAM, GRID, DOCUMENT, MAP, CLOSE_CROP, FIGURE_SCALE.
+  No two in a row the same, at least five distinct, TYPE_AS_OBJECT at most once, FULL_BLEED
+  and CLOSE_CROP at least two between them, four or more frames bleeding an edge. Check your
+  nine against those rules before you return them, because the gate will.
+- Somebody is in the picture wherever the claim has a person in it.
+- One accent, one light, and a screen per frame that varies with the layout.
 
 ## What makes a treatment good
 

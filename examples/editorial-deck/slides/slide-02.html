@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- EDITORIAL DECK, frame 2 of 9. Archetype DOCUMENT.
+     The primary image is the attachment itself, drawn as a sheet on the desk: a second sheet
+     behind it, a soft cast shadow, a wobbled edge, and the rule's own words set on it in a
+     document face. The phrase that matters carries the accent as a marker stroke laid UNDER
+     the type, never through it. The sheet bleeds off the bottom. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --night:#0F0C1C; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#E0956A; --page:#EDE6D6; --pageink:#1B1830; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--night); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:186px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:400px; width:700px; font-size:28px; line-height:1.4; color:var(--dim); }
+  /* the page: a real document, set in a document face, rotated with the sheet */
+  .page { position:absolute; left:118px; top:540px; width:860px; height:780px; transform:rotate(-1.6deg); transform-origin:0 0;
+          padding:64px 70px 0 70px; font-family:"Instrument Serif", serif; color:var(--pageink); }
+  .page .h { font-size:30px; letter-spacing:0.02em; margin-bottom:8px; }
+  .page .h b { font-family:"JetBrains Mono", monospace; font-size:22px; font-weight:500; letter-spacing:0.08em; display:block; margin-bottom:18px; color:#5A5470; }
+  .page .sub { font-size:27px; line-height:1.35; margin-bottom:22px; }
+  .page .body { font-size:33px; line-height:1.38; }
+  .page .body .m { font-family:"JetBrains Mono", monospace; font-size:24px; color:#5A5470; letter-spacing:0.04em; }
+  .page .body .hit { position:relative; white-space:nowrap; }
+  .page .body .hit i { position:absolute; left:-6px; right:-6px; top:8px; bottom:2px; background:var(--accent); opacity:0.85; z-index:-1; transform:rotate(-0.6deg); }
+  .page .body .hit b { font-weight:400; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Chapter three hands it over.</h1>
+<p class="dek">The verb is research. The student does it, and the course text names the tool.</p>
+<div class="page" id="page">
+  <div class="h"><b>19 TAC Chapter 113, Subchapter C</b>&sect;113.26. Personal Financial Literacy and Economics</div>
+  <div class="sub">(d)(3) Careers, postsecondary education, and earning potential. The student is expected to:</div>
+  <div class="body"><span class="m">(C)</span> research career pathways using labor-market data, online resources, and <span class="hit"><i></i><b>artificial intelligence tools</b></span> to evaluate income growth, employment trends, global competition, comparative advantage, technological change, creative destruction, required skills, and possible employers</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Knowledge statement (3)", kicker2: "Careers and earning potential", counter: "02 / 09", src: "c14 c18 c19   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 96, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // the sheet's corners in frame px, matching the DOM page's rotation
+    var rot = -1.6 * Math.PI / 180, ox = 118, oy = 540, pw = 860, ph = 980;
+    var corner = function (x, y) { return [ox + x * Math.cos(rot) - y * Math.sin(rot), oy + x * Math.sin(rot) + y * Math.cos(rot)]; };
+    var sheet = [corner(0, 0), corner(pw, 0), corner(pw, ph), corner(0, ph)];
+    var behind = [[ox + 34, oy - 26], [ox + 34 + pw, oy - 26 + 14], [ox + 34 + pw, oy + ph], [ox + 34, oy + ph]];
+    TXINK.print(cx, {
+      ground: "#0F0C1C", ink: "#EDE6D6", fibre: 0.05, seed: 22,
+      screen: { mode: "line", cell: 5, angle: -24, gamma: 1.2, floor: 0.04 },
+      edges: { threshold: 30, width: 1.4, alpha: 0.7, dx: 1.4, dy: -0.6 },
+      draw: function (a) {
+        // the desk: a dark wood grain far below the sheet, so the screen carries a faint tone
+        var g = a.createLinearGradient(0, 400, 0, H); g.addColorStop(0, "#000000"); g.addColorStop(1, "#262626");
+        a.fillStyle = g; a.fillRect(0, 0, W, H);
+        // the sheet behind, mid tone, and the front sheet's shadow
+        a.fillStyle = "#6E6E6E"; poly(a, behind);
+        a.save(); a.filter = "blur(18px)"; a.fillStyle = "#000000"; poly(a, sheet.map(function (p) { return [p[0] + 26, p[1] + 30]; })); a.restore();
+        a.fillStyle = "#B4B4B4"; poly(a, sheet);
+      },
+      over: function (c) {
+        // the sheet itself as flat paper with a wobbled edge, so the type prints on paper and
+        // not on a screen. The shadow and the second sheet stay in the print.
+        var d = "M" + sheet.map(function (p) { return p[0] + " " + p[1]; }).join(" L ") + " Z";
+        var wob = TXINK.wobble(d, { amp: 1.4, freq: 0.02, seed: 4, step: 5 });
+        c.save(); c.fillStyle = "#EDE6D6"; c.fill(new Path2D(wob)); c.restore();
+        // a fold line across the sheet, printed light
+        c.save(); c.strokeStyle = "rgba(27,24,48,0.22)"; c.lineWidth = 1.2;
+        var f0 = corner(0, 610), f1 = corner(pw, 610); c.beginPath(); c.moveTo(f0[0], f0[1]); c.lineTo(f1[0], f1[1]); c.stroke(); c.restore();
+      }
+    });
+    function poly(a, pts) { a.beginPath(); a.moveTo(pts[0][0], pts[0][1]); for (var i = 1; i < pts.length; i++) a.lineTo(pts[i][0], pts[i][1]); a.closePath(); a.fill(); }
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

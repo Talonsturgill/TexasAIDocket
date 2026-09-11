@@ -786,20 +786,43 @@ them nothing.** An instinct reaches that list by surviving three runs without be
 and a lesson no run has confirmed is worth less than the director's own judgement. This repo has
 shipped no decks, so early runs will get an empty list, and that is correct rather than a gap.
 
-Read `knowledge/carousel/TECHNIQUE_LIBRARY.md`. Every technique in it names a real function in
-`assets/js/` and records **how it fails**, which is most of the craft. A technique is chosen
-because this claim wants it, and `why_this_technique` in the dossier is where that is argued. A
-cartographic claim wants cartography. A claim about a quantity over time does not become one by
-being drawn on a map.
+**Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` first, and look at
+`examples/editorial-deck/contact_sheet.jpg` and `examples/objects/catalogue-1.jpg` and
+`catalogue-2.jpg` before a director is spawned.** Written 2026-09-11 on the owner's instruction
+after twenty one decks whose artwork three judges called, in different words every day, an
+object in a void under a headline. That file is the law now: **every frame carries one drawn
+SUBJECT, a thing at true scale, owning at least thirty percent of the frame, in one of ten
+LAYOUTS rotated across the deck, printed in paper and ink rather than laid over a gradient.** The
+contact sheet is what a 7 looks like. Hand each director the doctrine, the sheet and the
+catalogue pages, because a director who has not seen a bus drawn at twelve metres beside a person
+will pitch a bus as a slab.
+
+Then read `knowledge/carousel/TECHNIQUE_LIBRARY.md`. Everything above its SUBJECTS section is a
+surface, what a frame is made of, and a technique is chosen because this claim wants it.
+`why_this_technique` in the dossier is where that is argued. A cartographic claim wants
+cartography. A claim about a quantity over time does not become one by being drawn on a map.
 
 Spawn 3 `carousel-treatment-director` agents in parallel, each with a different creative lens and
-the variety ledger's exclusions. Synthesise: pick one, graft the best of the others, and write the
-reason down.
+the variety ledger's exclusions. **Each pitches nine SUBJECTS and nine LAYOUTS before it pitches
+a surface**, and names its objects from the catalogue or says in metres what it will draw
+instead. Synthesise: pick one, graft the best of the others, and write the reason down.
 
-Then write a **dossier per slide** before any code: what it claims, which claim ids, the technique,
-the composition, the value structure, the palette drawn from this story's own region, and an
-acceptance checklist the pixel critic will grade against. The format is
-`knowledge/carousel/SLIDE_DOSSIER_SPEC.md`.
+**The rotation is checked before a dossier exists.** Write the nine layouts as a list and run it
+through the table in Node:
+
+```
+node -e 'require("./assets/js/txlayout.js"); console.log(TXLAYOUT.check(["FULL_BLEED","DOCUMENT","FIGURE_SCALE","OBJECT_AND_CAPTION","GRID","DIAGRAM","CLOSE_CROP","SPLIT_HORIZON","FULL_BLEED"]))'
+```
+
+An empty list is a plan. Anything else is rewritten here, where it costs a line, because
+`layout_check.py` will refuse the same sequence after nine frames are drawn.
+
+Then write a **dossier per slide** before any code. It OPENS with `layout`, `primary_image`
+(the subject, the rect it owns in frame px, the edges it bleeds) and `accent`, then what it
+claims, which claim ids, the technique, the composition, the value structure, the palette drawn
+from this story's own region, and an acceptance checklist the pixel critic will grade against.
+The format is `knowledge/carousel/SLIDE_DOSSIER_SPEC.md`, and `examples/editorial-deck/storyboard.md`
+carries nine written this way.
 
 **No code is written before the dossiers exist.** A slide planned while it is being coded is a
 slide that will be argued for rather than judged.
@@ -840,15 +863,33 @@ python3 scripts/carousel/caption_check.py --file out/<date>/caption.txt
 ## PHASE 11 — ART BUILD
 
 Write the slides. `out/<date>/slides/slide-01.html` and so on, 1080x1350, bespoke per the
-dossiers.
+dossiers. **The order of work is the craft, and it is in `ILLUSTRATION_SYSTEM.md` under that
+heading. Four rules from it bind here:**
+
+1. **Frames 7, 8 and 9 are built first.** Every judged deck was thinnest where the argument
+   lands, because the budget ran out there. The close, then the turn, then the open.
+2. **Image before type, on every frame.** Draw the scene on the bench (`TXSCENE`, `TXFIG`,
+   `TXOBJ`), print it (`TXINK.print`), render it, and read it at 432 px with NO type on it. If
+   it is not an image yet, no headline will make it one. Then fit the type into the reserve the
+   image left, and mount the furniture with `TXLAYOUT.mount`.
+3. **One subject, one screen, one light per frame**, each the one the dossier declared. Nine
+   halftones is one drawing nine times in a new way, so the screen varies with the layout.
+4. **A slab is never a subject.** A thing not in the catalogue is drawn in metres from parts
+   with `TXSCENE.sprite`, and goes in `knowledge/carousel/UPGRADE_BACKLOG.md` as a proposal for
+   the catalogue.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
+python3 scripts/carousel/layout_check.py --date <date> --require
 python3 scripts/carousel/bespoke_check.py --slides-dir out/<date>/slides
 ```
 
-Never ship a FAIL. Re-render only what changed with `--only 3,7`.
+Never ship a FAIL. Re-render only what changed with `--only 3,7`. **`layout_check --require`
+runs here, before any critic sees a frame**, because a critic's round costs more than a gate's
+and the gate is what finds the plate: it measures detail and a silhouette inside each frame's
+declared rect at thumb scale, the rotation over the nine layouts, the bleeds, and the one
+accent's presence and restraint. A frame it refuses is redrawn, not argued for.
 
 **Read the QA report rather than the exit code.** It reports the worst point, not the average, and
 it sees canvas ink that no DOM check can. A slide that draws nothing renders without error.
@@ -856,9 +897,13 @@ it sees canvas ink that no DOM check can. A slide that draws nothing renders wit
 ## PHASE 12 — PIXEL REVIEW (the taste gate)
 
 Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. They transcribe every
-visible word and grade against the dossier's own checklist. Fix what they find, re-render,
-re-review. Then 1 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence
-rather than as nine slides.
+visible word and grade against the dossier's own checklist, **and against the primary image law:
+is the subject the dossier named actually there, at the size it declared, readable as one thing
+at 432 px, printed rather than placed.** Fix what they find, re-render, re-review. Then 1
+`carousel-flow-critic` on the contact sheet, which judges the deck as a sequence rather than as
+nine slides, and now also as a ROTATION: nine layouts that turn the page, screens that vary,
+the accent on three to six frames and no more. **Both critics run on every round, never only the
+first**, because a repair pass is where a frame quietly becomes the skeleton again.
 
 When the last round settles, before anything is assembled:
 
@@ -893,7 +938,12 @@ python3 scripts/carousel/craft_floor.py       --date <date>
 python3 scripts/carousel/coherence_check.py   --date <date>
 python3 scripts/carousel/texan_check.py       --date <date>
 python3 scripts/carousel/noun_trace.py        --date <date>
+python3 scripts/carousel/layout_check.py      --date <date> --require
 ```
+
+**`layout_check` runs again here, on the frames the critics settled**, for the same reason
+`copy_sync_check` runs after every round: a repair pass edits frames, and a frame repaired into
+a plate with a headline on it passes every gate above this line.
 
 **`plan_render_check` — the frame has to be the one the dossier described.** `dossier_check`
 proves a plan EXISTS and never that it was executed, and a pixel critic then grades each frame

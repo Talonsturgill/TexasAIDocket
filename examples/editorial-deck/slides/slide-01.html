@@ -1,0 +1,107 @@
+<!doctype html>
+<!-- EDITORIAL DECK, frame 1 of 9. Archetype FULL_BLEED.
+     The primary image is a classroom at seated eye height, drawn at true scale with TXSCENE,
+     TXFIG and TXOBJ, then printed as a white-ink halftone on night paper by TXINK. The type
+     sits in the top reserve, which the scene keeps dark on purpose (the ceiling carries no
+     light there). One accent: the marker stroke on the whiteboard. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --night:#0F0C1C; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#E0956A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--night); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:178px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:112px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:428px; width:760px; font-size:30px; line-height:1.4; color:var(--dim); }
+  .dek em { font-style:normal; color:var(--accent); }
+  .star { position:absolute; right:80px; top:126px; width:22px; height:22px; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 8.1h8.5l-6.9 5 2.7 8.2L12 17.9 4.8 22.9l2.7-8.2-6.9-5h8.5z" fill="#EDE6D6"/></svg>
+<h1 class="hook" id="hook">Texas put AI in a money class.</h1>
+<p class="dek">The board's own course text tells a student to research career pathways using <em>artificial intelligence tools</em>.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Texas State Board of Education", kicker2: "19 TAC section 113.26", counter: "01 / 09", src: "c11 c14   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 84, max: 112, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var cam = { w: W, h: H, eye: 1.15, horizon: 700, f: 760, fogZ: 1e9, light: { az: 35, el: 50 } };
+    var wb;   // the whiteboard's screen rect, for the accent stroke
+    TXINK.print(cx, {
+      ground: "#0F0C1C", ink: "#EDE6D6", fibre: 0.05, seed: 21,
+      screen: { mode: "halftone", cell: 6, angle: 22, gamma: 1.15, floor: 0.05 },
+      edges: { threshold: 20, width: 1.4, alpha: 0.8, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        var far = 9.2;                                   // the back wall
+        // the floor: mid grey tile with joints, brighter near the windows on the right
+        S.ground({ near: 0.6, far: far, fill: "#4A4A4A" });
+        var fl = a.createLinearGradient(0, 0, W, 0); fl.addColorStop(0, "rgba(0,0,0,0.35)"); fl.addColorStop(1, "rgba(255,255,255,0.10)");
+        a.fillStyle = fl; a.fillRect(0, S.groundY(far), W, H - S.groundY(far));
+        S.gridZ({ dz: 0.6, from: 0.9, to: far, ink: "rgba(0,0,0,0.35)", width: 1.1 });
+        S.gridX({ dx: 0.6, from: -12, to: 12, near: 0.6, far: far, ink: "rgba(0,0,0,0.28)", width: 1 });
+        // the back wall, painted block, with a whiteboard and a clock
+        var wallTop = S.project(0, 3.0, far)[1], wallBot = S.groundY(far);
+        a.fillStyle = "#2E2E2E"; a.fillRect(0, wallTop, W, wallBot - wallTop);
+        var p0 = S.project(-3.2, 0.95, far), p1 = S.project(2.4, 2.15, far);
+        wb = { x: p0[0], y: p1[1], w: p1[0] - p0[0], h: p0[1] - p1[1] };
+        a.fillStyle = "#D8D8D8"; a.fillRect(wb.x, wb.y, wb.w, wb.h);
+        a.fillStyle = "#8A8A8A"; a.fillRect(wb.x - 6, wb.y + wb.h, wb.w + 12, 5);   // the tray
+        var ck = S.project(3.6, 2.45, far); a.fillStyle = "#CFCFCF"; a.beginPath(); a.arc(ck[0], ck[1], 14, 0, Math.PI * 2); a.fill();
+        // the ceiling: dark, with a run of troffers that stops short of the type reserve
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, wallTop);
+        for (var z = 1.6; z < far; z += 2.2) for (var x = -2.4; x <= 2.4; x += 2.4) {
+          var q = [S.project(x - 0.6, 2.95, z), S.project(x + 0.6, 2.95, z), S.project(x + 0.6, 2.95, z + 1.2), S.project(x - 0.6, 2.95, z + 1.2)];
+          if (q[0][1] < 560) continue;                   // keep the reserve dark
+          a.fillStyle = "#EDEDED"; a.beginPath(); a.moveTo(q[0][0], q[0][1]); a.lineTo(q[1][0], q[1][1]); a.lineTo(q[2][0], q[2][1]); a.lineTo(q[3][0], q[3][1]); a.closePath(); a.fill();
+        }
+        // desks and students, far rows first, each row a little different
+        var figInk = { ink: "#E2E2E2", paper: "#111111", accent: "#E2E2E2" };
+        var deskInk = { ink: "#7A7A7A", paper: "#111111", accent: "#7A7A7A" };
+        var desk = TXOBJ.sprite("student_desk");
+        var k = 0;
+        for (var Z = 7.8; Z >= 2.4; Z -= 2.6) {
+          for (var X = -2.4; X <= 2.4; X += 1.6) {
+            k++;
+            var seated = TXFIG.figure({ pose: "sit", seat: 0.45, height: 1.55 + (k % 3) * 0.08, hat: k % 5 === 0 ? "cap" : undefined });
+            S.shadow(desk, { X: X, Z: Z, ink: "#000", alpha: 0.5 });
+            S.shadow(seated, { X: X - 0.35, Z: Z + 0.1, ink: "#000", alpha: 0.5 });
+            S.sprite(seated, { X: X - 0.35, Z: Z + 0.1, inks: figInk, fade: false });
+            S.sprite(desk, { X: X, Z: Z, inks: deskInk, fade: false });
+          }
+        }
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#0F0C1C", bottom: 200, bottomSolid: 130 });
+        // the one accent: a marker line across the whiteboard, drawn by hand
+        c.save(); c.strokeStyle = "#E0956A"; c.lineWidth = 9; c.lineCap = "round";
+        c.beginPath(); c.moveTo(wb.x + wb.w * 0.08, wb.y + wb.h * 0.36); c.lineTo(wb.x + wb.w * 0.70, wb.y + wb.h * 0.34); c.stroke();
+        c.beginPath(); c.moveTo(wb.x + wb.w * 0.08, wb.y + wb.h * 0.56); c.lineTo(wb.x + wb.w * 0.52, wb.y + wb.h * 0.55); c.stroke();
+        c.beginPath(); c.moveTo(wb.x + wb.w * 0.08, wb.y + wb.h * 0.76); c.lineTo(wb.x + wb.w * 0.30, wb.y + wb.h * 0.75); c.stroke();
+        c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

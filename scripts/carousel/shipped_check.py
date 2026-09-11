@@ -512,6 +512,48 @@ def g_construction(d: Path):
     return None if code == 2 else problems
 
 
+# The illustration system, the layout keys in every dossier and the gate that reads them, were
+# built during the 2026-09-11 run, and that deck was planned and drawn without any of it. Same
+# reasoning as CONSTRUCTION_SINCE: a gate does not judge the work that produced it.
+LAYOUT_SINCE = "2026-09-11"
+
+
+def g_layout(d: Path):
+    """Is there an image inside the rect the plan declared, and did the deck turn the page.
+
+    See scripts/carousel/layout_check.py for the six measurements. The rotation and the rect are
+    read off the dossiers, the detail and the silhouette are read off the shipped frames inside
+    that rect, with the render report's text boxes masked out so a headline never counts as
+    image, and the accent is counted at thumb scale.
+
+    NOT `--require`. The routine runs the gate with that flag so a run that skipped planning its
+    layouts fails. Here, on already published decks, a deck with no layout keys is one drawn
+    before the system existed, and the gate's own scope rule reports that as a note and measures
+    nothing.
+
+    THE MEASUREMENT IS TAKEN BEFORE THE DATE IS CONSULTED, and that ordering is load bearing.
+    `g_construction` returns before importing its gate on an old deck, which is fine there
+    because its since-date is behind the newest deck. This gate's since-date IS the newest deck,
+    so an early return would mean shipped_check's loop never loads `layout_check` on the one
+    sweep `gate_wiring` grades, and the census would report a wired gate as an orphan. So the
+    gate runs on every deck, and on a deck on or before LAYOUT_SINCE its findings are reported as
+    a note rather than fatal. Nothing is hidden and nothing is judged by a rule newer than it.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "layout_check", Path(__file__).resolve().parent / "layout_check.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    code, problems, _rows = m.check(d)
+    if code == 2:
+        return None
+    if d.name <= LAYOUT_SINCE and problems:
+        return ("this gate was written during the " + LAYOUT_SINCE + " run and that deck was "
+                "drawn without the illustration system. Run into it anyway it reports "
+                f"{len(problems)} problem(s), first: {str(problems[0])[:150]}")
+    return problems
+
+
 # THE TWO GATES NOTHING EVER RAN, wired in 2026-09-03.
 #
 # `label_guard` and `quantifier_check` have existed for days, `gate_status` lists them, and
@@ -737,6 +779,11 @@ GATES = [
     # already green, could not see this: that file compares drawing CODE and a reader sees the
     # drawn OBJECT.
     ("construction", g_construction, CURRENT),
+    # CURRENT, and for the same reason as construction one line up: every deck older than the
+    # illustration system was drawn without a layout to hold it to, and the gate's own scope
+    # rule already measures nothing on those. What this scope protects is the deck being made
+    # now, which is the one that can still be redrawn.
+    ("layout", g_layout, CURRENT),
     ("completion", g_completion, HISTORY),
 ]
 

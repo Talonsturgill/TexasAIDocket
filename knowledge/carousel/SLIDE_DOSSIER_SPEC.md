@@ -12,6 +12,12 @@ first: a checklist written after the render is a checklist that describes the re
 
 ```yaml
 slide: 3
+layout: OBJECT_AND_CAPTION    # one of the ten in assets/js/txlayout.js, rotated across the deck
+primary_image:
+  subject: "a school bus at 6.6 m on a caliche lot at dusk, bleeding both sides"
+  rect: [0, 330, 1080, 1020]  # x, y, w, h in frame px, at least 0.30 of the frame
+  bleeds: [left, right, bottom]
+accent: "#E0956A"             # the deck's ONE accent, from config/brand.yaml, or none
 job: >
   One sentence. What this slide does that no other slide in the deck does. If two dossiers
   have the same job, one of the slides is cuttable.
@@ -55,6 +61,27 @@ acceptance:               # THE PIXEL CRITIC GRADES AGAINST THIS, ITEM BY ITEM
 risks:
   - "what could make this frame fall flat, named before it does"
 ```
+
+## THE THREE IMAGE KEYS, and the gate that reads them off the pixels
+
+**`layout`, `primary_image` and `accent` open every dossier, and they are written before `job`
+because they are decided before it.** Added 2026-09-11. `scripts/carousel/layout_check.py`
+holds the deck to them with `--require`: a deck with no `layout` keys did not plan its layouts,
+and a deck with the keys on some frames and not others is not in the system.
+
+- `layout` is one of the ten names in `assets/js/txlayout.js`. The nine values in slide order
+  must pass `TXLAYOUT.check`: no repeat in a row, at least five distinct, TYPE_AS_OBJECT at
+  most once, FULL_BLEED and CLOSE_CROP at least two between them.
+- `primary_image.subject` names a THING. `rect` is where it lives, in frame px, at least thirty
+  percent of the frame. `bleeds` lists the edges the rect actually touches. The gate measures
+  detail and a silhouette inside that rect at thumb scale, so a rect drawn around a flat plate
+  with a headline on it fails whatever the prose says.
+- `accent` is the deck's one accent, the same hex on every frame that uses it, `none` on a frame
+  that does not, never the flag red. The gate counts it at thumb scale: present on three to six
+  frames, never over eight percent of one.
+
+`knowledge/carousel/ILLUSTRATION_SYSTEM.md` is where the archetypes and the register are
+explained, and `examples/editorial-deck/storyboard.md` carries nine dossiers written this way.
 
 ## THE VERBATIM KEY, and the five strings that made it necessary
 
