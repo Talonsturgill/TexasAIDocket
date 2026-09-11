@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from site_context import (
     LICENCE, REPO_ROOT, SCHEMA_CTX, SITE_NAME, SITE_URL, _dt, _host_slug,
-    _made_at_numerals, _place_facts, dk, e, frontchip, json, load_runs,
+    _made_at_numerals, _place_facts, dk, e, json, load_runs,
     next_door, numeral_lint, ordinal, page, room_label, schema, topic_label,
     video_count, video_description, video_feed, video_media_url,
 )
@@ -952,15 +952,6 @@ def _home_numerals(items: list, today: str) -> set:
     was what shipped.
     """
     a = numeral_lint.Authorised()
-    # THE CHIP AND ITS DATE ARE ONE STATEMENT AND ONE CALL AUTHORISES BOTH. The date comes
-    # from the weather ledger rather than from this build's `today`, and for as long as the
-    # two matched nothing objected. The day a collector recovered a reading the site had not
-    # been rebuilt for, the strip carried a day number no computation on this page had
-    # produced. `frontchip.figures` returns exactly the numerals the chip prints, its own
-    # self-test proves that set is neither short nor long, and the day is one of them.
-    chip = frontchip.reading(_dt.date.fromisoformat(today))
-    if chip:
-        a.add(*frontchip.figures(chip))
     a.add(f"{len(dk.project(items, today)['actionable_now']):02d}")
     # THE PUBLISHED-WORK COUNTS, zero padded the way the row prints them. `02d` of zero is
     # "00", which is not "0", and the row prints three of them.

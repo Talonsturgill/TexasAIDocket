@@ -37,6 +37,7 @@ import og                                                          # noqa: E402
 import schema                                                      # noqa: E402
 import gridwatch_page                                              # noqa: E402
 import beyond_panel                                                # noqa: E402
+import news_headlines
 import frontchip                                                   # noqa: E402
 import sky                                                         # noqa: E402
 import texas_map                                                   # noqa: E402
@@ -1356,58 +1357,8 @@ def video_count() -> int:
 
 # --------------------------------------------------------------------------- pages
 def telemetry(today: str) -> str:
-    """One live, computed, dated line about the physical world, for the top of the front page.
-
-    THIS USED TO REPORT THE GRID AND THAT WAS THE MISTAKE. It read "Peak drew 75.5% of
-    committed capacity", which was measured, dated, correctly rounded and almost nobody's
-    idea of a reason to keep reading. It asks the reader to already know what committed
-    capacity is before the sentence can mean anything, and the opening line of a front page
-    is the worst place in the product to require homework.
-
-    The sibling opens with how much daylight its state capital has today and how fast it is
-    losing it, and that one detail is most of why its front page reads as alive rather than
-    published. What makes it work is not that it is about energy. It is that the reader
-    already feels it, it moves every morning, and it accumulates in one direction so you can
-    tell where you are in the season from it.
-
-    Texas has no daylight story, so this is the heat. The hundred degree day is the unit
-    Texas already keeps score in, and the count runs all summer as a shared grievance. From
-    November the same clock counts freezing nights, which is the other extreme Texas counts
-    and the reason it argues about its grid at all.
-
-    The arithmetic and the rotation live in `frontchip`, with their self-tests. This function
-    is markup and nothing else.
-
-    IT IS NOT A LINK, and that is deliberate rather than an omission. It was one, pointing at
-    the grid page, back when it reported the grid. A reader who clicks a line about the heat
-    lands on a page that says nothing about the heat, and an unpaid promise costs more than
-    the click was worth. The sibling's daily chip is a plain div for the same reason. The
-    series behind it is published as open data at `weather.json`, which is where somebody who
-    wants the numbers goes.
-
-    Returns "" when the record holds nothing or has gone stale, because a front page that
-    invents a number to fill a slot is the exact failure this project exists to not have.
-    """
-    r = frontchip.reading(_dt.date.fromisoformat(today))
-    if not r:
-        return ""
-    place, middle, tail = frontchip.phrasing(r)
-    middle = middle.format(through=ordinal(r["through"]))
-    # THE FIRST SEGMENT IS A PROPER NAME AND THE PAGE SAYS SO, 2026-09-09. It is a station, a
-    # city, or the body that authored the reading, and on the day the drought candidate first
-    # led the rotation that body was the `US Drought Monitor`. `house_style_check` read the US
-    # in it as first person and turned `main` red on a front page that was correct.
-    #
-    # The name is not the thing to change. `drought_collect` attributes the Drought Monitor in
-    # the chip's first segment on purpose, because unlike a thermometer reading it is a panel's
-    # judgement, and `frontchip`'s own self-test requires the attribution to be there. Dropping
-    # it to satisfy a lint would publish an unattributed judgement, which is worse than the
-    # lint. So the page declares the name, the same way a facility dossier declares
-    # `Riot Corsicana Data Center I` for the roman numeral the same rule reads as `I`.
-    #
-    # It cannot widen by accident. Only this exact string is subtracted, never a pattern.
-    return (f'<div class="tele" data-proper-name="{e(place)}">{e(place)}'
-            f'<span>{e(middle)}</span><span>{e(tail)}</span></div>')
+    """The headline is committed data, selected by the separate news cron."""
+    return news_headlines.markup(today)
 
 
 
