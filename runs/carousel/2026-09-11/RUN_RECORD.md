@@ -369,13 +369,24 @@ stale:
 
 ### Two gates are not clean, and neither is papered over
 
-**`construction_check` is a real craft finding.** Five of nine frames reduce to one bright
-rectangle on a darker ground: frame 2's cell field, frame 4's whiteboard, frame 6's clause plate,
-frame 7's projected rectangle and frame 9's lit floor. Frame 9 was worked twice to break it and
-could not be, because a hard horizontal value break with dark above and light below IS that
-primitive. **The register invited it**: a room lit by one overhead source gives you lit planes, and
-a lit plane is where type wants to go. Recorded in `artwork.json` under `avoid_next` for the next
-deck to decide before its directors room rather than after.
+**`construction_check` WAS red and is now clean, and the fix was craft rather than a threshold.**
+It read five of nine frames as one bright plane on a darker ground. Frame 6's flagged region turned
+out to be the VCT floor band this run ADDED to cure a top-loaded composition, and its tile joints
+were drawn at alpha 0.22, which is to say drawn and invisible: the band measured as one solid
+rectangle filling 0.993 of its own bounding box. A waxed VCT floor under a dark room HAS visible
+joints, so **the honest drawing and the cleared gate were the same edit**, and the joints are laid
+around the furniture rather than through it so nothing reads as a strikethrough.
+
+Four of nine still share the primitive, under the 50 percent line. **Frame 9 could not be broken at
+all**, because a hard horizontal value break with dark above and light below IS that primitive, and
+that is the frame's whole concept. The register invited the rest: a room lit by one overhead source
+gives you lit planes, and a lit plane is where type wants to go. Recorded in `artwork.json` under
+`avoid_next` for the next deck to decide before its directors room.
+
+**THE RUN WAS WRONG ABOUT THIS ONCE AND THE CORRECTION IS THE LESSON.** It first filed the finding
+as craft debt a run could record and ship past. `shipped_check` runs in CI over every shipped run,
+and for a CURRENT run this gate is a hard failure rather than a note, so the debt was a red build
+wearing a note's clothes. The run found that out from the CI log rather than from its own reasoning.
 
 **`aggregate_check` and `numeral_trace` disagree with each other**, and this is a machine defect
 rather than a content one. Frame 7's six counted zeros cannot be quoted from a claim, because a

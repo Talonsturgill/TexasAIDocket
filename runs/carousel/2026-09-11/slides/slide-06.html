@@ -243,6 +243,30 @@ window.renderReady = new Promise(async (resolve) => {
   const cv=document.getElementById('art'), cx=cv.getContext('2d'); cx.scale(2,2);
   const SVGNS='http://www.w3.org/2000/svg';
 
+  // THE FURNITURE'S OWN BOXES, so the floor's joints are laid AROUND them rather than through
+  // them. Measured before any art is drawn, and the copy on this frame is all in the markup, so
+  // every box has its text in it already.
+  const KEEP=[];
+  document.querySelectorAll('.kick,.count,.hook,.verb,.tb,.src,.tx-site').forEach(function(el){
+    const r=el.getBoundingClientRect();
+    if(r.width>1&&r.height>1) KEEP.push([r.left-20,r.top-12,r.right+20,r.bottom+12]);
+  });
+  function clearOf(x,y){
+    for(const k of KEEP) if(x>=k[0]&&x<=k[2]&&y>=k[1]&&y<=k[3]) return false;
+    return true;
+  }
+  function joint(x0,y0,x1,y1,style,w){
+    cx.strokeStyle=style; cx.lineWidth=w;
+    const n=Math.max(2,Math.round(Math.hypot(x1-x0,y1-y0)/6));
+    let run=null;
+    for(let i=0;i<=n;i++){
+      const t=i/n, x=x0+(x1-x0)*t, y=y0+(y1-y0)*t;
+      if(clearOf(x,y)){ if(!run) run=[x,y]; }
+      else if(run){ cx.beginPath(); cx.moveTo(run[0],run[1]); cx.lineTo(x,y); cx.stroke(); run=null; }
+    }
+    if(run){ cx.beginPath(); cx.moveTo(run[0],run[1]); cx.lineTo(x1,y1); cx.stroke(); }
+  }
+
   // ---- THE PAINTED CMU WALL, with the FRONT BANK OFF. The only light in the frame is the back
   // bank's spill entering from the upper right, which is a real classroom state rather than a
   // lighting effect: it is what a teacher does before a projector comes on, and it is what sets
@@ -451,16 +475,18 @@ window.renderReady = new Promise(async (resolve) => {
   // ENGRAVE THE GROUND, NEVER THE MESSAGE. The library's named failure is line density fighting
   // the type, so every glyph box on this frame is RESERVED with a margin well past the dossier's
   // 120 design px before a single line is laid.
-  const KEEP=132;
+  const ENGRAVE_KEEP=132;
   function boxOf(el){
     const r=el.getBoundingClientRect();
-    return [r.left-KEEP, r.top-KEEP, r.width+KEEP*2, r.height+KEEP*2];
+    return [r.left-ENGRAVE_KEEP, r.top-ENGRAVE_KEEP,
+            r.width+ENGRAVE_KEEP*2, r.height+ENGRAVE_KEEP*2];
   }
   const reserved=[];
   document.querySelectorAll('.kick,.count,.hook,.verb,.tb,.src,.site').forEach(function(el){
     reserved.push(boxOf(el));
   });
-  reserved.push([box.x0-KEEP, box.y0-KEEP, (box.x1-box.x0)+KEEP*2, (box.y1-box.y0)+KEEP*2]);
+  reserved.push([box.x0-ENGRAVE_KEEP, box.y0-ENGRAVE_KEEP,
+               (box.x1-box.x0)+ENGRAVE_KEEP*2, (box.y1-box.y0)+ENGRAVE_KEEP*2]);
 
   const eng=TXENGRAVE.create({seed:SEED, light:{azDeg:38, elDeg:30}});
   eng.reserve(reserved);
@@ -521,15 +547,18 @@ window.renderReady = new Promise(async (resolve) => {
     g.addColorStop(1,'rgba(96,142,126,0.96)');
     cx.fillStyle=g; cx.fillRect(0,FY,1080,1350-FY);
     cx.fillStyle='rgba(3,12,19,0.72)'; cx.fillRect(0,FY-5,1080,6);
+    // THE JOINTS READ. At alpha 0.22 they were drawn and invisible, and construction_check
+    // measured this band as one solid bright rectangle filling 0.993 of its own box, which is the
+    // finding that held deck 13 under the bar. A waxed VCT floor under a dark room HAS visible
+    // joints, so drawing them properly is the honest fix and breaking the rectangle is what it
+    // buys. They are laid around the furniture rather than through it.
     cx.save(); cx.beginPath(); cx.rect(0,FY,1080,1350-FY); cx.clip();
-    for(let x=-420;x<1560;x+=118){
-      cx.strokeStyle='rgba(6,24,34,0.28)'; cx.lineWidth=1.5;
-      cx.beginPath(); cx.moveTo(540+(x-540)*0.34,FY); cx.lineTo(x,1350); cx.stroke();
+    for(let x=-420;x<1560;x+=104){
+      joint(540+(x-540)*0.34,FY,x,1350,'rgba(4,16,24,0.82)',2.4);
     }
-    for(let i=1;i<5;i++){
-      const y=FY+Math.pow(i/5,1.7)*(1350-FY);
-      cx.strokeStyle='rgba(6,24,34,0.22)'; cx.lineWidth=1.4;
-      cx.beginPath(); cx.moveTo(0,y); cx.lineTo(1080,y); cx.stroke();
+    for(let i=1;i<6;i++){
+      const y=FY+Math.pow(i/6,1.7)*(1350-FY);
+      joint(0,y,1080,y,'rgba(4,16,24,0.74)',2.2);
     }
     cx.restore();
   })();
