@@ -1560,8 +1560,8 @@
     },
     {
       "id": "tx-2026-0016",
-      "title": "Federal comment window open on adding AI questions to the American Time Use Survey",
-      "summary": "The Bureau of Labor Statistics has proposed adding questions about artificial intelligence to the American Time Use Survey. Public comment is open under the Paperwork Reduction Act. Comments close September 8th, 2026. The survey is a main federal instrument for measuring how people actually spend working time, so what it asks about AI shapes what is later knowable.",
+      "title": "Federal comment window has closed on adding AI questions to the American Time Use Survey",
+      "summary": "The Bureau of Labor Statistics proposed adding questions about artificial intelligence to the American Time Use Survey and took public comment on it under the Paperwork Reduction Act. That window closed September 8th, 2026, and no decision on whether the questions go into the survey has been published. The survey is a main federal instrument for measuring how people actually spend working time, so what it asks about AI shapes what is later knowable.",
       "topic": "research-and-science",
       "decider": {
         "name": "United States Bureau of Labor Statistics",
@@ -1573,7 +1573,7 @@
         "metro": null,
         "on_ercot": false
       },
-      "status": "open",
+      "status": "pending",
       "key_dates": [
         {
           "date": "2026-07-10",
@@ -1588,7 +1588,7 @@
       ],
       "public_access": {
         "room": "open_comment",
-        "how": "Comments go to the Department of Labor through the method given on the Federal Register notice, until September 8th, 2026. Paperwork Reduction Act notices are among the easiest federal comment routes for a member of the public to use.",
+        "how": "The comment window has closed. The notice stays on the federal register, where anyone can read the proposed collection and the instructions it gave for filing, and the next step is the bureau's own request to the Office of Management and Budget.",
         "url": "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions",
         "closes": "2026-09-08"
       },
@@ -1597,10 +1597,10 @@
           "id": "tx-2026-0016-c1",
           "text": "The notice is a Paperwork Reduction Act consultation inviting public comment.",
           "verbatim_quote": "The Department of Labor, as part of its continuing effort to reduce paperwork and respondent burden, conducts a pre-clearance consultation program to provide the general public and Federal agencies with an opportunity to comment on proposed and/or continuing collections of information in accordance with the Paperwork Reduction Act of 1995.",
-          "source_url": "https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions",
-          "source_title": "Federal Register, Proposed Information Collection; ATUS Artificial Intelligence (AI) Questions, abstract",
+          "source_url": "https://www.federalregister.gov/api/v1/documents/2026-13928.json",
+          "source_title": "Federal Register API, document 2026-13928, abstract field",
           "source_type": "primary_official",
-          "fetched": "2026-09-07"
+          "fetched": "2026-09-11"
         },
         {
           "id": "tx-2026-0016-c2",
@@ -1609,10 +1609,10 @@
           "source_url": "https://www.federalregister.gov/api/v1/documents/2026-13928.json",
           "source_title": "Federal Register API, document 2026-13928, fields type, publication_date, comments_close_on",
           "source_type": "primary_official",
-          "fetched": "2026-09-07"
+          "fetched": "2026-09-11"
         }
       ],
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "This was the ONLY document with artificial intelligence in its title that had an open comment period on the query date. Worth stating plainly in any roundup: the federal AI comment docket is thin right now, and that is itself informative. Texas relevance is national, not specific.",
       "history": [
@@ -1659,6 +1659,10 @@
           "date": "2026-09-08",
           "note": "The federal notice proposing AI questions on the American Time Use Survey is still posted and still taking comment. Everything the notice says about how to file is unchanged.",
           "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The comment window closed on September 8th, 2026. The record had carried the window as open, and the notice's own close date has now passed, so what a reader can do here has changed from filing a comment to reading the notice. The bureau has published no decision on whether the questions go into the survey."
         }
       ]
     },
@@ -1785,7 +1789,7 @@
           "fetched": "2026-09-03"
         }
       ],
-      "last_verified": "2026-09-10",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -1867,6 +1871,11 @@
         {
           "date": "2026-09-10",
           "note": "Corrected. Two claims carried a source title naming the September 4th comment deadline entry. Each quotes a different entry title on the same feed, so both now read entry title."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The commission's calendar feed still publishes its open meetings with the hearing room named in each entry. The grid operator's own board meeting still sits on that same feed beside the commission's, dated September 14th, 2026.",
+          "checked": true
         }
       ]
     },
@@ -9604,7 +9613,7 @@
           "fetched": "2026-08-23"
         }
       ],
-      "last_verified": "2026-09-10",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
       "history": [
@@ -9650,6 +9659,11 @@
         {
           "date": "2026-09-10",
           "note": "The award to Rice is still on the foundation's own record. It still names the same principal investigator and still carries the same purpose, which is letting a model propose numerical algorithms. Nothing about the award has been amended.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The award record still stands as the foundation published it. The condition it sets is unchanged, which is that a machine proposed algorithm counts only once the proof assistant has certified its correctness and its cost.",
           "checked": true
         }
       ]
@@ -11997,7 +12011,7 @@
           "fetched": "2026-09-02"
         }
       ],
-      "last_verified": "2026-09-10",
+      "last_verified": "2026-09-11",
       "confidence": "high",
       "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
       "history": [
@@ -12032,6 +12046,11 @@
         {
           "date": "2026-09-10",
           "note": "The five year review of the offer caps is still taking written comment, and the deadline the commission set is still September 17th. The questions staff asked are unchanged, so a party that has not filed still has the same window and the same questions to answer.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The review is still open and the staff memorandum still stands as filed, asking whether the system-wide offer cap programs need updating. Comments are still due September 17th.",
           "checked": true
         }
       ]
@@ -13054,7 +13073,7 @@
       "confidence": "high",
       "notes_for_editor": "Legistar histories returned an empty array for this city this run and the event action fields were null. This record carries the agenda and the date the city publishes and no vote, because none is published.",
       "id": "tx-2026-0116",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-03",
@@ -13078,6 +13097,11 @@
         {
           "date": "2026-09-08",
           "note": "The Dallas Public Safety Committee still has the police plate reader briefing on its calendar, and no briefing document has been posted.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The city's own record still carries the plate reader item as a briefing rather than an action the committee votes on. Nothing has been added to the item, and the presenters listed against it are unchanged.",
           "checked": true
         }
       ]
@@ -13670,7 +13694,7 @@
       "confidence": "high",
       "notes_for_editor": "The dollar value of the cooperative award and any share flowing to UT Austin are not stated on the announcement.",
       "id": "tx-2026-0121",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-04",
@@ -13684,6 +13708,11 @@
         {
           "date": "2026-09-08",
           "note": "The foundation's announcement of September 1st, 2026 stands as published. The operations center it established is still led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is still named as the collaborating institution. The announcement still states no dollar figure.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The foundation's announcement still stands. The operations center is still led from San Diego with the Texas Advanced Computing Center at UT Austin named as the collaborating institution.",
           "checked": true
         }
       ]
@@ -14331,7 +14360,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c1"
         },
         {
@@ -14340,7 +14369,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c2"
         },
         {
@@ -14349,7 +14378,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c3"
         },
         {
@@ -14358,7 +14387,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c4"
         },
         {
@@ -14367,7 +14396,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c5"
         },
         {
@@ -14376,7 +14405,7 @@
           "source_url": "https://services.austintexas.gov/edims/document.cfm?id=479192",
           "source_title": "Resolution No. 20260812-017, City of Austin, executed copy",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0129-c6"
         },
         {
@@ -14399,11 +14428,16 @@
         }
       ],
       "id": "tx-2026-0129",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
           "note": "Admitted to the record. The executed resolution is posted in the city's document system. It carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The executed resolution is unchanged. Its bar on any camera or drone system that depends upon artificial intelligence still stands in the adopted text, and so does the progress update the City Manager owes the council committee.",
+          "checked": true
         }
       ],
       "confidence": "high"
@@ -14459,11 +14493,16 @@
         }
       ],
       "id": "tx-2026-0131",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
           "note": "Admitted to the record. The university's announcement says the pavement assessment project has entered a second phase and is closer to statewide deployment."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The university's account of the second phase is unchanged, and it still describes the method as closer to statewide deployment than to a trial. Nothing new has been published about when a highway agency would adopt it.",
+          "checked": true
         }
       ],
       "confidence": "high"
@@ -14528,11 +14567,16 @@
         }
       ],
       "id": "tx-2026-0132",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
           "note": "Admitted to the record. The university's guidance naming its approved AI platform is posted. It states both the data classification the platform is cleared for and that conversations are not used to train outside models."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The guidance still names the university portal as the approved route and still states the data classification it is cleared for. The promise that conversations there are not used to train outside models is unchanged.",
+          "checked": true
         }
       ],
       "confidence": "high"
@@ -14573,7 +14617,7 @@
         }
       ],
       "id": "tx-2026-0133",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
@@ -14582,6 +14626,11 @@
         {
           "date": "2026-09-08",
           "note": "The university's page states that the four year curriculum starts in July 2026 and names no day within that month, so the record carries the month and no date.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The degree page is unchanged and the curriculum still starts this year. The department still describes it as a named four year degree rather than a concentration inside computer science.",
           "checked": true
         }
       ],
@@ -14627,6 +14676,11 @@
           "date": "2026-09-08",
           "note": "The agency's own investigation status pages would not answer, so what state the preliminary evaluation is in today is not on the record. The resume gives December 3rd, 2025 as the office's understanding of when public passenger service began in Dallas. That is a fact about the service rather than a step in this evaluation.",
           "checked": true
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The opening resume answered this run, and every line the record quotes from it is unchanged. No closing resume has been published, so whether the preliminary evaluation is still running is unconfirmed.",
+          "checked": true
         }
       ],
       "claims": [
@@ -14636,7 +14690,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c1"
         },
         {
@@ -14645,7 +14699,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c2"
         },
         {
@@ -14654,7 +14708,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c3"
         },
         {
@@ -14663,7 +14717,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c4"
         },
         {
@@ -14672,7 +14726,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c5"
         },
         {
@@ -14681,7 +14735,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c6"
         },
         {
@@ -14690,7 +14744,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c7"
         },
         {
@@ -14699,7 +14753,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c8"
         },
         {
@@ -14708,7 +14762,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c9"
         },
         {
@@ -14717,7 +14771,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c10"
         },
         {
@@ -14726,7 +14780,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c11"
         },
         {
@@ -14735,7 +14789,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c12"
         },
         {
@@ -14744,7 +14798,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c13"
         },
         {
@@ -14753,7 +14807,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c14"
         },
         {
@@ -14762,7 +14816,7 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c15"
         },
         {
@@ -14771,12 +14825,12 @@
           "source_url": "https://static.nhtsa.gov/odi/inv/2026/INOA-PE26003-14280.pdf",
           "source_title": "ODI RESUME, Office of Defects Investigation, Investigation PE26003, Avride Inc.",
           "source_type": "primary_official",
-          "fetched": "2026-09-08",
+          "fetched": "2026-09-11",
           "id": "tx-2026-0136-c16"
         }
       ],
       "id": "tx-2026-0136",
-      "last_verified": "2026-09-08"
+      "last_verified": "2026-09-11"
     },
     {
       "title": "Case managers beat Houston Methodist's discharge AI on the last day",
@@ -15181,7 +15235,7 @@
         }
       ],
       "id": "tx-2026-0130",
-      "last_verified": "2026-09-08",
+      "last_verified": "2026-09-11",
       "history": [
         {
           "date": "2026-09-08",
@@ -15190,6 +15244,11 @@
         {
           "date": "2026-09-10",
           "note": "Corrected. The summary listed the duties of the operations center and called the Texas role the front door to federal AI compute. Neither sentence had a source under it, and both are gone."
+        },
+        {
+          "date": "2026-09-11",
+          "note": "The agency page putting the Austin supercomputing center in an operating role has not changed. What the pilot handed over is still described the same way, and no further institution has been added to the collaboration.",
+          "checked": true
         }
       ],
       "confidence": "high"
