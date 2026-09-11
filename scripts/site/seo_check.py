@@ -46,6 +46,7 @@ CANON = re.compile(r'<link rel="canonical" href="(.*?)">')
 OGTYPE = re.compile(r'<meta property="og:type" content="(.*?)">')
 OGIMG = re.compile(r'<meta property="og:image" content="(.*?)">')
 H1 = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S)
+HEADER = re.compile(r"<header\b[^>]*>(.*?)</header>", re.S)
 LOC = re.compile(r"<loc>(.*?)</loc>")
 LASTMOD = re.compile(r"<lastmod>(.*?)</lastmod>")
 VERIFY = re.compile(r'<meta name="(google-site-verification|msvalidate\.01)" content="(.*?)">')
@@ -180,9 +181,14 @@ def findings(site: Path) -> list[str]:
     # ---------------------------------------------------------------- brand entity
     home = site / "index.html"
     home_html = home.read_text(encoding="utf-8") if home.exists() else ""
-    home_h1 = plain((H1.findall(home_html) or [""])[0])
-    if BRAND.casefold() not in home_h1.casefold():
-        bad.append(f"/: the primary heading does not name {BRAND}")
+    # The masthead names the publication. The editorial headline need not repeat it.
+    # Keep the brand in both the reader's masthead and the search result's title.
+    home_title = plain((TITLE.findall(home_html) or [""])[0])
+    if BRAND.casefold() not in home_title.casefold():
+        bad.append(f"/: the page title does not name {BRAND}")
+    home_header = plain((HEADER.findall(home_html) or [""])[0])
+    if BRAND.casefold() not in home_header.casefold():
+        bad.append(f"/: the masthead does not name {BRAND}")
     if '"logo":' not in home_html:
         bad.append("/: the Organization graph carries no logo")
     if not (site / "about" / "index.html").exists():
@@ -252,14 +258,15 @@ def self_test() -> int:
         if not cond:
             failures += 1
 
-    def pg(desc="d" * 90, h1="<h1>H</h1>", head="", title="T"):
+    def pg(desc="d" * 90, h1="<h1>H</h1>", head="", title="T",
+           masthead=f'<header><a href="/">{BRAND}</a></header>'):
         return (f'<html><head><title>{title}</title>'
                 f'<meta name="description" content="{desc}">'
                 f'<link rel="canonical" href="https://x/">{head}</head>'
-                f"<body>{h1}</body></html>")
+                f"<body>{masthead}{h1}</body></html>")
 
     logo = '<script type="application/ld+json">{"@type":"Organization","logo":"x"}</script>'
-    good_home = pg(h1=f"<h1>{BRAND}</h1>", head=logo, title=BRAND)
+    good_home = pg(h1="<h1>AI is coming South.</h1>", head=logo, title=BRAND)
     good_robots = ("User-agent: *\nAllow: /\n"
                    "Sitemap: https://x/sitemap.xml\n"
                    "Sitemap: https://x/sitemap-news.xml\n"
@@ -349,9 +356,13 @@ def self_test() -> int:
               {"": pg(head='<meta property="og:image" content="og.png">')})))
 
     print("\nand the branded discovery surfaces are not inferred")
-    check("the homepage h1 has to name the publication",
-          any("primary heading does not name" in f for f in run(
+    check("the homepage title has to name the publication",
+          any("page title does not name" in f for f in run(
               {"": pg(h1="<h1>AI is coming South.</h1>", head=logo, title="Home")})))
+    check("the homepage masthead has to name the publication",
+          any("masthead does not name" in f for f in run(
+              {"": pg(h1="<h1>AI is coming South.</h1>", head=logo,
+                      title=BRAND, masthead="")})))
     check("the Organization graph has to name its logo",
           any("carries no logo" in f for f in run(
               {"": pg(h1=f"<h1>{BRAND}</h1>", title="Home")})))
