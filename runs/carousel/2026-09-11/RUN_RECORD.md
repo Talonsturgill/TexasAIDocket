@@ -86,6 +86,34 @@ give up: a record whose windows are all open reduces nothing and overflows at 1,
 
 ---
 
+## TWO DATE RULES, ON THE OWNER'S INSTRUCTION
+
+**The ordinal already had a gate and the year rule had none.** `BARE_DATE` has caught
+"September 5" since the beginning. What was missing is that a date in the post's own year was
+printing its year, and replayed over every shipped caption that fires **18 times across 12 runs**,
+so it is a pattern rather than a slip.
+
+The year is not wrong, it is REDUNDANT. A reader works it out from the fact that they are reading
+the post this week, and the first two lines of a LinkedIn post are the only real estate that
+surface has.
+
+**The year stays on every other date**, and the self-test asserts that half too, because a check
+that only ever fires is a rule against years rather than a rule about redundancy.
+
+**It is a POST rule and never a site rule.** `caption_check.check()` also judges the website, and a
+record page is a permanent archive somebody reaches years later out of a search result, where a
+bare "September 5th" is ambiguous exactly when it matters most.
+
+This run's own caption and first comment were rewritten under it. `sources_block.py` had been
+printing the same four characters and a comma seven times in one first comment. **The twelve
+shipped captions are not rewritten**, because history keeps what was published and CI runs
+`caption_check` as a self-test rather than over the archive.
+
+`CLAUDE.md` carries the rule and `knowledge/carousel/CAPTION_CRAFT.md` carries it where the caption
+room reads it. The CLAUDE.md commit is the second of this run's two `Actor: human` stamps.
+
+---
+
 ## A REVIEW BOT FOUND A FABRICATION THIS RUN HAD ALREADY COMMITTED
 
 **Six findings arrived on the pull request after the first push. Every one was checked against
