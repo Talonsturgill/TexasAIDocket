@@ -672,6 +672,17 @@ These routines DRAFT ONLY and never send.
 
 Dates take the ordinal, month first. "August 11th", never "11 August" and never a bare
 "August 11". ISO stays correct for a citation stamp or a ledger field.
+**A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR**, owner's instruction 2026-09-11, and this one is
+about the LinkedIn copy rather than the site. Write "the item is dated September 4th" in a post
+that goes out in 2026, never "September 4th, 2026". The year is not wrong, it is REDUNDANT: a
+reader works it out from the fact that they are reading it this week, and the first two lines of a
+post are the only real estate that surface has. The year STAYS on every other date, which is what
+makes this a rule about redundancy rather than a rule against years. **The site is the exception
+and it is deliberate.** A record page is a permanent archive somebody reaches years later out of a
+search result, where a bare "September 5th" is ambiguous exactly when it matters most, so the
+check lives in `caption_check.post_shape_problems` and never in `check()`, which also judges the
+website. `sources_block.py` takes the year from the run directory's own name rather than from the
+clock, so rebuilding an old run's first comment renders what that run published.
 No em dashes or en dashes anywhere. Ranges read "X to Y".
 No emojis. Straight quotes only.
 **No colons and no semicolons in published copy.** Write two sentences. A semicolon is a full
