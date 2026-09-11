@@ -38,7 +38,7 @@ State Board of Education (SBOE) to establish curriculum and graduation requireme
 | storyboard and nine dossiers | `runs/carousel/2026-09-11/storyboard.md` | `dossier_check` clean |
 | compute.py and computed.json | `runs/carousel/2026-09-11/` | every count derived from the snapshots, no numeral typed |
 | palette, measured | `runs/carousel/2026-09-11/palette_measured.json` | 7 tokens, ZERO collisions against a calibrated p10 of 9.55 |
-| caption and its critic verdict | `runs/carousel/2026-09-11/caption.txt` | `caption_check` clean, 140 words, 1.43 commas per 100 |
+| caption and its critic verdict | `runs/carousel/2026-09-11/caption-UNSHIPPED.txt` | `caption_check` clean, 140 words, 1.43 commas per 100 |
 | frames 1 to 4 | `runs/carousel/2026-09-11/slides/` | render clean, no page errors |
 | tooling | `inject_computed.py`, `build_copy.py`, `measure_palette.py` | reusable, each tested |
 
@@ -64,3 +64,15 @@ overhead falloff was not doing enough work. **The deck median must come in under
 
 `ledger/carousel/topics.json` carries no entry for it, because no deck shipped. The thirty day
 dedupe window is clean for this story.
+
+
+## Why the caption and the source block carry an UNSHIPPED suffix
+
+`email_check.shipped_runs()` treats **any** run directory holding a `caption.txt` as a run that
+produced a deck, and then requires a `gmail_payload.json`, a linked PDF and slide thumbnails
+beside it. `gmail_draft.py` cannot build a payload without thumbnails, so a run that writes a
+gated caption and ships no deck would fail `email_check --all` in CI on every future run, not just
+its own.
+
+**The honest reading is that an unshipped caption is not a shipped caption**, so the files are
+named for what they are. Rename them back when the deck ships.

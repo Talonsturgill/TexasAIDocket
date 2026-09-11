@@ -191,7 +191,15 @@ which is correct only on the day the newest entry is unshipped. Today that brief
 "the who" and "point at the record", **both of which shipped on 2026-09-10.** The candidate built
 on them was disqualified for it. The window should be taken from the newest entry INCLUSIVE.
 
-**3. The `carousel-scout`, `carousel-fact-checker`, `carousel-treatment-director` and
+**3. `email_check` counts any run directory holding a `caption.txt` as a run that shipped a
+deck**, and then requires a `gmail_payload.json`, a linked PDF and slide thumbnails beside it.
+`gmail_draft.py` cannot build a payload without thumbnails. So a run that writes a gated caption
+and ships no deck would fail `email_check --all` in CI **on every future run, not just its own**.
+This run's caption and source block are therefore named `caption-UNSHIPPED.txt` and
+`first_comment-UNSHIPPED.txt`, which is what they are. The general fix is for `shipped_runs()` to
+key on a shipped artifact rather than on the caption.
+
+**4. The `carousel-scout`, `carousel-fact-checker`, `carousel-treatment-director` and
 `carousel-caption-director` agents have no write tool**, so every one of them returned its
 deliverable inline and the showrunner transcribed it. The routine tells scouts to write
 `out/<date>/scout-<beat>.json`. Ten agents this run each spent part of their reply explaining they
