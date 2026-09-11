@@ -2579,3 +2579,54 @@ person types and none of what a retriever scores.
 And a test set is an instrument. `tests/ask_eval.mjs` was wired because it produces a number
 somebody reads. `ask_eval.py --self-test` was not, because it only checks that the number means
 something. Whichever half is unwired is the half that drifts, and the number keeps printing.
+
+## 76. The same wall, two fields over, and the fix was applied to one of them
+
+On 2026-09-09 the ask index stopped being measured against a ceiling and started being built to
+fit one. Entry 71 records why: a bound a growing input crosses ON A SCHEDULE is a design
+constraint and not a tripwire, and the difference is whether the builder is told about it. That
+fix was right and it shipped green.
+
+`ask_pack.py` has TWO ceilings. `MAX_INDEX_CHARS` bounds the index and `MAX_CHARS` bounds the
+core pack, and they have the identical shape: a fixed number with an input that grows past it a
+little every day. Only one of them was given to the builder.
+
+Two days later, on 2026-09-11, the daily run admitted four decisions:
+
+```
+FAIL  the core pack is under its ceiling of 420000 chars   421546 chars
+```
+
+A complete record carrying a real public correction could not merge. `main` itself was holding
+three admissions of room, at a median settled body of 2,646 characters, so it was not that
+PR's problem and every run after it would have hit the same wall.
+
+**The fix had a name, a design and a docstring, one screen up in the same file.** Nothing
+pointed from the second ceiling at the first. The gates were all green on 09-09 and 09-10 while
+the second wall was three days out.
+
+**And the obvious remedy would have been wrong, which is the part worth the entry.** The index's
+rung shortens a line and then drops it. Copying that to the pack means reducing a decision's
+body and then dropping it, and a body is not a line: `splitRecord` builds the RETRIEVER's item
+list out of the body fields, so a body the core gives up is a body no question can ever retrieve
+again. The index rung costs what one line stops saying. The same rung on the pack would have
+quietly thinned the record's own evidence on exactly the questions those decisions answer.
+
+What the pack does instead is MOVE a body to the sibling field that already exists for the
+dossiers. Measured on the real record, moving the twenty oldest settled bodies freed 57,311
+characters of core, left all 472 blocks in the retriever's list, left every family count
+unchanged, and a moved decision was still retrieved first by its own name. The break-glass path
+loses those bodies and keeps their index lines. Normal retrieval loses nothing at all.
+
+**Generalises to.** Two.
+
+When a fix lands, enumerate the other instances of the SHAPE it fixed before closing the tab. Not
+the other instances of the bug, which is entry 74's lesson about two ledgers holding the same
+defect, but the other places where the same KIND of constraint is wired the same wrong way. Here
+there were exactly two and they were forty lines apart.
+
+And a remedy is not portable just because the shape is. Ask what else reads the thing you are
+proposing to give up. Two artifacts can share a constraint, a growth rate and a ceiling, and
+still need opposite treatments, because one of them is read by a retriever and the other is not.
+The cheap check is to name every consumer of the artifact before choosing the rung, which is one
+question and would have caught this in a minute.
