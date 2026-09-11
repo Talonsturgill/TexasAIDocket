@@ -31,10 +31,34 @@ lane's file.**
 **ONE ACTION CLEARS IT.** Decide whether `MAX_CHARS` moves, or whether the pack gets rungs the
 way the index has.
 
-`browser-layout` is also red and is **not this PR's**. `tests/video_fit.mjs` throws
-`AbortError: The play() request was interrupted by a new load request`. The full `responsive.mjs`
-suite passes locally against this exact `docs/` tree, `main` is green on it, and this diff touches
-no video file and no test. Not re-run, because `gates` blocks the merge regardless.
+`browser-layout` is also red, and **this run called it wrong once before getting it right.**
+
+The first reading was "a `play()` race, not this PR's, and the suite passes locally". It failed a
+SECOND time on the next head with a different symptom, which is what made the real mechanism
+visible. **One case fails, the last and widest**, 1920 by 1080: the poster reports real dimensions
+and fits, and the VIDEO reports no width or height at all with its crops serialising as `null`,
+which is `Math.max(0, NaN)`. `videoWidth` was zero at measure time.
+
+**It is the fixture rather than the product, and `tests/video_fit.mjs` documents this exact failure
+in its own comments**: Chromium on Linux reclaiming the one-frame local canvas during the final
+wide-screen case. The 100 ms repaint timer added to stop it is not enough on the runner. The
+remaining gap is a race between two round trips, because `waitForFunction` and `measure()` are
+separate `page.evaluate` calls and the stream can die between them. The fix is to make the
+measurement itself the thing that waits.
+
+**Not pushed.** That file is `human` lane, and while the branch may stamp `human` for a defect it
+is blocked by, fixing it buys nothing today because `ask_pack` blocks the merge regardless. The
+stronger reason is that this run had already been wrong about this test once, and pushing an
+unattended edit to somebody else's test on the strength of a second diagnosis is the
+overconfidence this repo's history warns about.
+
+**Why it is red here and green on `main` is a HYPOTHESIS and is recorded as one.**
+`docs/videos/index.html` is byte-identical to main in this diff and the test routes every request
+to local fixtures, so the subject is independent of the changes. What did change is that the
+branch grows the site from 700 pages to 705, and the suites running before `videoFit` in the same
+browser take measurably longer, the nav suite alone going from about 37 to about 49 seconds. A
+longer-lived browser process makes the late fixture likelier to be reclaimed. That is plausible
+and unproven, and a wrong explanation in a run record is worse than none.
 
 ---
 
