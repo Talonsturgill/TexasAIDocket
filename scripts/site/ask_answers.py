@@ -298,6 +298,47 @@ __RETRIEVER__
     return !!n && (" " + nq + " ").indexOf(" " + n + " ") >= 0;
   }
 
+  /* A TOPIC WORD IS A VOCABULARY ENTRY AND IT INFLECTS. A NAME DOES NOT.
+     `mentions` above is right for a county, a metropolitan area and a body, because those are
+     names and a reader typing one types it. Topic words are ordinary nouns, and the natural
+     way to ask about them is the PLURAL. Sending the same strict rule through the topic list
+     cost 54 of the 55 single word topic terms their plural: "bills", "laws", "rules",
+     "permits", "reservoirs", "cameras", "schools", "patients", "megawatts". Measured on
+     2026-09-11, "bills" and "reservoirs" returned no route at all and `__askClassify` put them
+     in `refuse`, which is the box telling a reader that a question the record answers is
+     outside the record. That is worse than the substring bug it was fixing.
+
+     ONLY THE LAST TOKEN INFLECTS, AND ONLY INTO A PLURAL. That keeps this strictly tighter
+     than the raw substring test it replaces, which matched "bill" inside "billboard" and would
+     still do so. There is no prefix stemming here, so "mission" is still not found inside
+     "admission". */
+  /* NAMED `isPluralOf` AND NOT `plural`, WHICH IS ALREADY TAKEN IN THIS SCOPE. There is a
+     `plural(n, one, many)` further down that writes "1 day" against "2 days". Function
+     declarations hoist and the last one wins, so the first spelling of this was silently
+     replaced by that one and every call returned undefined. It did not throw and it did not
+     warn. It just answered no to every plural, which is exactly the symptom it was written to
+     cure, and only measuring the built page found it. */
+  function isPluralOf(g, w) {
+    return g === w + "s" || g === w + "es" ||
+           (w.slice(-1) === "y" && g === w.slice(0, -1) + "ies");
+  }
+  function mentionsTopic(nq, phrase) {
+    var want = norm(phrase).split(" ").filter(Boolean);
+    if (!want.length) return false;
+    var got = nq.split(" ");
+    for (var i = 0; i + want.length <= got.length; i++) {
+      var ok = true;
+      for (var j = 0; j < want.length; j++) {
+        var g = got[i + j], w = want[j], last = j === want.length - 1;
+        if (g === w || (last && isPluralOf(g, w))) continue;
+        ok = false;
+        break;
+      }
+      if (ok) return true;
+    }
+    return false;
+  }
+
   /* STOPWORDS ARE DROPPED BEFORE SCORING, and this is the difference between a useful box and
      a dishonest one. Nearly every catalogued question contains "what" and "the", so a query
      made entirely of noise still shared words with the catalogue and scored above zero. Asked
@@ -449,7 +490,7 @@ __RETRIEVER__
     });
     if (!direct) Object.keys(IDX.topic_words).forEach(function (t) {
       IDX.topic_words[t].forEach(function (w) {
-        if (!direct && mentions(nq, w)) direct = { view: "by_topic", arg: t };
+        if (!direct && mentionsTopic(nq, w)) direct = { view: "by_topic", arg: t };
       });
     });
     /* A NAME TYPED IN FULL BEATS A FUZZY MATCH ON A LONGER NAME THAT CONTAINS IT.
