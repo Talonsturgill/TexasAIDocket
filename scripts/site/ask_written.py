@@ -62,6 +62,7 @@ COPY = {
     # of useful questions. The owner's requested line names that range directly and keeps the
     # flagship agent focused on the place and subject it can actually answer.
     "placeholder":  "Ask about anything about AI in Texas",
+    "placeholder_compact": "Ask about AI in Texas",
     "followup":     "Ask a follow-up",
     # THERE IS NO "PASSING THE HUMAN CHECK" LINE ANY MORE, and it took three complaints from
     # the same owner to stop tuning it and delete it.
@@ -248,6 +249,18 @@ _CLIENT = r"""
   var send   = box.querySelector('button[type="submit"]');
   var thread = document.getElementById("askthread");
   if (!form || !input || !send || !thread) return;
+
+  // Keep the resting hint readable beside both controls on a narrow phone.
+  var COMPACT = window.matchMedia ? window.matchMedia("(max-width:30rem)") : null;
+  function firstPlaceholder() {
+    return COMPACT && COMPACT.matches ? "%%placeholder_compact%%" : "%%placeholder%%";
+  }
+  input.placeholder = firstPlaceholder();
+  if (COMPACT) COMPACT.addEventListener("change", function () {
+    if (input.placeholder === "%%placeholder%%" || input.placeholder === "%%placeholder_compact%%") {
+      input.placeholder = firstPlaceholder();
+    }
+  });
 
   var busy = false;
   /* THE CEILING'S TIMER LIVES HERE AND NOT IN THE HANDLER, so every path that ends an answer
@@ -531,7 +544,7 @@ _CLIENT = r"""
     thread.hidden = true;
     box.classList.remove("answering");
     input.value = "";
-    input.placeholder = "%%placeholder%%";
+    input.placeholder = firstPlaceholder();
     /* A suggested follow-up changes the control's ACCESSIBLE name. Clearing the visible
        field without clearing that name left a fresh arrow announcing a suggestion that no
        longer existed after Start over. */

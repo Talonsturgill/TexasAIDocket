@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-L9/NryT+PFfW+z5gYAWMk3mDuKgTp2JLrntsRiogEe4=' 'sha256-VCmcCZ76fWjko6HgKXCLy5YszPdXE7+83XWN1HRVn6Q=' 'sha256-YIpRnI/6qU6nNuugZQGgKy8EGBG9DP7tTIdDHEc/gtQ=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-L9/NryT+PFfW+z5gYAWMk3mDuKgTp2JLrntsRiogEe4=' 'sha256-VCmcCZ76fWjko6HgKXCLy5YszPdXE7+83XWN1HRVn6Q=' 'sha256-AOTaUjdhjlyrNbmq7Nsdai5zL/ORFjxrqvYdy/00AKI=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -768,6 +768,18 @@ function askFuse(lists) {
   var thread = document.getElementById("askthread");
   if (!form || !input || !send || !thread) return;
 
+  // Keep the resting hint readable beside both controls on a narrow phone.
+  var COMPACT = window.matchMedia ? window.matchMedia("(max-width:30rem)") : null;
+  function firstPlaceholder() {
+    return COMPACT && COMPACT.matches ? "Ask about AI in Texas" : "Ask about anything about AI in Texas";
+  }
+  input.placeholder = firstPlaceholder();
+  if (COMPACT) COMPACT.addEventListener("change", function () {
+    if (input.placeholder === "Ask about anything about AI in Texas" || input.placeholder === "Ask about AI in Texas") {
+      input.placeholder = firstPlaceholder();
+    }
+  });
+
   var busy = false;
   /* THE CEILING'S TIMER LIVES HERE AND NOT IN THE HANDLER, so every path that ends an answer
      can cancel it. It used to be declared inside the send handler, where `finish` could reach
@@ -1050,7 +1062,7 @@ function askFuse(lists) {
     thread.hidden = true;
     box.classList.remove("answering");
     input.value = "";
-    input.placeholder = "Ask about anything about AI in Texas";
+    input.placeholder = firstPlaceholder();
     /* A suggested follow-up changes the control's ACCESSIBLE name. Clearing the visible
        field without clearing that name left a fresh arrow announcing a suggestion that no
        longer existed after Start over. */
