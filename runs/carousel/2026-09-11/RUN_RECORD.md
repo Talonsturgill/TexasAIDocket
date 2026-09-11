@@ -1,6 +1,44 @@
 # Run record — 2026-09-11
 
-**The record shipped in full. The deck did not.** This run stops on the degradation ladder's
+## THE RUN DID NOT MERGE, AND THE RECORD IS NOT LIVE
+
+**`ask_pack --self-test` goes red on this branch and the wall is real.** The core pack measures
+**421,427 characters against a ceiling of 420,000**. Measured on both sides of the diff:
+
+| record | items | core pack | verdict |
+|---|---|---|---|
+| `origin/main` | 123 | 410,847 | passes, 9,153 to spare |
+| this branch | 127 | **421,427** | fails by 1,427 |
+
+Four admissions cost 10,580 characters, about **2,645 an admission**, so `main` was **three
+admissions** from this wall and this run made four. Nothing warned, because the pack has no
+headroom probe of the kind `index_headroom` gives the index.
+
+**This run did not fix it and the reason is the file's own line 26**, of both ceilings: *"Raising
+either ceiling is never a fix for a red build."* The other routes are worse. Dropping a true
+admission would corrupt the record to satisfy a cache ceiling. Rolling a family up does not
+reach, because the register is 23,783 and the reservoirs 29,892 of 421,427, so roughly **364,000
+of the pack is the decisions themselves** and rolling those up is the break-glass path ceasing to
+be the record.
+
+**It is the defect the file already wrote down**, on the other ceiling, in the comment under the
+assertion: two runs in September held over 644 characters of the record's ordinary growth, and
+the owner's resolution was to raise `MAX_INDEX_CHARS` against a measured bill. `MAX_CHARS` guards
+the `ASK_RETRIEVAL=off` break-glass that nobody pays for on an ordinary question, so its cost is
+not the index's cost. **That is the owner's call, and `scripts/site/ask_pack.py` is not this
+lane's file.**
+
+**ONE ACTION CLEARS IT.** Decide whether `MAX_CHARS` moves, or whether the pack gets rungs the
+way the index has.
+
+`browser-layout` is also red and is **not this PR's**. `tests/video_fit.mjs` throws
+`AbortError: The play() request was interrupted by a new load request`. The full `responsive.mjs`
+suite passes locally against this exact `docs/` tree, `main` is green on it, and this diff touches
+no video file and no test. Not re-run, because `gates` blocks the merge regardless.
+
+---
+
+**The record is complete and gated ON THIS BRANCH. The deck did not ship.** This run stops on the degradation ladder's
 rung (d): record updated in full, no deck, post-mortem here and in the email.
 
 ---
