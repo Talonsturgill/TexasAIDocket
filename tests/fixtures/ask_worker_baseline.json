@@ -11,9 +11,9 @@
    "first": 25
   },
   "decider": {
-   "n": 84,
+   "n": 86,
    "sent": 100,
-   "first": 92.9
+   "first": 93
   },
   "facility": {
    "n": 120,
@@ -36,9 +36,9 @@
    "first": 100
   },
   "phrase": {
-   "n": 123,
+   "n": 127,
    "sent": 100,
-   "first": 95.9
+   "first": 96.1
   },
   "reservoir": {
    "n": 119,
@@ -46,9 +46,9 @@
    "first": 99.2
   },
   "title": {
-   "n": 123,
+   "n": 127,
    "sent": 100,
-   "first": 91.1
+   "first": 90.6
   },
   "topic_item": {
    "n": 8,
@@ -57,13 +57,13 @@
   }
  },
  "total": {
-  "n": 842,
+  "n": 852,
   "sent": 97.9,
   "first": 90.5
  },
  "tokens": {
-  "whole": 103865,
-  "mean": 16032,
-  "cached": 13137
+  "whole": 105769,
+  "mean": 16316,
+  "cached": 13411
  }
 }
