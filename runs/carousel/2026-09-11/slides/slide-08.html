@@ -39,7 +39,7 @@
   <div class="count">08 / 09</div>
   <h1 class="hook" id="hook"></h1>
   <div class="dates" id="dates"></div>
-  <div class="src">c3 c12 c13</div>
+  <div class="src">c3 c9 c12 c13</div>
   <div class="tx-site">texasaidocket.com</div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -198,6 +198,11 @@ const C = {
     "Entrepreneurship and Personal Financial Opportunity"
   ],
   "n_silent_chapters": 7,
+  "footprint_chapters": [
+    3,
+    4,
+    7
+  ],
   "silent_chapters_word": "Seven",
   "n_ai_headings": 0,
   "release_hits": {
@@ -323,6 +328,10 @@ window.renderReady = new Promise(async (resolve) => {
         cx.fillRect(x,HORIZON-h,w,h);
         cx.fillStyle='rgba(44,76,70,0.94)';
         cx.fillRect(x,HORIZON-h,w,Math.round(h*0.34));
+        // a window strip and two wheels, so a slab reads as a bus at feed size
+        cx.fillStyle='rgba(176,216,194,0.55)'; cx.fillRect(x+6,HORIZON-h+Math.round(h*0.40),w-12,Math.round(h*0.22));
+        cx.fillStyle='rgba(20,40,48,0.95)';
+        [x+w*0.22, x+w*0.78].forEach(function(wx){ cx.beginPath(); cx.ellipse(wx,HORIZON-2,7,5,0,0,6.2832); cx.fill(); });
         cx.fillStyle='rgba(64,100,92,0.94)';
       });
       // the shelter's posts, the thinnest verticals out there and the ones the heat bends most
@@ -333,11 +342,12 @@ window.renderReady = new Promise(async (resolve) => {
     // the bus loop kerb, the frame's ONE warm and the only thing out there that is not surface
     cx.fillStyle='rgba(156,107,90,0.92)'; cx.fillRect(0,HORIZON+58,1080,13);
     cx.fillStyle='rgba(112,74,62,0.90)'; cx.fillRect(0,HORIZON+71,1080,7);
-    // lane paint, receding, which gives the asphalt a rate
-    for(let i=0;i<6;i++){
-      const y=HORIZON+104+i*26+i*i*4.2;
-      cx.fillStyle='rgba(226,248,238,'+(0.26+0.040*i)+')';
-      for(let k=0;k<4;k++) cx.fillRect(120+k*250+i*10, y, 92+i*16, 3+i*0.6);
+    // bay lines, painted across the loop toward the kerb and receding, which is what a bus loop's
+    // asphalt carries. The first build's horizontal dashes read as water at feed size.
+    for(let k=0;k<9;k++){
+      const x=60+k*120;
+      cx.fillStyle='rgba(226,248,238,0.38)';
+      cx.beginPath(); cx.moveTo(x,HORIZON+84); cx.lineTo(x+3,HORIZON+84); cx.lineTo(x+22,SILL-8); cx.lineTo(x+16,SILL-8); cx.closePath(); cx.fill();
     }
   })();
 
@@ -442,12 +452,12 @@ window.renderReady = new Promise(async (resolve) => {
   document.getElementById('hook').textContent =
     'Districts teach it from the school year that opens in ' + C.school_year_from + '.';
   const rows=[
-    ['IMPLEMENTED',   C.school_year + ' school year'],
+    ['TAUGHT FROM',   C.school_year + ' school year'],
     // c3 records what the MOTION asked the board to find, and the item page calls the date
     // proposed. Round 1's integrity judge caught the row stating it as settled. The label says
     // whose sentence this is.
     ['MOTION',        'effective ' + C.effective_days + ' days after filing'],
-    ['CREDIT',        C.credit_words]
+    ['CREDIT',        C.credit_words + ' and a curriculum requirement']
   ];
   const box=document.getElementById('dates');
   rows.forEach(function(r){

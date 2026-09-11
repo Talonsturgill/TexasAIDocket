@@ -1,0 +1,51 @@
+{
+ "judge": "craft",
+ "round": 2,
+ "date": "2026-09-11",
+ "weighted_score": 6.04,
+ "hard_fails": [
+  "slide 9 prints \"Ask your district who is staffing the three AI expectations.\" claims.json's own rejected list refuses exactly this finding (\"The course text carries three expectations about artificial intelligence\", reason: only c14 contains the words artificial intelligence, c15 says algorithm-driven, c16 says algorithmic, automated and robot-advisors, where the line falls is an editorial choice) and storyboard line 50 says in as many words \"No frame says the three are AI expectations.\" The close's only actionable line presents the run's own unverified characterisation as verified"
+ ],
+ "ship": false,
+ "one_sentence_fix": "Strike the word AI from slide 9's next step so the close obeys the run's own fact check, then spend the next rebuild on frames 7, 8 and 9 (a beam a reader can see in dust with a falloff that is not just the whiteboard's edge, a horizon on 8 that visibly warps and buses that are not four slabs, a bag on 9 that does not read as a computer mouse), because for the sixth consecutive deck the frames the argument ends on are the least made frames in it.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 5.5,
+   "why": "Three declared techniques do not reach the pixels. Slide 6 declares white-line intaglio and the render carries two stray whorls, one at the top-centre edge and one lower left above the neatline's bottom rule, and otherwise a CMU wall with block joints, which is deck 13's own avoid_next (a declared technique that did not reach a reader) repeated. Slide 8 declares heat shimmer under 6 design px and nothing warps at 2160 or at 432, the asphalt dashes read as lane markings, the four buses are four flat slabs and the live oak crown is a cluster of circles, so the frame that is meant to carry Texas without a place name reads as vector clip art. Slide 7's dust column is a 200 px dithered trapezoid at the top edge and the rest of the frame is a white plate with type, which machine_qa flags as top-loaded with the bottom third at 10 percent of craft density. Slide 9's bag, the round 1 repair, reads as a computer mouse with a cord at both sizes. Slide 1's declared focal, the lens, is not the frame's lightest area (the tee bar rails and the duct band are lighter) and the run declined the fix on the record, while the frontal lens sits against tee bars drawn in steep perspective as if on a wall. The one-part soft elliptical drop shadow is a tic on slides 2 (ten of them, cast onto a wall that continues below them, so the recesses read as panels standing on an invisible ledge), 3, 4 and 9, and the library says a one-part shadow cheapens the frame. Slide 4 carries a floating dark stripe on the desk at no object. What is made: slide 5's corridor and burst is the deck's one image, even though the dark population's near-equal stroke lengths read as bristles rather than a stream arriving, and slide 3's one-dot-per-word ratio is the deck's best idea, with the tally plate now clearing the fifth lifted point by about 20 design px. construction_check reads 4 of 9 frames as one bright plate. The detail budget is spent on 2 and 5 and the thinnest frames are 7, 8 and 9."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0,
+   "why": "Every numeral traces: 1, 2, 1, 1 and 0 on slide 3, the six zeros on slide 7, 20 days on slide 8 from c3, 2027 to 2028 from c12, one-half credit from c13, and the caption's eighteen words counts true against c22's quote. Slide 4's eight slot labels are all in c14's quote. Against that, slide 9 prints \"the three AI expectations\", a finding the claims file rejects and the storyboard forbids, and it is the hard fail listed above. Slide 2's \"Seven of them never mention a machine\" is a universal about seven chapters' full text derived from a four-term footprint (artificial intelligence, algorithm, automated, robot), while the record's own quotes show the course using \"financial technology platforms\" and \"in a digital age\", so the sentence stretches what the count measured. Slide 9 sets \"SECOND READING AND FINAL ADOPTION\" directly over \"September 4th, 2026\", the join c5's own reason says the page never makes, delivered by layout."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A reader learns what the board did, the section number, the date line and the school year, and the close's admission that the Register filing is unchecked is the most honest line in the deck. There is no county, no district and no deadline, which the storyboard records as texan_check NONE, NO, NO, and the record genuinely holds none. The one line a reader can act on, slide 9's \"Ask your district who is staffing the three AI expectations\", carries the rejected phrase. Slide 8's row label \"IMPLEMENTED\" reads as past tense beside a 2027 start."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The 6 to 7 swipe measures 18.3 into 50.5 and the inversion lands on the counter-image, which is the frame the deck is remembered by. The cover hook is seven words and earns a swipe. Slides 4, 5 and 6 are one job three times (Chapter N, a verb, a quote) and the middle sags visibly on the contact sheet. The close lands its line but the action beneath it is soft."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "The hooks on 2, 4, 5, 6 and 7 are plain and human (\"Ten chapters. The machine is in three.\", \"Its own summary ends in \\\"and more.\\\"\"). The caption's opener \"House Bill 27 asked for personal finance.\" is clipped to the point of oddness. No regional specificity appears anywhere in the copy, the register is asked to carry Texas and the storyboard itself admits VCT, CMU, troffers and lockers are American-institutional rather than Texan. Clean, on register, a little flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The classroom register and the mint and teal palette are distinct from the eight-deck window and all seven tokens measure above the dE 9.55 collision line. The reaches are the library's usual ones though, and most appeared inside the window: norther front on deck 20 s4 and deck 12, engraving on 20, 16 and 13, stipple on 20 and 16, parallax on 15, flow field on 19, heat shimmer on 19. The ledger entry's type_skeletons field lists only furniture, no type moves were planned, and seven of nine frames run hook top, art below, which decks 14 and 15 both wrote down. Nine frames in one hue read as one drawing at nine values on the strip."
+  }
+ ],
+ "the_verdict_in_its_own_words": "The deck is measured better than it is drawn. Its numerals trace, its palette was calibrated, its probes read canvas, and the frames the argument ends on are the least made things in it: a white rectangle with a pixel cone above it, a window onto clip-art buses with no shimmer a reader can see, and a value break with a computer mouse on the floor. Two declared techniques, engraving on 6 and shimmer on 8, never reach the pixels at either size, the cover's focal is not its light, and one soft drop shadow does the seating work on four frames. Slide 5 and slide 3 show what the deck could have been. The stop is the close, where the one line a Texan can act on prints a characterisation the run's own fact checker refused and its own storyboard forbade, so the deck holds on a fault, and at 6.04 it would hold on the number too.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

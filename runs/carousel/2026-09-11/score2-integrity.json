@@ -1,0 +1,51 @@
+{
+ "judge": "integrity",
+ "round": 2,
+ "date": "2026-09-11",
+ "weighted_score": 5.998,
+ "hard_fails": [
+  "Frame 9's next step reads 'Ask your district who is staffing the three AI expectations.' That sentence is claims.json's own rejected finding ('The course text carries three expectations about artificial intelligence', refused because only c14 contains the words). compute.py line 132 says 'the reason no frame may call all three AI expectations', figures.json machine_expectations says 'no surface calls them AI expectations', and the storyboard says in bold 'No frame says the three are AI expectations.' The closing frame's only instruction to the reader is the fact the run's own fact checker declined to verify, cited to c1 c2 c5 c11, none of which mentions an expectation. It is not in slide 9's dossier type block, which is how every gate missed it. An unverified fact presented as verified."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite frame 9's next step to the wording the record supports, 'the three expectations that name a machine', put that string and every other display string on frame 9 into its dossier's type block so verbatim_check and dossier_check actually read the close, and while on that frame cite c23 for 'The rule is made' and read line 486 of the release snapshot already in sources/, which says 'On Friday' the SBOE adopted the PFL standards and settles the date question the claims file left not established.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.4,
+   "why": "Nine different drawings in one honest register with a genuinely new palette, but four of nine frames reduce to a lit rectangle on a darker ground (construction_check 4 of 9, and the ledger's own avoid_next says the register invited it). Frame 7, the declared inversion, planned 74 and measured 50.5, and machine_qa flags it top-loaded with the bottom third carrying 10 percent of its craft density, so RESEARCH / EXPLAIN / APPRAISE float in empty slate. Frame 5's four flow populations read on the contact sheet as one dark burst of cable, the hair failure the library names. Frame 9's bag is a grey box with a strap under half a frame of nothing. Frame 3's five lifted points probe at dE 4.9 against a 4.0 floor and are nearly invisible at feed size. Frames 3 and 8 are the two a designer would ask how they were drawn."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 4.5,
+   "why": "The numerals are exemplary: I re-counted the five footprint hits (attachment lines 128, 158, 261, 262, 263), the ten headings and the eighteen-word sentence against sources/ and all match computed.json, every quote on frames 4 to 7 is byte-verbatim, and frame 6's fused spaces are gone. The nouns are not. Frame 9 prints the rejected 'three AI expectations' (the hard fail). Frame 9 cites c1 c2 c5 c11 under 'The rule is made' when the only claim saying the board adopted anything is c23, cited on frame 7. Frame 9 stacks 'SECOND READING AND FINAL ADOPTION' over 'September 4th, 2026' as one block, the exact join not_established says the record never makes, while the run's own release snapshot (line 486, dateline September 8, 'On Friday... the SBOE adopted new Personal Financial Literacy standards') would have settled it and nobody read it. The caption's 'All three expectations sit inside and more' ignores that 'invest' is in the sentence and 7(J) is an investing expectation. quantifiers.json declares two universals, both the caption's, while frames 2 and 3 print 'Every chapter', 'never mention' and 'entire course text' undeclared. The release was swept for six terms and the course text tallied for four, so 'technolog' is a machine word on frame 7 and not on frame 3 while 'financial technology' sits inside the quotes on frames 5 and 6."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.3,
+   "why": "A Texan learns the state board adopted a money course whose text sends students to AI tools, and when districts teach it (frame 8, 2027 to 2028). What no frame says is that HB 27 made this half credit a requirement for the cohort entering grade 9 in 2026, which is the stake: the caption's first line carries HB 27 and the frames carry 'one-half credit' with the word required nowhere. No county, no district, no deadline, which the record genuinely lacks and the storyboard admits. The next step on frame 9 is the right shape and the wrong words."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Reads in order: shape (2), footprint (3), three postures (4 to 6), counter-image (7), dates (8), close (9), and the 6 to 7 swipe is a real turn at 18.3 into 50.5. Frames 4, 5 and 6 share one skeleton (kicker, 'Chapter N verbs it', THE VERB IS X, a quote) so the middle is a triptych rather than three moves. The close lands on 'The filing is unchecked', an honest hedge that reads as the deck running out of things to say."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.6,
+   "why": "'Texas put AI in a money class' and 'Its own summary ends in and more' are plain and land. The caption is clean at one comma in 134 words, ends on a question, hedges honestly ('It has not been checked against the Texas Register filing'), no boosterism and no doom. Entirely state-level: the only local word in nine frames is 'your district' on the close. 'Chapter seven says find where it stops working' is a writer being clever about a clause that says 'algorithmic limitations'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Palette measured against 81 prior hexes and clear, and the seafoam classroom is new. Two familiar moves inside the window: deck 11 on August 29th was already a Central Texas institutional interior on waxed VCT under fluorescent light, and frame 7 is the 'document that never says the word' counter-image that topics.json angle_notes flagged on decks 6, 8, 11, 14 and 15, here promoted to the storyboard's own subtitle. The cover is a lit rectangle in a dark ground, as decks 17 and 20 opened."
+  }
+ ],
+ "the_verdict_in_its_own_words": "This deck's arithmetic is the cleanest I have checked on this product, every count traces to bytes in sources/ and every quote is verbatim, and it still does not ship, because the one sentence that tells a reader what to do prints the finding its own fact checker rejected and its own storyboard swore no frame would say. That is not a taste call, it is the run contradicting its record on the closing frame, and it survived because the CTA was never written into the dossier that the gates read. Around it sit smaller stretches of the same kind, a date joined to an action the claims file says the page never joins, a 'rule is made' cited to claims that do not say so, and a snapshot in the run's own folder that would have answered the not_established question if anyone had grepped it. At 5.998 the weighted score is under the bar on its own, and the hard fail would stop it at any score.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

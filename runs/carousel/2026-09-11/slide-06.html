@@ -202,6 +202,11 @@ const C = {
     "Entrepreneurship and Personal Financial Opportunity"
   ],
   "n_silent_chapters": 7,
+  "footprint_chapters": [
+    3,
+    4,
+    7
+  ],
   "silent_chapters_word": "Seven",
   "n_ai_headings": 0,
   "release_hits": {
@@ -530,8 +535,9 @@ window.renderReady = new Promise(async (resolve) => {
       return Math.max(0.04,Math.min(0.96,d));
     },
     budget:{main:7.4, cross:13.0, dots:true},
-    alpha:0.46, feather:24,
-    inkLo:'#0A2231', inkHi:'#6EA890', wMax:2.6
+    // Raised from 0.46 and 2.6 after round 2 read the declared intaglio as two stray whorls.
+    alpha:0.74, feather:24,
+    inkLo:'#0A2231', inkHi:'#6EA890', wMax:3.1
   });
   window.__engrave=eng.stats;
 

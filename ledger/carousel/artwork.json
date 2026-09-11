@@ -1429,14 +1429,14 @@
    "value": {
     "per_slide_median_L": [
      27.2,
-     65.0,
+     64.9,
      42.0,
      72.4,
      20.1,
      18.3,
      50.5,
-     76.9,
-     23.7
+     76.5,
+     23.0
     ],
     "deck_median_L": 42.0,
     "darkest_frame": {
@@ -1445,10 +1445,10 @@
     },
     "brightest_frame": {
      "slide": 8,
-     "L": 76.9
+     "L": 76.5
     },
     "light_cap_note": "LIGHT_L is 60.0 and this deck measures 42, so it does not add to the light count. The window held 2 in 8 against a cap of 1 before this run.",
-    "planned_vs_measured": "The storyboard planned a deck median of 46 and the deck measures 42. Frame 7 was planned at 74 and measures 50.5, which is the one real miss: its bottom third carries the three expectations in the room's own dim, and that room is a third of the frame. The declared inversion survives it, at 18.3 on frame 6 into 50.5 on frame 7, a step of 32.2. Frame 7's own acceptance item asked for a median above 68 and the frame does not meet it, which the storyboard says in as many words.",
+    "planned_vs_measured": "The storyboard planned a deck median of 46 and the deck measures 42. Frame 7 was planned at 74 and measures 50.5, which is the one real miss: its bottom third carries the three expectations in the room's own dim, and that room is a third of the frame. The declared inversion survives it, at 18.3 on frame 6 into 50.5 on frame 7, a step of 32.2 Frame 7's own acceptance item asked for a median above 68 and the frame does not meet it, which the storyboard says in as many words.",
     "measured_on": "the nine shipped PNGs resampled to 270 by 338, panel_ready.ARC_GRID, by measurements.json"
    },
    "type_skeletons": [

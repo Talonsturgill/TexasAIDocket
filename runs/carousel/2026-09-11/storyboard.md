@@ -204,6 +204,24 @@ lens to be the frame's lightest area. The lens is a rectangle, and brightening e
 into the fifth plate construction_check counts, which is a red build. The two gates pull opposite
 ways on that frame and the cover stays as it is.
 
+## AMENDED AFTER ROUND 2
+
+All three judges stopped on one string, and the string was round 1's own repair. Frame 9's next
+step had been changed from machine expectations to AI expectations because a judge called the first
+jargon, and the second is the finding the fact checker rejected and this plan says in bold no frame
+will print. The repair was scoped to what a judge named rather than to what the claims file allows.
+The line now reads the three expectations, which frames 4 to 6 quote and the record supports, and
+it is declared in the dossier's type block so the gates read the close. With it: frame 9 cites c23
+for the rule being made and c9 for the half credit being required, its headline carries that stake
+and its dek keeps the Register hedge in the record's own voice, its date reads as the item's date
+line rather than the adoption's, and two textbooks replace a bag that read as a mouse. Frame 8
+reads TAUGHT FROM rather than IMPLEMENTED beside a 2027 year and its credit row carries c9's
+curriculum requirement. Frame 2's dek says the seven silent chapters carry none of the four
+machine terms, which is what the count measured, and compute.py now asserts that every footprint
+occurrence sits inside the three chapters the expectations name. Frame 7 prints the stem as a
+stem and meets its floor. Frame 8's asphalt carries bay lines and the buses carry windows and
+wheels. Frame 6's intaglio is drawn at a value that reaches the pixels.
+
 ## HOW THE SCORE IS CARRIED WITHOUT A TEXAS PLACE
 
 `texan_check` reports places NONE, deadline NO, next step NO, and the record genuinely contains
@@ -344,7 +362,7 @@ art:
     names that say which cells carry the machine.
 type:
   hook: "Ten chapters. The machine is in three."
-  dek: "Every chapter of the course text is a thing a student must be able to do with money. Seven of them never mention a machine."
+  dek: "Every chapter of the course text is a thing a student must be able to do with money. Seven of them carry none of the four machine terms."
   labels: ["THE COURSE TEXT", "CAREERS, POSTSECONDARY EDUCATION, AND EARNING POTENTIAL", "CONSUMER ECONOMICS AND FINANCIAL DECISION-MAKING", "SAVING AND INVESTING", "c12 c13 c19 c20 c21", "texasaidocket.com", "02 / 09"]
 verbatim:
   - c19: "Careers, Postsecondary Education, and Earning Potential"
@@ -686,7 +704,7 @@ art:
 type:
   hook: "Its own summary ends in \"and more.\""
   dek: "\"The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more.\""
-  labels: ["ZERO HITS IN THE RELEASE", "artificial", "AI", "algorithm", "machine learning", "automated", "technolog", "RESEARCH", "EXPLAIN", "APPRAISE", "c22 c23 c24", "texasaidocket.com", "07 / 09"]
+  labels: ["ZERO HITS IN THE RELEASE", "artificial", "AI", "algorithm", "machine learning", "automated", "technolog(y)", "RESEARCH", "EXPLAIN", "APPRAISE", "c22 c23 c24", "texasaidocket.com", "07 / 09"]
 verbatim:
   - c22: "The new TEKS will teach students how to set goals, budget, save, invest, develop business plans and more."
 # AMENDED AFTER THE RENDER, 2026-09-11. c23 comes OUT of the verbatim slot. This frame's whole
@@ -726,7 +744,7 @@ slide: 8
 job: >
   Land the dates, and carry Texas without a place name, by putting the reader at the window on
   the morning of a school year that starts in August.
-claims: [c3, c12, c13]
+claims: [c3, c9, c12, c13]
 numerals:
   - computed_by: "compute.py effective_days, lifted from c3's own quote"
   - computed_by: "compute.py school_year, built from c12's quote and rendered X to Y"
@@ -769,7 +787,7 @@ art:
 type:
   hook: "Districts teach it from the school year that opens in 2027."
   dek: "effective 20 days after filing"
-  labels: ["IMPLEMENTATION", "MOTION", "CREDIT", "c3 c12 c13", "texasaidocket.com", "08 / 09"]
+  labels: ["IMPLEMENTATION", "TAUGHT FROM", "MOTION", "CREDIT", "c3 c9 c12 c13", "texasaidocket.com", "08 / 09"]
 verbatim:
   - c13: "one-half credit"
 # AMENDED AFTER THE RENDER, 2026-09-11. This dossier declared c12's whole sentence as a verbatim
@@ -812,7 +830,7 @@ slide: 9
 job: >
   Name the instrument, name what is still unread, and give the one next step this record is
   entitled to give, without inventing a deadline it does not have.
-claims: [c1, c2, c5, c11]
+claims: [c1, c2, c5, c9, c11, c23]
 numerals:
   - computed_by: "compute.py item_date_long, parsed from c5's own date line"
 composition:
@@ -823,7 +841,7 @@ composition:
     boundary drawn once.
   bands: >
     TOP third, the cold ceiling plane above the break with the citation in mono. MIDDLE third,
-    the break itself at the eye line with the closing line under it. BOTTOM third, the lit floor in raking tile, the VCT joints receding and a backpack on the tile with its two-part contact where it meets the wax, in the band between the closing line and the next step.
+    the break itself at the eye line with the closing line under it. BOTTOM third, the lit floor in raking tile, the VCT joints receding and two textbooks on the tile with their two-part contact where they meet the wax, in the band between the closing line and the next step.
   focal: >
     The lit floor band beneath the break, an AREA of about 900 by 300 design px carrying the
     closing line. It is the lightest area in the frame and the ceiling plane above the break is
@@ -844,9 +862,9 @@ art:
   motion: >
     Down through the break to the closing line, then to the title block and out.
 type:
-  hook: "The rule is made. The filing is unchecked."
-  dek: "The board acted on an attachment headed \"Text of Proposed New 19 TAC\". The Register filing is unchecked against it."
-  labels: ["19 TAC SECTION 113.26", "SECOND READING AND FINAL ADOPTION", "TEXAS AI DOCKET", "c1 c2 c5 c11", "texasaidocket.com", "09 / 09"]
+  hook: "The rule is made. The credit is required."
+  dek: "The board acted on an attachment headed \"Text of Proposed New 19 TAC\". The filed rule is unchecked here."
+  labels: ["19 TAC SECTION 113.26", "SECOND READING AND FINAL ADOPTION", "Item dated", "TEXAS AI DOCKET", "Ask your district who is staffing the three expectations.", "c1 c2 c5 c9 c11 c23", "texasaidocket.com", "09 / 09"]
 verbatim:
   - c11: "Text of Proposed New 19 TAC"
   - c1: "Second Reading and Final Adoption"
@@ -860,5 +878,5 @@ acceptance:
   - "no numeral on this frame is absent from computed.json or from a claim quote"
 risks:
   - "The library's failure is the break landing on the vertical centre and cutting the slide in half. It lands at y = 742, which is 67px below centre, and that offset is what makes it a horizon rather than a division."
-  - "A close that admits the filing is unchecked can read as a hedge. It is the opposite: it is the one thing this record knows that a reader would not, and stating it is why the record is worth reading."
+  - "A close that puts the requirement in the headline reads as advocacy if the record does not carry it. c9 is the statute treating the half credit as a curriculum requirement a student must comply with, and the dek keeps the Register hedge in the record's own voice rather than the passive that read as an accusation against the state."
 ```

@@ -1,7 +1,7 @@
 {
   "run": "2026-09-11",
   "measured_on": "the nine shipped PNGs resampled to 270 by 338, the grid every prior run used, imported from panel_ready.ARC_GRID",
-  "note": "WRITTEN AFTER THE LAST RENDER, which was the round 1 repair. Every figure here was re-measured after it. It replaces deck_L.json, which measured the same frames on a 216 wide grid. Two grids is two homes for one figure, so the ledger, the run record and the storyboard print only what is in here.",
+  "note": "WRITTEN AFTER THE LAST RENDER, which was the round 2 repair. Every figure here was re-measured after it. It replaces deck_L.json, which measured the same frames on a 216 wide grid. Two grids is two homes for one figure, so the ledger, the run record and the storyboard print only what is in here.",
   "per_frame": [
     {
       "file": "slide-01.png",
@@ -12,7 +12,7 @@
     },
     {
       "file": "slide-02.png",
-      "median_L": 65.0,
+      "median_L": 64.9,
       "mean_L": 62.4,
       "p05": 26.1,
       "p95": 83.1
@@ -20,9 +20,9 @@
     {
       "file": "slide-03.png",
       "median_L": 42.0,
-      "mean_L": 40.3,
-      "p05": 18.8,
-      "p95": 59.9
+      "mean_L": 40.4,
+      "p05": 18.4,
+      "p95": 60.1
     },
     {
       "file": "slide-04.png",
@@ -48,23 +48,23 @@
     {
       "file": "slide-07.png",
       "median_L": 50.5,
-      "mean_L": 53.9,
+      "mean_L": 54.1,
       "p05": 9.3,
       "p95": 93.5
     },
     {
       "file": "slide-08.png",
-      "median_L": 76.9,
+      "median_L": 76.5,
       "mean_L": 67.7,
       "p05": 23.3,
       "p95": 91.5
     },
     {
       "file": "slide-09.png",
-      "median_L": 23.7,
-      "mean_L": 44.4,
+      "median_L": 23.0,
+      "mean_L": 44.3,
       "p05": 12.5,
-      "p95": 81.4
+      "p95": 81.3
     }
   ],
   "deck_median_L": 42.0,
@@ -81,25 +81,25 @@
   ],
   "measured_arc": [
     27.2,
-    65.0,
+    64.9,
     42.0,
     72.4,
     20.1,
     18.3,
     50.5,
-    76.9,
-    23.7
+    76.5,
+    23.0
   ],
   "per_frame_median_lstar": [
     27.2,
-    65.0,
+    64.9,
     42.0,
     72.4,
     20.1,
     18.3,
     50.5,
-    76.9,
-    23.7
+    76.5,
+    23.0
   ],
   "palette_tokens_lstar": {
     "troffer #CCF2E4": 92.5,
@@ -115,7 +115,7 @@
   },
   "junctions": {
     "slide 6 to slide 7, the declared inversion": 32.2,
-    "the deck's range": 58.6
+    "the deck's range": 58.2
   },
   "darkest_frame": {
     "slide": 6,
@@ -123,7 +123,7 @@
   },
   "brightest_frame": {
     "slide": 8,
-    "L": 76.9
+    "L": 76.5
   },
   "light_cap": {
     "LIGHT_L": 60.0,

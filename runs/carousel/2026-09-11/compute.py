@@ -249,6 +249,23 @@ for _t in FOOTPRINT_TERMS:
         })
 FOOTPRINT_POSITIONS.sort(key=lambda d: d["word_index"])
 
+# THE FOOTPRINT SITS INSIDE THE THREE CHAPTERS, ASSERTED. Frame 2's dek says the other seven carry
+# none of the four terms, and round 2's craft judge read that as a universal nobody had measured.
+# Each occurrence is placed in its chapter by the heading that precedes it, and the set of
+# chapters it lands in has to be exactly the three the expectation claims name, or this raises.
+_HEADS = sorted((int(m.group(1)), _word_index_at(m.start())) for m in re.finditer(
+    r"\((\d+)\)\s+[A-Z][^()]{8,120}?\.\s*The student", ATT_TEXT))
+def _chapter_of(word_index: int):
+    ch = None
+    for n, w in _HEADS:
+        if w <= word_index:
+            ch = n
+    return ch
+FOOTPRINT_CHAPTERS = sorted({_chapter_of(p["word_index"]) for p in FOOTPRINT_POSITIONS})
+if FOOTPRINT_CHAPTERS != CHAPTERS:
+    raise SystemExit(f"compute.py: the footprint lands in chapters {FOOTPRINT_CHAPTERS} and the "
+                     f"expectation claims name {CHAPTERS}. Frame 2 may not say the rest are silent.")
+
 
 # WHAT THE CLAUSE SENDS A STUDENT TO, AND WHAT IT SENDS THEM WITH, both parsed out of c14's own
 # quote rather than transcribed beside it. Frame 4 draws one lit slot per evaluation and one line
@@ -412,6 +429,7 @@ OUT = {
     "knowledge_missing": KNOWLEDGE_MISSING,
     "knowledge_headings": KNOWLEDGE_HEADINGS,
     "n_silent_chapters": N_SILENT_CHAPTERS,
+    "footprint_chapters": FOOTPRINT_CHAPTERS,
     "silent_chapters_word": SILENT_CHAPTERS_WORD,
     "n_ai_headings": N_AI_HEADINGS,
 

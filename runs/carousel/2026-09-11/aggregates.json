@@ -114,6 +114,12 @@
     "c22"
    ],
    "note": "The first comment's provenance line. One claim per document, the board item, its attachment and the news release."
+  },
+  {
+   "phrase": "four machine terms",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py N_FOOTPRINT_TERMS, 4 terms with at least one occurrence in the course text, and FOOTPRINT_CHAPTERS asserts every occurrence sits in the three chapters the expectations name"
   }
  ]
 }

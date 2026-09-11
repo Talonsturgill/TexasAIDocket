@@ -29,11 +29,11 @@
         "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
       ],
       "bands": [
-        0.4328,
-        0.5987,
+        0.4223,
+        0.5924,
         0.7831
       ],
-      "band_ratio": 1.2775,
+      "band_ratio": 1.2888,
       "encodings": [
         "'a chapter carrying the machine reads differently from one that does not': dE 18.4, AUC 0.97, visible 100%/100%, seen 2940/3024px at 432w"
       ],
@@ -53,11 +53,11 @@
         "outside safe zone: 'texasaidocket.com' at 727,1259 273x31 (margin 80px)"
       ],
       "bands": [
-        0.1954,
-        0.3739,
+        0.2458,
+        0.3529,
         0.5735
       ],
-      "band_ratio": 1.4717,
+      "band_ratio": 1.4372,
       "encodings": [
         "'the lifted occurrences read differently from the field around them': dE 4.9, AUC 0.92, visible 100%/100%, seen 216/198px at 432w"
       ]
@@ -121,9 +121,9 @@
       "bands": [
         0.4118,
         0.3067,
-        0.318
+        0.3217
       ],
-      "band_ratio": 0.9238,
+      "band_ratio": 0.9309,
       "encodings": [
         "'the wall in the back bank's spill reads differently from the wall the spill does not reach': dE 9.9, AUC 0.93, visible 100%/100%, seen 2464/2000px at 432w"
       ],
@@ -135,7 +135,6 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "top-loaded composition: the bottom third carries 73% of this slide's own average craft density (top 18% / mid 14% / bottom 10% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
         "outside safe zone: 'ZERO HITS IN THE RELEASE' at 80,52 397x31 (margin 80px)",
         "outside safe zone: '07 / 09' at 884,52 116x31 (margin 80px)",
         "outside safe zone: 'c22 c23 c24' at 80,1259 177x31 (margin 80px)",
@@ -144,9 +143,9 @@
       "bands": [
         0.1807,
         0.1387,
-        0.1011
+        0.2298
       ],
-      "band_ratio": 0.7307,
+      "band_ratio": 1.241,
       "encodings": [
         "'the lit rectangle reads differently from the room beneath the falloff': dE 76.6, AUC 0.99, visible 100%/100%, seen 23040/18432px at 432w"
       ],
@@ -160,12 +159,12 @@
       "warns": [],
       "bands": [
         0.1597,
-        0.1639,
-        0.3603
+        0.1975,
+        0.3364
       ],
-      "band_ratio": 1.54,
+      "band_ratio": 1.4256,
       "encodings": [
-        "'the warped asphalt band reads differently from the unwarped sill below it': dE 13.5, AUC 0.80, visible 100%/100%, seen 15360/9216px at 432w"
+        "'the warped asphalt band reads differently from the unwarped sill below it': dE 13.2, AUC 0.80, visible 100%/100%, seen 15360/9216px at 432w"
       ],
       "contacts": [
         "'the sill against the wall below it': shadow L* 10.6 vs ground L* 43.0, dL 32.4 at 432w"
@@ -178,23 +177,23 @@
         "outside safe zone: '19 TAC SECTION 113.26' at 80,60 348x37 (margin 80px)",
         "outside safe zone: '09 / 09' at 884,60 116x31 (margin 80px)",
         "outside safe zone: 'texasaidocket.com' at 718,1263 282x31 (margin 80px)",
-        "outside safe zone: 'c1 c2 c5 c11' at 80,1263 193x31 (margin 80px)"
+        "outside safe zone: 'c1 c2 c5 c9 c11 c23' at 80,1263 306x31 (margin 80px)"
       ],
       "bands": [
         0.0441,
-        0.3697,
-        0.3401
+        0.3613,
+        0.3474
       ],
-      "band_ratio": 1.3318,
+      "band_ratio": 1.3606,
       "encodings": [
-        "'the cold plane above the break reads differently from the lit floor below it': dE 66.3, AUC 0.85, visible 100%/100%, seen 13824/13824px at 432w"
+        "'the cold plane above the break reads differently from the lit floor below it': dE 65.7, AUC 0.86, visible 100%/100%, seen 13824/13824px at 432w"
       ],
       "contacts": [
-        "'the bag on the tile': shadow L* 46.4 vs ground L* 78.8, dL 32.4 at 432w"
+        "'the books on the tile': shadow L* 45.9 vs ground L* 77.4, dL 31.5 at 432w"
       ]
     }
   ],
   "fails": 0,
-  "warns": 38,
+  "warns": 37,
   "verdict": "WARN"
 }

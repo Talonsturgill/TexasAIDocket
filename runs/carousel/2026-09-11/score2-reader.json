@@ -1,0 +1,51 @@
+{
+ "judge": "reader",
+ "round": 2,
+ "date": "2026-09-11",
+ "weighted_score": 6.168,
+ "hard_fails": [
+  "Frame 9 prints 'Ask your district who is staffing the three AI expectations.' The run's own record forbids that noun three times over. claims.json lists 'The course text carries three expectations about artificial intelligence' under rejected, reason 'Only c14 contains the words artificial intelligence'. computed.json puts n_ai_worded at 1 against n_machine_expectations at 3. figures.json's machine_expectations note reads 'Only one of the three says artificial intelligence in as many words, which is why no surface calls them AI expectations', and storyboard line 50 says in bold 'No frame says the three are AI expectations.' Round 1's repair changed 'machine expectations' to 'AI expectations' on this frame, which moved the deck's one call to action onto the finding its own fact checker refused, a count of three attached to a noun the run's own numbers put at one. Frame 3's 'AI unit 0' row argues the document has no AI category, and frame 9 then hands the reader one."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Put c9's own words, curriculum requirement, on frame 8 beside the dates so the deck itself says why a Texan should care, and give frame 9's headline to that stake instead of to the project's own unchecked Register filing, which is homework the reader did not come for and reads in the feed as an accusation against the state.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.3,
+   "why": "Two frames are genuinely made. Frame 1's prism field resolves as separate pyramids at the 432 thumb and reads as a ceiling light without a caption. Frame 7 is the frame a reader would screenshot, the release sentence in a projected rectangle at p95 93.5 with RESEARCH, EXPLAIN, APPRAISE sitting unlit below the falloff. The rest is assembled. Frame 5's 'four flow populations' render as one black spray of rods on a lit block, the three passing populations are the faint white hairs along the lockers that a thumb does not show, which is the library's own named failure for the technique. Frame 8 is planned as a bus loop under August heat shimmer and reads as a lake with a dock and a tree, the horizontal dashes on the ground read as water not asphalt, so the one frame the storyboard says carries Texas carries a lakeshore. Frame 9's declared backpack reads as a computer mouse. Frame 3's stipple is a regular grid on eight panels with ellipse drop shadows under pages that are supposed to lie on a floor. Value structure is real on most frames, deck range 58.6 L*, but frame 6 is a dark rectangle with type on it and its engraving is invisible at any size."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0,
+   "why": "Every numeral traces. Ten, three, Seven on frame 2 are n_knowledge, n_chapters and silent_chapters_word. Four terms and five on frame 3 are n_footprint_terms and n_footprint_occurrences, and footprint_positions puts automated, robot and algorithm at word indices 2675, 2679 and 2689, which is the three in one clause. The tally 1, 2, 1, 1, 0 is footprint plus n_ai_headings. Frame 7's six zeros are release_hits. Frame 8's 2027 to 2028, 20 and one-half credit are school_year, effective_days and credit_words. The caption's eighteen is release_summary_words. All three sources are primary official. The score is where it is because frame 9's 'three AI expectations' is a finding the run's own claims.json rejected and its own figures.json says no surface will print, and it is printed on the call to action. That is the rubric's own definition of a five, a claim that stretches its source, and it is also the hard fail above. Lesser stretch, the caption opens 'House Bill 27 asked for personal finance', which compresses c6 and c9 further than either quote goes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.5,
+   "why": "A Texan learns what happened and who did it from the frames. The cover kicker names the Texas State Board of Education and 19 TAC 113.26, frames 4 to 6 quote the three clauses verbatim, frame 8 gives the year districts teach it, frame 9 says the rule is made and there is no door. What the frames never say is why it matters to them. The word requirement appears on no frame. c9's 'curriculum requirement' is in the caption's third paragraph and nowhere in the nine images, so a parent swiping the deck learns AI is in a money class and not that their child has to take the money class. The caption never names the board in its body, 'the board' appears three times with the only antecedent being the hashtag #SBOE, and its first line is a bill number a feed reader cannot place. Paragraph three of the caption, 'The attachment still heads itself Text of Proposed New. It has not been checked against the Texas Register filing', is the project's process log, not the reader's stake. texan_check reports places NONE and the record genuinely has none, so no deduction for that. Frame 8's label IMPLEMENTED beside a 2027 date reads as past tense for something c12 says shall be implemented."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "The cover earns the swipe on seven words. Frames 2 and 3 narrow from ten chapters to five dots. Frames 4, 5, 6 are three verbs and frame 7 pays them off by name in the dark under the release sentence, which is the deck's one real turn and it lands. Frame 8 is dates. Frame 9 dissipates it. 'The rule is made. The filing is unchecked.' spends the closing headline on this project's own verification gap, and the dek's passive 'is unchecked against it' names no agent, so in the feed it reads as though the state failed to check something. Round 1 changed 'unread' to 'unchecked' and kept the problem. Frame 5's riddle 'turns it around' is not decodable without the dek, and frame 3's dek 'Three of the five' names a five that appears nowhere on the frame until the reader sums the tally. Frame 3's tally also wraps 'artificial intelligence' over two lines so 'intelligence' reads as a term with no count at thumb size."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.4,
+   "why": "Clean and on register. No banned phrase, no cannot, no colon, one comma in 134 caption words, dates carry the ordinal and the caption's September 4th carries no year as the rule requires. 'Chapter seven says find where it stops working' and the closing question 'Which districts have a teacher ready to grade that appraisal' sound like a person. Against that, 'House Bill 27 asked for personal finance' is the flattest first line in the last fortnight of the ledger, 'The attachment still heads itself Text of Proposed New' reads like a machine narrating its own log, 'staffing the three AI expectations' is not English anyone would say, and frame 7 prints 'technolog' bare, which a feed reader takes as a typo because the first comment's explanation of the stem is a surface they will not open. No region, no district, no Texas in the caption body beyond 'Texas Register'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Palette is the one thing here that shares nothing with the window, a mint and teal school corridor measured against 81 prior hexes, and the deck median of 42.0 sits in the 31.5 to 71.1 gap no prior deck occupied. Nine techniques, no two frames the same instrument. Topic is clean against topics.json, no SBOE item in thirty days. The familiar moves are the ones the ledger has been warning about since deck 11. The turn is again a document that does not say a word, frame 7's six zeros, which deck 8 on August 26th ran in mirror image, the committee's pages never say AI while the release does. The caption's opening move 'the before and after' is the seventh most recent, the first one outside the six run exclusion, and its close 'ask the one question' is the ninth use in twenty entries. The three verb middle, claim, claim, claim, is the same spine shape as most of the last ten decks."
+  }
+ ],
+ "the_verdict_in_its_own_words": "This deck stops on one string, and the string is a repair. Frame 9's call to action now says 'the three AI expectations' on a run whose claims file rejected exactly that finding, whose computed.json puts the AI worded count at one, and whose figures.json says in its own note that no surface calls them AI expectations. Round 1 read a judge's complaint about 'machine expectations' and fixed the word instead of reading the record, which is the same failure captions.json already carries from September 7th, a repair scoped to what a judge named rather than to what the claims file allows. Everything else that is numeric here is honestly computed and honestly sourced, and frame 7 is the best single frame this account has shipped in a week. The deck still under-serves a Texan on the one thing they came for. It never says the class is required, the word is in the caption and on no frame, and it closes on the project's own homework instead of the reader's stake. At 6.168 it is below the bar on its merits and it would not ship on the number alone. The fix that clears the fault is one noun. The fix that makes it a deck worth a Texan's swipe is putting c9's curriculum requirement where the eye lands.",
+ "_note": "The scorer agents are read-only, so they returned their report cards verbatim and the showrunner wrote the files. Scores and verdicts are unedited."
+}

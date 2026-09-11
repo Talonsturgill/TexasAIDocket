@@ -83,6 +83,14 @@ Today the pack measures 419,129 characters with one body reduced, and there is r
 decisions. **The ceiling can still go red**, and the self-test proves it on the case no rung can
 give up: a record whose windows are all open reduces nothing and overflows at 1,851,922.
 
+**THE RUNGS DID NOT SURVIVE THE MERGE, AND THAT IS THE RIGHT OUTCOME.** While this run was building
+its deck the owner landed their own fix on `main` as #288, which builds the core pack to its
+ceiling so ordinary growth cannot halt a run. The merge of `main` into this branch conflicted on
+`scripts/site/ask_pack.py`, and the branch took `main`'s file whole: the owner's answer to a `human`
+lane file beats a routine's answer to the same file, and two mechanisms for one ceiling would be two
+homes for one number. The `Actor: human` commit stays in the history as the evidence of what this
+run did while it was blocked, and `main`'s `ask_pack --self-test` is clean on the merged record.
+
 ---
 
 ## TWO DATE RULES, ON THE OWNER'S INSTRUCTION
@@ -312,14 +320,14 @@ second half and skipped the first.
 | # | frame | measured median L\* |
 |---|---|---|
 | 1 | the troffer overhead, authored prism geometry lit from one declared vector | 27.2 |
-| 2 | ten chapter cells, the three the machine sits in lit by the overhead throw | 65 |
+| 2 | ten chapter cells, the three the machine sits in lit by the overhead throw | 64.9 |
 | 3 | one dot per word of the course text, five lifted points | 42 |
 | 4 | three instrument planes and eight lit slots, the research clause | 72.4 |
 | 5 | a corridor at passing period, four flow populations, one terminating | 20.1 |
 | 6 | the front bank off, the appraise clause knocked out of a solid plate | 18.3 |
 | 7 | the projector, the release's own sentence, six counted zeros | 50.5 |
-| 8 | out through the glazing at the bus loop under heat shimmer | 76.9 |
-| 9 | the norther front on the deck's eye line, the close | 23.7 |
+| 8 | out through the glazing at the bus loop under heat shimmer | 76.5 |
+| 9 | the norther front on the deck's eye line, the close | 23 |
 
 **Deck median L\* 42, measured off the nine shipped PNGs on the 270 by 338 grid every prior run
 used, written by measurements.json and never asserted.** The table above is that file's `measured_arc`,
@@ -445,6 +453,20 @@ shadow lift in the grade so the deck's own second law holds on every frame at p0
 declined in writing: brightening frame 1's lens turns it into the fifth plate `construction_check`
 counts, and the two gates pull opposite ways on that frame.
 
+**Round 2 held at 6.192 with one hard fail named by all three judges, and it was round 1's own
+repair.** Frame 9's next step had gone from machine expectations to AI expectations because a judge
+called the first jargon, and the second is the finding the fact checker rejected and the storyboard
+said in bold no frame would print. A repair scoped to what a judge named rather than to what the
+claims file allows, which `captions.json` already carries from September 7th. The line now reads the
+three expectations, the close cites c23 for the rule being made and c9 for the credit being required,
+its headline carries that stake, its date reads as the item's date line, and the next step is in the
+dossier's type block so the gates read it. The smaller agreed findings went with it: TAUGHT FROM
+rather than IMPLEMENTED beside a 2027 year, c9's curriculum requirement on frame 8's credit row, a
+dek on frame 2 that says what the count measured with `compute.py` asserting every footprint
+occurrence sits in the three chapters the expectations name, the stem printed as a stem on frame 7,
+the post's first line naming the board, two textbooks where a bag had read as a mouse, bay lines and
+bus windows on frame 8 and an intaglio on frame 6 drawn at a value that reaches the pixels.
+
 ## Source findings
 
 Appended to `knowledge/shared/SOURCES_FIELD_LOG.md` in the same commit range.
@@ -521,15 +543,15 @@ no-confidence-number rule exists to prevent.
 |---|---|---|
 | claims         | PASS   | 24 verified claim(s) |
 | render         | WARN   | 9 slide(s), 3 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 38 warn(s) |
-| aggregates     | PASS   | 11 declaration(s), 12 numeric phrase(s) in the render, all re-derived |
+| qa             | WARN   | 0 fail(s), 37 warn(s) |
+| aggregates     | PASS   | 12 declaration(s), 13 numeric phrase(s) in the render, all re-derived |
 | assembly       | ABSENT | final/assemble_report.json not written yet |
 | score          | ABSENT | score.json not written yet |
-| labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| labels         | PASS   | 64 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 113 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 16 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 60,846 chars planned |
-| caption        | PASS   | 137 words |
+| dossiers       | PASS   | 62,557 chars planned |
+| caption        | PASS   | 135 words |
 | craft floor    | WARN   | 9 frame(s), median 2231, floor 402, 1 quiet |
 | plan vs render | WARN   | 5 of 60 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |

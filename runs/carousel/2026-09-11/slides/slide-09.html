@@ -39,15 +39,15 @@
   <div class="kick">19 TAC SECTION 113.26</div>
   <div class="count">09 / 09</div>
   <div class="cite" id="cite"></div>
-  <h1 class="hook" id="hook">The rule is made. The filing is unchecked.</h1>
+  <h1 class="hook" id="hook">The rule is made. The credit is required.</h1>
   <p class="closing" id="closing"></p>
-  <p class="next">Ask your district who is staffing the three AI expectations.</p>
+  <p class="next">Ask your district who is staffing the three expectations.</p>
   <svg class="star" viewBox="0 0 24 24" aria-hidden="true" data-decorative="1">
     <path d="M12 1.6l2.6 7.9h8.3l-6.7 4.9 2.6 7.9-6.8-4.9-6.8 4.9 2.6-7.9-6.7-4.9h8.3z" fill="#14506B"/>
   </svg>
   <div class="tb" id="tb"></div>
   <div class="tx-site">texasaidocket.com</div>
-  <div class="src">c1 c2 c5 c11</div>
+  <div class="src">c1 c2 c5 c9 c11 c23</div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -205,6 +205,11 @@ const C = {
     "Entrepreneurship and Personal Financial Opportunity"
   ],
   "n_silent_chapters": 7,
+  "footprint_chapters": [
+    3,
+    4,
+    7
+  ],
   "silent_chapters_word": "Seven",
   "n_ai_headings": 0,
   "release_hits": {
@@ -267,13 +272,15 @@ window.renderReady = new Promise(async (resolve) => {
   //
   // The instrument, named in full, with the date parsed from the item's own line by compute.py.
   document.getElementById('cite').innerHTML =
-    'SECOND READING AND FINAL ADOPTION<br><b>' + C.item_date_long + '</b>';
+    // The date is the ITEM'S date line, and the layout says so: c5 records that the page never
+    // joins it to either body's action, and round 2 read the first build's stack as that join.
+    'SECOND READING AND FINAL ADOPTION<br>Item dated <b>' + C.item_date_long + '</b>';
 
   // WHAT THIS RECORD KNOWS THAT A READER WOULD NOT, said plainly. A close that admits the filed
   // text is unread is not a hedge. It is the one thing worth reading this record for.
   document.getElementById('closing').textContent =
-    'The board acted on an attachment headed "Text of Proposed New 19 TAC". The Register '
-    + 'filing is unchecked against it.';
+    'The board acted on an attachment headed "Text of Proposed New 19 TAC". The filed '
+    + 'rule is unchecked here.';
 
   // THE SITE LINE IS AN ELEMENT IN THE SOURCE, not a string this script assembles. coherence_check
   // reads the slide FILE, so a footer built at render time is invisible to the one gate that
@@ -366,23 +373,21 @@ window.renderReady = new Promise(async (resolve) => {
     // It sits in the band the second closing line leaves under it, and its shadow stops well
     // above the next step: the first placement's wide shadow reached the glyph band of that
     // line and qa read it as a rule struck through the type.
-    TXCARVE.contactShadow(cx,{x:370,y:1000,w:124,color:'#062330',
+    TXCARVE.contactShadow(cx,{x:378,y:1002,w:160,color:'#062330',
                               dirDeg:74,tightAlpha:0.62,wideAlpha:0.22,tightBlur:4,wideBlur:12});
-    (function bag(){
-      const gb=cx.createLinearGradient(300,918,440,1000);
-      gb.addColorStop(0,'rgba(18,72,108,0.98)'); gb.addColorStop(0.55,'rgba(14,51,71,0.98)'); gb.addColorStop(1,'rgba(8,30,44,0.98)');
-      cx.fillStyle=gb; cx.beginPath();
-      cx.moveTo(312,1000); cx.lineTo(300,950); cx.quadraticCurveTo(300,918,336,918); cx.lineTo(404,918);
-      cx.quadraticCurveTo(440,918,440,950); cx.lineTo(430,1000); cx.closePath(); cx.fill();
-      // the top flap, catching the overhead
-      cx.fillStyle='rgba(94,133,120,0.90)'; cx.beginPath();
-      cx.moveTo(306,940); cx.quadraticCurveTo(300,918,336,918); cx.lineTo(404,918); cx.quadraticCurveTo(440,918,436,940);
-      cx.quadraticCurveTo(370,952,306,940); cx.closePath(); cx.fill();
-      // a strap lying out on the tile
-      cx.strokeStyle='rgba(14,51,71,0.92)'; cx.lineWidth=9; cx.lineCap='round';
-      cx.beginPath(); cx.moveTo(432,968); cx.quadraticCurveTo(500,960,520,996); cx.stroke();
-      cx.strokeStyle='rgba(120,166,150,0.55)'; cx.lineWidth=2;
-      cx.beginPath(); cx.moveTo(432,964); cx.quadraticCurveTo(500,956,518,990); cx.stroke();
+    // TWO TEXTBOOKS ON THE TILE, seen from a seated eye: a cover on top and the fore-edge of the
+    // pages under it. Round 2 read the bag that stood here as a computer mouse, at both sizes.
+    (function books(){
+      function book(x,y,w,h,cover){
+        cx.fillStyle='rgba(204,242,228,0.92)'; cx.fillRect(x+3,y+h-9,w-6,9);
+        cx.strokeStyle='rgba(94,133,120,0.7)'; cx.lineWidth=1;
+        for(let k=2;k<9;k+=2){ cx.beginPath(); cx.moveTo(x+3,y+h-9+k+0.5); cx.lineTo(x+w-3,y+h-9+k+0.5); cx.stroke(); }
+        cx.fillStyle=cover; cx.fillRect(x,y,w,h-9);
+        cx.fillStyle='rgba(204,242,228,0.35)'; cx.fillRect(x,y,w,3);
+        cx.fillStyle='rgba(8,28,40,0.55)'; cx.fillRect(x,y+h-12,w,3);
+      }
+      book(300,972,156,30,'rgba(18,72,108,0.98)');
+      book(316,946,142,28,'rgba(156,107,90,0.98)');
     })();
   })();
 
@@ -444,7 +449,7 @@ window.renderReady = new Promise(async (resolve) => {
      reads:"differ", a:[[300,520,480,180]], b:[[300,900,480,180]]}
   ]));
   document.body.setAttribute('data-contacts', JSON.stringify([
-    {what:"the bag on the tile", shadow:[[320,1002,100,12]], ground:[[600,1002,100,12]]}
+    {what:"the books on the tile", shadow:[[320,1004,100,12]], ground:[[600,1004,100,12]]}
   ]));
   resolve(true);
 });

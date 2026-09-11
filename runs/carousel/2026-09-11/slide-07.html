@@ -204,6 +204,11 @@ const C = {
     "Entrepreneurship and Personal Financial Opportunity"
   ],
   "n_silent_chapters": 7,
+  "footprint_chapters": [
+    3,
+    4,
+    7
+  ],
   "silent_chapters_word": "Seven",
   "n_ai_headings": 0,
   "release_hits": {
@@ -375,6 +380,21 @@ window.renderReady = new Promise(async (resolve) => {
     cx.fillStyle=gs; cx.fillRect(0,Y+34,1080,62);
   })();
 
+  // ---- THE WALL MEETS THE FLOOR under the expectations, a strip of receding tile between the
+  // labels and the footer, so the bottom third is a room's bottom third rather than a void.
+  (function floorBand(){
+    const FY=1192, FB=1244;
+    cx.save(); cx.beginPath(); cx.rect(0,FY,1080,FB-FY); cx.clip();
+    const g=cx.createLinearGradient(0,FY,0,FB);
+    g.addColorStop(0,'rgba(60,104,96,0.55)'); g.addColorStop(1,'rgba(40,78,74,0.45)');
+    cx.fillStyle=g; cx.fillRect(0,FY,1080,FB-FY);
+    cx.strokeStyle='rgba(8,28,40,0.55)'; cx.lineWidth=1.8;
+    cx.beginPath(); cx.moveTo(0,FY+0.9); cx.lineTo(1080,FY+0.9); cx.stroke();
+    for(let x=-300;x<1500;x+=96){ cx.beginPath(); cx.moveTo(540+(x-540)*0.4,FY); cx.lineTo(x,FB); cx.stroke(); }
+    cx.beginPath(); cx.moveTo(0,FY+26); cx.lineTo(1080,FY+26); cx.stroke();
+    cx.restore();
+  })();
+
   // ============================================================ THE COUNTED ABSENCE
   //
   // EXACTLY SIX TERMS, EACH READ FROM computed.json. compute.py RAISES if any of them is non-zero,
@@ -391,7 +411,8 @@ window.renderReady = new Promise(async (resolve) => {
     // whole point of the frame, so the tally is set count first. It is also the form the aggregate
     // scanner reads as a computed count, which is what lets the figure be DECLARED with its
     // computation rather than left as a numeral no claim can reach.
-    s.innerHTML='<b>'+HITS[t]+'</b> '+t;
+    // The stem is printed as a stem. Round 2's reader took a bare 'technolog' for a typo.
+    s.innerHTML='<b>'+HITS[t]+'</b> '+(t==='technolog' ? 'technolog(y)' : t);
     if(HITS[t]!==0) throw new Error('slide-07: '+t+' is not zero');
     zbox.appendChild(s);
   });
