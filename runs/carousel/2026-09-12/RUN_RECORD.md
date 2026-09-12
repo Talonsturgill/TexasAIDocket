@@ -547,3 +547,42 @@ left, per the map's own instruction for an out-of-lane upgrade.
 terms and also moves the pull request's base past the offending commit, so the next CI event
 judges a range that no longer contains it. That clears the symptom for this run and nothing else.
 A maintainer adding four lines clears it for good.
+
+## THE MERGE, AND WHAT CI DID AT THE END
+
+**Round 3 cleared the bar and the gates went green, so the deck ships.** The panel read 6.920
+against 6.8 with no hard fail from any of the three judges, `run_complete` passes, and CI reported
+`success` on `gates`, `freshness`, `browser-read`, `browser-render`, `browser-layout`, `build` and
+`guards` on head `3c78779797eb`, with `release` skipped.
+
+**Then `main` moved twice more and the second one mattered.** Pull request 299, "Keep homepage
+mark clear of headline", fixed the same front page collision this run had fixed, from the other
+side, and left the branch conflicted.
+
+    299          narrows `.home .hero h1` above 42rem so the headline's BOX stops
+                 reaching into the star's column. The horizontal half.
+    this run     stops the retired news chip collapsing its box, so the hero does
+                 not RISE into the mark when the clock passes the expiry. The cause.
+
+**Both are kept, because each leaves a real defect standing alone.** Keeping only 299 leaves the
+hundred pixel reflow under any reader holding the front page across the expiry. Keeping only this
+run's leaves the headline's box grazing the star whenever the campaign line runs long. Measured
+with both in place, the headline's box top with the chip retired is 311 at 1440px, 302 at 1024 and
+291 at 768, against a mark whose bottom edge is 273, 273 and 224. Clear at every width in both
+chip states. `docs/index.html` conflicted because it is generated, so it was regenerated rather
+than hand resolved and `site_fresh_check` proves it byte for byte.
+
+**AND THEN NO WORKFLOW FIRED ON THE MERGE COMMIT.** `f14873dd8` is pushed, `git ls-remote` agrees
+it is the remote head, and fifteen minutes later the pull request reports `total_count: 0` with an
+overall state of `pending`. `guards.yml` does declare `workflow_dispatch`, and dispatching it
+returned `403 Resource not accessible by integration`.
+
+That is the exact state CLAUDE.md names and refuses, in the paragraph headed ZERO CHECKS IS NOT
+GREEN. A green run on an earlier head says nothing about the head being merged, and this merge
+commit is not a trivial one: it carries another pull request's stylesheet change and a full site
+regeneration. The two ways to force a run are both forbidden here, an empty commit and a close and
+reopen, and the third is the dispatch that just came back 403.
+
+**So the run does not merge itself, and this is a thing to SAY rather than to wait out.** Every
+gate is green locally, the deck is scored and finished, and the only missing thing is a CI run on
+one specific commit that this session cannot cause. The email says so.

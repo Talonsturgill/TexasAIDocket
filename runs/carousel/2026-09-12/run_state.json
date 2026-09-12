@@ -24,7 +24,7 @@
   },
   "retro": "pending",
   "email": {
-   "status": "payload_built",
+   "status": "pending_draft",
    "artifact": "out/2026-09-12/gmail_payload.json"
   },
   "panel_round_3": {
@@ -36,6 +36,11 @@
   "ci_repairs": {
    "status": "done",
    "note": "glyph subset, hero mark collapse, house style; first two red on main too"
+  },
+  "merge": {
+   "status": "blocked",
+   "reason": "no workflow run fired on the merge head f14873dd8; workflow_dispatch returned 403",
+   "head": "f14873dd8fd8903b2c39a0dd842e0c51a94ad1ef"
   }
  },
  "outcome": "SHIP"
