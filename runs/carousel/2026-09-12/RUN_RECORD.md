@@ -172,3 +172,114 @@ this session, so the query in Phase 7 could not be run at all. This is the phase
 and it blocks nothing, but it means nobody knows today whether the scan form hit its cap or
 whether a scan failed, and a ceiling nobody is notified about is exactly what that step exists to
 catch.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 28 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 7 warn(s) |
+| aggregates     | PASS   | 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 8.95 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | PASS   | 23 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 96 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 8 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
+| dossiers       | PASS   | 54,527 chars planned |
+| caption        | PASS   | 154 words |
+| craft floor    | PASS   | 9 frame(s), median 3192, floor 575 |
+| plan vs render | WARN   | 0 of 46 acceptance item(s) checkable |
+| texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
+| absences       | PASS   | 3 of 3 scoped to a named document |
+| numerals       | PASS   | 11 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
+
+## THE DECK
+
+Carousel no. 22. **Texas State University's AI method for pavement condition assessment**, docket
+item `tx-2026-0131`, selected over five other candidates against the dedupe gate with the reasons
+written down before a frame was drawn. El Paso's plate readers came back at 0.92 LIKELY REPEAT and
+were correctly refused.
+
+The argument is one sentence. **The judgement left the shoulder, and the same team's own peer
+reviewed paper puts it back in a human hand.** Frames 1 through 6 build that one direction without
+hedging and frame 7 reverses it out of c17, which says the precision of the technology often leads
+to inaccuracies that must be verified by pavement engineers.
+
+### THE REGISTER INVERTED AT FRAME ONE, AND THAT IS THE RUN'S BEST DECISION
+
+The plan opened on a PAPER register. The first frame built rendered clean, read handsomely and
+**measured a median L\* of 91.5 against the light cap's threshold of 60.0.** That is not a drawing
+that came out too pale. It is what a print on paper IS: a screen is marks on a ground, most pixels
+are the ground, and the median of a hatched field on caliche is caliche. The three treatments'
+planned medians of 44, 48 and 55 were all unreachable in that register and no amount of extra
+coverage would have moved a median that is counting the paper between the strokes.
+
+So `TXINK.print`'s ground and ink were swapped, the same twin greys and the same drawing came back
+at **6.1**, and the deck shipped at a measured deck median of 6.1 with the cap's window already
+holding two light decks against a cap of one.
+
+**Two ledger entries in a row record a run that declared a value band and did not measure it until
+round three.** This one measured it at frame one and paid four hours instead of two rounds.
+
+### What the three pixel critics found, and what it cost to fix
+
+Nine frames went to three critics. The findings that mattered, each fixed in one repair round:
+
+- **THE TURN'S ACCENT WAS MARKING NOTHING.** Frame 7's granite was a stroked pencil loop on a white
+  card and the figure's nearest finger was 165 px away from it. The deck's whole reversal is
+  carried by the accent law, granite means a person, and on the one frame built to carry it the
+  colour marked an empty circle on a desk. The granite is now the SHEET, filled, with a hand
+  resting on it.
+- **FRAME 4'S SECTION WAS ASSERTING SOMETHING NO CLAIM CARRIES.** The stain was drawn in section
+  with the surface line running unbroken through it, which is a drawn claim that a stain has no
+  depth. c6 says only that the pairing distinguishes damage from stains. The frame's own risk
+  block had named this disposition before a line was drawn, and the section now shows the crack
+  alone.
+- **FRAME 5 PRINTED A COVERAGE CLAIM.** The label read PIXEL LEVEL, CONTINUOUS over EVERY SECTION,
+  END TO END, six inches from the frame's own scrupulous EXTENT NOT STATED. Nothing fetched says
+  the new reading covers every section. It reads PIXEL LEVEL over THE RESOLUTION, NOT THE EXTENT.
+- **FRAME 8 RESTATED A PUBLISHED SCORE AS A PERFECT ONE.** The THIS MODEL label for the all
+  distress series sat on the same baseline as the 1.0 gridline with dashes running out of either
+  side of it, so at 432 px the eye read one line, "1.0 THIS MODEL". Both endpoint pairs now sit
+  below their own point.
+- **FRAME 9 WAS DRAWING RAILROAD TRACK.** Nine transverse light bands at decreasing spacing toward
+  a vanishing point is the visual grammar of sleepers. The closing frame of a pavement deck now
+  carries a broken centre line and one long falloff instead.
+- **FRAME 1'S GRANITE WAS ON A CLIPBOARD.** Re-spriting the whole figure in the accent painted the
+  board he holds as well. A clipboard is an object. The granite plate is now the body alone.
+- **FRAME 5'S BREAK LINES WERE DIMENSION TERMINATORS.** Stroked in granite over a granite fill,
+  only the spurs outside the block showed and they read as the arrowheads of a measured span,
+  which is the exact assertion the frame exists to refuse. They are drawn in the ink now and the
+  Z kink is visible through the block.
+
+### EVERY DOSSIER WAS CORRECTED TO THE FRAME THE RUN MADE
+
+Not one of the nine plans survived contact unamended, and `plan_render_check` found most of it
+before a critic did. The palettes were written in the paper register and named nine colours no
+frame contains. Frame 1's composition declared a camera on the centreline with the rater at Z 7,
+which projects him to x 41 and cuts the subject in half at the left edge. Frame 3's plan asked for
+the figure at 283 px against the van's 284 so the two would read as the same height, which would
+have put the person NEARER the camera than the thing they are the scale for. Frame 8's composition
+described a cut at y 594 with the chart above it, which was superseded twice. Frame 6's acceptance
+demanded casts running down and left under a light of az +34 el 52, which is the treatment's light
+and not the deck's.
+
+**The plan is corrected to what was built, every time, with the reason recorded beside it.** The
+alternative is the 2026-08-19 defect this gate exists for, where a plan said the differing words
+are marked in pecos and five passes shipped uniform ink.
+
+### What the numbers are, and where each came from
+
+Four F1 values, a threshold of 70 and a commission calendar. **Every one is either QUOTED, lifted
+out of a claim's own sentence by regex in `compute.py`, or declared in `aggregates.json` with the
+claim ids it was computed from and re-derived by the gate.** Eight computed figures are declared.
+Eleven numerals reach a claim the frame citing them carries.
+
+The stationing interval on frame 5 is the one figure the plan asked for and the frame does not
+print. No claim it cites carries that digit anywhere in its quote, its text, its title or its url,
+so a reader following the cite would arrive at a page without the number. The ticks carry the
+rhythm and the frame prints no numeral at all.
