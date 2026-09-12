@@ -1775,3 +1775,20 @@ refused, because it does not read a bare axis label as a numeric phrase on a sli
 no slide says is a declaration left to be reused. So the honest disposition, an axis bound declared
 as definitional, is the one thing the two gates between them cannot express. One `kind: "bound"` in
 `aggregates.json` that is allowed to have no matching phrase would close it.
+
+**HOW IT WAS ACTUALLY DISPOSED OF, and the entry is worth more for it.** The first answer was to
+ship the two figures undeclared with a paragraph in `aggregates.json` conceding that the judge's
+reading was fair. That is a run arguing with the gate it liked less, and round 2's integrity judge
+raised it again as a hard fail on a deck that had already been repaired once. The frame now DRAWS
+both rules and NAMES them, `SCALE TOP` and `SCALE BASE`, and prints no bound figure at all, so the
+deck no longer needs the declaration the gates cannot hold. Spelling the bounds as words was
+considered and rejected on this file's own grounds, because the house law on numerals is about
+where a figure comes from rather than how it is set.
+
+Two things that leaves behind. The gate gap is unchanged and still worth the `kind: "bound"` fix,
+because the next chart that genuinely needs a labelled bound will meet it again. And
+`numeral_trace`'s digit-coincidence hole has now cost a real round: the gate passed `1.0` because
+the digits 1 and 0 occur somewhere in a cited claim's evidence, which its own docstring names as
+the case it cannot see, and a judge caught what the gate could not. The docstring is honest and
+the hole is still a hole. A bound declared as definitional would close both at once, since a
+declared value is checked by `aggregate_check` rather than by digit search.
