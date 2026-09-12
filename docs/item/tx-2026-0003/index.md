@@ -17,7 +17,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The commission's filing index for the line has taken further filings since the last reading and the approved route is unchanged. The landowner protests and interventions are still on the docket.
 - 2026-09-08 · The Dinosaur Switch to Longshore Switch application is still docketed under the same case style and still names the same counties. One more filing has been entered since the record last read the index.
 - 2026-09-09 · The commission's filing index for the line has taken further filings since the last reading. The approved route is unchanged and the landowner protests and interventions are still on the docket.
+- 2026-09-12 · The commission's filing index for the line has taken further filings since the last reading. The approved route is unchanged and no party has asked the commission to reopen it.
 
 ## Evidence
 
@@ -144,6 +145,12 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 ### The filing index records the number of filings in the docket.
 
 > 5828 filing(s).
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
+
+### The filing index for the 765 kV line stood at 5829 filings.
+
+> 5829 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 

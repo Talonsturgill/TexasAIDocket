@@ -11,7 +11,7 @@ Texas A&M's College of Engineering published on September 4th, 2026 that the Nat
 - Public access: Write to the decider
 - Take part: https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-08 · The award for the alloy screening tool still stands and the university's account of it is unchanged. A quotation the record carried ran two separated passages together as one, and it now stops where the source stops.
 - 2026-09-08 · The college's announcement states that PhaseForge is distributed free and openly online and that anyone can contribute to it. It states that making the tool free and openly available will help accelerate materials discovery across academia, national laboratories and industry. It names no award number and no dollar figure.
 - 2026-09-09 · The Texas A and M alloy screening tool is still funded and still promised as free and openly available.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

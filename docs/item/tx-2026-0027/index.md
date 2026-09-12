@@ -12,7 +12,7 @@ The City of Taylor published a public notice for its City Council. The council w
 - Comment closes: 2026-08-13
 - Take part: https://www.taylortx.gov/m/newsflash/Home/Detail/2066
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The city's notice address still answers with nothing, so the amended abatement notice is still not posted. The recorded council meeting is still the only public trace of the item.
 - 2026-09-08 · The City of Taylor's notice of the amended Compal abatement is still gone from the address it was published to, and the address now answers with an error page. The council meeting it named has long passed and the city has still published no readable record of the outcome, so what Taylor decided remains unconfirmed.
 - 2026-09-09 · The city's notice of the amended Compal abatement is still gone from the page that carried it. The council video of the meeting where it was taken up is still posted, so the action can still be watched even though the notice can't be read.
+- 2026-09-12 · The city's notice of the amended Compal abatement is still gone from the page that carried it, and the page still answers not found. No outcome of the item has been published anywhere else.
 
 ## Evidence
 
