@@ -1,0 +1,25 @@
+{
+ "run_date": "2026-09-12",
+ "branch": "claude/daily-2026-09-12",
+ "phases": {
+  "wake": "done: out/2026-09-12/run_state.json, branch claude/daily-2026-09-12, guards_local --fast --only Ownership exit 0, docket_build --validate exit 0",
+  "craft": "done: ILLUSTRATION_SYSTEM.md, TECHNIQUE_LIBRARY SUBJECTS, CAPTION_CRAFT, SLIDE_DOSSIER_SPEC, carousel-engine SKILL.md, runs/carousel/2026-09-11/RUN_RECORD.md panel section",
+  "sweep": "done: 6 scouts on ai-in-the-field, clinic-and-classroom, research-and-machines, what-texas-makes, power-and-compute, policy-and-money. Findings at out/2026-09-12/scouts.json",
+  "reverify": "done: 99 due, 68 stamped by reverify.py --apply, 31 worked by hand. out/2026-09-12/tmp/reverify.txt, probeF.json. 0 due after. backlog 0",
+  "discover": "done: PUCT calendar RSS (up today), PUCT Interchange 59550/58555/59086 (none AI), Federal Register comment API, CourtListener v4, Texas Register robots",
+  "admit": "done: tx-2026-0147 El Paso plate reader items, tx-2026-0148 Navasota test pit, tx-2026-0149 NSF water digital twins. 130 items",
+  "claims": "done: out/2026-09-12/claims.json, 28 verified, 9 rejected, claims_check exit 0, 6 snapshots in out/2026-09-12/sources/",
+  "instrument": "done: all 10 checks exit 0. No stopped instrument. Scanner ceiling NOT read, no Supabase connector in this session",
+  "selection": "done: tx-2026-0131, Texas State University's AI pavement inspection method. dedupe faint only",
+  "directors": "done: 3 treatments synthesised into out/2026-09-12/storyboard.md, register inverted after the light-deck-cap measurement",
+  "copy": "done: 2 caption directors, 1 critic. Winner B with one rewrite. out/2026-09-12/caption.txt, caption_check exit 0",
+  "art": "done: 9 frames built, out/2026-09-12/slides. qa.py 0 fails, layout_check --require 0, bespoke_check 0, plan_render_check 0, dossier_check 0",
+  "pixel": "done: 3 pixel critics on 1-3, 4-6, 7-9. One repair round. The turn's granite moved under a hand, the stain left the section, frame 9's road stopped reading as railroad track, frame 8's 0.780 label came off the 1.0 gridline, frame 5's unsourced coverage label went, and every dossier was corrected to the frame the run made",
+  "aggregate": "done: out/2026-09-12/aggregates.json, 4 computed figures, aggregate_check exit 0",
+  "assembly": "done: out/2026-09-12/final, vector pdf 8.95 MB, contact sheet, 9 thumbs. panel_ready exit 0",
+  "scoring": "round 1 panel median 6.786 against a 6.8 bar, spread 0.174, no hard fail from any judge. One repair round, then round 2 in flight. score1.json written.",
+  "ship": "pending",
+  "retro": "pending",
+  "email": "pending"
+ }
+}

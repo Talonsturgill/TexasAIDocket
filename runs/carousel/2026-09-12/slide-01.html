@@ -1,0 +1,223 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 1 of 9. Archetype FULL_BLEED.
+     The wince. A Texan has driven past this person, and no caption is needed to know what that
+     job is or why somebody would want it done from a van instead. The semi carries no brake
+     light and no motion streak, because the record says the work posed a risk and the drawing
+     does not get to stage a near miss. The granite is on the rater and nowhere else. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:196px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:112px; line-height:0.99; letter-spacing:-0.025em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:446px; width:800px; font-size:30px; line-height:1.42; color:var(--dek); }
+  .dek em { font-style:normal; color:var(--ink); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" data-role="hook">Somebody used to stand here.</h1>
+<p class="dek" data-role="dek">A rater measured the length and severity of the distress by hand on <em>a sampled portion of the pavement section</em>, in the traffic and the weather.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Texas State University",
+      // THE PROJECT'S STATUS, IN THE RELEASE'S OWN WORDS, on the first frame a reader meets.
+      // The cover's past tense and the caption's present tense together landed a scrolling
+      // reader on "the rater's job is gone", and the run's own not_established list says
+      // nobody has established that any district uses this on a live inventory run.
+      kicker2: "Second phase, closer to statewide deployment",
+      counter: C.counters[0], src: "c1 c15 c16   TEXAS AI DOCKET", ink: "#96876E" });
+    TX.fitText(document.getElementById("hook"), { min: 86, max: 112, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+    // THE CAMERA STANDS ON THE SHOULDER, not on the centreline, so the road runs to the RIGHT of
+    // the frame's middle and the rater has the left third to stand in. The first build kept the
+    // camera on the centreline and put him on the fog line at X -3.25, which projects to x 41 at
+    // Z 5.6: the subject of the frame was cut in half by the left edge.
+    var CAM = { w: W, h: H, eye: 1.62, horizon: 668, f: 860, sky: "#0A0A0A",
+                fogZ: 1e9, light: { az: -58, el: 18 } };
+    var ROAD_C = 2.10;                    // the centreline, 2.10 m right of where we stand
+    var FOG_L = ROAD_C - 3.25, FOG_R = ROAD_C + 3.25;
+    var RATER = { X: FOG_L, Z: 3.55 };    // 1.70 m tall at Z 3.55 is 412 px, 31% of the frame
+    var rater = TXFIG.figure({ pose: "stand", height: 1.70, hat: "hard", hold: "clipboard" });
+    // THE GRANITE PLATE IS THE BODY WITHOUT THE CLIPBOARD. The accent law reserves this colour
+    // for a PERSON, and re-spriting the whole figure painted the board he is holding granite
+    // too. A clipboard is an object. It stays in the twin's grey and the print gives it its
+    // own body, and the reservation is spent on the man alone.
+    var raterBody = TXFIG.figure({ pose: "stand", height: 1.70, hat: "hard" });
+
+    // A crack drawn ON the ground plane from world waypoints in metres. Every segment is
+    // subdivided and jittered, because the first build drew four long straight runs and they
+    // read as a lightning bolt rather than as a surface coming apart. The lit lip the smoke
+    // test found is drawn a hair above the mouth, which is what a low sun does to a lipped edge.
+    var CR = TX.rng(4407);
+    function crack(S, a, way, mW, lip) {
+      var pts = [];
+      for (var i = 0; i < way.length - 1; i++) {
+        var A = way[i], B = way[i + 1];
+        var n = 7;
+        for (var k = 0; k < n; k++) {
+          var t = k / n;
+          pts.push([A[0] + (B[0] - A[0]) * t + (CR() - 0.5) * 0.075,
+                    A[1] + (B[1] - A[1]) * t + (CR() - 0.5) * 0.075]);
+        }
+      }
+      pts.push(way[way.length - 1]);
+      var p = pts.map(function (q) { return S.project(q[0], 0, q[1]); });
+      var mid = pts[Math.floor(pts.length / 2)];
+      a.lineJoin = "round"; a.lineCap = "round";
+      if (lip) {
+        a.strokeStyle = lip; a.lineWidth = Math.max(0.8, mW * S.ppm(mid[1]) * 0.5);
+        a.beginPath(); a.moveTo(p[0][0], p[0][1] - 1.6);
+        for (var j = 1; j < p.length; j++) a.lineTo(p[j][0], p[j][1] - 1.6);
+        a.stroke();
+      }
+      a.strokeStyle = "#101010"; a.lineWidth = Math.max(1.0, mW * S.ppm(mid[1]));
+      a.beginPath(); a.moveTo(p[0][0], p[0][1]);
+      for (var m = 1; m < p.length; m++) a.lineTo(p[m][0], p[m][1]);
+      a.stroke();
+    }
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 11,
+      screen: { mode: "halftone", cell: 8, angle: 22, gamma: 1.16, floor: 0.05 },
+      edges: { threshold: 20, width: 1.4, alpha: 0.8, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        a.fillStyle = "#0A0A0A"; a.fillRect(0, 0, W, H);
+        var S = TXSCENE.create(a, CAM);
+        // the sky is kept near the ground colour so the reserve is dark by construction and the
+        // heaviest ink in the frame is the ground rather than the emptiest place in it
+        var sky = a.createLinearGradient(0, 0, 0, 668);
+        sky.addColorStop(0, "#0A0A0A"); sky.addColorStop(1, "#333333");
+        a.fillStyle = sky; a.fillRect(0, 0, W, 668);
+
+        S.ground({ near: 0.7, far: 700, fill: "#8E8E8E" });                       // lit caliche
+        S.strip({ X: ROAD_C, w: 6.6, near: 0.7, far: 700, fill: "#3A3A3A" });     // hot mix
+        S.strip({ X: FOG_L, w: 0.10, near: 0.7, far: 700, fill: "#D2D2D2" });     // the fog line
+        S.strip({ X: FOG_R, w: 0.10, near: 0.7, far: 700, fill: "#D2D2D2" });
+        S.strip({ X: ROAD_C, w: 0.12, near: 0.7, far: 700, fill: "#7E7E7E" });    // centre joint
+        S.gridZ({ dz: 18, from: 10, to: 400, ink: "rgba(0,0,0,.16)", width: 1.0 });
+
+        // THE DISTRESS, in the near lane, which is the thing the rater is out here measuring.
+        // The bottom third was an empty road in the first build. c15 and c16 are about walking
+        // a surface and writing down what is wrong with it, so the surface carries it.
+        crack(S, a, [[-0.30, 1.3], [-0.05, 1.9], [-0.22, 2.5], [0.10, 3.2], [-0.02, 4.0],
+                     [0.28, 4.9], [0.14, 6.0]], 0.022, "#6A6A6A");
+        crack(S, a, [[-0.05, 1.9], [0.48, 2.10], [0.92, 1.96]], 0.014, "#5E5E5E");
+        crack(S, a, [[0.10, 3.2], [0.66, 3.44], [1.02, 3.34]], 0.013, "#5E5E5E");
+        crack(S, a, [[0.28, 4.9], [0.78, 5.12]], 0.012, "#5E5E5E");
+        crack(S, a, [[-0.62, 2.7], [-0.46, 3.4], [-0.58, 4.2]], 0.013, "#5E5E5E");
+        crack(S, a, [[1.55, 1.5], [1.78, 2.2], [1.62, 2.9], [1.86, 3.7]], 0.016, "#666666");
+        crack(S, a, [[3.10, 2.1], [3.30, 2.9], [3.16, 3.7], [3.38, 4.6]], 0.014, "#666666");
+        crack(S, a, [[1.78, 2.2], [2.30, 2.44], [2.72, 2.30]], 0.011, "#5E5E5E");
+
+        var mesq = TXOBJ.sprite("mesquite", { seed: 5 });
+        [[-20, 96], [28, 150]].forEach(function (p) {
+          S.shadow(mesq, { X: p[0], Z: p[1], ink: "#000", alpha: 0.30 });
+          S.sprite(mesq, { X: p[0], Z: p[1], inks: { ink: "#4E4E4E", paper: "#0A0A0A", accent: "#4E4E4E" } });
+        });
+        var post = TXOBJ.sprite("fence_post");
+        for (var Z = 9; Z < 280; Z *= 1.21) {
+          S.shadow(post, { X: -7.5, Z: Z, ink: "#000", alpha: 0.34 });
+          S.sprite(post, { X: -7.5, Z: Z, inks: { ink: "#3A3A3A", paper: "#0A0A0A", accent: "#3A3A3A" } });
+        }
+        TXOBJ.wire(S, [-7.5, 9, 1.15], [-7.5, 280, 1.15], { ink: "#3E3E3E", width: 1.1 });
+
+        // THE SEMI, at true 17 by 4.1 m, in the far lane. Flat body value so the rater in front
+        // of it does not merge with it. No brake light and no motion streak.
+        var semi = TXOBJ.sprite("truck_semi");
+        S.shadow(semi, { X: ROAD_C + 1.65, Z: 30, ink: "#000", alpha: 0.42 });
+        S.sprite(semi, { X: ROAD_C + 1.65, Z: 30,
+                         inks: { ink: "#BEBEBE", paper: "#101010", accent: "#BEBEBE" } });
+
+        // THE RATER, on the near fog line, hard hat, clipboard read. He is drawn here in a mid
+        // grey so the print gives him a body, and the granite goes over him in `over`.
+        S.shadow(rater, { X: RATER.X, Z: RATER.Z, ink: "#000", alpha: 0.85 });
+        S.sprite(rater, { X: RATER.X, Z: RATER.Z,
+                          inks: { ink: "#D8D8D8", paper: "#0A0A0A", accent: "#D8D8D8" } });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#161310", top: 655, topSolid: 590, bottom: 150, bottomSolid: 120 });
+        // THE ACCENT takes the SUBJECT'S OWN SILHOUETTE, by building the same scene on this
+        // context and spriting the rater again in granite. A fillRect over his bounding box
+        // painted a granite oblong with no person in it, which is what the first render showed.
+        var S2 = TXSCENE.create(c, CAM);
+        S2.sprite(raterBody, { X: RATER.X, Z: RATER.Z,
+                               inks: { ink: "#9A3B2A", paper: "#161310", accent: "#9A3B2A" } });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 4 of 9. Archetype CLOSE_CROP.
+     Inside the decision, at the height a person looks at a crack from. The plan half is the
+     photograph and the two marks are near identical there ON PURPOSE, because that is the whole
+     argument. The section band under it is what a depth map sees and a photograph does not.
+     THE STAIN IS DRAWN IN SECTION AS A SURFACE DISCOLOURATION AND NEVER AS A FLAT PROFILE.
+     A flat profile would be this deck asserting a stain has no depth, which no fetched source
+     says. c6 says the pairing distinguishes damage from stains, so the drawing shows a trough
+     against a discolouration and stops there. No granite. No person is in this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:182px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:1.0; letter-spacing:-0.022em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:412px; width:830px; font-size:28px; line-height:1.42; color:var(--dek); }
+  .mk { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+        letter-spacing:0.11em; color:var(--ink); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" data-role="hook">Depth tells a crack from a stain.</h1>
+<p class="dek" data-role="dek">The system pairs 2D photos with 3D depth maps. It ranks severe hazards like crumbling concrete above minor surface cracks.</p>
+<div class="mk" style="left:404px; top:690px;">CRACK</div>
+<div class="mk" style="left:806px; top:690px;">STAIN</div>
+<div class="mk" style="left:80px; top:952px;">SECTION</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The surface", kicker2: "2D photo and 3D depth map",
+      counter: C.counters[3], src: "c6   TEXAS AI DOCKET", ink: "#96876E" });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 96, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+    var CUT = 930, SURF = 1012;          // the plan/section rule, and the surface line under it
+    var R = TX.rng(6104);
+
+    // The two marks share ONE generator and one seed offset, so their plan silhouettes are the
+    // same shape to within the jitter. That is the acceptance item rather than a resemblance
+    // somebody judged by eye afterwards.
+    function spine(x0, y0, y1, amp, seed) {
+      var r = TX.rng(seed), pts = [], n = 44;
+      for (var i = 0; i <= n; i++) {
+        var t = i / n;
+        pts.push([x0 + Math.sin(t * 7.1) * amp + (r() - 0.5) * 22, y0 + (y1 - y0) * t]);
+      }
+      return pts;
+    }
+    var LIP = null;
+    var CRACK = spine(336, 470, CUT - 6, 46, 991);
+    var STAIN = spine(742, 470, CUT - 6, 46, 991);
+
+    function ribbon(a, pts, w, fill) {
+      a.save(); a.strokeStyle = fill; a.lineWidth = w; a.lineCap = "round"; a.lineJoin = "round";
+      a.beginPath(); a.moveTo(pts[0][0], pts[0][1]);
+      for (var i = 1; i < pts.length; i++) a.lineTo(pts[i][0], pts[i][1]);
+      a.stroke(); a.restore();
+    }
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 44,
+      screen: { mode: "stipple", cell: 5, angle: 0, gamma: 1.06, floor: 0.06 },
+      edges: { threshold: 30, width: 1.2, alpha: 0.72, dx: 0.8, dy: -0.6 },
+      draw: function (a) {
+        /* ---------------------------------------------------------------- the plan */
+        a.fillStyle = "#6E6E6E"; a.fillRect(0, 0, W, CUT);
+        // THE AGGREGATE. The dots ARE the stone, so the count carries the tone and the field
+        // never greys out. Each fleck gets a lit face up and left of the declared sun.
+        for (var i = 0; i < 9000; i++) {
+          var x = R() * W, y = R() * CUT, rr = 1.4 + R() * 4.6;
+          var v = R();
+          a.fillStyle = v < 0.34 ? "#8E8E8E" : (v < 0.70 ? "#5E5E5E" : "#A6A6A6");
+          a.beginPath(); a.ellipse(x, y, rr, rr * (0.62 + R() * 0.5), R() * 3.14, 0, 6.2832); a.fill();
+          if (v > 0.70) {
+            a.fillStyle = "#C4C4C4";
+            a.beginPath(); a.ellipse(x - rr * 0.30, y - rr * 0.30, rr * 0.42, rr * 0.30, 0, 0, 6.2832); a.fill();
+          }
+        }
+        // THE CRACK in plan, and THE STAIN in plan, at the same width and the same value.
+        ribbon(a, CRACK, 21, "#1A1A1A");
+        ribbon(a, CRACK, 10, "#101010");
+        ribbon(a, STAIN, 21, "#1C1C1C");
+        ribbon(a, STAIN, 10, "#121212");
+        // the stain's soft bleed into the surrounding stone, which a crack does not have, drawn
+        // faint enough that the two still read alike at 432 px
+        a.save(); a.globalAlpha = 0.24;
+        ribbon(a, STAIN, 52, "#3A3A3A"); a.restore();
+
+        /* ------------------------------------------------------------- the section */
+        a.fillStyle = "#0E0E0E"; a.fillRect(0, CUT, W, H - CUT);      // the void above the cut
+        a.fillStyle = "#3A3A3A"; a.fillRect(0, SURF, W, H - SURF);    // the asphalt body
+        // the body's own stone, coarser than the plan because a cut face shows the whole stone
+        for (var j = 0; j < 1500; j++) {
+          var bx = R() * W, by = SURF + 8 + R() * (H - SURF - 8), br = 2.0 + R() * 6.0;
+          var bv = R();
+          a.fillStyle = bv < 0.45 ? "#2E2E2E" : (bv < 0.78 ? "#4A4A4A" : "#5E5E5E");
+          a.beginPath(); a.ellipse(bx, by, br, br * (0.55 + R() * 0.5), R() * 3.14, 0, 6.2832); a.fill();
+        }
+        // the surface line
+        a.strokeStyle = "#D6D6D6"; a.lineWidth = 2.6;
+        a.beginPath(); a.moveTo(0, SURF); a.lineTo(W, SURF); a.stroke();
+
+        // THE TROUGH under the crack. Three measured values, a lit lip, a side wall and a floor.
+        // THREE FLAT TONES, NOT AN OUTLINE. The first build drew a 100 px trough whose floor,
+        // wall and lip came out of the print as one pale edge around a void, and at 432 px that
+        // is a 20 px scratch. The frame's whole craft point is the lit lip, so the trough is 190
+        // px wide now and each face is a measured flat fill a reader can tell from its neighbour.
+        var cxp = 345, halfTop = 95, halfBot = 30, depth = 150;
+        a.beginPath();                                                // THE FLOOR, the deck's darkest
+        a.moveTo(cxp - halfTop, SURF);
+        a.lineTo(cxp - halfBot, SURF + depth);
+        a.lineTo(cxp + halfBot, SURF + depth);
+        a.lineTo(cxp + halfTop, SURF);
+        a.closePath();
+        a.fillStyle = "#101010"; a.fill();
+        a.beginPath();                                                // THE SHADED WALL, the far face
+        a.moveTo(cxp + halfBot, SURF + depth); a.lineTo(cxp + halfTop, SURF);
+        a.lineTo(cxp + halfTop - 42, SURF); a.lineTo(cxp + halfBot - 13, SURF + depth);
+        a.closePath(); a.fillStyle = "#4A4A4A"; a.fill();
+        // THE LIT LIP IS KEPT AS GEOMETRY HERE AND PAINTED FLAT IN `over`. The dossier calls it
+        // the craft point of the frame and a stipple screen cannot carry a highlight: on a dark
+        // register a screened field is mostly ground, so the frame measured p95 51.4 and the lip
+        // at #EFEFEF never printed. Frames 2 and 8 both put their light on an unscreened plane
+        // and this one does the same.
+        LIP = [[cxp - halfTop - 30, SURF - 9], [cxp - halfTop + 34, SURF + 16],
+               [cxp - halfTop + 26, SURF + 30], [cxp - halfTop - 34, SURF + 6]];
+
+        // THE STAIN IS NOT IN THE SECTION AT ALL, and that is the whole disposition. The first
+        // build drew it as a discolouration in the top few millimetres with the surface line
+        // running unbroken through it, which is a DRAWN CLAIM that a stain has no depth. c6 says
+        // only that the pairing distinguishes damage from stains and prioritises severe hazards
+        // over minor cracks. Nothing fetched says a stain has no profile. This frame's own risk
+        // block named the remedy before a line was drawn: the section keeps the crack and loses
+        // the stain. The section now shows what the crack IS and asserts nothing about the other
+        // mark, and the plan half is where the two are shown to look alike.
+
+        // the cut rule between plan and section, and the two station marks that tie them
+        a.strokeStyle = "#C8C8C8"; a.lineWidth = 2.0;
+        a.beginPath(); a.moveTo(0, CUT); a.lineTo(W, CUT); a.stroke();
+        // one station mark, at the crack, because the section speaks about the crack alone
+        a.lineWidth = 1.4;
+        a.beginPath(); a.moveTo(345, CUT - 16); a.lineTo(345, CUT + 16); a.stroke();
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#161310", top: 560, topSolid: 470, bottom: 140, bottomSolid: 108 });
+        // KNOCKOUT PLATES under the two plan labels. A stipple field is aggregate everywhere by
+        // construction, so there is no quiet place on this half to put a word. qa.py read the
+        // stone as art running through the letterforms and it was right.
+        c.save(); c.fillStyle = "#161310";
+        [[392, 682], [794, 682]].forEach(function (q) { c.fillRect(q[0], q[1], 104, 46); });
+        if (LIP) {
+          c.fillStyle = "#F2EAD8";
+          c.beginPath(); c.moveTo(LIP[0][0], LIP[0][1]);
+          for (var li = 1; li < LIP.length; li++) c.lineTo(LIP[li][0], LIP[li][1]);
+          c.closePath(); c.fill();
+        }
+        c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

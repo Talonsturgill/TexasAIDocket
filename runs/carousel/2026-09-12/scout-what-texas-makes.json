@@ -1,0 +1,56 @@
+{
+ "run_date": "2026-09-12",
+ "beat": "what-texas-makes",
+ "findings": [
+  {
+   "headline": "Amazon and Wiwynn said they will expand Wiwynn's server and rack manufacturing plant in Socorro, near El Paso.",
+   "who_decided": "Amazon.com, Inc. and Wiwynn Corporation",
+   "when": "2026-09-09",
+   "where": {
+    "counties": [
+     "El Paso"
+    ],
+    "statewide": false,
+    "ercot": false
+   },
+   "quote": "Through our over $1.6 billion investment in the Texas facility, we are expanding our ability to address the growing demand of U.S. customers, reinforce the resilience of the global supply chain, and create high-value career opportunities as we continue to grow in partnership with the local community.",
+   "url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+   "source_type": "primary_corporate",
+   "confidence": "high",
+   "caveat": "The page carries no visible publication date. El Paso County is not named on the page."
+  },
+  {
+   "headline": "The Texas A&M University System Board of Regents approved an 11.755 million dollar water tower at RELLIS to serve the Semiconductor Institute.",
+   "who_decided": "The Texas A&M University System Board of Regents",
+   "when": "2026-09-03",
+   "where": {
+    "counties": [
+     "Brazos"
+    ],
+    "statewide": false,
+    "ercot": true
+   },
+   "quote": "Semiconductor research and fabrication require extraordinary precision, but they still depend on reliable basic infrastructure. A water tower may not be the glamorous part of this project, but it is the part that makes everything else possible.",
+   "url": "https://news.tamus.edu/stories/texas-am-system-regents-advance-semiconductor-institute-with-new-rellis-water-tower/",
+   "source_type": "primary_official",
+   "confidence": "high"
+  },
+  {
+   "headline": "Silicon Labs opened an Austin chip design and test laboratory built in part with a Texas Semiconductor Innovation Fund grant.",
+   "who_decided": "Silicon Laboratories Inc., with a Texas Semiconductor Innovation Fund grant",
+   "when": "2026-09-04",
+   "where": {
+    "counties": [
+     "Travis"
+    ],
+    "statewide": false,
+    "ercot": true
+   },
+   "quote": "The facility supports continued innovation across Silicon Labs' wireless portfolio, including the company's Series 3 platform, which delivers advanced security, AI capabilities, and wireless connectivity for smart home, industrial, healthcare, commercial, and smart city applications.",
+   "url": "https://news.silabs.com/2026-09-04-Silicon-Labs-Opens-New-Austin-Innovation-Center-with-Support-from-Texas-CHIPS-Act",
+   "source_type": "primary_corporate",
+   "confidence": "medium",
+   "caveat": "The AI connection is one clause of one sentence. The grant itself was awarded in February."
+  }
+ ]
+}

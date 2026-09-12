@@ -1,0 +1,94 @@
+{
+ "run": "2026-09-12",
+ "note": "Every figure this deck prints that a claim did not quote is declared here with its computation, so numeral_trace can reach it and aggregate_check can re-derive it. The deck is deliberately thin on aggregates. The four F1 values and the threshold of 70 are QUOTED figures, lifted out of their claims' own sentences by regex in compute.py, and a quoted figure is not an aggregate. Four things here are. FRAME 8'S AXIS BOUNDS ARE NOT DECLARED HERE AND THE REASON IS THE GATE. The integrity judge counted 1.0 and 0 as printed numerals tracing to nothing, which is a fair reading: F1 is a harmonic mean of two proportions and is bounded at 1 by definition, and the zero is drawn because this project's honest-axis doctrine requires an anchored scale. Both were declared here and aggregate_check refused both, because it does not read a bare axis label as a numeric phrase on a slide and a declaration nothing says is a declaration left to be reused. The bounds stay undeclared, the reason is written here and in the run record, and the gap is in the backlog.",
+ "aggregates": [
+  {
+   "phrase": "three next steps and dates",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "compute.py NEXT_STEPS, the coordinated verb phrases in c7's own sentence about what the team plans next, split on its commas and its final conjunction. Three come back. The second half of the slide's sentence, that it dates none of them, is the absence gate's kind of claim rather than a count, and it is true of the same sentence because no date appears anywhere in it.",
+   "from_claims": [
+    "c7"
+   ],
+   "note": "Slide 9's dek."
+  },
+  {
+   "phrase": "four left this",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py commission_meetings_left, the number of dated rows on the commission's published meeting calendar in c25 that fall on or after the run date. c25 carries four, 09/24/26, 10/29/26, 11/20/26 and 12/17/26, and all four are ahead of September 12th. commission_meetings_left_words spells it, because a small count reads as a word in running prose and the house law on numerals is about where a figure comes from rather than how it is set.",
+   "from_claims": [
+    "c25"
+   ],
+   "note": "Slide 9's mono foot, which now carries its own subject so the meeting cannot attach to this project."
+  },
+  {
+   "phrase": "Nine frames",
+   "kind": "count",
+   "value": 9,
+   "computed_by": "compute.py slides, the length of the counters list, which is built from the deck's own frame count rather than typed. It is also the denominator of the progress counter on every frame.",
+   "from_claims": [],
+   "note": "The caption's deck summary line, which brand.yaml requires for readers who cannot see the images."
+  },
+  {
+   "phrase": "eight days",
+   "kind": "duration",
+   "value": 8,
+   "computed_by": "compute.py agenda_lead_days, read out of c24's own sentence about when an agenda is posted, and agenda_posts_on then subtracts it from the next meeting date in c25. The two dates are the ones the deck computed, September 16th to September 24th, and the span between them is the figure the caption prints. Slide 9 no longer prints either, because coherence_check measured that frame at 87 words against a 65 word ceiling and the foot was cut back to the meeting and the absent agenda.",
+   "from_claims": [
+    "c24",
+    "c25"
+   ],
+   "note": "Slide 9's mono foot and the caption's closing paragraph.",
+   "from_date": "2026-09-16",
+   "to_date": "2026-09-24"
+  },
+  {
+   "phrase": "four words",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py splits c4's quoted phrase on whitespace. The phrase 'often subjective and costly' is four tokens and the frame forms exactly those four as its image, so the dek's count is a property of the claim rather than a reading of it.",
+   "from_claims": [
+    "c4"
+   ],
+   "note": "Slide 6's dek, which points at the words the frame draws rather than repeating them."
+  },
+  {
+   "phrase": "three first party accounts",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "sources_block.py counts the distinct fetched documents behind the cited claims and splits them by publisher class. The university news office, the agency's own performance dashboard and the agency's own commission calendar are the three first party accounts.",
+   "from_claims": [
+    "c1",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c23",
+    "c24",
+    "c25",
+    "c26"
+   ],
+   "note": "The first comment's opening line, written by sources_block.py rather than typed."
+  },
+  {
+   "phrase": "two official records",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py counts the same set's peer reviewed and publisher deposited records. The Sensors full text through Europe PMC and the Mathematics abstract through Crossref are the two.",
+   "from_claims": [
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c19",
+    "c20"
+   ],
+   "note": "The first comment's opening line, written by sources_block.py rather than typed."
+  }
+ ]
+}

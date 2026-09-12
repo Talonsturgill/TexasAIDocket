@@ -1,0 +1,178 @@
+{
+ "run": "2026-09-12",
+ "deck": 22,
+ "note": "Derived from render_report.json's own laid-out text nodes by build_copy.py. Never authored by hand, so it cannot drift from the frames. Rebuilt every round.",
+ "slides": {
+  "S1": {
+   "hook": "Somebody used to stand here.",
+   "dek": "A rater measured the length and severity of the distress by hand on a sampled portion of the pavement section, in the traffic and the weather.",
+   "labels": [
+    "texasaidocket.com",
+    "a sampled portion of the pavement section",
+    "Texas State University Second phase, closer to statewide deployment",
+    "Second phase, closer to statewide deployment",
+    "01 / 09",
+    "c1 c15 c16 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c1",
+    "c15",
+    "c16"
+   ]
+  },
+  "S2": {
+   "hook": "Seventy is where good begins.",
+   "dek": "The agency defines it as \"a combined index of ride quality and pavement surface distress\", adjusted for traffic and speed.",
+   "labels": [
+    "texasaidocket.com",
+    "PAVEMENT CONDITION SCORE",
+    "70",
+    "OR ABOVE IS GOOD OR BETTER",
+    "\"Tracking pavement quality helps TxDOT identify roads in need of repair and plan funding for their maintenance and rehabilitation.\"",
+    "The score",
+    "02 / 09",
+    "c8 c9 c10 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c8",
+    "c9",
+    "c10"
+   ]
+  },
+  "S3": {
+   "hook": "TxDOT handed over a van.",
+   "dek": "The university's release lists what prepared the data. An automated 2D/3D pavement laser scanner, and \"a TxDOT-donated mobile research van\".",
+   "labels": [
+    "texasaidocket.com",
+    "THE RELEASE LISTS THE SCANNER AND THE VAN SEPARATELY",
+    "The equipment Ingram School of Engineering",
+    "Ingram School of Engineering",
+    "03 / 09",
+    "c1 c3 c5 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c1",
+    "c3",
+    "c5"
+   ]
+  },
+  "S4": {
+   "hook": "Depth tells a crack from a stain.",
+   "dek": "The system pairs 2D photos with 3D depth maps. It ranks severe hazards like crumbling concrete above minor surface cracks.",
+   "labels": [
+    "texasaidocket.com",
+    "CRACK",
+    "STAIN",
+    "SECTION",
+    "The surface 2D photo and 3D depth map",
+    "2D photo and 3D depth map",
+    "04 / 09",
+    "c6 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c6"
+   ]
+  },
+  "S5": {
+   "hook": "The old rating read a sample.",
+   "dek": "Manual collection happened at \"a sampled portion of the pavement section\". The university describes the new reading as \"pixel-level detection of pavement damage\".",
+   "labels": [
+    "texasaidocket.com",
+    "SAMPLED PORTION",
+    "NOT STATED IN THE RELEASE",
+    "PIXEL LEVEL",
+    "THE RESOLUTION, NOT THE EXTENT",
+    "The extent In plan, one lane",
+    "In plan, one lane",
+    "05 / 09",
+    "c1 c15 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c1",
+    "c15"
+   ]
+  },
+  "S6": {
+   "hook": "OFTEN SUBJECTIVE AND COSTLY",
+   "dek": "Wang describes the purpose as reducing reliance on traditional human inspection. The four words below are his.",
+   "labels": [
+    "texasaidocket.com",
+    "FENG WANG, TEXAS STATE UNIVERSITY",
+    "TEXAS STATE UNIVERSITY",
+    "The argument Principal investigator",
+    "Principal investigator",
+    "06 / 09",
+    "c4 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c4"
+   ]
+  },
+  "S7": {
+   "hook": "An engineer still has to check.",
+   "dek": "The team's own 2025 paper says the precision of the technology often leads to inaccuracies.",
+   "labels": [
+    "texasaidocket.com",
+    "Those inaccuracies \"must be verified by pavement engineers.\"",
+    "The turn Sensors 25(4), 2025",
+    "Sensors 25(4), 2025",
+    "07 / 09",
+    "c14 c17 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c14",
+    "c17"
+   ]
+  },
+  "S8": {
+   "hook": "Thin cracks still score the lowest.",
+   "dek": "The largest gain came on the thinnest cracks.",
+   "labels": [
+    "texasaidocket.com",
+    "One 2025 paper by this group.",
+    "The measurement Two published F1 scores",
+    "Two published F1 scores",
+    "08 / 09",
+    "c7 c19 c20 TEXAS AI DOCKET",
+    "1.0",
+    "0",
+    "U-NET",
+    "0.733",
+    "THIS MODEL",
+    "0.780",
+    "ALL DISTRESS",
+    "U-NET",
+    "0.531",
+    "THIS MODEL",
+    "0.626",
+    "THIN CRACKS"
+   ],
+   "claims": [
+    "c7",
+    "c19",
+    "c20"
+   ]
+  },
+  "S9": {
+   "hook": "The score still aims the money.",
+   "dek": "The release names three next steps and dates none of them.",
+   "labels": [
+    "texasaidocket.com",
+    "TEXAS AI DOCKET",
+    "The commission meets September 24th in Austin, open to the public. Agendas post eight days ahead and none of the four left this year has one.",
+    "The stake Texas Transportation Commission",
+    "Texas Transportation Commission",
+    "09 / 09",
+    "c7 c10 c23 c24 c25 c26 TEXAS AI DOCKET"
+   ],
+   "claims": [
+    "c7",
+    "c10",
+    "c23",
+    "c24",
+    "c25",
+    "c26"
+   ]
+  }
+ }
+}

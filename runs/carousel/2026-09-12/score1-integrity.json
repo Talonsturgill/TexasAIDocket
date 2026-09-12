@@ -1,0 +1,47 @@
+{
+ "judge": "integrity",
+ "round": 1,
+ "date": "2026-09-12",
+ "weighted_score": 6.874,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut the caption's closing question, Who makes the drive for the September 24th meeting, and replace it with the thing the record actually supports, that no fetched source gives this project a dated public room, because the deck spent a whole frame's acceptance criteria making sure slide 9 did not imply the commission is about this project and then the caption implied it anyway.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.0,
+   "why": "An image owns every frame and the print register is real rather than asserted. Against that: slide 7 is the declared turn and its least resolved drawing, the desk does not read as a desk at any size, two objects on the floor are unidentifiable, and the granite sheet reads as a red bar floating clear of the hand rather than under it. machine_qa returns 7 warns including two safe zone breaches on slide 5 and art crossing the TxDOT kicker on slide 2."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.7,
+   "why": "28 claims each with a verbatim quote, honesty flags on c12 c13 c25, and a rejected list that throws out 428,000 vehicle interactions on meaning. Six specific failures: slide 2's two quote truncations placed so a fragment reads as a whole sentence; slide 8's 1.0 and 0 axis labels undeclared anywhere; the aggregates entry for eight days says slide 9 no longer prints it and slide 9 does; quantifiers.json says one universal and the render carries three; claims.json's absence_method names one absence and slide 5 prints EXTENT NOT STATED with no document; slide 3 mounts the scanner on the van where c5 lists them as two separate items."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.3,
+   "why": "The chain from crack to score to repair money is built properly. The stake fails: no claim gives this project a dated public room, c25's own note says so, slide 9 obeys the letter and the caption does not. Place is thin, Austin is the only Texas location named and the subject sits in San Marcos."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "The cover earns a swipe, the build runs one direction, slide 6 puts the PI's four words at maximum volume so slide 7's reversal is a genuine turn. Two drags: slide 5 re-quotes a sampled portion already quoted on slide 1, and slide 2 puts a static document immediately after the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "Short declaratives with concrete nouns a Texan owns. No boosterism, no first person, no colons or semicolons, zero commas across five caption paragraphs. Somebody used to stand here is the best line in the deck. Flat spots: the score still aims the money is the third abstraction in a physical deck."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The inverted register is new to this account and arrived at by measurement. The accent measures CLEAR at dE 17.06 against the last eight decks. Against: this is the third agency funded university research story in the 30 day ledger and the one document contradicts another by the same people instrument is a cousin of nos. 14, 17 and 18."
+  }
+ ]
+}

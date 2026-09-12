@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the place",
   "the number that is wrong",
   "the correction",
   "the quiet decision",
   "the two things",
-  "the who"
+  "the who",
+  "the before and after"
  ],
  "entries": [
   {
@@ -362,15 +362,34 @@
    ],
    "critic_note": "THE CRITIC FOUND A REAL LEDGER DEFECT RATHER THAN A PROSE ONE, and it is the reason this entry's opening and closing moves are the ones they are. Both candidates opened on the object and closed by asking the question the decision leaves open, and both moves were inside their own exclusion window. The caption also asserts one universal, None of them, and quantifiers.json names the six-term set it is over rather than leaving a reader to trust it. AFTER ROUND 1 the post lost two sentences the record did not carry, a graduation requirement c9 calls a curriculum requirement, and an effective date the motion asked for rather than the board settled, and the counts here were re-measured off the file. AFTER ROUND 2 the first line names the board and the bill it matches rather than compressing c6 to a bill number, and the universal over the release's closing words came out because the release's own sentence says invest. THE ROUND 3 INTEGRITY JUDGE READ THE FIRST LINE AS 'THE WHO' RELABELLED. The line names the board and the bill, then the post turns on what the adopted text asks for against what the bill asked for, which is the before and after the move name records. The judge's reading is kept here so the next critic can decide it with both in front of them.",
    "move_note": "Named off CAPTION_CRAFT.md's own menus rather than freehand. ledger_check refuses a move name that is not on a menu, because a name nobody else uses cannot be excluded by a list of real ones, which is how three excluded moves shipped on 2026-08-25. The caption opens on what House Bill 27 asked for and turns to what the adopted text actually says, it runs what is known then what is not then the size of the gap, and it ends on the question the adoption leaves open."
+  },
+  {
+   "date": "2026-09-12",
+   "carousel_no": 22,
+   "opening_move": "the plain question",
+   "structure": "Ladder",
+   "closing_move": "Name what happens next and when",
+   "first_line": "Who decides whether a crack counts?",
+   "words": 156,
+   "commas": 0,
+   "commas_per_100w": 0.0,
+   "chars": 876,
+   "hashtags": [
+    "#TxDOT",
+    "#TexasStateUniversity",
+    "#PavementConditionScore"
+   ],
+   "critic_note": "Candidate A was refused on three claim failures in one paragraph, a scanner riding on the van that c5 lists as a separate investment, a definition of statewide no claim carries, and a sentence that inverts c15 by making a section mean the sample inside it. B was taken with the one rewrite, which restored c23's closed-session exception and fixed a pronoun reaching two sentences back for the 70. The showrunner then corrected the deck summary line, which the critic had written without having seen the frames.",
+   "move_note": "The plain question was the right door because this story's whole dispute is a classification boundary, a crack against a stain, and the ladder was right because the record hands over four rungs that stand on each other in physical order."
   }
  ],
  "structures_recent": [
-  "Pivot",
   "Two columns",
-  "Clock"
+  "Clock",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "point at the record, plainly, without a call to action"
+  "Ask the one question the decision leaves open."
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -1,0 +1,56 @@
+{
+ "run_date": "2026-09-12",
+ "beat": "ai-in-the-field",
+ "findings": [
+  {
+   "headline": "TxDOT launched the first phase of Project Nexus, the state's federal air mobility pilot, with flights that carry no passengers.",
+   "who_decided": "Texas Department of Transportation, with the FAA and USDOT",
+   "when": "2026-09-10",
+   "where": {
+    "counties": [
+     "Tarrant"
+    ],
+    "statewide": true,
+    "ercot": false
+   },
+   "quote": "These initial flights will not carry passengers and are designed to collect data, validate routes and support the safe development of future advanced air mobility operations.",
+   "url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+   "source_type": "primary_official",
+   "confidence": "high",
+   "caveat": "TxDOT's own release does not mention artificial intelligence or autonomy at all."
+  },
+  {
+   "headline": "An autonomy vendor flew AI-controlled takeoffs, landings and air traffic control calls at TxDOT's air mobility kickoff in Fort Worth.",
+   "who_decided": "Merlin, Inc., demonstrating at a TxDOT-hosted event",
+   "when": "2026-09-10",
+   "where": {
+    "counties": [
+     "Tarrant"
+    ],
+    "statewide": false,
+    "ercot": false
+   },
+   "quote": "TxDOT invited Merlin to the event as a supporting participant, enabling Merlin to demonstrate core capabilities of its AI-powered autonomy platform, the Merlin Pilot, including autonomous takeoff and landing, AI-powered Air Traffic Control communications, and dynamic autonomous in-flight re-planning and threat avoidance.",
+   "url": "https://www.stocktitan.net/news/MRLN/merlin-demonstrates-autonomous-flight-capabilities-at-texas-xl87193l48x6.html",
+   "source_type": "primary_corporate",
+   "confidence": "high"
+  },
+  {
+   "headline": "The Energy Department funded a synthetic mine at a Texas drilling site to test mining automation.",
+   "who_decided": "U.S. Department of Energy, Office of Critical Minerals and Energy Innovation",
+   "when": "2026-09-09",
+   "where": {
+    "counties": [
+     "Grimes",
+     "Dallas"
+    ],
+    "statewide": false,
+    "ercot": false
+   },
+   "quote": "This project will create the world's first synthetic mine within an advanced drilling and sensing test facility to accelerate next generation mining technologies from lab concepts to field ready deployment. By repurposing a highly instrumented Texas drilling site, it will enable rigorous, repeatable, and safe testing of mining tools, workflows, and automation systems.",
+   "url": "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic",
+   "source_type": "primary_official",
+   "confidence": "high"
+  }
+ ]
+}

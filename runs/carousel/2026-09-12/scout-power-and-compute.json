@@ -1,0 +1,62 @@
+{
+ "run_date": "2026-09-12",
+ "beat": "power-and-compute",
+ "findings": [
+  {
+   "headline": "ERCOT restarted the paused Batch Zero classification and told each utility which of its large loads is conditionally in.",
+   "who_decided": "Electric Reliability Council of Texas, Market Notice M-A080326-04",
+   "when": "2026-09-03",
+   "where": {
+    "counties": [],
+    "statewide": true,
+    "ercot": true
+   },
+   "quote": "ERCOT has notified each Interconnecting Distribution Service Provider (DSP) and Transmission Service Provider (TSP) (Interconnecting DSP/TSP) of ERCOT's provisional classification of the Large Loads submitted by the Interconnecting DSP/TSP for inclusion in Batch Zero.",
+   "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+   "source_type": "primary_official",
+   "confidence": "high"
+  },
+  {
+   "headline": "Galaxy Digital said three of its five conditionally classified Texas projects were put in studied load rather than base load.",
+   "who_decided": "ERCOT classified; Galaxy Digital Inc. disclosed",
+   "when": "2026-09-08",
+   "where": {
+    "counties": [],
+    "statewide": false,
+    "ercot": true
+   },
+   "quote": "Caspian - 700 MW of gross power capacity, classified as Batch Zero Studied Load. Galaxy submitted Caspian as Base Load; the project has been conditionally classified as Studied Load.",
+   "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+   "source_type": "primary_corporate",
+   "confidence": "high"
+  },
+  {
+   "headline": "ERCOT opened a sworn-attestation verification portal for every large load conditionally in Batch Zero.",
+   "who_decided": "Electric Reliability Council of Texas, Large Load Integration page",
+   "when": "2026-09-11",
+   "where": {
+    "counties": [],
+    "statewide": true,
+    "ercot": true
+   },
+   "quote": "This Guide shows Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs) how to use ERCOT's RFI Portal in RIOO to submit information required to respond to ERCOT's Verification RFI for Large Loads that are conditionally classified for inclusion in Batch Zero.",
+   "url": "https://www.ercot.com/services/rq/large-load-integration",
+   "source_type": "primary_official",
+   "confidence": "high"
+  },
+  {
+   "headline": "ERCOT said it will send a roughly 130-question water and energy survey to 461 data centers and publish where answers fall short.",
+   "who_decided": "ERCOT, described by senior vice president Chad Seely",
+   "when": "2026-09-11",
+   "where": {
+    "counties": [],
+    "statewide": true,
+    "ercot": true
+   },
+   "quote": "The state's power grid managers plan to launch a survey of 461 data centers' water and energy usage next week as part of an audit ordered by Gov. Greg Abbott.",
+   "url": "https://www.kedt.org/texas-news/2026-09-11/ercot-to-survey-more-than-400-data-centers-as-part-of-gov-abbotts-audit",
+   "source_type": "journalism",
+   "confidence": "medium"
+  }
+ ]
+}

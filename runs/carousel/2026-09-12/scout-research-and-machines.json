@@ -1,0 +1,56 @@
+{
+ "run_date": "2026-09-12",
+ "beat": "research-and-machines",
+ "findings": [
+  {
+   "headline": "NSF made a new award to the Texas A&M Engineering Experiment Station for AI digital twins of small and mid-sized drinking water systems.",
+   "who_decided": "National Science Foundation, Division of Civil, Mechanical, and Manufacturing Innovation",
+   "when": "2026-09-09",
+   "where": {
+    "counties": [
+     "Brazos"
+    ],
+    "statewide": false,
+    "ercot": false
+   },
+   "quote": "The objective of this project is to support research on a new AI-enabled cyber-physical-social paradigm for predicting, managing, and mitigating cascading disruptions in freshwater infrastructure systems.",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,date,startDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfCounty,perfStateCode",
+   "source_type": "primary_official",
+   "confidence": "high",
+   "award": "2640086, $122,169 obligated 2026-09-09, standard grant to 2029-08-31, PI Sudipta Chowdhury"
+  },
+  {
+   "headline": "A UT San Antonio engineer published a self-powered flood sensor that scores flood risk on the device instead of in the cloud.",
+   "who_decided": "The University of Texas at San Antonio, Klesse College of Engineering and Integrated Design",
+   "when": "2026-09-08",
+   "where": {
+    "counties": [
+     "Bexar"
+    ],
+    "statewide": false,
+    "ercot": false
+   },
+   "quote": "Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.",
+   "url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+   "source_type": "primary_official",
+   "confidence": "medium",
+   "caveat": "Already in the record as tx-2026-0141."
+  },
+  {
+   "headline": "Texas A&M engineering researchers described two AI assistants they built for grid operators and hardware designers.",
+   "who_decided": "Texas A&M University College of Engineering",
+   "when": "2026-09-07",
+   "where": {
+    "counties": [
+     "Brazos"
+    ],
+    "statewide": false,
+    "ercot": false
+   },
+   "quote": "We have several checks in place, so we're not relying on the LLM alone or simply accepting everything it generates.",
+   "url": "https://news.engineering.tamu.edu/news/2026/09/07/texas-am-researchers-develop-ai-tools-for-a-changing-power-grid/",
+   "source_type": "primary_official",
+   "confidence": "medium"
+  }
+ ]
+}

@@ -1,0 +1,96 @@
+{
+ "claims_verified": {
+  "value": 28,
+  "from_items": [],
+  "note": "Claims this run fetched and verified, counted over claims.json."
+ },
+ "findings_rejected": {
+  "value": 9,
+  "from_items": [],
+  "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
+ },
+ "source_documents": {
+  "value": 8,
+  "from_items": [
+   "https://api.crossref.org/works/10.3390/math13172752",
+   "https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html",
+   "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11858845/fullTextXML",
+   "https://www.fhwa.dot.gov/policyinformation/statistics/2023/hm60.cfm",
+   "https://www.fhwa.dot.gov/policyinformation/statistics/2024/hm60.cfm",
+   "https://www.txdot.gov/about/leadership/texas-transportation-commission/meeting-dates-agendas.html",
+   "https://www.txdot.gov/data-maps/performance-dashboard/preserve-our-assets.html",
+   "https://www.txdot.gov/projects/research-projects.html"
+  ],
+  "note": "Distinct source urls behind the claims this deck rests on, counted over claims.json."
+ },
+ "figures_quoted": {
+  "value": 10,
+  "from_items": [
+   "good_score",
+   "f1_unet",
+   "f1_model",
+   "f1_thin_unet",
+   "f1_thin_model",
+   "lane_miles_university",
+   "lane_miles_fed_2024",
+   "lane_miles_fed_2023",
+   "map50_low",
+   "map50_high"
+  ],
+  "note": "Figures the SOURCE wrote, lifted out of a claim's own sentence by regex in compute.py. A quoted figure is not an aggregate and is not declared in aggregates.json."
+ },
+ "figures_computed": {
+  "value": 1,
+  "from_items": [
+   "Nine frames"
+  ],
+  "note": "Aggregates produced by code with no claim-id tally behind them, counted over aggregates.json. Here it is the deck's own frame count."
+ },
+ "figures_tallied": {
+  "value": 3,
+  "from_items": [
+   "three next steps and dates",
+   "four meetings left this",
+   "eight days"
+  ],
+  "note": "Aggregates computed over a named set of claim ids, counted over aggregates.json."
+ },
+ "commission_meetings_left": {
+  "value": 4,
+  "from_items": [
+   "c25"
+  ],
+  "note": "Dated rows on the commission's published calendar that fall on or after the run date."
+ },
+ "next_steps_named": {
+  "value": 3,
+  "from_items": [
+   "c7"
+  ],
+  "note": "Coordinated verb phrases in c7's own sentence about what the team plans next, and none of them carries a date."
+ },
+ "f1_gain": {
+  "value": 0.047,
+  "from_items": [
+   "c19"
+  ],
+  "note": "0.780 minus 0.733, computed in compute.py. Printed on no frame. The deck draws the rise rather than naming it."
+ },
+ "f1_thin_gain": {
+  "value": 0.095,
+  "from_items": [
+   "c20"
+  ],
+  "note": "0.626 minus 0.531, computed in compute.py. Printed on no frame, and it is the larger of the two, which is what frame 8's hook says in words."
+ },
+ "accent_frames": {
+  "value": 4,
+  "from_items": [
+   "slide-01",
+   "slide-03",
+   "slide-05",
+   "slide-07"
+  ],
+  "note": "Frames measured by measure.py as carrying at least a tenth of a percent of the granite. The accent law declared four and the measurement agrees."
+ }
+}

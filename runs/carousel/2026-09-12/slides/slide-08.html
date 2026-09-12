@@ -1,0 +1,254 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 8 of 9. Archetype SPLIT_HORIZON. Built second.
+     The measurement, printed honestly on an axis anchored at zero with the zero drawn. A bar
+     pair would invite a comparison the claim does not license and a dial is forbidden outright,
+     so the eye reads an angle against a printed zero. The material the measurement was taken
+     from sits under it, which is what keeps the bottom third a surface rather than a caption.
+     No accent, because no claim on this frame has a person in it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:168px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:88px; line-height:1.02; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:372px; width:820px; font-size:27px; line-height:1.4; color:var(--dek); }
+  /* THE CARD IS CALICHE AND ITS TYPE IS THE PAGE COLOUR. A dark plate on a dark road is
+     invisible to the silhouette measure and, more to the point, to a reader at feed width.
+     The measurement is the one thing on this frame that has to survive a thumbnail. */
+  .ax { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.03em;
+        color:#161310; font-variant-numeric:tabular-nums; }
+  .ax.sm { font-size:24px; color:#544636; letter-spacing:0.06em; text-transform:uppercase; }
+  .scope { position:absolute; left:132px; top:948px; width:820px; font-family:"JetBrains Mono", monospace;
+           font-size:24px; line-height:1.5; letter-spacing:0.02em; color:#241E19; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" data-role="hook">Thin cracks still score the lowest.</h1>
+<p class="dek" data-role="dek">The largest gain came on the thinnest cracks.</p>
+<div class="scope" id="scope"></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The measurement", kicker2: "Two published F1 scores",
+      counter: C.counters[7], src: "c7 c19 c20   TEXAS AI DOCKET", ink: "#96876E" });
+    document.getElementById("scope").textContent =
+      "One 2025 paper by this group.";
+    TX.fitText(document.getElementById("hook"), { min: 70, max: 88, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350, CUT = 552;
+    TX.reseed(20260912);
+    var R = TX.rng(80808);
+
+    // THE CUT MOVED UP AND THE HALVES SWAPPED BACK. SPLIT_HORIZON asks the image side for at
+    // least 55 percent of the height, and with the cut at 743 the pavement held 55 percent of
+    // the frame but the top reserve ate the half of it the type sat on, so the drawn side was
+    // really 20 percent. At 552 the pavement owns 59 percent below the cut and the type sits on
+    // flat ground above it, which is the archetype's own shape.
+    // THE CHART IS A PLATE ON THE ROAD. It was painted straight onto the stipple and the four
+    // figures that are the whole point of the frame sat in a field of aggregate. A plate is
+    // also what gives this frame ONE readable silhouette instead of fifteen hundred stones.
+    var PL = { x: 100, y: 612, w: 880, h: 412 };
+    var AX_X = 318, AX_TOP = 660, AX_BOT = 894, AX_W = 560;
+    var yFor = function (f) { return AX_BOT - (AX_BOT - AX_TOP) * parseFloat(f); };
+    var series = [
+      { k: "all", lab: "ALL DISTRESS", a: C.f1_unet, b: C.f1_model, x0: AX_X + 70, x1: AX_X + 236 },
+      { k: "thin", lab: "THIN CRACKS", a: C.f1_thin_unet, b: C.f1_thin_model, x0: AX_X + 360, x1: AX_X + 526 }
+    ];
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 82,
+      screen: { mode: "stipple", cell: 5, angle: 0, gamma: 1.08, floor: 0.05 },
+      edges: { threshold: 24, width: 1.2, alpha: 0.75, dx: 0.8, dy: -0.7 },
+      draw: function (a) {
+        // ABOVE the cut, flat ground for the type. BELOW it, 3 m of pavement at 20 degrees under
+        // the deck's low sun, with ONE long raking shadow rather than a comb of light bands. A
+        // comb gave the frame eight equal stripes and no mass.
+        a.fillStyle = "#050505"; a.fillRect(0, 0, W, H);
+        a.fillStyle = "#8E8E8E"; a.fillRect(0, CUT, W, H - CUT);
+        a.save();
+        a.beginPath(); a.rect(0, CUT, W, H - CUT); a.clip();
+
+        // THE RAKE IS A FALLOFF, NOT A WEDGE. A hard shadow edge across the mat read as a
+        // scratch, and it also cut the lit pavement into two pieces, which is how a frame ends
+        // up with its largest silhouette holding a third of its own subject. One smooth fall
+        // away from the low sun leaves the road one surface and the plate the one mass on it.
+        var rake = a.createLinearGradient(0, CUT, 640, H);
+        rake.addColorStop(0, "rgba(255,255,255,0.12)");
+        rake.addColorStop(0.55, "rgba(0,0,0,0.10)");
+        rake.addColorStop(1, "rgba(0,0,0,0.30)");
+        a.fillStyle = rake; a.fillRect(0, CUT, W, H - CUT);
+
+        // the aggregate, drawn as stones in light order so the stipple has something to count
+        for (var i = 0; i < 1700; i++) {
+          var x = R() * W, y = CUT + R() * (H - CUT), rr = 3 + R() * 9;
+          a.beginPath();
+          for (var j = 0; j < 6; j++) {
+            var ang = j / 6 * Math.PI * 2 + R() * 0.4, rad = rr * (0.7 + R() * 0.5);
+            j ? a.lineTo(x + Math.cos(ang) * rad, y + Math.sin(ang) * rad)
+              : a.moveTo(x + Math.cos(ang) * rad, y + Math.sin(ang) * rad);
+          }
+          a.closePath();
+          a.fillStyle = "rgba(255,255,255,0.10)"; a.fill();
+          a.beginPath(); a.arc(x - rr * 0.3, y - rr * 0.28, rr * 0.34, 0, Math.PI * 2);
+          a.fillStyle = "rgba(255,255,255,0.22)"; a.fill();
+        }
+
+        // THE HAIRLINE CRACK, the thinnest drawn element in the deck, with its own lit lip on
+        // the sun side so it is a body rather than a line.
+        var pts = [];
+        for (var t = 0; t <= 1.0001; t += 1 / 40) {
+          pts.push([-40 + t * 1160, 1062 + Math.sin(t * 7.3) * 48 + (R() - 0.5) * 14 + t * 126]);
+        }
+        a.lineJoin = "round"; a.lineCap = "round";
+        // THE LIP IS A HAIRLINE AND THE CRACK IS THE BODY. The first build had a 5 px lip over
+        // a 3.6 px floor, so at 432 px the whole thing read as a chalk line or a dry creek.
+        a.strokeStyle = "#D6D6D6"; a.lineWidth = 1.8;
+        a.beginPath(); a.moveTo(pts[0][0], pts[0][1] - 3.8);
+        for (var q = 1; q < pts.length; q++) a.lineTo(pts[q][0], pts[q][1] - 3.8);
+        a.stroke();
+        a.strokeStyle = "#121212"; a.lineWidth = 5.4;
+        a.beginPath(); a.moveTo(pts[0][0], pts[0][1]);
+        for (var q2 = 1; q2 < pts.length; q2++) a.lineTo(pts[q2][0], pts[q2][1]);
+        a.stroke();
+        a.restore();
+
+        // the cut itself, one straight horizontal value break with a hard lit edge on it
+        a.strokeStyle = "#E8E8E8"; a.lineWidth = 2.6;
+        a.beginPath(); a.moveTo(0, CUT); a.lineTo(W, CUT); a.stroke();
+      },
+      over: function (c) {
+        // THE SCREEN STOPS AT THE CUT. The stipple was running the full height, so the type
+        // band came out as a starfield with a screen under the headline, which the reserve rule
+        // forbids outright and which reads as a night sky on a frame about asphalt.
+        TXINK.reserve(c, { ground: "#161310", top: 552, topSolid: 545, bottom: 150, bottomSolid: 120 });
+        // THE PLATE, and its own cast on the road under it
+        c.save();
+        // a two part contact, a crisp core along the near edges and a softening body outboard
+        var body = c.createLinearGradient(PL.x, PL.y + PL.h, PL.x + 40, PL.y + PL.h + 30);
+        body.addColorStop(0, "rgba(0,0,0,0.42)"); body.addColorStop(1, "rgba(0,0,0,0)");
+        c.fillStyle = body; c.fillRect(PL.x - 14, PL.y - 10, PL.w + 42, PL.h + 40);
+        c.fillStyle = "rgba(6,6,6,0.86)";
+        c.fillRect(PL.x + 9, PL.y + 11, PL.w, PL.h);
+        // THE PLATE IS NOT THE PAGE COLOUR, and the measurement is why. A stipple screen on a dark
+        // register leaves most of a field as ground between the dots, so a screened road is not a
+        // mass at all. The plate is the only solid thing in the rect, and painting it in the page
+        // colour made it invisible to the silhouette measure, which then saw nothing but the
+        // road's own dots and called the frame dust. One step lighter and it is a card on a road.
+        c.fillStyle = "#E4D8C3"; c.fillRect(PL.x, PL.y, PL.w, PL.h);
+        c.strokeStyle = "#161310"; c.lineWidth = 1.6;
+        c.strokeRect(PL.x + 7, PL.y + 7, PL.w - 14, PL.h - 14);
+        // THE CHART. Two segments, a drawn zero, four endpoints. No bar, no dial, no fill.
+        c.strokeStyle = "#6B5B48"; c.lineWidth = 1.4;
+        c.beginPath(); c.moveTo(AX_X, AX_TOP - 18); c.lineTo(AX_X, AX_BOT); c.stroke();   // the y axis
+        c.strokeStyle = "#161310"; c.lineWidth = 2.4;
+        c.beginPath(); c.moveTo(AX_X - 14, AX_BOT); c.lineTo(AX_X + AX_W, AX_BOT); c.stroke(); // ZERO
+        c.strokeStyle = "rgba(22,19,16,0.40)"; c.lineWidth = 1.0; c.setLineDash([5, 6]);
+        c.beginPath(); c.moveTo(AX_X, AX_TOP); c.lineTo(AX_X + AX_W, AX_TOP); c.stroke();      // 1.0
+        c.setLineDash([]);
+        series.forEach(function (s) {
+          var y0 = yFor(s.a), y1 = yFor(s.b);
+          c.strokeStyle = "#161310"; c.lineWidth = 3.4;
+          c.beginPath(); c.moveTo(s.x0, y0); c.lineTo(s.x1, y1); c.stroke();
+          c.fillStyle = "#161310";
+          [[s.x0, y0], [s.x1, y1]].forEach(function (p) {
+            c.beginPath(); c.arc(p[0], p[1], 6.5, 0, Math.PI * 2); c.fill();
+          });
+        });
+        c.restore();
+      }
+    });
+
+    // the axis labels and the four figures, in the DOM so the platform and the gates can read
+    // them, each placed from the same mapping the plot used
+    var mk = function (cls, txt, x, y, align) {
+      var d = document.createElement("div"); d.className = cls; d.textContent = txt;
+      d.style.left = x + "px"; d.style.top = y + "px";
+      if (align) { d.style.transform = "translateX(-100%)"; }
+      document.body.appendChild(d); return d;
+    };
+    mk("ax", "1.0", AX_X - 22, AX_TOP - 17, true);
+    mk("ax", "0", AX_X - 22, AX_BOT - 17, true);
+    series.forEach(function (s) {
+      mk("ax sm", "U-NET", s.x0 - 26, yFor(s.a) + 14);
+      mk("ax", s.a, s.x0 - 26, yFor(s.a) + 42);
+      // BOTH UPPER LABELS SIT BELOW THEIR OWN POINT, NOT ABOVE IT. Above the point, the
+      // 0.780 pair's first line landed on the 1.0 gridline with dashes running out of both
+      // sides of it, and at 432 px the eye reads one line, "1.0 - - - THIS MODEL". A reader
+      // takes away a published F1 score restated as a perfect score, which is the one kind of
+      // defect worse than a figure nobody can read.
+      mk("ax sm", "THIS MODEL", s.x1 - 56, yFor(s.b) + 14);
+      mk("ax", s.b, s.x1 - 56, yFor(s.b) + 42);
+      mk("ax sm", s.lab, s.x0 - 26, AX_BOT + 16);
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>
