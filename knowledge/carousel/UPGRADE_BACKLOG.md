@@ -1764,3 +1764,14 @@ set and is therefore correct by construction, and the gate still demands a decla
 `aggregates.json` naming the claim ids. Two figures the deck did not choose have to be hand
 declared every run. Either `sources_block.py` should emit its own declarations, or the gate should
 recognise a phrase it wrote itself.
+
+**`aggregate_check` and `numeral_trace` disagree about an axis label, and neither is wrong.** Frame
+8 of carousel no. 22 prints `1.0` and `0` as the bounds of a zero anchored axis. `numeral_trace`
+authorised them, because their digits occur in the evidence of the claims the frame cites. An
+integrity judge counted them as printed numerals tracing to nothing, which is the better reading:
+they are properties of the MEASURE, F1 being a harmonic mean of two proportions and bounded at 1,
+rather than figures read off a page. The run tried to declare them in `aggregates.json` and the gate
+refused, because it does not read a bare axis label as a numeric phrase on a slide and a declaration
+no slide says is a declaration left to be reused. So the honest disposition, an axis bound declared
+as definitional, is the one thing the two gates between them cannot express. One `kind: "bound"` in
+`aggregates.json` that is allowed to have no matching phrase would close it.
