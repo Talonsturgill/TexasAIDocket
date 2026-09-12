@@ -362,6 +362,28 @@ def home_css() -> str:
   font-size:clamp(.72rem,1.15vw,.9rem); font-weight:500; line-height:1.25;
   letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
 
+/* One complete, attributed headline. A fixed ticker or ellipsis can hide the actual story. */
+.home .hero .news-chip { display:grid; grid-template-columns:1fr auto; gap:.38rem .85rem;
+  padding:.8rem 1rem; border-radius:.6rem; text-transform:none; letter-spacing:normal;
+  text-align:left; min-height:44px; width:fit-content; color:var(--ink-bright);
+  background:var(--surface); box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent);
+  transition:border-color .18s,background .18s; }
+.home .news-chip[hidden] { display:none; }
+.home .news-chip .news-label { font:500 .66rem/1.3 var(--mono); color:var(--accent);
+  letter-spacing:.12em; text-transform:uppercase; }
+.home .news-chip .news-meta { display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
+.home .news-chip .news-meta::before,.home .news-chip .news-label::before,
+.home .news-chip::after { content:none; }
+.home .news-chip .news-title { grid-column:1; font:500 var(--s0)/1.4 var(--body);
+  font-style:normal; overflow-wrap:anywhere; max-width:70ch; }
+.home .news-chip .news-source { font:400 var(--s-2)/1.3 var(--mono);
+  font-style:normal; color:var(--ink-mute); }
+.home .news-chip .news-arrow { grid-column:2; grid-row:1/3; align-self:center; color:var(--accent); }
+.home .news-chip:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+@media (hover:hover) and (pointer:fine) {
+  .home .news-chip:hover { border-color:var(--accent); background:var(--raised); }
+}
+
 /* The computed door count is a route now, not only a readout. */
 a.stat { display:block; color:inherit; text-decoration:none; border-radius:.35rem;
   padding:.45rem .55rem; margin:-.45rem -.55rem;
