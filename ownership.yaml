@@ -32,6 +32,7 @@ actors:
   gridwatch: The ERCOT Grid Watch collector. Runs on cron, never as a routine phase.
   ask:       The ask box's archive lane routine. Fires on API trigger.
   dispatch:  The video routine, which lives in TexasAIDispatch and reaches in for one file.
+  news:      The deterministic headline collector. May update its snapshot and rebuild the site.
   human:     A maintainer session. Owns anything an unattended run must never rewrite.
 
 # WHY `daily` AND NOT `docket` PLUS `carousel` (2026-08-12)
@@ -53,6 +54,7 @@ actors:
 branch_actors:
   "claude/daily-":    daily
   "claude/dispatch-": dispatch
+  "news/":            news
   "gridwatch/":       gridwatch
   "claude/ask-":      ask
   "claude/upgrade-":  upgrade
@@ -99,6 +101,10 @@ rules:
   # something unlisted is doing something nobody designed, and should stop and say so.
   - path: "**"
     owner: human
+
+  - path: "ledger/news/latest.json"
+    owner: news
+    note: The current news selection and its source metadata, never Docket decisions.
 
   # ---------------------------------------------------------------- the constitution
   # No automation edits its own law, its own ownership map, or its own permissions.
@@ -493,7 +499,7 @@ rules:
   - path: "docs/**"
     owner: human
     generated: true
-    rebuild_by: [daily, gridwatch, human, dispatch]
+    rebuild_by: [daily, gridwatch, news, human, dispatch]
     note: >
       A pure deterministic function of the ledgers. site_fresh_check.py rebuilds into a temp
       dir and proves byte equality, which is what makes it impossible for a run to corrupt

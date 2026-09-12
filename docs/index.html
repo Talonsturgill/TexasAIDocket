@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-RHe8XmKRt0WBqASXH/2GFhgBHxunx8IFEJcYrZhzc6c=' 'sha256-g/qng8VBBDriv/+lSn+3P4ej3KgGTfNe2R3ntC5W7sw=' 'sha256-qiugxgbNJQyVlTI1yl2YTjVeovhYKdu6iuFdN1D4hDA=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-uoYPS0fxnKDMWnQx3jC+086vDdR5XRTMeLYlY/fuQdI=' 'sha256-F69eKyZ3zp6lzZwi6fZZw4s314xttjYQRVolWPEYGvA=' 'sha256-RHe8XmKRt0WBqASXH/2GFhgBHxunx8IFEJcYrZhzc6c=' 'sha256-g/qng8VBBDriv/+lSn+3P4ej3KgGTfNe2R3ntC5W7sw=' 'sha256-qiugxgbNJQyVlTI1yl2YTjVeovhYKdu6iuFdN1D4hDA=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
 <link rel="stylesheet" href="site.css?v=6d29a87ae4">
-<link rel="stylesheet" href="home.css?v=398a790245">
+<link rel="stylesheet" href="home.css?v=bc11d6167a">
 <link rel="stylesheet" href="voice-input.css?v=449e0422ec22">
 <script defer src="voice-input.js?v=449e0422ec22"></script>
 <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
@@ -44,7 +44,15 @@
 <main id="main" class="wrap">
 
 <section class="hero rise">
-  <div class="tele" data-proper-name="US Drought Monitor">US Drought Monitor<span>74% of Texas in drought on September 8th</span><span>normal is 39</span></div>
+  <a class="tele news-chip" href="https://cbs4local.com/newsletter-daily/txdot-launches-project-nexus-to-prepare-texas-skies-for-future-air-taxis" target="_blank" rel="noopener noreferrer" data-expires-at="2026-09-12T14:00:00Z" title="Selected from recent Texas tech and AI coverage, ranked by coverage and freshness. Discovery by The GDELT Project and publisher RSS. The source headline opens in a new tab."><span class="news-meta"><span class="news-label">Top story</span><cite class="news-source">CBS4</cite></span><cite class="news-title">TxDOT launches Project Nexus to prepare Texas skies for future air taxis</cite><svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg></a><script>(function(){
+  var chip=document.querySelector('.news-chip');
+  if(!chip)return;
+  var expires=Date.parse(chip.dataset.expiresAt);
+  function retire(){if(!Number.isFinite(expires)||Date.now()>=expires)chip.hidden=true;}
+  retire();
+  if(expires>Date.now())setTimeout(retire,Math.min(expires-Date.now()+100,2147483647));
+  document.addEventListener('visibilitychange',retire);
+})();</script>
   <h1>AI is coming <em>South</em>.</h1>
   <p class="herolede">Every AI decision in Texas and the source behind it.</p>
   <div class="ctarow">
