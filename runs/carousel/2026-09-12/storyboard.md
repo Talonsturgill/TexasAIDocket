@@ -316,8 +316,8 @@ art:
     money sentence.
 type:
   hook: "Seventy is where good begins."
-  dek: 'The agency defines it as "a combined index of ride quality and pavement surface distress."'
-  labels: ["THE SCORE", "02 / 09", "PAVEMENT CONDITION SCORE", "GOOD OR BETTER", "c8 c9 c10 c11   TEXAS AI DOCKET", "texasaidocket.com"]
+  dek: 'The agency defines it as "a combined index of ride quality and pavement surface distress", adjusted for traffic and speed.'
+  labels: ["THE SCORE", "02 / 09", "PAVEMENT CONDITION SCORE", "GOOD OR BETTER", "c8 c9 c10   TEXAS AI DOCKET", "texasaidocket.com"]
 verbatim:
   - c8: "a combined index of ride quality and pavement surface distress"
   - c10: "Tracking pavement quality helps TxDOT identify roads in need of repair and plan funding"
@@ -388,7 +388,7 @@ art:
     Hook, down to the boom, along the roof line to the left, down the flank to the figure.
 type:
   hook: "TxDOT handed over a van."
-  dek: 'The university''s release lists what prepared the data. An automated 2D/3D pavement laser scanner, and "a TxDOT-donated mobile research van."'
+  dek: 'The university''s release lists what prepared the data. An automated 2D/3D pavement laser scanner, and "a TxDOT-donated mobile research van".'
   labels: ["THE EQUIPMENT", "Ingram School of Engineering", "THE RELEASE LISTS THE SCANNER AND THE VAN SEPARATELY", "03 / 09", "c1 c3 c5   TEXAS AI DOCKET", "texasaidocket.com"]
 verbatim:
   - c5: "a TxDOT-donated mobile research van"
@@ -512,8 +512,8 @@ art:
     break line at its end.
 type:
   hook: "The old rating read a sample."
-  dek: 'Manual collection happened at "a sampled portion of the pavement section." The university describes the new reading as "pixel-level detection of pavement damage."'
-  labels: ["THE EXTENT", "05 / 09", "SAMPLED PORTION", "PIXEL LEVEL, CONTINUOUS", "c1 c15   TEXAS AI DOCKET", "texasaidocket.com"]
+  dek: 'Manual collection happened at "a sampled portion of the pavement section". The university describes the new reading as "pixel-level detection of pavement damage".'
+  labels: ["THE EXTENT", "05 / 09", "SAMPLED PORTION", "PIXEL LEVEL", "c1 c15   TEXAS AI DOCKET", "texasaidocket.com"]
 verbatim:
   - c15: "a sampled portion of the pavement section"
   - c1: "pixel-level detection of pavement damage"
@@ -577,7 +577,7 @@ art:
     attribution.
 type:
   hook: "OFTEN SUBJECTIVE AND COSTLY"
-  dek: 'Wang describes the purpose as reducing reliance on traditional human inspection. He calls that inspection "often subjective and costly."'
+  dek: 'Wang describes the purpose as reducing reliance on traditional human inspection. The four words below are his.'
   labels: ["THE ARGUMENT", "06 / 09", "FENG WANG, TEXAS STATE UNIVERSITY", "c4   TEXAS AI DOCKET", "texasaidocket.com"]
 verbatim:
   - c4: "often subjective and costly"
@@ -785,7 +785,7 @@ type:
   hook: "The score still aims the money."
   dek: 'The release names three next steps and dates none of them.'
   labels: ["THE STAKE", "TEXAS TRANSPORTATION COMMISSION", "09 / 09", "c7 c10 c23 c24 c25 c26   TEXAS AI DOCKET", "texasaidocket.com"]
-  mono_foot: "Meets September 24th in Austin, open to the public. No agenda is posted for any of the four meetings left this year."
+  mono_foot: 'The commission meets September 24th in Austin, open to the public. Agendas post eight days ahead and none of the four left this year has one.'
 verbatim: []
 acceptance:
   - "no string on the frame states or implies that this project is on any agenda, and no drawn room, dais or seat appears anywhere"
