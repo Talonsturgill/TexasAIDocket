@@ -1,9 +1,9 @@
 {
   "_spec": 1,
-  "checked_at": "2026-09-12T16:24:38Z",
+  "checked_at": "2026-09-12T21:32:20Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911162403&enddatetime=20260912162403",
-  "response_sha256": "4e6885c3d4eb6dc37160240af0b286d38b7b9a6909cf3941324cab1b95d943d0",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911213050&enddatetime=20260912213050",
+  "response_sha256": "69127d6f1510572071614ead5d3238ebe7284f79ebb7f4b67ed46bb96bf0d240",
   "articles": [
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
@@ -37,15 +37,13 @@
     "first_seen_at": "2026-09-11T21:30:00Z",
     "publisher": "CultureMap",
     "coverage": 1,
-    "score": 0.579171
+    "score": 0.499439
   },
   "expires_at": "2026-09-13T09:30:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911162403&enddatetime=20260912162403",
-      "status": "ok",
-      "items": 171,
-      "sha256": "ac9ccd57a4cb706c0befb8c41664a06a4e53ce8bf60aa3dcbc2d71d0586c937f"
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911213050&enddatetime=20260912213050",
+      "status": "unavailable"
     },
     {
       "url": "https://dallasinnovates.com/feed/",
