@@ -1,9 +1,9 @@
 {
   "_spec": 1,
-  "checked_at": "2026-09-12T05:59:57Z",
+  "checked_at": "2026-09-12T11:41:23Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911055928&enddatetime=20260912055928",
-  "response_sha256": "8ad197e47fc0776b2c37fe467ed6ef3c522007b8545fb01f29633e96c347277e",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911114045&enddatetime=20260912114045",
+  "response_sha256": "13621ec63e2063a959997c483c83bde1048311102b582f3af7107e5dd6bc3924",
   "articles": [
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
@@ -37,15 +37,15 @@
     "first_seen_at": "2026-09-11T02:00:00Z",
     "publisher": "CBS4",
     "coverage": 2,
-    "score": 0.89092
+    "score": 0.755897
   },
   "expires_at": "2026-09-12T14:00:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911055928&enddatetime=20260912055928",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260911114045&enddatetime=20260912114045",
       "status": "ok",
-      "items": 182,
-      "sha256": "7495ad2492aeb1831a2562bb6da4f948da1ec7cc7e514a81b2254d5d8c7cfcd7"
+      "items": 164,
+      "sha256": "1af6680fc830e167e640ff33d20eee6dd302812499510d8b007d0dba3d313282"
     },
     {
       "url": "https://dallasinnovates.com/feed/",
