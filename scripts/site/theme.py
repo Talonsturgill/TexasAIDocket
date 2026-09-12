@@ -2370,6 +2370,15 @@ nav.main a[aria-current]::after {{ right:0; }}
    it and a docket title is a long sentence that would become a wall at this size. */
 .hero h1 {{ font-size:clamp(3rem,9.2vw,7.6rem); line-height:1; letter-spacing:-.03em;
   max-width:22ch; margin:0; text-wrap:balance; }}
+/* THE HEADLINE OWNS THE FIELD LEFT OF THE STAR, NOT THE STAR'S BOX. The shorter campaign line
+   grew to the full hero measure and its layout box crossed the Lone Star from 896 through 1440px,
+   even though the visible glyphs only grazed it. Reserve the mark's measured width plus a real
+   gutter on widths where it uses the large treatment. Below 42rem the mark moves into the band
+   vacated by the scrolling nav, so shrinking the phone headline would solve a collision that does
+   not exist. `min()` keeps the reservation proportional until the star reaches its desktop cap. */
+@media (min-width:42.01rem) {{
+  .home .hero h1 {{ max-width:calc(100% - min(25vw,240px)); }}
+}}
 /* The one word that carries the argument, in the accent. `em` because the emphasis is real
    rather than decorative, so it survives with styles off and reads correctly aloud. */
 .hero h1 em {{ font-style:normal; color:var(--accent); }}
