@@ -16403,7 +16403,7 @@
    "id": "tx-2026-0147",
    "last_verified": "2026-09-12",
    "confidence": "high",
-   "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.",
+   "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
    "history": [
     {
      "date": "2026-09-12",
@@ -16430,7 +16430,7 @@
     },
     {
      "text": "The meeting is set for September 15th, 2026 at 9:00 AM and the agenda is final.",
-     "verbatim_quote": "Meeting date/time: 9/15/2026 9:00 AM",
+     "verbatim_quote": "Agenda status: Final Meeting date/time: 9/15/2026 9:00 AM",
      "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
      "source_type": "primary_official",
      "retrieved_at": "2026-09-12",
@@ -16534,7 +16534,7 @@
    "id": "tx-2026-0149",
    "last_verified": "2026-09-12",
    "confidence": "high",
-   "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.",
+   "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.\n\ntx-2026-0149-c3's quote named only the awardee while the claim asserted the performing city, which a code review caught on 2026-09-12. The city is load bearing, because it is what places this item in Brazos County, so the quote now carries the NSF API's own contiguous perfCity run. It is quoted as JSON rather than prose because that is the form the document is served in.",
    "history": [
     {
      "date": "2026-09-12",
@@ -16560,8 +16560,8 @@
      "id": "tx-2026-0149-c2"
     },
     {
-     "text": "The award goes to the Texas A&M Engineering Experiment Station, performing in College Station.",
-     "verbatim_quote": "Texas A&M Engineering Experiment Station",
+     "text": "The award goes to the Texas A&M Engineering Experiment Station and performs in College Station, Texas.",
+     "verbatim_quote": "\"perfCity\":\"COLLEGE STATION\",\"perfCountryCode\":\"US\",\"perfDistrict\":\"10\",\"perfDistrictCode\":\"TX10\",\"perfLocation\":\"Texas A&M Engineering Experiment Station\",\"perfStateCode\":\"TX\"",
      "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode",
      "source_type": "primary_official",
      "retrieved_at": "2026-09-12",

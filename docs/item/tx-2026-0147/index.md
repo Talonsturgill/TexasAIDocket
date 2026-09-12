@@ -41,7 +41,7 @@ Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?I
 
 ### The meeting is set for September 15th, 2026 at 9:00 AM and the agenda is final.
 
-> Meeting date/time: 9/15/2026 9:00 AM
+> Agenda status: Final Meeting date/time: 9/15/2026 9:00 AM
 
 Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 

@@ -9151,7 +9151,7 @@ Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?I
 
 ### The meeting is set for September 15th, 2026 at 9:00 AM and the agenda is final.
 
-> Meeting date/time: 9/15/2026 9:00 AM
+> Agenda status: Final Meeting date/time: 9/15/2026 9:00 AM
 
 Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
@@ -9240,9 +9240,9 @@ Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=264008
 
 Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 
-### The award goes to the Texas A&M Engineering Experiment Station, performing in College Station.
+### The award goes to the Texas A&M Engineering Experiment Station and performs in College Station, Texas.
 
-> Texas A&M Engineering Experiment Station
+> "perfCity":"COLLEGE STATION","perfCountryCode":"US","perfDistrict":"10","perfDistrictCode":"TX10","perfLocation":"Texas A&M Engineering Experiment Station","perfStateCode":"TX"
 
 Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 

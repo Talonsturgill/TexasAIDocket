@@ -40,9 +40,9 @@ Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=264008
 
 Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 
-### The award goes to the Texas A&M Engineering Experiment Station, performing in College Station.
+### The award goes to the Texas A&M Engineering Experiment Station and performs in College Station, Texas.
 
-> Texas A&M Engineering Experiment Station
+> "perfCity":"COLLEGE STATION","perfCountryCode":"US","perfDistrict":"10","perfDistrictCode":"TX10","perfLocation":"Texas A&M Engineering Experiment Station","perfStateCode":"TX"
 
 Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 

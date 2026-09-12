@@ -681,8 +681,18 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
         # copy anywhere, so notes run long: embedding one produced answers of 33 words against
         # a 30 word backstop. The kind is short, always present and always true, and the note
         # itself is on the item page where a reader who wants the detail already is.
+        # AND NO ARTICLE HERE EITHER, FOR THE REASON SPELLED OUT TWELVE LINES DOWN. That fix was
+        # made on the PAST branch and not on this one, so the same vocabulary that produced "was
+        # a ordered" there produced "A expires is set for August 31st" here, on tx-2026-0149's
+        # published page and in its JSON-LD FAQ. A code review caught it on 2026-09-12.
+        #
+        # The two branches read the same `kind` out of the same DATE_KINDS vocabulary, so a
+        # repair to one of them was never going to be right for one and wrong for the other.
+        # Phrased as the sibling is, the sentence reads for a noun and for a participle alike:
+        # "The next dated step is expires, on August 31st" is flat but true, where the article
+        # was ungrammatical.
         add(f"{t}. What happens next?",
-            f"A {k.get('kind', 'step').replace('_', ' ')} is set for "
+            f"The next dated step is {k.get('kind', 'a step').replace('_', ' ')}, on "
             f"{ctx.ordinal(d)}, {when}.")
     elif ds:
         d, k = ds[-1]
