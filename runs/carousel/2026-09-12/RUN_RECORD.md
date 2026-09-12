@@ -187,7 +187,7 @@ catch.
 | labels         | PASS   | 24 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 95 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 8 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
-| dossiers       | PASS   | 54,981 chars planned |
+| dossiers       | PASS   | 55,071 chars planned |
 | caption        | PASS   | 156 words |
 | craft floor    | PASS   | 9 frame(s), median 3192, floor 575 |
 | plan vs render | WARN   | 0 of 47 acceptance item(s) checkable |
@@ -508,3 +508,42 @@ So the rebuilt faces are committed on their own, stamped `TXDOCKET_ACTOR=human`,
 for exactly this case. Nothing else is in that commit. The range that produced them is in
 `scripts/site/fonts_build.py`, which is `daily` lane and is in the ordinary commit beside it, so
 the DECISION is reviewable in the lane that made it and only the built artifact crossed over.
+
+## A PROPOSAL THIS RUN MAY NOT MAKE: FOUR CRON WORKFLOWS DO NOT STAMP THEIR LANE
+
+**`gates` went red on this PR for a commit that is not on this branch.** CI checks out the PR's
+MERGE ref, so the ownership range carries whatever landed on `main` after the pull request opened.
+What landed was `af599338b`, "datacenters: registry reading", written by `texas-ai-docket-bot`
+from the datacenters cron. It writes `ledger/gridwatch/datacenters.json`, its `.jsonl` and a raw
+snapshot, all of which belong to `gridwatch`.
+
+**It carries no `Actor:` trailer.** With nothing stamped, `resolve_actor()` falls back to the
+branch, the branch in CI is `claude/daily-2026-09-12`, and a gridwatch write is judged as `daily`
+and refused. The commit is correct and the lane it wrote is its own. The only thing missing is the
+line that says so.
+
+    .github/workflows/news.yml         git commit -m "news: ..." -m "Actor: news"      STAMPED
+    .github/workflows/datacenters.yml  git commit -m "datacenters: registry reading"   NOT
+    .github/workflows/generators.yml   git commit -q -m "generators: EIA-860M reading" NOT
+    .github/workflows/gridwatch.yml    git commit -q -m "gridwatch: ERCOT settled ..." NOT
+    .github/workflows/queuewatch.yml   git commit -m "queuewatch: large load reading"  NOT
+
+One of five does it. The fix is the second `-m` on the other four, and `news.yml` is the worked
+example sitting in the same directory.
+
+**THE COST IS NOT THIS RUN, IT IS EVERY RUN.** Any cron reading that lands on `main` while a
+`claude/daily-*` pull request is open turns that pull request's ownership check red, for a commit
+its author never made and cannot fix. It is a race, so it fails intermittently, which is the worst
+way for a gate to be wrong.
+
+**This run may not make the fix and did not.** `ownership.yaml` puts `.github/workflows/**` in the
+`human` lane and states the reason in as many words: *"A run that can edit its own CI can switch
+off the gate that judges it. Workflow changes go through a maintainer session."* That is a
+stronger boundary than the font subset this run did cross, and it is the one boundary a routine
+has the clearest interest in crossing, which is exactly why it holds. So this is written down and
+left, per the map's own instruction for an out-of-lane upgrade.
+
+**What this run did instead** is merge `main` into the branch, which is worth doing on its own
+terms and also moves the pull request's base past the offending commit, so the next CI event
+judges a range that no longer contains it. That clears the symptom for this run and nothing else.
+A maintainer adding four lines clears it for good.

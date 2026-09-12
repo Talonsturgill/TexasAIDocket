@@ -92,9 +92,15 @@ def main() -> int:
         return 2
     report = json.loads(rp.read_text(encoding="utf-8"))
     slides = collect(report)
+    # THE TITLE, BECAUSE WITHOUT IT THE ARTICLE PAGE IS CALLED AFTER ITS DIRECTORY.
+    # `site_context.load_runs` reads `document_title` then `title` then falls back to the run
+    # date, and this manifest carried neither, so the September 12th article shipped with
+    # "2026-09-12" as its h1, its browser title, its Open Graph title, its breadcrumb and its
+    # NewsArticle.headline. A code review caught it. The name is the story's, not the day's.
     doc = {
         "run": "2026-09-12",
         "deck": 22,
+        "document_title": "Texas State University's AI pavement inspection method",
         "note": ("Derived from render_report.json's own laid-out text nodes by build_copy.py. "
                  "Never authored by hand, so it cannot drift from the frames. "
                  "Rebuilt every round."),
