@@ -1,0 +1,186 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 2 of 9. Archetype DOCUMENT.
+     What the pen was writing. The score is a thing the agency publishes a definition for, and
+     the sentence about money under it is the agency's own words rather than this deck's reading
+     of them. The page's own typography IS the image here, which is what the archetype means.
+     No granite on this frame. No person is in it, only what a person writes. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* Every piece of type below sits ON the drawn sheet, so it is cut from the page colour. */
+  .shead { position:absolute; left:128px; top:280px; font-family:"JetBrains Mono", monospace;
+           font-size:24px; letter-spacing:0.09em; color:#3A322A; }
+  .hook { position:absolute; left:128px; top:348px; width:820px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:104px; line-height:0.99; letter-spacing:-0.024em; color:#161310; font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:128px; top:578px; width:800px; font-size:26px; line-height:1.42; color:#332B23; }
+  .big { position:absolute; left:128px; top:734px; font-family:"JetBrains Mono", monospace; font-weight:700;
+         font-size:96px; line-height:1.0; letter-spacing:-0.02em; color:#161310;
+         font-variant-numeric:tabular-nums; font-feature-settings:"tnum" 1; }
+  .biglab { position:absolute; left:128px; top:854px; font-family:"JetBrains Mono", monospace;
+            font-size:26px; letter-spacing:0.1em; color:#3A322A; }
+  .rowlab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+            line-height:32px; letter-spacing:0.09em; color:#4A4036; }
+  /* line-height EQUALS the rule pitch, so every line of type sits centred inside a ruled band
+     and no rule crosses a glyph. The smoke test that failed a struck through source line is
+     the reason this is solved by construction rather than checked afterwards. */
+  .cell { position:absolute; font-size:24px; line-height:34px; color:#241E19; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="shead">PAVEMENT CONDITION SCORE</div>
+<h1 class="hook" id="hook" data-role="hook">Seventy is where good begins.</h1>
+<p class="dek" data-role="dek">The agency defines it as "a combined index of ride quality and pavement surface distress", adjusted for traffic and speed.</p>
+<div class="big" id="big"></div>
+<div class="biglab">OR ABOVE IS GOOD OR BETTER</div>
+<div class="cell" style="left:128px; top:990px; width:800px;">"Tracking pavement quality helps TxDOT identify roads in need of repair and plan funding for their maintenance and rehabilitation."</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The score", kicker2: "",
+      counter: C.counters[1], src: "c8 c9 c10   TEXAS AI DOCKET", ink: "#96876E" });
+    // The one figure on the frame is lifted out of c9's own sentence by compute.py and is never
+    // typed here. numeral_lint reads this string back out of the DOM.
+    document.getElementById("big").textContent = C.good_score;
+    // The hook has to be the largest live type on the frame. build_copy.py derives the record
+    // from what the page LAID OUT, and at 132 px the threshold figure outranked the headline,
+    // so the deck's own copy record called this frame's hook "70".
+    TX.fitText(document.getElementById("hook"), { min: 100, max: 104, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+
+    var SX = 76, SR = 1004, SY = 232;         // the sheet, cut by the bottom edge
+    var ML = 128, MR = 952;                   // its own margins, which is what makes it a page
+    var PITCH = 22, ROWS = 11, ROW0 = 700;
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 22,
+      screen: { mode: "line", cell: 5, angle: 90, gamma: 1.10, floor: 0.04 },
+      edges: { threshold: 74, width: 1.5, alpha: 0.72, dx: 1.1, dy: -0.9 },
+      draw: function (a) {
+        // ONLY THE DESK IS PRINTED. The line screen exists for the desk and the sheet is laid
+        // over the finished print as a clean page, because a screen is a way of MAKING a tone
+        // and a sheet of paper has no tone to make. The first build printed the sheet too, and
+        // at cell 5 a near white field comes out of the line screen as fine vertical stripes
+        // across the whole page. qa.py read them, correctly, as art running through the
+        // letterforms of every mono label on the sheet.
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        a.fillStyle = "#242424"; a.fillRect(0, 0, W, H);
+        TXINK.hatchFill(a, [[0, 0], [W, 0], [W, H], [0, H]],
+                        { angle: 34, spacing: 9, width: 1.1, ink: "#464646", seed: 5, jitter: 1.6 });
+        TXINK.hatchFill(a, [[0, 0], [W, 0], [W, H], [0, H]],
+                        { angle: -52, spacing: 13, width: 0.9, ink: "#3A3A3A", seed: 6, jitter: 1.2 });
+        // the sheet's own cast on the desk, down and right of the declared light
+        var sh = "M " + (SX + 9) + " " + (SY + 11) + " L " + (SR + 9) + " " + (SY + 11)
+               + " L " + (SR + 9) + " " + (H + 30) + " L " + (SX + 9) + " " + (H + 30) + " Z";
+        a.fillStyle = "#060606"; a.fill(new Path2D(sh));
+      },
+      over: function (c) {
+        // THE SHEET, laid flat on the finished print. Its edge is wobbled so it is a cut page
+        // rather than a plate, and its fibre is specks rather than a screen.
+        var d = "M " + SX + " " + SY + " L " + SR + " " + SY + " L " + SR + " " + (H + 20)
+              + " L " + SX + " " + (H + 20) + " Z";
+        var w = new Path2D(TXINK.wobble(d, { amp: 1.6, freq: 0.02, seed: 12, step: 7 }));
+        c.save();
+        c.fillStyle = "#E4D8C3"; c.fill(w);
+        c.clip(w);
+        var r = TXINK.rng(707);
+        for (var i = 0; i < 5200; i++) {
+          var fx = SX + r() * (SR - SX), fy = SY + r() * (H - SY), v = r();
+          c.fillStyle = v < 0.55 ? "rgba(22,19,16,0.055)" : "rgba(255,255,255,0.07)";
+          c.fillRect(fx, fy, 1 + r() * 2.2, 1 + r() * 1.4);
+        }
+        // the rules, all of them hairlines in the page's own ink
+        c.strokeStyle = "#161310"; c.lineCap = "butt";
+        function rule(y, lw) {
+          c.lineWidth = lw; c.beginPath(); c.moveTo(ML, y); c.lineTo(MR, y); c.stroke();
+        }
+        rule(326, 2.2);                        // under the sheet head
+        rule(706, 2.2);                        // over the threshold figure
+        // THE ELEVEN ENTRY ROWS, in their own block to the right of the threshold figure and
+        // clear of every piece of type on the sheet.
+        c.lineWidth = 1.0;
+        for (var k = 0; k < ROWS; k++) {
+          var yy = ROW0 + k * PITCH;
+          c.beginPath(); c.moveTo(624, yy); c.lineTo(MR, yy); c.stroke();
+        }
+        c.lineWidth = 1.6;
+        c.beginPath(); c.moveTo(624, ROW0); c.lineTo(624, ROW0 + (ROWS - 1) * PITCH); c.stroke();
+        c.restore();
+        // THE KICKER SAT ON THE DESK'S LINE SCREEN and machine_qa flagged it twice. The top
+        // band is the furniture's and a screen has no business in it.
+        TXINK.reserve(c, { ground: "#161310", top: 206, topSolid: 176, bottom: 150, bottomSolid: 120 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -45,6 +45,11 @@ KIND_LABEL = {
     "comment_opens": "comment opens",
     "comment_closes": "comment closes",
     "statutory_deadline": "statutory deadline",
+    # ADDED 2026-09-12, the day the record admitted tx-2026-0149, a National Science Foundation
+    # award whose only forward date is the day the money runs out. Without a label here it would
+    # have reached a reader as the slug `expires`, which is what the guard above this map exists
+    # to stop. It is NOT actionable: an award ending is a thing that happens to somebody else.
+    "expires": "award expires",
 }
 
 # The kinds that are a DOOR rather than a record of something already done. A reader scanning a
@@ -281,12 +286,27 @@ def _self_test() -> int:
         # A WINDOW THAT HAS MOVED PAST THE WHOLE RECORD IS AN EMPTY CALENDAR, and an empty one
         # has to be a page that renders rather than a crash. The renderer returns nothing at
         # all for this, which is the honest output: there is no month to draw.
-        far = summarise(real, "2031-01-01")
+        # THE FAR DATE IS COMPUTED FROM THE RECORD, NEVER TYPED, for exactly the reason the
+        # quiet-month note below gives. It ran against a hardcoded 2031-01-01 until 2026-09-12,
+        # when the record admitted tx-2026-0149 with a key date of 2029-08-31, the day its award
+        # expires. That date sits inside the two-year window a 2031 today looks back over, so
+        # the calendar was correctly non-empty and a test asserting emptiness went red on
+        # correct data, twice, for the second time on this same file. A test that reads the live
+        # record may not hardcode a fact about the live record, and "past the end of the record"
+        # is a fact about the record.
+        _evs, _ = events(real)
+        _last = max(e["iso"] for e in _evs)
+        # The horizon is January 1st of the year two years before today, so a today that leaves
+        # the whole record behind is January 1st of the year AFTER that, which is the last
+        # event's year plus three. Derived from the same rule the horizon itself uses rather
+        # than from a date somebody picked that happened to be far enough away in 2026.
+        far_day = f"{int(_last[:4]) + 3:04d}-01-01"
+        far = summarise(real, far_day)
         ok("a window past the end of the record is empty rather than broken",
            far["n_events"] == 0 and far["month_keys"] == [] and far["older"] > 0,
-           f"n={far['n_events']} older={far['older']}")
+           f"today={far_day} n={far['n_events']} older={far['older']}")
         ok("...and it still reports today's month, so a caller has something to say",
-           far["current"] == "2031-01", far["current"])
+           far["current"] == far_day[:7], far["current"])
         # And inside the window, a today with no events of its own opens on the busiest month.
         #
         # THE QUIET MONTH IS FOUND, NEVER NAMED. This ran against a hardcoded 2026-10 until

@@ -1,0 +1,549 @@
+# Run record, September 12th, 2026
+
+Branch `claude/daily-2026-09-12`. One routine, two deliverables, the record first.
+
+## THE RECORD
+
+**The worklist was cleared in full and nothing was deferred.** `docket_staleness --today
+2026-09-12` named 99 of 127 items due, every one of them three days past a two day leash, with
+nothing rotten and nothing in DEFERRED. After the pass, `docket_staleness` reads 0 due today.
+
+`reverify.py --today 2026-09-12 --apply` did the bulk of it and did it for nothing: 178 urls
+behind 520 claims, 22 answered 304 and sent no body at all, and **68 items came back with every
+claim unchanged and were stamped with their movement line written.** It exited 1 and handed back
+31 items, which is the part worth a person's attention and is what the rest of this section is
+about.
+
+### What the fetcher could not settle, and what each one turned out to be
+
+The handback split three ways: one quote genuinely gone, 22 claims whose source did not answer,
+and 55 that the check says it cannot read and claims nothing about either way. Every one of the
+31 items was fetched again this run with a browser client that reads PDF and JSON as well as
+HTML, and the disposition below is what the page actually said rather than what the first pass
+could see.
+
+**18 items came back with every claim present**, once the fetch could read the document. The
+three things that had been in the way were a PDF with no extractor behind it, a JSON API whose
+smart apostrophe survived one encoding and not another, and a numbered list whose tab became a
+space. None of them was the record moving. San Angelo's three water ordinances, Killeen's
+agenda, the Armstrong County order with its twenty four claims, and the Somervell to Howard line
+all read exactly as the record holds them.
+
+**Four items rest on a page that only carries what is still ahead**, and their entry has rolled
+off it. The canceled Carson County meeting is off the agency's hearing list with no rescheduled
+date posted. The August 25th transportation hearing and both water and agriculture sittings are
+off the chamber's upcoming list. Brazos County's own notice of the RELLIS abatement assignment
+has rolled off its news page. Nothing about any of those decisions moved. What moved is the
+reader's way in, and each item's movement line says so plainly rather than reporting a fetch.
+
+**Two dockets keep growing and the record now says so with a dated count.** PUCT 59315 stands at
+5829 filings and 59029 at 514, both read this run. Each is added as a NEW claim rather than
+written over the old ones, because every earlier count was true on the day it was taken and the
+series is the thing that shows the docket is still live.
+
+**Two items rest on a university page that refuses this client.** `news.rice.edu` answered 406
+to every request for the Army antenna center and the Energy Department magnet award. Both items
+are still funded on the terms the record holds and both movement lines name what is therefore
+unconfirmed today, which is the wording of the university's own description.
+
+**`tx-2026-0027` is confirmed by its own 404.** The City of Taylor's notice of the amended Compal
+abatement is still gone from the page that carried it, which is what the item says, so the
+absence is the confirmation rather than a failure to confirm.
+
+### ONE THING MOVED, AND IT IS THE KIND OF THING THIS RECORD EXISTS FOR
+
+**The Motor Vehicle Crime Prevention Authority has taken its next board meeting off its page.**
+
+`tx-2026-0111` is the Governor's order pausing state agency funding for Flock plate reader
+cameras. The authority that wrote those grants is where a further grant would have to appear, so
+the item's public access pointed at the authority's own meetings page and its claim `c7` quoted
+the line that listed a board meeting for October 13th, 2026.
+
+That line is gone. The page's public meetings list now ends at a July 24th, 2026 board meeting,
+and the block that used to head the page with an upcoming date is commented out of the HTML
+behind a note saying no future meeting information is available. A reader opening that page today
+sees no future meeting at all.
+
+So `c7` now quotes what the page says, the October date is off the item's key dates, the public
+access note says there is no posted date on which a further grant could be taken up, and the
+summary says the authority listed the meeting and has since taken it down. **The pause itself is
+still in force and no agency has published a resumption**, which the six other claims on that
+item confirmed this run.
+
+This is the case for a two day leash on a decided item, made by the record rather than argued.
+Nobody announces a delisting.
+
+### Admitted
+
+Three, all on a document this run fetched, all naming where they land.
+
+- **`tx-2026-0147`, El Paso City Council posts two items to strip the police plate reader
+  cameras off city property and bar the next contract.** El Paso County, pending, and the only
+  one of the three a reader can act on. The council meets at 9:00 AM on September 15th and the
+  agenda is final. Item 25 would give the City Manager 60 days to remove every fixed camera from
+  city property and right of way. Item 26 would bar a further contract without a council vote and
+  give the City Attorney 30 days to draft the resolution. Source is the council's own agenda.
+- **`tx-2026-0148`, Energy Department funds a synthetic underground test pit at a Navasota
+  drilling site to prove out mining automation.** Grimes County, decided September 9th. The
+  department's announcement names Navasota as the project location, and Navasota is the Grimes
+  County seat. The university's Dallas headquarters is a decider address and is deliberately not
+  carried as a county.
+- **`tx-2026-0149`, Science foundation funds a Texas A&M engineering station to build AI digital
+  twins of small water systems.** Brazos County, decided September 9th, running to August 31st,
+  2029. The award record carries Artificial Intelligence among its programs and names no Texas
+  utility, so which water system's data this reaches is not stated.
+
+### Held, and why it is the right answer
+
+Nineteen seed candidates stayed held. Two of them are worth naming because the reason is
+structural rather than a defect in the item.
+
+**`tx-2026-0135` and `tx-2026-0143` are the same shape of decision and the record treats them
+differently.** Both are ERCOT acting across its whole footprint on Batch Zero. `tx-2026-0143` is
+published with `statewide: true`. `tx-2026-0135` is held because it names no county and the
+admission gate is explicit that `on_ercot` is a property rather than a place. The previous run's
+hold was careful and its reasoning is sound on its own terms. What is not sound is the record
+carrying both answers, and resolving it either way is a call a maintainer should make rather than
+an unattended run. Named here rather than quietly fixed.
+
+**`tx-2026-0134`, Katy ISD, is held for a county the gazetteer cannot supply.** The district's
+own posting does not name the counties it sits in, and `assets/geo/tx-places.json` holds counties
+and metros but no city to county crosswalk, so there is no source in this repo that turns a
+district name into a place. Left held.
+
+### The backlog
+
+**Zero at wake and zero at ship.** `docket_build.backlog` returns nothing: no item on the record
+is without a county or statewide flag, and no reader copy points at an id the record does not
+carry. The ratchet is at the floor and this run did not move it either way.
+
+## Discoverability signoff
+
+Six surfaces, opened and read this run on the build at `out/2026-09-12/tmp/site`.
+
+- **One decision's card, opened as an image.** `og/tx-2026-0149.png`, the run's newest item.
+  Four lines of Fraunces on the night plate beside the star, wrapping at word boundaries, ending
+  on a whole word with an ellipsis after "to build AI digital". The wrapper cuts on width and
+  this title's longest token is "foundation", so nothing stumps. LOOKED AT, correct.
+- **`/questions/`, read as a reader.** Eight questions, and they are questions somebody would
+  type: what each decision is, who decides, how the public can take part, where a comment window
+  is open, where in Texas each one applies, what has been decided, what happens next. The counts
+  behind them are 130, 130, 125, 5, 130, 130 and 127. The 125 and the 127 are the honest ones:
+  five items carry no room the record can name and three have no next dated step. LOOKED AT,
+  correct.
+- **The `Open right now` section of `llms.txt`.** Four decisions with a dated way in, and it
+  leads with `tx-2026-0147`, admitted this run, at the September 15th council meeting. Cross
+  checked against the open windows Phase 3 re-verified: the two federal comment windows close
+  October 9th and November 9th, the compute derivatives window is still open, and nothing that
+  closed is still listed. The build ran after the record moved, which is the merge order this
+  bullet exists to catch. LOOKED AT, correct.
+- **`/sources/`, the record's own report card.** **628 of 710 claims rest on a primary
+  document**, across 226 documents from 102 publishers. All three of this run's admissions cite
+  `primary_official` on every claim, so the share moved up rather than down. The top publisher is
+  `interchange.puc.texas.gov` at 99 claims and the second is `api.nsf.gov` at 54, and both are
+  the filing system and the award record themselves rather than a report about one, which is the
+  answer this bullet is looking for. The quoted material exemption is still scoped to quotes.
+  LOOKED AT, correct.
+- **`/topic/`, one card against its own page.** Research and science prints 25 on the card and
+  its page lists 25 decisions. The eight beats sum to 130 and the front page counter row prints
+  130. The `still open to comment` figures are 3, 1 and 1, summing to the 5 that `/questions/`
+  answers and the `05` the front page prints. LOOKED AT, correct.
+- **`/place/`, for the places this run landed something in.** El Paso County, Grimes County and
+  Brazos County are all on the hub and all three pages exist. Grimes County's page reads 2 items
+  in the record and lists 2. El Paso County reads 5 and lists 5. Brazos County reads 7 and lists
+  7. Each moved with the record on this build rather than after it. LOOKED AT, correct.
+
+**The front page counter row.** 21 articles, 09 videos, 130 decisions, **710 sources cited**, 05
+doors open to you. `Sources cited` is rendering, which is the row this file has told two previous
+runs to protect.
+
+**The water map's pins against the day's reservoir count.** The readout says 119 reservoirs. The
+map's SVG carries 119 `hit` circles, one per reservoir, and 122 drawn tanks, of which three carry
+no depth class and are the size legend's own samples. 119 pins for 119 reservoirs. The map is not
+a lake short.
+
+## THE INSTRUMENTS
+
+**No stopped instrument.** Every check in Phase 7 exited 0: both page checks, the water page self
+test, and the six discoverability surfaces. Nothing to report and nothing to fix.
+
+**The scanner's daily ceiling was NOT read this run.** There is no Supabase connector attached to
+this session, so the query in Phase 7 could not be run at all. This is the phase's third outcome
+and it blocks nothing, but it means nobody knows today whether the scan form hit its cap or
+whether a scan failed, and a ceiling nobody is notified about is exactly what that step exists to
+catch.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 28 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 5 warn(s) |
+| aggregates     | PASS   | 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 8.54 MB, vector |
+| score          | PASS   | 6.92 |
+| labels         | PASS   | 24 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 95 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 8 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
+| dossiers       | PASS   | 55,071 chars planned |
+| caption        | PASS   | 156 words |
+| craft floor    | PASS   | 9 frame(s), median 3192, floor 575 |
+| plan vs render | WARN   | 0 of 47 acceptance item(s) checkable |
+| texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
+| absences       | PASS   | 3 of 3 scoped to a named document |
+| numerals       | PASS   | 9 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
+
+## THE DECK
+
+Carousel no. 22. **Texas State University's AI method for pavement condition assessment**, docket
+item `tx-2026-0131`, selected over five other candidates against the dedupe gate with the reasons
+written down before a frame was drawn. El Paso's plate readers came back at 0.92 LIKELY REPEAT and
+were correctly refused.
+
+The argument is one sentence. **The judgement left the shoulder, and the same team's own peer
+reviewed paper puts it back in a human hand.** Frames 1 through 6 build that one direction without
+hedging and frame 7 reverses it out of c17, which says the precision of the technology often leads
+to inaccuracies that must be verified by pavement engineers.
+
+### THE REGISTER INVERTED AT FRAME ONE, AND THAT IS THE RUN'S BEST DECISION
+
+The plan opened on a PAPER register. The first frame built rendered clean, read handsomely and
+**measured a median L\* of 91.5 against the light cap's threshold of 60.0.** That is not a drawing
+that came out too pale. It is what a print on paper IS: a screen is marks on a ground, most pixels
+are the ground, and the median of a hatched field on caliche is caliche. The three treatments'
+planned medians of 44, 48 and 55 were all unreachable in that register and no amount of extra
+coverage would have moved a median that is counting the paper between the strokes.
+
+So `TXINK.print`'s ground and ink were swapped, the same twin greys and the same drawing came back
+at **6.1**, and the deck shipped at a measured deck median of 6.1 with the cap's window already
+holding two light decks against a cap of one.
+
+**Two ledger entries in a row record a run that declared a value band and did not measure it until
+round three.** This one measured it at frame one and paid four hours instead of two rounds.
+
+### What the three pixel critics found, and what it cost to fix
+
+Nine frames went to three critics. The findings that mattered, each fixed in one repair round:
+
+- **THE TURN'S ACCENT WAS MARKING NOTHING.** Frame 7's granite was a stroked pencil loop on a white
+  card and the figure's nearest finger was 165 px away from it. The deck's whole reversal is
+  carried by the accent law, granite means a person, and on the one frame built to carry it the
+  colour marked an empty circle on a desk. The granite is now the SHEET, filled, with a hand
+  resting on it.
+- **FRAME 4'S SECTION WAS ASSERTING SOMETHING NO CLAIM CARRIES.** The stain was drawn in section
+  with the surface line running unbroken through it, which is a drawn claim that a stain has no
+  depth. c6 says only that the pairing distinguishes damage from stains. The frame's own risk
+  block had named this disposition before a line was drawn, and the section now shows the crack
+  alone.
+- **FRAME 5 PRINTED A COVERAGE CLAIM.** The label read PIXEL LEVEL, CONTINUOUS over EVERY SECTION,
+  END TO END, six inches from the frame's own scrupulous EXTENT NOT STATED. Nothing fetched says
+  the new reading covers every section. It reads PIXEL LEVEL over THE RESOLUTION, NOT THE EXTENT.
+- **FRAME 8 RESTATED A PUBLISHED SCORE AS A PERFECT ONE.** The THIS MODEL label for the all
+  distress series sat on the same baseline as the 1.0 gridline with dashes running out of either
+  side of it, so at 432 px the eye read one line, "1.0 THIS MODEL". Both endpoint pairs now sit
+  below their own point.
+- **FRAME 9 WAS DRAWING RAILROAD TRACK.** Nine transverse light bands at decreasing spacing toward
+  a vanishing point is the visual grammar of sleepers. The closing frame of a pavement deck now
+  carries a broken centre line and one long falloff instead.
+- **FRAME 1'S GRANITE WAS ON A CLIPBOARD.** Re-spriting the whole figure in the accent painted the
+  board he holds as well. A clipboard is an object. The granite plate is now the body alone.
+- **FRAME 5'S BREAK LINES WERE DIMENSION TERMINATORS.** Stroked in granite over a granite fill,
+  only the spurs outside the block showed and they read as the arrowheads of a measured span,
+  which is the exact assertion the frame exists to refuse. They are drawn in the ink now and the
+  Z kink is visible through the block.
+
+### EVERY DOSSIER WAS CORRECTED TO THE FRAME THE RUN MADE
+
+Not one of the nine plans survived contact unamended, and `plan_render_check` found most of it
+before a critic did. The palettes were written in the paper register and named nine colours no
+frame contains. Frame 1's composition declared a camera on the centreline with the rater at Z 7,
+which projects him to x 41 and cuts the subject in half at the left edge. Frame 3's plan asked for
+the figure at 283 px against the van's 284 so the two would read as the same height, which would
+have put the person NEARER the camera than the thing they are the scale for. Frame 8's composition
+described a cut at y 594 with the chart above it, which was superseded twice. Frame 6's acceptance
+demanded casts running down and left under a light of az +34 el 52, which is the treatment's light
+and not the deck's.
+
+**The plan is corrected to what was built, every time, with the reason recorded beside it.** The
+alternative is the 2026-08-19 defect this gate exists for, where a plan said the differing words
+are marked in pecos and five passes shipped uniform ink.
+
+### What the numbers are, and where each came from
+
+Four F1 values, a threshold of 70 and a commission calendar. **Every one is either QUOTED, lifted
+out of a claim's own sentence by regex in `compute.py`, or declared in `aggregates.json` with the
+claim ids it was computed from and re-derived by the gate.** Eight computed figures are declared.
+Eleven numerals reach a claim the frame citing them carries.
+
+The stationing interval on frame 5 is the one figure the plan asked for and the frame does not
+print. No claim it cites carries that digit anywhere in its quote, its text, its title or its url,
+so a reader following the cite would arrive at a page without the number. The ticks carry the
+rhythm and the frame prints no numeral at all.
+
+## THE PANEL
+
+    round 1    integrity 6.874    craft 6.770    reader 6.700
+               per criterion median, weighted        6.786
+               threshold 6.8      spread 0.174      hard fails 0
+
+**Under the bar by fourteen thousandths, with no hard fail from any of the three.** `panel.py`
+took the median of each CRITERION and weighted it, which is not the median of the totals, and
+the run record does not compute it by hand. `score1.json` carries the arithmetic.
+
+All three judges and the flow critic independently named the same worst defect, and the cause was
+one line of geometry. **Frame 7's hand had been standing on the floor.** `S.sprite` stands a sprite
+ON THE GROUND PLANE at its depth and the hand's parts were declared from y 0.00, so it landed at
+y 1186 to 1219 while the granite sheet sat at 923 to 972. One critic called the shape at the bottom
+of that frame "a boot or a small animal" and could not name it. On the deck's one turn, the frame
+the whole structure is staked on, the accent was marking an empty desk. Declaring the parts at
+desk height, y 0.74, puts the hand on the sheet, and the desk gained a lit top plane laid flat and
+unscreened so the frame has a light at all.
+
+### What else the repair round carried
+
+- Frame 1's second kicker line now carries the project's status in the release's own words,
+  "Second phase, closer to statewide deployment". The reader judge's most valuable finding was
+  that the cover's past tense plus the caption's present tense left a scrolling Texan believing
+  hand rating is already replaced on Texas roads, which this run's own `not_established` list
+  says nobody has established.
+- The caption's closing question no longer points at the commission meeting. `c25`'s own note
+  says those are TxDOT's governing body meetings and NOT hearings about this research, frame 9
+  obeyed that to the letter, and the caption then implied it anyway three paragraphs after the
+  project.
+- Frame 2 restored both quoted sentences to their full clauses. Truncating c8 at "surface
+  distress" dropped the adjustment that is part of the definition.
+- Frame 3 prints, in mono, that the release lists the scanner and the van separately. The drawn
+  boom mounts one on the other and no claim does.
+- Frame 4's lit lip is painted flat and unscreened, because a stipple screen on a dark register
+  cannot carry a highlight and the dossier calls that lip the craft point of the frame.
+- Frame 5's sub label names the document the extent is absent from.
+- Frame 8's 0.780 label came off the 1.0 gridline, where at 432 px the eye read "1.0 THIS MODEL"
+  and a reader took a published F1 score for a perfect one.
+- Frame 9's road gained aggregate in world metres and no centre line dash lands under the foot.
+
+### A FINDING THAT DID NOT SURVIVE CHECKING, recorded because that is half the job
+
+The reader judge said the first comment "inverts what a reader means by official", calling the two
+journal papers the official records. Checked against `claims.json` the classification is the other
+way round and it is right: `primary_corporate` is the university release and the two papers, which
+their own subjects wrote, and `primary_official` is TxDOT and FHWA. `sources_block.py`'s docstring
+records that this same sentence has said its exact opposite twice before. Nothing was changed.
+
+Chasing it did turn up a real one. The Europe PMC line was titled "Funding statement, Detection of
+Flexible Pavement Surface Cracks...", because c14's `source_title` named the SECTION its quote
+comes from. Four claims come off that url and three are from the body. The title is the paper now.
+
+### THE RE-SCORE DID NOT RUN, AND THIS IS WHY
+
+All three round 2 judges terminated on the same error inside a second of each other:
+
+    You've hit your session limit, resets 11am UTC   (rate_limit, HTTP 429)
+
+The routine's failure protocol is explicit that **a usage limit is a pause rather than a failure**,
+and the deck's evidence is committed to this branch so a later session resumes from it. What is
+NOT true is that the deck has been certified. `run_complete.py` refuses a run with no `score.json`
+for a reason, and the last honest reading of this deck is round 1's 6.786 on a deck that has since
+been repaired on every finding the panel converged on and on nothing else.
+
+**So this run does not merge.** Not because a gate went red, and not because a judge found a hard
+fail, but because the one reading that is allowed to say the deck is finished could not be taken.
+
+## THE RETRO
+
+**Nothing prompted.** `scripts/shared/prompt_audit.py` measured 1,229 tool dispatches and none
+waited on a human. That is the reading the 2026-09-02 entry says to take rather than asserting a
+run went unattended, and it is the number that would have found the six wedged days in August.
+
+**The three things this run learned that are worth more than the deck.**
+
+1. **A sprite stands on the ground, and a hand does not belong on the ground.** `S.sprite` places
+   a sprite's parts relative to the ground plane at its depth, which is correct for every object
+   in the catalogue and wrong for anything resting on a surface above it. Nothing in the library,
+   the doctrine or the gates says so, and three independent readers found the symptom without any
+   of them being able to see the cause. The fix on the frame is to declare the parts at the
+   surface's own height. The fix for the next deck is a line in `ILLUSTRATION_SYSTEM.md`.
+
+2. **A SCREENED FIELD ON A DARK REGISTER IS MOSTLY GROUND, so it can be neither a light nor a
+   silhouette.** This is the same measurement that inverted the register at frame one, arriving
+   twice more in different costumes. `layout_check.silhouette` read a fully drawn road as "dust"
+   because at 54 by 40 px a stipple over `#161310` averages back to `#161310`. And a frame's p95
+   cannot exceed the local average of its screen, so a craft judge measuring five frames at p95
+   43 to 61 concluded the brightest object on each was the type, which was true and which no
+   amount of brighter GREY in the twin could have changed. The answer both times was an
+   UNSCREENED FLAT PLANE: frame 2's sheet, frame 8's card, frame 7's desk top and frame 4's lit
+   lip. A print on a dark ground gets its light from the places the screen is not.
+
+3. **Every one of the nine dossiers described a frame the run did not make**, and `plan_render_check`
+   found most of it before a critic did. The palettes were written in the paper register and named
+   nine colours no frame contains. Frame 1's camera put its subject off the left edge. Frame 3's
+   plan would have put the person nearer the camera than the thing they are the scale for. The
+   plans are corrected to what was built, every time, with the reason beside them, because the
+   alternative is the defect that gate exists for.
+
+**Five proposals went to `knowledge/carousel/UPGRADE_BACKLOG.md`** and none was made here, because
+each is `upgrade` lane or out of a routine's reach: the caption gate refusing the word "mine", a
+copy record that derives the hook from the largest laid-out node and was wrong on two of nine
+frames, a gradient under a coarse halftone banding into something `qa.py` reads as a rule through
+type, a screened field not registering as a silhouette, and an axis bound being the one disposition
+`aggregate_check` and `numeral_trace` cannot express between them.
+
+**One gate was red at wake and is green now.** `docket_calendar.py`'s self-test failed on correct
+data, twice, because `tx-2026-0149` was admitted this run with a key date in August 2029: the kind
+`expires` had no English label, and the emptiness test asked for a calendar at a hardcoded
+2031-01-01 whose two year window now contains that date. That is the same defect the quiet-month
+note four lines below it was written for, on the same file, two weeks earlier. A test that reads
+the live record may not hardcode a fact about the live record, and "past the end of the record" is
+a fact about the record. The far date is derived from the horizon's own rule now.
+
+**And one site defect this deck's own copy exposed.** The story section's terminator test read the
+last character only, so a line ending on a quoted sentence printed two full stops. Three frames
+this run set a quoted fragment and the page doubled the one whose period is inside the quote.
+
+## ROUND 2 AND ROUND 3, AND THE HARD FAIL BETWEEN THEM
+
+    round 2    integrity 7.140    craft (rate limited)   reader (rate limited)
+               ONE HARD FAIL, frame 8's axis bounds
+    round 3    integrity 6.782    craft 6.746            reader 7.020
+               per criterion median, weighted        6.920
+               threshold 6.8      spread 0.274      hard fails 0      SHIP
+
+Round 2 is not a panel and is not counted as one. All three of its judges terminated on the same
+session rate limit inside a second of each other, the run wrote its evidence to this branch and
+held, and a single retry on the integrity lens was taken when the quota returned.
+
+**That retry raised the run's only hard fail, and it was right.** Frame 8 printed `1.0` and `0`
+as its axis bounds. Neither figure comes from the record. F1 is bounded at 1 by the definition of
+the measure rather than by anything this run fetched, and the zero is drawn because the honest
+axis doctrine requires an anchored scale, so both are properties of the chart instead of
+measurements of Texas pavement.
+
+**BOTH NUMERAL GATES WERE GREEN OVER IT, AND THAT IS THE ENTRY WORTH KEEPING.**
+`aggregate_check` refused the declaration, because it does not read a bare axis label as a numeric
+phrase and a declaration nothing says is a declaration left to be reused. `numeral_trace` passed
+the figures, because the digits 1 and 0 occur somewhere in the evidence of a claim the frame
+cites, which is exactly the coincidence its own docstring names as the case it cannot see. Two
+gates, both green, and between them no way to either authorise the numerals or catch them.
+
+The first disposition was to ship them undeclared with a paragraph in `aggregates.json` as the
+explanation, and that paragraph conceded in writing that the judge's reading was fair. A run that
+writes down why a gate it disagrees with should not apply to it has argued rather than fixed. The
+frame now draws both rules and NAMES them, `SCALE TOP` and `SCALE BASE`, and prints no bound
+figure at all. Spelling them as words was considered and rejected on this project's own grounds,
+because the law on numerals is about where a figure comes from rather than how it is set.
+
+`numeral_trace` counts 9 numerals across 9 frames where it counted 11.
+
+### What round 3 found that this run fixed
+
+- **The audit trail had its two source classes exactly swapped.** `aggregates.json` named the
+  university release and the two TxDOT pages as the three first party accounts, and the two
+  journal papers as the two official records. `claims.json`'s own `source_type` and
+  `sources_block.py`'s name table both say the reverse. The PUBLISHED sentence was never wrong,
+  because the script computes it and never reads this file. What was wrong is the declaration a
+  checker would re-derive it from. `aggregate_check` is blind to it because both partitions
+  happen to be three documents and two, so the counts stayed right while the sets behind them
+  were exchanged.
+- **`aggregates.json` said the eight day figure prints in the caption.** It prints only in slide
+  9's mono foot and the caption has never carried it.
+
+### What round 3 found that this run did NOT fix, and why
+
+The craft judge scored artwork 6.0 and named **frame 7, the deck's turn, as its weakest drawing**.
+The `office_chair` its own technique line and two acceptance items name is not on the frame, and
+the figure's forearm does not visibly cross the desk's back edge to join the hand. Two judges also
+read the **value arc as collapsed**, with seven of nine frames measuring median L* 6.1 against a
+storyboard that plans one dark frame and one light one.
+
+Both are real and neither is a hard fail. They are craft rather than fact, the panel cleared the
+bar without them, and `panel_ready`'s own header records what serial re-scoring costs. They are in
+the backlog for the next run rather than in a fourth round.
+
+### A finding that did not survive checking, for the second time this run
+
+Two judges read frame 9's `open to the public` as dropping c23's `With the exception of closed
+executive sessions`. Checked: the deck asserts the phrase of ONE meeting where the claim asserts
+it of ALL commission meetings, so the frame is NARROWER than its source rather than broader, which
+is the safe direction. `quantifier_check` owns this question and passes. Nothing was changed.
+
+## TWO CI FAILURES THAT WERE RED ON `main` TOO
+
+Both were measured on `main` and on this branch before either was touched, and both are fixed
+here rather than stood down on, because the site is this routine's own surface and a red base
+branch is not a reason to ship a red one.
+
+**The Lone Star mark landed on the front page headline at every desktop width from 768 to 1440.**
+The cause is a clock rather than a viewport. `EXPIRY_JS` retires the news chip when its
+`expires_at` passes, and `theme.py` collapsed the retired box, so the hero rose about a hundred
+pixels into the mark. With the chip live the headline's box top is 291 at 1440px, 304 at 1024 and
+293 at 768. With it retired, 212, 203 and 191, against a mark whose bottom edge is 273, 273 and
+224. The same file is correct before 14:00 UTC and wrong after, which is why no width sweep and no
+screenshot ever caught it. The retired chip keeps its space now.
+
+**The Manrope subset carried neither character in the name Jelena Tesic.** `tests/glyphs.mjs` went
+red on `U+107` and `U+161`, both in the name of the researcher leading the team this deck is
+about, quoted verbatim from her university's release. There is no version of this project that
+misspells a named person to fit a subset range, so the range moved. Latin Extended-A whole rather
+than the two codepoints, because a pair added per name guarantees the next name goes red too.
+Measured cost, 14,932 bytes across three faces, 105,156 to 120,088.
+
+**And eighteen house style violations that were entirely this run's own writing.** Ten sentences
+over the thirty word backstop, across two item summaries, three verification notes, one public
+access field and three claim texts the article page renders. `house_style_check` is clean on
+`main`, so every one of them was written today. All split at a clause.
+
+### The one human lane commit this run made, and why
+
+`ownership.yaml` puts `assets/fonts/web/**` in the `human` lane, correctly, because the committed
+subsets are the bytes every reader downloads and no routine should be able to change a typeface
+unattended. This run is BLOCKED by that file rather than merely inconvenienced by it: CI is red on
+`tests/glyphs.mjs` because the Manrope subset cannot draw two characters in a named researcher's
+name, and the only place that is fixable is the subset itself.
+
+So the rebuilt faces are committed on their own, stamped `TXDOCKET_ACTOR=human`, which
+`branch_also_allows` permits from this branch prefix and which the hook's own message prescribes
+for exactly this case. Nothing else is in that commit. The range that produced them is in
+`scripts/site/fonts_build.py`, which is `daily` lane and is in the ordinary commit beside it, so
+the DECISION is reviewable in the lane that made it and only the built artifact crossed over.
+
+## A PROPOSAL THIS RUN MAY NOT MAKE: FOUR CRON WORKFLOWS DO NOT STAMP THEIR LANE
+
+**`gates` went red on this PR for a commit that is not on this branch.** CI checks out the PR's
+MERGE ref, so the ownership range carries whatever landed on `main` after the pull request opened.
+What landed was `af599338b`, "datacenters: registry reading", written by `texas-ai-docket-bot`
+from the datacenters cron. It writes `ledger/gridwatch/datacenters.json`, its `.jsonl` and a raw
+snapshot, all of which belong to `gridwatch`.
+
+**It carries no `Actor:` trailer.** With nothing stamped, `resolve_actor()` falls back to the
+branch, the branch in CI is `claude/daily-2026-09-12`, and a gridwatch write is judged as `daily`
+and refused. The commit is correct and the lane it wrote is its own. The only thing missing is the
+line that says so.
+
+    .github/workflows/news.yml         git commit -m "news: ..." -m "Actor: news"      STAMPED
+    .github/workflows/datacenters.yml  git commit -m "datacenters: registry reading"   NOT
+    .github/workflows/generators.yml   git commit -q -m "generators: EIA-860M reading" NOT
+    .github/workflows/gridwatch.yml    git commit -q -m "gridwatch: ERCOT settled ..." NOT
+    .github/workflows/queuewatch.yml   git commit -m "queuewatch: large load reading"  NOT
+
+One of five does it. The fix is the second `-m` on the other four, and `news.yml` is the worked
+example sitting in the same directory.
+
+**THE COST IS NOT THIS RUN, IT IS EVERY RUN.** Any cron reading that lands on `main` while a
+`claude/daily-*` pull request is open turns that pull request's ownership check red, for a commit
+its author never made and cannot fix. It is a race, so it fails intermittently, which is the worst
+way for a gate to be wrong.
+
+**This run may not make the fix and did not.** `ownership.yaml` puts `.github/workflows/**` in the
+`human` lane and states the reason in as many words: *"A run that can edit its own CI can switch
+off the gate that judges it. Workflow changes go through a maintainer session."* That is a
+stronger boundary than the font subset this run did cross, and it is the one boundary a routine
+has the clearest interest in crossing, which is exactly why it holds. So this is written down and
+left, per the map's own instruction for an out-of-lane upgrade.
+
+**What this run did instead** is merge `main` into the branch, which is worth doing on its own
+terms and also moves the pull request's base past the offending commit, so the next CI event
+judges a range that no longer contains it. That clears the symptom for this run and nothing else.
+A maintainer adding four lines clears it for good.

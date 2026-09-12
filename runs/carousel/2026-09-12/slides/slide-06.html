@@ -1,0 +1,244 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 6 of 9. Archetype TYPE_AS_OBJECT, once in the deck because twice is
+     a trick. The argument for the handover at full volume, in the principal investigator's own
+     words, formed in the material the argument is about.
+     RAISED, NOT CUT, declared here and drawn here. A previous deck declared a milled trough and
+     shipped raised type, and the ledger recorded a drawing nobody made.
+     THE CASTS RUN DOWN AND RIGHT, not down and left. The dossier's acceptance item was written
+     against the treatment's own light at az +34 el 52 and the register section then declared the
+     deck's light ONCE at az -58 el 18 for every frame. At that azimuth the shadow vector is
+     +X and nearer, which is right and down the screen. The frame agrees with the deck.
+     THE SIZE IS SOLVED, NOT CHOSEN. Each line is fitted to its measure, its cap height is then
+     MEASURED off the rendered glyph, and the depth it stands at is derived from the declared
+     0.28 m cap. So the two lines recede because they are at two depths, rather than because two
+     font sizes looked nice. No granite. No person is in this frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .dek { position:absolute; left:80px; top:190px; width:840px; font-size:29px; line-height:1.42; color:var(--dek); }
+  /* The hook IS the image. Its two lines are placed by the solver below, in the lit top face
+     colour, with the walls and the casts drawn under them on the canvas. */
+  .hook { position:absolute; left:0; top:560px; width:1080px; height:460px; }
+  .hook span { position:absolute; display:block; font-family:"Manrope", sans-serif; font-weight:800;
+               color:#E9DECB; letter-spacing:0.005em; word-spacing:0.06em; white-space:nowrap; }
+  /* The attribution is STAMPED ON THE ROAD rather than set in the furniture ink. The ground
+     under it is lit caliche, and the house furniture colour measured 2.3 to 1 against it. The
+     role is the same and the value is the opposite, which is the register lesson again. */
+  /* The attribution sits on its own KNOCKOUT PLATE. A halftone at cell 9 on lit caliche is a
+     field of nearly touching dots, and qa.py read the rows between them as rules running
+     through 24 px mono. There is no quiet place on a fully screened ground, so the frame makes
+     one rather than moving the credit somewhere it does not belong. */
+  .attrib { position:absolute; left:80px; top:1124px; font-family:"JetBrains Mono", monospace;
+            font-size:24px; letter-spacing:0.1em; color:var(--dek); z-index:20; }
+  .attrib b { color:var(--ink); font-weight:400; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<p class="dek" data-role="dek">Wang describes the purpose as reducing reliance on traditional human inspection. The four words below are his.</p>
+<h1 class="hook" id="hook" data-role="hook"><span id="l1">OFTEN SUBJECTIVE AND COSTLY</span></h1>
+<div class="attrib">FENG WANG, <b>TEXAS STATE UNIVERSITY</b></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The argument", kicker2: "Principal investigator",
+      counter: C.counters[5], src: "c4   TEXAS AI DOCKET", ink: "#96876E" });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+    var CAM = { w: W, h: H, eye: 1.62, horizon: 430, f: 820, sky: "#0A0A0A",
+                fogZ: 1e9, light: { az: -58, el: 18 } };
+    var CAP_M = 0.28, THICK_M = 0.20;         // the letter bodies, in metres, declared once
+    var HOOK_TOP = 560;                        // the .hook box's own top, which spans are inside
+    var meas = cv.getContext("2d");            // an unscaled context, for text metrics only
+
+    function font(px) { return "800 " + px.toFixed(2) + "px Manrope, sans-serif"; }
+    // Fit a line to its measure, then MEASURE the cap height it came out at.
+    function solve(txt, maxW) {
+      var lo = 24, hi = 260, px = 24;
+      for (var i = 0; i < 40; i++) {
+        var mid = (lo + hi) / 2;
+        meas.font = font(mid);
+        if (meas.measureText(txt).width <= maxW) { px = mid; lo = mid; } else { hi = mid; }
+      }
+      meas.font = font(px);
+      var m = meas.measureText(txt);
+      return { txt: txt, px: px, w: m.width, cap: m.actualBoundingBoxAscent,
+               fbA: m.fontBoundingBoxAscent, fbD: m.fontBoundingBoxDescent };
+    }
+    // ONE ELEMENT, TWO LINES, ONE DEPTH. The first build set the two lines as two spans at two
+    // sizes so they receded, which is honest geometry for type lying flat on a ground plane and
+    // dishonest bookkeeping everywhere else: build_copy.py derives this deck's copy record from
+    // the largest laid out node, and two spans meant the record said this frame's hook was
+    // "AND COSTLY". The letters stand UPRIGHT on the road now, one size, one depth, and the
+    // recession is carried by the concrete joints running back behind them.
+    // THE MEASURE ALLOWS FOR THE WORD SPACE. The solver fits the longest line without one
+    // and the element renders with one, so a 0.14em space pushed SUBJECTIVE onto its own
+    // line and the four words came out as three.
+    var L1 = solve("OFTEN SUBJECTIVE", 862);
+    L1.txt = "OFTEN SUBJECTIVE AND COSTLY";
+    L1.Z = CAP_M * CAM.f / L1.cap;
+    var probe = TXSCENE.create(cx, CAM);
+    L1.base = probe.groundY(L1.Z);
+    L1.x = 80;
+    [L1].forEach(function (L) {
+      L.thick = THICK_M * CAM.f / L.Z;                      // the wall, in px
+      var sv = probe.shadowVec();                           // world XZ per metre of height
+      var dX = THICK_M * sv[0], dZ = THICK_M * sv[1];
+      L.castDx = CAM.f * dX / L.Z;
+      L.castDy = probe.groundY(Math.max(0.2, L.Z + dZ)) - L.base;
+    });
+
+    // place the DOM top faces exactly on the solved baseline of the LAST line
+    [["l1", L1]].forEach(function (p) {
+      var el = document.getElementById(p[0]), L = p[1];
+      el.style.fontSize = L.px.toFixed(2) + "px";
+      el.style.lineHeight = (L.px * 1.82).toFixed(2) + "px";
+      el.style.width = "938px";
+      el.style.whiteSpace = "normal";
+      var halfLead = (L.px * 1.82 - (L.fbA + L.fbD)) / 2;
+      el.style.left = L.x + "px";
+      // two line boxes, so the element's top is one line box above the last baseline
+      el.style.top = (L.base - halfLead - L.fbA - L.px * 1.82 - HOOK_TOP) + "px";
+      // THE WALL. The letter's own side, built out of the element's own shadow stack rather
+      // than out of a canvas copy of the words. A canvas copy of the TOP FACE is what qa.py
+      // read as art crossing the letterforms on the first render, because the contour plate
+      // lands a hair out of register and fringes the DOM glyph sitting over it.
+      // THREE VALUES, NOT TWO. The wall is the letter's own side and runs straight down from
+      // it with no gap. The CAST then continues down and to the right, in a darker value, in
+      // agreement with the deck's declared sun at azimuth -58 and elevation 18. A single dark
+      // mass at a constant offset is a drop shadow, which is the failure the technique library
+      // names by name, and it is what the first build shipped.
+      var wall = [], t = Math.round(L.thick);
+      for (var k = 1; k <= t; k++) wall.push("0 " + k + "px 0 #2A2520");
+      for (var j = 1; j <= Math.round(t * 0.72); j++)
+        wall.push((j * 0.62).toFixed(1) + "px " + (t + j) + "px 0 #14110C");
+      el.style.textShadow = wall.join(", ");
+    });
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 66,
+      screen: { mode: "halftone", cell: 9, angle: 8, gamma: 1.18, floor: 0.05 },
+      edges: { threshold: 24, width: 1.5, alpha: 0.8, dx: 1.1, dy: -0.9 },
+      draw: function (a) {
+        a.fillStyle = "#050505"; a.fillRect(0, 0, W, H);
+        var S = TXSCENE.create(a, CAM);
+        var sky = a.createLinearGradient(0, 0, 0, 430);
+        sky.addColorStop(0, "#080808"); sky.addColorStop(1, "#2A2A2A");
+        a.fillStyle = sky; a.fillRect(0, 0, W, 430);
+        S.ground({ near: 0.6, far: 900, fill: "#BDBDBD" });
+        // CONCRETE PAVEMENT, which is what a light ground on a road frame IS, with its
+        // transverse joints at a constant spacing and one longitudinal joint down the middle.
+        // Both stop at Z 5, well above the near depths the two lines stand at, because a joint
+        // running across a word is the strikethrough qa.py already caught here once.
+        S.gridZ({ dz: 4.5, from: 5, to: 90, ink: "rgba(0,0,0,.20)", width: 1.5 });
+        a.save();
+        a.strokeStyle = "rgba(0,0,0,.20)"; a.lineWidth = 1.5;
+        var jA = S.project(0, 0, 5), jB = S.project(0, 0, 90);
+        a.beginPath(); a.moveTo(jA[0], jA[1]); a.lineTo(jB[0], jB[1]); a.stroke();
+        a.restore();
+        // A FENCE LINE AT TRUE SCALE, so the 0.28 m cap height has something to be measured
+        // against. Without one object of known size on the ground the letters are display type
+        // and the frame's whole claim to be TYPE_AS_OBJECT rests on a number in the plan.
+        // ONE POST, not a line of them. A receding fence at these depths came back as a lattice
+        // of small floating rectangles in the corner, which is a worse thing to look at than an
+        // empty corner. One object of known height, on the ground, with its own cast, is all the
+        // scale reference the frame needs.
+        var post = TXOBJ.sprite("fence_post");
+        S.shadow(post, { X: -3.5, Z: 8, ink: "#000", alpha: 0.42 });
+        S.sprite(post, { X: -3.5, Z: 8, inks: { ink: "#6E6E6E", paper: "#0A0A0A", accent: "#6E6E6E" } });
+        // NO GROUND GRID. One of its depth lines landed square across the first line's glyph
+        // band at y 742 and qa.py read it, correctly, as a strikethrough 892 px long. On a
+        // frame whose subject IS the type, the halftone grain is the ground's modelling.
+
+        // THE CAST IS GONE, and the first render is why. At az -58 and el 18 the shadow of a
+        // 0.09 m body runs right and toward the camera by most of a cap height, which puts a
+        // second copy of every word straight across the words beside it. It was not a shadow
+        // on the render, it was a double exposure. What replaces it is the ground's own
+        // occlusion, a soft dark pool on the shadow side of each mass, which says the letters
+        // block light without drawing the letters twice.
+        // NO SHADOW POOL EITHER, and the reason is worth more than the mark it would have
+        // made. A smooth radial falloff under a halftone at cell 9 does not render as a soft
+        // shadow. The screen QUANTISES it, and the step between two dot sizes comes out as an
+        // unbroken horizontal contour the full width of the frame, which is what qa.py read
+        // running through the first line's glyph band at 9.2 to 1. The letters' own walls give
+        // them their contact and the ground stays one even field.
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#161310", top: 436, topSolid: 356, bottom: 150, bottomSolid: 120 });
+        c.save(); c.fillStyle = "#161310"; c.fillRect(64, 1112, 596, 54); c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

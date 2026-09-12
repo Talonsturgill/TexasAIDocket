@@ -943,6 +943,20 @@ def claims_html(it: dict) -> str:
 RAW = f"https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/main"
 
 
+def _scored_from() -> str:
+    """The date of the earliest run that carries a score, which is where legacy ends.
+
+    Read off the directory rather than held as a constant, so nobody has to remember to move a
+    cutoff when the history changes. Returns "" when nothing has ever been scored, which leaves
+    every run legacy and is the correct behaviour for a fresh archive.
+    """
+    base = REPO_ROOT / "runs" / "carousel"
+    if not base.is_dir():
+        return ""
+    scored = [x.name for x in base.iterdir() if x.is_dir() and (x / "score.json").exists()]
+    return min(scored) if scored else ""
+
+
 def load_runs() -> list:
     """Every carousel this project has shipped, newest first.
 
@@ -970,6 +984,20 @@ def load_runs() -> list:
         # that the panel cleared it. Reuse the gate that already knows about cap and owner paths
         # so the site cannot invent a second definition of shipped.
         if (d / "score.json").exists() and run_complete.check(d, bar, cap):
+            continue
+        # AND A RUN WITH NO SCORE AT ALL IS NOT AUTOMATICALLY LEGACY. The clause above only
+        # refuses a run whose score FAILS, so a run that was never scored fell through it and
+        # published. On 2026-09-12 that is exactly what happened: the run held for a rate limit
+        # with no `score.json`, its evidence was committed so a later session could resume, and
+        # the article went live off `copy.json` alone while its own run record read score
+        # ABSENT and completion ABSENT. A code review caught it before the merge.
+        #
+        # LEGACY IS A DATE, NOT AN ABSENCE. The exemption exists for decks shipped before this
+        # project scored anything, and those are all older than the first run that carries a
+        # score. So the boundary is read off the artifacts rather than written down: any run on
+        # or after the earliest scored run is expected to carry one, and a missing score there
+        # is an unfinished run rather than a historical one.
+        if not (d / "score.json").exists() and _scored_from() and d.name >= _scored_from():
             continue
         try:
             copy = json.loads((d / "copy.json").read_text("utf-8"))
@@ -1007,7 +1035,21 @@ def load_runs() -> list:
                   f"publish a broken image.", file=sys.stderr)
         if not files:
             continue
-        title = (copy.get("document_title") or copy.get("title") or d.name)
+        # THE DECK'S OWN HOOK BEFORE THE DIRECTORY NAME. A manifest with no title fell straight
+        # through to `d.name`, so the September 12th article published with "2026-09-12" as its
+        # h1, its browser title, its Open Graph title, its image alt text, its breadcrumb and
+        # its NewsArticle.headline. A code review caught it on that run.
+        #
+        # The manifest is still the right place for a title and that run's `build_copy.py` now
+        # writes one. This is the floor under it, because a date is not a headline and the next
+        # run to omit the field should not be able to publish one either. Slide one's hook is
+        # the deck's own first line, it is gated copy, and it always exists.
+        first_hook = ""
+        for _order, _slide in sorted(normalise_slide_keys(planned), key=lambda k: k[0]):
+            if isinstance(_slide, dict) and str(_slide.get("hook") or "").strip():
+                first_hook = " ".join(str(_slide["hook"]).split())
+                break
+        title = (copy.get("document_title") or copy.get("title") or first_hook or d.name)
 
         # THE DECK'S OWN WORDS, SO THE PAGE IS READABLE AND INDEXABLE WITHOUT THE IMAGES.
         #

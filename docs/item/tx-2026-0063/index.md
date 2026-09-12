@@ -9,7 +9,7 @@ TCEQ's pending new source review page lists air permit applications whose notice
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The agency's pending permit list still carries the data center applications with published notice. None has been withdrawn.
 - 2026-09-08 · The state environmental agency still posts the same four data center air permit applications with public notices, and Crusoe's two Texas campuses are still among them. None has moved to a decision.
 - 2026-09-09 · The four data center air permit applications are still posted as pending with published public notice.
+- 2026-09-12 · The four data center air permit applications are still posted as pending with published public notice, and the agency's plain language summary requirement still governs them.
 
 ## Evidence
 

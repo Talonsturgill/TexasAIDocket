@@ -1,0 +1,14 @@
+[
+ {
+  "what": "docket_calendar.py labels the award expiry kind and derives its far-date test from the horizon's own rule",
+  "why": "An item admitted this run carries a key date in August 2029. The kind had no English label and would have reached a reader as the slug `expires`, and the emptiness test asked for a calendar at a hardcoded 2031-01-01 whose two year window now contains that date. Two self-test failures on correct data, on the same file that carries a note about this exact mistake from two weeks earlier."
+ },
+ {
+  "what": "The article page stopped printing two full stops on a line ending in a quoted sentence",
+  "why": "The terminator test read the last character only. Three frames this run set a quoted fragment and the story section doubled the period on the one whose full stop is inside the quote."
+ },
+ {
+  "what": "Five proposals written to knowledge/carousel/UPGRADE_BACKLOG.md and NOT made",
+  "why": "Each is upgrade lane or out of a routine's reach: caption_check refusing the word mine, build_copy deriving the hook from the largest laid out node, a gradient under a coarse halftone banding into what qa.py reads as a rule through type, a screened field on a dark register not registering as a silhouette, and an axis bound being the one disposition aggregate_check and numeral_trace cannot express between them."
+ }
+]

@@ -1,0 +1,27 @@
+{
+ "run": "2026-09-12",
+ "note": "Three universals are printed in this deck, slide 9's 'dates none of them' and 'none of the four left this year has one', and the caption's 'dates none'. All three are over the same two sets, the three next steps c7's own sentence lists and the four dated rows on the commission calendar in c25. The first draft of this file declared one and the integrity judge counted three, which is the file describing a deck the run did not make.",
+ "quantifiers": [
+  {
+   "phrase": "none of them",
+   "about": "the next steps the release names",
+   "from_items": [
+    "improve detection of hairline cracks",
+    "automatically score damage severity for maintenance scheduling",
+    "adapt the technology for different climates and road surfaces across Texas"
+   ],
+   "measured_by": "compute.py NEXT_STEPS splits c7's own sentence on its commas and its final conjunction and returns these three coordinated verb phrases. The universal is then a property of that sentence rather than of the world: it says no DATE appears anywhere in it, which is checkable by reading the one quote the frame cites. c7 carries no month, no year and no ordinal. The deck never says the team has no plan for when, only that the release does not print one, which is the distinction absence_check exists to hold."
+  },
+  {
+   "phrase": "none of the four left this year has one",
+   "about": "the meetings on the commission's published calendar that fall on or after the run date",
+   "from_items": [
+    "09/24/26 (10:00 a.m.)",
+    "10/29/26 (10:00 a.m.)",
+    "11/20/26 (10:00 a.m.)",
+    "12/17/26 (10:00 a.m.)"
+   ],
+   "measured_by": "compute.py commission_meetings_left reads c25's own calendar rows and keeps the four that fall on or after September 12th. The universal is that none of those four rows carries an agenda, which is a property of the page the run fetched rather than of the commission's intent, and c24 says why: agendas post eight days ahead, so only the September 24th meeting is inside its own posting window at all."
+  }
+ ]
+}
