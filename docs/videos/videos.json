@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-09-12-the-proof-decides",
+      "date": "2026-09-12",
+      "title": "The proof decides",
+      "caption": "Rice University's new NSF-backed project will let AI propose numerical algorithms, then use Lean to check their correctness and cost claims. The award starts September 15. The real story is the gate between a machine proposal and reusable mathematics.",
+      "video": "/runs/2026-09-12/dispatch.mp4",
+      "poster": "/runs/2026-09-12/poster.png",
+      "video_mobile": "/runs/2026-09-12/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-09-12/poster-540.jpg",
+      "county": "Harris",
+      "beat": "science-machines"
+    },
+    {
       "id": "2026-09-11-the-warning-stays-local",
       "date": "2026-09-11",
       "title": "The warning stays local",
