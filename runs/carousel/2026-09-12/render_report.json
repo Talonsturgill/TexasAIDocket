@@ -2005,44 +2005,44 @@
           "anc": []
         },
         {
-          "text": "1.0",
-          "x": 251,
+          "text": "SCALE TOP",
+          "x": 153,
           "y": 643,
-          "w": 45,
+          "w": 143,
           "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(22, 19, 16)",
+          "color": "rgb(84, 70, 54)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              251,
+              153,
               643,
-              45,
+              143,
               31
             ]
           ],
           "anc": []
         },
         {
-          "text": "0",
-          "x": 281,
+          "text": "SCALE BASE",
+          "x": 138,
           "y": 877,
-          "w": 15,
+          "w": 158,
           "h": 31,
           "font_px": 24,
           "weight": "400",
           "family": "JetBrains Mono",
-          "color": "rgb(22, 19, 16)",
+          "color": "rgb(84, 70, 54)",
           "decorative": false,
           "overlap_ok": false,
           "lines": [
             [
-              281,
+              138,
               877,
-              15,
+              158,
               31
             ]
           ],
@@ -2276,7 +2276,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 1814,
+      "render_ms": 2418,
       "ok": true,
       "canvases": [
         {
