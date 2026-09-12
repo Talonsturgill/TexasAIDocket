@@ -18,8 +18,25 @@
   "aggregate": "done: out/2026-09-12/aggregates.json, 4 computed figures, aggregate_check exit 0",
   "assembly": "done: out/2026-09-12/final, vector pdf 8.95 MB, contact sheet, 9 thumbs. panel_ready exit 0",
   "scoring": "round 1 panel median 6.786 against a 6.8 bar, spread 0.174, no hard fail from any judge. One repair round, then round 2 in flight. score1.json written.",
-  "ship": "pending",
+  "ship": {
+   "status": "done",
+   "artifact": "runs/carousel/2026-09-12/"
+  },
   "retro": "pending",
-  "email": "pending"
- }
+  "email": {
+   "status": "payload_built",
+   "artifact": "out/2026-09-12/gmail_payload.json"
+  },
+  "panel_round_3": {
+   "status": "done",
+   "median": 6.92,
+   "hard_fails": 0,
+   "artifact": "out/2026-09-12/score.json"
+  },
+  "ci_repairs": {
+   "status": "done",
+   "note": "glyph subset, hero mark collapse, house style; first two red on main too"
+  }
+ },
+ "outcome": "SHIP"
 }

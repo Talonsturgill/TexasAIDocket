@@ -1,0 +1,40 @@
+{
+ "judge": "craft",
+ "round": 3,
+ "run": "2026-09-12",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.8
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.7
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 6.9
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 6.746,
+ "hard_fails": [],
+ "ship": false
+}

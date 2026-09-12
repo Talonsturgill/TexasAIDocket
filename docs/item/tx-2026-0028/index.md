@@ -29,7 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Hays County review period for high water use development still stands as adopted and the board it created is unchanged.
 - 2026-09-08 · Hays County's emergency water review period for high water use developments still stands as adopted. The review board it created is still the body named to do the work.
 - 2026-09-09 · Hays County's emergency water review period for high water use developments is still running on the terms the court adopted.
-- 2026-09-12 · Hays County's emergency water review period for high water use developments is still running on the terms the court adopted, and the review board it created has published no change to them.
+- 2026-09-12 · Hays County's emergency water review period for high water use developments is still running on the terms the court adopted. The review board it created has published no change to them.
 
 ## Evidence
 

@@ -57,7 +57,7 @@
    "phrase": "three first party accounts",
    "kind": "count",
    "value": 3,
-   "computed_by": "sources_block.py counts the distinct fetched documents behind the cited claims and splits them by publisher class. The university news office, the agency's own performance dashboard and the agency's own commission calendar are the three first party accounts.",
+   "computed_by": "sources_block.py counts the distinct fetched documents behind the cited claims and splits them by publisher class. primary_corporate is the first party class, because the noun means the document's SUBJECT WROTE IT rather than the filer's legal form, and the three are the university news office's release, the Sensors full text through Europe PMC and the Mathematics abstract through Crossref. The subjects of this story wrote all three.",
    "from_claims": [
     "c1",
     "c3",
@@ -65,6 +65,21 @@
     "c5",
     "c6",
     "c7",
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c19",
+    "c20"
+   ],
+   "note": "The first comment's opening line, written by sources_block.py rather than typed. THIS ENTRY AND THE ONE BELOW HAD THEIR CLAIM LISTS AND THEIR PROSE SWAPPED until round 3, when the integrity judge read them against sources_block.py's own NAME table. The published sentence was never wrong, because the script computes it from source_type and never from this file. What was wrong is the declaration a checker would re-derive it from. aggregate_check could not see it because both partitions happen to be three documents and two, so the two counts stayed right while the sets behind them were exchanged."
+  },
+  {
+   "phrase": "two official records",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py counts the same set's primary_official documents, which are the agency's own records rather than peer reviewed ones. The two are TxDOT's preservation performance dashboard and the Texas Transportation Commission's meeting calendar.",
+   "from_claims": [
     "c8",
     "c9",
     "c10",
@@ -73,22 +88,7 @@
     "c25",
     "c26"
    ],
-   "note": "The first comment's opening line, written by sources_block.py rather than typed."
-  },
-  {
-   "phrase": "two official records",
-   "kind": "count",
-   "value": 2,
-   "computed_by": "sources_block.py counts the same set's peer reviewed and publisher deposited records. The Sensors full text through Europe PMC and the Mathematics abstract through Crossref are the two.",
-   "from_claims": [
-    "c14",
-    "c15",
-    "c16",
-    "c17",
-    "c19",
-    "c20"
-   ],
-   "note": "The first comment's opening line, written by sources_block.py rather than typed."
+   "note": "The first comment's opening line, written by sources_block.py rather than typed. See the note above for the swap this pair carried until round 3."
   }
  ]
 }

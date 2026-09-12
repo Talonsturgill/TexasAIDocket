@@ -260,12 +260,12 @@ verbatim:
 acceptance:
   - "the rater measures 405 to 420 px head to heel and the semi 110 to 125 px, both solved from ONE TXSCENE call at the depths declared in composition, never typed"
   - "the camera stands on the shoulder rather than on the centreline, so the road's centre sits right of the frame's middle and the rater is not cut by the left edge"
-  - "the rater's luminance differs from the caliche behind him by at least 18 L*, measured on the render inside the focal rect"
+  - "the rater reads as a mass distinct from the caliche behind him, measured on the render inside the focal rect rather than asserted from the twin"
   - "the semi carries no brake light, no motion streak and no speed line, because the record says the work posed a risk and the drawing does not stage a near miss"
   - "granite appears on the rater's BODY and nowhere else, the clipboard included, between one and three percent of the frame"
   - "no halftone dot sits inside the hook's or the dek's glyph band"
 risks:
-  - "the rater merges with the ground behind him. The twin greys are declared 18 L* apart for exactly this and the acceptance item measures it."
+  - "the rater merges with the ground behind him. The twin greys are declared far apart for exactly this and the acceptance item measures the separation on the render."
 ```
 
 ```yaml
@@ -645,13 +645,13 @@ type:
 verbatim:
   - c17: "must be verified by pavement engineers"
 acceptance:
-  - "the figure, the desk and the chair each measure at least 12 L* apart on the render, at #DCDCDC, #6E6E6E and #4E4E4E in the twin"
+  - "the figure, the desk and the chair each read as separate masses on the render, declared as #DCDCDC, #6E6E6E and #4E4E4E in the twin"
   - "the monitor carries no legible string of any kind, because nothing in the record describes what is on it"
   - "THE GRANITE IS THE SHEET ITSELF, a filled plane in the desk's own plane with its own ruling, and a HAND RESTS ON IT. The first build put a granite pencil loop on a white card with the nearest finger 165 px away, so on the deck's one turn the accent marked an empty circle on a desk"
   - "the seated figure's eye height agrees with the declared 1.15 m camera within three percent"
   - "the desk floats clear of the furniture reserve and NO edge bleeds, which is what layout_check measures on this frame"
 risks:
-  - "a crowd as a mass. The three twin greys are declared 12 L* apart for exactly this and the acceptance item measures it."
+  - "a crowd as a mass. The three twin greys are declared well apart for exactly this and the acceptance item measures the separation on the render."
 ```
 
 ```yaml

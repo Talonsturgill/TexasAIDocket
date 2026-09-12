@@ -1,0 +1,19 @@
+{
+ "claims": "PASS — 28 verified claim(s)",
+ "render": "PASS — 9 slide(s)",
+ "qa": "WARN — 0 fail(s), 5 warn(s)",
+ "aggregates": "PASS — 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived",
+ "assembly": "PASS — 9 slide(s), 8.54 MB, vector",
+ "score": "PASS — 6.92",
+ "labels": "PASS — 24 claim id(s) checked, every label beside one traces to the shape its claim proves",
+ "quantifiers": "PASS — 95 published string(s) read from one list, every universal names its set",
+ "verbatim": "PASS — 8 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s)",
+ "dossiers": "PASS — 54,981 chars planned",
+ "caption": "PASS — 156 words",
+ "craft floor": "PASS — 9 frame(s), median 3192, floor 575",
+ "plan vs render": "WARN — 0 of 47 acceptance item(s) checkable",
+ "texan": "PASS — places Austin / body yes / deadline yes / next step yes",
+ "absences": "PASS — 3 of 3 scoped to a named document",
+ "numerals": "PASS — 9 numeral(s) over 9 frame(s), every one reachable",
+ "completion": "PASS — the deck shipped"
+}

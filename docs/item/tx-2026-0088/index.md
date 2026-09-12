@@ -29,7 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Brazos County abatement is still assigned to its new owner and the assignment is unchanged.
 - 2026-09-08 · The Brazos County notice of the assignment of the RELLIS abatement to ThisWay Global is still posted and still reads as it did. What the commissioners court did at the meeting the notice named is still not published as a minute.
 - 2026-09-09 · The RELLIS data center abatement is still assigned to the new owner on the terms Brazos County approved.
-- 2026-09-12 · The RELLIS data center abatement is still assigned to the new owner on the terms Brazos County approved. The county's own notice of that assignment has rolled off its news page, so the assignment now rests on the court record rather than on a page a reader can open.
+- 2026-09-12 · The RELLIS data center abatement is still assigned to the new owner on the terms Brazos County approved. The county's own notice of that assignment has rolled off its news page. The assignment now rests on the court record rather than on a page a reader can open.
 
 ## Evidence
 

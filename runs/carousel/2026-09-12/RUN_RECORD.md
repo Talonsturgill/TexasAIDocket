@@ -183,7 +183,7 @@ catch.
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
 | aggregates     | PASS   | 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 8.54 MB, vector |
-| score          | ABSENT | score.json not written yet |
+| score          | PASS   | 6.92 |
 | labels         | PASS   | 24 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 95 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 8 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
@@ -193,8 +193,8 @@ catch.
 | plan vs render | WARN   | 0 of 47 acceptance item(s) checkable |
 | texan          | PASS   | places Austin / body yes / deadline yes / next step yes |
 | absences       | PASS   | 3 of 3 scoped to a named document |
-| numerals       | PASS   | 11 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| numerals       | PASS   | 9 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
 
 ## THE DECK
@@ -402,3 +402,109 @@ a fact about the record. The far date is derived from the horizon's own rule now
 **And one site defect this deck's own copy exposed.** The story section's terminator test read the
 last character only, so a line ending on a quoted sentence printed two full stops. Three frames
 this run set a quoted fragment and the page doubled the one whose period is inside the quote.
+
+## ROUND 2 AND ROUND 3, AND THE HARD FAIL BETWEEN THEM
+
+    round 2    integrity 7.140    craft (rate limited)   reader (rate limited)
+               ONE HARD FAIL, frame 8's axis bounds
+    round 3    integrity 6.782    craft 6.746            reader 7.020
+               per criterion median, weighted        6.920
+               threshold 6.8      spread 0.274      hard fails 0      SHIP
+
+Round 2 is not a panel and is not counted as one. All three of its judges terminated on the same
+session rate limit inside a second of each other, the run wrote its evidence to this branch and
+held, and a single retry on the integrity lens was taken when the quota returned.
+
+**That retry raised the run's only hard fail, and it was right.** Frame 8 printed `1.0` and `0`
+as its axis bounds. Neither figure comes from the record. F1 is bounded at 1 by the definition of
+the measure rather than by anything this run fetched, and the zero is drawn because the honest
+axis doctrine requires an anchored scale, so both are properties of the chart instead of
+measurements of Texas pavement.
+
+**BOTH NUMERAL GATES WERE GREEN OVER IT, AND THAT IS THE ENTRY WORTH KEEPING.**
+`aggregate_check` refused the declaration, because it does not read a bare axis label as a numeric
+phrase and a declaration nothing says is a declaration left to be reused. `numeral_trace` passed
+the figures, because the digits 1 and 0 occur somewhere in the evidence of a claim the frame
+cites, which is exactly the coincidence its own docstring names as the case it cannot see. Two
+gates, both green, and between them no way to either authorise the numerals or catch them.
+
+The first disposition was to ship them undeclared with a paragraph in `aggregates.json` as the
+explanation, and that paragraph conceded in writing that the judge's reading was fair. A run that
+writes down why a gate it disagrees with should not apply to it has argued rather than fixed. The
+frame now draws both rules and NAMES them, `SCALE TOP` and `SCALE BASE`, and prints no bound
+figure at all. Spelling them as words was considered and rejected on this project's own grounds,
+because the law on numerals is about where a figure comes from rather than how it is set.
+
+`numeral_trace` counts 9 numerals across 9 frames where it counted 11.
+
+### What round 3 found that this run fixed
+
+- **The audit trail had its two source classes exactly swapped.** `aggregates.json` named the
+  university release and the two TxDOT pages as the three first party accounts, and the two
+  journal papers as the two official records. `claims.json`'s own `source_type` and
+  `sources_block.py`'s name table both say the reverse. The PUBLISHED sentence was never wrong,
+  because the script computes it and never reads this file. What was wrong is the declaration a
+  checker would re-derive it from. `aggregate_check` is blind to it because both partitions
+  happen to be three documents and two, so the counts stayed right while the sets behind them
+  were exchanged.
+- **`aggregates.json` said the eight day figure prints in the caption.** It prints only in slide
+  9's mono foot and the caption has never carried it.
+
+### What round 3 found that this run did NOT fix, and why
+
+The craft judge scored artwork 6.0 and named **frame 7, the deck's turn, as its weakest drawing**.
+The `office_chair` its own technique line and two acceptance items name is not on the frame, and
+the figure's forearm does not visibly cross the desk's back edge to join the hand. Two judges also
+read the **value arc as collapsed**, with seven of nine frames measuring median L* 6.1 against a
+storyboard that plans one dark frame and one light one.
+
+Both are real and neither is a hard fail. They are craft rather than fact, the panel cleared the
+bar without them, and `panel_ready`'s own header records what serial re-scoring costs. They are in
+the backlog for the next run rather than in a fourth round.
+
+### A finding that did not survive checking, for the second time this run
+
+Two judges read frame 9's `open to the public` as dropping c23's `With the exception of closed
+executive sessions`. Checked: the deck asserts the phrase of ONE meeting where the claim asserts
+it of ALL commission meetings, so the frame is NARROWER than its source rather than broader, which
+is the safe direction. `quantifier_check` owns this question and passes. Nothing was changed.
+
+## TWO CI FAILURES THAT WERE RED ON `main` TOO
+
+Both were measured on `main` and on this branch before either was touched, and both are fixed
+here rather than stood down on, because the site is this routine's own surface and a red base
+branch is not a reason to ship a red one.
+
+**The Lone Star mark landed on the front page headline at every desktop width from 768 to 1440.**
+The cause is a clock rather than a viewport. `EXPIRY_JS` retires the news chip when its
+`expires_at` passes, and `theme.py` collapsed the retired box, so the hero rose about a hundred
+pixels into the mark. With the chip live the headline's box top is 291 at 1440px, 304 at 1024 and
+293 at 768. With it retired, 212, 203 and 191, against a mark whose bottom edge is 273, 273 and
+224. The same file is correct before 14:00 UTC and wrong after, which is why no width sweep and no
+screenshot ever caught it. The retired chip keeps its space now.
+
+**The Manrope subset carried neither character in the name Jelena Tesic.** `tests/glyphs.mjs` went
+red on `U+107` and `U+161`, both in the name of the researcher leading the team this deck is
+about, quoted verbatim from her university's release. There is no version of this project that
+misspells a named person to fit a subset range, so the range moved. Latin Extended-A whole rather
+than the two codepoints, because a pair added per name guarantees the next name goes red too.
+Measured cost, 14,932 bytes across three faces, 105,156 to 120,088.
+
+**And eighteen house style violations that were entirely this run's own writing.** Ten sentences
+over the thirty word backstop, across two item summaries, three verification notes, one public
+access field and three claim texts the article page renders. `house_style_check` is clean on
+`main`, so every one of them was written today. All split at a clause.
+
+### The one human lane commit this run made, and why
+
+`ownership.yaml` puts `assets/fonts/web/**` in the `human` lane, correctly, because the committed
+subsets are the bytes every reader downloads and no routine should be able to change a typeface
+unattended. This run is BLOCKED by that file rather than merely inconvenienced by it: CI is red on
+`tests/glyphs.mjs` because the Manrope subset cannot draw two characters in a named researcher's
+name, and the only place that is fixable is the subset itself.
+
+So the rebuilt faces are committed on their own, stamped `TXDOCKET_ACTOR=human`, which
+`branch_also_allows` permits from this branch prefix and which the hook's own message prescribes
+for exactly this case. Nothing else is in that commit. The range that produced them is in
+`scripts/site/fonts_build.py`, which is `daily` lane and is in the ordinary commit beside it, so
+the DECISION is reviewable in the lane that made it and only the built artifact crossed over.
