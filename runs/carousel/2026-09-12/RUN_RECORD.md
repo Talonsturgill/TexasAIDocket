@@ -283,3 +283,122 @@ The stationing interval on frame 5 is the one figure the plan asked for and the 
 print. No claim it cites carries that digit anywhere in its quote, its text, its title or its url,
 so a reader following the cite would arrive at a page without the number. The ticks carry the
 rhythm and the frame prints no numeral at all.
+
+## THE PANEL
+
+    round 1    integrity 6.874    craft 6.770    reader 6.700
+               per criterion median, weighted        6.786
+               threshold 6.8      spread 0.174      hard fails 0
+
+**Under the bar by fourteen thousandths, with no hard fail from any of the three.** `panel.py`
+took the median of each CRITERION and weighted it, which is not the median of the totals, and
+the run record does not compute it by hand. `score1.json` carries the arithmetic.
+
+All three judges and the flow critic independently named the same worst defect, and the cause was
+one line of geometry. **Frame 7's hand had been standing on the floor.** `S.sprite` stands a sprite
+ON THE GROUND PLANE at its depth and the hand's parts were declared from y 0.00, so it landed at
+y 1186 to 1219 while the granite sheet sat at 923 to 972. One critic called the shape at the bottom
+of that frame "a boot or a small animal" and could not name it. On the deck's one turn, the frame
+the whole structure is staked on, the accent was marking an empty desk. Declaring the parts at
+desk height, y 0.74, puts the hand on the sheet, and the desk gained a lit top plane laid flat and
+unscreened so the frame has a light at all.
+
+### What else the repair round carried
+
+- Frame 1's second kicker line now carries the project's status in the release's own words,
+  "Second phase, closer to statewide deployment". The reader judge's most valuable finding was
+  that the cover's past tense plus the caption's present tense left a scrolling Texan believing
+  hand rating is already replaced on Texas roads, which this run's own `not_established` list
+  says nobody has established.
+- The caption's closing question no longer points at the commission meeting. `c25`'s own note
+  says those are TxDOT's governing body meetings and NOT hearings about this research, frame 9
+  obeyed that to the letter, and the caption then implied it anyway three paragraphs after the
+  project.
+- Frame 2 restored both quoted sentences to their full clauses. Truncating c8 at "surface
+  distress" dropped the adjustment that is part of the definition.
+- Frame 3 prints, in mono, that the release lists the scanner and the van separately. The drawn
+  boom mounts one on the other and no claim does.
+- Frame 4's lit lip is painted flat and unscreened, because a stipple screen on a dark register
+  cannot carry a highlight and the dossier calls that lip the craft point of the frame.
+- Frame 5's sub label names the document the extent is absent from.
+- Frame 8's 0.780 label came off the 1.0 gridline, where at 432 px the eye read "1.0 THIS MODEL"
+  and a reader took a published F1 score for a perfect one.
+- Frame 9's road gained aggregate in world metres and no centre line dash lands under the foot.
+
+### A FINDING THAT DID NOT SURVIVE CHECKING, recorded because that is half the job
+
+The reader judge said the first comment "inverts what a reader means by official", calling the two
+journal papers the official records. Checked against `claims.json` the classification is the other
+way round and it is right: `primary_corporate` is the university release and the two papers, which
+their own subjects wrote, and `primary_official` is TxDOT and FHWA. `sources_block.py`'s docstring
+records that this same sentence has said its exact opposite twice before. Nothing was changed.
+
+Chasing it did turn up a real one. The Europe PMC line was titled "Funding statement, Detection of
+Flexible Pavement Surface Cracks...", because c14's `source_title` named the SECTION its quote
+comes from. Four claims come off that url and three are from the body. The title is the paper now.
+
+### THE RE-SCORE DID NOT RUN, AND THIS IS WHY
+
+All three round 2 judges terminated on the same error inside a second of each other:
+
+    You've hit your session limit, resets 11am UTC   (rate_limit, HTTP 429)
+
+The routine's failure protocol is explicit that **a usage limit is a pause rather than a failure**,
+and the deck's evidence is committed to this branch so a later session resumes from it. What is
+NOT true is that the deck has been certified. `run_complete.py` refuses a run with no `score.json`
+for a reason, and the last honest reading of this deck is round 1's 6.786 on a deck that has since
+been repaired on every finding the panel converged on and on nothing else.
+
+**So this run does not merge.** Not because a gate went red, and not because a judge found a hard
+fail, but because the one reading that is allowed to say the deck is finished could not be taken.
+
+## THE RETRO
+
+**Nothing prompted.** `scripts/shared/prompt_audit.py` measured 1,229 tool dispatches and none
+waited on a human. That is the reading the 2026-09-02 entry says to take rather than asserting a
+run went unattended, and it is the number that would have found the six wedged days in August.
+
+**The three things this run learned that are worth more than the deck.**
+
+1. **A sprite stands on the ground, and a hand does not belong on the ground.** `S.sprite` places
+   a sprite's parts relative to the ground plane at its depth, which is correct for every object
+   in the catalogue and wrong for anything resting on a surface above it. Nothing in the library,
+   the doctrine or the gates says so, and three independent readers found the symptom without any
+   of them being able to see the cause. The fix on the frame is to declare the parts at the
+   surface's own height. The fix for the next deck is a line in `ILLUSTRATION_SYSTEM.md`.
+
+2. **A SCREENED FIELD ON A DARK REGISTER IS MOSTLY GROUND, so it can be neither a light nor a
+   silhouette.** This is the same measurement that inverted the register at frame one, arriving
+   twice more in different costumes. `layout_check.silhouette` read a fully drawn road as "dust"
+   because at 54 by 40 px a stipple over `#161310` averages back to `#161310`. And a frame's p95
+   cannot exceed the local average of its screen, so a craft judge measuring five frames at p95
+   43 to 61 concluded the brightest object on each was the type, which was true and which no
+   amount of brighter GREY in the twin could have changed. The answer both times was an
+   UNSCREENED FLAT PLANE: frame 2's sheet, frame 8's card, frame 7's desk top and frame 4's lit
+   lip. A print on a dark ground gets its light from the places the screen is not.
+
+3. **Every one of the nine dossiers described a frame the run did not make**, and `plan_render_check`
+   found most of it before a critic did. The palettes were written in the paper register and named
+   nine colours no frame contains. Frame 1's camera put its subject off the left edge. Frame 3's
+   plan would have put the person nearer the camera than the thing they are the scale for. The
+   plans are corrected to what was built, every time, with the reason beside them, because the
+   alternative is the defect that gate exists for.
+
+**Five proposals went to `knowledge/carousel/UPGRADE_BACKLOG.md`** and none was made here, because
+each is `upgrade` lane or out of a routine's reach: the caption gate refusing the word "mine", a
+copy record that derives the hook from the largest laid-out node and was wrong on two of nine
+frames, a gradient under a coarse halftone banding into something `qa.py` reads as a rule through
+type, a screened field not registering as a silhouette, and an axis bound being the one disposition
+`aggregate_check` and `numeral_trace` cannot express between them.
+
+**One gate was red at wake and is green now.** `docket_calendar.py`'s self-test failed on correct
+data, twice, because `tx-2026-0149` was admitted this run with a key date in August 2029: the kind
+`expires` had no English label, and the emptiness test asked for a calendar at a hardcoded
+2031-01-01 whose two year window now contains that date. That is the same defect the quiet-month
+note four lines below it was written for, on the same file, two weeks earlier. A test that reads
+the live record may not hardcode a fact about the live record, and "past the end of the record" is
+a fact about the record. The far date is derived from the horizon's own rule now.
+
+**And one site defect this deck's own copy exposed.** The story section's terminator test read the
+last character only, so a line ending on a quoted sentence printed two full stops. Three frames
+this run set a quoted fragment and the page doubled the one whose period is inside the quote.
