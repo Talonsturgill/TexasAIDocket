@@ -562,16 +562,16 @@ def services_page(items: list, today: str) -> str:
     # rather than spread through markup. `autocomplete` is on every one of them, which is the
     # difference between a form a phone fills in one tap and a form a phone fights.
     name_f = field("lf-name", "Your name",
-                   '<input id="lf-name" name="name" type="text" required '
+                   '<input id="lf-name" name="name" type="text" required data-voice="off" '
                    'autocomplete="name" autocapitalize="words">')
     co_f = field("lf-co", "Company",
-                 '<input id="lf-co" name="company" type="text" '
+                 '<input id="lf-co" name="company" type="text" data-voice="off" '
                  'autocomplete="organization">', optional=True)
     mail_f = field("lf-mail", "Email",
-                   '<input id="lf-mail" name="email" type="email" required '
+                   '<input id="lf-mail" name="email" type="email" required data-voice="off" '
                    'autocomplete="email" inputmode="email" spellcheck="false">')
     msg_f = field("lf-msg", "What is the work",
-                  '<textarea id="lf-msg" name="message" rows="5" required></textarea>',
+                  '<textarea id="lf-msg" name="message" rows="5" required data-voice="off"></textarea>',
                   hint="Say what a win would look like.")
 
     body = f"""
