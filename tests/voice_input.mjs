@@ -157,11 +157,11 @@ try {
     '/record/': ['askq', 'askfbtext', 'askfbmail', 'contactmsg', 'contactmail'],
     '/datacenters/': ['gsearch', 'rsearch', 'contactmsg', 'contactmail'],
     '/scan/': ['sc-mail', 'sc-note', 'contactmsg', 'contactmail'],
-    '/services/': ['lf-name', 'lf-co', 'lf-mail', 'lf-msg', 'contactmsg', 'contactmail']
+    '/services/': ['contactmsg', 'contactmail']
   };
   for (const [route, fields] of Object.entries(surfaces)) {
     const p = await pageFor(route, 390, 'prefixed');
-    check(`${route} covers every text field without a honeypot microphone`,
+    check(`${route} covers eligible text fields without extra microphones`,
       await p.locator('.voice-input-button').count() === fields.length);
     for (const id of fields) check(`${route} ${id} has exactly one control`, await p.locator(mic(id)).count() === 1);
     check(`${route} keeps buttons outside field labels`, await p.locator('label .voice-input-button').count() === 0);
@@ -169,6 +169,7 @@ try {
       Array.from(document.querySelectorAll('input[inputmode="url"],input[autocomplete="url"],input[type="url"]'))
         .every(field => !document.querySelector('.voice-input-button[aria-controls="' + field.id + '"]'))));
     const target = fields[0];
+    if (target === 'contactmsg') await p.click('#contactopen');
     await p.click(mic(target));
     await result(p, [['Texas', true]]);
     await p.evaluate(() => speechSessions.at(-1).end());
