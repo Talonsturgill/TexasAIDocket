@@ -112,6 +112,60 @@ check("the page ships an index and a catalogue", !!idx && Array.isArray(cat) && 
       `${cat?.length} questions`);
 check("no request left the page", external.length === 0, external.join(", "));
 
+// A TOPIC WORD AND ITS PLURAL ARE THE SAME QUESTION, and nothing checked that until
+// 2026-09-11, which is how a change that broke 54 of the 55 single word topic terms reached
+// main. `bills` and `reservoirs` returned no route and the classifier put them in `refuse`,
+// so the box told a reader that a question the record answers is outside the record. The gold
+// set behind tests/ask_eval.mjs is built from decision titles and bodies and has never held a
+// bare topic word, so it measured 100 percent through the whole regression.
+//
+// DERIVED FROM THE PAGE'S OWN VOCABULARY rather than a list written here, so it cannot fall
+// behind TOPIC_WORDS. Multi word phrases are left out because the catalogue answers those by
+// another path, and this is about the direct topic match.
+const plurals = [];
+for (const [topic, words] of Object.entries(idx.topic_words || {})) {
+  for (const w of words) {
+    if (w.includes(" ")) continue;
+    const many = /y$/.test(w) ? w.slice(0, -1) + "ies"
+      : /(s|x|z|ch|sh)$/.test(w) ? w + "es" : w + "s";
+    plurals.push({ topic, w, many });
+  }
+}
+const routed = await page.evaluate((rows) => rows.map((r) => ({
+  ...r,
+  one: window.__askRoute(r.w) ? true : false,
+  two: window.__askRoute(r.many) ? true : false,
+})), plurals);
+const deadSingular = routed.filter((r) => !r.one);
+const deadPlural = routed.filter((r) => r.one && !r.two);
+check("every single word topic term routes", deadSingular.length === 0,
+      deadSingular.map((r) => r.w).join(", "));
+check("and so does its plural, which is how a reader actually types it",
+      deadPlural.length === 0, deadPlural.map((r) => `${r.w} but not ${r.many}`).join(", "));
+
+// AND A NAME IS STILL MATCHED AS WORDS RATHER THAN LETTERS, which is the rule the plural
+// tolerance above is carved out of. The city of Mission, Texas must not be found inside
+// "admission". Asserted on whatever the record actually holds, so it is skipped rather than
+// faked when no name is a substring of a longer word.
+const insideWord = await page.evaluate(() => {
+  const norm = (s) => (s || "").toLowerCase().replace(/[^a-z0-9 ]+/g, " ")
+    .replace(/\s+/g, " ").trim();
+  const names = [];
+  (window.__ASK_INDEX__.metros || []).forEach((m) =>
+    [m.name, ...(m.aliases || [])].forEach((a) => names.push(norm(a))));
+  (window.__ASK_INDEX__.counties || []).forEach((c) => names.push(norm(c)));
+  const out = [];
+  names.forEach((n) => {
+    if (!n || n.length < 4 || n.includes(" ")) return;
+    const buried = "un" + n + "ing";            // the name, sealed inside one longer word
+    const r = window.__askRoute(buried);
+    if (r && (r.view === "by_metro" || r.view === "by_county")) out.push(`${buried} -> ${r.view}`);
+  });
+  return out;
+});
+check("a place name buried inside a longer word is not a mention of that place",
+      insideWord.length === 0, insideWord.slice(0, 3).join(", "));
+
 // EVERY CATALOGUED QUESTION IS ASKED. Not a sample.
 const empty = [];
 const overclaimed = [];
