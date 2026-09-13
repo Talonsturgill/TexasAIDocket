@@ -18,11 +18,16 @@ the issues, then the ci will be able to run like normal."*
 
 THE CONFLICT IS NOT BAD LUCK. IT IS SCHEDULED.
 
-Measured on 2026-09-13. `gridwatch.yml` runs at 14:00 and 20:00 UTC and each run rewrites about
-126 files under `docs/`. `pages.yml` runs every two hours. A daily run regenerates the WHOLE of
-`docs/`, about a thousand files, because the site is a pure function of the ledgers. So a run
-branch and `main` touch the same generated files within hours of each other, every day, and the
-branch goes un-mergeable on its own with nobody doing anything wrong.
+Measured on 2026-09-13, and corrected the same evening after a review bot checked the inventory.
+FOUR cron workflows run `site_build` and commit `docs/` to `main`, eight pushes a day between
+them: `news.yml` four times daily, `gridwatch.yml` twice, `datacenters.yml` and `generators.yml`
+once each. A daily run regenerates the WHOLE of `docs/`, about a thousand files, because the site
+is a pure function of the ledgers. So a run branch and `main` touch the same generated files
+within hours of each other, every day, and the branch goes un-mergeable with nobody doing
+anything wrong.
+
+NOT writers, and the first cut wrongly counted both: `pages.yml` has `contents: read` and only
+deploys what is already committed, and `queuewatch.yml` stages its ledger and raw files alone.
 
 That is why this is a checker and not a paragraph in the routine. The condition is invisible from
 inside a session, it arrives on a timer rather than in response to anything the run did, and the
@@ -64,6 +69,14 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # Paths the build writes wholesale. A conflict here is never resolved by hand.
 GENERATED_PREFIXES = ("docs/",)
 
+# EXCEPT THESE, WHICH LIVE UNDER A GENERATED PREFIX AND ARE NOT GENERATED. `ownership.yaml`
+# gives `docs/videos/videos.json` to `dispatch`, append-only, with the note that no build in
+# this repo may write, reformat or delete it and `site_build` copies it through verbatim. So
+# "rebuild and the conflict resolves itself" is false for it in the one way that matters: a
+# rebuild would carry the conflicted bytes straight through, markers and all, or clobber a feed
+# another repository publishes. It is read and merged by hand like any authored file.
+GENERATED_EXCEPTIONS = ("docs/videos/videos.json",)
+
 
 def git(*args: str, cwd: Path | None = None) -> subprocess.CompletedProcess:
     return subprocess.run(["git", *args], cwd=str(cwd or REPO_ROOT),
@@ -73,28 +86,47 @@ def git(*args: str, cwd: Path | None = None) -> subprocess.CompletedProcess:
 def conflicts(base: str, branch: str, cwd: Path | None = None):
     """(mergeable, conflicted_paths). Never touches the working tree.
 
-    `--name-only` prints the written tree's oid on the first line and then the conflict report,
-    so the oid is dropped and only `CONFLICT (...): ... in <path>` lines are read. Parsing the
-    prose is deliberate: the porcelain here is stable and the alternative is a real checkout.
+    The paths come from `--name-only -z`'s FILENAME BLOCK rather than from its prose report.
+    See the comment on the parse for what reading the prose cost.
     """
-    r = git("merge-tree", "--write-tree", "--name-only", base, branch, cwd=cwd)
+    r = git("merge-tree", "--write-tree", "--name-only", "-z", base, branch, cwd=cwd)
     if r.returncode == 0:
         return True, []
     if r.returncode > 1 and "CONFLICT" not in r.stdout:
         raise SystemExit(f"merge_ready: git could not compare {base} and {branch}: "
                          f"{(r.stderr or r.stdout).strip()[:300]}")
-    paths = []
-    for line in r.stdout.splitlines():
-        if line.startswith("CONFLICT") and " in " in line:
-            p = line.rsplit(" in ", 1)[1].strip()
-            if p and p not in paths:
-                paths.append(p)
-    return False, paths
+    # THE FILENAME BLOCK, NOT THE PROSE. `--name-only` prints the written tree's oid, then one
+    # NUL separated filename per conflicted path, then the human readable report. The first cut
+    # read the report instead, splitting each `CONFLICT (...)` line on its last " in ", and a
+    # modify/delete conflict says "Version run of docs/a.html left in tree." So the path came out
+    # as `tree.`, which starts with neither prefix and was therefore filed as AUTHORED. A wrong
+    # path is worse than a missing one: it sends a run to read a file that does not exist while
+    # the real conflict goes unnamed. `-z` also survives a filename with a space or a newline.
+    head, _, _rest = r.stdout.partition("\0\0")
+    parts = head.split("\0")
+    paths = [p for p in parts[1:] if p.strip()]
+    if not paths:                       # no filename block, fall back rather than report clean
+        for line in r.stdout.splitlines():
+            if line.startswith("CONFLICT (") and "): " in line:
+                tail = line.split("): ", 1)[1]
+                cand = tail.split(" deleted in ")[0].split(" in ")[0].strip()
+                if cand and cand not in paths:
+                    paths.append(cand)
+    seen, ordered = set(), []
+    for p in paths:
+        if p not in seen:
+            seen.add(p)
+            ordered.append(p)
+    return False, ordered
+
+
+def is_generated(path: str) -> bool:
+    return path.startswith(GENERATED_PREFIXES) and path not in GENERATED_EXCEPTIONS
 
 
 def split(paths):
-    gen = [p for p in paths if p.startswith(GENERATED_PREFIXES)]
-    authored = [p for p in paths if not p.startswith(GENERATED_PREFIXES)]
+    gen = [p for p in paths if is_generated(p)]
+    authored = [p for p in paths if not is_generated(p)]
     return gen, authored
 
 
@@ -184,6 +216,31 @@ def self_test() -> int:
         ok("an authored conflict is reported separately from the generated ones",
            "ledger.json" in authored and "docs/index.html" in gen, f"authored={authored}")
 
+        # A MODIFY/DELETE CONFLICT NAMES A REAL PATH. Codex found this on PR 305: the first cut
+        # read the prose report and split on its last " in ", and modify/delete says "Version run
+        # of docs/a.html left in tree.", so the path came out as `tree.` and was filed AUTHORED.
+        git("checkout", "-q", "main", cwd=d)
+        (d / "gone.json").write_text("base\n")
+        (d / "docs" / "gone.html").write_text("base\n")
+        git("add", "-A", cwd=d); git("commit", "-qm", "two files to fight over", cwd=d)
+        git("checkout", "-q", "run", cwd=d); git("merge", "main", "-q", cwd=d)
+        (d / "gone.json").write_text("the run edits it\n")
+        (d / "docs" / "gone.html").write_text("the run edits it\n")
+        git("commit", "-qam", "run edits both", cwd=d)
+        git("checkout", "-q", "main", cwd=d)
+        (d / "gone.json").unlink(); (d / "docs" / "gone.html").unlink()
+        git("commit", "-qam", "main deletes both", cwd=d)
+        _okc, paths = conflicts("main", "run", cwd=d)
+        ok("a modify/delete conflict names the real paths",
+           "gone.json" in paths and "docs/gone.html" in paths, str(paths))
+        ok("...and no prose fragment is mistaken for one",
+           not any(x in paths for x in ("tree.", "run", "main")), str(paths))
+        gen, authored = split(paths)
+        ok("...and each lands on the right side",
+           "docs/gone.html" in gen and "gone.json" in authored, f"gen={gen} authored={authored}")
+        git("checkout", "-q", "main", cwd=d); git("reset", "-q", "--hard", "HEAD~2", cwd=d)
+        git("checkout", "-q", "run", cwd=d); git("reset", "-q", "--hard", "HEAD~2", cwd=d)
+
         # AND IT GOES GREEN AGAIN once the base is merged and the generated file rebuilt, which
         # is the whole cure this gate points at.
         git("merge", "main", "-q", "--no-commit", cwd=d)
@@ -192,6 +249,23 @@ def self_test() -> int:
         git("add", "-A", cwd=d); git("commit", "-qm", "merge main and rebuild", cwd=d)
         okc, paths = conflicts("main", "run", cwd=d)
         ok("...and merging the base and rebuilding clears it", okc and not paths, str(paths))
+
+    # THE DISPATCH FEED IS NOT GENERATED, whatever prefix it sits under. `ownership.yaml` gives
+    # it to another repository, append-only, and a rebuild would carry conflicted bytes through.
+    ok("docs/videos/videos.json is not classified as generated",
+       not is_generated("docs/videos/videos.json"),
+       "the dispatch feed would be sent for a rebuild that cannot resolve it")
+    ok("...while an ordinary page under docs/ still is", is_generated("docs/index.html"))
+
+    # A FETCH THAT FAILED MUST NOT REPORT READINESS off a stale ref, which is the one way this
+    # gate could manufacture the false green it exists to prevent.
+    import subprocess as _sp
+    _r = _sp.run([sys.executable, str(Path(__file__).resolve()),
+                  "--fetch", "--base", "no-such-remote/main"],
+                 capture_output=True, text=True, cwd=str(REPO_ROOT))
+    ok("a failed --fetch exits non-zero rather than comparing a stale ref",
+       _r.returncode != 0, f"exit {_r.returncode}: {(_r.stdout + _r.stderr)[:200]}")
+    ok("...and says why", "stale" in (_r.stdout + _r.stderr), (_r.stdout + _r.stderr)[:200])
 
     print("\nmerge_ready self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0
@@ -207,8 +281,17 @@ def main() -> int:
     if args.self_test:
         return self_test()
     if args.fetch:
+        # A FETCH THAT FAILED AND WAS IGNORED IS THIS GATE'S WORST OUTCOME. The comparison would
+        # fall back to a stale `origin/main`, print that the branch merges cleanly, and hand back
+        # exit 0 for a branch that conflicts with the real base. A gate built to stop a false
+        # green must not manufacture one out of a dropped network.
         remote, _, ref = args.base.partition("/")
-        git("fetch", remote, ref or "main")
+        f = git("fetch", remote, ref or "main")
+        if f.returncode != 0:
+            print(f"merge_ready: could not fetch {args.base}, so the comparison would be against "
+                  f"a stale ref and its answer would mean nothing. "
+                  f"{(f.stderr or f.stdout).strip()[:300]}", file=sys.stderr)
+            return 2
     return report(args.base, args.branch)
 
 
