@@ -1976,8 +1976,31 @@ Both fixes are outside the `upgrade` lane:
   switch off the gate that judges it.
 - `prompts/daily_routine.md` needs the Phase 18 line above, and is `human` lane.
 
-The one thing that IS in lane, and is deliberately not done here: widening `gate_wiring.py` to
-sweep `scripts/shared/` as well. It is left alone because it would go red the moment it ran,
-naming every shared script that no workflow calls, and a gate whose first act is to fail on work
-nobody has agreed to do is a gate that teaches a run to disable it. It belongs in the same change
-as the `guards.yml` step, made by somebody who can write both.
+**CORRECTED THE SAME EVENING, and the correction is the point.** The paragraph here first said
+widening `gate_wiring.py` would "go red the moment it ran, naming every shared script that no
+workflow calls". That was a guess dressed as a reason not to do the work, and measuring it took
+one command. Under this file's own rule that a `--self-test` invocation is not wiring,
+`scripts/shared` has **one** apparent orphan, `livecheck`, and it is not one: it runs on its own
+schedule in `livecheck.yml`, which `gate_wiring` never read because it only ever opened
+`guards.yml`.
+
+So the owner cleared the lane and all of it was done rather than written down:
+
+- `gate_wiring.py`'s census is `scripts/{carousel,shared}/*.py`, 47 gates where it saw 32, and it
+  reads every file in `.github/workflows/` rather than `guards.yml` alone. Four new self-test
+  assertions replay the widening, including that a shared checker with no caller is reported.
+- `guards.yml` runs `merge_ready.py --self-test`. The real check is deliberately NOT there, and
+  the step says why: a conflicted branch never reaches the runner, so this is the one gate CI can
+  never fire. The routine runs it in Phases 16 and 18 where the answer can still change something.
+- `prompts/daily_routine.md` Phase 16 merges `origin/main` BEFORE the site rebuild, and asks
+  `merge_ready --fetch` after the push. Phase 18 asks it before explaining an empty check list.
+- `CLAUDE.md` carries the finding beside its own `total_count: 0` paragraph.
+- `guards.yml` also wires `grain`, `mark`, `sky` and `watch_page`, four self-tests that had never
+  been run by anything. All four passed on the day they were wired.
+
+**`scripts/site` stays out of the census and that is now a measurement rather than a lane.** 24 of
+its 43 checkers come back as orphans under the strict rule and none of them is one: they are
+libraries `site_build.py` imports, so their real invocation is an import that this gate cannot
+see. Reporting 24 findings of which zero are actionable is the cry-wolf failure `invoked_in`'s own
+docstring refuses. Teaching it to read imports is the work that would let `site` in, and that is
+still a proposal.

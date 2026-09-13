@@ -39,10 +39,18 @@ ACTUALLY LOADED while running, and hands that set here. A registered adapter tha
 without ever importing its gate has not run it, and this reports it as unwired, which is the
 honest answer and is the same question `shipped_check`'s own reachability assertion asks.
 
-WHAT THIS DOES NOT COVER, stated because an exemption nobody wrote down is how the next silent
-surface grows. Its census is `scripts/carousel/*.py` only, which is the suite the upgrade lane
-builds and the suite that has produced every orphan so far. `scripts/shared/**` and
-`scripts/site/**` are the `daily` and `human` lanes' and are not read here.
+WHAT THIS COVERS, AND THE EXEMPTION THAT USED TO BE HERE. Until 2026-09-13 the census was
+`scripts/carousel/*.py` alone, and the docstring said so plainly on the grounds that the other
+directories belong to other lanes. **Writing an exemption down honestly is not the same as it
+being right, and this one hid two things.** A new checker in `scripts/shared/` reported clean
+while nothing ran it, and four checkers under `scripts/site/` had declared a `--self-test` that
+no workflow and no phase ever asked. A wiring check that cannot see a directory reports clean
+about a place it never looked.
+
+The census is `scripts/{carousel,shared}/*.py` now, and both are directories of standalone
+checkers a workflow or a phase calls by name. Lane ownership decides who may FIX an orphan,
+which is a different question from whether one exists, and this file only ever answered the
+second. `scripts/site` stays out for a measured reason recorded beside `CENSUS`.
 
     gate_wiring.py                 take the measurement and grade it
     gate_wiring.py --self-test
@@ -59,7 +67,30 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CAROUSEL = REPO_ROOT / "scripts" / "carousel"
+
+# THE DIRECTORIES OF STANDALONE CHECKERS. Widened from `carousel` alone on 2026-09-13.
+#
+# The old census was `scripts/carousel/*.py` and the exemption was written down honestly in the
+# docstring, which is exactly what let it survive: a limit nobody disputes is a limit nobody
+# revisits. It hid a real orphan. `scripts/shared/merge_ready.py` was added that day to catch a
+# defect that had cost two days of shipping, and it reported clean here while nothing ran it.
+#
+# `scripts/site` IS DELIBERATELY OUT, and the reason is a measurement rather than a lane. Under
+# this file's own rule, that a `--self-test` invocation is not wiring, 24 of its 43 checkers come
+# back as orphans: `grain`, `mark`, `sky`, `theme`, `truetype`, `texas_map` and the rest. They are
+# not orphans. They are LIBRARIES that `site_build.py` imports, so their real invocation is an
+# import rather than a `python3 x.py`, and this file has no way to see one. Adding them would
+# report 24 findings of which zero are actionable, which is the cry-wolf failure `invoked_in`'s
+# own docstring already refuses. Teaching this gate to read imports is the work that would let
+# `site` in, and it is written up rather than half done.
+CENSUS = ("carousel", "shared")
 WORKFLOW = REPO_ROOT / ".github" / "workflows" / "guards.yml"
+
+# EVERY WORKFLOW, because `guards.yml` is not the only thing that runs a checker. `livecheck.py`
+# has its own six-hourly workflow and reading only `guards.yml` would have reported it an orphan,
+# which is the same fault as the census: a checker that cannot see a file reports confidently
+# about a place it never looked.
+WORKFLOW_DIR = REPO_ROOT / ".github" / "workflows"
 ROUTINE = REPO_ROOT / "prompts" / "daily_routine.md"
 
 # A GATE IS A FILE THAT CAN BE ASKED. Declaring `--self-test` is the one uniform property every
@@ -69,9 +100,19 @@ SELF_TEST_FLAG = '"--self-test"'
 
 
 def gates() -> list[str]:
-    """Every carousel gate, by module name, taken from the directory rather than a list."""
-    return sorted(p.stem for p in CAROUSEL.glob("*.py")
-                  if SELF_TEST_FLAG in p.read_text(encoding="utf-8"))
+    """Every gate this repo has, by module name, taken from the directories rather than a list.
+
+    A file that declares `--self-test` is a checker and is in the census. A file that does not
+    is not, which is why `gen_port_manifest.py` needs no exemption written for it: it generates
+    the port manifest and `port_audit` checks the output, so it is not a thing that can be asked.
+    No list to maintain and nothing to keep in sync.
+    """
+    out = []
+    for d in CENSUS:
+        for p in (REPO_ROOT / "scripts" / d).glob("*.py"):
+            if SELF_TEST_FLAG in p.read_text(encoding="utf-8"):
+                out.append(p.stem)
+    return sorted(set(out))
 
 
 def invoked_in(text: str, stem: str) -> bool:
@@ -90,13 +131,14 @@ def invoked_in(text: str, stem: str) -> bool:
 def check(loaded: set[str], workflow: str | None = None, routine: str | None = None,
           census: list[str] | None = None) -> list[str]:
     """Every gate that nothing in this machine runs. Pure, so callers can fixture it."""
-    wf = WORKFLOW.read_text(encoding="utf-8") if workflow is None else workflow
+    wf = (workflow if workflow is not None else
+          "\n".join(p.read_text(encoding="utf-8") for p in sorted(WORKFLOW_DIR.glob("*.yml"))))
     rt = ROUTINE.read_text(encoding="utf-8") if routine is None else routine
     names = gates() if census is None else census
 
     out: list[str] = []
     if not names:
-        return ["the census found no carousel gate at all, so this check is grading nothing"]
+        return ["the census found no gate at all, so this check is grading nothing"]
     for stem in names:
         if invoked_in(wf, stem) or invoked_in(rt, stem) or stem in loaded:
             continue
@@ -241,6 +283,24 @@ def self_test() -> int:
        planted in err.getvalue(), (err.getvalue() or out.getvalue())[-400:])
     ok("...and it is not filed as a note a green build would print",
        planted not in out.getvalue(), out.getvalue()[-400:])
+
+    # THE WIDENED CENSUS ACTUALLY REACHES `scripts/shared`, asserted rather than assumed. This
+    # is the widening's own replay: before 2026-09-13 a checker in that directory could be run by
+    # nothing and this file would report clean, which is how `merge_ready.py` was born an orphan.
+    ok("the census reaches scripts/shared", "merge_ready" in gates(),
+       "the widened census does not see scripts/shared, so a shared orphan reports clean")
+    ok("...and a shared gate nothing runs is reported",
+       bool(check(set(), workflow="", routine="", census=["merge_ready"])),
+       "a shared checker with no caller came back clean")
+    ok("...and the real wiring clears it",
+       not check(set(), census=["merge_ready"]),
+       "merge_ready is in the census and nothing in the machine runs it")
+
+    # AND EVERY WORKFLOW COUNTS, not only guards.yml. `livecheck.py` runs on its own schedule in
+    # livecheck.yml, and reading one file would call it an orphan.
+    ok("a checker wired by a workflow other than guards.yml is not an orphan",
+       not check(set(), census=["livecheck"]),
+       "only guards.yml is being read, so every other workflow's checkers look unwired")
 
     # A NARROWED SWEEP MUST REFUSE TO GRADE RATHER THAN GRADE WRONG. A gate that postdates an
     # older deck returns before importing anything, so over that deck the measurement is short
