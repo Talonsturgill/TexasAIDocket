@@ -185,6 +185,17 @@ run admitted, two of its re-verify movement lines and one claim text on the arti
 worth naming because the gate did not fire on the deck at all. **The record's own writing is
 the surface that drifts when a run's attention is on the carousel.**
 
+## Did this run stop and wait for a human
+
+`prompt_audit.py` measured **1678 tool calls and none of them waited on a human.** Exit 0, with
+a debug log present, so this is a measurement rather than an absence of one.
+
+**This reading is interim and everything after it can still prompt.** The upgrade worker runs
+after this line, files are committed and pushed, the pull request is checked and merged, and
+the Gmail connector is called. Phase 19 takes the reading that counts, immediately before the
+email is built, and that is the figure the email carries.
+
+
 ## Gate status
 
 <!-- gate-status:begin -->
