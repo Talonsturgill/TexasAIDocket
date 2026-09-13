@@ -680,7 +680,7 @@
     "Cincinnati Children's Hospital Medical Center",
     "U.S. Food and Drug Administration"
    ],
-   "entities_note": "Written from claims.json rather than from memory. Every name appears in a fetched quote. c26's affiliation field also names Duke University Medical Center, the University of California San Diego and Indiana University, which the deck does not print and which are listed here because the claim carries them. The record names no county for either item, so frame 8 draws departments and never a county.",
+   "entities_note": "Written from claims.json rather than from memory. Every name appears in a fetched quote. c26's affiliation field also names Duke University Medical Center, the University of California San Diego and Indiana University. Those names are deliberately kept OUT of the entities array, because the array is what dedupe_check compares and this deck prints none of them, so carrying them would make a future deck on any of the same institutions read as a repeat of this one. Frame 8 draws departments rather than counties because the source identifies the Texas authors by department. The record does file both items by county, Harris and Dallas for the review and Harris and Galveston for the second paper, and an earlier version of this note said it filed neither, which was false and was read back off the docket's own geography field.",
    "keywords": [
     "pediatric artificial intelligence in radiology",
     "off-label use of adult-trained AI models",

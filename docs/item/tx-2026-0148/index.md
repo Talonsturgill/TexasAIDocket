@@ -1,6 +1,6 @@
-# An MD Anderson and UT Medical Branch team reports that an MRI model lost accuracy on outside patients
+# An MD Anderson and UT Medical Branch MRI model scored lower on patients it was not built on
 
-The authors include radiologists at the University of Texas MD Anderson Cancer Center in Houston and at the University of Texas Medical Branch in Galveston. They built a machine learning survival model from MRI radiomic features and tested it on a separate patient group without refitting it. The model's discrimination fell between the group it was built on and the group it was tested on. The authors conclude that the approach showed limited standalone discrimination and support cautious use of it as an exploratory imaging biomarker. The paper is a research result rather than a deployment, and neither institution has published a statement that the model is used in patient care.
+The authors include radiologists at the University of Texas MD Anderson Cancer Center in Houston and at the University of Texas Medical Branch in Galveston. They built a machine learning survival model from MRI radiomic features and tested it on a separate patient group without refitting it. Its discrimination score was lower on the group it was tested on than on the group it was built on. The paper reports overlapping confidence intervals for the two and no test that the difference is real. The authors conclude that the approach showed limited standalone discrimination and support cautious use of it as an exploratory imaging biomarker. The paper is a research result rather than a deployment, and neither institution has published a statement that the model is used in patient care.
 
 - Topic: health-and-education
 - Decided by: The University of Texas MD Anderson Cancer Center, with The University of Texas Medical Branch (state-agency)
@@ -21,7 +21,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-13 · Admitted to the record. A model built at a Texas cancer center lost accuracy when it met patients it had not been fitted to. The authors say so in their own conclusion rather than leaving a reader to work it out.
+- 2026-09-13 · Admitted to the record. A model built at a Texas cancer center scored lower on patients it had not been fitted to. The authors call that limited standalone discrimination and ask for cautious use, and they report no test that the difference is real.
 
 ## Evidence
 

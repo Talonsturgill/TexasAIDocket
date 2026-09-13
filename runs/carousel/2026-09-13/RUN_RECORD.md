@@ -185,6 +185,108 @@ run admitted, two of its re-verify movement lines and one claim text on the arti
 worth naming because the gate did not fire on the deck at all. **The record's own writing is
 the surface that drifts when a run's attention is on the carousel.**
 
+## THE RUN DID NOT MERGE, AND CI IS WHY
+
+**No check run exists on this branch and none can be made to exist from inside this session.**
+`CLAUDE.md` is explicit that zero checks is not green, so PR no. 301 is open, ready and carrying
+everything, and `main` is untouched.
+
+What was tried, in the order Phase 18 prescribes, with the result of each.
+
+| lever | result |
+|---|---|
+| the pull request being opened | `guards.yml` has `total_count: 0` on this branch |
+| a push to a branch with an open pull request, which Phase 18 says fires `pull_request: synchronize` | two pushes landed after the PR opened, `0de1893` and the upgrade lane's `b57cac3`. Neither started a run |
+| `workflow_dispatch`, which `guards.yml` declares | `403 Resource not accessible by integration` |
+
+**This is not the 2026-08-27 mistake of writing a confident account while the state was one push
+away.** That push was made, twice, and the PR's own head moved to match. GitHub updated the pull
+request and started nothing.
+
+**It is also not a repo fault, and the evidence is yesterday.** Run 1104 of `guards.yml` was an
+`event: pull_request` run on `claude/daily-2026-09-12`, for the identical routine, with
+`Talonsturgill` as its triggering actor. The mechanism works here. What changed is the
+credentials this session's GitHub access uses, which no file in this repository can set. It is
+the same shape as the 2026-08-30 finding about `bypassPermissions`, and it has the same answer.
+**The remaining lever is the environment's own configuration, outside the repo.**
+
+So the email leads with this, its image URLs point at the run branch rather than `main`, and the
+one action that clears it is a maintainer merging PR no. 301 once they have seen a green run, or
+granting this session's token the right to dispatch `guards.yml`.
+
+## A REVIEW BOT READ THE BRANCH AND FOUND SIX THINGS, AND FIVE OF THEM WERE REAL
+
+Codex reviewed `96b699a` while this run was in Phase 17. Every finding was checked against the
+repository rather than taken at its word, which is how one of them came apart.
+
+- **The shipped run carried no `gmail_payload.json`.** CONFIRMED by running it.
+  `email_check.py --all` exits 1 naming this run, and that step is in `guards.yml`. **This is
+  the carousel no. 7 incident exactly**, which `CLAUDE.md` already carries in full, and the
+  reason it recurred is that Phase 19 builds the payload AFTER Phase 18's merge while CI reads
+  it across every shipped run. The payload is now built and committed inside this run's own
+  commit range.
+- **`fda_words.py` could not run from a fresh checkout.** CONFIRMED. The committed script read
+  `tmp/fda_ai_devices.html`, which lives under `out/` and is gitignored, so it raised
+  `FileNotFoundError` on the one measurement frame 9 and two of this run's absences rest on. It
+  now writes `fda_words.json` beside itself, that file is committed, and the script falls back
+  to it and says which bytes the figures came from. The measurement is unchanged and it stands.
+  Child, children and adult appear zero times on that page, and pediatric twice, both inside
+  device names.
+- **The record said the model "lost accuracy" and the authors did not say that.** CONFIRMED and
+  it is the worst of the six. The Harrell C-index measures discrimination rather than accuracy,
+  the paper's own intervals overlap, no test of a decline is reported, and the item's history
+  note went further and attributed the claim to the authors, who wrote "limited standalone
+  discrimination". The title, the summary and the note are restated to say the score was lower
+  on the cohort the model was not built on, with the overlap and the absent test named. **The
+  carousel ledger had it right the whole time**, which is what makes this a record defect rather
+  than a run-wide one.
+- **Two acceptance items printed an L\* threshold this run never measured.** CONFIRMED.
+  `shipped_check.g_measured` returned two fatal findings, so CI would have been red on this
+  independently of the email. `measure.py` now measures both against the shipped PNGs at full
+  resolution. Frame 9's lit entrance is the brightest region in the frame at 96.3 against 11.6
+  beside it, a lift of 84.8 against a threshold of 25, and it is found by luminance rather than
+  by being handed the entrance's rectangle. **Frame 7's item is NOT met and is recorded as
+  failing.** Its two named rows differ by 19.1 where the item asks for more than 40, because
+  they sit inside the step rather than either side of it. The edge they were written to test
+  runs 78.0 L\* across 6 CSS pixels, which is under three pixels at feed width, so the drawing
+  does what the item intended and the item asks the wrong two rows. That is a sixth unrepaired
+  finding and next run work.
+- **The topic ledger's own provenance note was false twice.** CONFIRMED. It said the record
+  names no county for either item, and the record files the review under Harris and Dallas and
+  the second paper under Harris and Galveston, which this run's own discoverability signoff had
+  already counted. It also read as though three out of state institutions were in the `entities`
+  array when they are deliberately not. Both corrected, with the reason the three are left out
+  now stated, because this entry is durable memory a later run reads.
+- **The sixth was wrong.** It said the acceptance literal `"Limited standalone discrimination."`
+  mismatches the rendered lowercase string and that `shipped_check.g_plan_render` reports it as
+  fatal. `g_plan_render` was run directly against this run and returns an empty list.
+
+## THE UPGRADE LANE, AND THE GATE THAT NOW FAILS THIS DECK
+
+Two upgrades shipped on `b57cac3`, stamped `upgrade`.
+
+**`panel_ready.py` now reads a value arc declared frame by frame.** The finding underneath it is
+sharper than this run's own: the arc did not merely collapse, **a gate built for exactly this
+collapse printed a pass.** Carousel 22 declared its plan nine times inside each frame's
+`art.value_structure` and wrote no summary paragraph, `arc_spans` found nothing, and the gate
+reported that the storyboard declares no arc it can read. Measured across all 22 shipped
+storyboards, this is the only one since 2026-08-29 whose arc the gate could not see, because
+every earlier deck happened to carry a summary span as well.
+
+**So the gate now goes red on this very deck**, at a measured 13.5 against its own planned 28, a
+miss of 14.5. That is the correct outcome and it is left standing. `guards.yml` does not run
+`panel_ready` against shipped runs, so it does not change the merge question, and the number is
+the same one the value arc table above already reports.
+
+**`panel.py` counts a round by the content of the three judge cards** rather than by the length
+of its own log, which is what let this run's counter read 6 where five panels had sat.
+
+Four things were written into `knowledge/carousel/UPGRADE_BACKLOG.md` as proposals rather than
+built, each because the file that would carry it is outside the `upgrade` lane. The one worth
+naming here is that **ten carousel gates have a `--self-test` that CI never runs**, measured
+rather than guessed, and `panel_ready` is one of them, so the first upgrade above is proved
+locally and by nothing else.
+
 ## Did this run stop and wait for a human
 
 `prompt_audit.py` measured **1678 tool calls and none of them waited on a human.** Exit 0, with
