@@ -1889,3 +1889,70 @@ append-only and a reordering reads as a rewrite.
 
 **Its deck is carousel no. 23**, not the 22 it calls itself. Both runs were cut from a record
 ending at 21 and both took 22. September 12th shipped first and keeps it.
+
+## 2026-09-13, the dirty branch: a root cause nobody had named, and one proposal outside every lane
+
+**Two runs in a row shipped their work and could not merge it, and neither could say why.** The
+September 12th and September 13th pull requests both sat with an EMPTY check list rather than a
+red one, and both runs read that emptiness as something stopping CI. The September 13th run wrote
+a confident account blaming the session's credentials. The owner named it instead: the branches
+were dirty.
+
+**A `pull_request` workflow runs against the pull request's MERGE REF, and GitHub cannot build a
+merge ref for a conflicted pull request.** So a conflicted branch gets no run at all, on the
+pull request and on every push after it. Not red. Absent.
+
+### The cause is a timer, which is why no run would ever have noticed it
+
+Measured on 2026-09-13 rather than reasoned about:
+
+| what pushes to `main` | how often | `docs/` files it rewrites |
+|---|---|---|
+| `gridwatch.yml` | twice daily, 14:00 and 20:00 UTC | about 126 |
+| `pages.yml` | every two hours | the published pages |
+| `datacenters.yml`, `queuewatch.yml`, `generators.yml`, `news.yml` | daily | a handful each |
+
+A daily run regenerates the WHOLE of `docs/`, about a thousand files, because the site is a pure
+function of the ledgers and `site_fresh_check` proves it byte for byte. So a run branch and `main`
+rewrite the same generated files within hours of each other **every single day**, and the branch
+goes un-mergeable on its own with nobody doing anything wrong.
+
+This is not a defect in any one run. It is the shape of the repository: a generated tree that two
+writers both regenerate wholesale.
+
+### What was built, in lane
+
+`scripts/shared/merge_ready.py`, `daily` lane. It asks the local question whose answer decides
+whether CI can run at all, and answers it as an exit code rather than as prose. It sorts the
+conflicts into GENERATED, which are rebuilt and never hand-edited, and AUTHORED, which are read.
+Its `--self-test` replays the September 13th defect and it goes red on the real historical pair,
+`75b7dc01` against `96b699a8`, reporting 37 generated conflicts and the one authored conflict in
+`ledger/docket.json` that genuinely needed a decision.
+
+Three instincts were recorded beside it: `no-checks-means-conflicted-not-forbidden`,
+`a-silence-is-not-a-refusal`, and `merge-the-base-before-the-site-rebuild`.
+
+### THE PROPOSAL, and it needs `prompts/daily_routine.md`, which is `human` lane
+
+**Phase 16 should merge `origin/main` into the run branch immediately BEFORE it rebuilds the
+site, rather than rebuilding on a `main` snapshot taken at wake.** One line in the phase, before
+step 4:
+
+    git fetch origin main && git merge origin/main     # then rebuild, which resolves docs/
+
+The rebuild that already happens at step 4 then regenerates `docs/` on top of current `main`, so
+every generated conflict resolves itself at the moment it is cheapest, and the branch opens its
+pull request mergeable. It costs one extra fetch and no extra build.
+
+**It does not fully close the window**, and saying so is the point. A cron push landing between
+the rebuild and the merge re-dirties the branch, so `merge_ready.py` is still what catches it.
+The proposal narrows a window that is currently hours wide to one that is minutes wide.
+
+A second line belongs in Phase 18, where the run reads its checks:
+
+    python3 scripts/shared/merge_ready.py --fetch      # before concluding anything about CI
+
+`CLAUDE.md`'s Phase 18 rule already says an absent check is a thing to SAY rather than wait out.
+What it does not say, and what cost two days, is that the commonest reason a check is absent is
+that the branch cannot be merged. That sentence belongs in `CLAUDE.md` beside the
+`total_count: 0` paragraph, which is also `human` lane.
