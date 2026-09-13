@@ -618,6 +618,10 @@ def qa_pairs(ctx: Ctx, it: dict, today: str) -> list:
     elif room == "open_meeting":
         add(f"{t}. Can the public take part?",
             how or "A public meeting is scheduled where testimony is possible.")
+    elif room == "ballot":
+        add(f"{t}. Can the public take part?",
+            (how + " " if how else "")
+            + "This is an election process. Its date is not a public comment deadline.")
     elif room == "contact_only":
         add(f"{t}. Can the public take part?",
             (how + " " if how else "")

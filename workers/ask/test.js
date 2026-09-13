@@ -8,7 +8,7 @@
 // Run: node workers/ask/test.js
 
 import {
-  checkCitations, checkNumerals, checkSentence, checkVerdict, checkVoice,
+  checkCitations, checkNumerals, checkParticipation, checkSentence, checkVerdict, checkVoice,
   normalise, numerals, plainly, splitSentences,
 } from "./checks.js";
 import { rerank } from "./retrieve.js";
@@ -715,6 +715,99 @@ head("T. the reranker, which may reorder and may never invent");
   ok("an out of range index is discarded rather than crashing",
     JSON.stringify(await rerank("q", cands, fake([{ id: 99 }, { id: 1 }])))
     === JSON.stringify(["tx-2026-0002", "tx-2026-0001", "county-dallas"]));
+}
+
+head("R5. an open case never reopens its comment window");
+{
+  const { participationAnswer, participationContext, answer, answerStream, verify } = await import("./answer.js");
+  const when = "2026-09-13T17:00:00Z";
+  const question = [{ role: "user", content: "What can I still comment on?" }];
+  const accessPack = { ...FAKE, generated: "2026-09-13", public_access: {
+    "tx-2026-0002": { title: "PUCT Project 58482", room: "contact_only", closes: null,
+      window: "none", status: "open" },
+    "tx-2026-0107": { title: "The offer cap review", room: "open_comment", closes: "2026-09-17",
+      window: "open", status: "pending" },
+    "tx-2026-0999": { title: "Yesterday's deadline", room: "open_comment", closes: "2026-09-12",
+      window: "open", status: "open" },
+    "tx-2026-0075": { title: "Pflugerville charter election", room: "ballot", closes: "2026-11-03",
+      window: "none", status: "open" },
+  } };
+  const context = participationContext(accessPack, question, when);
+  const direct = participationAnswer(accessPack, question, when);
+  ok("the observed starter names only the actual open window",
+    direct.text.startsWith("The record lists 1 public comment window") && direct.text.includes("[[tx-2026-0107]]")
+    && !direct.text.includes("[[tx-2026-0002]]") && !direct.text.includes("[[tx-2026-0999]]"), direct.text);
+  ok("the case status cannot influence public access", context.publicAccess["tx-2026-0002"].window === "none");
+  ok("an upcoming ballot stays out of the comment-window answer",
+    context.publicAccess["tx-2026-0075"].window === "none" && !direct.text.includes("[[tx-2026-0075]]"));
+  ok("a named participation question gets its actual closed state directly",
+    participationAnswer(accessPack, [{ role: "user", content: "Can I still comment on PUCT Project 58482?" }], when)
+      .text.startsWith("The record does not list an open public comment window"));
+  ok("an expired date overrides a pack's old open label", context.publicAccess["tx-2026-0999"].window === "closed");
+  ok("midnight in Texas closes the window without waiting for a rebuild",
+    participationContext(accessPack, question, "2026-09-18T05:00:00Z").publicAccess["tx-2026-0107"].window === "closed");
+  ok("the final minute of its Texas day still permits the recorded window",
+    participationContext(accessPack, question, "2026-09-18T04:59:59Z").publicAccess["tx-2026-0107"].window === "open");
+  for (const closes of ["2026-99-99", "2027-02-30", "later", ""]) {
+    const malformed = { public_access: { item: { room: "open_comment", closes } } };
+    ok("an invalid deadline cannot open a window: " + closes,
+      participationContext(malformed, question, when).publicAccess.item.window === "none");
+  }
+  ok("follow-ups keep their context instead of becoming an unscoped list",
+    participationAnswer(accessPack, [...question, { role: "assistant", content: "Austin." }, ...question], when) === null);
+  ok("an explanatory question is still answered by the written lane",
+    participationAnswer(accessPack, [{ role: "user", content: "Why did the PUCT close comments?" }], when) === null);
+  for (const text of [
+    "PUCT Project 58482 is open, [[tx-2026-0002]].",
+    "You can still comment, [[tx-2026-0002]].",
+    "The public comment window is open, [[tx-2026-0002]].",
+  ]) ok("the contradictory permission is refused: " + text, !checkParticipation(text, context).ok);
+  for (const text of [
+    "The window is not open, [[tx-2026-0002]].",
+    "The comment window has closed, [[tx-2026-0002]].",
+    "The case is open, but the comment window is closed, [[tx-2026-0002]].",
+    "The window is closed, [[tx-2026-0002]]. The other window is open, [[tx-2026-0107]].",
+  ]) ok("a truthful distinction survives: " + text, checkParticipation(text, context).ok);
+  const bad = "That public comment window is open, [[tx-2026-0002]].";
+  const checked = verify(bad, { ...context, allowed: new Set(), slugs: new Set(Object.keys(accessPack.public_access)) });
+  ok("the whole-answer verifier keeps the participation context",
+    checked.withheld && checked.reason === "participation" && checked.text === "", JSON.stringify(checked));
+
+  const originalFetch = globalThis.fetch;
+  let providerCalls = 0, cacheReads = 0;
+  const testEnv = { ...ENV, ASK_KV: {
+    get: async (key) => { if (key.startsWith("a:")) { cacheReads++; return JSON.stringify({ text: bad }); } return null; },
+    put: async () => {},
+  } };
+  globalThis.fetch = async (url, options) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => accessPack };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => ({ ...FAKE_CORPUS,
+      slugs: Object.keys(accessPack.public_access) }) };
+    providerCalls++;
+    if (JSON.parse(options.body).stream) {
+      return new Response("data: " + JSON.stringify({ delta: { text: bad + " " } }) + "\n\n");
+    }
+    return { ok: true, json: async () => ({ content: [{ type: "text", text: bad }] }) };
+  };
+  try {
+    const batch = await Promise.all(Array.from({ length: 64 }, () => answer(question, testEnv, when)));
+    ok("64 concurrent requests get the same complete grounded answer",
+      batch.every((r) => r.status === 200 && r.body.text === direct.text));
+    ok("the starter cannot replay the old paid answer or spend on a new one",
+      providerCalls === 0 && cacheReads === 0, `${providerCalls} provider calls, ${cacheReads} cache reads`);
+    const events = (await new Response(await answerStream(question, testEnv, when)).text())
+      .trim().split("\n").map(JSON.parse);
+    ok("the streamed starter finishes and excludes the closed record",
+      events.at(-1).done && !events.some((e) => e.sentence?.includes("[[tx-2026-0002]]")));
+    const named = [{ role: "user", content: "Is PUCT Project 58482 still open for comment?" }];
+    const whole = await answer(named, testEnv, when);
+    ok("a stale cached permission is rejected and a new wrong answer is withheld",
+      whole.body.withheld && whole.body.reason === "participation" && whole.body.text === "", JSON.stringify(whole));
+    const stream = (await new Response(await answerStream(named, testEnv, when)).text())
+      .trim().split("\n").map(JSON.parse);
+    ok("streaming refuses the wrong sentence before it can reach the reader",
+      stream.some((e) => e.withheld === "participation") && !stream.some((e) => e.sentence), JSON.stringify(stream));
+  } finally { globalThis.fetch = originalFetch; }
 }
 
 head("S. the file that actually gets deployed is the one the tests ran against");
