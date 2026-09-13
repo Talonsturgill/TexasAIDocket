@@ -1,0 +1,160 @@
+<!doctype html>
+<!-- CAROUSEL 22, frame 2 of 9. Archetype DOCUMENT.
+     The panel review's first page lying on the scanner's table pad, turned one degree and cropped
+     by the left, right and bottom edges, with the table rail crossing its lower left so the lit
+     region is not a rectangle by construction. The line screen carries the pad and the second
+     sheet and NOT the front page, which is what makes one page read as lifted off another.
+
+     WHAT CAME OFF THIS FRAME AND WHY. The first cut set four numbered rows under the sentence,
+     1 DEVELOPMENT, 2 VALIDATION, 3 REGULATION, 4 IMPLEMENTATION, ruled like a contents page. The
+     four words are the panel's own and they are in the sentence above, but NUMBERING them and
+     ruling them as rows asserts that the review has a four part structure, on a facsimile
+     stamped with the review's real DOI. That is a document this deck made up wearing the
+     panel's identifier, and it also put four numerals on the frame that trace to no claim.
+     The four words are now UNDERLINED where the panel wrote them, which is a reader's mark on
+     a real sentence rather than a structure nobody published. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --suite:#1B1E21; --ink:#EDE6D6; --dim:#B9B2A3; --page:#E3DED0; --pageink:#1A1C1A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--suite); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* THE HOOK SITS BELOW THE DOCUMENT, on the pad, so this frame reads page first and sentence
+     second. It is one of two frames in the deck that do not open kicker, hook, image, dek. */
+  .hook { position:absolute; left:80px; top:952px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:76px; line-height:1.02; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .sheet { position:absolute; left:96px; top:326px; width:862px; height:452px; transform:rotate(1deg); transform-origin:0 0; }
+  .runhead { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; color:#44453D; }
+  .rule { height:2px; background:#BCB4A0; margin:18px 0 34px; }
+  .body { font-family:"Instrument Serif", serif; font-size:44px; line-height:1.22; color:var(--pageink); }
+  /* THE FOUR PLACES THE PANEL NAMES, underlined where the panel wrote them. A reader's rule
+     under four words in a real sentence, never a structure this deck invented for the page. */
+  .body u { text-decoration:none; border-bottom:4px solid #8A7F63; padding-bottom:2px; }
+  /* the page's own running foot, where a journal page actually carries it */
+  .foot { position:absolute; left:0; bottom:0; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.05em; color:#23241C; }
+    .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The panel named where the gap is.</h1>
+<div class="sheet">
+  <div class="runhead">AJR &nbsp;EXPERT PANEL REVIEW &nbsp;&nbsp;10.2214/AJR.26.35523</div>
+  <div class="rule"></div>
+  <div class="body">Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI <u>development</u>, <u>validation</u>, <u>regulation</u>, and <u>implementation</u>.</div>
+  <div class="foot">PEDIATRIC ARTIFICIAL INTELLIGENCE IN RADIOLOGY</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The document", kicker2: "10.2214/AJR.26.35523",
+      counter: "02 / 09", src: "c1 c2 c3 c4   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 76, maxLines: 2 });
+    TX.reseed(20260902);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // The page's own screen geometry, one degree off square. It is WIDER than the frame, so the
+    // left and right edges are cropped by the frame rather than by a margin. A page with a margin
+    // all round is a picture of a page.
+    //
+    // IT DOES NOT RUN OFF THE BOTTOM, and that is the second thing this frame got wrong. Bleeding
+    // it downward filled the lower third of the frame with blank paper, which `qa.py` reads as a
+    // dead lower zone and which is exactly what it is: 350 px of nothing, on the one part of a
+    // journal page this deck refuses to invent content for. The page now ENDS at 1030 and the
+    // screened pad carries the bottom third, which is the surface the frame is actually about.
+    var PG = { x: -44, y: 268, w: 1186, h: 566, rot: 1 * Math.PI / 180 };
+
+    TXINK.print(cx, {
+      ground: "#1B1E21", ink: "#EDE6D6", fibre: 0.06, seed: 202,
+      screen: { mode: "line", cell: 6, angle: -18, gamma: 1.06, floor: 0.04 },
+      edges: { threshold: 18, width: 1.2, alpha: 0.70, dx: -1.0, dy: 0.8 },
+      draw: function (a) {
+        // THE PAD, the scanner table's vinyl. It is the only thing the screen carries, so the
+        // front page comes out flat and lifted.
+        a.fillStyle = "#0E1114"; a.fillRect(0, 0, W, 200);
+        var g = a.createLinearGradient(0, 180, 0, H);
+        // darker than the first cut. A mid grey under a line screen is where the stripe reaches
+        // full amplitude, and the pad came out as a ribbon of hard bars rather than a surface.
+        g.addColorStop(0, "#28332F"); g.addColorStop(1, "#43514B");
+        a.fillStyle = g; a.fillRect(0, 180, W, H - 180);
+
+        // THE SECOND SHEET, behind the front page and turned further off square, so its top edge
+        // shows as a wedge above the front page's and one page reads as lying on another. It is
+        // the only sheet the line screen carries.
+        a.save(); a.translate(PG.x + 34, PG.y - 30); a.rotate(PG.rot * 2.6);
+        a.fillStyle = "#9E9A8C"; a.fillRect(0, 0, PG.w, PG.h); a.restore();
+      },
+      over: function (c) {
+        // THE FRONT PAGE, painted flat on top of the print with a wobbled edge, so it is paper
+        // rather than a screened plane. The DOM type sits on it.
+        var P = new Path2D();
+        var R = TX.rng(2026090202), step = 26;
+        function edge(x0, y0, x1, y1, first) {
+          var n = Math.max(2, Math.round(Math.hypot(x1 - x0, y1 - y0) / step));
+          for (var i = 0; i <= n; i++) {
+            var t = i / n, jx = (R() - 0.5) * 1.8, jy = (R() - 0.5) * 1.8;
+            var x = x0 + (x1 - x0) * t + jx, y = y0 + (y1 - y0) * t + jy;
+            (first && i === 0) ? P.moveTo(x, y) : P.lineTo(x, y);
+          }
+        }
+        edge(0, 0, PG.w, 0, true); edge(PG.w, 0, PG.w, PG.h); edge(PG.w, PG.h, 0, PG.h); edge(0, PG.h, 0, 0);
+        P.closePath();
+        c.save(); c.translate(PG.x, PG.y); c.rotate(PG.rot);
+        c.fillStyle = "#E3DED0"; c.fill(P);
+
+        // ONE LIGHT, high and to the left, ON THE PAPER ITSELF. Without it the page is one flat
+        // plate and the half of it below the sentence is a bright empty rectangle, which is the
+        // failure the illustration system names by name. Lit at the head, falling away to the
+        // lower right, so the sentence is the brightest thing on the page by construction.
+        c.clip(P);
+        var lg = c.createLinearGradient(PG.w * 0.08, -40, PG.w * 0.86, PG.h);
+        lg.addColorStop(0.00, "rgba(255,251,240,0.34)");
+        lg.addColorStop(0.34, "rgba(255,251,240,0.05)");
+        lg.addColorStop(0.62, "rgba(14,16,14,0.14)");
+        lg.addColorStop(1.00, "rgba(14,16,14,0.46)");
+        c.fillStyle = lg; c.fillRect(-40, -40, PG.w + 80, PG.h + 80);
+        // the pad's own shade creeping in along the page's left edge
+        var eg = c.createLinearGradient(0, 0, 150, 0);
+        eg.addColorStop(0, "rgba(14,16,14,0.30)"); eg.addColorStop(1, "rgba(14,16,14,0)");
+        c.fillStyle = eg; c.fillRect(0, -40, 150, PG.h + 80);
+        c.restore();
+
+        // the page's own cast along its TOP edge, which is the one edge still inside the frame
+        c.save(); c.translate(PG.x, PG.y); c.rotate(PG.rot);
+        c.fillStyle = "rgba(0,0,0,0.34)"; c.fillRect(-6, -9, PG.w + 12, 9); c.restore();
+        // THE TABLE RAIL, drawn AFTER the page so it crosses the sheet's lower left the way a
+        // side rail actually would, which is also what stops the lit region being a rectangle.
+        // It is pitched to clear the page's running foot, and it reaches the bottom reserve
+        // rather than starting below it, which is where the first cut put it.
+        c.save(); c.lineCap = "round";
+        c.strokeStyle = "rgba(10,12,10,0.34)"; c.lineWidth = 34;
+        c.beginPath(); c.moveTo(-46, 640); c.lineTo(206, 892); c.stroke();
+        c.strokeStyle = "#C2C8C6"; c.lineWidth = 26;
+        c.beginPath(); c.moveTo(-60, 618); c.lineTo(192, 870); c.stroke();
+        c.strokeStyle = "#6E7674"; c.lineWidth = 9;
+        c.beginPath(); c.moveTo(-60, 600); c.lineTo(192, 852); c.stroke();
+        c.restore();
+        // THE HOOK'S BAND IS SOLID, not a tint over the pad. The pad carries a line screen and qa read
+        // three of its own lines as rules struck through the headline, which at feed width is exactly
+        // what they would look like.
+        TXINK.reserve(c, { ground: "#1B1E21", top: 196, topSolid: 176, bottom: 440, bottomSolid: 412 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

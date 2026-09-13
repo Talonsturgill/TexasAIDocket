@@ -658,6 +658,43 @@
     "2027 to 2028 school year"
    ],
    "prose_note": "The counts this prose could have carried are in figures.json and on the frames instead. ledger_check refuses a number word in durable memory that its own COUNTING_FIGURES vocabulary cannot re-derive, and it is right to: a recut regenerates the deck and would leave this entry narrating the old figure."
+  },
+  {
+   "date": "2026-09-13",
+   "carousel_no": 22,
+   "docket_item": "tx-2026-0147",
+   "instrument": "two peer-reviewed clinical papers, an expert panel review and a radiomics survival study",
+   "topic": "Radiology papers with Texas departments carrying an electronic article date of September 9th. An AJR expert panel review of pediatric artificial intelligence in radiology that names off-label use of adult-trained AI models on children among its ethical and regulatory concerns, and an AJNR machine learning analysis of MRI radiomics for survival prediction in brain metastases whose fixed model scored lower on an independent cohort than on the cohort it was built on",
+   "angle": "What a model fitted to a population does when it meets a different population, shown as a measurement rather than as a worry. The panel names the concern and publishes no figure for it. The second paper puts numbers on the same move in its own clinical domain and its authors call the result limited standalone discrimination",
+   "angle_note": "THE INSTRUMENT REPEATED AND THE GATE STILL CANNOT SEE IT. Carousel 19 shipped on 2026-09-09, four days before this one, with instrument a peer-reviewed clinical study and an angle of THE TOOL GOT WORSE AS THE ANSWER GOT EASIER. This deck is two peer-reviewed clinical studies whose frame 6 reads It did worse on the patients it had never seen. dedupe_check compares topic, entities and keywords, all of which genuinely differ, so it is correctly clean. Deck 17's angle_note already wrote in capitals that the gate does not compare INSTRUMENT, deck 19 added the field, and nothing reads it. TWO of three round 5 judges charged this deck for it independently and it is now the third occurrence. The next run either wires instrument into dedupe_check or stops pretending the field is a control. SECOND, THE SPINE IS AN ABSENCE AGAIN. Frame 7 is the declared turn and it is a printed negative, after decks 11, 14, 15 and 16 each asked the next run to stop building the spine on a silence. THIRD, AND THE ONE A READER PAID FOR: three of nine frames are the second paper and no frame says why they are there. Three reader judges asked for the bridge on frame 4 in three consecutive rounds and the run spent its rounds elsewhere. Put the connective where the detour starts.",
+   "entities": [
+    "American Journal of Roentgenology",
+    "American Journal of Neuroradiology",
+    "Baylor College of Medicine",
+    "Texas Children's Hospital",
+    "UT Southwestern Medical Center",
+    "The University of Texas MD Anderson Cancer Center",
+    "The University of Texas Medical Branch",
+    "The Children's Hospital of Philadelphia",
+    "Boston Children's Hospital",
+    "Cincinnati Children's Hospital Medical Center",
+    "U.S. Food and Drug Administration"
+   ],
+   "entities_note": "Written from claims.json rather than from memory. Every name appears in a fetched quote. c26's affiliation field also names Duke University Medical Center, the University of California San Diego and Indiana University, which the deck does not print and which are listed here because the claim carries them. The record names no county for either item, so frame 8 draws departments and never a county.",
+   "keywords": [
+    "pediatric artificial intelligence in radiology",
+    "off-label use of adult-trained AI models",
+    "insufficient external validation",
+    "brain metastasis",
+    "MRI radiomics",
+    "Harrell C-index",
+    "external validation",
+    "expert panel review",
+    "AI-enabled medical devices",
+    "age-specific models",
+    "dedicated pediatric AI infrastructure"
+   ],
+   "prose_note": "The counts this prose could have carried are in computed.json and aggregates.json and on the frames instead. ledger_check refuses a number word in durable memory that its own vocabulary cannot re-derive."
   }
  ]
 }

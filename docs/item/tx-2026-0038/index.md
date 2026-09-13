@@ -11,7 +11,7 @@ The City of Harlingen Waterworks System board of directors approved a water supp
 - Public access: Public meeting
 - Take part: https://www.hwws.com/wp-content/uploads/2025/11/Minutes-25-09-22-Special.pdf
 
-- Last checked: 2026-09-10
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-03 · Two claims were removed rather than re-stamped. They rested on a yahoo.com article page, which answers 200 at half a megabyte and serves nothing a quote can be read from. They carried an August 14th fetch date under an item stamped verified today. The board's own minutes carry neither the general manager's drinking water remark nor the minimum annual payment figure. Neither claim moved to a readable source and neither is published any more. The summary's closing sentence now says what the minutes say.
 - 2026-09-07 · The board's own signed minutes still carry the vote and still record it as unanimous. The water in the agreement is still effluent rather than drinking water, and the interim general manager who recommended it is still the name on the recommendation.
 - 2026-09-10 · The board's approval of the effluent supply agreement still stands, and the agreement is still the one the record quotes. Nothing has been filed against it and no later action has replaced it.
+- 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

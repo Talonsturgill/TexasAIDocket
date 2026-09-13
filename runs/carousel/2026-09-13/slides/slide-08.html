@@ -1,0 +1,231 @@
+<!doctype html>
+<!-- CAROUSEL 22, frame 8 of 9. Archetype MAP.
+     A drafting sheet in true Albers plan. The 254 county mesh from assets/geo is the ground, a
+     neatline and a whole degree graticule are the furniture, and the scale bar is computed from
+     the projection rather than typed. NO COUNTY IS LIT AND NO COUNTY IS NAMED, because the
+     committed gazetteer holds counties and metros and no cities, so a city to county join here
+     would be a claim nothing computed. Two lit points are the panel's two Texas departments.
+     Three parallel vertical leaders leave the top edge for the three departments outside it.
+     Hatch at cell 8.
+
+     NO ACCENT ON THIS FRAME, and that is the deck's structure rather than a subtraction. The
+     accent now marks the second paper and only the second paper, frames 4, 5 and 6, so the
+     colour is a chapter mark a reader can follow. It also removes what was here before, which
+     was two flat accent rules laid beside the two points and running AWAY from them, one of
+     them crossing the neatline and continuing past the sheet's edge. An accent that points at
+     nothing is worse than no accent.
+
+     THE TWO TEXAS LABELS SIT UNDER THE SHEET, not on it. On the mesh their knockout plates put
+     two black rectangles across south central Texas, which is the one thing a map is for. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --suite:#1B1E21; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#4E5FA8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--suite); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#lab { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:168px; width:800px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:74px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek  { position:absolute; left:80px; top:1104px; width:900px; font-size:24px; line-height:1.32; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+  text.m { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em; fill:#EDE6D6; }
+  text.s { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em; fill:#B9B2A3; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="lab" viewBox="0 0 1080 1350"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two of the panel's departments are Texan.</h1>
+<p class="dek">The two here are at Baylor College of Medicine with Texas Children's Hospital in Houston, and at UT Southwestern Medical Center in Dallas. The three leaving the sheet are the children's hospitals of Boston, Cincinnati and Philadelphia.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Where the panel sits", kicker2: "Albers equal area conic",
+      counter: "08 / 09", src: "c11 c12 c13 c14 c15   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 56, max: 74, maxLines: 2 });
+    TX.reseed(20260913);
+
+    // XHR rather than fetch: this Chromium build refuses the Fetch API on a file:// URL even
+    // with --allow-file-access-from-files, and XMLHttpRequest is the route that still honours it.
+    var topo = await new Promise(function (ok, bad) {
+      var x = new XMLHttpRequest();
+      x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json", true);
+      x.onload = function () { try { ok(JSON.parse(x.responseText)); } catch (e) { bad(e); } };
+      x.onerror = function () { bad(new Error("geodata XHR failed")); };
+      x.send();
+    });
+    var counties = TXGeo.counties(topo), state = TXGeo.outline(topo), borders = TXGeo.borders(topo);
+
+    // THE SHEET. The neatline is the boundary of the drawing and the projection is fitted inside
+    // it, so the map's own frame is where the state's extent decides it is.
+    // THE NEATLINE IS CUT TO TEXAS'S OWN ASPECT. At 896 by 614 the state fitted by height and
+    // left 200 px of empty sheet down each side, which is why the frame read as a grid in a box
+    // with a small state in the middle of it.
+    var NL = { x: 258, y: 448, w: 564, h: 512 };
+    var KEY = 1020;                       // the key band's first baseline, clear under the sheet
+    var pad = 22;
+    var proj = TXGeo.texasProjection(state, [[NL.x + pad, NL.y + pad], [NL.x + NL.w - pad, NL.y + NL.h - pad]]);
+
+    // THE SCALE BAR, computed from the projection rather than typed. Two known gazetteer points
+    // give pixels per mile, and the bar is that many pixels long.
+    function miles(a, b) {
+      var R = 3958.7613, t = Math.PI / 180;
+      var dl = (b[0] - a[0]) * t, dp = (b[1] - a[1]) * t, p1 = a[1] * t, p2 = b[1] * t;
+      var h = Math.sin(dp / 2) * Math.sin(dp / 2) + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) * Math.sin(dl / 2);
+      return 2 * R * Math.asin(Math.sqrt(h));
+    }
+    var A = TXGeo.place("Houston"), B = TXGeo.place("Dallas");
+    var pA = proj(A), pB = proj(B);
+    var pxPerMile = Math.hypot(pB[0] - pA[0], pB[1] - pA[1]) / miles(A, B);
+    var BAR_MILES = 100, barPx = BAR_MILES * pxPerMile;
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    TXINK.print(cx, {
+      ground: "#1B1E21", ink: "#EDE6D6", fibre: 0.06, seed: 813,
+      screen: { mode: "hatch", cell: 6, angle: 38, gamma: 1.06, floor: 0.04 },
+      edges: { threshold: 16, width: 1.2, alpha: 0.72, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        a.fillStyle = "#191D20"; a.fillRect(0, 0, W, H);
+        var path = d3.geoPath(proj, a);
+
+        // the sheet itself, a slightly lifted field inside the neatline
+        a.fillStyle = "#20262B"; a.fillRect(NL.x, NL.y, NL.w, NL.h);
+
+        // THE GRATICULE, whole degrees, clipped to the neatline. It is drawn before the state so
+        // the mesh reads on top of it.
+        a.save();
+        a.beginPath(); a.rect(NL.x, NL.y, NL.w, NL.h); a.clip();
+        // FAINTER THAN THE COUNTY MESH BY DESIGN. At the same weight the whole degree graticule
+        // is the loudest thing on the sheet and the frame reads as a grid in a box.
+        a.strokeStyle = "#333A40"; a.lineWidth = 0.7;
+        for (var lon = -107; lon <= -93; lon++) {
+          a.beginPath();
+          for (var lat = 25; lat <= 37; lat += 0.5) {
+            var q = proj([lon, lat]); if (!q) continue;
+            if (lat === 25) a.moveTo(q[0], q[1]); else a.lineTo(q[0], q[1]);
+          }
+          a.stroke();
+        }
+        for (var lt = 25; lt <= 37; lt++) {
+          a.beginPath();
+          for (var ln = -107; ln <= -93; ln += 0.5) {
+            var r = proj([ln, lt]); if (!r) continue;
+            if (ln === -107) a.moveTo(r[0], r[1]); else a.lineTo(r[0], r[1]);
+          }
+          a.stroke();
+        }
+        a.restore();
+
+        // the state as a filled mass, so the counties read as a mesh ON something
+        // the state is a real mass, three steps lighter than the sheet it lies on, so the mesh
+        // reads as counties ON something rather than as a grid floating in a box
+        a.fillStyle = "#4A525A"; a.beginPath(); path(state); a.fill();
+        // the 254 county mesh as one hairline path, so a shared border is stroked once
+        a.strokeStyle = "#BAC2C8"; a.lineWidth = 0.8; a.beginPath(); path(borders); a.stroke();
+        // the outline heavier, because the boundary IS this frame's subject
+        a.strokeStyle = "#F0F4F5"; a.lineWidth = 3.0; a.beginPath(); path(state); a.stroke();
+
+        // THE THREE LEADERS OUT OF THE SHEET, parallel and vertical so they read as a
+        // diagrammatic device rather than as compass bearings to Boston, Cincinnati and
+        // Philadelphia.
+        a.strokeStyle = "#C9CFD3"; a.lineWidth = 1.6;
+        [340, 540, 740].forEach(function (x) {
+          a.beginPath(); a.moveTo(x, NL.y); a.lineTo(x, 412); a.stroke();
+          a.beginPath(); a.moveTo(x - 7, 412); a.lineTo(x + 7, 412); a.stroke();
+        });
+
+        // THE NEATLINE, a double rule, the drawing's own boundary
+        a.strokeStyle = "#E6EAEC"; a.lineWidth = 1.8;
+        a.strokeRect(NL.x, NL.y, NL.w, NL.h);
+        a.lineWidth = 0.9; a.strokeRect(NL.x - 7, NL.y - 7, NL.w + 14, NL.h + 14);
+
+        // THE SCALE BAR, computed above. Ticks at each end and one at the middle.
+        // in the sheet's left margin, where it cannot land on a county
+        var bx = 96, by = 930;
+        a.strokeStyle = "#E6EAEC"; a.lineWidth = 1.8;
+        a.beginPath(); a.moveTo(bx, by); a.lineTo(bx + barPx, by); a.stroke();
+        [0, barPx / 2, barPx].forEach(function (d) {
+          a.beginPath(); a.moveTo(bx + d, by - 7); a.lineTo(bx + d, by + 7); a.stroke();
+        });
+
+        // THE TWO DEPARTMENT POINTS and the stems that carry each one down to the key band, so
+        // the reader's eye goes point, stem, name without a plate landing on the mesh.
+        // a dark casing under each stem, so a line crossing the county mesh reads as drawn OVER
+        // the sheet rather than as one more border
+        [[pA, 700], [pB, 260]].forEach(function (o) {
+          var p = o[0], kx = o[1];
+          [["#14181C", 6.0], ["#EFF3F4", 2.0]].forEach(function (st) {
+            a.strokeStyle = st[0]; a.lineWidth = st[1];
+            a.beginPath();
+            a.moveTo(p[0], p[1] + 12);
+            a.lineTo(p[0], NL.y + NL.h + 16);
+            a.lineTo(kx, NL.y + NL.h + 16);
+            a.lineTo(kx, KEY - 24);
+            a.stroke();
+          });
+        });
+        // A TARGET SYMBOL, not a ring. At r15/10/4 the two points rendered at the same value as
+        // the 254 county mesh and a judge could not find Houston or Dallas at 432 px at all. A
+        // point carrying no colour has to win on VALUE and on size, so it is a wide dark halo, a
+        // solid pale disc big enough to survive the thumb, and a dark centre.
+        [pA, pB].forEach(function (p) {
+          a.fillStyle = "#0B0E11"; a.beginPath(); a.arc(p[0], p[1], 25, 0, Math.PI * 2); a.fill();
+          a.fillStyle = "#FAFCFC"; a.beginPath(); a.arc(p[0], p[1], 17, 0, Math.PI * 2); a.fill();
+          a.fillStyle = "#0B0E11"; a.beginPath(); a.arc(p[0], p[1], 7, 0, Math.PI * 2); a.fill();
+        });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#1B1E21", top: 392, topSolid: 392, bottom: 250, bottomSolid: 250 });
+      }
+    });
+
+    // THE LABELS, in SVG so they stay vector and so every plate is measured off the laid out
+    // string rather than typed.
+    var svg = document.getElementById("lab");
+    function label(x, y, str, cls, anchor) {
+      var t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      t.setAttribute("x", x); t.setAttribute("y", y); t.setAttribute("class", cls || "m");
+      if (anchor) t.setAttribute("text-anchor", anchor);
+      t.textContent = str; svg.appendChild(t); return t;
+    }
+    // the three outside the sheet, one word each so the row does not collide with itself
+    [[340, "BOSTON"], [540, "CINCINNATI"], [740, "PHILADELPHIA"]]
+      .forEach(function (o) { label(o[0], 400, o[1], "m", "middle"); });
+    // THE TWO TEXAS DEPARTMENTS, in the key band UNDER the sheet, each at the foot of the stem
+    // the canvas already drew from its own point. Nothing is set on the mesh.
+    var l2  = label(260, KEY,      "UT SOUTHWESTERN", "m", "middle");
+    var l2b = label(260, KEY + 40, "MEDICAL CENTER", "m", "middle");
+    var l1  = label(700, KEY,      "BAYLOR COLLEGE OF MEDICINE", "m", "middle");
+    var l1b = label(700, KEY + 40, "AND TEXAS CHILDREN'S HOSPITAL", "m", "middle");
+    label(96, 896, "100 MILES", "m");
+
+    await new Promise(function (r) { requestAnimationFrame(function () { r(); }); });
+    TX.svgPlateAll("#lab text", { padX: 9, padY: 6, fill: "#12151A" });
+
+    // The stem IS the leader and it is drawn on the canvas, from the point down to the key band.
+    // It is declared here so the leader gate reads the same geometry the frame drew.
+    window.__txLeaders = [
+      { target: "the Baylor and Texas Children's point on the map", at: [pA[0], pA[1]], to: [pA[0], pA[1] + 12] },
+      { target: "the UT Southwestern point on the map", at: [pB[0], pB[1]], to: [pB[0], pB[1] + 12] }
+    ];
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

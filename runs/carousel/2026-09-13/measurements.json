@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-13",
+  "measured_on": "the nine shipped PNGs resampled to 270 by 338, panel_ready.ARC_GRID",
+  "per_slide_median_L": [
+    13.5,
+    28.8,
+    11.6,
+    11.1,
+    18.8,
+    11.1,
+    41.1,
+    11.1,
+    14.1
+  ],
+  "deck_median_L": 13.5,
+  "darkest_frame": {
+    "slide": 4,
+    "L": 11.1
+  },
+  "brightest_frame": {
+    "slide": 7,
+    "L": 41.1
+  },
+  "light_cap_note": "LIGHT_L is 60.0 and this deck measures 13.5, so it does not add to the light count"
+}

@@ -9,7 +9,7 @@ ERCOT issued a market notice on September 9th, 2026. It states that the grid ope
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-A090926-01
 
-- Last checked: 2026-09-11
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -20,6 +20,7 @@ ERCOT issued a market notice on September 9th, 2026. It states that the grid ope
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-11 · Admitted to the record. The grid operator has moved from announcing the audit to running it. The notice states plainly that a load which does not complete the verification loses its place in Batch Zero.
+- 2026-09-13 · The notice still says a load that does not complete verification is excluded from the Batch Zero process, and the deadline it sets is unchanged.
 
 ## Evidence
 

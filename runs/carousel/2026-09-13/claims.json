@@ -1,0 +1,316 @@
+{
+  "date": "2026-09-13",
+  "story": "Two papers by Texas radiologists, both dated September 9th, 2026, on what a model fitted to one population does when it meets another",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "The review's title names it an expert panel review of pediatric artificial intelligence in radiology.",
+      "quote": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c2",
+      "text": "The review carries an electronic article date of September 9th, 2026.",
+      "quote": "<ArticleDate DateType=\"Electronic\"><Year>2026</Year><Month>09</Month><Day>09</Day></ArticleDate>",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c3",
+      "text": "The review is registered under its own digital object identifier.",
+      "quote": "<ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.2214/AJR.26.35523</ELocationID>",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c4",
+      "text": "The review opens by stating that pediatric medical imaging remains substantially underrepresented across AI development, validation, regulation and implementation.",
+      "quote": "Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c5",
+      "text": "The panel states that children change continuously as they grow, so a model fitted to adults is not the model a child needs.",
+      "quote": "Unlike adults, children go through continuous physiologic and anatomic changes that require age-specific models trained on representative developmental data.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c6",
+      "text": "The panel names five things that limit pediatric AI.",
+      "quote": "However, pediatric AI is limited by scarce publicly available datasets, fragmented institutional data, rare diseases, heterogeneous reporting practices, and insufficient external validation.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c7",
+      "text": "The panel names off-label use of adult-trained AI models on children as an ethical and regulatory concern.",
+      "quote": "Ethical and regulatory challenges are also a concern in children, including consent for secondary data use, off-label use of adult-trained AI models, and the need for postdeployment surveillance.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c8",
+      "text": "The panel states that reimbursement is misaligned and must be optimized before innovation can follow.",
+      "quote": "Additionally, reimbursement is misaligned and must be optimized to allow innovation.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c9",
+      "text": "The document describes itself as a narrative review proposing practical priorities rather than as original research.",
+      "quote": "This AJR Expert Panel Narrative Review examines the current landscape of pediatric AI in radiology and proposes practical priorities to support its safe and equitable adoption.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c10",
+      "text": "The panel's central recommendation is an implementation roadmap for a dedicated pediatric AI infrastructure and standards.",
+      "quote": "The panel gives key recommendations, emphasizing the importance of an implementation roadmap to establish a dedicated pediatric AI infrastructure and standards that are essential to ensure diagnostic accuracy, workflow efficiency, and optimal clinical outcomes for children while minimizing bias and protecting patient safety.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c11",
+      "text": "One of the panel's authors is in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston.",
+      "quote": "Department of Radiology, Baylor College of Medicine and Texas Children's Hospital, Houston, Texas, USA.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c12",
+      "text": "Another is in the radiology department at UT Southwestern Medical Center in Dallas.",
+      "quote": "Department of Radiology, UT Southwestern Medical Center, Dallas, Texas, USA.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c13",
+      "text": "The panel also draws an author from the radiology department at The Children's Hospital of Philadelphia.",
+      "quote": "Department of Radiology, The Children's Hospital of Philadelphia (CHOP), Philadelphia, Pennsylvania, USA.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c14",
+      "text": "The panel also draws an author from the radiology department at Boston Children's Hospital.",
+      "quote": "Department of Radiology, Boston Children's Hospital, Harvard Medical School, Boston, MassachuseOs, USA.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high",
+      "note": "The quote preserves a ligature loss that is in NLM's own affiliation string in the fetched response, tt rendered as O and ti as D. It is the source's artifact and not this run's, the snapshot at out/2026-09-13/tmp/pm42714442.xml carries it byte for byte, and no frame prints the corrupted spelling."
+    },
+    {
+      "id": "c15",
+      "text": "The panel also draws an author from the radiology department at Cincinnati Children's Hospital Medical Center.",
+      "quote": "Department of Radiology, CincinnaD Children's Hospital Medical Center, University of CincinnaD College of Medicine, CincinnaD, Ohio, USA.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42714442, AJR. American journal of roentgenology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high",
+      "note": "The quote preserves a ligature loss that is in NLM's own affiliation string in the fetched response, tt rendered as O and ti as D. It is the source's artifact and not this run's, the snapshot at out/2026-09-13/tmp/pm42714442.xml carries it byte for byte, and no frame prints the corrupted spelling."
+    },
+    {
+      "id": "c16",
+      "text": "The second paper's title names it a machine learning analysis of MRI radiomics for survival prediction in brain metastases.",
+      "quote": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c17",
+      "text": "The second paper carries the same electronic article date as the first.",
+      "quote": "<ArticleDate DateType=\"Electronic\"><Year>2026</Year><Month>09</Month><Day>09</Day></ArticleDate>",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c18",
+      "text": "The second paper is registered under its own digital object identifier.",
+      "quote": "<ELocationID EIdType=\"doi\" ValidYN=\"Y\">10.3174/ajnr.A9630</ELocationID>",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c19",
+      "text": "The paper frames the prognostic usefulness of radiomics in brain metastasis as still unclear.",
+      "quote": "Radiomics offers a means of extracting high-dimensional imaging biomarkers, but its prognostic utility in brain metastasis remains unclear.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c20",
+      "text": "The model was built on a public cohort and then tested, without refitting, on an independent cohort.",
+      "quote": "This retrospective study developed a T1 postcontrast MRI radiomics survival model in a public brain metastasis cohort of 198 patients and externally validated the fixed radiomics model, without refitting or recalibration, in an independent cohort of 69 patients.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c21",
+      "text": "Discrimination was measured with the Harrell C-index and bootstrap resamples.",
+      "quote": "An elastic-net Cox model was selected with 10-fold cross-validation. Model discrimination was assessed with Harrell C-index and 2000 bootstrap resamples for 95% CIs.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c22",
+      "text": "The final model kept seven features, and its discrimination was lower on the outside cohort than on the cohort it was built on.",
+      "quote": "The final model retained 7 nonzero T1 postcontrast radiomics features after correlation filtering and elastic-net selection. The radiomics score had a C-index of 0.615 (95% CI, 0.543-0.687) in the training cohort and 0.574 (95% CI, 0.491-0.658) in external validation.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c23",
+      "text": "Adding the established clinical score did not lift the model back to its training figure.",
+      "quote": "In the external-validation subset with available Graded Prognostic Assessment, the combined radiomics plus Graded Prognostic Assessment model had a C-index of 0.591 (95% CI, 0.509-0.672).",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c24",
+      "text": "The authors state the result as a limit rather than as a success.",
+      "quote": "T1 postcontrast MRI radiomics showed limited standalone discrimination for overall survival in patients with brain metastases.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c25",
+      "text": "The authors ask for cautious use and for models that carry more than imaging.",
+      "quote": "These results support cautious use of radiomics as an exploratory imaging biomarker and emphasize the need for integrated prognostic models that include clinical, treatment, molecular, and systemic disease variables.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c26",
+      "text": "Two of the paper's departments are in Texas. They are neuroradiology at MD Anderson in Houston and radiology at the Medical Branch in Galveston, and the author list carries departments in other states as well.",
+      "quote": "From the Department of Neuroradiology (R.E., H.A.Q., S.A., A.M., P.K.), The University of Texas MD Anderson Cancer Center, Houston, TX 77030, USA; Department of Radiology (E.C.), Duke University Medical Center, Durham, NC, USA; Department of Radiology (H.A.S., A.N., M.W.), The University of Texas Medical Branch, Galveston, TX, USA; Department of Radiology (J.D.R.), University of California, San Diego, San Diego, Calif; Division of Computational Pathology (S.B.), Department of Pathology and Laboratory Medicine, Indiana University School of Medicine, Indianapolis, IN, USA; Indiana University Melvin and Bren Simon Comprehensive Cancer Center, Indianapolis, IN, USA and Department of Computer Science (S.B.), Luddy School of Informatics, Computing, Engineering, Indiana University, Indianapolis, IN, USA; Medical Research Group, MLCommons, San Francisco, CA, USA.",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "source_title": "PubMed record 42716711, AJNR. American journal of neuroradiology",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    },
+    {
+      "id": "c27",
+      "text": "The federal device regulator says the AI-enabled devices on its list met its premarket requirements, including a review of whether the studies suited the intended use.",
+      "quote": "The devices in this list have met the FDA's applicable premarket requirements, including a focused review of the device's overall safety and effectiveness, which includes an evaluation of study appropriateness for the device's intended use and technological characteristics.",
+      "url": "https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices",
+      "source_title": "Artificial Intelligence-Enabled Medical Devices, U.S. Food and Drug Administration",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-13",
+      "confidence": "high"
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "The author count on either paper",
+      "reason": "A count is a number this deck would be producing rather than reading, and two reads of the record disagreed."
+    },
+    {
+      "finding": "Anything about the size of Texas Children's Hospital",
+      "reason": "Its homepage offers only unsourced self-description, and two figures on the same page disagree with each other."
+    },
+    {
+      "finding": "That both papers were published on the same day, as one fact",
+      "reason": "No single quote proves it. The two dates are carried separately as c2 and c17."
+    },
+    {
+      "finding": "The label on the second abstract's closing section",
+      "reason": "Two reads returned CONCLUSION and CONCLUSIONS. The conclusion TEXT is verified as c24 and is unaffected."
+    }
+  ],
+  "absences": [
+    {
+      "statement": "The federal device regulator's page on AI-enabled medical devices says nothing about children. The words child, children and adult do not appear on it at all, and the only two occurrences of pediatric are inside the names of two devices in the list itself rather than anywhere in the page's own text.",
+      "document_checked": "https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices",
+      "verbatim_basis": "The AI-Enabled Medical Device List is a resource intended to identify AI-enabled medical devices that are authorized for marketing in the United States.",
+      "snapshot": "out/2026-09-13/tmp/fda_ai_devices.html",
+      "measured_by": "out/2026-09-13/fda_words.py, word boundary counts over the fetched page's own text with script and style stripped"
+    },
+    {
+      "statement": "That page publishes no total for how many AI-enabled devices have been authorized.",
+      "document_checked": "https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices",
+      "verbatim_basis": "This list will continue to be updated periodically. AI-enabled medical devices that have received authorization but for which decision summaries have not been published within the data collection period will be incorporated into a subsequent update.",
+      "snapshot": "out/2026-09-13/tmp/fda_ai_devices.html"
+    },
+    {
+      "statement": "Neither PubMed record fetched on September 13th publishes a measurement of how far outside a model's training population a child sits. Only the records were retrieved, so this is scoped to what each document publishes there and not to the full text of either paper.",
+      "document_checked": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml and https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+      "verbatim_basis": "pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation"
+    }
+  ]
+}

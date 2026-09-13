@@ -1,0 +1,259 @@
+<!doctype html>
+<!-- CAROUSEL 22, frame 4 of 9. Archetype DIAGRAM.
+     What a fixed model is, drawn as the thing it behaves like. One filing box at true scale,
+     0.40 by 0.28 m, taped shut and dated, on a 0.90 m cart in the control room with the window
+     into the magnet room behind it. Four leaders in the DOM end short of every glyph band. Hatch
+     at cell 7. Accent on the seal and the date label, and on nothing else. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --suite:#1B1E21; --ink:#EDE6D6; --dim:#B9B2A3; --accent:#4E5FA8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--suite); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#lab { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:166px; width:840px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:84px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .quote { position:absolute; left:80px; top:968px; font-family:"JetBrains Mono", monospace; font-size:27px; letter-spacing:0.03em; color:var(--ink); background:#12151A; padding:10px 16px; }
+  /* A SOLID knockout plate under the dek. This frame's floor carries its own hatch all the way
+     down by design, and a rule through a glyph band is a strikethrough whatever drew it. */
+  .dek  { position:absolute; left:80px; top:1070px; width:900px; font-size:25px; line-height:1.36; color:var(--dim); background:#12151A; padding:14px 18px; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+  text.m { font-family:"JetBrains Mono", monospace; font-size:25px; letter-spacing:0.05em; fill:#EDE6D6; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="lab" viewBox="0 0 1080 1350"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">They sealed the model before they tested it.</h1>
+<div class="quote" id="quote">"without refitting or recalibration"</div>
+<p class="dek">The second paper fitted its model on one brain metastasis cohort, kept 7 features, and then ran the fixed model on 69 patients it had never met.</p>
+<script src="../../computed.js"></script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "A brain metastasis survival model", kicker2: "Texas departments among its authors",
+      counter: "04 / 09", src: "c16 c17 c20 c22 c26   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 84, maxLines: 2 });
+    TX.reseed(20260904);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    var cam = { w: W, h: H, eye: 1.22, horizon: 520, f: 900, fogZ: 1e9, light: { az: -50, el: 46 } };
+    var CZ = 1.42;                       // the cart's distance, back from 1.30 so its legs are
+                                         // a cart and not two columns filling the lower half
+    var SEAL = {}, LABEL = {}, BODY = {}, WIN = {}, BOX = {};
+    var FEATURES = window.TXCOMPUTED ? window.TXCOMPUTED.features_retained : null;
+
+    TXINK.print(cx, {
+      ground: "#1B1E21", ink: "#EDE6D6", fibre: 0.06, seed: 404,
+      screen: { mode: "hatch", cell: 7, angle: 38, gamma: 1.22, floor: 0.03 },
+      edges: { threshold: 18, width: 1.3, alpha: 0.76, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#14171A" }, cam));
+        a.fillStyle = "#101316"; a.fillRect(0, 0, W, H);
+        S.ground({ near: 0.5, far: 20, fill: "#2B3137" });
+        S.gridZ({ dz: 0.5, from: 0.5, to: 16, ink: "rgba(0,0,0,0.30)", width: 1.0 });
+        S.strip({ X: -0.15, w: 1.9, near: 0.5, far: 4.2, fill: "#3D444B" });
+
+        // THE CONTROL ROOM WINDOW into the magnet room, the lightest field in the frame. It
+        // carries a mullion and the bore beyond it, because a lit plate with nothing in it is
+        // the thing this deck refuses to draw.
+        function quad(pts, fill) {
+          a.beginPath();
+          pts.forEach(function (p, i) { var q = S.project(p[0], p[1], p[2]); i ? a.lineTo(q[0], q[1]) : a.moveTo(q[0], q[1]); });
+          a.closePath(); a.fillStyle = fill; a.fill();
+        }
+        // WIDE ENOUGH TO RUN OFF THE RIGHT EDGE, which is the bleed the plan declares. At 1.2 m
+        // half width it stopped 165 px short of it and the declared bleed was a claim only the
+        // rect satisfied.
+        quad([[-2.36, 1.04, 3.11], [2.36, 1.04, 3.11], [2.36, 2.11, 3.11], [-2.36, 2.11, 3.11]], "#4E555A");
+        quad([[-2.30, 1.10, 3.1], [2.30, 1.10, 3.1], [2.30, 2.05, 3.1], [-2.30, 2.05, 3.1]], "#AFB7BB");
+        [-1.15, 0, 1.15].forEach(function (mx) {
+          quad([[mx - 0.035, 1.10, 3.09], [mx + 0.035, 1.10, 3.09],
+                [mx + 0.035, 2.05, 3.09], [mx - 0.035, 2.05, 3.09]], "#20252A");
+        });
+        // the bore beyond the glass, so the window looks into a room
+        var b = S.project(0.62, 1.56, 3.08), r = S.ppm(3.08) * 0.26;
+        a.fillStyle = "#E2E7E9"; a.beginPath(); a.arc(b[0], b[1], r, 0, Math.PI * 2); a.fill();
+        a.fillStyle = "#181C1F"; a.beginPath(); a.arc(b[0], b[1], r * 0.56, 0, Math.PI * 2); a.fill();
+        WIN = { x: b[0] - r, y: b[1] };
+
+        // THE CART, 0.90 by 0.60 m, drawn in metres.
+        var cart = TXSCENE.sprite([
+          { type: "rect", x: -0.30, y: 0.86, w: 0.60, h: 0.05, fill: "ink" },
+          { type: "rect", x: -0.27, y: 0.44, w: 0.04, h: 0.42, fill: "ink" },
+          { type: "rect", x:  0.23, y: 0.44, w: 0.04, h: 0.42, fill: "ink" },
+          { type: "rect", x: -0.30, y: 0.40, w: 0.60, h: 0.05, fill: "ink" },
+          // the lower half is a closed cabinet rather than an open frame, so the cart is a mass
+          { type: "rect", x: -0.27, y: 0.06, w: 0.54, h: 0.34, fill: "ink" },
+          { type: "rect", x: -0.22, y: 0.13, w: 0.44, h: 0.05, fill: "paper", noShadow: true },
+          { type: "rect", x: -0.22, y: 0.26, w: 0.44, h: 0.05, fill: "paper", noShadow: true },
+          { type: "ellipse", cx: -0.25, cy: 0.055, rx: 0.055, ry: 0.055, fill: "ink" },
+          { type: "ellipse", cx:  0.25, cy: 0.055, rx: 0.055, ry: 0.055, fill: "ink" }
+        ], { kind: "cart" });
+        var cartInks = { ink: "#7E858B", paper: "#0E1216", accent: "#7E858B" };
+        S.shadow(cart, { X: -0.15, Z: CZ, ink: "#000", alpha: 0.26 });
+        S.sprite(cart, { X: -0.15, Z: CZ, inks: cartInks, fade: false });
+
+        // THE BOX'S GEOMETRY ONLY. The box itself is painted in `over`, unscreened, for the
+        // reason the dossier's own risk line predicted: a hatch at cell 7 puts every plane in
+        // this frame at the same density, so board, tape, cart and glass all came out as one
+        // value and nothing in the frame was a lit surface. The box is the subject, so the box
+        // is the thing that gets to be paper.
+        var ppm = S.ppm(CZ), gy = S.groundY(CZ), cxx = S.project(-0.15, 0, CZ)[0];
+        var bw = 0.40 * ppm, bh = 0.28 * ppm, bx = cxx - bw / 2, by = gy - 0.91 * ppm - bh;
+        BOX = { x: bx, y: by, w: bw, h: bh, d: bw * 0.17, ppm: ppm, gy: gy };
+
+        // A FOREARM AND HAND resting ON the cart top at the left, so the box is read against a
+        // body rather than against nothing. It rests rather than floats, which is what the first
+        // cut got wrong: a tapered bar ending in an ellipse in mid air is a sausage.
+        a.save(); a.fillStyle = "#C8CCCD";
+        var ty = gy - 0.91 * ppm, ax = bx - 0.10 * ppm;
+        a.beginPath();
+        a.moveTo(-10, ty - 0.115 * ppm); a.lineTo(ax - 0.06 * ppm, ty - 0.055 * ppm);
+        a.quadraticCurveTo(ax + 0.03 * ppm, ty - 0.045 * ppm, ax + 0.035 * ppm, ty - 0.004 * ppm);
+        a.lineTo(ax - 0.02 * ppm, ty - 0.002 * ppm);
+        a.lineTo(-10, ty - 0.020 * ppm);
+        a.closePath(); a.fill();
+        // three fingers laid on the cart top, which is what reads as a hand at 432 px
+        for (var f = 0; f < 3; f++) {
+          a.beginPath();
+          a.ellipse(ax + (0.012 + f * 0.016) * ppm, ty - 0.012 * ppm + f * 0.004 * ppm,
+                    0.022 * ppm, 0.011 * ppm, 0.06, 0, Math.PI * 2);
+          a.fill();
+        }
+        a.restore();
+        // and its own contact shadow on the cart top
+        a.save(); a.fillStyle = "rgba(0,0,0,0.34)";
+        a.beginPath(); a.ellipse(ax - 0.02 * ppm, ty + 0.012 * ppm, 0.12 * ppm, 0.022 * ppm, 0, 0, Math.PI * 2);
+        a.fill(); a.restore();
+      },
+      over: function (c) {
+        var bx = BOX.x, by = BOX.y, bw = BOX.w, bh = BOX.h, d = BOX.d, ppm = BOX.ppm;
+
+        // THE BOX AS A MASS, three planes at three values under one light from the upper left.
+        // Top face lightest, front face mid, right face in shade. This is the only lit surface
+        // in the frame and it is what makes the box a box rather than a hatched square.
+        c.save();
+        // cast shadow on the cart top, thrown right and short under a high light
+        c.fillStyle = "rgba(0,0,0,0.40)";
+        c.beginPath();
+        c.moveTo(bx + 4, by + bh); c.lineTo(bx + bw + d * 1.5, by + bh);
+        c.lineTo(bx + bw + d * 1.9, by + bh + d * 0.34); c.lineTo(bx + 10, by + bh + d * 0.34);
+        c.closePath(); c.fill();
+
+        function poly(pts, fill) {
+          c.beginPath();
+          pts.forEach(function (p, i) { i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1]); });
+          c.closePath(); c.fillStyle = fill; c.fill();
+        }
+        var dx = d * 0.92, dy = -d * 0.52;
+        poly([[bx, by], [bx + dx, by + dy], [bx + bw + dx, by + dy], [bx + bw, by]], "#F1E9D3");   // lid top
+        poly([[bx + bw, by], [bx + bw + dx, by + dy], [bx + bw + dx, by + bh + dy], [bx + bw, by + bh]], "#8F8872"); // right face
+        c.fillStyle = "#D2C9AE"; c.fillRect(bx, by, bw, bh);                                        // front face
+        // the lid's skirt, a band across the front with its own shadow line under it
+        c.fillStyle = "#C3B99B"; c.fillRect(bx, by, bw, bh * 0.20);
+        c.fillStyle = "rgba(40,36,26,0.32)"; c.fillRect(bx, by + bh * 0.20, bw, 2.5);
+        // the front face falls away to its lower right, so the plane is not one flat tint
+        var fg = c.createLinearGradient(bx, by, bx + bw, by + bh);
+        fg.addColorStop(0, "rgba(255,250,236,0.16)"); fg.addColorStop(0.55, "rgba(0,0,0,0)");
+        fg.addColorStop(1, "rgba(24,22,16,0.30)");
+        c.fillStyle = fg; c.fillRect(bx, by, bw, bh);
+        // hand holes, punched in the front face, which is what a records box actually has
+        c.fillStyle = "#5C5646";
+        c.beginPath(); c.ellipse(bx + bw * 0.5, by + bh * 0.44, bw * 0.115, bh * 0.048, 0, 0, Math.PI * 2); c.fill();
+        c.restore();
+
+        // THE ONE ACCENT: the tape seal across the lid seam, and the label card. Nothing else.
+        // The seal overhangs both ends of the box and wraps over the lid's top face, because
+        // tape that stops dead at the edge of a box is a stripe painted on it.
+        c.save();
+        c.fillStyle = "#4E5FA8";
+        var sy = by + bh * 0.20 - bh * 0.085, sh = bh * 0.17;
+        c.fillRect(bx - bw * 0.035, sy, bw * 1.07, sh);                 // across the front
+        poly([[bx - bw * 0.035, sy], [bx - bw * 0.035 + dx, sy + dy],
+              [bx + bw * 1.035 + dx, sy + dy], [bx + bw * 1.035, sy]], "#3F4E8C");
+        // the wrapped ends, folded down over the box's sides
+        c.fillStyle = "#3F4E8C";
+        c.fillRect(bx - bw * 0.035, sy, bw * 0.035, sh * 1.9);
+        c.fillRect(bx + bw, sy, bw * 0.035, sh * 1.9);
+        // a torn edge along the bottom of the tape, so it is tape and not a ruled bar
+        c.fillStyle = "#D2C9AE";
+        var TR = TX.rng(20260404);
+        for (var i = 0; i < 26; i++) {
+          var nx = bx - bw * 0.035 + (bw * 1.07) * (i / 26);
+          c.fillRect(nx, sy + sh - 2, (bw * 1.07) / 26 * 0.62, 1 + TR() * 2.4);
+        }
+        SEAL = { x: bx + bw * 0.5, y: sy + sh * 0.5, w: bw * 1.07, h: sh };
+
+        // THE LABEL CARD on the front face, carrying its own count. A bright plate with nothing
+        // in it is the one thing the illustration system forbids outright, and the first cut of
+        // this frame was exactly that: an empty blue swatch called a dated label.
+        var lw = bw * 0.40, lh = bh * 0.40, lx = bx + bw * 0.07, ly = by + bh * 0.52;
+        c.fillStyle = "rgba(0,0,0,0.30)"; c.fillRect(lx + 3, ly + 3, lw, lh);
+        c.fillStyle = "#4E5FA8"; c.fillRect(lx, ly, lw, lh);
+        var nF = FEATURES;
+        if (!nF) throw new Error("features_retained missing from computed.js");
+        c.fillStyle = "#DCE2F2";
+        var pitch = lh / (nF + 1);
+        for (var k = 0; k < nF; k++) {
+          c.fillRect(lx + lw * 0.16, ly + pitch * (k + 1) - 1.2, lw * 0.68, 2.4);
+        }
+        c.restore();
+        LABEL = { x: lx + lw, y: ly + lh * 0.5, w: lw, h: lh };
+        BODY  = { x: bx + bw * 0.5, y: by + bh * 0.78 };
+
+        TXINK.reserve(c, { ground: "#1B1E21", top: 400, topSolid: 330, bottom: 268, bottomSolid: 226 });
+        window.__txAnchors = { SEAL: SEAL, LABEL: LABEL, BODY: BODY, WIN: WIN };
+      }
+    });
+
+    // THE LEADERS, authored as DOM paths that terminate ON each feature's own coordinates.
+    var svg = document.getElementById("lab"), A = window.__txAnchors, leaders = [];
+    function mark(tx, ty, str, anchor, target, at) {
+      var t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      t.setAttribute("x", tx); t.setAttribute("y", ty); t.setAttribute("class", "m");
+      if (anchor) t.setAttribute("text-anchor", anchor);
+      t.textContent = str; svg.appendChild(t);
+      return { el: t, at: at, target: target };
+    }
+    var items = [
+      // EVERY LEADER ENDS ON THE NEAR EDGE OF WHAT IT NAMES, never in the middle of it. The
+      // first cut ran the features leader across the accent plate to its centre, which is a
+      // line drawn through the thing it is pointing at.
+      mark(126, 906, "198 FITTED", "start", "the box's body, which is the fitted model", [A.BODY.x - 30, A.BODY.y]),
+      mark(956, 806, "7 FEATURES KEPT", "end", "the label card on the box, ruled once per feature", [A.LABEL.x + 5, A.LABEL.y]),
+      mark(126, 700, "SEALED", "start", "the tape seal across the lid seam", [A.SEAL.x - A.SEAL.w * 0.5 - 4, A.SEAL.y]),
+      mark(956, 986, "69 MET", "end", "the bore beyond the control room glass", [A.WIN.x, A.WIN.y])
+    ];
+    await new Promise(function (r) { requestAnimationFrame(function () { r(); }); });
+    TX.svgPlateAll("#lab text", { padX: 10, padY: 7, fill: "#12151A" });
+    items.forEach(function (it) {
+      var bb = it.el.getBBox();
+      var sx = (it.at[0] > 540) ? bb.x - 8 : bb.x + bb.width + 8, sy = bb.y + bb.height / 2;
+      var ln = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      ln.setAttribute("d", "M" + sx + "," + sy + " L" + it.at[0] + "," + it.at[1]);
+      ln.setAttribute("stroke", "#C9CFD3"); ln.setAttribute("stroke-width", "1.5");
+      ln.setAttribute("fill", "none"); svg.insertBefore(ln, svg.firstChild);
+      leaders.push({ target: it.target, at: it.at, to: it.at });
+    });
+    window.__txLeaders = leaders;
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

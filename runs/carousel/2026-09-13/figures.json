@@ -1,0 +1,26 @@
+{
+ "claims_verified": {
+  "value": 27,
+  "from_items": [],
+  "note": "Claims this run fetched and verified, counted over claims.json."
+ },
+ "findings_rejected": {
+  "value": 4,
+  "from_items": [],
+  "note": "Scout findings the fact check refused, each with a stated reason, counted over claims.json's rejected list."
+ },
+ "source_documents": {
+  "value": 3,
+  "from_items": [
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+   "https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-enabled-medical-devices"
+  ],
+  "note": "Distinct source urls behind the claims this deck rests on, counted over claims.json. All three have a fetched snapshot under out/2026-09-13/tmp/."
+ },
+ "absences_scoped": {
+  "value": 3,
+  "from_items": [],
+  "note": "Absences this deck asserts, each naming the document checked and a verbatim basis, counted over claims.json's absences list."
+ }
+}

@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the place",
   "the number that is wrong",
   "the correction",
   "the quiet decision",
   "the two things",
-  "the who"
+  "the who",
+  "the before and after"
  ],
  "entries": [
   {
@@ -362,15 +362,33 @@
    ],
    "critic_note": "THE CRITIC FOUND A REAL LEDGER DEFECT RATHER THAN A PROSE ONE, and it is the reason this entry's opening and closing moves are the ones they are. Both candidates opened on the object and closed by asking the question the decision leaves open, and both moves were inside their own exclusion window. The caption also asserts one universal, None of them, and quantifiers.json names the six-term set it is over rather than leaving a reader to trust it. AFTER ROUND 1 the post lost two sentences the record did not carry, a graduation requirement c9 calls a curriculum requirement, and an effective date the motion asked for rather than the board settled, and the counts here were re-measured off the file. AFTER ROUND 2 the first line names the board and the bill it matches rather than compressing c6 to a bill number, and the universal over the release's closing words came out because the release's own sentence says invest. THE ROUND 3 INTEGRITY JUDGE READ THE FIRST LINE AS 'THE WHO' RELABELLED. The line names the board and the bill, then the post turns on what the adopted text asks for against what the bill asked for, which is the before and after the move name records. The judge's reading is kept here so the next critic can decide it with both in front of them.",
    "move_note": "Named off CAPTION_CRAFT.md's own menus rather than freehand. ledger_check refuses a move name that is not on a menu, because a name nobody else uses cannot be excluded by a list of real ones, which is how three excluded moves shipped on 2026-08-25. The caption opens on what House Bill 27 asked for and turns to what the adopted text actually says, it runs what is known then what is not then the size of the gap, and it ends on the question the adoption leaves open."
+  },
+  {
+   "date": "2026-09-13",
+   "carousel_no": 22,
+   "opening_move": "the plain question",
+   "structure": "Question and answer",
+   "closing_move": "Name what is still not public, and how big that is.",
+   "first_line": "What was the scanner taught on?",
+   "words": 132,
+   "commas": 4,
+   "commas_per_100w": 3.03,
+   "chars": 896,
+   "hashtags": [
+    "#PediatricRadiology",
+    "#TexasChildrens",
+    "#UTMB"
+   ],
+   "critic_note": "THE OPENING MOVE WAS ON ITS OWN EXCLUSION LIST AND A GATE CAUGHT IT, NOT A JUDGE. The caption shipped through five scoring rounds opening on 'the two things', which CAPTION_CRAFT puts off the menu for six runs and which 2026-09-09 had already spent. Round 5's reader judge flagged it as a lead it could not settle because this entry was not yet written; ledger_check then failed the build on it outright. It is now 'the plain question', which is unspent, and the opening asks what a scanner was taught on, which is the question frame 9 tells a parent to put at a desk. Relabelling it would have been the 2026-08-25 failure and CAPTION_CRAFT forbids it in as many words. WHAT THE ROUNDS DID TO THIS CAPTION: round 1's critic disqualified both candidates for fabrication, one inventing '69 adults' and one attributing a sentence to institutions that never wrote it. Round 2 replaced a lede that put no Texas above the fold. Round 3 fixed an attribution saying two Texas departments 'built' a model whose own byline carries Duke, and restored a c5 quote truncated mid sentence and closed with a full stop. Round 5 removed 'One warns about the other', a relation neither document makes. THE REWRITE ALSO RECOVERED THE JOIN that removal cost: 'put a number on the same move' is the deck's own framing of why the second paper is here, which three reader judges asked for in three consecutive rounds and which is still absent from the FRAMES."
   }
  ],
  "structures_recent": [
-  "Pivot",
   "Two columns",
-  "Clock"
+  "Clock",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "point at the record, plainly, without a call to action"
+  "Ask the one question the decision leaves open."
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -1,0 +1,38 @@
+{
+  "_note": "every value here is read from out/2026-09-13/claims.json, never typed",
+  "cohort_train": 198,
+  "cohort_external": 69,
+  "features_retained": 7,
+  "c_index_train": "0.615",
+  "c_index_external": "0.574",
+  "grid": {
+    "upper": {
+      "n": 198,
+      "cols": 22,
+      "full_rows": 9,
+      "last_row": 0,
+      "rows": 9
+    },
+    "lower": {
+      "n": 69,
+      "cols": 22,
+      "full_rows": 3,
+      "last_row": 3,
+      "rows": 4
+    }
+  },
+  "departments": {
+    "total": 5,
+    "texan": 2,
+    "texan_ids": [
+      "c11",
+      "c12"
+    ],
+    "outside": 3,
+    "outside_ids": [
+      "c13",
+      "c14",
+      "c15"
+    ]
+  }
+}

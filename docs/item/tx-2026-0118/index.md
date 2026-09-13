@@ -10,7 +10,7 @@ The Commodity Futures Trading Commission published a request for comment on Augu
 - Comment closes: 2026-10-20
 - Take part: https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
 
-- Last checked: 2026-09-10
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-03 · The summary asserted that Texas carries a large share of the data centers such a market would price. No claim here supports that. No national denominator was fetched either, so the sentence is gone. The ERCOT flag read false, which a reader saw as a plain 'No. It sits outside the ERCOT interconnection.' The notice is nationwide, concerns a derivatives market rather than a facility, and names no state. It is neither inside nor outside a Texas interconnection. The flag is unset, which suppresses the question rather than answering it wrongly.
 - 2026-09-07 · The commodities regulator's request for comment on listing compute derivatives is still open, and October 20th, 2026 is still the date it closes. Anyone who wants to answer the question still can.
 - 2026-09-10 · The federal request for comment on compute derivatives is still open, with October 20th still the closing date. The questions the regulator asked about what an exchange should weigh before listing such a contract are unchanged.
+- 2026-09-13 · The comment window is still open, closing October 20th.
 
 ## Evidence
 

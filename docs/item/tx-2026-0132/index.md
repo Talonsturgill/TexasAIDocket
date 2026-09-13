@@ -11,7 +11,7 @@ Texas A&M University Technology Services published guidance on August 31st, 2026
 - Public access: Write to the decider
 - Take part: https://dsait.tamu.edu/news/2026/08/31/tamu-ai-chat/
 
-- Last checked: 2026-09-11
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-08 · Admitted to the record. The university's guidance naming its approved AI platform is posted. It states both the data classification the platform is cleared for and that conversations are not used to train outside models.
 - 2026-09-11 · The guidance still names the university portal as the approved route and still states the data classification it is cleared for. The promise that conversations there are not used to train outside models is unchanged.
+- 2026-09-13 · The guidance still names the university portal as the approved route and still states the data classification it is cleared for. It still says conversations there are not used to train outside models.
 
 ## Evidence
 

@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-13",
+  "aggregates": [
+    {
+      "slide": "slide-04",
+      "phrase": "7 FEATURES",
+      "kind": "count",
+      "value": 7,
+      "quoted_from": "c22",
+      "quote": "The final model retained 7 nonzero T1 postcontrast radiomics features"
+    },
+    {
+      "slide": "slide-04",
+      "phrase": "7 features",
+      "kind": "count",
+      "value": 7,
+      "quoted_from": "c22",
+      "quote": "The final model retained 7 nonzero T1 postcontrast radiomics features"
+    },
+    {
+      "slide": "slide-04",
+      "phrase": "69 patients",
+      "kind": "count",
+      "value": 69,
+      "quoted_from": "c20",
+      "quote": "an independent cohort of 69 patients"
+    },
+    {
+      "slide": "slide-08",
+      "phrase": "100 MILES",
+      "kind": "count",
+      "value": 100,
+      "computed_by": "slide-08.html, the scale bar's length in pixels from the Albers projection's own pixels per mile, measured between two committed gazetteer points"
+    },
+    {
+      "slide": "caption.txt",
+      "phrase": "198 brain metastasis patients",
+      "kind": "count",
+      "value": 198,
+      "quoted_from": "c20",
+      "quote": "a public brain metastasis cohort of 198 patients"
+    },
+    {
+      "slide": "first_comment.txt",
+      "phrase": "three official records",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "scripts/carousel/sources_block.py, the distinct source urls across the claim ids the deck prints"
+    },
+    {
+      "slide": "slide-09",
+      "phrase": "two device names",
+      "kind": "count",
+      "value": 2,
+      "computed_by": "out/2026-09-13/fda_words.py, word boundary counts of pediatric over the fetched page at out/2026-09-13/tmp/fda_ai_devices.html with script and style stripped. Both occurrences are inside device names in the list"
+    }
+  ]
+}

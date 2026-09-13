@@ -1,0 +1,2632 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Children are not small adults.",
+          "x": 80,
+          "y": 168,
+          "w": 700,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              156,
+              609,
+              117
+            ],
+            [
+              80,
+              250,
+              469,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The panel's own sentence says children go through continuous physiologic and anatomic changes, which is why a model fitted to adults is not the model a child needs.",
+          "x": 80,
+          "y": 1054,
+          "w": 900,
+          "h": 98,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1053,
+              870,
+              33
+            ],
+            [
+              80,
+              1086,
+              871,
+              33
+            ],
+            [
+              80,
+              1118,
+              75,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AJR expert panel review September 9th, 2026",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 9th, 2026",
+          "x": 80,
+          "y": 116,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              315,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c5 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2470,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 46.7,
+          "variance": 1968.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The panel named where the gap is.",
+          "x": 80,
+          "y": 952,
+          "w": 900,
+          "h": 154,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              944,
+              813,
+              93
+            ],
+            [
+              80,
+              1021,
+              183,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AJR EXPERT PANEL REVIEW 10.2214/AJR.26.35523",
+          "x": 95,
+          "y": 326,
+          "w": 862,
+          "h": 46,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(68, 69, 61)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              95,
+              326,
+              734,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.",
+          "x": 91,
+          "y": 411,
+          "w": 866,
+          "h": 230,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(26, 28, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              94,
+              408,
+              837,
+              73
+            ],
+            [
+              93,
+              462,
+              728,
+              71
+            ],
+            [
+              92,
+              515,
+              550,
+              68
+            ],
+            [
+              834,
+              528,
+              11,
+              58
+            ],
+            [
+              242,
+              572,
+              18,
+              58
+            ],
+            [
+              412,
+              575,
+              84,
+              59
+            ],
+            [
+              737,
+              580,
+              10,
+              58
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "development",
+          "x": 640,
+          "y": 525,
+          "w": 195,
+          "h": 67,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(26, 28, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              525,
+              195,
+              61
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "validation",
+          "x": 91,
+          "y": 569,
+          "w": 152,
+          "h": 67,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(26, 28, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              91,
+              569,
+              152,
+              61
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "regulation",
+          "x": 259,
+          "y": 572,
+          "w": 155,
+          "h": 67,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(26, 28, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              259,
+              572,
+              155,
+              61
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "implementation",
+          "x": 495,
+          "y": 576,
+          "w": 243,
+          "h": 68,
+          "font_px": 44,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(26, 28, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              495,
+              576,
+              242,
+              62
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "PEDIATRIC ARTIFICIAL INTELLIGENCE IN RADIOLOGY",
+          "x": 88,
+          "y": 747,
+          "w": 718,
+          "h": 44,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(35, 36, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              88,
+              747,
+              718,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The document 10.2214/AJR.26.35523",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "10.2214/AJR.26.35523",
+          "x": 80,
+          "y": 116,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              331,
+              31
+            ]
+          ],
+          "anc": [
+            9
+          ]
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 95.1,
+          "y": 375,
+          "w": 861.9,
+          "h": 17,
+          "by": "rule",
+          "color": "rgb(188, 180, 160)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 640.3,
+          "y": 588.3,
+          "w": 195,
+          "h": 4,
+          "by": "U",
+          "color": "rgb(138, 127, 99)",
+          "decorative": false,
+          "skip": [
+            3,
+            4
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 90.6,
+          "y": 631.6,
+          "w": 152.2,
+          "h": 4,
+          "by": "U",
+          "color": "rgb(138, 127, 99)",
+          "decorative": false,
+          "skip": [
+            3,
+            5
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 258.7,
+          "y": 634.6,
+          "w": 154.7,
+          "h": 4,
+          "by": "U",
+          "color": "rgb(138, 127, 99)",
+          "decorative": false,
+          "skip": [
+            3,
+            6
+          ]
+        },
+        {
+          "kind": "border",
+          "x": 495.1,
+          "y": 640.2,
+          "w": 242.5,
+          "h": 4,
+          "by": "U",
+          "color": "rgb(138, 127, 99)",
+          "decorative": false,
+          "skip": [
+            3,
+            7
+          ]
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2184,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 103.2,
+          "variance": 6669.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Off label, in the panel's own words.",
+          "x": 80,
+          "y": 152,
+          "w": 820,
+          "h": 167,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              142,
+              723,
+              103
+            ],
+            [
+              80,
+              226,
+              374,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"off-label use of adult-trained AI models\"",
+          "x": 80,
+          "y": 1002,
+          "w": 746,
+          "h": 56,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              1012,
+              714,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The review names the practice among its ethical and regulatory concerns for children, beside consent for secondary data use and the need for postdeployment surveillance.",
+          "x": 80,
+          "y": 1096,
+          "w": 900,
+          "h": 102,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1095,
+              876,
+              35
+            ],
+            [
+              80,
+              1129,
+              746,
+              35
+            ],
+            [
+              80,
+              1163,
+              338,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The concern the panel names Ethics and regulation",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ethics and regulation",
+          "x": 80,
+          "y": 116,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              348,
+              31
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1773,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 66.2,
+          "variance": 4649.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "198 FITTED",
+          "x": 126,
+          "y": 880,
+          "w": 163,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              880,
+              163,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "7 FEATURES KEPT",
+          "x": 712,
+          "y": 780,
+          "w": 244,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              712,
+              780,
+              244,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEALED",
+          "x": 126,
+          "y": 674,
+          "w": 98,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              674,
+              98,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "69 MET",
+          "x": 858,
+          "y": 960,
+          "w": 98,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              858,
+              960,
+              98,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "They sealed the model before they tested it.",
+          "x": 80,
+          "y": 166,
+          "w": 840,
+          "h": 167,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              156,
+              723,
+              103
+            ],
+            [
+              80,
+              240,
+              649,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"without refitting or recalibration\"",
+          "x": 80,
+          "y": 968,
+          "w": 644,
+          "h": 56,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              978,
+              612,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The second paper fitted its model on one brain metastasis cohort, kept 7 features, and then ran the fixed model on 69 patients it had never met.",
+          "x": 80,
+          "y": 1070,
+          "w": 900,
+          "h": 96,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              98,
+              1083,
+              828,
+              35
+            ],
+            [
+              98,
+              1117,
+              805,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A brain metastasis survival model Texas departments among its authors",
+          "x": 80,
+          "y": 80,
+          "w": 580,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              546,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas departments among its authors",
+          "x": 80,
+          "y": 116,
+          "w": 580,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              580,
+              31
+            ]
+          ],
+          "anc": [
+            8
+          ]
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17 c20 c22 c26 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 116,
+          "y": 873,
+          "w": 182.5,
+          "h": 48,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 702.2,
+          "y": 773,
+          "w": 263.8,
+          "h": 48,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 116,
+          "y": 667,
+          "w": 117.5,
+          "h": 48,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 848.5,
+          "y": 953,
+          "w": 117.5,
+          "h": 48,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1975,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 48.1,
+          "variance": 2017.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Fitted to 198. Tested on 69.",
+          "x": 80,
+          "y": 168,
+          "w": 820,
+          "h": 183,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              157,
+              715,
+              112
+            ],
+            [
+              80,
+              249,
+              229,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The model was built on a public cohort. It then ran on an independent cohort without refitting.",
+          "x": 80,
+          "y": 372,
+          "w": 800,
+          "h": 72,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              371,
+              660,
+              36
+            ],
+            [
+              80,
+              407,
+              445,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "198 THE COHORT IT WAS BUILT ON",
+          "x": 80,
+          "y": 446,
+          "w": 503,
+          "h": 38,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              94,
+              449,
+              475,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "69 THE COHORT IT HAD NOT MET",
+          "x": 80,
+          "y": 922,
+          "w": 472,
+          "h": 38,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              94,
+              925,
+              444,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The brain metastasis cohorts One unit is one patient",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              464,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One unit is one patient",
+          "x": 80,
+          "y": 116,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              381,
+              31
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c20 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1852,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 45.6,
+          "variance": 1349.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It did worse on the patients it had never seen.",
+          "x": 80,
+          "y": 162,
+          "w": 880,
+          "h": 154,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              154,
+              836,
+              93
+            ],
+            [
+              80,
+              231,
+              449,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"limited standalone discrimination\"",
+          "x": 80,
+          "y": 392,
+          "w": 627,
+          "h": 56,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              402,
+              595,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It scored 0.615 on the brain metastasis cohort it was built on and 0.574 on the cohort it had not met. The paper's own intervals are 0.543 to 0.687 and 0.491 to 0.658, and its authors ask for cautious use.",
+          "x": 80,
+          "y": 1090,
+          "w": 900,
+          "h": 102,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1089,
+              881,
+              35
+            ],
+            [
+              80,
+              1123,
+              897,
+              35
+            ],
+            [
+              80,
+              1157,
+              491,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the second paper concluded The authors' own words",
+          "x": 80,
+          "y": 80,
+          "w": 513,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              513,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The authors' own words",
+          "x": 80,
+          "y": 116,
+          "w": 513,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              364,
+              31
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c22 c24 c25 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 498,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              498,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1863,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 49.8,
+          "variance": 2724.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Neither record puts a figure on this.",
+          "x": 80,
+          "y": 392,
+          "w": 850,
+          "h": 163,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(20, 23, 26)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              382,
+              671,
+              101
+            ],
+            [
+              80,
+              464,
+              432,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The review's record names insufficient external validation and carries no measurement of how far outside the training data a child sits.",
+          "x": 80,
+          "y": 1088,
+          "w": 900,
+          "h": 96,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              98,
+              1101,
+              822,
+              35
+            ],
+            [
+              98,
+              1135,
+              700,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The set nobody counted What the record does not hold",
+          "x": 80,
+          "y": 80,
+          "w": 480,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the record does not hold",
+          "x": 80,
+          "y": 116,
+          "w": 480,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              480,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c6 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9171,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 108.6,
+          "variance": 7357.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "BOSTON",
+          "x": 292,
+          "y": 376,
+          "w": 95,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              292,
+              376,
+              95,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CINCINNATI",
+          "x": 461,
+          "y": 376,
+          "w": 158,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              461,
+              376,
+              158,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PHILADELPHIA",
+          "x": 645,
+          "y": 376,
+          "w": 190,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              645,
+              376,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT SOUTHWESTERN",
+          "x": 141,
+          "y": 996,
+          "w": 238,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              141,
+              996,
+              238,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MEDICAL CENTER",
+          "x": 149,
+          "y": 1036,
+          "w": 222,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              149,
+              1036,
+              222,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BAYLOR COLLEGE OF MEDICINE",
+          "x": 494,
+          "y": 996,
+          "w": 412,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              494,
+              996,
+              412,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AND TEXAS CHILDREN'S HOSPITAL",
+          "x": 470,
+          "y": 1036,
+          "w": 459,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              470,
+              1036,
+              459,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "100 MILES",
+          "x": 96,
+          "y": 872,
+          "w": 143,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              872,
+              143,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two of the panel's departments are Texan.",
+          "x": 80,
+          "y": 168,
+          "w": 800,
+          "h": 147,
+          "font_px": 73.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              159,
+              505,
+              91
+            ],
+            [
+              80,
+              233,
+              681,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The two here are at Baylor College of Medicine with Texas Children's Hospital in Houston, and at UT Southwestern Medical Center in Dallas. The three leaving the sheet are the children's hospitals of Boston, Cincinnati and Philadelphia.",
+          "x": 80,
+          "y": 1104,
+          "w": 900,
+          "h": 95,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1103,
+              864,
+              33
+            ],
+            [
+              80,
+              1135,
+              887,
+              33
+            ],
+            [
+              80,
+              1166,
+              791,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where the panel sits Albers equal area conic",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Albers equal area conic",
+          "x": 80,
+          "y": 116,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              381,
+              31
+            ]
+          ],
+          "anc": [
+            11
+          ]
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c12 c13 c14 c15 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 283.5,
+          "y": 370,
+          "w": 113.1,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 451.8,
+          "y": 370,
+          "w": 176.4,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 636,
+          "y": 370,
+          "w": 208.1,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 132.2,
+          "y": 990,
+          "w": 255.6,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 140.1,
+          "y": 1030,
+          "w": 239.8,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 485.1,
+          "y": 990,
+          "w": 429.8,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 461.3,
+          "y": 1030,
+          "w": 477.4,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 87,
+          "y": 866,
+          "w": 160.6,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(18, 21, 26)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1641,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 40.7,
+          "variance": 1381.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ask what it was validated on.",
+          "x": 80,
+          "y": 160,
+          "w": 640,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              148,
+              570,
+              117
+            ],
+            [
+              80,
+              242,
+              469,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A parent can ask at the desk what population each imaging tool was validated on. The Food and Drug Administration's device list carries the word pediatric in two device names and nowhere in its own text. The panel wants pediatric infrastructure, not adult tools reused.",
+          "x": 80,
+          "y": 1004,
+          "w": 900,
+          "h": 138,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1003,
+              884,
+              35
+            ],
+            [
+              80,
+              1038,
+              890,
+              35
+            ],
+            [
+              80,
+              1072,
+              834,
+              35
+            ],
+            [
+              80,
+              1107,
+              431,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What a Texan can do Where the answer is published",
+          "x": 80,
+          "y": 80,
+          "w": 480,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where the answer is published",
+          "x": 80,
+          "y": 116,
+          "w": 480,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              480,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c10 c27 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(185, 178, 163)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2928,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 49.5,
+          "variance": 2334.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

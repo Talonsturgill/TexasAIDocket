@@ -1,0 +1,46 @@
+{
+  "lens": "reader",
+  "round": 5,
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.8,
+      "why": "Nine distinct layouts and a real print register: stipple on 01 and 09, line screen on 02, halftone at cell 9 on 03 and 07, hatch on 04 and 08. Six frames bleed an edge and 07's crowd is the one image in the deck I would screenshot. Two frames fail their own drawing. Frame 03 renders as a small dark figure perched on a long pale slab under a third of a frame of empty black: it does not read as a child, head to body ratio is adult and the legs drop nearly to the castor line, and it barely reads as a hospital bed, no pillow, no bedding, no mattress volume. Frame 06's radiologist is a halftone lump between two panels. And the type skeleton is still identical on seven of nine frames, which is the thing six judges over four rounds named; 02 and 07 now break it and they are the two best composed frames in the deck, which is the argument for breaking the other five."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.0,
+      "why": "Every numeral I can find traces. 198, 7 and 69 on 04 and 05 sit inside c20 and c22's own quoted sentences; 0.615, 0.574, 0.543, 0.687, 0.491, 0.658 on 06 are c22 verbatim; the DOI on 02 matches c3 character for character; 09's two device names is computed by fda_words.py over a 417 KB snapshot on disk; 08's 100 MILES is a bar length from the Albers fit. Three deductions, none a fail. Frame 06's hook It did worse on the patients it had never seen is now printed directly above intervals of 0.543 to 0.687 and 0.491 to 0.658, which overlap across most of their range, and no surface says so, so the frame's own evidence is in tension with its headline. The caption's landed the same day is a composite the claims file explicitly REJECTED as one fact; it is recoverable from c2 plus c17 and I do not call it a fail. Frame 08's The three leaving the sheet are reads as exhaustive over a department set the claims never establish as complete."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 6.3,
+      "why": "What a Texan learns is real: a national expert panel with departments at Baylor with Texas Children's in Houston and UT Southwestern in Dallas says pediatric imaging is underrepresented in AI, and names off-label use of adult-trained AI models as an ethical concern. What they can do is genuinely concrete for a parent, frame 09's ask at the desk what population each imaging tool was validated on, backed by the measured fact that the FDA device list carries the word pediatric only inside two device names. No body, no deadline, no proceeding, which is inherent to a research story. The cost that survived five rounds is structural: frames 04, 05 and 06, a third of the deck, are a different paper about ADULTS with brain metastases, and nothing on any of those three frames tells a reader why they are here. The join arrives at frame 07 and the caption now deliberately declines to make it at all."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.2,
+      "why": "Frame 01 stops a thumb and the adult and child are tellable apart at 432 px. There is a real turn and it is in the right place, frame 07, whose value inversion is the only one in nine frames and whose dark ink hook DOES hold at 432 px, softer than every other hook but legible. The close lands on an action. Against that, three frames drag: 03 stalls on an image that does not make its argument, and 08 is cuttable on the run's own admission in its storyboard, a map is the deck's least urgent content one frame from the close."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "Clean and on register. No hype, no first person, no banned furniture, no colons or semicolons, ranges read X to Y, dates take the ordinal and the caption correctly drops the year. They sealed the model before they tested it is the one line that sounds like a person said it. The caption's new opening is more honest than round 4's and it is also longer and flatter: ten words against the doctrine's four to seven aim, leading on a date coincidence, and it invites the causal read in the first line that the third sentence then declines to own. Built on 198 patients, it met an independent 69 unchanged is a sentence no Texan would say out loud. Texas presence is three city names."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 5.8,
+      "why": "Nine layouts, no consecutive repeat, a palette and accent law that are not last week's, and the type skeleton broken for the first time on two frames. Two real costs. The caption's lede sets two facts beside each other and lets the gap do the work, which is the two things on CAPTION_CRAFT's own menu, and that move is on the exclusion list the room was handed. And this is the second peer reviewed clinical study in five days where a medical AI model underperformed a comparator at Texas hospitals, after carousel 19. dedupe_check cannot see it because it reads topic, entities and keywords and not INSTRUMENT, which is exactly the blind spot the 2026-09-07 ledger entry wrote down in capitals. By the house's own precedent that is a variety cost and not a dedupe fail, and it is now the third recurrence."
+    }
+  ],
+  "weighted_score": 6.542,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Put the bridge on frame 4 where the detour starts, one sentence in its kicker or dek saying what the second paper is doing in a deck about children, because right now three of nine frames are an unexplained oncology paper and the join is deferred to frame 7 and abandoned entirely in the caption, and pay for it by cutting frame 8, which the storyboard itself calls the deck's least urgent content."
+}

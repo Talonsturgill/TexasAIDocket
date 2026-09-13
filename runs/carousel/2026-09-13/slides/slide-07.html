@@ -1,0 +1,137 @@
+<!doctype html>
+<!-- CAROUSEL 22, frame 7 of 9. Archetype SPLIT_HORIZON. THE DECK'S TURN.
+     One straight cut at y 470 with no gradient and no glow. Above it the deck's darkest ground
+     carrying the type. Below it a field of children at true scale on open ground under a high
+     September sun, each with its own contact shadow, running off three edges so there is no
+     boundary in it and no total a reader could take. Halftone at cell 9, the coarsest screen in
+     the deck. NO ACCENT ANYWHERE, which in this deck means nothing on this frame was counted by
+     either document. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --suite:#1B1E21; --ink:#EDE6D6; --dim:#B9B2A3; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--suite); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* THE ONE FRAME WHERE THE TYPE CHANGES SIDES. Everywhere else in this deck the hook is
+     limestone on the dark ground in the upper third. Here it is the deck's darkest ink on its
+     LIGHTEST field, below the cut, because this is the frame where the deck changes its mind and
+     nine frames of one type skeleton is the defect six judges named across four rounds. */
+  .hook { position:absolute; left:80px; top:392px; width:850px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:82px; line-height:1.0; letter-spacing:-0.02em; color:#14171A; font-variation-settings:"opsz" 144; }
+  .dek  { position:absolute; left:80px; top:1088px; width:900px; font-size:25px; line-height:1.36; color:var(--dim);
+           background:#12151A; padding:14px 18px; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Neither record puts a figure on this.</h1>
+<p class="dek">The review's record names insufficient external validation and carries no measurement of how far outside the training data a child sits.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The set nobody counted", kicker2: "What the record does not hold",
+      counter: "07 / 09", src: "c4 c6   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 62, max: 82, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350, CUT = 356;
+
+    // ONE LIGHT: a high September sun, so every figure gets a short contact shadow at its own
+    // feet rather than a long dramatic one, and fifty pictograms sit on one ground.
+    var cam = { w: W, h: H, eye: 1.65, horizon: 556, f: 690, fogZ: 1e9, light: { az: 158, el: 64 } };
+
+    // THE FIELD. Seeded, so the same inputs reproduce the same pixels.
+    var field = [];
+    function buildField(S) {
+      var R = TX.rng(20260907), tries = 0, onScreen = 0;
+      var poses = ["stand", "walk", "stride", "stand", "walk", "wave", "carry"];
+      // TWO NEAR CHILDREN AT THE SIDE EDGES, cropped by the bottom, so the field genuinely runs
+      // off that edge. Putting the whole distribution this close instead made eight huge figures
+      // and no field, which is not the frame either.
+      [[1.44, -1.06, 1.10], [1.52, 1.14, 0.98]].forEach(function (e) {
+        field.push({ X: e[1], Z: e[0], h: e[2],
+                     sprite: TXFIG.figure({ pose: "walk", height: e[2], child: true }),
+                     mirror: e[1] > 0 });
+      });
+      while (field.length < 112 && tries < 24000) {
+        tries++;
+        var Z = 2.6 + Math.pow(R(), 1.18) * 30;
+        var X = (R() * 2 - 1) * (0.9 + Z * 0.80);
+        // 0.85 to 1.45 m. NOTHING IN IT IS AN ADULT, which is the frame's whole point, and at
+        // 1.55 the tallest read as one at feed size.
+        var h = 0.85 + R() * 0.60;
+        // NO TWO FIGURES SHOULDER TO SHOULDER. Two silhouettes at one distance with their arms
+        // nearly touching read as one taller figure holding a smaller one by the hand, which is
+        // frame 9's motif arriving two frames early on the one frame whose subject is that
+        // nobody counted these children.
+        var clash = field.some(function (g) {
+          return Math.abs(g.Z - Z) < 1.15 && Math.abs(g.X - X) < 0.86;
+        });
+        if (clash) continue;
+        var p = S.project(X, 0, Z);
+        if (p[0] > -40 && p[0] < W + 40 && p[1] > CUT) onScreen++;
+        field.push({ X: X, Z: Z, h: h,
+                     sprite: TXFIG.figure({ pose: poses[Math.floor(R() * poses.length)],
+                                            height: h, child: true }),
+                     mirror: R() < 0.5 });
+      }
+      // the frame counts its own field rather than trusting the sampler
+      if (onScreen < 46) throw new Error("only " + onScreen + " figures land in frame");
+      field.sort(function (a, b) { return b.Z - a.Z; });        // far first, the bench does not sort
+      console.log("field", field.length, "placed,", onScreen, "in frame");
+    }
+
+    TXINK.print(cx, {
+      ground: "#1B1E21", ink: "#EDE6D6", fibre: 0.05, seed: 709,
+      screen: { mode: "halftone", cell: 7, angle: 30, gamma: 1.10, floor: 0.05 },
+      edges: { threshold: 20, width: 1.4, alpha: 0.80, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        // ABOVE THE CUT: the deck's darkest ground, flat and unworked, carrying the type.
+        a.fillStyle = "#0E1013"; a.fillRect(0, 0, W, CUT);
+
+        var S = TXSCENE.create(a, Object.assign({ sky: "#9A958A" }, cam));
+        if (!field.length) buildField(S);
+        // BELOW THE CUT: open ground, the lightest field in the deck. The cut is hard because a
+        // gradient across it would soften the one place this deck changes its mind.
+        a.save(); a.beginPath(); a.rect(0, CUT, W, H - CUT); a.clip();
+        a.fillStyle = "#B4AFA2"; a.fillRect(0, CUT, W, cam.horizon - CUT + 2);
+        S.ground({ near: 0.8, far: 320, fill: "#9A958A" });
+        S.gridZ({ dz: 7, from: 4, to: 160, ink: "rgba(0,0,0,0.14)", width: 1.0 });
+
+        var inks = { ink: "#2A2E2C", paper: "#141614", accent: "#2A2E2C" };
+        field.forEach(function (f) {
+          // the shadow takes the mirror too, or a figure stands beside its own cast
+          S.shadow(f.sprite, { X: f.X, Z: f.Z, ink: "#000", alpha: 0.34, mirror: f.mirror });
+          S.sprite(f.sprite, { X: f.X, Z: f.Z, inks: inks, mirror: f.mirror, fade: false });
+        });
+        a.restore();
+
+        // the cut itself, drawn last so nothing bleeds across it
+        a.fillStyle = "#0E1013"; a.fillRect(0, 0, W, CUT);
+      },
+      over: function (c) {
+        // the bottom furniture band only. The top is dark by construction.
+        // A NARROWER FURNITURE BAND. At 172 px of solid the two nearest children were cut by the
+        // reserve rather than by the frame, and two judges read the declared bottom bleed as not
+        // drawn. They now walk off the bottom edge itself.
+        TXINK.reserve(c, { ground: "#1B1E21", bottom: 150, bottomSolid: 86 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3235,
+        0.6471,
+        0.4871
+      ],
+      "band_ratio": 1.0024
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "a drawn rule crosses the glyph band of 'Artificial intelligence (AI) application' (canvas edge .pixels at 93,516.5 728x1.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "a drawn rule crosses the glyph band of 'implementation' (canvas edge .pixels at 495,585.5 242x4) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.3718,
+        0.2542,
+        0.3474
+      ],
+      "band_ratio": 1.0672
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2458,
+        0.3025,
+        0.5717
+      ],
+      "band_ratio": 1.4952
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 66% of this slide's own average craft density (top 52% / mid 56% / bottom 30% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.5231,
+        0.5567,
+        0.2978
+      ],
+      "band_ratio": 0.659
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1891,
+        0.4811,
+        0.5662
+      ],
+      "band_ratio": 1.3509
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1975,
+        0.5168,
+        0.6379
+      ],
+      "band_ratio": 1.389
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.06) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.07) beneath 'Neither record puts a figure on this.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'c4 c6 TEXAS AI DOCKET' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3319,
+        1.0,
+        0.8438
+      ],
+      "band_ratio": 1.1548
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.25,
+        0.5714,
+        0.3474
+      ],
+      "band_ratio": 0.8961
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.4118,
+        0.8718,
+        0.4614
+      ],
+      "band_ratio": 0.8008
+    }
+  ],
+  "fails": 0,
+  "warns": 6,
+  "verdict": "WARN"
+}
