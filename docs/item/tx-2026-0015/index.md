@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The federal notice still carries its stated close and the Commission has published no next step. What it does with the comments it took is still unconfirmed.
 - 2026-09-08 · The federal comment window on reactor licensing and siting modernization is still shut, and the notice still reads as it did when it closed. No adopting action has been published since.
 - 2026-09-09 · The federal comment window on reactor licensing and siting modernization is still shut, and the notice that closed it reads as it did.
+- 2026-09-12 · The federal comment window on reactor licensing and siting modernization is still shut. The notice that closed it carries the same closing date it did.
 - 2026-09-13 · The federal window on reactor licensing and siting is still shut, and the notice's own close date has not moved.
 
 ## Evidence

@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Archer County's denial of the Dynamo Ventures abatement still stands. No new application has been filed to replace it.
 - 2026-09-08 · Archer County's denial of the Dynamo Ventures abatement still stands. Nothing has been refiled with the commissioners court.
 - 2026-09-09 · Archer County's denial of the Dynamo Ventures abatement still stands. No renewed application has been posted.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

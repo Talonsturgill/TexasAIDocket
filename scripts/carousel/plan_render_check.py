@@ -511,7 +511,23 @@ ASSERTING_KEYS = ("hook", "dek")
 
 # `key: "value"` and `key: ["a", "b"]` inside the `type:` block. Two spaces of indent, which is
 # the form SLIDE_DOSSIER_SPEC.md prints and every dossier that has ever declared one has used.
-TYPE_SCALAR = re.compile(r'^  ([a-z_][a-z_0-9]*):\s*"(.*)"\s*$')
+# EITHER QUOTE, BECAUSE A `type:` BLOCK IS YAML AND YAML HAS TWO. 2026-09-12.
+#
+# This read only the double quoted form, so a single quoted `dek:` was not a declaration at all
+# and the string never reached the render comparison. The 2026-09-12 storyboard writes all nine
+# deks that way and the gate reported the deck clean on hooks and labels alone. Three earlier
+# storyboards, 08-22, 08-25 and 08-27, each had one line go the same way unnoticed.
+#
+# WHY THE RUNS CHOSE SINGLE QUOTES, which is the part that makes this a parser gap rather than a
+# storyboard mistake. A dek on this project routinely carries a verbatim fragment, and a fragment
+# is set in double quotes. `dek: 'The agency defines it as "a combined index of ride quality and
+# pavement surface distress."'` is the natural YAML for that and escaping it into the double
+# quoted form would be worse writing for no gain.
+#
+# It is caught by the self-test that reads the NEWEST SHIPPED STORYBOARD rather than a fixture,
+# which is the case immediately below the parser tests and the reason that case exists. The
+# fixtures all spelled it the way the parser already read.
+TYPE_SCALAR = re.compile(r"""^  ([a-z_][a-z_0-9]*):\s*(?:"(.*)"|'(.*)')\s*$""")
 TYPE_LIST = re.compile(r'^  ([a-z_][a-z_0-9]*):\s*\[(.*)\]\s*$')
 
 
@@ -538,7 +554,14 @@ def declared_strings(body: str) -> list:
     for line in m.group(1).splitlines():
         sm = TYPE_SCALAR.match(line)
         if sm:
-            out.append((sm.group(1), sm.group(2)))
+            # Group 2 is the double quoted body, group 3 the single quoted one. YAML escapes a
+            # literal apostrophe inside single quotes by doubling it, and two shipped deks do
+            # exactly that ("The university''s release"), so undo it or the rendered string
+            # never matches.
+            if sm.group(2) is not None:
+                out.append((sm.group(1), sm.group(2)))
+            else:
+                out.append((sm.group(1), sm.group(3).replace("''", "'")))
             continue
         lm = TYPE_LIST.match(line)
         if lm:
@@ -1054,6 +1077,38 @@ acceptance:
     ok("the palette is read from the storyboard rather than typed into this file",
        palette_map(SB) == {"tower": "#16151C", "pecos": "#8E4B3A", "paper": "#F6F1E4"},
        str(palette_map(SB)))
+
+    # ---- THE 2026-09-12 DEFECT: A QUOTE STYLE THIS PROJECT WRITES AND THE PARSER COULD NOT READ.
+    # Every string here is lifted off the 2026-09-12 storyboard, which wrote all nine of its deks
+    # single quoted and had all nine silently skipped. Revert TYPE_SCALAR to the double quoted
+    # form alone and the first three of these go red.
+    _SQ = ("type:\n"
+           "  hook: \"Somebody used to stand here.\"\n"
+           "  dek: 'A rater measured the distress by hand on a sampled portion.'\n")
+    ok("a SINGLE QUOTED display string is a declaration (2026-09-12, all nine deks)",
+       dict(declared_strings(_SQ)).get("dek") == "A rater measured the distress by hand on a sampled portion.",
+       str(declared_strings(_SQ)))
+    ok("...and the double quoted form beside it still reads",
+       dict(declared_strings(_SQ)).get("hook") == "Somebody used to stand here.")
+    # THE REASON THE RUNS REACH FOR SINGLE QUOTES AT ALL. A dek carries a verbatim fragment and
+    # a fragment is set in double quotes, so the outer quote has to be the other one.
+    _EMB = ("type:\n"
+            "  dek: 'The agency defines it as \"a combined index of ride quality.\"'\n")
+    ok("...and an embedded double quoted fragment survives whole",
+       dict(declared_strings(_EMB))["dek"] == 'The agency defines it as "a combined index of ride quality."',
+       str(declared_strings(_EMB)))
+    # YAML doubles an apostrophe to escape it inside single quotes, and two shipped deks do.
+    _ESC = "type:\n  dek: 'The university''s release lists what prepared the data.'\n"
+    ok("...and a doubled apostrophe comes back as one",
+       dict(declared_strings(_ESC))["dek"] == "The university's release lists what prepared the data.",
+       str(declared_strings(_ESC)))
+    # AND IT STILL REFUSES WHAT IS NOT A DECLARATION, which is what stops the wider pattern from
+    # turning prose into display strings.
+    _NOTQ = "type:\n  dek: A rater measured the distress by hand.\n  hook: \"Somebody used to stand here.\"\n"
+    ok("an UNQUOTED value is still not a declaration",
+       [k for k, _ in declared_strings(_NOTQ)] == ["hook"], str(declared_strings(_NOTQ)))
+    _MIX = "type:\n  dek: 'mismatched marks are not a string\"\n"
+    ok("...and mismatched marks declare nothing", declared_strings(_MIX) == [], str(declared_strings(_MIX)))
 
     # ---- THE 2026-08-28 DEFECT: A TOKEN NAME THIS PROJECT WRITES AND THE PARSER COULD NOT READ.
     # Each of these three declaration shapes was taken off a real shipped storyboard. Revert the

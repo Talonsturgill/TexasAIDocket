@@ -1,0 +1,94 @@
+{
+ "run": "2026-09-12",
+ "note": "Every figure this deck prints that a claim did not quote is declared here with its computation, so numeral_trace can reach it and aggregate_check can re-derive it. The deck is deliberately thin on aggregates. The four F1 values and the threshold of 70 are QUOTED figures, lifted out of their claims' own sentences by regex in compute.py, and a quoted figure is not an aggregate. Four things here are. FRAME 8 NO LONGER PRINTS ITS AXIS BOUNDS, WHICH IS THE ONLY DISPOSITION THAT WAS EVER HONEST. Round 2's integrity judge called the printed 1.0 and 0 numerals tracing to no claim and no computation and raised it as a hard fail, and that reading is correct. F1 is bounded at 1 by the metric's definition rather than by anything this run fetched, and the zero is drawn because this project's honest-axis doctrine requires an anchored scale, so neither figure comes from the record. Both were declared here first and aggregate_check refused both, because it does not read a bare axis label as a numeric phrase on a slide and a declaration nothing says is a declaration left to be reused. The earlier disposition was to ship them undeclared with this paragraph as the excuse, which is the thing the compute-not-generate law exists to refuse. The frame now keeps both rules, the heavy zero and the dashed ceiling, and names them SCALE BASE and SCALE TOP. Spelling the figures as words was considered and rejected, because this file already says of the meeting count that the house law on numerals is about where a figure comes from rather than how it is set. The gate gap is real and stays in the backlog, and it is no longer load bearing for this deck.",
+ "aggregates": [
+  {
+   "phrase": "three next steps and dates",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "compute.py NEXT_STEPS, the coordinated verb phrases in c7's own sentence about what the team plans next, split on its commas and its final conjunction. Three come back. The second half of the slide's sentence, that it dates none of them, is the absence gate's kind of claim rather than a count, and it is true of the same sentence because no date appears anywhere in it.",
+   "from_claims": [
+    "c7"
+   ],
+   "note": "Slide 9's dek."
+  },
+  {
+   "phrase": "four left this",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py commission_meetings_left, the number of dated rows on the commission's published meeting calendar in c25 that fall on or after the run date. c25 carries four, 09/24/26, 10/29/26, 11/20/26 and 12/17/26, and all four are ahead of September 12th. commission_meetings_left_words spells it, because a small count reads as a word in running prose and the house law on numerals is about where a figure comes from rather than how it is set.",
+   "from_claims": [
+    "c25"
+   ],
+   "note": "Slide 9's mono foot, which now carries its own subject so the meeting cannot attach to this project."
+  },
+  {
+   "phrase": "Nine frames",
+   "kind": "count",
+   "value": 9,
+   "computed_by": "compute.py slides, the length of the counters list, which is built from the deck's own frame count rather than typed. It is also the denominator of the progress counter on every frame.",
+   "from_claims": [],
+   "note": "The caption's deck summary line, which brand.yaml requires for readers who cannot see the images."
+  },
+  {
+   "phrase": "eight days",
+   "kind": "duration",
+   "value": 8,
+   "computed_by": "compute.py agenda_lead_days, read out of c24's own sentence about when an agenda is posted, and agenda_posts_on then subtracts it from the next meeting date in c25. The two dates are the ones the deck computed, September 16th to September 24th, and the span between them is the figure slide 9's mono foot prints as agenda_lead_words. THE CAPTION DOES NOT CARRY IT and this sentence said the opposite until round 2's integrity judge measured it. The caption never had the figure and the earlier reading of this entry had the two surfaces the wrong way round, which is worth recording rather than quietly correcting, because an audit trail that misnames its own subject is the one kind of note that cannot be checked by reading it.",
+   "from_claims": [
+    "c24",
+    "c25"
+   ],
+   "note": "Slide 9's mono foot, and nowhere else in the package.",
+   "from_date": "2026-09-16",
+   "to_date": "2026-09-24"
+  },
+  {
+   "phrase": "four words",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py splits c4's quoted phrase on whitespace. The phrase 'often subjective and costly' is four tokens and the frame forms exactly those four as its image, so the dek's count is a property of the claim rather than a reading of it.",
+   "from_claims": [
+    "c4"
+   ],
+   "note": "Slide 6's dek, which points at the words the frame draws rather than repeating them."
+  },
+  {
+   "phrase": "three first party accounts",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "sources_block.py counts the distinct fetched documents behind the cited claims and splits them by publisher class. primary_corporate is the first party class, because the noun means the document's SUBJECT WROTE IT rather than the filer's legal form, and the three are the university news office's release, the Sensors full text through Europe PMC and the Mathematics abstract through Crossref. The subjects of this story wrote all three.",
+   "from_claims": [
+    "c1",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c14",
+    "c15",
+    "c16",
+    "c17",
+    "c19",
+    "c20"
+   ],
+   "note": "The first comment's opening line, written by sources_block.py rather than typed. THIS ENTRY AND THE ONE BELOW HAD THEIR CLAIM LISTS AND THEIR PROSE SWAPPED until round 3, when the integrity judge read them against sources_block.py's own NAME table. The published sentence was never wrong, because the script computes it from source_type and never from this file. What was wrong is the declaration a checker would re-derive it from. aggregate_check could not see it because both partitions happen to be three documents and two, so the two counts stayed right while the sets behind them were exchanged."
+  },
+  {
+   "phrase": "two official records",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py counts the same set's primary_official documents, which are the agency's own records rather than peer reviewed ones. The two are TxDOT's preservation performance dashboard and the Texas Transportation Commission's meeting calendar.",
+   "from_claims": [
+    "c8",
+    "c9",
+    "c10",
+    "c23",
+    "c24",
+    "c25",
+    "c26"
+   ],
+   "note": "The first comment's opening line, written by sources_block.py rather than typed. See the note above for the swap this pair carried until round 3."
+  }
+ ]
+}

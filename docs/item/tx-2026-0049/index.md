@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Harris County's plate reader and sound detection contract still runs county-wide as amended. The renewal is unchanged.
 - 2026-09-08 · Harris County's plate reader and sound detection contract with Flock still runs county-wide under the amendment. The Governor's funding pause reaches state agencies rather than this county contract.
 - 2026-09-09 · Harris County's renewal of the Flock plate reader and sound detection contracts is still in force, and the county has posted no change to either.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Admitted on the university's own account of the award, fetched today. The Energy Department's own award document was not located, so the award number is not carried here.
 - 2026-09-08 · The Energy Department award to the Houston led team searching for new magnet materials still stands as made, and the coalition named in it is unchanged.
 - 2026-09-09 · The Houston led magnet search is still funded on the terms the Energy Department research arm announced.
+- 2026-09-12 · The Houston led magnet search is still funded on the terms the Energy Department research arm announced. The university page carrying the award description would not answer this run, so its wording is unconfirmed today.
 - 2026-09-13 · The magnet search is still funded on the terms the Energy Department research arm announced, and the university still names the same partner institutions.
 
 ## Evidence

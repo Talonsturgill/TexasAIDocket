@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Army funded center on antenna arrays at Rice still stands as awarded, with AI still one of its named discipline areas.
 - 2026-09-08 · The Army funded Rice center on antenna arrays still lists artificial intelligence among the disciplines it draws on. The university's own announcement of it would not answer this run, so the award terms rest on the federal record rather than on a fresh reading of that page.
 - 2026-09-09 · The Army's research center at Rice on antenna arrays is still funded, with artificial intelligence still one thread of it rather than the whole.
+- 2026-09-12 · The Army's research center at Rice on antenna arrays is still funded, with artificial intelligence still one thread of it rather than the whole. The university page carrying the description would not answer this run, so the wording of it is unconfirmed today.
 - 2026-09-13 · The Army's center at Rice is still funded. Artificial intelligence is still one thread among the disciplines the university names rather than the whole of it.
 
 ## Evidence

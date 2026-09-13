@@ -71,6 +71,21 @@ FACES = [
 # larger file: the quote is the mechanism the whole product rests on.
 UNICODES = (
     "U+0000-00FF,"          # Basic Latin and Latin-1: our copy, plus degree, section, accents
+    # LATIN EXTENDED-A, BECAUSE THE RECORD PRINTS PEOPLE'S NAMES AND THEY ARE NOT ALL LATIN-1.
+    # Added 2026-09-12, when `tests/glyphs.mjs` went red with "Manrope carries every character
+    # asked of it  U+107 ć, U+161 š". Both are in the name Jelena Tešić, who leads the Texas
+    # State University team the day's item is about, quoted verbatim from the university's own
+    # release. There is no version of this project that misspells a named person to fit a
+    # subset range, so the range is what moves.
+    # THE WHOLE BLOCK RATHER THAN THE TWO CODEPOINTS. A pair added per name guarantees the
+    # next name goes red too, and this repo's oldest recurring shape is a rule that has to be
+    # restated every time its surface meets a new case. U+0100-017F is the Central European,
+    # Baltic, Turkish and Maltese set in one contiguous range, which is the population a Texas
+    # public record actually meets. It is a boundary rather than a promise: Vietnamese and the
+    # Latin Extended Additional block are still outside it, and the gate is what will say so.
+    # THE COST IS MEASURED AND NOT ASSERTED. fonts_build prints the packed size of every face
+    # it writes, so the number in the run record comes from the build rather than from here.
+    "U+0100-017F,"          # Latin Extended-A: the accented letters in names the record quotes
     "U+0131,U+0152-0153,"   # dotless i and the OE ligatures, standard web-font practice
     "U+02BB-02BC,U+02C6,U+02DA,U+02DC,"
     "U+2000-206F,"          # general punctuation: dashes, curly quotes, ellipsis, primes, dagger

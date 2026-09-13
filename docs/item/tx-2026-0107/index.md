@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The comment window is still open, closing September 17th, on the first five year review of the grid's system-wide offer caps.
 - 2026-09-10 · The five year review of the offer caps is still taking written comment, and the deadline the commission set is still September 17th. The questions staff asked are unchanged, so a party that has not filed still has the same window and the same questions to answer.
 - 2026-09-11 · The review is still open and the staff memorandum still stands as filed, asking whether the system-wide offer cap programs need updating. Comments are still due September 17th.
+- 2026-09-12 · The comment window is still open, closing September 17th.
 - 2026-09-13 · The comment window is still open, closing September 17th.
 
 ## Evidence

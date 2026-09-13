@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The five year human and robot co-adaptation center at Austin still stands as funded and its award is unchanged.
 - 2026-09-08 · The human and robot co-adaptation center at UT Austin is still funded for its full term, and the consent procedures it named are still to be developed.
 - 2026-09-09 · The five year human and robot co-adaptation center at UT Austin is still funded for its full term.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

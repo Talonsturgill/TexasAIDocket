@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Denton still has the moratorium resolution and its schedule of required public hearings in front of it. No hearing has been held.
 - 2026-09-08 · Denton still has the data center moratorium resolution and its hearing schedule in front of the council, undecided.
 - 2026-09-09 · Denton has not returned to the data center moratorium resolution, and the schedule of public hearings that came with it is unchanged.
+- 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence

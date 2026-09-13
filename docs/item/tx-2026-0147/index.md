@@ -1,78 +1,47 @@
-# Texas Children's and UT Southwestern radiologists publish that imaging AI has largely skipped children
+# El Paso City Council posts two items to strip the police plate reader cameras off city property and bar the next contract
 
-An expert panel review in the American Journal of Roentgenology states that pediatric medical imaging remains substantially underrepresented across artificial intelligence in radiology. The panel means the development of models and their validation and their regulation and their use in the clinic. Two of its authors are Texas radiologists. One works in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston. The other is at UT Southwestern Medical Center in Dallas. The panel gives its reason plainly. Children go through continuous physiologic and anatomic changes that adults do not, so a model trained on adults is not the model a child needs. It names what holds pediatric work back. Public datasets are scarce and institutional data is fragmented and external validation is insufficient. It also names off-label use of adult-trained AI models among the ethical and regulatory concerns in children. The review is a recommendation document rather than a hospital policy. No Texas institution has published a purchasing change that follows from it.
+The El Paso City Council's agenda for September 15th, 2026 carries two items filed by members of the council. The first would direct the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware goes with it, whoever owns the equipment. The second would bar the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It would give the City Attorney 30 days to draft a resolution carrying that out. The agenda's status is final and neither item has been voted on. El Paso sits outside the ERCOT region, and the city's cameras were bought with a state grant from the authority whose funding the Governor paused in August.
 
-- Topic: health-and-education
-- Decided by: American Journal of Roentgenology Expert Panel, with radiologists at Baylor College of Medicine and Texas Children's Hospital and at UT Southwestern Medical Center (company)
-- Where: Harris, Dallas
+- Topic: surveillance-and-policing
+- Decided by: El Paso City Council (city)
+- Where: El Paso
 - Statistical areas:
-  - Dallas-Fort Worth-Arlington, TX
-  - Houston-Pasadena-The Woodlands, TX
-- Status: decided
-- Public access: Write to the decider
-- Take part: https://pubmed.ncbi.nlm.nih.gov/42714442/
+  - El Paso, TX
+- Status: pending
+- Public access: Public meeting
+- Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-12
 
 ## Dates
 
-- 2026-09-09 · filed: Article date recorded by the National Library of Medicine for the online publication
+- 2026-09-15 · hearing: the council meeting at which both items are set
 
 ## How this decision moved
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-13 · Admitted to the record. Texas radiologists at two of the state's largest institutions have put in print that imaging AI has largely skipped children. The same review names adult trained models being used on children off label. Nothing follows from the review on its own and no Texas hospital has published a change beside it.
+- 2026-09-12 · Admitted on the council's own agenda for the September 15th meeting. Neither item has been voted on.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The panel states that pediatric imaging is substantially underrepresented across the whole of AI in radiology.
+### The first item would direct the City Manager to remove every fixed plate reader camera from city property within 60 days.
 
-> Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.
+> Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras and related hardware located on or within City property, City right-of-way, or otherwise within the City's control, regardless of whether such cameras or hardware are owned by Flock Safety, the City of El Paso, or any third party, including by physically removing such equipment or coordinating its removal by the appropriate party.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-### The panel's stated reason is that children change as they grow, so a model trained on adults is not the same model.
+### The second item would bar a further plate reader contract without a council vote and give the City Attorney 30 days to draft a resolution.
 
-> Unlike adults, children go through continuous physiologic and anatomic changes that require age-specific models trained on representative developmental data.
+> Discussion and action directing the City Manager to refrain from entering into, executing, renewing, or extending any contract, agreement, or other arrangement with Flock Safety or any other provider for the acquisition, installation, operation, maintenance, or use of fixed, networked automated license plate reader (ALPR) cameras or substantially similar technology, unless otherwise directed by subsequent action of the City Council; and directing the City Attorney to draft and return to the City Council within 30 days a resolution to further effectuate this direction.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-### The panel names what pediatric AI is limited by.
+### The meeting is set for September 15th, 2026 at 9:00 AM and the agenda is final.
 
-> However, pediatric AI is limited by scarce publicly available datasets, fragmented institutional data, rare diseases, heterogeneous reporting practices, and insufficient external validation.
+> Agenda status: Final Meeting date/time: 9/15/2026 9:00 AM
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
-
-### Off-label use of a model trained on adults is named as an ethical and regulatory concern in children.
-
-> Ethical and regulatory challenges are also a concern in children, including consent for secondary data use, off-label use of adult-trained AI models, and the need for postdeployment surveillance.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
-
-### The panel asks for a dedicated pediatric AI infrastructure and standards rather than for adult tools to be reused.
-
-> The panel gives key recommendations, emphasizing the importance of an implementation roadmap to establish a dedicated pediatric AI infrastructure and standards that are essential to ensure diagnostic accuracy, workflow efficiency, and optimal clinical outcomes for children while minimizing bias and protecting patient safety.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
-
-### One of the review's authors is in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston.
-
-> Department of Radiology, Baylor College of Medicine and Texas Children's Hospital, Houston, Texas, USA.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
-
-### Another author is in the radiology department at UT Southwestern Medical Center in Dallas.
-
-> Department of Radiology, UT Southwestern Medical Center, Dallas, Texas, USA.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
-
-### The review names reimbursement as misaligned with what pediatric AI would need.
-
-> Additionally, reimbursement is misaligned and must be optimized to allow innovation.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 

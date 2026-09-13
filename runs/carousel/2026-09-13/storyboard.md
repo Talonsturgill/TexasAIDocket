@@ -1,6 +1,6 @@
-# Storyboard — carousel no. 22, September 13th, 2026
+# Storyboard — carousel no. 23, September 13th, 2026
 
-Docket items `tx-2026-0147` and `tx-2026-0148`. Claims file `out/2026-09-13/claims.json`.
+Docket items `tx-2026-0150` and `tx-2026-0151`. Claims file `out/2026-09-13/claims.json`.
 
 ## The synthesis, and why
 

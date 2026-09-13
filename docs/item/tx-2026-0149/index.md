@@ -1,39 +1,48 @@
-# The grid operator tells providers which large loads it has provisionally placed in Batch Zero, and every placement carries a condition
+# Science foundation funds a Texas A&M engineering station to build AI digital twins of small water systems
 
-ERCOT issued a market notice telling each Interconnecting Distribution Service Provider and Transmission Service Provider how it had provisionally classified the large loads submitted for the Batch Zero interconnection process. The notice states that inclusion is conditional. The conditions it names include the interconnecting large load entity passing verification and curing deficiencies in dynamic model data. Another is the Public Utility Commission of Texas granting a good cause exception. It states that failure to satisfy an applicable condition may disqualify the load. It also names the route by which an entity that disagrees with a classification may dispute it. The notice names no individual load and gives no total, so the size of the provisional list is not public.
+The National Science Foundation obligated an award to the Texas A&M Engineering Experiment Station on September 9th, 2026. It sits in the Division of Civil, Mechanical, and Manufacturing Innovation. The work is to build AI-enabled digital twins that predict and manage cascading failures in freshwater infrastructure. The award record carries Artificial Intelligence among its programs. The performing site is College Station and the grant runs to August 31st, 2029. The abstract names no Texas utility. Which water system's data this reaches is not stated.
 
-- Topic: power-and-the-grid
-- Decided by: Electric Reliability Council of Texas (state-agency)
-- Where: Statewide
+- Topic: research-and-science
+- Decided by: National Science Foundation (federal)
+- Where: Brazos
+- Statistical areas:
+  - College Station-Bryan, TX
 - Status: decided
 - Public access: Write to the decider
-- Take part: https://www.ercot.com/services/comm/mkt_notices/M-A080326-04
+- Take part: https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-12
 
 ## Dates
 
-- 2026-09-03 · ordered: Date the market notice carries
+- 2026-09-09 · decided: the date the foundation obligated the award
+- 2029-08-31 · expires: the date the award record gives for expiry
 
 ## How this decision moved
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-13 · Admitted to the record. The grid operator has told providers which large loads sit on the provisional Batch Zero list. Every placement on it carries a condition that can still take the load off. The notice names no load and gives no total.
+- 2026-09-12 · Admitted on the foundation's own award record.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### Inclusion in Batch Zero is conditional, and the notice names the conditions.
+### The award funds research on an AI-enabled approach to predicting and mitigating cascading failures in freshwater infrastructure.
 
-> The information provided indicates whether each Large Load has been conditionally included in Batch Zero subject to one or more conditions, such as the Interconnecting Large Load Entity (ILLE) passing verification, the ILLE curing deficiencies in dynamic model data, or the Public Utility Commission of Texas (PUCT) granting ERCOT a good cause exception to allow the Large Load to qualify despite not meeting an applicable eligibility requirement at the time of submission.
+> The objective of this project is to support research on a new AI-enabled cyber-physical-social paradigm for predicting, managing, and mitigating cascading disruptions in freshwater infrastructure systems.
 
-Source (primary_official): https://www.ercot.com/services/comm/mkt_notices/M-A080326-04
+Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 
-### A load that does not satisfy a condition can be taken off the list.
+### The award is titled for AI-enabled digital twins of freshwater infrastructure.
 
-> Failure to satisfy any applicable condition may disqualify the Large Load.
+> Collaborative Research: AI-Enabled Digital Twins for Resilient Freshwater Infrastructure and Communities under Cascading Hazards
 
-Source (primary_official): https://www.ercot.com/services/comm/mkt_notices/M-A080326-04
+Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
+
+### The award goes to the Texas A&M Engineering Experiment Station and performs in College Station, Texas.
+
+> "perfCity":"COLLEGE STATION","perfCountryCode":"US","perfDistrict":"10","perfDistrictCode":"TX10","perfLocation":"Texas A&M Engineering Experiment Station","perfStateCode":"TX"
+
+Source (primary_official): https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 

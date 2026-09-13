@@ -1,0 +1,2566 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Somebody used to stand here.",
+          "x": 80,
+          "y": 196,
+          "w": 920,
+          "h": 221,
+          "font_px": 111.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              182,
+              789,
+              137
+            ],
+            [
+              80,
+              292,
+              474,
+              137
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A rater measured the length and severity of the distress by hand on a sampled portion of the pavement section, in the traffic and the weather.",
+          "x": 80,
+          "y": 446,
+          "w": 800,
+          "h": 128,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              446,
+              765,
+              41
+            ],
+            [
+              80,
+              489,
+              156,
+              41
+            ],
+            [
+              826,
+              489,
+              39,
+              41
+            ],
+            [
+              80,
+              531,
+              373,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a sampled portion of the pavement section",
+          "x": 236,
+          "y": 489,
+          "w": 590,
+          "h": 41,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              236,
+              489,
+              590,
+              41
+            ]
+          ],
+          "anc": [
+            2
+          ]
+        },
+        {
+          "text": "Texas State University Second phase, closer to statewide deployment",
+          "x": 80,
+          "y": 80,
+          "w": 729,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Second phase, closer to statewide deployment",
+          "x": 80,
+          "y": 116,
+          "w": 729,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              729,
+              31
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c15 c16 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3377,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 50.7,
+          "variance": 4206.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PAVEMENT CONDITION SCORE",
+          "x": 128,
+          "y": 280,
+          "w": 397,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 50, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              280,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Seventy is where good begins.",
+          "x": 128,
+          "y": 348,
+          "w": 820,
+          "h": 205,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(22, 19, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              335,
+              667,
+              127
+            ],
+            [
+              128,
+              437,
+              502,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The agency defines it as \"a combined index of ride quality and pavement surface distress\", adjusted for traffic and speed.",
+          "x": 128,
+          "y": 578,
+          "w": 800,
+          "h": 74,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(51, 43, 35)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              578,
+              732,
+              36
+            ],
+            [
+              128,
+              615,
+              693,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "70",
+          "x": 128,
+          "y": 734,
+          "w": 111,
+          "h": 96,
+          "font_px": 96,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(22, 19, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              718,
+              111,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OR ABOVE IS GOOD OR BETTER",
+          "x": 128,
+          "y": 854,
+          "w": 473,
+          "h": 35,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 50, 42)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              854,
+              473,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Tracking pavement quality helps TxDOT identify roads in need of repair and plan funding for their maintenance and rehabilitation.\"",
+          "x": 128,
+          "y": 990,
+          "w": 800,
+          "h": 68,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(36, 30, 25)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              990,
+              779,
+              33
+            ],
+            [
+              128,
+              1024,
+              641,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The score",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c9 c10 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1447,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 141,
+          "variance": 8646.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE RELEASE LISTS THE SCANNER AND THE VAN SEPARATELY",
+          "x": 80,
+          "y": 1104,
+          "w": 900,
+          "h": 35,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1105,
+              849,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TxDOT handed over a van.",
+          "x": 80,
+          "y": 186,
+          "w": 900,
+          "h": 199,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              174,
+              857,
+              122
+            ],
+            [
+              80,
+              274,
+              159,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The university's release lists what prepared the data. An automated 2D/3D pavement laser scanner, and \"a TxDOT-donated mobile research van\".",
+          "x": 80,
+          "y": 416,
+          "w": 820,
+          "h": 119,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              416,
+              715,
+              38
+            ],
+            [
+              80,
+              456,
+              733,
+              38
+            ],
+            [
+              80,
+              496,
+              384,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The equipment Ingram School of Engineering",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ingram School of Engineering",
+          "x": 80,
+          "y": 116,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              464,
+              31
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c3 c5 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 386,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              386,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2406,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.5,
+          "variance": 1911.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Depth tells a crack from a stain.",
+          "x": 80,
+          "y": 182,
+          "w": 900,
+          "h": 191,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              171,
+              882,
+              117
+            ],
+            [
+              80,
+              267,
+              257,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The system pairs 2D photos with 3D depth maps. It ranks severe hazards like crumbling concrete above minor surface cracks.",
+          "x": 80,
+          "y": 412,
+          "w": 830,
+          "h": 80,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              412,
+              814,
+              38
+            ],
+            [
+              80,
+              452,
+              772,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CRACK",
+          "x": 404,
+          "y": 690,
+          "w": 85,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              404,
+              690,
+              85,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "STAIN",
+          "x": 806,
+          "y": 690,
+          "w": 85,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              690,
+              85,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SECTION",
+          "x": 80,
+          "y": 952,
+          "w": 119,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              952,
+              119,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The surface 2D photo and 3D depth map",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2D photo and 3D depth map",
+          "x": 80,
+          "y": 116,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              414,
+              31
+            ]
+          ],
+          "anc": [
+            6
+          ]
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2087,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 27.9,
+          "variance": 790.6
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The old rating read a sample.",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 175,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              157,
+              700,
+              108
+            ],
+            [
+              80,
+              245,
+              266,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Manual collection happened at \"a sampled portion of the pavement section\". The university describes the new reading as \"pixel-level detection of pavement damage\".",
+          "x": 80,
+          "y": 376,
+          "w": 830,
+          "h": 119,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              376,
+              726,
+              38
+            ],
+            [
+              80,
+              416,
+              812,
+              38
+            ],
+            [
+              80,
+              456,
+              562,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SAMPLED PORTION",
+          "x": 120,
+          "y": 1006,
+          "w": 460,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              1006,
+              252,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NOT STATED IN THE RELEASE",
+          "x": 120,
+          "y": 1046,
+          "w": 460,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              1046,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PIXEL LEVEL",
+          "x": 600,
+          "y": 1006,
+          "w": 470,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              1006,
+              185,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE RESOLUTION, NOT THE EXTENT",
+          "x": 600,
+          "y": 1046,
+          "w": 470,
+          "h": 62,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              1046,
+              381,
+              31
+            ],
+            [
+              600,
+              1077,
+              99,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The extent In plan, one lane",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In plan, one lane",
+          "x": 80,
+          "y": 116,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              282,
+              31
+            ]
+          ],
+          "anc": [
+            7
+          ]
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c15 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 354,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              354,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1524,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 42.3,
+          "variance": 3192
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Wang describes the purpose as reducing reliance on traditional human inspection. The four words below are his.",
+          "x": 80,
+          "y": 190,
+          "w": 840,
+          "h": 82,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              190,
+              839,
+              40
+            ],
+            [
+              80,
+              231,
+              639,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OFTEN SUBJECTIVE AND COSTLY",
+          "x": 80,
+          "y": 539,
+          "w": 938,
+          "h": 333,
+          "font_px": 91.5,
+          "weight": "800",
+          "family": "Manrope",
+          "color": "rgb(233, 222, 203)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              560,
+              875,
+              124
+            ],
+            [
+              80,
+              726,
+              575,
+              124
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FENG WANG, TEXAS STATE UNIVERSITY",
+          "x": 80,
+          "y": 1124,
+          "w": 554,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1124,
+              185,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS STATE UNIVERSITY",
+          "x": 265,
+          "y": 1124,
+          "w": 370,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              265,
+              1124,
+              370,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "The argument Principal investigator",
+          "x": 80,
+          "y": 80,
+          "w": 364,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Principal investigator",
+          "x": 80,
+          "y": 116,
+          "w": 364,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              364,
+              31
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2141,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 104.5,
+          "variance": 7816
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An engineer still has to check.",
+          "x": 80,
+          "y": 174,
+          "w": 900,
+          "h": 191,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              163,
+              835,
+              117
+            ],
+            [
+              80,
+              259,
+              240,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The team's own 2025 paper says the precision of the technology often leads to inaccuracies.",
+          "x": 80,
+          "y": 410,
+          "w": 820,
+          "h": 80,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              410,
+              671,
+              38
+            ],
+            [
+              80,
+              450,
+              506,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Those inaccuracies \"must be verified by pavement engineers.\"",
+          "x": 80,
+          "y": 548,
+          "w": 820,
+          "h": 102,
+          "font_px": 40,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              547,
+              672,
+              52
+            ],
+            [
+              80,
+              598,
+              154,
+              52
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The turn Sensors 25(4), 2025",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Sensors 25(4), 2025",
+          "x": 80,
+          "y": 116,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              315,
+              31
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c14 c17 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1863,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.6,
+          "variance": 1891
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Thin cracks still score the lowest.",
+          "x": 80,
+          "y": 168,
+          "w": 900,
+          "h": 179,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              158,
+              862,
+              108
+            ],
+            [
+              80,
+              247,
+              238,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The largest gain came on the thinnest cracks.",
+          "x": 80,
+          "y": 372,
+          "w": 820,
+          "h": 38,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              372,
+              564,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One 2025 paper by this group.",
+          "x": 132,
+          "y": 948,
+          "w": 820,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 30, 25)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              132,
+              950,
+              432,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The measurement Two published F1 scores",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two published F1 scores",
+          "x": 80,
+          "y": 116,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              381,
+              31
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c19 c20 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SCALE TOP",
+          "x": 153,
+          "y": 643,
+          "w": 143,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              153,
+              643,
+              143,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SCALE BASE",
+          "x": 138,
+          "y": 877,
+          "w": 158,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              138,
+              877,
+              158,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "U-NET",
+          "x": 362,
+          "y": 736,
+          "w": 79,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              362,
+              736,
+              79,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0.733",
+          "x": 362,
+          "y": 764,
+          "w": 76,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(22, 19, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              362,
+              764,
+              76,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THIS MODEL",
+          "x": 498,
+          "y": 725,
+          "w": 158,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              498,
+              725,
+              158,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0.780",
+          "x": 498,
+          "y": 753,
+          "w": 76,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(22, 19, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              498,
+              753,
+              76,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ALL DISTRESS",
+          "x": 362,
+          "y": 910,
+          "w": 190,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              362,
+              910,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "U-NET",
+          "x": 652,
+          "y": 784,
+          "w": 79,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              652,
+              784,
+              79,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0.531",
+          "x": 652,
+          "y": 812,
+          "w": 76,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(22, 19, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              652,
+              812,
+              76,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THIS MODEL",
+          "x": 788,
+          "y": 762,
+          "w": 158,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              788,
+              762,
+              158,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0.626",
+          "x": 788,
+          "y": 790,
+          "w": 76,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(22, 19, 16)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              788,
+              790,
+              76,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THIN CRACKS",
+          "x": 652,
+          "y": 910,
+          "w": 174,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(84, 70, 54)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              652,
+              910,
+              174,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2418,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 74,
+          "variance": 7086
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The score still aims the money.",
+          "x": 80,
+          "y": 176,
+          "w": 900,
+          "h": 199,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              164,
+              878,
+              122
+            ],
+            [
+              80,
+              264,
+              290,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release names three next steps and dates none of them.",
+          "x": 80,
+          "y": 402,
+          "w": 800,
+          "h": 82,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 192, 164)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              402,
+              724,
+              40
+            ],
+            [
+              80,
+              443,
+              77,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 664,
+          "y": 1156,
+          "w": 336,
+          "h": 42,
+          "font_px": 34,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 216, 195)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              664,
+              1156,
+              336,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The commission meets September 24th in Austin, open to the public. Agendas post eight days ahead and none of the four left this year has one.",
+          "x": 80,
+          "y": 1048,
+          "w": 580,
+          "h": 150,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1051,
+              556,
+              31
+            ],
+            [
+              80,
+              1089,
+              512,
+              31
+            ],
+            [
+              80,
+              1126,
+              542,
+              31
+            ],
+            [
+              80,
+              1164,
+              410,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The stake Texas Transportation Commission",
+          "x": 80,
+          "y": 80,
+          "w": 513,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Transportation Commission",
+          "x": 80,
+          "y": 116,
+          "w": 513,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              513,
+              31
+            ]
+          ],
+          "anc": [
+            5
+          ]
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c10 c23 c24 c25 c26 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 611,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(150, 135, 110)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              611,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4695,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.1,
+          "variance": 1810.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

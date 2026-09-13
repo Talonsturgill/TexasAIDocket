@@ -1,6 +1,6 @@
 # Run record, September 13th, 2026
 
-Carousel no. 22. Branch `claude/daily-2026-09-13`.
+Carousel no. 23. Branch `claude/daily-2026-09-13`.
 
 ## The record
 
@@ -25,9 +25,9 @@ previous stamp stands.
 
 | id | what it is |
 |---|---|
-| `tx-2026-0147` | an AJR expert panel review, with radiologists at Texas Children's and UT Southwestern among its authors, stating that pediatric imaging is substantially underrepresented across AI in radiology |
-| `tx-2026-0148` | an MD Anderson and UT Medical Branch MRI radiomics model whose discrimination fell on an outside cohort |
-| `tx-2026-0149` | ERCOT's market notice telling providers which large loads sit provisionally in Batch Zero, every placement conditional |
+| `tx-2026-0150` | an AJR expert panel review, with radiologists at Texas Children's and UT Southwestern among its authors, stating that pediatric imaging is substantially underrepresented across AI in radiology |
+| `tx-2026-0151` | an MD Anderson and UT Medical Branch MRI radiomics model whose discrimination fell on an outside cohort |
+| `tx-2026-0152` | ERCOT's market notice telling providers which large loads sit provisionally in Batch Zero, every placement conditional |
 
 **Three were held in the seed, all for the same reason.** Kodiak AI's Permian driverless
 deployment, Galaxy Digital's Batch Zero classifications and the Texas A&M AgriLife far
@@ -46,7 +46,7 @@ only, so the share was not moved down by them.
 
 ## Discoverability signoff
 
-- **One decision's card, opened as an image.** `docs/og/tx-2026-0147.png`. The headline wraps
+- **One decision's card, opened as an image.** `docs/og/tx-2026-0150.png`. The headline wraps
   across four lines and truncates on a whole word with an ellipsis, "Texas Children's and UT
   Southwestern radiologists publish that imaging AI has...". No stump, no mid word break. The
   title is long enough that the card loses the verb, which is a note for the next run rather
@@ -84,7 +84,7 @@ today, which is the one thing on that check worth saying out loud.
 
 ## THE DECK SHIPPED AT 6.784, WHICH IS 0.016 UNDER THE BAR
 
-Carousel no. 22, nine frames, on what a model fitted to one population does when it meets
+Carousel no. 23, nine frames, on what a model fitted to one population does when it meets
 another. Two papers, both dated September 9th, both with Texas radiology departments among
 their authors. The panel review says imaging AI has largely skipped children and names off
 label use of adult trained models as a concern. The second paper puts a number on the same
@@ -280,7 +280,7 @@ Two upgrades shipped on `b57cac3`, stamped `upgrade`.
 
 **`panel_ready.py` now reads a value arc declared frame by frame.** The finding underneath it is
 sharper than this run's own: the arc did not merely collapse, **a gate built for exactly this
-collapse printed a pass.** Carousel 22 declared its plan nine times inside each frame's
+collapse printed a pass.** Carousel 23 declared its plan nine times inside each frame's
 `art.value_structure` and wrote no summary paragraph, `arc_spans` found nothing, and the gate
 reported that the storyboard declares no arc it can read. Measured across all 22 shipped
 storyboards, this is the only one since 2026-08-29 whose arc the gate could not see, because

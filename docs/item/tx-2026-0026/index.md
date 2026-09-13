@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Temple commission's amendment would still make every future data center a conditional use. It has not returned to the agenda.
 - 2026-09-08 · Temple's proposed code amendment would still put every future data center behind a conditional use permit. The commission has published no recommendation since the window shut.
 - 2026-09-09 · The comment window closed on August 17th. The Unified Development Code amendment that would write data centers into Temple's code has not come back for action.
+- 2026-09-12 · The comment window closed on August 17th.
 - 2026-09-13 · The comment window closed on August 17th.
 
 ## Evidence

@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The efficiency committee still carries the charge to study AI for finding fraud in state spending. It has published nothing on it.
 - 2026-09-08 · The House committee on government efficiency still carries the charge to study AI for finding fraud in state spending, with nothing published against it.
 - 2026-09-09 · The government efficiency committee still carries the charge to study whether the state should buy artificial intelligence differently, and has reported nothing.
+- 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence

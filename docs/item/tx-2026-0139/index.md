@@ -21,6 +21,7 @@ ERCOT issued a market notice on September 2nd, 2026 setting a workshop for Octob
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-09 · Admitted on the market notice. The draft revision requests it previews have not been filed.
+- 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence

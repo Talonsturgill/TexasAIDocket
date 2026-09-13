@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The commission's filing index for the second line has taken further filings since the last reading and the amended certificate is unchanged.
 - 2026-09-08 · The Longshore Switch to Drill Hole Switch application still stands as approved and the case style still names the same west Texas counties. One more filing has been entered since the record last read the index.
 - 2026-09-09 · The filing index for the second line has also taken further filings. The route the commission approved is unchanged.
+- 2026-09-12 · The filing index for the second line has also taken further filings. The route the commission approved is unchanged.
 - 2026-09-13 · The route the commission approved for the second line is unchanged, and the filing index is still taking filings on it.
 
 ## Evidence
@@ -116,6 +117,12 @@ Source (primary_official): https://interchange.puc.texas.gov/search/filings/?Uti
 ### The filing index records the number of filings in the docket.
 
 > 512 filing(s).
+
+Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
+
+### The filing index for the second 765 kV line stood at 514 filings.
+
+> 514 filing(s).
 
 Source (primary_official): https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending
 

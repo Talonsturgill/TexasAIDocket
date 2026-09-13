@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The School of Computing at Austin still stands as approved by the regents and the four units it unites are unchanged.
 - 2026-09-08 · The School of Computing at UT Austin still stands as the regents approved it, uniting the four units named in the item.
 - 2026-09-09 · The School of Computing the regents approved at UT Austin is still standing as authorized, and the departments folded into it have not been rearranged.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · El Paso's letter asking the Governor to clarify the data center directives still stands and no clarification has been published in reply.
 - 2026-09-08 · El Paso's letter asking the Governor to clarify his data center directives still stands, and no reply from the Governor's office has been published.
 - 2026-09-09 · El Paso's letter asking the Governor to say what his data center directive covers is still on the record and still unanswered on the city's own page.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

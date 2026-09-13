@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Houston district's AI policy is still between readings. It has not returned to the board for the second one.
 - 2026-09-08 · Houston ISD's artificial intelligence policy is still between readings. The board has published no adoption of it.
 - 2026-09-09 · Houston ISD's artificial intelligence board policy is still stopped after its second reading, with no third reading called.
+- 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence

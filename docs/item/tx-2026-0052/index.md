@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Brazoria County's statement of the conditions it wants on data centers still stands as adopted.
 - 2026-09-08 · Brazoria County's resolution setting out the conditions it wants on data center development is still in force as adopted. It is still a statement of conditions rather than an ordinance.
 - 2026-09-09 · Brazoria County's statement of the conditions it would want on a data center is still the county's published position.
+- 2026-09-12 · Brazoria County's statement of the conditions it would want on a data center is still the county's published position and still binds nobody.
 - 2026-09-13 · Brazoria County's statement of the conditions it wants on a data center is still adopted and still the county's published position.
 
 ## Evidence

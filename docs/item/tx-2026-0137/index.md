@@ -22,6 +22,7 @@ JAMA Network Open published a quality improvement study on September 3rd, 2026. 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-09 · Admitted on the published study. The hospital has said nothing about whether the tool is still in front of its case managers, and the study names no vendor.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

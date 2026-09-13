@@ -1,71 +1,39 @@
-# An MD Anderson and UT Medical Branch MRI model scored lower on patients it was not built on
+# Energy Department funds a synthetic underground test pit at a Navasota drilling site to prove out mining automation
 
-The authors include radiologists at the University of Texas MD Anderson Cancer Center in Houston and at the University of Texas Medical Branch in Galveston. They built a machine learning survival model from MRI radiomic features and tested it on a separate patient group without refitting it. Its discrimination score was lower on the group it was tested on than on the group it was built on. The paper reports overlapping confidence intervals for the two and no test that the difference is real. The authors conclude that the approach showed limited standalone discrimination and support cautious use of it as an exploratory imaging biomarker. The paper is a research result rather than a deployment, and neither institution has published a statement that the model is used in patient care.
+The Energy Department's Office of Critical Minerals and Energy Innovation named four mining proving ground projects on September 9th, 2026. One goes to Southern Methodist University, whose project location the announcement gives as Navasota, Texas. The department describes it as the world's first synthetic pit of its kind. It sits inside an existing instrumented drilling and sensing facility. Mining tools, workflows and automation systems can be tested repeatably in the field rather than only in a laboratory. The announcement states no dollar figure for the Texas project and never uses the words artificial intelligence, so what is funded here is automation testing rather than a model.
 
-- Topic: health-and-education
-- Decided by: The University of Texas MD Anderson Cancer Center, with The University of Texas Medical Branch (state-agency)
-- Where: Harris, Galveston
-- Statistical areas:
-  - Houston-Pasadena-The Woodlands, TX
+- Topic: research-and-science
+- Decided by: U.S. Department of Energy (federal)
+- Where: Grimes
 - Status: decided
 - Public access: Write to the decider
-- Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
+- Take part: https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-12
 
 ## Dates
 
-- 2026-09-09 · filed: Article date recorded by the National Library of Medicine for the online publication
+- 2026-09-09 · decided: the date the department announced the four projects
 
 ## How this decision moved
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
-- 2026-09-13 · Admitted to the record. A model built at a Texas cancer center scored lower on patients it had not been fitted to. The authors call that limited standalone discrimination and ask for cautious use, and they report no test that the difference is real.
+- 2026-09-12 · Admitted on the department's own announcement of the four selected projects.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The study built the model on one cohort and tested the fixed model on another without refitting it.
+### The department gives Southern Methodist University's project location as Navasota, Texas.
 
-> This retrospective study developed a T1 postcontrast MRI radiomics survival model in a public brain metastasis cohort of 198 patients and externally validated the fixed radiomics model, without refitting or recalibration, in an independent cohort of 69 patients.
+> Southern Methodist University (HQ: Dallas, TX, project location: Navasota, Texas)
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic
 
-### The model's discrimination was lower on the outside cohort than on the cohort it was built on.
+### The project repurposes an instrumented Texas drilling site to test mining tools, workflows and automation systems.
 
-> The radiomics score had a C-index of 0.615 (95% CI, 0.543-0.687) in the training cohort and 0.574 (95% CI, 0.491-0.658) in external validation.
+> This project will create the world's first synthetic mine within an advanced drilling and sensing test facility to accelerate next generation mining technologies from lab concepts to field ready deployment. By repurposing a highly instrumented Texas drilling site, it will enable rigorous, repeatable, and safe testing of mining tools, workflows, and automation systems.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
-
-### The authors state the conclusion as a limit rather than as a result.
-
-> T1 postcontrast MRI radiomics showed limited standalone discrimination for overall survival in patients with brain metastases.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
-
-### The authors ask for cautious use and for models that carry more than imaging.
-
-> These results support cautious use of radiomics as an exploratory imaging biomarker and emphasize the need for integrated prognostic models that include clinical, treatment, molecular, and systemic disease variables.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
-
-### The neuroradiology authors are at MD Anderson in Houston and the radiology authors at the Medical Branch in Galveston.
-
-> From the Department of Neuroradiology (R.E., H.A.Q., S.A., A.M., P.K.), The University of Texas MD Anderson Cancer Center, Houston, TX 77030, USA; Department of Radiology (E.C.), Duke University Medical Center, Durham, NC, USA; Department of Radiology (H.A.S., A.N., M.W.), The University of Texas Medical Branch, Galveston, TX, USA
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
-
-### The final model kept a small number of imaging features after selection.
-
-> The final model retained 7 nonzero T1 postcontrast radiomics features after correlation filtering and elastic-net selection.
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
-
-### Adding the established clinical score did not lift the model above its training figure.
-
-> In the external-validation subset with available Graded Prognostic Assessment, the combined radiomics plus Graded Prognostic Assessment model had a C-index of 0.591 (95% CI, 0.509-0.672).
-
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic
 

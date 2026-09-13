@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · House Public Health has held its hearing on AI in health care and has published no recommendation from it.
 - 2026-09-08 · House Public Health has held its hearing on artificial intelligence in health care, and no committee product has followed it.
 - 2026-09-09 · House Public Health has held its interim hearing on artificial intelligence in health care and has published nothing since.
+- 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence

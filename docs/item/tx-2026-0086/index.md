@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The national user facility for robot designed alloys at College Station still stands as awarded and is still open to outside researchers.
 - 2026-09-08 · The Texas A and M national user facility for robot designed alloys still stands as awarded, and its user access terms are unchanged.
 - 2026-09-09 · The Texas A and M user facility where robots run the experiments is still funded as a national facility, open to researchers from outside the system.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Tom Green County's refusal of a Precinct 4 moratorium still stands. No new moratorium has been proposed.
 - 2026-09-08 · Tom Green County's refusal of a Precinct 4 moratorium still stands, and no successor proposal has reached the commissioners court.
 - 2026-09-09 · Tom Green County's refusal of a Precinct 4 moratorium still stands, and no new moratorium has been placed before the court.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

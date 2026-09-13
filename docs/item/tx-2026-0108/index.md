@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Armstrong County order still tells the data center to shed its whole load and the conditions are still in place. Nothing has been lifted.
 - 2026-09-08 · The order letting the Armstrong County data center share a wind farm's interconnection still stands with its load shedding conditions intact.
 - 2026-09-09 · The Armstrong County data center is still under the order telling it to shed its whole load, and the conditions the commission left in place have not been lifted.
+- 2026-09-12 · The Armstrong County data center is still under the order telling it to shed its whole load, and the conditions the commission left in place have not been disturbed. The motion for rehearing filed against the order is still pending.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

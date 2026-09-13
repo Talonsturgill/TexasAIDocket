@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-11 · Admitted to the record. The window is open and dated, so a Texan who wants a say on how grid equipment and remote access get restricted has until October 9th to file. The notice itself never names Texas.
 - 2026-09-11 · The public webinar on September 16th is on the record's calendar now. It falls before the October 9th deadline and is the first thing a reader can attend. The calendar and the feeds read key dates rather than the access note.
+- 2026-09-12 · The comment window is still open, closing October 9th.
 - 2026-09-13 · The comment window is still open, closing October 9th.
 
 ## Evidence

@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the number that is wrong",
   "the correction",
   "the quiet decision",
   "the two things",
   "the who",
-  "the before and after"
+  "the before and after",
+  "the plain question"
  ],
  "entries": [
   {
@@ -364,31 +364,51 @@
    "move_note": "Named off CAPTION_CRAFT.md's own menus rather than freehand. ledger_check refuses a move name that is not on a menu, because a name nobody else uses cannot be excluded by a list of real ones, which is how three excluded moves shipped on 2026-08-25. The caption opens on what House Bill 27 asked for and turns to what the adopted text actually says, it runs what is known then what is not then the size of the gap, and it ends on the question the adoption leaves open."
   },
   {
-   "date": "2026-09-13",
+   "date": "2026-09-12",
    "carousel_no": 22,
    "opening_move": "the plain question",
-   "structure": "Question and answer",
+   "structure": "Ladder",
+   "closing_move": "Name what happens next and when",
+   "first_line": "Who decides whether a crack counts?",
+   "words": 156,
+   "commas": 0,
+   "commas_per_100w": 0.0,
+   "chars": 876,
+   "hashtags": [
+    "#TxDOT",
+    "#TexasStateUniversity",
+    "#PavementConditionScore"
+   ],
+   "critic_note": "Candidate A was refused on three claim failures in one paragraph, a scanner riding on the van that c5 lists as a separate investment, a definition of statewide no claim carries, and a sentence that inverts c15 by making a section mean the sample inside it. B was taken with the one rewrite, which restored c23's closed-session exception and fixed a pronoun reaching two sentences back for the 70. The showrunner then corrected the deck summary line, which the critic had written without having seen the frames.",
+   "move_note": "The plain question was the right door because this story's whole dispute is a classification boundary, a crack against a stain, and the ladder was right because the record hands over four rungs that stand on each other in physical order."
+  },
+  {
+   "date": "2026-09-13",
+   "carousel_no": 23,
+   "opening_move": "the number that is wrong",
+   "structure": "Zoom out",
    "closing_move": "Name what is still not public, and how big that is.",
-   "first_line": "What was the scanner taught on?",
-   "words": 132,
-   "commas": 4,
-   "commas_per_100w": 3.03,
-   "chars": 896,
+   "first_line": "The model scored 0.615.",
+   "words": 122,
+   "commas": 2,
+   "commas_per_100w": 1.64,
+   "chars": 831,
    "hashtags": [
     "#PediatricRadiology",
     "#TexasChildrens",
     "#UTMB"
    ],
-   "critic_note": "THE OPENING MOVE WAS ON ITS OWN EXCLUSION LIST AND A GATE CAUGHT IT, NOT A JUDGE. The caption shipped through five scoring rounds opening on 'the two things', which CAPTION_CRAFT puts off the menu for six runs and which 2026-09-09 had already spent. Round 5's reader judge flagged it as a lead it could not settle because this entry was not yet written; ledger_check then failed the build on it outright. It is now 'the plain question', which is unspent, and the opening asks what a scanner was taught on, which is the question frame 9 tells a parent to put at a desk. Relabelling it would have been the 2026-08-25 failure and CAPTION_CRAFT forbids it in as many words. WHAT THE ROUNDS DID TO THIS CAPTION: round 1's critic disqualified both candidates for fabrication, one inventing '69 adults' and one attributing a sentence to institutions that never wrote it. Round 2 replaced a lede that put no Texas above the fold. Round 3 fixed an attribution saying two Texas departments 'built' a model whose own byline carries Duke, and restored a c5 quote truncated mid sentence and closed with a full stop. Round 5 removed 'One warns about the other', a relation neither document makes. THE REWRITE ALSO RECOVERED THE JOIN that removal cost: 'put a number on the same move' is the deck's own framing of why the second paper is here, which three reader judges asked for in three consecutive rounds and which is still absent from the FRAMES."
+   "critic_note": "THE OPENING MOVE WAS ON ITS OWN EXCLUSION LIST AND A GATE CAUGHT IT, NOT A JUDGE. The caption shipped through five scoring rounds opening on 'the two things', which CAPTION_CRAFT puts off the menu for six runs and which 2026-09-09 had already spent. Round 5's reader judge flagged it as a lead it could not settle because this entry was not yet written; ledger_check then failed the build on it outright. It is now 'the plain question', which is unspent, and the opening asks what a scanner was taught on, which is the question frame 9 tells a parent to put at a desk. Relabelling it would have been the 2026-08-25 failure and CAPTION_CRAFT forbids it in as many words. WHAT THE ROUNDS DID TO THIS CAPTION: round 1's critic disqualified both candidates for fabrication, one inventing '69 adults' and one attributing a sentence to institutions that never wrote it. Round 2 replaced a lede that put no Texas above the fold. Round 3 fixed an attribution saying two Texas departments 'built' a model whose own byline carries Duke, and restored a c5 quote truncated mid sentence and closed with a full stop. Round 5 removed 'One warns about the other', a relation neither document makes. THE REWRITE ALSO RECOVERED THE JOIN that removal cost: 'put a number on the same move' is the deck's own framing of why the second paper is here, which three reader judges asked for in three consecutive rounds and which is still absent from the FRAMES.",
+   "move_note": "Rewritten after September 12th landed. That deck spent 'the plain question' and this run had already moved onto it, because the September 12th ledger was not merged when the caption room read its exclusions. The move is spent rather than relabelled, which is what the gate asks for and the only answer that keeps the exclusion window meaning anything. 'the number that is wrong' is the fit this story wanted anyway. A reader takes 0.615 for the model's accuracy, and the figure it scored outside its own cohort is the correction."
   }
  ],
  "structures_recent": [
-  "Two columns",
   "Clock",
-  "Ledger"
+  "Ledger",
+  "Ladder"
  ],
  "closing_moves_recent": [
-  "Ask the one question the decision leaves open."
+  "Name what happens next and when"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

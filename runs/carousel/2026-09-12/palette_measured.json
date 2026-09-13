@@ -1,0 +1,63 @@
+{
+ "calibration": {
+  "n": 20000,
+  "seed": 20260911,
+  "p10": 9.03,
+  "p25": 15.16,
+  "median": 27.17,
+  "p75": 49.67
+ },
+ "pool_size": 81,
+ "tokens": [
+  {
+   "token": "asphalt",
+   "hex": "#161310",
+   "nearest_prior": "#14100E",
+   "dE76": 1.35,
+   "L*": 6.1,
+   "verdict": "COLLISION",
+   "dE_to_reserved_red": 78.14
+  },
+  {
+   "token": "ink",
+   "hex": "#E4D8C3",
+   "nearest_prior": "#ECE3D6",
+   "dE76": 5.84,
+   "L*": 86.8,
+   "verdict": "COLLISION",
+   "dE_to_reserved_red": 81.24
+  },
+  {
+   "token": "dek",
+   "hex": "#CFC0A4",
+   "nearest_prior": "#C9B393",
+   "dE76": 5.73,
+   "L*": 78.3,
+   "verdict": "COLLISION",
+   "dE_to_reserved_red": 75.63
+  },
+  {
+   "token": "furn",
+   "hex": "#96876E",
+   "nearest_prior": "#B1A291",
+   "dE76": 11.5,
+   "L*": 57.0,
+   "verdict": "close",
+   "dE_to_reserved_red": 66.94
+  },
+  {
+   "token": "granite",
+   "hex": "#9A3B2A",
+   "nearest_prior": "#B4664F",
+   "dE76": 17.06,
+   "L*": 38.1,
+   "verdict": "clear",
+   "dE_to_reserved_red": 25.81
+  }
+ ],
+ "closest_pair_inside_deck": {
+  "a": "ink",
+  "b": "dek",
+  "dE76": 9.5
+ }
+}

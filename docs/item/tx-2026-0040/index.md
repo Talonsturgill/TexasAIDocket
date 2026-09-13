@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The regents' money for San Pedro II is still committed and the building is still the home of the San Antonio college of AI, cyber and computing.
 - 2026-09-08 · The regents' money for finishing San Pedro II is still committed to the UTSA college it was voted for. No change to the amount or the building has been posted.
 - 2026-09-09 · The regents' money to finish San Pedro II for the UTSA College of AI, Cyber and Computing is still committed, and what the building is for has not changed.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence

@@ -1,0 +1,216 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 9 of 9. Archetype FULL_BLEED. BUILT FIRST.
+     The road the money is aimed at, at the end of the working day, with nobody in it. No room,
+     no dais and no seat appears anywhere, because no claim puts this decision in a room with a
+     named decider, and a room plus a date delivers a verdict no sentence in this deck delivers.
+     The commission's own calendar is a mono foot where it can be read as what it is.
+     No granite on this frame. The accent means a person and there is no person here. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:176px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:100px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:402px; width:800px; font-size:29px; line-height:1.42; color:var(--dek); }
+  /* The wordmark sits on the RIGHT of the bottom band and the commission line on the LEFT, so
+     the two can never share a line box. The first arrangement stacked them and qa.py found a
+     74 percent overprint, which is the collision this layout removes by construction. */
+  .mark { position:absolute; right:80px; bottom:152px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:34px; letter-spacing:0.02em; color:var(--ink); text-align:right; }
+  .star { position:absolute; right:80px; bottom:210px; width:20px; height:20px; }
+  .foot { position:absolute; left:80px; bottom:152px; width:580px; font-family:"JetBrains Mono", monospace;
+          font-size:24px; line-height:1.56; letter-spacing:0.01em; color:var(--furn); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 8.1h8.5l-6.9 5 2.7 8.2L12 17.9 4.8 22.9l2.7-8.2-6.9-5h8.5z" fill="#E4D8C3"/></svg>
+<h1 class="hook" id="hook" data-role="hook">The score still aims the money.</h1>
+<p class="dek" data-role="dek">The release names three next steps and dates none of them.</p>
+<div class="mark">TEXAS AI DOCKET</div>
+<div class="foot" id="foot"></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The stake", kicker2: "Texas Transportation Commission",
+      counter: C.counters[8], src: "c7 c10 c23 c24 c25 c26   TEXAS AI DOCKET", ink: "#96876E" });
+    // The foot is the one dated public thing this record holds, and every date in it is read
+    // out of computed.json rather than typed. It says what the meeting IS and nothing more.
+    document.getElementById("foot").textContent =
+      "The commission meets " + C.commission_date + " in Austin, open to the public. Agendas "
+      + "post " + C.agenda_lead_words + " days ahead and none of the "
+      + C.commission_meetings_left_words + " left this year has one.";
+    TX.fitText(document.getElementById("hook"), { min: 78, max: 100, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 91,
+      screen: { mode: "hatch", cell: 7, angle: 74, gamma: 1.22, floor: 0.05 },
+      // A HIGHER THRESHOLD. At 20 the contour plate outlined every cast shadow, and a light
+      // stroke around a dark shape on this register reads as a plank lying in the grass
+      // rather than as a shadow on it.
+      edges: { threshold: 38, width: 1.4, alpha: 0.8, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        // The sun is dropped to 18 degrees for the hour, so the rake across the road is long
+        // and frames 1 and 9 are the same road at two hours rather than the same drawing twice.
+        a.fillStyle = "#EDEDED"; a.fillRect(0, 0, W, H);
+        var S = TXSCENE.create(a, { w: W, h: H, eye: 1.62, horizon: 700, f: 780, sky: "#EDEDED",
+                                    fogZ: 1e9, light: { az: -58, el: 18 } });
+        S.ground({ near: 0.7, far: 900, fill: "#A8A8A8" });                  // caliche
+        S.strip({ X: 0, w: 6.6, near: 0.7, far: 900, fill: "#343434" });     // the same lane width
+        // THE ROAD GETS A SURFACE. Removing the nine transverse bands stopped the frame reading
+        // as railroad track and left the hot mix as bare page over a third of the image, which
+        // three readers called a void at the centre of the deck's last picture. Aggregate, laid
+        // in world metres so it recedes with the road, is what a road surface actually is.
+        var AG = TX.rng(9091);
+        a.save();
+        for (var ai = 0; ai < 2600; ai++) {
+          var aZ = 1.4 + AG() * AG() * 150, aX = (AG() - 0.5) * 6.5;
+          var ap = S.project(aX, 0, aZ), ar = Math.max(0.6, 0.035 * S.ppm(aZ));
+          if (ap[1] < 720 || ap[1] > H) continue;
+          var av = AG();
+          a.fillStyle = av < 0.55 ? "rgba(255,255,255,0.13)" : "rgba(255,255,255,0.26)";
+          a.beginPath(); a.ellipse(ap[0], ap[1], ar, ar * 0.6, 0, 0, 6.2832); a.fill();
+        }
+        a.restore();
+        S.strip({ X: -3.25, w: 0.10, near: 0.7, far: 900, fill: "#D8D8D8" }); // the same fog line
+        S.strip({ X: 3.25, w: 0.10, near: 0.7, far: 900, fill: "#D8D8D8" });
+        S.gridZ({ dz: 22, from: 14, to: 420, ink: "rgba(0,0,0,.13)", width: 1.0 });
+
+        // the horizon furniture, at its true distance
+        var tower = TXOBJ.sprite("water_tower");
+        S.shadow(tower, { X: 34, Z: 260, ink: "#000", alpha: 0.22 });
+        S.sprite(tower, { X: 34, Z: 260, inks: { ink: "#7A7A7A", paper: "#EDEDED", accent: "#7A7A7A" } });
+        var hse = TXOBJ.sprite("house", { seed: 4 });
+        S.shadow(hse, { X: 14, Z: 58, ink: "#000", alpha: 0.34 });
+        S.sprite(hse, { X: 14, Z: 58, inks: { ink: "#7A7A7A", paper: "#EDEDED", accent: "#7A7A7A" } });
+        var oak = TXOBJ.sprite("live_oak", { seed: 9 });
+        S.shadow(oak, { X: -19, Z: 50, ink: "#000", alpha: 0.40 });
+        S.sprite(oak, { X: -19, Z: 50, inks: { ink: "#2E2E2E", paper: "#EDEDED", accent: "#2E2E2E" } });
+
+        // the fence line, both sides, with the long shadows the low sun gives
+        var post = TXOBJ.sprite("fence_post");
+        for (var Z = 6; Z < 300; Z *= 1.19) {
+          [-9.4, 9.4].forEach(function (X) {
+            S.shadow(post, { X: X, Z: Z, ink: "#000", alpha: 0.38 });
+            S.sprite(post, { X: X, Z: Z, inks: { ink: "#3C3C3C", paper: "#EDEDED", accent: "#3C3C3C" } });
+          });
+        }
+        TXOBJ.wire(S, [-9.4, 6, 1.15], [-9.4, 300, 1.15], { ink: "#4A4A4A", width: 1.1 });
+        TXOBJ.wire(S, [9.4, 6, 1.15], [9.4, 300, 1.15], { ink: "#4A4A4A", width: 1.1 });
+
+        // the mailbox, near, drawn in metres from parts because it is not in the catalogue.
+        // The part key is `type`, never `kind`, and an ellipse takes cx/cy/rx/ry.
+        var mailbox = { parts: [
+          { type: "rect", x: -0.045, y: 0.00, w: 0.09, h: 1.05, fill: "ink" },
+          { type: "rect", x: -0.22, y: 1.05, w: 0.52, h: 0.20, fill: "ink" },
+          { type: "ellipse", cx: 0.04, cy: 1.25, rx: 0.26, ry: 0.10, fill: "ink" },
+          { type: "rect", x: -0.30, y: 1.08, w: 0.06, h: 0.17, fill: "paper" },
+          { type: "line", pts: [[-0.26, 1.14], [-0.26, 1.40]], width: 0.045, fill: "ink" }
+        ] };
+        S.shadow(mailbox, { X: -4.2, Z: 9.0, ink: "#000", alpha: 0.52 });
+        S.sprite(mailbox, { X: -4.2, Z: 9.0, inks: { ink: "#232323", paper: "#E4E4E4", accent: "#232323" } });
+
+        // THE RAKE IS GONE AND THE ROAD HAS MARKINGS INSTEAD. Nine transverse light bands at
+        // decreasing spacing toward a vanishing point is the visual grammar of SLEEPERS, and at
+        // 432 px the closing frame of a pavement deck read as railroad track. What a road has
+        // that a track does not is a broken centre line, so the surface carries one.
+        var dashZ = 3.6;          // no dash lands under the mono foot
+        while (dashZ < 260) {
+          var dz0 = dashZ, dz1 = dashZ + 3.0;
+          var dy0 = S.groundY(dz1), dy1 = S.groundY(dz0);
+          var hw = 0.10 * S.ppm((dz0 + dz1) / 2) / 2;
+          a.fillStyle = "#D8D8D8";
+          a.beginPath();
+          a.moveTo(S.project(-0.05, 0, dz1)[0] - hw * 0.4, dy0);
+          a.lineTo(S.project(0.05, 0, dz1)[0] + hw * 0.4, dy0);
+          a.lineTo(S.project(0.05, 0, dz0)[0] + hw, dy1);
+          a.lineTo(S.project(-0.05, 0, dz0)[0] - hw, dy1);
+          a.closePath(); a.fill();
+          dashZ += 9.0;
+        }
+        // one long soft band of the low sun across the near road, drawn once rather than nine
+        // times, so the bottom carries light without carrying a rhythm
+        var rk = a.createLinearGradient(0, S.groundY(30), 0, H);
+        rk.addColorStop(0, "rgba(255,255,255,0)"); rk.addColorStop(0.55, "rgba(255,255,255,0.11)");
+        rk.addColorStop(1, "rgba(255,255,255,0.02)");
+        a.fillStyle = rk; a.fillRect(0, S.groundY(30), W, H - S.groundY(30));
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#161310", top: 640, topSolid: 545, bottom: 320, bottomSolid: 236 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

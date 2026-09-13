@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The audit directive still stands over every data center in the interconnection queue and no audit result has been published. What the queue looks like after it is still unknown.
 - 2026-09-08 · The Governor's instruction to audit every data center in the interconnection queue is still an instruction without a published audit behind it.
 - 2026-09-09 · The Governor's order to audit every data center in the interconnection queue is still outstanding, with no audit published by either body it was addressed to.
+- 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence

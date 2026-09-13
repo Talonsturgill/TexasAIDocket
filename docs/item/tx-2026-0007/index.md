@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Utilities Code still holds the commission to written direction of the grid operator. The bar on verbal directives is unchanged.
 - 2026-09-08 · The Utilities Code still holds the commission to written direction of the grid operator, and the bar on verbal directives is unchanged.
 - 2026-09-09 · The Utilities Code still holds the commission to written direction of the grid operator. The bar on verbal directives is unchanged.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
