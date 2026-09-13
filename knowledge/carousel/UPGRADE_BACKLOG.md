@@ -1956,3 +1956,28 @@ A second line belongs in Phase 18, where the run reads its checks:
 What it does not say, and what cost two days, is that the commonest reason a check is absent is
 that the branch cannot be merged. That sentence belongs in `CLAUDE.md` beside the
 `total_count: 0` paragraph, which is also `human` lane.
+
+### AND `merge_ready.py` IS RUN BY NOTHING, which is this page's own oldest complaint
+
+Said here rather than left for somebody to find. The checker above is a script in
+`scripts/shared/` and **no workflow, no phase and no suite calls it.** It earns its keep only
+when a run remembers to type it, which is the exact property that makes a gate worthless and is
+already item 3 on this page about ten carousel gates whose `--self-test` CI never runs.
+
+`gate_wiring.py` reported clean over it, and that is not a reprieve. It scopes itself to the
+carousel gates, 32 of them, so a gate living in `scripts/shared/` is invisible to the checker
+this repository built for exactly this failure. **A wiring check that cannot see a whole
+directory reports clean about a place it never looked.**
+
+Both fixes are outside the `upgrade` lane:
+
+- `.github/workflows/guards.yml` needs a step running `merge_ready.py --fetch --self-test`, and
+  the workflow directory is `human` lane on purpose, because a run that can edit its own CI can
+  switch off the gate that judges it.
+- `prompts/daily_routine.md` needs the Phase 18 line above, and is `human` lane.
+
+The one thing that IS in lane, and is deliberately not done here: widening `gate_wiring.py` to
+sweep `scripts/shared/` as well. It is left alone because it would go red the moment it ran,
+naming every shared script that no workflow calls, and a gate whose first act is to fail on work
+nobody has agreed to do is a gate that teaches a run to disable it. It belongs in the same change
+as the `guards.yml` step, made by somebody who can write both.
