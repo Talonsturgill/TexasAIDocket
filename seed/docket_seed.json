@@ -7507,5 +7507,435 @@
         "note": "Admitted to the record. The plant that builds the racks going into Amazon's data centers is being expanded. The release carries no publication date of its own, so the day it was announced is unconfirmed."
       }
     ]
+  },
+  {
+    "title": "Texas Children's and UT Southwestern radiologists publish that imaging AI has largely skipped children",
+    "summary": "An expert panel review in the American Journal of Roentgenology states that pediatric medical imaging remains substantially underrepresented across artificial intelligence in radiology. The panel means the development of models and their validation and their regulation and their use in the clinic. Two of its authors are Texas radiologists. One works in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston. The other is at UT Southwestern Medical Center in Dallas. The panel gives its reason plainly. Children go through continuous physiologic and anatomic changes that adults do not, so a model trained on adults is not the model a child needs. It names what holds pediatric work back. Public datasets are scarce and institutional data is fragmented and external validation is insufficient. It also names off-label use of adult-trained AI models among the ethical and regulatory concerns in children. The review is a recommendation document rather than a hospital policy. No Texas institution has published a purchasing change that follows from it.",
+    "topic": "health-and-education",
+    "decider": {
+      "name": "American Journal of Roentgenology Expert Panel, with radiologists at Baylor College of Medicine and Texas Children's Hospital and at UT Southwestern Medical Center",
+      "type": "company"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Harris",
+        "Dallas"
+      ],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "filed",
+        "note": "Article date recorded by the National Library of Medicine for the online publication"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The review is published in the American Journal of Roentgenology. The abstract and the author affiliations are readable without a subscription through the National Library of Medicine.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42714442/",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The panel states that pediatric imaging is substantially underrepresented across the whole of AI in radiology.",
+        "verbatim_quote": "Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c1"
+      },
+      {
+        "text": "The panel's stated reason is that children change as they grow, so a model trained on adults is not the same model.",
+        "verbatim_quote": "Unlike adults, children go through continuous physiologic and anatomic changes that require age-specific models trained on representative developmental data.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c2"
+      },
+      {
+        "text": "The panel names what pediatric AI is limited by.",
+        "verbatim_quote": "However, pediatric AI is limited by scarce publicly available datasets, fragmented institutional data, rare diseases, heterogeneous reporting practices, and insufficient external validation.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c3"
+      },
+      {
+        "text": "Off-label use of a model trained on adults is named as an ethical and regulatory concern in children.",
+        "verbatim_quote": "Ethical and regulatory challenges are also a concern in children, including consent for secondary data use, off-label use of adult-trained AI models, and the need for postdeployment surveillance.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c4"
+      },
+      {
+        "text": "The panel asks for a dedicated pediatric AI infrastructure and standards rather than for adult tools to be reused.",
+        "verbatim_quote": "The panel gives key recommendations, emphasizing the importance of an implementation roadmap to establish a dedicated pediatric AI infrastructure and standards that are essential to ensure diagnostic accuracy, workflow efficiency, and optimal clinical outcomes for children while minimizing bias and protecting patient safety.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c5"
+      },
+      {
+        "text": "One of the review's authors is in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston.",
+        "verbatim_quote": "Department of Radiology, Baylor College of Medicine and Texas Children's Hospital, Houston, Texas, USA.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c6"
+      },
+      {
+        "text": "Another author is in the radiology department at UT Southwestern Medical Center in Dallas.",
+        "verbatim_quote": "Department of Radiology, UT Southwestern Medical Center, Dallas, Texas, USA.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c7"
+      },
+      {
+        "text": "The review names reimbursement as misaligned with what pediatric AI would need.",
+        "verbatim_quote": "Additionally, reimbursement is misaligned and must be optimized to allow innovation.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "source_title": "Pediatric Artificial Intelligence in Radiology: Unmet Needs and Next Steps-AJR Expert Panel Review, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0147-c8"
+      }
+    ],
+    "confidence": "high",
+    "id": "tx-2026-0147",
+    "last_verified": "2026-09-13",
+    "history": [
+      {
+        "date": "2026-09-13",
+        "note": "Admitted to the record. Texas radiologists at two of the state's largest institutions have put in print that imaging AI has largely skipped children and that adult trained models are being used on them off label. Nothing follows from the review on its own and no Texas hospital has published a change beside it."
+      }
+    ]
+  },
+  {
+    "title": "An MD Anderson and UT Medical Branch team reports that an MRI model lost accuracy on outside patients",
+    "summary": "Radiologists at the University of Texas MD Anderson Cancer Center in Houston and the University of Texas Medical Branch in Galveston built a machine learning survival model from MRI radiomic features and tested it on a separate patient group without refitting it. The model's discrimination fell between the group it was built on and the group it was tested on. The authors conclude that the approach showed limited standalone discrimination and support cautious use of it as an exploratory imaging biomarker. The paper is a research result rather than a deployment, and neither institution has published a statement that the model is used in patient care.",
+    "topic": "health-and-education",
+    "decider": {
+      "name": "The University of Texas MD Anderson Cancer Center, with The University of Texas Medical Branch",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Harris",
+        "Galveston"
+      ],
+      "on_ercot": true,
+      "metro": "Houston-Pasadena-The Woodlands, TX"
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "filed",
+        "note": "Article date recorded by the National Library of Medicine for the online publication"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The paper is published in the American Journal of Neuroradiology. The abstract, the figures it reports and the author affiliations are readable without a subscription through the National Library of Medicine.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42716711/",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The study built the model on one cohort and tested the fixed model on another without refitting it.",
+        "verbatim_quote": "This retrospective study developed a T1 postcontrast MRI radiomics survival model in a public brain metastasis cohort of 198 patients and externally validated the fixed radiomics model, without refitting or recalibration, in an independent cohort of 69 patients.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+        "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0148-c1"
+      },
+      {
+        "text": "The model's discrimination was lower on the outside cohort than on the cohort it was built on.",
+        "verbatim_quote": "The radiomics score had a C-index of 0.615 (95% CI, 0.543-0.687) in the training cohort and 0.574 (95% CI, 0.491-0.658) in external validation.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+        "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0148-c2"
+      },
+      {
+        "text": "The authors state the conclusion as a limit rather than as a result.",
+        "verbatim_quote": "T1 postcontrast MRI radiomics showed limited standalone discrimination for overall survival in patients with brain metastases.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+        "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0148-c3"
+      },
+      {
+        "text": "The authors ask for cautious use and for models that carry more than imaging.",
+        "verbatim_quote": "These results support cautious use of radiomics as an exploratory imaging biomarker and emphasize the need for integrated prognostic models that include clinical, treatment, molecular, and systemic disease variables.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+        "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0148-c4"
+      },
+      {
+        "text": "The neuroradiology authors are at MD Anderson in Houston and the radiology authors at the Medical Branch in Galveston.",
+        "verbatim_quote": "From the Department of Neuroradiology (R.E., H.A.Q., S.A., A.M., P.K.), The University of Texas MD Anderson Cancer Center, Houston, TX 77030, USA; Department of Radiology (E.C.), Duke University Medical Center, Durham, NC, USA; Department of Radiology (H.A.S., A.N., M.W.), The University of Texas Medical Branch, Galveston, TX, USA",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+        "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0148-c5"
+      },
+      {
+        "text": "The final model kept a small number of imaging features after selection.",
+        "verbatim_quote": "The final model retained 7 nonzero T1 postcontrast radiomics features after correlation filtering and elastic-net selection.",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+        "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0148-c6"
+      },
+      {
+        "text": "Adding the established clinical score did not lift the model above its training figure.",
+        "verbatim_quote": "In the external-validation subset with available Graded Prognostic Assessment, the combined radiomics plus Graded Prognostic Assessment model had a C-index of 0.591 (95% CI, 0.509-0.672).",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml",
+        "source_title": "MRI Radiomics for Survival Prediction in Brain Metastases: A Machine Learning Analysis, National Library of Medicine",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0148-c7"
+      }
+    ],
+    "confidence": "high",
+    "id": "tx-2026-0148",
+    "last_verified": "2026-09-13",
+    "history": [
+      {
+        "date": "2026-09-13",
+        "note": "Admitted to the record. A model built at a Texas cancer center lost accuracy when it met patients it had not been fitted to, and the authors say so in their own conclusion rather than leaving a reader to work it out."
+      }
+    ]
+  },
+  {
+    "title": "The grid operator tells providers which large loads it has provisionally placed in Batch Zero, and every placement carries a condition",
+    "summary": "ERCOT issued a market notice telling each Interconnecting Distribution Service Provider and Transmission Service Provider how it had provisionally classified the large loads submitted for the Batch Zero interconnection process. The notice states that inclusion is conditional, and it names the conditions, which include the interconnecting large load entity passing verification, curing deficiencies in dynamic model data, and the Public Utility Commission of Texas granting a good cause exception. It states that failure to satisfy an applicable condition may disqualify the load. It also names the route by which an entity that disagrees with a classification may dispute it. The notice names no individual load and gives no total, so the size of the provisional list is not public.",
+    "topic": "power-and-the-grid",
+    "decider": {
+      "name": "Electric Reliability Council of Texas",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": true,
+      "counties": [],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-03",
+        "kind": "ordered",
+        "note": "Date the market notice carries"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The market notice is published on the grid operator's public notices page. An entity that disagrees with a provisional classification files through the dispute route the notice names rather than in a public docket.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "Inclusion in Batch Zero is conditional, and the notice names the conditions.",
+        "verbatim_quote": "The information provided indicates whether each Large Load has been conditionally included in Batch Zero subject to one or more conditions, such as the Interconnecting Large Load Entity (ILLE) passing verification, the ILLE curing deficiencies in dynamic model data, or the Public Utility Commission of Texas (PUCT) granting ERCOT a good cause exception to allow the Large Load to qualify despite not meeting an applicable eligibility requirement at the time of submission.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_title": "Market Notice M-A080326-04, Electric Reliability Council of Texas",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0149-c1"
+      },
+      {
+        "text": "A load that does not satisfy a condition can be taken off the list.",
+        "verbatim_quote": "Failure to satisfy any applicable condition may disqualify the Large Load.",
+        "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_title": "Market Notice M-A080326-04, Electric Reliability Council of Texas",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0149-c2"
+      }
+    ],
+    "confidence": "high",
+    "id": "tx-2026-0149",
+    "last_verified": "2026-09-13",
+    "history": [
+      {
+        "date": "2026-09-13",
+        "note": "Admitted to the record. The grid operator has told providers which large loads sit on the provisional Batch Zero list, and every placement on it carries a condition that can still take the load off. The notice names no load and gives no total."
+      }
+    ]
+  },
+  {
+    "title": "Kodiak reports driverless trucks hauling sand commercially in the Permian Basin with nobody in the cab",
+    "summary": "Kodiak AI published a business update stating that its long-haul safety case builds on the safety case it completed for its industrial deployment in the Permian Basin, where driverless trucks were operating commercially with no humans in the cab. The same update puts its own readiness measure for long-haul driverless operations at a figure it reports monthly and says the company remains on track for a driverless long-haul launch. The release names the Permian Basin and names no Texas county, and the company's earlier release on the same deployment says load-out sites sit in both Texas and New Mexico.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "Kodiak AI, Inc.",
+      "type": "company"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "on_ercot": false
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-08",
+        "kind": "filed",
+        "note": "Date the business update carries"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The business update is published on the company's investor newswire.",
+      "url": "https://www.globenewswire.com/news-release/2026/09/08/3357761/0/en/kodiak-ai-on-track-for-year-end-driverless-long-haul-launch-as-safety-case-readiness-reaches-93.html",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The company states that driverless trucks were running commercially in the Permian Basin with no humans in the cab.",
+        "verbatim_quote": "Kodiak's long-haul safety case builds on the safety case the company completed for its industrial deployment in the Permian Basin, where 35 driverless trucks were operating commercially with no humans in the cab as of the end of the second quarter.",
+        "source_url": "https://www.globenewswire.com/news-release/2026/09/08/3357761/0/en/kodiak-ai-on-track-for-year-end-driverless-long-haul-launch-as-safety-case-readiness-reaches-93.html",
+        "source_title": "Kodiak AI on Track for Year-End Driverless Long-Haul Launch, GlobeNewswire",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0150-c1"
+      },
+      {
+        "text": "The company's own earlier release places the load-out sites in two states.",
+        "verbatim_quote": "Atlas is now concurrently operating driverless trucks at load-out sites located in Texas and New Mexico.",
+        "source_url": "https://kodiak.ai/news/atlas-driverless-permian-expansion",
+        "source_title": "Atlas Expands Kodiak-Powered Driverless Fleet in the Permian, Kodiak AI",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0150-c2"
+      }
+    ],
+    "confidence": "medium",
+    "id": "tx-2026-0150",
+    "last_verified": "2026-09-13",
+    "history": [
+      {
+        "date": "2026-09-13",
+        "note": "Held in the seed. The release names the Permian Basin and no Texas county, and the company's own earlier release places the load-out sites in two states, so where in Texas this sits is not established."
+      }
+    ]
+  },
+  {
+    "title": "Galaxy Digital says five of its Texas compute projects hold conditional Batch Zero classifications",
+    "summary": "Galaxy Digital announced that five of its Texas data center projects received conditional classifications under the grid operator's Batch Zero large load interconnection process. The release names each project and the classification it received, splitting them between base load and studied load. It ties the conditional status to good cause exceptions the Public Utility Commission of Texas issued. The release names no county for the classified projects and names a Texas city only for a separate campus that is not among them.",
+    "topic": "data-centers",
+    "decider": {
+      "name": "Galaxy Digital Inc.",
+      "type": "company"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-08",
+        "kind": "filed",
+        "note": "Date the release carries"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The release is published on the company's newswire.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The company says five Texas projects received conditional Batch Zero classifications.",
+        "verbatim_quote": "Galaxy Digital Inc. (Nasdaq: GLXY) (\"Galaxy\" or the \"Company\") today announced that five of its Texas data center projects received conditional classifications under the Electric Reliability Council of Texas (\"ERCOT\") Batch Zero large load interconnection process, covering approximately 4.2 gigawatts of gross power capacity.",
+        "source_url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+        "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications, PR Newswire",
+        "source_type": "primary_corporate",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0151-c1"
+      }
+    ],
+    "confidence": "medium",
+    "id": "tx-2026-0151",
+    "last_verified": "2026-09-13",
+    "history": [
+      {
+        "date": "2026-09-13",
+        "note": "Held in the seed. The release names no county for any of the classified projects, so the record can't say where they are."
+      }
+    ]
+  },
+  {
+    "title": "Texas A&M AgriLife starts a bird flu light trial that watches the birds with AI assisted cameras",
+    "summary": "Texas A&M AgriLife Research began a federally funded trial of far ultraviolet light against highly pathogenic avian influenza in poultry housing. Researchers will use artificial intelligence assisted camera tracking to monitor whether the light changes the birds' behavior, circadian rhythms and growth performance. The account names the poultry science farm complex where the work is done and names no city or county, so where in Texas the trial sits is not stated by the source.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "Texas A&M AgriLife Research",
+      "type": "state-agency"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [],
+      "on_ercot": false
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-03",
+        "kind": "filed",
+        "note": "Date the agency's account carries"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The agency publishes its account of the trial on its own news site.",
+      "url": "https://agrilifetoday.tamu.edu/2026/09/03/texas-am-agrilife-tests-far-ultraviolet-light-to-prevent-bird-flu-in-poultry/",
+      "closes": null
+    },
+    "claims": [
+      {
+        "text": "The trial uses AI assisted camera tracking to watch the birds under the light.",
+        "verbatim_quote": "Using artificial intelligence-assisted camera tracking, researchers also will monitor whether the light will affect the behavior, circadian rhythms and growth performance in the chickens.",
+        "source_url": "https://agrilifetoday.tamu.edu/2026/09/03/texas-am-agrilife-tests-far-ultraviolet-light-to-prevent-bird-flu-in-poultry/",
+        "source_title": "Texas A&M AgriLife tests far-ultraviolet light to prevent bird flu in poultry, AgriLife Today",
+        "source_type": "primary_official",
+        "fetched": "2026-09-13",
+        "id": "tx-2026-0152-c1"
+      }
+    ],
+    "confidence": "medium",
+    "id": "tx-2026-0152",
+    "last_verified": "2026-09-13",
+    "history": [
+      {
+        "date": "2026-09-13",
+        "note": "Held in the seed. The agency's account names the poultry science farm complex and no city or county, so where in Texas the trial sits is not established."
+      }
+    ]
   }
 ]
