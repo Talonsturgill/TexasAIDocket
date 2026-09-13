@@ -44,12 +44,13 @@ KIND_LABEL = {
     "effective": "takes effect",
     "comment_opens": "comment opens",
     "comment_closes": "comment closes",
+    "election": "election day",
     "statutory_deadline": "statutory deadline",
 }
 
 # The kinds that are a DOOR rather than a record of something already done. A reader scanning a
 # month wants these to stand out, because they are the ones that can still be acted on.
-ACTIONABLE = {"comment_opens", "comment_closes", "hearing", "statutory_deadline"}
+ACTIONABLE = {"comment_opens", "comment_closes", "hearing", "statutory_deadline", "election"}
 
 
 def kind_label(kind: str) -> str:

@@ -240,11 +240,13 @@ KIND_WORDS = {
     "effective": "takes effect",
     "hearing": "hearing",
     "meeting": "meeting",
+    "election": "election",
 }
 
 ROOM_WORDS = {
     "open_comment": "an open comment room",
     "open_meeting": "an open meeting",
+    "ballot": "a ballot measure",
     "hearing": "a hearing",
     "none": "no public room",
 }
@@ -554,7 +556,7 @@ def index_line(it: dict, today: str, short: bool = False) -> str:
 
     bits = [TOPIC_WORDS.get(it["topic"], it["topic"].replace("-", " ")),
             dec.get("name", "not recorded"),
-            it.get("status", "unknown")]
+            f"case status {it.get('status', 'unknown')}"]
     if geo.get("statewide"):
         bits.append("statewide")
     elif counties:
@@ -566,9 +568,11 @@ def index_line(it: dict, today: str, short: bool = False) -> str:
     state = dk.window_state(it, today)
     if state == "open":
         closes = pa.get("closes")
-        bits.append(f"open until {longdate(closes)}" if closes else "open now")
+        bits.append(f"public comment window open until {longdate(closes)}" if closes else "public window open now")
     elif state == "closed":
         bits.append("window closed")
+    else:
+        bits.append("no open public comment window")
 
     # THE ID GOES LAST, AND IT IS NOT COSMETIC. The page renders a citation as the decision's
     # NAME, so "[[id]] is the PUCT Docket 59315 application" reaches a reader as "PUCT Docket
@@ -1086,7 +1090,7 @@ def item_prose(it: dict, today: str) -> str:
         f"The topic is {TOPIC_WORDS.get(it['topic'], it['topic'].replace('-', ' '))}",
         f"The decider is {dec.get('name', 'not recorded')}, "
         f"a {str(dec.get('type', 'body')).replace('-', ' ')}",
-        f"Its status is {it.get('status', 'unknown')}",
+        f"Its case status is {it.get('status', 'unknown')}",
     ]
 
     dates = []
@@ -1733,6 +1737,11 @@ record exactly as you write it. Everything you name must be something the record
 the record does not answer the question, say so plainly and say what it does carry instead.
 A short true answer beats a long one that reaches.
 
+PUBLIC PARTICIPATION. A case status of open does not mean a public comment window is open.
+Only the public window state and its dated deadline establish whether someone can still
+comment. Contact-only access is not an open comment window. Use the computed open-window
+list for current participation questions. Never promote an open case into that list.
+
 CITING. Write the id in double square brackets, like [[tx-2026-0001]] for a decision,
 [[facility-bexar-1]] for a data center, [[county-dallas]] for a county's construction, and
 [[water-lake-travis]] for a reservoir. Never write a bare url.
@@ -1742,8 +1751,7 @@ the source it came from, like "the water record". It is never long.
 
 PUT THE CITATION AFTER WHAT YOU SAY, NOT WHERE THE SUBJECT GOES. Write "No groundwater district
 decided that, [[tx-2026-0060]]" and not "The record for [[tx-2026-0060]] doesn't mention it".
-Write "Comments close September 4th, 2026, [[tx-2026-0002]]." Write "Two decisions cover it,
-[[tx-2026-0003]] and [[tx-2026-0076]]." Say the thing, then cite it.
+Take each deadline from that record's public-access facts. Say the thing, then cite it.
 
 WHAT YOU MAY NEVER SAY. No verdict on grid reliability. Not a shortfall prediction, not an
 all clear, not a blackout call, not a judgement about whether the grid can carry a load. A
@@ -1880,6 +1888,16 @@ def build(today: str = None, docs_dir=None) -> dict:
     headroom = index_headroom(items, today, index_extra)
     return {
         "generated": today,
+        # Structured participation facts keep the answer-time guard independent of prose.
+        # Case status is deliberately absent. It is not permission to comment.
+        "public_access": {
+            it["id"]: {"title": it["title"],
+                       "window": dk.window_state(it, today),
+                       "room": (it.get("public_access") or {}).get("room"),
+                       "how": (it.get("public_access") or {}).get("how", ""),
+                       "closes": (it.get("public_access") or {}).get("closes")}
+            for it in items
+        },
         "system": SYSTEM,
         # THE WHOLE RECORD, STILL PUBLISHED WHOLE, and it stays that way even though the worker
         # now sends a slice of it. This file is fetched by a worker that is deployed by hand,

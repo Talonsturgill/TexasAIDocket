@@ -40,6 +40,8 @@ HREF = re.compile(r'\bhref="([^"#?]+)', re.I)
 # with no reason is the fault this gate exists for.
 UNLINKED = {
     "404.html": "the not found page, served by the host and never linked",
+    "services/thanks/index.html":
+        "the native form submission return URL, reached through its _next field",
     "scan/watch/index.html":
         "reached only by the token in a requester's own link. Linking it would publish a page "
         "that is meaningless without one, and the scanner promises nothing about a requester is "
