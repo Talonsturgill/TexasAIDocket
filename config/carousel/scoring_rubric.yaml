@@ -10,7 +10,7 @@
 # has made in public.
 
 version: 1
-threshold: 6.8          # below this the deck does not ship
+threshold: 6.7          # below this the deck does not ship
 max_rounds: 5           # and after this many scoring rounds it ships anyway, see below
 
 # THE THRESHOLD MOVED AND A ROUND CAP WENT IN, on the owner's instruction, 2026-08-26.
@@ -49,6 +49,30 @@ max_rounds: 5           # and after this many scoring rounds it ships anyway, se
 # Five rounds is not a smaller budget for the same behaviour. It is a different behaviour: get
 # the frame right before it is scored, and treat every round after the first as evidence that
 # something upstream of the panel was skipped.
+#
+# 6.8 BECAME 6.7 ON THE OWNER'S INSTRUCTION, 2026-09-13, and the reason is a pattern rather than
+# one deck. In their words: "u keep on getting just under the bar, not merging to main. but the
+# decks look fine, and should have all been merged to main, u keep on doing this mistake daily."
+#
+# The evidence is in the ledger. Carousel no. 14 shipped at 6.762 at the cap. No. 17 held on a
+# hard fail. No. 22 on 2026-09-13 finished at 6.784, which is sixteen THOUSANDTHS under the old
+# bar, after five rounds and fifteen judge reports with no hard fail outstanding. A bar a careful
+# deck lands a hundredth below, repeatedly, is measuring the panel's own scatter rather than the
+# product: the three judges on that deck returned 6.9, 6.65 and 6.542, a spread of 0.358, which is
+# more than twenty times the distance the verdict turned on.
+#
+# WHAT THIS DOES NOT CHANGE, and the distinction is the whole reason the number can move at all.
+# The hard fails are not weighted and do not move. A figure with no computation behind it, a quote
+# that is not in its source, a universal the run's own numbers refute, each still stops the deck at
+# any round and at any score. Those are claims about promises this product made in public. The
+# threshold is a POLISH gate over a rubric where 7 means competent, and a tenth of a point on a
+# polish gate is a judgement call the owner gets to make. A hard fail is not, and no instruction
+# in this file lowers one.
+#
+# NOR IS IT A LICENCE TO SHIP UNDER THE NEW BAR. The rule above stands unchanged: a deck under the
+# threshold at the cap ships with its score said out loud in the email and in the run record, and
+# the shortfall named. Lowering the bar moves where that line falls. It does not remove it, and a
+# run that treats 6.7 as the new floor to aim at has misread this paragraph.
 scale: "0 to 10, where 7 is acceptable and 9 is the best thing shipped this month"
 
 criteria:
