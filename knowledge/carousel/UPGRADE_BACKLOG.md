@@ -1906,11 +1906,18 @@ pull request and on every push after it. Not red. Absent.
 
 Measured on 2026-09-13 rather than reasoned about:
 
-| what pushes to `main` | how often | `docs/` files it rewrites |
+**CORRECTED after a review bot checked the inventory.** The first table named `pages.yml` and
+`queuewatch.yml` as writers and neither is: `pages.yml` holds `contents: read` and only deploys
+what is already committed, and `queuewatch.yml` stages its ledger and raw files alone. It also had
+`news.yml` as daily when it runs four times. The true list is shorter and pushes MORE often:
+
+| workflow that commits `docs/` to `main` | cron | per day |
 |---|---|---|
-| `gridwatch.yml` | twice daily, 14:00 and 20:00 UTC | about 126 |
-| `pages.yml` | every two hours | the published pages |
-| `datacenters.yml`, `queuewatch.yml`, `generators.yml`, `news.yml` | daily | a handful each |
+| `news.yml` | `23 1,7,13,19 * * *` | 4 |
+| `gridwatch.yml` | `0 14` and `0 20` | 2 |
+| `datacenters.yml` | `0 13` | 1 |
+| `generators.yml` | `40 15` | 1 |
+| | | **8** |
 
 A daily run regenerates the WHOLE of `docs/`, about a thousand files, because the site is a pure
 function of the ledgers and `site_fresh_check` proves it byte for byte. So a run branch and `main`
