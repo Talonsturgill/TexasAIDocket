@@ -45,6 +45,7 @@ and cannot be talked out of it, which is the same argument as `run_complete.py`.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import statistics
 import sys
@@ -284,24 +285,73 @@ def combine(judges: list, bar: float | None = None) -> tuple:
     return verdict, probs
 
 
-def count_round(date: str) -> int:
-    """How many times this deck has been scored, counted by this module rather than typed.
+def card_digests(judges: list) -> list:
+    """One digest per judge card, over its content rather than its filename or its mtime.
+
+    The filename is the run's to choose and the mtime is the filesystem's, so neither answers
+    the question this counter needs answered, which is whether this card has been scored before.
+    """
+    return [hashlib.sha256(json.dumps(j, sort_keys=True).encode("utf-8")).hexdigest()[:16]
+            for j in judges]
+
+
+def count_round(date: str, judges: list, out_root: Path | None = None) -> tuple[int, list]:
+    """How many times this deck has been SCORED, counted by this module rather than typed.
 
     THE CAP NEEDS A NUMBER AND A TYPED ONE WOULD BE WORTHLESS. `run_complete` ships a deck that
     is under the bar once `rounds` reaches the rubric's `max_rounds`, which makes that field the
     most valuable lie in the run: a run under pressure could write 10 in it at round two and be
-    finished. So the run does not get to write it. Every invocation appends one line here and the
-    round number is the length of the file.
+    finished. So the run does not get to write it.
 
     It lives in `out/<date>/`, which is gitignored scratch, and that is the right home: the count
     is a fact about ONE run's session and means nothing to the next one. A round counter that
     survived into `runs/` would be a number a later session could edit.
+
+    THE DEFECT (2026-09-13). This counted INVOCATIONS. The round number was the length of the
+    file, so every call to this module was a round whatever it was called on. Carousel 22 ran
+    five scoring rounds and the combiner was re-run once against a STALE integrity card while
+    round 4's bookkeeping was being corrected, which is not a round and is a re-combination of
+    cards already scored. The counter read 6, the honest figure was 5, and the run had to write a
+    prose correction into `score.json` beside the number. A counter left one high is exactly the
+    kind of thing the next session inherits and believes, and one high is one round nearer a cap
+    that lets a deck ship UNDER the bar.
+
+    SO A ROUND IS THREE CARDS THIS COUNTER HAS NOT SEEN. Every invocation appends its cards'
+    digests. An invocation carrying any card scored in an earlier invocation is a
+    re-combination, recorded and not counted. The routine spawns all three lenses fresh every
+    round, so a genuine round never reuses a card.
+
+    IT IS STRICTLY HARDER TO GAME THAN WHAT IT REPLACED, which is the test any change to a cap
+    has to pass. Under the old rule a run reached the cap by running this module five times on
+    one set of cards. Under this one the cards have to differ, which means judges have to have
+    been asked again.
     """
-    log = REPO_ROOT / "out" / date / "panel_rounds.jsonl"
+    log = Path(out_root or (REPO_ROOT / "out")) / date / "panel_rounds.jsonl"
     log.parent.mkdir(parents=True, exist_ok=True)
+    seen, rounds = set(), 0
+    if log.exists():
+        for ln in log.read_text(encoding="utf-8").splitlines():
+            if not ln.strip():
+                continue
+            try:
+                rec = json.loads(ln)
+            except ValueError:
+                continue
+            # A LINE FROM BEFORE THIS FIX carries no cards. It counted as a round when it was
+            # written and it still does, because rewriting history to fit a new rule would make
+            # the number mean two things inside one file.
+            if rec.get("counted", True):
+                rounds += 1
+            seen.update(rec.get("cards") or [])
+    digests = card_digests(judges)
+    repeats = [d for d in digests if d in seen]
+    counted = not repeats
+    if counted:
+        rounds += 1
     with log.open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps({"date": date}) + "\n")
-    return sum(1 for ln in log.read_text(encoding="utf-8").splitlines() if ln.strip())
+        fh.write(json.dumps({"date": date, "cards": digests, "counted": counted,
+                             "repeat_cards": repeats}) + "\n")
+    return rounds, repeats
 
 
 def run(date: str, paths: list, out: str | None) -> int:
@@ -314,7 +364,17 @@ def run(date: str, paths: list, out: str | None) -> int:
         judges.append(json.loads(f.read_text(encoding="utf-8")))
     verdict, probs = combine(judges)
     if verdict:
-        verdict["rounds"] = count_round(date)
+        rounds, repeats = count_round(date, judges)
+        verdict["rounds"] = rounds
+        if repeats:
+            # SAID OUT LOUD, in the file and on the terminal. A re-combination that passed
+            # silently is how the count drifted in the first place, and a run that does not know
+            # it re-combined will write the number it was given into the record.
+            verdict["rounds_note"] = (
+                f"{len(repeats)} of {len(judges)} judge card(s) in this invocation had already "
+                f"been scored, so this was a re-combination rather than a scoring round and the "
+                f"round count did not advance. Re-run the judges to score again")
+            print(f"  note  {verdict['rounds_note']}", file=sys.stderr)
     for p in probs:
         print(f"  note  {p}", file=sys.stderr)
     if not verdict:
@@ -547,6 +607,65 @@ def self_test() -> int:
        "stops the deck" in str(_ref.get("written", "")), str(_ref.get("written"))[:90])
     ok("...and states what a fault refusal is, which is the judges' real veto",
        "hard_fails" in str(_ref.get("fault", "")), str(_ref.get("fault"))[:90])
+
+    # ---- THE ROUND COUNTER, REPLAYED ON CAROUSEL 22 (2026-09-13) -----------------------
+    #
+    # Five scoring rounds, then one re-combination against a STALE integrity card while round
+    # 4's bookkeeping was corrected. The old counter read the length of the file and said 6.
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        root = Path(d)
+        DATE = "2026-09-13"
+
+        def card(lens, rnd, score):
+            return {"lens": lens, "round": rnd, "weighted_score": score, "hard_fails": [],
+                    "ship": False, "one_sentence_fix": f"{lens} {rnd}"}
+
+        panels = [[card(l, r, s) for l in ("integrity", "craft", "reader")]
+                  for r, s in enumerate([6.26, 6.46, 6.578, 6.638, 6.784], 1)]
+        counts = [count_round(DATE, p, root)[0] for p in panels[:4]]
+        ok("four panels of three fresh cards count as four rounds", counts == [1, 2, 3, 4],
+           str(counts))
+
+        # THE RE-COMBINATION ITSELF. Round 4's own integrity card, carried into an invocation
+        # made while that round's bookkeeping was being corrected, beside two cards that had not
+        # been scored before. One stale card is enough, and this is the line the whole change is
+        # for: the deck was not judged again, so the round did not advance.
+        stale = [panels[3][0]] + [card(l, 4, 6.7) for l in ("craft", "reader")]
+        n, repeats = count_round(DATE, stale, root)
+        ok("...and an invocation reusing round 4's integrity card does NOT advance the count",
+           n == 4, f"counted {n}, and the counter this replaces read 5 here")
+        ok("...and it names the one card it had already scored", len(repeats) == 1, str(repeats))
+        ok("...and the real round 5 that followed still counts",
+           count_round(DATE, panels[4], root)[0] == 5)
+
+        # AND IT IS NOT A CAP THAT CANNOT BE REACHED. A genuine sixth panel still counts.
+        sixth = [card(l, 6, 6.9) for l in ("integrity", "craft", "reader")]
+        ok("...while a genuine sixth panel of fresh cards DOES advance it",
+           count_round(DATE, sixth, root)[0] == 6)
+
+        # THE OLD RULE IS WHAT THIS IS MEASURED AGAINST. Seven invocations were made above and
+        # the file holds seven lines, which is the number the old counter would have returned.
+        lines = (root / DATE / "panel_rounds.jsonl").read_text(encoding="utf-8").splitlines()
+        ok("the log still records every invocation, counted or not",
+           len([ln for ln in lines if ln.strip()]) == 7, str(len(lines)))
+        ok("...so the old rule, the length of the file, would have said 7 where the truth is 6",
+           len([ln for ln in lines if ln.strip()]) != 6)
+
+        # RUNNING THE SAME CARDS AGAIN BUYS NOTHING, which is the anti-gaming assertion. Under
+        # the old rule this was the cheapest way to reach a cap that ships a deck under the bar.
+        before = count_round(DATE, sixth, root)[0]
+        after = count_round(DATE, sixth, root)[0]
+        ok("re-running one panel of cards over and over cannot climb toward the cap",
+           before == after == 6, f"{before} then {after}")
+
+        # A LINE FROM BEFORE THIS FIX still counts, so a log half written by each rule does not
+        # renumber itself under the new one.
+        with (root / DATE / "panel_rounds.jsonl").open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"date": DATE}) + "\n")
+        fresh = [card(l, 9, 7.1) for l in ("integrity", "craft", "reader")]
+        ok("an old-format line with no cards is still counted as the round it was",
+           count_round(DATE, fresh, root)[0] == 8, "the old line plus this one")
 
     print("\npanel self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0

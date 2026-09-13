@@ -1422,4 +1422,69 @@
   "cost_stated": "the print step costs 1 to 6 seconds a frame at 2x inside the 30 second cap; the gate's thresholds were set on one deck that fails them and one that passes, and are named in the backlog for re-measurement after three shipped decks",
   "what_was_not_done_and_why": "MAP and TYPE_AS_OBJECT have no example frame because the reference story had no place and no single phrase; the catalogue is forty four objects and the backlog names the next eleven; a light paper deck has not been rendered through the print because the brand caps light decks at one in eight and the first is weeks away. All in knowledge/carousel/UPGRADE_BACKLOG.md."
  }
+,
+
+ "2026-09-13 upgrade": {
+  "run": "carousel no. 22, what a model fitted to one population does when it meets another",
+  "actor": "upgrade",
+  "branch": "claude/daily-2026-09-13",
+  "upgrades": [
+   {
+    "what": "panel_ready.py reads a value arc declared frame by frame inside the dossiers, not only as a summary paragraph, and reports a partial plan and a plan stated twice as their own findings",
+    "why": "Carousel 22 planned a median for all nine frames and wrote each one into that frame's own art.value_structure as `Frame median L* planned at 22`, which is the key SLIDE_DOSSIER_SPEC.md asks for the value structure in. No paragraph anywhere named the value arc, so arc_spans found nothing, planned_arc returned [], unreadable_plan returned [] because it only looks INSIDE an arc span, and the gate printed `(this storyboard declares no value arc this gate can read)` and passed the deck to three judges. The plan was 22 46 34 30 26 18 72 26 28, deck median 28. The deck measured 13.5 28.8 11.6 11.1 18.8 11.1 41.1 11.1 14.1, deck median 13.5, four frames inside half a point of each other at the floor. A miss of 14.5 against a one Munsell step tolerance of 10. It was found by a one-off measure.py written AFTER the deck shipped at 6.784, which is exactly how carousel 15's collapse was found, which is the defect check_value_arc was built for. GATE_LESSONS 39: a gate that selects what to examine by a list of FORMS sleeps on the form nobody thought of, and the two span forms were both taken off real storyboards written before this one.",
+    "files": [
+     "scripts/carousel/panel_ready.py",
+     "knowledge/carousel/SLIDE_DOSSIER_SPEC.md"
+    ],
+    "verification": "panel_ready.py --self-test, 15 new assertions. The replay: carousel 22's own nine dossiers, built from the real strings including slide 5's `at 26` where the other eight write `planned at`, parse to [] under the old reader (span_arc), carry no arc span at all which is why the old third state was blind, parse to the nine planned values under the new one, and arc_verdict on the plan against the nine measured PNGs goes red naming the 14.5. Against the live run: `panel_ready.py --date 2026-09-13` exits 1 on the shipped deck, printing `the deck's median L* measures 13.5 against its own planned 28, a miss of 14.5`. Before this change the same command exited 0. False positives are held down by scoping the reader to `value_structure` and refusing a bare `median L* 44`, asserted against three real acceptance items off 2026-09-07, 2026-09-10 and 2026-09-13 that talk about a REGION's median. The whole corpus of 22 shipped storyboards is re-walked: every arc that parsed before still parses into one value per frame, none is reported as a partial plan, and none disagrees with itself.",
+    "revert": "this commit, scripts/carousel/panel_ready.py alone. span_arc is the old planned_arc unchanged, so reverting is deleting the dossier reader and the two new findings and pointing planned_arc back at span_arc.",
+    "how_i_would_know_this_was_wrong": "a run is stopped by a plan finding it cannot act on, or a deck whose arc was right is reported as missing it because the reader picked a number out of a sentence that was not the plan. The tell is the `planned [...]` line check_value_arc prints before the verdict: if that list is not the nine numbers a reader of the storyboard would name, the reader is wrong and not the deck. The fix then is to narrow the pattern, never to widen MUNSELL_STEP_L.",
+    "not_done_and_why": "the planned median stays PROSE rather than becoming a structured key like `median_L_planned: 22`. GATE_LESSONS 41 argues for the field and it is the better answer. It was not taken this run because the field has to be required to be worth anything, requiring it fails every storyboard written before today, and the honest version of that change is a deprecation with a date rather than a gate that goes red on arrival."
+   },
+   {
+    "what": "panel.py counts a scoring round as three judge cards it has not seen, instead of counting invocations of the combiner",
+    "why": "count_round appended one line per call and returned the length of the file, so every invocation was a round whatever it was called on. Carousel 22 ran five scoring rounds and the combiner was re-run once against a STALE integrity card while round 4's bookkeeping was being corrected. The counter read 6, the honest figure was 5, and the run had to write a prose correction into score.json beside the number. A counter left one high is what the next session inherits and believes, and one high is one round nearer a cap that lets a deck ship UNDER the bar: run_complete ships an under-bar deck once rounds reaches the rubric's max_rounds.",
+    "files": [
+     "scripts/carousel/panel.py"
+    ],
+    "verification": "panel.py --self-test, 9 new assertions in a temp dir. The replay: four panels of three fresh cards count 1 2 3 4, then an invocation carrying round 4's own integrity card beside two unseen ones does NOT advance the count and names the one card it had already scored, then the real round 5 counts 5. Seven invocations leave seven lines in the log, which is the number the old rule would have returned where the truth is 6. Re-running one panel of cards over and over holds at 6, which is the anti-gaming assertion: under the old rule that was the cheapest way to reach the cap. A pre-fix log line carrying no cards still counts as the round it was. Against the live run: count_round replayed on this run's REAL score-integrity-round4.json beside the round 5 craft and reader cards does not advance and names the repeated cards.",
+    "revert": "this commit, scripts/carousel/panel.py alone.",
+    "how_i_would_know_this_was_wrong": "a genuine round fails to count, which would mean the routine had started re-judging on fewer than three fresh cards, and a run would see `rounds` stuck while score.json's number moved. That is a change to the routine rather than to this module and the fix would be to count the lenses that ARE fresh. The opposite tell, a run reaching max_rounds faster than it judged, cannot happen under this rule and could under the old one.",
+    "strictly_tighter": "the cap is harder to reach than before, never easier. The old rule let five calls on one set of cards reach it. This one requires the cards to differ, which means the judges have to have been asked again."
+   }
+  ],
+  "gate_lessons_draft": {
+   "note": "knowledge/shared/GATE_LESSONS.md is `human` lane and the upgrade lane may not write it. Draft text for a maintainer, one entry per upgrade above.",
+   "entry_for_the_value_arc": "A gate that reads one form of a declaration sleeps on the second. check_value_arc knew two shapes for a planned value arc, a fenced F1 24 block and an inline comma list, and both were taken off real storyboards. Carousel 22 wrote its plan a third way, once per frame inside each dossier's own value_structure, which is the key the dossier spec asks for the value structure in. Nine declarations, and the gate printed `this storyboard declares no value arc this gate can read` and passed a deck whose median landed 14.5 L* below its own plan, with four of nine frames inside half a point of each other at the floor. The third-state detector added three days earlier for exactly this class could not see it either, because it only looks INSIDE a span that names the value arc and this file had no such span: a guard scoped to the thing it is guarding cannot see a miss that happens outside it. What to check instead: when a gate reads a declaration out of prose, ask where the writer would most naturally put it. The spec's own format block is the answer, and the form belongs written down in the spec so the writer and the checker are reading one sentence.",
+   "entry_for_the_round_counter": "A counter of invocations is not a counter of the thing. panel.py's round counter returned the length of its own log, so every call to the combiner was a round. Carousel 22 re-ran the combiner once against a stale judge card while correcting a round's bookkeeping, the counter read 6 where five panels had sat, and the run wrote a prose correction into score.json beside the number. The cap that number feeds ships a deck UNDER the bar, so one high is one round nearer shipping something nobody scored. What to check instead: count the evidence, not the calls. A round is three judge cards this counter has not seen, identified by a digest of their content rather than by a filename or an mtime, both of which the run chooses."
+  },
+  "proposals_out_of_lane": [
+   {
+    "what": "run house_style_check in Phase 7's instrument sweep, so the record's own prose is linted by the run that wrote it rather than at Phase 16",
+    "owner": "daily / human",
+    "file": "prompts/daily_routine.md",
+    "why": "12 sentences over the 30 word backstop, across three admitted items, two re-verify movement lines and one claim text, all found at Phase 16 and none of them on the deck. GATE_LESSONS 31: the record layer knows which item is wrong and the page layer only knows a file under docs/ is wrong."
+   },
+   {
+    "what": "stamp the deck's visual register into artwork.json at ship and teach dedupe_check to refuse a third consecutive deck in one register",
+    "owner": "daily",
+    "file": "ledger/carousel/artwork.json",
+    "why": "the INSTRUMENT register recurred for the third run in a row and dedupe_check structurally cannot see it: it compares topics, entities and artwork, and a register is none of those. dedupe_check.py is upgrade lane and could hold the rule; the field it would read is in a daily-owned ledger."
+   },
+   {
+    "what": "add ten `python3 scripts/carousel/<gate>.py --self-test` lines to the carousel job",
+    "owner": "human",
+    "file": ".github/workflows/guards.yml",
+    "why": "construction_check, gate_wiring, label_guard, ledger_check, locator_trace, numeral_trace, panel_ready, quantifier_check, sources_block and verbatim_check each carry a --self-test that is named nowhere in .github/workflows/. All ten are wired in anger by the routine and run on a real deck every day, so this is not GATE_LESSONS 14, it is the other half of it: nothing would ever find out that one of them had stopped being able to go red. It bit this run, because both value arc findings live in panel_ready --self-test, which CI has never executed. The matching gate_wiring check is deliberately NOT proposed, because it would go red the day an upgrade run adds a gate and only a human-lane file clears it."
+   },
+   {
+    "what": "paste the two GATE_LESSONS entries drafted above",
+    "owner": "human",
+    "file": "knowledge/shared/GATE_LESSONS.md",
+    "why": "both upgrades are gate changes and the standing instruction says a gate change belongs in that file. It is human lane, correctly, because a self-editing phase that could write the record of how this machine has lied to itself would be grading its own lesson."
+   }
+  ],
+  "two_of_four_were_dropped": "Four candidates were weighed and two shipped. The value arc and the round counter both came off this run with a measurement attached and both had a defect that replays. A gate for the recurring visual register needs a field in a ledger this lane does not own, so it is a proposal rather than a half-built gate reading a key nothing writes. A gate_wiring check refusing a carousel gate whose self-test CI never runs is in lane and was still dropped, because it goes red on the day an upgrade run adds a gate and the only file that clears it is one this lane cannot write. A gate a run is stopped by and cannot act on is the thing the ceiling of three exists to prevent, not an example of it.",
+  "lane": "upgrade, on claude/daily-2026-09-13, before the merge of PR 301. Nothing under .claude/ was written or needed."
+ }
 }

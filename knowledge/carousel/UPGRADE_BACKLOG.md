@@ -1719,3 +1719,90 @@ each with the reason it was left:
   blend by the ground's luminance and the screens are not inverted on light paper, so it should
   work, and it is untested. The brand caps light decks at one in eight, so the first one is
   weeks away and should be built the day before it is needed rather than on the day.
+
+---
+
+## 2026-09-13, carousel no. 22, three proposals the upgrade lane could not make itself
+
+Each of these is written down rather than shipped because `ownership.yaml` puts the file it
+needs outside the `upgrade` lane. Every one is a real finding off carousel 22, and every one has
+a named owner.
+
+### The record's own prose is not linted until Phase 16, owner `human` (`prompts/daily_routine.md`)
+
+`house_style_check` went red at Phase 16 on carousel 22, naming **12 sentences over the 30 word
+backstop** across the three items the run admitted, two of its re-verify movement lines and one
+claim text. Not one finding was on the deck. All 12 were this project's own writing rather than
+quoted source text, and every one was fixed in `ledger/docket.json` and `claims.json` rather
+than in `docs/`.
+
+Phase 7's instrument sweep runs ten checks and `house_style_check` is not among them, so the
+record's prose is judged at the END of a run, after the deck is built, at the point where the
+cheapest thing to do with a finding is to fix it quickly. GATE_LESSONS 31 says the same thing one
+level down: the record layer knows WHICH ITEM is wrong and the page layer only knows that a file
+under `docs/` is wrong.
+
+**The proposal is one line in Phase 7's sweep**, run immediately after the items are admitted,
+by exit code, so the run that WROTE the sentence is the run that splits it. The gate itself needs
+no change. This is an edit to the routine prompt, which the upgrade lane must never make.
+
+### A recurring visual register is invisible to `dedupe_check`, owner `daily` (`ledger/carousel/artwork.json`)
+
+**Third run in a row.** Carousel 22's run record names it: the deck returned to the INSTRUMENT
+register, `dedupe_check` compares topics, entities and artwork and a register is none of those,
+and nothing in the machine will raise it. A finding in three consecutive runs is a defect in the
+machine rather than in those runs.
+
+`dedupe_check.py` is `upgrade` lane and could hold the rule. What it cannot do is read a field
+that does not exist: the artwork ledger records palette, technique and archetype and carries no
+register. Adding one is a write to `ledger/carousel/artwork.json`, which is `daily`.
+
+**The proposal.** The run stamps the deck's register into `artwork.json` at ship, from the same
+list `ILLUSTRATION_SYSTEM.md` names, and `dedupe_check` then refuses a third consecutive deck in
+one register the way it already refuses a repeated topic. Both halves in one change, because a
+field nobody maintains is worse than the prose it replaced.
+
+### GATE_LESSONS has no entry for either upgrade this run made, owner `human`
+
+`knowledge/shared/GATE_LESSONS.md` is `human` lane, and the standing instruction to the retro
+phase is that an upgrade which adds or changes a gate belongs in that file too. Those two rules
+disagree, and the map wins. **Both of this run's upgrades are gate changes with no entry**, and
+the draft text for each is in `ledger/carousel/upgrades.json` under `2026-09-13 upgrade`, in the
+`gate_lessons_draft` field, ready for a maintainer to paste.
+
+This is not a complaint about the boundary, which is correct: a self-editing phase that could
+write the file recording how this machine has lied to itself would be grading its own lesson.
+It is a note that the handoff has to be somewhere, and this is where.
+
+### Ten carousel gates have a `--self-test` that CI never runs, owner `human` (`.github/workflows/guards.yml`)
+
+Measured 2026-09-13 against the shipped `guards.yml`. Every carousel script carrying a
+`--self-test` flag was checked for an invocation of that flag anywhere in the workflow:
+
+    construction_check  gate_wiring  label_guard     ledger_check    locator_trace
+    numeral_trace       panel_ready  quantifier_check sources_block  verbatim_check
+
+Ten of them are named nowhere in `.github/workflows/`. Not with a different flag, not at all.
+
+**What this does and does not mean.** All ten are wired in ANGER, which `gate_wiring.py` asserts
+and which is the thing that matters most: the routine runs them on a real deck every day.
+GATE_LESSONS 14 is the reason those two questions are kept apart, and it points the other way
+from this one. A self-test proves the checker can still go RED, and for these ten nothing but a
+person running the flag by hand would ever find out that it could not.
+
+It is not academic this run. **Both of carousel 22's value arc findings live in
+`panel_ready.py --self-test`**, which CI has never executed, so the fifteen assertions replaying
+this run's collapse are proved by a local run and by nothing else. `panel.py --self-test` is in
+the workflow and its nine new assertions are covered.
+
+**The proposal is ten lines in `guards.yml`**, each `python3 scripts/carousel/<gate>.py
+--self-test`, in the carousel job beside the ones already there. `.github/workflows/**` is
+`human` lane, deliberately, because a routine that can edit the workflow judging it has no
+workflow.
+
+**And the check that would keep it from happening again is NOT proposed here**, on purpose. The
+obvious move is to teach `gate_wiring.py`, which is `upgrade` lane, to refuse a carousel gate
+whose self-test CI does not run. That gate would go red the moment a future upgrade run adds a
+new gate, and the only file that clears it is one the upgrade lane cannot write, so the run
+would be stopped by its own check with no way to act. Write the ten lines first. The check is
+worth having the day after the debt is zero, and not before.
