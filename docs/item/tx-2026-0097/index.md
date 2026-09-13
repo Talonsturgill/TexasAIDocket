@@ -9,7 +9,7 @@ House Bill 3512 of the 89th Regular Session created artificial intelligence trai
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB3512
 
-- Last checked: 2026-09-12
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-08 · The AI training requirement for state and local government employees is still in its first annual cycle, with no published completion figures.
 - 2026-09-09 · The AI training requirement for state and local government employees is still in force and this is still its first annual cycle.
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

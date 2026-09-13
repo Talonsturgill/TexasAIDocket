@@ -1,0 +1,54 @@
+{
+  "date": "2026-09-13",
+  "measured_on": "the nine shipped PNGs resampled to 270 by 338, panel_ready.ARC_GRID",
+  "per_slide_median_L": [
+    13.5,
+    28.8,
+    11.6,
+    11.1,
+    18.8,
+    11.1,
+    41.1,
+    11.1,
+    14.1
+  ],
+  "deck_median_L": 13.5,
+  "darkest_frame": {
+    "slide": 4,
+    "L": 11.1
+  },
+  "brightest_frame": {
+    "slide": 7,
+    "L": 41.1
+  },
+  "light_cap_note": "LIGHT_L is 60.0 and this deck measures 13.5, so it does not add to the light count",
+  "local_measured_on": "the shipped PNGs at full resolution, 2160 by 2700",
+  "acceptance_contrasts": [
+    {
+      "what": "frame 7, the row at y 355 against the row at y 357",
+      "threshold_L": 40.0,
+      "above_L": 78.4,
+      "below_L": 59.3,
+      "measured_L": 19.1,
+      "meets_threshold": false,
+      "edge_L": 78.0,
+      "edge_css_px": 6,
+      "note": "the two rows the item names sit inside the step rather than either side of it. The edge they were written to test runs the full height of the field in the pixels named by edge_css_px, which at feed width is under three pixels"
+    },
+    {
+      "what": "frame 9, the brightest region in the frame against the facade beside it",
+      "threshold_L": 25.0,
+      "region_L": 96.3,
+      "beside_L": 11.6,
+      "measured_L": 84.8,
+      "meets_threshold": true,
+      "region_box_css": [
+        446,
+        762,
+        778,
+        862
+      ],
+      "note": "the region is found by luminance rather than by being handed the entrance's rectangle, so this measures the item's own claim that the entrance is the brightest thing in the frame"
+    }
+  ]
+}

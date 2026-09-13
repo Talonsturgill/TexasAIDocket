@@ -10,7 +10,7 @@ The National Telecommunications and Information Administration submitted its Int
 - Comment closes: 2026-11-09
 - Take part: https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt
 
-- Last checked: 2026-09-11
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -22,6 +22,7 @@ The National Telecommunications and Information Administration submitted its Int
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-11 · Admitted to the record. The agency is asking the public whether the household internet survey should start measuring artificial intelligence at all. Whether anyone can later count how many Texans use it is being decided in this window.
+- 2026-09-13 · The comment window on whether the household internet survey should measure artificial intelligence is still open on the close date the notice published.
 
 ## Evidence
 

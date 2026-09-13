@@ -399,17 +399,12 @@ def arc_unread_finding(stuck: list) -> str:
             f"SLIDE_DOSSIER_SPEC.md gives")
 
 
-def planned_arc(storyboard: str) -> list:
-    """The planned per frame median L*, or `[]` when the deck declares none.
+def span_arc(storyboard: str) -> list:
+    """The arc as a SUMMARY, written once in a span that names the value arc. The two old shapes.
 
-    A DECK THAT DECLARES NO ARC IS THE ORDINARY CASE, not a misread file. Nine of fifteen shipped
-    storyboards declare nothing this can read, so a gate that treated silence as a defect would be
-    red on most of what this project has published, and a row that is always red is ignored
-    exactly as fast as one that is always green.
-
-    A DECK THAT DECLARES ONE THIS CANNOT READ IS NOT THAT CASE, and telling the two apart is
-    `unreadable_plan`'s whole job. Returning `[]` for both is the defect this file met on
-    2026-09-10.
+    Kept separate from `planned_arc` so the dossier-by-dossier shape below can be cross checked
+    against it rather than merged into it. Two homes for one figure is the defect this file
+    already records about measurement grids, and it is a defect about plans too.
     """
     for span in arc_spans(storyboard):
         fenced = re.search(r"```[a-z]*\n(.*?)```", span, re.S)
@@ -420,6 +415,148 @@ def planned_arc(storyboard: str) -> list:
         inline = ARC_INLINE.search(span)
         if inline:
             return [float(x) for x in inline.group(1).split(",") if x.strip()]
+    return []
+
+
+# ------------------------------------------------------------- THE THIRD SHAPE (2026-09-13)
+#
+# THE DEFECT. Carousel no. 22 planned a median for every one of its nine frames and wrote each
+# one into that frame's OWN dossier, under `art.value_structure`, as `Frame median L* planned at
+# 22`. Nine declarations, one per frame, in the key `SLIDE_DOSSIER_SPEC.md` asks for the value
+# structure in. No summary paragraph anywhere named the value arc, so `arc_spans` found nothing,
+# `planned_arc` returned `[]`, `unreadable_plan` returned `[]` because it only looks inside an
+# arc span, and this gate printed `(this storyboard declares no value arc this gate can read)`
+# and passed the deck to three judges.
+#
+# The plan was 22, 46, 34, 30, 26, 18, 72, 26, 28, deck median 28. The deck measured 13.5, 28.8,
+# 11.6, 11.1, 18.8, 11.1, 41.1, 11.1, 14.1, deck median 13.5. A miss of 14.5, half again a
+# Munsell step, with four frames sitting inside half a point of each other at the floor. It was
+# found by the showrunner writing a one-off `measure.py` AFTER the deck had shipped at 6.784,
+# which is the same way carousel 15's collapse was found, which is what this check exists to
+# stop happening a second time. It happened a second time.
+#
+# This is GATE_LESSONS 39: a gate that selects what to examine by an allowlist of FORMS sleeps
+# on the form nobody thought of. The two span shapes were both taken off real storyboards, and
+# the third was written the day after they were.
+#
+# SCOPED TO `value_structure` AND NOT TO THE DOSSIER, which is the whole of why this can be
+# trusted. Acceptance items legitimately talk about medians, and they talk about the medians of
+# REGIONS: `the punch column's median L* is at least 10 below the rail face median`, `the frame's
+# median L* at 432px is 45 or higher`, `a contact shadow whose median L* differs from the floor
+# beside it by 4 or more`. Read those as a plan and the gate invents a number the plan does not
+# contain, which is GATE_LESSONS 27 and is the most convincing shape a false failure takes.
+# `value_structure` is where the plan states what the frame comes out at, so that is where this
+# looks and nowhere else.
+DOSSIER_BLOCK = re.compile(r"```ya?ml\s*\nslide:\s*(\d+)\b(.*?)```", re.S)
+VALUE_STRUCTURE = re.compile(r"^[ \t]*value_structure:(.*?)(?=^[ \t]{0,4}[A-Za-z_][\w]*:)",
+                             re.S | re.M)
+# The qualifier is required. `median L* 44` on its own is a sentence about a median and could be
+# any region's; `frame median L*` and `planned median L*` are the frame's own figure.
+FRAME_MEDIAN = re.compile(r"\b(?:planned\s+)?frame(?:'s)?\s+median\s+L\*|\bplanned\s+median\s+L\*",
+                          re.I)
+NUMBER = re.compile(r"-?\d+(?:\.\d+)?")
+UNIT_AFTER = re.compile(r"\s*(?:px|pt|%)", re.I)
+
+
+def _first_value(tail: str) -> float | None:
+    """The first bare number in the rest of that sentence, or None.
+
+    Stops at the sentence end so `Frame median L* planned at 18, the deck's floor. Lightest is
+    the plate at 74` cannot reach across into a second figure, and skips a number carrying a
+    unit so `at 432px is 45 or higher` cannot report the viewport as a lightness.
+    """
+    seg = tail[:60]
+    cut = re.search(r"\.(?:\s|$)", seg)
+    if cut:
+        seg = seg[:cut.start()]
+    for m in NUMBER.finditer(seg):
+        if UNIT_AFTER.match(seg[m.end():m.end() + 4]):
+            continue
+        return float(m.group(0))
+    return None
+
+
+def dossier_arc(storyboard: str) -> tuple[dict, int]:
+    """`({slide: planned median}, number of dossiers)`, read from each frame's own plan."""
+    blocks = [(int(n), b) for n, b in DOSSIER_BLOCK.findall(storyboard)]
+    found = {}
+    for n, blk in blocks:
+        vs = VALUE_STRUCTURE.search(blk)
+        if not vs:
+            continue
+        seg = vs.group(1)
+        m = FRAME_MEDIAN.search(seg)
+        if not m:
+            continue
+        v = _first_value(seg[m.end():])
+        if v is not None:
+            found[n] = v
+    return found, len(blocks)
+
+
+def partial_dossier_plan(storyboard: str) -> list:
+    """SOME frames declare a median and some do not, which is a plan for part of a deck.
+
+    Reported rather than compared, because an arc of seven against a render of nine reaches
+    `arc_verdict`'s length branch and is told it has a stale plan, which is the wrong diagnosis
+    and sends a run looking in the wrong file. 2026-09-11 is the real shape: six of its nine
+    dossiers write `Planned frame median L* 38` and three write `median L* 44` with no
+    qualifier, so a reader of that file would say the plan is complete and a parser cannot.
+    """
+    found, total = dossier_arc(storyboard)
+    if total < 3 or not found or len(found) == total:
+        return []
+    missing = [n for n in range(1, total + 1) if n not in found]
+    return [f"{len(found)} of {total} dossiers state a planned frame median L* in their own "
+            f"`value_structure` and frame(s) {', '.join(str(n) for n in missing)} do not, so the "
+            f"deck's register was compared against a plan for part of it or against nothing at "
+            f"all. Write `Frame median L* planned at <n>` into every dossier's value_structure, "
+            f"or none of them and a summary span instead. A qualifier is required: `median L* 44` "
+            f"reads as some region's median and `frame median L* 44` reads as the frame's"]
+
+
+def arc_disagreement(storyboard: str) -> list:
+    """A summary arc and a per dossier arc that do not agree. Two homes for one figure.
+
+    Silent unless BOTH are complete, because a partial dossier plan is `partial_dossier_plan`'s
+    finding and reporting it twice teaches a run to scroll past both.
+    """
+    span = span_arc(storyboard)
+    found, total = dossier_arc(storyboard)
+    if not span or total < 3 or len(found) != total or len(span) != total:
+        return []
+    per = [found[n] for n in sorted(found)]
+    if per == span:
+        return []
+    off = [f"F{n}" for n in range(1, total + 1) if per[n - 1] != span[n - 1]]
+    return [f"this storyboard states its value arc twice and the two disagree at "
+            f"{', '.join(off)}. The summary span says {[f'{v:g}' for v in span]} and the "
+            f"dossiers say {[f'{v:g}' for v in per]}. One of them is what the frames were drawn "
+            f"to and the other is what the run will report. Delete one"]
+
+
+def planned_arc(storyboard: str) -> list:
+    """The planned per frame median L*, or `[]` when the deck declares none.
+
+    A DECK THAT DECLARES NO ARC IS THE ORDINARY CASE, not a misread file. Nine of fifteen shipped
+    storyboards declare nothing this can read, so a gate that treated silence as a defect would be
+    red on most of what this project has published, and a row that is always red is ignored
+    exactly as fast as one that is always green.
+
+    A DECK THAT DECLARES ONE THIS CANNOT READ IS NOT THAT CASE, and telling the two apart is
+    `unreadable_plan`'s whole job. Returning `[]` for both is the defect this file met on
+    2026-09-10, and returning `[]` for a plan written nine times over in the dossiers is the same
+    defect it met again on 2026-09-13.
+
+    THE SUMMARY WINS WHERE BOTH EXIST, and `arc_disagreement` is what stops that being a quiet
+    choice between two different plans.
+    """
+    span = span_arc(storyboard)
+    if span:
+        return span
+    found, total = dossier_arc(storyboard)
+    if total >= 3 and len(found) == total:
+        return [found[n] for n in sorted(found)]
     return []
 
 
@@ -488,7 +625,13 @@ def check_value_arc(base: Path) -> list:
     if not sb.exists():
         return []
     text = sb.read_text(encoding="utf-8")
+    # THE TWO PLAN-SHAPE FINDINGS, BEFORE ANY MEASUREMENT. Both are about whether there is one
+    # plan to measure against at all, and neither needs a PNG, so a deck with no render still
+    # gets told its plan is in two pieces or in two places.
+    shape = partial_dossier_plan(text) + arc_disagreement(text)
     planned = planned_arc(text)
+    if shape:
+        return shape
     if not planned:
         # THE THIRD STATE, ADDED 2026-09-10, AND THE ROW USED TO PRINT `ok` FOR IT.
         #
@@ -744,6 +887,112 @@ def self_test() -> int:
              and unreadable_plan((p / "storyboard.md").read_text(encoding="utf-8"))]
     ok("no shipped storyboard is reported as declaring an arc nobody could read", not noisy,
        str(noisy))
+
+    # ---- THE FOURTH STATE, REPLAYED ON CAROUSEL 22 (2026-09-13) ------------------------
+    #
+    # Nine dossiers, each declaring its own frame's planned median in `art.value_structure`, and
+    # no summary paragraph naming the value arc anywhere in the file. The strings below are
+    # carousel 22's own, quoted off runs/carousel/2026-09-13/storyboard.md, including slide 5's
+    # `at` where the other eight write `planned at` and slide 3's castor acceptance item, which
+    # is the sentence a looser parser reads as a plan of 4.
+    PLAN_22 = [22, 46, 34, 30, 26, 18, 72, 26, 28]
+    TAIL_22 = ["planned at 22.", "planned at 46.", "planned at 34.", "planned at 30.", "at 26.",
+               "planned at 18, the deck's floor.", "planned at 72.", "planned at 26.",
+               "planned at 28."]
+    ACCEPT_22 = ("  - all four castors carry a contact shadow whose median L* differs from the "
+                 "floor beside it by 4 or more\n")
+    BOARD_22 = "".join(
+        f"```yaml\nslide: {i}\nlayout: DIAGRAM\nart:\n"
+        f"  technique: \"screenprint\"\n"
+        f"  value_structure: >\n"
+        f"    The print screens the ground and the plate is the lightest mass. Frame median "
+        f"L* {t}\n"
+        f"  motion: \"left to right\"\nacceptance:\n{ACCEPT_22 if i == 3 else ''}"
+        f"  - \"the hook is legible at 432px\"\n```\n\n"
+        for i, t in enumerate(TAIL_22, 1))
+    ok("carousel 22's plan, nine dossiers and no summary span, read as nothing by the OLD reader",
+       span_arc(BOARD_22) == [], str(span_arc(BOARD_22)))
+    # THE OLD THIRD STATE COULD NOT SEE IT EITHER, and this is the reason rather than a retelling
+    # of it: `unreadable_plan` looks only INSIDE a span that names the value arc, and this file
+    # has no such span, so there was nothing for it to look in. The gate printed `ok`.
+    ok("...and there is no span naming the value arc, which is why the third state was blind",
+       arc_spans(BOARD_22) == [], str(arc_spans(BOARD_22)))
+    ok("...and it is now read as nine planned values",
+       planned_arc(BOARD_22) == PLAN_22, str(planned_arc(BOARD_22)))
+    ok("...and slide 3's castor acceptance item did not become a plan of 4",
+       planned_arc(BOARD_22)[2] == 34, str(planned_arc(BOARD_22)))
+
+    # THE MISS ITSELF, off the nine PNGs this run measured. Deck median 13.5 against a plan of 28.
+    SHIPPED_22 = [13.5, 28.8, 11.6, 11.1, 18.8, 11.1, 41.1, 11.1, 14.1]
+    got = arc_verdict(PLAN_22, SHIPPED_22)
+    ok("carousel 22's collapse, 13.5 against a plan of 28, is CAUGHT", bool(got), str(got))
+    ok("...and the finding names the 14.5 the run found by hand after it shipped",
+       bool(got) and "14.5" in got[0], str(got))
+
+    # A PARTIAL PLAN IS ITS OWN FINDING and not a stale-plan diagnosis. 2026-09-11's real shape:
+    # six dossiers carry the qualifier and three write a bare `median L* 44`.
+    PARTIAL = BOARD_22.replace("Frame median L* at 26.", "Its median L* 26.")
+    ok("eight of nine dossiers declaring a median is reported as a PARTIAL plan",
+       bool(partial_dossier_plan(PARTIAL)), str(partial_dossier_plan(PARTIAL)))
+    ok("...and the finding names the frame that is missing",
+       bool(partial_dossier_plan(PARTIAL)) and "frame(s) 5" in partial_dossier_plan(PARTIAL)[0],
+       str(partial_dossier_plan(PARTIAL)))
+    ok("...and an eight-value plan is NOT silently compared against a nine frame render",
+       planned_arc(PARTIAL) == [], str(planned_arc(PARTIAL)))
+    ok("...and a complete plan raises no partial finding",
+       not partial_dossier_plan(BOARD_22), str(partial_dossier_plan(BOARD_22)))
+
+    # TWO HOMES FOR ONE FIGURE. A summary span and a dossier plan that disagree is a deck whose
+    # run record will report a different arc than the one the frames were drawn to.
+    BOTH_AGREE = ("## The value arc\n\nPlanned per frame 22, 46, 34, 30, 26, 18, 72, 26, 28.\n\n"
+                  + BOARD_22)
+    BOTH_DIFFER = BOTH_AGREE.replace("Planned per frame 22, 46", "Planned per frame 24, 46")
+    ok("a summary span agreeing with the dossiers raises nothing",
+       not arc_disagreement(BOTH_AGREE), str(arc_disagreement(BOTH_AGREE)))
+    ok("...and one that disagrees at F1 is CAUGHT and names F1",
+       bool(arc_disagreement(BOTH_DIFFER)) and "F1" in arc_disagreement(BOTH_DIFFER)[0],
+       str(arc_disagreement(BOTH_DIFFER)))
+    ok("...and the summary is what planned_arc returns where both exist",
+       planned_arc(BOTH_DIFFER)[0] == 24, str(planned_arc(BOTH_DIFFER)))
+
+    # THE FALSE POSITIVES THIS MUST NOT PRODUCE, taken off real acceptance items rather than
+    # imagined. All three talk about a median, none of them states the frame's planned one, and
+    # all three sit outside `value_structure` where this does not look.
+    for label, item in (
+            ("a region's median, 2026-09-07",
+             "  - \"the punch column's median L* is at least 10 below the rail face median\"\n"),
+            ("a floor written at a viewport, 2026-09-10",
+             "  - \"the frame's median L* at 432px is 45 or higher\"\n"),
+            ("a relative shadow, 2026-09-13",
+             "  - a contact shadow whose median L* differs from the floor by 4 or more\n")):
+        blk = ("```yaml\nslide: 1\nart:\n  value_structure: >\n    A dark ground.\n"
+               "  motion: \"none\"\nacceptance:\n" + item + "```\n")
+        found, _total = dossier_arc(blk * 3)
+        ok(f"{label} is not read as a planned frame median", not found, str(found))
+
+    # AGAINST EVERY SHIPPED STORYBOARD AGAIN, for the two new findings. A fixture written beside
+    # a detector agrees with it; twenty two real plans do not.
+    partials, clashes, dossier_read = [], [], []
+    for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*")):
+        sb = p / "storyboard.md"
+        if not sb.exists():
+            continue
+        txt = sb.read_text(encoding="utf-8")
+        if partial_dossier_plan(txt):
+            partials.append(p.name)
+        if arc_disagreement(txt):
+            clashes.append(p.name)
+        found, total = dossier_arc(txt)
+        if total >= 3 and len(found) == total:
+            dossier_read.append(p.name)
+    ok("no shipped storyboard whose arc already parses is reported as a partial plan",
+       not [n for n in partials if planned_arc(
+           (REPO_ROOT / "runs" / "carousel" / n / "storyboard.md").read_text(encoding="utf-8"))],
+       str(partials))
+    ok("no shipped storyboard states its arc twice and disagrees with itself", not clashes,
+       str(clashes))
+    ok("the dossier reader was calibrated against real storyboards rather than only fixtures",
+       len(dossier_read) >= 1, f"{len(dossier_read)} shipped storyboard(s): {dossier_read}")
 
     # EVERY CHECK MUST BE REACHABLE. A gate whose loader silently returns nothing reports clean
     # forever, which is the shape craft_floor shipped when it read a key qa.py never wrote.

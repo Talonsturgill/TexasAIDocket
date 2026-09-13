@@ -1,0 +1,179 @@
+<!doctype html>
+<!-- CAROUSEL 22, frame 1 of 9. Archetype FIGURE_SCALE.
+     An MRI scanner drawn from parts in metres, 2.20 m wide by 1.95 m tall with a 0.60 m bore,
+     its patient table running toward the camera. A child at 1.22 m stands at the table's foot and
+     an adult at 1.72 m behind. The machine runs off the top and the right. Stipple at cell 5.
+     No accent: nothing on this frame was counted by either paper. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --suite:#1B1E21; --ink:#EDE6D6; --dim:#B9B2A3; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--suite); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:168px; width:700px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:0.98; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek  { position:absolute; left:80px; top:1054px; width:900px; font-size:24px; line-height:1.36; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Children are not small adults.</h1>
+<p class="dek">The panel's own sentence says children go through continuous physiologic and anatomic changes, which is why a model fitted to adults is not the model a child needs.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "AJR expert panel review", kicker2: "September 9th, 2026",
+      counter: "01 / 09", src: "c2 c5   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 96, maxLines: 2 });
+    TX.reseed(20260901);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // ONE LIGHT: the scanner room's own ceiling wash, high and slightly left, so both figures
+    // throw a short contact onto the floor and nothing casts across the bore.
+    var cam = { w: W, h: H, eye: 1.15, horizon: 560, f: 700, fogZ: 1e9, light: { az: -28, el: 62 } };
+
+    // THE SCANNER, not in the catalogue, so it is drawn in metres from parts. A proposal for the
+    // catalogue goes in knowledge/carousel/UPGRADE_BACKLOG.md.
+    // A WIDE GANTRY WITH A BIG BORE AND A TABLE RUNNING OUT OF IT. The first cut was a
+    // 2.20 by 1.95 rounded square with a small ring on it and its table off the right edge, and
+    // it read as a front loading washing machine. Three things change that and all three have to
+    // survive to 432 px: the gantry is wider than it is tall, the bore is a third of its width
+    // with a lit lip and a dark throat, and the patient table leaves the bore toward the reader.
+    var scanner = TXSCENE.sprite([
+      { type: "rect", x: -1.25, y: 0.00, w: 2.50, h: 1.88, fill: "ink", r: 0.24 },
+      { type: "rect", x: -1.16, y: 0.05, w: 2.32, h: 0.11, fill: "paper", noShadow: true },
+      // the bore: a lit outer lip, a shadowed inner lip, and the throat itself
+      { type: "ellipse", cx: 0, cy: 1.02, rx: 0.70, ry: 0.70, fill: "paper", noShadow: true },
+      { type: "ellipse", cx: 0, cy: 1.02, rx: 0.60, ry: 0.60, fill: "ink", noShadow: true },
+      { type: "ellipse", cx: 0, cy: 1.02, rx: 0.53, ry: 0.53, fill: "accent", noShadow: true },
+      // the throat's far wall, offset up and left, which is what gives the bore a depth rather
+      // than a flat black disc
+      { type: "ellipse", cx: -0.09, cy: 1.11, rx: 0.34, ry: 0.34, fill: "ink", noShadow: true },
+      // the gantry's status strip, so the face above the bore is not a blank plate
+      { type: "rect", x: -0.46, y: 1.62, w: 0.92, h: 0.06, fill: "paper", noShadow: true }
+    ], { kind: "mri" });
+    var FLAT = {};
+    var child = TXFIG.figure({ pose: "stand", height: 1.22, child: true });
+    var adult = TXFIG.figure({ pose: "stand", height: 1.72 });
+
+    TXINK.print(cx, {
+      ground: "#1B1E21", ink: "#EDE6D6", fibre: 0.05, seed: 101,
+      screen: { mode: "stipple", cell: 5, perCell: 7, weight: 1.1, gamma: 1.04 },
+      edges: { threshold: 18, width: 1.3, alpha: 0.78, dx: -1.0, dy: 0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#0C0E11" }, cam));
+        a.fillStyle = "#0C0E11"; a.fillRect(0, 0, W, H);
+        S.ground({ near: 0.7, far: 60, fill: "#4C5359" });
+        S.gridZ({ dz: 1.0, from: 1.0, to: 22, ink: "rgba(0,0,0,0.24)", width: 1.0 });
+
+        // WIDER APART THAN THE FIRST CUT. Under a stipple at cell 5 a gantry at 116 L* and a floor at
+        // 68 come out as the same speckle, and every plane in the frame read as outline.
+        var mriInks = { ink: "#9CA3A8", paper: "#DDE2E4", accent: "#0A0C0E" };
+        // PALE figures against the dark wall and the mid floor. Figure and ground drawn from one
+        // tone is the failure the illustration system names by name, and it is what the first cut
+        // of this frame did.
+        var figInks = { ink: "#E2E6E7", paper: "#14171A", accent: "#E2E6E7" };
+
+        // BOTH FIGURES AT ONE DISTANCE, so their pixel heights are in the ratio of their real
+        // heights and nothing else. At 2.95 and 2.78 the nearer child gained 6 percent and the
+        // rendered ratio came out at 1.32 against the 1.35 the plan declares.
+        function contact(X, Z, r, alpha) {
+          var ppm = S.ppm(Z), gy = S.groundY(Z), px = S.project(X, 0, Z)[0];
+          a.save(); a.fillStyle = "rgba(0,0,0," + alpha + ")";
+          a.beginPath(); a.ellipse(px, gy, r * ppm, r * ppm * 0.28, 0, 0, Math.PI * 2); a.fill();
+          a.restore();
+        }
+        // NO CAST SHADOW SPRITE UNDER EITHER FIGURE. TXSCENE's cast came out as a pale outlined
+        // blob beside each pair of feet, so every figure read as standing ON a second shape. One
+        // solid contact ellipse under the feet is what seats a figure on a floor.
+        contact(-1.30, 2.95, 0.34, 0.52);
+        S.sprite(adult, { X: -1.30, Z: 2.95, inks: figInks, fade: false });
+        contact(-0.62, 2.95, 0.26, 0.52);
+        S.sprite(child, { X: -0.62, Z: 2.95, inks: figInks, fade: false });
+
+        // THE MACHINE, near and large, running off the right edge, so the two bodies beside it
+        // are read against something whose size the frame states.
+        S.shadow(scanner, { X: 1.30, Z: 2.55, ink: "#000", alpha: 0.46 });
+        S.sprite(scanner, { X: 1.30, Z: 2.55, inks: mriInks, fade: false });
+
+        // THE PATIENT TABLE, four world corners projected, so its recession is the camera's and
+        // not a guess. It leaves the bore at 0.78 m and runs off the bottom of the frame.
+        function quad(pts, fill) {
+          a.beginPath();
+          pts.forEach(function (p, i) { var q = S.project(p[0], p[1], p[2]); i ? a.lineTo(q[0], q[1]) : a.moveTo(q[0], q[1]); });
+          a.closePath(); a.fillStyle = fill; a.fill();
+        }
+        // its cast on the floor first, so the table is over the room rather than in it
+        quad([[1.07, 0.002, 2.55], [1.75, 0.002, 2.55], [1.85, 0.002, 1.74], [0.95, 0.002, 1.74]], "rgba(0,0,0,0.42)");
+        quad([[0.99, 0.92, 2.55], [1.61, 0.92, 2.55], [1.61, 0.92, 1.70], [0.99, 0.92, 1.70]], "#DDE2E4");
+        quad([[0.99, 0.81, 1.70], [1.61, 0.81, 1.70], [1.61, 0.92, 1.70], [0.99, 0.92, 1.70]], "#828A90");
+        // the pedestal under the table's near end, so it stands on the floor
+        quad([[1.19, 0.00, 1.74], [1.41, 0.00, 1.74], [1.41, 0.81, 1.74], [1.19, 0.81, 1.74]], "#5E666C");
+
+        // GEOMETRY FOR THE ONE UNSCREENED PLATE. Under a stipple at cell 5 every plane in this
+        // room comes out as speckle at a different density, which is texture and not light, so
+        // the table and the bore's lip are repainted flat in `over`. The frame then has one lit
+        // surface, which is what a reader needs to believe a room has a light in it.
+        function pts(list) {
+          return list.map(function (q) { return S.project(q[0], q[1], q[2]); });
+        }
+        FLAT = {
+          top:  pts([[0.99, 0.92, 2.55], [1.61, 0.92, 2.55], [1.61, 0.92, 1.70], [0.99, 0.92, 1.70]]),
+          edge: pts([[0.99, 0.81, 1.70], [1.61, 0.81, 1.70], [1.61, 0.92, 1.70], [0.99, 0.92, 1.70]]),
+          bore: (function () {
+            var ppm = S.ppm(2.55), gy = S.groundY(2.55), px = S.project(1.30, 0, 2.55)[0];
+            return { x: px, y: gy - 1.02 * ppm, ro: 0.70 * ppm, ri: 0.60 * ppm, rt: 0.53 * ppm,
+                     dx: -0.09 * ppm, dy: 0.09 * ppm, rf: 0.34 * ppm };
+          })(),
+          feet: [{ x: S.project(-1.30, 0, 2.95)[0], y: S.groundY(2.95), r: 0.34 * S.ppm(2.95) },
+                 { x: S.project(-0.62, 0, 2.95)[0], y: S.groundY(2.95), r: 0.26 * S.ppm(2.95) }]
+        };
+      },
+      over: function (c) {
+        var F = FLAT;
+        function poly(p, fill) {
+          c.beginPath();
+          p.forEach(function (q, i) { i ? c.lineTo(q[0], q[1]) : c.moveTo(q[0], q[1]); });
+          c.closePath(); c.fillStyle = fill; c.fill();
+        }
+        c.save();
+        // the two contacts, solid, so no figure floats
+        F.feet.forEach(function (f) {
+          c.fillStyle = "rgba(0,0,0,0.58)";
+          c.beginPath(); c.ellipse(f.x, f.y, f.r, f.r * 0.28, 0, 0, Math.PI * 2); c.fill();
+        });
+        // THE BORE, flat: a lit lip, a shadowed inner ring, a throat, and the throat's far wall
+        // offset up and left so it is a tunnel and not a black disc
+        c.fillStyle = "#E6EBEC"; c.beginPath(); c.arc(F.bore.x, F.bore.y, F.bore.ro, 0, Math.PI * 2); c.fill();
+        c.fillStyle = "#767D83"; c.beginPath(); c.arc(F.bore.x, F.bore.y, F.bore.ri, 0, Math.PI * 2); c.fill();
+        c.fillStyle = "#0A0C0E"; c.beginPath(); c.arc(F.bore.x, F.bore.y, F.bore.rt, 0, Math.PI * 2); c.fill();
+        c.fillStyle = "#2B3136"; c.beginPath();
+        c.arc(F.bore.x + F.bore.dx, F.bore.y - F.bore.dy, F.bore.rf, 0, Math.PI * 2); c.fill();
+        // THE PATIENT TABLE, the one lit plate, leaving the bore toward the reader
+        poly(F.top, "#EDF1F2");
+        poly(F.edge, "#868E94");
+        c.restore();
+        TXINK.reserve(c, { ground: "#1B1E21", bottom: 340, bottomSolid: 252 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

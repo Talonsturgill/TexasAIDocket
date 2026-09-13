@@ -1,0 +1,14 @@
+{
+  "quantifiers": [
+    {
+      "phrase": "neither record",
+      "about": "documents",
+      "from_items": [],
+      "set": [
+        "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml",
+        "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml"
+      ],
+      "why": "The set is the two PubMed records this run fetched on September 13th, which are the only documents for either paper that were opened. The frame says record rather than paper for exactly that reason, and claims.json absences[2] carries the same scope with the same two urls as its document_checked."
+    }
+  ]
+}

@@ -1547,6 +1547,76 @@
     "Two spans in one headline element means the copy record calls the larger span the hook. build_copy.py derives from the largest laid-out node, and this run shipped a first draft whose frame 6 hook was recorded as AND COSTLY."
    ],
    "panel": "written by the scoring phase"
+  },
+  {
+   "date": "2026-09-13",
+   "carousel_no": 23,
+   "written_from": "machine_qa.json, render_report.json, bespoke_check, layout_check --require and the gates' exit codes. The value block is MEASURED off the nine shipped PNGs by out/2026-09-13/measure.py on the 270 by 338 grid every prior run used, panel_ready.ARC_GRID, never planned and never asserted.",
+   "register": "A TEXAS HOSPITAL AT NIGHT, from the scanner room to the reading room to the drop off under a Gulf overcast. No key light anywhere in the deck except where an object makes its own: a scanner bore, a lit page, two diagnostic displays, a glazed lobby. The camera sits at standing eye height on the scene frames and leaves the ground entirely for the document, the grid and the map.",
+   "structural_laws": [
+    "THE ACCENT MARKS THE SECOND PAPER. Bluebonnet #4E5FA8 on frames 4, 5 and 6 and nowhere else, so the colour is a chapter mark a reader can follow. Frame 7 carries none, which is the deck's argument stated in colour rather than in a sentence. It came off frame 8 in the repair pass, where it had been two flat rules running away from the points they named.",
+    "EVERY LIT SURFACE CARRIES CONTENT. A display carries a study, a page carries type, a box carries a label card ruled once per retained feature, a lobby carries a desk and people. Frame 9's glazing shipped empty in round 4 and was the one place this law was broken.",
+    "THE TYPE SKELETON IS BROKEN ON TWO FRAMES, for the first time in this project. Frame 2's hook sits BELOW the document on a solid band so the frame reads page first and sentence second, and frame 7's hook is the deck's darkest ink on its lightest field, below the cut. Seven of nine still open kicker top left, headline upper third, dek under."
+   ],
+   "techniques": [
+    "MRI gantry drawn from parts in metres with a lit bore lip, a dark throat and its far wall offset, and a patient table painted flat over the stipple (1)",
+    "journal page at true page size turned one degree, bleeding left and right, lit at its head and falling into shade, over a line screen that carries the pad and not the sheet (2)",
+    "hospital bed built from its own parts over a halftone, a receding lit mattress top, a piping seam, four castors with two part contacts (3)",
+    "records box painted unscreened as three planes at three values on a hatched scene, with a taped seal and a label card ruled once per retained feature (4)",
+    "isotype of 267 units in one ink, the lower block's hue remapped INSIDE the print so the two cohorts differ in colour and in nothing else (5)",
+    "reading room lit only by its own displays, the accent laid on the study's own slice marks (6)",
+    "hard cut at y356 with the deck's only value inversion, and the hook set in dark ink on the lit field (7)",
+    "Albers county mesh cut to Texas's own aspect, graticule under the mesh, department names in a key band under the sheet on stems from their own points (8)",
+    "hospital block in three mirrored bays running off both edges, a lit lobby behind glazing and a lit stair core (9)"
+   ],
+   "palette": {
+    "tokens": {
+     "suite": "#1B1E21",
+     "limestone": "#EDE6D6",
+     "bluebonnet": "#4E5FA8",
+     "page": "#E3DED0",
+     "board": "#D2C9AE",
+     "field": "#9A958A",
+     "sheet": "#20262B"
+    },
+    "note": "The accent is the only hue in the deck. Everything else is the house night paper and limestone, which two round 5 judges charged as inherited rather than chosen for this story.",
+    "reserved_red_unspent": true,
+    "reserved_red_note": "#BF0A30 is unspent. Nothing here is pending: two journal papers with an electronic article date, no comment window, no hearing and no door a reader can still walk through. A reserved red would be a false urgency."
+   },
+   "value": {
+    "per_slide_median_L": [
+     13.5,
+     28.8,
+     11.6,
+     11.1,
+     18.8,
+     11.1,
+     41.1,
+     11.1,
+     14.1
+    ],
+    "deck_median_L": 13.5,
+    "darkest_frame": {
+     "slide": 4,
+     "L": 11.1
+    },
+    "brightest_frame": {
+     "slide": 7,
+     "L": 41.1
+    },
+    "light_cap_note": "LIGHT_L is 60.0 and this deck measures 13.5, so it does not add to the light count. The ledger's light cap was already over at 2 in 8 before this run and this deck does not add to it.",
+    "planned_vs_measured": "The storyboard planned a deck median in the forties and the deck measures 13.5. THAT IS THE RUN'S LARGEST UNREPAIRED CRAFT DEFECT and round 5's craft judge named it: frames 3, 4, 6 and 8 all land between 11.1 and 11.6, so the designed value arc collapsed into one dark band with a single inversion at frame 7 at 41.1. Three declared value structures are not what was drawn, frame 1's lit top face, frame 4's window band and frame 9's window openings.",
+    "measured_on": "the nine shipped PNGs resampled to 270 by 338, panel_ready.ARC_GRID"
+   },
+   "type_skeletons": [
+    "kicker top left, counter top right, claim id source line bottom left, site line read from brand.yaml, on all nine",
+    "Fraunces display fitted per headline by TX.fitText, Manrope body, JetBrains Mono for every figure and label",
+    "BROKEN ON TWO: frame 2's hook below the document, frame 7's hook in dark ink on the lit field"
+   ],
+   "machine_qa": {
+    "fails": 0,
+    "verdict": "WARN"
+   }
   }
  ]
 }

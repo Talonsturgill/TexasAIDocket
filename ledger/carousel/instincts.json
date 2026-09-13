@@ -56,7 +56,8 @@
         "2026-08-25",
         "2026-08-26",
         "2026-09-03",
-        "2026-09-04"
+        "2026-09-04",
+        "2026-09-13"
       ],
       "contradicted": []
     },
@@ -193,7 +194,9 @@
       "learned": "2026-09-09",
       "instinct": "A claim's own paraphrase can assert more than its quote, and every surface downstream inherits the excess with nothing able to see the gap.",
       "evidence": "2026-09-09, carousel 18. c13's text read 'Three named clinicians wrote the study' where its quote is a byline reading MD, BS, MD. A BS is not a clinician credential, so the caption said CLINICIANS on the widest-reach surface. Three judges found it. No gate compares a claim's text to its own quote.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-13"
+      ],
       "contradicted": []
     },
     {
@@ -523,7 +526,9 @@
       "learned": "2026-08-28",
       "instinct": "When a quote is cut short to dodge damage in a PDF text layer, check what the cut removed before shipping the shorter string, because the clause you drop is often the one a frame is about to draw.",
       "evidence": "c6 was trimmed at 'point of interconnection' to avoid a page-break header the extractor had injected mid-sentence. The clause that came off named the shared settlement meter, slide 2 drew the meter anyway, and two scoring judges called it a fact with no claim behind it.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-13"
+      ],
       "contradicted": []
     },
     {
@@ -640,7 +645,8 @@
       "confirmed": [
         "2026-08-25",
         "2026-08-26",
-        "2026-09-04"
+        "2026-09-04",
+        "2026-09-13"
       ],
       "contradicted": []
     },
@@ -683,7 +689,9 @@
       "learned": "2026-09-03",
       "instinct": "Before hand-editing a generated ledger, match the writer's own json.dumps arguments. A different indent reformats the file and buries the real change.",
       "evidence": "Deck no. 14. Two repair passes rewrote ledger/docket.json at indent 2 where docket_build writes indent 1, turning a twelve line correction into an 11,778 line diff that no reviewer could read. The change itself was right both times. Nothing in the suite caught it, because every gate reads the parsed record and the shape was never in question.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-13"
+      ],
       "contradicted": []
     },
     {
@@ -715,6 +723,30 @@
       "learned": "2026-09-11",
       "instinct": "Draw the subject before the type on every frame, at true scale, in one of ten rotated layouts, printed in paper and ink.",
       "evidence": "Upgrade session 2026-09-11. Carousel no. 21 given full frame rects fails layout_check on seven of nine frames on detail or silhouette; the example deck built image first passes all six measures and qa.py with no FAIL.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "measure-the-declared-value-arc-as-you-render",
+      "learned": "2026-09-13",
+      "instinct": "Measure every frame's median L star against the value its own dossier declared, in the same pass that renders it, because a declared value arc that nothing measures collapses into one band.",
+      "evidence": "Carousel 22 planned a sequence of 22, 46, 34, 30, 26, 18, 72, 26 and 28. It shipped measuring 11.1 to 41.1 with four frames within half a point of each other at the floor, and nothing found out until measure.py was written after the panel had already capped.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "rewrite-the-work-not-the-label",
+      "learned": "2026-09-13",
+      "instinct": "When a variety ledger refuses a label, rewrite the work rather than the label, because the label is the only handle the gate has on the thing it protects.",
+      "evidence": "ledger_check refused carousel 22's build because the caption's opening move was inside its own six run exclusion window. Relabelling the move would have passed the gate and shipped the repeat it exists to stop, so the caption was rewritten from scratch on an unspent move.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "the-records-own-prose-drifts-while-you-draw",
+      "learned": "2026-09-13",
+      "instinct": "Run house_style_check straight after admitting anything to the record, because the Phase 7 instrument sweep does not carry it and a run's attention is on the deck by the time Phase 16 finds it.",
+      "evidence": "Carousel 22 reached Phase 16 with 12 sentences over the 30 word backstop, every one of them in the record's own prose rather than in the deck, across three admitted items, two re-verify movement lines and one claim text.",
       "confirmed": [],
       "contradicted": []
     }

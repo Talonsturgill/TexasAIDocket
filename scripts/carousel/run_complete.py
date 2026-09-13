@@ -317,7 +317,11 @@ def self_test() -> int:
 
     bar = threshold()
     ok("the rubric's own threshold parses", isinstance(bar, float) and bar > 0, str(bar))
-    ok("...and it is the 6.8 this product is held to", bar == 6.8, str(bar))
+    # PINNED ON PURPOSE, so the bar cannot drift a tenth at a time with nobody able to name the
+    # run that moved it. That is the same failure `scoring_rubric.yaml` describes craft drifting
+    # under, and it is why changing this number costs a commit here as well as there. It moved
+    # from 6.8 to 6.7 on the owner's instruction, 2026-09-13.
+    ok("...and it is the 6.7 this product is held to", bar == 6.7, str(bar))
     cap = max_rounds()
     ok("...and the rubric declares the round cap beside it", cap == 5, str(cap))
 

@@ -1,0 +1,161 @@
+{
+  "date": "2026-09-13",
+  "slides": {
+    "S1": {
+      "n": 1,
+      "kicker": "AJR expert panel review",
+      "kicker2": "September 9th, 2026",
+      "headline": "Children are not small adults.",
+      "body": "The panel's own sentence says children go through continuous physiologic and anatomic changes, which is why a model fitted to adults is not the model a child needs.",
+      "claims": [
+        "c2",
+        "c5"
+      ],
+      "cite": "c2 c5   TEXAS AI DOCKET"
+    },
+    "S2": {
+      "n": 2,
+      "kicker": "The document",
+      "kicker2": "10.2214/AJR.26.35523",
+      "headline": "The panel named where the gap is.",
+      "body": "",
+      "labels": [
+        "AJR EXPERT PANEL REVIEW 10.2214/AJR.26.35523",
+        "PEDIATRIC ARTIFICIAL INTELLIGENCE IN RADIOLOGY"
+      ],
+      "document": {
+        "runhead": "AJR  EXPERT PANEL REVIEW   10.2214/AJR.26.35523",
+        "body": "Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.",
+        "foot": "PEDIATRIC ARTIFICIAL INTELLIGENCE IN RADIOLOGY",
+        "underlined": [
+          "development",
+          "validation",
+          "regulation",
+          "implementation"
+        ]
+      },
+      "claims": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "cite": "c1 c2 c3 c4   TEXAS AI DOCKET"
+    },
+    "S3": {
+      "n": 3,
+      "kicker": "The concern the panel names",
+      "kicker2": "Ethics and regulation",
+      "headline": "Off label, in the panel's own words.",
+      "body": "The review names the practice among its ethical and regulatory concerns for children, beside consent for secondary data use and the need for postdeployment surveillance.",
+      "claims": [
+        "c7"
+      ],
+      "cite": "c7   TEXAS AI DOCKET",
+      "quote": "\"off-label use of adult-trained AI models\""
+    },
+    "S4": {
+      "n": 4,
+      "kicker": "A brain metastasis survival model",
+      "kicker2": "Texas departments among its authors",
+      "headline": "They sealed the model before they tested it.",
+      "body": "The second paper fitted its model on one brain metastasis cohort, kept 7 features, and then ran the fixed model on 69 patients it had never met.",
+      "labels": [
+        "198 FITTED",
+        "7 FEATURES KEPT",
+        "SEALED",
+        "69 MET"
+      ],
+      "claims": [
+        "c16",
+        "c17",
+        "c20",
+        "c22",
+        "c26"
+      ],
+      "cite": "c16 c17 c20 c22 c26   TEXAS AI DOCKET",
+      "quote": "\"without refitting or recalibration\""
+    },
+    "S5": {
+      "n": 5,
+      "kicker": "The brain metastasis cohorts",
+      "kicker2": "One unit is one patient",
+      "headline": "Fitted to 198. Tested on 69.",
+      "body": "The model was built on a public cohort. It then ran on an independent cohort without refitting.",
+      "labels": [
+        "198 THE COHORT IT WAS BUILT ON",
+        "69 THE COHORT IT HAD NOT MET"
+      ],
+      "claims": [
+        "c16",
+        "c20"
+      ],
+      "cite": "c16 c20   TEXAS AI DOCKET"
+    },
+    "S6": {
+      "n": 6,
+      "kicker": "What the second paper concluded",
+      "kicker2": "The authors' own words",
+      "headline": "It did worse on the patients it had never seen.",
+      "body": "It scored 0.615 on the brain metastasis cohort it was built on and 0.574 on the cohort it had not met. The paper's own intervals are 0.543 to 0.687 and 0.491 to 0.658, and its authors ask for cautious use.",
+      "claims": [
+        "c16",
+        "c22",
+        "c24",
+        "c25"
+      ],
+      "cite": "c16 c22 c24 c25   TEXAS AI DOCKET",
+      "quote": "\"limited standalone discrimination\""
+    },
+    "S7": {
+      "n": 7,
+      "kicker": "The set nobody counted",
+      "kicker2": "What the record does not hold",
+      "headline": "Neither record puts a figure on this.",
+      "body": "The review's record names insufficient external validation and carries no measurement of how far outside the training data a child sits.",
+      "claims": [
+        "c4",
+        "c6"
+      ],
+      "cite": "c4 c6   TEXAS AI DOCKET"
+    },
+    "S8": {
+      "n": 8,
+      "kicker": "Where the panel sits",
+      "kicker2": "Albers equal area conic",
+      "headline": "Two of the panel's departments are Texan.",
+      "body": "The two here are at Baylor College of Medicine with Texas Children's Hospital in Houston, and at UT Southwestern Medical Center in Dallas. The three leaving the sheet are the children's hospitals of Boston, Cincinnati and Philadelphia.",
+      "labels": [
+        "BOSTON",
+        "CINCINNATI",
+        "PHILADELPHIA",
+        "BAYLOR COLLEGE OF MEDICINE",
+        "AND TEXAS CHILDREN'S HOSPITAL",
+        "UT SOUTHWESTERN",
+        "MEDICAL CENTER",
+        "100 MILES"
+      ],
+      "claims": [
+        "c11",
+        "c12",
+        "c13",
+        "c14",
+        "c15"
+      ],
+      "cite": "c11 c12 c13 c14 c15   TEXAS AI DOCKET"
+    },
+    "S9": {
+      "n": 9,
+      "kicker": "What a Texan can do",
+      "kicker2": "Where the answer is published",
+      "headline": "Ask what it was validated on.",
+      "body": "A parent can ask at the desk what population each imaging tool was validated on. The Food and Drug Administration's device list carries the word pediatric in two device names and nowhere in its own text. The panel wants pediatric infrastructure, not adult tools reused.",
+      "claims": [
+        "c7",
+        "c10",
+        "c27"
+      ],
+      "cite": "c7 c10 c27   TEXAS AI DOCKET"
+    }
+  }
+}

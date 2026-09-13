@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-04 · Admitted. The directorate's own account of the operational assessment at the Progreso International Bridge stands as published on September 1st, 2026. It names the crossing, the division that ran the work, the office that asked for it and the three vendor solutions that were taken to the bridge. It states no accuracy figure and no deployment decision.
 - 2026-09-07 · The article stands as published on September 1st, 2026. The opt-out lane, the signs in English and Spanish, the after-dark testing and the named capture platforms are all still on the page. The account still reports how well the cameras performed without publishing a rate.
 - 2026-09-10 · The assessment's own published account is still up and still describes the pedestrian exit lane test at the international bridge. It still states that image capture of pedestrians walking through the border exit area exceeded expectations in both day and night conditions. It still states that United States citizens were given a lane out of the image collection if they did not want to take part.
+- 2026-09-13 · The assessment's own published account would not answer this run, so what it says about the pedestrian exit lane test is unconfirmed today. Nothing the record holds about it has been revised.
 
 ## Evidence
 

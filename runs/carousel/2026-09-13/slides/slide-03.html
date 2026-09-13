@@ -1,0 +1,213 @@
+<!doctype html>
+<!-- CAROUSEL 22, frame 3 of 9. Archetype CLOSE_CROP.
+     A made hospital bed at 2.2 by 1.3 m cropped by the left, right and bottom edges at mattress
+     height, with a child at 1.14 m seated on the near end, feet clear of the floor, and about
+     1.5 m of made mattress flat and empty beside them. Halftone at cell 9. Two part contacts at
+     all four castors. No gown, no drip stand, no monitor, no raised rail. No accent. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --suite:#1B1E21; --ink:#EDE6D6; --dim:#B9B2A3; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--suite); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:152px; width:820px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:84px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .quote { position:absolute; left:80px; top:1002px; font-family:"JetBrains Mono", monospace; font-size:27px; letter-spacing:0.03em; color:var(--ink); background:#12151A; padding:10px 16px; }
+  .dek  { position:absolute; left:80px; top:1096px; width:900px; font-size:25px; line-height:1.36; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Off label, in the panel's own words.</h1>
+<div class="quote" id="quote">"off-label use of adult-trained AI models"</div>
+<p class="dek">The review names the practice among its ethical and regulatory concerns for children, beside consent for secondary data use and the need for postdeployment surveillance.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The concern the panel names", kicker2: "Ethics and regulation",
+      counter: "03 / 09", src: "c7   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 66, max: 84, maxLines: 2 });
+    TX.reseed(20260903);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // Camera at 0.95 m, mattress height, with the horizon off the frame entirely so the reader
+    // is inside the bay rather than looking at it.
+    var cam = { w: W, h: H, eye: 1.15, horizon: 560, f: 700, fogZ: 1e9, light: { az: 34, el: 58 } };
+
+    var BED = {}, KID = {}, stampFig = null;
+    var bed = TXOBJ.sprite("hospital_bed");
+    var kid = TXFIG.figure({ pose: "sit", height: 1.14, seat: 0.45, child: true });
+    // the bed sits at Z 1.85 so its 2.2 m runs off both side edges at this focal length
+
+    TXINK.print(cx, {
+      ground: "#1B1E21", ink: "#EDE6D6", fibre: 0.05, seed: 303,
+      screen: { mode: "halftone", cell: 9, angle: 18, gamma: 1.10, floor: 0.05 },
+      edges: { threshold: 20, width: 1.4, alpha: 0.80, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#191D21" }, cam));
+        // the bay wall, the darkest zone, carrying the type
+        a.fillStyle = "#0E1114"; a.fillRect(0, 0, W, cam.horizon + 1);
+        S.ground({ near: 0.5, far: 34, fill: "#5E6368" });
+        S.gridZ({ dz: 0.8, from: 0.8, to: 20, ink: "rgba(0,0,0,0.24)", width: 1.0 });
+
+        var bedInks = { ink: "#7E858A", paper: "#E6EAEC", accent: "#7E858A" };
+        var kidInks = { ink: "#15181A", paper: "#0A0C0D", accent: "#15181A" };
+
+        // THE CATALOGUE BED IS NOT DRAWN. Under a halftone at cell 9 it came out at one density
+        // from mattress to floor, which is the whole reason three judges read this frame as a
+        // person at a counter. The bed is built from its own parts in `over` instead, and leaving
+        // the sprite underneath would only put a second bed behind the real one.
+        var BZ = 2.00, ppm = S.ppm(BZ), gy = S.groundY(BZ);
+
+        // THE BED'S OWN PARTS, captured here in screen coordinates and PAINTED FLAT in `over`.
+        // Three judges read this frame as a person seated at a long white counter, and they were
+        // right: the catalogue bed under a halftone at cell 9 is one density from mattress to
+        // floor, so there was no pillow, no mattress seam, no rail and no castor to see. A
+        // CLOSE_CROP whose subject is an object has to draw the object's own parts.
+        // A BED IS 1.3 m DEEP AND THE CAMERA IS ABOVE THE MATTRESS, so the mattress has a TOP
+        // SURFACE that recedes. The first cut of this projected every part at one Z, which turned
+        // the top into a 6 px sliver and left the frame reading as a stack of horizontal bands.
+        // NEAR at 1.20 m and FAR at 2.50 m, a 1.3 m mattress, with the child's plane at 1.70.
+        // At a symmetric BZ +/- 0.65 the near edge sat 0.70 m from the lens and the top surface
+        // projected as a white floor filling half the frame.
+        BED = { p: function (X, y, Z) { return S.project(X, y, Z); },
+                BZ: BZ, NEAR: 1.46, FAR: 2.76, BASE: 1.82, ppm: ppm, gy: gy };
+
+        // THE CHILD, SEATED ON THE MATTRESS WITH THEIR FEET CLEAR OF THE FLOOR. The scene bench
+        // seats a sprite on the GROUND, so the seated figure is stamped by hand with its hips at
+        // the mattress top. Drawn on the bench it stood on the floor and read as a child standing
+        // in front of a bed, which is a different and much weaker picture.
+        var MATT = 0.73, SEAT = 0.45;
+        var kx = S.project(-0.62, 0, BZ)[0];
+        var ky = gy - MATT * ppm + SEAT * ppm;        // the sprite's own base, one seat below the hips
+        KID = { x: kx, y: ky, ppm: ppm };
+        stampFig = function (a2, sp, px, py, sc, inks) {
+          a2.save();
+          sp.parts.forEach(function (q) {
+            var fill = q.fill === "paper" ? inks.paper : (q.fill === "accent" ? inks.accent : inks.ink);
+            a2.fillStyle = fill; a2.strokeStyle = fill; a2.beginPath();
+            if (q.type === "rect") a2.rect(px + q.x * sc, py - (q.y + q.h) * sc, q.w * sc, q.h * sc);
+            else if (q.type === "poly") q.pts.forEach(function (v, i) { i ? a2.lineTo(px + v[0] * sc, py - v[1] * sc) : a2.moveTo(px + v[0] * sc, py - v[1] * sc); });
+            else if (q.type === "ellipse") a2.ellipse(px + q.cx * sc, py - q.cy * sc, q.rx * sc, q.ry * sc, 0, 0, Math.PI * 2);
+            else if (q.type === "line") { a2.lineWidth = Math.max(1, (q.width || 0.1) * sc); a2.lineCap = "round";
+                                          q.pts.forEach(function (v, i) { i ? a2.lineTo(px + v[0] * sc, py - v[1] * sc) : a2.moveTo(px + v[0] * sc, py - v[1] * sc); });
+                                          a2.stroke(); return; }
+            a2.closePath(); a2.fill();
+          });
+          a2.restore();
+        };
+
+
+      },
+      over: function (c) {
+        // THE BED, PAINTED FLAT AND UNSCREENED. Everything below is the object's own parts, in
+        // metres, projected by the same camera the print used. They are laid over the halftone
+        // rather than through it because a halftone at cell 9 puts the mattress, the base and the
+        // floor at one density, and a bed a reader cannot tell from a counter is not the argument
+        // this frame was built to make.
+        var p = BED.p, NEAR = BED.NEAR, FAR = BED.FAR, ppm = BED.ppm, MATT = 0.73;
+        function plate(pts, fill) {
+          c.beginPath();
+          pts.forEach(function (P, i) { i ? c.lineTo(P[0], P[1]) : c.moveTo(P[0], P[1]); });
+          c.closePath(); c.fillStyle = fill; c.fill();
+        }
+        c.save();
+
+        // 1. THE MATTRESS. A lit top surface receding 1.3 m, a front face a step down from it,
+        //    and a piping seam between them, which is the line that says mattress and not shelf.
+        plate([p(-2.2, MATT, FAR), p(2.2, MATT, FAR), p(2.2, MATT, NEAR), p(-2.2, MATT, NEAR)], "#EFF1EC");
+        plate([p(-2.2, MATT, NEAR), p(2.2, MATT, NEAR),
+               p(2.2, MATT - 0.17, NEAR), p(-2.2, MATT - 0.17, NEAR)], "#C9CDC5");
+        plate([p(-2.2, MATT - 0.050, NEAR), p(2.2, MATT - 0.050, NEAR),
+               p(2.2, MATT - 0.082, NEAR), p(-2.2, MATT - 0.082, NEAR)], "#8A8F87");
+        // the mattress's cast on the base it overhangs
+        plate([p(-1.30, MATT - 0.17, BED.BASE), p(1.30, MATT - 0.17, BED.BASE),
+               p(1.30, MATT - 0.27, BED.BASE), p(-1.30, MATT - 0.27, BED.BASE)], "rgba(10,12,10,0.56)");
+
+        // 2. THE BASE, a closed pedestal set back under the mattress, darker than anything above
+        plate([p(-1.22, MATT - 0.19, BED.BASE), p(1.22, MATT - 0.19, BED.BASE),
+               p(1.22, 0.26, BED.BASE), p(-1.22, 0.26, BED.BASE)], "#565B56");
+        plate([p(-1.22, 0.33, BED.BASE), p(1.22, 0.33, BED.BASE),
+               p(1.22, 0.29, BED.BASE), p(-1.22, 0.29, BED.BASE)], "#787D77");
+
+        // 3. FOUR CASTORS, each with its own two part contact on the floor. The acceptance item
+        //    this frame wrote for itself asked for exactly this and the first cut drew none.
+        [[-1.05, BED.BASE], [1.05, BED.BASE], [-0.86, FAR - 0.16], [0.86, FAR - 0.16]]
+          .forEach(function (o) {
+            var X = o[0], Z = o[1], f = p(X, 0.0, Z), pm = ppm * (BED.BZ / Z);
+            c.fillStyle = "rgba(0,0,0,0.60)";
+            c.beginPath(); c.ellipse(f[0], f[1] + 1, pm * 0.085, pm * 0.026, 0, 0, Math.PI * 2); c.fill();
+            c.fillStyle = "rgba(0,0,0,0.26)";
+            c.beginPath(); c.ellipse(f[0], f[1] + 3, pm * 0.21, pm * 0.060, 0, 0, Math.PI * 2); c.fill();
+            plate([p(X - 0.024, 0.26, Z), p(X + 0.024, 0.26, Z),
+                   p(X + 0.024, 0.115, Z), p(X - 0.024, 0.115, Z)], "#464B47");
+            var w = p(X, 0.058, Z);
+            c.fillStyle = "#242825";
+            c.beginPath(); c.ellipse(w[0], w[1], pm * 0.058, pm * 0.058, 0, 0, Math.PI * 2); c.fill();
+            c.fillStyle = "#8E948C";
+            c.beginPath(); c.ellipse(w[0] - pm * 0.013, w[1] - pm * 0.015, pm * 0.019, pm * 0.019, 0, 0, Math.PI * 2); c.fill();
+          });
+
+        // 4. THE PILLOW at the head end, a box on the mattress with a crease, so it is a MADE bed
+        var PH = MATT + 0.135, PZN = 1.98, PZF = 2.60;
+        plate([p(-1.98, PH, PZF), p(-1.04, PH, PZF), p(-1.02, PH, PZN), p(-1.96, PH, PZN)], "#F5F6F2");
+        plate([p(-1.96, PH, PZN), p(-1.02, PH, PZN), p(-1.02, MATT, PZN), p(-1.96, MATT, PZN)], "#D2D6CD");
+        plate([p(-1.60, PH, PZF), p(-1.56, PH, PZF), p(-1.54, PH, PZN), p(-1.58, PH, PZN)], "#CDD1C8");
+        // and its cast along the sheet beside it
+        plate([p(-1.02, MATT, PZN), p(-0.86, MATT, PZN), p(-0.88, MATT, PZF), p(-1.04, MATT, PZF)], "rgba(10,12,10,0.26)");
+
+        // 5. THE TURNED SHEET, a folded edge laid across the empty half of the mattress
+        plate([p(0.24, MATT + 0.020, 2.60), p(1.90, MATT + 0.020, 2.60),
+               p(1.90, MATT + 0.020, 1.78), p(0.24, MATT + 0.020, 1.78)], "#DFE3DA");
+        plate([p(0.24, MATT + 0.020, 1.78), p(1.90, MATT + 0.020, 1.78),
+               p(1.90, MATT, 1.78), p(0.24, MATT, 1.78)], "#A9AEA5");
+
+        c.restore();
+
+        // 6. THE CHILD, re-stamped on top of the bed so the flat plates do not bury them.
+        stampFig(c, kid, KID.x, KID.y, KID.ppm, { ink: "#15181A", paper: "#0A0C0D", accent: "#15181A" });
+        // and their own contact on the mattress, so they sit ON it rather than float above it
+        c.save(); c.fillStyle = "rgba(10,12,10,0.44)";
+        var seat = p(-0.62, MATT, BED.BZ);
+        c.beginPath(); c.ellipse(seat[0], seat[1] - 2, ppm * 0.22, ppm * 0.034, 0, 0, Math.PI * 2); c.fill();
+        // THE CHILD'S OWN SHADOW ON THE FLOOR, under the feet and offset away from them. Their
+        // feet hang 0.28 m clear of the floor, which is true in the world and was invisible in
+        // the render, because a dangling foot and the floor line behind it project to nearly the
+        // same screen row. A shadow the feet do NOT touch is what draws the gap.
+        var fl = p(-0.62, 0.0, BED.BZ - 0.22);
+        c.fillStyle = "rgba(6,8,7,0.30)";
+        c.beginPath(); c.ellipse(fl[0] + ppm * 0.10, fl[1], ppm * 0.30, ppm * 0.072, 0, 0, Math.PI * 2); c.fill();
+        c.fillStyle = "rgba(6,8,7,0.52)";
+        c.beginPath(); c.ellipse(fl[0] + ppm * 0.10, fl[1], ppm * 0.15, ppm * 0.036, 0, 0, Math.PI * 2); c.fill();
+        c.restore();
+
+        // NO SIDE RAIL. One was drawn and then removed: at 0.08 m in front of the mattress it
+        // was nearly coplanar with it, only one of its three stiles landed inside the frame, and
+        // that single pale upright read as the leg of a counter, which is the exact misreading
+        // this whole frame was rebuilt to end. The lit region is broken instead by the pillow,
+        // the turned sheet, the child and the four castors.
+
+        TXINK.reserve(c, { ground: "#1B1E21", bottom: 300, bottomSolid: 232 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

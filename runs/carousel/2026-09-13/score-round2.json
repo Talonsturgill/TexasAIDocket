@@ -1,0 +1,99 @@
+{
+ "weighted_score": 6.46,
+ "judges": [
+  5.81,
+  7.02,
+  6.46
+ ],
+ "spread": 1.21,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.28,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.8,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    7.8,
+    6.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.18,
+   "judges": [
+    6.0,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    4.5,
+    7.0,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "claims.json c26 is an unverified fact presented as verified. c26's quote was cut three clauses early with no ellipsis and its text then enumerated two radiology departments where the uncut sentence names three, adding University of California San Diego, and slide 4 printed that partial byline as the paper's attribution for a paper with eight institutions.",
+  "slide 7, the deck's declared turn, asserts an absence about two documents the run never opened. Only the PubMed abstract records were fetched. absence_check passes it because it only tests whether a frame names where it looked."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "claims.json c26 is an unverified fact presented as verified. c26's quote was cut three clauses early with no ellipsis and its text then enumerated two radiology departments where the uncut sentence names three, adding University of California San Diego, and slide 4 printed that partial byline as the paper's attribution for a paper with eight institutions."
+  },
+  {
+   "judge": 1,
+   "fail": "slide 7, the deck's declared turn, asserts an absence about two documents the run never opened. Only the PubMed abstract records were fetched. absence_check passes it because it only tests whether a frame names where it looked."
+  }
+ ],
+ "ship": false,
+ "threshold": 6.8,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 3 refused on the threshold, not on a fault, and scored 6.46 against a 6.8 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 3,
+   "score": 6.46,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.46 against a 6.8 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 1.21, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ],
+ "rounds": 2
+}

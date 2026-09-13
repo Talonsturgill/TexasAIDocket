@@ -11,7 +11,7 @@ Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It
 - Public access: Public meeting
 - Take part: https://services.austintexas.gov/edims/document.cfm?id=479192
 
-- Last checked: 2026-09-11
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-08 · Admitted to the record. The executed resolution is posted in the city's document system. It carries the prohibition on an artificial intelligence camera or drone, the compliance requirement, and the date the City Manager owes the council committee a progress update.
 - 2026-09-11 · The executed resolution is unchanged. Its bar on any camera or drone system that depends upon artificial intelligence still stands in the adopted text. So does the progress update the City Manager owes the council committee.
+- 2026-09-13 · The executed resolution is unchanged. Its bar on any camera or drone system that depends upon artificial intelligence still stands in the adopted text, as does the progress update it requires.
 
 ## Evidence
 

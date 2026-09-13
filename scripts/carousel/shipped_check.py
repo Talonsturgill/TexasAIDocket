@@ -700,11 +700,36 @@ def g_completion(d: Path):
 
     GATE_LESSONS' recurring shape, from the other side: not a green banner measuring something
     narrower than it claimed, but a red one. The verdict was still wrong for the same reason.
+
+    AND THE BAR IS THE ONE THE DECK WAS SCORED AGAINST, not the one in the rubric today.
+
+    On 2026-09-13 the owner lowered the threshold from 6.8 to 6.7. Two decks that had been HELD
+    under the old bar, no. 14 at 6.762 and 2026-09-09 at 6.714, immediately went red here, because
+    this gate read today's rubric and found `ship: false` sitting beside a number that now clears
+    it. Neither deck changed. Neither run did anything wrong. A number this project chose to move
+    had reached back and reclassified history.
+
+    That is the same fault this file already refuses everywhere else, and the notes above say so in
+    as many words: a gate does not judge the work that produced it, and an older deck is not
+    answerable to a rule written after it. `score.json` records the `threshold` it was judged
+    against, so the honest question is whether each deck met ITS bar. That is also the STRICTER
+    reading. A deck held at 6.8 stays held at 6.8 forever, and lowering the bar cannot launder it
+    into a deck that shipped.
+
+    The live run is a different question and `run_complete --date` still answers it from the
+    rubric, because a deck being scored today is answerable to today's bar.
     """
     import run_complete as m
-    if not (d / "score.json").exists():
+    p = d / "score.json"
+    if not p.exists():
         return None
-    return list(m.check(d, m.threshold(), m.max_rounds()) or [])
+    try:
+        bar = json.loads(p.read_text(encoding="utf-8")).get("threshold")
+    except json.JSONDecodeError:
+        bar = None
+    if not isinstance(bar, (int, float)) or isinstance(bar, bool):
+        bar = m.threshold()          # a deck that recorded no bar answers to the current one
+    return list(m.check(d, float(bar), m.max_rounds()) or [])
 
 
 def g_verbatim(d: Path):
@@ -913,6 +938,33 @@ def self_test() -> int:
 
     ok("there are shipped runs to check at all", bool(shipped_runs()),
        "runs/carousel carries no run with a copy.json, so this gate is inert")
+
+    # A DECK ANSWERS TO THE BAR IT WAS SCORED AGAINST. Replays 2026-09-13, when the threshold
+    # moved 6.8 to 6.7 and two decks HELD under the old bar went red here without changing.
+    import json as _json
+    import tempfile as _tempfile
+    with _tempfile.TemporaryDirectory() as _t:
+        _d = Path(_t) / "2026-09-03"
+        _d.mkdir()
+        held = {"weighted_score": 6.762, "threshold": 6.8, "ship": False,
+                "hard_fails": [], "rounds": 5}
+        (_d / "score.json").write_text(_json.dumps(held), encoding="utf-8")
+        ok("a deck held at its own 6.8 bar stays held after the bar moves to 6.7",
+           not g_completion(_d),
+           f"reported {g_completion(_d)}, so lowering the rubric laundered a held deck")
+
+        # and the bar it records is not a way to escape a verdict either
+        (_d / "score.json").write_text(_json.dumps({**held, "weighted_score": 6.0, "rounds": 1}),
+                                       encoding="utf-8")
+        ok("a deck under its own bar and under the cap still fails", bool(g_completion(_d)),
+           "a recorded threshold must not excuse a deck that simply did not finish")
+
+        # a deck that records no threshold answers to the current rubric
+        (_d / "score.json").write_text(
+            _json.dumps({"weighted_score": 6.0, "ship": False, "hard_fails": [], "rounds": 1}),
+            encoding="utf-8")
+        ok("a deck recording no threshold falls back to the rubric", bool(g_completion(_d)),
+           "an absent threshold must not read as no bar at all")
 
     # EVERY GATE MUST BE REACHABLE. The failure this guards against is a registry entry whose
     # loader silently returns None on every run, which reports clean forever. Same shape as

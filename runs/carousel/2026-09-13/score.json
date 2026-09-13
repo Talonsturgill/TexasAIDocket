@@ -1,0 +1,90 @@
+{
+ "weighted_score": 6.784,
+ "judges": [
+  6.9,
+  6.65,
+  6.542
+ ],
+ "spread": 0.358,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.28,
+   "judges": [
+    7.0,
+    6.0,
+    6.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.0,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.18,
+   "judges": [
+    6.5,
+    7.0,
+    6.3
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.5,
+    6.2
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    5.5,
+    5.8
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 6.7,
+ "over_threshold": true,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.65 against a 6.7 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.542 against a 6.7 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.65,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.65 against a 6.7 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.542,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.542 against a 6.7 bar. That dissent is carried in the median"
+  }
+ ],
+ "rounds": 5,
+ "rounds_note": "five scoring rounds, fifteen judge reports. panel.py's own counter reads 7 and the honest figure is 5. Two of those are re-combinations of round 5's three cards rather than new panels, one while round 4's bookkeeping was corrected and one after the owner lowered the threshold to 6.7 on 2026-09-13. The content digest that would collapse them landed in the same run, so the six log lines written before it carry no digests and cannot be matched against.",
+ "threshold_note": "scored against a 6.8 bar during the run and re-combined against the 6.7 bar the owner set on 2026-09-13. The three judge cards are unchanged and so is the 6.784."
+}

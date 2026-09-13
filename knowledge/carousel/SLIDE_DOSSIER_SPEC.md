@@ -40,7 +40,9 @@ art:
   technique: "named, from knowledge/carousel/TECHNIQUE_LIBRARY.md"
   why_this_technique: "what it does for THIS claim that another would not"
   palette: "drawn from this story's own region, with the source named"
-  value_structure: "what is lightest, what is darkest, and what each is doing"
+  value_structure: >
+    what is lightest, what is darkest, and what each is doing. Ends with the frame's own
+    target, written exactly like this so panel_ready can read it: Frame median L* planned at 22.
   motion: "how the eye travels, if the frame has a path"
 
 type:
@@ -118,6 +120,40 @@ off, so what survives is a declaration a person writes and a machine checks.
 **Write the string exactly as the frame will print it**, casing included. The check normalises
 case, dashes and punctuation before comparing, so a hyphen against a space is never the reason a
 line goes red. Only a word can be.
+
+## THE PLANNED FRAME MEDIAN, and the one sentence a gate can read it out of
+
+**Every dossier's `art.value_structure` states what that frame comes out at, in the form
+`Frame median L* planned at 22`.** Nine of them, one per frame, and the nine are the deck's
+value arc. `scripts/carousel/panel_ready.py` reads them straight out of `value_structure` and
+measures the rendered PNGs against them BEFORE a judge is spawned.
+
+A deck may state the arc as a summary instead, in a paragraph naming the value arc, and several
+have. Where a deck writes both, the summary wins and `arc_disagreement` refuses a deck whose two
+statements of one figure disagree. **Write it one way.**
+
+**Three things the sentence has to carry, and each of them is a gate that has gone red.**
+
+- The qualifier. `frame median L*` or `planned median L*`. A bare `median L* 44` reads as some
+  REGION's median, and the gate will not guess: it treats that dossier as declaring nothing.
+  2026-09-11 wrote six of its nine with the qualifier and three without.
+- The number in the same sentence as the phrase. The reader stops at the sentence end, so
+  `Frame median L* planned at 18, the deck's floor.` is 18 and the next sentence is not read.
+- All nine or none. Eight of nine is a plan for part of a deck, and it is reported as that
+  rather than compared, because an eight value plan against a nine frame render otherwise comes
+  back as a stale plan, which sends a run looking in the wrong file.
+
+**Why it is written here rather than left to a paragraph.** Carousel 22 planned 22, 46, 34, 30,
+26, 18, 72, 26, 28 and shipped 13.5, 28.8, 11.6, 11.1, 18.8, 11.1, 41.1, 11.1, 14.1, four frames
+inside half a point of each other at the floor, and **the gate that exists to catch exactly that
+printed a pass.** It printed a pass because the plan was in the dossiers and the gate only knew
+how to read a summary. The collapse was found by a one-off script written after the deck had
+shipped at 6.784, which is how carousel 15's collapse was found too, which is what that gate was
+built to stop happening again.
+
+Acceptance items are free to talk about medians and should. The gate does not read them, because
+they talk about REGIONS, and an item like `the frame's median L* at 432px is 45 or higher` is a
+floor rather than a plan.
 
 ## THE FOCAL LAW
 

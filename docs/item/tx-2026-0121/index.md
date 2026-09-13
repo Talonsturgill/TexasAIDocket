@@ -11,7 +11,7 @@ The National Science Foundation established the NSF National Artificial Intellig
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial
 
-- Last checked: 2026-09-11
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-07 · The foundation's announcement of September 1st, 2026 stands as published. The operations center it established is still led by the San Diego Supercomputer Center in collaboration with the Texas Advanced Computing Center at The University of Texas at Austin.
 - 2026-09-08 · The foundation's announcement of September 1st, 2026 stands as published. The operations center it established is still led by the San Diego Supercomputer Center at UC San Diego. The Texas Advanced Computing Center at The University of Texas at Austin is still named as the collaborating institution. The announcement still states no dollar figure.
 - 2026-09-11 · The foundation's announcement still stands. The operations center is still led from San Diego with the Texas Advanced Computing Center at UT Austin named as the collaborating institution.
+- 2026-09-13 · The operations center is still led from San Diego with the Austin computing center named alongside it, and the foundation's account of what the pilot handed over is unchanged.
 
 ## Evidence
 

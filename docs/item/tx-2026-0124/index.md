@@ -11,7 +11,7 @@ Rice University published on September 1st, 2026 that the Advanced Research Proj
 - Public access: Write to the decider
 - Take part: https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets
 
-- Last checked: 2026-09-12
+- Last checked: 2026-09-13
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-08 · The Energy Department award to the Houston led team searching for new magnet materials still stands as made, and the coalition named in it is unchanged.
 - 2026-09-09 · The Houston led magnet search is still funded on the terms the Energy Department research arm announced.
 - 2026-09-12 · The Houston led magnet search is still funded on the terms the Energy Department research arm announced. The university page carrying the award description would not answer this run, so its wording is unconfirmed today.
+- 2026-09-13 · The magnet search is still funded on the terms the Energy Department research arm announced, and the university still names the same partner institutions.
 
 ## Evidence
 

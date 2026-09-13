@@ -1,0 +1,238 @@
+<!doctype html>
+<!-- CAROUSEL 22, frame 9 of 9. Archetype FULL_BLEED.
+     The drop off at a children's hospital under a Gulf overcast. The 60 m block at Z 55 runs off
+     both side edges and is broken by two live oaks so it is not a slab. A parent and a child walk
+     in at true scale, cropped by the bottom edge, so the reader is behind them. Stipple at cell 5,
+     the same plate frame 1 opens on, so the deck closes in the register it opened in. No accent:
+     nothing in this frame was counted by either paper. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --suite:#1B1E21; --ink:#EDE6D6; --dim:#B9B2A3; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--suite); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:160px; width:640px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:0.98; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek  { position:absolute; left:80px; top:1004px; width:900px; font-size:25px; line-height:1.38; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Ask what it was validated on.</h1>
+<p class="dek">A parent can ask at the desk what population each imaging tool was validated on. The Food and Drug Administration's device list carries the word pediatric in two device names and nowhere in its own text. The panel wants pediatric infrastructure, not adult tools reused.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "What a Texan can do", kicker2: "Where the answer is published",
+      counter: "09 / 09", src: "c7 c10 c27   TEXAS AI DOCKET", ink: "#B9B2A3" });
+    TX.fitText(document.getElementById("hook"), { min: 70, max: 96, maxLines: 3 });
+    TX.reseed(20260913);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // ONE LIGHT: a Gulf overcast, high and soft, so nothing throws a long shadow and the
+    // figures stay the darkest marks in the frame.
+    var cam = { w: W, h: H, eye: 1.60, horizon: 830, f: 700, fogZ: 1e9, light: { az: 150, el: 24 } };
+
+    var FLAT = {};
+    var block  = TXOBJ.sprite("hospital");
+    var oakA   = TXOBJ.sprite("live_oak", { seed: 4, spread: 15, height: 11 });
+    var oakB   = TXOBJ.sprite("live_oak", { seed: 11, spread: 13, height: 9.5 });
+    var parent = TXFIG.figure({ pose: "walk", height: 1.68 });
+    var kid    = TXFIG.figure({ pose: "walk", height: 1.14, child: true });
+
+    TXINK.print(cx, {
+      ground: "#1B1E21", ink: "#EDE6D6", fibre: 0.05, seed: 913,
+      screen: { mode: "stipple", cell: 5, perCell: 7, weight: 1.1, gamma: 1.06 },
+      edges: { threshold: 18, width: 1.3, alpha: 0.78, dx: -1.0, dy: 0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#16191C" }, cam));
+
+        // THE DUSK SKY, graded from its darkest at the top of the frame to a band of residual
+        // light along the horizon. The top of it is the type's reserve, dark by construction.
+        var sky = a.createLinearGradient(0, 0, 0, cam.horizon);
+        sky.addColorStop(0.00, "#0C0E11");
+        sky.addColorStop(0.58, "#161B20");
+        sky.addColorStop(1.00, "#232A31");
+        a.fillStyle = sky; a.fillRect(0, 0, W, cam.horizon + 1);
+
+        S.ground({ near: 0.7, far: 340, fill: "#3E4144" });
+        // the apron, lighter where the canopy's light falls on it and falling away from it
+        S.strip({ X: 0, w: 30, near: 0.7, far: 34, fill: "#6A665D" });
+        S.strip({ X: 0, w: 15, near: 1.2, far: 26, fill: "#8E8A7E" });
+        S.gridZ({ dz: 3, from: 1.6, to: 60, ink: "rgba(0,0,0,0.32)", width: 1.1 });
+
+        var facade = { ink: "#6E747A", paper: "#EDF1F2", accent: "#6E747A" };
+        var canopyInk = { ink: "#4A5055", paper: "#E8ECEE", accent: "#4A5055" };
+        var oakInk = { ink: "#232A24", paper: "#12160F", accent: "#232A24" };
+        var figInk = { ink: "#0F1110", paper: "#070807", accent: "#0F1110" };
+
+        // THE BLOCK, THREE BAYS, so the facade runs off BOTH side edges. One stamp was 33 m of
+        // building in the middle of a 1080 px frame with ground either side of it, which is a
+        // picture of a building rather than a frame the reader is standing in. The flanking bays
+        // are mirrored so the run is a terrace and not a tile repeated.
+        [[-31, true], [2, false], [35, true]].forEach(function (b) {
+          S.shadow(block, { X: b[0], Z: 42, ink: "#000", alpha: 0.45, mirror: b[1] });
+          S.sprite(block, { X: b[0], Z: 42, inks: facade, fade: false, mirror: b[1] });
+        });
+
+        // THE CANOPY, 12 m on two posts at 4.6 m, its soffit lit from beneath so the entrance is
+        // the brightest plate in the frame and the pair have something to walk toward.
+        var canopy = TXSCENE.sprite([
+          { type: "rect", x: -5.20, y: 4.35, w: 10.40, h: 0.30, fill: "ink" },
+          { type: "rect", x: -4.95, y: 0.00, w: 0.26,  h: 4.35, fill: "ink" },
+          { type: "rect", x:  4.69, y: 0.00, w: 0.26,  h: 4.35, fill: "ink" },
+          { type: "rect", x: -5.05, y: 4.08, w: 10.10, h: 0.27, fill: "paper", noShadow: true }
+        ], { kind: "canopy" });
+        S.shadow(canopy, { X: 2, Z: 17, ink: "#000", alpha: 0.40 });
+        S.sprite(canopy, { X: 2, Z: 17, inks: canopyInk, fade: false });
+
+        // THE LIT ENTRANCE, a glazed front under the canopy. It carries mullions rather than
+        // being a plain lit plate, which is this deck's own construction law.
+        var entrance = TXSCENE.sprite((function () {
+          var P = [{ type: "rect", x: -4.6, y: 0, w: 9.2, h: 3.5, fill: "paper" }];
+          for (var i = 1; i < 6; i++) P.push({ type: "rect", x: -4.6 + i * 1.53, y: 0, w: 0.12, h: 3.5, fill: "ink", noShadow: true });
+          P.push({ type: "rect", x: -4.6, y: 2.25, w: 9.2, h: 0.12, fill: "ink", noShadow: true });
+          return P;
+        })(), { kind: "entrance" });
+        S.sprite(entrance, { X: 2, Z: 19.5, inks: { ink: "#171B20", paper: "#F2F5F6", accent: "#171B20" }, fade: false });
+        // geometry for the two plates `over` repaints unscreened. Under a stipple at cell 5 the
+        // lit entrance came out at the same speckle density as the apron and the frame had no
+        // light source in it at all.
+        (function () {
+          var pe = S.ppm(19.5), ge = S.groundY(19.5), xe = S.project(2, 0, 19.5)[0];
+          var pc = S.ppm(17),   gc = S.groundY(17),   xc = S.project(2, 0, 17)[0];
+          FLAT = {
+            ent: { x: xe - 4.6 * pe, y: ge - 3.5 * pe, w: 9.2 * pe, h: 3.5 * pe, ppm: pe },
+            sof: { x: xc - 5.05 * pc, y: gc - 4.35 * pc, w: 10.10 * pc, h: 0.27 * pc },
+            pair: [{ x: S.project(-2.70, 0, 7.10)[0], y: S.groundY(7.10), r: 0.42 * S.ppm(7.10) },
+                   { x: S.project(-1.78, 0, 6.95)[0], y: S.groundY(6.95), r: 0.30 * S.ppm(6.95) }],
+            oaks: [{ x: S.project(-19, 0, 26)[0], y: S.groundY(26), r: 2.9 * S.ppm(26) },
+                   { x: S.project(20, 0, 33)[0],  y: S.groundY(33), r: 2.5 * S.ppm(33) }],
+            core: (function () {
+              var pm = S.ppm(42), gy42 = S.groundY(42), cx42 = S.project(2, 0, 42)[0];
+              return { x: cx42 + 9.4 * pm, y: gy42 - 18.2 * pm,
+                       w: 2.6 * pm, h: 13.4 * pm, floors: 5 };
+            })()
+          };
+        })();
+
+        // two live oaks in silhouette, breaking the facade's horizontal run
+        S.shadow(oakA, { X: -19, Z: 26, ink: "#000", alpha: 0.40 });
+        S.sprite(oakA, { X: -19, Z: 26, inks: oakInk, fade: false });
+        S.shadow(oakB, { X: 20, Z: 33, ink: "#000", alpha: 0.36 });
+        S.sprite(oakB, { X: 20, Z: 33, inks: oakInk, fade: false });
+
+        // the pair, nearest and largest, cropped by the bottom edge, walking toward the entrance
+        S.shadow(parent, { X: -2.70, Z: 7.10, ink: "#000", alpha: 0.55 });
+        S.sprite(parent,  { X: -2.70, Z: 7.10, inks: figInk, fade: false });
+        S.shadow(kid, { X: -1.78, Z: 6.95, ink: "#000", alpha: 0.55 });
+        S.sprite(kid,  { X: -1.78, Z: 6.95, inks: figInk, fade: false });
+
+        // the joined hands, a short bar between the two at the child's shoulder height
+        var pA = S.project(-2.70 + 0.30, 0.86, 7.10), pB = S.project(-1.78 - 0.24, 0.86, 6.95);
+        a.save(); a.strokeStyle = "#101211"; a.lineWidth = Math.max(4, (pB[0] - pA[0]) * 0.20);
+        a.lineCap = "round"; a.beginPath(); a.moveTo(pA[0], pA[1]); a.lineTo(pB[0], pB[1]);
+        a.stroke(); a.restore();
+      },
+      over: function (c) {
+        var F = FLAT;
+        c.save();
+        // THE TWO CONTACTS under the pair, solid, so neither figure floats on the apron
+        // DARKER THAN THE APRON THEY FALL ON. At 0.56 over a lit apron these came out LIGHTER
+        // than the ground, which is a shape under a figure and not a shadow.
+        F.pair.forEach(function (f) {
+          c.fillStyle = "rgba(0,0,0,0.30)";
+          c.beginPath(); c.ellipse(f.x, f.y + 2, f.r * 2.0, f.r * 0.46, 0, 0, Math.PI * 2); c.fill();
+          c.fillStyle = "rgba(0,0,0,0.78)";
+          c.beginPath(); c.ellipse(f.x, f.y, f.r, f.r * 0.26, 0, 0, Math.PI * 2); c.fill();
+        });
+        // the two oaks get one too, because a tree with no shadow is a sticker
+        F.oaks.forEach(function (o) {
+          c.fillStyle = "rgba(0,0,0,0.52)";
+          c.beginPath(); c.ellipse(o.x, o.y, o.r, o.r * 0.22, 0, 0, Math.PI * 2); c.fill();
+        });
+        // THE LIT ENTRANCE, flat, the one real light in the frame, with its mullions and its
+        // transom so it is a glazed front and not a bright rectangle
+        c.fillStyle = "#F2F5F6"; c.fillRect(F.ent.x, F.ent.y, F.ent.w, F.ent.h);
+        // WHAT IS INSIDE IT. The brightest plate in the deck's last image was an empty white
+        // rectangle divided by six mullions, which is the one thing this deck's own construction
+        // law forbids outright. A lobby has a desk, somebody behind it, and people crossing it.
+        (function () {
+          var ex = F.ent.x, ey = F.ent.y, ew = F.ent.w, eh = F.ent.h, fl = ey + eh;
+          c.save();
+          c.beginPath(); c.rect(ex, ey, ew, eh); c.clip();
+          c.fillStyle = "#C9D0D2"; c.fillRect(ex, fl - eh * 0.20, ew, eh * 0.20);     // the far wall
+          c.fillStyle = "#8E979A"; c.fillRect(ex + ew * 0.06, fl - eh * 0.52, ew * 0.26, eh * 0.20);
+          c.fillStyle = "#6E777A";                                                    // the desk
+          c.fillRect(ex + ew * 0.52, fl - eh * 0.30, ew * 0.30, eh * 0.16);
+          c.fillStyle = "#2B3135";                                                    // three people
+          [[0.20, 0.46], [0.63, 0.40], [0.72, 0.44]].forEach(function (o) {
+            var px = ex + ew * o[0], ph = eh * o[1];
+            c.fillRect(px - ew * 0.013, fl - ph, ew * 0.026, ph * 0.72);
+            c.beginPath(); c.arc(px, fl - ph * 0.86, ew * 0.017, 0, Math.PI * 2); c.fill();
+          });
+          c.restore();
+        })();
+        c.fillStyle = "#171B20";
+        for (var i = 1; i < 6; i++) c.fillRect(F.ent.x + F.ent.w * i / 6 - 1.2, F.ent.y, 2.4, F.ent.h);
+        c.fillRect(F.ent.x, F.ent.y + F.ent.h * 0.36, F.ent.w, 2.4);
+        // THE LIT STAIR CORE. A scatter of lit windows was drawn first and removed: the facade
+        // comes from the catalogue sprite and the run does not know its window grid, so every
+        // seeded square landed BETWEEN the drawn windows and read as chips floating on the
+        // building. A stair core is one element the frame draws itself, aligned to nothing but
+        // the canopy below it, and it is the second lit surface the block needed.
+        (function () {
+          var k = F.core;
+          c.save();
+          c.fillStyle = "#D8DEDF"; c.fillRect(k.x, k.y, k.w, k.h);
+          c.fillStyle = "#2A3034";
+          for (var i = 1; i < k.floors; i++) {
+            c.fillRect(k.x, k.y + k.h * i / k.floors - 1.4, k.w, 2.8);   // the landings
+          }
+          c.fillRect(k.x + k.w * 0.47, k.y, 2.4, k.h);                    // one mullion
+          // somebody on the third landing, so the lit plate carries content
+          var ly = k.y + k.h * 3 / k.floors;
+          c.fillRect(k.x + k.w * 0.24, ly - k.h * 0.062, k.w * 0.10, k.h * 0.052);
+          c.beginPath();
+          c.arc(k.x + k.w * 0.29, ly - k.h * 0.072, k.w * 0.055, 0, Math.PI * 2); c.fill();
+          c.restore();
+        })();
+        // the light the entrance throws onto the apron in front of it
+        var gl = c.createLinearGradient(0, F.ent.y + F.ent.h, 0, F.ent.y + F.ent.h + 120);
+        gl.addColorStop(0, "rgba(232,238,238,0.30)"); gl.addColorStop(1, "rgba(232,238,238,0)");
+        c.fillStyle = gl;
+        c.fillRect(F.ent.x - 40, F.ent.y + F.ent.h, F.ent.w + 80, 120);
+        // THE CANOPY SOFFIT, lit from beneath by that same front
+        c.fillStyle = "#E8ECEE"; c.fillRect(F.sof.x, F.sof.y, F.sof.w, F.sof.h);
+        c.restore();
+        // THE SCOPE IS ON THE PUBLISHED SURFACE, not only in the evidence file. This frame printed
+        // that page says nothing about children as an unqualified absolute while the run's own
+        // measurement recorded two occurrences of pediatric on it, inside two device names.
+        // Sharpening claims.json and leaving the frame alone is this repo's oldest shape.
+        // THE TYPE BAND. The top of the sky is dark by construction and carries the hook. The dek
+        // sits in a solid paper band across the bottom, because the apron is the least loaded part of
+        // this frame and a rule through a glyph band is a strikethrough whatever drew it.
+        TXINK.reserve(c, { ground: "#1B1E21", bottom: 420, bottomSolid: 344 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

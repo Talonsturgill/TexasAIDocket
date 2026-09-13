@@ -1,0 +1,46 @@
+{
+  "lens": "craft",
+  "round": 5,
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.28,
+      "score": 6.0,
+      "why": "Two breaks landed and both are real: on the contact sheet frames 2 and 7 are the only two tiles the eye stops on, which proves round 4's diagnosis. Frame 7 is the deck's best frame, dark ink on a lit field below a hard cut at y356. Frame 5's isotype is genuinely well made. Against that, four of nine frames mis draw their own argument. Frame 3 at 432 px reads as an adult on a counter, roughly 7.5 heads with long legs, and its feet are PLANTED on the bed's lower rail, not clear of the floor by a visible gap as its own acceptance requires; the one frame whose whole job is the size argument makes no size argument, third rebuild, fourth judge. Frame 4's leader reaching 198 FITTED terminates on the blue card carrying seven ruled marks, so the one drawn element that encodes a number is labelled with the wrong number, while 7 FEATURES KEPT is reached by two lines; at 432 px the hairlines vanish and the DIAGRAM is four chips round a box. Frame 8's two stems both descend to the same band while UT SOUTHWESTERN's label sits far left, so at thumb scale no reader can tell which ring is Dallas, and the sheet floats with margin on all four sides. Frame 9's oaks are transparent, the facade's window grid reads straight through both canopies. Three declared value structures are not what was drawn: frame 1's lit top face is cropped out, frame 4's window band is dark cross hatch while the box is lightest, frame 9's window openings are drawn as DARK stippled squares. Frame 6's radiologist merges with the display into one pale lump at thumb. Frame 7 sets its furniture line on the halftone against the reserve rule and the c4 c6 line and the site line are near illegible at 432. Seven of nine frames still open kicker top left, headline upper third, dek under. Frame 5 was named and not moved and was the cheapest of the three."
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 8.0,
+      "why": "Every numeral traces. 198 and 69 to c20, 7 and the six C index figures to c22, the DOI on frame 2 character for character to c3, September 9th to c2, 100 MILES to the frame's own computed scale bar. Sources are primary throughout, no journalism standing in for a filing. Frame 9's two device names rests on a measured absence with a named script and a committed snapshot. Frame 7's absence is explicitly scoped to the records rather than the full papers and the storyboard says why in as many words. The rejected list refuses an author count because two reads disagreed, and c14 and c15 preserve NLM's own ligature corruption with a note rather than silently cleaning it. Deducted for frame 4, where a traceable numeral is attached on the frame to the wrong physical feature, which is an integrity cost as well as a drawing one."
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.18,
+      "score": 7.0,
+      "why": "A reader gets what happened, who, where, and one concrete action on frame 9. No county, no body, no deadline, because there is no decision here and the deck is honest that these are journal articles. The action is real but weak: a parent asking a desk clerk a question that desk almost certainly cannot answer is not the same as a thing a reader can do."
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "It builds and it turns. Document to concern to mechanism to count to result, then frame 7 inverts the value and changes the deck's mind, which is a real turn performed in the drawing rather than asserted in a sentence. Then it loses the landing twice. Frame 8 is a floating map one frame from the close carrying the least urgent content, a risk its own dossier names. Frame 9 is thinner still. And 4 and 5 say 198 and 69 twice; 5 is much the better of the two, so 4 is cuttable, which fails the nothing cuttable bar outright."
+    },
+    {
+      "name": "voice",
+      "weight": 0.12,
+      "score": 6.5,
+      "why": "The hooks are plain, short and declarative, and they are the best writing in the deck. Honest about cost without doom, no boosterism, and the caption holds every house rule including the bare September 9th with no year. What is missing is Texas. The regional content is two affiliation lines lifted off a byline, and frame 9, the one place a Texas voice could have landed, says A parent can ask at the desk, which is a person from anywhere."
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 5.5,
+      "why": "Nine distinct layouts, TXLAYOUT.check clean, and the screens genuinely vary. Against that, carousel no. 19 shipped FOUR DAYS AGO and was a peer reviewed clinical AI study at a Houston hospital in which a commercial AI tool performed worse than the humans on the measure that mattered most. This is a peer reviewed clinical AI study with Texas hospital departments in which a model performed worse on the population that mattered. dedupe_check is clean and the topics genuinely differ, so this is not the 30 day repeat. It is the INSTRUMENT repeat that deck 17's own angle_note named in capitals as the gate's blind spot and that deck 19 added an instrument field to catch. Second occurrence in six decks."
+    }
+  ],
+  "weighted_score": 6.65,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Make each frame's acceptance list a machine assertion read off the render instead of prose in the storyboard, because frame 3 ships with feet planted where its acceptance says clear of the floor by a visible gap, frame 4 ships with leaders that its acceptance says terminate within 24 px of that feature's own coordinates and do not, and frame 9 ships with window openings its acceptance calls the lightest plates drawn darker than the facade, so three of the four frames marked down here carry a falsifiable line the run wrote and never measured."
+}
