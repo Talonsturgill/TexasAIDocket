@@ -199,11 +199,17 @@ python3 scripts/shared/merge_ready.py --fetch
 ```
 
 **AND IT ARRIVES ON A TIMER, which is why no run catches it by being careful.** `docs/` is
-generated wholesale, about a thousand files, and this routine is not its only writer. Measured:
-`gridwatch.yml` pushes to `main` twice a day and rewrites about 126 files under `docs/`,
-`pages.yml` runs every two hours. A branch cut at wake collides with `main` on generated files
-within hours, every day, with nobody doing anything wrong. Phase 16 merges `main` before the
-rebuild for this reason.
+generated wholesale, about a thousand files, and this routine is not its only writer. Measured,
+then CORRECTED the same evening when a review bot checked the inventory: **four cron workflows
+run `site_build` and commit `docs/` to `main`, eight pushes a day between them.** `news.yml` four
+times daily, `gridwatch.yml` twice, `datacenters.yml` and `generators.yml` once each. A branch cut
+at wake collides with `main` within hours, every day, with nobody doing anything wrong. Phase 16
+merges `main` before the rebuild for this reason.
+
+The first cut of this paragraph also named `pages.yml` and `queuewatch.yml` and neither writes.
+`pages.yml` holds `contents: read` and only deploys what is already committed, and `queuewatch.yml`
+stages its ledger and raw files alone. **A wrong measurement in this file is worse than none**,
+which this file says about the push defect and had just done to itself.
 
 **A SILENCE IS NOT A REFUSAL.** On 2026-09-13 PRs no. 298 and no. 301 both sat with empty check
 lists. The run tried `workflow_dispatch`, got a 403, and made the 403 the explanation. It was

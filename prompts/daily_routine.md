@@ -1199,10 +1199,11 @@ is half a run old.
 
    **THIS ORDER IS THE WHOLE POINT AND IT COST TWO DAYS OF SHIPPING.** `docs/` is generated
    wholesale, about a thousand files, and this run is not the only writer. Measured 2026-09-13:
-   `gridwatch.yml` pushes to `main` twice a day and rewrites about 126 files under `docs/`,
-   `pages.yml` runs every two hours, and four more crons push daily. So a branch cut at wake and
-   rebuilt against that snapshot collides with `main` on generated files **within hours, every
-   day, with nobody doing anything wrong.**
+   **four cron workflows run `site_build` and commit `docs/` to `main`, eight pushes a day between
+   them.** `news.yml` four times daily, `gridwatch.yml` twice at 14:00 and 20:00 UTC,
+   `datacenters.yml` and `generators.yml` once each. So a branch cut at wake and rebuilt against
+   that snapshot collides with `main` on generated files **within hours, every day, with nobody
+   doing anything wrong.**
 
    A conflicted pull request is not a pull request with a problem you can see. **GitHub cannot
    build a merge ref for one, so `guards.yml` does not run at all** — not red, ABSENT — and the
