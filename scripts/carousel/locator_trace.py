@@ -332,11 +332,38 @@ def self_test() -> int:
     # THE SUBJECT IS THE RENDER. This is the note the 2026-08-28 run paid for: a sweep over
     # copy.json reports that deck clean, because copy.json does not carry the eyebrows at all.
     # Proved here on the real artifact rather than asserted.
-    newest = None
-    for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*")):
-        if (p / "claims.json").exists() and (p / "render_report.json").exists():
-            newest = p
+    #
+    # THE REPLAY IS PINNED TO THE DECK THAT TAUGHT THE GATE, and it used to run on whatever deck
+    # was NEWEST. That asserted, of a deck nobody had seen yet, that it carries a document
+    # structure locator at all, which is a fact about its SUBJECT rather than about this gate. A
+    # deck about a numbered commission order carries `Ordering Paragraph 3`. A deck about two
+    # radiology papers carries nothing of the kind and is not wrong to.
+    #
+    # Measured across the 23 shipped decks on 2026-09-13: THIRTEEN carry zero locator tokens.
+    # The assertion had been passing on luck of subject matter, and it went red the moment a deck
+    # without one became newest, which is 2026-09-12, a day before anyone noticed. GATE_LESSONS'
+    # recurring shape from the red side: a gate that selects its own subject by recency ends up
+    # measuring the subject instead of itself.
+    #
+    # So the two assertions that need a deck WITH locators replay against 2026-08-28, which is the
+    # run this gate was written for and carries twelve of them. The one assertion that is true of
+    # every deck, that the newest shipped deck is clean, still runs on the newest.
+    TAUGHT_BY = "2026-08-28"
+    shipped = [p for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*"))
+               if (p / "claims.json").exists() and (p / "render_report.json").exists()]
+    newest = shipped[-1] if shipped else None
+    fixture = next((p for p in shipped if p.name == TAUGHT_BY), None)
+
     if newest is not None:
+        cl_new = json.loads((newest / "claims.json").read_text(encoding="utf-8"))
+        f_new, _w, _s = check(frame_strings(newest), cl_new)
+        ok(f"{newest.name}: the newest shipped deck is clean", not f_new, str(f_new))
+
+    if fixture is None:
+        ok(f"the deck this gate was written for, {TAUGHT_BY}, is still shipped", False,
+           "the replay has no subject, so the gate is unproven against a real artifact")
+    else:
+        newest = fixture
         cp = newest / "copy.json"
         copy_text = cp.read_text(encoding="utf-8") if cp.exists() else ""
         rendered = frame_strings(newest)
@@ -347,7 +374,7 @@ def self_test() -> int:
            f"found {sorted({t[2] for t in only_in_render})}")
         cl = json.loads((newest / "claims.json").read_text(encoding="utf-8"))
         f, _w, s = check(rendered, cl)
-        ok(f"{newest.name}: the newest shipped deck is clean", not f, str(f))
+        ok(f"{newest.name}: the deck this gate was written for is clean", not f, str(f))
         ok(f"{newest.name}: and the gate was not silent about it", s["tokens"] > 0, str(s))
 
         # AND IT CAN STILL GO RED ON THE REAL ARTIFACT. Strip the locators back out of the
