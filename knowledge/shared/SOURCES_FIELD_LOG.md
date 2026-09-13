@@ -1112,3 +1112,50 @@ unanswering. The API accepted `nhtsaActionNumber=PE26003` and `makeSlug=avride` 
 full unfiltered set of 4,179 either way, so **it cannot be used to ask whether one investigation
 has closed.** The conventional closing-resume path (`INCLA-<id>.pdf`) 404s, which is weak evidence
 and was recorded as unconfirmed rather than as a finding.
+
+## 2026-09-13, carousel no. 22
+
+**THE FETCH TOOL SILENTLY TRUNCATES A LONG DOCUMENT AND WILL REPORT A STRING ABSENT THAT IS
+PRESENT.** This is the finding of the day and it nearly cost the record a true claim. Asked
+whether `https://www.sec.gov/Archives/edgar/data/2071778/000207177826000051/frmi-20260630.htm`
+mentions the Carson County abatement, the fetch tool answered that it had reviewed the complete
+filing and found no mention of one, and described the ground lease and the groundwater leases
+accurately enough to look like a full read. The raw HTML is 301,819 characters of text and
+carries, verbatim, "In October 2025, Carson County approved a 10-year property tax abatement and
+established a reinvestment zone for the Project Matador campus." That is claim `tx-2026-0046-c7`
+word for word.
+
+**The tool's answer is a summary of what fitted, and what did not fit is not reported as
+missing.** So an absence a fetch tool reports in a long document is not evidence of absence. Pull
+the bytes and search them. A claim was one confident summary away from being rewritten as gone.
+
+**`www.sec.gov` refuses a browser User-Agent and accepts a declared one.** A Chrome string
+returned 403 with a 4,819 byte body. `TexasAIDocket/1.0 (+https://texasaidocket.com)` returned
+200 and the whole filing, which is the agency's own stated policy about identifying a client
+rather than a bot wall.
+
+**`interchange.puc.texas.gov` returned 503 for an entire session and 200 later the same day.**
+A scout recorded every path unreachable with a 503, on the filings search, the documents path and
+the agency calendar, and noted that a User-Agent was not the issue. Two hours later the same
+filing indexes for control numbers 59315, 59029, 59550, 59086 and 58555 all answered 200 to curl
+with a browser User-Agent. The registry's note that it 402s without a browser User-Agent still
+holds. **A 503 there is transient and worth one retry later in the run rather than a finding.**
+
+**`eutils.ncbi.nlm.nih.gov` is the readable route to a paywalled radiology abstract.** Both
+`ajnr.org` and `ajronline.org` returned 403. The efetch XML endpoint returned the full abstract,
+the author affiliations, the DOI and the electronic article date for the same two papers, which
+is everything a claim needs. It is also the route that shows the record's own encoding damage,
+since two affiliation strings arrive with "MassachuseOs" and "CincinnaD" in them. Those are
+ingestion artifacts and were quoted unrepaired rather than tidied.
+
+**Four hosts refused everything tried.** `dhs.gov` returned 403 to the checker, to a browser
+User-Agent and to the fetch tool, so `tx-2026-0120` went unstamped. `texasattorneygeneral.gov`
+and `oag.state.tx.us` returned 402 on every path. `co.hood.tx.us` returned 503 and
+`hoodcountytexas.com/AgendaCenter` 302s cross host to a `videodelivery.net` address, so Hood
+County's commissioners court record could not be reached from either door.
+
+**`www.taylortx.gov/m/newsflash/Home/Detail/2066` is a confirmed 404**, which is what
+`tx-2026-0027` already records. **`ci.lubbock.tx.us` 301s to `www.mylubbock.us`**, and the
+planning pages under both spellings 404, though the agenda PDF at
+`mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225` answers 200 and extracts cleanly.
+**`news.rice.edu` returned 406 to the re-verifier and 200 to the fetch tool** in the same run.
