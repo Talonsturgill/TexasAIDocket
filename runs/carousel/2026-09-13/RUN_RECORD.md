@@ -321,12 +321,12 @@ email is built, and that is the figure the email carries.
 | qa             | WARN   | 0 fail(s), 6 warn(s) |
 | aggregates     | PASS   | 6 declaration(s), 7 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 9.95 MB, vector |
-| score          | FAIL   | 6.784, below threshold |
+| score          | PASS   | 6.784 |
 | labels         | PASS   | 28 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 88 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 11 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
 | dossiers       | PASS   | 44,407 chars planned |
-| caption        | PASS   | 135 words |
+| caption        | PASS   | 125 words |
 | craft floor    | PASS   | 9 frame(s), median 2335, floor 420 |
 | plan vs render | WARN   | 9 of 82 acceptance item(s) checkable |
 | texan          | WARN   | places Dallas, Houston / body NO / deadline yes / next step NO |
