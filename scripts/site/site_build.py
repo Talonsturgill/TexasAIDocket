@@ -1086,6 +1086,7 @@ def self_test() -> int:
         families = {
             "site_pages.editorial", "site_pages.docket", "site_pages.watch",
             "site_pages.feeds", "site_pages.datacenters",
+            "site_pages.policies",
         }
         owners = {globals()[name].__module__ for name in builders}
         check("page builders stay in explicit family modules",
