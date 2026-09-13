@@ -149,13 +149,38 @@ export function checkVoice(text) {
 
 // The composite the streaming loop calls. Cheapest and strictest first, so a failure names
 // the most actionable cause.
-export function checkSentence(text, { allowed, slugs }) {
+export function checkParticipation(text, { publicAccess, participationQuestion = false } = {}) {
+  if (!publicAccess) return { ok: true };
+  // Explicit permission to comment always needs an open window. For a participation
+  // question the shorter "is open" means the same thing. A general case-status answer
+  // may still truthfully say the case is open, so that phrase is scoped to the question.
+  const permission = /\b(?:is|are|remains?|still)\s+open\s+(?:for|to)\s+(?:public\s+)?comments?\b|\b(?:can|may)\s+(?:still\s+)?(?:submit\s+comments?|comment)\b|\b(?:comment|public)\s+windows?\s+(?:is|are|remains?)\s+(?:still\s+)?open\b/i;
+  const open = /\b(?:is|are|remains?)\s+(?:still\s+)?open\b/i;
+  const closed = [];
+  let start = 0;
+  for (const citation of text.matchAll(CITE_RE)) {
+    // Citations follow their claim. A later claim about an open record must not make an
+    // earlier, correctly closed record fail merely because both appear in one answer.
+    const claim = text.slice(start, citation.index);
+    const caseStatus = /\bcase(?:\s+status)?\s+(?:is|remains)\s+open\b/i.test(claim);
+    const grants = permission.test(claim) || (participationQuestion && !caseStatus && open.test(claim));
+    const id = citation[1];
+    if (grants && publicAccess[id] && publicAccess[id].window !== "open") closed.push(id);
+    start = citation.index + citation[0].length;
+  }
+  return closed.length ? { ok: false, reason: "participation", closed } : { ok: true };
+}
+
+export function checkSentence(text, context) {
+  const { allowed, slugs } = context;
   const c = checkCitations(text, slugs);
   if (!c.ok) return c;
   const n = checkNumerals(text, allowed);
   if (!n.ok) return n;
   const v = checkVoice(text);
   if (!v.ok) return v;
+  const p = checkParticipation(text, context);
+  if (!p.ok) return p;
   return checkVerdict(text);
 }
 
@@ -1184,7 +1209,8 @@ export function assemble(pack, turns, env, order) {
 
 
 const SITE = "https://texasaidocket.com";
-const PACK_URL = `${SITE}/ask-pack.json`;
+// A new contract gets a fresh edge-cache entry when the Worker is released after Pages.
+const PACK_URL = `${SITE}/ask-pack.json?contract=participation-v1`;
 const CORPUS_URL = `${SITE}/ask-corpus.json`;
 
 // Pinned rather than left to a variable, so a deploy cannot silently change what answers.
@@ -1302,7 +1328,7 @@ export async function cacheKey(turns, packDate) {
   const day = packDate || new Date().toISOString().slice(0, 10);
   const thread = turns.map((m) => m.role + ":" + normaliseQuestion(m.content)).join("\n");
   const digest = await crypto.subtle.digest("SHA-256",
-    new TextEncoder().encode(`${day}\n${thread}`));
+    new TextEncoder().encode(`participation-v1\n${day}\n${thread}`));
   const hex = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
   return `a:${KV_PREFIX}:${day}:${hex.slice(0, 32)}`;
 }
@@ -1607,6 +1633,73 @@ export async function probe(env) {
   }
 }
 
+function participationDay(now) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit",
+  }).format(new Date(now || Date.now()));
+}
+
+export function participationContext(pack, turns, now) {
+  const day = participationDay(now);
+  const publicAccess = Object.fromEntries(Object.entries(pack.public_access || {}).map(([id, row]) => {
+    const closes = String(row.closes || "");
+    const parsed = new Date(`${closes}T12:00:00Z`);
+    const dated = /^\d{4}-\d{2}-\d{2}$/.test(closes) && Number.isFinite(parsed.getTime())
+      && parsed.toISOString().slice(0, 10) === closes;
+    // Same rule as docket_build.window_state, evaluated again at answer time so a pack
+    // fetched before midnight cannot reopen yesterday's deadline.
+    const window = row.room === "open_comment" && dated
+      ? (closes >= day ? "open" : "closed") : "none";
+    return [id, { ...row, window }];
+  }));
+  const question = turns[turns.length - 1]?.content || "";
+  return { publicAccess, participationQuestion: /\b(comment|comments|commenting|participate|participation|windows?)\b/i.test(question) };
+}
+
+function participationDate(iso) {
+  const date = new Date(`${iso}T12:00:00Z`);
+  const day = date.getUTCDate();
+  const suffix = day % 100 >= 11 && day % 100 <= 13 ? "th"
+    : ({ 1: "st", 2: "nd", 3: "rd" }[day % 10] || "th");
+  const month = new Intl.DateTimeFormat("en-US", { month: "long", timeZone: "UTC" }).format(date);
+  return `${month} ${day}${suffix}, ${date.getUTCFullYear()}`;
+}
+
+export function participationAnswer(pack, turns, now) {
+  // Keep the conversational paragraph and citation renderer. Only this unambiguous first
+  // question is composed directly from facts; follow-ups retain their conversation context.
+  if (turns.length !== 1 || !pack.public_access) return null;
+  const q = normaliseQuestion(turns[0].content);
+  const access = Object.entries(participationContext(pack, turns, now).publicAccess);
+  const named = q.match(/^(?:can|may) (?:i|we) (?:still )?comment on (.+)$/);
+  if (named) {
+    const matches = access.filter(([id, row]) => normaliseQuestion(id) === named[1]
+      || normaliseQuestion(row.title).includes(named[1]));
+    if (matches.length === 1) {
+      const [id, row] = matches[0];
+      const opening = row.window === "open"
+        ? `The public comment window is open through ${participationDate(row.closes)}.`
+        : "The record does not list an open public comment window for that decision.";
+      const detail = (row.window === "open" && row.how
+        ? String(row.how) : "Read the record for its deadline and any remaining contact options")
+        .replace(/[.!?]+$/, "");
+      return { text: `${opening} ${detail}, [[${id}]].`, withheld: false };
+    }
+  }
+  const general = /^(?:what can (?:i|we) (?:still )?comment on|what is open(?: for (?:public )?comment)?(?: (?:right )?now)?|which (?:public )?(?:comment )?windows are (?:still )?open(?: (?:right )?now)?|what (?:public )?comment windows are open(?: (?:right )?now)?)$/;
+  if (!general.test(q)) return null;
+  const rows = access
+    .filter(([, row]) => row.window === "open")
+    .sort(([a, left], [b, right]) => left.closes.localeCompare(right.closes) || a.localeCompare(b));
+  const date = participationDate(participationDay(now));
+  const opening = rows.length
+    ? `The record lists ${rows.length} public comment ${rows.length === 1 ? "window" : "windows"} with deadlines on or after ${date}.`
+    : `The record lists no public comment window with a deadline on or after ${date}.`;
+  const details = rows.map(([id, row]) => `${row.title.replace(/[.!?]+$/, "")}. `
+    + `The listed deadline is ${participationDate(row.closes)}, [[${id}]].`);
+  return { text: [opening, ...details].join(" "), withheld: false };
+}
+
 /**
  * Everything both paths need before either spends anything, and the cap gate itself.
  *
@@ -1617,11 +1710,17 @@ export async function probe(env) {
 async function preflight(turns, env, now, reader) {
   if (!env.ANTHROPIC_API_KEY) return { stop: { error: "the answerer is not configured" }, status: 503 };
   const pack = await loadPack(env);
+  const access = participationContext(pack, turns, now);
+  const direct = participationAnswer(pack, turns, now);
+  if (direct) return { cached: direct };
   const key = env.ASK_KV ? await cacheKey(turns, pack.version || pack.generated) : null;
 
   if (key) {
     const hit = await env.ASK_KV.get(key);
-    if (hit) return { cached: JSON.parse(hit) };
+    if (hit) {
+      const cached = JSON.parse(hit);
+      if (checkParticipation(cached.text || "", access).ok) return { cached };
+    }
   }
 
   const nowISO = now || new Date().toISOString();
@@ -1654,6 +1753,7 @@ async function preflight(turns, env, now, reader) {
   return {
     pack, key, mk, spent, dk, daySpent, rk, readerSpent, prompt,
     ctx: {
+      ...access,
       allowed: allowedNumerals(prompt.blocks),
       slugs: new Set(corpus.slugs),
     },
@@ -1724,12 +1824,12 @@ export async function answer(turns, env, now, reader) {
  * stop short, and being told why, is better served than one shown a smoothed over sentence
  * nobody verified.
  */
-export function verify(text, { allowed, slugs }) {
+export function verify(text, context) {
   const { sentences, remainder } = splitSentences(String(text).trim());
   const all = remainder.trim() ? [...sentences, remainder] : sentences;
   const kept = [];
   for (const s of all) {
-    const v = checkSentence(s, { allowed, slugs });
+    const v = checkSentence(s, context);
     if (!v.ok) return { text: kept.join(" "), withheld: true, reason: v.reason, sentence: s };
     kept.push(s.trim());
   }

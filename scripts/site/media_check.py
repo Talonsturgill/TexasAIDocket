@@ -87,7 +87,10 @@ def findings(site: Path, repo: Path = REPO_ROOT) -> list[str]:
     for page in pages:
         rel = page.relative_to(site)
         markup = page.read_text(encoding="utf-8", errors="replace")
-        for raw in REF.findall(markup):
+        responsive = [candidate.strip().split()[0]
+                      for srcset in re.findall(r'\bsrcset="([^"]+)"', markup)
+                      for candidate in srcset.split(",") if candidate.strip()]
+        for raw in REF.findall(markup) + responsive:
             ref = html.unescape(raw).split("#")[0].split("?")[0]
             if not ref:
                 continue
@@ -143,6 +146,28 @@ def self_test() -> int:
             failures += 1
 
     with tempfile.TemporaryDirectory() as td:
+        import hashlib
+        import io
+        from PIL import Image
+        import article_media
+
+        original = Path(td) / "artwork.png"
+        art = Image.new("RGB", (240, 300))
+        art.putdata([((x * 17 + y * 31) % 256, (x * 3) % 256, (y * 7) % 256)
+                     for y in range(300) for x in range(240)])
+        art.save(original)
+        before = hashlib.sha256(original.read_bytes()).hexdigest()
+        encoded = article_media.encode(original, 120)
+        with Image.open(io.BytesIO(encoded)) as decoded:
+            ok("responsive artwork preserves aspect ratio", decoded.size == (120, 150))
+            reference = art.resize((120, 150), Image.Resampling.LANCZOS)
+            ok("the decode meets the shipping quality floor",
+               article_media.psnr(reference, decoded.convert("RGB")) >= article_media.QUALITY_FLOOR_DB)
+        ok("responsive artwork leaves the shipped original untouched",
+           hashlib.sha256(original.read_bytes()).hexdigest() == before)
+        ok("the same source and settings produce identical bytes",
+           article_media.encode(original, 120) == encoded)
+
         site = Path(td) / "site"
         (site / "articles" / "2026-01-01").mkdir(parents=True)
         (site / "img").mkdir()
@@ -154,6 +179,12 @@ def self_test() -> int:
         (site / "index.html").write_text('<img src="img/there.png">', encoding="utf-8")
         ok("a site whose assets all resolve is clean", findings(site) == [],
            str(findings(site)))
+        (site / "index.html").write_text(
+            '<img src="img/there.png" srcset="img/there.png 540w, img/missing.webp 1080w">',
+            encoding="utf-8")
+        ok("a missing responsive candidate is caught even when src exists",
+           any("missing.webp" in x for x in findings(site)), str(findings(site)))
+        (site / "index.html").write_text('<img src="img/there.png">', encoding="utf-8")
 
         # THE DEFECT OF 2026-08-16, in both of its halves.
         (site / "index.html").write_text('<img src="img/missing.png">', encoding="utf-8")

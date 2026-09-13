@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(REPO_ROOT / "scripts" / "carousel"))
 
 import ask_answers                                                # noqa: E402
+import article_media
 import ask_pack                                                    # noqa: E402
 import ask_corpus                                                 # noqa: E402
 import ask_written                                                # noqa: E402
@@ -148,7 +149,7 @@ NAV = [("", "Home"), ("record/", "Docket"), ("datacenters/", "Data centers"),
 # with nothing on the site linking to it. It was in the sitemap and reachable by URL, which is
 # exactly enough to look fine and to be unread. `link_check.py` is what found it.
 FOOTNAV = NAV[1:] + [("about/", "About"), ("topic/", "Beats"), ("place/", "Places"), ("sources/", "Sources"),
-                     ("questions/", "Questions"), ("scan/", "Scan")]
+                     ("questions/", "Questions"), ("scan/", "Scan"), ("privacy/", "Privacy")]
 
 # WHERE THIS RECORD IS, ELSEWHERE ON THE WEB.
 #
@@ -303,6 +304,7 @@ def contact_dialog() -> str:
         '    <p class="askfbnote">It reaches the desk that publishes this record. An address '
         'below is only needed if a reply is wanted, and it is used for that and nothing '
         'else.</p>\n'
+        f'    <p class="askfbnote"><a href="{SITE_URL}/privacy/">How messages are handled</a></p>\n'
         '    <label class="askfbl" for="contactmsg">Your message</label>\n'
         '    <textarea id="contactmsg" name="message" rows="5" required></textarea>\n'
         '    <label class="askfbl" for="contactmail">Email, only if a reply is wanted</label>\n'
@@ -800,6 +802,7 @@ def room_label(room: str) -> str:
     dated window this record can stand behind.
     """
     return {"open_comment": "Comment window open", "open_meeting": "Public meeting",
+            "ballot": "Ballot measure",
             "contact_only": "Write to the decider", "closed": "Closed",
             "comment_closed": "Comment window closed"}.get(room, room)
 
@@ -1007,7 +1010,7 @@ def load_runs() -> list:
                   f"publish a broken image.", file=sys.stderr)
         if not files:
             continue
-        title = (copy.get("document_title") or copy.get("title") or d.name)
+        title = article_title(copy)
 
         # THE DECK'S OWN WORDS, SO THE PAGE IS READABLE AND INDEXABLE WITHOUT THE IMAGES.
         #
@@ -1059,6 +1062,26 @@ def load_runs() -> list:
                     "prose": prose, "claims": claims,
                     "cover": files[0]})
     return out
+
+
+def article_title(copy: dict) -> str:
+    """Read the headline from the same authored copy the cover actually displays.
+
+    Recent manifests derive their copy from the render and store the hook on slide one.
+    The old top-level-only lookup turned those real headlines into directory dates.
+    """
+    for key in ("document_title", "title"):
+        value = copy.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    slides = sorted(normalise_slide_keys(copy.get("slides")), key=lambda row: row[0])
+    first = slides[0][1] if slides else {}
+    if isinstance(first, dict):
+        for key in ("title", "headline", "hook", "s1"):
+            value = first.get(key)
+            if isinstance(value, str) and value.strip():
+                return value.strip()
+    raise ValueError("A published article needs an authored headline on its cover or manifest")
 
 
 def normalise_slide_keys(planned) -> list:
