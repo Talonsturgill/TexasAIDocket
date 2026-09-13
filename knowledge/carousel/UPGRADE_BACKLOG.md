@@ -1889,3 +1889,125 @@ append-only and a reordering reads as a rewrite.
 
 **Its deck is carousel no. 23**, not the 22 it calls itself. Both runs were cut from a record
 ending at 21 and both took 22. September 12th shipped first and keeps it.
+
+## 2026-09-13, the dirty branch: a root cause nobody had named, and one proposal outside every lane
+
+**Two runs in a row shipped their work and could not merge it, and neither could say why.** The
+September 12th and September 13th pull requests both sat with an EMPTY check list rather than a
+red one, and both runs read that emptiness as something stopping CI. The September 13th run wrote
+a confident account blaming the session's credentials. The owner named it instead: the branches
+were dirty.
+
+**A `pull_request` workflow runs against the pull request's MERGE REF, and GitHub cannot build a
+merge ref for a conflicted pull request.** So a conflicted branch gets no run at all, on the
+pull request and on every push after it. Not red. Absent.
+
+### The cause is a timer, which is why no run would ever have noticed it
+
+Measured on 2026-09-13 rather than reasoned about:
+
+**CORRECTED after a review bot checked the inventory.** The first table named `pages.yml` and
+`queuewatch.yml` as writers and neither is: `pages.yml` holds `contents: read` and only deploys
+what is already committed, and `queuewatch.yml` stages its ledger and raw files alone. It also had
+`news.yml` as daily when it runs four times. The true list is shorter and pushes MORE often:
+
+| workflow that commits `docs/` to `main` | cron | per day |
+|---|---|---|
+| `news.yml` | `23 1,7,13,19 * * *` | 4 |
+| `gridwatch.yml` | `0 14` and `0 20` | 2 |
+| `datacenters.yml` | `0 13` | 1 |
+| `generators.yml` | `40 15` | 1 |
+| | | **8** |
+
+A daily run regenerates the WHOLE of `docs/`, about a thousand files, because the site is a pure
+function of the ledgers and `site_fresh_check` proves it byte for byte. So a run branch and `main`
+rewrite the same generated files within hours of each other **every single day**, and the branch
+goes un-mergeable on its own with nobody doing anything wrong.
+
+This is not a defect in any one run. It is the shape of the repository: a generated tree that two
+writers both regenerate wholesale.
+
+### What was built, in lane
+
+`scripts/shared/merge_ready.py`, `daily` lane. It asks the local question whose answer decides
+whether CI can run at all, and answers it as an exit code rather than as prose. It sorts the
+conflicts into GENERATED, which are rebuilt and never hand-edited, and AUTHORED, which are read.
+Its `--self-test` replays the September 13th defect and it goes red on the real historical pair,
+`75b7dc01` against `96b699a8`, reporting 37 generated conflicts and the one authored conflict in
+`ledger/docket.json` that genuinely needed a decision.
+
+Three instincts were recorded beside it: `no-checks-means-conflicted-not-forbidden`,
+`a-silence-is-not-a-refusal`, and `merge-the-base-before-the-site-rebuild`.
+
+### THE PROPOSAL, and it needs `prompts/daily_routine.md`, which is `human` lane
+
+**Phase 16 should merge `origin/main` into the run branch immediately BEFORE it rebuilds the
+site, rather than rebuilding on a `main` snapshot taken at wake.** One line in the phase, before
+step 4:
+
+    git fetch origin main && git merge origin/main     # then rebuild, which resolves docs/
+
+The rebuild that already happens at step 4 then regenerates `docs/` on top of current `main`, so
+every generated conflict resolves itself at the moment it is cheapest, and the branch opens its
+pull request mergeable. It costs one extra fetch and no extra build.
+
+**It does not fully close the window**, and saying so is the point. A cron push landing between
+the rebuild and the merge re-dirties the branch, so `merge_ready.py` is still what catches it.
+The proposal narrows a window that is currently hours wide to one that is minutes wide.
+
+A second line belongs in Phase 18, where the run reads its checks:
+
+    python3 scripts/shared/merge_ready.py --fetch      # before concluding anything about CI
+
+`CLAUDE.md`'s Phase 18 rule already says an absent check is a thing to SAY rather than wait out.
+What it does not say, and what cost two days, is that the commonest reason a check is absent is
+that the branch cannot be merged. That sentence belongs in `CLAUDE.md` beside the
+`total_count: 0` paragraph, which is also `human` lane.
+
+### AND `merge_ready.py` IS RUN BY NOTHING, which is this page's own oldest complaint
+
+Said here rather than left for somebody to find. The checker above is a script in
+`scripts/shared/` and **no workflow, no phase and no suite calls it.** It earns its keep only
+when a run remembers to type it, which is the exact property that makes a gate worthless and is
+already item 3 on this page about ten carousel gates whose `--self-test` CI never runs.
+
+`gate_wiring.py` reported clean over it, and that is not a reprieve. It scopes itself to the
+carousel gates, 32 of them, so a gate living in `scripts/shared/` is invisible to the checker
+this repository built for exactly this failure. **A wiring check that cannot see a whole
+directory reports clean about a place it never looked.**
+
+Both fixes are outside the `upgrade` lane:
+
+- `.github/workflows/guards.yml` needs a step running `merge_ready.py --fetch --self-test`, and
+  the workflow directory is `human` lane on purpose, because a run that can edit its own CI can
+  switch off the gate that judges it.
+- `prompts/daily_routine.md` needs the Phase 18 line above, and is `human` lane.
+
+**CORRECTED THE SAME EVENING, and the correction is the point.** The paragraph here first said
+widening `gate_wiring.py` would "go red the moment it ran, naming every shared script that no
+workflow calls". That was a guess dressed as a reason not to do the work, and measuring it took
+one command. Under this file's own rule that a `--self-test` invocation is not wiring,
+`scripts/shared` has **one** apparent orphan, `livecheck`, and it is not one: it runs on its own
+schedule in `livecheck.yml`, which `gate_wiring` never read because it only ever opened
+`guards.yml`.
+
+So the owner cleared the lane and all of it was done rather than written down:
+
+- `gate_wiring.py`'s census is `scripts/{carousel,shared}/*.py`, 47 gates where it saw 32, and it
+  reads every file in `.github/workflows/` rather than `guards.yml` alone. Four new self-test
+  assertions replay the widening, including that a shared checker with no caller is reported.
+- `guards.yml` runs `merge_ready.py --self-test`. The real check is deliberately NOT there, and
+  the step says why: a conflicted branch never reaches the runner, so this is the one gate CI can
+  never fire. The routine runs it in Phases 16 and 18 where the answer can still change something.
+- `prompts/daily_routine.md` Phase 16 merges `origin/main` BEFORE the site rebuild, and asks
+  `merge_ready --fetch` after the push. Phase 18 asks it before explaining an empty check list.
+- `CLAUDE.md` carries the finding beside its own `total_count: 0` paragraph.
+- `guards.yml` also wires `grain`, `mark`, `sky` and `watch_page`, four self-tests that had never
+  been run by anything. All four passed on the day they were wired.
+
+**`scripts/site` stays out of the census and that is now a measurement rather than a lane.** 24 of
+its 43 checkers come back as orphans under the strict rule and none of them is one: they are
+libraries `site_build.py` imports, so their real invocation is an import that this gate cannot
+see. Reporting 24 findings of which zero are actionable is the cry-wolf failure `invoked_in`'s own
+docstring refuses. Teaching it to read imports is the work that would let `site` in, and that is
+still a proposal.

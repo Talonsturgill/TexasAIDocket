@@ -1190,7 +1190,30 @@ is half a run old.
    found it, which is the one way a defect must never be found. If this exits non-zero, the deck
    is not ready to ship and the run's job is to make it exit zero.
 3. Update `ledger/carousel/{topics,artwork,captions}.json`.
-4. Rebuild the site: `python3 scripts/site/site_build.py --out docs --today <date>`.
+4. **BRING `main` IN BEFORE YOU REBUILD, so the rebuild happens on top of it:**
+
+   ```
+   git fetch origin main && git merge origin/main
+   python3 scripts/site/site_build.py --out docs --today <date>
+   ```
+
+   **THIS ORDER IS THE WHOLE POINT AND IT COST TWO DAYS OF SHIPPING.** `docs/` is generated
+   wholesale, about a thousand files, and this run is not the only writer. Measured 2026-09-13:
+   **four cron workflows run `site_build` and commit `docs/` to `main`, eight pushes a day between
+   them.** `news.yml` four times daily, `gridwatch.yml` twice at 14:00 and 20:00 UTC,
+   `datacenters.yml` and `generators.yml` once each. So a branch cut at wake and rebuilt against
+   that snapshot collides with `main` on generated files **within hours, every day, with nobody
+   doing anything wrong.**
+
+   A conflicted pull request is not a pull request with a problem you can see. **GitHub cannot
+   build a merge ref for one, so `guards.yml` does not run at all** — not red, ABSENT — and the
+   pull request shows an empty check list. On September 12th and 13th both runs read that
+   emptiness as something stopping CI, one of them wrote a confident account blaming its own
+   credentials, and neither merged until the owner said the word "dirty".
+
+   Merging first costs one fetch and no extra build, because the rebuild you were going to do
+   anyway resolves every generated conflict as it goes. **Resolve `docs/` by REBUILDING, never by
+   hand.** An authored conflict, a ledger or a script, is read and merged on its own terms.
 5. Verify, and read the **exit codes**, never the last line of a report:
    - `python3 scripts/site/docket_build.py --validate`
    - `python3 scripts/site/site_fresh_check.py`
@@ -1220,6 +1243,19 @@ is half a run old.
    it was written after a run shipped a page with two broken images past a fully green suite. A
    gate that reads the builder's intent cannot see what the product actually says.
 7. Commit, push, and open a **ready (not draft)** pull request. **Do not merge here.**
+
+   **Then ask, by exit code, whether the pull request you just opened can even be checked:**
+
+   ```
+   python3 scripts/shared/merge_ready.py --fetch
+   ```
+
+   Exit 1 means the branch no longer merges, which means no CI run will start on it, which means
+   waiting for one is waiting for nothing. A cron push landing between step 4 and this one is
+   enough to do it, so this is asked AFTER the push rather than assumed from step 4. The cure is
+   step 4 again: merge `main`, rebuild, push.
+
+   This check does not run in CI and cannot. A branch it would fail on never reaches the runner.
 
    **THE MERGE MOVED TO PHASE 19 AND THIS IS WHY.** It used to happen at this step, and then
    Phase 17's retro wrote to `ledger/carousel/upgrades.json` and Phase 17's upgrade lane edited
@@ -1347,6 +1383,25 @@ request. This phase lands it and nothing after it writes to the repository.
    product of two separate incidents, so read it there rather than trusting a memory of it.
 2. `total_count: 0` is a state to WAIT in or to SAY out loud, and never a state to merge in. A
    `cancelled` conclusion is not a pass.
+
+   **AND BEFORE YOU EXPLAIN AN EMPTY CHECK LIST, ASK THIS. It is one command and it is the
+   commonest answer:**
+
+   ```
+   python3 scripts/shared/merge_ready.py --fetch
+   ```
+
+   `total_count: 0` usually does not mean a check was refused. It means there was **nothing to
+   check**. A `pull_request` workflow runs against the pull request's MERGE REF, GitHub cannot
+   build one for a conflicted pull request, and so a dirty branch gets no run at all rather than
+   a red one. The fix is Phase 16 step 4, merge `main` and rebuild, and then CI starts on its own.
+
+   **A SILENCE IS NOT A REFUSAL, and this is where that gets confused.** On 2026-09-13 the run
+   found no check runs, tried `workflow_dispatch`, got `403 Resource not accessible by
+   integration`, and made the 403 the explanation. It was true and it was beside the point: it
+   was simply the only lever that returned an error message, and an absent signal was explained
+   with the one thing that spoke. Two days of shipping sat behind that. **Never reason from an
+   absence to a cause without first asking a question that has an answer.**
 3. **Red is work now.** Read the failing job's log, reproduce it in this checkout, fix it, push,
    wait again.
 

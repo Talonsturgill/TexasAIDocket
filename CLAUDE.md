@@ -186,6 +186,37 @@ So the test is not "did I wait long enough" and it is not "will a check ever com
   fire on their own, say so and stop. Do not merge, and do not push an empty commit to kick it,
   which is forbidden for its own reasons.
 
+**BEFORE ANY OF THAT: `total_count: 0` USUALLY MEANS THE BRANCH IS CONFLICTED.** Added
+2026-09-13, after it cost two days of shipping.
+
+A `pull_request` workflow runs against the pull request's MERGE REF, and **GitHub cannot build a
+merge ref for a conflicted pull request.** A dirty branch therefore gets no run at all rather than
+a red one, on the pull request and on every push after it, and the page shows an empty check list
+that looks exactly like a permissions problem. Ask the question that has an answer:
+
+```
+python3 scripts/shared/merge_ready.py --fetch
+```
+
+**AND IT ARRIVES ON A TIMER, which is why no run catches it by being careful.** `docs/` is
+generated wholesale, about a thousand files, and this routine is not its only writer. Measured,
+then CORRECTED the same evening when a review bot checked the inventory: **four cron workflows
+run `site_build` and commit `docs/` to `main`, eight pushes a day between them.** `news.yml` four
+times daily, `gridwatch.yml` twice, `datacenters.yml` and `generators.yml` once each. A branch cut
+at wake collides with `main` within hours, every day, with nobody doing anything wrong. Phase 16
+merges `main` before the rebuild for this reason.
+
+The first cut of this paragraph also named `pages.yml` and `queuewatch.yml` and neither writes.
+`pages.yml` holds `contents: read` and only deploys what is already committed, and `queuewatch.yml`
+stages its ledger and raw files alone. **A wrong measurement in this file is worse than none**,
+which this file says about the push defect and had just done to itself.
+
+**A SILENCE IS NOT A REFUSAL.** On 2026-09-13 PRs no. 298 and no. 301 both sat with empty check
+lists. The run tried `workflow_dispatch`, got a 403, and made the 403 the explanation. It was
+true and beside the point, and it won only because it was the only lever that returned an error
+message. The owner named the real cause in one sentence. **Never reason from an absence to a
+cause without first asking something that can answer.**
+
 The cost of getting this wrong is the whole reason the rule exists, and it is written three
 paragraphs above: carousel no. 7 merged while CI was still in progress, `main` went red four
 minutes later, and it took a second PR to fix. A run that merges on no checks at all has done the
