@@ -185,34 +185,47 @@ run admitted, two of its re-verify movement lines and one claim text on the arti
 worth naming because the gate did not fire on the deck at all. **The record's own writing is
 the surface that drifts when a run's attention is on the carousel.**
 
-## THE RUN DID NOT MERGE, AND CI IS WHY
+## THE BRANCH WAS CONFLICTED WITH `main`, AND THAT IS WHY NO CHECK EVER RAN
 
-**No check run exists on this branch and none can be made to exist from inside this session.**
-`CLAUDE.md` is explicit that zero checks is not green, so PR no. 301 is open, ready and carrying
-everything, and `main` is untouched.
+**The run's first account of this was wrong and is replaced rather than softened.** It said no
+check could be dispatched because the credentials this session uses had changed, and offered a
+table of levers as evidence. The table was accurate and the conclusion drawn from it was not.
 
-What was tried, in the order Phase 18 prescribes, with the result of each.
+**A `pull_request` workflow runs against the pull request's MERGE ref, and a conflicted pull
+request has no merge ref to build.** `claude/daily-2026-09-13` was cut from a `main` that has
+since taken PR no. 303 and a news refresh, and this run regenerates the whole of `docs/`, so the
+two sides collided on 436 paths. GitHub could not compute `refs/pull/301/merge`, so there was
+nothing for `guards.yml` to check out and **no run started, on the pull request or on any of the
+three pushes after it.** The checks were never refused. They had no subject.
 
-| lever | result |
-|---|---|
-| the pull request being opened | `guards.yml` has `total_count: 0` on this branch |
-| a push to a branch with an open pull request, which Phase 18 says fires `pull_request: synchronize` | two pushes landed after the PR opened, `0de1893` and the upgrade lane's `b57cac3`. Neither started a run |
-| `workflow_dispatch`, which `guards.yml` declares | `403 Resource not accessible by integration` |
+Owner's instruction, 2026-09-13, on being shown the first account: *"the reason u dont run the ci
+is because #301 is dirty, u keep not being able to run ci cause its dirty but u dont see that its
+dirty then u settlo on some other reason, which is wrong, u should in those cases just resolves
+the issues, then the ci will be able to run like normal."*
 
-**This is not the 2026-08-27 mistake of writing a confident account while the state was one push
-away.** That push was made, twice, and the PR's own head moved to match. GitHub updated the pull
-request and started nothing.
+**The 403 on `workflow_dispatch` is real and is not the cause.** It is one lever being shut,
+which the run promoted to an explanation because it was the only lever that returned an error
+message. A silence and a refusal are different findings, and the run reached for the one that
+spoke.
 
-**It is also not a repo fault, and the evidence is yesterday.** Run 1104 of `guards.yml` was an
-`event: pull_request` run on `claude/daily-2026-09-12`, for the identical routine, with
-`Talonsturgill` as its triggering actor. The mechanism works here. What changed is the
-credentials this session's GitHub access uses, which no file in this repository can set. It is
-the same shape as the 2026-08-30 finding about `bypassPermissions`, and it has the same answer.
-**The remaining lever is the environment's own configuration, outside the repo.**
+**What the diagnosis should have been, and it is one command.** `git merge-tree --write-tree
+origin/main HEAD` answers it locally in under a second, and GitHub's own `mergeable_state` reads
+`dirty` on the pull request. Neither was asked. The run instead reasoned from an absence, which
+is the 2026-08-30 mistake in a new place: five fixes were written against a permission theory
+nobody had measured, and the number was in the log the whole time.
 
-So the email leads with this, its image URLs point at the run branch rather than `main`, and the
-one action that clears it is a maintainer merging PR no. 301 once they have seen a green run, or
-granting this session's token the right to dispatch `guards.yml`.
+**What was actually conflicted, and how it resolved.** 436 paths, of which 435 are `docs/` and
+are generated, so they resolve by rebuilding and never by hand. The one real conflict was
+`ledger/docket.json`, and it was worth reading rather than taking either side of. `main` had
+corrected `tx-2026-0075`, whose November 3rd date is an ELECTION DAY rather than a comment
+deadline, moving its `kind` to `election` and its room to `ballot`. This run's own re-verify line
+had been written against the old framing and repeated the error. **Main's correction wins and
+this run's stamp is reworded to match it**, so the merge does not quietly reintroduce a
+classification the base branch had just fixed.
+
+**The lesson that generalises, and it is the one this file keeps learning.** A run that cannot
+see a check is not entitled to a theory about why. Ask the state a question with an answer:
+is this branch mergeable, and what does the host say its merge state is.
 
 ## A REVIEW BOT READ THE BRANCH AND FOUND SIX THINGS, AND FIVE OF THEM WERE REAL
 
