@@ -444,6 +444,7 @@ def scan_page(today: str) -> str:
       {jobs_f}
     </div>
     {note_f}
+    <p class="askfbnote"><a href="../privacy/#scanner">How Scanner handles your information</a>.</p>
     <div class="cf-turnstile" data-sitekey="{TURNSTILE_SITE_KEY}" data-theme="auto"></div>
     <button class="cta solid" type="submit">Send it</button>
     <p class="scan-status" role="status" aria-live="polite" hidden></p>
@@ -646,7 +647,8 @@ def services_page(items: list, today: str) -> str:
           <p>Skip the back and forth.</p></li>
       </ul>
     </div>
-    <form class="leadform" action="{FORM_ACTION}" method="POST">
+    <form class="leadform" id="servicesform" data-desk-form action="{FORM_ACTION}" method="POST">
+      <input type="hidden" name="_next" value="{SITE_URL}/services/thanks/">
       <input type="hidden" name="_subject" value="Texas AI Docket, services enquiry">
       <input type="hidden" name="_captcha" value="false">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -656,11 +658,15 @@ def services_page(items: list, today: str) -> str:
       </div>
       {mail_f}
       {msg_f}
+      <p class="askfbnote">The desk uses these details to respond. <a href="../privacy/">How messages are handled</a>.</p>
       <button class="cta solid" type="submit">Send it</button>
+      <p class="askfbmsg" id="servicesstatus" data-submit-state role="status" aria-live="polite" aria-atomic="true"></p>
     </form>
   </div>
 </section>
 """
+    import mail_forms
+    body += mail_forms.SCRIPT
     return page(title=f"Services · {SITE_NAME}", depth=1, active="services/",
                 desc="AI systems built for Texas businesses by the desk that publishes the "
                      "Texas AI Docket. Three ways in, priced on a call.",

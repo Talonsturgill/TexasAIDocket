@@ -149,6 +149,7 @@ COPY = {
     "why_citation": "it named a decision that is not on the record",
     "why_voice":    "it slipped into the first person, which this record never writes in",
     "why_verdict":  "it made a call on whether the grid holds, which this record never makes",
+    "why_participation": "it described a public comment window as open when the record does not",
     "why_other":    "it could not be checked against the record",
 }
 
@@ -191,6 +192,7 @@ def dialog_html(action: str) -> str:
         f'  <form id="askfbform" method="POST" action="{action}">\n'
         f'    <h2 id="askfbh">{COPY["feedback"]}</h2>\n'
         '    <p class="askfbnote">Suggest a feature or an improvement to the search.</p>\n'
+        '    <p class="askfbnote"><a href="https://texasaidocket.com/privacy/">How feedback is handled</a></p>\n'
         '    <label class="askfbl" for="askfbtext">What would you like to see?</label>\n'
         '    <textarea id="askfbtext" name="feedback" rows="4" required\n'
         '              placeholder="Describe the feature or improvement"></textarea>\n'
@@ -506,7 +508,8 @@ _CLIENT = r"""
       numeral:  "%%why_numeral%%",
       citation: "%%why_citation%%",
       voice:    "%%why_voice%%",
-      verdict:  "%%why_verdict%%"
+      verdict:  "%%why_verdict%%",
+      participation: "%%why_participation%%"
     })[reason] || "%%why_other%%";
   }
 

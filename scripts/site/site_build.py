@@ -39,6 +39,7 @@ from site_pages.watch import *
 from site_pages.docket import *
 from site_pages.feeds import *
 from site_pages.editorial import *
+from site_pages.policies import *
 from site_pages.datacenters import *
 
 
@@ -95,6 +96,7 @@ def build(out: Path, today: str) -> dict:
     if out.exists():
         _remove_output_tree(out)
     out.mkdir(parents=True)
+    article_media.prepare(runs, out)
 
     for rel, blob in carried.items():
         dest = out / rel
@@ -231,7 +233,7 @@ def build(out: Path, today: str) -> dict:
     shutil.copyfile(fonts_build.WEB / "OFL.txt", out / "fonts" / "OFL.txt")
     written.append("fonts/OFL.txt")
 
-    w("index.html", home(items, today),
+    w("index.html", home(items, today, runs),
       _home_numerals(items, today) | listed(items) | covers_section(items, today)[0]
       | (_run_numerals(runs[0]) if runs else set()))
     # THE RECORD IS NOT PUBLISHED AS A FILE, on the owner's call. `docket.json` was the whole
@@ -480,6 +482,8 @@ def build(out: Path, today: str) -> dict:
     w("scan/index.html", scan_page(today))
     w("scan/watch/index.html", watch_page(today))
     w("services/index.html", services_page(items, today))
+    w("services/thanks/index.html", services_thanks_page(today))
+    w("privacy/index.html", privacy_page(today))
     w("about/index.html", about_page(today))
     w("water/index.html", water_page(today), _watch_numerals(waterwatch_page))
     # THE MAP LINKS TO RECORDS RATHER THAN TOOLTIP DEAD ENDS. The family comes from the same
@@ -712,6 +716,15 @@ def self_test() -> int:
     # refused. Exercise the real loader against all four completion paths rather than testing a
     # second approximation of the rule here. The cap and owner override cases are the negative
     # control: both can honestly retain `ship: false` while still being authorised to publish.
+    check("a rendered cover hook becomes the article headline",
+          article_title({"slides": [{"hook": "Texas put AI in a money class."}]})
+          == "Texas put AI in a money class.")
+    check("legacy numbered slide copy supplies its real headline",
+          article_title({"slides": {"slide-01": {"s1": "The rule never says data center."}}})
+          == "The rule never says data center.")
+    check("an explicit article title keeps precedence",
+          article_title({"document_title": "The published title", "slides": [{"hook": "A hook"}]})
+          == "The published title")
     _real_repo_root = _context.REPO_ROOT
     with tempfile.TemporaryDirectory() as td:
         _context.REPO_ROOT = Path(td)
@@ -1073,6 +1086,7 @@ def self_test() -> int:
         families = {
             "site_pages.editorial", "site_pages.docket", "site_pages.watch",
             "site_pages.feeds", "site_pages.datacenters",
+            "site_pages.policies",
         }
         owners = {globals()[name].__module__ for name in builders}
         check("page builders stay in explicit family modules",

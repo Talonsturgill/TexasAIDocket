@@ -144,11 +144,12 @@ DECIDER_TYPES = {
 
 STATUSES = {"open", "pending", "decided", "withdrawn", "unknown"}
 
-# The four rooms. This taxonomy is the product: it answers "can a Texan still act on this, how,
+# Participation routes. This taxonomy answers "can a Texan still act on this, how,
 # and by when" in one field, and it refuses to leave the question unanswered.
 ROOMS = {
     "open_comment",   # a formal comment window is open and has a close date
     "open_meeting",   # a public meeting or hearing where testimony is possible
+    "ballot",         # voters decide at an election, not through a comment window
     "contact_only",   # no formal process, but the decider is identified and reachable
     "closed",         # decided, or no public participation mechanism exists
 }
@@ -156,7 +157,7 @@ ROOMS = {
 DATE_KINDS = {
     "filed", "introduced", "passed", "signed", "effective", "ordered", "hearing",
     "comment_opens", "comment_closes", "decided", "statutory_deadline", "expires",
-    "withdrawn",
+    "withdrawn", "election",
 }
 
 SOURCE_TYPES = {"primary_official", "primary_corporate", "journalism"}
@@ -1216,6 +1217,11 @@ def self_test() -> int:
     expect("schema catches open_comment with no close date",
            gate_schema([base(public_access={"room": "open_comment", "how": "x", "url": None})]),
            "FAIL")
+    ballot = base(public_access={"room": "ballot", "how": "The measure goes to voters.",
+                                 "url": None, "closes": "2026-11-03"},
+                  key_dates=[{"date": "2026-11-03", "kind": "election"}])
+    expect("an election has its own participation route and date kind", gate_schema([ballot]), "PASS")
+    check("a future ballot date is not an open comment window", window_state(ballot, today) == "none")
     expect("schema catches a bad date kind",
            gate_schema([base(key_dates=[{"date": "2026-09-04", "kind": "someday"}])]), "FAIL")
     expect("schema catches a non-ISO date",

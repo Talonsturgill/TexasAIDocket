@@ -155,6 +155,11 @@ def findings(site: Path) -> list[str]:
 
         # ------------------------------------------------------------ articles
         if rel.startswith("/articles/") and rel != "/articles/":
+            headline = plain((H1.findall(html) or [""])[0])
+            article_title = plain((titles or [""])[0]).split(" · ")[0]
+            if any(re.fullmatch(r"\d{4}-\d{2}-\d{2}", value)
+                   for value in (headline, article_title)):
+                bad.append(f"{rel}: a date-only article headline hides the story's subject")
             if '"@type":"NewsArticle"' not in html.replace(" ", ""):
                 bad.append(f"{rel}: an article with no NewsArticle schema")
             if '"@type":"BreadcrumbList"' not in html.replace(" ", ""):
@@ -330,6 +335,12 @@ def self_test() -> int:
           any("want 'article'" in f for f in got), str(got))
     check("an article sharing the site card",
           any("shares the site card" in f for f in got), str(got))
+    for field in ("heading", "title"):
+        date_only = run({"": pg(), "articles/2026-08-19/": pg(
+            h1="<h1>2026-08-19</h1>" if field == "heading" else "<h1>A real story</h1>",
+            title="2026-08-19 · Texas AI Docket" if field == "title" else "A real story")})
+        check(f"a date-only article {field} is caught",
+              any("date-only article headline" in f for f in date_only), str(date_only))
     check("an article with no breadcrumb trail",
           any("no breadcrumb trail" in f for f in got), str(got))
     got = run({"": pg(), "articles/2026-08-19/": pg(
