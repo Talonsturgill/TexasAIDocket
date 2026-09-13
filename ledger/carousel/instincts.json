@@ -749,6 +749,30 @@
       "evidence": "Carousel 22 reached Phase 16 with 12 sentences over the 30 word backstop, every one of them in the record's own prose rather than in the deck, across three admitted items, two re-verify movement lines and one claim text.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "no-checks-means-conflicted-not-forbidden",
+      "learned": "2026-09-13",
+      "instinct": "When a pull request shows no check runs at all, first ask whether the branch still merges into its base, because a conflicted pull request gets no run rather than a red one.",
+      "evidence": "The September 12th and September 13th runs both failed to merge for two days. Both read an empty check list as something stopping CI. The September 13th run wrote a confident account blaming the session's credentials, built out of a 403 on workflow_dispatch that was real and incidental, and the owner had to point at the branch being dirty. git merge-tree --write-tree origin/main HEAD answers it in under a second and neither run asked.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-silence-is-not-a-refusal",
+      "learned": "2026-09-13",
+      "instinct": "Never explain an absent signal with the one lever that returned an error message, because a thing that is silent and a thing that refused are different findings.",
+      "evidence": "No guards run existed on either day's branch. workflow_dispatch returned 403 Resource not accessible by integration, which was true and incidental, and it became the explanation purely because it was the only lever that spoke. The real cause was silent: GitHub cannot build a merge ref for a conflicted pull request, so the workflow had no subject rather than no permission.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "merge-the-base-before-the-site-rebuild",
+      "learned": "2026-09-13",
+      "instinct": "Merge origin/main into the run branch immediately before the Phase 16 site rebuild, so docs/ regenerates on top of current main and the branch does not go un-mergeable while its pull request sits open.",
+      "evidence": "Measured 2026-09-13. gridwatch.yml runs twice daily and rewrites about 126 files under docs/ each time, pages.yml runs every two hours, and a daily run regenerates the whole of docs/. A run branch and main therefore collide on generated files within hours, every day, with nobody doing anything wrong. Rebuilding after the base merge costs one site build and resolves every generated conflict at once.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
