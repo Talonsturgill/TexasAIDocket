@@ -140,6 +140,19 @@ jobs:
       - name: Prompt audit self-test (prove it can go red)
         run: python3 scripts/shared/prompt_audit.py --self-test
 
+      # THE BRANCH BEING MERGEABLE, AND ONLY THE SELF-TEST CAN RUN HERE. The real check is
+      # deliberately absent from this file and that is not an oversight: a `pull_request`
+      # workflow runs against the pull request's MERGE REF, and GitHub cannot build one for a
+      # conflicted pull request. A branch this gate would fail ON never reaches this job at all.
+      # It gets no run rather than a red one, which is how PRs 298 and 301 sat unmerged for two
+      # days while two runs read an empty check list as a permissions problem.
+      #
+      # So CI proves the checker can go red, and `prompts/daily_routine.md` runs the real check
+      # in Phases 16 and 18, where the answer can still change what happens. Same split as the
+      # prompt audit above, for the same reason: the subject does not exist on this runner.
+      - name: Merge readiness self-test (prove a conflicted branch goes red)
+        run: python3 scripts/shared/merge_ready.py --self-test
+
       # THE WORKFLOW'S OWN WIRING. This file is six jobs behind one required check now, and a
       # job nobody waits on is a gate connected to nothing. Self-tests first, same rule as the
       # two above.
@@ -836,6 +849,20 @@ jobs:
           # two off-curve points is the compression that makes a naive reader draw a letter
           # inside out, so that path is exercised on a real glyph rather than assumed.
           python3 scripts/site/truetype.py --self-test
+
+      # FOUR SELF-TESTS THAT NOTHING RAN. Measured 2026-09-13 by widening `gate_wiring`'s census
+      # past `scripts/carousel/`: these four declare a `--self-test`, which is this repo's whole
+      # definition of a checker that can be asked, and no workflow and no phase had ever asked
+      # them. They are the site's drawn surfaces, the paper grain, the Lone Star mark, the sky
+      # and the watch page, which is to say the things a reader looks at and no other gate reads.
+      # All four passed on the day they were wired, so this is connecting work that was already
+      # done rather than new coverage.
+      - name: The site's drawn surfaces prove they can go red
+        run: |
+          python3 scripts/site/grain.py --self-test
+          python3 scripts/site/mark.py --self-test
+          python3 scripts/site/sky.py --self-test
+          python3 scripts/site/watch_page.py --self-test
 
       - name: A shared link has a card rather than a bare string
         run: |
