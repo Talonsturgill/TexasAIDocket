@@ -42,15 +42,16 @@ honest answer and is the same question `shipped_check`'s own reachability assert
 WHAT THIS COVERS, AND THE EXEMPTION THAT USED TO BE HERE. Until 2026-09-13 the census was
 `scripts/carousel/*.py` alone, and the docstring said so plainly on the grounds that the other
 directories belong to other lanes. **Writing an exemption down honestly is not the same as it
-being right, and this one hid two things.** A new checker in `scripts/shared/` reported clean
-while nothing ran it, and four checkers under `scripts/site/` had declared a `--self-test` that
-no workflow and no phase ever asked. A wiring check that cannot see a directory reports clean
-about a place it never looked.
+being right, and this one hid seven things.** A new checker in `scripts/shared/` reported clean
+while nothing ran it, and six under `scripts/site/` had declared a `--self-test` no workflow and
+no phase had ever asked: `grain`, `mark`, `sky`, `watch_page`, `ask_eval` and `tdlr_fetch`. A
+wiring check that cannot see a directory reports clean about a place it never looked.
 
-The census is `scripts/{carousel,shared}/*.py` now, and both are directories of standalone
-checkers a workflow or a phase calls by name. Lane ownership decides who may FIX an orphan,
+The census is `scripts/{carousel,shared,site}/*.py` now, 90 gates where it graded 32, and
+"run by something" has three routes: a workflow or a phase calls it, `shipped_check`'s gate loop
+loads it, or something that IS run imports it. Lane ownership decides who may FIX an orphan,
 which is a different question from whether one exists, and this file only ever answered the
-second. `scripts/site` stays out for a measured reason recorded beside `CENSUS`.
+second.
 
     gate_wiring.py                 take the measurement and grade it
     gate_wiring.py --self-test
@@ -75,15 +76,35 @@ CAROUSEL = REPO_ROOT / "scripts" / "carousel"
 # revisits. It hid a real orphan. `scripts/shared/merge_ready.py` was added that day to catch a
 # defect that had cost two days of shipping, and it reported clean here while nothing ran it.
 #
-# `scripts/site` IS DELIBERATELY OUT, and the reason is a measurement rather than a lane. Under
-# this file's own rule, that a `--self-test` invocation is not wiring, 24 of its 43 checkers come
-# back as orphans: `grain`, `mark`, `sky`, `theme`, `truetype`, `texas_map` and the rest. They are
-# not orphans. They are LIBRARIES that `site_build.py` imports, so their real invocation is an
-# import rather than a `python3 x.py`, and this file has no way to see one. Adding them would
-# report 24 findings of which zero are actionable, which is the cry-wolf failure `invoked_in`'s
-# own docstring already refuses. Teaching this gate to read imports is the work that would let
-# `site` in, and it is written up rather than half done.
-CENSUS = ("carousel", "shared")
+# `scripts/site` CAME IN THE SAME EVENING, once this file learned to read imports. Under the
+# direct rule alone 24 of its 43 checkers looked like orphans and 22 were not: `grain`, `mark`,
+# `sky`, `theme`, `truetype`, `texas_map` and the rest are LIBRARIES `site_build.py` imports, so
+# their invocation is an import rather than a `python3 x.py`. Reporting 24 findings of which zero
+# are actionable is the cry-wolf failure `invoked_in`'s own docstring refuses, so the route was
+# built rather than the directory excused. See `reached`.
+#
+# The two that survived the import route were real orphans and were treated differently on their
+# merits. `ask_eval` is BUILT in CI now rather than self-tested, because building 867 cases off
+# the record is the check. `tdlr_fetch` is in NOT_A_GATE with its reason.
+CENSUS = ("carousel", "shared", "site")
+
+# Every module in the census, by stem, so the import reader can tell one of ours from `json`.
+MODULES = {p.stem: p for d in CENSUS for p in (REPO_ROOT / "scripts" / d).glob("*.py")}
+
+# NOT A GATE, WITH THE REASON BESIDE IT. Same shape as `config/decider_groups.json`: saying two
+# things are different is a judgement, so it is written where it can be read and argued with, and
+# AN ENTRY WITH NO REASON FAILS THIS CHECK.
+#
+# The census rule is that a file declaring `--self-test` is a checker that can be asked. It is a
+# good rule and it misclassifies a fetcher, whose self-test exercises its PARSER while its actual
+# job needs the network. `gen_port_manifest.py` needs no entry here because it declares no
+# self-test at all, which is the same distinction arrived at by accident.
+NOT_A_GATE = {
+    "tdlr_fetch": ("A fetcher for the Comptroller's certified register, not a checker. Its "
+                   "--self-test exercises the parser and its --build goes to the network, so "
+                   "wiring it into CI would fetch a state register on every pull request. What "
+                   "IS checked is its output, through the data center dossiers that read it."),
+}
 WORKFLOW = REPO_ROOT / ".github" / "workflows" / "guards.yml"
 
 # EVERY WORKFLOW, because `guards.yml` is not the only thing that runs a checker. `livecheck.py`
@@ -128,6 +149,54 @@ def invoked_in(text: str, stem: str) -> bool:
     return bool(pat.search(text))
 
 
+def imported_by(stem: str, seen: set[str] | None = None) -> set[str]:
+    """The modules `stem` imports, restricted to this repo's own scripts.
+
+    Read with `ast` rather than by importing, because importing a module to find out whether
+    anything imports it runs its top level, and several of these draw or fetch on import.
+    Imports inside a function body count: `shipped_check` and this file both do it, and a call
+    that only happens sometimes is still a call.
+    """
+    import ast
+    p = MODULES.get(stem)
+    if p is None:
+        return set()
+    try:
+        tree = ast.parse(p.read_text(encoding="utf-8"))
+    except SyntaxError:
+        return set()
+    out = set()
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Import):
+            out.update(a.name.split(".")[0] for a in n.names)
+        elif isinstance(n, ast.ImportFrom) and n.module and n.level == 0:
+            out.add(n.module.split(".")[0])
+    return {m for m in out if m in MODULES}
+
+
+def reached(roots: set[str]) -> set[str]:
+    """Everything an invoked module pulls in, transitively.
+
+    THE ROUTE THAT LET `scripts/site` INTO THE CENSUS. Under the direct rule alone, 24 of its 43
+    checkers looked like orphans and not one of them was: `grain`, `mark`, `sky`, `theme`,
+    `truetype` and the rest are LIBRARIES that `site_build.py` imports, so their invocation is an
+    import rather than a `python3 x.py`. A gate reporting 24 findings of which zero are
+    actionable teaches a run to scroll past the 25th, which is the cry-wolf failure `invoked_in`
+    already refuses for prose.
+
+    With this route the same directory reports TWO, and both were real: `ask_eval` and
+    `tdlr_fetch` had a `--self-test` that nothing had ever run. Both were wired in the same
+    change, so this went green on the day it landed.
+    """
+    seen, stack = set(roots), list(roots)
+    while stack:
+        for child in imported_by(stack.pop()):
+            if child not in seen:
+                seen.add(child)
+                stack.append(child)
+    return seen - set(roots)
+
+
 def check(loaded: set[str], workflow: str | None = None, routine: str | None = None,
           census: list[str] | None = None) -> list[str]:
     """Every gate that nothing in this machine runs. Pure, so callers can fixture it."""
@@ -137,14 +206,24 @@ def check(loaded: set[str], workflow: str | None = None, routine: str | None = N
     names = gates() if census is None else census
 
     out: list[str] = []
+    # THE EXEMPTIONS ARE GRADED FIRST, before any early return. An unjustified exemption is a
+    # finding about this file rather than about the census, so a narrowed or empty census must
+    # not be able to hide one.
+    for stem, why in NOT_A_GATE.items():
+        if not str(why or "").strip():
+            out.append(f"{stem} is excused in NOT_A_GATE with no reason written. An exemption "
+                       f"nobody justified is how the next silent surface grows")
     if not names:
-        return ["the census found no gate at all, so this check is grading nothing"]
+        return out + ["the census found no gate at all, so this check is grading nothing"]
+    direct = {s for s in MODULES if invoked_in(wf, s) or invoked_in(rt, s)}
+    indirect = reached(direct | set(loaded))
     for stem in names:
-        if invoked_in(wf, stem) or invoked_in(rt, stem) or stem in loaded:
+        if stem in direct or stem in loaded or stem in indirect or stem in NOT_A_GATE:
             continue
         out.append(
-            f"{stem}.py is run by nothing. It is in guards.yml in no form, the routine names it "
-            f"in no phase, and shipped_check's gate loop never loaded it. A gate nobody runs is "
+            f"{stem}.py is run by nothing. No workflow calls it, the routine names it in no "
+            f"phase, shipped_check's gate loop never loaded it, and nothing that IS run imports "
+            f"it. A gate nobody runs is "
             f"a gate that is red without anybody finding out. The fix inside the upgrade lane is "
             f"a registry entry in scripts/carousel/shipped_check.py")
     return out
@@ -302,6 +381,37 @@ def self_test() -> int:
        not check(set(), census=["livecheck"]),
        "only guards.yml is being read, so every other workflow's checkers look unwired")
 
+    # THE IMPORT ROUTE, which is what let `scripts/site` into the census at all.
+    ok("the census reaches scripts/site", "site_build" in gates(),
+       "the census does not see scripts/site")
+    ok("a library reached only by an import is not an orphan",
+       not check(set(), census=["truetype"]),
+       "truetype is imported by site_build and nothing calls it as python3 truetype.py, so "
+       "without the import route it reports as an orphan and 21 others report with it")
+    ok("...and the import reader finds that edge", "truetype" in reached({"site_build"}),
+       f"reached from site_build: {sorted(reached({'site_build'}))[:6]}")
+    ok("an unreachable checker is still reported",
+       bool(check(set(), workflow="", routine="", census=["site_build"])),
+       "with nothing invoked and nothing imported, even a root must come back as an orphan")
+
+    # AN EXEMPTION WITHOUT A REASON IS ITSELF A FINDING.
+    # Mutate THIS module's global rather than `import gate_wiring`, which under `python3
+    # gate_wiring.py` yields a second module object whose NOT_A_GATE `check` never reads.
+    _keep = dict(NOT_A_GATE)
+    try:
+        NOT_A_GATE["a_fixture"] = ""
+        ok("an exemption with no reason written is reported",
+           any("no reason written" in f for f in check(set(), workflow="", routine="",
+                                                       census=[])),
+           "NOT_A_GATE accepted a blank reason")
+        NOT_A_GATE["a_fixture"] = "a reason"
+        ok("...and one with a reason is accepted",
+           not any("no reason written" in f for f in check(set(), census=[])),
+           "a justified exemption was still reported")
+    finally:
+        NOT_A_GATE.clear()
+        NOT_A_GATE.update(_keep)
+
     # A NARROWED SWEEP MUST REFUSE TO GRADE RATHER THAN GRADE WRONG. A gate that postdates an
     # older deck returns before importing anything, so over that deck the measurement is short
     # and every missing gate would be reported as an orphan. Saying which kind of absence this
@@ -332,7 +442,7 @@ def main() -> int:
         for f in found:
             print(f"  - {f}", file=sys.stderr)
         return 1
-    print(f"gate wiring ok: {len(gates())} carousel gate(s), every one run by something")
+    print(f"gate wiring ok: {len(gates())} gate(s) across {', '.join(CENSUS)}, every one run by something")
     return 0
 
 
