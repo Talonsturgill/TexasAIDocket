@@ -1,9 +1,9 @@
 {
   "_spec": 1,
-  "checked_at": "2026-09-13T17:00:51Z",
+  "checked_at": "2026-09-13T21:31:28Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260912165950&enddatetime=20260913165950",
-  "response_sha256": "37f0ddd979334915e800bf83f8d50f333a23671887e1e791b8cd09df914e9b3b",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260912212954&enddatetime=20260913212954",
+  "response_sha256": "3fa42f74ce4f40aa948becc7cb64f699852ee653d2a1c4992b66d4c174ea0371",
   "articles": [
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
@@ -35,10 +35,10 @@
   "expires_at": null,
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260912165950&enddatetime=20260913165950",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260912212954&enddatetime=20260913212954",
       "status": "ok",
-      "items": 58,
-      "sha256": "24bf611f6f686dcac49407d573c0322fd058f21bb002166808f1d4a3d1300c00"
+      "items": 34,
+      "sha256": "14f2fce305282924903215f3e5d34287e3db4ff1ffd71685cdb18d45f2dbceb8"
     },
     {
       "url": "https://dallasinnovates.com/feed/",
