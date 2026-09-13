@@ -946,6 +946,20 @@ def claims_html(it: dict) -> str:
 RAW = f"https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/main"
 
 
+def _scored_from() -> str:
+    """The date of the earliest run that carries a score, which is where legacy ends.
+
+    Read off the directory rather than held as a constant, so nobody has to remember to move a
+    cutoff when the history changes. Returns "" when nothing has ever been scored, which leaves
+    every run legacy and is the correct behaviour for a fresh archive.
+    """
+    base = REPO_ROOT / "runs" / "carousel"
+    if not base.is_dir():
+        return ""
+    scored = [x.name for x in base.iterdir() if x.is_dir() and (x / "score.json").exists()]
+    return min(scored) if scored else ""
+
+
 def load_runs() -> list:
     """Every carousel this project has shipped, newest first.
 
@@ -973,6 +987,20 @@ def load_runs() -> list:
         # that the panel cleared it. Reuse the gate that already knows about cap and owner paths
         # so the site cannot invent a second definition of shipped.
         if (d / "score.json").exists() and run_complete.check(d, bar, cap):
+            continue
+        # AND A RUN WITH NO SCORE AT ALL IS NOT AUTOMATICALLY LEGACY. The clause above only
+        # refuses a run whose score FAILS, so a run that was never scored fell through it and
+        # published. On 2026-09-12 that is exactly what happened: the run held for a rate limit
+        # with no `score.json`, its evidence was committed so a later session could resume, and
+        # the article went live off `copy.json` alone while its own run record read score
+        # ABSENT and completion ABSENT. A code review caught it before the merge.
+        #
+        # LEGACY IS A DATE, NOT AN ABSENCE. The exemption exists for decks shipped before this
+        # project scored anything, and those are all older than the first run that carries a
+        # score. So the boundary is read off the artifacts rather than written down: any run on
+        # or after the earliest scored run is expected to carry one, and a missing score there
+        # is an unfinished run rather than a historical one.
+        if not (d / "score.json").exists() and _scored_from() and d.name >= _scored_from():
             continue
         try:
             copy = json.loads((d / "copy.json").read_text("utf-8"))

@@ -1,0 +1,47 @@
+{
+ "judge": "craft",
+ "round": 1,
+ "date": "2026-09-12",
+ "weighted_score": 6.77,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make measure.py compare each frame's measured median L* against the target its own dossier declares and fail the build on the arc rather than only on the light cap, because the plan's 38/76/46/17/58/27/49/44/35 shipped as 6.1/86.4/6.1/6.1/6.1/14.9/6.1/6.1/6.1 with the numbers sitting unread in measurements.json through a full render and a gate suite.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 5.8,
+   "why": "THE VALUE ARC IS DECLARED AND NOT EXECUTED. Seven of nine frames sit at exactly L* 6.1, the page colour. Five frames have no real light: p95 59.7, 51.4, 55.9, 43.0 and 60.9 on frames 3, 4, 5, 7 and 9, while the hook ink prints at 86, so on those five the brightest object is the TYPE. Frame 7 fails the silhouette test outright, no desk legible on a frame whose declared subject is a desk, three unidentifiable fragments at the bottom, and the granite with no limb on it. Frame 5 is the swatch failure named in the technique library. Declared rects overclaim on 1, 4 and 5. Against all that, frames 3, 4, 8 and 9 are real drawings."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Not my lens, graded on what I could verify. Every numeral on a frame traces to computed.json. Frame 5 prints no numeral and the dossier states why. The run cut c11 off frame 2's cite line when the sentence it covered was cut, and refused a verbatim slot on frame 8 when the planned string was never drawn."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.3,
+   "why": "A Texan learns what changed: who decides whether a crack counts, and that the decision aims repair money. Frame 9 names the body, the city, the date and states honestly that no agenda is posted. No county and no road a reader drives is named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "The structure is right and the turn's whole mechanism is visual by the storyboard's own account, and frame 7 is the deck's least readable frame with the granite on a bar rather than under a hand. The turn happens in the copy and not in the picture."
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.4,
+   "why": "Somebody used to stand here is a line a person wrote and it is doing work over a figure on a fog line. No boosterism, no first person, dates month first with the ordinal. It flattens in the deks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The register is genuinely new and at deck median 6.1 it is the darkest deck in its own window. What pulls it down is internal: seven of nine frames open kicker, two line serif hook, dek, all on flat page, with the art starting between y 480 and 600. The layouts vary below the fold and the fold never moves."
+  }
+ ]
+}

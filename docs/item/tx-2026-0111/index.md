@@ -1,6 +1,6 @@
 # Governor orders state agencies to pause funding for Flock plate reader cameras
 
-The Governor's office ordered every Texas state agency to pause funding for Flock automated license plate reader cameras, and confirmed the order on August 28th, 2026. The money behind the state's share of that network is a one dollar auto insurance fee the Legislature passed unanimously in 2023 against catalytic converter theft. The Motor Vehicle Crime Prevention Authority turned part of that fee into cameras reaching from El Paso to the Louisiana border. The order reached the public as a spokesperson's statement to a newsroom, and the Governor's own news index carries no release on it. The authority that wrote the grants lists its next board meeting for October 13th, 2026.
+The Governor's office ordered every Texas state agency to pause funding for Flock automated license plate reader cameras, and confirmed the order on August 28th, 2026. The money behind the state's share of that network is a one dollar auto insurance fee the Legislature passed unanimously in 2023 against catalytic converter theft. The Motor Vehicle Crime Prevention Authority turned part of that fee into cameras reaching from El Paso to the Louisiana border. The order reached the public as a spokesperson's statement to a newsroom, and the Governor's own news index carries no release on it. The authority that wrote the grants listed a board meeting for October 13th, 2026 and has since taken it off its page, which now shows no future meeting at all.
 
 - Topic: surveillance-and-policing
 - Decided by: Office of the Texas Governor (governor)
@@ -9,12 +9,11 @@ The Governor's office ordered every Texas state agency to pause funding for Floc
 - Public access: Public meeting
 - Take part: https://www.txdmv.gov/about-us/MVCPA
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
 - 2026-08-28 · ordered: The Governor's office confirmed the order
-- 2026-10-13 · hearing: The authority that wrote the grants lists a board meeting
 
 ## How this decision moved
 
@@ -26,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The pause on state funding for plate reader cameras still stands and no agency has been released from it.
 - 2026-09-08 · The Governor's pause on state agency funding for Flock plate readers is still in force, and no agency has published a resumption.
 - 2026-09-09 · State agencies are still barred from funding Flock plate reader cameras under the Governor's order, which has not been withdrawn.
+- 2026-09-12 · The October board meeting the authority had posted is off its page, which now lists no future meeting at all. The newest one on it is dated July 24th. The pause on state agency funding for the cameras is still in force and no agency has published a resumption.
 
 ## Evidence
 
@@ -67,9 +67,9 @@ Source (journalism): https://www.texastribune.org/2026/08/28/texas-flock-cameras
 
 Source (journalism): https://www.texastribune.org/2026/08/28/texas-flock-cameras-auto-insurance-fee-mvcpa-grants/
 
-### The authority lists its next board meeting for October 13th, 2026.
+### The authority's meetings page lists no upcoming board meeting, and the newest one on it is dated July 24th, 2026.
 
-> October 13, 2026 - MVCPA Board Meeting
+> July 24, 2026 - MVCPA Board Meeting
 
 Source (primary_official): https://www.txdmv.gov/about-us/MVCPA
 

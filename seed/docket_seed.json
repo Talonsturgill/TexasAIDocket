@@ -7507,5 +7507,203 @@
         "note": "Admitted to the record. The plant that builds the racks going into Amazon's data centers is being expanded. The release carries no publication date of its own, so the day it was announced is unconfirmed."
       }
     ]
+  },
+  {
+    "title": "El Paso City Council posts two items to strip the police plate reader cameras off city property and bar the next contract",
+    "summary": "The El Paso City Council's agenda for September 15th, 2026 carries two items filed by members of the council. The first would direct the City Manager to remove every Flock Safety fixed automated license plate reader camera and its hardware from city property and right of way within 60 days, whoever owns the equipment. The second would bar the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote, and would give the City Attorney 30 days to draft a resolution carrying that out. The agenda's status is final and neither item has been voted on. El Paso sits outside the ERCOT region, and the city's cameras were bought with a state grant from the authority whose funding the Governor paused in August.",
+    "topic": "surveillance-and-policing",
+    "decider": {
+      "name": "El Paso City Council",
+      "type": "city"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "El Paso"
+      ],
+      "on_ercot": false
+    },
+    "status": "pending",
+    "key_dates": [
+      {
+        "date": "2026-09-15",
+        "kind": "hearing",
+        "note": "the council meeting at which both items are set"
+      }
+    ],
+    "public_access": {
+      "room": "open_meeting",
+      "how": "The council meets in Council Chambers at City Hall at 9:00 AM on September 15th, 2026 and the agenda carrying both items is published in full.",
+      "url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+      "closes": null
+    },
+    "id": "tx-2026-0147",
+    "last_verified": "2026-09-12",
+    "confidence": "high",
+    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.",
+    "history": [
+      {
+        "date": "2026-09-12",
+        "note": "Admitted on the council's own agenda for the September 15th meeting. Neither item has been voted on.",
+        "checked": true
+      }
+    ],
+    "claims": [
+      {
+        "text": "The first item would direct the City Manager to remove every fixed plate reader camera from city property within 60 days.",
+        "verbatim_quote": "Discussion and action directing the City Manager to ensure the removal, within 60 days, of all Flock Safety fixed automated license plate reader (ALPR) cameras and related hardware located on or within City property, City right-of-way, or otherwise within the City's control, regardless of whether such cameras or hardware are owned by Flock Safety, the City of El Paso, or any third party, including by physically removing such equipment or coordinating its removal by the appropriate party.",
+        "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0147-c1"
+      },
+      {
+        "text": "The second item would bar a further plate reader contract without a council vote and give the City Attorney 30 days to draft a resolution.",
+        "verbatim_quote": "Discussion and action directing the City Manager to refrain from entering into, executing, renewing, or extending any contract, agreement, or other arrangement with Flock Safety or any other provider for the acquisition, installation, operation, maintenance, or use of fixed, networked automated license plate reader (ALPR) cameras or substantially similar technology, unless otherwise directed by subsequent action of the City Council; and directing the City Attorney to draft and return to the City Council within 30 days a resolution to further effectuate this direction.",
+        "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0147-c2"
+      },
+      {
+        "text": "The meeting is set for September 15th, 2026 at 9:00 AM and the agenda is final.",
+        "verbatim_quote": "Meeting date/time: 9/15/2026 9:00 AM",
+        "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0147-c3"
+      }
+    ]
+  },
+  {
+    "title": "Energy Department funds a synthetic underground test pit at a Navasota drilling site to prove out mining automation",
+    "summary": "The Energy Department's Office of Critical Minerals and Energy Innovation named four mining proving ground projects on September 9th, 2026. One goes to Southern Methodist University, whose project location the announcement gives as Navasota, Texas. The department describes it as the world's first synthetic pit of its kind, built inside an existing instrumented drilling and sensing facility so that mining tools, workflows and automation systems can be tested repeatably in the field rather than only in a laboratory. The announcement states no dollar figure for the Texas project and never uses the words artificial intelligence, so what is funded here is automation testing rather than a model.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "U.S. Department of Energy",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Grimes"
+      ],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "decided",
+        "note": "the date the department announced the four projects"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The department publishes the announcement naming the four projects. There is no comment window and no public proceeding attached to the selection.",
+      "url": "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic",
+      "closes": null
+    },
+    "id": "tx-2026-0148",
+    "last_verified": "2026-09-12",
+    "confidence": "high",
+    "notes_for_editor": "Grimes County because the announcement names Navasota as the project location and Navasota is the Grimes County seat. The university's own Dallas headquarters is a decider address and is deliberately not carried as a county.",
+    "history": [
+      {
+        "date": "2026-09-12",
+        "note": "Admitted on the department's own announcement of the four selected projects.",
+        "checked": true
+      }
+    ],
+    "claims": [
+      {
+        "text": "The department gives Southern Methodist University's project location as Navasota, Texas.",
+        "verbatim_quote": "Southern Methodist University (HQ: Dallas, TX, project location: Navasota, Texas)",
+        "source_url": "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0148-c1"
+      },
+      {
+        "text": "The project repurposes an instrumented Texas drilling site to test mining tools, workflows and automation systems.",
+        "verbatim_quote": "This project will create the world's first synthetic mine within an advanced drilling and sensing test facility to accelerate next generation mining technologies from lab concepts to field ready deployment. By repurposing a highly instrumented Texas drilling site, it will enable rigorous, repeatable, and safe testing of mining tools, workflows, and automation systems.",
+        "source_url": "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0148-c2"
+      }
+    ]
+  },
+  {
+    "title": "Science foundation funds a Texas A&M engineering station to build AI digital twins of small water systems",
+    "summary": "The National Science Foundation obligated an award to the Texas A&M Engineering Experiment Station on September 9th, 2026. It sits in the Division of Civil, Mechanical, and Manufacturing Innovation. The work is to build AI-enabled digital twins that predict and manage cascading failures in freshwater infrastructure. The award record carries Artificial Intelligence among its programs. The performing site is College Station and the grant runs to August 31st, 2029. The abstract names no Texas utility. Which water system's data this reaches is not stated.",
+    "topic": "research-and-science",
+    "decider": {
+      "name": "National Science Foundation",
+      "type": "federal"
+    },
+    "geography": {
+      "statewide": false,
+      "counties": [
+        "Brazos"
+      ],
+      "on_ercot": true
+    },
+    "status": "decided",
+    "key_dates": [
+      {
+        "date": "2026-09-09",
+        "kind": "decided",
+        "note": "the date the foundation obligated the award"
+      },
+      {
+        "date": "2029-08-31",
+        "kind": "expires",
+        "note": "the date the award record gives for expiry"
+      }
+    ],
+    "public_access": {
+      "room": "contact_only",
+      "how": "The foundation publishes the award record with its abstract, amount and dates. There is no comment window and no public proceeding attached to an award.",
+      "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode",
+      "closes": null
+    },
+    "id": "tx-2026-0149",
+    "last_verified": "2026-09-12",
+    "confidence": "high",
+    "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.",
+    "history": [
+      {
+        "date": "2026-09-12",
+        "note": "Admitted on the foundation's own award record.",
+        "checked": true
+      }
+    ],
+    "claims": [
+      {
+        "text": "The award funds research on an AI-enabled approach to predicting and mitigating cascading failures in freshwater infrastructure.",
+        "verbatim_quote": "The objective of this project is to support research on a new AI-enabled cyber-physical-social paradigm for predicting, managing, and mitigating cascading disruptions in freshwater infrastructure systems.",
+        "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0149-c1"
+      },
+      {
+        "text": "The award is titled for AI-enabled digital twins of freshwater infrastructure.",
+        "verbatim_quote": "Collaborative Research: AI-Enabled Digital Twins for Resilient Freshwater Infrastructure and Communities under Cascading Hazards",
+        "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0149-c2"
+      },
+      {
+        "text": "The award goes to the Texas A&M Engineering Experiment Station, performing in College Station.",
+        "verbatim_quote": "Texas A&M Engineering Experiment Station",
+        "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode",
+        "source_type": "primary_official",
+        "retrieved_at": "2026-09-12",
+        "id": "tx-2026-0149-c3"
+      }
+    ]
   }
 ]

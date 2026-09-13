@@ -1,0 +1,216 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 3 of 9. Archetype FIGURE_SCALE.
+     The agency's own contribution, as a physical object, with a person beside it at the SAME
+     depth so the comparison is true. The dossier asked for the figure at 283 px against the
+     van's 284, which would have put the person nearer the camera than the thing they are
+     measuring against, and a figure-scale frame whose figure is closer than its subject is the
+     one arrangement that makes the comparison a lie. Same Z, honest sizes, 194 against 347.
+     The granite is on the person. Nothing on the frame names or implies who employs them. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:186px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:100px; line-height:1.0; letter-spacing:-0.022em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:416px; width:820px; font-size:28px; line-height:1.42; color:var(--dek); }
+  .note { position:absolute; left:80px; top:1104px; width:900px; font-family:"JetBrains Mono", monospace;
+          font-size:24px; letter-spacing:0.08em; line-height:1.45; color:var(--furn); z-index:20; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="note">THE RELEASE LISTS THE SCANNER AND THE VAN SEPARATELY</div>
+<h1 class="hook" id="hook" data-role="hook">TxDOT handed over a van.</h1>
+<p class="dek" data-role="dek">The university's release lists what prepared the data. An automated 2D/3D pavement laser scanner, and "a TxDOT-donated mobile research van".</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The equipment", kicker2: "Ingram School of Engineering",
+      counter: C.counters[2], src: "c1 c3 c5   TEXAS AI DOCKET", ink: "#96876E" });
+    TX.fitText(document.getElementById("hook"), { min: 78, max: 100, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+    // THE CAMERA STEPS BACK. At Z 7.5 the van's flank was a wall of cross hatch filling two
+    // thirds of the frame and the eye had nothing to read it against. At Z 9 the whole vehicle
+    // is legible, the right edge still cuts it, and the person still stands at the same depth.
+    var CAM = { w: W, h: H, eye: 1.62, horizon: 840, f: 1050, sky: "#0A0A0A",
+                fogZ: 1e9, light: { az: -58, el: 18 } };
+    var VANX = 2.20, VANZ = 9.0;
+    var PERSON = { X: -1.62, Z: 9.0 };
+    var who = TXFIG.figure({ pose: "stand", height: 1.70 });
+
+    // THE VAN, in metres, because no van is in the catalogue. 6.4 long by 2.6 tall on a 2.35 m
+    // track, with a 2.9 m mast carrying a 2.4 m transverse boom and two 0.45 m sensor heads.
+    // The part key is `type`, an ellipse takes cx cy rx ry and a line takes pts and width. The
+    // first draft of this sprite used `kind` and x y w h, drew nothing, and reported no error.
+    var VAN = { parts: [
+      { type: "rect", x: -3.20, y: 0.70, w: 6.40, h: 1.60, fill: "ink" },          // body
+      { type: "rect", x: -3.20, y: 0.70, w: 6.40, h: 0.22, fill: "tone" },         // the dark sill
+      { type: "rect", x: -3.10, y: 2.30, w: 6.20, h: 0.13, fill: "paper" },        // roof cap, lit
+      { type: "poly", pts: [[2.40, 0.70], [3.20, 1.10], [3.20, 2.30], [2.40, 2.30]], fill: "ink" },
+      { type: "rect", x: 2.46, y: 1.62, w: 0.66, h: 0.56, fill: "paper" },         // cab glass
+      { type: "rect", x: -2.70, y: 1.58, w: 1.05, h: 0.60, fill: "paper" },        // rear door glass
+      { type: "rect", x: -1.42, y: 1.58, w: 1.05, h: 0.60, fill: "paper" },        // side glass
+      { type: "line", pts: [[-1.56, 0.96], [-1.56, 2.28]], width: 0.045, fill: "paper" }, // door seam
+      { type: "line", pts: [[-3.16, 0.96], [-3.16, 2.28]], width: 0.045, fill: "paper" },
+      { type: "rect", x: -1.98, y: 1.28, w: 0.30, h: 0.07, fill: "paper" },        // door handle
+      // NO WHEEL ARCH ELLIPSE. A 0.70 m ellipse behind each tyre came back from the contour
+      // plate as a light disc the size of the wheel and the van grew two hubcaps nobody drew.
+      // The arch is the notch cut out of the skirt instead, which is what an arch actually is.
+      // THE WHEELS, drawn after the body and standing proud of the sill so the van has a
+      // running gear rather than a hem. A tyre is the darkest thing on the vehicle and its rim
+      // is the lightest, which is what makes a wheel read as a wheel at 432 px.
+      { type: "ellipse", cx: -1.90, cy: 0.52, rx: 0.52, ry: 0.52, fill: "tone" },
+      { type: "ellipse", cx: 1.95, cy: 0.52, rx: 0.52, ry: 0.52, fill: "tone" },
+      { type: "ellipse", cx: -1.90, cy: 0.52, rx: 0.30, ry: 0.30, fill: "paper" },
+      { type: "ellipse", cx: 1.95, cy: 0.52, rx: 0.30, ry: 0.30, fill: "paper" },
+      { type: "ellipse", cx: -1.90, cy: 0.52, rx: 0.11, ry: 0.11, fill: "tone" },
+      { type: "ellipse", cx: 1.95, cy: 0.52, rx: 0.11, ry: 0.11, fill: "tone" },
+      // THE SCANNER, a 2.4 m transverse boom on a short mast, kept close to the roof. At a
+      // half metre of mast it read as a gantry standing over the van rather than on it.
+      { type: "rect", x: -0.09, y: 2.43, w: 0.22, h: 0.17, fill: "paper" },        // boom mast
+      { type: "rect", x: -1.20, y: 2.60, w: 2.40, h: 0.15, fill: "paper" },        // transverse boom
+      { type: "rect", x: -1.12, y: 2.36, w: 0.45, h: 0.24, fill: "ink" },          // sensor heads
+      { type: "rect", x: 0.67, y: 2.36, w: 0.45, h: 0.24, fill: "ink" },
+      { type: "line", pts: [[-0.90, 2.36], [-0.90, 1.92]], width: 0.03, fill: "paper" },
+      { type: "line", pts: [[0.89, 2.36], [0.89, 1.92]], width: 0.03, fill: "paper" }
+    ] };
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 33,
+      screen: { mode: "hatch", cell: 7, angle: 40, gamma: 1.15, floor: 0.05 },
+      edges: { threshold: 21, width: 1.35, alpha: 0.8, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        a.fillStyle = "#0A0A0A"; a.fillRect(0, 0, W, H);
+        var S = TXSCENE.create(a, CAM);
+        var sky = a.createLinearGradient(0, 0, 0, 840);
+        sky.addColorStop(0, "#0A0A0A"); sky.addColorStop(1, "#2E2E2E");
+        a.fillStyle = sky; a.fillRect(0, 0, W, 840);
+
+        S.ground({ near: 0.7, far: 600, fill: "#7A7A7A" });                    // caliche yard
+        S.gridZ({ dz: 7, from: 14, to: 110, ink: "rgba(0,0,0,.10)", width: 1.0 });
+        // A LIT BAND ON THE NEAR YARD. The frame measured p95 59.7 with the type as its brightest
+        // object, which is the deck-wide finding all three judges made. A low sun on caliche puts
+        // a bright strip in front of the camera and that is what the frame was missing.
+        var yl = a.createLinearGradient(0, S.groundY(24), 0, H);
+        yl.addColorStop(0, "rgba(255,255,255,0.00)");
+        yl.addColorStop(0.55, "rgba(255,255,255,0.26)");
+        yl.addColorStop(1, "rgba(255,255,255,0.48)");
+        a.fillStyle = yl; a.fillRect(0, S.groundY(24), W, H - S.groundY(24));
+
+        // a fence line well back, so the yard has a far edge and the van is standing in a place
+        var post = TXOBJ.sprite("fence_post");
+        for (var Z = 26; Z < 220; Z *= 1.24) {
+          S.shadow(post, { X: -14, Z: Z, ink: "#000", alpha: 0.26 });
+          S.sprite(post, { X: -14, Z: Z, inks: { ink: "#4A4A4A", paper: "#0A0A0A", accent: "#4A4A4A" } });
+        }
+        TXOBJ.wire(S, [-14, 26, 1.15], [-14, 220, 1.15], { ink: "#4E4E4E", width: 1.0 });
+
+        // THE TWO PART CONTACT under each tyre. One crisp core at the contact patch and one
+        // softening body outboard of it. A single soft ellipse is a drop shadow and a drop
+        // shadow is the thing that makes a drawn object look pasted on.
+        function contact(Xc, Z, r) {
+          var p = S.project(Xc, 0, Z), ppm = S.ppm(Z);
+          a.save();
+          a.fillStyle = "rgba(0,0,0,0.55)";
+          a.beginPath(); a.ellipse(p[0], p[1], r * 2.6 * ppm, r * 0.72 * ppm, 0, 0, 6.2832); a.fill();
+          a.fillStyle = "rgba(0,0,0,0.92)";
+          a.beginPath(); a.ellipse(p[0], p[1], r * 1.05 * ppm, r * 0.30 * ppm, 0, 0, 6.2832); a.fill();
+          a.restore();
+        }
+        S.shadow(VAN, { X: VANX, Z: VANZ, ink: "#000", alpha: 0.36 });
+        contact(VANX - 1.90, VANZ, 0.34);
+        contact(VANX + 1.95, VANZ, 0.34);
+        S.sprite(VAN, { X: VANX, Z: VANZ,
+                        inks: { ink: "#9C9C9C", paper: "#E8E8E8", tone: "#3A3A3A", accent: "#9C9C9C" } });
+
+        // THE PERSON, at the van's rear doors and at the SAME depth, drawn light here so the
+        // print gives them a body. The granite goes over them in `over`.
+        S.shadow(who, { X: PERSON.X, Z: PERSON.Z, ink: "#000", alpha: 0.58 });
+        S.sprite(who, { X: PERSON.X, Z: PERSON.Z,
+                        inks: { ink: "#D8D8D8", paper: "#0A0A0A", accent: "#D8D8D8" } });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#161310", top: 600, topSolid: 545, bottom: 236, bottomSolid: 184 });
+        // A KNOCKOUT PLATE under the disclosure line. There is no quiet place on a fully hatched
+        // yard, so the frame makes one, the same answer frames 4 and 6 reached.
+        c.save(); c.fillStyle = "#161310"; c.fillRect(64, 1094, 920, 54); c.restore();
+        var S2 = TXSCENE.create(c, CAM);
+        S2.sprite(who, { X: PERSON.X, Z: PERSON.Z,
+                         inks: { ink: "#9A3B2A", paper: "#161310", accent: "#9A3B2A" } });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

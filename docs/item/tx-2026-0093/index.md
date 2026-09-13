@@ -11,7 +11,7 @@ The National Science Foundation made a standard grant to William Marsh Rice Univ
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2616828.json
 
-- Last checked: 2026-09-11
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The Rice award letting AI propose numerical algorithms only where a proof can follow is unchanged, and the proof condition is still part of it.
 - 2026-09-10 · The award to Rice is still on the foundation's own record. It still names the same principal investigator and still carries the same purpose, which is letting a model propose numerical algorithms. Nothing about the award has been amended.
 - 2026-09-11 · The award record still stands as the foundation published it. The condition it sets is unchanged, which is that a machine proposed algorithm counts only once the proof assistant has certified its correctness and its cost.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

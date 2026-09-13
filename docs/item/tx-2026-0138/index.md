@@ -11,7 +11,7 @@ The Lubbock City Council held a public hearing on September 8th, 2026 on a citiz
 - Public access: Public meeting
 - Take part: https://www.mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -22,6 +22,7 @@ The Lubbock City Council held a public hearing on September 8th, 2026 on a citiz
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-09 · Admitted on the council's own agenda for the hearing. The resolution states a desire and no ordinance has followed it.
+- 2026-09-12 · The Lubbock resolution still states a desire and no ordinance has followed it. The council agenda that carried the petition reads as it did.
 
 ## Evidence
 

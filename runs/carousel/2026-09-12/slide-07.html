@@ -1,0 +1,268 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 7 of 9. Archetype OBJECT_AND_CAPTION. THE TURN, built third.
+     The deck's one interior and its one seated camera, because the reader sits down where the
+     verification happens. The granite that marked the rater on frame 1 comes back to a hand
+     here, which is the accent law doing the argument before a word is read. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:174px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:1.0; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:410px; width:820px; font-size:28px; line-height:1.42; color:var(--dek); }
+  .quote { position:absolute; left:80px; top:548px; width:820px; font-family:"Instrument Serif", serif;
+           font-size:40px; line-height:1.28; color:var(--ink); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" data-role="hook">An engineer still has to check.</h1>
+<p class="dek" data-role="dek">The team's own 2025 paper says the precision of the technology often leads to inaccuracies.</p>
+<p class="quote">Those inaccuracies "must be verified by pavement engineers."</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The turn", kicker2: "Sensors 25(4), 2025",
+      counter: C.counters[6], src: "c14 c17   TEXAS AI DOCKET", ink: "#96876E" });
+    TX.fitText(document.getElementById("hook"), { min: 74, max: 96, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+    var sheetBox = null, DESKQ = null;
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 74,
+      screen: { mode: "hatch", cell: 6, angle: 68, gamma: 1.14, floor: 0.05 },
+      edges: { threshold: 22, width: 1.3, alpha: 0.78, dx: 0.9, dy: -0.7 },
+      draw: function (a) {
+        // SEATED EYE. The deck's one camera drop and its one interior. The room is not drawn:
+        // one unseen source lights a pool of floor and everything falls away from it, which is
+        // what keeps the type reserve dark by construction rather than by a plate.
+        a.fillStyle = "#0C0C0C"; a.fillRect(0, 0, W, H);
+        var S = TXSCENE.create(a, { w: W, h: H, eye: 1.48, horizon: 690, f: 900, sky: "#0C0C0C",
+                                    fogZ: 1e9, light: { az: 26, el: 62 } });
+        // the floor, lit in a pool around the desk and falling to the ground colour outward
+        S.ground({ near: 0.5, far: 60, fill: "#2C2C2C" });
+        // AN ELLIPSE WIDER THAN THE FRAME, not a circle inside it. At radius 560 the pool's own
+        // rim was a visible arc and the floor read as a lit dome or a rug on a stage. A pool
+        // whose edge leaves the frame is a room with one lamp in it.
+        var pool = a.createRadialGradient(540, 960, 60, 540, 960, 1020);
+        pool.addColorStop(0, "rgba(255,255,255,0.46)");
+        pool.addColorStop(0.42, "rgba(255,255,255,0.20)");
+        pool.addColorStop(0.78, "rgba(255,255,255,0.05)");
+        pool.addColorStop(1, "rgba(255,255,255,0)");
+        a.save(); a.translate(540, 960); a.scale(1, 0.52); a.translate(-540, -960);
+        a.fillStyle = pool; a.fillRect(-400, S.groundY(60) - 400, W + 800, H + 800); a.restore();
+
+        var desk = TXOBJ.sprite("desk");
+        var chair = TXOBJ.sprite("office_chair");
+        var who = TXFIG.figure({ pose: "sit", seat: 0.45, height: 1.70 });
+
+        // far to near. The chair and the figure sit BEHIND the desk from this side.
+        S.shadow(chair, { X: 0.60, Z: 3.62, ink: "#000", alpha: 0.55 });
+        S.sprite(chair, { X: 0.60, Z: 3.62, inks: { ink: "#4E4E4E", paper: "#0C0C0C", accent: "#4E4E4E" } });
+        S.shadow(who, { X: 0.34, Z: 3.44, ink: "#000", alpha: 0.55 });
+        S.sprite(who, { X: 0.34, Z: 3.44, inks: { ink: "#DCDCDC", paper: "#0C0C0C", accent: "#DCDCDC" } });
+
+        // NO SEPARATE MONITOR. The catalogue desk carries its own screen and a second one made
+        // two. Nothing legible is drawn on it either way, because nothing in the record
+        // describes what is on it and a drawn readout is a claim nobody checked.
+        S.shadow(desk, { X: 0.0, Z: 2.72, ink: "#000", alpha: 0.6 });
+        S.sprite(desk, { X: 0.0, Z: 2.72, inks: { ink: "#6E6E6E", paper: "#0C0C0C", accent: "#6E6E6E" } });
+
+        // THE DESK TOP AS A PLANE. The catalogue sprite is an elevation and at a seated eye a
+        // desk seen edge on is a line, so three critics in a row could not find a desk on a frame
+        // whose declared subject is one. The top is drawn as the quadrilateral it actually is,
+        // from its far edge at Z 3.05 to its near edge at Z 2.10, and it is the frame's LIGHT.
+        var dFL = S.project(-0.86, 0.74, 3.05), dFR = S.project(0.86, 0.74, 3.05);
+        var dNL = S.project(-0.86, 0.74, 2.28), dNR = S.project(0.86, 0.74, 2.28);
+        a.beginPath();
+        a.moveTo(dFL[0], dFL[1]); a.lineTo(dFR[0], dFR[1]);
+        a.lineTo(dNR[0], dNR[1]); a.lineTo(dNL[0], dNL[1]); a.closePath();
+        var topg = a.createLinearGradient(0, dFL[1], 0, dNL[1]);
+        topg.addColorStop(0, "#C6C6C6"); topg.addColorStop(1, "#FAFAFA");
+        a.fillStyle = topg; a.fill();
+        a.strokeStyle = "#FFFFFF"; a.lineWidth = 2.6;
+        a.beginPath(); a.moveTo(dNL[0], dNL[1]); a.lineTo(dNR[0], dNR[1]); a.stroke();
+        DESKQ = [dFL, dFR, dNR, dNL];
+        // the desk's front face, below its near edge, so the top reads as a surface with an edge
+        var dFF = S.project(-0.86, 0.34, 2.28), dFF2 = S.project(0.86, 0.34, 2.28);
+        a.beginPath();
+        a.moveTo(dNL[0], dNL[1]); a.lineTo(dNR[0], dNR[1]);
+        a.lineTo(dFF2[0], dFF2[1]); a.lineTo(dFF[0], dFF[1]); a.closePath();
+        a.fillStyle = "#3A3A3A"; a.fill();
+
+        // the sheet on the desk top, in the desk's own plane, with its own contact under it.
+        // Its screen box is kept so the accent plate can be painted exactly over it in `over`.
+        var pF = S.project(-0.32, 0.74, 2.86), pR = S.project(0.32, 0.74, 2.86);
+        var pN = S.project(-0.32, 0.74, 2.36);
+        sheetBox = { x: pF[0], y: pF[1], w: pR[0] - pF[0], h: pN[1] - pF[1] };
+        a.fillStyle = "rgba(0,0,0,0.55)";
+        a.fillRect(sheetBox.x + 5, sheetBox.y + 7, sheetBox.w, sheetBox.h);   // the contact
+        a.fillStyle = "#D4D4D4";
+        a.fillRect(sheetBox.x, sheetBox.y, sheetBox.w, sheetBox.h);
+        // ruled lines on the sheet, so it is a printed result rather than a blank card
+        a.strokeStyle = "rgba(20,20,20,0.55)"; a.lineWidth = 1.4;
+        for (var r = 1; r <= 5; r++) {
+          var yy = sheetBox.y + sheetBox.h * (r / 6.4);
+          a.beginPath(); a.moveTo(sheetBox.x + 12, yy); a.lineTo(sheetBox.x + sheetBox.w - 16, yy); a.stroke();
+        }
+        // the hand on it, drawn in metres from parts. The forearm comes in from the right.
+        // THE HAND SITS ON THE SHEET. It was at X 0.26 with the sheet spanning X -0.32 to 0.32,
+        // and the mark inside the sheet was at its left sixth, so the granite came out 165 px
+        // from the nearest finger. On THE TURN, of all frames, the accent was marking an empty
+        // circle on a desk. The forearm runs back toward the figure so the reach is legible.
+        // THE HAND'S PARTS ARE DECLARED AT DESK HEIGHT, and this is the defect three separate
+        // readers found from three directions without any of them being able to see the cause.
+        // S.sprite stands a sprite ON THE GROUND PLANE at its depth, and the hand's parts were
+        // declared from y 0.00, so it landed at y 1186 to 1219 while the sheet sat at 923 to 972.
+        // The unnameable blob on the floor that one critic read as a boot was the hand. Solved
+        // against this frame's own camera, parts at y 0.74 put it at 922 to 954, on the sheet.
+        var DESK_H = 0.74;
+        var hand = { parts: [
+          { type: "poly", pts: [[-0.15, DESK_H + 0.005], [0.12, DESK_H + 0.03],
+                                [0.15, DESK_H + 0.115], [-0.11, DESK_H + 0.125]], fill: "ink" },
+          { type: "rect", x: 0.11, y: DESK_H + 0.03, w: 0.46, h: 0.095, fill: "ink" },
+          { type: "line", pts: [[-0.13, DESK_H + 0.03], [-0.13, DESK_H + 0.115]], width: 0.018, fill: "paper" },
+          { type: "line", pts: [[-0.07, DESK_H + 0.02], [-0.07, DESK_H + 0.118]], width: 0.018, fill: "paper" },
+          { type: "line", pts: [[-0.01, DESK_H + 0.02], [-0.01, DESK_H + 0.120]], width: 0.018, fill: "paper" }
+        ] };
+        // the hand's own contact on the sheet, so it rests rather than hovers
+        var hc = S.project(0.00, DESK_H, 2.56);
+        a.save(); a.fillStyle = "rgba(0,0,0,0.42)";
+        a.beginPath(); a.ellipse(hc[0], hc[1] + 6, 76, 11, 0, 0, 6.2832); a.fill(); a.restore();
+        S.sprite(hand, { X: 0.02, Z: 2.52, inks: { ink: "#F2F2F2", paper: "#6A6A6A", accent: "#F2F2F2" } });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#161310", top: 700, topSolid: 640, bottom: 150, bottomSolid: 120 });
+        // THE ONE ACCENT. A granite mark made on the sheet, laid flat last, the only chromatic
+        // thing in the frame. It marks the person's decision rather than the machine's output.
+        if (sheetBox && DESKQ) {
+          c.save();
+          // THE LIT DESK TOP IS LAID FLAT AND UNSCREENED, like the sheet on frame 2 and the card
+          // on frame 8. On this register a screen's local maximum is a stroke with ground between
+          // the strokes, so a screened plane cannot BE a light: frame 7 measured p95 43.0, the
+          // lowest in the deck, and three judges said the brightest thing on the page was the
+          // type. A room with one lamp in it has one lit surface, and this is it.
+          c.beginPath();
+          c.moveTo(DESKQ[0][0], DESKQ[0][1]);
+          for (var q = 1; q < 4; q++) c.lineTo(DESKQ[q][0], DESKQ[q][1]);
+          c.closePath();
+          var lit = c.createLinearGradient(0, DESKQ[0][1], 0, DESKQ[3][1]);
+          lit.addColorStop(0, "#BCAF97"); lit.addColorStop(0.45, "#DCD1BB");
+          lit.addColorStop(1, "#EFE6D4");
+          c.fillStyle = lit; c.fill();
+          c.strokeStyle = "#161310"; c.lineWidth = 2.0; c.stroke();
+          // THE SHEET ITSELF, in granite, with its own ruling darker inside it. The accent law
+          // says the colour means a person, and on this frame the person is the one deciding
+          // whether the machine got it right. A hand resting on a granite sheet says that
+          // before a word is read. A pencil loop on a white card said nothing at 432 px.
+          c.fillStyle = "#9A3B2A";
+          c.fillRect(sheetBox.x, sheetBox.y, sheetBox.w, sheetBox.h);
+          c.strokeStyle = "rgba(22,19,16,0.45)"; c.lineWidth = 1.4;
+          for (var rr = 1; rr <= 4; rr++) {
+            var ry = sheetBox.y + sheetBox.h * (rr / 5.2);
+            c.beginPath(); c.moveTo(sheetBox.x + 10, ry);
+            c.lineTo(sheetBox.x + sheetBox.w - 14, ry); c.stroke();
+          }
+          // THE MARK IS DRAWN TO BE COUNTED. measure.py counts a frame as carrying the accent
+          // at a tenth of a percent of its pixels, and the first pass came back at 0.05, so the
+          // deck's accent law said four frames and the measurement said three. On THE TURN, of
+          // all frames, an accent too small to register is an argument nobody can see.
+          // THE HAND, a dark silhouette on the lit plane with its fingers over the sheet. Drawn
+          // here rather than in the twin because a hatched hand on a hatched floor is what three
+          // critics could not name, and because its whole job is to be unmistakable at 432 px.
+          var hx = sheetBox.x + sheetBox.w * 0.70, hy = sheetBox.y + sheetBox.h * 0.34;
+          c.fillStyle = "rgba(0,0,0,0.30)";
+          c.beginPath(); c.ellipse(hx - 4, hy + 26, 62, 11, 0, 0, 6.2832); c.fill();
+          c.fillStyle = "#221C15";
+          c.beginPath();
+          c.moveTo(hx - 52, hy + 4);
+          c.bezierCurveTo(hx - 58, hy - 9, hx - 26, hy - 13, hx - 4, hy - 10);
+          c.lineTo(hx + 206, hy - 2);
+          c.lineTo(hx + 206, hy + 26);
+          c.lineTo(hx - 6, hy + 30);
+          c.bezierCurveTo(hx - 32, hy + 32, hx - 54, hy + 20, hx - 52, hy + 4);
+          c.closePath(); c.fill();
+          c.strokeStyle = "#6A5B47"; c.lineWidth = 1.5; c.lineCap = "round";
+          for (var fg = 0; fg < 3; fg++) {
+            var fx = hx - 40 + fg * 19;
+            c.beginPath(); c.moveTo(fx, hy - 6); c.lineTo(fx + 3, hy + 22); c.stroke();
+          }
+          c.restore();
+        }
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

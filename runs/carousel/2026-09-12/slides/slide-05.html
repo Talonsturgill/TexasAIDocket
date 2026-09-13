@@ -1,0 +1,228 @@
+<!doctype html>
+<!-- CAROUSEL NO. 22, frame 5 of 9. Archetype DIAGRAM.
+     What the old judgement actually covered, in plan, against what the new one does.
+     TWO THINGS THE DRAWING REFUSES TO SAY. The sampled run takes a drafting break line at BOTH
+     ends, because no fetched source states what fraction was sampled and a run with two finished
+     ends would assert one. And no section is counted anywhere in this deck, because ten sections
+     with one marked asserts one in ten.
+     A THIRD THING THE DOSSIER ASKED FOR AND THIS FRAME DOES NOT DO. It planned to print the
+     stationing interval once in mono. No claim this frame cites carries that digit in its quote,
+     its text, its title or its url, so numeral_trace would be right to refuse it and a reader
+     following the cite would arrive at a page without the number. The ticks carry the rhythm and
+     the frame prints no numeral at all.
+     The granite is the extent a PERSON's judgement covered, which is the accent law kept. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --paper:#161310; --ink:#E4D8C3; --dek:#CFC0A4; --furn:#96876E; --accent:#9A3B2A; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--paper); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:168px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:88px; line-height:1.0; letter-spacing:-0.022em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:376px; width:830px; font-size:28px; line-height:1.42; color:var(--dek); }
+  .lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+         letter-spacing:0.1em; color:var(--ink); }
+  /* A SIBLING, NOT A NESTED SPAN. render.py lays out the parent and the child as two
+     separate text nodes, so a nested sub label is counted twice in the copy record and
+     coherence_check read this frame as carrying half again the words it prints. */
+  .sub { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+         letter-spacing:0.09em; color:var(--furn); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--furn); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" data-role="hook">The old rating read a sample.</h1>
+<p class="dek" data-role="dek">Manual collection happened at "a sampled portion of the pavement section". The university describes the new reading as "pixel-level detection of pavement damage".</p>
+<div class="lab" style="left:120px; top:1006px; width:460px;">SAMPLED PORTION</div>
+<div class="sub" style="left:120px; top:1046px; width:460px;">NOT STATED IN THE RELEASE</div>
+<div class="lab" style="left:600px; top:1006px; width:470px;">PIXEL LEVEL</div>
+<div class="sub" style="left:600px; top:1046px; width:470px;">THE RESOLUTION, NOT THE EXTENT</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* @@COMPUTED@@ */
+const C = {
+  "lane_miles_university": "703,000",
+  "lane_miles_fed_2024": "707,436",
+  "lane_miles_fed_2023": "699,229",
+  "university_sits_between": true,
+  "good_score": "70",
+  "map50_low": "0.437",
+  "map50_high": "0.462",
+  "f1_unet": "0.733",
+  "f1_model": "0.780",
+  "f1_thin_unet": "0.531",
+  "f1_thin_model": "0.626",
+  "f1_gain": "0.047",
+  "f1_thin_gain": "0.095",
+  "thin_gain_is_larger": true,
+  "bar_f1_unet": 454,
+  "bar_f1_model": 484,
+  "bar_f1_thin_unet": 329,
+  "bar_f1_thin_model": 388,
+  "bar_full_px": 620,
+  "commission_date": "September 24th",
+  "commission_time": "10 in the morning",
+  "commission_days_away": 12,
+  "commission_meetings_left": 4,
+  "agenda_lead_days": 8,
+  "agenda_posts_on": "September 16th",
+  "agenda_already_due": false,
+  "agenda_lead_words": "eight",
+  "commission_meetings_left_words": "four",
+  "item_date": "August 24th",
+  "run_date": "September 12th",
+  "team_leads": 2,
+  "team_others": 3,
+  "team_total": 5,
+  "deck_no": 22,
+  "slides": 9,
+  "counters": [
+    "01 / 09",
+    "02 / 09",
+    "03 / 09",
+    "04 / 09",
+    "05 / 09",
+    "06 / 09",
+    "07 / 09",
+    "08 / 09",
+    "09 / 09"
+  ]
+};
+/* @@END COMPUTED@@ */
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The extent", kicker2: "In plan, one lane",
+      counter: C.counters[4], src: "c1 c15   TEXAS AI DOCKET", ink: "#96876E" });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 88, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TX.reseed(20260912);
+    var BT = 664, BB = 932;                 // the lane band, cut by both side edges
+    var TICK = 72, RUN0 = 296, RUN1 = 636;  // tick pitch, and the sampled run
+    var RT = 742, RB = 860;                 // the granite run's own band inside the lane
+
+    // A drafting break line: a straight run with one Z kink, which is the drawing's way of
+    // saying the thing continues and the drawer is not claiming to know how far.
+    function breakLine(a, x, y0, y1) {
+      var m = (y0 + y1) / 2, k = 16;
+      a.beginPath();
+      a.moveTo(x, y0); a.lineTo(x, m - k);
+      a.lineTo(x - 13, m - k * 0.35); a.lineTo(x + 13, m + k * 0.35);
+      a.lineTo(x, m + k); a.lineTo(x, y1);
+      a.stroke();
+    }
+
+    TXINK.print(cx, {
+      ground: "#161310", ink: "#E4D8C3", fibre: 0.05, seed: 55,
+      screen: { mode: "line", cell: 4, angle: 0, gamma: 1.08, floor: 0.05 },
+      edges: { threshold: 26, width: 1.2, alpha: 0.74, dx: 0.9, dy: -0.7 },
+      draw: function (a) {
+        // NO LIGHT AND NO SHADOW ANYWHERE ON THIS FRAME. A plan has no sun in it, and a drawing
+        // that puts one there is a picture of a plan rather than a plan.
+        a.fillStyle = "#050505"; a.fillRect(0, 0, W, H);
+
+        // the neatline, cut by both side edges like everything else on this frame
+        a.strokeStyle = "#8A8A8A"; a.lineWidth = 1.6;
+        a.beginPath(); a.moveTo(0, 608); a.lineTo(W, 608); a.stroke();
+        a.beginPath(); a.moveTo(0, 1128); a.lineTo(W, 1128); a.stroke();
+
+        // THE LANE BAND. A mid field carrying the continuous reading as a fine screen over its
+        // WHOLE length, which is the claim the frame is making about the new method.
+        // A LONGITUDINAL RAMP UNDER THE SCREEN. A line screen over a flat field produces
+        // identical strokes end to end and the lane came out as a striped swatch, which is the
+        // hachure failure the technique library names and this frame's own risk block predicted.
+        var lane = a.createLinearGradient(0, 0, W, 0);
+        lane.addColorStop(0, "#787878"); lane.addColorStop(0.45, "#9C9C9C");
+        lane.addColorStop(1, "#7E7E7E");
+        a.fillStyle = lane; a.fillRect(0, BT, W, BB - BT);
+        a.save();
+        a.beginPath(); a.rect(0, BT, W, BB - BT); a.clip();
+        a.strokeStyle = "#A4A4A4"; a.lineWidth = 1.0;
+        for (var y = BT + 4; y < BB; y += 7) {
+          a.beginPath(); a.moveTo(0, y); a.lineTo(W, y); a.stroke();
+        }
+        a.strokeStyle = "#7A7A7A"; a.lineWidth = 0.8;
+        for (var x2 = 0; x2 < W; x2 += 7) {
+          a.beginPath(); a.moveTo(x2, BT); a.lineTo(x2, BB); a.stroke();
+        }
+        a.restore();
+
+        // the lane's own edges, four stroke weights across this frame
+        a.strokeStyle = "#EAEAEA"; a.lineWidth = 3.4;
+        a.beginPath(); a.moveTo(0, BT); a.lineTo(W, BT); a.stroke();
+        a.lineWidth = 3.4;
+        a.beginPath(); a.moveTo(0, BB); a.lineTo(W, BB); a.stroke();
+        a.setLineDash([26, 20]); a.lineWidth = 2.2;
+        a.beginPath(); a.moveTo(0, (BT + BB) / 2); a.lineTo(W, (BT + BB) / 2); a.stroke();
+        a.setLineDash([]);
+
+        // THE STATIONING ROW. A constant pitch computed once above and never typed per tick,
+        // every fifth one taller, and no figure printed beside any of them.
+        a.strokeStyle = "#D2D2D2"; a.lineCap = "butt";
+        for (var i = 0, x = 0; x <= W + 1; i++, x += TICK) {
+          var tall = (i % 5 === 0);
+          a.lineWidth = tall ? 2.4 : 1.3;
+          a.beginPath(); a.moveTo(x, BT - (tall ? 30 : 17)); a.lineTo(x, BT - 3); a.stroke();
+        }
+
+        // the leaders, from the two things being compared down to their labels. Each stops well
+        // short of its glyph band and neither crosses a letterform.
+        a.strokeStyle = "#CFCFCF"; a.lineWidth = 1.6; a.lineCap = "round";
+        // ONE ANNOTATION DATUM AT y 902 and both labels under it, side by side. The first
+        // arrangement stacked them and ran the second leader through the horizontal gap, which
+        // is a 20 px lane between two blocks of type and qa.py read the leader as a
+        // strikethrough through the upper one.
+        a.beginPath();
+        a.moveTo((RUN0 + RUN1) / 2, RB + 6); a.lineTo((RUN0 + RUN1) / 2, 962);
+        a.lineTo(132, 962); a.lineTo(132, 982); a.stroke();
+        a.beginPath();
+        a.moveTo(900, BB + 6); a.lineTo(900, 962); a.lineTo(612, 962); a.lineTo(612, 982); a.stroke();
+        // the leader dots, which is what says the leader touches the thing and not near it
+        a.fillStyle = "#CFCFCF";
+        a.beginPath(); a.arc((RUN0 + RUN1) / 2, RB + 6, 4.2, 0, 6.2832); a.fill();
+        a.beginPath(); a.arc(900, BB + 6, 4.2, 0, 6.2832); a.fill();
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#161310", top: 566, topSolid: 512, bottom: 150, bottomSolid: 120 });
+        // THE SAMPLED RUN, in granite, laid flat last. Both ends are break lines.
+        c.save();
+        // A HATCH, NOT A BRICK. A 50,000 px flat saturated fill was the loudest object in a deck
+        // whose accent is reserved for a person, and at thumb scale it read as a highlight
+        // colour rather than as a mark on a road. Hatched, it is annotation OVER the lane and
+        // the lane's own screen still reads through it.
+        c.save();
+        c.beginPath(); c.rect(RUN0, RT, RUN1 - RUN0, RB - RT); c.clip();
+        c.strokeStyle = "#9A3B2A"; c.lineWidth = 5.0; c.lineCap = "butt";
+        for (var gx = RUN0 - (RB - RT); gx < RUN1 + (RB - RT); gx += 13) {
+          c.beginPath(); c.moveTo(gx, RB); c.lineTo(gx + (RB - RT), RT); c.stroke();
+        }
+        c.strokeStyle = "#9A3B2A"; c.lineWidth = 3.0;
+        c.strokeRect(RUN0 + 1.5, RT + 1.5, RUN1 - RUN0 - 3, RB - RT - 3);
+        c.restore();
+        // THE BREAK LINES ARE DRAWN IN THE INK, NOT IN THE GRANITE. Stroked in granite over a
+        // granite fill, only the spurs outside the block showed and they read as the arrowheads
+        // of a DIMENSION, which is the drafting sign for a measured span and the exact opposite
+        // of what this frame is refusing to assert.
+        c.strokeStyle = "#E4D8C3"; c.lineWidth = 3.6; c.lineJoin = "round"; c.lineCap = "round";
+        breakLine(c, RUN0, RT - 30, RB + 30);
+        breakLine(c, RUN1, RT - 30, RB + 30);
+        c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

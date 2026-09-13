@@ -11,7 +11,7 @@ Laredo City Council declined to impose a temporary moratorium on data center per
 - Public access: Public meeting
 - Take part: https://cityoflaredo.legistar.com/Calendar.aspx
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Laredo still has no moratorium and the permanent rules the council directed are still unwritten. Nothing has come back to the council.
 - 2026-09-08 · Laredo still has no data center moratorium and still has no permanent rules written. The council's direction to draft them has now sat across several agendas with nothing recorded against it.
 - 2026-09-09 · Laredo still has no moratorium and the direction to write permanent standards is still outstanding. Nothing has come back to the council.
+- 2026-09-12 · Laredo still has no data center moratorium. The direction to write permanent standards has not come back to the council on any agenda since.
 
 ## Evidence
 

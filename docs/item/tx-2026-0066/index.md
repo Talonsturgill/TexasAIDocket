@@ -11,7 +11,7 @@ San Angelo created Section 430 of its zoning ordinance, the first full land use 
 - Public access: Public meeting
 - Take part: https://www.sanangelo.gov/803/Data-Center-Information
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · San Angelo still carries data centers in its zoning code as a conditional use and nothing else.
 - 2026-09-08 · San Angelo still defines data centers in its zoning code and still allows them only as a conditional use.
 - 2026-09-09 · San Angelo still defines a data center in its zoning code and still makes one a conditional use.
+- 2026-09-12 · San Angelo still defines a data center in its zoning code and still allows one only as a conditional use.
 
 ## Evidence
 

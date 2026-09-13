@@ -1480,6 +1480,73 @@
      "reader": "Write the next step in the words a parent would say to a district, naming the thing to ask about, rather than the deck's own vocabulary."
     }
    }
+  },
+  {
+   "date": "2026-09-12",
+   "carousel_no": 22,
+   "written_from": "machine_qa.json, render_report.json, measurements.json, layout_check, bespoke_check, coherence_check, craft_floor and the gates' exit codes. The value block is MEASURED off the nine shipped PNGs at 432 px feed width by measure.py, never planned and never asserted.",
+   "register": "CALICHE INK ON HOT MIX, at the end of a working day in September, sun at azimuth -58 and elevation 18. The page IS the asphalt at #161310 and the ink is the shoulder stone at #E4D8C3, so the type is cut out of the road rather than printed on paper laid over it. The accent is capitol granite #9A3B2A and it means a person.",
+   "structural_laws": [
+    "THE ACCENT MEANS A PERSON AND MEANS NOTHING ELSE. Frames 1, 3, 5 and 7 carry it and frames 2, 4, 6, 8 and 9 carry none. measure.py counted exactly those four at or above a tenth of a percent. Frame 9's absence is the load bearing one, because no claim puts this decision in a room with a named decider.",
+    "THE REGISTER INVERTED AT FRAME ONE, NOT AT ROUND THREE. The plan opened on a paper register, the first frame rendered clean and measured a median L* of 91.5 against the cap's threshold of 60.0, and no amount of extra ink could have moved a median that is counting the paper between the strokes. Ground and ink were swapped, the same twin greys and the same drawing came back at 6.1.",
+    "ONE SCREEN PER LAYOUT. Halftone at cell 8 and 9 on the two full bleeds and the type frame, hatch at cell 6 and 7 on the vehicle and the interior, stipple at cell 5 on the two surfaces, line at cell 4 and 5 on the plan and the document. bespoke_check reads median pairwise similarity 0.29 over 36 pairs.",
+    "EVERY OBJECT IS PLACED IN METRES ON A DECLARED CAMERA. The van, the semi, the desk, the figures and the letter bodies all come out of TXSCENE at true scale, so frame 3's person at 198 px against a van at 303 px is a solved comparison rather than two sizes that looked right."
+   ],
+   "techniques": [
+    "TXINK halftone, hatch, stipple and line screens, one per layout",
+    "TXSCENE at standing, seated and detail eye heights with one declared light",
+    "TXFIG figures and TXOBJ catalogue objects, plus two sprites built in metres",
+    "a two part contact shadow under every wheel and castor",
+    "a lit lip on every crack, which is what a depth map sees and a photograph does not",
+    "DOM type with a CSS shadow-stack extrusion on the type-as-object frame"
+   ],
+   "palette": {
+    "ground": "#161310",
+    "ink": "#E4D8C3",
+    "dek": "#CFC0A4",
+    "furniture": "#96876E",
+    "accent": "#9A3B2A",
+    "note": "Measured by measure_palette.py against the 81 hexes of the last eight decks, where a random colour's nearest neighbour is p10 9.03 and median 27.17. The accent comes back CLEAR at dE 17.06 and the furniture is closest at 11.50. Contrast against the ground, measured, hook 13.14 to 1, dek 10.34, furniture 5.28. The accent is 2.67 to 1 and never carries type, because a mark is not a word."
+   },
+   "value": {
+    "per_slide_median_L": [
+     6.1,
+     86.1,
+     6.1,
+     6.1,
+     6.1,
+     16.0,
+     6.1,
+     6.1,
+     6.1
+    ],
+    "deck_median_L": 6.1,
+    "darkest_frame": {
+     "slide": 1,
+     "L": 6.1
+    },
+    "brightest_frame": {
+     "slide": 2,
+     "L": 86.1
+    },
+    "light_cap_note": "LIGHT_L is 60.0 and this deck measures 6.1, so it does not add to the light count. The window held 2 in 8 against a cap of 1 before this run, one of them under a named waiver, and the ledger required this deck to be dark.",
+    "planned_vs_measured": "The register section planned a floor to keep rather than a ceiling to stay under, after the paper register was measured and abandoned. Seven frames sit at the page's own 6.1 and the two that lift are the ones carrying a light surface, the document at 86.1 and the type frame's concrete at 16.0.",
+    "measured_on": "the nine shipped PNGs resampled to 432 px feed width, by measure.py"
+   },
+   "type_skeletons": [
+    "kicker top left, counter top right, claim-id source line bottom left, site line read from brand.yaml",
+    "Fraunces display fitted per headline by TX.fitText, Manrope body, JetBrains Mono for every figure and label",
+    "frame 6 is the exception and says so: its headline is Manrope 800 standing on the road as a raised body, which is the one TYPE_AS_OBJECT this deck spends"
+   ],
+   "bespoke": "36 pairs, median pairwise similarity 0.2865, closest pair frames 1 and 9 at 0.7395, which are deliberately the same road at two hours.",
+   "construction": "Nine frames rendered with zero errors and zero warnings. machine_qa verdict WARN with zero fails on all nine. layout_check --require clean, craft_floor clean with a deck median variance of 3168.6 against a floor of 570.3, coherence_check reading load max 61 against a ceiling of 65.",
+   "avoid_next": [
+    "The caliche-on-hot-mix register is spent. It is the second dark register in three runs and the ledger will be back over the light cap the moment 2026-09-09 rolls out of the window, so the NEXT deck has room to be light and should measure it at frame one rather than plan it.",
+    "A smooth gradient under a coarse halftone BANDS, and the step between two dot sizes comes out as an unbroken horizontal contour the full width of the frame. qa.py reads it as a rule through the glyph band, correctly. Model falloff with discrete marks or with a finer screen.",
+    "A stipple or halftone field on a dark register is mostly GROUND, so it is not a mass. layout_check's silhouette measure saw a screened road as dust twice on this deck. A frame that needs one readable silhouette needs one flat area.",
+    "Two spans in one headline element means the copy record calls the larger span the hook. build_copy.py derives from the largest laid-out node, and this run shipped a first draft whose frame 6 hook was recorded as AND COSTLY."
+   ],
+   "panel": "written by the scoring phase"
   }
  ]
 }

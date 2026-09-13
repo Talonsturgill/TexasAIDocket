@@ -1,0 +1,149 @@
+{
+  "run_date": "2026-09-12",
+  "note": "Scout agents in this project are leaf workers with no write tool, so the showrunner writes their returned JSON here. Beats that reported: ai-in-the-field, research-and-machines, what-texas-makes, power-and-compute.",
+  "beats": {
+    "power-and-compute": [
+      {
+        "headline": "ERCOT restarted the paused Batch Zero classification and told each utility which of its large loads is conditionally in.",
+        "who_decided": "Electric Reliability Council of Texas, Market Notice M-A080326-04",
+        "when": "2026-09-03",
+        "where": {"counties": [], "statewide": true, "ercot": true},
+        "quote": "ERCOT has notified each Interconnecting Distribution Service Provider (DSP) and Transmission Service Provider (TSP) (Interconnecting DSP/TSP) of ERCOT's provisional classification of the Large Loads submitted by the Interconnecting DSP/TSP for inclusion in Batch Zero.",
+        "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+        "source_type": "primary_official",
+        "confidence": "high"
+      },
+      {
+        "headline": "Galaxy Digital said three of its five conditionally classified Texas projects were put in studied load rather than base load.",
+        "who_decided": "ERCOT classified; Galaxy Digital Inc. disclosed",
+        "when": "2026-09-08",
+        "where": {"counties": [], "statewide": false, "ercot": true},
+        "quote": "Caspian - 700 MW of gross power capacity, classified as Batch Zero Studied Load. Galaxy submitted Caspian as Base Load; the project has been conditionally classified as Studied Load.",
+        "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+        "source_type": "primary_corporate",
+        "confidence": "high"
+      },
+      {
+        "headline": "ERCOT opened a sworn-attestation verification portal for every large load conditionally in Batch Zero.",
+        "who_decided": "Electric Reliability Council of Texas, Large Load Integration page",
+        "when": "2026-09-11",
+        "where": {"counties": [], "statewide": true, "ercot": true},
+        "quote": "This Guide shows Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs) how to use ERCOT's RFI Portal in RIOO to submit information required to respond to ERCOT's Verification RFI for Large Loads that are conditionally classified for inclusion in Batch Zero.",
+        "url": "https://www.ercot.com/services/rq/large-load-integration",
+        "source_type": "primary_official",
+        "confidence": "high"
+      },
+      {
+        "headline": "ERCOT said it will send a roughly 130-question water and energy survey to 461 data centers and publish where answers fall short.",
+        "who_decided": "ERCOT, described by senior vice president Chad Seely",
+        "when": "2026-09-11",
+        "where": {"counties": [], "statewide": true, "ercot": true},
+        "quote": "The state's power grid managers plan to launch a survey of 461 data centers' water and energy usage next week as part of an audit ordered by Gov. Greg Abbott.",
+        "url": "https://www.kedt.org/texas-news/2026-09-11/ercot-to-survey-more-than-400-data-centers-as-part-of-gov-abbotts-audit",
+        "source_type": "journalism",
+        "confidence": "medium"
+      }
+    ],
+    "ai-in-the-field": [
+      {
+        "headline": "TxDOT launched the first phase of Project Nexus, the state's federal air mobility pilot, with flights that carry no passengers.",
+        "who_decided": "Texas Department of Transportation, with the FAA and USDOT",
+        "when": "2026-09-10",
+        "where": {"counties": ["Tarrant"], "statewide": true, "ercot": false},
+        "quote": "These initial flights will not carry passengers and are designed to collect data, validate routes and support the safe development of future advanced air mobility operations.",
+        "url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+        "source_type": "primary_official",
+        "confidence": "high",
+        "caveat": "TxDOT's own release does not mention artificial intelligence or autonomy at all."
+      },
+      {
+        "headline": "An autonomy vendor flew AI-controlled takeoffs, landings and air traffic control calls at TxDOT's air mobility kickoff in Fort Worth.",
+        "who_decided": "Merlin, Inc., demonstrating at a TxDOT-hosted event",
+        "when": "2026-09-10",
+        "where": {"counties": ["Tarrant"], "statewide": false, "ercot": false},
+        "quote": "TxDOT invited Merlin to the event as a supporting participant, enabling Merlin to demonstrate core capabilities of its AI-powered autonomy platform, the Merlin Pilot, including autonomous takeoff and landing, AI-powered Air Traffic Control communications, and dynamic autonomous in-flight re-planning and threat avoidance.",
+        "url": "https://www.stocktitan.net/news/MRLN/merlin-demonstrates-autonomous-flight-capabilities-at-texas-xl87193l48x6.html",
+        "source_type": "primary_corporate",
+        "confidence": "high"
+      },
+      {
+        "headline": "The Energy Department funded a synthetic mine at a Texas drilling site to test mining automation.",
+        "who_decided": "U.S. Department of Energy, Office of Critical Minerals and Energy Innovation",
+        "when": "2026-09-09",
+        "where": {"counties": ["Grimes", "Dallas"], "statewide": false, "ercot": false},
+        "quote": "This project will create the world's first synthetic mine within an advanced drilling and sensing test facility to accelerate next generation mining technologies from lab concepts to field ready deployment. By repurposing a highly instrumented Texas drilling site, it will enable rigorous, repeatable, and safe testing of mining tools, workflows, and automation systems.",
+        "url": "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic",
+        "source_type": "primary_official",
+        "confidence": "high"
+      }
+    ],
+    "research-and-machines": [
+      {
+        "headline": "NSF made a new award to the Texas A&M Engineering Experiment Station for AI digital twins of small and mid-sized drinking water systems.",
+        "who_decided": "National Science Foundation, Division of Civil, Mechanical, and Manufacturing Innovation",
+        "when": "2026-09-09",
+        "where": {"counties": ["Brazos"], "statewide": false, "ercot": false},
+        "quote": "The objective of this project is to support research on a new AI-enabled cyber-physical-social paradigm for predicting, managing, and mitigating cascading disruptions in freshwater infrastructure systems.",
+        "url": "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,date,startDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfCounty,perfStateCode",
+        "source_type": "primary_official",
+        "confidence": "high",
+        "award": "2640086, $122,169 obligated 2026-09-09, standard grant to 2029-08-31, PI Sudipta Chowdhury"
+      },
+      {
+        "headline": "A UT San Antonio engineer published a self-powered flood sensor that scores flood risk on the device instead of in the cloud.",
+        "who_decided": "The University of Texas at San Antonio, Klesse College of Engineering and Integrated Design",
+        "when": "2026-09-08",
+        "where": {"counties": ["Bexar"], "statewide": false, "ercot": false},
+        "quote": "Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.",
+        "url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+        "source_type": "primary_official",
+        "confidence": "medium",
+        "caveat": "Already in the record as tx-2026-0141."
+      },
+      {
+        "headline": "Texas A&M engineering researchers described two AI assistants they built for grid operators and hardware designers.",
+        "who_decided": "Texas A&M University College of Engineering",
+        "when": "2026-09-07",
+        "where": {"counties": ["Brazos"], "statewide": false, "ercot": false},
+        "quote": "We have several checks in place, so we're not relying on the LLM alone or simply accepting everything it generates.",
+        "url": "https://news.engineering.tamu.edu/news/2026/09/07/texas-am-researchers-develop-ai-tools-for-a-changing-power-grid/",
+        "source_type": "primary_official",
+        "confidence": "medium"
+      }
+    ],
+    "what-texas-makes": [
+      {
+        "headline": "Amazon and Wiwynn said they will expand Wiwynn's server and rack manufacturing plant in Socorro, near El Paso.",
+        "who_decided": "Amazon.com, Inc. and Wiwynn Corporation",
+        "when": "2026-09-09",
+        "where": {"counties": ["El Paso"], "statewide": false, "ercot": false},
+        "quote": "Through our over $1.6 billion investment in the Texas facility, we are expanding our ability to address the growing demand of U.S. customers, reinforce the resilience of the global supply chain, and create high-value career opportunities as we continue to grow in partnership with the local community.",
+        "url": "https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas",
+        "source_type": "primary_corporate",
+        "confidence": "high",
+        "caveat": "The page carries no visible publication date. El Paso County is not named on the page."
+      },
+      {
+        "headline": "The Texas A&M University System Board of Regents approved an 11.755 million dollar water tower at RELLIS to serve the Semiconductor Institute.",
+        "who_decided": "The Texas A&M University System Board of Regents",
+        "when": "2026-09-03",
+        "where": {"counties": ["Brazos"], "statewide": false, "ercot": true},
+        "quote": "Semiconductor research and fabrication require extraordinary precision, but they still depend on reliable basic infrastructure. A water tower may not be the glamorous part of this project, but it is the part that makes everything else possible.",
+        "url": "https://news.tamus.edu/stories/texas-am-system-regents-advance-semiconductor-institute-with-new-rellis-water-tower/",
+        "source_type": "primary_official",
+        "confidence": "high"
+      },
+      {
+        "headline": "Silicon Labs opened an Austin chip design and test laboratory built in part with a Texas Semiconductor Innovation Fund grant.",
+        "who_decided": "Silicon Laboratories Inc., with a Texas Semiconductor Innovation Fund grant",
+        "when": "2026-09-04",
+        "where": {"counties": ["Travis"], "statewide": false, "ercot": true},
+        "quote": "The facility supports continued innovation across Silicon Labs' wireless portfolio, including the company's Series 3 platform, which delivers advanced security, AI capabilities, and wireless connectivity for smart home, industrial, healthcare, commercial, and smart city applications.",
+        "url": "https://news.silabs.com/2026-09-04-Silicon-Labs-Opens-New-Austin-Innovation-Center-with-Support-from-Texas-CHIPS-Act",
+        "source_type": "primary_corporate",
+        "confidence": "medium",
+        "caveat": "The AI connection is one clause of one sentence. The grant itself was awarded in February."
+      }
+    ]
+  }
+}

@@ -11,7 +11,7 @@ The Institute for Fusion Studies, the Oden Institute and the Cockrell School joi
 - Public access: Write to the decider
 - Take part: https://news.utexas.edu/2026/08/31/fusion-energy-seed-grants-launch-new-interdisciplinary-collaborations-at-ut-austin/
 
-- Last checked: 2026-09-09
+- Last checked: 2026-09-12
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · Admitted on the university's own release, fetched today. The release states the limits of the machine learning method alongside its promise, and the dollar value of the grants is not published, so none is carried here.
 - 2026-09-08 · UT Austin's four fusion seed grants still stand, and the release's own caution about the limited guarantees of the AI method is still in it.
 - 2026-09-09 · The four fusion seed grants at UT Austin are still funded, and the university's own claim about what the AI method offers is unchanged.
+- 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

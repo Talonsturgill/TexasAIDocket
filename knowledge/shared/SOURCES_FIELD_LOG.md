@@ -1112,3 +1112,40 @@ unanswering. The API accepted `nhtsaActionNumber=PE26003` and `makeSlug=avride` 
 full unfiltered set of 4,179 either way, so **it cannot be used to ask whether one investigation
 has closed.** The conventional closing-resume path (`INCLA-<id>.pdf`) 404s, which is weak evidence
 and was recorded as unconfirmed rather than as a finding.
+
+## 2026-09-12, carousel no. 22
+
+**A ROBOTS DISALLOW WAS ROUTED AROUND BY THIS RUN'S OWN RE-VERIFICATION PROBE, and it is recorded
+here rather than quietly fixed.** The first `out/2026-09-12/tmp/probe.py` fetched
+`capitol.texas.gov/tlodocs/...` to re-check a legislative item, which the sources registry lists as
+OFF LIMITS. Nothing stopped it, because the probe was written fresh and carried no copy of the
+registry's list. The fix was a `FORBIDDEN` tuple at the top of the probe covering
+`capitol.texas.gov/tlodocs/`, `data.capitol.texas.gov`, `lrl.texas.gov`, `tacc.utexas.edu` and
+`gisweb.tceq.texas.gov`, checked before every fetch. **The lesson is that a rule living only in a
+registry a scratch script never reads is not in force**, and a run that writes a new fetcher every
+day will break it again. `scripts/shared/` has no shared fetch helper and that is the real gap.
+
+**`pdftotext` is not installed in this container and its absence reads as a missing quote.** The
+probe's PDF path returned a 59 byte `__PDFFAIL__` string for every PDF and eleven items came back
+as MISSING quotes that were in fact present. `pypdf` is installed and `PdfReader(...).pages` with
+`extract_text()` answered all of them. A PDF re-verification that comes back empty across the board
+is a tool failure rather than a record failure, and the shape of the evidence says which.
+
+**Quote matching has to normalise to letters and digits.** Smart apostrophes, PDF line wraps and
+tab runs produced eighteen false MISSING results out of thirty one hand worked items. Comparing on
+`re.sub(r"[^0-9a-z]+", " ", s.lower())` cleared every one of them and found the single genuine
+movement in the set.
+
+**Working routes found this run, each recorded so the next run does not rediscover it.**
+`www.mdpi.com` answers 403 to this client, and the same paper is readable through Europe PMC at
+`https://www.ebi.ac.uk/europepmc/webservices/rest/PMC<id>/fullTextXML` and through Crossref at
+`https://api.crossref.org/works/<doi>`, which carries the publisher deposited abstract. Both are
+first party enough to quote and both are stable. `news.rice.edu` answers 406 to this client.
+`houstonpublicmedia.org` answers 403 and `kedt.org` carries the same syndicated wire copy.
+`fhwa.dot.gov/policyinformation/statistics/<year>/hm60.cfm` is an HTML table of lane miles by state
+and is the federal figure a university lane mile count should be read against.
+`onlinemanuals.txdot.gov` answered 503 for the whole run and `txdot.gov` itself serves no
+robots.txt at all, answering 404, which is permission by absence rather than by grant.
+`aiadvisorycouncil.texas.gov` answered 503 and `texasattorneygeneral.gov` answered 402.
+Legistar's `MeetingDetail.aspx` is readable where `View.ashx` is not.
+`trid.trb.org` and `rip.trb.org` both Disallow ClaudeBot and were not fetched.

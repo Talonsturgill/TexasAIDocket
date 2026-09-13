@@ -1,0 +1,68 @@
+{
+ "frames": {
+  "slide-01": {
+   "median_L": 6.1,
+   "p05_L": 2.3,
+   "p95_L": 86.4,
+   "accent_share_pct": 1.85
+  },
+  "slide-02": {
+   "median_L": 86.1,
+   "p05_L": 6.1,
+   "p95_L": 87.1,
+   "accent_share_pct": 0.0
+  },
+  "slide-03": {
+   "median_L": 6.1,
+   "p05_L": 3.4,
+   "p95_L": 60.9,
+   "accent_share_pct": 0.4
+  },
+  "slide-04": {
+   "median_L": 6.1,
+   "p05_L": 4.2,
+   "p95_L": 51.5,
+   "accent_share_pct": 0.0
+  },
+  "slide-05": {
+   "median_L": 6.1,
+   "p05_L": 5.7,
+   "p95_L": 55.9,
+   "accent_share_pct": 1.16
+  },
+  "slide-06": {
+   "median_L": 16.0,
+   "p05_L": 4.9,
+   "p95_L": 88.0,
+   "accent_share_pct": 0.0
+  },
+  "slide-07": {
+   "median_L": 6.1,
+   "p05_L": 3.7,
+   "p95_L": 54.0,
+   "accent_share_pct": 0.34
+  },
+  "slide-08": {
+   "median_L": 6.1,
+   "p05_L": 4.8,
+   "p95_L": 86.8,
+   "accent_share_pct": 0.0
+  },
+  "slide-09": {
+   "median_L": 6.1,
+   "p05_L": 4.8,
+   "p95_L": 61.2,
+   "accent_share_pct": 0.0
+  }
+ },
+ "deck_median_L": 6.1,
+ "light_L_threshold": 60.0,
+ "under_light_threshold": true,
+ "accent_frames": [
+  "slide-01",
+  "slide-03",
+  "slide-05",
+  "slide-07"
+ ],
+ "accent_frame_count": 4
+}

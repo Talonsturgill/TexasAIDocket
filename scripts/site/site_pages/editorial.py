@@ -867,8 +867,18 @@ def article_page(r: dict, today: str, items: list) -> str:
             return addr.sub(lambda m: f"<cite>{m.group(1)}</cite>", e(t))
 
         def stopped(t):
+            # A TERMINATOR INSIDE A CLOSING QUOTE STILL STOPS THE SENTENCE. The test read the
+            # last character only, so a line ending on a quoted sentence came out of the story
+            # section as `... pavement engineers.".` with two full stops, one of them the
+            # source's and one of them this function's. Carousel no. 22 put three quoted
+            # fragments on its frames and the article page printed the double on every one.
             t = t.rstrip()
-            return t if (not t or t[-1] in ".!?:;") else t + "."
+            if not t:
+                return t
+            tail = t[-1]
+            if tail in '"\'' + chr(39) and len(t) > 1:
+                tail = t[-2]
+            return t if tail in ".!?:;" else t + "."
 
         return "".join(
             f"<blockquote>{e(s['text'])}</blockquote>" if s["quote"]
