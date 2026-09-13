@@ -8447,12 +8447,12 @@
     },
     {
      "date": "2026-11-03",
-     "kind": "comment_closes",
+     "kind": "election",
      "note": "Election day, the last day a voter can answer the question"
     }
    ],
    "public_access": {
-    "room": "open_comment",
+    "room": "ballot",
     "how": "The charter amendments go to Pflugerville voters on November 3rd, 2026, with polls open from 7:00 a.m. to 7:00 p.m. The Charter Review Commission's report carries the full text of the proposed Section 2.03, so a voter can read the words that would enter the charter. The ordinance submits the measures as listed in its own exhibit, which is where the proposition captions live.",
     "url": "https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf",
     "closes": "2026-11-03"
@@ -8557,8 +8557,11 @@
     },
     {
      "date": "2026-09-13",
-     "note": "The comment window is still open, closing November 3rd.",
-     "checked": true
+     "note": "Corrected the participation classification. The recorded ordinance sets an election day, not a comment deadline. Earlier history entries calling this a comment window were incorrect. The election date and quoted evidence are unchanged."
+    },
+    {
+     "date": "2026-09-13",
+     "note": "Re-verified on the day's worklist. The recorded ordinance still carries November 3rd, 2026 as the election date and the commission's report still carries the proposed section."
     }
    ]
   },

@@ -135,13 +135,38 @@ export function checkVoice(text) {
 
 // The composite the streaming loop calls. Cheapest and strictest first, so a failure names
 // the most actionable cause.
-export function checkSentence(text, { allowed, slugs }) {
+export function checkParticipation(text, { publicAccess, participationQuestion = false } = {}) {
+  if (!publicAccess) return { ok: true };
+  // Explicit permission to comment always needs an open window. For a participation
+  // question the shorter "is open" means the same thing. A general case-status answer
+  // may still truthfully say the case is open, so that phrase is scoped to the question.
+  const permission = /\b(?:is|are|remains?|still)\s+open\s+(?:for|to)\s+(?:public\s+)?comments?\b|\b(?:can|may)\s+(?:still\s+)?(?:submit\s+comments?|comment)\b|\b(?:comment|public)\s+windows?\s+(?:is|are|remains?)\s+(?:still\s+)?open\b/i;
+  const open = /\b(?:is|are|remains?)\s+(?:still\s+)?open\b/i;
+  const closed = [];
+  let start = 0;
+  for (const citation of text.matchAll(CITE_RE)) {
+    // Citations follow their claim. A later claim about an open record must not make an
+    // earlier, correctly closed record fail merely because both appear in one answer.
+    const claim = text.slice(start, citation.index);
+    const caseStatus = /\bcase(?:\s+status)?\s+(?:is|remains)\s+open\b/i.test(claim);
+    const grants = permission.test(claim) || (participationQuestion && !caseStatus && open.test(claim));
+    const id = citation[1];
+    if (grants && publicAccess[id] && publicAccess[id].window !== "open") closed.push(id);
+    start = citation.index + citation[0].length;
+  }
+  return closed.length ? { ok: false, reason: "participation", closed } : { ok: true };
+}
+
+export function checkSentence(text, context) {
+  const { allowed, slugs } = context;
   const c = checkCitations(text, slugs);
   if (!c.ok) return c;
   const n = checkNumerals(text, allowed);
   if (!n.ok) return n;
   const v = checkVoice(text);
   if (!v.ok) return v;
+  const p = checkParticipation(text, context);
+  if (!p.ok) return p;
   return checkVerdict(text);
 }
 

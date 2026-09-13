@@ -8,7 +8,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
 - Status: open
-- Public access: Comment window open
+- Public access: Ballot measure
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
@@ -17,7 +17,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 ## Dates
 
 - 2026-08-11 · ordered: Ordinance ordering the election approved on second reading
-- 2026-11-03 · comment closes: Election day, the last day a voter can answer the question
+- 2026-11-03 · election: Election day, the last day a voter can answer the question
 
 ## How this decision moved
 
@@ -33,7 +33,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-05 · The Pflugerville charter amendment on the city's use of artificial intelligence is still set for the November ballot. The ordering is unchanged.
 - 2026-09-08 · Pflugerville's November ballot still carries the charter amendment on the city's use of artificial intelligence, and the charter review commission's report is still the document behind it. Nothing has been withdrawn from the ballot order.
 - 2026-09-09 · The comment window is still open, closing November 3rd, which is the day Pflugerville voters decide the charter section on the city's cameras.
-- 2026-09-13 · The comment window is still open, closing November 3rd.
+- 2026-09-13 · Corrected the participation classification. The recorded ordinance sets an election day, not a comment deadline. Earlier history entries calling this a comment window were incorrect. The election date and quoted evidence are unchanged.
+- 2026-09-13 · Re-verified on the day's worklist. The recorded ordinance still carries November 3rd, 2026 as the election date and the commission's report still carries the proposed section.
 
 ## Evidence
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 
 from site_context import (
-    HOIST, NAV, RAW, SCHEMA_CTX, SITE_NAME, SITE_URL, _dt, csp, dk, e, favicon,
+    HOIST, NAV, RAW, SCHEMA_CTX, SITE_NAME, SITE_URL, _dt, article_media, csp, dk, e, favicon,
     js_feed_date, json, load_runs, og, ordinal, page, re, schema, short_date,
     telemetry, texas_map, theme, video_count, video_description, video_feed, video_media_url,
 )
@@ -796,7 +796,7 @@ def articles_page(runs: list, today: str) -> str:
     page reports the state of the work rather than a state somebody hoped for.
     """
     cards = "".join(f"""<a class="deck" href="{e(r["date"])}/">
-  <img src="{RAW}/runs/carousel/{e(r["date"])}/{e(r["cover"])}" width="1080" height="1350"
+  <img {article_media.image_attrs(r, r["cover"], 1, cover=True)}
        loading="lazy" alt="Cover slide, {e(r["title"])}">
   <span class="meta" data-prose="data"><span class="tag">{e(ordinal(
     _dt.date.fromisoformat(r["date"])))}</span><span>{r["slides"]} slides</span></span>
@@ -835,8 +835,8 @@ def article_page(r: dict, today: str, items: list) -> str:
     # published two broken images and dropped two slides entirely the first time the surviving
     # files were not a contiguous run.
     slides = "".join(
-        f'<img src="{RAW}/runs/carousel/{e(r["date"])}/{e(name)}" width="1080"'
-        f' height="1350" loading="lazy" alt="Slide {i} of {r["slides"]}">'
+        f'<img {article_media.image_attrs(r, name, 2)}'
+        f' loading="lazy" alt="Slide {i} of {r["slides"]}">'
         for i, name in enumerate(r["files"], start=1))
 
     def say(block):
@@ -1098,17 +1098,14 @@ def latest_article(runs: list, items: list) -> str:
 
     story_link = (f'<a href="item/{e(r["story"])}/">the decision it is about</a>'
                   if r.get("story") else "")
-    # The loader falls back to the run date when no title was supplied.
-    # The publication badge already carries that date.
-    heading = f'<h3>{e(r["title"])}</h3>' if r["title"] != r["date"] else ""
+    heading = f'<h3>{e(r["title"])}</h3>'
 
     return f"""
 <section data-reveal>
   <h2 data-voice="house">Our latest article</h2>
   <div class="latest">
     <a class="cover" href="articles/{e(r["date"])}/"><img
-      src="{RAW}/runs/carousel/{e(r["date"])}/{e(r["cover"])}"
-      width="1080" height="1350" loading="lazy"
+      {article_media.image_attrs(r, r["cover"], 0, cover=True)} loading="lazy"
       alt="Cover slide, {e(r["title"])}"></a>
     <div>
       <p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(
@@ -1268,7 +1265,7 @@ def scan_teaser() -> str:
 """
 
 
-def home(items: list, today: str) -> str:
+def home(items: list, today: str, runs: list | None = None) -> str:
     proj = dk.project(items, today)
     act = proj["actionable_now"]
     lit = {c for it in items for c in (it.get("geography") or {}).get("counties") or []}
@@ -1281,7 +1278,7 @@ def home(items: list, today: str) -> str:
     # The front page's index of the beats. Its figures are authorised by the same call that
     # renders them, which is why it hands back both.
     covers_html = covers_section(items, today)[1]
-    runs = load_runs()
+    runs = load_runs() if runs is None else runs
     n_videos = video_count()
 
     # THE LIVE ACTION PANEL. It follows the map, on the owner's call, so the Ask agent remains

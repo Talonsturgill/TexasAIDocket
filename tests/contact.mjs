@@ -181,6 +181,100 @@ console.log("\n=== the row it sits in ===");
   await p.close();
 }
 
+console.log("\n=== Services validates, waits once and acknowledges acceptance ===");
+{
+  const p = await browser.newPage({ ...CTX, viewport: { width: 390, height: 844 } });
+  const sent = [];
+  let release;
+  const response = new Promise(resolve => { release = resolve; });
+  await p.route("**/formsubmit.co/**", async route => {
+    sent.push(JSON.parse(route.request().postData()));
+    await response;
+    await route.fulfill({ status: 200, contentType: "application/json", body: '{"success":"true"}' });
+  });
+  await p.goto(`${ORIGIN}/services/`, { waitUntil: "domcontentloaded" });
+  const form = p.locator("#servicesform");
+  const button = form.locator('button[type="submit"]');
+  await button.click();
+  ok("empty required fields cannot submit", sent.length === 0 &&
+     await form.evaluate(f => !f.checkValidity()));
+  await form.locator('[name="name"]').fill("Test Reader");
+  await form.locator('[name="email"]').fill("invalid");
+  const message = 'An enquiry with <markup>, & symbols and a second line.\nPlease keep all of it.';
+  await form.locator('[name="message"]').fill(message);
+  await button.click();
+  ok("an invalid email cannot submit", sent.length === 0 &&
+     await form.evaluate(f => !f.checkValidity()));
+  await form.locator('[name="email"]').fill("reader@example.com");
+  await button.click();
+  await p.waitForFunction(() => document.querySelector("#servicesstatus").dataset.state === "pending");
+  // A second submit event also covers keyboards and scripts that bypass a disabled button.
+  await form.evaluate(f => f.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
+  ok("pending submission is announced and all inputs are protected", await form.getAttribute("aria-busy") === "true" &&
+     await form.locator('input:not(:disabled), textarea:not(:disabled), button[type="submit"]:not(:disabled)').count() === 0 &&
+     await p.locator("#servicesstatus").getAttribute("role") === "status");
+  await p.waitForFunction(() => document.querySelector("#servicesstatus").textContent.includes("Sending"));
+  release();
+  await p.waitForFunction(() => document.querySelector("#servicesstatus").dataset.state === "success");
+  ok("one exact message is sent despite a second submission", sent.length === 1 &&
+     sent[0].message === message && sent[0].email === "reader@example.com", JSON.stringify(sent));
+  ok("acceptance clears the fields and restores the button on the same page",
+     await form.locator('[name="message"]').inputValue() === "" && await button.isEnabled() &&
+     await form.getAttribute("aria-busy") === null && p.url().endsWith("/services/"));
+  ok("the form provides its privacy notice", await form.locator('a[href*="privacy/"]').count() === 1);
+  await p.close();
+}
+
+console.log("\n=== Services preserves a message through failure, timeout and retry ===");
+for (const failure of ["rejected", "server", "invalid-json", "network", "timeout"]) {
+  const p = await browser.newPage(CTX);
+  let attempts = 0;
+  await p.route("**/formsubmit.co/**", async route => {
+    attempts++;
+    if (attempts > 1) return route.fulfill({ status: 200, contentType: "application/json", body: '{"success":true}' });
+    if (failure === "timeout") return; // The page's real timeout must release the form.
+    if (failure === "network") return route.abort();
+    return route.fulfill({ status: failure === "server" ? 500 : 200,
+      contentType: "application/json", body: failure === "invalid-json" ? "broken" : '{"success":false}' });
+  });
+  await p.goto(`${ORIGIN}/services/`, { waitUntil: "domcontentloaded" });
+  const form = p.locator("#servicesform");
+  await form.locator('[name="name"]').fill("Test Reader");
+  await form.locator('[name="email"]').fill("reader@example.com");
+  await form.locator('[name="message"]').fill("Keep this enquiry through a retry.");
+  await form.locator('button[type="submit"]').click();
+  await p.waitForFunction(() => document.querySelector("#servicesstatus").dataset.state === "error", null,
+                          { timeout: 20000 });
+  ok(`${failure} preserves the message and permits another attempt`,
+     await form.locator('[name="message"]').inputValue() === "Keep this enquiry through a retry." &&
+     await form.locator('button[type="submit"]').isEnabled());
+  await form.locator('button[type="submit"]').click();
+  await p.waitForFunction(() => document.querySelector("#servicesstatus").dataset.state === "success");
+  ok(`${failure} can recover without retyping`, attempts === 2 &&
+     await form.locator('[name="message"]').inputValue() === "");
+  await p.close();
+}
+
+console.log("\n=== the native completion route and truthful retention notice ===");
+{
+  const ctx = await browser.newContext({ ...CTX, javaScriptEnabled: false });
+  const p = await ctx.newPage();
+  await p.goto(`${ORIGIN}/services/`, { waitUntil: "domcontentloaded" });
+  const form = p.locator("#servicesform");
+  const next = await form.locator('[name="_next"]').getAttribute("value");
+  ok("native submission returns to this site's completion page",
+     next === "https://texasaidocket.com/services/thanks/" && await form.getAttribute("method") === "POST");
+  // Follow only the configured return URL. Never send test mail to the real provider.
+  const res = await p.goto(`${ORIGIN}${new URL(next).pathname}`);
+  ok("that completion page exists and explains the next step", res.status() === 200 &&
+     /desk replies/.test(await p.locator("main").innerText()));
+  await p.goto(`${ORIGIN}/privacy/`);
+  ok("retention matches the owner's stated policy", /kept until manually deleted/.test(await p.locator("main").innerText()) &&
+     /no fixed automatic deletion schedule/.test(await p.locator("main").innerText()));
+  ok("deletion requests have a working contact route", await p.locator('main a[href="../services/#start"]').count() === 1);
+  await ctx.close();
+}
+
 console.log(fails ? `\ncontact: ${fails} FAILED` : "\ncontact: all passed");
 await browser.close();
 server.close();
