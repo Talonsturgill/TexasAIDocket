@@ -864,6 +864,21 @@ jobs:
           python3 scripts/site/sky.py --self-test
           python3 scripts/site/watch_page.py --self-test
 
+      # THE ASK BOX'S GOLD SET, BUILT IN ANGER RATHER THAN SELF-TESTED. Found by teaching
+      # `gate_wiring` to read imports: the direct rule called 24 of `scripts/site`'s checkers
+      # unwired and 22 were libraries `site_build.py` imports. This one was genuinely run by
+      # nothing.
+      #
+      # It builds 867 cases from the record, offline, and it is the only thing standing between
+      # a tuning decision about the ask box and an argument. Building it is the check: if the
+      # record changes shape under it, the gold set stops building and this goes red. A
+      # `--self-test` here would have proved the checker works and said nothing about the record,
+      # which is the distinction `gate_wiring.invoked_in` refuses to blur.
+      - name: The ask box's gold set still builds from the record
+        run: |
+          python3 scripts/site/ask_eval.py --self-test
+          python3 scripts/site/ask_eval.py --out "$RUNNER_TEMP/ask_gold.json"
+
       - name: A shared link has a card rather than a bare string
         run: |
           # Four Open Graph tags shipped and none was an image, so every link pasted into a
