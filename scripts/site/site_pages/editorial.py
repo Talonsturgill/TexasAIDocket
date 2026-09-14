@@ -1395,10 +1395,6 @@ def home(items: list, today: str, runs: list | None = None) -> str:
   {telemetry(today)}
   <h1>AI is coming <em>South</em>.</h1>
   <p class="herolede">Every AI decision in Texas and the source behind it.</p>
-  <div class="ctarow">
-    <a class="cta solid" href="record/">The docket</a>
-    <a class="cta ghost" href="grid/">The grid</a>
-  </div>
   <div class="statrow">{stats}</div>
 </section>
 
