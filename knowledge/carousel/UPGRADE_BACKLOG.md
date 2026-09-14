@@ -2065,8 +2065,17 @@ room must never be told no. The rewrite cost a round.
 
 The derived lists slice the entries BEFORE the newest, which was correct while the newest entry
 was the one being written and is wrong the moment it ships. `scripts/carousel/ledger_check.py`
-derives all three with `windows()`, so the fix is in one function and it is `upgrade` lane and
-reachable. It needs a self-test that appends an entry and asserts the newest move is in the
+derives all three with `windows()`, so the change itself is one function and it is `upgrade` lane.
+
+**It is still not a change one run gets to make, and the reason is the map rather than the host.**
+The three `_recent` lists are STORED in `ledger/carousel/captions.json`, which is `daily` lane.
+Move the window and the gate goes red against the stored lists until somebody rewrites them, and
+rewriting them is the other actor's write. So this is one edit in two lanes, which is the shape
+`CLAUDE.md` says a self-upgrade phase does not get to make. A maintainer does both in one commit,
+or the lists stop being stored and start being computed at read time, which would remove the
+coupling and is the better version of the fix.
+
+Either way it needs a self-test that appends an entry and asserts the newest move is in the
 window the next run is handed.
 
 This is the second time this file has carried a note about these three lists. The 2026-08-20
