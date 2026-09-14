@@ -2236,3 +2236,34 @@ framing, that an unsatisfiable acceptance criterion is a defect in the SPECIFICA
 in the artifact, is what moved it to a report printed before the panel and a dossier-format
 proposal above. A gate firing on the artifact for a fault in the plan sends the run to fix the
 wrong thing.
+
+### `ledger_check.COUNTING_FIGURES` is a vocabulary from a run that is no longer shipping
+
+`check_topics()` compares every spelled number word in the newest topics entry against the set of
+values the run computed, and it builds that set from a hardcoded tuple of thirteen key names:
+`restricted_count`, `declined_count`, `total_count`, `stated_nonbinding` and so on. **Not one of
+those keys is in this run's `figures.json`**, so `ok` is the empty set and every number word in the
+prose fails against it. The 2026-09-14 run's first topic entry drew five findings that way,
+including `'zero'` matched inside the proper name **Batch Zero**.
+
+The entry was rewritten in digits and the check went green, which is the right daily-lane answer
+and is not a fix. The gate is measuring whether a run's figure keys happen to be an older run's
+figure keys, and every run since that vocabulary was written has been passing it by writing prose
+with no number words in it rather than by matching anything.
+
+Three candidate shapes, and the third is probably right:
+
+- Widen the tuple. Cheapest and it goes stale again the next time a run names its figures
+  something new, which is every run.
+- Read every value in `figures.json` rather than a named subset. The docstring argues against it in
+  as many words, and the argument is good: `brazoria_applications` is 4, so "on the other four the
+  record says nothing" would pass while being false.
+- **Read the `unit` field.** `figures.json` already carries one per figure, and this run's read
+  `parties`, `kinds of proof`, `requirement rows`, `projects`, `business days` and `days at the
+  outside`. A COUNT is a figure whose unit is a countable noun, and that is a property of the
+  figure rather than a list somebody maintains. It needs a self-test that adds a figure with a new
+  key and asserts the check still finds it.
+
+A proper name carrying a number word stays a false positive under all three, so whichever is built
+should exempt a number word that is part of a capitalised multi-word name the claims file also
+carries. `Batch Zero` appears in 22 of this run's 43 claims.
