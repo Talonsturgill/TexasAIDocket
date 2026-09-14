@@ -1487,4 +1487,79 @@
   "two_of_four_were_dropped": "Four candidates were weighed and two shipped. The value arc and the round counter both came off this run with a measurement attached and both had a defect that replays. A gate for the recurring visual register needs a field in a ledger this lane does not own, so it is a proposal rather than a half-built gate reading a key nothing writes. A gate_wiring check refusing a carousel gate whose self-test CI never runs is in lane and was still dropped, because it goes red on the day an upgrade run adds a gate and the only file that clears it is one this lane cannot write. A gate a run is stopped by and cannot act on is the thing the ceiling of three exists to prevent, not an example of it.",
   "lane": "upgrade, on claude/daily-2026-09-13, before the merge of PR 301. Nothing under .claude/ was written or needed."
  }
+,
+
+ "2026-09-14 upgrade": {
+  "run": "carousel no. 24, the audit turned out to be a form",
+  "actor": "upgrade",
+  "branch": "claude/daily-2026-09-14",
+  "upgrades": [
+   {
+    "what": "scripts/carousel/scene_bounds.py: a new gate that projects every figure a slide's own camera places and FAILS when one lands entirely outside the frame, plus a non-fatal report comparing each figure's computed pixel height to the acceptance band its dossier declared",
+    "why": "This run's cover shipped its first cut with its only human figure at world X -13 at Z 9. The frame's own camera is f 820 and TXSCENE projects x = w/2 + f*X/Z, so she rendered at x -644, off the left edge of a 1080 px frame, and the cover's entire true-scale argument was missing. layout_check --require, qa.py, plan_render_check, craft_floor, bespoke_check and a pixel critic all passed it, because every one of them measures what IS inside the declared rect and none asks whether a thing the dossier NAMED is inside it at all. Two of three scoring judges found it independently and closing it cost three scoring rounds.",
+    "files": [
+     "scripts/carousel/scene_bounds.py",
+     "scripts/carousel/panel_ready.py",
+     "scripts/carousel/shipped_check.py"
+    ],
+    "verification": "python3 scripts/carousel/scene_bounds.py --self-test replays the X -13 Z 9 cut and asserts the miss measures x -644 to within a pixel, asserts the shipped repair at X -9.2 Z 27 is clean and measures 51.6 px, asserts the middle repair that was in frame at the wrong depth is NOT an outside-frame finding, and asserts the projection constants against assets/js/txscene.js and assets/js/txfig.js rather than against itself. python3 scripts/carousel/panel_ready.py --self-test replays the same cut through the group that was wired in. Proved red on the real product too: the shipped slide-01.html copied to out/2026-09-14/tmp/up/red with only its figure moved back to X -13 Z 9 reports the finding at x -644, and the deck as shipped reports none.",
+    "revert": "the upgrade commit on claude/daily-2026-09-14",
+    "how_i_would_know_this_was_wrong": "It fires on a frame where a figure is off canvas ON PURPOSE, which would mean the body half-width margin of 0.5 m is too small or that a figure is being used as scatter the way a mesquite is. Or a slide construction it cannot parse silently grows until the resolved count falls while the closing line still reads clean, which is why the self-test pins carousel no. 24 at six resolved placements and one band finding."
+   },
+   {
+    "what": "scripts/carousel/contact_trace.py: a new gate that FAILS on any email address, host or telephone number published on a frame, in copy.json, in the caption or in the first comment that appears in no claim this run verified, exempting only the site's own host read from config/brand.yaml",
+    "why": "This run's frame 2 set 'Questions to BatchZero@ercot.com' inside a drawn facsimile of a real ERCOT notice, in the same serif as two verbatim quotations, on the frame whose whole argument is what that document does and does not say. No claim in the run carries an email address. A pixel critic caught it and every gate was green: claims_check asks whether claims were fetched, noun_trace warns on named things and an address is not a name, numeral_trace reads digits, verbatim_check holds DECLARED fragments only.",
+    "files": [
+     "scripts/carousel/contact_trace.py",
+     "scripts/carousel/panel_ready.py",
+     "scripts/carousel/shipped_check.py"
+    ],
+    "verification": "python3 scripts/carousel/contact_trace.py --self-test replays the fabricated address, asserts the site's own footer host is not a finding, asserts a host a cited claim's url carries is clean, and asserts an invented telephone number and a third-party host are caught. It also sweeps every shipped deck and asserts both that none fires AND that the sweep actually read them, because zero findings over a corpus nobody read is the empty case this project keeps rediscovering. Proved red on the real product: this run's own render report with the removed line restored reports exactly one finding.",
+    "revert": "the upgrade commit on claude/daily-2026-09-14",
+    "how_i_would_know_this_was_wrong": "A legitimate deck prints a host that the record knows but this run's claims do not, for example an organisation's domain named in a docket item rather than in a fetched claim. That would be a real finding the writer cannot clear, and the fix is to widen the haystack to the cited items' own source urls rather than to soften the gate. The measurement that justified making it FAIL rather than warn is 23 shipped decks with zero findings, so a second deck firing without a fabrication in it means that measurement no longer holds."
+   }
+  ],
+  "measured_rather_than_reasoned_about": {
+   "why_not_the_pixels": "The obvious shape was to find the figure in the PNG. Refused. render_report.json carries text nodes and canvas variance and no object geometry whatsoever, and a 44 px stippled figure on a 1080 by 1350 night frame is the exact case the object-detection literature names as unreliable, where the target occupies too few pixels for matching to be trusted. A gate that misreports costs more than one that misses, because the run then hunts for something that was never there. The slide HTML answers the same question exactly, in the engine's own arithmetic, with no model and no dependency.",
+   "the_band_half_reports_and_does_not_fail": "It compares a computed number to a sentence, a sit or lean pose draws shorter than its declared height, and the corpus that could calibrate it is 13 slides. verbatim_check's style-group discovery is the precedent: a detector too noisy to fail on is not too noisy to read. It is printed by panel_ready before the panel is spawned and by the gate itself.",
+   "what_the_band_half_found_on_this_very_deck": "Frame 6's acceptance item asks for three figures between 92 and 108 px. The slide's own f 820 camera and its own placements at Z 8.2, 9.0 and 9.8 give 174, 153 and 143 px, and the dossier's own composition puts the fence at Z 11 with the figures in front of it, where no standing 1.7 m figure can be smaller than 127 px. The acceptance item was unsatisfiable when it was written and the shipped frame misses it by 60 per cent. Every gate was green.",
+   "corpus": "23 shipped decks read for both gates. scene_bounds resolves 14 figure placements across the three decks that have any and finds none outside a frame. contact_trace reads 23 decks, about 200 published surfaces each, and finds no contact token anywhere that is not this site's own host or its own item pages."
+  },
+  "frontier_scan": {
+   "focus": "verifying that a rendered scene contains the objects its plan declared. Rotated to the defect this run paid three scoring rounds for.",
+   "searches": 8,
+   "kept": "SceneCritic (arXiv 2604.13035) evaluates generated 3D layouts SYMBOLICALLY, over the layout program rather than the render, and two of its three constraint objectives are whether all required objects are placed and whether each object's bounding box lies inside the spatial boundary. That is the assertion built here, arrived at independently and confirmed. Graphics has a name for the test and a convention for it: view-frustum culling, which is done against an object's BOUNDING VOLUME and never its centre point, which is why this gate tests a body box rather than a projected point.",
+   "kept_second": "The web testing literature states this run's defect in one sentence. 'A functional test asserts on the DOM, not rendered output. A checkout button that has moved behind the footer still exists in the DOM and fires its click handler, so every functional assertion passes while no user can reach it.' Every gate in this suite is the functional assertion in that sentence.",
+   "refused": "A vision model asked whether the figure is in the picture. CI installs pyyaml and nothing else, GATE_LESSONS 15 is the entry about a gate that passed fifteen times locally and failed on the first push for exactly that, and a verdict that moves when a model moves is not a verdict a project whose whole argument is recomputability can publish. The small-object detection literature says the same thing from the other side.",
+   "filed": "The requirements-engineering literature calls the band half by its right name, auditing a specification for criteria that cannot be satisfied, and it puts the check at WRITING time rather than after the render. That is the better version and it is in the backlog with the arithmetic."
+  },
+  "proposals_out_of_lane": [
+   {
+    "what": "Phase 19 builds runs/carousel/<date>/gmail_payload.json, a COMMITTED artifact, and Phase 18 merges before it. CI runs email_check --all on every pull request, so the newest run's directory always reaches CI without its payload and the step is red by construction. Build and commit the payload BEFORE the merge, or state plainly that Phase 19 commits one file and name it.",
+    "owner": "human",
+    "file": "prompts/daily_routine.md",
+    "why": "This run's ship phase records it in its own run state: 'CI gates went red on email_check --all with no payload committed, which is carousel no. 7's defect, and the fix is pushed.' It is not an incident. Every shipped run since at least 2026-09-09 carries a separate commit named 'email:' adding the payload after the pull request opened, and 2026-09-13's landed as its own pull request 304. The routine says in one paragraph that gmail_draft writes a committed artifact and in the paragraph above that Phase 19 'writes nothing to the repository', and the success criteria say nothing this run learned lands after the merge. The runs have been working around it in the field for weeks, which is the strongest evidence a routine line is wrong."
+   },
+   {
+    "what": "This run archived its figure script as runs/carousel/2026-09-14/computed.py where every run before it archived compute.py, so label_guard cannot read it and shipped_check is RED on the newest deck with 'label_guard needs compute.py and claims.json in the run directory'. Two more shipped_check fatals stand beside it on the same deck, in ledgers and in verbatim.",
+    "owner": "daily",
+    "file": "runs/carousel/2026-09-14/",
+    "why": "Measured at HEAD of this branch with and without this phase's changes, so it is not this phase's. It is the exact defect the 2026-09-03 backlog entry predicted when it proposed that Phase 16 step 1 enumerate the artifacts a run copies instead of leaving it to what a run happens to think of. It will make CI red on this pull request and the fix is one rename in the daily lane."
+   },
+   {
+    "what": "Wire scene_bounds.py and contact_trace.py into guards.yml as --self-test steps, and name scene_bounds in the art phase beside layout_check so it runs when the frame can still be redrawn",
+    "owner": "human",
+    "file": ".github/workflows/guards.yml and prompts/daily_routine.md",
+    "why": "Both are run today by shipped_check, which CI executes on published artifacts, and by panel_ready, which the routine runs before it spawns a judge. That is real wiring and it is the only wiring this lane can build. What it does not buy is CI proving each self-test can still go red, which is this backlog's oldest complaint and the reason gate_wiring exists."
+   },
+   {
+    "what": "Paste the GATE_LESSONS entry drafted in the backlog for this date",
+    "owner": "human",
+    "file": "knowledge/shared/GATE_LESSONS.md",
+    "why": "Both upgrades add a gate and the standing instruction says a gate change belongs in that file. It is human lane, correctly, because a self-editing phase that could write the record of how this machine has lied to itself would be grading its own lesson."
+   }
+  ],
+  "two_candidates_that_were_not_built": "A plan-time version of the acceptance band check, reading the fence depth and the focal length out of the dossier's own prose, was designed and dropped: it would be a second, weaker statement of an arithmetic the shipped gate already does exactly from the slide, and a fragile prose parser that invents a failure is worse than a note that is read. A row in gate_status for either new gate was dropped because gate_status rows read RECEIPT ARTIFACTS a gate writes during a run, and nothing writes one until the routine calls these gates, which is a human-lane line.",
+  "lane": "upgrade, on claude/daily-2026-09-14, before the merge of PR 309. Nothing under .claude/ was written, read only."
+ }
 }

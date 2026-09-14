@@ -298,6 +298,63 @@ def check_ground(base: Path) -> list[str]:
     return bad
 
 
+def check_scene_bounds(base: Path) -> list[str]:
+    """A FIGURE THE PLAN PLACED IS INSIDE THE FRAME ITS OWN CAMERA GIVES IT.
+
+    WIRED HERE ON 2026-09-14 AND THIS IS THE PHASE THAT EARNS IT. Carousel no. 24's cover put its
+    only human figure at world X -13 at Z 9, which on that frame's own f 820 camera projects to
+    x -644, off the left edge of a 1080 px frame. The frame's whole argument was true scale
+    against a body, and the body was not in the picture.
+
+    It reached the panel. Two of three judges found it independently, on a round already carrying
+    three other frames, and closing it cost three scoring rounds. That is exactly what this file
+    exists to prevent: a thing a judge should never have to find, which is a measurement rather
+    than a matter of taste.
+
+    `scene_bounds.problems` returns the outside-the-frame findings only. Its acceptance-band
+    report is printed beside this rather than failed on, for the reason its own docstring gives.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import scene_bounds as m
+    except Exception:                                                # noqa: BLE001
+        return []
+    return m.problems(base)
+
+
+def scene_band_notes(base: Path) -> list[str]:
+    """The acceptance bands a frame's own camera cannot reach. Read, never failed on."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import scene_bounds as m
+        slides = base / "slides"
+        if not slides.is_dir():
+            return []
+        reports, _ = m.check_deck(slides, base / "storyboard.md")
+        return [line for r in reports for line in r["bands"]]
+    except Exception:                                                # noqa: BLE001
+        return []
+
+
+def check_contacts(base: Path) -> list[str]:
+    """NO ADDRESS A READER COULD WRITE TO THAT THIS RUN'S CLAIMS DO NOT CARRY.
+
+    WIRED HERE ON 2026-09-14. That run's frame 2 set "Questions to BatchZero@ercot.com" inside a
+    drawn facsimile of a real ERCOT notice, in the same serif as two verbatim quotations, on the
+    frame whose whole argument is what that document does and does not say. No claim in the run
+    carries an email address. A pixel critic caught it and every gate was green.
+
+    Returns nothing when the run has no claims file or nothing published, which this file treats
+    as no finding rather than as a pass, the same way check_ground treats a missing library.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import contact_trace as m
+    except Exception:                                                # noqa: BLE001
+        return []
+    return m.problems(base) or []
+
+
 # ------------------------------------------------------------------ the value arc
 
 # THE PARSE RULE, STATED, because a gate that mis-parses its own input invents failures and they
@@ -687,6 +744,8 @@ def run(date: str, out_root: Path | None = None) -> int:
         (f"every line clears the rubric's {floor} contrast floor", check_contrast(qa, floor)),
         ("every dossier describes the frame the run made", check_plan_matches(base)),
         ("every ground a dossier calls worked is worked", check_ground(base)),
+        ("every figure the plan placed is inside its own frame", check_scene_bounds(base)),
+        ("every published address traces to a claim", check_contacts(base)),
         (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
          f"planned value arc", check_value_arc(base)),
     ]
@@ -695,6 +754,12 @@ def run(date: str, out_root: Path | None = None) -> int:
         print(f"  {'ok  ' if not ps else 'NOT READY'}  {title}")
         for p in ps:
             print(f"      - {p}")
+
+    # PRINTED, NEVER FAILED ON. An acceptance band is prose and the number beside it is computed
+    # from the plan's own camera, so a disagreement is a thing to READ before the panel rather
+    # than a verdict. scene_bounds' docstring carries the argument.
+    for line in scene_band_notes(base):
+        print(f"  note        {line}")
     if problems:
         print(f"\npanel_ready: {len(problems)} thing(s) a judge should never have to find.\n"
               f"  The panel is a CHECK on a deck you already believe is finished. Fix these and\n"
@@ -1000,6 +1065,37 @@ def self_test() -> int:
                      (check_nothing_occluded, "check_nothing_occluded")):
         ok(f"{name} runs on an empty report without raising",
            fn({"slides": []}) == [])
+
+    # THE TWO CHECKS WIRED IN ON 2026-09-14, EACH REPLAYED AGAINST THE DEFECT IT EXISTS FOR.
+    # A group added to the list above and never seen to go red is a row in a report, not a gate.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as _t:
+        _b = Path(_t) / "2026-09-14"
+        (_b / "slides").mkdir(parents=True)
+        (_b / "slides" / "slide-01.html").write_text(
+            "<script>var W = 1080, H = 1350;"
+            "var cam = { w: W, h: H, eye: 1.65, horizon: 940, f: 820, light: { az: -68, el: 14 } };"
+            "var hand = TXFIG.figure({ height: 1.70 });"
+            "S.sprite(hand, { X: -13, Z: 9, fade: false });</script>", encoding="utf-8")
+        ok("carousel no. 24's off-frame cover figure is CAUGHT before the panel",
+           bool(check_scene_bounds(_b)), str(check_scene_bounds(_b)))
+        (_b / "slides" / "slide-01.html").write_text(
+            (_b / "slides" / "slide-01.html").read_text(encoding="utf-8")
+            .replace("X: -13, Z: 9", "X: -9.2, Z: 27"), encoding="utf-8")
+        ok("...and the repair that shipped is clean", not check_scene_bounds(_b))
+
+        (_b / "claims.json").write_text(
+            json.dumps({"claims": [{"id": "c25", "text": "the notice names no load",
+                                    "url": "https://www.ercot.com/services"}]}), encoding="utf-8")
+        (_b / "render_report.json").write_text(json.dumps(
+            {"slides": [{"file": "slide-02.html", "text_nodes": [
+                {"text": "Questions to BatchZero@ercot.com"}]}]}), encoding="utf-8")
+        ok("carousel no. 24's fabricated address is CAUGHT before the panel",
+           bool(check_contacts(_b)), str(check_contacts(_b)))
+        (_b / "render_report.json").write_text(json.dumps(
+            {"slides": [{"file": "slide-02.html", "text_nodes": [
+                {"text": "www.ercot.com/services"}]}]}), encoding="utf-8")
+        ok("...and the host a cited claim carries is clean", not check_contacts(_b))
 
     src = Path(__file__).read_text(encoding="utf-8")
     # BUILT FROM PARTS, because a literal needle in this file matches ITSELF and the assertion

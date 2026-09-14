@@ -764,6 +764,46 @@ def g_verbatim(d: Path):
     return list(fails)
 
 
+def g_contacts(d: Path):
+    """Every published email address, host and telephone number, against this run's claims.
+
+    HISTORY, and the measurement that earns it is in the gate's own docstring: across all 23
+    shipped decks carrying a claims file and a published surface, the only contact tokens on any
+    of them are this site's own host and its own item pages. A gate that returns nothing on
+    twenty three decks of correct work is judging a rule those decks already kept, which is the
+    test HISTORY has to pass and most gates here cannot.
+
+    It returns None for a deck that archived no render report and no copy.json, which is three of
+    them, and the sweep reports that as not applicable rather than as clean.
+    """
+    import contact_trace as m
+    return m.problems(d)
+
+
+def g_scene_bounds(d: Path):
+    """Every figure the plan placed, against the frame its own camera puts it in.
+
+    REGISTERED THE DAY THE GATE WAS WRITTEN, 2026-09-14, and this registry is the only route it
+    has. `guards.yml` and `prompts/daily_routine.md` are both `human` lane, so the actor that
+    writes a carousel gate is structurally unable to wire one anywhere else, which is the whole
+    argument in `gate_wiring.py`'s header.
+
+    THE FATAL HALF ONLY. `scene_bounds.problems()` returns the outside-the-frame findings and
+    not the acceptance-band report, which compares a computed number to a sentence and prints
+    rather than decides. A sweep over already published work can act on the first and not on the
+    second.
+
+    HISTORY rather than CURRENT, and it is the rare gate that earns it. The rule here is not one
+    this project invented and later changed: it is `TXSCENE.project`, the engine's own
+    arithmetic, pinned by this gate's self-test against `assets/js/txscene.js`. A deck drawn
+    before the gate existed is judged by exactly the projection it was drawn with. Decks with no
+    TXFIG figure in them return nothing, which is most of the corpus and is honest rather than
+    lucky.
+    """
+    import scene_bounds as m
+    return m.problems(d)
+
+
 GATES = [
     ("copy sync", g_copy_sync, HISTORY),
     ("quotations", g_quotations, HISTORY),
@@ -810,6 +850,8 @@ GATES = [
     # now, which is the one that can still be redrawn.
     ("layout", g_layout, CURRENT),
     ("completion", g_completion, HISTORY),
+    ("scene bounds", g_scene_bounds, HISTORY),
+    ("contacts", g_contacts, HISTORY),
 ]
 
 
