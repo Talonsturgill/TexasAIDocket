@@ -1213,7 +1213,10 @@ is half a run old.
 
    Merging first costs one fetch and no extra build, because the rebuild you were going to do
    anyway resolves every generated conflict as it goes. **Resolve `docs/` by REBUILDING, never by
-   hand.** An authored conflict, a ledger or a script, is read and merged on its own terms.
+   hand.** `docs/videos/videos.json` is the exception inside that tree: it is the append-only
+   Dispatch feed, not Docket-generated output, and must be preserved and reconciled on its own
+   terms. An authored conflict, a ledger or a script, is likewise read and merged on its own
+   terms.
 5. Verify, and read the **exit codes**, never the last line of a report:
    - `python3 scripts/site/docket_build.py --validate`
    - `python3 scripts/site/site_fresh_check.py`
