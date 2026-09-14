@@ -231,7 +231,7 @@ def _js(result_url: str) -> str:
     gives up rather than asking forever, and it never asks a second host. What is new here is
     only what happens to a line once it has arrived.
     """
-    return """
+    return r"""
 (function () {
   var END = %ENDPOINT%;
   var PHASES = ["footprint", "industry", "feasibility", "critic"];
