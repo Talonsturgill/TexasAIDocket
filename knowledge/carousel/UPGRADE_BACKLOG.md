@@ -2081,3 +2081,158 @@ window the next run is handed.
 This is the second time this file has carried a note about these three lists. The 2026-08-20
 entry recorded them being wrong in both directions from a hand edit, and the fix then was to
 derive them. Deriving them was right. The window it derives is off by one.
+
+---
+
+## 2026-09-14, the upgrade phase. A gate that asks whether the thing is in the picture
+
+Two landed and both are in `ledger/carousel/upgrades.json` with the commands that prove each can
+go red. What follows is the part a later session needs and a ledger entry can't carry.
+
+### The lesson these belong in GATE_LESSONS.md, and why it is written here instead
+
+`knowledge/shared/**` is `human` lane, measured with `ownership_check.py --actor upgrade --files`
+rather than assumed. **Proposed as a new entry, in the maintainer's words to keep the file one
+voice.**
+
+> **Every gate here measures what is INSIDE the frame. None of them asked whether the thing the
+> plan named was in it.**
+>
+> Carousel no. 24's cover was an argument about size: a 130 m data hall broadside, one 1.70 m
+> person beside it, so a reader could measure the building against a body. Its first cut placed
+> that person at world X -13 at Z 9. The frame's camera is `f: 820` and the engine projects
+> `x = w / 2 + f * X / Z`, so she rendered at **x -644, six hundred pixels off the left edge of
+> a 1080 px frame.** The cover's whole argument was missing and the frame was otherwise perfect.
+>
+> `layout_check --require`, `qa.py`, `plan_render_check`, `craft_floor`, `bespoke_check` and a
+> pixel critic all passed it, and **each was right on its own terms.** Every measurement any of
+> them took was a correct measurement of the picture that was actually there. A frame with its
+> subject missing is not a frame with a defect in it. It is a different frame.
+>
+> The web testing literature says this in one sentence and it is worth borrowing whole: *a
+> functional test asserts on the DOM, not on rendered output, so a button that has moved behind
+> the footer still exists and still fires its handler while no user can reach it.* Every gate in
+> this suite is the functional assertion in that sentence.
+>
+> **What to check instead.** Where a plan places a subject in world coordinates on a declared
+> camera, project it and ask whether it is in the view. Graphics has done this for forty years
+> and calls it view-frustum culling, and its one convention is the part that matters: the test is
+> against the object's BOUNDING VOLUME, never its centre point, so a subject half out of frame is
+> not reported as out of it.
+>
+> **And read the plan rather than the pixels, which is the harder half of the judgement.**
+> Finding a 44 px stippled figure in a night frame by looking at the PNG is the exact case object
+> detection is least reliable at, and `render_report.json` carries no object geometry at all. The
+> slide HTML carries every term as a literal, because the deck draws in metres on a declared
+> camera, so the question is arithmetic on committed text. A gate that misreports costs more than
+> one that misses, because the run then hunts for something that was never there.
+
+### The second half of that cover, which is the better lesson and has no gate
+
+Moving the figure INTO the frame broke the thing the frame exists for. The first repair put her
+at 9 m in front of a building at 30 m, so she rendered at 184 px beside a 16 m wall and the
+picture told a reader the hall was about 3.4 m tall. Round 2 caught it. **A frame whose job is to
+give a size can be repaired into giving a wrong one, and "the figure is visible now" is not the
+same check as "the ratio is true".**
+
+`scene_bounds` computes the number that would have caught it, `f * height / Z`, and reports it
+against the dossier's declared band rather than failing on it. That is deliberate and the reason
+is in the file. What is NOT built is a check on the RATIO between two subjects at different
+depths, which is what a scale frame actually promises. It would need the dossier to declare the
+pair, and this run had no second measurement to calibrate it against.
+
+### THE FINDING THAT NEEDS NO NEW GATE, because the arithmetic was already unsatisfiable
+
+Three of this run's acceptance items could not be met by any render of their own plan.
+
+    frame 6   "each is between 92 and 108 px tall", with f 820, figures at 1.70 m, and the
+              dossier's own fence at Z 11 with the figures in FRONT of it. The largest depth
+              available is 11 m, so the smallest possible figure is 820 * 1.7 / 11 = 127 px.
+              The shipped frame renders them at 174, 153 and 143 px.
+    frame 4   a seal declared at 45 px against its own spec's 94
+    frame 8   two acceptance items that contradict each other
+
+`scene_bounds` reports frame 6 from the SLIDE, after the render, which is where it is exact. The
+requirements-engineering literature calls the better version by its right name: auditing a
+specification for criteria that are unsatisfiable, done at writing time with the constraints
+solved rather than after the artifact exists.
+
+**Filed rather than built, and here is the honest reason.** Doing it at plan time means parsing
+`f`, a fence depth and a figure height out of dossier PROSE, and a fragile parser that invents a
+failure is worse than a note that gets read. The version that is actually cheap is a change to
+the dossier format rather than to a gate: if `composition` carried `camera: {f: 820, eye: 1.65}`
+and `primary_image` carried the subject depths as data, the check is four lines and cannot
+misparse. That is a `SLIDE_DOSSIER_SPEC.md` change, which is this lane's, and it should be made
+in the same pass as the check so the two arrive together.
+
+### Filed, not landed, and why each one stopped
+
+**`prompts/daily_routine.md` guarantees a red CI step on every run, and every run has been
+working around it in the field.** Phase 19 builds `runs/carousel/<date>/gmail_payload.json`,
+which is a COMMITTED artifact, and Phase 18 merges before Phase 19 runs. `guards.yml` runs
+`email_check --all` on every pull request, over every shipped run including the one being made.
+So the newest run's directory reaches CI without its payload and the step is red by construction.
+
+This run's own state file records it: *"CI gates went red on `email_check --all` with no payload
+committed, which is carousel no. 7's defect, and the fix is pushed."* It is not an incident.
+Every shipped run back to at least 2026-09-09 carries a separate commit titled `email:` adding
+the payload, and 2026-09-13's landed as **its own pull request, no. 304**, after the deck had
+merged. The routine states both halves of the contradiction three paragraphs apart: Phase 19
+"writes nothing to the repository", and `gmail_draft.py` "writes `runs/carousel/<date>/
+gmail_payload.json`, a committed artifact beside the deck".
+
+`prompts/daily_routine.md` is `human` lane and this run is executing it. The lane is the answer.
+The fix is one of two lines: build and commit the payload before the merge, or say plainly that
+Phase 19 commits exactly one file and name it.
+
+**`shipped_check` is RED at HEAD on this branch and it is not this phase's.** Measured by
+stashing this phase's files and running it again, where it fails identically. Three fatals, all
+on `runs/carousel/2026-09-14/`, which is `daily` lane:
+
+    labels     label_guard needs compute.py, and this run archived its figure script as
+               computed.py. Every shipped run before it archived compute.py.
+    ledgers    topics.json's 2026-09-14 topic says 'zero' and the run computed [] for it
+    verbatim   10 declared fragments the render does not carry
+
+The first is the 2026-09-03 backlog entry coming true: the ship step says "copy artifacts" and
+what a run copies is what that run happened to think of, so the name of the file drifted and a
+gate that reads it by name went dark. That entry proposed enumerating the set. It is still the
+right fix and it is still `human` lane.
+
+**A row in `gate_status` for either new gate.** `gate_status` rows read RECEIPT ARTIFACTS a gate
+writes into `out/<date>/` during a run, and nothing writes one for these until the routine calls
+them, which is a `human`-lane line. Wiring them into `panel_ready` was the reachable version of
+the same idea and it is where a finding can still change the deck.
+
+### Frontier scan, 2026-09-14. Focus area: proving a rendered scene contains what its plan declared
+
+Eight searches. Rotated onto the defect this run paid three scoring rounds for.
+
+**The strongest confirmation is that the field evaluates the PROGRAM, not the picture.**
+SceneCritic (arXiv 2604.13035) is a symbolic evaluator for generated 3D layouts, and two of its
+three constraint objectives are whether every required object was actually placed and whether
+each object's bounding box lies inside the spatial boundary. That is the assertion built here,
+reached independently before the scan and confirmed by it. SceneGenAgent (arXiv 2410.21909) does
+the same thing inside the generator, checking each placement against the declared constraints as
+it writes the code.
+
+**And graphics already had the test and its one rule.** View-frustum culling is the standard
+question "is this object inside the view volume", and every treatment of it insists the test runs
+against a bounding VOLUME rather than a point, because a point test reports a half-visible object
+as invisible. That is why this gate boxes the figure at half a metre either side rather than
+projecting its centre, and the margin is a body width taken from the world rather than a
+threshold tuned on our own frames.
+
+**Refused, for the third time in this file and for the same reason.** A vision model asked
+whether the figure is in the picture. CI installs `pyyaml` and nothing else, GATE_LESSONS 15 is
+the entry about a gate that passed fifteen times locally and failed on the first push for exactly
+that, and a verdict that moves when a model moves is not one this project can publish. The
+small-object detection literature arrives at the same refusal from the other side: a target
+occupying a tiny fraction of the frame is the case where matching is least reliable, and a 44 px
+figure on a 1080 by 1350 night frame is that case exactly.
+
+**The one thing the scan changed.** The band half was going to fail. The requirements literature's
+framing, that an unsatisfiable acceptance criterion is a defect in the SPECIFICATION rather than
+in the artifact, is what moved it to a report printed before the panel and a dossier-format
+proposal above. A gate firing on the artifact for a fault in the plan sends the run to fix the
+wrong thing.
