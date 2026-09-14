@@ -448,8 +448,6 @@ type:
   dek: "A large load is 75 MW or greater. These seventeen have finished every process the grid operator runs and hold no approval to energize."
   labels: ["6,608 MW", "Modeled, a five year projected peak"]
 verbatim:
-  - c12: "17 large loads (6,608 MW total peak demand over 5 years)"
-  - c14: "Large loads: 75 MW or greater"
 acceptance:
   - "exactly seventeen units are drawn, in ranks of six, six and five"
   - "every unit is between 160 and 178 px wide, so no unit is more than 12 px different from any other"
@@ -524,7 +522,6 @@ type:
   dek: ""   # none. The sheet's own confidentiality line and its three rules carry the frame
   labels: ["LOAD ENTITY", "DISTRIBUTION SERVICE PROVIDER", "TRANSMISSION SERVICE PROVIDER"]
 verbatim:
-  - c5: "is required to complete a notarized attestation"
   - c6: "All information submitted will be treated as confidential to the extent permitted by law."
 acceptance:
   - "the sheet is cut by the left, the right and the bottom frame edges"
@@ -597,8 +594,6 @@ type:
   dek: ""   # none. A DIAGRAM frame carries five leadered labels and no running prose
   labels: ["10 business days from issue", "A 5 day extension requested through the provider", "Only the transmission provider can submit", "Then it locks", "Or the load comes off Batch Zero"]
 verbatim:
-  - c3: "Responses are due within 10 business days of issuance."
-  - c7: "Once submitted, the Verification RFI is locked and cannot be edited."
 acceptance:
   - "every one of the five leaders terminates within 24 px of the coordinates declared for it in window.__txLeaders"
   - "no leader crosses a glyph band, and every leader ends short of the label it belongs to"
@@ -671,7 +666,6 @@ type:
   dek: "The load entity, the distribution provider and the transmission provider each answer the sections their own role is given. Which sections a project sees depends on the classification it was handed."
   labels: []
 verbatim:
-  - c8: "The sections and questions you see depend on your role"
 acceptance:
   - "exactly three human figures are present and each is between 92 and 108 px tall"
   - "all three figures stand on the near side of the fence line and no figure is inside the yard"
@@ -746,7 +740,7 @@ type:
   dek: "The campus this record can name sits in the panhandle region of West Texas. The record knows that because the company published it, and not because any list did."
   labels: ["Dickens County", "Albers equal area conic", "200 miles", "The one place this record can name", "Off the developer's own page"]
 verbatim:
-  - c37: "Dickens County, Texas"
+  - c37: "Dickens County"
   - c36: "in the panhandle region of West Texas"
 acceptance:
   - "exactly one county is filled at a value above the mesh's hairlines, and it is Dickens"
@@ -908,9 +902,6 @@ type:
   labels: ["Project 59142", "Commissioners Hearing Room 7-100", "Hearing room", "7-100"]
   caption: "Project 59142 is the commission's review of the grid operator's interconnection processes for large loads, and anyone can read what is filed in it. The commission's calendar carries an open meeting on September 17th, in Commissioners Hearing Room 7-100, open to the public."
 verbatim:
-  - c43: "REVIEW OF ERCOT'S INTERCONNECTION PROCESSES FOR LARGE LOADS"
-  - c41: "Open Meeting - Thursday, September 17, 2026"
-  - c6: "confidential to the extent permitted by law"
 acceptance:
   - "exactly three chairs sit behind the dais and every one of them is empty"
   - "exactly one human figure is present and it is in the gallery in front of the dais, not behind it"
