@@ -260,10 +260,11 @@ def _points(src: str) -> dict[str, tuple[float, float]]:
 
 def _resolve(expr: str, scalars: dict[str, float], points: dict[str, tuple[float, float]],
              axis: str) -> float | None:
-    # `axis` selects the member of a named point, `RATER.X` against `RATER.Z`. It is read from
-    # the expression itself below rather than from this argument, which is kept because the two
-    # call sites read better naming which coordinate they are asking for.
     """A placement coordinate as written, or None when it is computed at draw time.
+
+    `axis` names which member of a named point is wanted, `RATER.X` against `RATER.Z`. It is read
+    off the expression itself below rather than from this argument, which is kept because the two
+    call sites read better naming the coordinate they are asking for.
 
     Three forms and no more: a literal, a named point's axis, and either of those plus or minus a
     literal. Anything else is UNRESOLVED and is reported as such. Guessing at a fourth form is how
