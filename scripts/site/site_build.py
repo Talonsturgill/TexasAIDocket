@@ -34,6 +34,9 @@ import time
 # chrome and write-time gates live in site_context; renderer bodies live by page family. The
 # wildcard imports are deliberate here only: schema checks and maintenance scripts historically
 # import renderer helpers from site_build, so the façade re-exports that stable surface.
+import connection_explorer
+import facility_explorer
+
 from site_context import *
 from site_pages.watch import *
 from site_pages.docket import *
@@ -538,6 +541,8 @@ def build(out: Path, today: str) -> dict:
                  entities.n0(_c["buildings"])}
     for _x in _dcent["entities"]:
         _dcn.add(entities.n0(_x["reach"]))
+    _dcn |= facility_explorer.authorised(_dcent)
+    _dcn |= connection_explorer.authorised(_dcent)
     w("datacenters/index.html", datacenters_page(today), _dcn)
 
     # A permissive robots.txt is the product strategy, not a concession. For a record built to

@@ -334,8 +334,8 @@ def registry_panel(f: dict) -> str:
   <p class="qnote">The state names them. <a href="{DC_URL}">The Comptroller's registry</a>
   lists every facility holding the data center exemption.</p>
 
-  <p class="blede"><strong class="num">{n0(d['total'])}</strong> data centers are registered
-  in Texas. <strong class="num">{n0(d['latest_year_count'])}</strong> of them took effect
+  <p class="blede"><strong class="num">{n0(d['total'])}</strong> certification records name
+  Texas data centers. <strong class="num">{n0(d['latest_year_count'])}</strong> of them took effect
   this year.</p>
 
   <div class="registryoverview">
