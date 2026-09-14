@@ -196,6 +196,11 @@ SCRIPT = r"""
     if (record.u) dossier.setAttribute('href', record.u); else dossier.removeAttribute('href');
   }
   input.addEventListener('change', function () { select(input.value); });
+  // Back navigation can restore a native select after the document's initial render.
+  // Read that restored value on the next frame so the filed details match the picker.
+  window.addEventListener('pageshow', function () {
+    window.requestAnimationFrame(function () { select(input.value); });
+  });
   document.addEventListener('certification-select', function (event) {
     var id = event.detail && event.detail.id;
     if (!byId[id]) return;

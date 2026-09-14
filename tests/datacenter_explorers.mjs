@@ -195,6 +195,13 @@ export async function testExplorers({ browser, origin, route, registry, ok }) {
   const movingPosition = await movingPage.locator("#fxname").boundingBox();
   ok("default phone motion lands the expanded-evidence journey on the selected record",
     movingPosition.y >= 0 && movingPosition.y + movingPosition.height <= 844,JSON.stringify(movingPosition));
+  const beforeDossier = {id:await movingPage.inputValue("#fxselect"),name:await movingPage.locator("#fxname").textContent()};
+  await movingPage.locator("#fxdossier").click();
+  await movingPage.goBack({waitUntil:"load"});
+  await movingPage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  ok("Back from a dossier restores the same certification in the picker and details",
+    await movingPage.inputValue("#fxselect") === beforeDossier.id &&
+    await movingPage.locator("#fxname").textContent() === beforeDossier.name);
   await moving.close();
   const nojs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const staticPage = await nojs.newPage();
