@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-49Byu3Xo+XZhPR12eGnwg7lHBB8NHi74OPUShkMXURY=' 'sha256-QLNPWFvXEErnKU0GQeRywZHAmc6IwPAo0wiAI02HwQA=' 'sha256-BF7DpXouWmFgnSvThzAdcQjcB+Z7mt2eLYPiCsOF7PE=' 'sha256-4vwWOVbDXCuTekm1gfAfpk4vfZU2frnCGReueJtu528=' 'sha256-0f4ynQb4zHp0MkMxUzAyPok0pwMVEScW1GEd5Fi6hFE=' 'sha256-knP56PixATsfvwwDckyE/g906x0D6UJjG2isZVXdbCY=' 'sha256-IQC/9ovvZUXjPkJDHid7cOcmdrk1nlLzvnJuYUKJ/TY=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self' 'sha256-i2QufEhlSp9OoFjX81TCxgfkziTi9ozKzO7CzMf9lWA=' 'sha256-dOIDv8hgjtwehFQaoAXHhdfEDt+0tLwTmFoKxOxK/wU='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-49Byu3Xo+XZhPR12eGnwg7lHBB8NHi74OPUShkMXURY=' 'sha256-QLNPWFvXEErnKU0GQeRywZHAmc6IwPAo0wiAI02HwQA=' 'sha256-tOc+6FarVZNjelhQtseEbsw0VX1jc+voZYyOVLQ4MY4=' 'sha256-4vwWOVbDXCuTekm1gfAfpk4vfZU2frnCGReueJtu528=' 'sha256-0f4ynQb4zHp0MkMxUzAyPok0pwMVEScW1GEd5Fi6hFE=' 'sha256-knP56PixATsfvwwDckyE/g906x0D6UJjG2isZVXdbCY=' 'sha256-IQC/9ovvZUXjPkJDHid7cOcmdrk1nlLzvnJuYUKJ/TY=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self' 'sha256-i2QufEhlSp9OoFjX81TCxgfkziTi9ozKzO7CzMf9lWA=' 'sha256-dOIDv8hgjtwehFQaoAXHhdfEDt+0tLwTmFoKxOxK/wU='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas data centers · Texas AI Docket</title>
@@ -222,11 +222,19 @@
   var sheet = document.getElementById('cesheet'), inspector = root.querySelector('.ceworkspace .ceinspector');
   var phone = window.matchMedia('(max-width:55rem)');
   var previousOverflow = '';
-  function closeSheet() { if (sheet.open) sheet.close(); }
-  sheet.addEventListener('close', function () {
+  function restoreReadout() {
+    if (readout.parentElement === inspector) return;
     inspector.appendChild(readout); inspector.style.minHeight = '';
     document.documentElement.style.overflow = previousOverflow;
-  });
+  }
+  function closeSheet() {
+    if (!sheet.open) return;
+    sheet.close();
+    // Restore layout before a follow or certification action calculates its scroll target.
+    // The native close event is queued, which is too late when the evidence has expanded.
+    restoreReadout();
+  }
+  sheet.addEventListener('close', restoreReadout);
   document.getElementById('cesheetclose').addEventListener('click', closeSheet);
   sheet.addEventListener('click', function (event) { if (event.target === sheet) closeSheet(); });
   phone.addEventListener('change', function () { if (!phone.matches) closeSheet(); });
