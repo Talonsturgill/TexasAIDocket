@@ -2011,3 +2011,64 @@ libraries `site_build.py` imports, so their real invocation is an import that th
 see. Reporting 24 findings of which zero are actionable is the cry-wolf failure `invoked_in`'s own
 docstring refuses. Teaching it to read imports is the work that would let `site` in, and that is
 still a proposal.
+
+---
+
+## 2026-09-14, carousel no. 24
+
+Two proposals and one of them is out of reach rather than out of scope. Both were found by the
+run rather than reasoned about, and both come with the measurement that found them.
+
+### `fetch()` on a `file://` slide does not work, and the engine's own contract says it does
+
+`.claude/skills/carousel-engine/render.py` documents the committed geodata as
+
+    fetch("@@ASSETS@@/geo/tx-counties.topo.json")
+
+and passes `--allow-file-access-from-files` to Chromium for it. **It does not work.** Frame 7 of
+this run failed on it, and the useful half of the measurement is that
+`examples/demo-deck/slides/slide-02.html` fails identically, which is the engine's own demo. So
+this is the documented API being broken rather than one slide getting it wrong.
+
+`XMLHttpRequest` against the same path works first time. That flag relaxes the file origin for
+XHR, and Chromium treats `fetch` on `file://` as an opaque origin regardless.
+
+**THE FIX IS ONE LINE IN A FILE NO ROUTINE MAY WRITE.** `render.py` and `SKILL.md` both live
+under `.claude/`, which the host treats as a SENSITIVE FILE class and prompts on at every edit,
+whatever the permission mode says. `ownership.yaml` gives the `upgrade` lane
+`.claude/skills/carousel-engine/**` and that is beside the point: ownership and reachability are
+different questions and the map answers only the first. So this is written down exactly as
+`CLAUDE.md` prescribes for an upgrade a run cannot reach, and a maintainer at a keyboard makes it
+in seconds.
+
+What to change, when somebody is there to answer the prompt:
+
+- `render.py`'s conventions docstring: replace the `fetch(...)` example with
+  `var x = new XMLHttpRequest(); x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json", false); x.send();`
+  and say in one line that `fetch` is unavailable on `file://` and why.
+- `SKILL.md` wherever it repeats the same example.
+- `examples/demo-deck/slides/slide-02.html`, which is the surface a next run copies from and is
+  currently a working example of the thing that does not work.
+
+### The caption room's exclusion windows are one shipped entry behind
+
+`ledger/carousel/captions.json` handed this run `closing_moves_recent: ["Name what happens next
+and when"]`, which is carousel no. 22's close. The newest shipped entry, 2026-09-13, closed on
+"Name what is still not public, and how big that is", and it was not in the list. The same
+off-by-one shows in `opening_moves_recent`, which holds six moves ending 2026-09-12 and omits
+2026-09-13's "the number that is wrong".
+
+**The cost is not theoretical and it was paid this run.** Candidate A was briefed to close on a
+substance the previous run had just shipped, wrote it, and the caption critic caught it at the
+judging step rather than the briefing step, which is the one place `CAPTION_CRAFT.md` says the
+room must never be told no. The rewrite cost a round.
+
+The derived lists slice the entries BEFORE the newest, which was correct while the newest entry
+was the one being written and is wrong the moment it ships. `scripts/carousel/ledger_check.py`
+derives all three with `windows()`, so the fix is in one function and it is `upgrade` lane and
+reachable. It needs a self-test that appends an entry and asserts the newest move is in the
+window the next run is handed.
+
+This is the second time this file has carried a note about these three lists. The 2026-08-20
+entry recorded them being wrong in both directions from a hand edit, and the fix then was to
+derive them. Deriving them was right. The window it derives is off by one.
