@@ -1,0 +1,122 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 8 of 9. Archetype DOCUMENT. THE TURN.
+     The company's own release, drawn as a whole letter sheet on a dark surface, square to the
+     frame and running off the bottom edge. Two hairline ruled quotation blocks with a mono
+     attribution under each. The brightest frame in the deck is a company telling its own
+     shareholders that its classification might be withdrawn. Line screen at cell 5, angle 14,
+     which is the same register as frame 2 at a different cell and angle, on purpose: the reader
+     meets the same KIND of object twice and finds the opposite thing on it. The accent is on the
+     two names a Texan can look up. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; --accent:#7FB2D9;
+          --sheet:#EFE9DA; --sink:#241512; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:160px; width:860px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:100px; line-height:1.0; letter-spacing:-0.02em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  /* the page, and everything inside it is the page's own typography */
+  .page { position:absolute; left:110px; top:392px; width:860px; height:958px; padding:44px 58px 0 58px;
+          color:var(--sink); font-family:"Instrument Serif", serif; }
+  .page .run { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.09em;
+               color:#5E4E45; text-transform:uppercase; display:flex; justify-content:space-between; }
+  .page .run em { font-style:normal; color:#12222C; background:var(--accent);
+                  padding:7px 15px 8px 15px; margin:-7px 0 -8px -15px; }
+  .page .ttl { font-size:34px; line-height:1.14; margin-top:18px; }
+  .page .heavy { height:5px; background:var(--sink); margin:22px 0 0 0; }
+  .page .q { border-top:1px solid rgba(36,21,18,0.42); border-bottom:1px solid rgba(36,21,18,0.42);
+             padding:13px 0 13px 0; margin-top:13px; font-size:29px; line-height:1.26; }
+  .page .q i { font-style:normal; position:relative; z-index:0; white-space:nowrap; }
+  .page .q i u { position:absolute; left:0; right:0; top:auto; bottom:-3px; height:6px;
+                 background:var(--accent); z-index:-1; text-decoration:none; }
+  .page .q i b { font-weight:400; position:relative; }
+  .page .src { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.04em;
+               color:#3A2A22; margin-top:8px; line-height:1.35; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Filed one way. Classified another.</h1>
+<div class="page" id="page">
+  <div class="run"><em>Galaxy Digital Inc.</em><span>Release</span></div>
+  <div class="ttl">Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications</div>
+  <div class="q">Galaxy submitted <i><u></u><b>Caspian</b></i> as Base Load</div>
+  <div class="q">the project has been conditionally classified as Studied Load</div>
+  <div class="src">c30, one sentence in the release, set here as its two halves.</div>
+  <div class="q">Studied Load projects are subject to capacity allocation as part of the study</div>
+  <div class="heavy"></div>
+  <div class="q">the possibility that a classification is modified, withdrawn or not confirmed</div>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    var furn = TXLAYOUT.mount(document.body, { kicker: "Where the public account is", kicker2: "A shareholder announcement", counter: "08 / 09", src: "c26 c27 c30 c33   TEXAS AI DOCKET", ink: "#8E8266" });
+    // the sheet runs under the bottom band on this frame, so the furniture takes the PAGE's ink
+    furn.src.style.color = "#241512";
+    furn.src.style.left = "134px";
+    document.getElementById("site").style.right = "134px";
+    document.getElementById("site").style.color = "#241512";
+    TX.fitText(document.getElementById("hook"), { min: 74, max: 100, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // The sheet's own rect, matching the DOM page exactly. Square to the frame, not turned:
+    // frame 2 is a notice lying on a desk and this is a document a reader has been handed.
+    var PX = 110, PY = 392, PW = 860, PH = 980;
+    var sheet = [[PX, PY], [PX + PW, PY], [PX + PW, PY + PH], [PX, PY + PH]];
+
+    function poly(a, pts) { a.beginPath(); a.moveTo(pts[0][0], pts[0][1]); for (var i = 1; i < pts.length; i++) a.lineTo(pts[i][0], pts[i][1]); a.closePath(); a.fill(); }
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.05, seed: 2408,
+      screen: { mode: "line", cell: 5, angle: 14, gamma: 1.18, floor: 0.035 },
+      edges: { threshold: 28, width: 1.4, alpha: 0.7, dx: 1.3, dy: -0.7 },
+      draw: function (a) {
+        // the surface under the sheet, a dark desk falling away toward the top of the frame
+        var g = a.createLinearGradient(0, 300, 0, H);
+        g.addColorStop(0, "#000000"); g.addColorStop(1, "#2A241E");
+        a.fillStyle = g; a.fillRect(0, 0, W, H);
+        // a second sheet behind, offset, so the page reads as one of a set
+        a.fillStyle = "#3A352E"; poly(a, [[PX + 26, PY + 20], [PX + PW + 26, PY + 28], [PX + PW + 26, PY + PH], [PX + 26, PY + PH]]);
+        // the front sheet's cast shadow, from the raking key at the upper left
+        a.save(); a.filter = "blur(20px)"; a.fillStyle = "#000000";
+        poly(a, sheet.map(function (p) { return [p[0] + 22, p[1] + 26]; })); a.restore();
+        // the sheet itself in the twin, so the screen gives its tooth a direction
+        a.fillStyle = "#BAB2A2"; poly(a, sheet);
+      },
+      over: function (c) {
+        // THE SHEET AS FLAT PAPER, with a hand-wobbled edge, so the type prints on paper and
+        // never on a screen. The second sheet and the cast shadow stay inside the print.
+        var d = "M" + sheet.map(function (p) { return p[0] + " " + p[1]; }).join(" L ") + " Z";
+        var wob = TXINK.wobble(d, { amp: 1.5, freq: 0.018, seed: 8, step: 5 });
+        c.save(); c.fillStyle = "#EFE9DA"; c.fill(new Path2D(wob)); c.restore();
+
+        // the raking key dying across the sheet toward its foot, which is what puts the risk
+        // block in the page's darkest paper
+        var fall = c.createLinearGradient(0, PY, 0, PY + PH);
+        fall.addColorStop(0, "rgba(36,21,18,0.04)"); fall.addColorStop(0.45, "rgba(36,21,18,0.20)");
+        fall.addColorStop(1, "rgba(36,21,18,0.46)");
+        c.save(); c.clip(new Path2D(wob)); c.fillStyle = fall; c.fillRect(PX - 8, PY - 8, PW + 16, PH + 16); c.restore();
+
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

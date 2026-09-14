@@ -1,0 +1,163 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 1 of 9. Archetype FULL_BLEED.
+     One 130 metre data hall standing broadside 38 metres from the camera on red bed ground in
+     Dickens County, 16 metres tall, both ends outside the frame. One 1.7 m figure at its near
+     corner. Not one opening carries light. A moon 14 degrees up in the west lays the whole
+     building's shadow east across the flat toward the camera, so the reader is standing inside
+     the shadow of the thing. Stipple at cell 5, which is the only screen that holds a near black
+     sky without breaking into a texture. No accent anywhere on this frame, deliberately: the
+     accent is a name a Texan can look up and nothing here has one. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:176px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:104px; line-height:0.98; letter-spacing:-0.025em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:392px; width:860px; font-family:"JetBrains Mono", monospace;
+         font-size:25px; line-height:1.45; letter-spacing:0.035em; color:var(--grama); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">17 finished. None approved to energize.</h1>
+<p class="dek" id="dek">Seventeen large loads have finished every process the grid operator runs and hold no approval to switch on. The reason is a questionnaire.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    TXLAYOUT.mount(document.body, { kicker: "The data center audit", kicker2: "Batch Zero, Dickens County", counter: "01 / 09", src: "c11 c12 c13   TEXAS AI DOCKET", ink: "#8E8266" });
+    TX.fitText(document.getElementById("hook"), { min: 80, max: 104, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // ONE LIGHT FOR THE DECK: a low moon in the west, 14 degrees up, throwing the building's
+    // whole shadow east across the flat toward the camera.
+    var cam = { w: W, h: H, eye: 1.65, horizon: 940, f: 820, fogZ: 1e9, light: { az: -68, el: 14 } };
+
+    var hall  = TXOBJ.sprite("data_center", { length: 130, height: 13 });
+    var hand  = TXFIG.figure({ pose: "stand", height: 1.70, hold: "clipboard" });
+    var mesq1 = TXOBJ.sprite("mesquite", { seed: 3 });
+    var mesq2 = TXOBJ.sprite("mesquite", { seed: 11 });
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.06, seed: 2401,
+      screen: { mode: "stipple", cell: 5, perCell: 7, weight: 1.05, gamma: 1.06 },
+      edges: { threshold: 16, width: 1.5, alpha: 0.95, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+
+        // the flat, falling away from the camera. Dark, because the light is 14 degrees up.
+        S.ground({ near: 0.9, far: 420, fill: "#191411" });
+        // the caliche pad the yard is graded to, so there is a lit plane for a shadow to fall on
+        var cpF = S.groundY(46), cpN = S.groundY(1.4);
+        var cpg = a.createLinearGradient(0, cpF, 0, cpN);
+        cpg.addColorStop(0, "#2C261F"); cpg.addColorStop(0.45, "#423A31"); cpg.addColorStop(1, "#544B40");
+        a.fillStyle = cpg; a.fillRect(0, cpF, W, cpN - cpF);
+        a.fillStyle = "#2A2420"; a.fillRect(0, cpF - 5, W, 5);
+        // a faint moon-lit band along the horizon so the land has a far edge
+        var far = a.createLinearGradient(0, S.groundY(420) - 10, 0, S.groundY(60));
+        far.addColorStop(0, "rgba(255,255,255,0.13)"); far.addColorStop(1, "rgba(255,255,255,0)");
+        a.fillStyle = far; a.fillRect(0, S.groundY(420) - 12, W, S.groundY(60) - S.groundY(420) + 12);
+
+        // brush, far, so the flat has something growing on it
+        S.sprite(mesq1, { X: -58, Z: 62, inks: { ink: "#3A332C", paper: "#1A1512", accent: "#3A332C" } });
+        S.sprite(mesq2, { X: 64, Z: 78, inks: { ink: "#342D28", paper: "#1A1512", accent: "#342D28" } });
+
+        // THE HALL. Its cast shadow runs east toward the camera and is drawn first.
+        S.shadow(hall, { X: 6, Z: 30, ink: "#000", alpha: 0.88 });
+        // paper is set DARK on purpose: the louvre band, the service door and the loading door
+        // are openings, and not one of them may read as lit.
+        S.sprite(hall, { X: 6, Z: 30, inks: { ink: "#E2D8C0", paper: "#2A241F", accent: "#E2D8C0" }, fade: false });
+
+        // the long face, flat, so no opening under the contour plate reads as a lit window
+        var lva = S.project(6 - 65, 9.1, 30), lvb = S.project(6 + 65, 6.4, 30);
+        a.fillStyle = "#E2D8C0"; a.fillRect(lva[0], lva[1], lvb[0] - lva[0], lvb[1] - lva[1]);
+        // the parapet and the roof units catch the moon: a lit lip along the top, drawn from the
+        // scene's own projection so it sits on the building rather than near it
+        var pa = S.project(6 - 65, 13.0, 30), pb = S.project(6 + 65, 13.0, 30), pc = S.project(6 - 65, 12.4, 30);
+        a.fillStyle = "#F2EADA"; a.fillRect(pa[0], pa[1], pb[0] - pa[0], Math.max(3, pc[1] - pa[1]));
+        // tilt-up panel joints every 12 m, so the long face is a wall of panels and not a slab
+        for (var x = -60; x <= 60; x += 12) {
+          var ja = S.project(6 + x, 13.0, 30), jb = S.project(6 + x + 0.9, 0, 30);
+          a.fillStyle = "#8A8172"; a.fillRect(ja[0], ja[1], Math.max(2, jb[0] - ja[0]), jb[1] - ja[1]);
+        }
+        // a plinth along the wall's base, so the building meets the ground on something
+        var qa = S.project(6 - 66, 1.1, 30), qb = S.project(6 + 66, 0, 30), qc = S.project(6 - 66, 0.95, 30);
+        a.fillStyle = "#8E8474"; a.fillRect(qa[0], qa[1], qb[0] - qa[0], qb[1] - qa[1]);
+        a.fillStyle = "#EAE0CA"; a.fillRect(qa[0], qa[1], qb[0] - qa[0], Math.max(2, qc[1] - qa[1]));
+        // a low dock apron along the base, lit along its own lip
+        var da = S.project(6 - 34, 0.9, 26.5), db = S.project(6 + 16, 0, 26.5), dc = S.project(6 - 34, 0.7, 26.5);
+        a.fillStyle = "#6E6455"; a.fillRect(da[0], da[1], db[0] - da[0], db[1] - da[1]);
+        a.fillStyle = "#B2A794"; a.fillRect(da[0], da[1], db[0] - da[0], Math.max(2, dc[1] - da[1]));
+
+        // THE PROPERTY FENCE, near, so the bottom third carries structure rather than only the
+        // building's cast shadow. The reader is standing behind it.
+TXOBJ.fence(S, [-26, 5.4], [26, 5.4], { step: 2.6, wires: 3, height: 1.5,
+          ink: "#4A443C", width: 1.0, inks: { ink: "#4A443C", paper: "#120C0B" }, shadowAlpha: 0.22 });
+        // two sets of tyre ruts running back toward the dock, drawn on the caliche
+        [[-13, -5.0], [-9.2, -2.1]].forEach(function (r) {
+          var ra = S.project(r[0], 0, 2.2), rb = S.project(r[1], 0, 26);
+          a.strokeStyle = "rgba(160,148,126,0.30)"; a.lineWidth = 5;
+          a.beginPath(); a.moveTo(ra[0], ra[1]); a.lineTo(rb[0], rb[1]); a.stroke();
+        });
+
+        // THE GATE in the fence, with its own chain, and a cattle guard across the track
+        var ga = S.project(-3.2, 1.5, 5.4), gb = S.project(3.2, 0, 5.4);
+        a.fillStyle = "#6E6456"; a.fillRect(ga[0], ga[1], 6, gb[1] - ga[1]);
+        a.fillStyle = "#6E6456"; a.fillRect(gb[0] - 6, ga[1], 6, gb[1] - ga[1]);
+        for (var w = 1; w <= 3; w++) {
+          var y = ga[1] + (gb[1] - ga[1]) * w / 4;
+          a.fillStyle = "rgba(104,95,82,0.8)"; a.fillRect(ga[0], y, gb[0] - ga[0], 3);
+        }
+        var ca = S.project(-3.0, 0, 4.4), cb = S.project(3.0, 0, 3.2);
+        a.fillStyle = "#241E1A"; a.fillRect(ca[0], ca[1], cb[0] - ca[0], cb[1] - ca[1]);
+        for (var b = 0; b < 9; b++) {
+          a.fillStyle = "#7A7062";
+          a.fillRect(ca[0], ca[1] + (cb[1] - ca[1]) * b / 9, cb[0] - ca[0], 5);
+        }
+        // CALICHE. Broken stone scattered over the near ground, bigger and sparser as it comes
+        // toward the camera, which is what a caliche pad actually looks like at a fence line.
+        var R = TX.rng(20260914);
+        for (var st = 0; st < 620; st++) {
+          var Zs = 1.6 + R() * R() * 9.0, Xs = (R() - 0.5) * 46;
+          var pp = S.project(Xs, 0, Zs), sz = Math.max(1.6, S.ppm(Zs) * (0.012 + R() * 0.030));
+          a.fillStyle = R() > 0.45 ? "rgba(170,158,134,0.42)" : "rgba(0,0,0,0.6)";
+          a.fillRect(pp[0], pp[1], sz, sz * 0.62);
+        }
+
+        // ONE PERSON at the near corner, so the length is the shock rather than the height
+        S.shadow(hand, { X: -9.2, Z: 27, ink: "#000", alpha: 0.85 });
+        // a hand-cleared patch of dark ground behind her, so a 52 px figure is a figure at 432 px
+        var ha = S.project(-10.4, 0, 27), hb = S.project(-8.0, 2.3, 27);
+        a.fillStyle = "rgba(10,7,6,0.86)"; a.fillRect(hb[0], hb[1], ha[0] - hb[0], ha[1] - hb[1]);
+        S.sprite(hand, { X: -9.2, Z: 27, inks: { ink: "#FFFAF0", paper: "#0A0706", accent: "#FFFAF0" }, fade: false });
+      },
+      over: function (c) {
+        // the sky above the horizon is dark by construction, so the hook needs no plate. The
+        // bottom band fades to paper for the source line.
+        TXINK.reserve(c, { ground: "#120C0B", bottom: 152, bottomSolid: 112 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

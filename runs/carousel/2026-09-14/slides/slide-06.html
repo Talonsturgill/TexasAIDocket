@@ -1,0 +1,129 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 6 of 9. Archetype FIGURE_SCALE.
+     A 22 by 12 m substation at 14 metres, close enough that its gantry leaves the top of the
+     frame and its ends leave the sides, with three 1.7 m figures on the NEAR side of a fence line
+     at 11 metres. The composition is the whole point: the three parties who have to answer for
+     the thing are standing outside it. Each figure is drawn at its own depth and its own grey so
+     the three do not merge into one pale shape. Hatch at cell 7, the engraver's register for
+     lattice, which is what a gantry is. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:176px; width:910px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:80px; line-height:1.0; letter-spacing:-0.022em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:1044px; width:900px; font-size:28px; line-height:1.4; color:var(--grama); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three roles. Three different sets of questions.</h1>
+<p class="dek">The load entity, the distribution provider and the transmission provider each answer the sections their own role is given. Which sections a project sees depends on the classification it was handed.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    TXLAYOUT.mount(document.body, { kicker: "Who answers for the load", kicker2: "Three parties, one response", counter: "06 / 09", src: "c5 c8 c22   TEXAS AI DOCKET", ink: "#8E8266" });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 80, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var cam = { w: W, h: H, eye: 1.65, horizon: 786, f: 820, fogZ: 1e9, light: { az: -68, el: 14 } };
+
+    var sub = TXOBJ.sprite("substation");
+    var f1 = TXFIG.figure({ pose: "stand", height: 1.74, hold: "clipboard" });
+    var f2 = TXFIG.figure({ pose: "lean",  height: 1.68 });
+    var f3 = TXFIG.figure({ pose: "point", height: 1.71 });
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.055, seed: 2406,
+      screen: { mode: "hatch", cell: 7, angle: 38, weight: 1.0, gamma: 1.05 },
+      edges: { threshold: 18, width: 1.5, alpha: 0.92, dx: 1.1, dy: -0.85 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        S.ground({ near: 0.9, far: 260, fill: "#1E1916" });
+        // the moon's own band along the far ground, so the yard has a horizon behind it
+        var far = a.createLinearGradient(0, S.groundY(260) - 8, 0, S.groundY(46));
+        far.addColorStop(0, "rgba(255,255,255,0.12)"); far.addColorStop(1, "rgba(255,255,255,0)");
+        a.fillStyle = far; a.fillRect(0, S.groundY(260) - 10, W, S.groundY(46) - S.groundY(260) + 10);
+        // THE CALICHE PAD. Caliche is pale rock and a substation yard is graded down to it, so
+        // the yard is the one lit plane in this frame and the flat around it stays dark. It runs
+        // from the far fence line forward past the three figures and off both frame edges,
+        // because a pad that stops inside the frame reads as a rug rather than as ground.
+        var pdF = S.groundY(24), pdN = S.groundY(5.6);
+        var pdg = a.createLinearGradient(0, pdF, 0, pdN);
+        pdg.addColorStop(0, "#4A4238"); pdg.addColorStop(0.42, "#6A6152"); pdg.addColorStop(1, "#7E7563");
+        a.fillStyle = pdg; a.fillRect(0, pdF, W, pdN - pdF);
+        // the graded shoulder where the pad meets the flat, one value step and a scraped edge
+        a.fillStyle = "#332C25"; a.fillRect(0, pdF - 5, W, 5);
+        // wheel tracks worn through the caliche, so the plane carries direction and wear
+        var R6 = TX.rng(20260906);
+        for (var wt = 0; wt < 2; wt++) {
+          var tz0 = 5.8 + wt * 1.15;
+          a.beginPath();
+          for (var tz = tz0; tz < 22; tz += 0.4) {
+            var tp = S.project(-1.0 + wt * 2.0 + Math.sin(tz * 0.42) * 0.5, 0, tz);
+            if (tz === tz0) a.moveTo(tp[0], tp[1]); else a.lineTo(tp[0], tp[1]);
+          }
+          a.strokeStyle = "rgba(40,34,28,0.55)"; a.lineWidth = 7; a.stroke();
+        }
+        // gravel on the pad, sized by depth, so the near yard has grain and the far yard does not
+        for (var gv = 0; gv < 420; gv++) {
+          var gz = 5.6 + R6() * 18, gx = (R6() * 2 - 1) * 30;
+          var gp = S.project(gx, 0, gz), gs = Math.max(2.5, 14 / gz * 2.2);
+          a.fillStyle = R6() > 0.42 ? "rgba(20,16,13,0.45)" : "rgba(214,202,176,0.5)";
+          a.fillRect(gp[0], gp[1], gs, Math.max(1, gs * 0.6));
+        }
+
+        // THE SUBSTATION at 14 metres, so it crosses both frame edges and its gantry leaves the top
+        S.shadow(sub, { X: 1.2, Z: 19, ink: "#000", alpha: 0.55 });
+        S.sprite(sub, { X: 1.2, Z: 19, inks: { ink: "#9E947E", paper: "#241E1A", accent: "#9E947E" }, fade: false });
+        // the radiator fins catch the moon: the finest detail in the frame and its focal
+        [-5.5, 0, 5.5].forEach(function (X) {
+          [-2.5, 2.5].forEach(function (dx) {
+            var ra = S.project(1.2 + X + dx, 3.4, 19), rb = S.project(1.2 + X + dx + 0.28, 0.8, 19);
+            a.fillStyle = "#E6DCC4"; a.fillRect(ra[0], ra[1], Math.max(2, rb[0] - ra[0]), rb[1] - ra[1]);
+          });
+        });
+
+        // THE FENCE, between the people and the current
+        TXOBJ.fence(S, [-34, 11.5], [34, 11.5], { step: 3.6, wires: 5, height: 2.2,
+          ink: "#463F38", width: 1.0, inks: { ink: "#463F38", paper: "#120C0B" }, shadowAlpha: 0.22 });
+
+        // THREE FIGURES, each at its own depth and its own grey, on the NEAR side of the fence
+        [[f1, -3.6, 8.2, "#FBF5E6", "#8A7F6C"], [f2, -0.2, 9.0, "#EADFC6", "#776D5C"], [f3, 2.6, 9.8, "#D2C7AE", "#665D4E"]]
+          .forEach(function (p) {
+            S.shadow(p[0], { X: p[1], Z: p[2], ink: "#000", alpha: 0.7 });
+            S.sprite(p[0], { X: p[1], Z: p[2], inks: { ink: p[3], paper: p[4], accent: p[3] }, fade: false });
+          });
+      },
+      over: function (c) {
+        // The pad is laid in the twin rather than here, so the screen resolves it as worn rock
+        // with grain in it. A flat wash over it would have printed a rectangle of paper and
+        // buried the gravel, the tracks and the three figures' own contour together.
+        TXINK.reserve(c, { ground: "#120C0B", bottom: 330, bottomSolid: 312, top: 380 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

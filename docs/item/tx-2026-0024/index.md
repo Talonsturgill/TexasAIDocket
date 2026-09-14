@@ -9,7 +9,7 @@ The Public Utility Commission publishes its open meetings and public comment dea
 - Public access: Public meeting
 - Take part: https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-14
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-11 · The commission's calendar feed still publishes its open meetings with the hearing room named in each entry. The grid operator's own board meeting still sits on that same feed beside the commission's, dated September 14th, 2026.
 - 2026-09-12 · Checked and unchanged. Still open, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still open, with no dated movement.
+- 2026-09-14 · The feed is still live and still publishes each open meeting with the room it sits in. Entries keep falling off the list once their date has passed, which is how this calendar behaves rather than a change to it.
 
 ## Evidence
 

@@ -773,6 +773,30 @@
       "evidence": "Measured 2026-09-13 and corrected the same evening when a review bot checked the inventory. Four cron workflows run site_build and commit docs/ to main, eight pushes a day between them: news.yml four times daily, gridwatch.yml twice, datacenters.yml and generators.yml once each. A daily run regenerates the whole of docs/, so a run branch and main collide on generated files within hours, every day, with nobody doing anything wrong. The first cut of this evidence also named pages.yml and queuewatch.yml and neither writes to main. Rebuilding after the base merge resolves every generated conflict at once.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "figure-presence-is-not-in-the-rect",
+      "learned": "2026-09-14",
+      "instinct": "Assert that a declared object is IN the frame at all, because every gate this product has measures what is inside the rect and none asks whether the thing the dossier named is inside it.",
+      "evidence": "Frame 1's figure was at X -13, which at that frame's camera and Z 9 projects to x -644, off the left edge of a 1080 px frame. layout_check --require, qa.py, plan_render_check, craft_floor, bespoke_check and a pixel critic all passed the frame. Two of three scoring judges found it independently, on three frames at once, and the cover's entire true-scale argument was missing.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "repairing-a-scale-into-a-wrong-one",
+      "learned": "2026-09-14",
+      "instinct": "When a frame's job is to give a size, check the RATIO after the repair and not just the presence, because a figure moved into frame is a different check from a figure at the right distance.",
+      "evidence": "Frame 1's figure was repaired from off-frame to X -3.1 Z 9 and became plainly visible, in front of a building at Z 30. At 184 px beside a 16 m wall the frame then told a reader the hall was about 3.4 m tall, wrong by a factor near five. Round 2 caught it. At Z 27 and 48 px a judge measured the wall a reader reads off the picture at 13.3 m.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-frame-median-is-the-reserve-and-the-sky",
+      "learned": "2026-09-14",
+      "instinct": "Before planning a scene frame's median, subtract its reserve bands and its sky, because those two decide the number and the art has no vote once they pass half the frame.",
+      "evidence": "Frame 6 was planned at 14 and measured 3.8. Its art band was lifted from 4.4 to 10.7, the strongest of any scene frame in the deck, by rebuilding the caliche pad. The frame median moved from 3.8 to 3.8. That frame reserves 680 px of 1,350 for type and its sky is another 406, so 80 per cent of it is page ground by construction.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

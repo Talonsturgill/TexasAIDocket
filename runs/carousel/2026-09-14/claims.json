@@ -1,0 +1,588 @@
+{
+  "date": "2026-09-14",
+  "story": "Texas ordered an audit of every data center in the interconnection queue, and the audit's instrument turned out to be a questionnaire with a notarized attestation and a ten business day clock. ERCOT conditionally classified the large loads in Batch Zero and published a notice naming none of them. The one public account of what a classification did to a named project came from a developer telling its own shareholders.",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "ERCOT has issued a Request for Information and Production, which it calls the Verification RFI, as part of the Batch Zero Eligibility Verification process.",
+      "quote": "ERCOT has issued a Request for Information and Production (RFI, referred to as the Verification RFI) as part of the Batch Zero Eligibility Verification process.",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 3, section 1.1 Background."
+    },
+    {
+      "id": "c2",
+      "text": "The Verification RFI goes to every large load that was conditionally classified on the list ERCOT distributed to transmission service providers on September 3rd, 2026, where the classification was one of the categories the guide lists.",
+      "quote": "This is being issued to all Large Loads that were conditionally classified on the list distributed to TSPs on Thursday, September 3, 2026, where the conditional classification was one of the following:",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 3. The sentence does not end at the date and the full clause is carried, because the trailing condition changes who receives the questionnaire."
+    },
+    {
+      "id": "c3",
+      "text": "A response to the Verification RFI is due within ten business days of issuance, and an extension of five days may be requested from ERCOT through the transmission service provider.",
+      "quote": "Responses are due within 10 business days of issuance. A 5-day extension may be requested from ERCOT through your TSP.",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "basis": "measured",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 8, section 5.2 Key Points from the Instructions. The figures are the guide's own and nothing was converted."
+    },
+    {
+      "id": "c4",
+      "text": "A large load whose load entity does not supply the information or documents the provider needs to answer in time may be removed from the Batch Zero process.",
+      "quote": "If the Load Entity fails to provide information and/or supporting documentation necessary for the TSP to timely submit a completed response to this Verification RFI, the Large Load may be removed from the Batch Zero Process.",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 8."
+    },
+    {
+      "id": "c5",
+      "text": "Each party taking part in a Verification RFI, the load entity, the distribution provider and the transmission provider, has to complete a notarized attestation.",
+      "quote": "Each participating party (ILLE, DSP, and TSP) is required to complete a notarized attestation.",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 8, the navigation table row headed Attestation."
+    },
+    {
+      "id": "c6",
+      "text": "The guide tells respondents their submissions will be treated as confidential to the extent the law permits.",
+      "quote": "All information submitted will be treated as confidential to the extent permitted by law.",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 8, section 5.2. On one line with no wrap."
+    },
+    {
+      "id": "c7",
+      "text": "Only the transmission service provider can send a completed Verification RFI to ERCOT, and once it is sent the response is locked against further editing.",
+      "quote": "It is the TSP’s responsibility to submit the fully completed Verification RFI to ERCOT. Only the TSP has the Submit to ERCOT button available. Once submitted, the Verification RFI is locked and cannot be edited.",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 13, section 8.2. The source opens the passage with 'Note: ', which is not carried. The curly apostrophe is the PDF's own and is reproduced rather than straightened."
+    },
+    {
+      "id": "c8",
+      "text": "Which sections and questions a respondent sees depends on their role and on the conditional classification the project was given in Batch Zero.",
+      "quote": "The sections and questions you see depend on your role and the Large Load Project’s conditional classification in Batch Zero.",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 10, section 7."
+    },
+    {
+      "id": "c9",
+      "text": "The guide lists the base load conditional classifications that receive a Verification RFI, each keyed to a paragraph of Planning Guide Section 9.2.1.1(1).",
+      "quote": "• Base Load – Included in May 2026 QSZ/IVRT or earlier per ERCOT Planning Guide § 9.2.1.1(1)(c)\n• Base Load – Included in Permian Reliability Plan per Planning Guide § 9.2.1.1(1)(d)\n• Base Load – Advancing Large Load per Planning Guide § 9.2.1.1(1)(e)\n• Base Load – Committed Large Load per Planning Guide § 9.2.1.1(1)(f)\n• Base Load PURA §39.169 Net Metering Load per Planning Guide § 9.2.1.1(1)(g)",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 3, section 1.1. The bullets are contiguous in the source and keep their own line breaks and the source's en dash characters, which are quoted material and never published prose. No count of the bullets is asserted, because counting them would be arithmetic this project does not perform in prose."
+    },
+    {
+      "id": "c10",
+      "text": "The same list continues with the studied load conditional classifications, firm, PCLR and WLPUN.",
+      "quote": "• Studied Load – Firm per Planning Guide § 9.2.1.1(1)\n• Studied Load – PCLR per Planning Guide §§ 9.2.1.1(1), 9.2.2.1\n• Studied Load – WLPUN per Planning Guide §§ 9.2.1.1(1), 9.2.2.2",
+      "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT, RFI Portal in RIOO - Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+      "source_date": "2026-09-11",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Verification-RFI-User-Guide-v1.1.txt, which records the url, 1158868 bytes and SHA256 7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9. Verified against that extraction. A PDF line break inside the sentence is rendered as one space and no word, numeral or mark was changed. Page 3, section 1.1, immediately following the bullets at c9."
+    },
+    {
+      "id": "c11",
+      "text": "ERCOT told the utility commission it had paused approvals to energize large load data centers and crypto facilities until the Batch Zero eligibility verification is finished.",
+      "quote": "ERCOT has paused approvals to energize large load data centers and crypto facilities until the Batch Zero eligibility verification is complete",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 7. The slide carries no terminal full stop and none was added."
+    },
+    {
+      "id": "c12",
+      "text": "The presentation puts the data center and crypto large load impact through the end of 2026 at 17 large loads and 6,608 MW of total peak demand over five years.",
+      "quote": "17 large loads (6,608 MW total peak demand over 5 years)",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "basis": "modeled",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 7, under the heading 'Data centers and crypto facilities large load impact through end of 2026:'. Marked modeled because a five year total peak demand is a projection ERCOT states rather than a meter reading. Both numerals are ERCOT's own and neither was summed, converted or rounded. Slide 5 of the same deck carries a different pairing, '17 large loads representing approximately 6,874 MW are potentially eligible for the November 1 QSA', so the two counts are not the same population and must never be conflated."
+    },
+    {
+      "id": "c13",
+      "text": "Those large loads have finished every ERCOT process except ERCOT's approval to energize.",
+      "quote": "These large loads have finished all ERCOT processes except have not received ERCOT’s approval to energize.",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 7, directly beneath the figure at c12. The curly apostrophe is reproduced as this extraction carries it."
+    },
+    {
+      "id": "c14",
+      "text": "The presentation defines a large load as 75 MW or greater and a medium load as at least 25 MW and less than 75 MW.",
+      "quote": "Large loads: 75 MW or greater",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "basis": "measured",
+      "second_quote": "Medium loads: At least 25 MW and less than 75 MW",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 2, the Key definitions box. The large load string sits on one line with no wrap. The medium load string is carried as a second quote because the PDF wraps it between 'less' and 'than 75 MW', and that wrap is the only difference."
+    },
+    {
+      "id": "c15",
+      "text": "The pause does not reach large loads that are not data centers, which ERCOT says it may still approve for energization.",
+      "quote": "ERCOT may approve energization for non-data center large loads.",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 7, under 'What the update does not do:'."
+    },
+    {
+      "id": "c16",
+      "text": "ERCOT received 41 requests for an exception to the Batch Zero eligibility criteria on July 23rd, 2026.",
+      "quote": "On July 23, 2026, ERCOT received 41 requests.",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "basis": "measured",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 8. On one line with no wrap."
+    },
+    {
+      "id": "c17",
+      "text": "ERCOT told the commission it planned to submit any good cause exceptions no later than December 2026.",
+      "quote": "ERCOT plans to submit any good cause exceptions no later than December 2026.",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 8. Single line, no wrap."
+    },
+    {
+      "id": "c18",
+      "text": "ERCOT had reviewed 290 dynamic models and reported that approximately 18 percent were acceptable on first review.",
+      "quote": "ERCOT has reviewed 290 dynamic models and approximately 18% were acceptable on first review",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "basis": "measured",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 6, the Key context box. The slide carries no terminal full stop. The record already holds the same sentence as tx-2026-0072-c16 from the PUCT Interchange copy of the same filing."
+    },
+    {
+      "id": "c19",
+      "text": "ERCOT's schedule files the Batch Zero Eligibility Verification Report on December 10th and takes it to a commission open meeting on December 17th.",
+      "quote": "December 10 File Batch Zero \nEligibility Verification \nReport \nDecember 17 Commission Open \nMeeting",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "medium",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 10, the right hand Timing table. The quote reproduces the extraction's line breaks rather than reflowing them, which is why it reads as fragments. Confidence is medium because the reading depends on column order in a table extraction, not because any character is in doubt. The record holds the same schedule as tx-2026-0072-c21."
+    },
+    {
+      "id": "c20",
+      "text": "ERCOT said it would conduct site verifications of certain eligible base loads with upcoming requested energization dates.",
+      "quote": "ERCOT will conduct site verifications of certain eligible base loads with upcoming requested energization dates",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 10, under 'Information gathering:'. The bullet carries no terminal full stop."
+    },
+    {
+      "id": "c21",
+      "text": "The Governor directed the commission and ERCOT to complete a comprehensive verification and audit of all data centers advancing through the interconnection process before those loads proceed.",
+      "quote": "Governor Abbott directed the Commission and ERCOT to complete “a comprehensive verification and audit” of all data centers advancing through the interconnection process before allowing those loads to proceed",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Good Cause Exceptions for PGRR 145, Batch Zero Verification and Audit Process, Community Impact Review Process",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction. A PDF line break inside the sentence is rendered as one space. Slide 2. The curly quotation marks are the PDF's own. This is ERCOT restating the directive, and it is the ONLY route by which this deck carries the directive, because the Governor's own host was found to disallow this project's research agent during this run. See the rejected list."
+    },
+    {
+      "id": "c22",
+      "text": "ERCOT notified each interconnecting distribution and transmission service provider of its provisional classification of the large loads that provider had submitted for Batch Zero.",
+      "quote": "ERCOT has notified each Interconnecting Distribution Service Provider (DSP) and Transmission Service Provider (TSP) (Interconnecting DSP/TSP) of ERCOT's provisional classification of the Large Loads submitted by the Interconnecting DSP/TSP for inclusion in Batch Zero.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "medium",
+      "source_title": "ERCOT Market Notice M-A080326-04, Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers",
+      "source_date": "2026-09-03",
+      "notes": "The notice page was fetched live three times this run. Confidence is medium on one character only, the apostrophe in ERCOT's, which the markdown conversion returned straight and the underlying page may carry curly. Every word and every piece of structural punctuation returned identically across reads."
+    },
+    {
+      "id": "c23",
+      "text": "A conditional inclusion in Batch Zero can hang on the load entity passing verification, on it curing deficiencies in dynamic model data, or on the utility commission granting ERCOT a good cause exception so the load qualifies despite not meeting an eligibility requirement when it applied.",
+      "quote": "The information provided indicates whether each Large Load has been conditionally included in Batch Zero subject to one or more conditions, such as the Interconnecting Large Load Entity (ILLE) passing verification, the ILLE curing deficiencies in dynamic model data, or the Public Utility Commission of Texas (PUCT) granting ERCOT a good cause exception to allow the Large Load to qualify despite not meeting an applicable eligibility requirement at the time of submission.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Market Notice M-A080326-04, Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers",
+      "source_date": "2026-09-03",
+      "notes": "Fetched live this run and returned character for character across reads."
+    },
+    {
+      "id": "c24",
+      "text": "ERCOT warns that a large load which does not satisfy an applicable condition may be disqualified from Batch Zero.",
+      "quote": "Failure to satisfy any applicable condition may disqualify the Large Load from Batch Zero.",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Market Notice M-A080326-04, Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers",
+      "source_date": "2026-09-03",
+      "notes": "Fetched live this run. An earlier candidate string stopped at 'the Large Load' and closed the truncation with a full stop the source does not have there. The full sentence as published is what is carried, and the shortened form may not be used anywhere."
+    },
+    {
+      "id": "c25",
+      "text": "Market Notice M-A080326-04 is the public announcement of the conditional classifications, and the notice as published identifies no individual large load and states no capacity total.",
+      "quote": "Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "medium",
+      "source_title": "ERCOT Market Notice M-A080326-04, Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers",
+      "source_date": "2026-09-03",
+      "notes": "ABSENCE CLAIM, and the document it is absent from is ERCOT Market Notice M-A080326-04 dated September 3rd, 2026 at the url given. It was read three times this run with three different questions. Asked for the complete text, the read reported no individual load names, no company names other than ERCOT and PUCT, no MW figures and no totals. Asked separately to enumerate every numeral and proper name in the body, the read reported that apart from dates, Planning Guide section numbers, a phone number and ERCOT and PUCT there are none. What the notice DOES contain is the procedure, which is carried at c22, c23 and c24, plus a fourteen business day window for eligibility materials, a contact address and phone number, and an attached dispute form. The quote carried is the notice's own subject line, which is the title of the thing the absence is asserted about. Confidence is medium because an absence established through a rendered conversion is weaker than a presence. THE HONEST FORM OF THIS LINE IS THAT THE PUBLISHED NOTICE CARRIES NO NAMES AND NO TOTALS, never that ERCOT named none of them, because c22 shows the named list went to the providers."
+    },
+    {
+      "id": "c26",
+      "text": "Galaxy Digital announced that five of its Texas data center projects received conditional classifications under the ERCOT Batch Zero process, covering approximately 4.2 gigawatts of gross power capacity.",
+      "quote": "Galaxy Digital Inc. (Nasdaq: GLXY) (\"Galaxy\" or the \"Company\") today announced that five of its Texas data center projects received conditional classifications under the Electric Reliability Council of Texas (\"ERCOT\") Batch Zero large load interconnection process, covering approximately 4.2 gigawatts of gross power capacity.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "basis": "modeled",
+      "notes": "Fetched live this run and the dateline confirmed on a second read as 'NEW YORK, Sept. 8, 2026 /PRNewswire/'. This is the company's own announcement and is evidence of an announcement, not of a permit or an interconnection agreement. The 4.2 gigawatt figure is Galaxy's own 'approximately', is gross power capacity across five projects, and is announced rather than energised capacity. It was NOT derived from the project figures at c28 to c32 and must never be presented as a sum this project computed."
+    },
+    {
+      "id": "c27",
+      "text": "Galaxy describes the difference the classification makes, which is that base load projects are modeled in the study and not subject to further capacity allocation while studied load projects are.",
+      "quote": "Base Load projects are modeled in the study and are not subject to further capacity allocation, while Studied Load projects are subject to capacity allocation as part of the study.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run. This is the developer's characterisation of ERCOT's process rather than ERCOT's own definition, and it is attributed to Galaxy wherever it is used."
+    },
+    {
+      "id": "c28",
+      "text": "Galaxy says Helios I, 800 megawatts at the Helios data center campus, was classified as Batch Zero base load.",
+      "quote": "Helios I — 800 megawatts (MW) at the Helios data center campus, classified as Batch Zero Base Load.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run and confirmed on a second targeted read. Appears under the heading 'Galaxy Projects Approved Prior to the Batch Zero Process:'. The dash is the source's em dash and is reproduced because a verbatim quote is never touched. Published prose around it must not carry one."
+    },
+    {
+      "id": "c29",
+      "text": "Galaxy says Helios II, 830 MW at the same campus, was classified as Batch Zero base load.",
+      "quote": "Helios II — 830 MW at the Helios data center campus, classified as Batch Zero Base Load.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run and confirmed on a second targeted read. This is the first sentence of the bullet, which continues with a January 2026 approval and a 2028 energization schedule."
+    },
+    {
+      "id": "c30",
+      "text": "Galaxy submitted Caspian as base load and ERCOT conditionally classified it as studied load.",
+      "quote": "Caspian — 700 MW of gross power capacity, classified as Batch Zero Studied Load. Galaxy submitted Caspian as Base Load; the project has been conditionally classified as Studied Load.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run and confirmed on a second targeted read. Appears under 'Galaxy Batch Zero Expansion Projects:'. The semicolon and the em dash are the source's and are reproduced verbatim; published prose must carry neither. This is the one sentence in the public record showing what a classification did to a named project, and it is the company saying it about itself."
+    },
+    {
+      "id": "c31",
+      "text": "Galaxy says Selene, 900 MW, was classified as Batch Zero studied load.",
+      "quote": "Selene — 900 MW, classified as Batch Zero Studied Load.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run and confirmed on a second targeted read."
+    },
+    {
+      "id": "c32",
+      "text": "Galaxy says Helios III, a 1,000 MW load request at the Helios campus, was classified as Batch Zero studied load.",
+      "quote": "Helios III — a 1,000 MW load request at the Helios campus, classified as Batch Zero Studied Load.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run and confirmed on a second targeted read. A load request, which is what the source calls it, is not approved or energised capacity."
+    },
+    {
+      "id": "c33",
+      "text": "Galaxy's own risk disclosure names the conditional nature of the classifications and the risk that a project is removed from Batch Zero.",
+      "quote": "(1) the conditional nature of the Batch Zero classifications described above and the possibility that a classification is modified, withdrawn or not confirmed; (2) the outcome, scope and duration of the verification and audit being conducted by ERCOT and the Public Utility Commission of Texas, and the risk that a project is removed from Batch Zero",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications, Caution About Forward-Looking Statements",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run. Taken from the enumerated risk list in the forward looking statements section, which continues to item (11). The semicolon is the source's and is reproduced verbatim."
+    },
+    {
+      "id": "c34",
+      "text": "Galaxy states that the utility commission granted ERCOT good cause exceptions on August 20th permitting conditional classification while it audits the data center projects in its queue, a process the company says ERCOT expects to take several months.",
+      "quote": "Following the Governor's August 3, 2026, directive, the Public Utility Commission of Texas on August 20th granted ERCOT good cause exceptions permitting conditional classification while it audits the data center projects in its interconnection queue, a process ERCOT expects to take several months.",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run and re-read a second time specifically to settle whether the source writes 'on August 20th' or 'on August 20'. Both reads returned 'on August 20th'. This is a company describing a commission order, so it is corporate characterisation. The commission's own order is on the record as tx-2026-0072-c12 and c15."
+    },
+    {
+      "id": "c35",
+      "text": "Galaxy says more than 1.6 GW has already been approved at the Helios campus.",
+      "quote": "part of the more than 1.6 GW already approved at Helios",
+      "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "medium",
+      "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+      "source_date": "2026-09-08",
+      "notes": "Fetched live this run in the full text read of the Helios II bullet. Confidence is medium because this fragment was returned once rather than on a second targeted read, unlike the bullets at c28 to c32."
+    },
+    {
+      "id": "c36",
+      "text": "Galaxy places its Helios campus in the panhandle region of West Texas.",
+      "quote": "At the heart of this strategy is our Helios campus, Galaxy's flagship high performance computing data center campus in the panhandle region of West Texas.",
+      "url": "https://www.galaxy.com/data-centers",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Galaxy, Data Centers",
+      "source_date": null,
+      "notes": "Fetched live this run and confirmed on a second targeted read asking for the full contiguous sentence. The page carries no publication date, so the source date is null rather than guessed."
+    },
+    {
+      "id": "c37",
+      "text": "Galaxy's data center page gives the Helios campus location as Dickens County, Texas.",
+      "quote": "LOCATION\nDickens County, Texas",
+      "url": "https://www.galaxy.com/data-centers",
+      "source_type": "primary_corporate",
+      "retrieved": "2026-09-14",
+      "confidence": "medium",
+      "source_title": "Galaxy, Data Centers",
+      "source_date": null,
+      "notes": "Fetched live this run. A second targeted read asked whether 'Dickens County' appears inside a sentence and reported that it does not, appearing only as a stat block value under the heading LOCATION. The quote is therefore the heading and its value joined by a line break, and it is a label rather than prose. Dickens County is the only county this claim set supports and no other county may enter the deck."
+    },
+    {
+      "id": "c38",
+      "text": "The presentation's eligibility table defines the six ways a developer has to show something, and one of them is ERCOT turning up at the site.",
+      "quote": "A = Attestation (developer’s legal declaration that it satisfies the requirement); \nD = Disclosure (information that the developer must provide); E = Evidence (supporting documentation required as part of the eligibility package); F = Form (signed by representatives of both the developer and its \naffiliate); T = TSP/DSP sign-off (confirmed by the transmission/distribution provider as part of the eligibility package); I = Inspection (ERCOT may conduct site verification of loads with a requested Initial \nEnergization date before April 1, 2027)",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Batch Zero Eligibility Verification Requirements under PGRR 145",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction, slide 11. This is the legend under the table title 'Batch Zero Eligibility Verification Requirements under PGRR 145'. The quote reproduces the extraction's line breaks rather than reflowing them. The curly apostrophe in developer's is the PDF's own. No count of the letters is asserted in the quote itself."
+    },
+    {
+      "id": "c39",
+      "text": "The eligibility table lists what a base load developer has to produce, row by row.",
+      "quote": "CIAC satisfaction (TSP/DSP-confirmed) T\nLong-lead equipment (≥18 mo.) A\nNotice to Proceed A\nEnd-use customer confirmation A\nSite approvals / no-approval statement A\nBinding General Contractor contract A\nBinding substation contractor contract A\nFinancial security (TSP/DSP-confirmed) T\nAffiliate Form (if applicable) F\nSite control + evidence A E\nSection 9.7 disclosures A D",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "medium",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Batch Zero Eligibility Verification Requirements under PGRR 145",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction, slide 11. These are the requirement rows of the table, contiguous in the extraction, each followed by the letter codes the legend at c38 defines. Confidence is medium because a table extraction preserves row order but not column alignment, so the LETTER beside each row is reliable and which of the six eligibility columns carries a tick is NOT readable from this extraction and is not claimed. A twelfth row, 'Site Verification I', sits below the tick block rather than with these eleven and is not inside this contiguous run."
+    },
+    {
+      "id": "c40",
+      "text": "Confirming whether a load is already energized or holds a qualifying interconnection study is a separate duty on the provider rather than part of the developer's package.",
+      "quote": "TSP/DSPs are separately required to confirm whether a load is energized or has a qualifying interconnection study",
+      "url": "https://www.ercot.com/files/docs/2026/08/20/Batch-Zero-Verification-and-Audit-PUCT-Presentation.pdf",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "ERCOT Updates: PUC Open Meeting, August 20, 2026, Batch Zero Eligibility Verification Requirements under PGRR 145",
+      "source_date": "2026-08-20",
+      "notes": "Bytes fetched this run by the showrunner with a browser User-Agent and extracted with pypdf to out/2026-09-14/sources/Batch-Zero-Verification-and-Audit-PUCT-Presentation.txt, which records the url, 326447 bytes and SHA256 aa94e88e716fff1d5c44854a4af1cf14ab4e39987470b631061827d83a4a81ab. Verified against that extraction, slide 11. Footnote 1 to the table. On one line in the extraction, with no terminal full stop in the source."
+    },
+    {
+      "id": "c41",
+      "text": "The commission's own calendar feed carries an open meeting on September 17th, 2026 in Commissioners Hearing Room 7-100, open to the public.",
+      "quote": "Open Meeting - Thursday, September 17, 2026",
+      "second_quote": "<strong>Commissioners Hearing Room 7-100</strong><br/>( Open To Public )<br />",
+      "url": "https://www.puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Public Utility Commission of Texas, agency calendar feed",
+      "source_date": "2026-09-14",
+      "notes": "Fetched live this run with a browser User-Agent and saved to out/2026-09-14/sources/puct_calendar_rss.xml, 15018 bytes, SHA256 beginning fdcaf4295fbe71150cddd054. puc.texas.gov serves a robots.txt naming no AI agent and disallowing nothing on this path, checked this run with two clients. The feed is a live calendar and an entry comes off it once its date has passed, which the record already holds as tx-2026-0024, so this quote is what the feed carried on September 14th. The title and the description are two separate elements of the same feed item, so the room and the open to public marking are carried as a second quote rather than joined into one string the feed does not contain."
+    },
+    {
+      "id": "c42",
+      "text": "The same feed carries a public comment deadline on September 17th, 2026 for Project 59550.",
+      "quote": "Public Comment Deadline - Thursday, September 17, 2026",
+      "second_quote": "<strong>Project</strong> 59550<br /><strong>NA </strong><br/>( Open To Public )<br />",
+      "url": "https://www.puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Public Utility Commission of Texas, agency calendar feed",
+      "source_date": "2026-09-14",
+      "notes": "Fetched live this run with a browser User-Agent and saved to out/2026-09-14/sources/puct_calendar_rss.xml, 15018 bytes, SHA256 beginning fdcaf4295fbe71150cddd054. puc.texas.gov serves a robots.txt naming no AI agent and disallowing nothing on this path, checked this run with two clients. The feed is a live calendar and an entry comes off it once its date has passed, which the record already holds as tx-2026-0024, so this quote is what the feed carried on September 14th. Project 59550 is the quinquennial review of the ERCOT system-wide offer caps, which the record carries as tx-2026-0107. It is a different proceeding from the Batch Zero audit and this deck does not conflate them. It is carried because it is a dated door standing open on the same day as the meeting."
+    },
+    {
+      "id": "c43",
+      "text": "The commission's own filing archive carries Project 59142, its review of the grid operator's interconnection processes for large loads, and its filings are public.",
+      "quote": "REVIEW OF ERCOT'S INTERCONNECTION PROCESSES FOR LARGE LOADS",
+      "second_quote": "PROJECT NO. 59142_REVIEW OF ERCOT'S INTERCONNECTION PROCESSES FOR LARGE LOADS_SCHAPER ENERGY CONSULTING LLC COMMENTS",
+      "url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59142&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+      "source_type": "primary_official",
+      "retrieved": "2026-09-14",
+      "confidence": "high",
+      "source_title": "Public Utility Commission of Texas Interchange, Filings for 59142",
+      "source_date": "2026-09-14",
+      "notes": "Fetched live this run with a browser User-Agent and saved to out/2026-09-14/sources/puct_59142.html, 49465 bytes, SHA256 beginning 6faf1f37dec3225ac5a45416. The host serves no robots.txt and 402s a non-browser client, which is what SOURCES_REGISTRY.md says it does. The primary quote is the page's own Case Style. The second quote is one filing description carrying the project number in full, which is how the number is evidenced rather than asserted. THE FILING COUNT IS NOT CARRIED: the page read 64 filing(s) today and that figure moves, so nothing downstream may print it. The record already cites documents under this control number at tx-2026-0072-c14 and c18."
+    }
+  ],
+  "rejected": [
+    {
+      "finding": "Three claims the fact-checker verified from gov.texas.gov, carrying the 474 gigawatt queue figure, the sentence that the audit must finish before any project moves forward, and the approximately 90 percent share.",
+      "reason": "DROPPED ON A ROBOTS FINDING MADE DURING THIS RUN. gov.texas.gov now serves a robots.txt reading 'User-agent: ClaudeBot / Disallow: /' for the whole host, measured twice here with two clients. SOURCES_REGISTRY.md still describes that host as serving no robots file at all, which is why the fact-checker was not warned off it and fetched it in good faith before the finding existed. The fetch cannot be undone; publishing what it returned would compound it, so nothing from that host reaches a slide. The directive's substance is carried instead at c21, which is ERCOT restating it in ERCOT's own presentation. The finding is written up in knowledge/shared/SOURCES_FIELD_LOG.md and the registry, which is human lane, is left for a maintainer."
+    },
+    {
+      "finding": "The candidate string 'Failure to satisfy any applicable condition may disqualify the Large Load.'",
+      "reason": "The notice's sentence is 'Failure to satisfy any applicable condition may disqualify the Large Load from Batch Zero.' The candidate truncated it and closed the truncation with a full stop the source does not have there. The full sentence is carried at c24."
+    },
+    {
+      "finding": "The candidate quote about who receives the Verification RFI, ending at 'Thursday, September 3, 2026'.",
+      "reason": "The sentence does not end there. It continues ', where the conditional classification was one of the following:' and that condition changes the scope of who gets the questionnaire. The full clause is carried at c2."
+    },
+    {
+      "finding": "A framing of the guide's bullet list as 'the five conditional base load classifications'.",
+      "reason": "The number five does not appear in the guide. It is a count somebody would have to make by counting bullets, and this project does not produce numerals by counting in prose. The bullets are carried verbatim at c9 and the studied load bullets at c10 with no count asserted. The guide's list is also not base load only, so 'the five' would have understated it."
+    },
+    {
+      "finding": "A single quoted string joining the 6,608 MW figure to the 'finished all ERCOT processes' sentence.",
+      "reason": "They are two separate elements of the slide's Key context box and joining them into one quoted string would be a construction rather than a quotation. Split into c12 and c13."
+    },
+    {
+      "finding": "The medium load definition as a character for character contiguous match.",
+      "reason": "The PDF wraps it between 'less' and 'than 75 MW', so that contiguous string does not exist in the extraction on one line. It is carried at c14 as a second quote with the wrap stated."
+    },
+    {
+      "finding": "The Helios campus acreage, '2,200+ Acres', and the approved capacity stat, '1.6+ gigabytes (GW)', from galaxy.com/data-centers.",
+      "reason": "Both are bare stat block values with no surrounding sentence and no quotable contiguous string, so neither was reconstructed. The same capacity figure is carried at c35 from the press release where it sits inside a sentence. The two forms are not interchangeable and the site's form is not published."
+    },
+    {
+      "finding": "The seven category counts breaking down the 41 exception requests ERCOT received on July 23rd.",
+      "reason": "Not rejected for accuracy. Each is a bullet ending in an en dash and a numeral, and carrying seven en dashed fragments into the record for a detail this deck does not use is noise. The total is at c16 and the December filing plan at c17."
+    },
+    {
+      "finding": "Any claim that the 4.2 gigawatts Galaxy announced is the sum of its five named projects.",
+      "reason": "Nothing in the source states that relationship and computing it is forbidden here. c26 carries Galaxy's own 'approximately 4.2 gigawatts' and c28 to c32 carry the five project figures separately. No arithmetic connects them."
+    },
+    {
+      "finding": "Any claim that the 17 large loads held by the energization pause are the same 17 large loads potentially eligible for the November 1 QSA.",
+      "reason": "Slide 5 and slide 7 of the same presentation both say 17 but pair the number with different capacities, approximately 6,874 MW and 6,608 MW. They are different populations and the coincidence of the count is not evidence otherwise. Flagged inside c12 so nothing downstream merges them."
+    },
+    {
+      "finding": "Planning Guide Section 9.2.1.2, named on slide 11 of the ERCOT presentation and flagged by claims_check as a provision no claim quoted.",
+      "reason": "READ AND DISPOSED OF. It is the paragraph under which a STUDIED load's entity had to submit to its provider by end of day July 24th, sitting beside Section 9.2.1.1(1) for base load with an end of day July 10th submission. The deadlines are already past and this deck makes no claim about either, so neither is carried. What slide 11 does carry that the deck uses is now claimed at c38, c39 and c40. Nothing in the provision contradicts the deck: it confirms that studied load and base load were verified on separate tracks, which is the same split c27 and c30 turn on."
+    }
+  ],
+  "absences": [
+    {
+      "id": "c25",
+      "assertion": "The published Batch Zero conditional classification notice carries no individual load name and no capacity total.",
+      "document": "ERCOT Market Notice M-A080326-04, Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers, dated September 3rd, 2026",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "how_it_was_looked_for": "The notice was read three times this run with three different questions, one asking for the complete text, one asking to enumerate every numeral and every proper name in the body, and one asking what the notice contains procedurally. No load name, no company name other than ERCOT and PUCT, no MW figure and no total was returned by any read.",
+      "what_it_does_not_prove": "It says nothing about ERCOT's internal list. The named list went to the interconnecting providers, which is what c22 states on the record."
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 7 of 9. Archetype MAP.
+     Texas as a survey sheet. All 254 county boundaries from the committed topology, drawn as
+     gypsum hairlines on the red bed ground on the same Albers equal-area conic the site's own
+     map builder uses, inside a neatline with whole-degree graticule ticks found by bisection and
+     a scale bar whose number is computed from the projection at render time. One county is
+     lifted: Dickens, where the only campus this record can name sits, and the record knows that
+     because the company published it. Hatch screen at cell 6, which gives the ground a tooth
+     without competing with 254 hairlines. The accent is on that county and its label and
+     nowhere else. No hachure anywhere, because no elevation source is committed for the
+     escarpment and a hachure off a flat field is a texture swatch pretending to be terrain. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; --accent:#7FB2D9; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#map { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:182px; width:870px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:92px; line-height:1.0; letter-spacing:-0.02em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:396px; width:790px; font-size:27px; line-height:1.40; color:var(--grama); }
+  .mono { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em;
+          color:var(--grama); text-transform:uppercase; white-space:nowrap; z-index:12; line-height:1.28; }
+  .mono.hit { color:#12222C; background:var(--accent); padding:10px 14px; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="map" viewBox="0 0 1080 1350"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Dickens County, because they said so.</h1>
+<p class="dek">The campus this record can name sits in the panhandle region of West Texas. The record knows that because the company published it, and not because any list did.</p>
+<div class="mono hit" id="lab">Dickens<br>County</div>
+<div class="mono" id="proj">Albers equal area conic</div>
+<div class="mono" id="bar">&nbsp;</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    TXLAYOUT.mount(document.body, { kicker: "The one place this record can name", kicker2: "Off the developer's own page", counter: "07 / 09", src: "c36 c37 c26   TEXAS AI DOCKET", ink: "#8E8266" });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 92, maxLines: 2 });
+
+    var W = 1080, H = 1350;
+    // THE NEATLINE. The mesh lives inside it and the labels live in the margin outside it,
+    // which is the survey convention and is what keeps a label off the cartography.
+    var NL = { x: 88, y: 586, w: 700, h: 548 };
+
+    // THE DOCUMENTED GEODATA CALL DOES NOT WORK AND THE ENGINE'S OWN DEMO DECK PROVES IT.
+    // SKILL.md says to reach the committed topology with fetch("@@ASSETS@@/geo/..."), and
+    // render.py sets --allow-file-access-from-files for exactly that. Chromium still refuses a
+    // fetch() on a file:// URL: the flag only ever relaxed XMLHttpRequest. Rendering
+    // examples/demo-deck/slides/slide-02.html unchanged this run fails the same way, so this is
+    // the engine's documented API rather than this slide. It is written up in the upgrade
+    // backlog. XHR is what the flag actually enables, so that is what this uses.
+    var topo = await new Promise(function (res, rej) {
+      var x = new XMLHttpRequest();
+      x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json", true);
+      x.onload = function () {
+        try { res(JSON.parse(x.responseText)); } catch (e) { rej(e); }
+      };
+      x.onerror = function () { rej(new Error("XHR failed for the county topology")); };
+      x.send();
+    });
+    var counties = TXGeo.counties(topo);
+    var state = TXGeo.outline(topo);
+    var proj = TXGeo.texasProjection(state, [[NL.x + 26, NL.y + 26], [NL.x + NL.w - 26, NL.y + NL.h - 26]]);
+    var path = d3.geoPath(proj);
+
+    var dickens = counties.features.filter(function (f) { return f.properties.name === "Dickens"; })[0];
+    if (!dickens) throw new Error("Dickens County is not in the committed topology");
+    var DC = path.centroid(dickens);
+
+    // THE SCALE BAR, computed from the projection rather than typed. One degree of longitude at
+    // the map's own centre latitude, measured on screen, converted to miles by the great circle.
+    var lat0 = TXGeo.FIT.lat0, lon0 = TXGeo.FIT.lon0;
+    var pA = proj([-lon0 - 0.5, lat0]), pB = proj([-lon0 + 0.5, lat0]);
+    var pxPerDegLon = Math.hypot(pB[0] - pA[0], pB[1] - pA[1]);
+    var miPerDegLon = 69.172 * Math.cos(lat0 * Math.PI / 180);
+    var pxPerMile = pxPerDegLon / miPerDegLon;
+    // the roundest bar between 120 and 300 px of the sheet
+    var CANDS = [50, 100, 150, 200, 250];
+    var barMi = CANDS.filter(function (m) { var w = m * pxPerMile; return w >= 110 && w <= 300; })[0] || 100;
+    var barPx = barMi * pxPerMile;
+    document.getElementById("bar").textContent = barMi + " miles";
+
+    // GRATICULE TICKS BY BISECTION. Where each whole meridian and parallel actually crosses the
+    // neatline is solved for, never assumed from the projection's arithmetic.
+    function crossX(lon, yTop, yBot) {          // a meridian's crossing of a horizontal edge
+      var a = yTop, b = yBot;
+      for (var i = 0; i < 40; i++) {
+        var m = (a + b) / 2, p = proj.invert ? null : null;
+        // proj has no invert here, so solve on latitude instead: walk lat until the projected
+        // y matches the edge, then take the x at that lat.
+        var lo = 25.5, hi = 36.8, yq;
+        for (var j = 0; j < 60; j++) {
+          var mid = (lo + hi) / 2, q = proj([lon, mid]);
+          if (q[1] > m) lo = mid; else hi = mid;
+        }
+        return proj([lon, (lo + hi) / 2]);
+      }
+      return null;
+    }
+    var ticks = [];
+    for (var lon = -106; lon <= -94; lon += 2) {
+      var t = crossX(lon, NL.y + NL.h, NL.y + NL.h);
+      if (t && t[0] > NL.x + 6 && t[0] < NL.x + NL.w - 6) ticks.push({ x: t[0], lab: Math.abs(lon) });
+    }
+
+    // ---------------------------------------------------------------- the SVG sheet
+    var NS = "http://www.w3.org/2000/svg", svg = document.getElementById("map");
+    function el(n, attrs) { var e = document.createElementNS(NS, n); for (var k in attrs) e.setAttribute(k, attrs[k]); svg.appendChild(e); return e; }
+
+    // the 254 county hairlines, at a weight that survives the 8 px cell measurement
+    el("path", { d: path(counties), fill: "none", stroke: "#E9DCC0", "stroke-width": 2.4,
+                 "stroke-opacity": 0.85, "stroke-linejoin": "round" });
+    // the state outline, heavier, so the shape a Texan knows is the one that reads first
+    el("path", { d: path(state), fill: "none", stroke: "#E9DCC0", "stroke-width": 2.6, "stroke-opacity": 0.95 });
+    // ONE COUNTY LIFTED
+    el("path", { d: path(dickens), fill: "#F2EADA", "fill-opacity": 1, stroke: "#7FB2D9", "stroke-width": 4.2 });
+    // the leader, out of the mesh to the label in the margin
+    var LEND = [NL.x + NL.w + 40, 672];
+    var bend = [DC[0] + 76, 672];
+    el("polyline", { points: DC[0] + "," + DC[1] + " " + bend[0] + "," + bend[1] + " " + (LEND[0] - 14) + "," + LEND[1],
+                     fill: "none", stroke: "#7FB2D9", "stroke-width": 2.4 });
+    window.__txLeaders = [{ target: "Dickens County's own centroid", at: DC, to: [DC[0], DC[1]] }];
+
+    // the neatline and its ticks
+    el("rect", { x: NL.x, y: NL.y, width: NL.w, height: NL.h, fill: "none", stroke: "#8E8266", "stroke-width": 2 });
+    el("rect", { x: NL.x + 7, y: NL.y + 7, width: NL.w - 14, height: NL.h - 14, fill: "none", stroke: "#8E8266", "stroke-width": 1, "stroke-opacity": 0.7 });
+    ticks.forEach(function (t) {
+      el("line", { x1: t.x, y1: NL.y + NL.h, x2: t.x, y2: NL.y + NL.h - 16, stroke: "#8E8266", "stroke-width": 2 });
+      el("line", { x1: t.x, y1: NL.y, x2: t.x, y2: NL.y + 16, stroke: "#8E8266", "stroke-width": 2 });
+    });
+    // the scale bar, alternating, in the sheet's lower margin
+    var BX = NL.x, BY = NL.y + NL.h + 34;
+    for (var k = 0; k < 4; k++) {
+      el("rect", { x: BX + k * barPx / 4, y: BY, width: barPx / 4, height: 11,
+                   fill: k % 2 ? "none" : "#8E8266", stroke: "#8E8266", "stroke-width": 1.6 });
+    }
+
+    // the labels, in the margin, as DOM so they carry no plate rule
+    var lab = document.getElementById("lab");
+    lab.style.left = LEND[0] + "px"; lab.style.top = (LEND[1] - 32) + "px";
+    var pj = document.getElementById("proj");
+    pj.style.left = NL.x + "px"; pj.style.top = (NL.y - 44) + "px";
+    var bl = document.getElementById("bar");
+    bl.style.left = (BX + barPx + 18) + "px"; bl.style.top = (BY - 8) + "px";
+
+    // ---------------------------------------------------------------- the printed ground
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.06, seed: 2407,
+      screen: { mode: "hatch", cell: 6, angle: 34, weight: 0.9, gamma: 1.1 },
+      edges: { threshold: 26, width: 1.2, alpha: 0.6, dx: 0.9, dy: -0.7 },
+      draw: function (a) {
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        // the sheet's margin, a shade lighter than the mesh's ground, so a sheet reads as a sheet
+        a.fillStyle = "#463C34"; a.fillRect(NL.x - 40, NL.y - 76, NL.w + 80, NL.h + 176);
+        // the ground inside the neatline, darker, so 254 hairlines have something to sit on
+        a.fillStyle = "#2A231F"; a.fillRect(NL.x, NL.y, NL.w, NL.h);
+        // THE SHEET'S OWN TOOTH. craft_floor measured this canvas at a variance of 4 because the
+        // cartography is SVG and the canvas under it was one flat rectangle. A survey sheet has
+        // a laid grain and a plate tone, and drawing them is what makes the print register real
+        // rather than a colour behind a vector.
+        var R = TX.rng(20260914);
+        for (var t = 0; t < 92; t++) {
+          a.fillStyle = "rgba(233,220,192,0.05)";
+          a.fillRect(NL.x, NL.y + t * (NL.h / 92), NL.w, 2);
+        }
+        for (var s2 = 0; s2 < 1400; s2++) {
+          var sx = NL.x + R() * NL.w, sy = NL.y + R() * NL.h;
+          a.fillStyle = R() > 0.5 ? "rgba(233,220,192,0.13)" : "rgba(0,0,0,0.20)";
+          a.fillRect(sx, sy, 2 + R() * 3, 2);
+        }
+        // a plate tone across the margin, so the sheet has a printed field rather than a fill
+        for (var m2 = 0; m2 < 40; m2++) {
+          a.fillStyle = "rgba(0,0,0,0.10)";
+          a.fillRect(NL.x - 40, NL.y - 76 + m2 * ((NL.h + 176) / 40), NL.w + 80, 3);
+        }
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#120C0B", bottom: 130, bottomSolid: 90, top: 470 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

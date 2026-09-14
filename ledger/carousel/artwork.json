@@ -1617,6 +1617,59 @@
     "fails": 0,
     "verdict": "WARN"
    }
+  },
+  {
+   "date": "2026-09-14",
+   "carousel_no": 24,
+   "written_from": "machine_qa.json, render_report.json, bespoke_check, construction_check, craft_floor and layout_check --require, by exit code. The value block is MEASURED off the nine shipped PNGs by out/2026-09-14/measure.py on panel_ready.ARC_GRID, 270 by 338, never planned and never asserted.",
+   "register": "DICKENS COUNTY AND THE CAPROCK ESCARPMENT UNDER A LOW MOON. Red bed paper #120C0B and one gypsum ink #E9DCC0, printed: every scene is drawn in greys into an offscreen twin at true scale, TXINK.print lays the paper, screens the tone into ink, lays the contour plate a pixel out of register, and paints the one accent flat on top.",
+   "structural_laws": [
+    "THE ONLY TWO BRIGHT FRAMES ARE THE TWO DOCUMENTS A MEMBER OF THE PUBLIC CAN READ. Frames 2 and 8, measured at 84.4 and 60.4 against a deck median of 6.0. One names nobody and the other names everybody. Everything else happens on dark ground because everything else happens inside a portal, behind a fence or on land at night.",
+    "NOTHING IN THIS DECK'S OWN SUBJECT MATTER IS LIT. One low moon governs all nine frames and the three exceptions are indoors. Frame 1's louvre band had to be overpainted in the wall's own grey because the contour plate was outlining every slat and printing it as a lit clerestory, which is the deck's law broken at the print stage rather than the draw stage.",
+    "THE ACCENT IS A NAME A TEXAN CAN LOOK UP. signal_link #7FB2D9 on four frames, measured at 0.21, 0.58, 0.87 and 1.62 per cent. Frames 1, 3, 4, 5 and 6 carry none, and frame 3 carrying none is the load bearing absence: seventeen large loads with a blank ruled nameplate under every one of them.",
+    "NOTHING IS DRAWN AS A REDACTION. No black bar, no strike and no smudge on any frame. The accent on frame 2 was a filled chip in the first cut and became a keyline box, because a fill laid over a string on a sheet whose whole argument is that the names were never written there reads as the thing the deck refuses to draw."
+   ],
+   "techniques": [
+    "A 130 m data hall at Z 30 broadside, with a caliche pad graded into the near ground, a property fence at Z 5.4, a gate, a cattle guard, tyre ruts and 620 broken stones, so the bottom third carries the yard rather than the building's shadow",
+    "A letter sheet turned 0.8 degrees with a hand-wobbled edge, a fold crease with its own lit lip, and eleven ruled hairlines carrying nothing where a list of loads would sit",
+    "Seventeen identical units at 1.30 px a metre in ranks of 6, 6 and 5, left aligned so the last rank stops one short, each with an inset nameplate rule between two end ticks",
+    "A 44 mm notary emboss carrying NO ink of its own, read entirely by a lift to the paper's own value and a shadow offset down and right, with 24 scallop teeth on the same light rule",
+    "The deck's one emissive source, a portal screen drawn as a lit panel with the page ink set on it, with five declared leaders terminating on their targets' own coordinates",
+    "A substation at Z 14 crossing both frame edges, with three figures at three depths and three greys on the near side of a fence at Z 13",
+    "254 counties on an Albers equal area conic with a computed scale bar, Dickens lifted to the sheet's lightest value under an accent keyline",
+    "A hearing room at a seated public eye with three empty chairs on solid back panels, an empty podium, two rows of gallery seat backs and a near-black seated reader"
+   ],
+   "palette": "redbed #120C0B, gypsum #E9DCC0, grama #8E8266, sheet #EFE9DA, sink #241512, accent signal_link #7FB2D9.",
+   "value": {
+    "grid": "270x338, panel_ready.ARC_GRID",
+    "planned": [
+     8,
+     80,
+     8,
+     58,
+     9,
+     6,
+     4,
+     62,
+     6
+    ],
+    "measured": [
+     6.0,
+     84.4,
+     4.1,
+     57.2,
+     7.4,
+     3.8,
+     3.8,
+     60.4,
+     5.6
+    ],
+    "deck_median": 6.0,
+    "spread": 80.6,
+    "note": "Every frame inside one Munsell step. The plan moved once after render, at frame 6, and only after the art was fixed first and measured: lifting its art band from 4.4 to 10.7 moved the frame median by 0.0, because 80 per cent of that frame is reserve band and night sky by construction."
+   },
+   "type_skeletons": "Kicker top left, hook in the upper third, dek or labels under. Frames 2, 4 and 8 give the sheet its own typography and set the deck's furniture in the page's ink.",
+   "machine_qa": "0 fails across nine frames. layout_check --require, construction_check 1 of 9 plated, bespoke_check median pairwise 0.17, craft_floor clean, dossier_check, plan_render_check, copy_sync_check, coherence_check, texan_check, noun_trace, absence_check and aggregate_check all exit 0. panel_ready exit 0."
   }
  ]
 }

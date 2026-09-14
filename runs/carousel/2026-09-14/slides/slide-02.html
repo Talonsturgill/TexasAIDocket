@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 2 of 9. Archetype DOCUMENT. THE INVERSION, at position two.
+     The public notice, drawn as a letter sheet 1,180 px wide, turned 0.8 degrees, running off
+     the left, the right and the bottom of the frame. Its own typography inside it. Under the
+     procedure, where a list of loads and a capacity total would sit, eleven ruled hairlines in
+     the page's own ink at the page's own value, carrying nothing. NO BLACK BAR ANYWHERE: the
+     record says the names were never on that page, not that they were taken off it. The one
+     string in the accent is the notice's own control number, which is the one thing on a page
+     that names nobody that a Texan can go and look up. Line screen at cell 6. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; --accent:#7FB2D9;
+          --sheet:#EFE9DA; --sink:#241512; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:176px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:1.0; letter-spacing:-0.022em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  /* the sheet, turned with the drawn one. Everything in it is the page's own typography. */
+  .page { position:absolute; left:-50px; top:386px; width:1180px; height:1030px;
+          transform:rotate(0.8deg); transform-origin:0 0; padding:40px 118px 0 118px;
+          color:var(--sink); font-family:"Instrument Serif", serif; }
+  .page .run { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.09em;
+               color:#5E4E45; text-transform:uppercase; display:flex; justify-content:space-between; }
+  .page .run em { font-style:normal; color:#12222C; font-weight:500; background:none;
+                  border:6px solid var(--accent); padding:12px 22px 13px 22px; line-height:1;
+                  font-size:31px; letter-spacing:0.06em; }
+  .page .run { align-items:flex-start; }
+  .page .subj { font-size:41px; line-height:1.13; margin-top:18px; }
+  .page .heavy { height:5px; background:var(--sink); margin-top:22px; }
+  .page .q { font-size:33px; line-height:1.3; margin-top:18px; }
+  .page .q + .q { border-top:1px solid rgba(36,21,18,0.35); padding-top:16px; }
+  .page .note { font-family:"JetBrains Mono", monospace; font-size:26px; letter-spacing:0.04em;
+                color:#5E4E45; margin-top:20px; line-height:1.4; }
+  .clip { position:absolute; left:0; top:0; width:1080px; height:1350px; overflow:hidden; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The half you can read names nobody.</h1>
+<div class="clip"><div class="page" id="page">
+  <div class="run"><span>ERCOT Market Notice</span><em>M-A080326-04</em></div>
+  <div class="subj">Batch Zero Conditional Classification issued to Transmission and/or Distribution Service Providers</div>
+  <div class="heavy"></div>
+  <div class="q">the Interconnecting Large Load Entity (ILLE) passing verification, the ILLE curing deficiencies in dynamic model data, or the Public Utility Commission of Texas (PUCT) granting ERCOT a good cause exception</div>
+  <div class="q">Failure to satisfy any applicable condition may disqualify the Large Load from Batch Zero.</div>
+  <div class="note" id="note">c23 c24 c25. Each provider was told how its own loads were classified. This notice carries no name.</div>
+</div></div>
+<svg id="empties" style="position:absolute;left:0;top:0;width:1080px;height:1350px;z-index:3"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    var furn = TXLAYOUT.mount(document.body, { kicker: "The notice the public got", kicker2: "September 3rd", counter: "02 / 09", src: "c22 c23 c24 c25   TEXAS AI DOCKET", ink: "#8E8266" });
+    // the sheet runs under the bottom band on this frame alone, so the source line and the
+    // site line take the PAGE's ink. Contrast is what decides this, never consistency.
+    furn.src.style.color = "#5E4E45";
+    document.getElementById("site").style.color = "#5E4E45";
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 88, maxLines: 2 });
+
+    var W = 1080, H = 1350;
+    // the sheet's corners, matching the DOM page's rotation exactly
+    var rot = 0.8 * Math.PI / 180, ox = -50, oy = 386, pw = 1180, ph = 1030;
+    function corner(x, y) { return [ox + x * Math.cos(rot) - y * Math.sin(rot), oy + x * Math.sin(rot) + y * Math.cos(rot)]; }
+    var sheet = [corner(0, 0), corner(pw, 0), corner(pw, ph), corner(0, ph)];
+
+    // THE EMPTY BLOCK. Eleven ruled hairlines in the page's own ink at the page's own value,
+    // where a list of loads and a capacity total would sit. They carry nothing. There is no
+    // black bar, no strike and no smudge anywhere on this sheet, because c25's own note says
+    // the record shows the names were never written there rather than removed.
+    var NS = "http://www.w3.org/2000/svg", sv = document.getElementById("empties");
+    var g = document.createElementNS(NS, "g");
+    g.setAttribute("transform", "translate(" + ox + "," + oy + ") rotate(0.8)");
+    sv.appendChild(g);
+    for (var i = 0; i < 11; i++) {
+      var ln = document.createElementNS(NS, "line");
+      ln.setAttribute("x1", 118); ln.setAttribute("x2", pw - 118);
+      ln.setAttribute("y1", 634 + i * 17); ln.setAttribute("y2", 634 + i * 17);
+      ln.setAttribute("stroke", "#241512"); ln.setAttribute("stroke-opacity", "0.46");
+      ln.setAttribute("stroke-width", "2.2");
+      g.appendChild(ln);
+    }
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    function poly(a, pts) { a.beginPath(); a.moveTo(pts[0][0], pts[0][1]); for (var i = 1; i < pts.length; i++) a.lineTo(pts[i][0], pts[i][1]); a.closePath(); a.fill(); }
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.055, seed: 2402,
+      screen: { mode: "line", cell: 6, angle: -24, gamma: 1.2, floor: 0.04 },
+      edges: { threshold: 30, width: 1.4, alpha: 0.68, dx: 1.4, dy: -0.6 },
+      draw: function (a) {
+        // a dark desk under the sheet, falling away toward the top of the frame
+        var gr = a.createLinearGradient(0, 200, 0, H);
+        gr.addColorStop(0, "#000000"); gr.addColorStop(1, "#2C251F");
+        a.fillStyle = gr; a.fillRect(0, 0, W, H);
+        // the sheet's cast shadow from the raking key at the upper left
+        a.save(); a.filter = "blur(22px)"; a.fillStyle = "#000000";
+        poly(a, sheet.map(function (p) { return [p[0] + 20, p[1] + 28]; })); a.restore();
+        a.fillStyle = "#BAB2A2"; poly(a, sheet);
+      },
+      over: function (c) {
+        // the sheet as flat paper with a hand-wobbled edge
+        var d = "M" + sheet.map(function (p) { return p[0] + " " + p[1]; }).join(" L ") + " Z";
+        var wob = TXINK.wobble(d, { amp: 1.6, freq: 0.016, seed: 2, step: 5 });
+        c.save(); c.fillStyle = "#EFE9DA"; c.fill(new Path2D(wob)); c.restore();
+        // the raking key dying across the sheet toward its foot, so the empty block sits in the
+        // page's darkest paper rather than in a lit patch
+        var fall = c.createLinearGradient(0, oy, 0, oy + ph);
+        fall.addColorStop(0, "rgba(36,21,18,0)"); fall.addColorStop(1, "rgba(36,21,18,0.12)");
+        c.save(); c.clip(new Path2D(wob));
+        c.fillStyle = fall; c.fillRect(-60, oy - 10, W + 120, ph + 20);
+        // A FOLD CREASE across the sheet, with its own shadow, so the lower third is a piece of
+        // paper that has been in an envelope rather than a flat pale field
+        var fy = oy + 596;
+        var cr = c.createLinearGradient(0, fy - 26, 0, fy + 12);
+        cr.addColorStop(0, "rgba(36,21,18,0)"); cr.addColorStop(0.72, "rgba(36,21,18,0.20)");
+        cr.addColorStop(1, "rgba(36,21,18,0)");
+        c.fillStyle = cr; c.fillRect(-60, fy - 26, W + 120, 38);
+        c.fillStyle = "rgba(255,255,255,0.55)"; c.fillRect(-60, fy + 11, W + 120, 2);
+        // the sheet's own laid tooth, drawn so the foot carries texture rather than flat tone
+        for (var t = 0; t < 12; t++) {
+          c.fillStyle = "rgba(36,21,18,0.055)";
+          c.fillRect(-60, oy + 510 + t * 16, W + 120, 4);
+        }
+        c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

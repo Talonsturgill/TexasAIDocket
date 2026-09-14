@@ -17541,7 +17541,7 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The user guide is published on the grid operator's own document site and anyone can read it. The questionnaire itself runs inside a registered portal, so only the three parties on a project can see or answer it, and a member of the public has no route in.",
+    "how": "The user guide is published on the grid operator's own document site and anyone can read it. The questionnaire itself runs inside a registered portal. Only the three parties on a project can see or answer it, and a member of the public has no route in.",
     "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
     "closes": null
    },
@@ -17625,13 +17625,13 @@
    "history": [
     {
      "date": "2026-09-14",
-     "note": "Admitted to the record. The grid operator has published the guide to the questionnaire every conditionally classified large load must answer. A notarized attestation from each of the three parties is part of a complete response, and a load entity that does not supply what its provider needs may be taken off the process."
+     "note": "Admitted to the record. The grid operator has published the guide to the questionnaire every conditionally classified large load must answer. A notarized attestation from each of the three parties is part of a complete response. A load entity that does not supply what its provider needs may be taken off the process."
     }
    ]
   },
   {
    "title": "A data center developer tells its shareholders what the Batch Zero list did to five of its Texas projects, and one came back in a different class than it was filed in",
-   "summary": "Galaxy Digital published an account on September 8th, 2026 of the conditional Batch Zero classifications ERCOT gave five of its Texas data center projects. Three of the five sit at the Helios campus in Dickens County, in the panhandle region of West Texas. Two projects already approved at that campus before the batch were classified as Batch Zero Base Load. Three more, Caspian, Selene and a further Helios load request, were classified as Batch Zero Studied Load. The account states that the company submitted Caspian as Base Load and that it was conditionally classified as Studied Load instead. It states what separates the two classes. A base load project is modeled in the study and is not subject to further capacity allocation, and a studied load project is subject to capacity allocation as part of the study. The grid operator's own notice of the classifications named no load and gave no total, so this account is where the public first learned what a classification did to a named project. The company's own risk section states that a classification may be modified, withdrawn or not confirmed, and that a project may be removed from Batch Zero.",
+   "summary": "Galaxy Digital published an account on September 8th, 2026 of the conditional Batch Zero classifications ERCOT gave five of its Texas data center projects. Three of the five sit at the Helios campus in Dickens County, in the panhandle region of West Texas. Two projects already approved at that campus before the batch were classified as Batch Zero Base Load. Three more, Caspian, Selene and a further Helios load request, were classified as Batch Zero Studied Load. The account states that the company submitted Caspian as Base Load and that it was conditionally classified as Studied Load instead. It states what separates the two classes. A base load project is modeled in the study and is not subject to further capacity allocation. A studied load project is subject to capacity allocation as part of the study. The grid operator's own notice of the classifications named no load and gave no total. This account is where the public first learned what a classification did to a named project. The company's own risk section states that a classification may be modified, withdrawn or not confirmed, and that a project may be removed from Batch Zero.",
    "topic": "data-centers",
    "decider": {
     "name": "Galaxy Digital Inc.",
@@ -17654,7 +17654,7 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The company publishes the account on the newswire it uses for shareholder announcements. A reader who wants to act on a classification goes to the grid operator's dispute route rather than to the company, and that route is open to the interconnecting entity rather than to the public.",
+    "how": "The company publishes the account on the newswire it uses for shareholder announcements. A reader who wants to act on a classification goes to the grid operator's dispute route rather than to the company. That route is open to the interconnecting entity rather than to the public.",
     "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
     "closes": null
    },

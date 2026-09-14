@@ -1,0 +1,163 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 9 of 9. Archetype OBJECT_AND_CAPTION.
+     The commission's hearing room from the public gallery, at a seated public eye of 1.15 m.
+     A 9 m dais across the frame, three empty chairs on the bench platform behind it, an empty
+     podium at the left, and one seated figure at the right in the near foreground with its back
+     to the camera, cropped by the bottom edge. ONE ceiling wash, tight over the bench, so the
+     light dies exactly where the reader is sitting and the top band is dark by construction.
+     Coarse press halftone at cell 9. The accent is on the room number and the project number,
+     which are the two strings in this deck a Texan can act on. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; --accent:#7FB2D9; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:168px; width:840px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:92px; line-height:1.0; letter-spacing:-0.02em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  .cap { position:absolute; left:80px; top:1046px; width:860px; font-size:24px; line-height:1.38; color:var(--grama); }
+  .cap b { color:var(--accent); font-weight:600; }
+  .sign { position:absolute; left:404px; top:396px; width:272px; text-align:center; z-index:12;
+          background:#100E0C; padding:16px 0 16px 0; }
+  .sign .signk { display:block; font-family:"JetBrains Mono", monospace; font-size:24px;
+                 letter-spacing:0.12em; color:var(--grama); text-transform:uppercase; margin-bottom:12px; }
+  .sign b { display:block; background:var(--accent); color:#12222C; font-family:"JetBrains Mono", monospace;
+            font-size:46px; font-weight:500; letter-spacing:0.04em; padding:18px 0 20px 0; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="sign" id="sign"><span class="signk">Hearing room</span><b>7-100</b></div>
+<h1 class="hook" id="hook">The filings are public. The answers are not.</h1>
+<p class="cap" id="cap"><b>Project 59142</b> is the commission's review of the grid operator's interconnection processes for large loads, and anyone can read what is filed in it. The commission's calendar carries an open meeting on September 17th, in <b>Commissioners Hearing Room 7-100</b>, open to the public.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    TXLAYOUT.mount(document.body, { kicker: "The room this is decided in", kicker2: "Public Utility Commission of Texas", counter: "09 / 09", src: "c41 c43 c6   TEXAS AI DOCKET", ink: "#8E8266" });
+    TX.fitText(document.getElementById("hook"), { min: 66, max: 92, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // A SEATED PUBLIC EYE. The reader is in the gallery, not standing at the back.
+    var cam = { w: W, h: H, eye: 1.15, horizon: 700, f: 900, fogZ: 1e9, light: { az: -68, el: 62 } };
+
+    var dais   = TXOBJ.sprite("dais");
+    var chair  = TXOBJ.sprite("office_chair");
+    var pod    = TXOBJ.sprite("podium");
+    var sitter = TXFIG.figure({ pose: "sit", seat: 0.45, height: 1.74 });
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.05, seed: 2409,
+      screen: { mode: "halftone", cell: 9, angle: 18, gamma: 1.15, floor: 0.03 },
+      edges: { threshold: 18, width: 1.5, alpha: 0.9, dx: 1.1, dy: -0.8 },
+      draw: function (a) {
+        var c0 = a;
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+
+        var yFloor14 = S.groundY(14);
+        // THE BACK WALL, dark, with two horizontal panel joints so it is a wall and not a void
+        a.fillStyle = "#151110"; a.fillRect(0, 0, W, yFloor14 + 2);
+        a.fillStyle = "#241E1A";
+        a.fillRect(0, yFloor14 - 232, W, 3);
+        a.fillRect(0, yFloor14 - 96, W, 3);
+        // the floor
+        S.ground({ near: 1.0, far: 14, fill: "#1E1916" });
+        S.gridZ({ dz: 1.6, from: 2.4, to: 14, ink: "rgba(0,0,0,0.55)", width: 1.1 });
+
+        // ONE CEILING WASH, tight over the bench. It is the room's only light and it never
+        // reaches the top band, which is how the hook gets a dark reserve by construction.
+        var wash = a.createRadialGradient(W / 2, 680, 80, W / 2, 680, 470);
+        wash.addColorStop(0, "rgba(255,255,255,0.34)");
+        wash.addColorStop(0.42, "rgba(255,255,255,0.13)");
+        wash.addColorStop(1, "rgba(255,255,255,0)");
+        a.fillStyle = wash; a.fillRect(0, 400, W, 620);
+        // and the floor falls away toward the gallery, so the light dies where the reader sits
+        var fall = a.createLinearGradient(0, 860, 0, 1180);
+        fall.addColorStop(0, "rgba(0,0,0,0)"); fall.addColorStop(1, "rgba(0,0,0,1)");
+        a.fillStyle = fall; a.fillRect(0, 850, W, H - 850);
+
+        // THREE EMPTY CHAIRS, lifted 0.9 m onto the bench platform so their backs clear the
+        // dais top. Drawn before the dais, which occludes their bases.
+        var chairInk = { ink: "#E0D7C2", paper: "#1A1512", accent: "#E0D7C2" };
+        [-3.3, 0, 3.3].forEach(function (X) {
+          S.shadow(chair, { X: X, Z: 9.0, y: 1.15, ink: "#000", alpha: 0.3 });
+          // a solid back panel first, so the chair is a mass at 432 px and not an armature
+          var qa = S.project(X - 0.27, 2.16, 9.0), qb = S.project(X + 0.27, 1.56, 9.0);
+          a.fillStyle = "#C6BCA6"; a.fillRect(qa[0], qa[1], qb[0] - qa[0], qb[1] - qa[1]);
+          a.fillStyle = "#EFE7D2"; a.fillRect(qa[0], qa[1], qb[0] - qa[0], 4);
+          S.sprite(chair, { X: X, Z: 9.0, y: 1.15, inks: chairInk, fade: false });
+        });
+
+        // THE DAIS, 9 m across at Z 7, running off both edges
+        S.shadow(dais, { X: 0, Z: 7.0, ink: "#000", alpha: 0.55 });
+        S.sprite(dais, { X: 0, Z: 7.0, inks: { ink: "#5E564B", paper: "#141110", accent: "#5E564B" }, fade: false });
+        // a lit top lip on the bench, so the dais is an object with an edge rather than a plate
+        var la = S.project(-4.5, 1.30, 7.0), lb = S.project(4.5, 1.30, 7.0), lc = S.project(-4.5, 1.24, 7.0);
+a.fillStyle = "#D6CCB4"; a.fillRect(la[0], la[1], lb[0] - la[0], Math.max(3, lc[1] - la[1]));
+        // a recessed modesty panel: a darker inset across the bench face, so the front is
+        // joinery with a shadow line in it rather than one flat rectangle of tone
+        var ia = S.project(-4.1, 0.98, 7.0), ib = S.project(4.1, 0.16, 7.0);
+        a.fillStyle = "#2A2520"; a.fillRect(ia[0], ia[1], ib[0] - ia[0], ib[1] - ia[1]);
+        a.fillStyle = "#7E7466"; a.fillRect(ia[0], ia[1], ib[0] - ia[0], 3);
+        // and five bench positions marked by a short upright divider
+        [-3.3, -1.65, 0, 1.65, 3.3].forEach(function (X) {
+          var da = S.project(X, 1.24, 7.0), db = S.project(X + 0.06, 0.98, 7.0);
+          a.fillStyle = "#3A342C"; a.fillRect(da[0], da[1], Math.max(2, db[0] - da[0]), db[1] - da[1]);
+        });
+
+        // THE EMPTY PODIUM, near left, where somebody would speak
+        S.shadow(pod, { X: -3.0, Z: 5.0, ink: "#000", alpha: 0.5 });
+        S.sprite(pod, { X: -3.0, Z: 5.0, inks: { ink: "#6E6558", paper: "#161210", accent: "#6E6558" }, fade: false });
+
+        // THREE GALLERY SEAT BACKS in the near foreground, cropped by the bottom edge, so the
+        // bottom third of the frame carries the room rather than only the caption block
+        [-1.0, 1.0].forEach(function (X) {
+          var ba = S.project(X - 0.54, 1.06, 1.30), bb = S.project(X + 0.54, 0.10, 1.30);
+          var g2 = c0.createLinearGradient(0, ba[1], 0, bb[1]);
+          g2.addColorStop(0, "#6A6054"); g2.addColorStop(1, "#2A241E");
+          a.fillStyle = g2; a.fillRect(ba[0], ba[1], bb[0] - ba[0], bb[1] - ba[1]);
+          a.fillStyle = "#9A907E"; a.fillRect(ba[0], ba[1], bb[0] - ba[0], 6);
+          // a seat number plate on each back, so the row carries detail as well as mass
+          a.fillStyle = "#3E362E"; a.fillRect(ba[0] + 26, ba[1] + 34, 54, 20);
+        });
+        // a second row behind them, further off and darker
+        [-1.15, 1.15].forEach(function (X) {
+          var ba = S.project(X - 0.52, 0.98, 2.05), bb = S.project(X + 0.52, 0.24, 2.05);
+          a.fillStyle = "#413A32"; a.fillRect(ba[0], ba[1], bb[0] - ba[0], bb[1] - ba[1]);
+          a.fillStyle = "#6E6558"; a.fillRect(ba[0], ba[1], bb[0] - ba[0], 4);
+        });
+
+        // THE READER, seated in the gallery at the right, back to the camera, cropped by the
+        // bottom edge. Near black on purpose: a silhouette against a lit room is the frame.
+        S.sprite(sitter, { X: -0.40, Z: 2.2, inks: { ink: "#171310", paper: "#171310", accent: "#171310" }, fade: false });
+      },
+      over: function (c) {
+        // the bottom band fades to paper so the caption and the source line sit on ground
+        TXINK.reserve(c, { ground: "#120C0B", bottom: 336, bottomSolid: 322, top: 210, topSolid: 160 });
+
+        // THE ROOM NUMBER on the wall above the bench, in the accent. It is the one thing in
+        // this frame a reader can walk toward.
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>
