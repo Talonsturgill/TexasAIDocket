@@ -1,9 +1,12 @@
 """Data-center registry, company, facility, and construction renderers."""
 from __future__ import annotations
 
+import connection_explorer
+import facility_explorer
+
 from site_context import (
     SITE_NAME, beyond_panel, e, entities, facility_dossier, page, re,
-    registry_changes, registry_graph, tdlr_projects,
+    registry_changes, tdlr_projects,
 )
 
 def _facility_desc(summary: str, limit: int = 180) -> str:
@@ -156,98 +159,9 @@ def company_page(item: dict, data: dict, dossiers: dict, is_group: bool, today: 
 
 
 
-def _registry_field(data: dict, base: str = "") -> str:
-    """The network, drawn from the same resolution the lists are built from.
-
-    `base` prefixes every node's href. The field lives on the data centers tab and the pages
-    it links to live under `/company/`, so it is `../company/` there and empty on the company
-    index itself, where a bare slug already resolves.
-    """
-    g = registry_graph.build(data["entities"])
-    if not g["nodes"]:
-        return ""
-    n0 = entities.n0
-    at = {node["key"]: node for node in g["nodes"]}
-    dossiers = facility_dossier.by_name(facility_dossier.load())
-    facility_links = {
-        name: f'../facility/{dossier["slug"]}/'
-        for name, dossier in dossiers.items()
-    }
-
-    def facility_ref(name: str) -> str:
-        href = facility_links.get(name)
-        return (f'<a href="{e(href)}"><cite>{e(name)}</cite></a>' if href
-                else f'<cite>{e(name)}</cite>')
-
-    strongest = ""
-    for index, edge in enumerate(g["edges"][:2]):
-        a, b = at[edge["a"]], at[edge["b"]]
-        noun = "facility record" if edge["w"] == 1 else "facility records"
-        examples = "".join(f'<li>{facility_ref(name)}</li>'
-                           for name in edge["facilities"][:2])
-        strongest += (
-            f'<article class="grconnection">'
-            f'<p class="grpair"><a href="{e(base)}{e(a["slug"])}/">{e(a["name"])}</a>'
-            f'<span aria-hidden="true">+</span>'
-            f'<a href="{e(base)}{e(b["slug"])}/">{e(b["name"])}</a></p>'
-            f'<span class="grcount"><strong class="num">{n0(edge["w"])}</strong> shared '
-            f'{noun}</span><ul class="grfacilities">{examples}</ul>'
-            f'<button class="grinspect" type="button" data-edge="{index}">Inspect line</button>'
-            f'</article>')
-
-    return (
-        f'<section class="gwrap" id="registry-field" aria-labelledby="registry-field-title">'
-        f'<header class="ghead">'
-        f'<span class="sectioneyebrow">Registry relationship field</span>'
-        f'<h2 id="registry-field-title">Follow the same names across Texas</h2>'
-        f'<p class="gdesktopintro">Every point is a company on more than one certified facility. Every line is a '
-        f'facility record where two of those companies meet.</p>'
-        f'<p class="gmobileintro">Compare the strongest shared rows. Search one company or '
-        f'narrow the filed role.</p>'
-        f'</header>'
-        f'<div class="gcontrols" id="gcontrols" hidden>'
-        f'<label for="gsearch"><span>Find a company</span>'
-        f'<input id="gsearch" type="search" autocomplete="off" '
-        f'placeholder="Company name"></label>'
-        f'<label for="grole"><span>Emphasize a role</span>'
-        f'<select id="grole"><option value="">Every role</option>'
-        f'<option value="owner">Owner</option><option value="occupant">Occupant</option>'
-        f'<option value="operator">Operator</option></select></label>'
-        f'<button id="greset" type="button">Reset view</button>'
-        f'</div>'
-        f'<section class="gmobile" id="gmobile" aria-label="Relationship navigator">'
-        f'<header class="gmhead"><span class="grk">Phone relationship navigator</span>'
-        f'<h3>Start with a named connection</h3>'
-        f'<p>Open one relationship to read the certified facility rows behind it.</p>'
-        f'<p class="gmstatus" id="gmstatus" aria-live="polite">Strongest shared rows</p>'
-        f'</header><div class="gmlist" id="gmlist"></div>'
-        f'<button class="gmmore" id="gmmore" type="button" hidden>'
-        f'Show more relationships</button></section>'
-        f'<div class="gworkspace">'
-        f'<div class="gfield" id="gfield">{registry_graph.svg(g, base)}</div>'
-        f'<aside class="glens" aria-live="polite">'
-        f'<span class="grk">Relationship readout</span>'
-        f'<h3 id="grname">The strongest shared rows</h3>'
-        f'<p id="grmeta">Choose a company or a line to see what the state record connects.</p>'
-        f'<div class="grroles" id="grroles" data-prose="data">'
-        f'<span class="grrole"><b>Point</b>company</span>'
-        f'<span class="grrole"><b>Line</b>shared row</span>'
-        f'<span class="grrole"><b>Orbit</b>no shared row</span></div>'
-        f'<div class="grconnections" id="grconnections">'
-        f'<p class="grsection">Largest connections in the registry</p>{strongest}</div>'
-        f'<a class="grlink" id="grlink" href="{e(base)}">Browse every company</a>'
-        f'</aside></div>'
-        f'<p class="gkey" data-prose="data">'
-        f'<span><b>Point size</b> certified facilities</span>'
-        f'<span><b>Line</b> same certified row</span>'
-        f'<span><b>Line weight</b> shared rows</span>'
-        f'<span><b>Outer orbit</b> repeat company with no shared row</span></p>'
-        f'<p class="ghint">Select a company to open its profile. Point at a line to reveal '
-        f'the facility records behind it.</p>'
-        f'<script type="application/json" id="gdata">'
-        f'{registry_graph.payload(g, base, facility_links)}</script>'
-        f'<script>{registry_graph.SCRIPT}</script>'
-        f'</section>')
+def _registry_field(data: dict) -> str:
+    """A network that follows the filed evidence on every screen size."""
+    return connection_explorer.render(data)
 
 
 def companies_index(data: dict, today: str) -> str:
@@ -267,10 +181,10 @@ def companies_index(data: dict, today: str) -> str:
         f'<p class="crumb"><a href="../datacenters/">Texas data centers</a> '
         f'<span aria-hidden="true">/</span> Who is behind the registry.</p>'
         f'<h1>Who is behind the registry</h1>'
-        f'<p>The certified list names <strong class="num">{n0(len(data["facilities"]))}</strong> '
-        f'facilities and reads as that many unrelated buildings. It is not. '
+        f'<p>The certified list contains <strong class="num">{n0(len(data["facilities"]))}</strong> '
+        f'certification records. '
         f'<strong class="num">{n0(sum(1 for x in data["entities"] if x["reach"] > 1))}</strong> '
-        f'companies appear on more than one, and the largest relationships in Texas are only '
+        f'companies appear at more than one facility, and the largest relationships in Texas are only '
         f'visible reading down a column.</p>'
         # THE FIELD MOVED AND DID NOT COPY. It leads the data centers tab now, which is the
         # page a reader arrives at. Drawing it twice ships the same forty node simulation and
@@ -303,48 +217,6 @@ def companies_index(data: dict, today: str) -> str:
              "the state filed them under, with every facility and role.",
         body=body, depth=1, active=None, today=today,
         canonical="company/", revised=False, extra_css="facility.css")
-
-
-def _record_ontology() -> str:
-    """The reader model behind the registry, shown before the full roster.
-
-    The registry page used the words owner, occupant and operator everywhere while explaining
-    their difference only after several screens. This makes the record's atomic row and the
-    research layered onto it visible as one system before the reader starts filtering names.
-    """
-    return (
-        '<section class="dcontology" id="record-model" aria-labelledby="record-model-title">'
-        '<header class="ontohead">'
-        '<span class="sectioneyebrow">How the record works</span>'
-        '<h2 id="record-model-title">One certification. Three legal roles.</h2>'
-        '<p>The state publishes one row for a tax exemption. The row names a facility and three '
-        'parties. Research adds evidence without turning a filing role into a claim about '
-        'corporate control or daily operations.</p>'
-        '</header>'
-        '<div class="ontoflow">'
-        '<article class="ontocore">'
-        '<span class="ontok">Certified facility</span>'
-        '<h3>The row Texas publishes</h3>'
-        '<p>A facility name and effective date anchor every relationship in the field.</p>'
-        '</article>'
-        '<div class="ontoroles">'
-        '<article><span class="ontomark">O</span><div><h3>Owner</h3>'
-        '<p>The entity named in the owner column.</p></div></article>'
-        '<article><span class="ontomark">U</span><div><h3>Occupant</h3>'
-        '<p>The entity named in the occupant column.</p></div></article>'
-        '<article><span class="ontomark">R</span><div><h3>Operator</h3>'
-        '<p>The entity named in the operator column.</p></div></article>'
-        '</div></div>'
-        '<div class="ontolayers" data-prose="data">'
-        '<article><span>Research layer</span><strong>Sourced fact</strong>'
-        '<small>A claim tied to a source and a reading date</small></article>'
-        '<article><span>Research layer</span><strong>Open gap</strong>'
-        '<small>A question the public record still can\'t answer</small></article>'
-        '<article><span>Second register</span><strong>Construction filing</strong>'
-        '<small>Address, cost, size and schedule when the entity match is specific</small></article>'
-        '</div>'
-        '</section>')
-
 
 
 def datacenters_page(today: str) -> str:
@@ -382,7 +254,7 @@ def datacenters_page(today: str) -> str:
     tiles = "".join(
         f'<div class="dctile"><span class="dcn num">{v}</span>'
         f'<span class="dck">{k}</span></div>'
-        for k, v in (("Certified facilities", n0(len(data["facilities"]))),
+        for k, v in (("Certification records", n0(len(data["facilities"]))),
                      ("Companies on more than one", n0(multi)),
                      ("Filed to build", bn(t["cost"])),
                      ("Researched in detail", n0(len(doss)))))
@@ -412,8 +284,8 @@ def datacenters_page(today: str) -> str:
         f'</nav></div>'
         f'<div class="dctiles" data-prose="data">{tiles}</div>'
         f'</section>'
-        + _registry_field(data, "../company/")
-        + _record_ontology()
+        + _registry_field(data)
+        + facility_explorer.render(data)
         + f'<div class="prose dcpage">'
         + beyond_panel.registry(_beyond, today)
         + beyond_panel.generation(_beyond, today)
