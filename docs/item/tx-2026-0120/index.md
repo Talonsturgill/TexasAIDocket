@@ -11,7 +11,7 @@ The Department of Homeland Security Science and Technology Directorate brought i
 - Public access: Write to the decider
 - Take part: https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient
 
-- Last checked: 2026-09-10
+- Last checked: 2026-09-14
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-07 · The article stands as published on September 1st, 2026. The opt-out lane, the signs in English and Spanish, the after-dark testing and the named capture platforms are all still on the page. The account still reports how well the cameras performed without publishing a rate.
 - 2026-09-10 · The assessment's own published account is still up and still describes the pedestrian exit lane test at the international bridge. It still states that image capture of pedestrians walking through the border exit area exceeded expectations in both day and night conditions. It still states that United States citizens were given a lane out of the image collection if they did not want to take part.
 - 2026-09-13 · The assessment's own published account would not answer this run, so what it says about the pedestrian exit lane test is unconfirmed today. Nothing the record holds about it has been revised.
+- 2026-09-14 · The directorate's account of the pedestrian exit test answered this run and still carries the sentences the record quotes. The work is still described as a demonstration for Customs and Border Protection rather than a deployment, and the account still publishes no accuracy figure and no retention period.
 
 ## Evidence
 

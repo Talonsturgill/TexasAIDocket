@@ -726,6 +726,35 @@
     "dedicated pediatric AI infrastructure"
    ],
    "prose_note": "The counts this prose could have carried are in computed.json and aggregates.json and on the frames instead. ledger_check refuses a number word in durable memory that its own vocabulary cannot re-derive."
+  },
+  {
+   "date": "2026-09-14",
+   "carousel_no": 24,
+   "docket_item": "tx-2026-0156",
+   "instrument": "ERCOT's Verification RFI user guide v1.1, its August 20th presentation to the utility commission, market notice M-A080326-04, and a developer's release to its own shareholders",
+   "topic": "The eligibility verification the grid operator is running on the large loads in its interconnection queue. A Request for Information and Production issued to every conditionally classified load, due in 10 business days with a 5 day extension that may be requested, carrying a notarized attestation from the load entity, the distribution provider and the transmission provider, submittable only by the transmission provider and locked once sent. 17 large loads at 6,608 MW of modeled 5 year peak have finished every other process the grid operator runs and hold no approval to energize",
+   "angle": "A statewide audit ordered from the Governor's office turned out to be a form. The deck is built on the gap between the size of the order and the size of the instrument, and on the fact that the public notice about the classifications carries procedure, a control number and not a single load name",
+   "angle_note": "The public account of what a classification did to a named project came from a company telling its own shareholders rather than from any list, which is why frame 8 is a shareholder announcement and frame 2 is a notice that names nobody. Both are document frames and they carry opposite contents.",
+   "entities": [
+    "ERCOT",
+    "Public Utility Commission of Texas",
+    "Galaxy Digital Inc.",
+    "Dickens County",
+    "Project 59142",
+    "M-A080326-04"
+   ],
+   "entities_note": "Dickens County is the one Texas place the record can name and it comes off the developer's own page, never off a list. No claim locates the Caspian project anywhere, so no surface joins it to a county.",
+   "keywords": [
+    "batch zero",
+    "verification rfi",
+    "large load",
+    "interconnection",
+    "notarized attestation",
+    "base load",
+    "studied load",
+    "energize"
+   ],
+   "prose_note": "dedupe_check put the nearest prior deck at 0.46, carousel no. 3 on August 19th, which was about the schedule the Governor's directive broke rather than the questionnaire it produced twenty three days later."
   }
  ]
 }

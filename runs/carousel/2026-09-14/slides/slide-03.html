@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 3 of 9. Archetype GRID.
+     Seventeen data halls at true proportion, 130 m by 16 m, all at one size because a long lens
+     gives them one, in ranks of six, six and five on the red bed ground. Under every one of them
+     a ruled nameplate line the same length, carrying nothing. The count is the image and a reader
+     can put a finger on each of them. NO ACCENT ANYWHERE ON THIS FRAME and that is the load
+     bearing absence in the deck: the accent is a name a Texan can look up, and not one of these
+     seventeen has one. Line screen at cell 4 angle 90, running against the units so they stay
+     separable rather than greying into a texture. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:176px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:1.0; letter-spacing:-0.022em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:376px; width:820px; font-size:28px; line-height:1.4; color:var(--grama); }
+  .fig { position:absolute; left:80px; top:1108px; font-family:"JetBrains Mono", monospace; font-size:52px;
+         letter-spacing:0.02em; color:var(--gypsum); font-variant-numeric:tabular-nums; }
+  .figl { position:absolute; left:80px; top:1174px; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:0.09em; color:var(--grama); text-transform:uppercase; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Count them. That is 6,608 megawatts.</h1>
+<p class="dek">A large load is 75 MW or greater. These seventeen have finished every process the grid operator runs and hold no approval to energize.</p>
+<div class="fig" id="fig">6,608 MW</div>
+<div class="figl" id="figl">Modeled, a five year projected peak</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    TXLAYOUT.mount(document.body, { kicker: "What the pause is holding", kicker2: "Through the end of 2026", counter: "03 / 09", src: "c12 c13 c14   TEXAS AI DOCKET", ink: "#8E8266" });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 96, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // ONE SIZE FOR EVERY UNIT, which is what a long lens gives. 1.30 px a metre, so a 130 m hall
+    // is 169 px long and its 16 m to the roof units is 21 px. That is the true proportion of the
+    // thing and it is why seventeen of them read as a fleet rather than as seventeen icons.
+    var PPM = 1.30, UL = Math.round(130 * PPM), UH = Math.round(13 * PPM), UR = Math.round(3.2 * PPM);
+    var RANKS = [6, 6, 5], GAP = 26, ROWY = [600, 760, 920];
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.05, seed: 2403,
+      screen: { mode: "line", cell: 4, angle: 90, gamma: 1.1, floor: 0.04 },
+      edges: { threshold: 20, width: 1.3, alpha: 0.85, dx: 0.9, dy: -0.7 },
+      draw: function (a) {
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        // the ground the fleet stands on, dark, so seventeen lit units are the only mass
+        var gr = a.createLinearGradient(0, 520, 0, 1060);
+        gr.addColorStop(0, "#262019"); gr.addColorStop(1, "#14100E");
+        a.fillStyle = gr; a.fillRect(0, 520, W, 540);
+
+        RANKS.forEach(function (n, r) {
+          var rowW = n * UL + (n - 1) * GAP;
+          // the rank of five starts where the sixes start, so it visibly stops one short at
+          // the right rather than reading as a centred taper
+          var x0 = Math.round((W - (6 * UL + 5 * GAP)) / 2), y = ROWY[r];
+          for (var i = 0; i < n; i++) {
+            var x = x0 + i * (UL + GAP);
+            // the ground shadow, east toward the camera, from the deck's one moon
+            a.fillStyle = "rgba(0,0,0,0.72)";
+            a.fillRect(x, y + UH, UL, 11);
+            // the long face
+            a.fillStyle = "#C2B8A2"; a.fillRect(x, y, UL, UH);
+            // the parapet, lit
+            a.fillStyle = "#F0E8D4"; a.fillRect(x, y, UL, 3);
+            // the louvre band, an opening, and openings are never lit in this deck
+            a.fillStyle = "#3A332C"; a.fillRect(x + 3, y + Math.round(UH * 0.55), UL - 6, 3);
+            // three roof units, so the silhouette says data hall rather than warehouse
+            a.fillStyle = "#D8CEB8";
+            a.fillRect(x + Math.round(UL * 0.36), y - 7, Math.round(UL * 0.28), 7);
+            // tilt-up joints
+            a.fillStyle = "#8A8172";
+            for (var j = 1; j < 5; j++) a.fillRect(x + Math.round(UL * j / 5), y, 2, UH);
+            // THE NAMEPLATE. One ruled line under every unit, the same length as the unit, and
+            // not one of them carries anything.
+            var nx = x + Math.round(UL * 0.15), nw = Math.round(UL * 0.70);
+            a.fillStyle = "#6E6558"; a.fillRect(nx, y + UH + 26, nw, 2);
+            a.fillRect(nx, y + UH + 20, 2, 9); a.fillRect(nx + nw - 2, y + UH + 20, 2, 9);
+          }
+        });
+      },
+      over: function (c) {
+        // the top band is dark by construction and the bottom band fades to paper for the figure
+        TXINK.reserve(c, { ground: "#120C0B", bottom: 330, bottomSolid: 180, top: 500, topSolid: 380 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

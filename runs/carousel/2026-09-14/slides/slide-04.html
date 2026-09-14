@@ -1,0 +1,158 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 4 of 9. Archetype CLOSE_CROP.
+     The attestation block at the foot of one letter sheet, at detail scale, the sheet cropped by
+     the left, the right and the bottom frame edges so the reader is holding it rather than
+     looking at it. Three ruled signature lines, all three empty. A 44 mm notary seal drawn as an
+     emboss with a raised rim and NO INK IN IT AT ALL, read entirely by the shadow the raking key
+     throws around it. Filling the seal would make it a stamp, and a stamp says somebody marked
+     the page where an emboss says somebody pressed it. Halftone at cell 6. No accent: a
+     confidential attestation is the opposite of a thing a Texan can look up. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; --sheet:#EFE9DA; --sink:#241512; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .clip { position:absolute; left:0; top:0; width:1080px; height:1350px; overflow:hidden; }
+  .hook { position:absolute; left:80px; top:176px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:100px; line-height:1.0; letter-spacing:-0.022em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  .sheet { position:absolute; left:-40px; top:398px; width:1160px; height:960px;
+           padding:44px 122px 0 122px; color:var(--sink); font-family:"Instrument Serif", serif; }
+  .sheet .conf { font-size:31px; line-height:1.3; }
+  .sheet .rule { position:relative; margin-top:96px; }
+  .sheet .rule i { display:block; height:2px; background:rgba(36,21,18,0.55); }
+  .sheet .rule span { display:block; font-family:"JetBrains Mono", monospace; font-size:24px;
+                      letter-spacing:0.08em; color:#3A2A22; text-transform:uppercase; margin-top:9px; }
+  .sheet .src { font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.04em;
+                color:#3A2A22; margin-top:44px; line-height:1.4; width:560px; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#241512; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Each party finds a notary.</h1>
+<div class="clip"><div class="sheet" id="sheet">
+  <div class="conf">All information submitted will be treated as confidential to the extent permitted by law.</div>
+  <div class="rule"><i></i><span>Load Entity</span></div>
+  <div class="rule"><i></i><span>Distribution Service Provider</span></div>
+  <div class="rule"><i></i><span>Transmission Service Provider</span></div>
+  <div class="src">From c5 c6. A response is not complete until all three have filed a notarized attestation.</div>
+</div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    var furn = TXLAYOUT.mount(document.body, { kicker: "What a complete response needs", kicker2: "Verification RFI, attestation", counter: "04 / 09", src: "c5 c6   TEXAS AI DOCKET", ink: "#8E8266" });
+    furn.src.style.color = "#241512";
+    TX.fitText(document.getElementById("hook"), { min: 80, max: 100, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var SX = -40, SY = 398, SW = 1160, SH = 980;
+    var sheet = [[SX, SY], [SX + SW, SY], [SX + SW, SY + SH], [SX, SY + SH]];
+    function poly(a, pts) { a.beginPath(); a.moveTo(pts[0][0], pts[0][1]); for (var i = 1; i < pts.length; i++) a.lineTo(pts[i][0], pts[i][1]); a.closePath(); a.fill(); }
+
+    // THE SEAL. 44 mm at this sheet's own scale, which is 1160 px for a 216 mm page, so
+    // 44 mm is 236 px. Its centre sits in the notary block at the lower right.
+    var MM = SW / 216, SEAL = { cx: 520, cy: 1246, r: 22 * MM };
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.05, seed: 2404,
+      screen: { mode: "halftone", cell: 6, angle: 22, gamma: 0.94, floor: 0.10 },
+      edges: { threshold: 44, width: 1.3, alpha: 0.7, dx: 1.2, dy: -0.8 },
+      draw: function (a) {
+        var gr = a.createLinearGradient(0, 240, 0, H);
+        gr.addColorStop(0, "#000000"); gr.addColorStop(1, "#2A241E");
+        a.fillStyle = gr; a.fillRect(0, 0, W, H);
+        a.save(); a.filter = "blur(20px)"; a.fillStyle = "#000000";
+        poly(a, sheet.map(function (p) { return [p[0] + 16, p[1] + 24]; })); a.restore();
+        a.fillStyle = "#BAB2A2"; poly(a, sheet);
+      },
+      over: function (c) {
+        var d = "M" + sheet.map(function (p) { return p[0] + " " + p[1]; }).join(" L ") + " Z";
+        var wob = TXINK.wobble(d, { amp: 1.5, freq: 0.017, seed: 6, step: 5 });
+        c.save(); c.fillStyle = "#EFE9DA"; c.fill(new Path2D(wob)); c.restore();
+
+        c.save(); c.clip(new Path2D(wob));
+        // the raking key at elevation 32 from the upper left, dying toward the foot
+        var fall = c.createLinearGradient(SX + 120, SY, SX + SW * 0.72, SY + SH);
+        fall.addColorStop(0, "rgba(30,18,15,0)");
+        fall.addColorStop(0.42, "rgba(30,18,15,0.17)");
+        fall.addColorStop(1, "rgba(30,18,15,0.32)");
+        c.fillStyle = fall; c.fillRect(SX - 8, SY - 8, SW + 16, SH + 16);
+        // and the near foot of the sheet curls away from the light entirely
+        var foot = c.createLinearGradient(0, SY + SH * 0.52, 0, SY + SH);
+foot.addColorStop(0, "rgba(30,18,15,0)"); foot.addColorStop(0.74, "rgba(30,18,15,0.16)"); foot.addColorStop(1, "rgba(30,18,15,0.28)");
+        c.fillStyle = foot; c.fillRect(SX - 8, SY - 8, SW + 16, SH + 16);
+
+        // THE SHEET'S LAID TOOTH AND ITS FOLD, at detail scale. At 5 px a millimetre a reader
+        // is close enough to see the paper, so the paper has to be there.
+        var R4 = TX.rng(20260914);
+        var rows = Math.ceil((SH - 190) / 7);
+        for (var lt = 0; lt < rows; lt++) {
+          c.fillStyle = "rgba(36,21,18,0.13)";
+          c.fillRect(SX, SY + lt * 7, SW, 2.6);
+        }
+        var cols = Math.ceil(SW / 11), toothH = SH - 190;
+        for (var cl = 0; cl < cols; cl++) {
+          c.fillStyle = "rgba(36,21,18,0.07)";
+          c.fillRect(SX + cl * 11, SY, 2.2, toothH);
+        }
+        for (var fb = 0; fb < 5200; fb++) {
+          var fx = SX + R4() * SW, fy2 = SY + R4() * (SH - 190);
+          c.fillStyle = R4() > 0.5 ? "rgba(36,21,18,0.16)" : "rgba(239,233,218,0.22)";
+          c.fillRect(fx, fy2, 2 + R4() * 4, 2.4);
+        }
+        // one horizontal fold, with its shadow above and its lit lip below
+        var fy3 = SY + 372;
+        var cr4 = c.createLinearGradient(0, fy3 - 30, 0, fy3 + 10);
+        cr4.addColorStop(0, "rgba(36,21,18,0)"); cr4.addColorStop(0.75, "rgba(36,21,18,0.19)");
+        cr4.addColorStop(1, "rgba(36,21,18,0)");
+        c.fillStyle = cr4; c.fillRect(SX, fy3 - 30, SW, 40);
+        c.fillStyle = "rgba(239,233,218,0.6)"; c.fillRect(SX, fy3 + 9, SW, 2);
+
+        // THE EMBOSS, and there is no ink in it anywhere. A raised rim under a raking key is a
+        // light edge on its upper left and a shadow on its lower right, and nothing else. The
+        // two arcs below are that, and the seal is legible only because of them.
+        function rim(r, lift, drop, wpx) {
+          c.lineWidth = wpx; c.lineCap = "round";
+          c.strokeStyle = "rgba(239,233,218," + lift + ")";
+          c.beginPath(); c.arc(SEAL.cx, SEAL.cy, r, Math.PI * 0.72, Math.PI * 1.78); c.stroke();
+          c.strokeStyle = "rgba(36,21,18," + drop + ")";
+          c.beginPath(); c.arc(SEAL.cx, SEAL.cy, r, Math.PI * 1.78, Math.PI * 2.72); c.stroke();
+        }
+        rim(SEAL.r, 0.92, 0.30, 9);              // the outer rim, pressed hardest
+        rim(SEAL.r - 17, 0.62, 0.20, 5);         // the inner ring
+        // the scalloped edge a notary press leaves, twenty four teeth, same light rule
+        for (var t = 0; t < 24; t++) {
+          var ang = t / 24 * Math.PI * 2, up = Math.cos(ang - Math.PI * 1.25) > 0;
+          var x1 = SEAL.cx + Math.cos(ang) * (SEAL.r + 4), y1 = SEAL.cy + Math.sin(ang) * (SEAL.r + 4);
+          var x2 = SEAL.cx + Math.cos(ang) * (SEAL.r + 13), y2 = SEAL.cy + Math.sin(ang) * (SEAL.r + 13);
+          c.strokeStyle = up ? "rgba(239,233,218,0.92)" : "rgba(36,21,18,0.30)";
+          c.lineWidth = 4; c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+        }
+        // the raised lettering inside, as relief only, never as ink
+        c.font = '500 20px "JetBrains Mono", monospace'; c.textAlign = "center"; c.textBaseline = "middle";
+        c.fillStyle = "rgba(239,233,218,0.95)"; c.fillText("NOTARY PUBLIC", SEAL.cx - 2, SEAL.cy - 16);
+        c.fillStyle = "rgba(36,21,18,0.30)";   c.fillText("NOTARY PUBLIC", SEAL.cx + 2, SEAL.cy - 12);
+        c.fillStyle = "rgba(239,233,218,0.95)"; c.fillText("STATE OF TEXAS", SEAL.cx - 2, SEAL.cy + 16);
+        c.fillStyle = "rgba(36,21,18,0.30)";   c.fillText("STATE OF TEXAS", SEAL.cx + 2, SEAL.cy + 20);
+        c.restore();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

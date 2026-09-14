@@ -1,0 +1,170 @@
+{
+  "date": "2026-09-14",
+  "_note": "Every number the deck states that is not a bare repetition of one word of prose. A figure the SOURCE wrote is declared with quoted_from and the exact string it came out of. A figure this run's own code produced is declared with computed_by, naming the script and the input, so anybody can re-run it. Nothing here was typed from memory.",
+  "aggregates": [
+    {
+      "phrase": "6,608 megawatts",
+      "slide": "slide-03.html",
+      "kind": "count",
+      "value": 6608,
+      "quoted_from": "c12",
+      "quote": "6,608 MW total peak demand over 5 years",
+      "note": "The presentation's own parenthesis. It is a MODELED five year projected peak and the frame prints that label under it, because a projected peak is not a meter reading."
+    },
+    {
+      "phrase": "seventeen have finished every process",
+      "slide": "slide-03.html",
+      "kind": "count",
+      "value": 17,
+      "quoted_from": "c12",
+      "quote": "17 large loads",
+      "note": "c12 carries the population and c13 says of that same population that it has finished all ERCOT processes except approval to energize. The seventeen units drawn on the frame are this figure and not a tally of claims."
+    },
+    {
+      "phrase": "five year",
+      "slide": "slide-03.html",
+      "kind": "duration",
+      "value": 5,
+      "quoted_from": "c12",
+      "quote": "total peak demand over 5 years",
+      "note": "The horizon the source states for its own projection, repeated rather than derived."
+    },
+    {
+      "phrase": "ten business days",
+      "slide": "slide-05.html",
+      "kind": "count",
+      "value": 10,
+      "quoted_from": "c3",
+      "quote": "Responses are due within 10 business days of issuance",
+      "note": "The hook spells the numeral and the label sets it in figures. Both are the same quoted number and both are declared."
+    },
+    {
+      "phrase": "10 business days",
+      "slide": "slide-05.html",
+      "kind": "count",
+      "value": 10,
+      "quoted_from": "c3",
+      "quote": "Responses are due within 10 business days of issuance",
+      "note": "The leadered label on the screen's top edge."
+    },
+    {
+      "phrase": "5 day",
+      "slide": "slide-05.html",
+      "kind": "duration",
+      "value": 5,
+      "quoted_from": "c3",
+      "quote": "A 5-day extension may be requested from ERCOT through your TSP",
+      "note": "The extension is MAY BE REQUESTED and the frame never adds it to the ten. figures.json carries the fifteen day sum and labels it modeled, and no published surface prints it, because the source does not say whether the extension is in business days."
+    },
+    {
+      "phrase": "three roles",
+      "slide": "slide-06.html",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "out/2026-09-14/computed.py counts the members of the parenthesised list inside c5's verbatim quote, which reads ILLE, DSP and TSP, and writes the result to figures.json as notarizing_parties",
+      "from_claims": [
+        "c5",
+        "c38",
+        "c40"
+      ],
+      "note": "Three PARTIES, never three attestations per load. c5 says each participating party completes a notarized attestation and says nothing about how many loads a party answers for."
+    },
+    {
+      "phrase": "three different sets",
+      "slide": "slide-06.html",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "out/2026-09-14/computed.py counts the members of the parenthesised list inside c5's verbatim quote, the same three parties, and c38's legend gives each of them its own column of required evidence",
+      "from_claims": [
+        "c5",
+        "c38",
+        "c40"
+      ],
+      "note": "The sets are the per-role columns of the eligibility table on slide 11 of the presentation, read out of c38 and c40."
+    },
+    {
+      "phrase": "three parties",
+      "slide": "slide-06.html",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "out/2026-09-14/computed.py counts the members of the parenthesised list inside c5's verbatim quote, ILLE, DSP and TSP, and writes it to figures.json as notarizing_parties",
+      "from_claims": [
+        "c5",
+        "c38",
+        "c40"
+      ],
+      "note": "The kicker on frame 6 and the same figure as three roles."
+    },
+    {
+      "phrase": "200 miles",
+      "slide": "slide-07.html",
+      "kind": "count",
+      "value": 200,
+      "computed_by": "slide-07.html computes the scale bar at render time from the Albers equal area conic projection in assets/js/txgeo.js, measuring the ground distance spanned by the drawn bar and rounding to the nearest round figure. The number is never typed into the slide and changes if the projection or the frame's extent changes",
+      "note": "A map's scale bar is the one numeral on a frame that has to be a function of the drawing rather than of the record, which is why it carries no claim id."
+    },
+    {
+      "phrase": "seventeen large loads",
+      "slide": "slide-01.html and caption.txt",
+      "kind": "count",
+      "value": 17,
+      "quoted_from": "c12",
+      "quote": "17 large loads",
+      "note": "The presentation's own population. Frame 1's dek and the caption both name it and neither counts anything."
+    },
+    {
+      "phrase": "zero large load classifications",
+      "slide": "slide-08.html",
+      "kind": "count",
+      "value": 0,
+      "quoted_from": "c26",
+      "quote": "Batch Zero",
+      "note": "NOT A COUNT. The frame prints the release's own headline verbatim and the word Zero in it is half of the proper name Batch Zero. Declared rather than reworded, because a document frame that edits the document it reproduces has given up the only thing it had."
+    },
+    {
+      "phrase": "three parties files",
+      "slide": "caption.txt",
+      "kind": "count",
+      "value": 3,
+      "computed_by": "out/2026-09-14/computed.py counts the members of the parenthesised list inside c5's verbatim quote, ILLE, DSP and TSP, and writes it to figures.json as notarizing_parties",
+      "from_claims": [
+        "c5",
+        "c38",
+        "c40"
+      ],
+      "note": "Three PARTIES, each filing its own attestation. Never three attestations per load, which is a relation c5 does not carry."
+    },
+    {
+      "phrase": "nine frames",
+      "slide": "caption.txt",
+      "kind": "count",
+      "value": 9,
+      "computed_by": "a count of the rendered frames in out/2026-09-14/render, which is the deck this caption is attached to. It is a property of the artifact rather than of the record, which is why it carries no claim id",
+      "note": "brand.yaml's linkedin_post.deck_summary_line asks for a plain line describing the deck, for readers who cannot see the images."
+    },
+    {
+      "phrase": "five official records",
+      "slide": "first_comment.txt",
+      "kind": "count",
+      "value": 5,
+      "computed_by": "scripts/carousel/sources_block.py groups the run's claims by source document and counts the ones whose source_type is primary_official, writing the head line from the tally rather than from anything typed",
+      "note": "ERCOT's guide, ERCOT's presentation, ERCOT's market notice, the commission's calendar feed and the commission's filing archive."
+    },
+    {
+      "phrase": "two first party accounts",
+      "slide": "first_comment.txt",
+      "kind": "count",
+      "value": 2,
+      "computed_by": "scripts/carousel/sources_block.py counts the remaining source documents in the same tally, the ones a company published about itself",
+      "note": "Galaxy's release and Galaxy's own data centers page."
+    },
+    {
+      "phrase": "two halves",
+      "slide": "slide-08.html",
+      "kind": "count",
+      "value": 2,
+      "computed_by": "slide-08.html sets c30's single released sentence as its two halves, one on each side of the semicolon the release carries, in two separately ruled quotation blocks. The figure is a count of the blocks this run set, read off the frame's own markup, and asserts nothing about the source",
+      "note": "The house rule bars a semicolon in published copy and the rule against touching a verbatim quote is older, so the sentence is split at its own mark rather than edited, and the frame says which it did."
+    }
+  ]
+}

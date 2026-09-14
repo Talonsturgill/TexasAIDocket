@@ -1213,3 +1213,66 @@ The September 13th deck is carousel no. 23, not the 22 its own section above say
 were cut from a record ending at carousel 21 and both numbered themselves 22. September 12th
 shipped first and keeps it. The same collision hit the item ids, and September 13th's three
 admissions are `tx-2026-0150` to `0152` rather than the `0147` to `0149` its section names.
+
+## 2026-09-14
+
+**`gov.texas.gov` NOW DISALLOWS ClaudeBot FOR THE WHOLE HOST, and the registry still says it
+serves no robots file at all.** This is the crawl boundary moving under the registry's feet, so
+it is the finding of the day rather than a note.
+
+`SOURCES_REGISTRY.md` section 1 reads, for this host, "**serves no robots.txt at all**", "200 to a
+browser UA, posts and `/uploads/files/press/` PDFs alike", "Browser UA. Nothing is disallowed
+because nothing is stated." Measured twice this run, with two clients:
+
+    https://gov.texas.gov/robots.txt   ClaudeBot UA   403 Forbidden
+    https://gov.texas.gov/robots.txt   browser UA     200, 822 bytes
+
+and the 822 bytes are:
+
+    User-agent: GPTBot        Disallow: /
+    User-agent: ClaudeBot     Disallow: /
+    User-agent: Amazonbot     Disallow: /
+    User-agent: Applebot      Disallow: /
+    User-agent: PerplexityBot Disallow: /
+    User-agent: *             eight /Apps/ paths, and nothing else
+
+**So the answer is the one this project already reached for `lrl.texas.gov` on August 25th, and
+it is reached the same way.** WebFetch identifies as ClaudeBot and this host has now named it, so
+the research phase is settled without needing a view on the rest. **No scout and no WebFetch may
+touch this host.** The `User-agent: *` block still allows everything outside those eight `/Apps/`
+paths, so a collector sending the descriptive `TexasAIDocket/1.0` is permitted on the letter of
+the file. Whether it is held out anyway, as `lrl.texas.gov`'s collectors are, is an owner call
+and is not one a run makes. Nothing here collects from this host today.
+
+**A 403 on a robots file is not itself a policy reading and the pair is what settles it.** The
+registry already carries that lesson under `courtlistener.com`, where a CloudFront 403 on the
+robots file was explicitly written off as an edge failure rather than a policy change. The
+difference here is that the browser fetch answered, and what it answered with is a named
+disallow. One client's 403 proves nothing. Two clients, one of which returns the file, prove
+what the file says.
+
+**`www.puc.texas.gov` is clean to both clients**, checked in the same pass. 476 bytes, a
+`Googlebot` block naming eight paths, no AI agent named anywhere, and the calendar RSS at
+`/agency/calendar/GetCalendarRss.aspx` answered 200 with 37 items to a browser UA.
+
+**`interchange.puc.texas.gov` answered 200 to a browser User-Agent every time this run**, and
+the registry's account of it is exactly right. Two separate workers reported it 402 and 503 to
+them on the same afternoon, which is what the registry predicts for a non-browser client, so the
+host is not flaky. It is doing what the registry says it does.
+
+**`www.dhs.gov` answers 403 to `reverify.py`'s own fetcher and 200 to WebFetch.** Twelve claims
+on `tx-2026-0120` came back `unreachable` for that reason, and every quoted sentence was still on
+the page when fetched the other way. The item's robots file names no AI agent and carries no
+disallow touching `/science-and-technology/`, so this is a bot filter rather than a policy. **An
+`unreachable` from the diff on this host is worth one manual fetch before it is written up as an
+unconfirmed claim.**
+
+**A SCOUT CANNOT READ A PDF, and two of five said so unprompted.** WebFetch returns raw binary
+for a PDF and the scout agents carry no Bash, so the strongest documents on the power beat, the
+ERCOT board decks and the Batch Zero guides, were unreachable to them and both scouts fell back
+to journalism for findings a primary document could have carried. The showrunner fetched the same
+two PDFs with `urllib` and a browser User-Agent and read them with `pypdf` in one call each, and
+both parsed cleanly with a real text layer. The working shape this run used was to fetch and
+extract in the main context, write the extraction to `out/<date>/sources/<name>.txt` with the
+source url, the byte count and the SHA256 of the bytes above it, and hand the fact-checker that
+path to verify against. It is in the upgrade backlog as a proposal.

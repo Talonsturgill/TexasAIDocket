@@ -1,0 +1,48 @@
+{
+ "judge": "integrity",
+ "date": "2026-09-14",
+ "carousel_no": 24,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.4
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.6
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.2
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.4
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 7.002,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Put the human figure back on frames 1, 6 and 9 and confirm it at 432 px before the type goes on.",
+ "highest_value_fixes": [
+  "Break the cover adjacency between BATCH ZERO, DICKENS COUNTY and the seventeen",
+  "Give frame 8 the line frame 7 got, that the record does not place Caspian anywhere",
+  "Restore c4's modality on frame 5, may come off rather than comes off",
+  "Declare the caption's two base load classifications in aggregates.json"
+ ],
+ "showrunner_note": "Read the deck mid repair. The figure finding was correct and is fixed. The three adjacency findings and the frame 5 modality are carried into the run record as work."
+}

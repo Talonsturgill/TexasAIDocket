@@ -1,0 +1,155 @@
+<!doctype html>
+<!-- CAROUSEL 24, frame 5 of 9. Archetype DIAGRAM.
+     The mechanism, at a desk, at a reading eye of 1.10 m. A seated figure, a screen carrying one
+     flat Submit control, a stack of supporting documents and a filing box on the floor. Five mono
+     labels around it, each on a leader that terminates on its target's own coordinates and is
+     declared in window.__txLeaders. The screen is the only emissive thing in nine frames, so the
+     light in this frame comes from the instrument itself. Line screen at cell 5 angle -24, the
+     drafting sheet's register, running against the leaders so a leader reads as a drawn rule. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --redbed:#120C0B; --gypsum:#E9DCC0; --grama:#8E8266; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--redbed); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:178px; width:900px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:96px; line-height:1.0; letter-spacing:-0.022em; color:var(--gypsum); font-variation-settings:"opsz" 144; }
+  .lab { position:absolute; width:330px; font-family:"JetBrains Mono", monospace; font-size:24px;
+         line-height:1.34; letter-spacing:0.055em; color:var(--grama); text-transform:uppercase; z-index:12; }
+  .lab b { display:block; color:var(--gypsum); font-weight:500; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--grama); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Ten business days, and it locks.</h1>
+<div class="lab" id="L1" style="left:80px;top:378px"><b>10 business days</b>from issue</div>
+<div class="lab" id="L2" style="left:80px;top:496px"><b>A 5 day extension</b>requested through the provider</div>
+<div class="lab" id="L3" style="left:80px;top:640px"><b>Only the transmission</b>provider can submit</div>
+<div class="lab" id="L4" style="left:80px;top:758px"><b>Then it locks</b></div>
+<div class="lab" id="L5" style="left:80px;top:886px"><b>Or the load comes</b>off Batch Zero</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260914);
+    TXLAYOUT.mount(document.body, { kicker: "How a response is made", kicker2: "The RFI portal", counter: "05 / 09", src: "c3 c4 c5 c7   TEXAS AI DOCKET", ink: "#8E8266" });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 96, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var cam = { w: W, h: H, eye: 1.10, horizon: 812, f: 760, fogZ: 1e9, light: { az: -68, el: 32 } };
+
+    var desk = TXOBJ.sprite("desk");
+    var chair = TXOBJ.sprite("office_chair");
+    var sitter = TXFIG.figure({ pose: "sit", seat: 0.45, height: 1.72 });
+    var box = TXOBJ.sprite("filing_box");
+    var DX = 0.62, DZ = 1.70;                    // the desk sits right of centre, labels own the left
+    var T = {};
+
+    TXINK.print(cx, {
+      ground: "#120C0B", ink: "#E9DCC0", fibre: 0.05, seed: 2405,
+      screen: { mode: "line", cell: 5, angle: -24, gamma: 1.16, floor: 0.035 },
+      edges: { threshold: 20, width: 1.4, alpha: 0.85, dx: 1.2, dy: -0.9 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        a.fillStyle = "#000000"; a.fillRect(0, 0, W, H);
+        a.fillStyle = "#141110"; a.fillRect(0, 0, W, S.groundY(11) + 2);   // the room's far wall
+        S.ground({ near: 0.9, far: 11, fill: "#1E1916" });
+        S.gridZ({ dz: 1.0, from: 1.8, to: 11, ink: "rgba(0,0,0,0.5)", width: 1 });
+
+        // THE SCREEN IS THE ONLY LIGHT. Everything it reaches is lit by it and nothing else is.
+        var sp = S.project(DX, 0.98, DZ), ppm = S.ppm(DZ);
+        var pool = a.createRadialGradient(sp[0], sp[1], 40, sp[0], sp[1], 470);
+        pool.addColorStop(0, "rgba(255,255,255,0.34)");
+        pool.addColorStop(0.5, "rgba(255,255,255,0.09)");
+        pool.addColorStop(1, "rgba(255,255,255,0)");
+        a.save(); a.beginPath(); a.rect(430, 300, W - 430, H - 300); a.clip();
+        a.fillStyle = pool; a.fillRect(430, 300, W - 430, H - 300); a.restore();
+
+        var warm = { ink: "#B6AC98", paper: "#171310", accent: "#B6AC98" };
+        S.sprite(chair, { X: DX + 0.52, Z: DZ + 0.95, inks: { ink: "#4E463C", paper: "#171310" }, fade: false });
+        S.sprite(sitter, { X: DX + 0.50, Z: DZ + 0.80, inks: { ink: "#D6CCB6", paper: "#171310", accent: "#D6CCB6" }, fade: false });
+        S.shadow(desk, { X: DX, Z: DZ, ink: "#000", alpha: 0.55 });
+        S.sprite(desk, { X: DX, Z: DZ, inks: warm, fade: false });
+
+        // a stack of supporting documents on the desk, at true scale, 0.216 m across
+        var st = S.rectBox({ X: DX, Z: DZ }, { x: -0.72, y: 0.78, w: 0.30, h: 0.05 });
+        for (var k = 0; k < 5; k++) {
+          a.fillStyle = k % 2 ? "#D2C8B2" : "#E4DAC4";
+          a.fillRect(st.x + k * 1.4, st.y - k * 4, st.w, 5);
+        }
+        T.stack = { x: st.x + 6, y: st.y - 10, w: st.w, h: 22 };
+
+        // THE PORTAL SCREEN on the desk, 0.60 by 0.36 m, with ONE flat Submit control on it
+        var sc = S.rectBox({ X: DX, Z: DZ }, { x: -0.30, y: 1.16, w: 0.60, h: 0.36 });
+        a.fillStyle = "#6A6152"; a.fillRect(sc.x, sc.y, sc.w, sc.h);
+        a.fillStyle = "#E9DCC0"; a.fillRect(sc.x + 4, sc.y + 4, sc.w - 8, sc.h - 8);
+        // the section list down its left, as ruled rows, some complete and some not
+        for (var r = 0; r < 6; r++) {
+          a.fillStyle = r < 4 ? "#241512" : "#A89C86";
+          a.fillRect(sc.x + 14, sc.y + 18 + r * 17, 8, 8);
+          a.fillStyle = "#5A4E42";
+          a.fillRect(sc.x + 30, sc.y + 21 + r * 17, 92, 3);
+        }
+        // the Submit control, the only permission in the system, drawn flat
+        var bw = 132, bh = 44;
+        var bx = sc.x + sc.w - bw - 14, by = sc.y + sc.h - bh - 78;
+        a.fillStyle = "#241512"; a.fillRect(bx, by, bw, bh);
+        T.submit = { x: bx, y: by, w: bw, h: bh };
+        // the lock that falls the moment the response is sent, drawn as a shackle and a body
+        var lx = bx + bw / 2, ly = by + bh + 34;
+        a.strokeStyle = "#241512"; a.lineWidth = 6;
+        a.beginPath(); a.arc(lx, ly - 8, 14, Math.PI, 0); a.stroke();
+        a.fillStyle = "#241512"; a.fillRect(lx - 20, ly - 8, 40, 30);
+        a.fillStyle = "#E9DCC0"; a.fillRect(lx - 3, ly + 2, 6, 13);
+        T.screenTop = { x: sc.x, y: sc.y, w: sc.w, h: 14 };
+        T.lock = { x: lx - 20, y: ly - 22, w: 40, h: 44 };
+
+        // the filing box on the floor, with its own contact shadow
+        S.shadow(box, { X: DX - 2.05, Z: DZ + 0.95, ink: "#000", alpha: 0.5 });
+        S.sprite(box, { X: DX - 2.05, Z: DZ + 0.95, inks: { ink: "#9A8E7C", paper: "#171310" }, fade: false });
+        T.box = S.spriteBox(box, { X: DX - 2.05, Z: DZ + 0.95 });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#120C0B", bottom: 140, bottomSolid: 95, top: 330,
+          rect: { x: 52, y: 352, w: 412, h: 620 }, rectAlpha: 0.93 });
+
+        // THE LEADERS. Each is authored as a polyline that terminates ON its target's own
+        // coordinates and is declared, so qa.py can hold it to within 24 px. Every one ends
+        // short of its label's glyph band and none crosses type.
+        var pairs = [["L1", T.screenTop], ["L2", T.stack], ["L3", T.submit], ["L4", T.lock], ["L5", T.box]];
+        var decl = [];
+        c.save(); c.strokeStyle = "#8E8266"; c.fillStyle = "#E9DCC0"; c.lineWidth = 2;
+        pairs.forEach(function (pr) {
+          var el = document.getElementById(pr[0]).getBoundingClientRect(), t = pr[1];
+          if (!t) return;
+          var x0 = el.right + 22, y0 = el.top + 16;
+          var x1 = t.x + t.w / 2, y1 = t.y + t.h / 2;
+          var mx = x0 + (x1 - x0) * 0.42;
+          c.beginPath(); c.moveTo(x0, y0); c.lineTo(mx, y0); c.lineTo(x1, y1); c.stroke();
+          c.beginPath(); c.arc(x1, y1, 6, 0, Math.PI * 2); c.fill();
+          decl.push({ target: pr[0], at: [x1, y1], to: [x1, y1] });
+        });
+        c.restore();
+        window.__txLeaders = decl;
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

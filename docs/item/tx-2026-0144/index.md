@@ -10,7 +10,7 @@ The Department of Energy published a request for information on September 9th, 2
 - Comment closes: 2026-10-09
 - Take part: https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18370.txt
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-14
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-11 · The public webinar on September 16th is on the record's calendar now. It falls before the October 9th deadline and is the first thing a reader can attend. The calendar and the feeds read key dates rather than the access note.
 - 2026-09-12 · The comment window is still open, closing October 9th.
 - 2026-09-13 · The comment window is still open, closing October 9th.
+- 2026-09-14 · The request for information is still taking written responses through October 9th. The reason the notice gives for the demand it is securing against still names data centers and artificial intelligence.
 
 ## Evidence
 

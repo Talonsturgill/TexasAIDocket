@@ -1,0 +1,82 @@
+{
+  "grid": [
+    270,
+    338
+  ],
+  "frames": {
+    "slide-01": {
+      "median_L": 5.6,
+      "p05_L": 2.8,
+      "p95_L": 63.2,
+      "accent_share_pct": 0.0
+    },
+    "slide-02": {
+      "median_L": 84.4,
+      "p05_L": 3.4,
+      "p95_L": 92.1,
+      "accent_share_pct": 0.21
+    },
+    "slide-03": {
+      "median_L": 4.1,
+      "p05_L": 3.4,
+      "p95_L": 69.6,
+      "accent_share_pct": 0.0
+    },
+    "slide-04": {
+      "median_L": 65.9,
+      "p05_L": 3.4,
+      "p95_L": 83.4,
+      "accent_share_pct": 0.0
+    },
+    "slide-05": {
+      "median_L": 7.4,
+      "p05_L": 3.8,
+      "p95_L": 64.8,
+      "accent_share_pct": 0.0
+    },
+    "slide-06": {
+      "median_L": 3.8,
+      "p05_L": 2.8,
+      "p95_L": 63.5,
+      "accent_share_pct": 0.0
+    },
+    "slide-07": {
+      "median_L": 3.8,
+      "p05_L": 2.2,
+      "p95_L": 43.6,
+      "accent_share_pct": 0.58
+    },
+    "slide-08": {
+      "median_L": 61.0,
+      "p05_L": 3.4,
+      "p95_L": 87.2,
+      "accent_share_pct": 0.87
+    },
+    "slide-09": {
+      "median_L": 5.2,
+      "p05_L": 1.7,
+      "p95_L": 70.4,
+      "accent_share_pct": 1.62
+    }
+  },
+  "deck": {
+    "median_of_frame_medians": 5.6,
+    "darkest_frame": "slide-06",
+    "lightest_frame": "slide-02",
+    "spread_L": 80.6,
+    "light_frames": [
+      "slide-02",
+      "slide-04",
+      "slide-08"
+    ],
+    "accented_frames": [
+      "slide-02",
+      "slide-07",
+      "slide-08",
+      "slide-09"
+    ],
+    "accent_frame_count": 4,
+    "worst_plan_miss_L": 7.9,
+    "plan_complete": true
+  }
+}

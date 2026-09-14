@@ -1,0 +1,112 @@
+{
+  "notarizing_parties": {
+    "value": 3,
+    "unit": "parties",
+    "basis": "measured",
+    "from": [
+      "c5"
+    ],
+    "how": "the members of the parenthesised list in c5's verbatim quote, counted",
+    "members": [
+      "ILLE",
+      "DSP",
+      "TSP"
+    ]
+  },
+  "evidence_kinds": {
+    "value": 6,
+    "unit": "kinds of proof",
+    "basis": "measured",
+    "from": [
+      "c38"
+    ],
+    "how": "the letter definitions in c38's legend, counted",
+    "members": [
+      "A = Attestation",
+      "D = Disclosure",
+      "E = Evidence",
+      "F = Form",
+      "T = TSP/DSP sign-off",
+      "I = Inspection"
+    ]
+  },
+  "requirement_rows": {
+    "value": 11,
+    "unit": "requirement rows",
+    "basis": "measured",
+    "from": [
+      "c39"
+    ],
+    "how": "the lines of c39's contiguous quote, counted. c39's own note says a twelfth row, Site Verification, sits outside this run, so this is the rows inside the quote and is never described as the whole table",
+    "members": [
+      "CIAC satisfaction (TSP/DSP-confirmed) T",
+      "Long-lead equipment (≥18 mo.) A",
+      "Notice to Proceed A",
+      "End-use customer confirmation A",
+      "Site approvals / no-approval statement A",
+      "Binding General Contractor contract A",
+      "Binding substation contractor contract A",
+      "Financial security (TSP/DSP-confirmed) T",
+      "Affiliate Form (if applicable) F",
+      "Site control + evidence A E",
+      "Section 9.7 disclosures A D"
+    ]
+  },
+  "galaxy_base_load_projects": {
+    "value": 2,
+    "unit": "projects",
+    "basis": "measured",
+    "from": [
+      "c28",
+      "c29"
+    ],
+    "how": "the claims among c28 to c32 whose own quote reads 'classified as Batch Zero Base Load'"
+  },
+  "galaxy_studied_load_projects": {
+    "value": 3,
+    "unit": "projects",
+    "basis": "measured",
+    "from": [
+      "c30",
+      "c31",
+      "c32"
+    ],
+    "how": "the claims among c28 to c32 whose own quote reads 'classified as Batch Zero Studied Load'"
+  },
+  "reclassified_projects": {
+    "value": 1,
+    "unit": "projects",
+    "basis": "measured",
+    "from": [
+      "c30"
+    ],
+    "how": "the claims among c28 to c32 whose quote carries BOTH 'submitted ... as Base Load' and 'conditionally classified as Studied Load'"
+  },
+  "clock_days": {
+    "value": 10,
+    "unit": "business days",
+    "basis": "measured",
+    "from": [
+      "c3"
+    ],
+    "how": "read out of c3's own quote"
+  },
+  "extension_days": {
+    "value": 5,
+    "unit": "days",
+    "basis": "measured",
+    "from": [
+      "c3"
+    ],
+    "how": "read out of c3's own quote"
+  },
+  "clock_plus_extension": {
+    "value": 15,
+    "unit": "days at the outside",
+    "basis": "modeled",
+    "from": [
+      "c3"
+    ],
+    "how": "10 business days plus a 5 day extension, summed here. MODELED because the source adds the two units without saying whether the extension is business days, so this is an upper bound on a respondent's time and is never printed as a deadline"
+  }
+}

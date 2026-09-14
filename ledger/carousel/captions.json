@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the correction",
   "the quiet decision",
   "the two things",
   "the who",
   "the before and after",
-  "the plain question"
+  "the plain question",
+  "the number that is wrong"
  ],
  "entries": [
   {
@@ -400,15 +400,34 @@
    ],
    "critic_note": "THE OPENING MOVE WAS ON ITS OWN EXCLUSION LIST AND A GATE CAUGHT IT, NOT A JUDGE. The caption shipped through five scoring rounds opening on 'the two things', which CAPTION_CRAFT puts off the menu for six runs and which 2026-09-09 had already spent. Round 5's reader judge flagged it as a lead it could not settle because this entry was not yet written; ledger_check then failed the build on it outright. It is now 'the plain question', which is unspent, and the opening asks what a scanner was taught on, which is the question frame 9 tells a parent to put at a desk. Relabelling it would have been the 2026-08-25 failure and CAPTION_CRAFT forbids it in as many words. WHAT THE ROUNDS DID TO THIS CAPTION: round 1's critic disqualified both candidates for fabrication, one inventing '69 adults' and one attributing a sentence to institutions that never wrote it. Round 2 replaced a lede that put no Texas above the fold. Round 3 fixed an attribution saying two Texas departments 'built' a model whose own byline carries Duke, and restored a c5 quote truncated mid sentence and closed with a full stop. Round 5 removed 'One warns about the other', a relation neither document makes. THE REWRITE ALSO RECOVERED THE JOIN that removal cost: 'put a number on the same move' is the deck's own framing of why the second paper is here, which three reader judges asked for in three consecutive rounds and which is still absent from the FRAMES.",
    "move_note": "Rewritten after September 12th landed. That deck spent 'the plain question' and this run had already moved onto it, because the September 12th ledger was not merged when the caption room read its exclusions. The move is spent rather than relabelled, which is what the gate asks for and the only answer that keeps the exclusion window meaning anything. 'the number that is wrong' is the fit this story wanted anyway. A reader takes 0.615 for the model's accuracy, and the figure it scored outside its own cohort is the correction."
+  },
+  {
+   "date": "2026-09-14",
+   "carousel_no": 24,
+   "opening_move": "the deadline",
+   "structure": "Two columns",
+   "closing_move": "Point at the record, plainly, without a call to action",
+   "first_line": "Ten business days to answer the audit.",
+   "words": 137,
+   "commas": 1,
+   "commas_per_100w": 0.73,
+   "chars": 898,
+   "hashtags": [
+    "#DickensCounty",
+    "#BatchZero",
+    "#Project59142"
+   ],
+   "critic_note": "Two candidates. B lost on a welded relation, putting the Caspian project inside Dickens County by adjacency when no claim locates it anywhere, and on turning three notarizing PARTIES into one document signed by three. A won and was rewritten: it had asserted 'the next open meeting is September 17th', a succession c41 does not carry, and had set Project 59142 beside that date in a way that implied an agenda nobody fetched. Both came out, and the deck's closing frame carried the same phrase and was rewritten with it.",
+   "move_note": "The room was handed exclusions that were one shipped entry behind, so A was briefed to close on the substance carousel no. 23 had shipped the day before. The rewrite moved the close to 'Point at the record, plainly', last spent September 10th. The off-by-one is written up in knowledge/carousel/UPGRADE_BACKLOG.md."
   }
  ],
  "structures_recent": [
-  "Clock",
   "Ledger",
-  "Ladder"
+  "Ladder",
+  "Zoom out"
  ],
  "closing_moves_recent": [
-  "Name what happens next and when"
+  "Name what is still not public, and how big that is."
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

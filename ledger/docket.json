@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-13",
+  "generated": "2026-09-14",
   "gates": [
    "claims",
    "cross references",
@@ -1897,7 +1897,7 @@
      "fetched": "2026-09-03"
     }
    ],
-   "last_verified": "2026-09-13",
+   "last_verified": "2026-09-14",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -1993,6 +1993,11 @@
     {
      "date": "2026-09-13",
      "note": "Checked and unchanged. Still open, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-14",
+     "note": "The feed is still live and still publishes each open meeting with the room it sits in. Entries keep falling off the list once their date has passed, which is how this calendar behaves rather than a change to it.",
      "checked": true
     }
    ]
@@ -10316,7 +10321,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-09-13",
+   "last_verified": "2026-09-14",
    "confidence": "high",
    "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
    "history": [
@@ -10377,6 +10382,11 @@
     {
      "date": "2026-09-13",
      "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-14",
+     "note": "The award record still reads as it did. The requirement that a proof assistant certify a proposed algorithm before it counts is still part of what was funded rather than a step offered afterwards.",
      "checked": true
     }
    ]
@@ -12909,7 +12919,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-09-13",
+   "last_verified": "2026-09-14",
    "confidence": "high",
    "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
    "history": [
@@ -12959,6 +12969,11 @@
     {
      "date": "2026-09-13",
      "note": "The comment window is still open, closing September 17th.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-14",
+     "note": "The staff memorandum is still the live ask on this review and the deadline it set has not moved. Comments on whether the offer caps and the emergency pricing program should change are still due September 17th.",
      "checked": true
     }
    ]
@@ -14602,7 +14617,7 @@
    "confidence": "high",
    "notes_for_editor": "The account carries superlatives and no measurement. Nothing in it states an accuracy rate, a count of images captured, a retention period, or whether either system will be deployed.",
    "id": "tx-2026-0120",
-   "last_verified": "2026-09-10",
+   "last_verified": "2026-09-14",
    "history": [
     {
      "date": "2026-09-04",
@@ -14620,6 +14635,11 @@
     {
      "date": "2026-09-13",
      "note": "The assessment's own published account would not answer this run, so what it says about the pedestrian exit lane test is unconfirmed today. Nothing the record holds about it has been revised.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-14",
+     "note": "The directorate's account of the pedestrian exit test answered this run and still carries the sentences the record quotes. The work is still described as a demonstration for Customs and Border Protection rather than a deployment, and the account still publishes no accuracy figure and no retention period.",
      "checked": true
     }
    ]
@@ -16759,7 +16779,7 @@
    "confidence": "high",
    "notes_for_editor": "The notice never says Texas or ERCOT. It is admitted as statewide because it is a federal comment window any Texan may file in, exactly like the other federal windows on this record, and no Texas specific claim rests on it.",
    "id": "tx-2026-0144",
-   "last_verified": "2026-09-13",
+   "last_verified": "2026-09-14",
    "history": [
     {
      "date": "2026-09-11",
@@ -16777,6 +16797,11 @@
     {
      "date": "2026-09-13",
      "note": "The comment window is still open, closing October 9th.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-14",
+     "note": "The request for information is still taking written responses through October 9th. The reason the notice gives for the demand it is securing against still names data centers and artificial intelligence.",
      "checked": true
     }
    ]
@@ -17038,13 +17063,18 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-09-12",
+   "last_verified": "2026-09-14",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
    "history": [
     {
      "date": "2026-09-12",
      "note": "Admitted on the council's own agenda for the September 15th meeting. Neither item has been voted on.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-14",
+     "note": "Both items are still posted to the council's own agenda and neither has been voted on. Nothing has been added to the agenda that narrows what the two would do to the fixed plate reader cameras.",
      "checked": true
     }
    ],
@@ -17480,6 +17510,226 @@
     {
      "date": "2026-09-13",
      "note": "Admitted to the record. The grid operator has told providers which large loads sit on the provisional Batch Zero list. Every placement on it carries a condition that can still take the load off. The notice names no load and gives no total."
+    }
+   ]
+  },
+  {
+   "title": "The grid operator sends every conditionally classified large load a questionnaire, with a notarized attestation and ten business days to answer",
+   "summary": "ERCOT published the user guide for the Verification RFI on September 11th, 2026, the questionnaire it issues as part of the Batch Zero eligibility verification. The guide states the questionnaire goes to every large load that was conditionally classified on the list distributed to transmission service providers on September 3rd. Each of the three parties on a project, the load entity, the distribution service provider and the transmission service provider, answers the sections assigned to its own role. Which sections a project sees depends on the conditional classification ERCOT gave it. Every participating party has to upload a notarized attestation before the response can be submitted. Responses are due within ten business days of issuance and a five day extension may be requested through the transmission service provider. A load entity that fails to supply what its provider needs may be taken off the Batch Zero process. Only the transmission service provider can submit the finished response, and once submitted it is locked.",
+   "topic": "power-and-the-grid",
+   "decider": {
+    "name": "Electric Reliability Council of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-03",
+     "kind": "filed",
+     "note": "Date of the conditional classification list the questionnaire is issued against"
+    },
+    {
+     "date": "2026-09-11",
+     "kind": "ordered",
+     "note": "Version date on the user guide the grid operator published for the questionnaire"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The user guide is published on the grid operator's own document site and anyone can read it. The questionnaire itself runs inside a registered portal. Only the three parties on a project can see or answer it, and a member of the public has no route in.",
+    "url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "The grid operator has issued a Verification RFI as part of the Batch Zero eligibility verification.",
+     "verbatim_quote": "ERCOT has issued a Request for Information and Production (RFI, referred to as the Verification RFI) as part of the Batch Zero Eligibility Verification process.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide for Transmission Service Providers (TSPs), Distribution Service Providers (DSPs), and Load Entities (ILLEs), Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c1",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "It goes to every large load on the conditional classification list distributed on September 3rd.",
+     "verbatim_quote": "This is being issued to all Large Loads that were conditionally classified on the list distributed to TSPs on Thursday, September 3, 2026",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide, Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c2",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "Responses are due within ten business days and a five day extension may be requested.",
+     "verbatim_quote": "Responses are due within 10 business days of issuance. A 5-day extension may be requested from ERCOT through your TSP.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide, Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c3",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "A load entity that does not supply what its provider needs may be taken off the Batch Zero process.",
+     "verbatim_quote": "If the Load Entity fails to provide information and/or supporting documentation necessary for the TSP to timely submit a completed response to this Verification RFI, the Large Load may be removed from the Batch Zero Process.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide, Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c4",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "Every participating party has to complete a notarized attestation.",
+     "verbatim_quote": "Each participating party (ILLE, DSP, and TSP) is required to complete a notarized attestation. Upload your company's attestation file in the designated Section before submitting.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide, Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c5",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "Which sections a project answers depends on the conditional classification it was given.",
+     "verbatim_quote": "The sections and questions you see depend on your role and the Large Load Project's conditional classification in Batch Zero.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide, Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c6",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "Only the transmission service provider may submit the finished response, and it locks on submission.",
+     "verbatim_quote": "It is the TSP's responsibility to submit the fully completed Verification RFI to ERCOT. Only the TSP has the Submit to ERCOT button available. Once submitted, the Verification RFI is locked and cannot be edited.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide, Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c7",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "Answers are treated as confidential to the extent the law permits.",
+     "verbatim_quote": "All information submitted will be treated as confidential to the extent permitted by law.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf",
+     "source_title": "ERCOT RFI Portal in RIOO, Batch Zero Verification, User Guide, Version 1.1",
+     "source_type": "primary_official",
+     "id": "tx-2026-0156-c8",
+     "fetched": "2026-09-14"
+    }
+   ],
+   "id": "tx-2026-0156",
+   "last_verified": "2026-09-14",
+   "history": [
+    {
+     "date": "2026-09-14",
+     "note": "Admitted to the record. The grid operator has published the guide to the questionnaire every conditionally classified large load must answer. A notarized attestation from each of the three parties is part of a complete response. A load entity that does not supply what its provider needs may be taken off the process."
+    }
+   ]
+  },
+  {
+   "title": "A data center developer tells its shareholders what the Batch Zero list did to five of its Texas projects, and one came back in a different class than it was filed in",
+   "summary": "Galaxy Digital published an account on September 8th, 2026 of the conditional Batch Zero classifications ERCOT gave five of its Texas data center projects. Three of the five sit at the Helios campus in Dickens County, in the panhandle region of West Texas. Two projects already approved at that campus before the batch were classified as Batch Zero Base Load. Three more, Caspian, Selene and a further Helios load request, were classified as Batch Zero Studied Load. The account states that the company submitted Caspian as Base Load and that it was conditionally classified as Studied Load instead. It states what separates the two classes. A base load project is modeled in the study and is not subject to further capacity allocation. A studied load project is subject to capacity allocation as part of the study. The grid operator's own notice of the classifications named no load and gave no total. This account is where the public first learned what a classification did to a named project. The company's own risk section states that a classification may be modified, withdrawn or not confirmed, and that a project may be removed from Batch Zero.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "Galaxy Digital Inc.",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Dickens"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-08",
+     "kind": "filed",
+     "note": "Date the company's account of the classifications carries"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The company publishes the account on the newswire it uses for shareholder announcements. A reader who wants to act on a classification goes to the grid operator's dispute route rather than to the company. That route is open to the interconnecting entity rather than to the public.",
+    "url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "Five of the company's Texas data center projects received conditional Batch Zero classifications.",
+     "verbatim_quote": "Galaxy Digital Inc. (Nasdaq: GLXY) (\"Galaxy\" or the \"Company\") today announced that five of its Texas data center projects received conditional classifications under the Electric Reliability Council of Texas (\"ERCOT\") Batch Zero large load interconnection process, covering approximately 4.2 gigawatts of gross power capacity.",
+     "source_url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+     "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+     "source_type": "primary_corporate",
+     "id": "tx-2026-0157-c1",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "The two classes are treated differently in the study.",
+     "verbatim_quote": "Base Load projects are modeled in the study and are not subject to further capacity allocation, while Studied Load projects are subject to capacity allocation as part of the study.",
+     "source_url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+     "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+     "source_type": "primary_corporate",
+     "id": "tx-2026-0157-c2",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "One project was submitted in one class and conditionally classified in the other.",
+     "verbatim_quote": "Galaxy submitted Caspian as Base Load; the project has been conditionally classified as Studied Load.",
+     "source_url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+     "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+     "source_type": "primary_corporate",
+     "id": "tx-2026-0157-c3",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "The first two projects were classified as base load.",
+     "verbatim_quote": "Helios I — 800 megawatts (MW) at the Helios data center campus, classified as Batch Zero Base Load.",
+     "source_url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+     "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+     "source_type": "primary_corporate",
+     "id": "tx-2026-0157-c4",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "The three expansion projects were classified as studied load.",
+     "verbatim_quote": "Helios III — a 1,000 MW load request at the Helios campus, classified as Batch Zero Studied Load.",
+     "source_url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+     "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+     "source_type": "primary_corporate",
+     "id": "tx-2026-0157-c5",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "The company states that a classification may be withdrawn and a project removed.",
+     "verbatim_quote": "(1) the conditional nature of the Batch Zero classifications described above and the possibility that a classification is modified, withdrawn or not confirmed; (2) the outcome, scope and duration of the verification and audit being conducted by ERCOT and the Public Utility Commission of Texas, and the risk that a project is removed from Batch Zero",
+     "source_url": "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html",
+     "source_title": "Galaxy Provides Update on ERCOT Batch Zero Large Load Classifications",
+     "source_type": "primary_corporate",
+     "id": "tx-2026-0157-c6",
+     "fetched": "2026-09-14"
+    },
+    {
+     "text": "The campus the three projects sit on is in Dickens County.",
+     "verbatim_quote": "Dickens County, Texas",
+     "source_url": "https://www.galaxy.com/data-centers",
+     "source_title": "Galaxy Data Centers, Helios",
+     "source_type": "primary_corporate",
+     "id": "tx-2026-0157-c7",
+     "fetched": "2026-09-14"
+    }
+   ],
+   "id": "tx-2026-0157",
+   "last_verified": "2026-09-14",
+   "history": [
+    {
+     "date": "2026-09-14",
+     "note": "Admitted to the record. The developer's own account is where the public first learned what a Batch Zero classification did to a named project. One of the five was filed in one class and came back conditionally classified in the other."
     }
    ]
   }

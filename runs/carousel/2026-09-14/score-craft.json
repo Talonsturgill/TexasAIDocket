@@ -1,0 +1,71 @@
+{
+ "judge": "craft",
+ "date": "2026-09-14",
+ "carousel_no": 24,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Draw the five figures the dossiers already declare and read each at 432 px with no type on it.",
+ "highest_value_fixes": [
+  "Slides 1, 6 and 9: render the declared figures at their declared heights and separated values",
+  "Slide 9: move the accent off a solid sign plate onto a keyline",
+  "Slide 4: take the grey lettering out of the emboss so it is read by shadow alone",
+  "Pick one accent treatment for the deck"
+ ],
+ "showrunner_note": "Round 1's two hard fails were real and the run took three rounds to close them, which is what the round rule is for. The frame 1 defect is the one worth keeping: the figure was at X -13, which at that frame's camera projects to x -644, off the left edge of a 1080 px frame. Nothing caught it. layout_check, qa.py, plan_render_check, craft_floor and a pixel critic all passed the frame, because every one of them measures what IS in the rect and none asks whether a thing the dossier declared is in it at all.",
+ "rounds": [
+  {
+   "round": 1,
+   "artwork_craft": 5.5,
+   "weighted": 6.83,
+   "hard_fails": 2,
+   "note": "No findable human figure on frames 1, 6 or 9, against acceptance items on all three naming one. Two of the three judges reported it independently."
+  },
+  {
+   "round": 2,
+   "artwork_craft": 6.0,
+   "weighted": 7.18,
+   "hard_fails": 2,
+   "note": "Frame 6 CLEARED. Frames 1 and 9 still failing, and the frame 1 finding was sharper than round 1's: the repair had moved her to 9 m in front of a 30 m building, so the frame told a reader a 16 m wall was 3.4 m. A frame whose job is to give a size had been made to give a wrong one."
+  },
+  {
+   "round": 3,
+   "artwork_craft": 6.5,
+   "weighted": 7.23,
+   "hard_fails": 0,
+   "note": "Both CLEARED. Frame 1's figure stands at 27 m, 48 px, inside its own declared 38 to 52 band, and the judge measured the wall a reader reads off the picture at 13.3 m against a true 16. Frame 9's reader is a head and shoulders that interrupts the dais's lit lip, three empty chairs still countable beside her."
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "judge": "reader",
+ "date": "2026-09-14",
+ "carousel_no": 24,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 6.6
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 6.3
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.2
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.8
+  }
+ ],
+ "weighted_score": 7.066,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Make the figure-presence acceptance criteria machine-checked rather than eyeballed.",
+ "highest_value_fixes": [
+  "Put a readable figure back in frames 1, 6 and 9 and gate it",
+  "Move the claim id attributions off the reading surface",
+  "Give frame 9 a step a Texan outside Austin can take",
+  "Anchor the deadline, or spend a different opening move",
+  "Say on frame 3 that not one of the seventeen is named anywhere a Texan can look up"
+ ],
+ "showrunner_note": "Read the deck mid repair. The figure finding is fixed and frame 8's four mono attributions were cut to one. The frame 9 reachability note and the frame 3 note are carried into the run record."
+}
