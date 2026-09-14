@@ -183,16 +183,21 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
         # project has sent, and it was a promise about the shape of the git history that nothing
         # here measures. That run shipped `scene_bounds.py`, `contact_trace.py` and both their
         # wiring changes in ONE commit, `7429a8d5`, so the sentence told a maintainer they could
-        # roll back one gate without the other and they could not. A review bot reading the diff
-        # found it. Upgrades share a commit whenever they answer the same defect, which is the
-        # common case rather than the exception.
+        # roll back one gate without the other and they could not. Upgrades share a commit
+        # whenever they answer the same defect, which is the common case rather than the exception.
         #
-        # The builder takes `what` and `why` and no commit id, so the honest line points at the
-        # ledger that does record one instead of asserting a shape.
+        # THE FIRST REPLACEMENT WAS ALSO WRONG and that is the part worth keeping. It said the
+        # change is logged "with the commit that carried it", which a second review round
+        # falsified in one query: `upgrades.json` carries a `revert_commit` field whose values are
+        # PROSE, "the commit this phase makes" on 2026-09-05 and "the upgrade commit on
+        # claude/daily-2026-09-14" on 2026-09-14, and the 2026-08-19 entry names no commit at all.
+        # So one unverifiable audit claim had been swapped for another.
+        #
+        # The builder is handed `what` and `why` and nothing else. It points at the ledger, which
+        # exists, and promises nothing about what is inside it.
         upgrade_block = (f"<h3>The machine changed itself</h3><ul>{items}</ul>"
                          f'<p style="color:#5A5064">Every change is logged in '
-                         f'ledger/carousel/upgrades.json with the commit that carried it. '
-                         f'Upgrades answering one defect often share that commit.</p>')
+                         f'ledger/carousel/upgrades.json.</p>')
 
     urls = thumbs(run, slides)
     thumb_html = "".join(
