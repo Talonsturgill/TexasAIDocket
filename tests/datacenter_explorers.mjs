@@ -171,11 +171,38 @@ export async function testExplorers({ browser, origin, route, registry, ok }) {
     await p.locator(`#cereadout [data-record="${record.id}"]`).click();
     ok(`${width}px opens the exact certification from the network`, await p.inputValue("#fxselect") === record.id &&
       await p.locator("#fxname").textContent() === record.n && await p.evaluate(()=>document.activeElement?.id === "fxname"));
+    // A native dialog's close event arrives after the click handler. Restoring an expanded
+    // evidence list then used to move the selected record below the screen after the jump.
+    await p.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const recordPosition = await p.locator("#fxname").boundingBox();
+    ok(`${width}px lands the expanded-evidence journey on a visible certification`,
+      recordPosition.y >= 0 && recordPosition.y + recordPosition.height <= p.viewportSize().height,
+      JSON.stringify(recordPosition));
     ok(`${width}px leaves the page usable after the evidence sheet closes`, await p.locator("#cesheet").evaluate(d=>!d.open) &&
       await p.locator("#fxselect").isVisible() && await p.locator("#fxback").isVisible() &&
       await p.evaluate(()=>getComputedStyle(document.documentElement).overflow !== "hidden"));
     await ctx.close();
   }
+  // Default motion matters here: CSS smooth scrolling keeps the destination in flight while
+  // the native close event returns the expanded evidence list to the document.
+  const moving = await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+  const movingPage = await moving.newPage();
+  await movingPage.goto(url,{waitUntil:"load"});
+  await movingPage.locator("#cenodes button").first().tap();
+  await movingPage.locator(".cerecordmore summary").click();
+  await movingPage.locator("#cereadout [data-record]").first().click();
+  await movingPage.waitForTimeout(1000); // Read the landing after the browser's smooth scroll finishes.
+  const movingPosition = await movingPage.locator("#fxname").boundingBox();
+  ok("default phone motion lands the expanded-evidence journey on the selected record",
+    movingPosition.y >= 0 && movingPosition.y + movingPosition.height <= 844,JSON.stringify(movingPosition));
+  const beforeDossier = {id:await movingPage.inputValue("#fxselect"),name:await movingPage.locator("#fxname").textContent()};
+  await movingPage.locator("#fxdossier").click();
+  await movingPage.goBack({waitUntil:"load"});
+  await movingPage.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  ok("Back from a dossier restores the same certification in the picker and details",
+    await movingPage.inputValue("#fxselect") === beforeDossier.id &&
+    await movingPage.locator("#fxname").textContent() === beforeDossier.name);
+  await moving.close();
   const nojs = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const staticPage = await nojs.newPage();
   await staticPage.goto(url, {waitUntil:"load"});

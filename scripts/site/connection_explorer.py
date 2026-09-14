@@ -319,11 +319,19 @@ SCRIPT = r"""
   var sheet = document.getElementById('cesheet'), inspector = root.querySelector('.ceworkspace .ceinspector');
   var phone = window.matchMedia('(max-width:55rem)');
   var previousOverflow = '';
-  function closeSheet() { if (sheet.open) sheet.close(); }
-  sheet.addEventListener('close', function () {
+  function restoreReadout() {
+    if (readout.parentElement === inspector) return;
     inspector.appendChild(readout); inspector.style.minHeight = '';
     document.documentElement.style.overflow = previousOverflow;
-  });
+  }
+  function closeSheet() {
+    if (!sheet.open) return;
+    sheet.close();
+    // Restore layout before a follow or certification action calculates its scroll target.
+    // The native close event is queued, which is too late when the evidence has expanded.
+    restoreReadout();
+  }
+  sheet.addEventListener('close', restoreReadout);
   document.getElementById('cesheetclose').addEventListener('click', closeSheet);
   sheet.addEventListener('click', function (event) { if (event.target === sheet) closeSheet(); });
   phone.addEventListener('change', function () { if (!phone.matches) closeSheet(); });
