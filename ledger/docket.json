@@ -1897,7 +1897,7 @@
      "fetched": "2026-09-03"
     }
    ],
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -1998,6 +1998,11 @@
     {
      "date": "2026-09-14",
      "note": "The feed is still live and still publishes each open meeting with the room it sits in. Entries keep falling off the list once their date has passed, which is how this calendar behaves rather than a change to it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The commission's calendar feed is still live and still names the room each open meeting will sit in. Entries that have passed have come off it, which is how the feed has always behaved.",
      "checked": true
     }
    ]
@@ -10321,7 +10326,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
    "history": [
@@ -10387,6 +10392,11 @@
     {
      "date": "2026-09-14",
      "note": "The award record still reads as it did. The requirement that a proof assistant certify a proposed algorithm before it counts is still part of what was funded rather than a step offered afterwards.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The award stands as made and the start date the award record gives has now arrived. The requirement that a proof assistant certify an algorithm before it counts is still written into the record's own account of the work.",
      "checked": true
     }
    ]
@@ -12919,7 +12929,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
    "history": [
@@ -12974,6 +12984,11 @@
     {
      "date": "2026-09-14",
      "note": "The staff memorandum is still the live ask on this review and the deadline it set has not moved. Comments on whether the offer caps and the emergency pricing program should change are still due September 17th.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The review is still taking comments and the deadline the staff memorandum set for September 17th has not moved. The questions it put to interested parties stand as filed.",
      "checked": true
     }
    ]
@@ -13382,13 +13397,13 @@
      "fetched": "2026-08-29"
     },
     {
-     "text": "The September 3rd hearing is marked canceled on the Legislature's own listing.",
-     "verbatim_quote": "Thursday, September 3, 2026 9:00 AM Economic Development (Canceled/see notice)",
-     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
-     "source_title": "Texas Legislature Online, Senate upcoming committee meetings",
+     "text": "The committee's own meetings listing marks the September 3rd sitting canceled.",
+     "verbatim_quote": "September 3, 2026 9:00 AM (Canceled/see notice)",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C525",
+     "source_title": "Texas Legislature Online, Senate Committee on Economic Development meetings",
      "source_type": "primary_official",
      "id": "tx-2026-0109-c7",
-     "fetched": "2026-09-02"
+     "fetched": "2026-09-15"
     },
     {
      "text": "The same listing carries an Economic Development public hearing on September 22nd.",
@@ -13401,7 +13416,7 @@
     }
    ],
    "id": "tx-2026-0109",
-   "last_verified": "2026-09-13",
+   "last_verified": "2026-09-15",
    "history": [
     {
      "date": "2026-08-29",
@@ -13442,6 +13457,10 @@
      "date": "2026-09-13",
      "note": "Checked and unchanged. Still open, with no dated movement.",
      "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The chamber's upcoming meetings listing carries only what is still ahead, so the canceled September 3rd sitting has come off it and the record now takes that row from the committee's own meetings page, which still marks it canceled. The September 22nd public hearing stands in hearing room E1.016 on the same two listings."
     }
    ]
   },
@@ -16779,7 +16798,7 @@
    "confidence": "high",
    "notes_for_editor": "The notice never says Texas or ERCOT. It is admitted as statewide because it is a federal comment window any Texan may file in, exactly like the other federal windows on this record, and no Texas specific claim rests on it.",
    "id": "tx-2026-0144",
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "history": [
     {
      "date": "2026-09-11",
@@ -16802,6 +16821,11 @@
     {
      "date": "2026-09-14",
      "note": "The request for information is still taking written responses through October 9th. The reason the notice gives for the demand it is securing against still names data centers and artificial intelligence.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The request for information is still open for written responses through October 9th. The notice still names data centers and artificial intelligence among what it says increased the nation's dependence on this equipment.",
      "checked": true
     }
    ]
@@ -17063,7 +17087,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
    "history": [
@@ -17075,6 +17099,11 @@
     {
      "date": "2026-09-14",
      "note": "Both items are still posted to the council's own agenda and neither has been voted on. Nothing has been added to the agenda that narrows what the two would do to the fixed plate reader cameras.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "Both items are still posted to the council's own agenda and the meeting they are set for is today. Neither has been voted on and nothing has been filed against either.",
      "checked": true
     }
    ],
@@ -17135,13 +17164,18 @@
     "closes": null
    },
    "id": "tx-2026-0148",
-   "last_verified": "2026-09-12",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Grimes County because the announcement names Navasota as the project location and Navasota is the Grimes County seat. The university's own Dallas headquarters is a decider address and is deliberately not carried as a county.",
    "history": [
     {
      "date": "2026-09-12",
      "note": "Admitted on the department's own announcement of the four selected projects.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The department's announcement still stands as published and still gives Navasota as the project location for the award it made to Southern Methodist University. Its description of the site as a synthetic pit inside an existing instrumented drilling and sensing facility has not changed.",
      "checked": true
     }
    ],
@@ -17199,13 +17233,18 @@
     "closes": null
    },
    "id": "tx-2026-0149",
-   "last_verified": "2026-09-12",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.\n\ntx-2026-0149-c3's quote named only the awardee while the claim asserted the performing city, which a code review caught on 2026-09-12. The city is load bearing, because it is what places this item in Brazos County, so the quote now carries the NSF API's own contiguous perfCity run. It is quoted as JSON rather than prose because that is the form the document is served in.",
    "history": [
     {
      "date": "2026-09-12",
      "note": "Admitted on the foundation's own award record.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The award record still stands as obligated and still gives College Station as the performing site. It still names no Texas utility whose water system the digital twins would model.",
      "checked": true
     }
    ],

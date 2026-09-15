@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-14",
+    "generated": "2026-09-15",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -53,6 +53,16 @@
         "tx-2026-0085-c2",
         "tx-2026-0085-c3",
         "tx-2026-0085-c4"
+      ]
+    },
+    "https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "e83a446425bb4890f2fefa905c1443f9756692ae5c59b8e09f88fa059039fa42",
+      "proven": [
+        "tx-2026-0149-c1",
+        "tx-2026-0149-c2",
+        "tx-2026-0149-c3"
       ]
     },
     "https://api.nsf.gov/services/v1/awards/2534344.json": {
@@ -184,7 +194,7 @@
     "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S": {
       "etag": null,
       "last_modified": null,
-      "hash": "2e429a5a0872acbf2479d69eb47ecbffd7f21c4ccddd8278e108ea00eb03634c",
+      "hash": "613a928169bc60bf83d272f2a0c002c2c07facd878ab61adeaa0da4cd2fe6430",
       "proven": [
         "tx-2026-0077-c5",
         "tx-2026-0096-c3",
@@ -366,7 +376,7 @@
     "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=": {
       "etag": null,
       "last_modified": null,
-      "hash": "f6559ca405cfd297eb764dfad689ef89314c50d0b566be6b23ce27c339c97666",
+      "hash": "397c7e0980e47e3448f77822b1198f79cefd3916b84e6b66e6bca95b976d9539",
       "proven": [
         "tx-2026-0147-c1",
         "tx-2026-0147-c2",
@@ -893,7 +903,7 @@
     },
     "https://senate.texas.gov/cmte.php?c=525": {
       "etag": null,
-      "last_modified": "Sat, 12 Sep 2026 12:00:00 GMT",
+      "last_modified": "Mon, 14 Sep 2026 12:00:00 GMT",
       "hash": "559a6e41b059a87297fef69ccc7d98a320daf29818199771f3d844c365556bca",
       "proven": [
         "tx-2026-0109-c1",
@@ -1400,6 +1410,15 @@
       "proven": [
         "tx-2026-0055-c1",
         "tx-2026-0055-c2"
+      ]
+    },
+    "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic": {
+      "etag": "W/\"1789419067:dtagent10341260622154106Gjdi\"",
+      "last_modified": "Mon, 14 Sep 2026 20:51:06 GMT",
+      "hash": "3dc77a461b7e2b584139932897c701a4f96f7d66d2573d0bd398dcc705454870",
+      "proven": [
+        "tx-2026-0148-c1",
+        "tx-2026-0148-c2"
       ]
     },
     "https://www.ercot.com/mktrules/issues/NOGRR289": {
