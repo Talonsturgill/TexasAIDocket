@@ -381,3 +381,22 @@ owner's judgement that a routine breaking one of these should simply fix it. It 
 The local suite is a pre-merge tool and CI on the head SHA is what says the work may land. Both
 halves did their job here: the local gates cleared a deck and a site, and CI caught a vocabulary
 the record grew this morning.
+
+**And CI caught the carousel no. 7 defect by name, on the same gate.** The second red was
+`email_check --all`, which reads the committed `gmail_payload.json` beside EVERY shipped run:
+
+    2026-09-15: no gmail_payload.json. The email was hand-written or never built.
+
+Phase 19 builds the email AFTER the merge, and `guards.yml` asks for it on the pull request, so a
+run that follows the phase order to the letter opens a pull request that cannot go green. That is
+the 2026-08-26 incident exactly, one step earlier: that run merged while CI was in progress, its
+own payload did not exist yet, and `main` was red four minutes later. The payload is built and
+committed BEFORE the merge now, which costs nothing and satisfies both, and the Gmail draft is
+still created from it after the merge because that is when the image URLs resolve.
+
+The first build of it was also wrong and worth recording. `gmail_draft.py` takes the deck number,
+the title, the score and the gate table as ARGUMENTS and defaults them to 1, empty and none, so
+`--run <date>` alone produced a postable email reading "Carousel No. 1" with no title and "No
+score recorded". `email_check` caught the missing score, not the wrong number and not the missing
+title. Its gate table is now read back out of this file's own synced block rather than re-typed,
+so the email and the record cannot disagree about what passed.
