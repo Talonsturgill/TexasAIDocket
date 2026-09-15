@@ -755,6 +755,33 @@
     "energize"
    ],
    "prose_note": "dedupe_check put the nearest prior deck at 0.46, carousel no. 3 on August 19th, which was about the schedule the Governor's directive broke rather than the questionnaire it produced twenty three days later."
+  },
+  {
+   "date": "2026-09-15",
+   "carousel_no": 25,
+   "docket_item": "tx-2026-0159",
+   "instrument": "ERCOT's Item 10 presentation to its own Board of Directors on September 14th and 15th, 2026, and PGRR 144 on the market rules site",
+   "topic": "The 3 emerging operational risks ERCOT put in front of its own Board for the Large Loads on its system, each with a mitigation, and the 3 mitigations at 3 different stages. The ride-through rule is in force, effective August 1st. The modeling rule reached the Board this month. The rule that would hold a Large Load's swing is not filed and carries no number, and ERCOT gives September or October for filing it. The same 6 pages say the dynamic models ERCOT uses to study these loads have proven inaccurate.",
+   "angle": "The deck is built on the gap between a named risk and the state of the rule meant to answer it. Every statement of harm in the document is modal, so the deck draws nothing broken anywhere in 9 frames, and the 6 pages name no data center, no company, no generator and no county.",
+   "angle_note": "The turn is frame 4, at the coupling, which is the metal ERCOT's word fatigue points at. It is also the frame where drawing a crack would have turned a could into a has, and the refusal to draw one is the deck's argument rather than a limitation on it.",
+   "entities": [
+    "ERCOT",
+    "Public Utility Commission of Texas",
+    "Texas A&M University"
+   ],
+   "entities_note": "No private party is named because the document names none. Texas A&M is the only institution in it besides the grid operator and the commission, which is what frame 8's line rests on.",
+   "keywords": [
+    "large load",
+    "ride-through",
+    "oscillation",
+    "dynamic model",
+    "NOGRR 282",
+    "NPRR 1308",
+    "PGRR 144",
+    "board of directors",
+    "ERCOT"
+   ],
+   "prose_note": "Every count above is written in digits. ledger_check compares spelled-out number words against the run's own figure keys, and this run's keys are not the vocabulary that check carries."
   }
  ]
 }

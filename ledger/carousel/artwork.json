@@ -1670,6 +1670,76 @@
    },
    "type_skeletons": "Kicker top left, hook in the upper third, dek or labels under. Frames 2, 4 and 8 give the sheet its own typography and set the deck's furniture in the page's ink.",
    "machine_qa": "0 fails across nine frames. layout_check --require, construction_check 1 of 9 plated, bespoke_check median pairwise 0.17, craft_floor clean, dossier_check, plan_render_check, copy_sync_check, coherence_check, texan_check, noun_trace, absence_check and aggregate_check all exit 0. panel_ready exit 0."
+  },
+  {
+   "date": "2026-09-15",
+   "carousel_no": 25,
+   "written_from": "machine_qa.json, render_report.json, measurements.json, and the gate suite by EXIT CODE. The value block is MEASURED off the nine shipped PNGs by out/2026-09-15/measure.py on panel_ready.ARC_GRID, 270 by 338, never planned and never asserted.",
+   "register": "A GAS PLANT ON THE ERCOT SYSTEM AT 06:20 AT THE END OF NIGHT SHIFT, AND ITS YARD AT FIRST LIGHT. Epoxy deck #101A12 and one lagging ink #E4DCC6, printed: every scene is drawn in greys into an offscreen twin at true scale, TXINK.print lays the paper, screens the tone into ink, lays the contour plate a pixel out of register, and paints what must not be screened on top.",
+   "structural_laws": [
+    "THE WORLD AND THE PAPER NEVER SHARE A FRAME. Frames 1, 3, 4, 6 and 9 are the physical world with a light, a horizon and shadows and carry no accent. Frames 2, 5, 7 and 8 are paper and every one carries the accent. A reader has the code by frame 3 without being told it, and by frame 7 it is the argument: the rule is a drawing, and ERCOT says the drawing is wrong about the machine.",
+    "NOTHING IN THE DECK IS DRAWN BROKEN. Every statement of harm in the source is modal and the document nowhere says damage has occurred, so no crack, no spall, no pit and no scoring appears on any steel surface in 9 frames. Frame 4 is a coupling at detail scale and is where that temptation was highest.",
+    "THE ACCENT MAY FILL A MARK AND MAY NOT FILL A THING. Frame 7's dimensioned limit and frame 8's scale bar segments are marks drawn to be read as marks. A table row, a county, a machine and a plate behind a label are not, and frame 2's leader chips were solid accent behind cream type until a critic returned them."
+   ],
+   "techniques": [
+    "A data hall aisle at standing eye with two rows of 14 racks running off both frame edges, a containment ceiling converging on the same vanishing point, and one technician in it, under a halftone at cell 7",
+    "An engineering elevation at ONE declared scale of 0.104 metres per pixel, over a line screen at cell 4, with a computed scale bar in its own legend corner and two leaders ending on their targets' coordinates",
+    "A 130 m wall drawn from metres off the bench's own px/m with its sheeting pitch, its louvre band and its roof plant, the sky and the lit door painted AFTER the press because a cell 5 stipple prints a white field at a mean of 63 of 255, and a graded caliche apron carrying 1100 stones each lit left and throwing right",
+    "A 1.1 m coupling at 1.18 px per millimetre with a 16 bolt circle running off the top edge, an engraver's cross hatch at cell 6, and one unscreened journal face",
+    "ERCOT's own 3 row table at page size on a sheet turned 0.7 degrees, flat and unscreened so nothing prints under the type, with no row coloured or ranked",
+    "One straight cut with the yard below drawn in full detail under a halftone at cell 6 and the field above left as unscreened ground, because an incomplete line reads as sloppy drawing and an empty field reads as an absence",
+    "A plot sheet with a ruled field, a drawn zero on both axes, one filled accent triangle and a steel straightedge lying on the desk at its foot",
+    "254 county geometries on TXGeo's Albers equal-area conic at one value with none lit, a neatline, a bisection-placed graticule and a scale bar whose length is computed from the projection",
+    "A plant yard at first light with the hall rim-lit against its own mass, three towers walking to frame right and the conductor drawn last and brightest so the line visibly leaves the frame"
+   ],
+   "palette": "deck_epoxy #101A12, lagging #E4DCC6, forging #5C6552, enamel #2C4433, pad_caliche #A08A5E, first_light #C08A5A, bond #F4F1E2, accent #2F7D57.",
+   "value": {
+    "grid": "270x338, panel_ready.ARC_GRID",
+    "measured": [
+     8.6,
+     90.4,
+     9.1,
+     8.6,
+     87.9,
+     13.7,
+     67.4,
+     92.9,
+     9.1
+    ],
+    "deck_median_L": 13.7,
+    "deck_median": 13.7,
+    "spread": 84.3,
+    "screen_ceilings": [
+     {
+      "frames": "slide-01 hatch c7",
+      "white_field_mean_of_255": 107.6,
+      "ceiling_lstar": 45.5
+     },
+     {
+      "frames": "slide-03 stipple c5",
+      "white_field_mean_of_255": 63.0,
+      "ceiling_lstar": 26.7
+     },
+     {
+      "frames": "slide-04 hatch c6",
+      "white_field_mean_of_255": 107.9,
+      "ceiling_lstar": 45.6
+     },
+     {
+      "frames": "slide-06 halftone c6",
+      "white_field_mean_of_255": 205.7,
+      "ceiling_lstar": 82.7
+     },
+     {
+      "frames": "slide-09 hatch c8",
+      "white_field_mean_of_255": 107.6,
+      "ceiling_lstar": 45.5
+     }
+    ],
+    "note": "THE ARC WAS REWRITTEN RATHER THAN REDRAWN, and the measurement is why. On a dark ground TXINK lays light ink where the source is light, so a screened frame's median is bounded by how much ink its screen can put down. A white field printed through this deck's own configurations returns a mean of 63.0 of 255 for the stipple, 107.6 to 107.9 for the hatch and 205.7 for the halftone, which are ceilings of L* 26.7, 45.5 and 82.7. The first cut of the plan asked frame 3, a stipple frame, for 40. Fixing the art cannot clear a miss the press cannot print. What it can clear is a frame that came out dark because nothing was drawn in it, and frame 3 was rebuilt for that on the same day rather than re-planned."
+   },
+   "type_skeletons": "Kicker top left, counter top right, hook under it, dek below, source line and site line at the foot. Frames 2, 5, 7 and 8 give the sheet its own typography and set the furniture in the page's own ink. Frame 9 closes on the wordmark.",
+   "machine_qa": "0 fails across 9 frames. layout_check --require, bespoke_check median pairwise 0.24, craft_floor, construction_check, dossier_check, plan_render_check, copy_sync_check, coherence_check, texan_check, noun_trace, absence_check, scene_bounds, verbatim_check, numeral_trace, label_guard, quantifier_check and aggregate_check all exit 0. panel_ready exit 0."
   }
  ]
 }
