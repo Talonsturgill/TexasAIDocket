@@ -356,3 +356,28 @@ entire subject. The closing frame gives a reader nothing DATED to act on for the
 ERCOT's document is marked for information only, no comment window exists, and the deck says
 September or October because that is ERCOT's own word. Inventing a date there is the one thing
 this project does not get to do.
+
+## CI, and the one thing it caught that nothing here could
+
+`guards.yml` went red on the first pull request head, at
+`scripts/site/docket_calendar.py --self-test`, case E:
+
+    FAIL  every kind on the real record has an explicit label  ['passed']
+
+That self-test reads the date kinds off the REAL ledger and refuses any that has no explicit
+English label, because an unlabelled kind reaches a reader as a slug and nothing else in the
+suite goes red on it. `tx-2026-0159`, admitted this morning, has a second key date on August 26th
+carrying `kind: passed`, the Technical Advisory Committee's vote to recommend PGRR144 for
+approval. The label is written now, as `motion passed`, and it is NOT actionable for the same
+reason `expires` is not: a vote already taken is a record of something done rather than a door a
+reader can still walk through.
+
+**Nothing in this run's own local suite could have found it before the record changed**, which is
+the shape `CLAUDE.md` already names about this exact file: on 2026-08-30 a `docket_calendar`
+self-test hardcoded a quiet month and the run admitted an item with a date in it, correct data
+and red CI. That was the day the builders and the gates moved from `human` to `daily`, on the
+owner's judgement that a routine breaking one of these should simply fix it. It did.
+
+The local suite is a pre-merge tool and CI on the head SHA is what says the work may land. Both
+halves did their job here: the local gates cleared a deck and a site, and CI caught a vocabulary
+the record grew this morning.
