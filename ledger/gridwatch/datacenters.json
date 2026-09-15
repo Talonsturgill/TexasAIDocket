@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-09-14",
+ "read": "2026-09-15",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "4287218d8b25067f",
+ "digest": "cbf975e2c1f11b78",
  "facilities": [
   {
    "name": "NADC",
@@ -388,6 +388,20 @@
     "Oracle America, Inc.",
     "Lancium LLC",
     "Lancium Abilene, LLC"
+   ]
+  },
+  {
+   "name": "Lancium Abilene Clean Campus II",
+   "effective": "2022-05-26",
+   "owners": [
+    "Abilene DC 1, LLC"
+   ],
+   "occupants": [
+    "Oracle America Cloud Services, LLC"
+   ],
+   "operators": [
+    "Lancium Abilene, LLC",
+    "Oracle America, Inc."
    ]
   },
   {
@@ -1787,20 +1801,6 @@
    ],
    "operators": [
     "Beacon Point DC, LLC"
-   ]
-  },
-  {
-   "name": "Lancium Abilene Clean Campus II",
-   "effective": "2026-04-17",
-   "owners": [
-    "Abilene DC 1, LLC"
-   ],
-   "occupants": [
-    "Oracle America Cloud Services, LLC"
-   ],
-   "operators": [
-    "Lancium Abilene, LLC",
-    "Oracle America, Inc."
    ]
   },
   {
