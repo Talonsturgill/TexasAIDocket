@@ -124,17 +124,25 @@ field through each of this deck's own screen configurations and reading the pres
 
 | screen | mean of a white field | that frame's ceiling |
 |---|---|---|
-| stipple, cell 5, 6 dots per cell | 63 of 255 | L* 27 |
-| hatch, cell 6 to 8 | 108 of 255 | L* 45 |
-| halftone, cell 6 | 206 of 255 | L* 83 |
+| stipple, cell 5, 6 dots per cell | 63.0 of 255 | L* 26.7 |
+| hatch, cell 6 to 8 | 107.6 to 107.9 of 255 | L* 45.5 |
+| halftone, cell 6 | 205.7 of 255 | L* 82.7 |
 
-Frame 3 is a stipple frame and the plan asked it for a median of 40, which is 13 above the
+Every figure in that table is written by `screen_ceilings.json` and folded into
+`measurements.json`, so it has one home rather than a copy in each surface that prints it.
+
+Frame 3 is a stipple frame and the plan asked it for a median of 40, which is 13.3 above the
 highest value that screen can reach with every pixel of the frame painted white. That is not a
 deck that was drawn too dark. It is a plan that asked for a value the chosen screen cannot
 print, and no gate in this repo asks that question at planning time.
 
 The nine planned medians now read 9, 90, 9, 16, 88, 17, 60, 93, 10, re-derived from the press.
 The paper frames are unaffected because their sheet is painted AFTER the press, unscreened.
+
+`measure.py`'s own closing advice, inherited from four runs that planned light and rendered dark,
+is *fix the ART to hit the plan rather than the plan to match the art*, and that advice is left
+exactly as it stands because it is right for every case but this one. Fixing the art cannot clear
+a miss the press cannot print.
 
 **What this does not excuse**, stated because the same measurement would otherwise be an alibi
 for any dark frame: a frame that came out dark because nothing was drawn in it. Frame 3 was one,
