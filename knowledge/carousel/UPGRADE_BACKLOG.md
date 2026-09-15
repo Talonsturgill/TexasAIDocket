@@ -2267,3 +2267,228 @@ Three candidate shapes, and the third is probably right:
 A proper name carrying a number word stays a false positive under all three, so whichever is built
 should exempt a number word that is part of a capitalised multi-word name the claims file also
 carries. `Batch Zero` appears in 22 of this run's 43 claims.
+
+---
+
+## FROM CAROUSEL NO. 25, 2026-09-15
+
+Six items. Each was measured during that run, and each is out of the `upgrade` lane's reach for a
+reason stated with it. Two more findings from the same run were BUILT rather than filed here, in
+`copy_sync_check.banned_characters` and `ledger_check.misfiled_median`.
+
+### The two furniture lines at the bottom of a frame have no width ceiling, and they collided
+
+**`assets/**` is `human` lane.** One line of `assets/js/txlayout.js`.
+
+`TXLAYOUT.POS` gives the kicker a `maxWidth: 760` and gives `src`, `counter` and `site` none,
+while `mount()` sets `whiteSpace = "nowrap"` on all four. So the source line grows to the right
+from `left:80` without limit and the site line grows to the left from `right:80` without limit,
+across the same 80px band at the bottom of the frame, and nothing anywhere knows the other exists.
+
+Measured on frame 5 of this deck, which carried seven claim ids. 45 characters of JetBrains Mono
+at 24px is 0.6em of advance plus 0.07em of tracking, which is 16.08px a character and 724px of
+line, so the source line ran from x 80 to x 804. `texasaidocket.com` is 17 characters, so the site
+line begins at 1080 minus 80 minus 273, which is x 727. **Seventy seven pixels of overlap**, and
+the frame rendered `DOCKETexasaidocket.com` at full size and at 432px.
+
+It shipped through the render and through the machine qa pass. A pixel critic reading the picture
+is what caught it, which is GATE_LESSONS 32 and 62 again: a gate reads the document and has never
+once seen the page. Today's repair was slide-local CSS on one frame, so the next long claim list
+does it again.
+
+**The fix and the gate it needs, together.** `src` takes a `maxWidth` the way `kicker` already
+does, computed from the band rather than typed: the source line may have the frame's width less
+its own left inset, less the site line's right inset, less the site line's measured advance. That
+is a subtraction over values the file already holds, so no numeral is typed. The assertion that
+proves it is not "the rule is present" but the rendered one, per GATE_LESSONS 23: measure the two
+boxes in the browser and require they do not intersect, at the longest claim strip any shipped
+deck has produced. `coherence_check` already opens each slide's HTML for the site line, so it is
+the natural home and it is `upgrade` lane.
+
+### A dossier can plan a frame value its own chosen screen physically cannot print
+
+**In lane to build, and it needs a browser the python job does not have.** Filed rather than built
+for that reason, with the design finished so the next session does not re-derive it.
+
+TXINK lays light ink on a dark ground, so a screened frame's median is bounded by how much ink the
+screen can physically put down, and the bound is a property of the screen configuration rather
+than of what is drawn. Measured on 2026-09-15 by printing a white field through each of this
+deck's own screens and reading the press back, written to `runs/carousel/2026-09-15/screen_ceilings.json`:
+
+| screen | white field, of 255 | ceiling |
+|---|---|---|
+| stipple, cell 5, 6 dots per cell | 63.0 | L* 26.7 |
+| hatch, cells 6 to 8 | 107.6 to 107.9 | L* 45.5 to 45.6 |
+| halftone, cell 6 | 205.7 | L* 82.7 |
+
+**The plan asked a stipple frame for a median of 40.** Nothing checked it, and `panel_ready` found
+the gap after nine frames had been drawn and rendered. Carousel no. 22 has the same shape in its
+own record, plan 28 against a deck of 13.5, so this is the second measured instance.
+
+**The instrument already exists and it is scratch.** `out/2026-09-15/tmp/ceiling.html` and
+`screen_ceiling.js` are 30 lines that load the committed `assets/js/txink.js`, print a white field
+through a list of screen specs on the deck's own ground and ink, and read back the mean luminance.
+`out/` is gitignored, so it dies with the container and the next run that wants the number rebuilds
+it by hand, which is what carousel no. 22 did not do. **Commit the instrument.**
+
+Three things to get right, and the third is the one that will be argued away:
+
+- **Ask the press, never a model of it.** GATE_LESSONS 49. The ceiling is whatever `TXINK.print`
+  produces for that screen on that ground, and a formula fitted to cell size and dot count would
+  be a second implementation that drifts the day the press changes.
+- **It needs chromium.** `shipped_check.py` runs in `guards.yml`'s python job, which installs
+  `pyyaml` and nothing else, and the browser only exists in the node jobs. `guards.yml` is `human`
+  lane, so wiring it as a CI gate is a maintainer's change. **Never answer that by making the check
+  skip when the browser is absent**, which is GATE_LESSONS 15 exactly. Either it is wired to a job
+  that has a browser, or it is a plan-time tool the routine runs and `dossier_check` reads the
+  artifact of.
+- **The planned median lives in prose.** Today's dossiers say "Frame median L* planned at 9" inside
+  the `value` paragraph, and the screen says "a stipple at cell 5" inside `technique`. A gate
+  branching on either is branching on a sentence a person writes, which is GATE_LESSONS 41. The
+  dossier spec, which IS `upgrade` lane, has to carry `value.frame_median_L` as a number and the
+  screen as a spec before the check can be honest. That is the real first step.
+
+**What the frontier scan added.** The printing literature says a screen's reachable tonal range is
+bounded well inside nothing to everything: the field's routine operating range is quoted as 5 to 95
+percent of dot area, and dot gain moves the midtones further. So the SHAPE here, that a screen has
+a ceiling and a floor that no amount of drawing crosses, is the normal case rather than a quirk of
+this pipeline, and any plan that asks a screen for a value outside its own range is asking for
+something no press delivers.
+
+### Nothing tells a run which file the site reads for its computed figures
+
+**`scripts/site/site_pages/feeds.py` is `human` lane, and `runs/carousel/**` is `daily`.**
+
+`_run_numerals` authorises a shipped deck's figures from `runs/carousel/<date>/computed.json`.
+Twenty of the twenty five shipped runs carry one. **2026-08-26, 2026-09-14 and 2026-09-15 wrote
+`figures.json` instead**, and 2026-09-15 only has a `computed.json` because this run derived one by
+hand after finding the gap.
+
+The failure is silent at the point it happens and loud somewhere else. `_run_numerals` reads the
+file inside a bare `except Exception: blob = None`, so a missing file is indistinguishable from an
+empty one and the run's whole computed set quietly leaves the authorised pool. Nothing says so.
+What eventually says something is `numeral_lint`, on a different day, about a figure on a page,
+with no way back to the cause.
+
+Both of the obvious homes are out of lane. The one that is not: `shipped_check.py` is `upgrade`
+lane, its docstring invites exactly this ("a new gate is one function away in a file the upgrade
+lane already owns"), and it already walks every shipped run. A per-run gate asserting that a run
+carrying `figures.json` also carries `computed.json`, with the two agreeing on the values they
+share, would name the run and the missing file on the day it happens. It would be red on 08-26 and
+09-14 today, which is what `CONSTRUCTION_SINCE` and `EXCLUSIONS_BIND_AFTER` are the pattern for.
+
+Held back from this run's three because the harm direction runs the safe way. A missing
+`computed.json` makes the authorised set SMALLER, so the failure mode is a red build rather than a
+wrong page, and GATE_LESSONS 17, 30 and 65 are all about the opposite direction. It is still a
+figure the record computed and the site will not vouch for, and it should be built.
+
+### `carousel-flow-critic` and `carousel-treatment-director` cannot list a directory
+
+**`.claude/agents/**` is `upgrade` lane in the map and unreachable in practice.** The host treats
+every path under `.claude/` as a sensitive file and prompts on any edit whatever the permission
+mode says, so this is a maintainer's edit and one answered prompt. CLAUDE.md states the rule and
+this item is the disposition it prescribes.
+
+Both agents hold only `Read`. `Read` on a directory returns an error rather than a listing. This
+run's flow critic was pointed at `out/2026-09-15/final/thumbs/`, reported that it had tried six
+filename patterns and failed on all six, and judged the deck off the contact sheet alone. The real
+names are `slide-01-thumb.png` through `slide-09-thumb.png`.
+
+**The fix is `Glob` on both agents' tool lists**, which is read-only and cannot write anything. Not
+`Bash`, which would give a critic a shell it has no use for. The alternative, having the caller
+paste nine absolute paths into every prompt, is the workaround this has been running on and it
+failed the moment a caller pasted a directory instead.
+
+### The SessionStart hook installs two packages and the run needs five
+
+**`.claude/settings.json` is `human` lane AND under `.claude/`.** Two reasons, either sufficient.
+
+The hook installs `pyyaml` and `requests`. This run hit `ModuleNotFoundError: No module named
+'PIL'` at wake and installed `requirements-ci.txt` and `requirements-tools.txt` by hand before it
+could do anything. That is GATE_LESSONS 15 in the container this repo actually runs in, and the
+cost is paid at the start of every run in a fresh container.
+
+The hook should install the requirements FILES rather than a list of names, for the same reason
+every other list in this repo is read from one place: a list in the hook is a second copy of
+`requirements-ci.txt` and the second copy is the one that goes stale.
+
+### `plan_render_check` reports 0 of 51 acceptance items machine-checkable, on a deck with three false ones
+
+**In lane, and it is the largest item in this file.** `plan_render_check.py`,
+`dossier_check.py` and `knowledge/carousel/SLIDE_DOSSIER_SPEC.md` are all `upgrade` lane.
+
+Three acceptance items on this deck were false against the render, and a human-shaped reader is
+what caught all three: a stanchion at the right edge where the item says left, a pedestal drawn
+entirely below the frame, and a straightedge never drawn at all. The gate's own report says none of
+the fifty one items were checkable by machine.
+
+`SLIDE_DOSSIER_SPEC.md` already says how to write a checkable item, so the gap is between the spec
+and what the directors room writes, not in the spec. The honest next step is small and measurable:
+count what fraction of a deck's items name a NAMED ELEMENT and a SIDE, a COUNT or a BAND, which is
+the shape `scene_bounds` and `layout_check` can already answer, and print the fraction every run.
+**Print it before anything is drawn**, because an acceptance item that no machine and no critic can
+judge is a defect in the SPECIFICATION and the moment to fix it is while it is still one paragraph.
+
+That framing came out of this run's scan and it changes the direction of the gate: firing on the
+artifact for a fault in the plan sends the run to repair the wrong thing. The same conclusion
+appears one section up in this file, reached independently, which is the second sighting and is
+the bar this repo sets for turning an observation into a rule.
+
+### PROPOSAL, OUT OF LANE: two GATE_LESSONS entries drafted for a maintainer to paste
+
+`knowledge/shared/GATE_LESSONS.md` is `human`. The two gates built on 2026-09-15 each belong in
+it, so they are written out here in that file's own form rather than summarised, because a finding
+that survives on somebody remembering to rewrite it is a finding the machine loses. Number them at
+the tail.
+
+> **## A normaliser that deletes the defect class is blind to it by construction**
+>
+> The house bans em dashes, en dashes, curly quotes and emoji ANYWHERE. `caption_check` has
+> enforced all four since it existed and has only ever been pointed at `caption.txt` and at the
+> built site. `house_style_check` reads `docs/`. So the nine frames a reader actually looks at were
+> the one published surface with no house-rule gate on them, and frame 5 of carousel no. 25 shipped
+> `SEPTEMBER 14-15, 2026` with an en dash in it, through the render and through the machine qa
+> pass. A pixel critic reading the picture is what caught it.
+>
+> **The gate that should have caught it had read the string twice.** `copy_sync_check` walks every
+> authored string in `copy.json` and every node the browser laid out, in both directions, which is
+> more of the deck's copy than anything else in the run sees. Its only comparison operator is
+> `skeleton()`, which keeps lowercase alphanumerics and deletes every punctuation mark. The dash
+> was in the record and in the render, so the sync direction was correctly, uselessly green.
+>
+> **What to check instead.** When a gate normalises before comparing, the normaliser is a list of
+> things that gate can never see. Read it as one. The repair belongs beside the normaliser rather
+> than in a new file, because that is where the blindness is written down.
+>
+> **And scope the borrowed rule rather than borrowing all of it.** `caption_check.check()` enforces
+> fifteen rules and only four are structural. The other eleven judge PROSE, and slide copy is
+> mostly furniture, where a colon rule and a comma rate produce noise a run learns to scroll past.
+> Four character classes, imported from the file that owns them so there is no second list, and
+> nothing else. Measured across 24 shipped decks: zero findings, and the deck it was written for
+> prints a middle dot five times, which is the legitimate non-ASCII a lazier rule would have failed.
+
+> **## An entry that measured the thing and filed it under a name nothing reads**
+>
+> `ledger_check.check_register` counts the light deck cap off `value.deck_median_L`, deliberately,
+> because that figure is measured off the shipped render rather than asserted by a run about
+> itself. An entry without it is treated as one that PREDATES the measurement, noted and not
+> counted, which is correct for the six August entries the carve-out was written for.
+>
+> On 2026-09-14 the run measured its deck at L* 6.0 and wrote it as `deck_median`. So the cap
+> dropped a measured deck from its count, and the report said "1 older entr(y/ies) predate the
+> measurement" about the second newest run in the ledger. **Two different events were sharing one
+> report line, and the line told the reassuring story.**
+>
+> **The fix is not a list of accepted spellings.** That is a hole with a list attached: honour
+> `deck_median` today and the next run invents `deckMedianLstar` and the count sleeps again with
+> nothing reporting the omission. The rule is derived from the canonical key instead. A key whose
+> name reduces to the same shape, carrying a number, is a MISFILING and says so by name.
+>
+> **And the misfiled value is never adopted.** The gate does not guess that `deck_median` means
+> `deck_median_L` and fold 6.0 into the cap. Guessing is the widening it exists to refuse. It says
+> the name is wrong and leaves the count honest about what it could read.
+>
+> **What to check instead.** Wherever a gate reads ONE key off a record another actor writes, ask
+> what the gate does when that actor spells it differently. If the answer is "treats the record as
+> not carrying the field", the gate has a silent branch, and the two states need separate report
+> lines before either can be trusted.

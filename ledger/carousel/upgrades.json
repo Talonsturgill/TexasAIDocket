@@ -1562,4 +1562,61 @@
   "two_candidates_that_were_not_built": "A plan-time version of the acceptance band check, reading the fence depth and the focal length out of the dossier's own prose, was designed and dropped: it would be a second, weaker statement of an arithmetic the shipped gate already does exactly from the slide, and a fragile prose parser that invents a failure is worse than a note that is read. A row in gate_status for either new gate was dropped because gate_status rows read RECEIPT ARTIFACTS a gate writes during a run, and nothing writes one until the routine calls these gates, which is a human-lane line.",
   "lane": "upgrade, on claude/daily-2026-09-14, before the merge of PR 309. Nothing under .claude/ was written, read only."
  }
+,
+ "2026-09-15 upgrade": {
+  "run": "carousel no. 25, three risks and three states of repair",
+  "actor": "upgrade",
+  "branch": "claude/daily-2026-09-15",
+  "upgrades": [
+   {
+    "what": "scripts/carousel/copy_sync_check.py gains banned_characters(): every em dash, en dash, curly quote and emoji in copy.json AND in the render's text nodes is a hard fail, with the character, the surface and the string named. The four classes are imported from caption_check rather than restated.",
+    "why": "CLAUDE.md bans those characters ANYWHERE and no gate had ever read a slide for them. caption_check enforces all four and is pointed at caption.txt and at the built site; house_style_check reads docs/. So the nine frames a reader looks at were the one published surface with no house-rule gate on them, and frame 5 of this deck shipped 'SEPTEMBER 14-15, 2026' with an EN DASH through the render and through the machine qa pass. A pixel critic reading the picture is what found it. This gate is the one that should have caught it: it already reads every authored string and every rendered node, in both directions, and its only comparison operator is skeleton(), which keeps lowercase alphanumerics and DELETES punctuation. The dash was in the record and in the render, so the sync direction was correctly and uselessly green.",
+    "files": [
+     "scripts/carousel/copy_sync_check.py"
+    ],
+    "verification": "python3 scripts/carousel/copy_sync_check.py --self-test, exit 0, 13 new cases. It replays against the REAL shipped artifact rather than a fixture: it asserts runs/carousel/2026-09-15 is clean, asserts that pass is not vacuous because that deck's render does carry non-ASCII (a middle dot, five times), then puts the en dash back into the exact rendered string that carried it and asserts the finding, its surface, its character and its 'X to Y' advice. It asserts skeleton() erases a dash, which is the statement of why this gate was blind. It asserts a curly quote in copy.json alone and an emoji in the render alone are each caught, that a middle dot, a degree sign, a times sign and a hyphen all pass, and that a dash in a META_KEYS field is not reported. If no shipped run carries a render report the self-test FAILS rather than skipping. Forced red end to end: runs/carousel/2026-09-15 copied to out/2026-09-15/tmp/redtest with '14TH TO 15TH' replaced by the en dash exits 1 and names both surfaces; the same artifacts unmodified exit 0. Measured across the whole corpus: zero findings on 24 shipped decks.",
+    "revert": "the upgrade commit on claude/daily-2026-09-15",
+    "how_i_would_know_this_was_wrong": "A frame that legitimately needs one of these characters, which would mean a quotation whose source spells it that way. The house rule says the character is banned anywhere and a verbatim quote is never touched, so that case is a real conflict and the answer would be an exemption earned per node by proof, the way caption_check earns the date exemption from a time element's datetime attribute. Never a list of exempt strings. The other failure would be a run learning to scroll past it, which will show up as findings on furniture nobody intends to change."
+   },
+   {
+    "what": "scripts/carousel/ledger_check.py gains misfiled_median(): an artwork.json entry that carries a NUMBER under a key reducing to the same shape as deck_median_L, and no deck_median_L, is reported as a MISFILING by name rather than folded into the 'predates the measurement' note. Binds on entries dated after 2026-09-15.",
+    "why": "check_register counts the light deck cap off value.deck_median_L, because that figure is measured off the shipped render rather than asserted by a run about itself. An entry without it is noted as predating the measurement, which is right for the six August entries it was written for. The 2026-09-14 run measured its deck at L* 6.0 and wrote deck_median, so the cap dropped a measured deck and the report said '1 older entr(y/ies) predate the measurement' about the second newest run in the ledger. Two different events shared one line and the line told the reassuring story. The fix is not a list of accepted spellings, which is a hole with a list attached; the rule is derived from the canonical key itself, so a spelling nobody has invented yet is caught.",
+    "files": [
+     "scripts/carousel/ledger_check.py"
+    ],
+    "verification": "python3 scripts/carousel/ledger_check.py --self-test, exit 0, 17 new cases. It replays against the SHIPPED ledger: the real 2026-09-14 entry is identified as the only misfiling in the file and the key and value it names are the ones that run actually wrote. It asserts the four shapes that must not be confused, an entry with deck_median_L, an entry with no median at all, planned_deck_median and per_slide_median_L, plus a prose note that is not a figure. It asserts four spellings are caught including three no run has ever written, none of them listed anywhere in the rule. It asserts a misfiling dated after the bind date FAILS and names the key to write, that one dated before it does not, and that the misfiled value of 86.7 is NOT folded into the light deck count, because guessing is the widening this refuses. shipped_check.py, which is what wires this into guards.yml, exits 0.",
+    "revert": "the upgrade commit on claude/daily-2026-09-15",
+    "how_i_would_know_this_was_wrong": "A key that legitimately reduces to deckmedian and is a different quantity, which would make the report a false alarm on a correct entry. _median_shape strips one luminance suffix and nothing else, so the space of such keys is small, and per_slide_median_L and planned_deck_median are both pinned as non-matches. The other way it fails is the bind date outliving its purpose: once 2026-09-14 rolls out of the eight run window the note disappears on its own, and if MEDIAN_KEY_BINDS_AFTER is ever moved forward to silence a new finding, that is the loosening this file exists to make visible."
+   }
+  ],
+  "proposals_out_of_lane": [
+   {
+    "what": "assets/js/txlayout.js: give TXLAYOUT.POS.src a maxWidth the way kicker already has one, computed from the frame width less the two insets less the site line's measured advance, and assert the two rendered boxes do not intersect in a browser",
+    "owner": "human",
+    "why": "assets/** is human lane. The source line and the site line are both nowrap with no width ceiling and grow toward each other across one 80px band. Frame 5 carried seven claim ids; 45 characters of mono at 24px with 0.07em of tracking is 724px, so the source line ran x 80 to x 804 while the site line began at x 727. 77px of overlap, rendered as DOCKETexasaidocket.com at full size and at 432px, past the render and the machine qa pass. Today's repair was slide-local CSS on one frame."
+   },
+   {
+    "what": ".claude/agents/carousel-flow-critic.md and carousel-treatment-director.md: add the Glob tool",
+    "owner": "human",
+    "why": "upgrade owns those paths in the map and the host prompts on every edit under .claude/ regardless, so this run does not get to make it. Both agents hold only Read, Read on a directory errors, and this run's flow critic was given out/2026-09-15/final/thumbs/, reported six failed filename guesses and judged the deck off the contact sheet alone. The real names are slide-01-thumb.png through slide-09-thumb.png."
+   },
+   {
+    "what": ".claude/settings.json SessionStart hook: install requirements-ci.txt and requirements-tools.txt rather than a list of two package names",
+    "owner": "human",
+    "why": "human lane AND under .claude/. The hook installs pyyaml and requests; this run hit ModuleNotFoundError: No module named 'PIL' at wake and installed both files by hand before it could start. A list of names in the hook is a second copy of the requirements file and the second copy is the one that goes stale."
+   },
+   {
+    "what": "knowledge/shared/GATE_LESSONS.md: two entries, drafted in full in knowledge/carousel/UPGRADE_BACKLOG.md for a maintainer to paste",
+    "owner": "human",
+    "why": "knowledge/shared/** is human lane. Both gates built today belong in that file, so they are written out in its own form rather than summarised, because a finding that survives on somebody remembering to rewrite it is a finding the machine loses."
+   }
+  ],
+  "filed_to_backlog": [
+   "The screen ceiling at plan time. A white field through TXINK at cell 5 stipple, 6 dots per cell, comes off the press at 63.0 of 255 on this deck's ground, a ceiling of L* 26.7, and the plan asked a stipple frame for a median of 40. panel_ready found it after nine frames were drawn. Carousel no. 22 has the same shape, plan 28 against a deck of 13.5. NOT BUILT because the instrument needs chromium and shipped_check runs in the python job, and making the check skip when the browser is absent is GATE_LESSONS 15 exactly. The design and the three things to get right are written out in the backlog.",
+   "runs/<date>/computed.json is what feeds.py::_run_numerals reads and 2026-08-26, 2026-09-14 and 2026-09-15 wrote figures.json instead. Held back because the harm direction runs the safe way: a smaller authorised set is a red build rather than a wrong page. shipped_check is the in-lane home for it.",
+   "plan_render_check reports 0 of 51 acceptance items machine-checkable, on a deck where three acceptance items were false against the render and a human-shaped reader caught all three. The first honest step is a fraction printed BEFORE anything is drawn, because an unjudgeable acceptance item is a defect in the specification."
+  ],
+  "scan": "Rotating focus, the physical tonal ceiling of a screened print, about six searches. The printing literature puts a halftone's routine operating range at 5 to 95 percent of dot area and describes dot gain closing the midtones further, so a screen having a ceiling and a floor that no amount of drawing crosses is the normal case rather than a quirk of this pipeline. That supports the backlog design and supplies no number this project would publish: the ceiling stays measured off our own press, because a figure taken from a printing reference is not a figure derived from TXINK.",
+  "lane": "upgrade, on claude/daily-2026-09-15, before the merge of PR 315. Nothing under .claude/ was written, read only. No gate was loosened and no threshold was widened. knowledge/shared/GATE_LESSONS.md was NOT edited because it is human lane; both entries are drafted in the backlog instead."
+ }
 }

@@ -86,6 +86,18 @@ MEASURED, on every deck this repo has rendered: 33 quoted phrases across seven d
 tracing to a claim the slide declares. Zero false positives on real work, which is the number
 that decides whether a gate survives its first month.
 
+A FIFTH FAILURE, 2026-09-15. A CHARACTER THE HOUSE BANS ANYWHERE, ON A FRAME.
+
+Frame 5 of carousel no. 25 shipped `SEPTEMBER 14-15, 2026` with an EN DASH in it, through the
+render and through the machine qa pass, and a pixel critic reading the picture is what found it.
+`CLAUDE.md` bans em dashes, en dashes, curly quotes and emoji anywhere, `caption_check` enforces
+all four classes, and it is pointed at `caption.txt` and at the built site. Nothing was pointed
+at the deck, so the nine frames a reader actually looks at were the one published surface with
+no house-rule gate on them.
+
+This file is the one that should have caught it, and could not, because its only comparison
+operator is `skeleton()` and `skeleton()` deletes punctuation. See `banned_characters` below.
+
     copy_sync_check.py --date 2026-08-12
     copy_sync_check.py --self-test
 
@@ -433,6 +445,94 @@ def untraced_quotations(copy: dict, claims: dict | None) -> tuple[list[str], int
     return findings, checked
 
 
+# ---------------------------------------------------------------- banned characters
+#
+# THE HOUSE BANS THREE CHARACTER CLASSES OUTRIGHT AND NO GATE READ THE DECK FOR THEM (2026-09-15).
+#
+# `CLAUDE.md`: "No em dashes or en dashes anywhere. No emojis. Straight quotes only." Anywhere
+# includes a slide. `caption_check` enforces all three and is pointed at `caption.txt` and at the
+# built site, never at the deck. `house_style_check` reads `docs/`. So the nine frames a reader
+# actually looks at were the one published surface with no house-rule gate on them at all, and
+# frame 5 of carousel no. 25 shipped `SEPTEMBER 14-15, 2026` with an EN DASH in the middle of it,
+# through render and through the machine qa pass, until a pixel critic read the picture.
+#
+# WHY THIS FILE IS THE ONE THAT SHOULD HAVE CAUGHT IT. This gate already reads every authored
+# string in `copy.json` and every node the browser laid out, in both directions, which is more of
+# the deck's copy than anything else in the run sees. It could not see the dash because its only
+# comparison operator is `skeleton()`, which keeps lowercase alphanumerics and DELETES every
+# punctuation mark. The dash was present in the record and present in the render, so the sync
+# direction was correctly, uselessly green. A gate whose normaliser erases the defect class is
+# blind to it by construction, and the repair belongs beside the normaliser that erases it.
+#
+# WHY ONLY CHARACTERS, when `caption_check.check()` is imported here anyway and enforces fifteen
+# rules. Every other rule in that file is a judgement about PROSE: a colon, a comma rate, a bare
+# date, a sentence opener. Slide copy is mostly furniture, and furniture is where those rules
+# produce noise a run learns to scroll past, which GATE_LESSONS names as worse than no gate. A
+# dash is a dash on a label and in a sentence alike. These three classes are structural, they
+# admit no exception anywhere in the house, and they are exactly the class GATE_LESSONS 46 calls
+# safe: "a semicolon is a semicolon".
+#
+# ONE LIST, NOT A SECOND COPY OF ONE. `DASHES`, `CURLY` and `emojis()` are imported from
+# `caption_check` rather than restated, because a list that exists in two files is two lists and
+# the second one is always shorter. That is GATE_LESSONS 75, and this repo has already paid for
+# it with two numeral tokenisers.
+#
+# BOTH SURFACES, DELIBERATELY. The render is what a reader receives and is the authority. The
+# record is what every downstream gate, the ledger and the article page read. A pixel round edits
+# HTML directly, so a character can enter either one alone, and checking only the render would
+# leave a banned character in the committed record of what the deck says.
+def banned_characters(copy: dict, report: dict) -> list[str]:
+    """Em and en dashes, curly quotes and emoji, in the deck's copy and in its render.
+
+    Returns one finding per (surface, character, string). Empty means the deck carries none.
+    """
+    try:
+        import caption_check as house
+    except ImportError as exc:                                          # pragma: no cover
+        raise SystemExit(
+            f"copy_sync: cannot import caption_check, which owns the banned character list "
+            f"({exc}). This gate will not restate the list locally: a second copy is how the "
+            f"two numeral tokenisers in this repo came to carry the same bug. Fix the import")
+
+    def hits(s: str) -> list[tuple[str, str]]:
+        out = [("dash", d) for d in sorted(set(house.DASHES.findall(s)))]
+        out += [("curly quote", q) for q in sorted(set(house.CURLY.findall(s)))]
+        out += [("emoji", e) for e in sorted(set(house.emojis(s)))]
+        return out
+
+    advice = {
+        "dash": 'no em or en dashes anywhere. Write the range "X to Y", or split the sentence',
+        "curly quote": "straight quotes only",
+        "emoji": "not the register, not once",
+    }
+    findings: list[str] = []
+
+    def note(where: str, kind: str, ch: str, s: str):
+        shown = s if len(s) <= 56 else s[:53] + "..."
+        msg = f"{where}: {kind} {ch!r} in \"{shown}\": {advice[kind]}"
+        if msg not in findings:
+            findings.append(msg)
+
+    for key, slide in sorted(normalize_slides(copy.get("slides")).items(),
+                             key=lambda kv: (slide_no(kv[0]) or 0)):
+        for s in strings_in(slide):
+            for kind, ch in hits(str(s)):
+                note(f"copy.json {key}", kind, ch, str(s))
+    # Anything else the manifest carries. `strings_in` honours META_KEYS, so how a frame was drawn
+    # is still exempt and everything a reader could receive is examined by default.
+    for s in strings_in({k: v for k, v in copy.items() if k != "slides"}):
+        for kind, ch in hits(str(s)):
+            note("copy.json", kind, ch, str(s))
+
+    for rec in report.get("slides") or []:
+        n = rec.get("n") or rec.get("slide") or slide_no(rec.get("file", ""))
+        for t in rec.get("text_nodes") or []:
+            s = str(t.get("text", ""))
+            for kind, ch in hits(s):
+                note(f"render slide {n}", kind, ch, s)
+    return findings
+
+
 def compare(copy: dict, report: dict, claims: dict | None) -> tuple[list[str], list[str]]:
     """Returns (drifted, uncited). Both empty means in sync."""
     drifted, uncited = [], []
@@ -509,12 +609,14 @@ def run(date: str, out_root: Path) -> int:
 
     drifted, uncited = compare(copy, report, claims)
     untraced, quoted_n = untraced_quotations(copy, claims)
+    banned = banned_characters(copy, report)
     n_slides = len(normalize_slides(copy.get("slides")))
 
-    if not drifted and not uncited and not untraced:
+    if not drifted and not uncited and not untraced and not banned:
         extra = ("" if claims is not None
                  else ", citations and quotations unchecked (no claims.json)")
         print(f"copy sync: clean, {n_slides} slide(s) match what the browser laid out{extra}")
+        print("copy sync: no em dash, en dash, curly quote or emoji in the copy or the render")
         if claims is not None:
             print(f"copy sync: {quoted_n} quoted phrase(s) traced to a claim the slide declares")
         return 0
@@ -544,6 +646,16 @@ def run(date: str, out_root: Path) -> int:
               "  nobody had checked against a source. FIX THE FRAME, never the claim: writing a\n"
               "  new claim to fit a line the deck already drew is how the fabrication becomes\n"
               "  permanent.")
+    if banned:
+        print(f"\ncopy sync: {len(banned)} banned character(s) in the deck\n")
+        for m in banned:
+            print(f"  {m}")
+        print("\n  CLAUDE.md bans these ANYWHERE, and a slide is anywhere. `caption_check` has\n"
+              "  enforced the same three classes since it existed and has only ever been pointed\n"
+              "  at the caption and the built site, so the nine frames were the one published\n"
+              "  surface with no house-rule gate on them. On 2026-09-15 frame 5 shipped an en\n"
+              "  dash through the render and the machine qa pass, and a pixel critic reading the\n"
+              "  picture is what caught it. FIX BOTH SURFACES: the slide's HTML and copy.json.")
     return 1
 
 
@@ -863,6 +975,95 @@ def self_test() -> int:
        "declares nothing" in untraced_quotations(d8, cl2)[0][0])
     ok("the module header states the blind spot rather than implying coverage",
        "NOT COVERED" in (__doc__ or "") and "unquoted string" in (__doc__ or ""))
+
+    # ---------------------------------------------------------- BANNED CHARACTERS, 2026-09-15
+    #
+    # REPLAYED AGAINST A REAL SHIPPED DECK, not against a fixture invented here. GATE_LESSONS 16
+    # and 63: a fixture written by the author of a detector agrees with the detector, and only a
+    # real artifact carries the shapes nobody thought to write down. This deck prints a MIDDLE DOT
+    # five times in its furniture, which is legitimate, non-ASCII, and exactly the kind of
+    # character a lazier rule would have failed.
+    #
+    # THE NEWEST SHIPPED RUN, not a pinned date, so the replay follows the corpus forward. If no
+    # shipped run carries a render report this FAILS rather than skipping: a skipped test and a
+    # passing test are the same colour, which is GATE_LESSONS 15.
+    shipped = sorted(p for p in (REPO_ROOT / "runs" / "carousel").glob("*/render_report.json"))
+    ok("a shipped run with a render report exists to replay this against", bool(shipped),
+       "runs/carousel/*/render_report.json matched nothing")
+    if shipped:
+        live = shipped[-1].parent
+        real_copy = json.loads((live / "copy.json").read_text(encoding="utf-8"))
+        real_rep = json.loads((live / "render_report.json").read_text(encoding="utf-8"))
+        ok(f"the shipped deck at {live.name} carries no banned character",
+           banned_characters(real_copy, real_rep) == [],
+           str(banned_characters(real_copy, real_rep)))
+        # ...and that is not a vacuous pass. The same deck's furniture carries a middle dot.
+        rendered = " ".join(str(t.get("text", ""))
+                            for rec in (real_rep.get("slides") or [])
+                            for t in (rec.get("text_nodes") or []))
+        ok("...on a deck whose render does carry non-ASCII, so the pass is not vacuous",
+           any(ord(c) > 0x7F for c in rendered),
+           "nothing above ASCII in the render, so this assertion proves nothing")
+
+        # THE DEFECT AS IT SHIPPED. The en dash goes back into the string that carried it.
+        hurt = json.loads(json.dumps(real_rep))
+        put = 0
+        for rec in hurt.get("slides") or []:
+            for t in rec.get("text_nodes") or []:
+                if "SEPTEMBER" in str(t.get("text", "")) and " TO " in str(t.get("text", "")):
+                    t["text"] = str(t["text"]).replace(" TO ", "–", 1)
+                    put += 1
+        if not put:                      # no dated range on this deck: put one on slide 1
+            slides = hurt.get("slides") or [{}]
+            slides[0].setdefault("text_nodes", []).append(
+                {"text": "SEPTEMBER 14–15, 2026"})
+            put = 1
+        found = banned_characters(real_copy, hurt)
+        ok("the 2026-09-15 defect, put back into the real render, is CAUGHT",
+           len(found) == put, str(found))
+        ok("...and the finding names the render, the character and the string",
+           bool(found) and "render slide" in found[0] and "dash" in found[0]
+           and "SEPTEMBER" in found[0], str(found))
+        ok("...and tells the writer to spend X to Y instead",
+           bool(found) and "X to Y" in found[0], str(found))
+
+        # WHY THIS GATE WAS BLIND. Its normaliser deletes the character class. Stated as an
+        # assertion so that nobody later "simplifies" the two checks into one comparison.
+        ok("skeleton() erases a dash, which is why the sync direction could never see one",
+           skeleton("SEPTEMBER 14–15") == skeleton("SEPTEMBER 1415"))
+
+    # THE RECORD IS CHECKED TOO, because a pixel round can edit HTML alone or copy alone.
+    cq = {"slides": {"S1": {"line": "the board’s decision"}}}
+    p = banned_characters(cq, {})
+    ok("a curly quote in copy.json alone is caught", len(p) == 1, str(p))
+    ok("...and the finding names copy.json and the slide", bool(p) and "copy.json S1" in p[0])
+    em = {"slides": {"S1": {"line": "the load rose—then fell"}}}
+    ok("an em dash in copy.json alone is caught", len(banned_characters(em, {})) == 1)
+    ej = {"slides": [{"n": 1}]}
+    rep_ej = {"slides": [{"n": 1, "text_nodes": [{"text": "grid \U0001F600"}]}]}
+    ok("an emoji in the render alone is caught", len(banned_characters(ej, rep_ej)) == 1)
+
+    # THE CHARACTERS THIS DECK LEGITIMATELY PRINTS MUST NOT FAIL. A middle dot separates the
+    # stamp's fields, a degree sign and a multiplication sign are figures, and a hyphen is a
+    # hyphen. A rule that swept "non-ASCII" or "any dash" would fail correct frames, and a gate
+    # that fails a correct product is how a gate gets switched off.
+    fine = {"slides": {"S1": {
+        "stamp": "ERCOT BOARD · ITEM 10 · SEPTEMBER 14TH TO 15TH, 2026",
+        "note": "a 12-week window at 104°F across 3 × 400 MW"}}}
+    ok("a middle dot, a degree sign, a times sign and a hyphen all pass",
+       banned_characters(fine, {}) == [], str(banned_characters(fine, {})))
+
+    # HOW IT IS DRAWN IS NOT READER COPY. META_KEYS already exempts `palette` and `technique`,
+    # and this check inherits that rather than keeping its own opinion of what counts.
+    drawn = {"slides": {"S1": {"palette": "bond — forging", "technique": "hatch — c6"}}}
+    ok("a dash in a key META_KEYS exempts is not reported",
+       banned_characters(drawn, {}) == [], str(banned_characters(drawn, {})))
+
+    # ONE LIST. If caption_check stops owning these, this must break loudly rather than drift.
+    import caption_check as _house
+    ok("the banned classes are imported from caption_check, never restated here",
+       _house.DASHES.search("a–b") is not None and _house.CURLY.search("“x”")
+       is not None and _house.emojis("\U0001F600") == ["\U0001F600"])
 
     if failures:
         print(f"\ncopy_sync_check self-test: {failures} FAILED", file=sys.stderr)
