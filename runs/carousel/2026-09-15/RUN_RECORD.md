@@ -109,3 +109,75 @@ today.
   claim about a meeting that has happened. Appended to the field log.
 - **`www.ercot.com`** behaved as the registry describes. The board materials and the market rules
   pages answered 200 under a descriptive User-Agent.
+
+## The deck, and the two decisions a judge should not have to reconstruct
+
+### The value arc was REWRITTEN, not redrawn, and here is the measurement that decided it
+
+`panel_ready` held the deck at a deck median L* of 16.9 against a planned 40, a miss of 23.1
+where one Munsell value step is 10. The routine allows either answer and asks which was taken.
+**This run rewrote the arc.** The reason is a property of the press rather than of the drawing.
+
+On a dark ground `TXINK` lays LIGHT ink where the source is light, so a screened frame's median
+is bounded by how much ink its screen can physically put down. Measured by printing a white
+field through each of this deck's own screen configurations and reading the press back:
+
+| screen | mean of a white field | that frame's ceiling |
+|---|---|---|
+| stipple, cell 5, 6 dots per cell | 63 of 255 | L* 27 |
+| hatch, cell 6 to 8 | 108 of 255 | L* 45 |
+| halftone, cell 6 | 206 of 255 | L* 83 |
+
+Frame 3 is a stipple frame and the plan asked it for a median of 40, which is 13 above the
+highest value that screen can reach with every pixel of the frame painted white. That is not a
+deck that was drawn too dark. It is a plan that asked for a value the chosen screen cannot
+print, and no gate in this repo asks that question at planning time.
+
+The nine planned medians now read 9, 90, 9, 16, 88, 17, 60, 93, 10, re-derived from the press.
+The paper frames are unaffected because their sheet is painted AFTER the press, unscreened.
+
+**What this does not excuse**, stated because the same measurement would otherwise be an alibi
+for any dark frame: a frame that came out dark because nothing was drawn in it. Frame 3 was one,
+and it was rebuilt rather than re-planned. See below.
+
+### Frame 3 was rebuilt, and the type's own scrim is what was eating it
+
+The frame's whole content is a figure against a wall, and its dossier asks for a wall at least
+six times the figure's height. It was measuring 329 px of visible wall against a 77 px figure,
+because the hall stood 560 px tall with 231 px of it buried under the solid scrim the hook and
+the dek sit on. A reader was shown a band at the horizon with two figures, a fence, bollards,
+posts and tyre tracks in front of it, and at 432 px it read as noise.
+
+Four changes, in the order they were made and each measured after:
+
+- **The horizon went from 700 to 1042**, so the wall owns the middle band the dossier gave it
+  and the apron owns the bottom third rather than 48% of the frame. Three numbers fix
+  everything else and each is forced: the scrim ends at 430 because the dek does, the apron
+  keeps 130 px because the pickup and the fence stand on it, and the figure must measure 55 to
+  80 px, which fixes the depth at 26 m.
+- **The wall is drawn from metres rather than taken from the catalogue.** `TXOBJ.data_center`
+  puts its doors 8 m and 14 m from the ends of a 130 m hall and its roof plant 4.2 m over the
+  parapet. Thirty three metres of hall fit in this frame, so either door brings an END of the
+  building on screen and the record gives no capacity for any facility. The roof plant at that
+  height lands in the scrim and comes off the press as cropped boxes under the dek.
+- **The sky is painted after the press**, unscreened, which is the device frames 2, 5, 7 and 8
+  already use for their sheet. A dawn painted at #D7AE79 into the screened plate printed at the
+  same value as the ground beside it, for the reason in the table above.
+- **The pad is graded caliche with stone on it.** A stipple over one value is still one value:
+  the screen lays dots and a flat fill under it leaves every near-ground cell holding one tone
+  plus a few dark specks, which `frame_balance` reads as a dead lower zone however many objects
+  are standing on it. The bottom band went from 0.237 to 0.607 of the frame's own craft density,
+  and the band ratio from 0.54 to 1.06, by adding tone under the dots rather than more objects.
+
+The dossier was corrected with it. Its technique line named the catalogue, its palette named a
+transformer yard that is not in the frame, and its acceptance list asked for every shadow to run
+to frame LEFT when the deck's one declared light, azimuth -68 at elevation 6, throws every shadow
+in every world frame to frame RIGHT and toward the camera.
+
+### One strikethrough, fixed by moving the type rather than by covering the rule
+
+Frame 2's `50 METRES` label had the hall's own bay divider running down through its glyph band at
+x 130.7. A knockout plate does not answer that and the gate says why in its own docstring: paint
+order is not consulted, because a dark hairline across a word reads as a strikethrough whichever
+was rasterised last. The scale bar moved out of the elevation and into the sheet's clear upper
+left quadrant, which is where a survey sheet puts it and where the only thing it can cross is air.
