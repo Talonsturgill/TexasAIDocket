@@ -136,7 +136,8 @@ highest value that screen can reach with every pixel of the frame painted white.
 deck that was drawn too dark. It is a plan that asked for a value the chosen screen cannot
 print, and no gate in this repo asks that question at planning time.
 
-The nine planned medians now read 9, 90, 9, 16, 88, 17, 60, 93, 10, re-derived from the press.
+The nine planned medians now read 9, 90, 9, 9, 88, 14, 67, 93, 9, re-derived from the press and
+then re-derived again after the pixel round moved four frames.
 The paper frames are unaffected because their sheet is painted AFTER the press, unscreened.
 
 `measure.py`'s own closing advice, inherited from four runs that planned light and rendered dark,
@@ -189,3 +190,70 @@ x 130.7. A knockout plate does not answer that and the gate says why in its own 
 order is not consulted, because a dark hairline across a word reads as a strikethrough whichever
 was rasterised last. The scale bar moved out of the elevation and into the sheet's clear upper
 left quadrant, which is where a survey sheet puts it and where the only thing it can cross is air.
+
+
+## The pixel round, and the seven things it found that no gate did
+
+Six critics, five on the frames and one on the sequence. Every gate in the suite was green when
+they were spawned and the deck had a zero-fail QA verdict. What came back:
+
+- **Two furniture lines printing through each other on frame 5.** `TXLAYOUT` mounts the source
+  line at left 80 with `nowrap` and no ceiling, and the site line is anchored at right 80 with
+  `nowrap`. Frame 5 carries seven claim ids: 45 characters of mono at 24px with 0.07em of tracking
+  is 724px, so it ended at x 804 and the site line began at x 727. It shipped as
+  `DOCKETexasaidocket.com` at full size and at 432px. Set down to 19px on that frame it is 573px
+  and clears by 74px. **The general repair is a ceiling in `txlayout.js` and it is in this run's
+  upgrade proposals**, because a furniture line with no ceiling is waiting for the next long
+  claim list.
+- **An en dash on frame 5's own sheet.** `SEPTEMBER 14–15, 2026`, in the deck's furniture rather
+  than in a quote, against a house rule that bans the character outright and says a range reads
+  X to Y. No gate in this repo reads slide copy for dashes. `house_style_check` reads the site.
+- **Frame 4's bearing pedestal was drawn entirely off the frame.** Every offset in that block was
+  written against `FY`, the flange centre at 610, and `FY + 654` is 1264 on a canvas 1350 tall
+  whose foot the reserve paints opaque from 1218. The cap, its bolts, the oil sight glass, the
+  feed block and both halves of the contact shadow rendered where no reader could see them, while
+  the comment above them said they were holding the lower third. The frame passed `frame_balance`
+  at a ratio of 1.21 the whole time, because the flange fills the frame on its own.
+- **Frame 4's handrail stanchion was at the right edge.** The dossier's subject line says left,
+  the acceptance item says left, the comment in the file said right, and the drawing agreed with
+  the comment.
+- **Frame 7's declared straightedge was never drawn.** The dossier calls it the thing that says
+  this is a drawing being made rather than a chart being published, and none of that frame's six
+  acceptance items tested for it. It is drawn now, on the desk at the sheet's foot rather than
+  across it, because the sheet's foot carries the title block and a rule through type is a
+  strikethrough.
+- **Frame 5's sheet was at exactly 0 degrees** against a dossier asking for 0.4 to 1.2. A sheet at
+  zero reads as a screenshot of a table. It is turned 0.7 now, in one constant read by the canvas
+  and by the SVG that prints on it.
+- **Frame 3's figure was 56 px against an acceptance floor of 55**, which is a pass with a margin
+  of one pixel and was 22 px of white line at 432, indistinguishable from door hardware. The door
+  leaf and the figure are now painted after the press: a lit rectangle with a solid dark
+  silhouette standing in it. A dark shape on a lit ground reads at any size.
+
+Three more were the plan being wrong rather than the drawing. Frame 2's acceptance asked the
+cutaway to match frame 1's machine, and frame 1 stopped drawing a machine when its subject
+changed. Frame 3's subject named a transformer yard and a second figure that are in no version of
+that frame. Frame 5's subject named a pedestal foot that sits under an opaque type band. Each was
+corrected in the dossier rather than argued with.
+
+**And the deck's own accent law was overstated.** It read "never as a fill", and frames 7 and 8
+contradict it in the plan: frame 7's limit is a filled triangle and frame 8's scale bar alternates
+solid segments. Frame 2 contradicted it in the render, where the two leader chips were solid
+accent behind cream type. The chips are bond now, which is right, and taking the fill out dropped
+that frame's accent to 0.06 per cent of the render, which is an accent the deck claims and a
+reader cannot see. Its scale bar carries alternating solid segments instead, which is frame 8's
+own device. The law now says what it meant: the accent may fill a MARK and may not fill a THING.
+
+### What the flow critic asked for and did not get
+
+It asked to cut frame 8, the map, as the third frame running to argue by drawn absence. **It is
+kept.** Its device is not the other two's: 6 and 7 are near-empty fields and 8 is 254 drawn county
+outlines, which is the densest line work in the deck. Its line is also the one the quantifier
+gate is built on, scoped to one document, and cutting it would leave the deck asserting that no
+county is named with nothing drawn behind it. The observation under the ask is fair and is
+recorded here for the next run rather than acted on today.
+
+It also asked for frame 9's sky to be lifted so the map's L* 93 does not cut into it. **Not
+done.** The same 80-point swing opens the deck at frames 1 to 3 and the critic calls that a good
+trade there. A reader swipes one frame at a time, and the closing frame being the deck's deepest
+value is what a close is.
