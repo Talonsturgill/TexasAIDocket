@@ -1,6 +1,6 @@
-# Houston academic physician group moves from two ambient AI pilots to one system for every doctor in the practice
+# Houston academic physician group moves from two ambient AI pilots toward one unified documentation platform
 
-UT Physicians is the clinical practice of McGovern Medical School at UTHealth Houston. Its chief medical information officer told a school wide meeting on September 9th, 2026 that the practice is working toward adopting one ambient listening platform across the whole group. Pilots ran on two competing products first. The stated purpose is to cut the administrative load of clinical documentation and return attention to the patient. The same meeting reported that McGovern is taking part in a University of Texas System project examining already completed student simulations to see whether AI can write the feedback. Real time feedback is named as the longer term goal. No completion date is given for either.
+UT Physicians is the clinical practice of McGovern Medical School at UTHealth Houston. Its chief medical information officer told a school wide meeting on September 9th, 2026 that the practice is working toward adopting one ambient listening platform as a unified system. Pilots ran on two competing products first. The stated purpose is to cut the administrative load of clinical documentation and return attention to the patient. The same meeting reported that McGovern is taking part in a University of Texas System project examining already completed student simulations to see whether AI can write the feedback. Real time feedback is named as the longer term goal. No completion date is given for either.
 
 - Topic: health-and-education
 - Decided by: UT Physicians, McGovern Medical School at UTHealth Houston (company)

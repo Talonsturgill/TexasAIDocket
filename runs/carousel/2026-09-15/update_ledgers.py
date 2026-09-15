@@ -17,7 +17,22 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+def _repo_root(start: Path) -> Path:
+    """The repository, found by its own marker rather than by counting directories.
+
+    This read `parents[2]`, which is the repository from `out/<date>/` and is the `runs/`
+    directory from `runs/carousel/<date>/`, where this script is archived. The archived copy
+    therefore imported ledger_check from a path that does not exist and exited with a
+    ModuleNotFoundError, which is the opposite of the idempotent rerun its own docstring
+    promises.
+    """
+    for p in [start, *start.parents]:
+        if (p / "ownership.yaml").is_file() and (p / "ledger").is_dir():
+            return p
+    raise SystemExit(f"update_ledgers: no repository root above {start}")
+
+
+ROOT = _repo_root(Path(__file__).resolve().parent)
 RUN = Path(__file__).resolve().parent
 DATE = RUN.name
 NO = 25

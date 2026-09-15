@@ -13460,7 +13460,8 @@
     },
     {
      "date": "2026-09-15",
-     "note": "The chamber's upcoming meetings listing carries only what is still ahead, so the canceled September 3rd sitting has come off it. The record now takes that row from the committee's own meetings page, which still marks it canceled. The September 22nd public hearing stands in hearing room E1.016 on the same two listings."
+     "note": "The chamber's upcoming meetings listing carries only what is still ahead, so the canceled September 3rd sitting has come off it. The record now takes that row from the committee's own meetings page, which still marks it canceled. The September 22nd public hearing stands in hearing room E1.016 on the same two listings.",
+     "checked": true
     }
    ]
   },
@@ -17797,16 +17798,11 @@
      "date": "2026-08-26",
      "kind": "passed",
      "note": "Technical Advisory Committee recommended PGRR144 for approval"
-    },
-    {
-     "date": "2026-08-01",
-     "kind": "effective",
-     "note": "Date the grid operator gives for the ride through requirements taking effect"
     }
    ],
    "public_access": {
-    "room": "open_meeting",
-    "how": "The board meeting the presentation was made to is open to the public and the Public Utility Commission's own calendar feed carries it with the room. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it and what body takes it next. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted.",
+    "room": "contact_only",
+    "how": "The board meeting the presentation was made to is open to the public and it has now been held. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it and what body takes it next. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted, so there is no window a reader can act in today.",
     "url": "https://www.ercot.com/mktrules/issues/PGRR144",
     "closes": null
    },
@@ -17941,8 +17937,8 @@
    ]
   },
   {
-   "title": "Houston academic physician group moves from two ambient AI pilots to one system for every doctor in the practice",
-   "summary": "UT Physicians is the clinical practice of McGovern Medical School at UTHealth Houston. Its chief medical information officer told a school wide meeting on September 9th, 2026 that the practice is working toward adopting one ambient listening platform across the whole group. Pilots ran on two competing products first. The stated purpose is to cut the administrative load of clinical documentation and return attention to the patient. The same meeting reported that McGovern is taking part in a University of Texas System project examining already completed student simulations to see whether AI can write the feedback. Real time feedback is named as the longer term goal. No completion date is given for either.",
+   "title": "Houston academic physician group moves from two ambient AI pilots toward one unified documentation platform",
+   "summary": "UT Physicians is the clinical practice of McGovern Medical School at UTHealth Houston. Its chief medical information officer told a school wide meeting on September 9th, 2026 that the practice is working toward adopting one ambient listening platform as a unified system. Pilots ran on two competing products first. The stated purpose is to cut the administrative load of clinical documentation and return attention to the patient. The same meeting reported that McGovern is taking part in a University of Texas System project examining already completed student simulations to see whether AI can write the feedback. Real time feedback is named as the longer term goal. No completion date is given for either.",
    "topic": "health-and-education",
    "decider": {
     "name": "UT Physicians, McGovern Medical School at UTHealth Houston",
@@ -18011,8 +18007,8 @@
    ]
   },
   {
-   "title": "UT Arlington builds a federally funded AI tutor that withholds the answer and begins testing the same system on Fort Worth police training",
-   "summary": "The University of Texas at Arlington published an account on September 10th, 2026 of an AI conversational tutor built on a National Science Foundation grant. The tutor is designed not to supply an answer. It asks the student questions and offers hints so the student reaches the answer, in the way a teacher does at a desk. The same account says testing has already begun with the Fort Worth Police Department on training built from real scenarios, with prompts drawn from the principles of de escalation. The university describes the system judging whether an officer is listening and whether the officer follows what the other person wants to talk about. No evaluation result is published for either use.",
+   "title": "UT Arlington builds a federally funded AI tutor that withholds the answer and helps build Fort Worth police training on the same method",
+   "summary": "The University of Texas at Arlington published an account on September 10th, 2026 of an AI conversational tutor built on a National Science Foundation grant. The tutor is designed not to supply an answer. It asks the student questions and offers hints so the student reaches the answer, in the way a teacher does at a desk. The same account says the researchers are helping to develop Fort Worth Police Department training using real life scenarios, with prompts based on the principles of de escalation. The university describes the system judging whether an officer is listening and whether the officer follows what the other person wants to talk about. No evaluation result is published for either use.",
    "topic": "research-and-science",
    "decider": {
     "name": "The University of Texas at Arlington",
@@ -18030,8 +18026,8 @@
    "key_dates": [
     {
      "date": "2026-09-10",
-     "kind": "decided",
-     "note": "Date the university published the account"
+     "kind": "filed",
+     "note": "Date the university published the account. No claim carries the date of any decision behind it"
     }
    ],
    "public_access": {
@@ -18085,7 +18081,7 @@
    "history": [
     {
      "date": "2026-09-15",
-     "note": "Admitted on the university's own release, which names the funder and says the police testing has begun."
+     "note": "Admitted on the university's own release, which names the funder and says the researchers are helping to develop the police training."
     }
    ]
   }

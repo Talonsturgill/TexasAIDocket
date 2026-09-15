@@ -311,7 +311,7 @@ lower third is deliberately text.
 | quantifiers    | PASS   | 115 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 6 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
 | dossiers       | PASS   | 38,257 chars planned |
-| caption        | PASS   | 138 words |
+| caption        | PASS   | 139 words |
 | craft floor    | WARN   | 9 frame(s), median 3719, floor 669, 2 quiet |
 | plan vs render | WARN   | 0 of 51 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step NO |
@@ -400,3 +400,78 @@ the title, the score and the gate table as ARGUMENTS and defaults them to 1, emp
 score recorded". `email_check` caught the missing score, not the wrong number and not the missing
 title. Its gate table is now read back out of this file's own synced block rather than re-typed,
 so the email and the record cannot disagree about what passed.
+
+## The review, and the eleven things it was right about
+
+An automated reviewer read the pull request and returned 12 findings. One was the missing email
+payload, already fixed above. **Every other one was checked against the stored quote before it
+was acted on, and every one of them held.**
+
+### Three narrowed the record to what its own evidence supports
+
+- **tx-2026-0161** said testing had already begun with the Fort Worth Police Department. Its own
+  quote, c2, says the researchers are *"helping to develop training using real-life scenarios
+  with prompts based on the principles of de-escalation"*. Helping to develop is not testing
+  begun. The title, the summary and the admission note all said the stronger thing, so all three
+  were narrowed.
+- **tx-2026-0160** said one system for *every doctor in the practice*. Its quote, c1, says UT
+  Physicians is working toward adopting Epic's platform *"as a unified system"*. A unified
+  platform is not a universal rollout, and the title and summary now say what the quote says.
+- **tx-2026-0159** carried a key date of `2026-08-01`, kind `effective`. The source says
+  *"effective on August 1"* with **no year**, and that claim's own note says so in capitals:
+  THE SOURCE STATES NO YEAR, so none is asserted here and none may be added downstream. The run
+  added one three fields later, and the site was publishing it as the item's tracked-since date.
+  The key date is gone. The fact survives in the summary in the source's own words.
+
+The third is the one worth reading twice. The run wrote the constraint down correctly at the
+claim, and then broke it itself, in the same commit, in a different field. **A note that travels
+with a claim does not travel with the fact.**
+
+### Two fixed how the record describes itself to a reader
+
+- **tx-2026-0159's `public_access.room` was `open_meeting`**, which makes the site advertise a
+  "Public meeting" route under *Can the public take part?* The `how` text under it already said
+  the opposite in as many words: nothing on the draft rule can be commented on until it is
+  submitted. Observing a meeting that has now been held is not a route to take part in a rule
+  that is not filed. It is `contact_only` now.
+- **tx-2026-0161's key date was typed `decided`** for the day the university published its
+  account, which put a press release date into the timeline as a decision and used it as the
+  record's tracked-since date. It is `filed`, the same kind tx-2026-0160 already used for exactly
+  this.
+
+### Three made the shipped computation rerunnable by somebody who is not this container
+
+- `compute.py` held `Path("/home/user/TexasAIDocket")` as a constant, so the committed
+  computation raised `FileNotFoundError` in any other checkout before it reached a single figure.
+- Its extraction of ERCOT's presentation lived only in gitignored `out/`, so even with the root
+  fixed, `presentation_pages` could not be recomputed. Both extractions are committed beside the
+  run now, with their fetch stamp, byte count and SHA256 intact.
+- The archived `update_ledgers.py` read `parents[2]`, which is the repository from `out/<date>/`
+  and is the `runs/` directory from where it is archived, so the shipped copy exited with a
+  `ModuleNotFoundError` against its own docstring's promise of an idempotent rerun.
+
+Both now find the repository by its own marker and both were rerun from a different working
+directory to prove it, rather than reasoned about.
+
+### One was the gate table disagreeing with the artifact it certifies
+
+`gate_status` counted the caption with `str.split()`, which is 138 whitespace tokens and counts
+three hashtags as three words. `caption_check.comma_rate` counts `\b[\w'-]+\b` and returns 139,
+which is what `captions.json` stores and what the comma ceiling will one day be computed from. So
+the run record's own gate table certified a figure that contradicted the ledger beside it.
+
+**It asks `caption_check` now.** This is the third time in this repo that a consumer kept its own
+copy of a producer's arithmetic, after `weighted_score` and `deck_median_L`, and the cure is the
+same every time. `scripts/carousel/**` is the `upgrade` lane, so that one commit is stamped
+`TXDOCKET_ACTOR=upgrade` under the rule in `ownership.yaml` that allows it for a defect this run
+is blocked by, and this is that: the run record could not ship both figures and be true.
+
+### The one that was not acted on, and why
+
+The reviewer also found that the caption exclusion lists are written one entry behind: they are
+derived from entries *before* the newest, so tomorrow's caption room is handed a window that does
+not contain today's moves. **The finding is correct and the writer is not the place to fix it.**
+`ledger_check` DEFINES the stored lists as `prior[-window:]` with `prior` excluding the newest,
+and asserts it, so changing the writer alone turns the gate red. It is a change to the contract
+between a gate and a ledger across two lanes, which is not a thing to do at the ship gate on a
+reviewer's note. It is written into the upgrade backlog with the measurement attached.

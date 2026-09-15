@@ -6,14 +6,13 @@ The Electric Reliability Council of Texas put a list of emerging Large Load risk
 - Decided by: Electric Reliability Council of Texas (state-agency)
 - Where: Statewide
 - Status: pending
-- Public access: Public meeting
+- Public access: Write to the decider
 - Take part: https://www.ercot.com/mktrules/issues/PGRR144
 
 - Last checked: 2026-09-15
 
 ## Dates
 
-- 2026-08-01 · effective: Date the grid operator gives for the ride through requirements taking effect
 - 2026-08-26 · passed: Technical Advisory Committee recommended PGRR144 for approval
 - 2026-09-14 · hearing: Board of Directors meeting at which the risk list was presented
 

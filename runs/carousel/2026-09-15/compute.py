@@ -8,8 +8,23 @@ is typed.
 import json, re, sys
 from pathlib import Path
 
+
+def _repo_root(start: Path) -> Path:
+    """The repository, found by its own marker rather than by where it was first run.
+
+    This read `Path("/home/user/TexasAIDocket")` until a reviewer ran the shipped copy from a
+    different checkout and got a FileNotFoundError before the first figure. A committed
+    computation that only reruns inside the container that wrote it is not a computation a reader
+    can check, which is the whole claim this file exists to make good on.
+    """
+    for p in [start, *start.parents]:
+        if (p / "ownership.yaml").is_file() and (p / "ledger").is_dir():
+            return p
+    raise SystemExit(f"compute: no repository root above {start}")
+
+
 RUN = Path(__file__).resolve().parent
-ROOT = Path("/home/user/TexasAIDocket")
+ROOT = _repo_root(RUN)
 claims = {c["id"]: c for c in json.load(open(RUN / "claims.json"))["claims"]}
 out = {}
 
@@ -68,7 +83,7 @@ pages = re.findall(r"^--- PAGE (\d+) ---$", (RUN / "sources" /
                    "ercot-iga-update-2026-09-14.txt").read_text(encoding="utf-8"), re.M)
 out["presentation_pages"] = {
     "value": len(pages), "unit": "pages", "basis": "measured",
-    "from": ["out/2026-09-15/sources/ercot-iga-update-2026-09-14.txt"],
+    "from": ["sources/ercot-iga-update-2026-09-14.txt, beside this script"],
     "how": "the PAGE markers the showrunner's pypdf extraction wrote, counted. The extraction "
            "carries the source url, its byte count and its SHA256 in its own header",
     "members": pages}

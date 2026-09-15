@@ -73,7 +73,7 @@
   "unit": "pages",
   "basis": "measured",
   "from": [
-   "out/2026-09-15/sources/ercot-iga-update-2026-09-14.txt"
+   "sources/ercot-iga-update-2026-09-14.txt, beside this script"
   ],
   "how": "the PAGE markers the showrunner's pypdf extraction wrote, counted. The extraction carries the source url, its byte count and its SHA256 in its own header",
   "members": [
