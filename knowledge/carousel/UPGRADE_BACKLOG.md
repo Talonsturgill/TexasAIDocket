@@ -2492,3 +2492,36 @@ the tail.
 > what the gate does when that actor spells it differently. If the answer is "treats the record as
 > not carrying the field", the gate has a silent branch, and the two states need separate report
 > lines before either can be trusted.
+
+### The caption exclusion lists are written one entry behind, and the gate defines them that way
+
+Found by a reviewer on carousel no. 25's pull request, verified, and NOT fixed in that run because
+the fix crosses two lanes and changes a contract rather than a value.
+
+`ledger_check.check_register` asserts that `captions.json`'s three `*_recent` lists equal
+`prior[-window:]`, where `prior = [e for e in entries if e["date"] < newest]`. So the stored lists
+deliberately exclude the newest entry. `out/<date>/update_ledgers.py` writes them that way because
+that is what the gate demands, and the two agree exactly.
+
+**The thing they agree about is wrong.** Those lists are what Phase 10 hands the caption room
+BEFORE it writes, and the room reads the copy the PREVIOUS run left. So on 2026-09-16 the room is
+handed a window that does not contain 2026-09-15's `the correction`, `Pivot` or its question
+close, and it may spend one of them again. The violation is then caught at the following run's
+`ledger_check`, one day after the caption shipped, by check 5. The exclusion list exists to
+prevent the repeat and it is structurally incapable of preventing the most recent one.
+
+The 2026-09-14 entry's own `_derived_note` records the same one-entry-behind shape from the other
+direction, which is the second sighting.
+
+**The fix is one change made in two places at once**, and that is why it is here rather than done:
+
+- `ledger_check` redefines the stored lists as the last `window` entries of the file INCLUDING the
+  newest, and keeps check 5 computing each entry's own window from the entries before IT, which is
+  the enforcement and is correct today. The two are different questions and the gate currently
+  uses one slice for both.
+- `update_ledgers.py` writes the lists from `entries[-window:]`.
+
+`scripts/carousel/**` is `upgrade` and `ledger/carousel/**` is `daily`, so the writer and the gate
+cannot move in one commit by one actor. Sequence it: the gate first, accepting EITHER slice for one
+run, then the writer, then the gate narrowed to the new one. A self-test that asserts the newest
+entry's own moves appear in the lists it hands the next room is what proves it landed.
