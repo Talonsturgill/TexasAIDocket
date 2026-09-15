@@ -1,0 +1,39 @@
+{
+ "axis": "reader",
+ "weighted_score": 7.56,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Frame 9 is both the closing beat that has to hand the reader a next step and the deck's most visually dense technical line drawing, so the takeaway competes with decoding the image at exactly the moment the deck needs to be fastest to read.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.2
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.4
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.4
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.6
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.3
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.4
+  }
+ ]
+}

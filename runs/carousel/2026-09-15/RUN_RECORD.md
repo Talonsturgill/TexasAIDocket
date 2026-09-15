@@ -257,3 +257,102 @@ It also asked for frame 9's sky to be lifted so the map's L* 93 does not cut int
 done.** The same 80-point swing opens the deck at frames 1 to 3 and the critic calls that a good
 trade there. A reader swipes one frame at a time, and the closing frame being the deck's deepest
 value is what a close is.
+
+## The panel, and the three things it sent back
+
+Integrity 7.57, craft 7.61, reader 7.56. Median **7.578**, spread 0.05, one round, SHIP, no hard
+fail on any of the three cards. The bar is 6.7.
+
+A spread of 0.05 across three independent axes is worth naming, because it is the shape of a deck
+with no argument about it: all three judges found the same deck, scored it inside a tenth of a
+point, and each named a DIFFERENT defect. Three were acted on before this record was written.
+
+- **Frame 7's two numerals were outside the safe margin.** The craft card's own one-sentence fix,
+  and the highest-cost defect left in the deck by its reading: the frame exists to draw 10 MW over
+  5 seconds, the label ran to x 1044 against an 80 px margin, and a feed placement crops it. Both
+  it and the axis name are anchored to the margin's own edge now. Frame 2's leader chip started at
+  x 58 for the same reason, which is a label anchored END and left to fall where its own width
+  put it.
+- **Frame 5's column heads and sheet stamp were at 17 and 19 px** against a 24 px mobile floor, on
+  the one frame a reader would use to check the deck's argument. Heads, stamp, risk names and the
+  foot line are set up. The body stays at 21 because its lines are pre-split to the columns and
+  setting them up reflows a verbatim quote.
+- **Frame 4's journal face was never unscreened.** Its acceptance item asks for one unscreened
+  area of a single value holding the frame's silhouette at 432 px, and a hatch at cell 6 screens
+  whatever is under it. The craft card read the frame as crosshatched end to end with no flat
+  value anywhere, which is what it was. The face is painted after the press now, which is the same
+  device frames 2, 3, 5 and 7 already use.
+
+**Two were not acted on and both are judgements rather than deferrals.**
+
+The reader card asks for a closing frame a reader can parse in under a second, against frame 9's
+line work. The frame's job is to name the rule and where its record is kept and it now does both
+in the dek, and the close of a deck about a machine is not the place to stop drawing the machine.
+
+The craft card names frame 9's dead lower zone, which `frame_balance` warns on at a bottom band of
+39 per cent against the frame's own average. That bottom band IS the type block: the hook, the dek
+and the wordmark sit in a 430 px solid reserve, which is what a closing frame is. The gate's own
+advice is not to answer the warning with a bigger quiet zone, and this run did not answer it with
+a smaller one either. It is a warn and not a fail, and it is the correct reading of a frame whose
+lower third is deliberately text.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 44 verified claim(s) |
+| render         | WARN   | 9 slide(s), 39 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 42 warn(s) |
+| aggregates     | PASS   | 10 declaration(s), 13 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 9.27 MB, vector |
+| score          | PASS   | 7.578 |
+| labels         | PASS   | 25 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 115 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 6 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
+| dossiers       | PASS   | 38,257 chars planned |
+| caption        | PASS   | 138 words |
+| craft floor    | WARN   | 9 frame(s), median 3719, floor 669, 2 quiet |
+| plan vs render | WARN   | 0 of 51 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step NO |
+| absences       | PASS   | 10 of 10 scoped to a named document |
+| numerals       | PASS   | 19 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
+
+
+## The ship gates, and three defects they caught that the deck's own suite could not
+
+The carousel suite judges the deck. These judge the SITE the deck lands on, and all three of
+these were in copy this run wrote.
+
+- **`numeral_lint` stopped the build on the figure 44.** The article page opens its verification
+  block with the claim count, that count is in no claim quote and in no run's `computed.json`,
+  because the RUN never computed it and the PAGE did, from the run's own claims file. It is a
+  computation from data and is exactly what the law asks for, and nothing authorised it. It had
+  passed until today BY COLLISION, which is the failure `numeral_lint.scan` records against
+  itself in its own docstring: a claim count that happened to match an unrelated docket figure
+  passed site wide. Carousel no. 25 verified 44 claims, 44 matched nothing, and the build
+  stopped. It is authorised now on that page and no other, from the same list the page counts.
+- **This run also wrote no `computed.json`.** Twenty shipped runs carry one and the last two do
+  not, so `_run_numerals` had no computed figures to authorise for either. It is derived here
+  from `figures.json`, which is the same values with their provenance, and the general repair is
+  in the proposals.
+- **`house_style_check` found 18 sentences over the 30 word backstop**, all in copy this run
+  wrote: 14 claim texts published on the article page, one movement note on tx-2026-0109 and one
+  sentence in tx-2026-0159's summary. Every one was split at a clause with no fact and no numeral
+  changed. The claim TEXT is this project's description of a claim and the verbatim quote is a
+  separate field, so none of this touched a quotation.
+
+**And one thing `texan_check` flagged that turned out to be nothing.** It reported that the
+deck's own fetched evidence names one Texas place, Mission, in `sources/ercot-pgrr144.txt`, and
+asked whether it belonged on a frame. It does not. The string is ERCOT's site navigation, "Vision
+and Mission", on every page of that capture. The gate is right to ask and the answer is read from
+the file rather than assumed, which is the whole point of it asking.
+
+The deck names no Texas place, and that is the record's doing rather than the run's: the
+presentation names no data center, no company, no generator and no county, which is frame 8's
+entire subject. The closing frame gives a reader nothing DATED to act on for the same reason.
+ERCOT's document is marked for information only, no comment window exists, and the deck says
+September or October because that is ERCOT's own word. Inventing a date there is the one thing
+this project does not get to do.

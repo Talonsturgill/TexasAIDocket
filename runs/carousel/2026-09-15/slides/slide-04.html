@@ -1,0 +1,161 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 4 of 9. Archetype CLOSE_CROP. A WORLD frame, no accent. THE TURN.
+     The coupling between two rotors at detail scale, where ERCOT's word FATIGUE lands. The
+     bolt circle runs off the top of the frame, the handrail stanchion is cropped at the left so
+     the detail keeps a size a reader knows, and the ground journal face is one unscreened area
+     so the frame holds a silhouette at feed size.
+     NOTHING IS DRAWN BROKEN. No crack, no spall, no pit, no scoring. ERCOT says the variations
+     CAN induce fatigue or damage and nowhere says it has happened, and a drawn crack would turn
+     a could into a has. This is the frame where that temptation is highest. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --epoxy:#101A12; --ink:#E4DCC6; --dim:#9FA893; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--epoxy); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:208px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:84px; line-height:1.02; letter-spacing:-0.025em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:394px; width:860px; font-size:26px; line-height:1.4; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The word in the paper is fatigue.</h1>
+<p class="dek">The grid operator says a load's swing can reach here. It does not say that it has.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Synchronous generator shaft", kicker2: "The coupling, at detail scale",
+                                    counter: "04 / 09", src: "c27 c30   TEXAS AI DOCKET", ink: "#9FA893" });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 84, maxLines: 2 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // DETAIL SCALE. No camera and no ground plane: the reader is 0.35 m off the steel, so the
+    // frame is drawn directly in millimetres mapped to pixels. 1 metre is 1180 px here.
+    var MM = 1.18;                                  // pixels per millimetre
+    var CXp = 560, CYp = 430;                       // the coupling's own centre
+
+    TXINK.print(cx, {
+      ground: "#101A12", ink: "#E4DCC6", fibre: 0.05, seed: 415,
+      screen: { mode: "hatch", cell: 6, angle: 12, gamma: 1.3, floor: 0.05 },
+      edges: { threshold: 19, width: 1.5, alpha: 0.85, dx: -1.2, dy: 0.9 },
+      draw: function (a) {
+        a.fillStyle = "#0A0A0A"; a.fillRect(0, 0, W, H);
+        var back = a.createLinearGradient(0, 0, 0, H);
+        back.addColorStop(0, "#131313"); back.addColorStop(0.42, "#232323"); back.addColorStop(1, "#070707");
+        a.fillStyle = back; a.fillRect(0, 0, W, H);
+
+        function disc(cxp, cyp, rmm, fill) {
+          a.fillStyle = fill; a.beginPath(); a.arc(cxp, cyp, rmm * MM, 0, Math.PI * 2); a.fill();
+        }
+        // THE COUPLING FILLS THE FRAME. Two 1100 mm flange faces bolted face to face, cropped by
+        // the top and both sides, so the reader is INSIDE the machine rather than looking at it.
+        var FX = 470, FY = 610, Rm = 520;
+
+        // the far flange, offset up and right, its rim showing past the near one
+        disc(FX + 54, FY - 34, Rm, "#4C4C4C");
+        disc(FX + 54, FY - 34, Rm - 44, "#616161");
+        // the near flange
+        disc(FX, FY, Rm, "#8E8E8E");
+        disc(FX, FY, Rm - 40, "#A8A8A8");
+        disc(FX, FY, Rm - 300, "#7C7C7C");          // the spigot register
+        disc(FX, FY, Rm - 372, "#C6C6C6");          // the shaft end
+        // the bolt circle, sixteen 90 mm heads, running off the top edge with the flange
+        for (var i = 0; i < 16; i++) {
+          var th = (i / 16) * Math.PI * 2 - Math.PI / 2;
+          var bx = FX + Math.cos(th) * (Rm - 150) * MM, by = FY + Math.sin(th) * (Rm - 150) * MM;
+          a.fillStyle = "#5E5E5E"; a.beginPath(); a.arc(bx, by, 52 * MM, 0, Math.PI * 2); a.fill();
+          a.fillStyle = "#D2D2D2"; a.beginPath(); a.arc(bx - 4, by - 4, 52 * MM * 0.74, 0, Math.PI * 2); a.fill();
+          a.fillStyle = "#484848"; a.beginPath(); a.arc(bx - 4, by - 4, 52 * MM * 0.40, 0, Math.PI * 2); a.fill();
+        }
+        // THE PARTING LINE, the one hard edge in a frame of round forms and the frame's focal.
+        a.strokeStyle = "#0B0B0B"; a.lineWidth = 7;
+        a.beginPath(); a.arc(FX, FY, Rm * MM, -Math.PI * 0.42, Math.PI * 0.52); a.stroke();
+
+        // THE JOURNAL, running out of the frame to the left behind the coupling. ONE UNSCREENED
+        // AREA of a single value, which is what holds the frame's silhouette at 432 px. It sits
+        // ON the pedestal cap below it, which is where a journal sits.
+        a.fillStyle = "#343434"; a.fillRect(0, 806, 300, 260);
+        a.fillStyle = "#EDEDED"; a.fillRect(0, 830, 268, 206);   // the ground face
+        a.fillStyle = "#9A9A9A"; a.fillRect(0, 1036, 268, 24);   // the fillet under it
+
+        // THE BEARING PEDESTAL, carrying the frame's densest hatch, so the BOTTOM third is
+        // modelled rather than left to the reserve.
+        // IT WAS DRAWN ENTIRELY OFF THE FRAME UNTIL A CRITIC READ THE PIXELS. Every offset here
+        // was written against FY, the flange centre at 610, and FY+654 is 1264 on a canvas 1350
+        // tall whose foot the reserve paints opaque from 1218. The cap, its bolts, the oil sight
+        // glass, the feed block and both halves of the contact shadow rendered into a band no
+        // reader could see, and the comment above claimed they were holding the lower third.
+        // The numbers below are absolute for that reason: a coordinate written against a centre
+        // that moves is a coordinate nobody checks against the frame.
+        a.fillStyle = "#2B2B2B"; a.fillRect(60, 1000, 840, 180);
+        a.fillStyle = "#3F3F3F"; a.fillRect(60, 1000, 840, 20);
+        a.fillStyle = "#1E1E1E"; a.fillRect(60, 1020, 840, 10);
+        for (var r = 0; r < 7; r++) {                      // the split-line bolts along the cap
+          a.fillStyle = "#B0B0B0";
+          a.beginPath(); a.arc(120 + r * 122, 1056, 22, 0, Math.PI * 2); a.fill();
+          a.fillStyle = "#4A4A4A";
+          a.beginPath(); a.arc(120 + r * 122, 1056, 11, 0, Math.PI * 2); a.fill();
+        }
+        a.fillStyle = "#C8C8C8"; a.beginPath(); a.arc(250, 1128, 40, 0, Math.PI * 2); a.fill();
+        a.fillStyle = "#5A5A5A"; a.beginPath(); a.arc(250, 1128, 27, 0, Math.PI * 2); a.fill();
+        a.fillStyle = "#8C8C8C"; a.fillRect(660, 1058, 190, 100);   // the oil feed block
+        // its two-part contact shadow onto the deck plate, so it sits rather than floats
+        a.fillStyle = "#0D0D0D"; a.fillRect(36, 1180, 888, 20);
+        a.fillStyle = "#161616"; a.fillRect(0, 1200, 980, 16);
+
+        // THE HANDRAIL STANCHION at the LEFT edge, cropped by it. The one thing in the frame at
+        // a size a reader already knows, which is what keeps the detail a detail. It stood at
+        // x 1004 until a critic read this frame's own dossier back to it: the subject line and
+        // the acceptance item both say left, the comment here said right, and the drawing agreed
+        // with the comment. At the right edge it also read as a stray mark rather than as
+        // handrail, because nothing else in that corner gives it a reason to be there.
+        a.fillStyle = "#D6D6D6"; a.fillRect(24, 560, 52, H - 560);
+        a.fillStyle = "#909090"; a.fillRect(24, 560, 52, 28);
+        a.fillStyle = "#BCBCBC"; a.fillRect(0, 980, 120, 32);
+      },
+      over: function (c) {
+        // A SOLID QUIET BAND behind the top furniture. The art runs to the frame edge here, and
+        // a contour edge through a mono line reads as a strikethrough at feed width.
+        // THE RESERVE IS AT THE TOP on this frame, which is CLOSE_CROP's own top variant. Put
+        // it at the bottom and the reserve erases the bearing pedestal, which is the only thing
+        // holding the lower third: that is the dead lower zone, bought rather than fixed.
+        c.fillStyle = "#0C120B"; c.fillRect(0, 0, W, 470);
+        var fade = c.createLinearGradient(0, 470, 0, 606);
+        fade.addColorStop(0, "rgba(12,18,11,1)"); fade.addColorStop(1, "rgba(12,18,11,0)");
+        c.fillStyle = fade; c.fillRect(0, 470, W, 136);
+        // and a NARROW quiet band at the very foot, behind the source line only. The pedestal's
+        // own contact shadow is a hard edge and it was running through that line's glyph band.
+        var foot = c.createLinearGradient(0, 1164, 0, 1218);
+        foot.addColorStop(0, "rgba(12,18,11,0)"); foot.addColorStop(1, "rgba(12,18,11,1)");
+        c.fillStyle = foot; c.fillRect(0, 1164, W, 54);
+        c.fillStyle = "#0C120B"; c.fillRect(0, 1218, W, H - 1218);
+        // THE GROUND JOURNAL FACE, PAINTED AFTER THE PRESS. Its acceptance item asks for ONE
+        // UNSCREENED AREA OF A SINGLE VALUE holding the frame's silhouette at 432 px, and a
+        // hatch at cell 6 screens whatever is under it: a scorer read the frame as crosshatched
+        // end to end with no flat value anywhere, which is what it was. A turned face catching a
+        // low sun is the one surface in a machine that has no texture to lose.
+        c.fillStyle = "#E9E4D4"; c.fillRect(0, 832, 262, 200);
+        c.fillStyle = "#B4AE9C"; c.fillRect(0, 1018, 262, 16);
+        c.fillStyle = "rgba(20,26,18,0.45)"; c.fillRect(258, 832, 5, 202);
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

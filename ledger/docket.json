@@ -13460,7 +13460,7 @@
     },
     {
      "date": "2026-09-15",
-     "note": "The chamber's upcoming meetings listing carries only what is still ahead, so the canceled September 3rd sitting has come off it and the record now takes that row from the committee's own meetings page, which still marks it canceled. The September 22nd public hearing stands in hearing room E1.016 on the same two listings."
+     "note": "The chamber's upcoming meetings listing carries only what is still ahead, so the canceled September 3rd sitting has come off it. The record now takes that row from the committee's own meetings page, which still marks it canceled. The September 22nd public hearing stands in hearing room E1.016 on the same two listings."
     }
    ]
   },
@@ -17774,7 +17774,7 @@
   },
   {
    "title": "ERCOT tells its board that AI training loads can fatigue grid generators and drafts a limit on how fast their power draw may swing",
-   "summary": "The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force, a model quality rule went to the board this month, and the third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts and cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation was for information only and the board was asked to take no action on it.",
+   "summary": "The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force, a model quality rule went to the board this month, and the third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation was for information only and the board was asked to take no action on it.",
    "topic": "power-and-the-grid",
    "decider": {
     "name": "Electric Reliability Council of Texas",
@@ -17806,7 +17806,7 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The board meeting the presentation was made to is open to the public and the Public Utility Commission's own calendar feed carries it with the room. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site that lists every vote taken on it and what body takes it next. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted.",
+    "how": "The board meeting the presentation was made to is open to the public and the Public Utility Commission's own calendar feed carries it with the room. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it and what body takes it next. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted.",
     "url": "https://www.ercot.com/mktrules/issues/PGRR144",
     "closes": null
    },
@@ -17942,7 +17942,7 @@
   },
   {
    "title": "Houston academic physician group moves from two ambient AI pilots to one system for every doctor in the practice",
-   "summary": "UT Physicians is the clinical practice of McGovern Medical School at UTHealth Houston. Its chief medical information officer told a school wide meeting on September 9th, 2026 that the practice is working toward adopting one ambient listening platform across the whole group, after running pilots on two competing products. The stated purpose is to cut the administrative load of clinical documentation and return attention to the patient. The same meeting reported that McGovern is taking part in a University of Texas System project examining already completed student simulations to see whether AI can write the feedback, with real time feedback named as the longer term goal. No completion date is given for either.",
+   "summary": "UT Physicians is the clinical practice of McGovern Medical School at UTHealth Houston. Its chief medical information officer told a school wide meeting on September 9th, 2026 that the practice is working toward adopting one ambient listening platform across the whole group. Pilots ran on two competing products first. The stated purpose is to cut the administrative load of clinical documentation and return attention to the patient. The same meeting reported that McGovern is taking part in a University of Texas System project examining already completed student simulations to see whether AI can write the feedback. Real time feedback is named as the longer term goal. No completion date is given for either.",
    "topic": "health-and-education",
    "decider": {
     "name": "UT Physicians, McGovern Medical School at UTHealth Houston",

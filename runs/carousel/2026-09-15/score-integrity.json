@@ -1,0 +1,39 @@
+{
+ "axis": "integrity",
+ "weighted_score": 7.57,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Slide 5's tiny-text table, the one frame that hands a reader the actual evidence for the deck's three states of repair argument, fails the 24px mobile floor on nearly every cell, so fix the legibility gate flags there before anything else, because an argument a feed reader can't read is an argument they can't check.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.3
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.3
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 7.7
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ]
+}

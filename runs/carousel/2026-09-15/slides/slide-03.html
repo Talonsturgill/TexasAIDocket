@@ -1,0 +1,232 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 3 of 9. Archetype FIGURE_SCALE. A WORLD frame, no accent.
+     The hall from outside at first light, running off both frame edges so no total length is
+     countable, with one figure at the personnel door. The frame's whole content is that figure
+     against that wall: it is what stops Large Load being a term and makes it a size. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --epoxy:#101A12; --ink:#E4DCC6; --dim:#9FA893; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--epoxy); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:160px; width:600px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:78px; line-height:1.02; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:352px; width:560px; font-size:25px; line-height:1.4; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">This is one large load.</h1>
+<p class="dek">The grid operator's own term for it. The record names no company and no county for any of them.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Large Load", kicker2: "The grid operator's own term",
+                                    counter: "03 / 09", src: "c27   TEXAS AI DOCKET", ink: "#9FA893" });
+    TX.fitText(document.getElementById("hook"), { min: 62, max: 78, maxLines: 3 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // THE CAMERA LOOKS AT A WALL, so the horizon sits low in the frame and the wall owns the
+    // middle band. At a horizon of 700 the apron took 48% of the frame and the hall stood 560 px
+    // tall with 330 px of it buried under the type's own scrim: the dossier asks for a wall six
+    // times the figure's height and the reader was shown a band. The ground gets the bottom
+    // third the dossier gave it and nothing more.
+    // THE CAMERA LOOKS AT A WALL, so the horizon sits low and the wall owns the middle band.
+    // At a horizon of 700 the apron took 48% of the frame and the hall stood 560 px tall with
+    // 330 px of it buried under the type's own scrim: the dossier asks for a wall six times the
+    // figure's height and the reader was shown a band. Three numbers set everything below and
+    // each is forced. The scrim ends at 430 because the dek does. The apron keeps 130 px because
+    // the pickup and the fence line stand on it. The figure must measure 55 to 80 px, which fixes
+    // the depth at 26 m, and the wall then falls where it falls.
+    var cam = { w: W, h: H, eye: 1.68, horizon: 1042, f: 840, fogZ: 300, light: { az: -68, el: 6 } };
+    var ZW = 26;                                    // the wall and the door share it
+    var DX = -6.4, FX = -5.2, FZ = 23;              // the door, and the figure standing in it
+    // ONE COMPUTATION OF THE WALL'S GEOMETRY, read by both the screened plate and the sky that
+    // is painted over it, so the two can never drift apart by a typed number.
+    var PPM  = cam.f / ZW, BASE = cam.horizon + cam.f * cam.eye / ZW;
+    var M    = function (m) { return BASE - m * PPM; };      // metres up the wall to screen y
+    var XM   = function (m) { return W / 2 + m * PPM; };     // metres across to screen x
+    var TOPY = M(16);
+
+    var truck = TXOBJ.sprite("pickup");
+    var door  = TXFIG.figure({ pose: "stand", height: 1.71, hat: "hard" });
+    // THE WALL IS DRAWN RATHER THAN TAKEN FROM THE CATALOGUE, and the catalogue is why.
+    // TXOBJ.data_center puts its doors 8 m and 14 m from the ends of a 130 m hall and its roof
+    // plant 4.2 m above a 16 m parapet. Thirty three metres of hall fit in this frame, so either
+    // door brings an END of the building on screen, and the record gives no capacity for any
+    // facility: a countable building implies one. The roof plant at that height lands in the
+    // type's scrim and comes out as cropped boxes under the dek. Everything here is still in
+    // metres off the bench's own px/m, so the figure beside it is the catalogue's size.
+    var leaf = TXSCENE.sprite([
+      { type: "rect", x: -1.20, y: 0,    w: 2.40, h: 3.20, fill: "paper", noShadow: true },
+      { type: "rect", x: -1.20, y: 0,    w: 0.13, h: 3.20, fill: "ink",   noShadow: true },
+      { type: "rect", x:  1.07, y: 0,    w: 0.13, h: 3.20, fill: "ink",   noShadow: true },
+      { type: "rect", x: -1.20, y: 3.07, w: 2.40, h: 0.13, fill: "ink",   noShadow: true },
+      { type: "rect", x: -0.10, y: 1.05, w: 0.22, h: 0.10, fill: "ink",   noShadow: true }
+    ]);
+
+    TXINK.print(cx, {
+      ground: "#101A12", ink: "#E4DCC6", fibre: 0.05, seed: 315,
+      screen: { mode: "stipple", cell: 5, perCell: 6, weight: 1.0, gamma: 1.12 },
+      edges: { threshold: 21, width: 1.3, alpha: 0.78, dx: -1.1, dy: 0.7 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        var ppm = PPM, base = BASE, topY = TOPY;
+        a.fillStyle = "#060606"; a.fillRect(0, 0, W, H);
+
+        S.ground({ near: 0.9, far: 700, fill: "#5F563F" });
+        var gr = a.createLinearGradient(0, base, 0, H);
+        gr.addColorStop(0, "rgba(0,0,0,0.44)"); gr.addColorStop(0.3, "rgba(0,0,0,0.06)");
+        gr.addColorStop(0.7, "rgba(206,170,116,0.26)"); gr.addColorStop(1, "rgba(0,0,0,0.34)");
+        a.fillStyle = gr; a.fillRect(0, base, W, H - base);
+        S.gridZ({ dz: 8, from: 5, to: 160, ink: "rgba(0,0,0,0.24)", width: 1 });
+
+        // THE PAD IS GRADED CALICHE, AND A STIPPLE OVER ONE VALUE IS STILL ONE VALUE.
+        // The screen lays dots, so a flat fill under it leaves every near-ground cell holding one
+        // tone plus a few dark specks, which measures as a dead lower zone however many things
+        // are standing on it. The answer is not more objects, it is the tone UNDER the dots: the
+        // blade's own grading passes and the stone the pad is made of, each stone lit on its left
+        // and throwing to frame right, which is where this deck's one light puts every shadow.
+        var rg = TX.rng(30315);
+        for (var p = 0; p < 110; p++) {
+          var py = base + rg() * (H - base), pn = (py - base) / (H - base);
+          a.fillStyle = (rg() < 0.5 ? "rgba(234,208,160," : "rgba(24,18,11,")
+                        + (0.05 + rg() * 0.10).toFixed(3) + ")";
+          a.beginPath(); a.ellipse(rg() * W, py, 70 + rg() * 300 * pn, 5 + rg() * 20 * pn, 0, 0, Math.PI * 2); a.fill();
+        }
+        for (var st = 0; st < 1100; st++) {
+          var sy = base + Math.pow(rg(), 0.7) * (H - base), sx = rg() * W;
+          var sr = Math.max(0.7, 0.020 * S.ppm(S.depthAt(sy)));
+          a.fillStyle = "rgba(18,13,8,0.40)";
+          a.beginPath(); a.ellipse(sx + sr * 1.7, sy + sr * 0.3, sr * 1.9, sr * 0.55, 0, 0, Math.PI * 2); a.fill();
+          a.fillStyle = "rgba(238,216,172," + (0.28 + rg() * 0.40).toFixed(2) + ")";
+          a.beginPath(); a.ellipse(sx, sy, sr, sr * 0.72, 0, 0, Math.PI * 2); a.fill();
+        }
+
+        var near = { ink: "#E0D8C0", paper: "#191F17", accent: "#E0D8C0" };
+        var lit  = { ink: "#4A4736", paper: "#E8D3A6", accent: "#E8D3A6" };
+        // THE WALL, 130 m of it, of which 33 m is on screen: it runs off both frame edges and no
+        // total length is countable, which is what the record requires of this frame.
+        a.fillStyle = "#23271E"; a.fillRect(0, topY, W, base - topY);
+        a.fillStyle = "#2C3126"; a.fillRect(0, M(16.6), W, 0.6 * ppm);            // the parapet
+        a.save(); a.beginPath(); a.rect(0, topY, W, base - topY); a.clip();
+        for (var rb = -20; rb <= 20; rb += 0.9) {                                  // the sheeting
+          var rx = XM(rb);
+          // THE RIB ALPHAS ARE THE SCREEN'S BUSINESS, not the drawing's. At 0.12 and 0.36 the
+          // pitch did not survive a cell 5 stipple and the wall came off the press as a dot
+          // field split by one louvre band, which is the two-rectangles failure this frame's
+          // own risk note names. A mark that the screen cannot resolve is a mark nobody drew.
+          a.strokeStyle = "rgba(226,206,164,0.21)"; a.lineWidth = 1.5;
+          a.beginPath(); a.moveTo(rx, topY); a.lineTo(rx, base); a.stroke();
+          a.strokeStyle = "rgba(8,9,6,0.46)"; a.lineWidth = 1.7;
+          a.beginPath(); a.moveTo(rx + 0.45 * ppm, topY); a.lineTo(rx + 0.45 * ppm, base); a.stroke();
+        }
+        [3.2, 12.8].forEach(function (hm) {                                        // the laps
+          a.strokeStyle = "rgba(8,9,6,0.28)"; a.lineWidth = 2;
+          a.beginPath(); a.moveTo(0, M(hm)); a.lineTo(W, M(hm)); a.stroke();
+        });
+        a.fillStyle = "#4E5340"; a.fillRect(0, M(9.6), W, 1.6 * ppm);              // the louvre band
+        for (var lv = 0; lv < 7; lv++) {
+          a.fillStyle = "rgba(10,12,8,0.55)";
+          a.fillRect(0, M(9.6) + (0.16 + lv * 0.22) * ppm, W, 0.09 * ppm);
+        }
+        var tg = a.createLinearGradient(0, topY, 0, base);        // the sky's own bounce down it
+        tg.addColorStop(0, "rgba(232,198,142,0.20)"); tg.addColorStop(0.4, "rgba(232,198,142,0.02)");
+        tg.addColorStop(1, "rgba(0,0,0,0.34)");
+        a.fillStyle = tg; a.fillRect(0, topY, W, base - topY);
+        a.restore();
+
+        // THE ONE BREAK IN THE WALL, low left on the third, and the figure beside it. This pair
+        // is the whole content of the frame: it is what stops Large Load being a term.
+        var DX = -6.4;
+        a.fillStyle = "rgba(226,190,132,0.16)";
+        a.beginPath(); a.ellipse(XM(DX), base + 6, 3.0 * ppm, 0.8 * ppm, 0, 0, Math.PI * 2); a.fill();
+        S.sprite(leaf, { X: DX, Z: ZW, inks: lit, fade: false });
+        S.shadow(door, { X: FX, Z: FZ, ink: "#000", alpha: 0.62 });
+
+        // THE APRON. The pickup, cropped by the right edge, and the perimeter fence the reader is
+        // standing behind, both on the 130 px the bottom band keeps.
+        S.shadow(truck, { X: 8.0, Z: 13, ink: "#000", alpha: 0.62 });
+        S.sprite(truck, { X: 8.0, Z: 13, inks: near, fade: false });
+        TXOBJ.fence(S, [-30, 11.4], [30, 10.6], { step: 3.0, wires: 3, ink: "#B9B096",
+                    inks: { ink: "#CFC6A8", paper: "#12170F" }, shadowAlpha: 0.34 });
+      },
+      over: function (c) {
+        // THE SKY IS PAINTED AFTER THE PRESS, unscreened, and that is a measurement rather than
+        // a preference. The stipple this frame is drawn under lays at most six dots per 5 px
+        // cell: a pure white source comes off the press at a mean of 63 of 255, so every tone
+        // in the screened plate is squeezed into the bottom quarter of the range and a dawn sky
+        // painted at #D7AE79 printed at the same value as the ground beside it. The deck's
+        // paper frames already paint their sheet in this pass for the same reason. The dossier
+        // asked for a TOP band that is flat, and an unscreened field is what flat means here.
+        var sky = c.createLinearGradient(0, 0, 0, TOPY);
+        // The ramp starts BELOW the dek's last line. A dawn that begins any higher takes the
+        // body copy's worst point under the rubric's 4.5 contrast line, which the press measured
+        // at 3.9 on the first try: type never sits on a ground that is on its way up.
+        sky.addColorStop(0, "#090C07"); sky.addColorStop(0.74, "#0C0F08");
+        sky.addColorStop(0.84, "#3A2C1A"); sky.addColorStop(0.93, "#9A7440");
+        sky.addColorStop(1, "#EDC286");
+        c.globalAlpha = 0.97; c.fillStyle = sky; c.fillRect(0, 0, W, TOPY + 2);
+        var glow = c.createRadialGradient(300, TOPY, 8, 300, TOPY, 300);
+        glow.addColorStop(0, "rgba(255,226,170,0.85)"); glow.addColorStop(0.45, "rgba(214,164,102,0.26)");
+        glow.addColorStop(1, "rgba(214,164,102,0)");
+        c.fillStyle = glow; c.fillRect(0, TOPY - 300, W, 302);
+        c.globalAlpha = 1;
+
+        // THE ROOF PLANT, cut into that glow. Six units of 6.4 m at 12 m centres, which is the
+        // catalogue's own spacing, so the gaps between them are where the sky comes through.
+        for (var u = -3; u <= 2; u++) {
+          var ux = XM(u * 12 + 3.4);
+          c.fillStyle = "#0D110A"; c.fillRect(ux - 3.2 * PPM, M(18.0), 6.4 * PPM, 1.4 * PPM);
+          c.fillStyle = "rgba(250,224,172,0.42)"; c.fillRect(ux - 3.2 * PPM, M(18.0), 6.4 * PPM, 1.2);
+          c.fillStyle = "#0D110A";
+          c.beginPath(); c.ellipse(ux - 1.5 * PPM, M(18.06), 0.72 * PPM, 0.24 * PPM, 0, 0, Math.PI * 2); c.fill();
+          c.beginPath(); c.ellipse(ux + 1.5 * PPM, M(18.06), 0.72 * PPM, 0.24 * PPM, 0, 0, Math.PI * 2); c.fill();
+          c.strokeStyle = "rgba(250,224,172,0.34)"; c.lineWidth = 1.1;
+          c.beginPath(); c.ellipse(ux - 1.5 * PPM, M(18.06), 0.72 * PPM, 0.24 * PPM, 0, 0, Math.PI * 2); c.stroke();
+          c.beginPath(); c.ellipse(ux + 1.5 * PPM, M(18.06), 0.72 * PPM, 0.24 * PPM, 0, 0, Math.PI * 2); c.stroke();
+        }
+        c.fillStyle = "rgba(252,230,182,0.95)"; c.fillRect(0, M(16.6) - 3, W, 3);   // the lit parapet
+
+        // THE DOOR AND THE FIGURE ARE PAINTED HERE, unscreened, and the reason is the same
+        // measurement that moved the sky. A lit door leaf drawn into the screened plate came off
+        // the press as a panel of dots, and the figure beside it came off as a thin outline
+        // against a wall of other thin outlines: at 432 px a critic could not tell the figure
+        // from door hardware, which is the whole of what this frame is for. So the leaf is a flat
+        // lit rectangle and the figure is a SOLID SILHOUETTE standing in it. A dark shape on a
+        // lit ground reads at any size, and it is what a person in a doorway at first light is.
+        var DW = 1.2 * PPM, DH = 3.2 * PPM, DXp = XM(DX);
+        c.fillStyle = "#1A1E16"; c.fillRect(DXp - DW - 5, M(3.2) - 5, DW * 2 + 10, DH + 5);
+        c.fillStyle = "#F0DCB2"; c.fillRect(DXp - DW, M(3.2), DW * 2, DH);
+        var S2 = TXSCENE.create(c, Object.assign({ sky: "#000000" }, cam));
+        S2.sprite(door, { X: FX, Z: FZ, fade: false,
+                          inks: { ink: "#151A13", paper: "#151A13", accent: "#151A13" } });
+
+        // The reserve is sized to the FURNITURE, which is the only thing it is for. It was cut
+        // to 120/70 to fight a dead lower zone, and that was buying composition with the one
+        // rule that does not bend: type never sits on a screen. The pad's own tone is what
+        // fixed the lower zone, so the band goes back to clearing the two lines that sit in it.
+        TXINK.reserve(c, { ground: "#101A12", bottom: 180, bottomSolid: 124 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

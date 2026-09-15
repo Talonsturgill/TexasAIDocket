@@ -1,0 +1,32 @@
+{
+  "what": "the highest frame median L* each of this deck's screens can print on its own dark ground, measured by printing a white field through TXINK.print and reading the press back",
+  "ground": "#101A12",
+  "ink": "#E4DCC6",
+  "screens": [
+    {
+      "frames": "slide-01 hatch c7",
+      "white_field_mean_of_255": 107.6,
+      "ceiling_lstar": 45.5
+    },
+    {
+      "frames": "slide-03 stipple c5",
+      "white_field_mean_of_255": 63.0,
+      "ceiling_lstar": 26.7
+    },
+    {
+      "frames": "slide-04 hatch c6",
+      "white_field_mean_of_255": 107.9,
+      "ceiling_lstar": 45.6
+    },
+    {
+      "frames": "slide-06 halftone c6",
+      "white_field_mean_of_255": 205.7,
+      "ceiling_lstar": 82.7
+    },
+    {
+      "frames": "slide-09 hatch c8",
+      "white_field_mean_of_255": 107.6,
+      "ceiling_lstar": 45.5
+    }
+  ]
+}

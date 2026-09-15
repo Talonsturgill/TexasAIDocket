@@ -1,0 +1,72 @@
+{
+ "weighted_score": 7.578,
+ "judges": [
+  7.57,
+  7.61,
+  7.56
+ ],
+ "spread": 0.05,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.2,
+   "weight": 0.28,
+   "judges": [
+    7.3,
+    7.0,
+    7.2
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.4,
+   "weight": 0.2,
+   "judges": [
+    8.5,
+    8.0,
+    8.4
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.4,
+   "weight": 0.18,
+   "judges": [
+    7.3,
+    7.5,
+    7.4
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.7,
+   "weight": 0.12,
+   "judges": [
+    7.7,
+    8.0,
+    7.6
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.8,
+    7.3
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    8.0,
+    7.4
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 6.7,
+ "over_threshold": true,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "rounds": 1
+}

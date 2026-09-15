@@ -1,0 +1,153 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'This room can move a generator.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.1702,
+        0.8256,
+        0.511
+      ],
+      "band_ratio": 1.0166
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2416,
+        0.9139,
+        0.8235
+      ],
+      "band_ratio": 1.2345
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1618,
+        0.5777,
+        0.7518
+      ],
+      "band_ratio": 1.478
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1828,
+        0.9748,
+        0.4945
+      ],
+      "band_ratio": 0.9021
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'ERCOT BOARD OF DIRECTORS \u00b7 ITEM 10 \u00b7 SEPTEMBER 14T' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'RISK' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'DESCRIPTION' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'MITIGATION AND STATUS' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Sensitive compute equipment' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'trips offline during normal grid' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'events, leading to grid imbalance' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'and instability.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOGRR 282 / NPRR 1308.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Ride-through requirements for' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Large Computational Loads.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'The PUCT approved NOGRR 282/' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NPRR 1308 in July, effective' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'on August 1.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Certain data centers processes' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'can oscillate in a way that' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'damages grid equipment.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Draft NOGRR. Large Load' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'processes must not oscillate in a' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'manner that would cause damage.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'ERCOT plans to submit NOGRR' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'in September or October.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Dynamic models for Large Loads' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'have proven to be inaccurate' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'and thus are inadequate for' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'studying their grid impacts.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'PGRR 144, model quality rules.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Texas A&M is developing' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'more accurate models.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'TAC endorsed PGRR 144 in' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'August and is up for Board' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'consideration in September.' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FOR INFORMATION ONLY \u00b7 NO ACTION IS REQUESTED' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'c15 c16 c18 c19 c21 c22 c26 TEXAS AI DOCKET' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.1408,
+        0.3067,
+        0.25
+      ],
+      "band_ratio": 1.0716
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2479,
+        0.7122,
+        0.932
+      ],
+      "band_ratio": 1.4463
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'MW' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'SECONDS' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'LARGE LOAD MW VARIATION' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'NOT FILED \u00b7 NO NUMBER' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'RECOMMENDED LIMIT, DRAFT' (font-size 22px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.1912,
+        0.0651,
+        0.3658
+      ],
+      "band_ratio": 1.7048
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "busy art under text (bg edge density 0.04) beneath 'Every county in Texas. Not one of them n' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.5735,
+        0.6176,
+        0.5772
+      ],
+      "band_ratio": 0.9801
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 68% of this slide's own average craft density (top 48% / mid 88% / bottom 39% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone"
+      ],
+      "bands": [
+        0.4769,
+        0.8761,
+        0.3897
+      ],
+      "band_ratio": 0.6811
+    }
+  ],
+  "fails": 0,
+  "warns": 42,
+  "verdict": "WARN"
+}
