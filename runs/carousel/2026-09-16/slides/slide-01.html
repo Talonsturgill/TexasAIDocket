@@ -1,0 +1,137 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 1 of 9. Archetype CLOSE_CROP. THE COVER AND THE DECK'S ONE IMAGE.
+     A page of a student's own working at true page size, the camera 0.32 m above it, cropped by
+     left, right and bottom so the reader is inside the page. The ruled answer line across the
+     foot is EMPTY. The entire contribution of a federally funded machine is ONE nine millimetre
+     fed_blue tick in the left margin beside line seven, and you have to look for it.
+     The working is TOKEN STROKES and never letterforms, so the frame prints no word and no
+     numeral that no source contains.
+     Screen stipple c5, measured range 64.0 to 77.5. Planned frame median L* 68. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; --toner:#070016; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:188px; width:880px; font-family:"Fraunces", serif;
+          font-weight:700; font-size:120px; line-height:0.98; letter-spacing:-0.025em;
+          color:var(--toner); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:84px; top:450px; width:800px; font-size:31px; line-height:1.4;
+         color:#252A34; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#2B3038; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">It was built to not tell you.</h1>
+<p class="dek">A federal grant is paying for a tutor that answers a student with a hint.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, {
+      kicker: "The hint, at its actual size",
+      counter: "01 / 09",
+      src: "c15 c10 c4   TEXAS AI DOCKET",
+      ink: "#3C4250"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 82, max: 120, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var PX = 0, PY = 464, PW = 1426, PH = 1010;      // 6.6 px/mm: the reader is inside the page
+    var LINE0 = 540, LSTEP = 55.5;                      // eleven ruled lines of working
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.07, seed: 11,
+      screen: { mode: "stipple", cell: 5, angle: 22, gamma: 1.05, floor: 0.04 },
+      edges: { threshold: 44, width: 1.0, alpha: 0.4, dx: 0.8, dy: -0.6 },
+
+      draw: function (a) {
+        // the table, visible only as a band at the very top above the sheet
+        a.fillStyle = "#101010"; a.fillRect(0, 0, W, H);
+        // the sheet, a touch darker than bare stock so the stipple has something to bite on
+        a.fillStyle = "#1A1A1A"; a.fillRect(PX, PY, PW, PH);
+
+      },
+
+      over: function (c) {
+        // THE SHEET, painted flat and unscreened so it reads as ONE light mass against a dark
+        // table. A screened sheet on a pale stock comes out the same value as the stock, which is
+        // why the first cut of this frame had no silhouette at all in the feed.
+        var pg = c.createLinearGradient(0, PY, 0, PY + PH);
+        pg.addColorStop(0, "#EDEFF1"); pg.addColorStop(1, "#D3D7DB");
+        c.fillStyle = pg; c.fillRect(PX, PY, PW, PH);
+
+        // the pad's own ruled lines, faint, across the whole sheet
+        c.strokeStyle = "rgba(40,48,66,0.30)"; c.lineWidth = 1.6;
+        for (var rl = PY + 74; rl < PY + PH; rl += 37) {
+          c.beginPath(); c.moveTo(PX + 26, rl); c.lineTo(PX + PW - 26, rl); c.stroke();
+        }
+        // the pad's margin rule, which is the line the one mark sits outside of
+        c.strokeStyle = "rgba(120,60,60,0.34)"; c.lineWidth = 2;
+        c.beginPath(); c.moveTo(PX + 150, PY); c.lineTo(PX + 150, PY + PH); c.stroke();
+
+        // THE STUDENT'S OWN WORKING, drawn as TOKEN STROKES at true pencil weight. Never glyphs.
+        var R = TX.rng(10116);
+        c.strokeStyle = "#0E0E0E"; c.lineCap = "round";
+        for (var i = 0; i < 9; i++) {
+          var y = LINE0 + i * LSTEP;
+          var x = PX + 188 + R() * 26;
+          var end = PX + 540 + R() * 800;
+          while (x < end) {
+            var w = 12 + R() * 34;
+            c.lineWidth = 4.2 + R() * 2.6;
+            c.beginPath();
+            c.moveTo(x, y + (R() - 0.5) * 3);
+            c.bezierCurveTo(x + w * 0.35, y - 7 - R() * 5, x + w * 0.65, y + 5 + R() * 5, x + w, y + (R() - 0.5) * 3);
+            c.stroke();
+            x += w + 4 + R() * 7;
+          }
+        }
+
+        // THE RULED ANSWER LINE across the foot, and nothing on it
+        c.strokeStyle = "#3A3A3A"; c.lineWidth = 5;
+        c.beginPath(); c.moveTo(PX + 150, 1120); c.lineTo(PX + 1010, 1120); c.stroke();
+
+        // the mechanical pencil, lower right, with a two part contact shadow
+        c.save();
+        c.translate(PX + 470, 742); c.rotate(-0.10);
+        c.save(); c.filter = "blur(9px)"; c.fillStyle = "rgba(0,0,0,0.55)";
+        c.fillRect(-6, 22, 880, 22); c.restore();
+        c.save(); c.filter = "blur(2px)"; c.fillStyle = "rgba(0,0,0,0.7)";
+        c.fillRect(-2, 12, 872, 12); c.restore();
+        c.fillStyle = "#3A3A3A"; c.fillRect(0, 0, 840, 17);
+        c.fillStyle = "#6A6A6A"; c.fillRect(0, 0, 840, 6);
+        c.fillStyle = "#1E1E1E"; c.beginPath(); c.moveTo(0, 0); c.lineTo(-30, 8.5); c.lineTo(0, 17); c.closePath(); c.fill();
+        c.restore();
+
+        // THE ONE MARK. Nine millimetres at true page scale, in the left margin, beside line
+        // seven and beside nothing else in the deck. It ends short of the first stroke on its
+        // line, so no leader crosses a glyph and nothing is struck through.
+        var mmPx = PW / 216;                      // the sheet is 216 mm wide at PW px
+        var tickY = LINE0 + 6 * LSTEP;
+        c.fillStyle = "#00205B";
+        c.fillRect(PX + 62, tickY - 5, Math.round(9 * mmPx), 11);
+        // bare stock under the furniture bands so the type is ink on paper, never on a screen
+        TXINK.reserve(c, { ground: "#BBC0C6", top: 540, topSolid: 500, bottom: 150, bottomSolid: 126 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

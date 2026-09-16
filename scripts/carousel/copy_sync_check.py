@@ -997,13 +997,40 @@ def self_test() -> int:
         ok(f"the shipped deck at {live.name} carries no banned character",
            banned_characters(real_copy, real_rep) == [],
            str(banned_characters(real_copy, real_rep)))
-        # ...and that is not a vacuous pass. The same deck's furniture carries a middle dot.
-        rendered = " ".join(str(t.get("text", ""))
-                            for rec in (real_rep.get("slides") or [])
+        # ...and that is not a vacuous pass, which needs a deck whose render actually carries
+        # legitimate non-ASCII: a clean result on an all-ASCII deck proves only that there was
+        # nothing to find.
+        #
+        # THIS USED TO ASK THE NEWEST DECK FOR THAT WITNESS AND THE NEWEST DECK DOES NOT OWE IT.
+        # It read the middle dot in 2026-09-15's furniture and assumed the corpus would keep
+        # handing it one. On 2026-09-16 a deck shipped whose every surface is straight quotes and
+        # plain ASCII, which is the house rule being obeyed rather than broken, and this assertion
+        # went red on a deck that was right. A test that fails when the product gets cleaner is
+        # measuring the corpus, not the detector.
+        #
+        # So the witness is SEARCHED FOR, newest first, and the tolerance claim is made against
+        # the deck that can carry it. The non-vacuity guarantee needs SOME real shipped deck with
+        # non-ASCII in it, never this particular one. It still FAILS rather than skipping when no
+        # shipped deck carries any, because a skipped test and a passing test are the same colour.
+        def rendered_text(rep: dict) -> str:
+            return " ".join(str(t.get("text", ""))
+                            for rec in (rep.get("slides") or [])
                             for t in (rec.get("text_nodes") or []))
-        ok("...on a deck whose render does carry non-ASCII, so the pass is not vacuous",
-           any(ord(c) > 0x7F for c in rendered),
-           "nothing above ASCII in the render, so this assertion proves nothing")
+
+        witness, witness_rep = None, None
+        for cand in reversed(shipped):
+            rep = json.loads(cand.read_text(encoding="utf-8"))
+            if any(ord(c) > 0x7F for c in rendered_text(rep)):
+                witness, witness_rep = cand.parent, rep
+                break
+        ok("a shipped deck whose render carries non-ASCII exists to prove the pass is not vacuous",
+           witness is not None,
+           "no shipped deck carries a character above ASCII, so the tolerance claim proves nothing")
+        if witness is not None:
+            witness_copy = json.loads((witness / "copy.json").read_text(encoding="utf-8"))
+            ok(f"...and that deck ({witness.name}) is clean, so legitimate non-ASCII is tolerated",
+               banned_characters(witness_copy, witness_rep) == [],
+               str(banned_characters(witness_copy, witness_rep)))
 
         # THE DEFECT AS IT SHIPPED. The en dash goes back into the string that carried it.
         hurt = json.loads(json.dumps(real_rep))

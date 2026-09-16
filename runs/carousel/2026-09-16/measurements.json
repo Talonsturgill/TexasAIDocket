@@ -1,0 +1,131 @@
+{
+ "_note": "Computed by out/2026-09-16/measure.py from the renders at 432 px, the size a reader receives. Nothing here is typed. The bands are this run's own declared acceptance bands, read out of measure_arc.py so the prose, the gate and this file cannot drift apart.",
+ "frames": {
+  "slide-01": {
+   "median_L": 77.8,
+   "p05_L": 30.1,
+   "p95_L": 93.3,
+   "accent_share_pct": 0.03
+  },
+  "slide-02": {
+   "median_L": 77.4,
+   "p05_L": 12.3,
+   "p95_L": 93.6,
+   "accent_share_pct": 0.0
+  },
+  "slide-03": {
+   "median_L": 50.9,
+   "p05_L": 0.5,
+   "p95_L": 81.7,
+   "accent_share_pct": 0.52
+  },
+  "slide-04": {
+   "median_L": 34.3,
+   "p05_L": 1.7,
+   "p95_L": 78.7,
+   "accent_share_pct": 0.0
+  },
+  "slide-05": {
+   "median_L": 45.9,
+   "p05_L": 3.0,
+   "p95_L": 80.6,
+   "accent_share_pct": 0.0
+  },
+  "slide-06": {
+   "median_L": 21.0,
+   "p05_L": 1.0,
+   "p95_L": 81.6,
+   "accent_share_pct": 1.48
+  },
+  "slide-07": {
+   "median_L": 77.4,
+   "p05_L": 33.7,
+   "p95_L": 81.2,
+   "accent_share_pct": 0.0
+  },
+  "slide-08": {
+   "median_L": 43.5,
+   "p05_L": 1.3,
+   "p95_L": 81.7,
+   "accent_share_pct": 1.08
+  },
+  "slide-09": {
+   "median_L": 13.0,
+   "p05_L": 3.0,
+   "p95_L": 66.2,
+   "accent_share_pct": 0.0
+  }
+ },
+ "per_frame_median_lstar": [
+  77.8,
+  77.4,
+  50.9,
+  34.3,
+  45.9,
+  21.0,
+  77.4,
+  43.5,
+  13.0
+ ],
+ "deck": {
+  "median_L": 45.9,
+  "spread_L": 64.8,
+  "lightest_L": 77.8,
+  "darkest_L": 13.0,
+  "light_cap_L": 60.0
+ },
+ "bands": {
+  "slide-01": [
+   60.0,
+   null
+  ],
+  "slide-02": [
+   55.0,
+   null
+  ],
+  "slide-03": [
+   36.0,
+   52.0
+  ],
+  "slide-04": [
+   24.0,
+   36.0
+  ],
+  "slide-05": [
+   44.0,
+   60.0
+  ],
+  "slide-06": [
+   20.0,
+   32.0
+  ],
+  "slide-07": [
+   50.0,
+   null
+  ],
+  "slide-08": [
+   34.0,
+   46.0
+  ],
+  "slide-09": [
+   null,
+   28.0
+  ]
+ },
+ "palette": {
+  "bond": 77.5,
+  "toner": 0.9,
+  "table": 37.2,
+  "block": 57.5,
+  "shade": 25.0,
+  "lamp": 70.9,
+  "fed_blue": 14.3
+ },
+ "separations": {
+  "figure_vs_furniture_min_L": 8.0,
+  "figure_vs_furniture_drawn_L": 20.0,
+  "lamp_key_vs_shade_min_L": 20.0,
+  "lamp_key_vs_shade_drawn_L": 40.0,
+  "contact_shadow_min_L": 4.0
+ }
+}

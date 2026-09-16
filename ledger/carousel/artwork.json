@@ -1740,6 +1740,56 @@
    },
    "type_skeletons": "Kicker top left, counter top right, hook under it, dek below, source line and site line at the foot. Frames 2, 5, 7 and 8 give the sheet its own typography and set the furniture in the page's own ink. Frame 9 closes on the wordmark.",
    "machine_qa": "0 fails across 9 frames. layout_check --require, bespoke_check median pairwise 0.24, craft_floor, construction_check, dossier_check, plan_render_check, copy_sync_check, coherence_check, texan_check, noun_trace, absence_check, scene_bounds, verbatim_check, numeral_trace, label_guard, quantifier_check and aggregate_check all exit 0. panel_ready exit 0."
+  },
+  {
+   "date": "2026-09-16",
+   "carousel_no": 26,
+   "written_from": "runs/carousel/2026-09-16/storyboard.md",
+   "register": "a paper trail. Two rooms fed by one machine, and the deck's one image is a withheld answer.",
+   "structural_laws": [
+    "THE ACCENT IS THE MACHINE'S OWN MARK AND NOTHING ELSE WEARS IT. fed_blue #00205B migrates from a nine millimetre tick in a homework margin (f1) to a light pool on a desktop (f3) to a floor patch between two people (f6) to three equal patches (f8), and is ABSENT from f2, f4, f5, f7 and f9. Frame 9's absence is load bearing: on the record's own dates nothing has been handed to anybody yet.",
+    "NOTHING IS RANKED. Frame 8's three units are drawn ONCE and stamped three times, so identical is a property of the code rather than a tolerance. The source ranks nothing and encoding an order would invent one."
+   ],
+   "techniques": [
+    "stipple c5 (f1)",
+    "line c4 (f2)",
+    "halftone c7 (f3)",
+    "line c5 (f4)",
+    "hatch c6 (f5)",
+    "halftone c9 (f6)",
+    "hatch c7 (f7)",
+    "halftone c8 (f8)",
+    "line c4 (f9)"
+   ],
+   "palette": "cool pale stock. bond #BBC0C6, toner #070016, accent fed_blue #00205B. Measured by CIELAB dE76 against 65 hexes from the last eight decks; the whole warm-earth space was spent, so this deck went cool and measured clean.",
+   "value": {
+    "measured_arc": [
+     77.8,
+     77.5,
+     51.0,
+     34.1,
+     45.9,
+     20.8,
+     77.5,
+     43.5,
+     13.0
+    ],
+    "spread": 64.8,
+    "note": "A PALE STOCK INVERTS THE SCREEN CEILING INTO A FLOOR, measured in screen_floors.json: stipple c5 cannot go below 64.0 on this ground, which is why f4's planned stipple became a line screen rather than the number moving. Every frame is inside the band its own dossier declared, checked by measure_arc.py, which is new this run and exists because the first panel found five of nine frames outside their bands while the storyboard asserted all nine were inside.",
+    "deck_median_L": 45.9
+   },
+   "type_skeletons": [
+    "CLOSE_CROP",
+    "DOCUMENT",
+    "FULL_BLEED",
+    "FIGURE_SCALE",
+    "TYPE_AS_OBJECT",
+    "FULL_BLEED",
+    "DOCUMENT",
+    "DIAGRAM",
+    "OBJECT_AND_CAPTION"
+   ],
+   "machine_qa": "WARN, 0 fails across nine frames. layout_check --require exit 0, bespoke_check median pairwise 0.2976, craft_floor exit 0, panel_ready READY."
   }
  ]
 }

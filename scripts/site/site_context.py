@@ -1060,7 +1060,7 @@ def load_runs() -> list:
 
         prose = []
         for key in sorted(normalise_slide_keys(planned), key=lambda k: k[0]):
-            said = [_CLAIM_STAMP.sub(" ", " ".join(s.split())).strip()
+            said = [_TRAILING_CLAIM_IDS.sub("", _CLAIM_STAMP.sub(" ", " ".join(s.split()))).strip()
                     for s in _join_wrapped(_slide_strings(key[1]), claims)
                     if _reads_as_prose(s, claims)]
             said = [{"quote": _is_quotation(s, claims), "text": s} for s in said if s]
@@ -1172,17 +1172,43 @@ def _is_quotation(said: str, claims: list) -> bool:
 
 
 def _slide_strings(node) -> list:
-    out = []
-    if isinstance(node, str):
-        if node.strip():
-            out.append(node)
-    elif isinstance(node, list):
-        for x in node:
-            out.extend(_slide_strings(x))
-    elif isinstance(node, dict):
-        for k, v in node.items():
-            if k not in _SLIDE_META:
-                out.extend(_slide_strings(v))
+    """Every display string on one slide, flattened, IN ORDER AND WITHOUT REPEATS.
+
+    THE TRANSCRIPT PUBLISHED EVERY HEADLINE TWICE, found on carousel no. 26, 2026-09-16.
+
+    A run's `copy.json` records a slide as `headline`, `body` and a `strings` list, and the list is
+    the complete set of what the frame lays out, so it CONTAINS the headline and the body. That is
+    the right shape for the record: `strings` is reconciled against the render's own text nodes,
+    and `headline` and `body` are the named roles a reader of the record needs. It is the wrong
+    shape to flatten naively, because this walks every non-metadata value and the same sentence
+    arrives twice.
+
+    On that deck 21 lines came out doubled, including the opening, which the page also spends as
+    its own meta description. A screen reader read the deck's first sentence three times.
+
+    DEDUPED ON THE SQUASHED FORM rather than the literal one, so a string differing only in
+    whitespace is still one string, and FIRST WINS so the named role keeps its position in the
+    reading order. This is a property of any record that names roles and also lists everything, so
+    it is fixed here rather than by asking each run to keep its own copy.json thin.
+    """
+    out, seen = [], set()
+
+    def walk(n):
+        if isinstance(n, str):
+            if n.strip():
+                key = " ".join(n.split()).casefold()
+                if key not in seen:
+                    seen.add(key)
+                    out.append(n)
+        elif isinstance(n, list):
+            for x in n:
+                walk(x)
+        elif isinstance(n, dict):
+            for k, v in n.items():
+                if k not in _SLIDE_META:
+                    walk(v)
+
+    walk(node)
     return out
 
 
@@ -1192,6 +1218,18 @@ def _slide_strings(node) -> list:
 _CLAIM_STAMP = re.compile(
     r"\bCLAIMS?\s+[A-Za-z0-9_.-]+\s*\.?(\s*(QUOTED\s+VERBATIM|COMPUTED|MEASURED|MODELED)\s*\.?)?",
     re.IGNORECASE)
+
+# THE BARE TRAILING ID, found on carousel no. 26, 2026-09-16. A frame's attribution furniture ends
+# in the id alone rather than in the word `claim`, so the stamp above could not see it and the
+# public article printed `FROM THE HEADLINE OF THE UNIVERSITY'S OWN RELEASE SEPTEMBER 10TH, 2026
+# c1.` to a reader and to a screen reader.
+#
+# ANCHORED AT THE END and requiring the `c<digits>` shape, so it takes a stamp and never a word.
+# `c1` at the end of an attribution line is provenance; nothing this project writes as prose ends
+# in a bare letter-and-number token, and a sentence that did would keep it, because the pattern
+# also demands the run of ids be the last thing on the line.
+_TRAILING_CLAIM_IDS = re.compile(r"(?:\s+|^)(?:[ac]\d{1,3})(?:\s+[ac]\d{1,3})*\s*\.?\s*$",
+                                 re.IGNORECASE)
 
 
 def _continues(head: str, tail: str, claims: list) -> bool:
@@ -1273,11 +1311,43 @@ def _join_wrapped(strings: list, claims: list | None = None) -> list:
         s = " ".join(str(raw).split())
         if not s:
             continue
-        if out and _continues(out[-1], s, claims):
+        if out and (_continues(out[-1], s, claims) or _continues_citation(out[-1], s)):
             out[-1] = out[-1] + " " + s
         else:
             out.append(s)
     return out
+
+
+# THE CITATION SPLIT FROM ITS OWN NUMBER, found on carousel no. 26, 2026-09-16, and it cost the
+# deck its central distinction on the public page.
+#
+# Frame 7 sets a footnote ending "…under Grant No." and the grant number beneath it, as the design
+# deliberately does, so they reach copy.json as two strings. `_continues` will not join them and
+# is right not to: the head ends on a full stop, the tail is one token, and the tail opens on a
+# digit, which are three of the six tests it earned the hard way. `_reads_as_prose` then dropped
+# the bare identifier for looking like furniture.
+#
+# What published was "…funded by the U.S. Department of Justice under Grant No." followed straight
+# by the NSF blockquote "FY 2026 = $749,999.00". A reader takes the money for the Justice grant,
+# which is THE ONE INFERENCE this deck's claims file flatly refutes and the whole frame was built
+# to prevent. The deck was right, the transcript was wrong, and nothing on the page said so.
+#
+# Kept as its own rule rather than by loosening `_continues`, because every test in that function
+# was bought by a wrong join. This one cannot join running prose: it demands the head END on an
+# explicit number word and the tail be a SINGLE token carrying a digit and no lowercase letters,
+# which is a citation's shape and not a sentence's.
+_CITES_A_NUMBER = re.compile(r"\b(?:grant|award|docket|case|no|number)\s*\.?\s*(?:no\.?)?\s*$",
+                             re.IGNORECASE)
+_BARE_IDENTIFIER = re.compile(r"^[A-Z0-9][A-Z0-9\-/.]*\d[A-Z0-9\-/.]*\.?$")
+
+
+def _continues_citation(head: str, tail: str) -> bool:
+    """Is `tail` the identifier the sentence `head` just promised and did not print."""
+    if not head or not tail:
+        return False
+    if not _CITES_A_NUMBER.search(head.rstrip("\"'”’)]")):
+        return False
+    return len(tail.split()) == 1 and bool(_BARE_IDENTIFIER.match(tail))
 
 
 # A block the design set in lowercase ON PURPOSE, which announces itself by restarting in

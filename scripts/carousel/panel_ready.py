@@ -618,18 +618,18 @@ def planned_arc(storyboard: str) -> list:
 
 
 def measured_arc(base: Path) -> list:
-    """The shipped PNGs' per frame median L*, on the grid every prior run measured on."""
-    from PIL import Image
-    import numpy as np
-    out = []
-    for png in sorted((base / "render").glob("slide-0*.png")):
-        im = Image.open(png).convert("RGB").resize(ARC_GRID, Image.LANCZOS)
-        a = np.asarray(im, dtype=float) / 255.0
-        a = np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
-        Y = a[..., 0] * 0.2126 + a[..., 1] * 0.7152 + a[..., 2] * 0.0722
-        L = np.where(Y > 0.008856, 116 * np.cbrt(Y) - 16, 903.3 * Y)
-        out.append(round(float(np.median(L)), 1))
-    return out
+    """The shipped PNGs' per frame median L*, on the grid every prior run measured on.
+
+    ONE IMPLEMENTATION OF THE MEASUREMENT, borrowed rather than repeated. `plan_render_check`
+    measures the same figure per frame against the band each dossier declares for itself, and a
+    median computed two ways in one repository is GATE_LESSONS 34's finding under the finding:
+    the defect was never the regex, it was that there was a second regex at all. The GRID stays
+    this file's own, because 270 by 338 is what every prior run's `measurements.json` and
+    `ledger/carousel/artwork.json` were written on.
+    """
+    import plan_render_check as prc
+    return [prc.median_lstar(png, ARC_GRID)
+            for png in sorted((base / "render").glob("slide-0*.png"))]
 
 
 def _median(xs: list) -> float:
@@ -865,6 +865,38 @@ def self_test() -> int:
     ok("a plan of eight frames against a render of nine REFUSES rather than comparing",
        bool(arc_verdict(PLAN_15[:8], SHIPPED_15)))
     ok("a deck declaring no arc is silent", not arc_verdict([], SHIPPED_15))
+
+    # THE PER FRAME QUESTION IS NOT ASKED HERE, AND THE COVERAGE IS STATED RATHER THAN INFERRED.
+    # 2026-09-16 shipped a deck whose median was 45.9 against a plan of 44, inside a tenth of a
+    # Munsell step, with FIVE OF NINE frames outside the band their own dossiers declared and
+    # three of those outside by more than twenty points. This gate passed it and was right to:
+    # the register was the thing it measures. `plan_render_check` measures each frame against its
+    # own declared band and runs at Phase 12b, before this. Both, or a deck can be at the planned
+    # register and half drawn to a different plan.
+    ok("a deck at its planned register with frames all over the place is NOT this gate's finding",
+       not arc_verdict([44] * 9, [78, 77, 51, 34, 46, 21, 77, 44, 13]),
+       str(arc_verdict([44] * 9, [78, 77, 51, 34, 46, 21, 77, 44, 13])))
+
+    # THE BORROWED INSTRUMENT, PINNED. `measured_arc` calls `plan_render_check.median_lstar` so
+    # this repository holds ONE implementation of this measurement. sRGB 128 is L* 53.6 by the
+    # sRGB transfer function, which is a fact about the colour space rather than about our decks,
+    # so a drift here is the instrument moving.
+    import tempfile as _tf
+    with _tf.TemporaryDirectory() as _d:
+        _base = Path(_d)
+        (_base / "render").mkdir()
+        try:
+            import plan_render_check as _prc
+            from PIL import Image as _Im
+            _Im.new("RGB", (1080, 1350), (128, 128, 128)).save(
+                _base / "render" / "slide-01.png")
+            _m = measured_arc(_base)
+            ok("measured_arc reads the shared instrument and a mid grey measures L* 53.6",
+               _m == [53.6], str(_m))
+            ok("...and it is plan_render_check's function, not a second copy of the arithmetic",
+               _prc.median_lstar(_base / "render" / "slide-01.png", ARC_GRID) == _m[0])
+        except ImportError as exc:                                   # noqa: BLE001
+            ok("Pillow is installed, because this gate measures pixels", False, str(exc))
 
     # ---- THE PARSE RULE, against the two shapes real storyboards actually write ---------
     FENCED = ("**The value arc, planned per frame median L\\***, measured off the PNGs.\n\n"

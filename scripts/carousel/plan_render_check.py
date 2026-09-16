@@ -135,6 +135,29 @@ PALETTE_ROW = re.compile(
 # wrote under the heading "Declared as plain pairs so the colour check can read them".
 PALETTE_PLAIN = re.compile(r"^[ \t]*([A-Za-z][A-Za-z0-9_]*)[ \t]+(#[0-9A-Fa-f]{6})[ \t]*$", re.M)
 
+# THE FIFTH SHAPE: A MEASURED COLUMN TABLE, and it cost the whole palette check on 2026-09-16.
+#
+# That deck measured its palette against the last eight decks before choosing it, and wrote the
+# arithmetic into the table beside each colour:
+#
+#     bond       #BBC0C6  L* 76   the copy stock and the deck's most common value   dE 10.59
+#     bond       L* 76   #BBC0C6   the copy stock and the deck's most common value  dE 10.59
+#
+# Both orders shipped in one run, because the columns were reordered mid run. `PALETTE_PLAIN`
+# anchors the hex at the end of the line, so neither form matched, `palette_map` read ZERO tokens,
+# and the declared-colour check did not run at all on a nine frame deck whose plan names colours
+# per frame. This file's own comment above records the same fault in 2026-08-28's words and in
+# 2026-08-30's, which makes today the third time the parser met a form nobody had shown it.
+#
+# So the column layout is read rather than the column ORDER: an indented row, a single word token,
+# an optional stated `L* <n>` on either side of the hex, a BARE hex, and any description after it.
+# Indentation and a bare hex are what keep it off running prose: the paragraph under that table
+# reads "Flag red `#BF0A30` is UNSPENT", which is unindented and backticked, and reading it would
+# invent a token called `red` for a colour the deck says it did not spend.
+PALETTE_COLUMNS = re.compile(
+    r"^[ \t]+([A-Za-z][A-Za-z0-9_]*)[ \t]+(?:L\*[ \t]*-?\d+(?:\.\d+)?[ \t]+)?"
+    r"(#[0-9A-Fa-f]{6})(?:[ \t]+\S.*)?$", re.M)
+
 # `field #333D45 the ground, far #768C9C, mid #B0C8D6` inside a dossier's `palette: >` prose.
 # Scoped to that field alone, so a hex quoted anywhere else in a dossier cannot become a token.
 PALETTE_PROSE = re.compile(r"\b([a-z][a-z0-9_]*)[ \t]+(#[0-9A-Fa-f]{6})")
@@ -184,6 +207,182 @@ def forbidden_needles(item: str) -> list:
 
 # Words that mean the item is about judgement rather than about a countable thing.
 PROSE_ONLY = ("read as", "reads as", "feel", "judged", "at thumb", "by eye", "looks")
+
+
+# ---------------------------------------------------------------------------------------------
+# THE FIFTH KIND: A FRAME'S OWN DECLARED MEDIAN L* BAND (2026-09-16, carousel no. 26)
+#
+# THE DEFECT. That run's storyboard wrote a median L* band into every one of its nine dossiers'
+# acceptance lists, at the size a reader receives: `the frame's median L* at 432px is between 36
+# and 52`. The run then MEASURED all nine medians, wrote them to `measured_arc.json` beside the
+# storyboard, and never compared the two. FIVE OF NINE frames were outside their own declared
+# band, three of them by more than twenty points, while the storyboard still asserted every frame
+# was inside its range. The first panel came back under the ship bar on all three lenses and the
+# craft judge's one sentence fix was, in its own words, to make the pixel phase compare
+# `measured_arc.json` against each dossier's own band and re-render on any frame that misses.
+#
+# Two gates were in the room and neither could see it, each correctly.
+#
+#   this file          counted every one of those nine items as PROSE. Its report line for that
+#                      deck read `0 of 55 acceptance items carry a machine-checkable assertion`,
+#                      which was true of what it could check and false of what the plan wrote:
+#                      nine of the fifty five were arithmetic with a number on both sides.
+#   panel_ready        compares the DECK MEDIAN against the deck's planned arc, deliberately, and
+#                      its own comment says why a per frame rule keyed on a point target would
+#                      fire on every deck. This deck's median was 45.9 against a plan of 44, so
+#                      it passed while five frames sat outside their own bands.
+#
+# WHY A BAND IS DIFFERENT FROM A POINT TARGET, and it is the whole argument for checking per
+# frame here while `panel_ready` keeps checking per deck. `arc_verdict`'s tolerance is one Munsell
+# step, a number that file had to justify from outside this project because a plan states a target
+# and not how far off is acceptable. A BAND IS THE PLAN'S OWN TOLERANCE. `between 36 and 52` is
+# the dossier saying, before anything was drawn, which measurements it would accept. So this
+# types in no threshold at all: it fails a frame only against the range that frame's own author
+# wrote, which is the same contract as every other acceptance item in this file.
+#
+# THE SIZE IS READ FROM THE ITEM AND NEVER ASSUMED. A median moves with the resampling, so a band
+# with no stated measurement size is a band that cannot be settled, and this reports that as
+# UNCHECKABLE rather than picking a size and reporting a verdict. Two forms are read, both taken
+# off real shipped storyboards rather than invented here:
+#
+#   `at 432px`                 2026-09-10 and 2026-09-16. Height follows the frame's own aspect.
+#   `on the 270 by 338 grid`   2026-09-08. Both numbers are the plan's, so both are used.
+#
+# THE SUBJECT MUST BE THE FRAME. Acceptance items legitimately state the median of a REGION, and
+# five shipped decks do: `the punch column's median L* is at least 10 below the rail face median`,
+# `all four castors carry a contact shadow whose median L* differs from the floor beside it by 4
+# or more`. Reading one of those as the frame's band would invent a number the plan does not
+# contain, which is GATE_LESSONS 27 and is the most convincing shape a false failure takes. This
+# is `panel_ready.FRAME_MEDIAN`'s rule, arrived at there for the same reason, so the qualifier is
+# required and nothing else is read.
+FRAME_MEDIAN_SUBJECT = re.compile(r"\b(?:the|this)\s+frame(?:'s)?\s+median\s+L\*", re.I)
+
+# Where the assertion about the frame's own median stops and the sentence goes on to say
+# something else. Every one of these was taken off a real acceptance item: `is 45 or higher,
+# which is at least 18 above the deck median` (2026-09-10), `is above 80 and it is the only frame
+# in the deck above 60` (2026-09-04), `measures 50.5 in measurements.json. NOT MET` (2026-09-11).
+# `and` alone is NOT a break, because `between 36 and 52` is one assertion.
+_CLAUSE_END = re.compile(r",|\bwhich\b|\bbecause\b|\band it\b|\bso the\b|\.\s", re.I)
+
+_AT_PX = re.compile(r"\bat\s+(\d{2,4})\s*px\b", re.I)
+_ON_GRID = re.compile(r"\bon the\s+(\d{2,4})\s+by\s+(\d{2,4})\s+grid\b", re.I)
+
+_N = r"(\d+(?:\.\d+)?)"
+_BETWEEN = re.compile(rf"\bbetween\s+{_N}\s+and\s+{_N}", re.I)
+_PLUS_MINUS = re.compile(rf"{_N}\s*(?:plus or minus|\+/-)\s*{_N}", re.I)
+# Inclusive and strict are kept apart rather than folded together. `60 or higher` admits exactly
+# 60 and `above 60` does not, and a gate that quietly widened the second into the first would be
+# loosening a bound its author chose, on the frame where it matters least and the day it matters
+# most.
+_LO_INCL = re.compile(rf"(?:\bat least\s+{_N}|{_N}\s+or (?:higher|more|greater))", re.I)
+_LO_STRICT = re.compile(rf"\b(?:above|over|higher than|greater than)\s+{_N}", re.I)
+_HI_INCL = re.compile(rf"(?:\bat most\s+{_N}|{_N}\s+or (?:lower|less|darker))", re.I)
+_HI_STRICT = re.compile(rf"\b(?:below|under|lower than|darker than)\s+{_N}", re.I)
+
+
+def band_clause(item: str) -> str | None:
+    """The stretch of an acceptance item that is about the FRAME's own median, or None."""
+    m = FRAME_MEDIAN_SUBJECT.search(item)
+    if not m:
+        return None
+    tail = item[m.end():]
+    cut = _CLAUSE_END.search(tail)
+    return tail[:cut.start()] if cut else tail
+
+
+def parse_band(item: str) -> dict | None:
+    """`{lo, hi, lo_strict, hi_strict, size, clause}` for an item that states a frame band.
+
+    `None` when the item is not about the frame's own median at all. A dict with `size: None`
+    when the band reads but the plan never said at what size to measure it, and a dict with
+    `lo` and `hi` both None when the subject is there and no band could be read. Those two are
+    the THIRD STATE, and they are reported rather than folded into the prose count, because an
+    unread declaration and an item that declares nothing print the same line otherwise. That is
+    the defect `panel_ready.unreadable_plan` exists for, one gate over.
+    """
+    clause = band_clause(item)
+    if clause is None:
+        return None
+    size = None
+    grid = _ON_GRID.search(clause)
+    px = _AT_PX.search(clause)
+    if grid:
+        size = (int(grid.group(1)), int(grid.group(2)))
+        clause = clause[:grid.start()] + " " + clause[grid.end():]
+    elif px:
+        size = (int(px.group(1)), None)
+        clause = clause[:px.start()] + " " + clause[px.end():]
+    out = {"lo": None, "hi": None, "lo_strict": False, "hi_strict": False,
+           "size": size, "clause": clause.strip()}
+    if (m := _BETWEEN.search(clause)):
+        out["lo"], out["hi"] = float(m.group(1)), float(m.group(2))
+        return out
+    if (m := _PLUS_MINUS.search(clause)):
+        mid, tol = float(m.group(1)), float(m.group(2))
+        out["lo"], out["hi"] = mid - tol, mid + tol
+        return out
+    if (m := _LO_INCL.search(clause)):
+        out["lo"] = float(m.group(1) or m.group(2))
+    elif (m := _LO_STRICT.search(clause)):
+        out["lo"], out["lo_strict"] = float(m.group(1)), True
+    if (m := _HI_INCL.search(clause)):
+        out["hi"] = float(m.group(1) or m.group(2))
+    elif (m := _HI_STRICT.search(clause)):
+        out["hi"], out["hi_strict"] = float(m.group(1)), True
+    return out
+
+
+def band_text(b: dict) -> str:
+    lo = "-" if b["lo"] is None else f"{'over ' if b['lo_strict'] else ''}{b['lo']:g}"
+    hi = "-" if b["hi"] is None else f"{'under ' if b['hi_strict'] else ''}{b['hi']:g}"
+    return f"{lo} to {hi}"
+
+
+def in_band(measured: float, b: dict) -> bool:
+    if b["lo"] is not None and (measured <= b["lo"] if b["lo_strict"] else measured < b["lo"]):
+        return False
+    if b["hi"] is not None and (measured >= b["hi"] if b["hi_strict"] else measured > b["hi"]):
+        return False
+    return True
+
+
+def median_lstar(path: Path, size: tuple) -> float:
+    """The median CIE L* of one frame, resampled to `size` first.
+
+    ONE IMPLEMENTATION OF THIS MEASUREMENT, and `panel_ready.measured_arc` calls this rather than
+    keeping a second. Two tokenisers for one numeral is written up in GATE_LESSONS 34 as the
+    defect under the defect, and a median computed two ways would be the same fault on the figure
+    this project's whole value arc is argued in.
+
+    `size` is `(width, height)`, or `(width, None)` to take the height from the frame's own
+    aspect, which is what `at 432px` means on a 1080 by 1350 canvas.
+    """
+    from PIL import Image
+    import numpy as np
+    im = Image.open(path).convert("RGB")
+    w, h = size
+    if h is None:
+        h = round(w * im.size[1] / im.size[0])
+    a = np.asarray(im.resize((w, h), Image.LANCZOS), dtype=float) / 255.0
+    a = np.where(a <= 0.04045, a / 12.92, ((a + 0.055) / 1.055) ** 2.4)
+    Y = a[..., 0] * 0.2126 + a[..., 1] * 0.7152 + a[..., 2] * 0.0722
+    L = np.where(Y > 0.008856, 116 * np.cbrt(Y) - 16, 903.3 * Y)
+    return round(float(np.median(L)), 1)
+
+
+# WHERE A FRAME'S PIXELS LIVE, in the three places this repo actually puts them. A run in flight
+# writes `out/<date>/render/slide-0N.png`; a shipped run under `runs/carousel/<date>/` carries
+# `slide-0N.webp` at the top of the directory, and 2026-09-03 carries one PNG among its webps.
+# The thumbnails are deliberately NOT on this list: they are already resampled, and measuring a
+# band at 432 px off a thumbnail would be measuring somebody else's resize.
+def frame_image(slides_dir: Path, n: int) -> Path | None:
+    root = slides_dir.parent
+    for p in (root / "render" / f"slide-{n:02d}.png",
+              root / f"slide-{n:02d}.png",
+              root / f"slide-{n:02d}.webp"):
+        if p.exists():
+            return p
+    return None
 
 
 # THE LIBRARY A DOSSIER NAMES MUST BE IN THE SLIDE. 2026-08-26.
@@ -350,12 +549,28 @@ def parse_dossiers(storyboard: str) -> dict:
     return out
 
 
-def palette_sections(storyboard: str) -> list:
-    """Every span running from a heading that names the palette to the next heading as high.
+# A BOLD LEAD LINE IS A HEADING THAT IS NOT SPELLED AS ONE, and 2026-09-16 is why this is here.
+#
+# `palette_sections` looked for a markdown heading naming the palette and every storyboard before
+# that one carried one. That deck writes its whole art section as bold lead-ins instead
+# (`**Palette, MEASURED rather than chosen by eye.**`, `**Camera and light.**`), so no section was
+# found, the two loose shapes were never read, and the palette check reported "the storyboard
+# defines no `name #HEX` palette" on a deck that declares seven.
+#
+# A gate that selects what to examine by an allowlist of FORMS sleeps on the form nobody thought
+# of. GATE_LESSONS 39, and this is the third time in this one parser.
+BOLD_LEAD = re.compile(r"^\*\*(.+?)\*\*", re.M)
 
-    All ten shipped storyboards carry one, spelled `## Palette, ...` or `## PALETTE`. The two
-    loose declaration shapes are read here and nowhere else, so a hex quoted in body prose
-    cannot become a token.
+
+def palette_sections(storyboard: str) -> list:
+    """Every span running from an anchor that names the palette to the next anchor.
+
+    Two anchors, both taken off real storyboards. A markdown heading, which is what every deck
+    up to 2026-09-15 wrote, spanning to the next heading as high. A BOLD LEAD LINE, which is what
+    2026-09-16 wrote, spanning to the next heading or the next bold lead, whichever comes first.
+
+    The two loose declaration shapes are read inside these spans and nowhere else, so a hex
+    quoted in body prose cannot become a token.
     """
     heads = [(m.start(), len(m.group(1)), m.group(2)) for m in HEADING.finditer(storyboard)]
     out = []
@@ -367,6 +582,13 @@ def palette_sections(storyboard: str) -> list:
             if lvl2 <= lvl:
                 end = pos2
                 break
+        out.append(storyboard[pos:end])
+    leads = [(m.start(), m.group(1)) for m in BOLD_LEAD.finditer(storyboard)]
+    for i, (pos, title) in enumerate(leads):
+        if "palette" not in title.lower():
+            continue
+        end = min([p for p, _l, _t in heads if p > pos] + [p for p, _t in leads[i + 1:]]
+                  + [len(storyboard)])
         out.append(storyboard[pos:end])
     return out
 
@@ -387,7 +609,7 @@ def palette_map(storyboard: str) -> dict:
         if " " not in name:
             out[name] = hexv.upper()
     for span in palette_sections(storyboard):
-        for pat in (PALETTE_ROW, PALETTE_PLAIN):
+        for pat in (PALETTE_ROW, PALETTE_PLAIN, PALETTE_COLUMNS):
             for name, hexv in pat.findall(span):
                 name = name.strip().lower()
                 if " " not in name and name not in ("token", "hex", "colour", "color"):
@@ -739,6 +961,62 @@ def check(storyboard: str, slides_dir: Path, report: dict,
         checkable_here = 0
         for item in acceptance_items(body):
             low = item.lower()
+            # THE FRAME'S OWN MEDIAN BAND, ASKED FIRST. Before the prose filter, deliberately: an
+            # item carrying a number on both sides of a comparison is arithmetic whatever else
+            # its sentence says, and a band that fell through into the prose count is the 2026-09-16
+            # defect exactly.
+            band = parse_band(item)
+            if band is not None:
+                if band["lo"] is None and band["hi"] is None:
+                    warns.append(
+                        f"slide {n}: an acceptance item states this frame's own median L* and no "
+                        f"band could be read out of it ({band['clause']!r}), so it was checked "
+                        f"against nothing. Write it as `the frame's median L* at 432px is between "
+                        f"<lo> and <hi>`, or as `<n> or higher`, `<n> or lower`, or `<n> plus or "
+                        f"minus <tol>`")
+                    stats["prose"] += 1
+                    continue
+                if band["size"] is None:
+                    warns.append(
+                        f"slide {n}: an acceptance item declares a frame median band of "
+                        f"{band_text(band)} and never says at what size to measure it, so it "
+                        f"could not be settled. A median moves with the resampling. Write `at "
+                        f"432px`, the size a reader receives, or `on the <w> by <h> grid`")
+                    stats["prose"] += 1
+                    continue
+                png = frame_image(slides_dir, n)
+                if png is None:
+                    fails.append(
+                        f"slide {n}: the dossier declares a frame median band of "
+                        f"{band_text(band)} and no render of this frame could be found to measure "
+                        f"it. A check that CANNOT run is not a check that passed. Looked for "
+                        f"render/slide-{n:02d}.png, slide-{n:02d}.png and slide-{n:02d}.webp "
+                        f"beside {slides_dir}")
+                    stats["prose"] += 1
+                    continue
+                try:
+                    got = median_lstar(png, band["size"])
+                except Exception as exc:                             # noqa: BLE001
+                    fails.append(
+                        f"slide {n}: the dossier declares a frame median band of "
+                        f"{band_text(band)} and it could not be measured: {exc}. Install Pillow "
+                        f"and numpy. A gate that reports clean because it could not look is the "
+                        f"shape this whole file exists to stop")
+                    stats["prose"] += 1
+                    continue
+                w, h = band["size"]
+                at = f"{w}px" if h is None else f"{w} by {h}"
+                stats.setdefault("bands", []).append((n, got, band_text(band), at))
+                checkable_here += 1
+                stats["checkable"] += 1
+                if not in_band(got, band):
+                    fails.append(
+                        f"slide {n}: the frame measures median L* {got:g} at {at} and its own "
+                        f"dossier declared {band_text(band)}. The plan wrote the band before the "
+                        f"frame was drawn, so this is the frame missing its plan rather than a "
+                        f"threshold this gate chose. Redraw the frame or rewrite the band, and "
+                        f"say in the run record which you did")
+                continue
             if any(p in low for p in PROSE_ONLY):
                 stats["prose"] += 1
                 continue
@@ -849,6 +1127,11 @@ def run(date: str, quiet: bool = False) -> int:
         return 1
     if not quiet:
         total = stats["checkable"] + stats["prose"]
+        # PRINTED ON SUCCESS AS WELL AS ON FAILURE. A run that measured nothing and a run whose
+        # every frame is inside its band print the same line otherwise, which is the shape this
+        # whole file's coverage count exists to refuse.
+        for fn, got, band, at in stats.get("bands", []):
+            print(f"  band  slide {fn}: median L* {got:g} at {at}, declared {band}")
         print(f"plan_render_check: {stats['slides']} slide(s), {stats['checkable']} of {total} "
               f"acceptance items carry a machine-checkable assertion, and every one holds. "
               f"{stats.get('compared', 0)} of {stats['declared']} declared display string(s) "
@@ -1311,6 +1594,189 @@ acceptance:
        not forbidden_needles("no cell carries the county's own internal matter number"))
     ok("...while a real forbidden needle still fires",
        forbidden_needles("no legend label names 'base load'") == ["base load"])
+
+    # ---- THE MEASURED COLUMN PALETTE, UNDER A BOLD LEAD (2026-09-16) -------------------
+    #
+    # THE DEFECT. Carousel no. 26 declared seven colours, measured each against the last eight
+    # decks, and wrote them as an indented column table under `**Palette, MEASURED rather than
+    # chosen by eye.**`. There is no markdown heading in that deck's art section, so
+    # `palette_sections` found nothing, `palette_map` read zero tokens, and the declared-colour
+    # half of this gate did not run on that deck at all. The run then REORDERED the columns mid
+    # run, which is how both shapes below come to be real.
+    _PAL = (
+        "**Palette, MEASURED rather than chosen by eye.** The arithmetic is in the run.\n"
+        "\n"
+        "    bond       #BBC0C6  L* 76   the copy stock and the deck's most common value  dE 10.59\n"
+        "    fed_blue   L* 14   #00205B   THE ACCENT, PMS 281 C, `flag_blue` in brand.yaml dE 24.32\n"
+        "\n"
+        "`fed_blue` is dark against a pale stock on purpose. Flag red `#BF0A30` is UNSPENT.\n"
+        "\n"
+        "**Camera and light.** A seated public eye at 1.10 m.\n")
+    pm = palette_map(_PAL)
+    ok("a bold lead line anchors a palette section, which is what 2026-09-16 wrote",
+       pm.get("bond") == "#BBC0C6", str(pm))
+    ok("...and the measured column table reads in EITHER column order",
+       pm.get("fed_blue") == "#00205B", str(pm))
+    ok("...and an unindented backticked hex in the paragraph below is not a token",
+       "red" not in pm and "#BF0A30" not in pm.values(), str(pm))
+    ok("...and the span stops at the next bold lead, so the camera paragraph is not palette",
+       len(palette_sections(_PAL)) == 1
+       and "Camera and light" not in palette_sections(_PAL)[0], str(palette_sections(_PAL)))
+    ok("a storyboard with neither anchor still declares no palette rather than inventing one",
+       palette_map("The ground is `#B4903F` in most frames.") == {})
+
+    # ---- THE FRAME'S OWN MEDIAN BAND (2026-09-16, carousel no. 26) ----------------------
+    #
+    # THE DEFECT. Nine dossiers declared a median L* band at 432px, the run measured all nine
+    # medians into `measured_arc.json`, nothing compared the two, and FIVE OF NINE frames shipped
+    # to a scoring panel outside their own declared band while the storyboard asserted in prose
+    # that every one was inside. The panel came back under the bar on all three lenses.
+    #
+    # THE PARSER FIRST, and the discrimination before the agreement. Every string below is taken
+    # off a real shipped storyboard rather than written for this test, because a fixture written
+    # by the author of the detector agrees with the detector (GATE_LESSONS 16).
+    b = parse_band("the frame's median L* at 432px is between 36 and 52")
+    ok("a between band reads, with its size", b and (b["lo"], b["hi"], b["size"]) == (36, 52, (432, None)), str(b))
+    b = parse_band("the frame's median L* at 432px is 60 or higher")
+    ok("an open-topped band reads", b and (b["lo"], b["hi"]) == (60, None), str(b))
+    b = parse_band("the frame's median L* at 432px is 28 or lower")
+    ok("an open-bottomed band reads", b and (b["lo"], b["hi"]) == (None, 28), str(b))
+    b = parse_band("the frame median L* measures 34 plus or minus 8 on the 270 by 338 grid")
+    ok("a plus or minus band reads on its own grid",
+       b and (b["lo"], b["hi"], b["size"]) == (26, 42, (270, 338)), str(b))
+
+    # THE TRAILING CLAUSE IS NOT PART OF THE BAND. Both of these shipped.
+    b = parse_band("the frame's median L* at 432px is 45 or higher, which is at least 18 above "
+                   "the deck median")
+    ok("a band stops at the clause that starts talking about the deck",
+       b and (b["lo"], b["hi"]) == (45, None), str(b))
+    b = parse_band("this frame's median L* is above 80 and it is the only frame in the deck "
+                   "above 60")
+    ok("...and `and it is` ends the assertion, so 60 is not read as a ceiling",
+       b and (b["lo"], b["hi"], b["lo_strict"]) == (80, None, True), str(b))
+
+    # A REGION'S MEDIAN IS NOT THE FRAME'S. Every one of these is a real acceptance item, and
+    # reading any of them as the frame's band would invent a number the plan does not contain.
+    for region in (
+            "the punch column's median L* is at least 10 below the rail face median at 432px wide",
+            "all four castors carry a contact shadow whose median L* differs from the floor "
+            "beside it by 4 or more",
+            "the two regions' median L* differ by LESS than 2, measured at 432px",
+            "a `rim_light` band at least 30 px tall runs unbroken across 60 percent or more of "
+            "the horizon, and its median L* is at least 25 above the land beneath it",
+            "the median L* of the chassis top faces is at least 15 below the median of their "
+            "front faces"):
+        ok(f"a region median is not read as the frame's ({region[:34]}...)",
+           parse_band(region) is None, str(parse_band(region)))
+
+    # INCLUSIVE AND STRICT ARE DIFFERENT BOUNDS, and folding one into the other would widen a
+    # band its author chose.
+    ok("`60 or higher` admits exactly 60",
+       in_band(60.0, parse_band("the frame's median L* at 432px is 60 or higher")))
+    ok("...and `above 60` does not",
+       not in_band(60.0, parse_band("the frame's median L* at 432px is above 60")))
+
+    # THE THIRD STATE. A declaration nobody could read must not print the same line as an item
+    # that declares nothing. `panel_ready.unreadable_plan` is this same finding one gate over.
+    b = parse_band("this frame's median L* is the highest of the nine, measured off the render")
+    ok("a frame median sentence with no band in it is reported, not read as prose",
+       b is not None and b["lo"] is None and b["hi"] is None, str(b))
+    b = parse_band("the frame's median L* measures above 70")
+    ok("...and a band with no stated measurement size is reported as unsettleable",
+       b is not None and b["lo"] == 70 and b["size"] is None, str(b))
+
+    # THE MEASUREMENT ITSELF, against a value that is not ours. sRGB 128 is a standard mid grey
+    # and its CIE L* is 53.6 by the sRGB transfer function, and sRGB 64 is 27.1. If this ever
+    # drifts, the instrument moved rather than the deck.
+    with tempfile.TemporaryDirectory() as dband:
+        bd = Path(dband) / "slides"
+        bd.mkdir()
+        try:
+            from PIL import Image as _Im
+            _Im.new("RGB", (1080, 1350), (128, 128, 128)).save(
+                Path(dband) / "slide-01.png")
+            _Im.new("RGB", (1080, 1350), (64, 64, 64)).save(Path(dband) / "slide-02.png")
+            have_pil = True
+        except Exception as exc:                                     # noqa: BLE001
+            have_pil = False
+            ok("Pillow is installed, because this gate measures pixels", False, str(exc))
+        if have_pil:
+            got = median_lstar(Path(dband) / "slide-01.png", (432, None))
+            ok("a 50 percent sRGB grey measures L* 53.6", abs(got - 53.6) < 0.1, str(got))
+            ok("...and sRGB 64 measures 27.1",
+               abs(median_lstar(Path(dband) / "slide-02.png", (432, None)) - 27.1) < 0.1)
+            ok("...and `at 432px` takes its height from the frame's own aspect",
+               median_lstar(Path(dband) / "slide-01.png", (432, 540)) == got)
+
+            BAND_SB = """
+```yaml
+slide: 1
+type:
+  hook: "A hook."
+  dek: "A dek."
+claims: [c1]
+art:
+  value_structure: >
+    Every frame in this deck is inside its own range.
+acceptance:
+  - "the frame's median L* at 432px is between 24 and 36"
+```
+"""
+            RPT = {"slides": [{"file": "slide-01.html",
+                               "text_nodes": [{"text": "A hook."}, {"text": "A dek."},
+                                              {"text": "c1"}]}]}
+            f, w, s = check(BAND_SB, bd, RPT, None, {"c1"})
+            ok("A FRAME OUTSIDE ITS OWN DECLARED BAND IS CAUGHT",
+               any("measures median L* 53.6" in x and "24 to 36" in x for x in f), str(f))
+            ok("...and the plan asserting every frame is inside its range does not save it",
+               any("median L*" in x for x in f), str(f))
+            ok("...and the item was counted as checkable rather than as prose",
+               s["checkable"] >= 1 and s.get("bands"), str(s))
+
+            inside = BAND_SB.replace("between 24 and 36", "between 44 and 60")
+            f2, _w2, s2 = check(inside, bd, RPT, None, {"c1"})
+            ok("...while the same frame inside its band is clean",
+               not [x for x in f2 if "median L*" in x], str(f2))
+
+            # A CHECK THAT CANNOT RUN IS NOT A CHECK THAT PASSED. GATE_LESSONS 37.
+            empty = Path(dband) / "nopix"
+            (empty / "slides").mkdir(parents=True)
+            f3, _w3, _s3 = check(BAND_SB, empty / "slides", RPT, None, {"c1"})
+            ok("a declared band with no render to measure it against FAILS",
+               any("no render of this frame could be found" in x for x in f3), str(f3))
+
+            nosize = BAND_SB.replace(" at 432px", "")
+            f4, w4, s4 = check(nosize, bd, RPT, None, {"c1"})
+            ok("a band with no stated size WARNS and is not counted checkable",
+               any("never says at what size" in x for x in w4)
+               and not [x for x in f4 if "median L*" in x] and not s4.get("bands"), str(w4))
+
+    # AGAINST THE SHIPPED DECKS, because only a real artifact carries the shapes nobody thought
+    # to write down. 2026-09-16 is the deck this was built for and every frame is inside its band
+    # after the repair round; 2026-09-08 and 2026-09-10 declare bands in the two other forms.
+    swept_bands, band_fails = 0, []
+    for p in sorted((REPO_ROOT / "runs" / "carousel").glob("2*")):
+        if not ((p / "storyboard.md").exists() and (p / "render_report.json").exists()):
+            continue
+        f, _w, st = check((p / "storyboard.md").read_text(encoding="utf-8"), p / "slides",
+                          json.loads((p / "render_report.json").read_text(encoding="utf-8")))
+        swept_bands += len(st.get("bands", []))
+        band_fails += [f"{p.name}: {x}" for x in f if "median L*" in x]
+    ok(f"every frame band in the shipped corpus holds ({swept_bands} measured)",
+       not band_fails, "; ".join(band_fails[:3]))
+    ok("...and there were bands to measure, so this is not asleep", swept_bands >= 10,
+       str(swept_bands))
+
+    # THE DISCRIMINATION ON REAL PIXELS, not only on a grey square. A shipped frame held to
+    # another shipped frame's band has to be refused, or the comparison is measuring nothing.
+    live = REPO_ROOT / "runs" / "carousel" / "2026-09-16"
+    if (live / "slide-09.webp").exists():
+        dark = median_lstar(live / "slide-09.webp", (432, None))
+        ok("the deck's closing frame measures its own floor", 10 < dark < 16, str(dark))
+        ok("...and holding it to frame 1's `60 or higher` is refused",
+           not in_band(dark, parse_band("the frame's median L* at 432px is 60 or higher")))
+        ok("...while its own `28 or lower` holds",
+           in_band(dark, parse_band("the frame's median L* at 432px is 28 or lower")))
 
     ok("no hex literal for a brand colour is hardcoded in this module",
        not re.search(r"#(16151C|8E4B3A|D9CDB4|B98D46|4E6B62|EFE9DA)",

@@ -9,7 +9,7 @@ The Governor's office ordered every Texas state agency to pause funding for Floc
 - Public access: Public meeting
 - Take part: https://www.txdmv.gov/about-us/MVCPA
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · State agencies are still barred from funding Flock plate reader cameras under the Governor's order, which has not been withdrawn.
 - 2026-09-12 · The October board meeting the authority had posted is off its page, which now lists no future meeting at all. The newest one on it is dated July 24th. The pause on state agency funding for the cameras is still in force and no agency has published a resumption.
 - 2026-09-13 · State agencies are still barred from spending on Flock plate reader cameras, and nothing has been published withdrawing the direction.
+- 2026-09-16 · The pause on state funding for plate reader cameras is still the Governor's standing order. No agency has been released from it.
 
 ## Evidence
 

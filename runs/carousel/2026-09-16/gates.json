@@ -1,0 +1,22 @@
+{
+ "machine_qa": "WARN, 0 fails across 9 frames",
+ "layout_check --require": "pass, the rotation holds and the accent is used with restraint",
+ "bespoke_check": "pass, median pairwise similarity 0.2976",
+ "measure_arc": "pass, every frame inside its own dossier's declared band",
+ "copy_sync_check": "pass, 9 slides match what the browser laid out",
+ "plan_render_check": "pass, 28 of 28 declared display strings found on their own frame",
+ "absence_check": "pass, 15 absences all scoped to a named document",
+ "craft_floor": "pass, every frame carries a real light and a real dark",
+ "coherence_check": "pass, the deck reads as one object",
+ "texan_check": "pass, places Arlington and Fort Worth",
+ "noun_trace": "pass, 2 soft warnings",
+ "verbatim_check": "pass, 7 declared fragments each a literal substring of its own claim",
+ "aggregate_check": "pass, 6 computed figures all re-derived",
+ "quantifier_check": "pass, 75 published strings, every universal names its set",
+ "claims_check": "pass, 35 claims, 13 rejected, 4 absences",
+ "caption_check": "pass, 145 words, 1.38 commas per 100 words, 3 hashtags",
+ "ledger_check": "pass, the variety ledgers agree with their own entries",
+ "shipped_check": "pass, every applicable gate clean on the artifacts as committed",
+ "site_fresh_check": "pass, 1536 files match a rebuild byte for byte",
+ "panel_ready": "READY"
+}

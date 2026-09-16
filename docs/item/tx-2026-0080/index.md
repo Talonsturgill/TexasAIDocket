@@ -11,7 +11,7 @@ The National Science Foundation made an award to Prairie View A and M University
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The Prairie View A and M award for splitting the grid optimization problem across machines is still in force on its original terms.
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-16 · The Prairie View A and M award still stands as made, for splitting the grid optimization problem across processor cores. No modification has been posted.
 
 ## Evidence
 

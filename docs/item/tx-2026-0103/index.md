@@ -13,7 +13,7 @@ The Department of Energy announced the recipients of its Genesis Mission in Wash
 - Public access: Closed
 - Take part: https://news.utexas.edu/2026/07/22/department-of-energys-new-ai-for-science-genesis-mission-awards-funding-to-5-ut-research-projects/
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · All four Texas campuses still hold their roles in the Energy Department's AI for science program.
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-16 · All four campuses still hold the roles the Energy Department program gave them. No campus has been added or removed.
 
 ## Evidence
 

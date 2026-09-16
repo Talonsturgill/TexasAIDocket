@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 4 of 9. Archetype FIGURE_SCALE.
+     WHERE IT CAME FROM. One person watching two kinds of people do the same thing. A kitchen
+     table at true scale with an adult standing and a child and an adult seated, under the warm
+     lamp at elevation 14 that room two will use, so sides are lit and top faces are dark. The
+     tablet face is ONE FLAT UNSCREENED SLAB of the frame's brightest ink, and its AREA is the
+     whole comparison against frame 1's nine millimetre tick. The whole assignment, handed over.
+
+     WHY THIS FRAME WAS REDRAWN, 2026-09-16. Three judges and a pixel critic each called it the
+     weakest frame in the deck, and the diagnosis in every case was the same: the declared rect
+     [0,340,1080,1010] was empty screen and everything drawn sat below y 1000.
+     THE CAUSE WAS THE CAMERA, and it is arithmetic. At eye 1.60 with f 900, the ground at Z 2.05
+     projects to y = 780 + 1.60 * (900/2.05) = 1482, which is 132 px BELOW THE FRAME. The table
+     and both seated figures were drawn off the bottom of the picture and only their heads were
+     ever in it. No amount of relighting reaches a subject that is not on the canvas.
+     So the camera looks ALONG the table now, eye 1.55, horizon 620, f 980, with the table's near
+     edge cropping the frame foot, the seated pair across it at Z 3.4, and the person watching
+     at Z 2.6 cropped by the left edge.
+     Three more repairs, each of which was named and each of which was real:
+     - THE TABLET WAS 84 BY 30 PX, an eighth of its declared area, and the frame's entire stated
+       argument is an AREA comparison. It is at Z 1.85 now, where true scale puts it at about
+       133 by 43, which is roughly eight times the tick's area rather than a fifth of it.
+     - "HER" HAD NO REFERENT. A reader reaching this frame had met no woman anywhere in the deck,
+       because the researcher's name was printed nowhere at a legible size. The dek names her,
+       and it is also the only place in nine frames where the university is named at reading size.
+     - THE BLACK PLATES were first removed to lift the median, which put the type on graded art
+       and qa read a strikethrough. They are back as TWO CLEAN PLATES on one left margin, one
+       right edge, equal padding and a hairline keyline, which is the critic's own fix for the
+       placeholder-bar reading, and the room is lit to hold the band WITH them present.
+     Screen line c5, measured range 9.9 to 77.5. A stipple was planned here and CANNOT reach 30
+     on this stock, measured floor 64.0, so the screen changed rather than the number.
+     Planned frame median L* 30. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* TWO KNOCKOUT PLATES, one per block, aligned to ONE left margin and ONE right edge with equal
+     padding, which is the critic's own fix for the placeholder-bar reading. The plate is the
+     illustration system's sanctioned contrast reserve, and on a dark frame it agrees with the
+     value band rather than fighting it. A hairline keyline makes it read as furniture. */
+  .plate { position:absolute; left:80px; width:876px; background:rgba(9,10,15,0.97);
+           border:1.5px solid rgba(140,150,164,0.5); }
+  #plateA { top:150px; height:352px; }
+  #plateB { top:850px; height:224px; }
+  .hook { position:absolute; left:112px; top:174px; width:812px; font-family:"Fraunces", serif;
+          font-weight:700; font-size:88px; line-height:1.0; letter-spacing:-0.02em;
+          color:#F2F4F7; font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:112px; top:388px; width:812px; font-size:29px; line-height:1.42;
+         color:#C8CED6; }
+  .quote { position:absolute; left:112px; top:876px; width:812px; font-family:"Instrument Serif", serif;
+           font-size:40px; line-height:1.24; color:#F0F3F7; }
+  .attrib { position:absolute; left:112px; top:1014px; font-family:"JetBrains Mono", monospace;
+            font-size:20px; letter-spacing:0.1em; color:#A6AEB8; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#2B3038; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="plate" id="plateA"></div>
+<div class="plate" id="plateB"></div>
+<h1 class="hook" id="hook">It started with her own children.</h1>
+<p class="dek">Shuchi Deb is an associate professor at the University of Texas at Arlington. She watched her own children and her students use AI without learning.</p>
+<p class="quote" id="q">"They were just using AI to finish the assignment,"</p>
+<div class="attrib">SHUCHI DEB, IN THE UNIVERSITY'S RELEASE   c5 c11</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, { kicker: "The origin", counter: "04 / 09", src: "c5 c11   TEXAS AI DOCKET", ink: "#2B3038" });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 88, maxLines: 2 });
+    var cx = document.getElementById("art").getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // THE CAMERA LOOKS ALONG THE TABLE. Measured rather than guessed: at this eye and this focal
+    // length the ground at Z 2.0 lands at y 1380, so the table's near edge crops the frame foot
+    // instead of falling 132 px below it, which is what the first cut did.
+    var CAM = { w: W, h: H, eye: 1.55, horizon: 620, f: 980, sky: "#0C0C0C", fogZ: 1e9, light: { az: 118, el: 14 } };
+    var TAB = { X: 0.02, Y: 0.74, Z: 1.85 };
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.05, seed: 44,
+      screen: { mode: "line", cell: 5, angle: 47, gamma: 1.0, floor: 0.05 },
+      edges: { threshold: 27, width: 1.25, alpha: 0.62, dx: 1.1, dy: -0.85 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, CAM);
+        var wb = S.groundY(7.4);
+
+        // THE LAMP KEY AND THE SHADE ARE 40 L* APART. The dossier's own risk item says a warm
+        // lamp and a dark room collapse into one value unless they differ by 20 L*, and the first
+        // cut had the whole frame inside a 20 point band. The room falls to near black at the
+        // left and the lamp side carries a real light.
+        a.fillStyle = "#565656"; a.fillRect(0, 0, W, H);
+        var wg = a.createLinearGradient(W, 0, 0, 0);
+        wg.addColorStop(0, "#C4C4C4"); wg.addColorStop(0.42, "#888888"); wg.addColorStop(1, "#3C3C3C");
+        a.fillStyle = wg; a.fillRect(0, 96, W, wb - 96);
+        // the lamp itself, off frame right, drawn as the falloff it throws on the back wall
+        var lamp = a.createRadialGradient(1010, 430, 40, 1010, 430, 620);
+        lamp.addColorStop(0, "rgba(255,255,255,0.55)"); lamp.addColorStop(1, "rgba(255,255,255,0)");
+        a.fillStyle = lamp; a.fillRect(0, 96, W, wb - 96);
+
+        S.ground({ near: 0.7, far: 24, fill: "#5A5A5A" });
+        // THE FLOOR IS THE BOTTOM BAND AND IT IS A MODELLED MASS. The lamp rakes across it and
+        // the table legs and the standing figure each throw a long separate shadow toward the
+        // reader, so the bottom of the frame is a lit floor rather than a caption strip.
+        var fg = a.createLinearGradient(W, 900, 0, 1180);
+        fg.addColorStop(0, "#AEAEAE"); fg.addColorStop(0.52, "#767676"); fg.addColorStop(1, "#343434");
+        a.save(); a.beginPath(); a.rect(0, wb, W, H - wb); a.clip(); a.fillStyle = fg; a.fillRect(0, 0, W, H); a.restore();
+
+        // THE TABLE, its near edge cropping the frame foot so the reader is at it rather than
+        // watching it. Table and figures are 40 sRGB levels apart so they do not merge.
+        var tbl = TXOBJ.sprite("desk", { seed: 2 });
+        S.shadow(tbl, { X: 0.02, Z: 3.0, ink: "#000000", alpha: 0.7 });
+        S.sprite(tbl, { X: 0.02, Z: 3.0, inks: { ink: "#3C3C3C", paper: "#7E7E7E", accent: "#3C3C3C" } });
+
+        // the two seated across the table, a child at child proportions and an adult
+        var kid = TXFIG.figure({ pose: "sit", height: 1.28, seat: 0.42, child: true });
+        S.shadow(kid, { X: -0.74, Z: 3.4, ink: "#000000", alpha: 0.55 });
+        S.sprite(kid, { X: -0.74, Z: 3.4, inks: { ink: "#101010", paper: "#2C2C2C", accent: "#101010" } });
+
+        var teen = TXFIG.figure({ pose: "sit", height: 1.70, seat: 0.45 });
+        S.shadow(teen, { X: 0.78, Z: 3.4, ink: "#000000", alpha: 0.55 });
+        S.sprite(teen, { X: 0.78, Z: 3.4, inks: { ink: "#101010", paper: "#2C2C2C", accent: "#101010" } });
+
+        // THE PERSON WATCHING, standing at true scale and cropped by the left edge, which is what
+        // gives the table and the children a size and is why the archetype is FIGURE_SCALE.
+        var watch = TXFIG.figure({ pose: "stand", height: 1.70 });
+        S.shadow(watch, { X: -1.42, Z: 2.6, ink: "#000000", alpha: 0.72 });
+        S.sprite(watch, { X: -1.42, Z: 2.6, inks: { ink: "#0A0A0A", paper: "#242424", accent: "#0A0A0A" } });
+      },
+      over: function (c) {
+        var S2 = TXSCENE.create(c, CAM);
+        // the kicker, counter and footer sit on bare stock so the screen does not strike them,
+        // dark mono on light stock, which is the frame-3 treatment. The hook, dek, quote and
+        // attrib keep their own dark knockout plates (light type on dark). The two registers
+        // together read as ink on paper over a photographed room.
+        TXINK.reserve(c, { ground: "#BBC0C6", top: 150, topSolid: 130, bottom: 150, bottomSolid: 126 });
+
+        // THE TABLET FACE, painted flat and unscreened. Its AREA is the frame's whole argument
+        // against frame 1: the entire assignment handed over at once. It carries NO content,
+        // because nothing in the record says what was on it.
+        var p = S2.project(TAB.X, TAB.Y, TAB.Z), ppm = S2.ppm(TAB.Z);
+        var w = 0.25 * ppm, h = 0.18 * ppm * 0.45;
+        // the tablet's own two part contact shadow FIRST, so it lies under the slab rather than
+        // over its near edge, and the slab reads as an object on a table rather than a decal
+        c.save(); c.filter = "blur(11px)"; c.fillStyle = "rgba(0,0,0,0.55)";
+        c.fillRect(p[0] - w / 2 + 12, p[1] - h + 10, w, h + 16); c.restore();
+        c.save(); c.filter = "blur(3px)"; c.fillStyle = "rgba(0,0,0,0.7)";
+        c.fillRect(p[0] - w / 2 + 4, p[1] - h + 6, w, h + 6); c.restore();
+        c.fillStyle = "#EDF0F3";
+        c.beginPath();
+        c.moveTo(p[0] - w / 2, p[1]); c.lineTo(p[0] + w / 2, p[1]);
+        c.lineTo(p[0] + w / 2 * 0.86, p[1] - h); c.lineTo(p[0] - w / 2 * 0.86, p[1] - h);
+        c.closePath(); c.fill();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "what": "the DARKEST and LIGHTEST frame median each screen can print on this deck's pale bond ground, measured by printing a black field and a white field through each configuration and reading the press",
+  "ground": "#BBC0C6",
+  "ink": "#070016",
+  "screens": [
+    {
+      "screen": "stipple c5",
+      "floor_lstar": 64.0,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "line c4",
+      "floor_lstar": 8.9,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "halftone c7",
+      "floor_lstar": 3.6,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "stipple c6",
+      "floor_lstar": 64.0,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "halftone c8",
+      "floor_lstar": 3.4,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "hatch c7",
+      "floor_lstar": 45.2,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "line c5",
+      "floor_lstar": 9.9,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "halftone c9",
+      "floor_lstar": 3.6,
+      "ceiling_lstar": 77.5
+    },
+    {
+      "screen": "hatch c6",
+      "floor_lstar": 45.9,
+      "ceiling_lstar": 77.5
+    }
+  ]
+}

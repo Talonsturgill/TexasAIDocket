@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the two things",
   "the who",
   "the before and after",
   "the plain question",
   "the number that is wrong",
-  "the deadline"
+  "the deadline",
+  "the correction"
  ],
  "entries": [
   {
@@ -438,15 +438,30 @@
    ],
    "critic_note": "Two candidates. A lost on the record rather than on craft: it closed by asking how ERCOT would know the shaft had already moved, which presupposes movement that absence a4 explicitly forbids, and it tagged the rule already in force rather than the deck's subject. B won and was edited once, splitting a sentence at a comma after 'yet' rather than deleting the comma and leaving a run-on.",
    "move_note": "'the correction' opens by denying the reading everybody has, which is that a Large Load's problem is its size. The pivot to speed is the story and it is the source's own. Ledger and Ladder were off the menu and the close that names what is still not public was off it too."
+  },
+  {
+   "date": "2026-09-16",
+   "carousel_no": 26,
+   "opening_move": "the object",
+   "structure": "Ledger",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "An asterisk at the foot of the page.",
+   "words": 145,
+   "commas": 2,
+   "commas_per_100w": 1.38,
+   "chars": 862,
+   "hashtags": 3,
+   "critic_note": "Two candidates, the object on a Ledger and the quiet decision on a Clock. The object won with SEVEN imposed repairs. The load bearing one: the first cut's close asked how much reaches the public 'before the award starts on October 1st, 2026', which welds the NSF start date to the Fort Worth police half, and claims.json REJECTS that link in as many words because the police work runs on a separate Department of Justice grant and is not governed by the NSF award's dates. Second: the losing candidate opened 'The homework can't leave the platform', converting c16's future-tense design intent into a flat present-tense fact about a running system, which is the fourth recurrence of that defect in this ledger.",
+   "move_note": "A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR and the gate enforces it. caption_check.post_shape_problems hard fails any 'Month Nth, YYYY' whose year equals the post's year, so 'October 1st' is bare and 'September 30th, 2029' keeps its year. The winning candidate was submitted with 'October 1st, 2026' twice and would have gone red; it had never been run through the gate before it reached the critic."
   }
  ],
  "structures_recent": [
-  "Ladder",
   "Zoom out",
-  "Two columns"
+  "Two columns",
+  "Pivot"
  ],
  "closing_moves_recent": [
-  "Point at the record, plainly, without a call to action"
+  "Ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

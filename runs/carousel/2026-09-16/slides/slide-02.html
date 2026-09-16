@@ -1,0 +1,112 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 2 of 9. Archetype DOCUMENT.
+     THE PROBLEM, IN THE GOVERNMENT'S OWN WORDS. The federal award record at true page size on a
+     copy stand, turned 0.6 degrees so it is a physical object rather than a screenshot. The c31
+     sentence is the only line at reading size and every other line is real text set small, so the
+     eye lands on the sentence without being pointed at.
+     Screen line c4, measured range 8.9 to 77.5. Planned frame median L* 62. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; --toner:#070016; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:176px; width:900px; font-family:"Fraunces", serif;
+          font-weight:700; font-size:92px; line-height:1.02; letter-spacing:-0.02em;
+          color:var(--toner); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:84px; top:424px; width:820px; font-size:29px; line-height:1.4; color:#2A2F3A; }
+  .sheetwrap { position:absolute; left:108px; top:492px; width:868px; height:700px;
+               transform:rotate(0.6deg); }
+  .rechead { position:absolute; left:52px; top:40px; font-family:"JetBrains Mono", monospace;
+             font-size:18px; letter-spacing:0.1em; color:#3A3F4A; }
+  .rectitle { position:absolute; left:52px; top:76px; width:760px; font-family:"Instrument Serif", serif;
+              font-size:27px; line-height:1.24; color:#12151C; }
+  .small { position:absolute; left:52px; width:764px; font-family:"Instrument Serif", serif;
+           font-size:15px; line-height:1.48; color:#3A3D46; }
+  .keysent { position:absolute; left:52px; top:340px; width:770px; font-family:"Instrument Serif", serif;
+             font-size:33px; line-height:1.26; color:#0B0D14; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#2B3038; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The problem, in the government's words.</h1>
+<p class="dek">The award that paid for the tutor says why it exists.</p>
+<div class="sheetwrap">
+  <div class="rechead">AWARD 2539663    STANDARD GRANT    IUSE</div>
+  <div class="rectitle">Context-Aware Conversational Tutors for Longitudinal Learning in Engineering Education</div>
+  <p class="small" style="top:186px">Generative Artificial Intelligence tools have created new challenges.</p>
+  <p class="keysent" id="key">"students frequently use them to obtain answers rather than develop the reasoning and problem-solving skills that define engineering competence"</p>
+  <p class="small" style="top:560px">four undergraduate Industrial Engineering courses at the University of Texas at Arlington, spanning freshman through senior years</p>
+
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, {
+      kicker: "The federal award record",
+      counter: "02 / 09",
+      src: "c31 c22 c30   TEXAS AI DOCKET",
+      ink: "#3C4250"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 92, maxLines: 2 });
+
+    var cx = document.getElementById("art").getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var SX = 108, SY = 492, SW = 868, SH = 700, ROT = 0.6 * Math.PI / 180;
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.05, seed: 22,
+      screen: { mode: "line", cell: 4, angle: 76, gamma: 1.0, floor: 0.05 },
+      edges: { threshold: 32, width: 1.15, alpha: 0.55, dx: 0.9, dy: -0.7 },
+
+      draw: function (a) {
+        // the copy stand's table, screened, taking the frame down from bare stock
+        var tg = a.createLinearGradient(0, 400, 0, H);
+        tg.addColorStop(0, "#181818"); tg.addColorStop(0.6, "#0E0E0E"); tg.addColorStop(1, "#050505");
+        a.fillStyle = tg; a.fillRect(0, 400, W, H - 400);
+        // the table's grain
+        var R = TX.rng(2202);
+        a.strokeStyle = "rgba(255,255,255,0.055)"; a.lineWidth = 1;
+        for (var i = 0; i < 80; i++) {
+          var y = 410 + R() * (H - 420);
+          a.beginPath(); a.moveTo(0, y); a.bezierCurveTo(W * 0.3, y + R() * 5 - 2.5, W * 0.7, y + R() * 5 - 2.5, W, y); a.stroke();
+        }
+        // the sheet's two part cast shadow, rotated with it
+        a.save(); a.translate(SX, SY); a.rotate(ROT);
+        a.save(); a.filter = "blur(24px)"; a.fillStyle = "rgba(0,0,0,0.8)"; a.fillRect(14, 26, SW, SH); a.restore();
+        a.save(); a.filter = "blur(4px)"; a.fillStyle = "rgba(0,0,0,0.85)"; a.fillRect(4, 7, SW, SH); a.restore();
+        a.restore();
+      },
+
+      over: function (c) {
+        // THE SHEET painted after the press, unscreened, so it can hold type at reading contrast
+        c.save(); c.translate(SX, SY); c.rotate(ROT);
+        var sg = c.createLinearGradient(0, 0, 0, SH);
+        sg.addColorStop(0, "#EEF0F2"); sg.addColorStop(1, "#D6DADE");
+        c.fillStyle = sg; c.fillRect(0, 0, SW, SH);
+        c.fillStyle = "#F4F6F8"; c.fillRect(0, SH - 4, SW, 4);
+        c.fillStyle = "#98A0A8"; c.fillRect(0, SH, SW, 3);
+        c.restore();
+        TXINK.reserve(c, { ground: "#BBC0C6", top: 524, topSolid: 492, bottom: 150, bottomSolid: 126 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

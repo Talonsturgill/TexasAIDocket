@@ -1,0 +1,128 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 5 of 9. Archetype TYPE_AS_OBJECT, spent once and unspent for three decks.
+     THE METHOD, PHYSICAL, AT A SIZE, in the university's own three words. Solid letterforms
+     0.9 m tall standing on a concrete floor, seen from an eye of 0.55 m so the reader looks up
+     at them, running off both edges because a phrase that fits inside the frame is a headline
+     and a phrase that does not is an object. Every letter throws a cast shadow from the ceiling
+     grid at elevation 72, and the small type attributes the words to the release so no reader
+     takes the band for a photograph of a real wall.
+     Screen hatch c6, measured range 45.9 to 77.5. Planned frame median L* 52. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* the phrase IS the image. A shadow stack gives the letterforms depth, and they run off both
+     edges so the object is bigger than the frame. */
+  .word { position:absolute; font-family:"Archivo", sans-serif; font-weight:900;
+          font-stretch:112%; letter-spacing:-0.012em; color:#121319; white-space:nowrap; }
+  /* w2, the nearer line: a pale highlight up-left from the lit ceiling grid, then the letter's
+     own dark body reading as toner cut into the concrete, then a soft contact down-right */
+  #w2 { text-shadow: -3px -4px 0 #E8EBEF, -6px -8px 0 #C6CBD1, -8px -11px 0 #A6ACB4,
+                     4px 5px 8px rgba(0,0,0,0.55); }
+  /* w1, the higher line above a low eye: a longer highlight throw */
+  #w1 { text-shadow: -5px -4px 0 #E8EBEF, -10px -8px 0 #C6CBD1, -15px -12px 0 #A6ACB4,
+                     -19px -15px 0 #8C939B, 5px 5px 9px rgba(0,0,0,0.55); }
+  #w1 { left:44px;   top:556px; font-size:172px; }
+  #w2 { left:56px;   top:742px; font-size:172px; }
+  .clip { position:absolute; left:0; top:0; width:1080px; height:1350px; overflow:hidden; }
+  .attrib { position:absolute; left:64px; top:1082px; width:790px; padding:14px 20px; background:rgba(9,10,15,0.97); font-family:"JetBrains Mono", monospace;
+            font-size:19px; letter-spacing:0.1em; line-height:1.6; color:#D6DBE1; }
+  .dek { position:absolute; background:rgba(9,10,15,0.97); padding:14px 22px;  left:84px; top:296px; width:800px; font-size:29px; line-height:1.4; color:#D2D8DF; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#AEB6C0; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<p class="dek">The university's own words for what it built.</p>
+<div class="clip"><div class="word" id="w1" data-overlap-ok>teaches,</div>
+<div class="word" id="w2" data-overlap-ok>not tells</div></div>
+<div class="attrib">FROM THE HEADLINE OF THE UNIVERSITY'S OWN RELEASE<br>SEPTEMBER 10TH, 2026   c1</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, { kicker: "The method", counter: "05 / 09", src: "c1 c32   TEXAS AI DOCKET", ink: "#AEB6C0" });
+    var cx = document.getElementById("art").getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.05, seed: 55,
+      screen: { mode: "hatch", cell: 6, angle: 63, gamma: 1.0, floor: 0.05 },
+      edges: { threshold: 30, width: 1.2, alpha: 0.55, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        // A LETTER HEIGHT EYE. The letters stand on a lit floor against a dark wall, which is
+        // both what a low ceiling grid actually does and what lets pale letterforms hold their
+        // contrast without a scrim laid over the picture.
+        var S = TXSCENE.create(a, { w: W, h: H, eye: 0.55, horizon: 916, f: 980, sky: "#0C0C0C", fogZ: 1e9, light: { az: 0, el: 72 } });
+        a.fillStyle = "#727272"; a.fillRect(0, 0, W, H);
+        // the wall behind the letters, dark, with the grid's spill dying out down it
+        var back = a.createLinearGradient(0, 150, 0, 916);
+        back.addColorStop(0, "#8E8E8E"); back.addColorStop(0.55, "#767676"); back.addColorStop(1, "#626262");
+        a.fillStyle = back; a.fillRect(0, 150, W, 766);
+        // the wall to floor junction
+        a.strokeStyle = "#2A2A2A"; a.lineWidth = 3;
+        a.beginPath(); a.moveTo(0, 916); a.lineTo(W, 916); a.stroke();
+        S.ground({ near: 0.5, far: 40, fill: "#6E6E6E" });
+        // THE LIT FLOOR IS THE BOTTOM BAND AND IT IS A MODELLED MASS: the pool the ceiling grid
+        // lays where the letters stand, with the concrete's own aggregate in it.
+        var fg = a.createRadialGradient(520, 1080, 90, 520, 1080, 760);
+        fg.addColorStop(0, "#9A9A9A"); fg.addColorStop(1, "#3A3A3A");
+        a.save(); a.beginPath(); a.rect(0, 916, W, H - 916); a.clip();
+        a.fillStyle = fg; a.fillRect(0, 0, W, H);
+        var R = TX.rng(5501);
+        for (var i = 0; i < 2400; i++) {
+          var x = R() * W, y = 916 + R() * (H - 916);
+          a.fillStyle = "rgba(0,0,0," + (0.05 + R() * 0.18).toFixed(3) + ")";
+          a.beginPath(); a.arc(x, y, 0.8 + R() * 2.1, 0, Math.PI * 2); a.fill();
+        }
+        // the letters' own cast shadows on the lit floor, thrown from the grid overhead
+        a.fillStyle = "rgba(0,0,0,0.55)";
+        a.save(); a.filter = "blur(10px)";
+        a.fillRect(0, 922, 1000, 34); a.fillRect(140, 966, 900, 28);
+        a.restore();
+        a.restore();
+      },
+
+      over: function (c) {
+        // THE TYPE'S ZONE IS KEPT QUIET BY CONSTRUCTION. A flat scrim painted after the press,
+        // so no screen mark crosses a letterform. qa.py reads a screen dot through a glyph as a
+        // strikethrough and it is right to.
+        // the furniture bands only. An earlier cut scrimmed half of every room frame and the
+        // deck's value arc collapsed into three paper frames and six near-black ones, which is
+        // the exact defect two shipped decks were marked down for. The hook and the dek carry
+        // their own knockout plates instead, so the IMAGE keeps the frame.
+        (function (ctx) {
+          var g = ctx.createLinearGradient(0, 0, 0, 168);
+          g.addColorStop(0, "rgba(9,10,15,1)"); g.addColorStop(0.74, "rgba(9,10,15,1)"); g.addColorStop(1, "rgba(9,10,15,0)");
+          ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 168);
+        })(c);
+        (function (ctx) {
+          var g = ctx.createLinearGradient(0, 1350, 0, 1182);
+          g.addColorStop(0, "rgba(9,10,15,1)"); g.addColorStop(0.72, "rgba(9,10,15,1)"); g.addColorStop(1, "rgba(9,10,15,0)");
+          ctx.fillStyle = g; ctx.fillRect(0, 1182, 1080, 168);
+        })(c);
+        // no reserve. The scene keeps its own type zones dark and light by construction, which
+        // is the illustration system's first option.
+        void c;
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

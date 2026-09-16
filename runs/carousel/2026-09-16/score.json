@@ -1,0 +1,73 @@
+{
+ "weighted_score": 7.492,
+ "judges": [
+  7.85,
+  7.528,
+  7.11
+ ],
+ "spread": 0.74,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.4,
+   "weight": 0.28,
+   "judges": [
+    7.5,
+    7.4,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    9.0,
+    8.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.18,
+   "judges": [
+    7.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.8,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.2,
+   "weight": 0.1,
+   "judges": [
+    8.0,
+    7.2,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 6.7,
+ "over_threshold": true,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "rounds": 1,
+ "rounds_note": "3 of 3 judge card(s) in this invocation had already been scored, so this was a re-combination rather than a scoring round and the round count did not advance. Re-run the judges to score again"
+}

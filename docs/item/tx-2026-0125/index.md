@@ -11,7 +11,7 @@ The Texas Advanced Computing Center's Frontera user guide carries a warning. The
 - Public access: Write to the decider
 - Take part: https://docs.tacc.utexas.edu/hpc/frontera/
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-07 · Admitted. The center's own Frontera guide, last updated September 3rd, 2026, says the queues close permanently on October 1st, 2026 and that the file systems stay reachable for moving data off. The successor machine's guide, last updated August 12th, 2026, still carries a notice dated in July saying it is limited only to internal users.
 - 2026-09-10 · Frontera's queues are still scheduled to close permanently on October 1st, and the notice to users still reads as it did. No extension has been announced.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-16 · The Frontera queues still close permanently on October 1st. No reprieve and no extension has been published.
 
 ## Evidence
 

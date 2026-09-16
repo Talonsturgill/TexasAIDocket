@@ -1305,3 +1305,80 @@ page and not on the upcoming listing.**
 User-Agent for both the board meeting document tree under `/files/docs/` and the market rules
 pages under `/mktrules/issues/`. The PDF-to-text shape the last run's log proposes was used again
 here and worked again, so that is two runs of evidence for it rather than one.
+
+## 2026-09-16
+
+**THE LAST RUN'S ENTRY ON `MeetingsByCmte.aspx` WAS ACTED ON, and this is what it was worth.**
+September 15th's log worked out that the registry's verified substitute,
+`MeetingsUpcoming.aspx?Chamber=S`, carries only what is still ahead, so a claim quoting it goes
+`missing` the moment the date passes through no change at the source. Nine claims across three
+items were resting on it. Seven now cite `MeetingsByCmte.aspx?Leg=89&Chamber=<S|H>&CmteCode=<code>`,
+which reproduces the same date, time and committee permanently and answered 200 under a browser
+User-Agent again today. **The finding took one run to write and one run to spend, which is the
+whole argument for this file.**
+
+**One claim could NOT be moved and the reason is a gap in what is reachable.** A hearing ROOM is
+on the upcoming listing and on the notice PDF, and nowhere else. The notice PDF is under
+`/tlodocs/`, which is a whole-path disallow. `senate.texas.gov/events.php` prints rooms and is
+also a rolling upcoming list, so it is no better. **There is no durable, allowed source for the
+room of a hearing that has already been held**, and a run that re-points such a claim silently
+drops a sourced fact out of reader copy. `reverify.py --check-notes` is what caught it here.
+
+**`texasattorneygeneral.gov` IS OFF LIMITS, and it names two clients rather than one.** Its
+robots.txt carries `User-agent: ClaudeBot` with `Disallow: /` and, separately,
+`User-agent: curl` with `Disallow: /`, alongside GPTBot-class agents, PerplexityBot, Bytespider
+and the Meta agents. This is the `lrl.texas.gov` shape and it settles both halves at once: the
+research client is named, so no WebFetch and no scout, and the plain client the collectors would
+reach for is ALSO named, so there is no second route that is merely technically compliant.
+**The cost is real and should be recorded rather than argued away.** An open records letter
+ruling from that office was the one document that would have made a lawsuit over a chip plant's
+tax records citable as a primary source this run, and without it the item stays journalism-only
+and is not admitted. That is the rule working, not the rule failing.
+
+**`odysseypa.traviscountytx.gov`, the Travis County district clerk's portal, refuses at the
+edge.** Every request, `robots.txt` included, returns 200 carrying an HTML body that reads
+`Request Rejected` with a support ID. There is no robots file to read and no policy to respect,
+because nothing gets far enough to serve one. **Do not read this as a disallow and do not read it
+as an invitation.** A Texas district court filing is not reachable from here by this route, so a
+petition has to come from somewhere else or the claim does not get made.
+
+**Four hosts answer a browser User-Agent and refuse the collector's, and this is now measured
+rather than suspected.** `www.wilcotx.gov` and `www.brownsvilletx.gov` answered 429, and
+`news.rice.edu` answered 406, to the string `reverify.py` sends. All three answered 200 to a
+browser User-Agent on the same urls minutes later, and every quote on them was still present.
+**Thirteen claims across four items were reported as unreachable purely on that.** The two city
+hosts share the `m/newsflash/Home/Detail/<id>` CivicPlus shape, which is worth noting because
+this record cites a lot of it.
+
+**`www.sec.gov` answered 403 to a browser User-Agent.** The SEC asks automated clients to carry a
+declared contact address in the User-Agent, so this is a stated condition rather than a refusal,
+and it is not a robots decision. Two claims on `tx-2026-0046` are unconfirmed this run for that
+reason alone.
+
+**`interchange.puc.texas.gov` is server-rendered and IS readable.** The page warns that JavaScript
+is required, and the case style, the filing count and the whole filing table come down in the HTML
+regardless. Docket 59315 returned its 22-county case style and 5,831 filings, docket 59029 its
+10-county case style and 516 filings, both under a browser User-Agent. **A quote from this host
+reported as unfindable is a fetcher property and not a page that moved**, which matters because
+this is the single heaviest publisher in the record at 99 claims.
+
+**`api.nsf.gov/services/v1/awards.json` takes a `keyword=` search and it is how you find an award
+from a university press release.** `keyword=<phrase>&awardeeStateCode=TX` returned the award
+behind a UT Arlington release in one call, with the abstract, the obligated amount, the start and
+expiry dates and the co-investigators. The release said $750,000 and the federal record says
+749999. **Those are two strings from two sources and neither is a rounding of the other**, so both
+are recorded as printed.
+
+**Hosts the scouts could not open, recorded so nobody re-derives it.** `openai.com`,
+`www.cityofcarrollton.com`, `kxan.com`, `www.uth.edu`, `www.statesman.com` and `faa.gov/newsroom`
+all returned 403 to the scouts' client. `agdaily.com` 307s to `tollbit.agdaily.com`, which
+answers 402 Payment Required. `pubmed.ncbi.nlm.nih.gov` serves a cookie wall.
+`houstonmethodist.org/newsroom/news/` and `hayscountytx.gov/draft-weekly-commissioners-court-agendas`
+answer 404. `www.cityofbastrop.org` serves no robots.txt at all, so nothing there is disallowed.
+**None of these is evidence about the host's policy** and none may be written onto a blocked list
+on this showing, per the registry's standing rule that a 402 or a 403 is not a robots decision.
+
+**A scout still cannot write a file, and all five said so.** Every one of the five returned its
+JSON in its final message and reported no Write tool, so the showrunner wrote all five
+`out/research/*.json` by hand from the replies. It costs a round trip per scout and it is a
+faithful copy rather than the agent's own artifact. It is in the upgrade backlog.

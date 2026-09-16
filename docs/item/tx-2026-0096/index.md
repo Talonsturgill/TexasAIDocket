@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs carries an interim 
 - Public access: Write to the decider
 - Take part: https://senate.texas.gov/cmte.php?c=700
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · Both water and agriculture sittings on data center water use have now dropped off the chamber's list of upcoming meetings, which carries only what is still ahead. The committee's own page still carries the charge and no recommendation has been published.
 - 2026-09-12 · Both water and agriculture sittings on data center cooling water are off the chamber's list of upcoming meetings. The committee has still published no recommendation.
 - 2026-09-13 · The committee's sittings on cooling water now sit in its video archive, and the interim charge that sent it there is still the charge it carries.
+- 2026-09-16 · Both of the committee's sittings on data center cooling water now sit in its own permanent meeting archive, which is where a held hearing goes. The interim charge that sent it there is still the charge it carries, and it has published no recommendation.
 
 ## Evidence
 
@@ -52,15 +53,15 @@ Source (primary_official): https://senate.texas.gov/cmte.php?c=700
 
 ### The Legislature's upcoming meetings listing carries the date and the room.
 
-> Tuesday, September 1, 2026
+> September 1, 2026 9:00 AM
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
 ### The listing names the committee taking the September 1st hearing.
 
-> Water, Agriculture and Rural Affairs
+> Committee on Water, Agriculture and Rural Affairs (C700)
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
 ### The listing gives the room the September 1st hearing sits in.
 
@@ -70,15 +71,15 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming
 
 ### The Legislature's upcoming meetings listing carries a second sitting of the same committee the following day.
 
-> Wednesday, September 2, 2026
+> September 2, 2026 9:00 AM
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
 ### The Legislature's listing carries the second sitting on September 2nd.
 
-> Wednesday, September 2, 2026 9:00 AM Water, Agriculture and Rural Affairs
+> September 2, 2026 9:00 AM
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
 ### The Senate's own video archive carries the committee's September 1st sitting under that committee's name and date.
 

@@ -8,7 +8,7 @@ Three separate acts of the 89th Legislature each added a Subchapter S to Governm
 - Status: open
 - Public access: Write to the decider
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · Three separate Subchapter S's on artificial intelligence still sit in Chapter 2054 with overlapping numbering, and nothing has been passed to reconcile them.
 - 2026-09-12 · Checked and unchanged. Still open, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still open, with no dated movement.
+- 2026-09-16 · The three Subchapter S sections on artificial intelligence still sit in the code with their duplicated numbering unresolved. A reader looking up a section number still gets more than one answer.
 
 ## Evidence
 

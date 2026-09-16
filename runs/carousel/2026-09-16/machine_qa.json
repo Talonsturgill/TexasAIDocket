@@ -1,0 +1,164 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.1218,
+        0.2353,
+        0.1562
+      ],
+      "band_ratio": 0.9167
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'AWARD 2539663 STANDARD GRANT IUSE' (font-size 18px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Generative Artificial Intelligence tools have crea' (font-size 15px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'four undergraduate Industrial Engineering courses ' (font-size 15px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.2311,
+        0.1765,
+        0.2555
+      ],
+      "band_ratio": 1.1479
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.6912,
+        0.8718,
+        0.9007
+      ],
+      "band_ratio": 1.092
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'SHUCHI DEB, IN THE UNIVERSITY'S RELEASE c5 c11' (font-size 20px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.5294,
+        0.9349,
+        0.6967
+      ],
+      "band_ratio": 0.9686
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'FROM THE HEADLINE OF THE UNIVERSITY'S OWN RELEASE ' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,622.5 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,625 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,626 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,627 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,628 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,630.5 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,632 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,634.5 876x1 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,636 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,638 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,639 876x1.5 running through its glyph band (876px of the line, 7.9:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,641 876x1 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,642.5 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,644 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,647 876x1 running through its glyph band (876px of the line, 7.4:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,649 876x1 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,652 876x1.5 running through its glyph band (876px of the line, 7.0:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,658 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,659 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,660.5 876x1 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,662 876x5.5 running through its glyph band (876px of the line, 7.2:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,668.5 876x0.5 running through its glyph band (876px of the line, 2.6:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,670 876x1 running through its glyph band (876px of the line, 3.3:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,673 876x1 running through its glyph band (876px of the line, 6.6:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,676.5 876x0.5 running through its glyph band (876px of the line, 7.8:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,677.5 876x2 running through its glyph band (876px of the line, 5.5:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,680.5 876x1.5 running through its glyph band (876px of the line, 7.5:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,683 876x0.5 running through its glyph band (876px of the line, 6.2:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'teaches,' has a canvas edge .pixels at 44,688 876x0.5 running through its glyph band (876px of the line, 6.7:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "text struck by a drawn rule: 'not tells' has a canvas edge .pixels at 56,810.5 799x0.5 running through its glyph band (799px of the line, 5.4:1 against the paper beside it). At feed width that reads as a strikethrough. Move the type, move the rule, or knock the rule out behind the line [marked data-overlap-ok]",
+        "outside safe zone: 'teaches,' at 44,556 876x187 (margin 80px)",
+        "outside safe zone: 'not tells' at 56,742 799x187 (margin 80px)",
+        "art touching glyphs (2% of the ring around 'not tells', spanning 66%) -- pixel critic verify the label is not crossed",
+        "outside safe zone: 'FROM THE HEADLINE OF THE UNIVERSITY'S OW' at 64,1082 790x89 (margin 80px)"
+      ],
+      "bands": [
+        0.792,
+        0.8487,
+        0.7721
+      ],
+      "band_ratio": 0.9617
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.7878,
+        0.8445,
+        0.8566
+      ],
+      "band_ratio": 1.031
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 73% of this slide's own average craft density (top 31% / mid 44% / bottom 24% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "tiny-text: 'Deb has already begun testing the system with the ' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'The AI can tell when an officer is being kind and ' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'Then, the AI steers the interaction accordingly, g' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE FEDERAL RECORD FOR THAT NUMBER, NOT REACHED TH' (font-size 15px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'THE FEDERAL RECORD FOR THE TUTOR, NO CARRIER' (font-size 16px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: '\"fundsObligated\":[\"FY 2026 = $749,999.00\"] award 2' (font-size 21px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.313,
+        0.4433,
+        0.2408
+      ],
+      "band_ratio": 0.7337
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "tiny-text: 'KIND AND LISTENING' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'FOLLOWS THAT CONVERSATION' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'DOESN'T CONNECT WITH THE PERSON' (font-size 19px < 24px mobile floor (mark data-decorative if intentional))",
+        "outside safe zone: 'KIND AND LISTENING' at 20,1058 300x51 (margin 80px)",
+        "outside safe zone: 'DOESN'T CONNECT WITH THE PERSON' at 760,1058 300x51 (margin 80px)"
+      ],
+      "bands": [
+        0.6387,
+        0.666,
+        0.6581
+      ],
+      "band_ratio": 1.0056
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "opaque plate grazing text: 'Nothing has been graded yet.' has a 413x4px patch covered by .dek -- pixel critic verify no glyph is cut"
+      ],
+      "bands": [
+        0.2731,
+        0.9034,
+        0.9522
+      ],
+      "band_ratio": 1.3214
+    }
+  ],
+  "fails": 0,
+  "warns": 52,
+  "verdict": "WARN"
+}

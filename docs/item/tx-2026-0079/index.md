@@ -9,7 +9,7 @@ The Texas House Committee on Public Health met on August 20th, 2026 on a charge 
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C410
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · House Public Health has held its interim hearing on artificial intelligence in health care and has published nothing since.
 - 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-09-16 · House Public Health has held its interim hearing on artificial intelligence in health care and has published nothing since. The charge is still open.
 
 ## Evidence
 

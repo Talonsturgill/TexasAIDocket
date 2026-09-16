@@ -1,0 +1,174 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 6 of 9. Archetype FULL_BLEED. ROOM TWO. THE TURN.
+     THE SAME CAMERA AS FRAME 3, verbatim: eye 1.10 m, horizon 838 px, f 820. It shares NO wall,
+     floor or ceiling construction with it. What is identical is the reader's body and not the
+     architecture. THE LIGHT INVERTS: the ceiling grid is off and one warm lamp rakes from the
+     right at elevation 14, so sides are lit, every top face is dark and every shadow runs long
+     TOWARD the reader, which is the exact opposite of room one.
+     NO UNIFORM, NO BADGE, NO WEAPON, NO VEHICLE. The record describes an officer LISTENING.
+     Screen halftone c9, measured range 3.6 to 77.5. Planned frame median L* 26. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .plate { position:absolute; right:80px; top:150px; width:560px; height:474px;
+           background:rgba(9,10,15,0.97); border:1.5px solid rgba(140,150,164,0.5); }
+  .hook { position:absolute; right:112px; top:180px; width:496px; text-align:right;
+          font-family:"Fraunces", serif; font-weight:700; font-size:84px; line-height:1.0;
+          letter-spacing:-0.02em; color:#F0F2F5; font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; right:112px; top:512px; width:496px; text-align:right; font-size:28px;
+         line-height:1.4; color:#C6CCD4; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#AEB6C0; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="plate"></div>
+<h1 class="hook" id="hook">The same machine is in a second room.</h1>
+<p class="dek">Testing with the Fort Worth Police Department has already begun.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, { kicker: "Room two", counter: "06 / 09", src: "c7 c8 c9   TEXAS AI DOCKET", ink: "#AEB6C0" });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 84, maxLines: 3 });
+    var cx = document.getElementById("art").getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // THE SHARED CAMERA, copied verbatim from frame 3. Only the light changes.
+    var CAM = { w: W, h: H, eye: 1.10, horizon: 838, f: 820, sky: "#0A0A0A", fogZ: 1e9, light: { az: 62, el: 14 } };
+    var CH = [{ X: -1.05, Z: 3.2 }, { X: 0.95, Z: 4.4 }];
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.05, seed: 66,
+      screen: { mode: "halftone", cell: 9, angle: 38, gamma: 1.0, floor: 0.05 },
+      edges: { threshold: 26, width: 1.3, alpha: 0.66, dx: 1.2, dy: -0.9 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, CAM);
+        a.fillStyle = "#A2A2A2"; a.fillRect(0, 0, W, H);
+        var wb = S.groundY(11);
+        // PAINTED CONCRETE BLOCK, lit from the right by the lamp and falling off to the left.
+        // A different construction from room one's plaster wall and whiteboard.
+        var wg = a.createLinearGradient(0, 0, W, 0);
+        wg.addColorStop(0, "#D6D6D6"); wg.addColorStop(0.52, "#B2B2B2"); wg.addColorStop(1, "#949494");
+        a.fillStyle = wg; a.fillRect(0, 150, W, wb - 150);
+        // the block coursing, so the wall is a material rather than a fill
+        a.strokeStyle = "rgba(0,0,0,0.10)"; a.lineWidth = 2;
+        for (var y = 180; y < wb; y += 38) { a.beginPath(); a.moveTo(0, y); a.lineTo(W, y); a.stroke(); }
+        for (var x = -20; x < W + 60; x += 78) { a.beginPath(); a.moveTo(x, 150); a.lineTo(x, wb); a.stroke(); }
+        // A DOOR WITH A PUSH BAR, which is what says this living room is inside an institution
+        a.fillStyle = "#2A2A2A"; a.fillRect(770, wb - 330, 168, 330);
+        a.fillStyle = "#101010"; a.fillRect(770, wb - 330, 168, 6);
+        a.fillStyle = "#C2C2C2"; a.fillRect(778, wb - 176, 152, 14);   // THE PUSH BAR, lit, the one thing that says institution
+        a.fillStyle = "#0E0E0E"; a.fillRect(778, wb - 162, 152, 4);
+
+        S.ground({ near: 0.7, far: 30, fill: "#DEDEDE" });
+        // the falloff the lamp leaves in the far corner, drawn into the wall before the press so
+        // it is part of the room rather than a plate laid over it
+        var fall = a.createRadialGradient(150, 520, 120, 150, 520, 1500);
+        fall.addColorStop(0, "rgba(0,0,0,0)"); fall.addColorStop(0.6, "rgba(0,0,0,0.10)"); fall.addColorStop(1, "rgba(0,0,0,0.34)");
+        a.save(); a.beginPath(); a.rect(0, 150, W, wb - 150); a.clip();
+        a.fillStyle = fall; a.fillRect(0, 0, W, H); a.restore();
+        // the carpet tile grid, receding, its own texture in the bottom band
+        a.strokeStyle = "rgba(255,255,255,0.05)"; a.lineWidth = 1;
+        for (var i = -8; i <= 8; i++) {
+          var f1 = S.project(i * 0.5, 0, 0.9), f2 = S.project(i * 0.5, 0, 11);
+          a.beginPath(); a.moveTo(f1[0], f1[1]); a.lineTo(f2[0], f2[1]); a.stroke();
+        }
+        for (var z = 1.0; z < 11; z += 0.5) {
+          var g1 = S.project(-4, 0, z), g2 = S.project(4, 0, z);
+          a.beginPath(); a.moveTo(g1[0], g1[1]); a.lineTo(g2[0], g2[1]); a.stroke();
+        }
+        // four folded chairs against the wall, an institution's furniture
+        for (var k = 0; k < 4; k++) {
+          var fp = S.project(-2.35 + k * 0.34, 0, 7.0), fh = S.ppm(7.0) * 0.92;
+          a.fillStyle = "#1A1A1A"; a.fillRect(fp[0] - 16, fp[1] - fh, 32, fh);          // the folded back
+          a.fillStyle = "#2E2E2E"; a.fillRect(fp[0] - 16, fp[1] - fh, 32, 5);           // its lit top edge
+          a.strokeStyle = "#0E0E0E"; a.lineWidth = 3;                                   // the splayed legs
+          a.beginPath(); a.moveTo(fp[0] - 12, fp[1] - fh + 8); a.lineTo(fp[0] - 22, fp[1]); a.stroke();
+          a.beginPath(); a.moveTo(fp[0] + 12, fp[1] - fh + 8); a.lineTo(fp[0] + 22, fp[1]); a.stroke();
+        }
+
+        // TWO CHAIRS FACING EACH OTHER AND A PERSON IN EACH. Nothing else.
+        var ch = TXOBJ.sprite("office_chair", { seed: 4 });
+        var sit = TXFIG.figure({ pose: "sit", height: 1.70, seat: 0.45 });
+        CH.forEach(function (c0) {
+          S.shadow(ch, { X: c0.X, Z: c0.Z, ink: "#000000", alpha: 0.6 });
+          S.sprite(ch, { X: c0.X, Z: c0.Z, inks: { ink: "#3A3A3A", paper: "#6E6E6E", accent: "#3A3A3A" } });
+          S.shadow(sit, { X: c0.X, Z: c0.Z - 0.04, ink: "#000000", alpha: 0.5 });
+          S.sprite(sit, { X: c0.X, Z: c0.Z - 0.04, inks: { ink: "#0C0C0C", paper: "#1E1E1E", accent: "#0C0C0C" } });
+        });
+      },
+      over: function (c) {
+        // THE TYPE'S ZONE IS KEPT QUIET BY CONSTRUCTION. A flat scrim painted after the press,
+        // so no screen mark crosses a letterform. qa.py reads a screen dot through a glyph as a
+        // strikethrough and it is right to.
+        // the furniture bands only. An earlier cut scrimmed half of every room frame and the
+        // deck's value arc collapsed into three paper frames and six near-black ones, which is
+        // the exact defect two shipped decks were marked down for. The hook and the dek carry
+        // their own knockout plates instead, so the IMAGE keeps the frame.
+        (function (ctx) {
+          var g = ctx.createLinearGradient(0, 0, 0, 150);
+          g.addColorStop(0, "rgba(9,10,15,1)"); g.addColorStop(0.72, "rgba(9,10,15,1)"); g.addColorStop(1, "rgba(9,10,15,0)");
+          ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 150);
+        })(c);
+        (function (ctx) {
+          var g = ctx.createLinearGradient(0, 1350, 0, 1200);
+          g.addColorStop(0, "rgba(9,10,15,1)"); g.addColorStop(0.72, "rgba(9,10,15,1)"); g.addColorStop(1, "rgba(9,10,15,0)");
+          ctx.fillStyle = g; ctx.fillRect(0, 1200, 1080, 150);
+        })(c);
+        // THE ACCENT, AND THE DECK'S ARGUMENT IN ONE MARK. The same ink that was a nine
+        // millimetre tick in a homework margin is now a patch on the floor between two people.
+        // It is SYMMETRICAL ABOUT THE MIDPOINT so it points at neither of them, one flat value
+        // with no ramp and no hot centre, because nothing here is a verdict about a person.
+        var S2 = TXSCENE.create(c, CAM);
+        var midX = (CH[0].X + CH[1].X) / 2, midZ = (CH[0].Z + CH[1].Z) / 2;
+        var q0 = S2.project(midX - 0.62, 0, midZ - 0.62);
+        var q1 = S2.project(midX + 0.62, 0, midZ - 0.62);
+        var q2 = S2.project(midX + 0.62, 0, midZ + 0.62);
+        var q3 = S2.project(midX - 0.62, 0, midZ + 0.62);
+        c.save();
+        c.beginPath(); c.moveTo(q0[0], q0[1]); c.lineTo(q1[0], q1[1]);
+        c.lineTo(q2[0], q2[1]); c.lineTo(q3[0], q3[1]); c.closePath();
+        c.fillStyle = "#00205B"; c.fill();
+        // PRINTED RATHER THAN PLACED. The first cut laid a flat unscreened vector over the press
+        // run, so the one mark carrying the deck's whole argument sat ON the page instead of IN
+        // it. The floor's own halftone is punched back through the patch at the SAME cell and the
+        // SAME angle as the screen around it, so it belongs to the same impression.
+        c.clip();
+        c.fillStyle = "rgba(9,10,15,0.5)";
+        var CELL = 9, ANG = 38 * Math.PI / 180, cs = Math.cos(ANG), sn = Math.sin(ANG);
+        for (var u = -1400; u < 1400; u += CELL) {
+          for (var v = -1400; v < 1400; v += CELL) {
+            var dx = u * cs - v * sn, dy = u * sn + v * cs;
+            c.beginPath(); c.arc(dx, dy, 1.7, 0, Math.PI * 2); c.fill();
+          }
+        }
+        c.restore();
+        // the patch's own drawn edge, at toner weight, so it has a boundary a press would make
+        c.strokeStyle = "#090A0F"; c.lineWidth = 1.6;
+        c.beginPath(); c.moveTo(q0[0], q0[1]); c.lineTo(q1[0], q1[1]);
+        c.lineTo(q2[0], q2[1]); c.lineTo(q3[0], q3[1]); c.closePath(); c.stroke();
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>
