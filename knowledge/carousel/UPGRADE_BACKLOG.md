@@ -2525,3 +2525,162 @@ direction, which is the second sighting.
 cannot move in one commit by one actor. Sequence it: the gate first, accepting EITHER slice for one
 run, then the writer, then the gate narrowed to the new one. A self-test that asserts the newest
 entry's own moves appear in the lists it hands the next room is what proves it landed.
+
+---
+
+## 2026-09-16, carousel no. 26. The band the plan wrote and nothing read
+
+Three upgrades landed and are in `ledger/carousel/upgrades.json` with the commands that prove each
+can go red. What follows is the part a later session needs and a ledger entry can't carry.
+
+### WHERE THE ROUTINE LET THIS THROUGH, phase by phase, because that is the half a gate can't fix
+
+The deck was scored twice. The first panel put it under the bar on all three lenses and the root
+cause under most of the findings was arithmetic nobody did.
+
+- **Phase 11 says read the image at 432 px with no type on it.** It does, and it says nothing
+  about reading it against the number the dossier wrote. So the run measured all nine frames,
+  wrote `measured_arc.json`, and the file sat there. This is the fourth time this repository has
+  written that sentence down: a ledger that records an outcome is not a gate that refuses one.
+- **Phase 12b runs `plan_render_check`** and the routine's own paragraph beside it tells the run
+  to read the checkable ratio and fix the acceptance lists if it is near zero. It was `0 of 55`
+  and the run read it and moved on, which is what a warning that has been near zero on every deck
+  for a month teaches. **The ratio was not near zero because the plan was prose. Nine of the fifty
+  five were arithmetic with a number on both sides, and the gate could not see them.** That is the
+  half this phase fixed.
+- **Phase 14b `panel_ready` passed and was right to.** Its arc check compares the DECK MEDIAN, this
+  deck measured 45.9 against a plan of 44, and its own comment argues correctly that a per frame
+  rule keyed on a point target would fire on every deck. A band is different: it is the plan's own
+  tolerance, so the per frame question now lives in `plan_render_check` and `panel_ready` keeps the
+  register question. Both files now say so where a reader will meet them.
+- **Phase 15 spawned the panel on a deck five of whose nine frames were outside their own plan.**
+  That is three model calls to be told what one measurement says, which is the exact cost
+  `panel_ready` exists to stop, arriving through a door it does not cover.
+
+### The one the panel converged on and this phase deliberately did not attack
+
+**All three judges named figure-to-ground separation on frames 3 and 4 at 432px.** The integrity
+judge asked for the fed_blue accent to be legible at feed size, the craft judge said frame 3's
+crowd merges into a dark mass and frame 4 reads murky, the reader judge said the same about f4.
+It was not fixed because the panel had already scored those exact pixels, and a repair after the
+scoring is a deck the score no longer describes.
+
+**The measurement that makes this a SPEC defect rather than a render defect.** Frame 3's own
+acceptance item asks that every figure and the furniture beside it differ by **at least 8 L\* in
+the twin**. Computed: 8 L\* of separation around that frame's own band, L\* 44 against 52, is a
+contrast ratio of **1.33 to 1**. WCAG 1.4.11 asks **3 to 1** for the parts of a graphical object
+required to understand the content, measured against adjacent colours at the point of lowest
+contrast. From frame 4's measured 34.3, reaching 3 to 1 needs the other side at **L\* 66 or
+above**. So the frame satisfied its own acceptance item, the item was written before the render,
+and the item asks for less than half the separation the external standard asks for. The frames
+merged **because the plan let them**.
+
+**The shape of the gate, for whoever builds it.** The threshold is 3.0 to 1 and it comes from
+WCAG 1.4.11, which this repository already cites for non-text contrast, so it can never be
+re-derived downward off our own decks. The hard part is the same one the 2026-09-04 focal proposal
+names: resolving prose to a region. The honest first cut is the one the dossier already supports,
+because `primary_image.rect` is a declared rectangle and `subject` names what is in it: measure
+the rect's own interior against the ring of ground immediately outside it, at 432px, and report
+the ratio. That is mechanical, it needs no new vocabulary, and it would have printed a number for
+frames 3 and 4 before a judge did. **Report it before it fails on it**, for a deck or two, because
+a gate that starts red on every frame is one somebody switches off.
+
+And the authoring half, which is cheaper and should go first: `SLIDE_DOSSIER_SPEC.md` should say
+that a separation stated in L\* is stated in CONTRAST RATIO instead, with 3 to 1 as the floor for
+anything a reader has to make out. A dossier that says `8 L*` has written a number that sounds
+like a rule and is a third of one.
+
+### Filed, not landed, and why each one stopped
+
+**The routine does not pass `--item` to `dedupe_check`, so the candidate half of two comparisons
+sleeps.** Phase 8's block is `--entities` and `--keywords` only. The beat comparison has needed
+`--item` since 2026-09-07 and the new instrument comparison needs it too, and without it both
+describe the window and say nothing about the candidate. The report now says so out loud rather
+than printing a clean line about a comparison that did not happen, which is the half this lane can
+make. **Proposal, `human` lane:** Phase 8's command becomes
+
+```
+python3 scripts/carousel/dedupe_check.py --item <docket id> \
+                                         --entities "..." --keywords "..."
+```
+
+`prompts/daily_routine.md` is `human` lane and this run is executing it.
+
+**`panel_ready.py` is in `guards.yml` in no form at all.** It is wired, by `gate_wiring`'s rule,
+because the routine calls it at Phase 14b, and that is a different question from whether CI ever
+runs its self-test. It now depends on `plan_render_check.median_lstar` for its measurement, which
+is correct (one implementation of one figure) and means a rename in one file goes unnoticed by CI
+until a run meets it. The failure mode is safe, since `check_value_arc` puts a measurement it
+cannot take in the FAILURE list rather than passing, but the step belongs on the list.
+`.github/workflows/**` is `human` lane. Same standing item as the 2026-08-19 entry above, which
+is now the third file waiting on it.
+
+**`out/<date>/measure_arc.py` should not have needed writing.** The run wrote a one-off measuring
+script with the nine bands hardcoded in a dict, which is the fourth time a run has written a
+one-off `measure.py` to find a value defect (2026-09-04, 2026-09-13, 2026-09-15, today). Each one
+died with its container. The band check in `plan_render_check` is the durable form of all four and
+should be what the next run reaches for.
+
+**The 2026-09-08 deck states its measurement grid on frame 1 and on none of the other eight.**
+The new band check reads frame 1 and reports the other eight as declaring a band with no stated
+size. That is honest and it is also a deck-wide convention stated once, which a generous parser
+would inherit across the deck. It was refused because guessing is the widening the gate exists to
+refuse, and the message names the two forms that work. If a future deck writes the size once on
+purpose, the answer is a `value.measured_at` key in the dossier spec rather than a parser that
+assumes.
+
+### PROPOSED GATE_LESSONS ENTRY, which this lane may not write
+
+`knowledge/shared/GATE_LESSONS.md` is `human` lane, measured with `ownership_check.py --actor
+upgrade --files` rather than assumed. Drafted in the maintainer's own form to keep the file one
+voice. Number it at the tail.
+
+> **## The plan wrote the number, the run measured the number, and nothing put them in one room**
+>
+> Carousel no. 26 declared a median L\* band in every one of its nine dossiers, at the size a
+> reader receives: `the frame's median L* at 432px is between 36 and 52`. The run then measured
+> all nine medians and wrote them to `measured_arc.json` beside the storyboard. **Five of nine
+> frames were outside their own band, three by more than twenty points**, and the storyboard went
+> on asserting that every one was inside its range. Three judges scored it under the bar and the
+> craft judge's one line fix was to make the pixel phase do the comparison.
+>
+> **Two gates were in the room and both were correct.** `panel_ready` compares the deck median
+> against the planned arc, deliberately, because a per frame rule keyed on a point target fires on
+> every deck; this deck measured 45.9 against a plan of 44 and passed. `plan_render_check` counted
+> every one of those nine items as PROSE and printed `0 of 55 acceptance items carry a
+> machine-checkable assertion`, which was true of what it could read.
+>
+> **The numbers were not missing. The comparison was.** Both halves existed as committed data, in
+> the same directory, produced by the same run within the same hour.
+>
+> **What to check instead.** When a plan states a number and a run measures the same number, ask
+> which line of code subtracts them. If the answer is a person reading two files, that is not a
+> check, and the artifact on disk makes it look like one: a file full of correct measurements is
+> the most convincing possible evidence that somebody looked.
+>
+> **And the second half, which is why this was worth a gate rather than a habit.** A tolerance a
+> gate types in has to be justified from outside the project, which is why the value arc's is one
+> Munsell step. A BAND the dossier wrote before the frame was drawn is the plan's own tolerance,
+> so a gate enforcing it invents no threshold at all. Where a plan already states the range it
+> would accept, enforcing it costs the gate nothing it has to defend.
+
+### Frontier scan, 2026-09-16. Focus area: figure-ground separation at feed size
+
+Rotated to the panel's one convergent finding. Eight searches, one finding worth acting on and one
+refused.
+
+**Worth acting on, and the number already exists.** WCAG 1.4.11 asks 3 to 1 for the parts of a
+graphical object required to understand the content, measured against **adjacent colours** and, on
+a varying background, **at the point of lowest contrast**. Both qualifiers are the interesting
+half: they are the difference between "the frame has lights and darks in it", which is what a
+median measures, and "the figure can be told from the ground", which is what a reader does. This
+project already cites 3 to 1 for non-text contrast, so adopting it here adds no new standard and
+cannot ratchet.
+
+**Refused, for the third time and the same reason.** The perceptual literature's own instruments
+for this are Daly's Visible Differences Predictor and the Sarnoff Visual Discrimination Model,
+which are the 2026-08-21 entailment answer wearing different clothes: a dependency CI cannot carry
+and a verdict that moves when a model moves. GATE_LESSONS 15. The contrast sensitivity work says
+the useful thing for free, that detail above roughly 8 to 10 cycles per degree stops carrying at
+normal viewing, which is the argument for measuring at 432px rather than at 1080 and is already
+what this pipeline does.
