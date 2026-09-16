@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-OHYyeNKud8TLzg+Ibp6bhCLuksQtQisOIh9Ac4Jawqs=' 'sha256-HsX8GZQMIsabKWFhaQMMWcvYmRT/QDHklHP++y1azm4=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-OHYyeNKud8TLzg+Ibp6bhCLuksQtQisOIh9Ac4Jawqs=' 'sha256-F69eKyZ3zp6lzZwi6fZZw4s314xttjYQRVolWPEYGvA=' 'sha256-HsX8GZQMIsabKWFhaQMMWcvYmRT/QDHklHP++y1azm4=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -44,7 +44,15 @@
 <main id="main" class="wrap">
 
 <section class="hero rise">
-  
+  <a class="tele news-chip" href="https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/" target="_blank" rel="noopener noreferrer" data-expires-at="2026-09-17T10:28:12Z" title="Selected from recent Texas tech and AI coverage, ranked by coverage and freshness. Discovery by The GDELT Project and publisher RSS. The source headline opens in a new tab."><span class="news-meta"><span class="news-label">Top story</span><cite class="news-source">Dallas Innovates</cite></span><cite class="news-title">Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport</cite><svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg></a><script>(function(){
+  var chip=document.querySelector('.news-chip');
+  if(!chip)return;
+  var expires=Date.parse(chip.dataset.expiresAt);
+  function retire(){if(!Number.isFinite(expires)||Date.now()>=expires)chip.hidden=true;}
+  retire();
+  if(expires>Date.now())setTimeout(retire,Math.min(expires-Date.now()+100,2147483647));
+  document.addEventListener('visibilitychange',retire);
+})();</script>
   <h1>AI is coming <em>South</em>.</h1>
   <p class="herolede">Every AI decision in Texas and the source behind it.</p>
   <div class="statrow"><div class="stat"><span class="n">24</span><span class="l">Articles written</span></div><div class="stat" id="vidstat"><span class="n">14</span><span class="l">Videos published</span></div><div class="stat"><span class="n">138</span><span class="l">Decisions tracked</span></div><div class="stat"><span class="n">764</span><span class="l">Sources cited</span></div><a class="stat" href="#open-now"><span class="n hot">04</span><span class="l">Doors open to you</span></a></div>

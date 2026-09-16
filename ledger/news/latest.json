@@ -1,9 +1,9 @@
 {
   "_spec": 1,
-  "checked_at": "2026-09-16T06:15:54Z",
+  "checked_at": "2026-09-16T12:41:45Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260915061432&enddatetime=20260916061432",
-  "response_sha256": "0c75df62acf5e40669e358ddd17519a94fd2e43cec08f052df0629319724b895",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260915124116&enddatetime=20260916124116",
+  "response_sha256": "f5332e8892e17b78f560fabfb2b54ab23a0a5d2e8b6bf932f63797da114b3fc9",
   "articles": [
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
@@ -14,6 +14,11 @@
       "title": "Air taxis are taking test flights over Dallas - Fort Worth",
       "url": "https://dallas.culturemap.com/news/innovation/air-taxi-testing-project-nexus/",
       "first_seen_at": "2026-09-11T21:30:00Z"
+    },
+    {
+      "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+      "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+      "first_seen_at": "2026-09-15T22:28:12Z"
     },
     {
       "title": "UNT to Launch $20M Sinha College of AI and Advanced Analytics",
@@ -31,18 +36,25 @@
       "first_seen_at": "2026-09-11T02:00:00Z"
     }
   ],
-  "selected": null,
-  "expires_at": null,
+  "selected": {
+    "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
+    "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
+    "first_seen_at": "2026-09-15T22:28:12Z",
+    "publisher": "Dallas Innovates",
+    "coverage": 1,
+    "score": 0.663081
+  },
+  "expires_at": "2026-09-17T10:28:12Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260915061432&enddatetime=20260916061432",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260915124116&enddatetime=20260916124116",
       "status": "unavailable"
     },
     {
       "url": "https://dallasinnovates.com/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "674719e664d2efeab6ca6953815c9c6589bd29e3c14346933e2c9b3211c816f0"
+      "sha256": "3e13829612291f8c344247976632bc7e06bb58933edcfc2c23d8297cea6ed616"
     }
   ]
 }
