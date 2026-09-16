@@ -97,7 +97,11 @@ JS_TABLE = REPO_ROOT / "assets" / "js" / "txlayout.js"
 # THE TWO TABLES, copied from assets/js/txlayout.js. The self-test parses that file and asserts
 # these agree with it. Edit both or neither.
 ARCHETYPES = ["FULL_BLEED", "SPLIT_HORIZON", "TYPE_AS_OBJECT", "OBJECT_AND_CAPTION", "DIAGRAM", "GRID", "DOCUMENT", "MAP", "CLOSE_CROP", "FIGURE_SCALE"]
-ROTATION = {"max_consecutive": 1, "min_distinct": 5, "max_type_as_object": 1, "min_full_bleed_or_close_crop": 2, "min_primary_area": 0.30, "min_bleed_frames": 4}
+# REBALANCED 2026-09-16, and the JS copy in assets/js/txlayout.js carries the reasoning. The
+# layout counts came down and the image law (`min_primary_area`, `min_bleed_frames`) did not
+# move, because the defect this table was written for was never "too few layouts", it was "no
+# image". Two frames in a row sharing an archetype is a beat. Three is a rut.
+ROTATION = {"max_consecutive": 2, "min_distinct": 3, "max_type_as_object": 1, "min_full_bleed_or_close_crop": 2, "min_primary_area": 0.30, "min_bleed_frames": 4, "min_continuity_devices": 2}
 
 W, H = 1080, 1350
 LONG_DECK = 6            # the distinct and the inside rules bind from this many frames up
@@ -144,6 +148,80 @@ def js_tables(js_path: Path = JS_TABLE):
     if not m2:
         raise ValueError(f"{js_path.name} carries no single-line `var ROTATION = {{...}};`")
     return json.loads(m1.group(1)), json.loads(m2.group(1))
+
+
+# The prose surfaces that state the rotation rule in WORDS. Each is a place a session reads the
+# rule from, and each has kept its own copy of the numbers.
+PROSE_SURFACES = (
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md",
+    "knowledge/carousel/DESIGN_DOCTRINE.md",
+    ".claude/agents/carousel-flow-critic.md",
+    ".claude/agents/carousel-treatment-director.md",
+    ".claude/agents/carousel-pixel-critic.md",
+    "prompts/daily_routine.md",
+)
+
+# What the SUPERSEDED rule said, in the words these surfaces used. A surface still saying any of
+# these is a surface enforcing the rule this product changed on 2026-09-16.
+SUPERSEDED_PHRASES = (
+    "no two frames in a row",
+    "no archetype twice in a row",
+    "at least five layouts",
+    "at least five distinct",
+    "twice in a row",
+    "a different layout on every frame",
+    "varies with the layout",
+    "the print register varies",
+)
+
+
+def prose_agreement(root: Path = REPO_ROOT) -> list[str]:
+    """Prose surfaces still carrying the superseded rotation rule.
+
+    WHY THIS EXISTS (2026-09-16). `agreement()` above proves the JS table and the Python table
+    say the same thing, and both were changed together. Neither of them is what an AGENT reads.
+    The flow critic carried its own sentence copy of the rule, "no two frames in a row laid out
+    the same way, at least five layouts across nine", and a critic enforcing a superseded rule
+    is worse than no critic, because it argues the deck back toward the defect.
+
+    This is GATE_LESSONS' oldest shape and the third time this product has hit it: a rule stated
+    in config, a surface that keeps its own copy, and nothing in between checking they agree.
+    The site line got a gate for it. The rotation rule gets one here.
+
+    A finding is NOT fixed by editing this list. It is fixed by editing the surface.
+    """
+    # A surface is allowed to QUOTE the old rule while saying it is history. One of these words
+    # near the quote is what does that work. EVERY occurrence is checked, not the first, because
+    # a file that marks its first quote and forgets its third is the drift this gate is for.
+    MARKERS = ("superseded", "used to", "no longer", "rebalanced", "amended", "old rule",
+               "stale", "was wrong", "retargeted", "came down", "until 2026-09-16",
+               "that rule is why", "changed on 2026-09-16", "this rule read")
+    WINDOW = 400
+
+    out = []
+    for rel in PROSE_SURFACES:
+        f = root / rel
+        if not f.exists():
+            continue
+        low = f.read_text(encoding="utf-8", errors="replace").lower()
+        for phrase in SUPERSEDED_PHRASES:
+            start = 0
+            while True:
+                idx = low.find(phrase, start)
+                if idx < 0:
+                    break
+                start = idx + len(phrase)
+                near = low[max(0, idx - WINDOW):idx + WINDOW]
+                if any(w in near for w in MARKERS):
+                    continue
+                line = low.count("\n", 0, idx) + 1
+                out.append(
+                    f"{rel}:{line} states the superseded rotation rule ({phrase!r}) with nothing "
+                    f"nearby marking it as history. The rule changed on 2026-09-16 to at most "
+                    f"{ROTATION['max_consecutive']} in a row and at least "
+                    f"{ROTATION['min_distinct']} distinct, with continuity as the mandate rather "
+                    f"than variety. Fix the surface, never this list")
+    return out
 
 
 def agreement(js_path: Path = JS_TABLE, archetypes=None, rotation=None) -> list[str]:
@@ -380,8 +458,10 @@ def rotation_problems(seq: list[tuple[int, str]]) -> list[str]:
         if names[i] == names[i - 1]:
             run += 1
             if run > ROTATION["max_consecutive"]:
-                out.append(f"frames {seq[i - 1][0]} and {seq[i][0]} repeat {names[i]}. No "
-                           f"archetype twice in a row, because the reader has just seen that page")
+                out.append(f"frames {seq[i - run + 1][0]} to {seq[i][0]} are {run} x "
+                           f"{names[i]}. At most {ROTATION['max_consecutive']} in a row. Two is "
+                           f"a beat, the same camera with the light moved. Three is a rut")
+                run = 0
         else:
             run = 1
     if len(seq) >= LONG_DECK:
@@ -786,11 +866,17 @@ def self_test() -> int:
         code, probs, rows = check(d2)
         ok("a deck rendered at 2x measures the same", code == 0 and not probs, probs)
 
-        # (b) a consecutive repeat
+        # (b) a RUN of the same archetype. Retargeted 2026-09-16 with the rule: two in a row
+        # is a beat and passes, three is a rut and fails. This case used to assert that two in
+        # a row failed, which is the rule that forbade the deck its strongest continuity move.
         board(d, layouts={2: "DIAGRAM"})
         code, probs, _ = check(d)
-        ok("a consecutive repeat FAILS and names the frames",
-           code == 1 and any("frames 2 and 3 repeat DIAGRAM" in p for p in probs), probs)
+        ok("two of the same archetype in a row is a beat and PASSES the rotation",
+           not any("in a row" in p for p in probs), probs)
+        board(d, layouts={2: "DIAGRAM", 4: "DIAGRAM"})
+        code, probs, _ = check(d)
+        ok("three of the same archetype in a row FAILS and names the frames",
+           code == 1 and any("3 x DIAGRAM" in p for p in probs), probs)
 
         # the rest of the rotation rule, three breaches on one plan and each named
         board(d, layouts={2: "POSTER", 4: "MAP", 5: "TYPE_AS_OBJECT"})
@@ -799,11 +885,19 @@ def self_test() -> int:
         ok("TYPE_AS_OBJECT twice FAILS", any("TYPE_AS_OBJECT 2 times" in p for p in probs), probs)
         ok("one inside frame on a nine frame deck FAILS",
            any("FULL_BLEED and CLOSE_CROP 1 between them" in p for p in probs), probs)
+        # Three distinct archetypes over nine frames is now the FLOOR rather than a failure,
+        # because a deck that leans on three layouts and runs a spine through them is a deck.
+        # Two is still a rut.
         board(d, layouts={2: "DIAGRAM", 4: "CLOSE_CROP", 5: "DIAGRAM", 6: "FULL_BLEED",
                           7: "DIAGRAM", 8: "CLOSE_CROP", 9: "DIAGRAM"})
         code, probs, _ = check(d)
-        ok("three distinct archetypes on nine frames FAILS",
-           any("only 3 distinct" in p for p in probs), probs)
+        ok("three distinct archetypes on nine frames PASSES the distinct rule",
+           not any("distinct" in p for p in probs), probs)
+        board(d, layouts={2: "CLOSE_CROP", 3: "FULL_BLEED", 4: "CLOSE_CROP", 5: "FULL_BLEED",
+                          6: "CLOSE_CROP", 7: "FULL_BLEED", 8: "CLOSE_CROP", 9: "FULL_BLEED"})
+        code, probs, _ = check(d)
+        ok("two distinct archetypes on nine frames FAILS",
+           any("only 2 distinct" in p for p in probs), probs)
 
         # (c) a rect under the area line, (3) a declared bleed the rect misses, and the count.
         # Slides 3, 6 and 9 are pulled inside the margins, so only 1, 4 and 8 still bleed.
@@ -946,9 +1040,22 @@ def main() -> int:
     ap.add_argument("--require", action="store_true",
                     help="a deck with no layouts declared is a fail rather than a note")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--prose", action="store_true",
+                    help="report prose surfaces still carrying the superseded rotation rule")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
+
+    if a.prose:
+        probs = prose_agreement()
+        if not probs:
+            print("layout_check --prose: ok, no surface carries the superseded rotation rule")
+            return 0
+        print(f"layout_check --prose: {len(probs)} surface statement(s) out of date\n",
+              file=sys.stderr)
+        for pr in probs:
+            print(f"  - {pr}", file=sys.stderr)
+        return 1
     if not (a.run_dir or a.date):
         print("layout_check: pass --run-dir, --date or --self-test", file=sys.stderr)
         return 2

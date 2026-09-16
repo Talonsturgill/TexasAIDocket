@@ -34,6 +34,143 @@ The cause was structural, four ways at once, and none of them was a lapse of tas
 So the cure is not a nicer gradient. It is a camera, a subject drawn at true scale, a decision
 per frame about where the image goes, a print register that says a hand made it, and a gate.
 
+## THE DECK IS THE UNIT (2026-09-16, owner, and it outranks every rule below it)
+
+    "the artwork for the carousel post is just like, it's not good enough. it doesn't really
+     flow together. all the slides don't really flow together. the artwork kind of just seems
+     like it's like thrown on the page. I want each page to really seem like custom artwork,
+     not just like somebody went and like threw some text boxes on a page."
+
+Everything under the headings below this one was written on 2026-09-11 to fix a FRAME, and it
+worked on its own terms. Twenty six decks now carry a real drawn subject on every frame. This
+section is about the DECK, and where the two disagree the deck wins, because a reader swipes a
+deck and never once sees a frame on its own.
+
+### What was measured, so the cure is not mistaken for taste
+
+Four facts, all read off shipped artifacts in both products rather than argued:
+
+1. **The grade was never called.** `assets/js/txpost.js` is a complete film grade, ported,
+   working and documented, and it was loaded by **1 shipped slide out of 205**. The sibling
+   product loads its own copy on **127 of 127**. `txcolor.js`, the OKLCH ramp builder, ran 1 of
+   205 against 118 of 127. The pass that separates drawn shapes from a graded still sat in this
+   repo the whole time, uncalled. That alone is most of the flat look.
+2. **There was no deck.** Every frame reached into a permanent bin of finished parts
+   (`txobjects`, `txfig`) and placed them. That gives a deck uniform PARTS and no unity of
+   WORLD, which is exactly what "assembled, not drawn" means and why `txobjects.js` did not cure
+   it. The sibling writes a NEW chassis per run, named for that deck's world, and all nine
+   frames draw from it. This product had written **zero** in twenty six decks.
+3. **The frames did not agree about the light.** Nothing required them to, so they did not.
+4. **The deck strobed.** Each frame's median L*, in slide order, on 2026-09-16:
+   77.8, 77.4, 32.5, 36.1, 54.9, 34.4, 77.4, 44.3, 17.9. Frame 6 to frame 7 is a 43 point jump
+   back to near white, and there are four such cuts. Across nineteen decks the median adjacent
+   jump was **21.0 L*** against the sibling's **2.6**, and **ninety percent of sibling decks
+   carry at most one hard cut while not one deck here did.**
+
+**The scorer was reading the last one backwards.** On 2026-09-16 the craft judge wrote "a
+genuine value arc (measured 77.8, 77.5, ...; spread 64.8)" and gave the deck CREDIT for it. A
+spread is a property of a set. A deck is a sequence. Nothing measured adjacency, so the rubric
+rewarded the amplitude of the strobe. `scripts/carousel/deck_coherence.py` measures it now and
+`config/carousel/deck_coherence.json` carries the derivation of every threshold.
+
+### THE CHASSIS LAW
+
+**Every run writes ONE module at `assets/js/deck/<world>.js`, named for that deck's world, and
+every one of the nine frames loads it.** It holds three things and nothing else:
+
+- **one light**, as an azimuth and an elevation, so every cast in the deck runs the same way
+- **one material vocabulary**, the ramp and the primitives that deck's world is made of
+- **one way of seating type**, which is a reserve and never a plate
+
+`assets/js/txdeck.js` is the base every chassis is built on and `TXDECK.declare` is how the
+chassis states the deck. There is exactly ONE declaration per deck, in that one file, so nine
+frames **cannot** hold nine lights. Coherence here is structural rather than checked, which is
+the difference between a rule and a property.
+
+**What a chassis is not.** There is no `drawFrame()` in it and there never will be. A shared
+projection helper is house furniture. A shared draw-the-whole-slide is a template, which is the
+defect `bespoke_check.py` was written for, and `deck_chassis.py` refuses one by name. **The
+chassis hands a frame primitives. The frame decides what to build from them.** Every frame's
+composition is still written per frame, which is the whole strength of this machine.
+
+The run owns `assets/js/deck/**` and nothing else under `assets/`. It may build a world. It may
+not edit the workshop.
+
+### ONE LIGHT, ONE RAMP, ONE GRADE, ONE SCREEN
+
+Declared once in the chassis, for all nine frames. Not one per frame, which is what the old
+wording under THE PRIMARY IMAGE LAW said and what produced nine unrelated pictures.
+
+**`TXDECK.finish(cx)` is the last thing that touches the art canvas on every frame, without
+exception.** One line, no arguments to invent, the deck's own grade. A frame may move exactly
+two knobs, bloom and aberration, and nothing else. DOM type sits above the canvas and is never
+graded, so the grade can be strong without costing a single point of legibility.
+
+### THE CONTINUITY MANDATE, and it replaces the old variety mandate
+
+The old rule said the deck must turn the page: nine different layouts, a different screen each
+time, at least five distinct archetypes, never the same one twice running. **That rule is why
+the deck does not flow together, and the machine was obeying it correctly.** It was told the
+wrong thing.
+
+**Choose at least TWO of these per deck and name them in the storyboard:**
+
+- **Panorama spine.** The nine grounds are one continuous canvas 9 x 1080 wide, the camera
+  translating x += 1080 per frame, so each swipe REVEALS rather than cuts. Only art crosses a
+  cut line and type never sits on one.
+- **Edge tease.** Something interesting is cut by the right edge of frame n and completes on
+  n+1: a ridge, a route, a cable, a chart line, half a glyph.
+- **Motif evolution.** One object or system recurs on every frame and CHANGES STATE with the
+  argument. A gauge fills, a shadow lengthens, a queue grows, a light comes on. It doubles as
+  the progress indicator.
+- **Camera move.** The same world from evolving positions: wide establish, then detail, then
+  overhead. Two frames may share an archetype for exactly this reason and the rotation now
+  allows it.
+- **Value and palette arc.** The ground shifts across the deck with the story, monotonically,
+  in steps the reader feels rather than sees. Dusk to night, never night to noon to night.
+
+The 2026-09-16 deck already did one of these by accident and its judge noticed: frame 6 "lands
+hard because it is the identical camera to frame 3 with the light inverted". That is a camera
+move, it was the best thing in the deck, and the rotation rule was pulling against it the whole
+time.
+
+**The rotation, rebalanced.** At most **two** of the same archetype in a row (two is a beat, a
+before and an after, the same camera with the light moved; three is a rut). At least **three**
+distinct over nine. TYPE_AS_OBJECT at most once. **The image law did not move**, because the
+defect the old table was written for was never "too few layouts", it was "no image": at least
+thirty percent of the frame, at least four frames bleeding an edge, at least two the reader is
+inside. A deck of nine FULL_BLEED frames with a real image on each and a spine running through
+them is excellent. A deck of nine different layouts with a headline over a small object is what
+the judges called clip art.
+
+### NO PLATE, EVER
+
+Six frames of nine on 2026-09-16 put an opaque rectangle behind the headline, and the source
+comment beside one of them reads *"the plate is the critic's own fix for the placeholder-bar
+reading"*. A critic said the type sat badly and the repair was more plate. **A plate is what a
+frame reaches for when the art under it was drawn without knowing where the type goes.**
+
+So the art is told where the type goes BEFORE it draws:
+
+```js
+await document.fonts.ready;
+TX.fitText(hook, { min: 82, max: 120, maxLines: 3 });   // fit FIRST, then measure
+var boxes = TXDECK.lineBoxes('.hook, .dek, .kick', 16);
+var mask  = TXDECK.reserveMask(boxes, 28);               // fn(x,y) -> 0..1
+```
+
+Every field, grain, hatch, stipple and scatter pass multiplies its density by `mask(x, y)`, and
+a layer that can't consult a mask as it goes gets `TXDECK.punch` afterwards. The type then sits
+in quiet the picture actually has. `deck_chassis.py` fails the build on any fill over 0.55 alpha
+behind display type.
+
+A wash under 0.55 is atmosphere and is allowed. The distinction is measured, not argued.
+
+### The order of work, amended
+
+The chassis comes before any frame. Phase 10.5 builds it and renders ONE probe frame against
+it, because a chassis that is wrong is wrong nine times.
+
 ## THE PRIMARY IMAGE LAW
 
 **Every frame carries one drawn subject that owns at least thirty percent of the frame, reads
@@ -79,9 +216,11 @@ carries a copy its self-test asserts against that file. The names:
 | **CLOSE_CROP** | the subject cropped by at least two edges, at detail scale, the reader inside it | one reserve |
 | **FIGURE_SCALE** | a person at true scale beside the thing, so the thing has a size | in the sky or ground the composition leaves empty |
 
-**The rotation over nine frames:** no archetype twice in a row, at least five distinct,
-TYPE_AS_OBJECT at most once, FULL_BLEED and CLOSE_CROP at least two between them, at least four
-frames bleeding an edge. Check the sequence before any dossier is written:
+**The rotation over nine frames (rebalanced 2026-09-16, see THE CONTINUITY MANDATE above):** at
+most two of the same archetype in a row, at least three distinct, TYPE_AS_OBJECT at most once,
+FULL_BLEED and CLOSE_CROP at least two between them, at least four frames bleeding an edge, and
+at least two continuity devices named in the storyboard. Check the sequence before any dossier
+is written:
 
     node -e 'require("./assets/js/txlayout.js"); console.log(TXLAYOUT.check(["FULL_BLEED","DOCUMENT","FIGURE_SCALE","OBJECT_AND_CAPTION","GRID","DIAGRAM","CLOSE_CROP","SPLIT_HORIZON","FULL_BLEED"]))'
 
@@ -117,14 +256,35 @@ looks made and a stock vector looks placed, and it is the whole surface of this 
 4. **The accent plate.** Anything that must stay flat colour is painted last in `over`: the one
    accent, and any type reserve (`TXINK.reserve`).
 
-Vary the screen across the deck the way the layouts vary. A deck that is nine halftones is
-one drawing nine times in a new way.
+**ONE SCREEN FOR THE DECK, chosen in the chassis** (amended 2026-09-16). This paragraph used to
+read "vary the screen across the deck the way the layouts vary", and it was wrong in the same way
+the rotation rule was wrong. A screen is the deck's STOCK. Changing stock between frames is not
+variety, it is a different print job, and it is half of why the value track strobed. Nine
+halftones is not "one drawing nine times" if the nine drawings are different, any more than nine
+photographs on the same film stock are one photograph. What must vary between frames is the
+SUBJECT and the CAMERA. What must not vary is the paper, the ink, the screen, the light and the
+grade.
 
 ## THE FIVE LIBRARIES
 
-All under `assets/js/`, all deterministic per seed, all loaded with `@@ASSETS@@/js/<name>.js`,
-in this order because each needs the one before: `txscene.js`, `txfig.js`, `txobjects.js`,
-`txink.js`, `txlayout.js`. `noise.js` and `txtype.js` as before.
+All under `assets/js/`, all deterministic per seed, all loaded with `@@ASSETS@@/js/<name>.js`.
+
+**THE LOAD ORDER, and it is stated rather than discovered because two of these throw on a
+missing dependency:**
+
+```
+noise.js  txtype.js  txcolor.js  txpost.js  txdeck.js  deck/<world>.js  [txscene.js txfig.js
+txobjects.js txink.js]  txlayout.js
+```
+
+`txcolor.js` and `txpost.js` are NOT optional and are not "for hero frames". They were loaded by
+one slide in 205 and that is the single largest measured cause of the flat look. `txdeck.js`
+throws on load without them, which is deliberate: the failure it prevents is a frame that
+renders ungraded and looks fine on its own.
+
+The bracketed four are the scene bench and are used when a frame needs true-scale objects. They
+are a bin of parts and the chassis is the deck's world, so **the chassis comes first and the bin
+serves it**, never the other way round.
 
 ### txscene.js — the camera and the ground
 

@@ -2684,3 +2684,47 @@ and a verdict that moves when a model moves. GATE_LESSONS 15. The contrast sensi
 the useful thing for free, that detail above roughly 8 to 10 cycles per degree stops carrying at
 normal viewing, which is the argument for measuring at 432px rather than at 1080 and is already
 what this pipeline does.
+
+---
+
+## OPEN, 2026-09-16 — TWO CRITIC DEFINITIONS STILL ENFORCE THE SUPERSEDED ROTATION RULE
+
+**A maintainer at a keyboard has to make this edit and no routine can.** Both files are under
+`.claude/`, the host treats that path as a sensitive file class and prompts on every write
+whatever the permission mode says, and `ownership.yaml` gives them to `upgrade` while the host
+gives them to nobody unattended. That asymmetry is stated in CLAUDE.md under "THE UPGRADE LANE
+OWNS TWO PATHS UNDER THERE AND STILL CANNOT REACH THEM UNATTENDED", and this is the disposition
+that section prescribes: write the proposal down and stop.
+
+**The defect.** On 2026-09-16 the rotation rule changed, on the owner's report that the artwork
+does not flow together. `assets/js/txlayout.js`, `scripts/carousel/layout_check.py`,
+`knowledge/carousel/ILLUSTRATION_SYSTEM.md`, `config/carousel/scoring_rubric.yaml` and
+`prompts/daily_routine.md` were all changed together. Two agent definitions were not, because
+nothing in a routine may write them, and they carry their own sentence copy of the old numbers:
+
+    .claude/agents/carousel-flow-critic.md:33      "no two frames in a row laid out the same
+                                                   way, at least five layouts across nine"
+    .claude/agents/carousel-flow-critic.md:37      "The print register varies with the layout"
+    .claude/agents/carousel-treatment-director.md:56   "at least five distinct"
+    .claude/agents/carousel-treatment-director.md:60   "varies with the layout"
+
+**Why it matters more than an ordinary stale doc.** These two are the agents that judge and plan
+the deck AS A SEQUENCE. A critic enforcing a superseded rule does not merely fail to help, it
+argues the deck back toward the defect the rule was changed to fix. The flow critic would read a
+coherent deck, find two frames sharing an archetype and one screen across nine, and call both
+faults.
+
+**What the change is.** In both files, replace the rotation sentences with a pointer rather than
+a copy, which is the actual cure:
+
+> The rotation rule and the continuity mandate live in `knowledge/carousel/ILLUSTRATION_SYSTEM.md`
+> under "THE DECK IS THE UNIT". Read it and judge against it. Do not restate the numbers here.
+
+Restating them here is what produced this item. `scripts/carousel/layout_check.py --prose`
+reports every surface still carrying the old wording and exits 1, so this cannot go quiet again.
+
+**What holds the line until then.** `prompts/daily_routine.md` Phase 12 hands the flow critic the
+current rule in its spawn prompt every round, explicitly telling it that any copy in its own
+definition is stale. That works, and it is a workaround rather than a fix: it costs tokens every
+round and it depends on a phase remembering to do it. The fix is four lines in two files and one
+approved prompt.
