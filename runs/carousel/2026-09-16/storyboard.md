@@ -51,13 +51,13 @@ is, which is COOL, and which is also the honest material palette for a 1970s eng
 and a municipal training room. `out/2026-09-16/palette_measured.json` carries the arithmetic. A
 random colour's nearest neighbour in this window is p10 9.84 and median 27.82.
 
-    bond       #BBC0C6  L* 76   the copy stock and the deck's most common value   dE 10.59
-    toner      #070016  L*  1   the ink                                           dE 10.56
-    table      #525862  L* 37   the work surface                                  dE 10.65
-    block      #818C90  L* 57   painted concrete block, both rooms' walls         dE 11.08
-    shade      #343C46  L* 25   rooms behind, and the deck's dark                 dE 10.65
-    lamp       #D9A45E  L* 71   the warm lamp in room two, never a mark           dE 13.84
-    fed_blue   #00205B  L* 14   THE ACCENT, PMS 281 C, `flag_blue` in brand.yaml  dE 24.32
+    bond       L* 76   #BBC0C6   the copy stock and the deck's most common value  dE 10.59
+    toner      L*  1   #070016   the ink                                          dE 10.56
+    table      L* 37   #525862   the work surface                                 dE 10.65
+    block      L* 57   #818C90   painted concrete block, both rooms' walls        dE 11.08
+    shade      L* 25   #343C46   rooms behind, and the deck's dark                dE 10.65
+    lamp       L* 71   #D9A45E   the warm lamp in room two, never a mark          dE 13.84
+    fed_blue   L* 14   #00205B   THE ACCENT, PMS 281 C, `flag_blue` in brand.yaml dE 24.32
 
 `fed_blue` is dark against a pale stock on purpose, so a nine millimetre tick reads as a MARK at
 432 px rather than as a glow. Flag red `#BF0A30` is UNSPENT and that is deliberate: there is no
