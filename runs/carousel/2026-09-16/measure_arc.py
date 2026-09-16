@@ -38,6 +38,21 @@ BANDS = {
 }
 
 
+
+def _frame(n: int) -> pathlib.Path:
+    """The archived slide if this is running from the archive, the transient render if not.
+
+    The shipped run carries slide-NN.webp at its top level; out/<date>/render/ holds the PNGs and
+    is gitignored. A checker that only knows the second path cannot reproduce its own published
+    figures from a fresh clone, which is the whole point of committing it.
+    """
+    for cand in (RUN / f"slide-{n:02d}.webp",
+                 RUN / "render" / f"slide-{n:02d}.png",
+                 RUN / f"slide-{n:02d}.png"):
+        if cand.exists():
+            return cand
+    raise FileNotFoundError(f"no slide {n:02d} beside {RUN}")
+
 def srgb_to_lstar(c: float) -> float:
     """One channel of sRGB (0..1) to linear, then Y to CIE L*."""
     c = c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
@@ -64,10 +79,7 @@ def median_lstar(path: pathlib.Path) -> float:
 def main() -> int:
     measured, problems = [], []
     for n in range(1, 10):
-        png = RENDER / f"slide-{n:02d}.png"
-        if not png.exists():
-            print(f"FAIL  frame {n}  no render at {png}")
-            return 2
+        png = _frame(n)
         m = median_lstar(png)
         measured.append(m)
         lo, hi = BANDS[n]

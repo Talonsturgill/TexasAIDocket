@@ -5,9 +5,18 @@ Every other numeral on the deck is quoted from a source and is declared in aggre
 the string it came out of. These two are the deck's own arithmetic over the claims file, which is
 exactly what aggregates.json exists to declare.
 """
-import json, re, pathlib
+import json
+import pathlib
+import re
 
-claims = {c["id"]: c for c in json.loads(pathlib.Path("out/2026-09-16/claims.json").read_text())["claims"]}
+# Resolve beside this file, so the archived copy recomputes from the archived claims.
+# out/ is gitignored, so a path into it is a path that does not exist in a fresh clone.
+_HERE = pathlib.Path(__file__).resolve().parent
+CLAIMS = _HERE / "claims.json"
+if not CLAIMS.exists():
+    CLAIMS = _HERE.parents[2] / "out" / "2026-09-16" / "claims.json"
+
+claims = {c["id"]: c for c in json.loads(pathlib.Path(CLAIMS).read_text())["claims"]}
 
 # 1. THE THREE READINGS. c8 enumerates them in one sentence as a list of "when" clauses.
 q8 = claims["c8"]["quote"]

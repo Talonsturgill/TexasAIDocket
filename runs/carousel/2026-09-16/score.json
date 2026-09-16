@@ -68,5 +68,6 @@
  "threshold": 6.7,
  "over_threshold": true,
  "method": "per-criterion median across three judges, then weighted by the rubric",
- "rounds": 1
+ "rounds": 1,
+ "rounds_note": "3 of 3 judge card(s) in this invocation had already been scored, so this was a re-combination rather than a scoring round and the round count did not advance. Re-run the judges to score again"
 }

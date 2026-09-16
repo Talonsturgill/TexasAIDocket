@@ -4,66 +4,66 @@
   "slide-01": {
    "median_L": 77.8,
    "p05_L": 30.1,
-   "p95_L": 93.2,
+   "p95_L": 93.3,
    "accent_share_pct": 0.03
   },
   "slide-02": {
-   "median_L": 77.5,
-   "p05_L": 12.2,
-   "p95_L": 93.3,
+   "median_L": 77.4,
+   "p05_L": 12.3,
+   "p95_L": 93.6,
    "accent_share_pct": 0.0
   },
   "slide-03": {
-   "median_L": 51.0,
+   "median_L": 50.9,
    "p05_L": 0.5,
-   "p95_L": 81.8,
+   "p95_L": 81.7,
    "accent_share_pct": 0.52
   },
   "slide-04": {
-   "median_L": 34.1,
-   "p05_L": 1.6,
+   "median_L": 34.3,
+   "p05_L": 1.7,
    "p95_L": 78.7,
    "accent_share_pct": 0.0
   },
   "slide-05": {
    "median_L": 45.9,
-   "p05_L": 2.8,
+   "p05_L": 3.0,
    "p95_L": 80.6,
    "accent_share_pct": 0.0
   },
   "slide-06": {
-   "median_L": 20.8,
-   "p05_L": 0.9,
+   "median_L": 21.0,
+   "p05_L": 1.0,
    "p95_L": 81.6,
-   "accent_share_pct": 1.47
+   "accent_share_pct": 1.48
   },
   "slide-07": {
-   "median_L": 77.5,
+   "median_L": 77.4,
    "p05_L": 33.7,
-   "p95_L": 81.0,
+   "p95_L": 81.2,
    "accent_share_pct": 0.0
   },
   "slide-08": {
    "median_L": 43.5,
-   "p05_L": 1.2,
-   "p95_L": 81.5,
+   "p05_L": 1.3,
+   "p95_L": 81.7,
    "accent_share_pct": 1.08
   },
   "slide-09": {
    "median_L": 13.0,
-   "p05_L": 2.8,
-   "p95_L": 66.1,
+   "p05_L": 3.0,
+   "p95_L": 66.2,
    "accent_share_pct": 0.0
   }
  },
  "per_frame_median_lstar": [
   77.8,
-  77.5,
-  51.0,
-  34.1,
+  77.4,
+  50.9,
+  34.3,
   45.9,
-  20.8,
-  77.5,
+  21.0,
+  77.4,
   43.5,
   13.0
  ],

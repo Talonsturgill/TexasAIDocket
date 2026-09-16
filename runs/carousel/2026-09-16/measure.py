@@ -26,6 +26,21 @@ PALETTE = {                          # the deck's committed palette, from the st
 }
 
 
+
+def _frame(n: int) -> pathlib.Path:
+    """The archived slide if this is running from the archive, the transient render if not.
+
+    The shipped run carries slide-NN.webp at its top level; out/<date>/render/ holds the PNGs and
+    is gitignored. A checker that only knows the second path cannot reproduce its own published
+    figures from a fresh clone, which is the whole point of committing it.
+    """
+    for cand in (RUN / f"slide-{n:02d}.webp",
+                 RUN / "render" / f"slide-{n:02d}.png",
+                 RUN / f"slide-{n:02d}.png"):
+        if cand.exists():
+            return cand
+    raise FileNotFoundError(f"no slide {n:02d} beside {RUN}")
+
 def _lin(c: float) -> float:
     c = c / 255.0
     return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
@@ -57,10 +72,7 @@ def frame_stats(path: pathlib.Path) -> dict:
 def main() -> int:
     frames = {}
     for i in range(1, 10):
-        p = RENDER / f"slide-{i:02d}.png"
-        if not p.exists():
-            print(f"measure: no render at {p}", file=sys.stderr)
-            return 2
+        p = _frame(i)
         frames[f"slide-{i:02d}"] = frame_stats(p)
 
     medians = [frames[f"slide-{i:02d}"]["median_L"] for i in range(1, 10)]
