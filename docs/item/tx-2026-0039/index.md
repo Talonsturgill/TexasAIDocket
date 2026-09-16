@@ -11,7 +11,7 @@ The National Science Foundation announced the first awards under its CyberAICorp
 - Public access: Write to the decider
 - Take part: https://www.utep.edu/cs/opportunities/sfs_program.html
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · UT El Paso still holds its place in the first round of CyberAICorps awards, on the terms the foundation announced.
 - 2026-09-12 · UT El Paso still holds its place in the first round of CyberAICorps awards, on the terms the foundation announced.
 - 2026-09-13 · UT El Paso still holds its award in the first round, and the foundation's list of awardees still names it.
+- 2026-09-16 · The scholarship award naming UT El Paso still stands as made, and the university's own program page still carries it. Nothing has changed the award.
 
 ## Evidence
 

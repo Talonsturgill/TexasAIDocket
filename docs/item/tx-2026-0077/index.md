@@ -10,7 +10,7 @@ The Senate Committee on Transportation posted notice of a public hearing for Aug
 - Comment closes: 2026-08-25
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C6402026082509001.PDF
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The August 25th transportation hearing has now dropped off the chamber's list of upcoming meetings, which carries only what is still ahead. The hearing notice itself is still posted and the committee has published nothing since it sat.
 - 2026-09-12 · The August 25th transportation hearing is off the chamber's list of upcoming meetings, which carries only what is still ahead. The committee has published no report and no further sitting.
 - 2026-09-13 · The transportation committee's interim hearing on driverless deployment now sits in the chamber's video archive rather than on its list of what is ahead. The committee has posted nothing further on the subject.
+- 2026-09-16 · The transportation committee's hearing on driverless deployment now sits in the committee's own permanent meeting archive, which is where a held hearing goes. The committee has published no report out of it, so the interim charge is still open.
 
 ## Evidence
 
@@ -63,9 +64,9 @@ Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/pdf/C
 
 ### The Legislature's own upcoming meetings listing carries the committee, the date, the time and the room.
 
-> Tuesday, August 25, 2026 9:00 AM Transportation Type: Public Hearing Location: E1.016 (Hearing Room)
+> August 25, 2026 9:00 AM
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C640
 
 ### The Legislative Reference Library's weekly posting carries the charge the committee is meeting on.
 
@@ -81,9 +82,9 @@ Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/
 
 ### The Senate's upcoming meetings listing carries the hearing with its date, time and room.
 
-> Tuesday, August 25, 2026|9:00 AM |Transportation|Type: Public Hearing Location: E1.016 (Hearing Room)
+> Committee on Transportation (C640)
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C640
 
 ### The committee's own page lists the August 25th hearing in its archive of recorded meetings.
 

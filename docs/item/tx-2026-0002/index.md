@@ -9,7 +9,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-10 · The filing index still stands where the record left it and the case style has not changed. The commission's calendar feed no longer carries the September 4th deadline. That is what the feed does once a date has passed. The two entries the record quoted from it have been replaced by two the index still carries. The Texas Register acknowledgement filed under the control number still states the September 4th deadline, so the shut window stays readable from a source that keeps its own history.
 - 2026-09-10 · Corrected. One claim carried a source title naming the commission's calendar feed. The claim quotes the commission's filing index for control number 58482, and the source title now names that.
 - 2026-09-13 · Checked and unchanged. Still open, with no dated movement.
+- 2026-09-16 · Still open. The proposed rule on how large loads would be asked to manage demand carries no new filing and no scheduled sitting, so the door it leaves open has not moved either way.
 
 ## Evidence
 

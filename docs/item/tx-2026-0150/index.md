@@ -12,7 +12,7 @@ An expert panel review in the American Journal of Roentgenology states that pedi
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42714442/
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -23,6 +23,7 @@ An expert panel review in the American Journal of Roentgenology states that pedi
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-13 · Admitted to the record. Texas radiologists at two of the state's largest institutions have put in print that imaging AI has largely skipped children. The same review names adult trained models being used on children off label. Nothing follows from the review on its own and no Texas hospital has published a change beside it.
+- 2026-09-16 · The finding that imaging artificial intelligence has largely skipped children is still published as written. No correction has appeared against it.
 
 ## Evidence
 

@@ -12,7 +12,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Re-verified on the day's worklist. The recorded ordinance still carries November 3rd, 2026 and the commission's report still carries the proposed section.
 - 2026-09-13 · Corrected the participation classification. The recorded ordinance sets an election day, not a comment deadline. Earlier history entries calling this a comment window were incorrect. The election date and quoted evidence are unchanged.
 - 2026-09-13 · Re-verified on the day's worklist. The recorded ordinance still carries November 3rd, 2026 as the election date and the commission's report still carries the proposed section.
+- 2026-09-16 · The Pflugerville charter amendments are still set for the November ballot, the artificial intelligence section among them. The ballot language has not been altered.
 
 ## Evidence
 

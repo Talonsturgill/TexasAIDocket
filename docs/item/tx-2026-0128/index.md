@@ -11,7 +11,7 @@ At its September 1st, 2026 meeting the Brownsville City Commission considered st
 - Public access: Public meeting
 - Take part: https://www.brownsvilletx.gov/m/newsflash/home/detail/3425
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-07 · Admitted. The city's own account of the September 1st, 2026 meeting says the commission took up the process for a temporary moratorium. The same account says staff told it the land development code has no rules for data centers. Nothing in that account records a vote.
 - 2026-09-10 · The temporary moratorium on data centers is still before the city and still unscheduled. The staff recommendation behind it has not been withdrawn.
 - 2026-09-13 · The temporary moratorium is still something the commission has taken up rather than adopted, and no date has been published for a vote on it.
+- 2026-09-16 · Brownsville's temporary moratorium is still before the commission rather than adopted, and the staff advice that prompted it is unchanged. No vote has been posted.
 
 ## Evidence
 

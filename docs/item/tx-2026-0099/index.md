@@ -11,7 +11,7 @@ The United States Army Research Office established a five year research center a
 - Public access: Closed
 - Take part: https://news.rice.edu/news/2026/rice-lead-15m-army-research-center-next-generation-sensing-and-communications
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The Army's research center at Rice on antenna arrays is still funded, with artificial intelligence still one thread of it rather than the whole.
 - 2026-09-12 · The Army's research center at Rice on antenna arrays is still funded, with artificial intelligence still one thread of it rather than the whole. The university page carrying the description would not answer this run, so the wording of it is unconfirmed today.
 - 2026-09-13 · The Army's center at Rice is still funded. Artificial intelligence is still one thread among the disciplines the university names rather than the whole of it.
+- 2026-09-16 · The Army's funding of the Rice antenna research center still stands as awarded, and artificial intelligence is still one of the directions it names. Nothing has changed the award.
 
 ## Evidence
 

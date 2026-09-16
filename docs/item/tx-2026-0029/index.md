@@ -11,7 +11,7 @@ The Williamson County Commissioners Court approved a Chapter 312 tax abatement i
 - Public access: Write to the decider
 - Take part: https://www.wilcotx.gov/m/newsflash/Home/Detail/789
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The Chapter 312 abatement Williamson County granted Compal is still in force on the terms the court adopted, and the agreement has not been amended since.
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Williamson County's performance based abatement for the Georgetown facility is unchanged, and the county still withholds the abatement until the company meets the measures.
+- 2026-09-16 · The abatement granted to Compal is still in force exactly as the court approved it. Every term the record quotes is still on the county's own posting.
 
 ## Evidence
 

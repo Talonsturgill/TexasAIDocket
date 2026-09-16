@@ -9,11 +9,13 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
 - 2026-08-19 · hearing: Committee meeting at 8:00 AM, as listed on the Legislature's own committee meetings page
+- 2026-09-14 · hearing: Committee meeting at 10:00 AM, as listed on the committee's own meeting archive
+- 2026-09-15 · hearing: Committee meeting at 10:00 AM, as listed on the committee's own meeting archive
 
 ## How this decision moved
 
@@ -29,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The August interim hearing on data center development has dropped off the committee's own meeting list, which carries only what is still ahead. The legislative library's record of the week still carries it and no report has followed.
 - 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-09-16 · The committee has sat twice more this week, on September 14th and September 15th, and its own meeting archive lists both. What it took up at either sitting is not yet on the record here, and it has still published no report out of the August hearing on data centers and the transmission lines.
 
 ## Evidence
 
@@ -57,4 +60,16 @@ Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/
 > Charge: 765-kV Transmission Lines: Review the regulatory and planning processes regarding the proposed 765-kV transmission lines.
 
 Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
+
+### The committee's own permanent meeting archive lists a sitting on September 14th, 2026.
+
+> September 14, 2026 10:00 AM
+
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
+
+### The committee's own permanent meeting archive lists a sitting on September 15th, 2026.
+
+> September 15, 2026 10:00 AM
+
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 

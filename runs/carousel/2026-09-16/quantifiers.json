@@ -1,0 +1,24 @@
+{
+ "quantifiers": [
+  {
+   "phrase": "Neither the university nor the federal record",
+   "about": "the two documents this deck rests on",
+   "from_items": ["tx-2026-0161"],
+   "set": [
+    "the University of Texas at Arlington release of September 10th, 2026, the source behind c1 to c21",
+    "the National Science Foundation award record for 2539663, the source behind c22 to c33"
+   ],
+   "why": "THE UNIVERSAL IS ABOUT TWO NAMED DOCUMENTS, not about the world. The set is exactly the two primary sources this run fetched, and absence a3 in claims.json records that neither of them publishes an evaluation result for the tutor or for the police training: every statement either makes about what the system does is design intent or future tense. The honest form, which the frame's own dek carries, is that these two documents publish no result, never that no result exists or that the project has failed. A third document could publish one tomorrow and this sentence would still be true of the two it names."
+  },
+  {
+   "phrase": "Neither source",
+   "about": "the two documents this deck rests on",
+   "from_items": ["tx-2026-0161"],
+   "set": [
+    "the University of Texas at Arlington release of September 10th, 2026, the source behind c1 to c21",
+    "the National Science Foundation award record for 2539663, the source behind c22 to c33"
+   ],
+   "why": "The caption's shorter form of the same universal over the same two-document set, resting on the same absence a3. 'Source' here means the two primary documents named in the first comment's source block and nothing wider. The caption never says no result exists, only that these two do not publish one."
+  }
+ ]
+}

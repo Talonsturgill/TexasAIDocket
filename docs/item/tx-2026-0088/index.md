@@ -11,7 +11,7 @@ Brazos County posted a Tax Code Section 312.207 notice that its Commissioners Co
 - Public access: Public meeting
 - Take part: https://www.brazoscountytx.gov/m/newsflash/Home/Detail/388
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The RELLIS data center abatement is still assigned to the new owner on the terms Brazos County approved.
 - 2026-09-12 · The RELLIS data center abatement is still assigned to the new owner on the terms Brazos County approved. The county's own notice of that assignment has rolled off its news page. The assignment now rests on the court record rather than on a page a reader can open.
 - 2026-09-13 · The RELLIS abatement is still assigned to the new owner, and the county's own notice still names the assignee.
+- 2026-09-16 · The RELLIS abatement is still assigned to its new holder and the county's posting still reads as it did. Nothing has been brought back to the court.
 
 ## Evidence
 

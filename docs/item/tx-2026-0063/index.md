@@ -9,7 +9,7 @@ TCEQ's pending new source review page lists air permit applications whose notice
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The four data center air permit applications are still posted as pending with published public notice.
 - 2026-09-12 · The four data center air permit applications are still posted as pending with published public notice, and the agency's plain language summary requirement still governs them.
 - 2026-09-13 · The data center air permit applications are still posted as pending with published notice, and none has moved off that list.
+- 2026-09-16 · The agency still has four data center air permit applications posted with published notices. None has moved to a decision.
 
 ## Evidence
 

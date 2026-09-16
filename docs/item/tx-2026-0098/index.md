@@ -12,7 +12,7 @@ The National Science Foundation award to William Marsh Rice University funds REA
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2607553.json
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-16
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-07 · The funding agency's own award record still carries READINESS as active, with its program and its dates unchanged. Rice is still named alongside SUNY Poly and the University of Texas at Austin, and the laboratory is still described there as meant to run with minimal human intervention.
 - 2026-09-10 · The Rice laboratory award still stands as made, and the description of a model that designs the experiment and reads the result is still the foundation's own. Nothing has moved on it.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
+- 2026-09-16 · The Rice laboratory where a model designs the experiment and a robot runs it is still funded and still bookable from outside. Nothing has closed the outside route.
 
 ## Evidence
 

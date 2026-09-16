@@ -63,6 +63,36 @@
    "quoted_from": "c33",
    "quote": "four undergraduate Industrial Engineering courses at the University of Texas at Arlington, spanning freshman through senior years",
    "note": "The caption's form of the same figure. The word four is the source's own and 'Industrial' is shortened to 'engineering' for the post's line length, which keeps the discipline the abstract names rather than inventing one. The deck counted nothing."
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, which groups every claim id the deck prints by its source document and counts the distinct documents",
+   "from_claims": [
+    "c1",
+    "c2",
+    "c4",
+    "c5",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c13",
+    "c15",
+    "c19",
+    "c22",
+    "c24",
+    "c25",
+    "c27",
+    "c30",
+    "c31",
+    "c32",
+    "c33"
+   ],
+   "note": "The 20 claim ids the deck prints resolve to exactly two documents, the university's own release and the National Science Foundation award record. Both are primary_official, which is what the word official is doing. The Department of Justice record for 15PBJA-23-GG-06172-NTCP is NOT among them and is not counted, because it was not reached this run (a4)."
   }
  ],
  "_removed_note": "Six quoted figures were declared here in a first cut and removed. This gate declares what the deck COMPUTES, and a figure quoted from a source with its own string is carried in the claims file and in the storyboard's own numerals blocks rather than here. Leaving them would be a leftover, and a leftover is how a stale number gets reused next run."
