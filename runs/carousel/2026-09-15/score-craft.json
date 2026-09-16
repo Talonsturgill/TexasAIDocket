@@ -1,0 +1,39 @@
+{
+ "axis": "craft",
+ "weighted_score": 7.61,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Move frame 7's 10 MW and SECONDS labels out of the safe-margin violation machine_qa.json already names, since a reader losing the one pair of numerals that frame exists to draw is the single highest-cost defect left in the deck.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.28,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.18,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.12,
+   "score": 8.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.12,
+   "score": 7.8
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0
+  }
+ ]
+}

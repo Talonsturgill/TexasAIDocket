@@ -1,0 +1,142 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 9 of 9. Archetype FULL_BLEED. The close.
+     The plant yard at first light. The turbine hall cropped hard by the left edge so the reader
+     is leaving it, the switchyard behind its fence, and the conductor running off the right edge,
+     which is the direction the story continues in. One figure at the gate is the last human scale
+     in the deck. No accent: this is a WORLD frame. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --epoxy:#101A12; --ink:#E4DCC6; --dim:#9FA893; --caliche:#A08A5E; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--epoxy); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:900px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:76px; line-height:1.02; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  /* The dek carries a third sentence now, so it is set one step down and tighter. At
+     26px on 1.4 the third line ran into the star and the wordmark under it. */
+  .dek { position:absolute; left:80px; top:1070px; width:890px; font-size:24px; line-height:1.3; color:var(--dim); }
+  .mark { position:absolute; left:80px; top:1204px; font-family:"Fraunces", serif; font-weight:700; font-size:32px; letter-spacing:0.02em; color:var(--ink); }
+  .star { position:absolute; left:80px; top:1174px; width:20px; height:20px; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The rule to watch has a page.</h1>
+<p class="dek">The model rule reached the board this month. The swing rule has not been filed, and the grid operator gives September or October. Both are tracked at texasaidocket.com.</p>
+<svg class="star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l2.9 8.1h8.5l-6.9 5 2.7 8.2L12 17.9 4.8 22.9l2.7-8.2-6.9-5h8.5z" fill="#E4DCC6"/></svg>
+<div class="mark">TEXAS AI DOCKET</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "ERCOT market rules", kicker2: "PGRR144, board for consideration",
+                                    counter: "09 / 09", src: "c21 c26 c37 c3   TEXAS AI DOCKET", ink: "#9FA893" });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 76, maxLines: 2 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // ONE LIGHT, the deck's own: azimuth -68, elevation 6. First light on the pad.
+    var cam = { w: W, h: H, eye: 1.68, horizon: 556, f: 820, fogZ: 300, light: { az: -68, el: 6 } };
+
+    var tower = TXOBJ.sprite("transmission_tower");
+    var sub   = TXOBJ.sprite("substation");
+    var truck = TXOBJ.sprite("pickup");
+    var pole  = TXOBJ.sprite("utility_pole", { transformer: true });
+    var guard = TXFIG.figure({ pose: "stand", height: 1.72, hat: "hard" });
+
+    var plant = TXOBJ.sprite("power_plant");
+
+    TXINK.print(cx, {
+      ground: "#101A12", ink: "#E4DCC6", fibre: 0.05, seed: 915,
+      screen: { mode: "hatch", cell: 7, angle: 41, gamma: 1.45, floor: 0.04 },
+      edges: { threshold: 22, width: 1.3, alpha: 0.78, dx: -1.1, dy: 0.7 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        a.fillStyle = "#060606"; a.fillRect(0, 0, W, H);
+        // FIRST LIGHT. The glow sits at the horizon and to frame left, where the light comes from.
+        var sky = a.createLinearGradient(0, 120, 0, 556);
+        sky.addColorStop(0, "#161616"); sky.addColorStop(0.48, "#544B3C"); sky.addColorStop(1, "#B89771");
+        a.fillStyle = sky; a.fillRect(0, 0, W, 556);
+        // the low sun's own glow, an ellipse on the horizon at frame left
+        var g = a.createRadialGradient(150, 556, 10, 150, 556, 620);
+        g.addColorStop(0, "rgba(232,186,124,0.98)"); g.addColorStop(0.42, "rgba(170,128,80,0.42)");
+        g.addColorStop(1, "rgba(150,112,70,0)");
+        a.fillStyle = g; a.fillRect(0, 300, W, 256);
+
+        S.ground({ near: 0.9, far: 900, fill: "#6C6049" });
+        // THE GROUND'S OWN FALLOFF, so the screen has tone to turn into marks rather than one
+        // flat mid that comes back as a uniform lattice. Near ground is lit, far ground is not.
+        var gr = a.createLinearGradient(0, 556, 0, H);
+        gr.addColorStop(0, "rgba(0,0,0,0.36)"); gr.addColorStop(0.30, "rgba(0,0,0,0.0)");
+        gr.addColorStop(0.62, "rgba(206,168,116,0.28)"); gr.addColorStop(1, "rgba(0,0,0,0.42)");
+        a.fillStyle = gr; a.fillRect(0, 556, W, H - 556);
+        S.gridZ({ dz: 12, from: 10, to: 240, ink: "rgba(0,0,0,0.30)", width: 1 });
+        S.strip({ X: 2, w: 9, near: 0.9, far: 900, fill: "#6E6047" });   // the caliche two-track
+
+        var far  = { ink: "#6E7466", paper: "#12170F", accent: "#6E7466" };
+        var mid  = { ink: "#9AA08C", paper: "#12170F", accent: "#9AA08C" };
+        var near = { ink: "#D8D0BA", paper: "#12170F", accent: "#D8D0BA" };
+
+        // THE TOWERS. The conductor between them is drawn LAST, below.
+        var runs = [[18, 190], [64, 132], [122, 86]];
+        runs.forEach(function (p) { S.sprite(tower, { X: p[0], Z: p[1], inks: far, fade: false }); });
+
+        // THE PLANT, cropped by the left edge. Drawn before the yard so the yard sits in front.
+        // IT IS DRAWN TWICE. A critic read it as a hillside, and the reason is that its own hatch
+        // and the ground's are the same screen at the same angle, so nothing separated the two
+        // surfaces. The first pass is offset four pixels up and left in a near-white ink, which
+        // leaves a rim along the top and the frame-left side of the silhouette, which is where
+        // this deck's one light comes from. The second pass is the mass itself, dropped well
+        // under the ground's value so the rim has something to be a rim against.
+        S.shadow(plant, { X: -58, Z: 146, ink: "#000", alpha: 0.4 });
+        a.save(); a.translate(-3, -4);
+        S.sprite(plant, { X: -58, Z: 146, inks: { ink: "#EFE6CC", paper: "#EFE6CC", accent: "#EFE6CC" }, fade: false });
+        a.restore();
+        S.sprite(plant, { X: -58, Z: 146, inks: { ink: "#4C5245", paper: "#0E120C", accent: "#4C5245" }, fade: false });
+
+        // THE SWITCHYARD behind its fence.
+        S.shadow(sub, { X: 26, Z: 42, ink: "#000", alpha: 0.45 });
+        S.sprite(sub, { X: 26, Z: 42, inks: mid, fade: false });
+        S.shadow(pole, { X: -9, Z: 26, ink: "#000", alpha: 0.46 });
+        S.sprite(pole, { X: -9, Z: 26, inks: mid, fade: false });
+        TXOBJ.fence(S, [-30, 17], [58, 29], { step: 3.2, wires: 4, ink: "#96A08A",
+                    inks: { ink: "#96A08A", paper: "#12170F" }, shadowAlpha: 0.32 });
+
+        // THE NEAR GROUND. The pickup on the caliche and the one figure at the gate.
+        S.shadow(truck, { X: -7.2, Z: 16.5, ink: "#000", alpha: 0.5 });
+        S.sprite(truck, { X: -7.2, Z: 16.5, inks: near, fade: false });
+        S.shadow(guard, { X: 4.6, Z: 8.6, ink: "#000", alpha: 0.58 });
+        S.sprite(guard, { X: 4.6, Z: 8.6, inks: near, fade: false });
+
+        // THE CONDUCTOR, LAST AND BRIGHTEST. It is this frame's declared focal, the one thing
+        // that goes somewhere, and it was drawn before the switchyard in a value close to the
+        // sky's: a critic could not find it at all and read the top right as one clump of gear.
+        // A line that leaves the frame has to be the line a reader can follow out of it.
+        TXOBJ.wire(S, [18, 190, 34], [64, 132, 34], { ink: "#D2CAB4", width: 2.0, sag: 3 });
+        TXOBJ.wire(S, [64, 132, 34], [122, 86, 34], { ink: "#E4DCC6", width: 2.4, sag: 3 });
+        TXOBJ.wire(S, [18, 190, 30], [64, 132, 30], { ink: "#B6AE9A", width: 1.7, sag: 3.4 });
+        TXOBJ.wire(S, [64, 132, 30], [122, 86, 30], { ink: "#C8C0AA", width: 2.0, sag: 3.4 });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#101A12", bottom: 500, bottomSolid: 430 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

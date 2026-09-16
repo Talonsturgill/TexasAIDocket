@@ -39,6 +39,9 @@ WHAT IT CHECKS
 5. No entry USES a move its own exclusion window covered. Checks 1 and 2 proved the lists were
    well formed and derived correctly, and nothing asked the one question those lists exist for.
    See THE EXCLUSIONS WERE DERIVED AND NEVER ENFORCED, below.
+6. No entry FILES ITS DECK MEDIAN UNDER A NAME NOTHING READS. See `misfiled_median`, and the
+   2026-09-14 entry, which measured its deck at L* 6.0, wrote it as `deck_median`, and was
+   reported by this file as an entry that "predates the measurement".
 
 It reads the DOCTRINE for the menus AND for the windows rather than keeping its own copy, because
 a gate with its own copy of a list is the defect it is here to catch.
@@ -78,6 +81,38 @@ LIGHT_CAP_WAIVED = {
         "in the run record and the next deck is required dark"
     ),
 }
+
+# THE MEASUREMENT FILED UNDER A NAME NOTHING READS (2026-09-15).
+#
+# `check_register` counts the light deck cap off `value.deck_median_L`, deliberately, because that
+# figure is measured off the shipped render rather than asserted by the run about itself. An entry
+# without it is treated as one that PREDATES the measurement and is noted rather than counted, and
+# that carve-out is correct for the six August entries it was written for.
+#
+# On 2026-09-14 the run measured its deck at L* 6.0 and wrote it as `deck_median`. The entry
+# therefore has a measurement and this file reported it as "1 older entr(y/ies) predate the
+# measurement", about the second most recent run in the ledger. The count silently dropped a
+# measured deck, and the report told itself a false story about why.
+#
+# THE FIX IS NOT A LIST OF ACCEPTED SPELLINGS. That is a hole with a list attached to it: the
+# moment `deck_median` is honoured, the next run invents `deckMedianLstar` and the count sleeps
+# again, and nothing reports the omission. GATE_LESSONS 39 and 47 are both about exactly this.
+# What is checked instead is STRUCTURAL. A key whose name reduces to the same shape as the one
+# the code reads, carrying a number, is a MISFILING, and a misfiling is a different event from an
+# entry that predates the measurement. The two stop sharing a report line.
+#
+# THE VALUE IS NEVER ADOPTED. This gate does not guess that `deck_median` means `deck_median_L`
+# and fold it into the cap. Guessing is the widening it is refusing. It says the name is wrong and
+# leaves the count honest about what it could read.
+CANON_MEDIAN = "deck_median_L"
+#
+# BINDS FORWARD, like EXCLUSIONS_BIND_AFTER below and for the same reason. `artwork.json` is the
+# daily lane's durable memory and the 2026-09-14 entry is published, so the finding on it is a
+# NOTE that names it correctly rather than a failure nobody in this lane can clear. Every entry
+# dated after this is judged, and the note disappears on its own once that date rolls out of the
+# eight run window.
+MEDIAN_KEY_BINDS_AFTER = "2026-09-15"
+
 DOCTRINE = "knowledge/carousel/CAPTION_CRAFT.md"
 
 # The counts the topic prose is ABOUT. A number word in that prose has to be one of these, not
@@ -316,6 +351,38 @@ def check_captions(cap: dict, menu: dict[str, set[str]], doctrine: str) -> list[
     return problems
 
 
+def _median_shape(key: str) -> str:
+    """A key name reduced to what it MEASURES, with the unit suffix taken off.
+
+    Lowercase alphanumerics, then one trailing luminance suffix. `deck_median_L`,
+    `deck_median`, `deck_median_lstar` and `deckMedianL` all reduce to `deckmedian`, so they are
+    four spellings of one field. `planned_deck_median` reduces to `planneddeckmedian` and
+    `per_slide_median_L` to `perslidemedian`, which are different quantities and stay different.
+    """
+    k = re.sub(r"[^a-z0-9]+", "", key.lower())
+    for suffix in ("lstar", "l"):
+        if k.endswith(suffix) and len(k) > len(suffix):
+            return k[: -len(suffix)]
+    return k
+
+
+def misfiled_median(entry: dict) -> list[tuple[str, float]]:
+    """Numbers in this entry that measure the deck median under a name nothing reads.
+
+    Empty when the entry carries `deck_median_L`, because then the count works whatever else is
+    beside it, and empty when the entry carries no deck median at all, because that entry
+    genuinely predates the measurement.
+    """
+    v = entry.get("value")
+    if not isinstance(v, dict) or isinstance(v.get(CANON_MEDIAN), (int, float)):
+        return []
+    want = _median_shape(CANON_MEDIAN)
+    return [(k, v[k]) for k in sorted(v)
+            if k != CANON_MEDIAN
+            and isinstance(v[k], (int, float)) and not isinstance(v[k], bool)
+            and _median_shape(k) == want]
+
+
 def check_register(art: dict) -> list[str]:
     """THE LIGHT DECK CAP, COUNTED RATHER THAN ASSERTED.
 
@@ -345,16 +412,34 @@ def check_register(art: dict) -> list[str]:
     unmeasured = [e["date"] for e in window
                   if not (isinstance(e.get("value"), dict)
                           and isinstance(e["value"].get("deck_median_L"), (int, float)))]
+    # A MISFILING IS NOT AN ENTRY THAT PREDATES THE MEASUREMENT, and until 2026-09-15 they shared
+    # this report line. 2026-09-14 measured its deck and filed it as `deck_median`, so the count
+    # dropped it and the note called the second newest run in the ledger older than the check.
+    misfiled = [(e["date"], misfiled_median(e)) for e in window if misfiled_median(e)]
+    predates = [d for d in unmeasured if d not in {m[0] for m in misfiled}]
     # THE MEASUREMENT IS NEW, SO THE CAP BINDS FROM WHERE IT EXISTS. Backfilling a measured
     # field into already published entries would be editing the durable memory to suit a check
     # written after them, which is the one thing an append only ledger is for refusing. The
     # entries without it are NOTED and not failed, and the note disappears on its own as eight
     # measured runs accumulate. What is never softened is the count itself, below.
-    if unmeasured:
+    if predates:
         print(f"  note  the light deck cap is counted over the {len(window) - len(unmeasured)} "
-              f"entr(y/ies) carrying a measured deck_median_L. {len(unmeasured)} older "
+              f"entr(y/ies) carrying a measured deck_median_L. {len(predates)} older "
               f"entr(y/ies) predate the measurement and are not counted: "
-              f"{', '.join(unmeasured)}")
+              f"{', '.join(predates)}")
+    for date, keys in misfiled:
+        named = ", ".join(f"{k}={v}" for k, v in keys)
+        msg = (f"artwork.json {date} measured a deck median and filed it as {named}. The light "
+               f"deck cap is counted off value.{CANON_MEDIAN} and reads nothing else, so this "
+               f"entry is dropped from the count while looking measured. Write the key "
+               f"{CANON_MEDIAN}. This gate will not accept a second spelling, because a list of "
+               f"accepted names is how the count goes quiet on the third one")
+        if date > MEDIAN_KEY_BINDS_AFTER:
+            problems.append(msg)
+        else:
+            print(f"  note  {msg}. Not failed: this entry predates the check and artwork.json is "
+                  f"the daily lane's durable memory, so nothing in this lane can clear it. It "
+                  f"rolls out of the eight run window on its own")
     if len(light) > LIGHT_CAP:
         named = ', '.join(e['date'] + ' at L* ' + str(e['value']['deck_median_L'])
                           for e in light)
@@ -630,6 +715,64 @@ def self_test() -> int:
     ok("the waiver is one date and never a window",
        all(isinstance(k, str) and len(k) == 10 for k in LIGHT_CAP_WAIVED)
        and all(v.strip() for v in LIGHT_CAP_WAIVED.values()))
+
+    # ---------------------------------------------- THE MISFILED DECK MEDIAN, 2026-09-15
+    #
+    # REPLAYED AGAINST THE SHIPPED LEDGER, not only against a fixture. GATE_LESSONS 50: the
+    # synthetic half proves the logic can tell the shapes apart, and only a check against the
+    # real artifact would have gone red on the day this happened. The 2026-09-14 entry is that
+    # artifact and it is committed, so the assertion is one line and it cannot rot.
+    real = json.loads((REPO_ROOT / "ledger" / "carousel" / "artwork.json").read_text("utf-8"))
+    hit = [(e["date"], misfiled_median(e)) for e in real.get("entries", []) if misfiled_median(e)]
+    ok("the real 2026-09-14 entry is seen as a MISFILING, not as one that predates the check",
+       [d for d, _ in hit] == ["2026-09-14"], str(hit))
+    ok("...and the key it names is the one the run actually wrote",
+       bool(hit) and hit[0][1] == [("deck_median", 6.0)], str(hit))
+    ok("...and the shipped ledger still passes, because the date is inside the bind window",
+       not [x for x in check_register(real) if "filed it as" in x], str(check_register(real)))
+
+    # THE SHAPES THAT MUST NOT BE CONFUSED FOR EACH OTHER.
+    ok("an entry carrying deck_median_L is not a misfiling",
+       misfiled_median({"date": "d", "value": {"deck_median_L": 13.7, "deck_median": 13.7}}) == [])
+    ok("an entry carrying no deck median at all genuinely predates the measurement",
+       misfiled_median({"date": "d", "value": {"palette": "bond"}}) == [])
+    ok("planned_deck_median is a different quantity and is never read as the measurement",
+       misfiled_median({"date": "d", "value": {"planned_deck_median": 30}}) == [])
+    ok("per_slide_median_L is a different quantity too",
+       misfiled_median({"date": "d", "value": {"per_slide_median_L": [6.1, 86.1]}}) == [])
+    ok("a prose note beside the figure is not a figure",
+       misfiled_median({"date": "d", "value": {"deck_median_note": "20.4 sits between"}}) == [])
+    # NOT A LIST OF SPELLINGS. Three names nobody has written yet all reduce to the same shape.
+    for invented in ("deck_median", "deck_median_lstar", "deckMedianL", "deck-median-L"):
+        ok(f"a run inventing {invented!r} is caught without that name being listed anywhere",
+           misfiled_median({"date": "d", "value": {invented: 86.7}}) == [(invented, 86.7)])
+    # Three of those four names have never been written by any run, and none of them is listed
+    # anywhere in the rule: `_median_shape` derives the match from CANON_MEDIAN itself. That is
+    # the difference between this and an allowlist, and it is why a fourth spelling invented
+    # tomorrow is caught rather than skipped.
+    ok("the rule is derived from the canonical key and holds no spellings of its own",
+       _median_shape(CANON_MEDIAN) == "deckmedian"
+       and _median_shape("planned_deck_median") != "deckmedian")
+
+    # IT BINDS FORWARD AND IT DOES BIND. A misfiling dated after the bind date is a hard fail.
+    after = {"entries": [{"date": d, "value": {"deck_median_L": L}} for d, L in dark]
+             + [{"date": "2026-09-20", "value": {"deck_median": 86.7}}]}
+    ok("a misfiling dated after the bind date FAILS",
+       any("filed it as" in x for x in check_register(after)), str(check_register(after)))
+    ok("...and the failure names the key the run must write instead",
+       any(CANON_MEDIAN in x and "deck_median=86.7" in x for x in check_register(after)))
+    # AND THE VALUE IS NOT ADOPTED. 86.7 is a light deck. The gate says the name is wrong; it does
+    # not guess that the misfiled number is the measurement and count it, because guessing is the
+    # widening this whole check refuses.
+    ok("the misfiled value is NOT folded into the light deck count",
+       not any("light deck(s)" in x for x in check_register(after)), str(check_register(after)))
+    # The note and the failure must not share a line, which is the defect itself one level up.
+    before = {"entries": [{"date": d, "value": {"deck_median_L": L}} for d, L in dark]
+              + [{"date": "2026-09-01", "value": {"deck_median": 6.0}}]}
+    ok("a misfiling dated before the bind date does not fail",
+       not any("filed it as" in x for x in check_register(before)))
+    ok("...and it is no longer counted among the entries that predate the measurement",
+       misfiled_median(before["entries"][-1]) != [])
 
     print("\nledger_check self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

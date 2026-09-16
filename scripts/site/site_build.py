@@ -463,8 +463,18 @@ def build(out: Path, today: str) -> dict:
         # PER PAGE, NEVER SITE-WIDE, for the reason `_authorised_numerals` records twice over:
         # both times this gate was silently disabled, the cause was an allowlist that grew
         # wider than the page it guarded. Only this article page gets this article's figures.
+        #
+        # AND THE ONE FIGURE THE PAGE ITSELF COMPUTES. `editorial.article_page` opens its
+        # verification block with `len(claims)` and that count is in no claim quote and in no
+        # run's computed.json, because the RUN never computed it: the PAGE did, from the run's
+        # own claims file, which is a computation from data and is the thing this gate asks for.
+        # It stayed hidden for as long as it did by collision, which is the failure mode
+        # `numeral_lint.scan` records against itself: a claim count that happened to match an
+        # unrelated docket figure passed site wide. Carousel no. 25 verified 44 claims, 44
+        # matched nothing, and the build stopped. It is authorised HERE, on this page and no
+        # other, from the same list the page counts.
         w(f'articles/{r["date"]}/index.html', article_page(r, today, items),
-          extra=_run_numerals(r))
+          extra=_run_numerals(r) | {str(len(r.get("claims") or []))})
     # PER PLACE. The index, then a page for every metro the record touches and every
     # touched county that is in no metro. Nothing falls between the two.
     #

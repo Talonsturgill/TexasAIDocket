@@ -1,0 +1,114 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 1 of 9. Archetype FULL_BLEED. The cover. A WORLD frame, no accent.
+     A data hall aisle at true scale: two facing rows of racks receding, the containment ceiling
+     dark by construction so the hook needs no plate, and one technician in the aisle who gives
+     the whole room a size. This is the LOAD, the room ERCOT's own sentence names. The machine it
+     reaches is frame 4.
+     The turbine-generator this frame first tried to draw is not in the catalogue and came back
+     three times as a slab, then as a building facade. It is in the upgrade backlog as a
+     catalogue proposal rather than defended here. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --epoxy:#101A12; --ink:#E4DCC6; --dim:#9FA893; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--epoxy); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:948px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:92px; line-height:1.0; letter-spacing:-0.025em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:1150px; width:850px; font-size:26px; line-height:1.4; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">This room can move a generator.</h1>
+<p class="dek">The grid operator told its own board that a data center's AI training can swing its draw hard enough to reach the machines.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "ERCOT board of directors", kicker2: "September 14th to 15th, 2026",
+                                    counter: "01 / 09", src: "c27   TEXAS AI DOCKET", ink: "#9FA893" });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 92, maxLines: 2 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var cam = { w: W, h: H, eye: 1.68, horizon: 596, f: 760, fogZ: 46, light: { az: -68, el: 6 } };
+
+    var rack = TXOBJ.sprite("server_rack");
+    var tech = TXFIG.figure({ pose: "walk", height: 1.72, hold: "clipboard" });
+
+    TXINK.print(cx, {
+      ground: "#101A12", ink: "#E4DCC6", fibre: 0.05, seed: 115,
+      screen: { mode: "halftone", cell: 7, angle: 22, gamma: 1.22, floor: 0.04 },
+      edges: { threshold: 20, width: 1.35, alpha: 0.8, dx: -1.1, dy: 0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        a.fillStyle = "#050505"; a.fillRect(0, 0, W, H);
+        // THE CONTAINMENT CEILING. Dark by construction so the top band holds type with no
+        // plate, but it is a CEILING and not a void: the containment panels and the cable tray
+        // run back to the same vanishing point the rows do, so the room closes overhead.
+        a.fillStyle = "#0A0A0A"; a.fillRect(0, 0, W, 596);
+        a.save();
+        a.strokeStyle = "rgba(150,158,138,0.42)"; a.lineWidth = 1.2;
+        var VPX = 540, VPY = 596, CEIL = 262;                 // the ceiling plane's near edge
+        for (var cz = 0; cz <= 10; cz++) {
+          var tt = cz / 10, yy = CEIL + (VPY - CEIL) * Math.pow(tt, 0.55);
+          var half = (1 - Math.pow(tt, 0.55)) * 760;
+          a.beginPath(); a.moveTo(VPX - half, yy); a.lineTo(VPX + half, yy); a.stroke();
+        }
+        [-1, 1].forEach(function (sgn) {
+          a.beginPath(); a.moveTo(VPX + sgn * 760, CEIL); a.lineTo(VPX, VPY); a.stroke();
+          a.beginPath(); a.moveTo(VPX + sgn * 300, CEIL); a.lineTo(VPX, VPY); a.stroke();
+        });
+        a.restore();
+        S.ground({ near: 0.8, far: 60, fill: "#2E2E2E" });
+        // the aisle floor, a lighter strip running back between the two rows
+        S.strip({ X: 0, w: 3.0, near: 0.8, far: 60, fill: "#5A5A5A" });
+        S.gridZ({ dz: 1.2, from: 1.5, to: 40, ink: "rgba(0,0,0,0.34)", width: 1 });
+        // the cold aisle's own light, a soft wash down the middle so the rows have a falloff
+        var aisle = a.createLinearGradient(0, 596, 0, H);
+        aisle.addColorStop(0, "rgba(232,214,168,0.30)"); aisle.addColorStop(0.45, "rgba(180,168,132,0.12)");
+        aisle.addColorStop(1, "rgba(0,0,0,0.55)");
+        a.fillStyle = aisle; a.fillRect(0, 596, W, H - 596);
+
+        var far = { ink: "#4E5448", paper: "#0E120C", accent: "#4E5448" };
+        var mid = { ink: "#8E9482", paper: "#141A12", accent: "#8E9482" };
+        var lit = { ink: "#E2DBC4", paper: "#1A2117", accent: "#E2DBC4" };
+
+        // TWO FACING ROWS, far to near so the bench does not have to sort. Fourteen a side, and
+        // both rows run off their own frame edge so no total is countable.
+        for (var i = 13; i >= 0; i--) {
+          var Z = 2.6 + i * 1.55;
+          var inks = Z > 14 ? far : (Z > 7 ? mid : lit);
+          S.shadow(rack, { X: -2.55, Z: Z, ink: "#000", alpha: 0.42 });
+          S.sprite(rack, { X: -2.55, Z: Z, inks: inks, fade: true });
+          S.shadow(rack, { X: 2.55, Z: Z, ink: "#000", alpha: 0.42 });
+          S.sprite(rack, { X: 2.55, Z: Z, inks: inks, fade: true });
+        }
+        // the technician in the aisle, the only thing in the frame at a size a reader knows
+        S.shadow(tech, { X: -0.55, Z: 7.6, ink: "#000", alpha: 0.55 });
+        S.sprite(tech, { X: -0.55, Z: 7.6, inks: lit, fade: false });
+      },
+      over: function (c) {
+        TXINK.reserve(c, { ground: "#101A12", bottom: 430, bottomSolid: 366 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

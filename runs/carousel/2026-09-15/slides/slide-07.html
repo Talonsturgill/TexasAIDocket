@@ -1,0 +1,180 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 7 of 9. Archetype OBJECT_AND_CAPTION. A PAPER frame, so it carries the
+     deck's accent. THE DECK'S TURN.
+     An engineering plot sheet on the work desk, its field ruled in megawatts and seconds, both
+     axes carrying a drawn zero, and ONE dimensioned right triangle at the origin: a rise of
+     10 MW over a run of 5 seconds, which is the limit ERCOT's draft rule would set. The rest of
+     the field is empty ruled paper, and the emptiness is the claim. THE RECORD PUBLISHES THE
+     LIMIT AND NO SERIES, so no waveform, no curve and no measured trace is drawn anywhere. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --desk:#161C16; --bond:#F4F1E2; --page:#141A12; --dim:#98A18C; --accent:#2F7D57; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--desk); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#sheet { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:986px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:74px; line-height:1.02; letter-spacing:-0.02em; color:var(--bond); font-variation-settings:"opsz" 144; z-index:6; }
+  .dek { position:absolute; left:80px; top:1140px; width:870px; font-size:25px; line-height:1.4; color:var(--dim); z-index:6; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="sheet" viewBox="0 0 1080 1350" aria-hidden="true"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The limit is drawn. The load is not.</h1>
+<p class="dek">The grid operator's draft rule would hold a large load's swing to this. It has not been filed and it carries no number.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Draft NOGRR", kicker2: "Large Load MW Variation Requirements",
+                                    counter: "07 / 09", src: "c29 c34 c21   TEXAS AI DOCKET", ink: "#98A18C" });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 74, maxLines: 2 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // THE SHEET's own rect. Cropped by both side edges so the reader is over it, not looking at
+    // it. Kept axis aligned: rotated DOM and SVG type is what the QA's line boxes cannot read.
+    var SH = { x: -34, y: 206, w: 1148, h: 690 };
+
+    // THE DESK, under a line screen. The sheet itself is painted flat in `over` so no screen
+    // mark ever falls under the type printed on it.
+    TXINK.print(cx, {
+      ground: "#161C16", ink: "#D8DCCE", fibre: 0.05, seed: 715,
+      screen: { mode: "line", cell: 4, angle: 78, gamma: 1.3, floor: 0.05 },
+      edges: { threshold: 24, width: 1.2, alpha: 0.7, dx: 1.0, dy: -0.9 },
+      draw: function (a) {
+        a.fillStyle = "#0C100C"; a.fillRect(0, 0, W, H);
+        // the desk top, lit from frame left by the deck's one declared light
+        var g = a.createLinearGradient(0, 60, 0, H);
+        g.addColorStop(0, "#2A3128"); g.addColorStop(0.42, "#4A5346"); g.addColorStop(1, "#171D17");
+        a.fillStyle = g; a.fillRect(0, 60, W, H - 60);
+        var side = a.createLinearGradient(0, 0, W, 0);
+        side.addColorStop(0, "rgba(206,188,150,0.30)"); side.addColorStop(0.5, "rgba(0,0,0,0)");
+        side.addColorStop(1, "rgba(0,0,0,0.42)");
+        a.fillStyle = side; a.fillRect(0, 60, W, H - 60);
+        // the sheet's own cast shadow, thrown to frame right from the declared light
+        a.fillStyle = "rgba(0,0,0,0.62)";
+        a.fillRect(SH.x + 13, SH.y + 15, SH.w, SH.h);
+        // a second, tighter contact under the near edge so the paper sits rather than floats
+        a.fillStyle = "rgba(0,0,0,0.5)";
+        a.fillRect(SH.x + 4, SH.y + SH.h - 4, SH.w, 20);
+      },
+      over: function (c) {
+        // THE PAPER, flat and unscreened. Type prints on this and on nothing else.
+        c.fillStyle = "#F4F1E2"; c.fillRect(SH.x, SH.y, SH.w, SH.h);
+        var pg = c.createLinearGradient(0, SH.y, 0, SH.y + SH.h);
+        pg.addColorStop(0, "rgba(255,255,255,0.35)"); pg.addColorStop(1, "rgba(120,110,80,0.16)");
+        c.fillStyle = pg; c.fillRect(SH.x, SH.y, SH.w, SH.h);
+        // THE STRAIGHTEDGE, on the desk at the sheet's foot. The dossier declares it and calls it
+        // the thing that says this is a drawing being MADE rather than a chart being published,
+        // and it was never drawn: a critic read the render against the plan and found the prop
+        // missing while the frame's own acceptance list tested for everything except it. It lies
+        // on the desk rather than across the sheet because the sheet's foot carries the title
+        // block and the draft label, and a rule through either is a strikethrough.
+        var RY = 906, RH = 40;
+        c.fillStyle = "rgba(0,0,0,0.55)"; c.fillRect(-40 + 9, RY + 11, 600, RH);
+        var st = c.createLinearGradient(0, RY, 0, RY + RH);
+        st.addColorStop(0, "#C9CCC0"); st.addColorStop(0.36, "#8E958A");
+        st.addColorStop(0.62, "#EFEFE4"); st.addColorStop(1, "#6E7569");
+        c.fillStyle = st; c.fillRect(-40, RY, 600, RH);
+        c.fillStyle = "rgba(20,26,18,0.55)"; c.fillRect(-40, RY + RH - 3, 600, 3);
+        for (var gg = 0; gg <= 22; gg++) {               // its own graduations, every 25 px
+          var gx = 10 + gg * 25;
+          c.fillStyle = "rgba(20,26,18,0.62)";
+          c.fillRect(gx, RY + 2, 1.4, gg % 4 === 0 ? 15 : 8);
+        }
+        c.fillStyle = "#12180F"; c.fillRect(0, 0, W, 176);
+        TXINK.reserve(c, { ground: "#161C16", bottom: 430, bottomSolid: 360 });
+      }
+    });
+
+    // ---- the drawing on the sheet, as SVG so every mark and every figure stays vector ----
+    var s = document.getElementById("sheet");
+    function el(n, at) { var e = document.createElementNS("http://www.w3.org/2000/svg", n);
+                         for (var k in at) e.setAttribute(k, at[k]); s.appendChild(e); return e; }
+
+    // THE FIELD. Its own rect inside the sheet, and the two axis ranges it is ruled in.
+    var F = { x: 128, y: 286, w: 792, h: 472 };
+    var MW_MAX = 25, SEC_MAX = 15, MW_STEP = 5, SEC_STEP = 5;
+    var pxPerMW = F.h / MW_MAX, pxPerSec = F.w / SEC_MAX;
+    var X0 = F.x, Y0 = F.y + F.h;                       // the origin, drawn and labelled
+
+    // the fine rule of the plot paper, one line per megawatt and per second
+    for (var m = 0; m <= MW_MAX; m++) {
+      var y = Y0 - m * pxPerMW;
+      el("line", { x1: F.x, x2: F.x + F.w, y1: y, y2: y, stroke: "#ADA994",
+                   "stroke-width": (m % MW_STEP === 0 ? 1.8 : 0.9) });
+    }
+    for (var t = 0; t <= SEC_MAX; t++) {
+      var x = X0 + t * pxPerSec;
+      el("line", { x1: x, x2: x, y1: F.y, y2: Y0, stroke: "#ADA994",
+                   "stroke-width": (t % SEC_STEP === 0 ? 1.8 : 0.9) });
+    }
+    // BOTH AXES, WITH A DRAWN ZERO. A truncated axis is a lie told with a true number.
+    el("line", { x1: X0, x2: X0, y1: F.y, y2: Y0, stroke: "#141A12", "stroke-width": 2.4 });
+    el("line", { x1: X0, x2: F.x + F.w, y1: Y0, y2: Y0, stroke: "#141A12", "stroke-width": 2.4 });
+    function lab(x, y, txt, anchor, fill, size) {
+      var e = el("text", { x: x, y: y, "text-anchor": anchor || "middle",
+                           "font-family": "JetBrains Mono, monospace", "font-size": size || 24,
+                           "letter-spacing": "0.04em", fill: fill || "#4A5343" });
+      e.textContent = txt; return e;
+    }
+    lab(X0 - 14, Y0 + 7, "0", "end");           // the drawn zero, and no other graduation
+    lab(X0, Y0 + 34, "0", "middle");            // the drawn zero on the other axis
+    lab(X0 - 46, F.y - 22, "MW", "start", "#4A5343", 20);
+    // THE AXIS NAME SITS UNDER THE AXIS, not past its right end. At x 930 anchored start it ran
+    // to 1020 and machine_qa named it outside the 80 px safe margin, which on a feed placement
+    // is a crop. An axis a reader loses is an axis that was not drawn.
+    lab(F.x + F.w, Y0 + 34, "SECONDS", "end", "#4A5343", 20);
+
+    // THE ONE MARK ON THE SHEET. A rise of 10 MW over a run of 5 seconds, at the origin, in the
+    // accent, with engineering terminators. Nothing else is drawn inside this field.
+    var RISE = 10, RUN = 5;
+    var ax = X0, ay = Y0, bx2 = X0 + RUN * pxPerSec, by2 = Y0 - RISE * pxPerMW;
+    el("path", { d: "M" + ax + " " + ay + " L" + bx2 + " " + ay + " L" + bx2 + " " + by2 + " Z",
+                 fill: "rgba(47,125,87,0.92)", stroke: "none" });
+    el("line", { x1: ax, x2: bx2, y1: ay, y2: ay, stroke: "#2F7D57", "stroke-width": 2.6 });
+    el("line", { x1: bx2, x2: bx2, y1: ay, y2: by2, stroke: "#2F7D57", "stroke-width": 2.6 });
+    el("line", { x1: ax, x2: bx2, y1: ay, y2: by2, stroke: "#2F7D57", "stroke-width": 3.4 });
+    // terminators, a short cross tick at each end of each dimensioned leg
+    [[bx2, ay, 0], [bx2, by2, 0], [ax, ay, 1], [bx2, ay, 1]].forEach(function (p) {
+      if (p[2]) el("line", { x1: p[0], x2: p[0], y1: p[1] - 9, y2: p[1] + 9, stroke: "#2F7D57", "stroke-width": 2 });
+      else      el("line", { x1: p[0] - 9, x2: p[0] + 9, y1: p[1], y2: p[1], stroke: "#2F7D57", "stroke-width": 2 });
+    });
+    // The dimension sits in the sheet MARGIN, clear of the ruled field, with a leader back to
+    // the leg it dimensions. A label inside plot paper has a rule through it by construction.
+    // AND SO DOES THE DIMENSION. At 28 px anchored start from x 954 it ended at 1044, which is
+    // 44 px outside the safe margin, on the one pair of numerals this whole frame exists to
+    // draw. It is set at 24 and anchored to the margin's own edge instead.
+    el("line", { x1: bx2 + 10, x2: F.x + F.w - 4, y1: (ay + by2) / 2, y2: (ay + by2) / 2,
+                 stroke: "#2F7D57", "stroke-width": 2 });
+    lab(998, (ay + by2) / 2 - 14, "10 MW", "end", "#1F5C3E", 24);
+    TX.svgPlate(lab((ax + bx2) / 2, ay + 58, "5 SECONDS", "middle", "#1F5C3E", 28), { padX: 11, padY: 7, fill: "#F4F1E2" });
+
+    // THE TITLE BLOCK, the sheet's own, in the lower right of the paper.
+    var TB = { x: F.x + F.w - 318, y: Y0 + 46, w: 318, h: 70 };
+    el("rect", { x: TB.x, y: TB.y, width: TB.w, height: TB.h, fill: "none",
+                 stroke: "#141A12", "stroke-width": 1.4 });
+    el("line", { x1: TB.x, x2: TB.x + TB.w, y1: TB.y + 34, y2: TB.y + 34, stroke: "#141A12", "stroke-width": 0.8 });
+    lab(TB.x + 12, TB.y + 24, "LARGE LOAD MW VARIATION", "start", "#141A12", 17);
+    lab(TB.x + 12, TB.y + 58, "NOT FILED · NO NUMBER", "start", "#4A5343", 17);
+    TX.svgPlate(lab(F.x, Y0 + 122, "RECOMMENDED LIMIT, DRAFT", "start", "#4A5343", 22), { padX: 10, padY: 7, fill: "#F4F1E2" });
+
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

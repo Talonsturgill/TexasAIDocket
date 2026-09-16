@@ -1,0 +1,174 @@
+{
+ "date": "2026-09-15",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "kicker": "ERCOT board of directors",
+   "kicker2": "September 14th to 15th, 2026",
+   "headline": "This room can move a generator.",
+   "claims": [
+    "c27"
+   ],
+   "cite": "c27 TEXAS AI DOCKET",
+   "body": "The grid operator told its own board that a data center's AI training can swing its draw hard enough to reach the machines.",
+   "document": [
+    "01 / 09"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "kicker": "The chain, at one scale",
+   "headline": "Follow the wire both ways.",
+   "claims": [
+    "c27",
+    "c16"
+   ],
+   "cite": "c27 c16 TEXAS AI DOCKET",
+   "body": "At one end a building that can swing what it draws. At the other a machine that has to take it.",
+   "document": [
+    "02 / 09"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "kicker": "Large Load",
+   "kicker2": "The grid operator's own term",
+   "headline": "This is one large load.",
+   "claims": [
+    "c27"
+   ],
+   "cite": "c27 TEXAS AI DOCKET",
+   "body": "The grid operator's own term for it. The record names no company and no county for any of them.",
+   "document": [
+    "03 / 09"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "kicker": "Synchronous generator shaft",
+   "kicker2": "The coupling, at detail scale",
+   "headline": "The word in the paper is fatigue.",
+   "claims": [
+    "c27",
+    "c30"
+   ],
+   "cite": "c27 c30 TEXAS AI DOCKET",
+   "body": "The grid operator says a load's swing can reach here. It does not say that it has.",
+   "document": [
+    "04 / 09"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "kicker": "ERCOT, Item 10",
+   "kicker2": "Emerging operational risks posed by Large Loads",
+   "headline": "Three risks. Three states of repair.",
+   "claims": [
+    "c15",
+    "c16",
+    "c18",
+    "c19",
+    "c21",
+    "c22",
+    "c26"
+   ],
+   "cite": "c15 c16 c18 c19 c21 c22 c26 TEXAS AI DOCKET",
+   "body": "One rule in force. One at the board this month. One not written, and it carries no number.",
+   "document": [
+    "05 / 09"
+   ],
+   "table": {
+    "head": [
+     "RISK",
+     "DESCRIPTION",
+     "MITIGATION AND STATUS"
+    ],
+    "stamp": "ERCOT BOARD OF DIRECTORS · ITEM 10 · SEPTEMBER 14TH TO 15TH, 2026",
+    "foot": "FOR INFORMATION ONLY · NO ACTION IS REQUESTED",
+    "rows": [
+     {
+      "risk": "RIDE-THROUGH",
+      "desc": "Sensitive compute equipment trips offline during normal grid events, leading to grid imbalance and instability.",
+      "mit": "NOGRR 282 / NPRR 1308. Ride-through requirements for Large Computational Loads.",
+      "status": "The PUCT approved NOGRR 282/ NPRR 1308 in July, effective on August 1."
+     },
+     {
+      "risk": "OSCILLATIONS",
+      "desc": "Certain data centers processes can oscillate in a way that damages grid equipment.",
+      "mit": "Draft NOGRR. Large Load processes must not oscillate in a manner that would cause damage.",
+      "status": "ERCOT plans to submit NOGRR in September or October."
+     },
+     {
+      "risk": "MODELING",
+      "desc": "Dynamic models for Large Loads have proven to be inaccurate and thus are inadequate for studying their grid impacts.",
+      "mit": "PGRR 144, model quality rules. Texas A&M is developing more accurate models.",
+      "status": "TAC endorsed PGRR 144 in August and is up for Board consideration in September."
+     }
+    ]
+   }
+  },
+  "S6": {
+   "n": 6,
+   "kicker": "Modeling",
+   "kicker2": "The third row of the table",
+   "headline": "One model is finished. The other is not.",
+   "claims": [
+    "c22",
+    "c23",
+    "c25"
+   ],
+   "cite": "c22 c23 c25 TEXAS AI DOCKET",
+   "body": "The grid operator says its models of these loads have proven inaccurate, and that Texas A&M is building better ones. The crypto model is released. The data center model is still being written.",
+   "document": [
+    "06 / 09"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "kicker": "Draft NOGRR",
+   "kicker2": "Large Load MW Variation Requirements",
+   "headline": "The limit is drawn. The load is not.",
+   "claims": [
+    "c29",
+    "c34",
+    "c21"
+   ],
+   "cite": "c29 c34 c21 TEXAS AI DOCKET",
+   "body": "The grid operator's draft rule would hold a large load's swing to this. It has not been filed and it carries no number.",
+   "document": [
+    "07 / 09"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "kicker": "What the presentation does not name",
+   "headline": "Every county in Texas. Not one of them named.",
+   "claims": [
+    "c33",
+    "c23"
+   ],
+   "cite": "c33 c23 TEXAS AI DOCKET",
+   "body": "The presentation names no data center, no company and no generator. Texas A&M is the only institution in it besides the grid operator and the commission.",
+   "document": [
+    "08 / 09"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "kicker": "ERCOT market rules",
+   "kicker2": "PGRR144, board for consideration",
+   "headline": "The rule to watch has a page.",
+   "claims": [
+    "c21",
+    "c26",
+    "c37",
+    "c3"
+   ],
+   "cite": "c21 c26 c37 c3 TEXAS AI DOCKET",
+   "body": "The model rule reached the board this month. The swing rule has not been filed, and the grid operator gives September or October. Both are tracked at texasaidocket.com.",
+   "document": [
+    "09 / 09"
+   ]
+  }
+ }
+}

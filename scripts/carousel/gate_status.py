@@ -53,6 +53,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caption_check  # noqa: E402
+
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 BEGIN = "<!-- gate-status:begin -->"
@@ -192,9 +195,21 @@ def rows_for(d: Path) -> list[Row]:
     out.append(Row("dossiers", PASS if board.exists() else ABSENT,
                    f"{len(board.read_text(encoding='utf-8')):,} chars planned" if board.exists()
                    else "storyboard.md not written yet"))
+    # THE CAPTION'S LENGTH IS ASKED FOR, NEVER RE-COUNTED HERE.
+    #
+    # This read `text.split()`, which is whitespace tokens of the whole file and counted the
+    # three hashtags as three words. `caption_check.comma_rate` counts `\b[\w'-]+\b`, which is
+    # the definition the comma ceiling will be computed from and the one `captions.json` stores.
+    # The two disagreed by one on carousel no. 25: the ledger and the caption gate both said
+    # 139 and this table said 138, so the run record shipped a figure contradicting the artifact
+    # it was certifying. A reviewer found it, which is the wrong way for it to be found.
+    #
+    # One value, one home. This is the third time in this repo that a consumer kept its own copy
+    # of a producer's arithmetic, after `weighted_score` and `deck_median_L`, and the cure is the
+    # same every time: ask the thing that owns the number.
     cap = d / "caption.txt"
     out.append(Row("caption", PASS if cap.exists() else ABSENT,
-                   f"{len(cap.read_text(encoding='utf-8').split()):,} words"
+                   f"{caption_check.comma_rate(cap.read_text(encoding='utf-8'))[2]:,} words"
                    if cap.exists() else "caption.txt not written yet"))
 
     # TWO ROWS ADDED 2026-08-19, and they are here because the run record's gate table is the one

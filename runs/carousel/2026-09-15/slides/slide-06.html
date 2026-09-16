@@ -1,0 +1,107 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 6 of 9. Archetype SPLIT_HORIZON. A WORLD frame, no accent.
+     One hard horizontal cut. BELOW it, the crypto mining load whose model Texas A&M has
+     released, drawn solid and in full detail at true scale. ABOVE it, flat ground and NOTHING,
+     because the data center model is not finished.
+     The unfinished model is drawn as nothing at all rather than as a faint or dotted shape: an
+     incomplete line reads as sloppy drawing and an empty field reads as an absence. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --epoxy:#101A12; --ink:#E4DCC6; --dim:#9FA893; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--epoxy); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:196px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:80px; line-height:1.02; letter-spacing:-0.02em; color:var(--ink); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:80px; top:390px; width:870px; font-size:26px; line-height:1.4; color:var(--dim); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">One model is finished. The other is not.</h1>
+<p class="dek">The grid operator says its models of these loads have proven inaccurate, and that Texas A&amp;M is building better ones. The crypto model is released. The data center model is still being written.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "Modeling", kicker2: "The third row of the table",
+                                    counter: "06 / 09", src: "c22 c23 c25   TEXAS AI DOCKET", ink: "#9FA893" });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 80, maxLines: 2 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var CUT = 560;                                   // the one straight cut
+    var cam = { w: W, h: H, eye: 1.68, horizon: CUT, f: 820, fogZ: 300, light: { az: -68, el: 6 } };
+
+    var box  = TXOBJ.sprite("battery_container");
+    var tran = TXOBJ.sprite("substation");
+    var gate = TXFIG.figure({ pose: "stand", height: 1.71, hat: "hard" });
+
+    TXINK.print(cx, {
+      ground: "#101A12", ink: "#E4DCC6", fibre: 0.05, seed: 615,
+      screen: { mode: "halftone", cell: 6, angle: 52, gamma: 1.24, floor: 0.04 },
+      edges: { threshold: 21, width: 1.3, alpha: 0.78, dx: -1.1, dy: 0.7 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, Object.assign({ sky: "#000000" }, cam));
+        // ABOVE THE CUT: flat ground and nothing on it. No object, no outline, no ghost.
+        a.fillStyle = "#0D120C"; a.fillRect(0, 0, W, CUT);
+        // BELOW THE CUT: the yard, drawn solid and in full detail.
+        a.fillStyle = "#070707"; a.fillRect(0, CUT, W, H - CUT);
+        S.ground({ near: 0.9, far: 700, fill: "#6E634A" });
+        var gr = a.createLinearGradient(0, CUT, 0, H);
+        gr.addColorStop(0, "rgba(0,0,0,0.30)"); gr.addColorStop(0.26, "rgba(0,0,0,0.0)");
+        gr.addColorStop(0.62, "rgba(216,178,122,0.30)"); gr.addColorStop(1, "rgba(0,0,0,0.34)");
+        a.fillStyle = gr; a.fillRect(0, CUT, W, H - CUT);
+        S.gridZ({ dz: 9, from: 7, to: 200, ink: "rgba(0,0,0,0.26)", width: 1 });
+
+        var far  = { ink: "#6A7062", paper: "#12170F", accent: "#6A7062" };
+        var mid  = { ink: "#98A08A", paper: "#141A12", accent: "#98A08A" };
+        var near = { ink: "#DED6BE", paper: "#181E16", accent: "#DED6BE" };
+
+        // FOUR ROWS of containers, each row running off BOTH frame edges so no total is
+        // countable. The record gives no capacity for this facility either.
+        // THE NEAR ROW STOPS FADING. A critic read the yard at 432 px as one band of boxy shapes
+        // over flat ground and could name none of it, and the near row was the row carrying the
+        // frame's whole argument: this is the model that IS finished. A row drawn at the same
+        // value as the ground it stands on is a texture, not a thing.
+        var rows = [[42, far, true], [30, far, true], [20, mid, true], [12.5, near, false]];
+        rows.forEach(function (r) {
+          var Z = r[0], inks = r[1], step = 14.5;
+          for (var x = -84; x <= 84; x += step) {
+            S.shadow(box, { X: x, Z: Z, ink: "#000", alpha: Z < 16 ? 0.55 : 0.4 });
+            S.sprite(box, { X: x, Z: Z, inks: inks, fade: r[2] });
+          }
+        });
+        S.shadow(tran, { X: 22, Z: 20, ink: "#000", alpha: 0.5 });
+        S.sprite(tran, { X: 22, Z: 20, inks: near, fade: false });
+        TXOBJ.fence(S, [-60, 8.5], [60, 10.5], { step: 3.2, wires: 3, ink: "#8E9482",
+                    inks: { ink: "#8E9482", paper: "#12170F" }, shadowAlpha: 0.3 });
+        S.shadow(gate, { X: -12.0, Z: 7.4, ink: "#000", alpha: 0.66 });
+        S.sprite(gate, { X: -12.0, Z: 7.4, inks: { ink: "#F0E8CE", paper: "#12170F", accent: "#F0E8CE" }, fade: false });
+      },
+      over: function (c) {
+        // THE CUT ITSELF, a single straight edge with no feathering and no gradient across it.
+        c.fillStyle = "#0D120C"; c.fillRect(0, 0, W, CUT - 2);
+        c.fillStyle = "#E4DCC6"; c.fillRect(0, CUT - 2, W, 2);
+        TXINK.reserve(c, { ground: "#101A12", bottom: 150, bottomSolid: 96 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

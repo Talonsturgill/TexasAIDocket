@@ -1,0 +1,140 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 8 of 9. Archetype MAP. A PAPER frame, so it carries the deck's accent.
+     Every county in the committed topology, drawn at ONE value, and not one of them lit. The
+     record names no Texas place, so the honest map is the whole state with nothing on it, and
+     the neatline, the graticule and the computed scale bar are the furniture that says this is a
+     finished drawing rather than a map that failed to render. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#F4F1E2; --page:#141A12; --dim:#5C6553; --accent:#2F7D57; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#map { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:950px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:70px; line-height:1.02; letter-spacing:-0.02em; color:var(--page); font-variation-settings:"opsz" 144; z-index:6; }
+  .dek { position:absolute; left:80px; top:1108px; width:880px; font-size:25px; line-height:1.4; color:#3E4738; z-index:6; }
+  .tally { position:absolute; left:80px; top:902px; font-family:"JetBrains Mono", monospace; font-size:24px;
+           letter-spacing:0.07em; color:#17452E; font-variant-numeric:tabular-nums; z-index:6; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="map" viewBox="0 0 1080 1350" aria-hidden="true"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="tally" id="tally">&nbsp;</div>
+<h1 class="hook" id="hook">Every county in Texas. Not one of them named.</h1>
+<p class="dek">The presentation names no data center, no company and no generator. Texas A&amp;M is the only institution in it besides the grid operator and the commission.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "What the presentation does not name",
+                                    counter: "08 / 09", src: "c33 c23   TEXAS AI DOCKET", ink: "#5C6553" });
+    TX.fitText(document.getElementById("hook"), { min: 56, max: 70, maxLines: 2 });
+    TX.reseed(20260915);
+
+    // THE SHEET. A drawing has no light, so this frame has no scene and no shadow. The paper
+    // grain is the only modelled tone under the line work.
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    TXINK.print(cx, {
+      ground: "#F4F1E2", ink: "#141A12", fibre: 0.08, seed: 815,
+      screen: { mode: "stipple", cell: 5, perCell: 5, weight: 0.9, gamma: 1.0 },
+      edges: { threshold: 200, width: 0, alpha: 0 },
+      draw: function (a) {
+        a.fillStyle = "#EDEADB"; a.fillRect(0, 0, W, H);
+        // a faint tone across the sheet so the stipple has something to bite on
+        var g = a.createLinearGradient(0, 0, 0, H);
+        g.addColorStop(0, "#E6E3D2"); g.addColorStop(0.5, "#F2EFE0"); g.addColorStop(1, "#E2DFCE");
+        a.fillStyle = g; a.fillRect(0, 0, W, H);
+      }
+    });
+
+    // XHR rather than fetch: Chromium refuses the Fetch API on a file:// URL whatever
+    // --allow-file-access-from-files says, and that flag DOES cover XHR.
+    var topo = await new Promise(function (res, rej) {
+      var r = new XMLHttpRequest();
+      r.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json", true);
+      r.onload = function () { try { res(JSON.parse(r.responseText)); } catch (e) { rej(e); } };
+      r.onerror = function () { rej(new Error("county topology did not load")); };
+      r.send();
+    });
+    var state = TXGeo.outline(topo);
+    var svg = d3.select("#map");
+    // Fit the FULL state. A small bbox distorts a conic fit into a disc without erroring.
+    var proj = TXGeo.texasProjection(state, [[112, 208], [968, 800]]);
+    var path = d3.geoPath(proj);
+
+    // THE NEATLINE, in the accent. It is what says the sheet is a finished drawing.
+    var NL = { x: 86, y: 182, w: 908, h: 648 };
+    svg.append("rect").attr("x", NL.x).attr("y", NL.y).attr("width", NL.w).attr("height", NL.h)
+       .attr("fill", "none").attr("stroke", "#2F7D57").attr("stroke-width", 9);
+    svg.append("rect").attr("x", NL.x + 7).attr("y", NL.y + 7).attr("width", NL.w - 14).attr("height", NL.h - 14)
+       .attr("fill", "none").attr("stroke", "#2F7D57").attr("stroke-width", 2.4);
+
+    // THE GRATICULE, whole degrees, clipped to the neatline, under the county mesh.
+    var clip = svg.append("defs").append("clipPath").attr("id", "nl");
+    clip.append("rect").attr("x", NL.x + 8).attr("y", NL.y + 8).attr("width", NL.w - 16).attr("height", NL.h - 16);
+    var grat = svg.append("g").attr("clip-path", "url(#nl)");
+    var gen = d3.geoGraticule().step([2, 2]);
+    grat.append("path").attr("d", path(gen())).attr("fill", "none")
+        .attr("stroke", "#B9B7A4").attr("stroke-width", 0.6);
+
+    // THE COUNTIES. ONE value, no fill, no keyline, nothing lit. This is the frame's content.
+    var g2 = svg.append("g").attr("clip-path", "url(#nl)");
+    g2.append("path").attr("d", path(state)).attr("fill", "#FBF9EF")
+      .attr("stroke", "#141A12").attr("stroke-width", 3.4);
+    // Interior borders as ONE mesh path, so no shared edge is stroked twice.
+    g2.append("path").attr("d", path(TXGeo.borders(topo)))
+      .attr("fill", "none").attr("stroke", "#141A12").attr("stroke-width", 1.7);
+
+    // THE COUNT, read off the topology the frame just drew, never typed.
+    var key = Object.keys(topo.objects)[0];
+    var n = topo.objects[key].geometries.length;
+    document.getElementById("tally").textContent = n + " COUNTIES DRAWN · NONE LIT";
+
+    // THE SCALE BAR, its pixel length COMPUTED from this projection rather than typed. Two
+    // gazetteer places give a true great-circle distance and a pixel distance, and the ratio
+    // sets how long 200 miles is on this sheet.
+    // Two points on the same parallel through the middle of the state. No gazetteer is needed
+    // and nothing here depends on a place name the record does not give.
+    var A = [-100.0, 31.0], B = [-98.0, 31.0];
+    var pa = proj(A), pb = proj(B);
+    var pxAB = Math.hypot(pb[0] - pa[0], pb[1] - pa[1]);
+    var miAB = d3.geoDistance(A, B) * 3958.7613;          // radians times the earth's radius
+    var perMile = pxAB / miAB, MILES = 200, barPx = perMile * MILES;
+    var bx = NL.x + NL.w - barPx - 18, by = NL.y + NL.h - 26;
+    var sb = svg.append("g");
+    for (var i = 0; i < 4; i++) {
+      sb.append("rect").attr("x", bx + (barPx / 4) * i).attr("y", by - 13)
+        .attr("width", barPx / 4).attr("height", 26)
+        .attr("fill", i % 2 ? "none" : "#2F7D57").attr("stroke", "#2F7D57").attr("stroke-width", 2.6);
+    }
+    var mlab = sb.append("text").attr("x", bx + barPx).attr("y", by - 28).attr("text-anchor", "end")
+      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 24)
+      .attr("letter-spacing", "0.06em").attr("fill", "#1F5C3E").text(MILES + " MILES").node();
+    TX.svgPlate(mlab, { padX: 10, padY: 6, fill: "#FBF9EF" });
+    var plab = sb.append("text").attr("x", NL.x + 18).attr("y", by - 28)
+      .attr("font-family", "JetBrains Mono, monospace").attr("font-size", 24)
+      .attr("letter-spacing", "0.06em").attr("fill", "#3E4738")
+      .text("ALBERS EQUAL-AREA CONIC").node();
+    TX.svgPlate(plab, { padX: 10, padY: 6, fill: "#FBF9EF" });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

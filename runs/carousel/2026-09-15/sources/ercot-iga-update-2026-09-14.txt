@@ -1,0 +1,184 @@
+# SOURCE   https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf
+# FETCHED  2026-09-15 by the showrunner, urllib with a descriptive User-Agent
+# BYTES    531072
+# SHA256   a76ddcdaca45722e61dadacf8142080e84818e717f26c850f8155b8c48a90991
+# EXTRACT  pypdf PdfReader, 6 pages
+# Everything below this line is the extraction and nothing in it was edited.
+
+--- PAGE 1 ---
+PUBLIC
+Item 10: Interconnection and 
+Grid Analysis Update
+Jeff Billo
+Vice President, Interconnection and Grid 
+Analysis
+Board of Directors Meeting
+September 14-15, 2026
+Key Takeaways
+• Large Load interconnection information is provided 
+in a separate presentation, Item 14: Batch Zero 
+Update.
+• Solar and Battery still represent the majority of 
+interconnection requests, however, Gas generation 
+interconnection requests are up 23% (now 80 GW) 
+since the June Board update.
+• ERCOT is targeting to complete NOGRR 245 
+extension/ exemption analysis in Q4 2026.
+• ERCOT is pursuing targeted mitigations for 
+addressing emerging risks posed by Large Loads, 
+notably proposing a NOGRR to address risks from 
+undesirable oscillations.
+Purpose
+Provide updates on key Interconnection and Grid Analysis 
+topics.
+For information only
+No action is requested; for discussion only.
+
+--- PAGE 2 ---
+PUBLIC
+2
+Interconnection Queue Capacity by Fuel Type
+Totals: Solar 158 GW (34.6%), Wind 49 GW (10.7%), Gas 80 GW (17.6%), Battery 166 GW / 398 GWh (36.3%), Other 4 GW (0.9%)
+(Excludes capacity associated with projects designated as Inactive per Planning Guide Section 5.2.5)
+A break-out by zone can be found in the monthly Generator Interconnection Status (GIS) reports available on 
+the ERCOT Resource Adequacy Page: http://www.ercot.com/gridinfo/resource
+• Other includes petroleum coke (pet coke), hydroelectric, fuel oil, nuclear, geothermal energy, other miscellaneous fuels reported by 
+developers, and fuel cells that use fuels other than natural gas.
+• The GWh cited for active planned battery storage projects is an estimate of the aggregate nameplate energy rating based on data 
+provided through Request for Information (RFI) submissions for projects with signed interconnection agreements. Using the RFI data, an 
+average design duration for these projects is calculated and then multiplied by the nameplate capacity for all active projects to derive the 
+total energy rating.
+0 GW
+10 GW
+20 GW
+30 GW
+40 GW
+50 GW
+60 GW
+70 GW
+Gas Wind Solar Battery Other*
+2026 2027 2028 2029 2030 2031 2032 2033
+Gas generation 
+interconnection requests 
+are 80 GW, up from 65 
+GW in the June Update
+
+--- PAGE 3 ---
+PUBLIC Recent Generation Interconnection Activity
+3
+26 new gas 
+generation 
+interconnection 
+requests in the 
+last 60 days
+Key Takeaway: Gas 
+generation interconnection 
+requests outnumbered other 
+types over the last 60 days. 
+Solar and battery requests 
+remain strong.
+
+--- PAGE 4 ---
+PUBLIC NOGRR 245 Implementation Update
+4
+Key Takeaway: 
+ERCOT is targeting to complete NOGRR 245 extension/ exemption 
+analysis in Q4 2026.
+Extension and/or Exemption 
+Submission Status as of August 
+24, 2026
+Pending Determination
+Extension Approved
+Denied
+Pending Reliability Assessment
+37 Resources
+3,001 MW
+93 Resources
+11,049 MW
+25 Resources
+2,688 MW
+116 Resources
+13,305 MW
+• Background
+• NOGRR 245 set forth certain reliability requirements for Inverter Based 
+Resources (IBRs).
+• Resource Entities (REs) could submit requests for an extension of time to 
+meet the requirements and/or an exemption from the requirements.
+• Status of Extension/ Exemption Submissions (as of May 14, 
+2026)
+• ERCOT has denied extension and/or exemption requests for 25 IBRs, 
+primarily due to deficient dynamic model data.
+• ERCOT has granted extension requests for 93 IBRs.
+• The Reliability Assessment to determine the impact of an RE’s 
+exemption request is underway for 116 IBRs.
+• Next Step
+• Complete Reliability Assessment activities in Q4 2026.
+
+--- PAGE 5 ---
+PUBLIC Addressing Emerging Operational Risks Posed by Large Loads
+Key Takeaway: ERCOT is pursuing targeted mitigations for addressing emerging risks posed by Large Loads.
+5
+Risk Description Mitigation Status
+Ride-
+Through
+Sensitive compute equipment 
+trips offline during normal grid 
+events, leading to grid 
+imbalance and instability.
+NOGRR 282/ NPRR 1308: Implement 
+ride-through requirements for Large 
+Computational Loads.
+The PUCT approved NOGRR 
+282/ NPRR 1308 in July, effective 
+on August 1.
+Oscillations Certain data centers processes 
+can oscillate in a way that 
+damages grid equipment.
+Draft NOGRR: Ensures Large Load 
+processes do not oscillate in a manner 
+that would cause grid damage. [More 
+details on next slide.]
+ERCOT plans to submit NOGRR 
+in September or October.
+Modeling Dynamic models for Large 
+Loads have proven to be 
+inaccurate and thus are 
+inadequate for studying their 
+grid impacts.
+ERCOT is working with Texas A&M 
+University on developing more 
+accurate models.
+PGRR 144: Introduces model quality 
+requirements for Large Loads.
+Texas A&M has released a new 
+model for crypto mining facilities 
+and is working on a data center 
+model.
+TAC endorsed PGRR 144 in 
+August and is up for Board 
+consideration in September.
+
+--- PAGE 6 ---
+PUBLIC Draft NOGRR: Large Load MW Variation Challenges
+• Large Loads, particularly those associated with data center AI training 
+processes, are capable of producing rapid fluctuations in active 
+power consumption. These variations can induce perturbations on 
+synchronous generator shafts and potentially result in equipment 
+fatigue or damage.
+• Several industry events and actual load profiles have highlighted this 
+concern. Since July 2025, ERCOT collaborated with industry experts 
+and engaged stakeholders to investigate these risks.
+• Consequently, ERCOT’s draft NOGRR, Large Load MW Variation 
+Requirements, will recommend a limit of 10 MW per 5 seconds for 
+power variation in Large Loads. This proposal aims to manage 
+reliability risks while facilitating Resource and Large Load 
+interconnections.
+• Continuous monitoring and enhanced situational awareness are also 
+essential. Additional NOGRRs may be submitted to strengthen 
+monitoring requirements.
+6
+Key Takeaway: ERCOT plans to propose a NOGRR to lower the risk of fatigue or damage to synchronous 
+generators that may be caused by Large Load power fluctuations.
+Could cause
+Source: https://arxiv.org/abs/2508.14318  
+An actual data center in ERCOT

@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-14",
+  "generated": "2026-09-15",
   "gates": [
    "claims",
    "cross references",
@@ -1897,7 +1897,7 @@
      "fetched": "2026-09-03"
     }
    ],
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -1998,6 +1998,11 @@
     {
      "date": "2026-09-14",
      "note": "The feed is still live and still publishes each open meeting with the room it sits in. Entries keep falling off the list once their date has passed, which is how this calendar behaves rather than a change to it.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The commission's calendar feed is still live and still names the room each open meeting will sit in. Entries that have passed have come off it, which is how the feed has always behaved.",
      "checked": true
     }
    ]
@@ -10321,7 +10326,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
    "history": [
@@ -10387,6 +10392,11 @@
     {
      "date": "2026-09-14",
      "note": "The award record still reads as it did. The requirement that a proof assistant certify a proposed algorithm before it counts is still part of what was funded rather than a step offered afterwards.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The award stands as made and the start date the award record gives has now arrived. The requirement that a proof assistant certify an algorithm before it counts is still written into the record's own account of the work.",
      "checked": true
     }
    ]
@@ -12919,7 +12929,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Geography is set statewide on the same reading the record already applies to tx-2026-0024. This is a project of a statewide agency under a rule of the Texas Administrative Code, and the door to comment is open to any Texan regardless of county. on_ercot is set because the caps govern the ERCOT market.",
    "history": [
@@ -12974,6 +12984,11 @@
     {
      "date": "2026-09-14",
      "note": "The staff memorandum is still the live ask on this review and the deadline it set has not moved. Comments on whether the offer caps and the emergency pricing program should change are still due September 17th.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The review is still taking comments and the deadline the staff memorandum set for September 17th has not moved. The questions it put to interested parties stand as filed.",
      "checked": true
     }
    ]
@@ -13382,13 +13397,13 @@
      "fetched": "2026-08-29"
     },
     {
-     "text": "The September 3rd hearing is marked canceled on the Legislature's own listing.",
-     "verbatim_quote": "Thursday, September 3, 2026 9:00 AM Economic Development (Canceled/see notice)",
-     "source_url": "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S",
-     "source_title": "Texas Legislature Online, Senate upcoming committee meetings",
+     "text": "The committee's own meetings listing marks the September 3rd sitting canceled.",
+     "verbatim_quote": "September 3, 2026 9:00 AM (Canceled/see notice)",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C525",
+     "source_title": "Texas Legislature Online, Senate Committee on Economic Development meetings",
      "source_type": "primary_official",
      "id": "tx-2026-0109-c7",
-     "fetched": "2026-09-02"
+     "fetched": "2026-09-15"
     },
     {
      "text": "The same listing carries an Economic Development public hearing on September 22nd.",
@@ -13401,7 +13416,7 @@
     }
    ],
    "id": "tx-2026-0109",
-   "last_verified": "2026-09-13",
+   "last_verified": "2026-09-15",
    "history": [
     {
      "date": "2026-08-29",
@@ -13441,6 +13456,11 @@
     {
      "date": "2026-09-13",
      "note": "Checked and unchanged. Still open, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The chamber's upcoming meetings listing carries only what is still ahead, so the canceled September 3rd sitting has come off it. The record now takes that row from the committee's own meetings page, which still marks it canceled. The September 22nd public hearing stands in hearing room E1.016 on the same two listings.",
      "checked": true
     }
    ]
@@ -16779,7 +16799,7 @@
    "confidence": "high",
    "notes_for_editor": "The notice never says Texas or ERCOT. It is admitted as statewide because it is a federal comment window any Texan may file in, exactly like the other federal windows on this record, and no Texas specific claim rests on it.",
    "id": "tx-2026-0144",
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "history": [
     {
      "date": "2026-09-11",
@@ -16802,6 +16822,11 @@
     {
      "date": "2026-09-14",
      "note": "The request for information is still taking written responses through October 9th. The reason the notice gives for the demand it is securing against still names data centers and artificial intelligence.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The request for information is still open for written responses through October 9th. The notice still names data centers and artificial intelligence among what it says increased the nation's dependence on this equipment.",
      "checked": true
     }
    ]
@@ -17063,7 +17088,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-09-14",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
    "history": [
@@ -17075,6 +17100,11 @@
     {
      "date": "2026-09-14",
      "note": "Both items are still posted to the council's own agenda and neither has been voted on. Nothing has been added to the agenda that narrows what the two would do to the fixed plate reader cameras.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "Both items are still posted to the council's own agenda and the meeting they are set for is today. Neither has been voted on and nothing has been filed against either.",
      "checked": true
     }
    ],
@@ -17135,13 +17165,18 @@
     "closes": null
    },
    "id": "tx-2026-0148",
-   "last_verified": "2026-09-12",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Grimes County because the announcement names Navasota as the project location and Navasota is the Grimes County seat. The university's own Dallas headquarters is a decider address and is deliberately not carried as a county.",
    "history": [
     {
      "date": "2026-09-12",
      "note": "Admitted on the department's own announcement of the four selected projects.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The department's announcement still stands as published and still gives Navasota as the project location for the award it made to Southern Methodist University. Its description of the site as a synthetic pit inside an existing instrumented drilling and sensing facility has not changed.",
      "checked": true
     }
    ],
@@ -17199,13 +17234,18 @@
     "closes": null
    },
    "id": "tx-2026-0149",
-   "last_verified": "2026-09-12",
+   "last_verified": "2026-09-15",
    "confidence": "high",
    "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.\n\ntx-2026-0149-c3's quote named only the awardee while the claim asserted the performing city, which a code review caught on 2026-09-12. The city is load bearing, because it is what places this item in Brazos County, so the quote now carries the NSF API's own contiguous perfCity run. It is quoted as JSON rather than prose because that is the form the document is served in.",
    "history": [
     {
      "date": "2026-09-12",
      "note": "Admitted on the foundation's own award record.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-15",
+     "note": "The award record still stands as obligated and still gives College Station as the performing site. It still names no Texas utility whose water system the digital twins would model.",
      "checked": true
     }
    ],
@@ -17730,6 +17770,318 @@
     {
      "date": "2026-09-14",
      "note": "Admitted to the record. The developer's own account is where the public first learned what a Batch Zero classification did to a named project. One of the five was filed in one class and came back conditionally classified in the other."
+    }
+   ]
+  },
+  {
+   "title": "ERCOT tells its board that AI training loads can fatigue grid generators and drafts a limit on how fast their power draw may swing",
+   "summary": "The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force, a model quality rule went to the board this month, and the third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation was for information only and the board was asked to take no action on it.",
+   "topic": "power-and-the-grid",
+   "decider": {
+    "name": "Electric Reliability Council of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-09-14",
+     "kind": "hearing",
+     "note": "Board of Directors meeting at which the risk list was presented"
+    },
+    {
+     "date": "2026-08-26",
+     "kind": "passed",
+     "note": "Technical Advisory Committee recommended PGRR144 for approval"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The board meeting the presentation was made to is open to the public and it has now been held. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it and what body takes it next. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted, so there is no window a reader can act in today.",
+    "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Statewide because the hazard is to synchronous generators across the interconnection rather than to one site. The board room is in Travis County and the subject is not.",
+   "claims": [
+    {
+     "text": "The grid operator states that data center AI training loads can swing power draw fast enough to damage generators.",
+     "verbatim_quote": "Large Loads, particularly those associated with data center AI training processes, are capable of producing rapid fluctuations in active power consumption. These variations can induce perturbations on synchronous generator shafts and potentially result in equipment fatigue or damage.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c1"
+    },
+    {
+     "text": "The draft rule names the limit it would set on a Large Load's power variation.",
+     "verbatim_quote": "Consequently, ERCOT's draft NOGRR, Large Load MW Variation Requirements, will recommend a limit of 10 MW per 5 seconds for power variation in Large Loads.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c2"
+    },
+    {
+     "text": "The grid operator says how long it has been investigating the risk.",
+     "verbatim_quote": "Since July 2025, ERCOT collaborated with industry experts and engaged stakeholders to investigate these risks.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c3"
+    },
+    {
+     "text": "The same page says the models the grid operator uses to study these loads do not work.",
+     "verbatim_quote": "Dynamic models for Large Loads have proven to be inaccurate and thus are inadequate for studying their grid impacts.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c4"
+    },
+    {
+     "text": "The grid operator names who is building the replacement models.",
+     "verbatim_quote": "ERCOT is working with Texas A&M University on developing more accurate models.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c5"
+    },
+    {
+     "text": "The university has finished a model for one kind of load and not for the other.",
+     "verbatim_quote": "Texas A&M has released a new model for crypto mining facilities and is working on a data center model.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c6"
+    },
+    {
+     "text": "The first of the three risks already has a rule in force.",
+     "verbatim_quote": "The PUCT approved NOGRR 282/ NPRR 1308 in July, effective on August 1.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c7"
+    },
+    {
+     "text": "The second of the three risks reached the board this month.",
+     "verbatim_quote": "TAC endorsed PGRR 144 in August and is up for Board consideration in September.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c8"
+    },
+    {
+     "text": "The third rule has not been filed and the grid operator gives a window rather than a date.",
+     "verbatim_quote": "ERCOT plans to submit NOGRR in September or October.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c9"
+    },
+    {
+     "text": "The presentation states what the board was asked to do about it.",
+     "verbatim_quote": "No action is requested; for discussion only.",
+     "source_url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+     "source_title": "ERCOT, Item 10 Interconnection and Grid Analysis Update, Board of Directors Meeting September 14 to 15, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c10"
+    },
+    {
+     "text": "The revision request before the board has a public page naming what it requires.",
+     "verbatim_quote": "This Planning Guide Revision Request (PGRR) clarifies requirements for submitting dynamic model data for Large Loads to ensure accurate representation of each Large Load in ERCOT's models.",
+     "source_url": "https://www.ercot.com/mktrules/issues/PGRR144",
+     "source_title": "ERCOT Market Rules, PGRR144",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c11"
+    },
+    {
+     "text": "That page carries the revision request's own status and the date it was posted.",
+     "verbatim_quote": "Status: Pending Date Posted: Feb 18, 2026 Sponsor: ERCOT Urgent: No",
+     "source_url": "https://www.ercot.com/mktrules/issues/PGRR144",
+     "source_title": "ERCOT Market Rules, PGRR144",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c12"
+    },
+    {
+     "text": "The same page records the committee vote that sent it to the board.",
+     "verbatim_quote": "08/26/2026 TAC Recommended for Approval Board for consideration",
+     "source_url": "https://www.ercot.com/mktrules/issues/PGRR144",
+     "source_title": "ERCOT Market Rules, PGRR144",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0159-c13"
+    }
+   ],
+   "id": "tx-2026-0159",
+   "last_verified": "2026-09-15",
+   "history": [
+    {
+     "date": "2026-09-15",
+     "note": "Admitted on the grid operator's own presentation to its board. Three Large Load risks are named with a mitigation each, and the three mitigations sit at three different stages."
+    }
+   ]
+  },
+  {
+   "title": "Houston academic physician group moves from two ambient AI pilots toward one unified documentation platform",
+   "summary": "UT Physicians is the clinical practice of McGovern Medical School at UTHealth Houston. Its chief medical information officer told a school wide meeting on September 9th, 2026 that the practice is working toward adopting one ambient listening platform as a unified system. Pilots ran on two competing products first. The stated purpose is to cut the administrative load of clinical documentation and return attention to the patient. The same meeting reported that McGovern is taking part in a University of Texas System project examining already completed student simulations to see whether AI can write the feedback. Real time feedback is named as the longer term goal. No completion date is given for either.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "UT Physicians, McGovern Medical School at UTHealth Houston",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Harris"
+    ],
+    "metro": "Houston-Pasadena-The Woodlands, TX",
+    "on_ercot": true
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-09-09",
+     "kind": "filed",
+     "note": "Date the school published the account of the meeting"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The practice is a private academic group and the decision was reported in its medical school's own published account of an internal meeting. No public comment period, hearing or vote is attached to it. McGovern Medical School publishes contact details for its communications office on the same site.",
+    "url": "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Harris County from Houston, which the source names. The practice sees patients across the Houston area and the source does not enumerate the sites.",
+   "claims": [
+    {
+     "text": "The practice ran pilots on two products and is moving to a third as its single system.",
+     "verbatim_quote": "Following pilot programs involving DAX and Abridge, UT Physicians is working toward adopting Epic's ambient listening platform as a unified system.",
+     "source_url": "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/",
+     "source_title": "McGovern Medical School at UTHealth Houston, Dean's Dialogue highlights progress, plans for year ahead",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0160-c1"
+    },
+    {
+     "text": "The school states what the technology is meant to do for the physician.",
+     "verbatim_quote": "The technology is intended to reduce the administrative burden associated with clinical documentation, improve efficiency, and allow physicians to focus more attention on patients.",
+     "source_url": "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/",
+     "source_title": "McGovern Medical School at UTHealth Houston, Dean's Dialogue highlights progress, plans for year ahead",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0160-c2"
+    },
+    {
+     "text": "The same meeting described an AI feedback project on completed student simulations.",
+     "verbatim_quote": "The project will initially examine previously completed student simulations to explore how AI could provide feedback, with the longer-term goal of evaluating opportunities for real-time feedback.",
+     "source_url": "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/",
+     "source_title": "McGovern Medical School at UTHealth Houston, Dean's Dialogue highlights progress, plans for year ahead",
+     "source_type": "primary_corporate",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0160-c3"
+    }
+   ],
+   "id": "tx-2026-0160",
+   "last_verified": "2026-09-15",
+   "history": [
+    {
+     "date": "2026-09-15",
+     "note": "Admitted on the medical school's own published account of the meeting at which the practice described the move."
+    }
+   ]
+  },
+  {
+   "title": "UT Arlington builds a federally funded AI tutor that withholds the answer and helps build Fort Worth police training on the same method",
+   "summary": "The University of Texas at Arlington published an account on September 10th, 2026 of an AI conversational tutor built on a National Science Foundation grant. The tutor is designed not to supply an answer. It asks the student questions and offers hints so the student reaches the answer, in the way a teacher does at a desk. The same account says the researchers are helping to develop Fort Worth Police Department training using real life scenarios, with prompts based on the principles of de escalation. The university describes the system judging whether an officer is listening and whether the officer follows what the other person wants to talk about. No evaluation result is published for either use.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "The University of Texas at Arlington",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Tarrant"
+    ],
+    "metro": "Dallas-Fort Worth-Arlington, TX",
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-10",
+     "kind": "filed",
+     "note": "Date the university published the account. No claim carries the date of any decision behind it"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The work is a funded university research project rather than a proceeding, so no comment window or hearing attaches to it. The university names both faculty leads and publishes a press contact on the release itself. The Fort Worth Police Department is a city department and the council that funds it meets in public.",
+    "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Tarrant County holds both Arlington and Fort Worth, the two places the source names. No county appears in the release.",
+   "claims": [
+    {
+     "text": "The university names the funder and what the grant is for.",
+     "verbatim_quote": "are using a $750,000 National Science Foundation grant to create an AI conversational tutor to guide students through situational assignments",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+     "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0161-c1"
+    },
+    {
+     "text": "Testing with the city police department has already started.",
+     "verbatim_quote": "helping to develop training using real-life scenarios with prompts based on the principles of de-escalation",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+     "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0161-c2"
+    },
+    {
+     "text": "The university describes what the system judges about an officer.",
+     "verbatim_quote": "The AI can tell when an officer is being kind and listening, when the officer picks up on something the person wants to talk about and follows that conversation, and when the officer doesn't connect with the person.",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+     "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0161-c3"
+    },
+    {
+     "text": "The tutor is built to refuse the answer.",
+     "verbatim_quote": "Back in Deb's classroom, her AI tutor will not provide answers. Instead, it will interact with students and prompt them with questions to help them discover the answers on their own, much like a classroom teacher helping a student at their desk.",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+     "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+     "source_type": "primary_official",
+     "fetched": "2026-09-15",
+     "id": "tx-2026-0161-c4"
+    }
+   ],
+   "id": "tx-2026-0161",
+   "last_verified": "2026-09-15",
+   "history": [
+    {
+     "date": "2026-09-15",
+     "note": "Admitted on the university's own release, which names the funder and says the researchers are helping to develop the police training."
     }
    ]
   }

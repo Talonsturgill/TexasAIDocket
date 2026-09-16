@@ -9,7 +9,7 @@ The Senate Committee on Economic Development carries an interim charge on prepar
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-09-13
+- Last checked: 2026-09-15
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-09 · The canceled September 3rd hearing on artificial intelligence and the Texas workforce has dropped off the chamber's list of upcoming meetings, which carries only what is still ahead. The committee's own page still shows the charge and the later date it moved to.
 - 2026-09-12 · Checked and unchanged. Still open, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still open, with no dated movement.
+- 2026-09-15 · The chamber's upcoming meetings listing carries only what is still ahead, so the canceled September 3rd sitting has come off it. The record now takes that row from the committee's own meetings page, which still marks it canceled. The September 22nd public hearing stands in hearing room E1.016 on the same two listings.
 
 ## Evidence
 
@@ -64,11 +65,11 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming
 
 Source (primary_official): https://senate.texas.gov/cmte.php?c=525
 
-### The September 3rd hearing is marked canceled on the Legislature's own listing.
+### The committee's own meetings listing marks the September 3rd sitting canceled.
 
-> Thursday, September 3, 2026 9:00 AM Economic Development (Canceled/see notice)
+> September 3, 2026 9:00 AM (Canceled/see notice)
 
-Source (primary_official): https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C525
 
 ### The same listing carries an Economic Development public hearing on September 22nd.
 

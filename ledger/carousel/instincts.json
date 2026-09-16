@@ -562,7 +562,9 @@
       "learned": "2026-09-09",
       "instinct": "Read every repair at 432px against the defect it was meant to cure, because a repair can be worse than the defect.",
       "evidence": "2026-09-09, carousel 18. A lit sill slab was added under the cover's doorway to stop it reading as a bare hole; a sill is the most window-defining element in architecture and all three judges then read the cover as a window. The same round's ambient-shadow fix on slide 6 clipped its own radial gradient and rendered two translucent boxes with hard vertical edges. Both passed machine QA.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-15"
+      ],
       "contradicted": []
     },
     {
@@ -747,7 +749,9 @@
       "learned": "2026-09-13",
       "instinct": "Run house_style_check straight after admitting anything to the record, because the Phase 7 instrument sweep does not carry it and a run's attention is on the deck by the time Phase 16 finds it.",
       "evidence": "Carousel 22 reached Phase 16 with 12 sentences over the 30 word backstop, every one of them in the record's own prose rather than in the deck, across three admitted items, two re-verify movement lines and one claim text.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-15"
+      ],
       "contradicted": []
     },
     {
@@ -779,7 +783,9 @@
       "learned": "2026-09-14",
       "instinct": "Assert that a declared object is IN the frame at all, because every gate this product has measures what is inside the rect and none asks whether the thing the dossier named is inside it.",
       "evidence": "Frame 1's figure was at X -13, which at that frame's camera and Z 9 projects to x -644, off the left edge of a 1080 px frame. layout_check --require, qa.py, plan_render_check, craft_floor, bespoke_check and a pixel critic all passed the frame. Two of three scoring judges found it independently, on three frames at once, and the cover's entire true-scale argument was missing.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-15"
+      ],
       "contradicted": []
     },
     {
@@ -787,7 +793,9 @@
       "learned": "2026-09-14",
       "instinct": "When a frame's job is to give a size, check the RATIO after the repair and not just the presence, because a figure moved into frame is a different check from a figure at the right distance.",
       "evidence": "Frame 1's figure was repaired from off-frame to X -3.1 Z 9 and became plainly visible, in front of a building at Z 30. At 184 px beside a 16 m wall the frame then told a reader the hall was about 3.4 m tall, wrong by a factor near five. Round 2 caught it. At Z 27 and 48 px a judge measured the wall a reader reads off the picture at 13.3 m.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-15"
+      ],
       "contradicted": []
     },
     {
@@ -795,6 +803,32 @@
       "learned": "2026-09-14",
       "instinct": "Before planning a scene frame's median, subtract its reserve bands and its sky, because those two decide the number and the art has no vote once they pass half the frame.",
       "evidence": "Frame 6 was planned at 14 and measured 3.8. Its art band was lifted from 4.4 to 10.7, the strongest of any scene frame in the deck, by rebuilding the caliche pad. The frame median moved from 3.8 to 3.8. That frame reserves 680 px of 1,350 for type and its sky is another 406, so 80 per cent of it is page ground by construction.",
+      "confirmed": [
+        "2026-09-15"
+      ],
+      "contradicted": []
+    },
+    {
+      "id": "a-screened-tone-is-not-the-tone-that-prints",
+      "learned": "2026-09-15",
+      "instinct": "Measure what a screen can actually lay down before planning a frame's value, because on a dark ground the press caps the frame and no drawing reaches past that cap.",
+      "evidence": "2026-09-15, carousel no. 25. A dawn sky painted #D7AE79 into a cell 5 stipple came off the press at the same value as the ground beside it, and the deck's plan had asked that frame for a median of L* 40. Measured by printing a white field through each of the deck's own screen configurations: stipple 63.0 of 255, a ceiling of L* 26.7; hatch 107.6, 45.5; halftone 205.7, 82.7. The plan was 13.3 above the highest value that screen can reach with every pixel white. What must be bright is painted AFTER the press, which is the device the deck's paper frames already used for their sheet.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-screen-over-one-value-is-one-value",
+      "learned": "2026-09-15",
+      "instinct": "Cure a dead lower zone with tone UNDER the screen, never with more objects standing on it, because a screen over a flat fill leaves every cell holding one tone and a few dark specks.",
+      "evidence": "2026-09-15, frame 3. The near ground carried a hall, a figure, a truck, five bollards, four fence posts, a streetlight and two tyre tracks, and frame_balance still measured the bottom band at 0.237 of the frame's own craft density. The cells were live at 0.98 and their entropy was 0.31 to 0.52 against a modeled-tone threshold of 0.55: a stipple on a flat caliche fill is bimodal whatever stands on it. Grading passes and 1100 stones, each lit on one side and throwing to the other, moved it to 0.607 and the band ratio from 0.54 to 1.06 without adding a single object.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "an-acceptance-floor-is-not-a-reader",
+      "learned": "2026-09-15",
+      "instinct": "Read every dimension an acceptance item sets AT FEED SCALE before accepting the pass, because a figure one pixel above its floor is a figure nobody can see.",
+      "evidence": "2026-09-15, frame 3. The figure at the door measured 56.3 px against an acceptance floor of 55, which passes with a margin under two per cent, and at 432 px it was 22 px of white outline against a wall of other white outlines. A pixel critic could not tell it from door hardware, on the frame whose whole job is to turn a term into a size. The cure was not a larger figure alone: the door leaf is painted after the press as a flat lit rectangle and the figure is a SOLID DARK SILHOUETTE standing in it, because a dark shape on a lit ground reads at any size and an outline among outlines does not.",
       "confirmed": [],
       "contradicted": []
     }

@@ -1,0 +1,90 @@
+{
+ "date": "2026-09-15",
+ "_note": "Every number the deck states in its DOM copy that is not a bare repetition of one word of prose. A figure the SOURCE wrote is declared with quoted_from and the exact string it came out of. A figure this run's own code produced is declared with computed_by, naming the script and the input, so anybody can re-run it. Nothing here was typed from memory. The figures drawn inside the SVG instruments on frames 2, 7 and 8 are declared in the storyboard's own `numerals` blocks and computed in out/2026-09-15/compute.py, because this gate reads DOM text and does not see them.",
+ "aggregates": [
+  {
+   "phrase": "September 14th to 15th",
+   "slide": "slide-01.html",
+   "kind": "span",
+   "value": 14,
+   "quoted_from": "c2",
+   "quote": "Board of Directors Meeting\nSeptember 14-15, 2026",
+   "note": "The source's own meeting dates, reset into house style, which writes a range as X to Y and takes the ordinal. The declared value is the first date the source wrote. No span was computed and no duration is asserted anywhere in the deck."
+  },
+  {
+   "phrase": "Three risks",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-09-15/compute.py risk_rows, the claims carrying a Description cell of ERCOT's own table, counted",
+   "note": "Counted from c16, c19 and c22, one per row of the table the frame draws."
+  },
+  {
+   "phrase": "Three states",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-09-15/compute.py mitigations_in_force and mitigations_not_in_force, which partition the same three status cells by a stated test",
+   "note": "THE READING IS THE DECK'S OWN ARGUMENT AND IS PRESENTED AS THE DECK'S. ERCOT does not say its three mitigations sit at three stages. What ERCOT says is each status cell, and the frame prints all three verbatim so a reader can check the argument against them. The partition is by whether the cell's own quote carries the word 'effective', which separates one from two."
+  },
+  {
+   "phrase": "10 Emerging operational risks",
+   "slide": "slide-05.html",
+   "kind": "identifier",
+   "value": 10,
+   "quoted_from": "c1",
+   "quote": "Item 10: Interconnection and Grid Analysis Update",
+   "note": "Not a count. This is the gate reading the kicker's two lines as one run, where the first ends in ERCOT's own agenda item number and the second is the slide title from the same document."
+  },
+  {
+   "phrase": "254 COUNTIES",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 254,
+   "computed_by": "out/2026-09-15/compute.py counties_drawn, and independently by the slide itself, which reads the geometry count out of assets/geo/tx-counties.topo.json at render time and prints it rather than carrying a typed number",
+   "note": "The frame draws from the same committed topology it counts, so the figure and the drawing cannot disagree. Nothing here rests on general knowledge that Texas has 254 counties."
+  },
+  {
+   "phrase": "50 METRES",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 50,
+   "computed_by": "out/2026-09-15/slides/slide-02.html, the scale bar's PIXEL LENGTH from the frame's one declared scale of 0.104 metres per pixel",
+   "note": "The denomination is a round number chosen for the bar. What is computed, and what would be wrong if the scale changed, is the bar's length. Every height on the elevation is that same scale applied to a figure in metres."
+  },
+  {
+   "phrase": "5 SECONDS",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c29",
+   "quote": "a limit of 10 MW per 5 seconds for power variation in Large Loads",
+   "computed_by": "out/2026-09-15/slides/slide-07.html, the run leg's pixel length from the declared axis range",
+   "note": "ERCOT'S OWN UNITS, NEVER CONVERTED. The frame draws 10 MW over 5 seconds as the geometry the source states, never as a rate per second, and the limit is a recommendation in a draft rather than a requirement in force."
+  },
+  {
+   "phrase": "200 MILES",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 200,
+   "computed_by": "out/2026-09-15/slides/slide-08.html, the bar's PIXEL LENGTH from the Albers projection, as d3.geoDistance between two points on the 31st parallel times the earth's radius, against their projected pixel separation",
+   "note": "The denomination is chosen. The bar's length is computed from the projection the frame draws."
+  },
+  {
+   "phrase": "Six pages",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 6,
+   "computed_by": "out/2026-09-15/compute.py presentation_pages, the PAGE markers in the run's own extraction of the source PDF, counted",
+   "note": "The caption says the presentation names no data center, no company and no generator in six pages. Absence a2 rests on having read all of them and enumerates every proper name it found, so the page count is the size of the thing that was searched."
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "out/2026-09-15/compute.py documents_cited, the distinct source urls across every claim in claims.json, counted; and independently by sources_block.py, which groups the deck's printed claim ids by document to build the block",
+   "note": "Two ERCOT surfaces, the board presentation and the PGRR144 market rules page."
+  }
+ ]
+}

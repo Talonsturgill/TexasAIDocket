@@ -1276,3 +1276,32 @@ both parsed cleanly with a real text layer. The working shape this run used was 
 extract in the main context, write the extraction to `out/<date>/sources/<name>.txt` with the
 source url, the byte count and the SHA256 of the bytes above it, and hand the fact-checker that
 path to verify against. It is in the upgrade backlog as a proposal.
+
+## 2026-09-15
+
+**`puc.texas.gov/agency/calendar/GetCalendarRss.aspx` answers a 302 to its own lowercase path.**
+The registry names the mixed-case url and it is the one every run has copied. A fetch that does
+not follow redirects gets 184 bytes reading `Object Moved` with a link to
+`https://www.puc.texas.gov/agency/calendar/getcalendarrss.aspx`, and an XML parser finds zero
+`<item>` elements in it. **That parses as an empty calendar rather than as an error**, which is
+the dangerous half: a run that polls the highest value feed this project has and reads no items
+would conclude the PUCT has nothing scheduled. Following the redirect returns 15,020 bytes and 37
+items, including project numbers on the comment deadlines. Poll it with redirects followed, or
+name the lowercase path.
+
+**`capitol.texas.gov/Committees/MeetingsByCmte.aspx` is where a meeting that has HAPPENED still
+lives.** The registry's verified substitute, `MeetingsUpcoming.aspx?Chamber=S`, carries only what
+is still ahead, so a claim quoting a cancellation goes `missing` from it the moment the canceled
+date passes, through no change at the source. The per-committee page answers 200 under a browser
+User-Agent, sits under no disallowed path in the live robots.txt (the disallows are `/TLODOCS/`,
+`/TLOWebServices/`, `/Prototype/`, `/Controls/`, `/Help/`, `/Images/`, `/bin/`, `/ig_common/`,
+`/Scripts/`, `/Web References/`, four `/MyTLO/` paths, `/BillLookup/`, `/Reports/` and `/Search/`,
+and `/Committees/` is not among them), and lists every meeting a committee has held or has
+scheduled with its cancellation state. The committee code comes off
+`Committees.aspx?Chamber=S`, which links each one. **A claim about a past hearing belongs on this
+page and not on the upcoming listing.**
+
+**`www.ercot.com` behaved exactly as the registry describes**, at 200 under a descriptive
+User-Agent for both the board meeting document tree under `/files/docs/` and the market rules
+pages under `/mktrules/issues/`. The PDF-to-text shape the last run's log proposes was used again
+here and worked again, so that is two runs of evidence for it rather than one.

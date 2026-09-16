@@ -1,0 +1,217 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 2 of 9. Archetype DIAGRAM. A PAPER frame, so it carries the deck's accent.
+     The whole chain at ONE declared scale, left to right, standing on one drawn groundline: the
+     data hall, the substation, the line, and the plant at the far end. No perspective anywhere,
+     because the content is a comparison of sizes and perspective would corrupt it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#F4F1E2; --page:#141A12; --dim:#5C6553; --accent:#2F7D57; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#dia { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:196px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:74px; line-height:1.02; letter-spacing:-0.02em; color:var(--page); font-variation-settings:"opsz" 144; z-index:6; }
+  .dek { position:absolute; left:80px; top:322px; width:880px; font-size:25px; line-height:1.4; color:#3E4738; z-index:6; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="dia" viewBox="0 0 1080 1350" aria-hidden="true"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Follow the wire both ways.</h1>
+<p class="dek">At one end a building that can swing what it draws. At the other a machine that has to take it.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "The chain, at one scale",
+                                    counter: "02 / 09", src: "c27 c16   TEXAS AI DOCKET", ink: "#5C6553" });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 74, maxLines: 2 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    TXINK.print(cx, {
+      ground: "#F4F1E2", ink: "#141A12", fibre: 0.07, seed: 215,
+      screen: { mode: "line", cell: 4, angle: 8, gamma: 1.0, floor: 0.03 },
+      edges: { threshold: 200, width: 0, alpha: 0 },
+      draw: function (a) {
+        var g = a.createLinearGradient(0, 0, 0, H);
+        g.addColorStop(0, "#EFECDC"); g.addColorStop(0.46, "#F6F3E5"); g.addColorStop(1, "#E4E1D0");
+        a.fillStyle = g; a.fillRect(0, 0, W, H);
+        // the cut earth under the groundline, as a survey sheet draws it
+        var GYc = 1166;
+        var soil = a.createLinearGradient(0, GYc, 0, GYc + 62);
+        soil.addColorStop(0, "#C9C6B2"); soil.addColorStop(1, "#DEDBC9");
+        a.fillStyle = soil; a.fillRect(0, GYc, W, 62);
+        a.strokeStyle = "#A9A693"; a.lineWidth = 1.1;
+        for (var e = -40; e < 1140; e += 13) {
+          a.beginPath(); a.moveTo(e, GYc + 62); a.lineTo(e + 26, GYc); a.stroke();
+        }
+      },
+      over: function (c) {
+        // QUIET BANDS behind the furniture. A screened paper under a mono line puts a contour
+        // edge through the glyph band, which reads as a strikethrough at feed width.
+        c.fillStyle = "#F6F3E5"; c.fillRect(0, 0, W, 430); c.fillRect(0, H - 134, W, 134);
+      }
+    });
+
+    var s = document.getElementById("dia");
+    function el(n, at, txt) {
+      var e = document.createElementNS("http://www.w3.org/2000/svg", n);
+      for (var k in at) e.setAttribute(k, at[k]);
+      if (txt != null) e.textContent = txt;
+      s.appendChild(e); return e;
+    }
+    // ONE DECLARED SCALE for the whole elevation. Every height below is in metres and is
+    // multiplied by this and by nothing else.
+    var MPP = 0.104;                       // metres per pixel
+    var PX = function (m) { return m / MPP; };
+    var GY = 1166;                          // the one groundline every object stands on
+    var INK = "#141A12", AC = "#2F7D57";
+
+    el("line", { x1: 0, x2: 1080, y1: GY, y2: GY, stroke: INK, "stroke-width": 3.4 });
+
+    // --- the data hall, cropped by the left edge: 130 m long, 17 m to the parapet
+    var hallW = PX(130), hallH = PX(17), hx = -286;
+    el("rect", { x: hx, y: GY - hallH, width: hallW, height: hallH, fill: "none", stroke: INK, "stroke-width": 3.2 });
+    el("line", { x1: hx, x2: hx + hallW, y1: GY - hallH + 9, y2: GY - hallH + 9, stroke: INK, "stroke-width": 1.8 });
+    for (var i = 1; i < 9; i++)
+      el("line", { x1: hx + hallW * i / 9, x2: hx + hallW * i / 9, y1: GY - hallH, y2: GY, stroke: INK, "stroke-width": 1.3 });
+    // the roof plant, which is what says this is a hall rather than a warehouse
+    for (var u = 0; u < 7; u++)
+      el("rect", { x: hx + 40 + u * 44, y: GY - hallH - PX(2.6), width: 30, height: PX(2.6),
+                   fill: "none", stroke: INK, "stroke-width": 2.0 });
+
+    // --- the substation: 22 m wide, 12 m to the top of the structure
+    var sx = 486, subW = PX(22), subH = PX(12);
+    el("rect", { x: sx, y: GY - subH, width: subW, height: subH, fill: "none", stroke: INK, "stroke-width": 2.6 });
+    el("line", { x1: sx, x2: sx + subW, y1: GY - subH, y2: GY - subH, stroke: INK, "stroke-width": 3.2 });
+    [0.2, 0.5, 0.8].forEach(function (f) {
+      el("line", { x1: sx + subW * f, x2: sx + subW * f, y1: GY - subH, y2: GY - PX(3), stroke: INK, "stroke-width": 2.0 });
+      el("rect", { x: sx + subW * f - 7, y: GY - PX(3), width: 14, height: PX(3), fill: "none", stroke: INK, "stroke-width": 2.0 });
+    });
+
+    // --- three transmission towers at 42 m, with the conductor between them
+    var TH = PX(42), txs = [556, 700, 844];
+    txs.forEach(function (x) {
+      el("path", { d: "M" + (x - 26) + " " + GY + " L" + x + " " + (GY - TH) + " L" + (x + 26) + " " + GY,
+                   fill: "none", stroke: INK, "stroke-width": 2.6 });
+      el("line", { x1: x - 34, x2: x + 34, y1: GY - TH + 16, y2: GY - TH + 16, stroke: INK, "stroke-width": 2.6 });
+      el("line", { x1: x - 24, x2: x + 24, y1: GY - TH + 42, y2: GY - TH + 42, stroke: INK, "stroke-width": 2.2 });
+      for (var k = 1; k < 5; k++)
+        el("line", { x1: x - 26 * k / 5, x2: x + 26 * k / 5, y1: GY - TH * (1 - k / 5), y2: GY - TH * (1 - k / 5),
+                     stroke: INK, "stroke-width": 1.3 });
+    });
+    for (var t = 0; t < txs.length - 1; t++) {
+      var x0 = txs[t], x1 = txs[t + 1], yy = GY - TH + 16;
+      el("path", { d: "M" + (x0 + 34) + " " + yy + " Q" + ((x0 + x1) / 2) + " " + (yy + 26) + " " + (x1 - 34) + " " + yy,
+                   fill: "none", stroke: INK, "stroke-width": 2.0 });
+    }
+
+    // --- the plant hall at the right, CUT AWAY so the machine inside it shows. This is the only
+    //     interior in an elevation of exteriors, and it is where the eye is meant to land.
+    var px0 = 896, plW = PX(46), plH = PX(24);
+    el("rect", { x: px0, y: GY - plH, width: plW, height: plH, fill: "none", stroke: INK, "stroke-width": 3.2 });
+    el("path", { d: "M" + px0 + " " + (GY - plH) + " L" + (px0 + plW / 2) + " " + (GY - plH - PX(4)) +
+                    " L" + (px0 + plW) + " " + (GY - plH), fill: "none", stroke: INK, "stroke-width": 3.2 });
+    // the cut face, hatched, which is what reads as a section
+    for (var hh = 0; hh < 26; hh++)
+      el("line", { x1: px0 + 4, x2: px0 + 4, y1: GY - plH + hh * 4, y2: GY - plH + hh * 4 + 2, stroke: INK, "stroke-width": 3 });
+    // the machine inside: a stepped run of cylinders on pedestals, in elevation. EVERY SIZE HERE
+    // IS STILL PX() OF A METRE. A critic read the first cut as tanks at 432 px and the answer is
+    // NOT to draw it bigger, because one declared scale is the whole content of this frame. The
+    // answer is what frame 4 draws at detail scale: a casing that is filled rather than outlined,
+    // a parting line along it, and a bearing pedestal under each end.
+    var my = GY - PX(5.6), mx = px0 + 16;
+    [[4.3, 9], [3.7, 8], [3.1, 7]].forEach(function (c, ci) {
+      var d = PX(c[0]), L = PX(c[1]);
+      for (var hz = 4; hz < L; hz += 7)                       // the casing, filled not outlined
+        el("line", { x1: mx + hz, x2: mx + hz, y1: my - d + 4, y2: my - 4, stroke: INK, "stroke-width": 1.0 });
+      el("rect", { x: mx, y: my - d, width: L, height: d, rx: d * 0.44, fill: "none", stroke: INK, "stroke-width": 2.2 });
+      el("line", { x1: mx + 3, x2: mx + L - 3, y1: my - d * 0.5, y2: my - d * 0.5, stroke: "#F6F3E5", "stroke-width": 3.4 });
+      el("line", { x1: mx + 3, x2: mx + L - 3, y1: my - d * 0.5, y2: my - d * 0.5, stroke: INK, "stroke-width": 1.4 });
+      el("rect", { x: mx + L * 0.28, y: my, width: L * 0.44, height: GY - my, fill: "none", stroke: INK, "stroke-width": 1.8 });
+      if (ci < 2)                                             // the coupling between two rotors
+        el("rect", { x: mx + L - 5, y: my - d * 0.66, width: 10, height: d * 0.66, fill: INK });
+      mx += L;
+    });
+
+    // --- the leaders, in the accent, each ending ON its own target's coordinates
+    var SITE_HALL = [40, GY - hallH - PX(2.6) - 6];
+    var SITE_MACH = [px0 + 52, my - PX(4.3) - 6];
+    function leader(pts, label, anchor) {
+      var d = "M" + pts[0][0] + " " + pts[0][1];
+      for (var i2 = 1; i2 < pts.length; i2++) d += " L" + pts[i2][0] + " " + pts[i2][1];
+      el("path", { d: d, fill: "none", stroke: AC, "stroke-width": 4.4 });
+      var e = pts[pts.length - 1];
+      el("circle", { cx: e[0], cy: e[1], r: 9, fill: AC });
+      // A CHIP behind each label, in the BOND rather than in the accent. A hairline leader is
+      // 0.0003 of the frame at thumb scale, which the gate reads as an accent that is not there,
+      // and it is right: a mark that antialiases away at feed size is a mark nobody sees. So the
+      // chip stays and the ink changes. The accent filling a plate behind a label is the accent
+      // carrying a plate, and on this deck it may only carry a MARK: the leader, the tick, the
+      // dimensioned limit on frame 7, the scale bar. It reads quieter and it matches this
+      // frame's own scale bar label, which had the bond fill from the first cut.
+      var t = el("text", { x: pts[0][0] + (anchor === "end" ? -14 : 14), y: pts[0][1] + 7,
+                   "text-anchor": anchor, "font-family": "JetBrains Mono, monospace",
+                   "font-size": 25, "letter-spacing": "0.05em", "font-weight": 700,
+                   fill: "#17452E" }, label);
+      // MEASURED FROM THE LAID-OUT TEXT. A typed plate width and a label are two separately
+      // typed numbers and they drift, which is exactly what they did here.
+      TX.svgPlate(t, { padX: 13, padY: 9, fill: "#F6F3E5" });
+    }
+    // The chip is anchored END, so its own width decides where its left edge lands. At an
+    // anchor of 300 it started at x 58, which machine_qa named as outside the 80 px safe
+    // zone: the leader was placed and the label was left to fall where it fell.
+    leader([[338, 706], [240, 792], SITE_HALL], "ONE LARGE LOAD", "end");
+    leader([[978, 560], [1002, 648], SITE_MACH], "SYNCHRONOUS GENERATOR", "end");
+    window.__txLeaders = [
+      { target: "the data hall's roof plant", at: SITE_HALL, to: SITE_HALL },
+      { target: "the generator inside the cutaway", at: SITE_MACH, to: SITE_MACH }
+    ];
+
+    // --- the scale bar, its length COMPUTED from the declared metres per pixel.
+    // IT SITS IN THE SHEET'S CLEAR QUADRANT, not on the elevation. At the foot of the frame it
+    // stood INSIDE the drawn hall, and the hall's own bay divider at x=130.7 ran down through
+    // the label's glyph band, which is a strikethrough at feed width whichever was drawn last.
+    // A knockout plate does not answer that: a dark hairline across a word reads as a strike
+    // however the paint was ordered. The scale bar belongs on clear paper, which is where a
+    // survey sheet puts it and where the only thing it can cross is air.
+    var BAR_M = 50, barPx = PX(BAR_M), bx = 80, by = 560;
+    // ALTERNATING SOLID SEGMENTS, which is frame 8's own scale bar and is the accent filling a
+    // MARK rather than a plate. Taking the fill off the two leader chips was right and it left
+    // this frame's accent at 0.06 per cent of the render, which is an accent the deck claims and
+    // a reader cannot see. A bar drawn as a bar carries it in the open.
+    el("line", { x1: bx, x2: bx + barPx, y1: by, y2: by, stroke: AC, "stroke-width": 3.0 });
+    for (var q = 0; q < 5; q++)
+      if (q % 2 === 0)
+        el("rect", { x: bx + barPx * q / 5, y: by - 5, width: barPx / 5, height: 10, fill: AC });
+    for (var q2 = 0; q2 <= 5; q2++)
+      el("line", { x1: bx + barPx * q2 / 5, x2: bx + barPx * q2 / 5, y1: by - 11, y2: by + 8, stroke: AC, "stroke-width": 3.6 });
+    TX.svgPlate(el("text", { x: bx, y: by - 26, "text-anchor": "start",
+                 "font-family": "JetBrains Mono, monospace", "font-size": 24,
+                 "letter-spacing": "0.05em", fill: "#17452E" }, BAR_M + " METRES"),
+                { padX: 10, padY: 6, fill: "#F6F3E5" });
+    // A CORNER MARK, so the bar reads as the sheet's legend rather than as a second green tag
+    // floating over the drawing. Frames 7 and 8 carry a full neatline for the same convention
+    // and this one has none, which is what left it orphaned in open paper.
+    el("path", { d: "M" + (bx - 22) + " " + (by - 74) + " L" + (bx - 22) + " " + (by - 50) +
+                    " M" + (bx - 22) + " " + (by - 74) + " L" + (bx + 26) + " " + (by - 74),
+                 fill: "none", stroke: INK, "stroke-width": 1.6 });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

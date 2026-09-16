@@ -51,6 +51,13 @@ KIND_LABEL = {
     # have reached a reader as the slug `expires`, which is what the guard above this map exists
     # to stop. It is NOT actionable: an award ending is a thing that happens to somebody else.
     "expires": "award expires",
+    # ADDED 2026-09-15, the day the record admitted tx-2026-0159, ERCOT's Large Load risk list.
+    # Its second key date is the Technical Advisory Committee's August 26th vote to recommend
+    # PGRR144 for approval, and a motion carrying is its own kind of event: it is not the
+    # decision, it is the step that sends the thing to the body that decides. Without a label
+    # here it reaches a reader as the slug `passed`. NOT actionable, for the same reason
+    # `expires` is not: a vote already taken is a record of something done.
+    "passed": "motion passed",
 }
 
 # The kinds that are a DOOR rather than a record of something already done. A reader scanning a

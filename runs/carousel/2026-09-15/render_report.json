@@ -1,0 +1,5810 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This room can move a generator.",
+          "x": 80,
+          "y": 948,
+          "w": 920,
+          "h": 183,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              937,
+              766,
+              112
+            ],
+            [
+              80,
+              1029,
+              374,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The grid operator told its own board that a data center's AI training can swing its draw hard enough to reach the machines.",
+          "x": 80,
+          "y": 1150,
+          "w": 850,
+          "h": 73,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1150,
+              836,
+              36
+            ],
+            [
+              80,
+              1186,
+              604,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT board of directors September 14th to 15th, 2026",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 14th to 15th, 2026",
+          "x": 80,
+          "y": 116,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              464,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3773,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 48.6,
+          "variance": 3785.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ONE LARGE LOAD",
+          "x": 96,
+          "y": 687,
+          "w": 228,
+          "h": 34,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(23, 69, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              96,
+              687,
+              228,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SYNCHRONOUS GENERATOR",
+          "x": 623,
+          "y": 541,
+          "w": 341,
+          "h": 34,
+          "font_px": 25,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(23, 69, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              623,
+              541,
+              341,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "50 METRES",
+          "x": 80,
+          "y": 510,
+          "w": 140,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(23, 69, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              510,
+              140,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Follow the wire both ways.",
+          "x": 80,
+          "y": 196,
+          "w": 920,
+          "h": 75,
+          "font_px": 73.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              187,
+              750,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "At one end a building that can swing what it draws. At the other a machine that has to take it.",
+          "x": 80,
+          "y": 322,
+          "w": 880,
+          "h": 70,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(62, 71, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              322,
+              842,
+              35
+            ],
+            [
+              80,
+              357,
+              208,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The chain, at one scale",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 c16 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 0,
+          "y": 1166,
+          "w": 1080,
+          "h": 3.4,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": -286,
+          "y": 1002.5,
+          "w": 1250,
+          "h": 3.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": -286,
+          "y": 1162.8,
+          "w": 1250,
+          "h": 3.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 960.8,
+          "y": 1002.5,
+          "w": 3.2,
+          "h": 163.5,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": -286,
+          "y": 1011.5,
+          "w": 1250,
+          "h": 1.8,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 130.7,
+          "y": 1002.5,
+          "w": 1.3,
+          "h": 163.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 269.6,
+          "y": 1002.5,
+          "w": 1.3,
+          "h": 163.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 408.4,
+          "y": 1002.5,
+          "w": 1.3,
+          "h": 163.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 547.3,
+          "y": 1002.5,
+          "w": 1.3,
+          "h": 163.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 686.2,
+          "y": 1002.5,
+          "w": 1.3,
+          "h": 163.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 825.1,
+          "y": 1002.5,
+          "w": 1.3,
+          "h": 163.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": -26,
+          "y": 977.5,
+          "w": 30,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": -26,
+          "y": 1000.5,
+          "w": 30,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 2,
+          "y": 977.5,
+          "w": 2,
+          "h": 25,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 18,
+          "y": 977.5,
+          "w": 30,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 18,
+          "y": 1000.5,
+          "w": 30,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 18,
+          "y": 977.5,
+          "w": 2,
+          "h": 25,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 46,
+          "y": 977.5,
+          "w": 2,
+          "h": 25,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 486,
+          "y": 1050.6,
+          "w": 211.5,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 486,
+          "y": 1163.4,
+          "w": 211.5,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 486,
+          "y": 1050.6,
+          "w": 2.6,
+          "h": 115.4,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 694.9,
+          "y": 1050.6,
+          "w": 2.6,
+          "h": 115.4,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 486,
+          "y": 1050.6,
+          "w": 211.5,
+          "h": 3.2,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 528.3,
+          "y": 1050.6,
+          "w": 2,
+          "h": 86.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 521.3,
+          "y": 1137.2,
+          "w": 14,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 521.3,
+          "y": 1164,
+          "w": 14,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 521.3,
+          "y": 1137.2,
+          "w": 2,
+          "h": 28.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 533.3,
+          "y": 1137.2,
+          "w": 2,
+          "h": 28.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 591.8,
+          "y": 1050.6,
+          "w": 2,
+          "h": 86.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 584.8,
+          "y": 1137.2,
+          "w": 14,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 584.8,
+          "y": 1164,
+          "w": 14,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 584.8,
+          "y": 1137.2,
+          "w": 2,
+          "h": 28.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 596.8,
+          "y": 1137.2,
+          "w": 2,
+          "h": 28.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 655.2,
+          "y": 1050.6,
+          "w": 2,
+          "h": 86.5,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 648.2,
+          "y": 1137.2,
+          "w": 14,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 648.2,
+          "y": 1164,
+          "w": 14,
+          "h": 2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 648.2,
+          "y": 1137.2,
+          "w": 2,
+          "h": 28.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 660.2,
+          "y": 1137.2,
+          "w": 2,
+          "h": 28.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 522,
+          "y": 778.2,
+          "w": 68,
+          "h": 2.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 532,
+          "y": 804.2,
+          "w": 48,
+          "h": 2.2,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 550.8,
+          "y": 842.9,
+          "w": 10.4,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 545.6,
+          "y": 923.7,
+          "w": 20.8,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 540.4,
+          "y": 1004.5,
+          "w": 31.2,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 535.2,
+          "y": 1085.2,
+          "w": 41.6,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 666,
+          "y": 778.2,
+          "w": 68,
+          "h": 2.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 676,
+          "y": 804.2,
+          "w": 48,
+          "h": 2.2,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 694.8,
+          "y": 842.9,
+          "w": 10.4,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 689.6,
+          "y": 923.7,
+          "w": 20.8,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 684.4,
+          "y": 1004.5,
+          "w": 31.2,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 679.2,
+          "y": 1085.2,
+          "w": 41.6,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 810,
+          "y": 778.2,
+          "w": 68,
+          "h": 2.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 820,
+          "y": 804.2,
+          "w": 48,
+          "h": 2.2,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 838.8,
+          "y": 842.9,
+          "w": 10.4,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 833.6,
+          "y": 923.7,
+          "w": 20.8,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 828.4,
+          "y": 1004.5,
+          "w": 31.2,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 823.2,
+          "y": 1085.2,
+          "w": 41.6,
+          "h": 1.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 896,
+          "y": 935.2,
+          "w": 442.3,
+          "h": 3.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 896,
+          "y": 1162.8,
+          "w": 442.3,
+          "h": 3.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 896,
+          "y": 935.2,
+          "w": 3.2,
+          "h": 230.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 935.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 939.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 943.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 947.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 951.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 955.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 959.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 963.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 967.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 971.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 975.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 979.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 983.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 987.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 991.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 995.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 999.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1003.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1007.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1011.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1015.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1019.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1023.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1027.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1031.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 900,
+          "y": 1035.2,
+          "w": 3,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 916,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 923,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 930,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 937,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 944,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 951,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 958,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 965,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 972,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 979,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 986,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 993,
+          "y": 1074.8,
+          "w": 1,
+          "h": 33.3,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 912,
+          "y": 1070.8,
+          "w": 86.5,
+          "h": 2.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 912,
+          "y": 1110,
+          "w": 86.5,
+          "h": 2.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 912,
+          "y": 1070.8,
+          "w": 2.2,
+          "h": 41.3,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 996.3,
+          "y": 1070.8,
+          "w": 2.2,
+          "h": 41.3,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 915,
+          "y": 1091.5,
+          "w": 80.5,
+          "h": 3.4,
+          "by": "line",
+          "color": "rgb(246, 243, 229)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 915,
+          "y": 1091.5,
+          "w": 80.5,
+          "h": 1.4,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 936.2,
+          "y": 1112.2,
+          "w": 38.1,
+          "h": 1.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 936.2,
+          "y": 1164.2,
+          "w": 38.1,
+          "h": 1.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 936.2,
+          "y": 1112.2,
+          "w": 1.8,
+          "h": 53.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 972.5,
+          "y": 1112.2,
+          "w": 1.8,
+          "h": 53.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 993.5,
+          "y": 1084.9,
+          "w": 10,
+          "h": 27.3,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1002.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1009.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1016.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1023.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1030.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1037.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1044.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1051.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1058.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1065.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1072.5,
+          "y": 1080.6,
+          "w": 1,
+          "h": 27.6,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 998.5,
+          "y": 1076.6,
+          "w": 76.9,
+          "h": 2.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 998.5,
+          "y": 1110,
+          "w": 76.9,
+          "h": 2.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 998.5,
+          "y": 1076.6,
+          "w": 2.2,
+          "h": 35.6,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1073.3,
+          "y": 1076.6,
+          "w": 2.2,
+          "h": 35.6,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1001.5,
+          "y": 1094.4,
+          "w": 70.9,
+          "h": 3.4,
+          "by": "line",
+          "color": "rgb(246, 243, 229)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1001.5,
+          "y": 1094.4,
+          "w": 70.9,
+          "h": 1.4,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1020.1,
+          "y": 1112.2,
+          "w": 33.8,
+          "h": 1.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1020.1,
+          "y": 1164.2,
+          "w": 33.8,
+          "h": 1.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1020.1,
+          "y": 1112.2,
+          "w": 1.8,
+          "h": 53.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1052.1,
+          "y": 1112.2,
+          "w": 1.8,
+          "h": 53.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 1070.5,
+          "y": 1088.7,
+          "w": 10,
+          "h": 23.5,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1079.5,
+          "y": 1086.3,
+          "w": 1,
+          "h": 21.8,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1075.5,
+          "y": 1082.3,
+          "w": 67.3,
+          "h": 2.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1075.5,
+          "y": 1110,
+          "w": 67.3,
+          "h": 2.2,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1075.5,
+          "y": 1082.3,
+          "w": 2.2,
+          "h": 29.8,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1078.5,
+          "y": 1097.3,
+          "w": 61.3,
+          "h": 3.4,
+          "by": "line",
+          "color": "rgb(246, 243, 229)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 1078.5,
+          "y": 1097.3,
+          "w": 61.3,
+          "h": 1.4,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 82.8,
+          "y": 681,
+          "w": 254.2,
+          "h": 47,
+          "by": "rect",
+          "color": "rgb(246, 243, 229)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 608.7,
+          "y": 535,
+          "w": 368.3,
+          "h": 47,
+          "by": "rect",
+          "color": "rgb(246, 243, 229)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 80,
+          "y": 560,
+          "w": 480.8,
+          "h": 3,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 555,
+          "w": 96.2,
+          "h": 10,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 272.3,
+          "y": 555,
+          "w": 96.2,
+          "h": 10,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 464.6,
+          "y": 555,
+          "w": 96.2,
+          "h": 10,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 80,
+          "y": 549,
+          "w": 3.6,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 176.2,
+          "y": 549,
+          "w": 3.6,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 272.3,
+          "y": 549,
+          "w": 3.6,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 368.5,
+          "y": 549,
+          "w": 3.6,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 464.6,
+          "y": 549,
+          "w": 3.6,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 560.8,
+          "y": 549,
+          "w": 3.6,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 70,
+          "y": 504,
+          "w": 160.4,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(246, 243, 229)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2417,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 227.2,
+          "variance": 537
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "This is one large load.",
+          "x": 80,
+          "y": 160,
+          "w": 600,
+          "h": 158,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              151,
+              487,
+              96
+            ],
+            [
+              80,
+              230,
+              148,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The grid operator's own term for it. The record names no company and no county for any of them.",
+          "x": 80,
+          "y": 352,
+          "w": 560,
+          "h": 105,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              352,
+              522,
+              35
+            ],
+            [
+              80,
+              387,
+              504,
+              35
+            ],
+            [
+              80,
+              422,
+              67,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Large Load The grid operator's own term",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The grid operator's own term",
+          "x": 80,
+          "y": 116,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              464,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3539,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 38.6,
+          "variance": 2071.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The word in the paper is fatigue.",
+          "x": 80,
+          "y": 208,
+          "w": 920,
+          "h": 170,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              199,
+              766,
+              103
+            ],
+            [
+              80,
+              284,
+              242,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The grid operator says a load's swing can reach here. It does not say that it has.",
+          "x": 80,
+          "y": 394,
+          "w": 860,
+          "h": 73,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              394,
+              859,
+              36
+            ],
+            [
+              80,
+              430,
+              72,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Synchronous generator shaft The coupling, at detail scale",
+          "x": 80,
+          "y": 80,
+          "w": 480,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The coupling, at detail scale",
+          "x": 80,
+          "y": 116,
+          "w": 480,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              480,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 c30 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2205,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 46.9,
+          "variance": 3844.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "ERCOT BOARD OF DIRECTORS \u00b7 ITEM 10 \u00b7 SEPTEMBER 14TH TO 15TH, 2026",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "RISK",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "DESCRIPTION",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "MITIGATION AND STATUS",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Sensitive compute equipment",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "trips offline during normal grid",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "events, leading to grid imbalance",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "and instability.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "NOGRR 282 / NPRR 1308.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Ride-through requirements for",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Large Computational Loads.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "The PUCT approved NOGRR 282/",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "NPRR 1308 in July, effective",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "on August 1.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Certain data centers processes",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "can oscillate in a way that",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "damages grid equipment.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Draft NOGRR. Large Load",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "processes must not oscillate in a",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "manner that would cause damage.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "ERCOT plans to submit NOGRR",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "in September or October.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Dynamic models for Large Loads",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "have proven to be inaccurate",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "and thus are inadequate for",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "studying their grid impacts.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "PGRR 144, model quality rules.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Texas A&M is developing",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "more accurate models.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "TAC endorsed PGRR 144 in",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "August and is up for Board",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "consideration in September.",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "FOR INFORMATION ONLY \u00b7 NO ACTION IS REQUESTED",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "c15 c16 c18 c19 c21 c22 c26 TEXAS AI DOCKET",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "ERCOT BOARD OF DIRECTORS \u00b7 ITEM 10 \u00b7 SEPTEMBER 14TH TO 15TH, 2026",
+          "x": 103,
+          "y": 436,
+          "w": 819,
+          "h": 36,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              103,
+              436,
+              819,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RISK",
+          "x": 102,
+          "y": 495,
+          "w": 53,
+          "h": 28,
+          "font_px": 21,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              495,
+              53,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DESCRIPTION",
+          "x": 334,
+          "y": 498,
+          "w": 146,
+          "h": 29,
+          "font_px": 21,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              334,
+              498,
+              146,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MITIGATION AND STATUS",
+          "x": 668,
+          "y": 502,
+          "w": 278,
+          "h": 30,
+          "font_px": 21,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              668,
+              502,
+              278,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RIDE-THROUGH",
+          "x": 102,
+          "y": 548,
+          "w": 182,
+          "h": 33,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              548,
+              182,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Sensitive compute equipment",
+          "x": 334,
+          "y": 553,
+          "w": 290,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              334,
+              553,
+              290,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "trips offline during normal grid",
+          "x": 333,
+          "y": 579,
+          "w": 289,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              333,
+              579,
+              289,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "events, leading to grid imbalance",
+          "x": 333,
+          "y": 605,
+          "w": 317,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              333,
+              605,
+              317,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "and instability.",
+          "x": 333,
+          "y": 631,
+          "w": 139,
+          "h": 30,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              333,
+              631,
+              139,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NOGRR 282 / NPRR 1308.",
+          "x": 668,
+          "y": 557,
+          "w": 236,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              668,
+              557,
+              236,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ride-through requirements for",
+          "x": 667,
+          "y": 583,
+          "w": 296,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              667,
+              583,
+              296,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Large Computational Loads.",
+          "x": 667,
+          "y": 609,
+          "w": 272,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              667,
+              609,
+              272,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The PUCT approved NOGRR 282/",
+          "x": 667,
+          "y": 651,
+          "w": 315,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              667,
+              651,
+              315,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NPRR 1308 in July, effective",
+          "x": 666,
+          "y": 676,
+          "w": 260,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              666,
+              676,
+              260,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "on August 1.",
+          "x": 666,
+          "y": 701,
+          "w": 116,
+          "h": 29,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              666,
+              701,
+              116,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OSCILLATIONS",
+          "x": 99,
+          "y": 758,
+          "w": 182,
+          "h": 33,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              99,
+              758,
+              182,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Certain data centers processes",
+          "x": 331,
+          "y": 763,
+          "w": 305,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              331,
+              763,
+              305,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "can oscillate in a way that",
+          "x": 331,
+          "y": 789,
+          "w": 246,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              331,
+              789,
+              246,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "damages grid equipment.",
+          "x": 331,
+          "y": 815,
+          "w": 246,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              331,
+              815,
+              246,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Draft NOGRR. Large Load",
+          "x": 665,
+          "y": 767,
+          "w": 239,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              665,
+              767,
+              239,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "processes must not oscillate in a",
+          "x": 665,
+          "y": 793,
+          "w": 316,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              665,
+              793,
+              316,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "manner that would cause damage.",
+          "x": 665,
+          "y": 819,
+          "w": 332,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              665,
+              819,
+              332,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT plans to submit NOGRR",
+          "x": 664,
+          "y": 861,
+          "w": 295,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              664,
+              861,
+              295,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "in September or October.",
+          "x": 664,
+          "y": 886,
+          "w": 241,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              664,
+              886,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MODELING",
+          "x": 97,
+          "y": 942,
+          "w": 121,
+          "h": 32,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              97,
+              942,
+              121,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Dynamic models for Large Loads",
+          "x": 329,
+          "y": 947,
+          "w": 311,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              329,
+              947,
+              311,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "have proven to be inaccurate",
+          "x": 329,
+          "y": 973,
+          "w": 278,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              329,
+              973,
+              278,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "and thus are inadequate for",
+          "x": 328,
+          "y": 999,
+          "w": 267,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              328,
+              999,
+              267,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "studying their grid impacts.",
+          "x": 328,
+          "y": 1025,
+          "w": 264,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              328,
+              1025,
+              264,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PGRR 144, model quality rules.",
+          "x": 663,
+          "y": 951,
+          "w": 288,
+          "h": 32,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              663,
+              951,
+              288,
+              32
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas A&M is developing",
+          "x": 663,
+          "y": 977,
+          "w": 236,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              663,
+              977,
+              236,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "more accurate models.",
+          "x": 662,
+          "y": 1003,
+          "w": 221,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(32, 39, 29)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              662,
+              1003,
+              221,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TAC endorsed PGRR 144 in",
+          "x": 662,
+          "y": 1045,
+          "w": 254,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              662,
+              1045,
+              254,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "August and is up for Board",
+          "x": 661,
+          "y": 1070,
+          "w": 253,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              661,
+              1070,
+              253,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "consideration in September.",
+          "x": 661,
+          "y": 1095,
+          "w": 271,
+          "h": 31,
+          "font_px": 21,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              661,
+              1095,
+              271,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FOR INFORMATION ONLY \u00b7 NO ACTION IS REQUESTED",
+          "x": 94,
+          "y": 1146,
+          "w": 624,
+          "h": 37,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              94,
+              1146,
+              624,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 71, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Three risks. Three states of repair.",
+          "x": 80,
+          "y": 214,
+          "w": 920,
+          "h": 65,
+          "font_px": 63.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 226)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              207,
+              847,
+              78
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One rule in force. One at the board this month. One not written, and it carries no number.",
+          "x": 80,
+          "y": 330,
+          "w": 900,
+          "h": 69,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              329,
+              871,
+              35
+            ],
+            [
+              80,
+              364,
+              128,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT, Item 10 Emerging operational risks posed by Large Loads",
+          "x": 80,
+          "y": 80,
+          "w": 760,
+          "h": 108,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Emerging operational risks posed by Large Loads",
+          "x": 80,
+          "y": 116,
+          "w": 760,
+          "h": 72,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              679,
+              31
+            ],
+            [
+              80,
+              154,
+              83,
+              31
+            ]
+          ],
+          "anc": [
+            39
+          ]
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c15 c16 c18 c19 c21 c22 c26 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1242,
+          "w": 531,
+          "h": 29,
+          "font_px": 19,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 71, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1243,
+              531,
+              25
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 103.1,
+          "y": 472.4,
+          "w": 917.9,
+          "h": 11.2,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 94.2,
+          "y": 1202.4,
+          "w": 917.9,
+          "h": 11.2,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 102.3,
+          "y": 532.4,
+          "w": 917.9,
+          "h": 11.2,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 99.6,
+          "y": 760.4,
+          "w": 917.9,
+          "h": 11.2,
+          "by": "line",
+          "color": "rgb(183, 180, 161)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 97.3,
+          "y": 944.4,
+          "w": 917.9,
+          "h": 11.2,
+          "by": "line",
+          "color": "rgb(183, 180, 161)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1639,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 152.9,
+          "variance": 9560.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One model is finished. The other is not.",
+          "x": 80,
+          "y": 196,
+          "w": 920,
+          "h": 162,
+          "font_px": 79.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              187,
+              814,
+              98
+            ],
+            [
+              80,
+              268,
+              363,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The grid operator says its models of these loads have proven inaccurate, and that Texas A&M is building better ones. The crypto model is released. The data center model is still being written.",
+          "x": 80,
+          "y": 390,
+          "w": 870,
+          "h": 109,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              390,
+              860,
+              36
+            ],
+            [
+              80,
+              426,
+              867,
+              36
+            ],
+            [
+              80,
+              463,
+              511,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Modeling The third row of the table",
+          "x": 80,
+          "y": 80,
+          "w": 431,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The third row of the table",
+          "x": 80,
+          "y": 116,
+          "w": 431,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              431,
+              31
+            ]
+          ],
+          "anc": [
+            3
+          ]
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c22 c23 c25 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6953,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.5,
+          "variance": 3719.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "MW",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "SECONDS",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "LARGE LOAD MW VARIATION",
+          "detail": "font-size 17px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "NOT FILED \u00b7 NO NUMBER",
+          "detail": "font-size 17px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "RECOMMENDED LIMIT, DRAFT",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "0",
+          "x": 99,
+          "y": 741,
+          "w": 15,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 83, 67)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              99,
+              741,
+              15,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "0",
+          "x": 120,
+          "y": 768,
+          "w": 15,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 83, 67)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              768,
+              15,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MW",
+          "x": 82,
+          "y": 244,
+          "w": 26,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 83, 67)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              244,
+              26,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SECONDS",
+          "x": 830,
+          "y": 772,
+          "w": 90,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 83, 67)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              830,
+              772,
+              90,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "10 MW",
+          "x": 921,
+          "y": 626,
+          "w": 77,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(31, 92, 62)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              921,
+              626,
+              77,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "5 SECONDS",
+          "x": 179,
+          "y": 787,
+          "w": 161,
+          "h": 37,
+          "font_px": 28,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(31, 92, 62)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              179,
+              787,
+              161,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "LARGE LOAD MW VARIATION",
+          "x": 614,
+          "y": 811,
+          "w": 250,
+          "h": 22,
+          "font_px": 17,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              614,
+              811,
+              250,
+              22
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NOT FILED \u00b7 NO NUMBER",
+          "x": 614,
+          "y": 845,
+          "w": 228,
+          "h": 22,
+          "font_px": 17,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 83, 67)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              614,
+              845,
+              228,
+              22
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RECOMMENDED LIMIT, DRAFT",
+          "x": 128,
+          "y": 858,
+          "w": 338,
+          "h": 29,
+          "font_px": 22,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 83, 67)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              128,
+              858,
+              338,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The limit is drawn. The load is not.",
+          "x": 80,
+          "y": 986,
+          "w": 920,
+          "h": 150,
+          "font_px": 73.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(244, 241, 226)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              977,
+              846,
+              91
+            ],
+            [
+              80,
+              1052,
+              112,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The grid operator's draft rule would hold a large load's swing to this. It has not been filed and it carries no number.",
+          "x": 80,
+          "y": 1140,
+          "w": 870,
+          "h": 70,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1140,
+              832,
+              35
+            ],
+            [
+              80,
+              1175,
+              445,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Draft NOGRR Large Load MW Variation Requirements",
+          "x": 80,
+          "y": 80,
+          "w": 596,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Large Load MW Variation Requirements",
+          "x": 80,
+          "y": 116,
+          "w": 596,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              596,
+              31
+            ]
+          ],
+          "anc": [
+            12
+          ]
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c29 c34 c21 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(152, 161, 140)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 758,
+          "w": 792,
+          "h": 1.8,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 739.1,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 720.2,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 701.4,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 682.5,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 663.6,
+          "w": 792,
+          "h": 1.8,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 644.7,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 625.8,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 607,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 588.1,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 569.2,
+          "w": 792,
+          "h": 1.8,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 550.3,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 531.4,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 512.6,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 493.7,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 474.8,
+          "w": 792,
+          "h": 1.8,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 455.9,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 437,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 418.2,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 399.3,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 380.4,
+          "w": 792,
+          "h": 1.8,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 361.5,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 342.6,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 323.8,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 304.9,
+          "w": 792,
+          "h": 0.9,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 286,
+          "w": 792,
+          "h": 1.8,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 286,
+          "w": 1.8,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 180.8,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 233.6,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 286.4,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 339.2,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 392,
+          "y": 286,
+          "w": 1.8,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 444.8,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 497.6,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 550.4,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 603.2,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 656,
+          "y": 286,
+          "w": 1.8,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 708.8,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 761.6,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 814.4,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 867.2,
+          "y": 286,
+          "w": 0.9,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 920,
+          "y": 286,
+          "w": 1.8,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(173, 169, 148)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 286,
+          "w": 2.4,
+          "h": 472,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 758,
+          "w": 792,
+          "h": 2.4,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 758,
+          "w": 264,
+          "h": 2.6,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 392,
+          "y": 569.2,
+          "w": 2.6,
+          "h": 188.8,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 569.2,
+          "w": 264,
+          "h": 188.8,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 383,
+          "y": 758,
+          "w": 18,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 383,
+          "y": 569.2,
+          "w": 18,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 128,
+          "y": 749,
+          "w": 2,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 392,
+          "y": 749,
+          "w": 2,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 402,
+          "y": 663.6,
+          "w": 514,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 168.4,
+          "y": 780,
+          "w": 183.3,
+          "h": 51,
+          "by": "rect",
+          "color": "rgb(244, 241, 226)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 602,
+          "y": 804,
+          "w": 318,
+          "h": 1.4,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 602,
+          "y": 872.6,
+          "w": 318,
+          "h": 1.4,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 602,
+          "y": 804,
+          "w": 1.4,
+          "h": 70,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 918.6,
+          "y": 804,
+          "w": 1.4,
+          "h": 70,
+          "by": "rect",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 602,
+          "y": 838,
+          "w": 318,
+          "h": 0.8,
+          "by": "line",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 118,
+          "y": 851,
+          "w": 357.9,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(244, 241, 226)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1459,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 130.4,
+          "variance": 9950.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "200 MILES",
+          "x": 833,
+          "y": 752,
+          "w": 143,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(31, 92, 62)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              833,
+              752,
+              143,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ALBERS EQUAL-AREA CONIC",
+          "x": 104,
+          "y": 752,
+          "w": 364,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 71, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              104,
+              752,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "254 COUNTIES DRAWN \u00b7 NONE LIT",
+          "x": 80,
+          "y": 902,
+          "w": 466,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(23, 69, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              902,
+              466,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Every county in Texas. Not one of them named.",
+          "x": 80,
+          "y": 950,
+          "w": 920,
+          "h": 142,
+          "font_px": 69.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(20, 26, 18)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              942,
+              885,
+              86
+            ],
+            [
+              80,
+              1013,
+              356,
+              86
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The presentation names no data center, no company and no generator. Texas A&M is the only institution in it besides the grid operator and the commission.",
+          "x": 80,
+          "y": 1108,
+          "w": 880,
+          "h": 105,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(62, 71, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1108,
+              811,
+              35
+            ],
+            [
+              80,
+              1143,
+              806,
+              35
+            ],
+            [
+              80,
+              1178,
+              145,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the presentation does not name",
+          "x": 80,
+          "y": 80,
+          "w": 580,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              580,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c33 c23 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 101, 83)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 86,
+          "y": 182,
+          "w": 908,
+          "h": 9,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 86,
+          "y": 821,
+          "w": 908,
+          "h": 9,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 86,
+          "y": 182,
+          "w": 9,
+          "h": 648,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 985,
+          "y": 182,
+          "w": 9,
+          "h": 648,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 93,
+          "y": 189,
+          "w": 894,
+          "h": 2.4,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 93,
+          "y": 820.6,
+          "w": 894,
+          "h": 2.4,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 93,
+          "y": 189,
+          "w": 2.4,
+          "h": 634,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 984.6,
+          "y": 189,
+          "w": 2.4,
+          "h": 634,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 815.8,
+          "y": 791,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 815.8,
+          "y": 814.4,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 815.8,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 853.3,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 815.8,
+          "y": 791,
+          "w": 40,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 855.9,
+          "y": 791,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 855.9,
+          "y": 814.4,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 855.9,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 893.3,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 895.9,
+          "y": 791,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 895.9,
+          "y": 814.4,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 895.9,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 933.4,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 895.9,
+          "y": 791,
+          "w": 40,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 936,
+          "y": 791,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 936,
+          "y": 814.4,
+          "w": 40,
+          "h": 2.6,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 936,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 973.4,
+          "y": 791,
+          "w": 2.6,
+          "h": 26,
+          "by": "rect",
+          "color": "rgb(47, 125, 87)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 823.4,
+          "y": 746,
+          "w": 162.6,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(251, 249, 239)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 94,
+          "y": 746,
+          "w": 384.3,
+          "h": 43,
+          "by": "rect",
+          "color": "rgb(251, 249, 239)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2439,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 231.4,
+          "variance": 264.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The rule to watch has a page.",
+          "x": 80,
+          "y": 900,
+          "w": 920,
+          "h": 77,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              892,
+              836,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The model rule reached the board this month. The swing rule has not been filed, and the grid operator gives September or October. Both are tracked at texasaidocket.com.",
+          "x": 80,
+          "y": 1070,
+          "w": 890,
+          "h": 94,
+          "font_px": 24,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1069,
+              874,
+              33
+            ],
+            [
+              80,
+              1100,
+              766,
+              33
+            ],
+            [
+              80,
+              1131,
+              216,
+              33
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1204,
+          "w": 316,
+          "h": 39,
+          "font_px": 32,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 220, 198)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1204,
+              316,
+              39
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ERCOT market rules PGRR144, board for consideration",
+          "x": 80,
+          "y": 80,
+          "w": 530,
+          "h": 72,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PGRR144, board for consideration",
+          "x": 80,
+          "y": 116,
+          "w": 530,
+          "h": 36,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              118,
+              530,
+              31
+            ]
+          ],
+          "anc": [
+            4
+          ]
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c21 c26 c37 c3 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 482,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(159, 168, 147)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              482,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 3891,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 37.4,
+          "variance": 2019.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

@@ -1,0 +1,640 @@
+{
+ "date": "2026-09-15",
+ "story": "ERCOT put three emerging Large Load risks in front of its own Board of Directors with a mitigation for each, and the three mitigations sit at three different stages of repair. One rule is already in force, one reaches the Board this month, and one is not yet written and has no number. The presentation also says the dynamic models ERCOT uses to study these loads have proven inaccurate, so the grid operator is writing rules against a load it says it cannot yet model, and has gone to Texas A&M University for the model.",
+ "claims": [
+  {
+   "id": "c1",
+   "text": "The presentation is Item 10, Interconnection and Grid Analysis Update, given by Jeff Billo, Vice President, Interconnection and Grid Analysis.",
+   "quote": "Item 10: Interconnection and Grid Analysis Update",
+   "second_quote": "Jeff Billo\nVice President, Interconnection and Grid Analysis",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 1 of the pypdf extraction at out/2026-09-15/sources/ercot-iga-update-2026-09-14.txt. The url was re-fetched live this run and served application/pdf, so the document is live at the address cited. WebFetch cannot parse a PDF and this container has no renderer, so the text rests on that extraction. The title wraps between 'and' and 'Grid'; both breaks are rendered as single spaces and nothing else was changed. The source date is taken from the url path, 2026/09/07."
+  },
+  {
+   "id": "c2",
+   "text": "The presentation was made to the ERCOT Board of Directors meeting of September 14th to 15th, 2026.",
+   "quote": "Board of Directors Meeting\nSeptember 14-15, 2026",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 1 of the pypdf extraction. The quote reproduces the extraction's own line break between the meeting name and the dates. The hyphen in the date range is the source's and is reproduced verbatim; published prose must write the range as September 14th to 15th."
+  },
+  {
+   "id": "c3",
+   "text": "The presentation was for information only and asked the Board to take no action.",
+   "quote": "No action is requested; for discussion only.",
+   "second_quote": "For information only",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 1 of the pypdf extraction, under the heading 'Purpose'. The two strings sit on separate lines and are carried separately rather than joined. The fuller sentence is the primary quote because 'For information only' is 20 characters and the claims gate refuses a quote that short as unsearchable. The semicolon is the source's own and is reproduced verbatim; published prose must carry none."
+  },
+  {
+   "id": "c4",
+   "text": "ERCOT told the Board that Large Load interconnection information was in a separate presentation, Item 14, the Batch Zero Update.",
+   "quote": "Large Load interconnection information is provided in a separate presentation, Item 14: Batch Zero Update.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 1, the first Key Takeaways bullet. Carried because it establishes that this document is not the Batch Zero presentation and must never be cited as one."
+  },
+  {
+   "id": "c5",
+   "text": "ERCOT told the Board that solar and battery still represent the majority of interconnection requests. It also told the Board that gas generation interconnection requests are up 23 percent, now 80 GW, since the June Board update.",
+   "quote": "Solar and Battery still represent the majority of interconnection requests, however, Gas generation interconnection requests are up 23% (now 80 GW) since the June Board update.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "basis": "measured",
+   "notes": "Page 1, the second Key Takeaways bullet. BOTH NUMERALS ARE ERCOT'S OWN. The 23% is stated by ERCOT and was NOT computed here from the 65 GW and 80 GW figures at c6, and no percentage in this claims file may be recomputed from those two."
+  },
+  {
+   "id": "c6",
+   "text": "The queue slide states that gas generation interconnection requests are 80 GW, up from 65 GW in the June Update.",
+   "quote": "Gas generation interconnection requests are 80 GW, up from 65 GW in the June Update",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "basis": "measured",
+   "notes": "Page 2, the callout beside the Interconnection Queue Capacity by Fuel Type chart. The callout carries no terminal full stop and none was added. Both figures are ERCOT's own and neither was converted, summed or rounded."
+  },
+  {
+   "id": "c7",
+   "text": "The queue slide gives the totals by fuel type, and it excludes capacity associated with projects designated as inactive.",
+   "quote": "Totals: Solar 158 GW (34.6%), Wind 49 GW (10.7%), Gas 80 GW (17.6%), Battery 166 GW / 398 GWh (36.3%), Other 4 GW (0.9%)",
+   "second_quote": "(Excludes capacity associated with projects designated as Inactive per Planning Guide Section 5.2.5)",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "basis": "measured",
+   "notes": "Page 2, the totals line beneath the slide title. CONFIDENCE IS MEDIUM ON LAYOUT, NOT ON CHARACTERS. Without a renderer it cannot be confirmed whether this sits on the rendered slide as one contiguous string or as separate legend labels the extractor joined. The 80 GW here agrees with c6 and c5. No total, share or sum was computed here and none may be."
+  },
+  {
+   "id": "c8",
+   "text": "The recent activity slide states that there were 26 new gas generation interconnection requests in the last 60 days.",
+   "quote": "26 new gas generation interconnection requests in the last 60 days",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "basis": "measured",
+   "notes": "Page 3, the callout on the Recent Generation Interconnection Activity slide. It carries no terminal full stop. Both numerals are ERCOT's own. The 60 day window is ERCOT's own framing and no date range may be derived from it here."
+  },
+  {
+   "id": "c9",
+   "text": "ERCOT's stated takeaway is that gas generation interconnection requests outnumbered other types over the last 60 days, while solar and battery requests remain strong.",
+   "quote": "Key Takeaway: Gas generation interconnection requests outnumbered other types over the last 60 days. Solar and battery requests remain strong.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 3. The 'Key Takeaway: ' prefix is the slide's own label and is kept inside the quote because it is contiguous with the sentence in the extraction. Published prose must not carry the colon."
+  },
+  {
+   "id": "c10",
+   "text": "ERCOT is targeting completion of the NOGRR 245 extension and exemption analysis in the fourth quarter of 2026.",
+   "quote": "ERCOT is targeting to complete NOGRR 245 extension/ exemption analysis in Q4 2026.",
+   "second_quote": "Complete Reliability Assessment activities in Q4 2026.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "The primary quote appears twice in the extraction, once as a Key Takeaways bullet on page 1 and once as the Key Takeaway on page 4, and the two copies agree character for character apart from the 'Key Takeaway: ' prefix. The space after the slash in 'extension/ exemption' is the source's own and is reproduced."
+  },
+  {
+   "id": "c11",
+   "text": "The presentation explains that NOGRR 245 set forth certain reliability requirements for inverter based resources. Resource entities could ask for extra time to meet them or for an exemption from them.",
+   "quote": "NOGRR 245 set forth certain reliability requirements for Inverter Based \nResources (IBRs).\n• Resource Entities (REs) could submit requests for an extension of time to \nmeet the requirements and/or an exemption from the requirements.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 4, the two Background bullets. The two bullets are contiguous in the extraction, so the quote reproduces its line breaks and the second bullet's own bullet character rather than reflowing them."
+  },
+  {
+   "id": "c12",
+   "text": "The NOGRR 245 slide states two different dates for the same submission statuses. The status block is headed as of August 24th, 2026 and the bullet list beneath it is headed as of May 14th, 2026.",
+   "quote": "Extension and/or Exemption \nSubmission Status as of August \n24, 2026",
+   "second_quote": "Status of Extension/ Exemption Submissions (as of May 14, \n2026)",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 4. THERE IS NO SINGLE DATE. The heading over the four status figures reads August 24, 2026 and the heading over the bullets that describe the same denials, grants and assessments reads May 14, 2026. Both are carried verbatim and NOTHING DOWNSTREAM MAY PUBLISH ONE OF THEM AS THE DATE OF THE FIGURES."
+  },
+  {
+   "id": "c13",
+   "text": "The statuses are pending determination, extension approved, denied and pending reliability assessment. The figures are 37 Resources and 3,001 MW, 93 Resources and 11,049 MW, 25 Resources and 2,688 MW, and 116 Resources and 13,305 MW.",
+   "quote": "Pending Determination\nExtension Approved\nDenied\nPending Reliability Assessment\n37 Resources\n3,001 MW\n93 Resources\n11,049 MW\n25 Resources\n2,688 MW\n116 Resources\n13,305 MW",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "basis": "measured",
+   "notes": "Page 4. CONFIDENCE IS MEDIUM ON THE PAIRING, NOT ON THE CHARACTERS. The four labels and the eight figures are two separate blocks in the extraction, so which label owns which pair is read from order. Three of the four pairings are corroborated independently by the bullets at c14. THE MEGAWATT FIGURES ARE PAIRED TO LABELS BY EXTRACTION ORDER ALONE. Every numeral is ERCOT's own and none was summed, converted or rounded. Any slide that pairs a status with a megawatt figure must carry that caveat."
+  },
+  {
+   "id": "c14",
+   "text": "ERCOT states that it denied extension or exemption requests for 25 inverter based resources, primarily due to deficient dynamic model data. It granted extension requests for 93 and has a reliability assessment underway for 116.",
+   "quote": "• ERCOT has denied extension and/or exemption requests for 25 IBRs, \nprimarily due to deficient dynamic model data.\n• ERCOT has granted extension requests for 93 IBRs.\n• The Reliability Assessment to determine the impact of an RE’s \nexemption request is underway for 116 IBRs.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "basis": "measured",
+   "notes": "Page 4. The three bullets are contiguous in the extraction, so the quote reproduces their bullet characters and line breaks. These three counts sit under the May 14, 2026 heading at c12, not the August 24, 2026 heading. The reason for the denials, deficient dynamic model data, is ERCOT's own and it is the same failure the modeling row at c22 describes."
+  },
+  {
+   "id": "c15",
+   "text": "ERCOT told the Board it is pursuing targeted mitigations for addressing emerging risks posed by Large Loads.",
+   "quote": "Key Takeaway: ERCOT is pursuing targeted mitigations for addressing emerging risks posed by Large Loads.",
+   "second_quote": "Addressing Emerging Operational Risks Posed by Large Loads",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5. The second quote is the slide title, which the extraction carries after the classification banner 'PUBLIC' on the same line; the banner is not part of the title and is not carried."
+  },
+  {
+   "id": "c16",
+   "text": "The first risk on ERCOT's table is ride-through. ERCOT describes it as sensitive compute equipment tripping offline during normal grid events, which leads to grid imbalance and instability.",
+   "quote": "Sensitive compute equipment trips offline during normal grid events, leading to grid imbalance and instability.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Description cell of the Ride-Through row. The row label itself is hyphenated across two lines in the extraction and the label is not carried as a quote."
+  },
+  {
+   "id": "c17",
+   "text": "The mitigation ERCOT names for the ride-through risk is NOGRR 282 and NPRR 1308, which implement ride-through requirements for Large Computational Loads.",
+   "quote": "NOGRR 282/ NPRR 1308: Implement ride-through requirements for Large Computational Loads.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Mitigation cell of the Ride-Through row. The space after the slash is the source's own and is reproduced. The colon is the source's and published prose must not carry it."
+  },
+  {
+   "id": "c18",
+   "text": "ERCOT records the ride-through mitigation as already in force. The utility commission approved NOGRR 282 and NPRR 1308 in July, effective on August 1st.",
+   "quote": "The PUCT approved NOGRR 282/ NPRR 1308 in July, effective on August 1.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Status cell of the Ride-Through row. THE SOURCE STATES NO YEAR for either July or August 1, so none is asserted here and none may be added downstream. This is ERCOT reporting a commission action, and it is the only one of the three mitigations the slide records as effective."
+  },
+  {
+   "id": "c19",
+   "text": "The second risk on ERCOT's table is oscillations. ERCOT's description is that certain data center processes can oscillate in a way that damages grid equipment.",
+   "quote": "Certain data centers processes can oscillate in a way that damages grid equipment.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Description cell of the Oscillations row. THE SOURCE READS 'data centers processes', WITH THE PLURAL, which is the document's own wording and is reproduced character for character. A slide quoting this cell must quote it as ERCOT wrote it or paraphrase it outside quotation marks."
+  },
+  {
+   "id": "c20",
+   "text": "The mitigation ERCOT names for the oscillations risk is a draft NOGRR that ensures Large Load processes do not oscillate in a manner that would cause grid damage.",
+   "quote": "Draft NOGRR: Ensures Large Load processes do not oscillate in a manner that would cause grid damage. [More details on next slide.]",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Mitigation cell of the Oscillations row. The bracketed cross reference is part of the cell and is carried rather than trimmed. The rule is called 'Draft NOGRR' here and carries no number, which is the absence recorded at c34 and a1."
+  },
+  {
+   "id": "c21",
+   "text": "ERCOT records the oscillations mitigation as not yet filed. It plans to submit the NOGRR in September or October, and that submission window is the only timing the presentation gives for this risk.",
+   "quote": "ERCOT plans to submit NOGRR in September or October.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Status cell of the Oscillations row. The quote proves the first sentence outright. THE SECOND SENTENCE IS AN ABSENCE, recorded in full at a3, and confidence is medium for that reason. The source states no year. The contrast a deck may draw is that the ride-through row at c18 carries an effective date and this row carries none."
+  },
+  {
+   "id": "c22",
+   "text": "The third risk on ERCOT's table is modeling. ERCOT states that dynamic models for Large Loads have proven to be inaccurate and are therefore inadequate for studying their grid impacts.",
+   "quote": "Dynamic models for Large Loads have proven to be inaccurate and thus are inadequate for studying their grid impacts.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Description cell of the Modeling row. This is the grid operator's own assessment of its own study tools, in its own presentation to its own Board. It is corroborated inside the same document by c14, where deficient dynamic model data is given as the primary reason 25 resources were denied."
+  },
+  {
+   "id": "c23",
+   "text": "ERCOT states that it is working with Texas A&M University on developing more accurate models.",
+   "quote": "ERCOT is working with Texas A&M University on developing more accurate models.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Mitigation cell of the Modeling row. Texas A&M University is the only institution other than ERCOT and the PUCT named anywhere in the document, which is the absence recorded at a2."
+  },
+  {
+   "id": "c24",
+   "text": "The second mitigation ERCOT names in the modeling row is PGRR 144, which introduces model quality requirements for Large Loads.",
+   "quote": "PGRR 144: Introduces model quality requirements for Large Loads.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the second entry in the Mitigation cell of the Modeling row. The presentation writes the number with a space as 'PGRR 144'; the revision request's own page writes it closed up as 'PGRR144', which is why both forms appear in this file and neither was normalised."
+  },
+  {
+   "id": "c25",
+   "text": "ERCOT states that Texas A&M has released a new model for crypto mining facilities and is working on a data center model.",
+   "quote": "Texas A&M has released a new model for crypto mining facilities and is working on a data center model.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the Status cell of the Modeling row. The source says 'a new model for crypto mining facilities' and the source's wording is what is carried. No date is given for the release and none may be inferred. This is ERCOT reporting on a third party's work rather than the university saying it."
+  },
+  {
+   "id": "c26",
+   "text": "ERCOT records the modeling mitigation as at the Board this month. TAC endorsed PGRR 144 in August and it is up for Board consideration in September.",
+   "quote": "TAC endorsed PGRR 144 in August and is up for Board consideration in September.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 5, the second entry in the Status cell of the Modeling row. THE PRESENTATION GIVES ONLY THE MONTH. The exact vote date of 08/26/2026 comes from the revision request's own page at c39 and the two claims are kept separate."
+  },
+  {
+   "id": "c27",
+   "text": "ERCOT states that Large Loads, particularly those associated with data center AI training processes, can produce rapid fluctuations in active power consumption. It states that those variations can induce perturbations on synchronous generator shafts and potentially result in equipment fatigue or damage.",
+   "quote": "Large Loads, particularly those associated with data center AI training processes, are capable of producing rapid fluctuations in active power consumption. These variations can induce perturbations on synchronous generator shafts and potentially result in equipment fatigue or damage.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6, the first bullet on the slide headed Draft NOGRR: Large Load MW Variation Challenges. THE MODAL VERBS ARE THE SOURCE'S AND MUST SURVIVE INTO ANY COPY. ERCOT says the variations 'can induce' and 'potentially result in' fatigue or damage, and the document nowhere states that fatigue or damage has occurred in ERCOT. That absence is recorded at c35 and a4."
+  },
+  {
+   "id": "c28",
+   "text": "ERCOT states that several industry events and actual load profiles have highlighted the concern. It states that since July 2025 it has collaborated with industry experts and engaged stakeholders to investigate these risks.",
+   "quote": "Several industry events and actual load profiles have highlighted this concern. Since July 2025, ERCOT collaborated with industry experts and engaged stakeholders to investigate these risks.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6, the second bullet. THE ONLY DATE THE SOURCE GIVES IS 'Since July 2025'. No duration was computed here and none may be computed downstream in prose. If the deck wants an elapsed time it must be produced in Python from July 2025 and the run date, and labelled as computed."
+  },
+  {
+   "id": "c29",
+   "text": "ERCOT states that its draft NOGRR, named Large Load MW Variation Requirements, will recommend a limit of 10 MW per 5 seconds for power variation in Large Loads. It states the proposal aims to manage reliability risks while facilitating Resource and Large Load interconnections.",
+   "quote": "Consequently, ERCOT’s draft NOGRR, Large Load MW Variation Requirements, will recommend a limit of 10 MW per 5 seconds for power variation in Large Loads. This proposal aims to manage reliability risks while facilitating Resource and Large Load interconnections.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "basis": "measured",
+   "notes": "Page 6, the third bullet. The curly apostrophe in ERCOT's is the PDF's own. BOTH NUMERALS ARE ERCOT'S OWN AND ARE CARRIED IN ERCOT'S OWN UNITS. 10 MW per 5 seconds must never be converted to a per second, per minute or megawatt per second rate in prose, and the limit is a recommendation in a draft rather than a requirement in force."
+  },
+  {
+   "id": "c30",
+   "text": "ERCOT's stated takeaway is that it plans to propose a NOGRR. Its purpose is to lower the risk of fatigue or damage to synchronous generators that may be caused by Large Load power fluctuations.",
+   "quote": "Key Takeaway: ERCOT plans to propose a NOGRR to lower the risk of fatigue or damage to synchronous generators that may be caused by Large Load power fluctuations.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6. 'may be caused' is the source's own hedge and is the third place in the document where the harm is stated as possible rather than as observed. See c27, c19 and a4."
+  },
+  {
+   "id": "c31",
+   "text": "ERCOT states that continuous monitoring and enhanced situational awareness are also essential, and that additional NOGRRs may be submitted to strengthen monitoring requirements.",
+   "quote": "Continuous monitoring and enhanced situational awareness are also essential. Additional NOGRRs may be submitted to strengthen monitoring requirements.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6, the fourth and final bullet. 'may be submitted' is a possibility rather than a plan and must not be reported as a fourth mitigation."
+  },
+  {
+   "id": "c32",
+   "text": "The chart on the final slide is credited to a paper on the arxiv preprint server.",
+   "quote": "Source: https://arxiv.org/abs/2508.14318",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6, the credit line beneath the chart. CONFIDENCE IS MEDIUM ON PLACEMENT, NOT ON CHARACTERS. The arxiv identifier is reproduced digit for digit. THE PAPER ITSELF WAS NOT FETCHED OR VERIFIED THIS RUN, so nothing may be said about its contents, its authors or its title. This claim states only that ERCOT credited that address."
+  },
+  {
+   "id": "c33",
+   "text": "The chart on the final slide is captioned as showing an actual data center in ERCOT, and the presentation names that data center nowhere. It names no company and no generator anywhere in its six pages.",
+   "quote": "An actual data center in ERCOT",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6, the last line of the document. The caption carries no terminal full stop and none was added. THE FIRST HALF OF THE TEXT IS PROVED BY THE QUOTE AND THE SECOND HALF IS AN ABSENCE, recorded in full with its method at a2, which is why confidence is medium. The honest form of this line is that the presentation names none of them, never that no such data center is known to ERCOT."
+  },
+  {
+   "id": "c34",
+   "text": "The slide describing the draft rule heads it Draft NOGRR, and the presentation identifies that rule by its name rather than by a number anywhere in the document.",
+   "quote": "Draft NOGRR: Large Load MW Variation Challenges",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6, the slide title, which the extraction carries after the classification banner 'PUBLIC' on the same line; the banner is not part of the title. THE SECOND HALF OF THE TEXT IS AN ABSENCE, recorded with its method at a1. Every NOGRR the document numbers is an existing one, 245 and 282. Note the slide title says Challenges and the rule name in the body says Requirements, and the two are not the same string."
+  },
+  {
+   "id": "c35",
+   "text": "The presentation states the equipment fatigue or damage as something the power variations can potentially cause, and never as something that has happened on the ERCOT system. What it points to instead is several industry events and actual load profiles that highlighted the concern.",
+   "quote": "Several industry events and actual load profiles have highlighted this concern.",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026",
+   "source_date": "2026-09-07",
+   "notes": "Page 6, the opening sentence of the second bullet. THIS IS AN ABSENCE CLAIM and its method is recorded at a4. Every statement of harm in the document is modal, which is 'can induce' and 'potentially result' at c27, 'can oscillate' at c19, 'would cause' at c20 and 'may be caused' at c30. A DECK MAY SAY THE PRESENTATION DESCRIBES A RISK. IT MAY NOT SAY GENERATORS HAVE BEEN DAMAGED IN TEXAS."
+  },
+  {
+   "id": "c36",
+   "text": "PGRR 144 is titled Dynamic Model Submission and Review Requirements for Large Loads including Large Computational Loads.",
+   "quote": "Title Dynamic Model Submission and Review Requirements for Large Loads including Large Computational Loads",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run and returned character for character against the flattened text saved at out/2026-09-15/sources/ercot-pgrr144.txt. The quote joins the field label 'Title' to its value as the flattened page carries them adjacently. The presentation at c24 writes the number with a space and this page writes it closed up. Neither form was normalised."
+  },
+  {
+   "id": "c37",
+   "text": "The revision request's status is pending, its next group is the Board, and its next step is Board for consideration.",
+   "quote": "Next Group BOARD Next Step Board for consideration Status Pending",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run. The upper case BOARD is the page's own. This corroborates the presentation's status cell at c26 from a second ERCOT surface. THE PAGE IS LIVE AND THESE FIELDS WILL CHANGE ONCE THE BOARD ACTS, so the retrieved date is load bearing on this claim."
+  },
+  {
+   "id": "c38",
+   "text": "The revision request was posted on February 18th, 2026, its sponsor is ERCOT and it is not marked urgent. It addresses Planning Guide sections 6.2, 9.2.1, a new 9.2.1.5 and 9.6.",
+   "quote": "Date Posted: Feb 18, 2026",
+   "second_quote": "Sponsor: ERCOT",
+   "third_quote": "Sections: 6.2, 9.2.1, 9.2.1.5 (new), and 9.6",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run, from the Background block. 'Urgent: No' is also on the page and is stated in the text without a separate quote. THE SPONSOR IS ERCOT ITSELF, which is what makes this a rule the grid operator wrote for its own use rather than one brought to it."
+  },
+  {
+   "id": "c39",
+   "text": "The Technical Advisory Committee voted on August 26th, 2026 to recommend approval of PGRR144. The recommendation is the one the Reliability and Operations Subcommittee made in its August 6th report, and the motion passed.",
+   "quote": "08/26/2026 TAC To recommend approval of PGRR144 as recommended by ROS in the 8/6/26 ROS Report Passed",
+   "second_quote": "08/26/2026 TAC Recommended for Approval Board for consideration",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run. The primary quote is the first row of the Voting Record table and the second quote is the first row of the Action table. The dates are the page's own numeric forms and were not reformatted. THE PAGE RECORDS THE MOTION AND THE RESULT AND DOES NOT PUBLISH A VOTE TALLY, so no count of votes for or against may be asserted. This is the exact date behind ERCOT's 'TAC endorsed PGRR 144 in August' at c26."
+  },
+  {
+   "id": "c40",
+   "text": "The revision request states that it clarifies requirements for submitting dynamic model data for Large Loads to ensure accurate representation of each Large Load in ERCOT's models.",
+   "quote": "This Planning Guide Revision Request (PGRR) clarifies requirements for submitting dynamic model data for Large Loads to ensure accurate representation of each Large Load in ERCOT's models.",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run, the opening sentence of the Description field. CONFIDENCE IS MEDIUM ON ONE CHARACTER ONLY, the apostrophe in ERCOT's, which both a markdown conversion and a flatten returned straight and which the underlying page may carry curly. Every word and every other mark returned identically across the two reads."
+  },
+  {
+   "id": "c41",
+   "text": "The revision request requires dynamic model data to be submitted in formats compatible with the software platforms described in the Dynamics Working Group Procedure Manual. It names those platforms as PSS/E, PSCAD and TSAT.",
+   "quote": "The PGRR requires submission of this data using formats compatible with the software platforms described in the Dynamics Working Group Procedure Manual (i.e., PSS/E, PSCAD, and TSAT).",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run, the second sentence of the Description field. This is the concrete content behind the presentation's one line summary at c24, which says only that PGRR 144 introduces model quality requirements for Large Loads."
+  },
+  {
+   "id": "c42",
+   "text": "The revision request requires model quality tests demonstrating voltage ride-through capability for all Large Loads. It also requires converter model validation reports benchmarking PSCAD models against actual hardware tests for all Large Computational Loads.",
+   "quote": "This PGRR also requires model quality tests demonstrating voltage ride-through capability for all Large Loads and converter model validation reports benchmarking PSCAD models against actual hardware tests for all Large Computational Loads (LCLs), ensuring high-quality and accurate models.",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run, the third sentence of the Description field. This is the sentence that connects the modeling row to the ride-through row, because the model quality test the rule demands is a demonstration of the very capability NOGRR 282 and NPRR 1308 made mandatory at c18."
+  },
+  {
+   "id": "c43",
+   "text": "The revision request requires the interconnecting entity to submit updated dynamic models for the as-built facility before requesting initial energization. Those models carry documentation of any differences from the model data used in the quarterly stability assessment, and an attestation that the as-built data reflect the actual field settings.",
+   "quote": "Finally, the PGRR requires the ILLE to submit updated dynamic models for the \"as-built\" LCL facility prior to requesting Initial Energization along with documentation identifying any differences from previously submitted model data used in the ERCOT quarterly stability assessment (\"QSA\") and an attestation that the as-built data reflect the actual field settings.",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "medium",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run, the closing sentence of the Description field. CONFIDENCE IS MEDIUM ON FOUR CHARACTERS ONLY, the quotation marks around as-built and QSA, which both reads returned straight and which the underlying page may carry curly. ILLE is the page's own abbreviation for Interconnecting Large Load Entity."
+  },
+  {
+   "id": "c44",
+   "text": "The revision request was tabled on March 5th, 2026 and referred to the Dynamics Working Group and the Planning Working Group. The Reliability and Operations Subcommittee then recommended approval on July 9th, 2026 and endorsed it to the Technical Advisory Committee on August 6th, 2026.",
+   "quote": "03/05/2026 ROS To table PGRR144 and refer the issue to the Dynamics Working Group (DWG) and the Planning Working Group (PLWG) Passed",
+   "second_quote": "07/09/2026 ROS Recommended for Approval ROS for Impact Analysis consideration",
+   "third_quote": "08/06/2026 ROS Recommended for Approval TAC for consideration",
+   "url": "https://www.ercot.com/mktrules/issues/PGRR144",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-15",
+   "confidence": "high",
+   "source_title": "ERCOT Market Rules, PGRR144",
+   "source_date": "2026-02-18",
+   "notes": "Re-fetched live this run. The primary quote is the last row of the Voting Record table and the second and third quotes are rows of the Action table. NO ELAPSED TIME IS ASSERTED. The gap between the February 18th posting at c38 and the August 26th TAC vote at c39 is arithmetic and must be computed in Python if the deck wants it."
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "The brief's phrasing of the oscillations risk as 'certain data center processes can oscillate in a way that damages grid equipment'.",
+   "reason": "The presentation reads 'Certain data centers processes can oscillate in a way that damages grid equipment', with the plural on centers. The brief's form is a tidied paraphrase and a quotation mark may never be put around it. The source string is carried verbatim at c19."
+  },
+  {
+   "finding": "A single date on which the NOGRR 245 extension and exemption statuses are stated to be current.",
+   "reason": "THE SLIDE CARRIES TWO AND THEY ARE FOUR MONTHS APART. The heading over the four figures reads 'Extension and/or Exemption Submission Status as of August 24, 2026' and the heading over the bullets describing the same denials, grants and assessments reads 'Status of Extension/ Exemption Submissions (as of May 14, 2026)'. Picking either one would be the run resolving a contradiction the document has not resolved. Both are carried verbatim at c12."
+  },
+  {
+   "finding": "The 23 percent increase in gas generation interconnection requests as a figure derived from the 65 GW and 80 GW totals.",
+   "reason": "Not rejected for accuracy. The 23% is ERCOT's own numeral on page 1 and is carried as such at c5. It was not recomputed here and no percentage anywhere in this file was produced by arithmetic, because this project does not generate numerals."
+  },
+  {
+   "finding": "Any statement of how long ERCOT has been investigating the power variation risk, expressed as a duration such as more than a year or fourteen months.",
+   "reason": "The presentation gives only 'Since July 2025'. A duration is date arithmetic against the run date and this project never performs it in prose. The source phrase is carried at c28 and the showrunner may compute an elapsed time in Python and label it."
+  },
+  {
+   "finding": "The framing that the three mitigations sit at three different stages of repair.",
+   "reason": "Not in the document and not carried as a claim. The three status cells are carried separately at c18, c21 and c26 and each says what ERCOT wrote. The reading that they represent three stages is the deck's own argument and must be presented as the deck's, not inside a quotation and not attributed to ERCOT."
+  },
+  {
+   "finding": "Pairing each of the four NOGRR 245 statuses with its megawatt figure at high confidence.",
+   "reason": "The four labels and the eight figures are separate blocks in the pypdf extraction and no renderer was available this run to confirm the slide's layout. The three resource counts are corroborated by the bullets at c14. The megawatt figures are paired by extraction order alone. c13 carries the whole block verbatim at medium confidence."
+  },
+  {
+   "finding": "Any claim about the contents, authors or title of the arxiv paper credited on page 6.",
+   "reason": "The paper at https://arxiv.org/abs/2508.14318 was not fetched or read this run, and arxiv.org is not in SOURCES_REGISTRY.md. c32 states only that ERCOT printed that address under the chart. Nothing may be said about what the paper contains."
+  },
+  {
+   "finding": "A verbatim quote of the slide title on page 5 or page 6 including the leading word PUBLIC.",
+   "reason": "PUBLIC is the deck's classification banner and the extraction places it at the start of the same line as the title on both slides. It is not part of either title and is excluded from the quotes at c15 and c34."
+  },
+  {
+   "finding": "The brief's description of the Texas A&M work as a released 'crypto mining model'.",
+   "reason": "ERCOT's words are 'a new model for crypto mining facilities'. The paraphrase is close and it is still a paraphrase, so the source wording is what c25 carries. The presentation also gives no release date, so none may be stated."
+  },
+  {
+   "finding": "Reading the presentation's 'TAC endorsed PGRR 144 in August' as evidence of the August 26th, 2026 vote date.",
+   "reason": "Not a contradiction and not a merge. The presentation gives only the month and the revision request's page gives the date and the motion. They are two ERCOT surfaces and they agree, so they are carried as two claims, c26 and c39, and neither quote may be presented as carrying the other's detail."
+  },
+  {
+   "finding": "Any assertion that equipment fatigue, damage to synchronous generators or a damaging oscillation has actually occurred in ERCOT.",
+   "reason": "Every statement of harm in the presentation is modal. 'can induce' and 'potentially result in' at c27, 'can oscillate' at c19, 'would cause' at c20 and 'may be caused' at c30. The nearest thing to an occurrence is 'Several industry events and actual load profiles have highlighted this concern', which names neither damage nor ERCOT as the location. Recorded as an absence at c35 and a4."
+  },
+  {
+   "finding": "A quote of the page 2 fuel type totals line as a confirmed contiguous string on the rendered slide.",
+   "reason": "Not rejected for accuracy. It is a chart summary line and WebFetch could not parse the PDF while this container has no pdftoppm, so whether the rendered slide carries it as one string or as separate legend labels the extractor joined cannot be confirmed. Carried at c7 at medium confidence with that stated."
+  }
+ ],
+ "absences": [
+  {
+   "id": "a1",
+   "claim_id": "c34",
+   "assertion": "The draft rule on Large Load power variation has no NOGRR number in the presentation. It is identified only as Draft NOGRR and by the name Large Load MW Variation Requirements.",
+   "document": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026, filed at 2026/09/07",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "how_it_was_looked_for": "Every occurrence of the string NOGRR in the full six page pypdf extraction was read in place. There are eight. Two attach to a number, which are NOGRR 245 on pages 1 and 4 and NOGRR 282 on page 5, and both are existing rules. The other six refer to the draft, and they read 'proposing a NOGRR to address risks from undesirable oscillations' on page 1, 'Draft NOGRR:' twice on page 5, 'ERCOT plans to submit NOGRR in September or October' on page 5, 'Draft NOGRR: Large Load MW Variation Challenges' and 'ERCOT's draft NOGRR, Large Load MW Variation Requirements' on page 6, plus 'Additional NOGRRs may be submitted'. No numeral follows the word in any of the six.",
+   "what_it_does_not_prove": "It says nothing about whether ERCOT has since assigned a number, and it is not evidence that no number exists. A NOGRR receives its number when it is filed, and c21 says ERCOT had not filed it as of this presentation. The honest form is that the presentation gives none."
+  },
+  {
+   "id": "a2",
+   "claim_id": "c33",
+   "assertion": "The presentation names no data center, no company and no generator anywhere in its six pages.",
+   "document": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026, filed at 2026/09/07",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "how_it_was_looked_for": "The full six page pypdf extraction was read line by line and every capitalised token examined. The complete set of proper names in the document is ERCOT, Jeff Billo, Texas A&M University, PUCT, TAC, ROS and the arxiv address on page 6. Everything else capitalised is a defined term such as Large Load, Large Computational Loads, Inverter Based Resources, Resource Entities, Batch Zero, Planning Guide, Generator Interconnection Status, a fuel type, a month or a rule number. The chart on page 6 plots a real facility and its caption reads 'An actual data center in ERCOT' with no operator, no county and no capacity.",
+   "what_it_does_not_prove": "It does not mean ERCOT does not know which facility the chart shows, and it is not evidence about any non public list. Per site large load metering is confidential. The honest form is that this presentation names none of them."
+  },
+  {
+   "id": "a3",
+   "claim_id": "c21",
+   "assertion": "The presentation gives no date on which the power variation and oscillation risk would be closed. The only timing it offers for the draft rule is a submission window of September or October.",
+   "document": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026, filed at 2026/09/07",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "how_it_was_looked_for": "Every date and every time expression in the full six page pypdf extraction was enumerated and classified. The complete set is September 14-15, 2026 on the cover, the fuel type chart's year axis of 2026 to 2033, Q4 2026 twice for the NOGRR 245 analysis, August 24, 2026 and May 14, 2026 on the NOGRR 245 statuses, 'in July' and 'on August 1' for NOGRR 282 and NPRR 1308, 'in September or October' for the draft NOGRR, 'in August' and 'in September' for PGRR 144, 'Since July 2025' for the investigation, and 'the last 60 days' for the queue activity. None of them attaches an effective date, a compliance date or a closure date to the draft NOGRR. The ride-through row was checked specifically as the control, and it does carry one, 'effective on August 1'.",
+   "what_it_does_not_prove": "A submission is not an approval and an approval is not an effective date, so this is not evidence that the risk will remain open. It also says nothing about what ERCOT may have stated elsewhere. The honest form is that this presentation gives no date."
+  },
+  {
+   "id": "a4",
+   "claim_id": "c35",
+   "assertion": "The presentation does not say that equipment fatigue or damage has occurred on the ERCOT system. It states the harm as possible throughout.",
+   "document": "ERCOT, Item 10: Interconnection and Grid Analysis Update, Board of Directors Meeting, September 14-15, 2026, filed at 2026/09/07",
+   "url": "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf",
+   "how_it_was_looked_for": "Every sentence in the full six page pypdf extraction mentioning fatigue, damage, oscillation or a generator shaft was read in place and its verb examined. There are five and every one is modal or conditional. Page 5 has 'can oscillate in a way that damages grid equipment' and 'would cause grid damage'. Page 6 has 'can induce perturbations on synchronous generator shafts and potentially result in equipment fatigue or damage', the chart annotation 'Could cause', and the Key Takeaway 'fatigue or damage to synchronous generators that may be caused by Large Load power fluctuations'. The document was then searched for any past tense assertion of harm and the only past tense sentence in the neighbourhood is 'Several industry events and actual load profiles have highlighted this concern', which reports events and data rather than damage and does not place them in ERCOT.",
+   "what_it_does_not_prove": "It is not evidence that no such damage has occurred, in ERCOT or elsewhere, and the phrase 'Several industry events' plainly points at something. It proves only that this document does not assert it, which is the only form a deck may publish."
+  }
+ ]
+}

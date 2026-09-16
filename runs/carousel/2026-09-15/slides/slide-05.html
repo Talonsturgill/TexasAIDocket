@@ -1,0 +1,181 @@
+<!doctype html>
+<!-- CAROUSEL 25, frame 5 of 9. Archetype DOCUMENT. A PAPER frame, so it carries the deck's accent.
+     ERCOT's own three-row risk table, drawn at page size on the work desk. THE EVIDENCE.
+     NO ROW IS COLOURED, FILLED OR RANKED. Colouring one row ranks three risks, a ranking is a
+     severity ramp, and a severity ramp is a verdict a presentation marked for information only
+     does not make. The accent is on the sheet's own top and bottom rules and nowhere inside. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --desk:#161C16; --bond:#F4F1E2; --page:#141A12; --dim:#98A18C; --accent:#2F7D57; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--desk); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#tbl { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:214px; width:920px; font-family:"Fraunces", serif; font-weight:700;
+          font-size:64px; line-height:1.03; letter-spacing:-0.02em; color:var(--bond); font-variation-settings:"opsz" 144; z-index:6; }
+  .dek { position:absolute; left:80px; top:330px; width:900px; font-size:25px; line-height:1.38; color:var(--dim); z-index:6; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:var(--dim); white-space:nowrap; z-index:20; }
+  /* THE SOURCE LINE IS SET DOWN ON THIS FRAME ALONE, because this frame alone overflows.
+     TXLAYOUT mounts .src at left 80 with nowrap and no ceiling, and the site line is anchored at
+     right 80 with nowrap. This frame's src carries seven claim ids: 45 characters of mono at 24px
+     with 0.07em of tracking is 724px, so it ends at x 804 and the site line starts at x 727, and
+     the two printed through each other as DOCKETexasaidocket.com at full size and at 432px. At
+     19px with 0.05em the same string is 573px and ends at 653, which clears it by 74px. The
+     general repair belongs in txlayout.js and is written into this run's upgrade proposals: a
+     furniture line with no ceiling is a defect waiting for the next long claim list. */
+  .src { font-size:19px !important; letter-spacing:0.05em !important; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="tbl" viewBox="0 0 1080 1350" aria-hidden="true"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three risks. Three states of repair.</h1>
+<p class="dek">One rule in force. One at the board this month. One not written, and it carries no number.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, { kicker: "ERCOT, Item 10", kicker2: "Emerging operational risks posed by Large Loads",
+                                    counter: "05 / 09", src: "c15 c16 c18 c19 c21 c22 c26   TEXAS AI DOCKET", ink: "#98A18C" });
+    // The sheet reaches the foot of this frame, so the two lines that land ON IT take the page's
+    // own ink. Furniture colour follows the ground it prints on, never the deck's default.
+    document.getElementById("site").style.color = "#3E4738";
+    Array.prototype.forEach.call(document.querySelectorAll(".src"), function (e) { e.style.color = "#3E4738"; });
+    TX.fitText(document.getElementById("hook"), { min: 52, max: 64, maxLines: 2 });
+    TX.reseed(20260915);
+    var cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    var SH = { x: 54, y: 432, w: 1006, h: 918 };   // the sheet, cropped by the bottom edge
+    // ONE TURN, in one place, read by the canvas and by the SVG that prints on it. 0.7 degrees
+    // is the middle of the dossier's own 0.4 to 1.2.
+    var TURN = 0.7 * Math.PI / 180, SHC = [SH.x + SH.w / 2, SH.y + SH.h / 2];
+
+    TXINK.print(cx, {
+      ground: "#161C16", ink: "#D8DCCE", fibre: 0.05, seed: 515,
+      screen: { mode: "line", cell: 5, angle: 66, gamma: 1.05, floor: 0.04 },
+      edges: { threshold: 24, width: 1.2, alpha: 0.7, dx: 1.0, dy: -0.9 },
+      draw: function (a) {
+        a.fillStyle = "#0C100C"; a.fillRect(0, 0, W, H);
+        // the desk, lit from frame left by the deck's one declared light
+        var g = a.createLinearGradient(0, 120, 0, H);
+        g.addColorStop(0, "#232A21"); g.addColorStop(0.5, "#49523F"); g.addColorStop(1, "#1A211A");
+        a.fillStyle = g; a.fillRect(0, 120, W, H - 120);
+        var side = a.createLinearGradient(0, 0, W, 0);
+        side.addColorStop(0, "rgba(212,190,146,0.28)"); side.addColorStop(0.55, "rgba(0,0,0,0)");
+        side.addColorStop(1, "rgba(0,0,0,0.44)");
+        a.fillStyle = side; a.fillRect(0, 120, W, H - 120);
+        // the bearing pedestal's foot behind the sheet, which is what places the paper in the hall
+        a.fillStyle = "#2E362B";
+        a.beginPath(); a.moveTo(690, 120); a.lineTo(1010, 120); a.lineTo(968, 372); a.lineTo(724, 372);
+        a.closePath(); a.fill();
+        a.fillStyle = "rgba(226,206,158,0.22)";
+        a.beginPath(); a.moveTo(690, 120); a.lineTo(772, 120); a.lineTo(744, 372); a.lineTo(724, 372);
+        a.closePath(); a.fill();
+        // the sheet's cast shadow, thrown to frame right from the declared light, TURNED with
+        // the sheet. The dossier asks for 0.4 to 1.2 degrees off square and the first cut drew
+        // it at zero, which a critic named for what it is: a sheet at exactly 0 degrees reads as
+        // a screenshot of a table rather than as a page somebody put down on a desk.
+        a.save(); a.translate(SHC[0], SHC[1]); a.rotate(TURN); a.translate(-SHC[0], -SHC[1]);
+        a.fillStyle = "rgba(0,0,0,0.6)"; a.fillRect(SH.x + 15, SH.y + 16, SH.w, SH.h);
+        a.fillStyle = "rgba(0,0,0,0.45)"; a.fillRect(SH.x + 5, SH.y - 5, SH.w, 16);
+        a.restore();
+      },
+      over: function (c) {
+        // A SOLID BAND behind the hook and the dek. Type never sits on a screen, and this
+        // frame's own desk is screened, so the band is painted rather than hoped for.
+        c.fillStyle = "#11170F"; c.fillRect(0, 0, W, 416);
+        var fade = c.createLinearGradient(0, 416, 0, SH.y);
+        fade.addColorStop(0, "rgba(17,23,15,1)"); fade.addColorStop(1, "rgba(17,23,15,0)");
+        c.fillStyle = fade; c.fillRect(0, 416, W, SH.y - 416);
+        // THE PAPER, flat and unscreened, so nothing prints under the type on it. Turned by the
+        // same angle as its own shadow, and by the same constant.
+        c.save(); c.translate(SHC[0], SHC[1]); c.rotate(TURN); c.translate(-SHC[0], -SHC[1]);
+        c.fillStyle = "#F4F1E2"; c.fillRect(SH.x - 4, SH.y - 4, SH.w + 8, SH.h + 8);
+        var pg = c.createLinearGradient(0, SH.y, 0, SH.y + SH.h);
+        pg.addColorStop(0, "rgba(255,255,255,0.4)"); pg.addColorStop(1, "rgba(120,110,80,0.14)");
+        c.fillStyle = pg; c.fillRect(SH.x - 4, SH.y - 4, SH.w + 8, SH.h + 8);
+        c.restore();
+      }
+    });
+
+    var s = document.getElementById("tbl");
+    // EVERY MARK ON THE SHEET TURNS WITH THE SHEET, in one group, so the type and the paper can
+    // never disagree about the angle.
+    var G = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    G.setAttribute("transform", "rotate(" + (0.7) + " " + SHC[0] + " " + SHC[1] + ")");
+    s.appendChild(G);
+    function el(n, at, txt) {
+      var e = document.createElementNS("http://www.w3.org/2000/svg", n);
+      for (var k in at) e.setAttribute(k, at[k]);
+      if (txt != null) e.textContent = txt;
+      G.appendChild(e); return e;
+    }
+    function mono(x, y, t, size, fill, weight) {
+      return el("text", { x: x, y: y, "font-family": "JetBrains Mono, monospace", "font-size": size || 24,
+                          "letter-spacing": "0.03em", fill: fill || "#141A12",
+                          "font-weight": weight || 400 }, t);
+    }
+    function body(x, y, t, size, fill) {
+      return el("text", { x: x, y: y, "font-family": "Manrope, sans-serif", "font-size": size || 24,
+                          fill: fill || "#20271D" }, t);
+    }
+    var L = SH.x + 44, R = SH.x + SH.w - 44;
+
+    // THE SHEET'S OWN RULES, top and bottom, in the accent. The only accent on this frame.
+    el("line", { x1: L, x2: R, y1: SH.y + 46, y2: SH.y + 46, stroke: "#2F7D57", "stroke-width": 11 });
+    el("line", { x1: L, x2: R, y1: SH.y + 776, y2: SH.y + 776, stroke: "#2F7D57", "stroke-width": 11 });
+    mono(L, SH.y + 30, "ERCOT BOARD OF DIRECTORS · ITEM 10 · SEPTEMBER 14TH TO 15TH, 2026", 20, "#5C6553");
+
+    // the column heads
+    var C = [L, L + 232, L + 566], HY = SH.y + 90;
+    // The column heads and the sheet stamp are set up from 17 and 19. This is the frame a
+    // reader checks the deck's argument against, and it carried 6 of the deck's tiny-text
+    // warnings against a 24 px mobile floor. The body stays at 21 because the lines are
+    // pre-split to the columns and setting them up reflows a verbatim quote.
+    mono(C[0], HY, "RISK", 21, "#5C6553");
+    mono(C[1], HY, "DESCRIPTION", 21, "#5C6553");
+    mono(C[2], HY, "MITIGATION AND STATUS", 21, "#5C6553");
+    el("line", { x1: L, x2: R, y1: HY + 16, y2: HY + 16, stroke: "#141A12", "stroke-width": 1.2 });
+
+    // THE THREE ROWS. One weight, one value, no fill on any of them.
+    var rows = [
+      { name: "RIDE-THROUGH",
+        desc: ["Sensitive compute equipment", "trips offline during normal grid", "events, leading to grid imbalance", "and instability."],
+        mit:  ["NOGRR 282 / NPRR 1308.", "Ride-through requirements for", "Large Computational Loads."],
+        st:   ["The PUCT approved NOGRR 282/", "NPRR 1308 in July, effective", "on August 1."] },
+      { name: "OSCILLATIONS",
+        desc: ["Certain data centers processes", "can oscillate in a way that", "damages grid equipment."],
+        mit:  ["Draft NOGRR. Large Load", "processes must not oscillate in a", "manner that would cause damage."],
+        st:   ["ERCOT plans to submit NOGRR", "in September or October."] },
+      { name: "MODELING",
+        desc: ["Dynamic models for Large Loads", "have proven to be inaccurate", "and thus are inadequate for", "studying their grid impacts."],
+        mit:  ["PGRR 144, model quality rules.", "Texas A&M is developing", "more accurate models."],
+        st:   ["TAC endorsed PGRR 144 in", "August and is up for Board", "consideration in September."] }
+    ];
+    var y = HY + 56;
+    rows.forEach(function (r, i) {
+      mono(C[0], y, r.name, 24, "#141A12", 700);
+      r.desc.forEach(function (ln, k) { body(C[1], y + k * 26, ln, 21); });
+      r.mit.forEach(function (ln, k) { body(C[2], y + k * 26, ln, 21); });
+      r.st.forEach(function (ln, k) { body(C[2], y + r.mit.length * 26 + 16 + k * 25, ln, 21, "#141A12"); });
+      var rowH = Math.max(r.desc.length, r.mit.length + r.st.length + 1) * 26 + 28;
+      if (i < rows.length - 1)
+        el("line", { x1: L, x2: R, y1: y + rowH - 22, y2: y + rowH - 22, stroke: "#B7B4A1", "stroke-width": 0.9 });
+      y += rowH;
+    });
+    mono(L, SH.y + 742, "FOR INFORMATION ONLY · NO ACTION IS REQUESTED", 22, "#5C6553");
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

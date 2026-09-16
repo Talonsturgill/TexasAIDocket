@@ -11,7 +11,7 @@ The El Paso City Council's agenda for September 15th, 2026 carries two items fil
 - Public access: Public meeting
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-09-14
+- Last checked: 2026-09-15
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-09-12 · Admitted on the council's own agenda for the September 15th meeting. Neither item has been voted on.
 - 2026-09-14 · Both items are still posted to the council's own agenda and neither has been voted on. Nothing has been added to the agenda that narrows what the two would do to the fixed plate reader cameras.
+- 2026-09-15 · Both items are still posted to the council's own agenda and the meeting they are set for is today. Neither has been voted on and nothing has been filed against either.
 
 ## Evidence
 
