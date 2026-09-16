@@ -213,6 +213,35 @@ Three cheap habits fix it, and none of them costs the writing anything:
 - give the number and the unit. `the rate holds at 46 pixels per day` is checkable.
   `the rate is consistent` is not.
 
+**The frame's own median value band, written in the one form the gate measures.** Added
+2026-09-16, and it is the cheapest checkable item there is, because the number on the other side
+of the comparison is a measurement of the frame rather than anything anybody has to write down.
+
+    the frame's median L* at 432px is between 36 and 52
+    the frame's median L* at 432px is 60 or higher
+    the frame's median L* at 432px is 28 or lower
+    the frame median L* measures 34 plus or minus 8 on the 270 by 338 grid
+
+Three things make it readable and each one was learned by a deck getting it wrong.
+
+- **Say FRAME.** A bare `median L* 44` reads as some region's median, and acceptance items
+  legitimately state those: `the punch column's median L* is at least 10 below the rail face
+  median`. The gate refuses to read one of those as the frame's band, because inventing a number
+  the plan does not contain is worse than missing one.
+- **Say at what size.** `at 432px` is the size a reader receives in the feed, and a median moves
+  with the resampling, so a band with no stated size cannot be settled and the gate reports it as
+  unchecked rather than picking one.
+- **Put the band first and the reasoning after a comma.** `is 45 or higher, which is at least 18
+  above the deck median` reads correctly. The gate stops at the comma, so the sentence can say
+  why without a second number confusing what is being asserted.
+
+**The defect this exists for.** Carousel no. 26 wrote a band into all nine dossiers, measured all
+nine medians, and never compared them. Five of nine frames were outside their own band, three by
+more than twenty points, while the storyboard asserted every one was inside. The first panel came
+back under the bar on all three lenses and the craft judge's one line fix was to make the pixel
+phase do the comparison. `plan_render_check` does it now, at Phase 12b, on the frame's own pixels
+against the frame's own plan.
+
 An item that is genuinely about judgement stays prose, and should. `the void reads as a hole
 rather than as a dark tile at 432px` cannot be mechanised and is one of the best items ever
 written on this deck. The rule is not that every item must be checkable. It is that an item

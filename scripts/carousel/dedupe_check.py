@@ -59,6 +59,21 @@ So the beat of each deck's own docket item is counted and printed beside the fin
 `ledger/docket.json`, which already carries that classification. See the block comment above
 `docket_beats`. Like the standing notes, it never moves the exit code.
 
+THE THIRD BLINDNESS, ADDED 2026-09-16, AND IT IS THE SAME SHAPE ONE LEVEL UP AGAIN
+
+The beat says two decks are about the same KIND OF SUBJECT. It cannot say they were built by
+reading the same KIND OF DOCUMENT. Carousel no. 26 read an NSF award record against a university's
+own release, which is what carousel no. 11 did eighteen days earlier, and two of three judges
+charged it independently while this gate was correctly quiet on words and correctly quiet on the
+beat. `topics.json` asked for this in prose at decks 17, 19, 23 and 26.
+
+So the documents each deck stood on are read out of its own committed `claims.json` and printed
+beside the beat. See the block comment above `registrable`. It never moves the exit code either.
+
+**PASS `--item` AND THE CANDIDATE'S OWN DOCUMENTS ARE COMPARED TOO.** Without it, only the window
+is described, and the report says so rather than printing a clean line about a comparison that
+did not happen.
+
     dedupe_check.py --entities "PUCT, Oncor, Hood County" --keywords "transmission, 765 kV"
     dedupe_check.py --desc "free text description of the candidate"
     dedupe_check.py --item tx-2026-0125 --desc "the candidate"
@@ -304,6 +319,224 @@ def print_beat_report(history: list[dict], cand: str | None) -> None:
           "act.\n")
 
 
+# --------------------------------------------------------------------------- the instrument
+#
+# THE THIRD BLINDNESS, ADDED 2026-09-16, AND THE LEDGER ASKED FOR IT FOUR TIMES FIRST.
+#
+# Two of three judges on carousel no. 26 independently charged the deck for its INSTRUMENT: it
+# reads an NSF award record against the university's own release, which is what carousel no. 11
+# did eighteen days earlier on a robotics award. Topic, entities and keywords all differ, so the
+# fingerprint above is correctly quiet, and the beat is `research-and-science` for both, which the
+# beat report does say. What it does not say is that the two decks read THE SAME KIND OF DOCUMENT.
+#
+# `topics.json` has complained about this in prose at decks 17, 19, 23 and 26. Deck 23's note is
+# the clearest: "Deck 17's angle_note already wrote in capitals that the gate does not compare
+# INSTRUMENT, deck 19 added the field, and nothing reads it."
+#
+# WHY NOT READ THE `instrument` FIELD, WHICH NOW EXISTS. Measured on 2026-09-16: five of the
+# twenty six entries carry one, and eleven of the sixteen inside the window do not, CAROUSEL 11
+# INCLUDED. A gate keyed on that field is structurally unable to see the repeat it was built for,
+# which is a gate that cannot go red on its own defect. The 2026-09-07 comment above predicted
+# exactly this and chose the beat for the same reason.
+#
+# WHAT IS READ INSTEAD. Every deck's own `claims.json` carries the URL of every document it stood
+# on, committed under `runs/carousel/<date>/`, for every deck this project has ever shipped. The
+# documents a deck read ARE its instrument, in data the run already produced, with no new field,
+# no typed vocabulary and nothing for a run to remember. Measured over all 26 shipped decks it
+# names both repeats the ledger recorded by hand:
+#
+#   nsf.gov   2026-08-29 (17 claims) and 2026-09-16 (14), the pair two judges charged today
+#   nih.gov   2026-09-09 (14) and 2026-09-13 (26), the pair deck 23's own note describes
+#
+# THE HONEST LIMIT, stated here rather than left to be inferred. A shared publisher is evidence of
+# a shared instrument and is not proof of one: two ERCOT decks can read a board presentation and a
+# market notice, which are different instruments at one host. And the reverse is invisible, since
+# two clinical studies at two different publishers share no domain. This prints what it measured
+# and decides nothing, exactly like the beat report beside it.
+#
+# IT NEVER CHANGES THE EXIT CODE. A repeated instrument is a variety judgement, four honest decks
+# can share one, and a gate that refused one would be a gate deciding editorial.
+RUNS = REPO_ROOT / "runs" / "carousel"
+
+
+def registrable(host: str) -> str:
+    """The site a URL belongs to: `api.nsf.gov` and `nsf.gov` are one site, so are the two NCBI
+    subdomains. The last two labels, or three where the second to last is a two letter code, so
+    `sos.state.tx.us` does not collapse to `tx.us` and take every Texas county with it.
+    """
+    parts = [p for p in host.lower().strip().split(".") if p]
+    if len(parts) <= 2:
+        return ".".join(parts)
+    if len(parts[-1]) == 2 and len(parts[-2]) <= 3:
+        return ".".join(parts[-3:])
+    return ".".join(parts[-2:])
+
+
+def _hosts(rows: list) -> dict:
+    out: dict = {}
+    for c in rows:
+        if not isinstance(c, dict):
+            continue
+        url = str(c.get("url") or c.get("source_url") or "")
+        m = re.match(r"https?://([^/?#]+)", url)
+        if not m:
+            continue
+        host = m.group(1).lower().split(":")[0]
+        host = host[4:] if host.startswith("www.") else host
+        if host:
+            out[host] = out.get(host, 0) + 1
+    return out
+
+
+def claim_hosts(path: Path) -> dict | None:
+    """Host to claim count for one deck's committed claims file, or None if it cannot be read.
+
+    NONE IS NOT AN EMPTY DICT. A deck whose claims file is missing has not been compared, and
+    reporting that as "no shared documents" is the shape GATE_LESSONS 37 is about.
+    """
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    rows = raw.get("claims") if isinstance(raw, dict) else raw
+    return _hosts(rows) if isinstance(rows, list) else None
+
+
+def item_hosts(item: str) -> dict | None:
+    """The documents the candidate's own docket item stands on, by host."""
+    try:
+        raw = json.loads(DOCKET.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    items = raw.get("items") if isinstance(raw, dict) else raw
+    for i in items or []:
+        if isinstance(i, dict) and str(i.get("id")) == item:
+            return _hosts(i.get("claims") or [])
+    return None
+
+
+def as_sites(hosts: dict | None) -> dict | None:
+    if hosts is None:
+        return None
+    out: dict = {}
+    for host, n in hosts.items():
+        out[registrable(host)] = out.get(registrable(host), 0) + n
+    return out
+
+
+def source_history(ledger: dict, ref: _dt.date, runs: Path | None = None) -> list[dict]:
+    """Every deck inside the window with the hosts its own claims file cites, newest first."""
+    window = int(ledger.get("window_days") or 30)
+    base = runs or RUNS
+    out = []
+    for e in ledger.get("entries") or []:
+        if not in_window(e, ref, window):
+            continue
+        date = str(e.get("date") or "")
+        hosts = claim_hosts(base / date / "claims.json") if date else None
+        out.append({"date": date or "?", "no": e.get("carousel_no"),
+                    "title": (e.get("title") or e.get("topic") or "")[:60],
+                    "hosts": hosts, "sites": as_sites(hosts)})
+    return sorted(out, key=lambda r: str(r["date"]), reverse=True)
+
+
+# TWO LEVELS, REPORTED SEPARATELY, AND THE REASON IS THAT COLLAPSING THEM LIES IN ONE DIRECTION.
+#
+# `api.nsf.gov` and `nsf.gov` are one publisher. `gov.texas.gov` and `sboe.texas.gov` are the
+# Governor's office and the State Board of Education, which are not. Both pairs are subdomains of
+# one registered name, so no rule over the string can tell them apart, and measured over the
+# shipped corpus a site level join puts ten decks under `texas.gov` and buries the two real
+# instrument repeats underneath it.
+#
+# So the exact address is reported as the strong signal, and a shared organisation at DIFFERENT
+# addresses is reported beside it as the weak one, labelled. That keeps `pmc.ncbi.nlm.nih.gov`
+# against `eutils.ncbi.nlm.nih.gov`, which is a real instrument repeat the ledger recorded by
+# hand, and keeps the reader's judgement over `texas.gov`.
+def shared_sources(history: list[dict], cand: dict | None, level: str = "hosts") -> list[dict]:
+    """Addresses (or organisations) read by more than one deck, or by the candidate and a deck."""
+    seen: dict = {}
+    for row in history:
+        for key in (row[level] or {}):
+            seen.setdefault(key, []).append(row)
+    out = []
+    for key, rows in seen.items():
+        by_cand = bool(cand and key in cand)
+        if len(rows) < 2 and not by_cand:
+            continue
+        out.append({"site": key, "candidate": by_cand,
+                    "decks": [{"date": r["date"], "n": (r[level] or {}).get(key, 0)}
+                              for r in rows]})
+    # NEWEST FIRST, NOT LONGEST FIRST. A source four decks in a row have read is a standing habit
+    # of this project and a source YESTERDAY read is the one a reader is about to meet twice, so
+    # the ordering is by the most recent deck on each row. Sorted by run length instead, the
+    # nsf.gov pair two judges charged carousel 26 for sat seventh and off the end of the list,
+    # under four older rows about legistar and the utility commission.
+    out.sort(key=lambda r: r["site"])
+    out.sort(key=lambda r: (r["candidate"], max(d["date"] for d in r["decks"]),
+                            len(r["decks"])), reverse=True)
+    return out
+
+
+def print_source_report(history: list[dict], cand: dict | None, item: str | None) -> None:
+    if not history:
+        return
+    unread = [r for r in history if r["hosts"] is None]
+    known = [r for r in history if r["hosts"]]
+    if not known:
+        print("dedupe: no deck inside the window has a readable claims file, so the documents "
+              "these decks read could not be compared. That is a gap, not a clean result.\n",
+              file=sys.stderr)
+        return
+    print(f"WHAT KIND OF DOCUMENT THE LAST {len(known)} DECK(S) READ, out of each deck's own "
+          f"claims file.\nThe beat above compares SUBJECT. This compares INSTRUMENT, which two "
+          f"judges charged\ncarousel 26 for and which topics.json asked for at decks 17, 19, 23 "
+          f"and 26.\n")
+    for r in history[:6]:
+        hosts = r["hosts"]
+        if hosts is None:
+            print(f"  {r['date']}  claims file not readable  {r['title']}")
+            continue
+        top = ", ".join(f"{s} ({n})" for s, n in
+                        sorted(hosts.items(), key=lambda kv: -kv[1])[:3]) or "no source urls"
+        print(f"  {r['date']}  {top}")
+    strong = shared_sources(history, cand, "hosts")
+    if strong:
+        print("\n  THE SAME ADDRESS, READ BY MORE THAN ONE DECK:")
+        for s in strong[:8]:
+            who = ", ".join(f"{d['date']} ({d['n']})" for d in s["decks"])
+            mark = "  <-- and by this candidate" if s["candidate"] else ""
+            print(f"    {s['site']:<30} {who}{mark}")
+    else:
+        print("\n  No address in the window is read by two decks.")
+    strong_names = {s["site"] for s in strong}
+    weak = [s for s in shared_sources(history, as_sites(cand), "sites")
+            if s["site"] not in strong_names]
+    if weak:
+        print("\n  THE SAME ORGANISATION AT DIFFERENT ADDRESSES, which is weaker evidence and is\n"
+              "  here to be read rather than acted on. One state domain covers many bodies:")
+        for s in weak[:5]:
+            who = ", ".join(f"{d['date']} ({d['n']})" for d in s["decks"])
+            mark = "  <-- and by this candidate" if s["candidate"] else ""
+            print(f"    {s['site']:<30} {who}{mark}")
+    if cand is None:
+        why = (f", because {item} is not in the record" if item else ", because no --item was "
+               "given")
+        print(f"\n  THE CANDIDATE'S OWN DOCUMENTS WERE NOT COMPARED{why}. The window above is "
+              f"what there was to read. Pass --item <docket id> and this names the decks that "
+              f"read the same kind of document.")
+    elif not cand:
+        print("\n  The candidate's item carries no source url, so it has no instrument to "
+              "compare.")
+    if unread:
+        print(f"\n  {len(unread)} deck(s) in the window have no readable claims file: "
+              f"{', '.join(r['date'] for r in unread)}. A row that cannot be read is not a row "
+              f"that agrees.")
+    print("\n  AN INSTRUMENT IS NOT A REPEAT and this NEVER changes the exit code. A shared "
+          "publisher is\n  evidence of a shared instrument, not proof: one host publishes a board "
+          "presentation and a\n  market notice. And two studies at two publishers share no site "
+          "at all, so this can miss.\n")
+
+
 def print_standing_notes(notes: list[dict]) -> None:
     """First, before the verdict, because a lesson printed under a verdict is a lesson skipped."""
     if not notes:
@@ -355,6 +588,9 @@ def run(cand_terms: set[str], ref: _dt.date, item: str | None = None,
                   f"compare. A deck about something the docket does not carry is a deck "
                   f"undermining the site it links to.\n", file=sys.stderr)
         print_beat_report(beat_history(ledger, beats, ref), cand_beat)
+    # THE INSTRUMENT, after the beat and before the fingerprint, because it is the question the
+    # two above cannot answer and the run reads top down.
+    print_source_report(source_history(ledger, ref), item_hosts(item) if item else None, item)
     if not cand_terms:
         print("dedupe_check: the candidate has no distinctive terms. Give --entities, "
               "--keywords or --desc with something specific in it", file=sys.stderr)
@@ -583,6 +819,82 @@ def self_test() -> int:
         newest_beat = rh[0]["beat"] if rh else None
         ok("...and the newest deck's own beat is a run of at least one, by construction",
            beat_run(rh, newest_beat) >= 1, str(rh[:3]))
+
+    # ---- THE INSTRUMENT (2026-09-16) ----------------------------------------------------
+    #
+    # THE DISCRIMINATION FIRST, for the same reason the beat block above states it: a test whose
+    # input cannot tell a working implementation from a broken one is measuring the agreement.
+    # Carousel 11 and carousel 26 are the pair this exists for, and the point is that the WORD
+    # comparison and the BEAT comparison both pass them.
+    d11 = {"date": "2026-08-29", "carousel_no": 11, "docket_item": "tx-2026-0100",
+           "title": "An NSF robotics award at UT Austin",
+           "entities": ["The University of Texas at Austin", "National Science Foundation"],
+           "keywords": ["robotics", "award abstract", "mobile manipulation"]}
+    d26_terms = terms("The University of Texas at Arlington, Fort Worth Police Department, "
+                      "Department of Justice",
+                      "tutor, de-escalation, undergraduate courses, police training")
+    lgi = {"window_days": 30, "entries": [d11]}
+    refi = _dt.date(2026, 9, 16)
+    ok("carousel 26 against carousel 11 is FAINT on words, which is the blindness this is for",
+       (not compare(d26_terms, lgi, refi))
+       or compare(d26_terms, lgi, refi)[0]["score"] < WORTH_READING, str(compare(d26_terms, lgi, refi)))
+
+    ok("a subdomain and its parent are one site", registrable("api.nsf.gov") == "nsf.gov"
+       and registrable("nsf.gov") == "nsf.gov")
+    ok("...and two deep subdomains of one organisation are too",
+       registrable("pmc.ncbi.nlm.nih.gov") == registrable("eutils.ncbi.nlm.nih.gov") == "nih.gov")
+    ok("...and a two letter country code keeps three labels, so sos.state.tx.us is not tx.us",
+       registrable("sos.state.tx.us") == "state.tx.us", registrable("sos.state.tx.us"))
+    ok("...and a bare pair is itself", registrable("ercot.com") == "ercot.com")
+
+    # AGAINST THE REAL SHIPPED CLAIMS FILES, because a fixture written beside a detector agrees
+    # with it. Both decks' files are committed, so this runs in CI too, and the day a run writes
+    # its claim urls under a different key this goes red instead of going quiet.
+    real_ledger = {"window_days": 30, "entries": [
+        {"date": "2026-08-29", "carousel_no": 11, "title": "carousel 11"},
+        {"date": "2026-09-16", "carousel_no": 26, "title": "carousel 26"}]}
+    hist = source_history(real_ledger, refi)
+    ok("both shipped decks' claims files resolve to the documents they read",
+       all(r["hosts"] for r in hist), str([(r["date"], r["hosts"] is None) for r in hist]))
+    strong = shared_sources(hist, None, "hosts")
+    ok("THE INSTRUMENT REPEAT TWO JUDGES NAMED IS FOUND: both decks read api.nsf.gov",
+       any(s["site"] == "api.nsf.gov" and len(s["decks"]) == 2 for s in strong), str(strong))
+    ok("...and the newest deck in the pair is named on the row",
+       any(s["site"] == "api.nsf.gov" and "2026-09-16" in [d["date"] for d in s["decks"]]
+           for s in strong), str(strong))
+
+    # THE SECOND REAL INSTANCE, which the ledger recorded by hand at deck 23 and which is only
+    # visible at the organisation level: two NCBI addresses, four days apart.
+    nih = {"window_days": 30, "entries": [{"date": "2026-09-09"}, {"date": "2026-09-13"}]}
+    weak = shared_sources(source_history(nih, _dt.date(2026, 9, 13)), None, "sites")
+    ok("the clinical literature pair deck 23 wrote up by hand is found at the organisation level",
+       any(s["site"] == "nih.gov" and len(s["decks"]) == 2 for s in weak), str(weak))
+    ok("...and it is NOT claimed at the address level, because the two addresses differ",
+       not any(s["site"].endswith("nih.gov") for s in
+               shared_sources(source_history(nih, _dt.date(2026, 9, 13)), None, "hosts")))
+
+    # TWO DECKS THAT SHARE NOTHING SHARE NOTHING. Without this the assertions above would pass on
+    # an implementation that reported every pair as a repeat.
+    apart = {"window_days": 30, "entries": [{"date": "2026-09-11"}, {"date": "2026-09-09"}]}
+    ok("two decks with no source in common report no shared address",
+       not shared_sources(source_history(apart, _dt.date(2026, 9, 13)), None, "hosts"),
+       str(shared_sources(source_history(apart, _dt.date(2026, 9, 13)), None, "hosts")))
+
+    # A DECK WHOSE CLAIMS FILE CANNOT BE READ KEEPS ITS ROW AND IS REPORTED, never dropped. A
+    # silently shortened history is a count of the wrong set, which reads like a count of the
+    # right one.
+    # 2026-09-06 is inside the window and no deck shipped that day, so there is no run directory.
+    missing = {"window_days": 30, "entries": [{"date": "2026-09-16"}, {"date": "2026-09-06"}]}
+    hm = source_history(missing, refi)
+    ok("a deck with no readable claims file keeps its row with hosts None",
+       len(hm) == 2 and any(r["hosts"] is None for r in hm), str(hm))
+
+    # THE CANDIDATE'S OWN DOCUMENTS, out of the record rather than out of a flag somebody types.
+    cand_hosts = item_hosts("tx-2026-0161")
+    ok("the candidate's own item resolves to the documents it stands on",
+       bool(cand_hosts) and "uta.edu" in cand_hosts, str(cand_hosts))
+    ok("an item the record does not hold reports None rather than an empty comparison",
+       item_hosts("tx-9999-9999") is None)
 
     if failures:
         print(f"\ndedupe_check self-test: {failures} FAILED", file=sys.stderr)
