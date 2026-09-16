@@ -243,6 +243,32 @@ rules:
   # topology stay human owned. The builder refuses a coordinate that DISAGREES with the record
   # rather than picking a side, so the collector can add a gauge and can never move one, which
   # is the property that makes handing it over safe.
+  # THE DECK CHASSIS, and this is the one directory under assets/ a run may create files in.
+  #
+  # A run writes ONE module per deck at `assets/js/deck/<world>.js`: that deck's light, its
+  # material vocabulary and its way of seating type, and nothing else. All nine frames load it,
+  # which is what makes nine frames one deck instead of nine pictures. The sibling product has
+  # done this since it started and this product had never done it once in twenty six decks,
+  # which is most of why the owner reported on 2026-09-16 that the artwork does not flow
+  # together and reads as text boxes thrown on a page.
+  #
+  # THE ASYMMETRY IS THE POINT. `assets/**` above stays human owned, so a run can't rewrite
+  # txpost.js, txdeck.js, the fonts, the art libraries or the county topology. This one
+  # subdirectory is the run's own, so a run CAN build a world. The run may build a world and
+  # may not edit the workshop. Without this carve-out the pre-commit hook refuses the commit
+  # and the whole upgrade fails silently in production, which is the failure this project has
+  # shipped before: a rule stated in prose with nothing in between checking a run can obey it.
+  #
+  # WHAT IT DOES NOT WIDEN. It is one directory and it holds chassis modules only.
+  # `scripts/carousel/deck_chassis.py` refuses a chassis that draws a whole frame, so a run
+  # can't quietly turn its own lane into a template library that every later deck inherits.
+  - path: "assets/js/deck/**"
+    owner: daily
+    note: >
+      The per-run deck chassis, one module per deck, named for that deck's world. Owned by the
+      run because a run that can't write its own chassis can't hold a deck together, and held
+      to primitives by deck_chassis.py because a shared whole frame is a template.
+
   - path: "assets/geo/tx-reservoirs.json"
     owner: gridwatch
     note: >
