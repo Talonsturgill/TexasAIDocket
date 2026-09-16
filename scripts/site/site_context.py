@@ -1311,11 +1311,43 @@ def _join_wrapped(strings: list, claims: list | None = None) -> list:
         s = " ".join(str(raw).split())
         if not s:
             continue
-        if out and _continues(out[-1], s, claims):
+        if out and (_continues(out[-1], s, claims) or _continues_citation(out[-1], s)):
             out[-1] = out[-1] + " " + s
         else:
             out.append(s)
     return out
+
+
+# THE CITATION SPLIT FROM ITS OWN NUMBER, found on carousel no. 26, 2026-09-16, and it cost the
+# deck its central distinction on the public page.
+#
+# Frame 7 sets a footnote ending "…under Grant No." and the grant number beneath it, as the design
+# deliberately does, so they reach copy.json as two strings. `_continues` will not join them and
+# is right not to: the head ends on a full stop, the tail is one token, and the tail opens on a
+# digit, which are three of the six tests it earned the hard way. `_reads_as_prose` then dropped
+# the bare identifier for looking like furniture.
+#
+# What published was "…funded by the U.S. Department of Justice under Grant No." followed straight
+# by the NSF blockquote "FY 2026 = $749,999.00". A reader takes the money for the Justice grant,
+# which is THE ONE INFERENCE this deck's claims file flatly refutes and the whole frame was built
+# to prevent. The deck was right, the transcript was wrong, and nothing on the page said so.
+#
+# Kept as its own rule rather than by loosening `_continues`, because every test in that function
+# was bought by a wrong join. This one cannot join running prose: it demands the head END on an
+# explicit number word and the tail be a SINGLE token carrying a digit and no lowercase letters,
+# which is a citation's shape and not a sentence's.
+_CITES_A_NUMBER = re.compile(r"\b(?:grant|award|docket|case|no|number)\s*\.?\s*(?:no\.?)?\s*$",
+                             re.IGNORECASE)
+_BARE_IDENTIFIER = re.compile(r"^[A-Z0-9][A-Z0-9\-/.]*\d[A-Z0-9\-/.]*\.?$")
+
+
+def _continues_citation(head: str, tail: str) -> bool:
+    """Is `tail` the identifier the sentence `head` just promised and did not print."""
+    if not head or not tail:
+        return False
+    if not _CITES_A_NUMBER.search(head.rstrip("\"'”’)]")):
+        return False
+    return len(tail.split()) == 1 and bool(_BARE_IDENTIFIER.match(tail))
 
 
 # A block the design set in lowercase ON PURPOSE, which announces itself by restarting in
