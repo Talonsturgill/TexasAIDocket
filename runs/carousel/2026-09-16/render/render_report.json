@@ -1,0 +1,2413 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It was built to not tell you.",
+          "x": 84,
+          "y": 188,
+          "w": 880,
+          "h": 234,
+          "font_px": 119.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(7, 0, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              173,
+              779,
+              147
+            ],
+            [
+              84,
+              290,
+              356,
+              147
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A federal grant is paying for a tutor that answers a student with a hint.",
+          "x": 84,
+          "y": 450,
+          "w": 800,
+          "h": 87,
+          "font_px": 31,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(37, 42, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              450,
+              703,
+              42
+            ],
+            [
+              84,
+              493,
+              276,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The hint, at its actual size",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              464,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c15 c10 c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 418,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              418,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1317,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 204.3,
+          "variance": 1059.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "AWARD 2539663 STANDARD GRANT IUSE",
+          "detail": "font-size 18px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Generative Artificial Intelligence tools have created new challenges.",
+          "detail": "font-size 15px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "four undergraduate Industrial Engineering courses at the University of Texas at Arlington, spanning freshman through senior years",
+          "detail": "font-size 15px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The problem, in the government's words.",
+          "x": 84,
+          "y": 176,
+          "w": 900,
+          "h": 187,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(7, 0, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              166,
+              697,
+              112
+            ],
+            [
+              84,
+              259,
+              744,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The award that paid for the tutor says why it exists.",
+          "x": 84,
+          "y": 424,
+          "w": 820,
+          "h": 41,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(42, 47, 58)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              424,
+              676,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AWARD 2539663 STANDARD GRANT IUSE",
+          "x": 163,
+          "y": 528,
+          "w": 492,
+          "h": 28,
+          "font_px": 18,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(58, 63, 74)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              163,
+              528,
+              492,
+              28
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Context-Aware Conversational Tutors for Longitudinal Learning in Engineering Education",
+          "x": 162,
+          "y": 564,
+          "w": 761,
+          "h": 75,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(18, 21, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              163,
+              563,
+              724,
+              43
+            ],
+            [
+              162,
+              596,
+              94,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Generative Artificial Intelligence tools have created new challenges.",
+          "x": 162,
+          "y": 674,
+          "w": 764,
+          "h": 30,
+          "font_px": 15,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(58, 61, 70)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              162,
+              675,
+              337,
+              24
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"students frequently use them to obtain answers rather than develop the reasoning and problem-solving skills that define engineering competence\"",
+          "x": 159,
+          "y": 828,
+          "w": 771,
+          "h": 133,
+          "font_px": 33,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(11, 13, 20)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              160,
+              827,
+              762,
+              51
+            ],
+            [
+              159,
+              869,
+              724,
+              51
+            ],
+            [
+              159,
+              910,
+              144,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "four undergraduate Industrial Engineering courses at the University of Texas at Arlington, spanning freshman through senior years",
+          "x": 158,
+          "y": 1048,
+          "w": 764,
+          "h": 30,
+          "font_px": 15,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(58, 61, 70)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              158,
+              1049,
+              662,
+              27
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The federal award record",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c31 c22 c30 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1601,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 188.9,
+          "variance": 3423.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The courses do not change.",
+          "x": 84,
+          "y": 180,
+          "w": 880,
+          "h": 243,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(7, 0, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              193,
+              701,
+              117
+            ],
+            [
+              112,
+              289,
+              292,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The instructor still teaches. The machine lives in the homework, across four undergraduate courses.",
+          "x": 84,
+          "y": 452,
+          "w": 880,
+          "h": 132,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(37, 42, 52)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              476,
+              715,
+              41
+            ],
+            [
+              112,
+              518,
+              650,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Room one, Arlington",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 c33 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2803,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 99,
+          "variance": 6491.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "SHUCHI DEB, IN THE UNIVERSITY'S RELEASE c5 c11",
+          "detail": "font-size 20px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It started with her own children.",
+          "x": 112,
+          "y": 174,
+          "w": 812,
+          "h": 175,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(242, 244, 247)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              163,
+              767,
+              108
+            ],
+            [
+              112,
+              251,
+              305,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Shuchi Deb is an associate professor at the University of Texas at Arlington. She watched her own children and her students use AI without learning.",
+          "x": 112,
+          "y": 388,
+          "w": 812,
+          "h": 124,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(200, 206, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              388,
+              748,
+              40
+            ],
+            [
+              112,
+              429,
+              758,
+              40
+            ],
+            [
+              112,
+              470,
+              439,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"They were just using AI to finish the assignment,\"",
+          "x": 112,
+          "y": 876,
+          "w": 812,
+          "h": 50,
+          "font_px": 40,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(240, 243, 247)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              874,
+              681,
+              52
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SHUCHI DEB, IN THE UNIVERSITY'S RELEASE c5 c11",
+          "x": 112,
+          "y": 1014,
+          "w": 672,
+          "h": 26,
+          "font_px": 20,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(166, 174, 184)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              1014,
+              672,
+              26
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The origin",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c11 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 354,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              354,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 150,
+          "w": 876,
+          "h": 1,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 501,
+          "w": 876,
+          "h": 1,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 150,
+          "w": 1,
+          "h": 352,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 955,
+          "y": 150,
+          "w": 1,
+          "h": 352,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 150,
+          "w": 876,
+          "h": 352,
+          "by": "plate",
+          "color": "rgba(9, 10, 15, 0.97)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 850,
+          "w": 876,
+          "h": 1,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 1073,
+          "w": 876,
+          "h": 1,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 80,
+          "y": 850,
+          "w": 1,
+          "h": 224,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 955,
+          "y": 850,
+          "w": 1,
+          "h": 224,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 80,
+          "y": 850,
+          "w": 876,
+          "h": 224,
+          "by": "plate",
+          "color": "rgba(9, 10, 15, 0.97)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2685,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 119.1,
+          "variance": 5845.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "FROM THE HEADLINE OF THE UNIVERSITY'S OWN RELEASE SEPTEMBER 10TH, 2026 c1",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The university's own words for what it built.",
+          "x": 84,
+          "y": 296,
+          "w": 800,
+          "h": 69,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(210, 216, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              106,
+              310,
+              569,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "teaches,",
+          "x": 44,
+          "y": 556,
+          "w": 876,
+          "h": 187,
+          "font_px": 172,
+          "weight": "900",
+          "family": "Archivo",
+          "color": "rgb(18, 19, 25)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              44,
+              556,
+              876,
+              187
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "not tells",
+          "x": 56,
+          "y": 742,
+          "w": 799,
+          "h": 187,
+          "font_px": 172,
+          "weight": "900",
+          "family": "Archivo",
+          "color": "rgb(18, 19, 25)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              56,
+              742,
+              799,
+              187
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FROM THE HEADLINE OF THE UNIVERSITY'S OWN RELEASE SEPTEMBER 10TH, 2026 c1",
+          "x": 64,
+          "y": 1082,
+          "w": 790,
+          "h": 89,
+          "font_px": 19,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 219, 225)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1098,
+              652,
+              25
+            ],
+            [
+              84,
+              1128,
+              333,
+              25
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The method",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c32 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 354,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              354,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2255,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 113,
+          "variance": 5796.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The same machine is in a second room.",
+          "x": 472,
+          "y": 180,
+          "w": 496,
+          "h": 251,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(240, 242, 245)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              651,
+              170,
+              317,
+              103
+            ],
+            [
+              498,
+              254,
+              470,
+              103
+            ],
+            [
+              527,
+              337,
+              441,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Testing with the Fort Worth Police Department has already begun.",
+          "x": 472,
+          "y": 512,
+          "w": 496,
+          "h": 78,
+          "font_px": 28,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(198, 204, 212)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              535,
+              512,
+              433,
+              38
+            ],
+            [
+              564,
+              551,
+              404,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Room two",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8 c9 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 386,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              386,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "border",
+          "x": 440,
+          "y": 150,
+          "w": 560,
+          "h": 1,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 440,
+          "y": 623,
+          "w": 560,
+          "h": 1,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 440,
+          "y": 150,
+          "w": 1,
+          "h": 474,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "border",
+          "x": 999,
+          "y": 150,
+          "w": 1,
+          "h": 474,
+          "by": "plate",
+          "color": "rgba(140, 150, 164, 0.5)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "fill",
+          "x": 440,
+          "y": 150,
+          "w": 560,
+          "h": 474,
+          "by": "plate",
+          "color": "rgba(9, 10, 15, 0.97)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1928,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 98.3,
+          "variance": 6601.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "Deb has already begun testing the system with the Fort Worth Police Department*, helping to develop training using real-life scenarios with prompts based on the principles of de-escalation.",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "The AI can tell when an officer is being kind and listening, when the officer picks up on something the person wants to talk about and follows that conversation, and when the officer doesn't connect with the person.",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "Then, the AI steers the interaction accordingly, giving officers perspective and practice in an environment where they can learn the skills they need for those high-pressure interactions.",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "THE FEDERAL RECORD FOR THAT NUMBER, NOT REACHED THIS RUN a4",
+          "detail": "font-size 15px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "THE FEDERAL RECORD FOR THE TUTOR, NO CARRIER",
+          "detail": "font-size 16px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "\"fundsObligated\":[\"FY 2026 = $749,999.00\"] award 2539663 National Science Foundation",
+          "detail": "font-size 21px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two agencies pay for this.",
+          "x": 84,
+          "y": 164,
+          "w": 900,
+          "h": 187,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(7, 0, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              154,
+              740,
+              112
+            ],
+            [
+              84,
+              247,
+              151,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release names the National Science Foundation up top. The Department of Justice is a footnote.",
+          "x": 84,
+          "y": 340,
+          "w": 840,
+          "h": 81,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(42, 47, 58)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              340,
+              789,
+              40
+            ],
+            [
+              84,
+              381,
+              535,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Deb has already begun testing the system with the Fort Worth Police Department*, helping to develop training using real-life scenarios with prompts based on the principles of de-escalation.",
+          "x": 150,
+          "y": 502,
+          "w": 700,
+          "h": 57,
+          "font_px": 19,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(35, 37, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              503,
+              646,
+              25
+            ],
+            [
+              150,
+              532,
+              563,
+              25
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The AI can tell when an officer is being kind and listening, when the officer picks up on something the person wants to talk about and follows that conversation, and when the officer doesn't connect with the person.",
+          "x": 150,
+          "y": 588,
+          "w": 700,
+          "h": 57,
+          "font_px": 19,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(35, 37, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              589,
+              696,
+              25
+            ],
+            [
+              150,
+              618,
+              665,
+              25
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Then, the AI steers the interaction accordingly, giving officers perspective and practice in an environment where they can learn the skills they need for those high-pressure interactions.",
+          "x": 150,
+          "y": 674,
+          "w": 700,
+          "h": 57,
+          "font_px": 19,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(35, 37, 46)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              675,
+              670,
+              25
+            ],
+            [
+              150,
+              704,
+              498,
+              25
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "*This work is sponsored by the Fort Worth Police Department and funded by the U.S. Department of Justice under Grant No.",
+          "x": 150,
+          "y": 776,
+          "w": 740,
+          "h": 77,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Instrument Serif",
+          "color": "rgb(14, 16, 23)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              777,
+              728,
+              35
+            ],
+            [
+              150,
+              815,
+              391,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "15PBJA-23-GG-06172-NTCP",
+          "x": 150,
+          "y": 898,
+          "w": 351,
+          "h": 34,
+          "font_px": 25,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 16, 23)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              898,
+              351,
+              34
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE FEDERAL RECORD FOR THAT NUMBER, NOT REACHED THIS RUN a4",
+          "x": 150,
+          "y": 948,
+          "w": 659,
+          "h": 20,
+          "font_px": 15,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(26, 30, 36)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              150,
+              948,
+              659,
+              20
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE FEDERAL RECORD FOR THE TUTOR, NO CARRIER",
+          "x": 84,
+          "y": 1094,
+          "w": 521,
+          "h": 21,
+          "font_px": 16,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1094,
+              521,
+              21
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"fundsObligated\":[\"FY 2026 = $749,999.00\"] award 2539663 National Science Foundation",
+          "x": 84,
+          "y": 1120,
+          "w": 920,
+          "h": 63,
+          "font_px": 21,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(20, 23, 31)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1122,
+              538,
+              27
+            ],
+            [
+              84,
+              1154,
+              551,
+              27
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The foot of the page",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8 c9 c19 c24 c2 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(60, 66, 80)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 150,
+          "y": 762,
+          "w": 560,
+          "h": 2,
+          "by": "fnrule",
+          "color": "rgb(58, 61, 70)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 1312,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 179.8,
+          "variance": 1343.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "KIND AND LISTENING",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "FOLLOWS THAT CONVERSATION",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "DOESN'T CONNECT WITH THE PERSON",
+          "detail": "font-size 19px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It reads three things.",
+          "x": 116,
+          "y": 178,
+          "w": 832,
+          "h": 93,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 239, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              116,
+              168,
+              732,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Kind and listening. Following what the person wants to talk about. Not connecting.",
+          "x": 116,
+          "y": 306,
+          "w": 832,
+          "h": 82,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(195, 201, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              116,
+              306,
+              773,
+              40
+            ],
+            [
+              116,
+              347,
+              307,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "KIND AND LISTENING",
+          "x": 20,
+          "y": 1058,
+          "w": 300,
+          "h": 51,
+          "font_px": 19,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(18, 21, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              124,
+              1058,
+              91,
+              25
+            ],
+            [
+              119,
+              1083,
+              103,
+              25
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FOLLOWS THAT CONVERSATION",
+          "x": 390,
+          "y": 1058,
+          "w": 300,
+          "h": 51,
+          "font_px": 19,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(18, 21, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              472,
+              1058,
+              137,
+              25
+            ],
+            [
+              472,
+              1083,
+              137,
+              25
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DOESN'T CONNECT WITH THE PERSON",
+          "x": 760,
+          "y": 1058,
+          "w": 300,
+          "h": 51,
+          "font_px": 19,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(18, 21, 28)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              824,
+              1058,
+              171,
+              25
+            ],
+            [
+              824,
+              1083,
+              171,
+              25
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Three readings, no score",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c9 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(43, 48, 56)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 84,
+          "y": 158,
+          "w": 896,
+          "h": 250,
+          "by": "typeplate",
+          "color": "rgba(9, 10, 15, 0.97)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2174,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 116.5,
+          "variance": 6665.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nothing has been graded yet.",
+          "x": 80,
+          "y": 158,
+          "w": 900,
+          "h": 227,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(230, 233, 236)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              162,
+              645,
+              117
+            ],
+            [
+              102,
+              259,
+              413,
+              117
+            ]
+          ],
+          "anc": [],
+          "occluded": {
+            "w": 413,
+            "h": 4,
+            "frac": 0.034,
+            "by": "dek",
+            "by_text": "The award starts October 1st, 2026 and r"
+          }
+        },
+        {
+          "text": "The award starts October 1st, 2026 and runs to September 30th, 2029. Neither the university nor the federal record publishes a result.",
+          "x": 80,
+          "y": 372,
+          "w": 820,
+          "h": 156,
+          "font_px": 30,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(196, 202, 210)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              102,
+              386,
+              643,
+              41
+            ],
+            [
+              102,
+              429,
+              726,
+              41
+            ],
+            [
+              102,
+              471,
+              450,
+              41
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The record's own dates",
+          "x": 80,
+          "y": 80,
+          "w": 364,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 c25 c13 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 434,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(174, 182, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              434,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 2524,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 51,
+          "variance": 3114
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

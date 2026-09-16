@@ -1,0 +1,201 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 8 of 9. Archetype DIAGRAM.
+     WHAT IT LISTENS FOR, AS THREE READINGS AND NOT A SCORE. NOTHING IS RANKED, DIMMED, CROSSED OR
+     COLOURED, because the source ranks nothing and encoding an order would invent one. The whole
+     difference in the deck's argument lives in three ruled nameplates.
+
+     WHY THIS FRAME WAS REDRAWN, 2026-09-16. The pixel critic measured the three units and found
+     THE FRAME ENCODING AN ORDER ITS SOURCE DOES NOT HAVE, which is the one thing refusal no. 2
+     was written to prevent. The middle accent patch came out 86 px wide against 113 and 115 for
+     the outer two, a 24 percent difference visible at 432 px, and the middle pair rendered 19 px
+     taller than the other two. Three units placed at one depth under a long lens SHOULD come out
+     identical, and did not, because three separate sprite calls are three separate draws.
+     THE FIX IS CONSTRUCTIONAL RATHER THAN NUMERIC. One unit is drawn ONCE into an offscreen
+     canvas and stamped three times. Identical is now a property of the code and not a tolerance
+     somebody has to re-measure: there is no arrangement of this file that can make the three
+     units differ, which is the only honest way to draw three things a source does not rank.
+     Four more repairs the critic named, each real:
+     - THE 0.35 m PANEL was drawn as a 5 px stick, so the patch it casts had no visible source and
+       read as an arbitrary blue lozenge. It is at its true 0.35 m now.
+     - THE NAMEPLATES WERE NOT DRAWN AT ALL, though the dossier says the deck's whole argument
+       lives in them. They are plates on posts with contact shadows.
+     - THE DEAD ZONE. The units filled the bottom 40 percent of the rect they were given. They
+       fill it.
+     - THE VALUE WAS INVERTED. The ground was the lightest thing across 65 percent of the frame
+       and measured L* 68.6 against a 34 to 46 band. The dossier says the plates are the lightest
+       thing and the ground behind the units is the darkest. It is drawn that way now.
+     Screen halftone c8. Planned frame median L* 40. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; --toner:#070016; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* ONE plate for the hook and the dek, one right edge, one padding. The first cut had two
+     rectangles of different widths with a 9 px sliver of halftone between them. */
+  .typeplate { position:absolute; left:84px; top:158px; width:896px; height:250px;
+               background:rgba(9,10,15,0.97); }
+  .hook { position:absolute; left:116px; top:178px; width:832px; font-family:"Fraunces", serif;
+          font-weight:700; font-size:92px; line-height:1.02; letter-spacing:-0.02em;
+          color:#EDEFF2; font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:116px; top:306px; width:832px; font-size:29px; line-height:1.42;
+         color:#C3C9D2; }
+  .np { position:absolute; width:300px; font-family:"JetBrains Mono", monospace; font-size:19px;
+        line-height:1.34; color:#12151C; text-align:center; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#2B3038; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="typeplate"></div>
+<h1 class="hook" id="hook">It reads three things.</h1>
+<p class="dek">Kind and listening. Following what the person wants to talk about. Not connecting.</p>
+<div class="np" style="left:20px;  top:1058px">KIND AND<br>LISTENING</div>
+<div class="np" style="left:390px; top:1058px">FOLLOWS THAT<br>CONVERSATION</div>
+<div class="np" style="left:760px; top:1058px">DOESN'T CONNECT<br>WITH THE PERSON</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, {
+      kicker: "Three readings, no score",
+      counter: "08 / 09",
+      src: "c8 c9   TEXAS AI DOCKET",
+      ink: "#2B3038"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 62, max: 92, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // the diagram's own measures, declared once so the drawing and the furniture agree
+    var FEET = 966, HEAD = 486, PPM = (FEET - HEAD) / 1.70;   // 1.70 m figures, 282 px per metre
+    var CENTRES = [170, 540, 910];
+    var PLATE_TOP = 1044, PLATE_H = 92, POST_W = 6;
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.05, seed: 88,
+      screen: { mode: "halftone", cell: 8, angle: 27, gamma: 1.0, floor: 0.05 },
+      edges: { threshold: 28, width: 1.25, alpha: 0.62, dx: 1.0, dy: -0.8 },
+
+      draw: function (a) {
+        // THE GROUND BEHIND THE UNITS IS THE DARKEST THING, which is what the dossier says and
+        // the inverse of what the first cut drew. The plates in over() are the lightest.
+        a.fillStyle = "#A2A2A2"; a.fillRect(0, 0, W, H);
+        var fld = a.createLinearGradient(0, 400, 0, 1010);
+        fld.addColorStop(0, "#B6B6B6"); fld.addColorStop(1, "#8E8E8E");
+        a.fillStyle = fld; a.fillRect(0, 400, W, 610);
+        // the floor, one shade darker still, so the row of units stands on something
+        var flr = a.createLinearGradient(0, 1010, 0, 1200);
+        flr.addColorStop(0, "#9A9A9A"); flr.addColorStop(1, "#767676");
+        a.fillStyle = flr; a.fillRect(0, 1010, W, 190);
+
+        // THE GRATICULE IN PERSPECTIVE. A uniform grid over a flat source is a swatch, which is
+        // the named hachure failure and is what the first cut drew. The horizontals compress
+        // toward the horizon so the drawing sits on a receding plane.
+        a.strokeStyle = "rgba(210,215,222,0.20)"; a.lineWidth = 1.2;
+        for (var t = 0; t <= 26; t++) {
+          var u = t / 26, gy = 1010 - (1010 - 430) * Math.pow(u, 1.9);
+          a.beginPath(); a.moveTo(0, gy); a.lineTo(W, gy); a.stroke();
+        }
+        for (var gx = -6; gx <= 18; gx++) {
+          var xn = gx * 90, xf = 540 + (xn - 540) * 0.34;
+          a.beginPath(); a.moveTo(xn, 1010); a.lineTo(xf, 430); a.stroke();
+        }
+        // the ruled baseline the units stand on, the diagram's own furniture
+        a.strokeStyle = "#C6CBD1"; a.lineWidth = 3;
+        a.beginPath(); a.moveTo(0, FEET + 44); a.lineTo(W, FEET + 44); a.stroke();
+      },
+
+      over: function (c) {
+        // ONE UNIT, DRAWN ONCE, STAMPED THREE TIMES. This is the whole repair. Three separate
+        // draws produced three different units on the first cut and the frame ranked three
+        // things its source does not rank. There is no way for these three to differ now.
+        var uw = 420, uh = 620, uc = uw / 2;
+        var off = document.createElement("canvas");
+        off.width = uw * 2; off.height = uh * 2;
+        var o = off.getContext("2d"); o.scale(2, 2);
+
+        // the unit's own camera, solved so 1.70 m lands at exactly PPM px and the feet at footY:
+        // ppm = f / Z, and groundY = horizon + eye * ppm, so f = PPM * Z and horizon = footY -
+        // eye * PPM. Nothing here is a guess and nothing is a tolerance.
+        var footY = 560, UZ = 16;
+        var OS = TXSCENE.create(o, {
+          w: uw, h: uh, eye: 1.62, horizon: footY - 1.62 * PPM, f: PPM * UZ,
+          sky: "#000", fogZ: 1e9, light: { az: 118, el: 14 }
+        });
+        var fr = TXFIG.figure({ view: "front", height: 1.70 });
+
+        // THE 0.35 m PANEL, at its true size. The first cut drew it 5 px wide, so the patch it
+        // casts had no visible source anywhere on the frame.
+        var panelW = 0.35 * PPM, panelH = 0.90 * PPM;
+        o.fillStyle = "#0E1118";
+        o.fillRect(uc - panelW / 2, footY - panelH, panelW, panelH);
+        o.fillStyle = "#818C90";                                  // its lit left face
+        o.fillRect(uc - panelW / 2, footY - panelH, 9, panelH);
+        o.fillStyle = "#464D57";                                  // its lit top edge
+        o.fillRect(uc - panelW / 2, footY - panelH, panelW, 7);
+
+        // the two figures, 0.62 m either side of the panel, placed through the scene so their
+        // size is the camera's answer rather than a scale factor somebody typed
+        [-0.62, 0.62].forEach(function (dx) {
+          OS.shadow(fr, { X: dx, Z: UZ, ink: "#000000", alpha: 0.42 });
+          OS.sprite(fr, { X: dx, Z: UZ, inks: { ink: "#0B0D14", paper: "#0B0D14", accent: "#0B0D14" } });
+        });
+
+        // THE ACCENT, one flat patch in the gap, terminating clear of both figures' feet so it
+        // touches neither person and points at neither of them, exactly as frame 6's does.
+        var pw = 0.55 * PPM, ph = 0.09 * PPM;
+        o.fillStyle = "#00205B";
+        o.beginPath();
+        o.moveTo(uc - pw / 2, footY + ph * 0.2);
+        o.lineTo(uc + pw / 2, footY + ph * 0.2);
+        o.lineTo(uc + pw / 2 * 0.74, footY + ph * 1.75);
+        o.lineTo(uc - pw / 2 * 0.74, footY + ph * 1.75);
+        o.closePath(); o.fill();
+
+        // stamp it. The outer two bleed the left and right frame edges, as declared.
+        CENTRES.forEach(function (cxp) {
+          c.drawImage(off, 0, 0, uw * 2, uh * 2, cxp - uc, FEET - footY, uw, uh);
+        });
+
+        // THE THREE NAMEPLATES, each on a post with a two part contact shadow, identical in
+        // geometry and differing only in the words, because the words are the only place the
+        // deck's argument is allowed to differ.
+        CENTRES.forEach(function (cxp) {
+          c.save(); c.filter = "blur(8px)"; c.fillStyle = "rgba(0,0,0,0.6)";
+          c.fillRect(cxp - 8, FEET + 40, 22, 14); c.restore();
+          c.fillStyle = "#1A1E26";
+          c.fillRect(cxp - POST_W / 2, PLATE_TOP + PLATE_H, POST_W, FEET + 44 - (PLATE_TOP + PLATE_H));
+          c.save(); c.filter = "blur(10px)"; c.fillStyle = "rgba(0,0,0,0.5)";
+          c.fillRect(cxp - 146, PLATE_TOP + 10, 300, PLATE_H); c.restore();
+          c.fillStyle = "#C6CBD1"; c.fillRect(cxp - 150, PLATE_TOP, 300, PLATE_H);
+          c.fillStyle = "#E4E7EA"; c.fillRect(cxp - 150, PLATE_TOP, 300, 4);
+          c.strokeStyle = "#767C85"; c.lineWidth = 1.4;
+          c.strokeRect(cxp - 150, PLATE_TOP, 300, PLATE_H);
+        });
+
+        // bare stock under the footer row only
+        TXINK.reserve(c, { ground: "#BBC0C6", top: 150, topSolid: 132, bottom: 148, bottomSolid: 124 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

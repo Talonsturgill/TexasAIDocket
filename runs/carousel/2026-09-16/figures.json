@@ -1,0 +1,60 @@
+{
+ "acting_bodies": {
+  "value": 2,
+  "unit": "federal agencies",
+  "basis": "measured",
+  "from": [
+   "c2",
+   "c19",
+   "c30"
+  ],
+  "how": "the distinct federal funders named across the release's summary line, the release's footnote and the federal award record, deduplicated by name",
+  "members": [
+   "National Science Foundation",
+   "U.S. Department of Justice"
+  ]
+ },
+ "readings_the_system_makes": {
+  "value": 3,
+  "unit": "readings",
+  "basis": "measured",
+  "from": [
+   "c8"
+  ],
+  "how": "the readings enumerated in c8's own sentence, joined by two commas and an 'and', counted",
+  "members": [
+   "being kind and listening",
+   "following what the person wants to talk about",
+   "not connecting with the person"
+  ]
+ },
+ "courses_the_platform_runs_across": {
+  "value": 4,
+  "unit": "undergraduate courses",
+  "basis": "quoted",
+  "from": [
+   "c33"
+  ],
+  "how": "the word four is the federal abstract's own and is not a count this run performed",
+  "members": [
+   "four undergraduate Industrial Engineering courses at the University of Texas at Arlington"
+  ]
+ },
+ "federal_records_reached": {
+  "value": 1,
+  "unit": "federal award records",
+  "basis": "measured",
+  "from": [
+   "c22",
+   "c24",
+   "c25",
+   "c27",
+   "c30",
+   "c33"
+  ],
+  "how": "the federal award records this run actually fetched and quoted. The Department of Justice record for 15PBJA-23-GG-06172-NTCP was NOT reached (a4), so it is not counted",
+  "members": [
+   "NSF award 2539663"
+  ]
+ }
+}

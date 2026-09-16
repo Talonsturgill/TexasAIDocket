@@ -159,3 +159,27 @@ critic took the object, imposing seven repairs, the load bearing one being that 
 close welded the NSF start date to the Fort Worth police half, which is the causal link the claims
 file explicitly rejects. The shipped close names instead how thin the public account of the police
 half is. `caption_check` exit 0.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 35 verified claim(s) |
+| render         | WARN   | 9 slide(s), 14 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 52 warn(s) |
+| aggregates     | PASS   | 6 declaration(s), 6 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 14.5 MB, vector |
+| score          | PASS   | 7.492 |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | PASS   | 7 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 37,919 chars planned |
+| caption        | PASS   | 145 words |
+| craft floor    | PASS   | 9 frame(s), median 5796, floor 1043 |
+| plan vs render | WARN   | 0 of 55 acceptance item(s) checkable |
+| texan          | PASS   | places Arlington, Fort Worth / body yes / deadline yes / next step yes |
+| absences       | PASS   | 15 of 15 scoped to a named document |
+| numerals       | PASS   | 7 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->

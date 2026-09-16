@@ -1,0 +1,15 @@
+{
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.28, "score": 7.0, "why": "Genuinely turns the page: ruled-paper cover, award-record document (f2), classroom (f3), origin scene (f4), type beat (f5), the two-room turn (f6), payload screen (f7), three-figure diagram (f8), podium (f9). Real lights and darks in a halftone print register throughout. Held back by f1's quiet image reading as a headline over a small drawing, f4 being murky at 432px, and f8's three-identical panels risking a templated read."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Scrupulous. The two funders are kept apart on f7 (NSF up top, DOJ as footnote, each with its own grant string and source), the $750,000 vs $749,999.00 strings are never reconciled and only the attributed federal figure is printed, and absences are stated on the frame ('not reached this run', 'NO CARRIER', a4). Primary sources throughout."},
+    {"name": "story_and_stakes", "weight": 0.18, "score": 6.5, "why": "A reader understands what, who (Deb/UTA, NSF, DOJ) and where (Arlington, Fort Worth), and the police-training stake is concrete. But there is nothing to DO: no deadline to act on, no body to contact, and the honest close ('nothing graded yet') leaves the reader with curiosity and no next step."},
+    {"name": "sequence_and_momentum", "weight": 0.12, "score": 7.0, "why": "Builds problem to room one to origin to method to the room-two turn (f6) to the payload to the diagram to the close, which lands on f9. Reads well in order. Frame 5 is a slightly cuttable typographic beat."},
+    {"name": "voice", "weight": 0.12, "score": 7.0, "why": "Clean and honest, no boosterism ('The police half is thin.'), regional specificity present. A little flat and procedural in the middle frames."},
+    {"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh palette and the two-rooms device is new, and the cover is not an absence-open. One familiar move: it is the second 'NSF award abstract read against the university release' document-pairing structure inside 18 days (carousel 11, 2026-08-29). Distinct with one familiar move."}
+  ],
+  "weighted_score": 7.110,
+  "hard_fails": [],
+  "ship": true,
+  "lens": "reader",
+  "one_sentence_fix": "Give the close (frame 9) a concrete next step, what to watch and where, so the deck's honest 'nothing graded yet' stops stranding a reader who has just learned a lot and can do nothing with it."
+}

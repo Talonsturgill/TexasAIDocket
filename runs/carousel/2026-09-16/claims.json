@@ -1,0 +1,537 @@
+{
+ "date": "2026-09-16",
+ "story": "The University of Texas at Arlington published an account on September 10th, 2026 of an AI conversational tutor built on a National Science Foundation grant, designed so that it will not provide answers and instead prompts the student with questions until the student reaches the answer. The same release says the researcher has already begun testing the system with the Fort Worth Police Department on de-escalation training, and a footnote records that the police work is sponsored by the department and funded by the United States Department of Justice under a separate grant. The federal award record for the tutor gives a start date of October 1st, 2026, which is after the date the university published the account.",
+ "claims": [
+  {
+   "id": "c1",
+   "text": "The university published the account under the headline UTA develops AI tutor that teaches, not tells.",
+   "quote": "UTA develops AI tutor that teaches, not tells",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot out/2026-09-16/sources/uta-ai-tutor-2026-09-10.txt. Re-fetched live this run at 200. UTA is a state university, which is why this is filed primary_official rather than primary_corporate, and it is still the institution's own account of its own project."
+  },
+  {
+   "id": "c2",
+   "text": "The release's own summary line says the project is funded by the National Science Foundation and that the technology is also being tested with Fort Worth police.",
+   "quote": "NSF-funded project guides student learning; technology is also being tested with Fort Worth police",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. The dek line directly under the headline. THE SEMICOLON IS THE SOURCE'S OWN and is reproduced verbatim. Published copy must carry none and must split this into two sentences."
+  },
+  {
+   "id": "c3",
+   "text": "The release is dated September 10th, 2026 and carries Brian Lopez as its media contact byline.",
+   "quote": "Thursday, Sep 10, 2026 • Brian Lopez",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE RELEASE DATE IS NOT THE DATE OF ANY DECISION, and nothing here dates the grant award or the police work."
+  },
+  {
+   "id": "c4",
+   "text": "The release states the researchers are using a $750,000 National Science Foundation grant to create an AI conversational tutor that guides students through situational assignments.",
+   "quote": "are using a $750,000 National Science Foundation grant to create an AI conversational tutor to guide students through situational assignments",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "basis": "measured",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. This is the quote stored at tx-2026-0161-c1 and it re-verified character for character. $750,000 IS THE UNIVERSITY'S OWN STRING. The federal award record at c24 prints 749999 and $749,999.00. THE TWO STRINGS ARE NOT RECONCILED HERE AND MAY NOT BE RECONCILED DOWNSTREAM."
+  },
+  {
+   "id": "c5",
+   "text": "The release names the researcher as Shuchi Deb and as Dr. Deb, an associate professor in the university's Department of Industrial, Manufacturing and Systems Engineering.",
+   "quote": "Dr. Deb, associate professor in The University of Texas at Arlington",
+   "second_quote": "Department of Industrial, Manufacturing and Systems Engineering",
+   "third_quote": "As Shuchi Deb watched how students use artificial intelligence to do their homework",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. The three quotes are split at apostrophe boundaries on purpose. THE RELEASE CALLS HER SHUCHI DEB AND THE FEDERAL RECORD CALLS HER SHUCHISNIGDHA DEB, carried separately at c28 and not merged."
+  },
+  {
+   "id": "c6",
+   "text": "The release names one collaborator outside her department, Mohammad Islam, an associate professor in the Department of Computer Science and Engineering.",
+   "quote": "Mohammad Islam, associate professor in the Department of Computer Science and Engineering",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE FEDERAL RECORD LISTS FOUR CO-PRINCIPAL INVESTIGATORS, carried at c29, and the release names one of them. That is a difference in completeness and not a contradiction."
+  },
+  {
+   "id": "c7",
+   "text": "The release states that testing with the Fort Worth Police Department has already begun, on training that uses real life scenarios with prompts based on the principles of de-escalation.",
+   "quote": "Deb has already begun testing the system with the Fort Worth Police Department*, helping to develop training using real-life scenarios with prompts based on the principles of de-escalation.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE ASTERISK IS THE SOURCE'S OWN FOOTNOTE MARKER and is reproduced. The ledger stores only the second half of this sentence at tx-2026-0161-c2. The whole sentence is carried here so the claim and its proof are the same span. The hyphens are the source's and sit inside a verbatim quote."
+  },
+  {
+   "id": "c8",
+   "text": "The release states the system can tell when an officer is being kind and listening, when the officer follows what the person wants to talk about, and when the officer fails to connect.",
+   "quote": "The AI can tell when an officer is being kind and listening, when the officer picks up on something the person wants to talk about and follows that conversation, and when the officer doesn't connect with the person.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "medium",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. Stored at tx-2026-0161-c3 and every word re-verified. CONFIDENCE IS MEDIUM ON ONE CHARACTER ONLY, the apostrophe in doesn't. THIS IS THE UNIVERSITY DESCRIBING WHAT ITS OWN SYSTEM DOES. It is not an evaluation, no accuracy figure is given, and none may be inferred."
+  },
+  {
+   "id": "c9",
+   "text": "The release states the system then steers the interaction, to give officers perspective and practice in an environment where they can learn the skills they need for high pressure interactions.",
+   "quote": "Then, the AI steers the interaction accordingly, giving officers perspective and practice in an environment where they can learn the skills they need for those high-pressure interactions.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. The sentence immediately after c8."
+  },
+  {
+   "id": "c10",
+   "text": "The release states the tutor will not provide answers, and will instead prompt students with questions so they discover the answers on their own, in the way a classroom teacher helps a student at a desk.",
+   "quote": "her AI tutor will not provide answers. Instead, it will interact with students and prompt them with questions to help them discover the answers on their own, much like a classroom teacher helping a student at their desk.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THIS IS THE DESIGN INTENT AS THE UNIVERSITY STATES IT, not a measured behaviour, and the federal abstract says the same thing in its own words at c32."
+  },
+  {
+   "id": "c11",
+   "text": "Deb is quoted saying she watched her children and her students use AI without learning, and that they were using it to finish the assignment.",
+   "quote": "I saw my children and my students using AI, and I could see that they were not learning. They were just using AI to finish the assignment,",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE ORIGIN OF THE PROJECT IS AN OBSERVATION BY ONE RESEARCHER, not a study, and no number of students is given."
+  },
+  {
+   "id": "c12",
+   "text": "Deb is quoted saying that engineering students who do not learn basic skills are likely to make mistakes that could be costly or in some cases cost people their lives.",
+   "quote": "they are likely to make mistakes that could be costly or, in some cases, cost people their lives.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE CONDITIONAL IS THE SPEAKER'S OWN. She says could be and likely to, and the release nowhere states that any such mistake has occurred."
+  },
+  {
+   "id": "c13",
+   "text": "The release states the courses will be taught traditionally by the instructor, and that the AI tutor is integrated into the homework assignments rather than the teaching.",
+   "quote": "The courses will be taught traditionally, with the instructor teaching skills and concepts, while the homework assignments will integrate the AI tutor.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE RELEASE NAMES NO COURSE. The count of four and the discipline come from the federal abstract at c33. Recorded as an absence at a1."
+  },
+  {
+   "id": "c14",
+   "text": "The release states the tutor will combine two dimensional and virtual reality platforms, walking students through a workplace or industrial setting where they must work with others to prioritize tasks.",
+   "quote": "It will combine two-dimensional and virtual reality platforms to walk students through a workplace or industrial setting where they must work with others to prioritize tasks and complete the assignment.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. The federal abstract states the same pair independently."
+  },
+  {
+   "id": "c15",
+   "text": "The release states the AI will provide instructions for each step and will offer hints if students make a mistake.",
+   "quote": "The AI will provide instructions for each step and will offer hints if students make a mistake.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. The hint rather than the answer is the mechanism the headline names, and this is the one sentence that states it plainly."
+  },
+  {
+   "id": "c16",
+   "text": "The release states the tutor returns a completed document with a performance analysis that students can use to revise their work, but only within the same platform so they cannot use a separate AI to find answers.",
+   "quote": "At the end, it will provide a completed document with a performance analysis that students can use to revise their work, but only within the same platform so they cannot use a separate AI to find answers.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE CLOSED PLATFORM IS THE ENFORCEMENT and this is the only sentence that describes it. The release does not say how it prevents a student opening a separate AI in another window."
+  },
+  {
+   "id": "c17",
+   "text": "The release states the project aims to strengthen students technical skills, build their capacity for ethical AI engagement and prepare them for an AI enabled workforce.",
+   "quote": "build their capacity for ethical AI engagement and prepare them for an AI-enabled workforce",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THE FEDERAL ABSTRACT USES ALMOST THE SAME WORDS, which means this sentence in the release is drawn from the grant text rather than being an independent statement."
+  },
+  {
+   "id": "c18",
+   "text": "Deb is quoted saying AI has limitations and that students need an actual understanding of the skills and concepts they will use in their careers.",
+   "quote": "AI has limitations, and we want students to understand how to use it, but they also need to gain an actual understanding of the skills and concepts that they will use in their careers,",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. The trailing comma is the source's own, before Deb said."
+  },
+  {
+   "id": "c19",
+   "text": "A footnote on the release states the police work is sponsored by the Fort Worth Police Department and funded by the United States Department of Justice under Grant No. 15PBJA-23-GG-06172-NTCP.",
+   "quote": "This work is sponsored by the Fort Worth Police Department and funded by the U.S. Department of Justice under Grant No. 15PBJA-23-GG-06172-NTCP",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "basis": "measured",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THIS IS THE MOST IMPORTANT SINGLE FACT ON THE PAGE FOR THIS DECK. THE POLICE TRAINING IS NOT PAID FOR BY THE NSF GRANT. It is a separate Department of Justice award with its own number, and no slide, caption or record entry may say or imply that the National Science Foundation funds the Fort Worth police work. NO OJP OR USASPENDING RECORD FOR THIS GRANT NUMBER WAS REACHED THIS RUN. See a4."
+  },
+  {
+   "id": "c20",
+   "text": "The same footnote names three Fort Worth Police Department people on the work, a grant writer and point of contact, a project manager and an instructor who designed the training contents.",
+   "quote": "(Angela Love, grant writer and point of contact; Sergeant Nathan Owens, project manager; Officer Jorge Lopez, instructor and designer of training contents)",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. BOTH SEMICOLONS ARE THE SOURCE'S OWN and are reproduced. Published copy must carry no semicolon. The release does not say which of the three, if any, is a decision maker."
+  },
+  {
+   "id": "c21",
+   "text": "The university describes itself as a public research university in the heart of Dallas-Fort Worth.",
+   "quote": "The University of Texas at Arlington is a growing public research university in the heart of Dallas-Fort Worth.",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
+   "source_date": "2026-09-10",
+   "notes": "Snapshot uta-ai-tutor-2026-09-10.txt. THIS IS THE ONLY GEOGRAPHIC ANCHOR THE PAGE CARRIES BESIDES THE CITY NAMES. The word Tarrant does not appear anywhere on the page. Recorded as an absence at a2."
+  },
+  {
+   "id": "c22",
+   "text": "The federal award record titles the grant Context-Aware Conversational Tutors for Longitudinal Learning in Engineering Education and records it as a standard grant.",
+   "quote": "\"title\":\"Context-Aware Conversational Tutors for Longitudinal Learning in Engineering Education\",\"transType\":\"Standard Grant\"",
+   "second_quote": "\"id\":\"2539663\"",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "notes": "Snapshot out/2026-09-16/sources/nsf-award-2539663.json. Re-fetched live this run, keyless, and the response carries totalCount 1, so exactly one award answers this id. THE API IGNORED THE printFields PARAMETER and returned the whole record. The quote is a contiguous span of the raw JSON body and the field order is the API's own."
+  },
+  {
+   "id": "c23",
+   "text": "The federal award record names the awardee as University of Texas at Arlington, in Arlington, Texas.",
+   "quote": "\"awardeeName\":\"University of Texas at Arlington\"",
+   "second_quote": "\"awardeeCity\":\"ARLINGTON\"",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "notes": "Snapshot nsf-award-2539663.json. ARLINGTON IS UPPER CASE IN THE RECORD and is reproduced as printed. THE RECORD CARRIES NO COUNTY FIELD, only awardeeDistrictCode TX25."
+  },
+  {
+   "id": "c24",
+   "text": "The federal award record gives the funds obligated as FY 2026 = $749,999.00 and the funds obligated amount as 749999.",
+   "quote": "\"fundsObligated\":[\"FY 2026 = $749,999.00\"]",
+   "second_quote": "\"fundsObligatedAmt\":\"749999\"",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "basis": "measured",
+   "notes": "Snapshot nsf-award-2539663.json. THREE DIFFERENT STRINGS FOR THE MONEY EXIST ACROSS THE TWO SOURCES AND ALL THREE ARE CARRIED AS PRINTED. The university prints $750,000 at c4. NONE WAS CONVERTED, ROUNDED OR RECONCILED AND NONE MAY BE DOWNSTREAM. A slide citing the federal figure uses a federal string and attributes it to the federal record."
+  },
+  {
+   "id": "c25",
+   "text": "The federal award record gives the estimated total amount as 749999 and the expiration date as 09/30/2029.",
+   "quote": "\"estimatedTotalAmt\":\"749999\"",
+   "second_quote": "\"expDate\":\"09/30/2029\"",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "basis": "measured",
+   "notes": "Snapshot nsf-award-2539663.json. THE ESTIMATED TOTAL AND THE FUNDS OBLIGATED ARE THE SAME STRING, 749999, which means the award is fully obligated in its first year according to this record. That observation is the record's own field values read side by side and involves no arithmetic. Published prose writes September 30th, 2029."
+  },
+  {
+   "id": "c26",
+   "text": "The federal award record dates the award 07/29/2026 and has not been amended since.",
+   "quote": "\"date\":\"07/29/2026\",\"dirAbbr\":\"EDU\",\"divAbbr\":\"DUE\"",
+   "second_quote": "\"initAmendmentDate\":\"07/29/2026\"",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "basis": "measured",
+   "notes": "Snapshot nsf-award-2539663.json. THE UNIVERSITY'S RELEASE GIVES NO DATE FOR THE GRANT AT ALL, so this is the only dated fact about the award anywhere in this run's sources. Published prose writes July 29th, 2026."
+  },
+  {
+   "id": "c27",
+   "text": "The federal award record gives a start date of 10/01/2026, which falls after the date the university published its account of the project.",
+   "quote": "\"startDate\":\"10/01/2026\",\"title\":\"Context-Aware Conversational Tutors",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "basis": "measured",
+   "notes": "Snapshot nsf-award-2539663.json. NO DATE ARITHMETIC WAS PERFORMED. The comparison is an ordering of two printed dates, 10/01/2026 here and Sep 10, 2026 on the release at c3. This does not contradict c7, because the police work is funded by a different grant entirely, recorded at c19."
+  },
+  {
+   "id": "c28",
+   "text": "The federal award record names the principal investigator as Shuchisnigdha Deb, where the university release calls her Shuchi Deb.",
+   "quote": "\"piFirstName\":\"Shuchisnigdha\"",
+   "second_quote": "\"pdPIName\":\"Shuchisnigdha Deb\"",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "notes": "Snapshot nsf-award-2539663.json. THE TWO NAME FORMS ARE NOT RECONCILED AND NEITHER IS CORRECTED. A deck that names her uses one form and says which source it came from."
+  },
+  {
+   "id": "c29",
+   "text": "The federal award record lists four co-principal investigators, Bonnie S Boardman, Susan Ferreira, Mohammad A Islam and Maysaa Hamdan.",
+   "quote": "\"coPDPI\":[\"Bonnie S Boardman",
+   "second_quote": "Maysaa Hamdan",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "basis": "measured",
+   "notes": "Snapshot nsf-award-2539663.json. The count of four is the length of the array as the record prints it and was not summed from anywhere else. THE FIELD ALSO CARRIES EMAIL ADDRESSES AND NO PUBLISHED SURFACE MAY REPRODUCE THEM, which is why the quotes here are trimmed to the names. A slide names the four people and nothing more. Mohammad A Islam here is the Mohammad Islam the release names at c6."
+  },
+  {
+   "id": "c30",
+   "text": "The federal award record gives the funding program as IUSE, inside the Directorate for STEM Education.",
+   "quote": "\"fundProgramName\":\"IUSE\",\"fundsObligated\":[\"FY 2026 = $749,999.00\"]",
+   "second_quote": "\"orgLongName\":\"Directorate for STEM Education\"",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "notes": "Snapshot nsf-award-2539663.json. THIS IS A TEACHING GRANT RATHER THAN AN AI RESEARCH GRANT, which is the distinction a deck must not blur."
+  },
+  {
+   "id": "c31",
+   "text": "The federal abstract states that generative AI tools created a new challenge, which is that students frequently use them to obtain answers rather than develop the reasoning and problem solving skills that define engineering competence.",
+   "quote": "students frequently use them to obtain answers rather than develop the reasoning and problem-solving skills that define engineering competence",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "notes": "Snapshot nsf-award-2539663.json, from the abstractText field. THIS IS THE FEDERAL GOVERNMENT'S OWN STATEMENT OF THE PROBLEM, written in a funded award abstract, and it says the same thing the researcher says in her own words at c11. The abstract offers no measurement of how frequently, and none may be supplied."
+  },
+  {
+   "id": "c32",
+   "text": "The federal abstract states that rather than providing answers, the AI tutor will guide students through structured reasoning conversations with personalized feedback and revision opportunities that mirror expert mentorship.",
+   "quote": "Rather than providing answers, the AI tutor will guide students through structured reasoning conversations, offering personalized feedback and revision opportunities that mirror expert mentorship.",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "notes": "Snapshot nsf-award-2539663.json, from the abstractText field. THIS IS THE SPINE OF THE DECK AND IT IS STATED INDEPENDENTLY ON BOTH SOURCES. The release says will not provide answers at c10 and the federal abstract says Rather than providing answers here, in a document written before the release and filed with a different agency. Both are statements of design intent and neither reports a result."
+  },
+  {
+   "id": "c33",
+   "text": "The federal abstract states the platform will run across four undergraduate Industrial Engineering courses at the University of Texas at Arlington, spanning freshman through senior years.",
+   "quote": "four undergraduate Industrial Engineering courses at the University of Texas at Arlington, spanning freshman through senior years",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "basis": "measured",
+   "notes": "Snapshot nsf-award-2539663.json, from the abstractText field. THE WORD FOUR IS THE SOURCE'S OWN and is spelled out rather than given as a numeral. THE RELEASE NAMES NO COURSE AND NO NUMBER OF COURSES, so this count exists only in the federal record. Still no course title and no course code on either source, recorded as an absence at a1."
+  },
+  {
+   "id": "c34",
+   "text": "The federal abstract states the tutors are built on large language models and are placed within immersive environments across five levels of Bloom's Revised Taxonomy.",
+   "quote": "within immersive environments across five levels of Bloom's Revised Taxonomy, creating a longitudinal, multi-course AI tutoring intervention",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "basis": "measured",
+   "notes": "Snapshot nsf-award-2539663.json, from the abstractText field. THE WORD FIVE IS THE SOURCE'S OWN. Bloom's Revised Taxonomy has six levels in the published literature and this abstract says five, so the abstract's own number is what is carried and no sixth level may be supplied, subtracted or explained."
+  },
+  {
+   "id": "c35",
+   "text": "The federal abstract states the system will employ retrieval-augmented generation for course specific responses, and that a dual-phase assessment model will require students to critically revise AI-generated drafts.",
+   "quote": "The system will employ retrieval-augmented generation to produce course-specific and assignment-aligned responses, while a dual-phase assessment model will require students to critically revise AI-generated drafts, thereby reinforcing metacognition.",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2539663",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-16",
+   "confidence": "high",
+   "source_title": "National Science Foundation Award Search API, award 2539663",
+   "source_date": "2026-07-29",
+   "notes": "Snapshot nsf-award-2539663.json, from the abstractText field. THIS IS THE TECHNICAL CONTENT BEHIND THE RELEASE'S PLAIN LANGUAGE VERSION. The release's completed document with a performance analysis at c16 is the same dual-phase revision step described for a general reader."
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "That the university's $750,000 and the federal record's 749999 are the same number, or that one is a rounding of the other.",
+   "reason": "They are two different strings printed by two different bodies and this run does not reconcile them. No arithmetic was performed on any of the three printed forms and none may be. A deck that wants one figure cites one source and says which."
+  },
+  {
+   "finding": "That the National Science Foundation grant pays for the Fort Worth Police Department training.",
+   "reason": "FLATLY REFUTED BY THE RELEASE'S OWN FOOTNOTE at c19. Two funders, two agencies, two grant numbers. Any copy implying a single federal grant behind both uses is wrong on the source's own words."
+  },
+  {
+   "finding": "A Fort Worth Police Department primary document about the de-escalation training.",
+   "reason": "NOT FETCHED AND NOT FORCED. fortworthtexas.gov serves a robots.txt naming no AI agent but carrying roughly 1,500 Disallow directives whose full list could not be enumerated reliably. Fetching a path without knowing whether it sits inside that list would be guessing at a crawl boundary, which this project does not do."
+  },
+  {
+   "finding": "A Department of Justice award record for Grant No. 15PBJA-23-GG-06172-NTCP.",
+   "reason": "REACHED FOR AND ABSENT. ojp.gov/robots.txt permits the funding path and names no AI agent, and the canonical award url returned HTTP 404 with no body. The grant number is carried only as a string the university printed."
+  },
+  {
+   "finding": "Normalising the apostrophes in the release's quotes, or asserting they are curly.",
+   "reason": "UNSETTLED ON ONE CHARACTER CLASS. Quotes were chosen to begin after the apostrophe wherever the fact survived the trim. Where it could not, at c8, the full string is carried at medium confidence. NO SLIDE MAY SILENTLY CHANGE THIS CHARACTER IN A QUOTATION."
+  },
+  {
+   "finding": "That Shuchi Deb and Shuchisnigdha Deb should be printed as one name, or that either source has the name wrong.",
+   "reason": "Two printed forms of one person's name on two sources, carried as such at c5 and c28. Neither was corrected against the other."
+  },
+  {
+   "finding": "A count of the researchers on the project taken from the release.",
+   "reason": "The release names two people and then says along with several of Deb's department colleagues. Several is not a count. The federal record's array has four entries and that count is carried at c29 from the federal record alone."
+  },
+  {
+   "finding": "Any course name, course number or course title for the tutor deployment.",
+   "reason": "NEITHER SOURCE GIVES ONE. The count and the discipline are carried at c33 and that is the whole of what either source supports."
+  },
+  {
+   "finding": "Tarrant County as a fact stated by either source.",
+   "reason": "The word Tarrant appears on neither source. The ledger's Tarrant County scoping is the record's own geography and is recorded as an absence at a2, not as a sourced claim."
+  },
+  {
+   "finding": "Any evaluation result, accuracy figure, number of officers trained or number of students taught.",
+   "reason": "NEITHER SOURCE PUBLISHES ONE. Recorded as an absence at a3. A deck may not say the tutor works or that the police training improved anything."
+  },
+  {
+   "finding": "That the six levels of Bloom's Revised Taxonomy in the published literature should correct the abstract's five levels.",
+   "reason": "The abstract's own numeral is carried at c34. Supplying a sixth level would be this run producing a numeral no source printed."
+  },
+  {
+   "finding": "That the federal start date of 10/01/2026 contradicts the release's statement that police testing has already begun.",
+   "reason": "Not a contradiction. The police work is funded by a separate Department of Justice grant per c19, so it is not governed by the NSF award's start date at all."
+  },
+  {
+   "finding": "Reproducing the four co-principal investigators' email addresses on any published surface.",
+   "reason": "The addresses sit inside the federal record's coPDPI field. The quotes at c29 are trimmed to the names for that reason. Published copy names the four people and stops."
+  }
+ ],
+ "absences": [
+  {
+   "id": "a1",
+   "claim_id": "c33",
+   "assertion": "Neither source names a single course by title or by number. The federal abstract gives a count and a discipline and the university release gives neither.",
+   "document": "UTA release of September 10th, 2026, and NSF Award Search record for award 2539663",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "how_it_was_looked_for": "Every occurrence of the word course in the release was examined. There are two and neither attaches a title, a number or a level. The federal abstractText was then read in full and its only course reference gives a count, a discipline and a year range and no identifier.",
+   "what_it_does_not_prove": "It is not evidence that the courses are undecided. The honest form is that neither published source identifies them."
+  },
+  {
+   "id": "a2",
+   "claim_id": "c21",
+   "assertion": "Neither source names a county. The record item's Tarrant County scoping comes from nowhere in either document.",
+   "document": "UTA release of September 10th, 2026, and NSF Award Search record for award 2539663",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "how_it_was_looked_for": "The release was searched for the word Tarrant and returned none. The complete set of place names on it is Arlington, Fort Worth, Dallas-Fort Worth and North Texas. The federal record was read field by field for a geographic key and carries city, state, district and zip, and no county field at all.",
+   "what_it_does_not_prove": "It does not mean the work is not in Tarrant County. Arlington and Fort Worth both sit in it. The honest form is that the county is the record's own geography rather than a fact either source states."
+  },
+  {
+   "id": "a3",
+   "claim_id": "c10",
+   "assertion": "Neither source publishes any evaluation result for the tutor or for the police training. Every statement about what the system does is design intent or future tense.",
+   "document": "UTA release of September 10th, 2026, and NSF Award Search record for award 2539663",
+   "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+   "how_it_was_looked_for": "Every sentence of the release describing the system was read and its verb examined. Nine are future tense and three are present tense, and none of the three reports an outcome. The federal abstract's evaluation language is future tense on an award whose start date is 10/01/2026.",
+   "what_it_does_not_prove": "It is not evidence that the system does not work, and it is not evidence that no internal result exists. The award had not started on the date of this run according to its own record."
+  },
+  {
+   "id": "a4",
+   "claim_id": "c19",
+   "assertion": "No primary document from the Fort Worth Police Department, the City of Fort Worth or the Department of Justice about this training was obtained this run. The Department of Justice grant number rests on the university's footnote alone.",
+   "document": "City of Fort Worth robots.txt, Office of Justice Programs robots.txt, and the OJP funding award page",
+   "url": "https://www.ojp.gov/funding/awards/15pbja-23-gg-06172-ntcp",
+   "how_it_was_looked_for": "fortworthtexas.gov/robots.txt was fetched first and carries roughly 1,500 Disallow directives that could not be enumerated reliably, so no path on that host was fetched. ojp.gov/robots.txt permits the funding path, and the award page at the canonical path returned HTTP 404 with no body.",
+   "what_it_does_not_prove": "It is not evidence that the grant does not exist or that the training is not happening. A 404 on one canonical path says nothing about whether the award is recorded elsewhere. The honest form is that the university states the grant number and this run could not corroborate it from a federal source."
+  }
+ ]
+}

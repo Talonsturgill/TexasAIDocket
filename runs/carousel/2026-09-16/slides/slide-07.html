@@ -1,0 +1,161 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 7 of 9. Archetype DOCUMENT.
+     TWO AGENCIES PAY FOR THIS AND ONLY ONE IS ABOVE THE FOOTNOTE. Two carriers in one frame,
+     which is how this deck draws attribution without drawing a verdict. The university's own
+     sheet is a physical object with a lit lip and a two part contact shadow. The federal record
+     is set into the frame with NO carrier and no shadow, because it is a record rather than a
+     page. Under the Department of Justice grant number a ruled field is left EMPTY AND LIT,
+     never black, because a black bar would say something was removed and nothing was: no
+     federal record for that grant number was reached this run (a4).
+
+     THREE THINGS THE PANEL FOUND AND THIS CUT FIXES, 2026-09-16.
+     1. THE ACCENT WAS ON A FRAME THAT DECLARED NONE. The federal record line was set in
+        fed_blue, which is the deck's one structural law broken by the deck itself: the accent
+        is the machine's own mark and a funding string is not the machine. It is near-black mono
+        now, and the frame carries no accent pixel.
+     2. THE LIT EMPTY RULED FIELD WAS NOT IN THE RENDER AT ALL. It was drawn, then painted over
+        by TXINK.reserve, which runs after it. It is drawn after the reserve now, inside the
+        sheet, directly under the grant number, which is where its meaning lives.
+     3. THE PAYLOAD WAS SET SMALLER THAN THE FURNITURE. The footnote is this deck's most
+        important single sentence and it was at 21px under body text at 19px. The footnote is
+        at 27px now and the grant number is set in MONO, because Instrument Serif's figure one
+        renders as an l and a reader copying 15PBJA-23-GG-06172-NTCP would copy it wrong.
+     Screen hatch c7, measured range 45.2 to 77.5. Planned frame median L* 58. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; --toner:#070016; --table:#525862; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:164px; width:900px; font-family:"Fraunces", serif;
+          font-weight:700; font-size:92px; line-height:1.02; letter-spacing:-0.02em;
+          color:var(--toner); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; left:84px; top:340px; width:840px; font-size:29px; line-height:1.4;
+         color:#2A2F3A; }
+  /* the release's own paragraphs, set at true reading scale on the sheet */
+  .para { position:absolute; left:150px; width:700px; font-family:"Instrument Serif", serif;
+          font-size:19px; line-height:1.5; color:#23252E; }
+  .fnrule { position:absolute; left:150px; top:762px; width:560px; height:2px; background:#3A3D46; }
+  /* THE PAYLOAD. The deck's most important sentence, set at reading size rather than at the
+     size the release buried it at. The conceit is that it sits under a rule at the foot of
+     somebody else's page, and that survives without also being unreadable. */
+  .footnote { position:absolute; left:150px; top:776px; width:740px; font-family:"Instrument Serif", serif;
+              font-size:27px; line-height:1.42; color:#0E1017; }
+  /* the grant number in MONO, so a 1 is a 1 */
+  .grant { position:absolute; left:150px; top:898px; font-family:"JetBrains Mono", monospace;
+           font-size:25px; letter-spacing:0.01em; color:#0E1017; }
+  .fieldlab { position:absolute; left:150px; top:948px; font-family:"JetBrains Mono", monospace;
+              font-size:15px; letter-spacing:0.12em; color:#1A1E24; }
+  /* the federal record, set INTO the frame on no carrier at all, and in no accent */
+  .fedlab { position:absolute; left:84px; top:1094px; font-family:"JetBrains Mono", monospace;
+            font-size:16px; letter-spacing:0.14em; color:#3C4250; }
+  .fed { position:absolute; left:84px; top:1120px; width:920px; font-family:"JetBrains Mono", monospace;
+         font-size:21px; line-height:1.5; color:#14171F; letter-spacing:0.01em; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#2B3038; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two agencies pay for this.</h1>
+<p class="dek">The release names the National Science Foundation up top. The Department of Justice is a footnote.</p>
+
+<p class="para" style="top:502px">Deb has already begun testing the system with the Fort Worth Police Department*, helping to develop training using real-life scenarios with prompts based on the principles of de-escalation.</p>
+<p class="para" style="top:588px">The AI can tell when an officer is being kind and listening, when the officer picks up on something the person wants to talk about and follows that conversation, and when the officer doesn't connect with the person.</p>
+<p class="para" style="top:674px">Then, the AI steers the interaction accordingly, giving officers perspective and practice in an environment where they can learn the skills they need for those high-pressure interactions.</p>
+
+<div class="fnrule"></div>
+<p class="footnote" id="fn">*This work is sponsored by the Fort Worth Police Department and funded by the U.S. Department of Justice under Grant No.</p>
+<div class="grant" id="grant">15PBJA-23-GG-06172-NTCP</div>
+<div class="fieldlab">THE FEDERAL RECORD FOR THAT NUMBER, NOT REACHED THIS RUN &nbsp; a4</div>
+
+<div class="fedlab">THE FEDERAL RECORD FOR THE TUTOR, NO CARRIER</div>
+<p class="fed" id="fed">"fundsObligated":["FY 2026 = $749,999.00"]<br>award 2539663 &nbsp; National Science Foundation</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, {
+      kicker: "The foot of the page",
+      counter: "07 / 09",
+      src: "c7 c8 c9 c19 c24 c2   TEXAS AI DOCKET",
+      ink: "#3C4250"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 92, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350;
+
+    // the sheet's own geometry, declared once and reused by the shadow, the lip and the field
+    var SX = 110, SY = 470, SW = 860, SH = 580;
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.05, seed: 74,
+      screen: { mode: "hatch", cell: 7, angle: 19, gamma: 1.0, floor: 0.05 },
+      edges: { threshold: 30, width: 1.2, alpha: 0.6, dx: 1.0, dy: -0.8 },
+
+      draw: function (a) {
+        // the work table, screened, falling away at the foot of the frame
+        var tg = a.createLinearGradient(0, 380, 0, H);
+        tg.addColorStop(0, "#333333"); tg.addColorStop(0.55, "#1E1E1E"); tg.addColorStop(1, "#0A0A0A");
+        a.fillStyle = tg; a.fillRect(0, 380, W, H - 380);
+        // the table's own grain, so the ground under the paper is a surface rather than a fill
+        a.strokeStyle = "rgba(255,255,255,0.05)"; a.lineWidth = 1;
+        var R = TX.rng(7401);
+        for (var i = 0; i < 90; i++) {
+          var y = 390 + R() * (H - 400);
+          a.beginPath(); a.moveTo(0, y); a.bezierCurveTo(W * 0.3, y + R() * 6 - 3, W * 0.7, y + R() * 6 - 3, W, y); a.stroke();
+        }
+        // THE CAST SHADOW under the sheet, two part: a tight contact and a soft throw
+        a.save(); a.filter = "blur(26px)"; a.fillStyle = "rgba(0,0,0,0.85)";
+        a.fillRect(SX + 16, SY + 30, SW, SH); a.restore();
+        a.save(); a.filter = "blur(5px)"; a.fillStyle = "rgba(0,0,0,0.9)";
+        a.fillRect(SX + 4, SY + 7, SW, SH); a.restore();
+      },
+
+      over: function (c) {
+        // THE SHEET ITSELF is painted after the press, unscreened, because a screened field
+        // cannot hold type at the contrast a reading frame needs. Measured, not assumed.
+        var sg = c.createLinearGradient(0, SY, 0, SY + SH);
+        sg.addColorStop(0, "#C6CBD1"); sg.addColorStop(1, "#9CA2A9");
+        c.fillStyle = sg; c.fillRect(SX, SY, SW, SH);
+        // the lit paper thickness on the near edge, so the sheet sits ON the table
+        c.fillStyle = "#F2F4F6"; c.fillRect(SX, SY + SH - 4, SW, 4);
+        c.fillStyle = "#9AA0A8"; c.fillRect(SX, SY + SH, SW, 3);
+
+        // the bare-stock band at the very foot for the furniture, so type never sits on a screen
+        TXINK.reserve(c, { ground: "#BBC0C6", top: 448, topSolid: 408, bottom: 290, bottomSolid: 260 });
+
+        // THE EMPTY RULED FIELD under the grant number, DRAWN AFTER THE RESERVE.
+        // The first cut drew it before, and the reserve painted it out, so the frame shipped
+        // without the one device its own risk note named as the mitigation. It is LIT, never
+        // black, because a black bar would read as a redaction and say something was removed
+        // from a page where nothing was. Nothing is in it because nothing was reached.
+        c.fillStyle = "#C9CED4"; c.fillRect(150, 974, 660, 56);
+        c.strokeStyle = "#8C939C"; c.lineWidth = 1;
+        for (var k = 0; k < 3; k++) {
+          c.beginPath(); c.moveTo(158, 988 + k * 18); c.lineTo(802, 988 + k * 18); c.stroke();
+        }
+        // the field's own hairline border, so it reads as a form field rather than as a wash
+        c.strokeStyle = "#6E757F"; c.lineWidth = 1.4; c.strokeRect(150, 974, 660, 56);
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

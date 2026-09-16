@@ -1,0 +1,184 @@
+<!doctype html>
+<!-- CAROUSEL 26, frame 3 of 9. Archetype FULL_BLEED. ROOM ONE, ARLINGTON.
+     The camera the reader will be put back into on frame 6: a seated public eye at 1.10 m,
+     horizon 838 px, f 820. The institution's light, a fluorescent grid overhead, so every top
+     face is the brightest thing and every shadow is short and hard under a leg. Exactly one desk
+     in the near rank carries a lit tablet, and the pool it throws is the accent.
+
+     WHY THIS FRAME WAS REDRAWN, 2026-09-16, and the diagnosis is ARITHMETIC rather than taste.
+     The first cut measured L* 8.1 against a declared band of 36 to 52, and every reading of it
+     said "too dark" and reached for the lighting. The lighting was never the problem. Measured:
+     the two opaque black knockout plates and the two black furniture bands cover about 42 percent
+     of this frame between them, and the near rank of desks covers most of the rest, so MORE THAN
+     HALF THE PIXELS WERE FURNITURE AND THE MEDIAN WAS READING THE FURNITURE. A lit room behind a
+     black mask measures as a black frame, and no amount of relighting the room moves a median
+     that is being taken over the mask.
+     So: a lit room takes DARK type on a LIGHT plate, and a dark room takes light type on no plate
+     at all. That is what ILLUSTRATION_SYSTEM says in the first place. Frame 6 is the dark room and
+     carries no plate. This one is the lit room and carries bond plates with toner type.
+     Three further repairs the pixel critic named, each of which was real:
+     - FIGURE AND FURNITURE MERGED. Both sat near #101010 to #242424 in the twin, 8 sRGB levels
+       apart, about 3 L*. The dossier asks for 8 L*. They are 48 levels apart now, about 20 L*.
+     - THE ACCENT WAS A FLOATING ELLIPSE with no tablet under it, so the deck's one structural
+       law read as decoration on the first frame that carried it. There is a drawn tablet now and
+       the pool is a PERSPECTIVE QUAD on the desktop plane it belongs to.
+     - THE UNIVERSITY WAS NEVER NAMED at a size a reader could read, on any of nine frames. The
+       kicker names Arlington.
+     Screen halftone c7, measured range 3.6 to 77.5. Planned frame median L* 44. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  :root { --bond:#BBC0C6; --toner:#070016; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:var(--bond); }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  /* ONE left margin, ONE right edge, ONE padding, on both plates. The critic counted three
+     ragged right edges on the first cut and called them placeholder bars, correctly. */
+  .hook { position:absolute; background:rgba(199,204,210,0.96); padding:24px 28px 28px 28px;
+          left:84px; top:180px; width:880px; font-family:"Fraunces", serif;
+          font-weight:700; font-size:96px; line-height:1.0; letter-spacing:-0.02em;
+          color:var(--toner); font-variation-settings:"opsz" 144; }
+  .dek { position:absolute; background:rgba(199,204,210,0.96); padding:24px 28px;
+         left:84px; top:452px; width:880px; font-size:30px; line-height:1.4; color:#252A34; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#2B3038; white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The courses do not change.</h1>
+<p class="dek">The instructor still teaches. The machine lives in the homework, across four undergraduate courses.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, {
+      kicker: "Room one, Arlington",
+      counter: "03 / 09",
+      src: "c13 c33   TEXAS AI DOCKET",
+      ink: "#2B3038"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 96, maxLines: 2 });
+    var cx = document.getElementById("art").getContext("2d"); cx.scale(2, 2);
+    var W = 1080, H = 1350;
+    // THE SHARED CAMERA, declared here and repeated verbatim on frame 6.
+    var CAM = { w: W, h: H, eye: 1.10, horizon: 838, f: 820, sky: "#101010", fogZ: 1e9, light: { az: 0, el: 72 } };
+    var TABLET = { X: -0.92, Z: 2.05 };
+
+    TXINK.print(cx, {
+      ground: "#BBC0C6", ink: "#070016", fibre: 0.05, seed: 33,
+      screen: { mode: "halftone", cell: 7, angle: 21, gamma: 1.0, floor: 0.05 },
+      edges: { threshold: 28, width: 1.25, alpha: 0.6, dx: 1.0, dy: -0.8 },
+      draw: function (a) {
+        var S = TXSCENE.create(a, CAM);
+        var wb = S.groundY(13);
+
+        // THE LIT ROOM. Every plane is drawn light in the twin, because on this pale stock a
+        // light twin takes little ink. The room is the frame's light and the people are its dark.
+        a.fillStyle = "#606060"; a.fillRect(0, 0, W, H);
+        a.fillStyle = "#5C5C5C"; a.fillRect(0, 150, W, wb - 150);
+
+        // the fluorescent ceiling plane, the brightest thing in the room
+        var cg = a.createLinearGradient(0, 0, 0, 330);
+        cg.addColorStop(0, "#F2F2F2"); cg.addColorStop(1, "#9A9A9A");
+        a.fillStyle = cg; a.fillRect(0, 0, W, 330);
+        // the troffer run itself, drawn as three bright panels in the ceiling plane so the light
+        // in this room is a thing in the frame rather than an assertion in a comment
+        a.fillStyle = "#FFFFFF";
+        [[96, 300], [430, 300], [764, 300]].forEach(function (t) {
+          a.fillRect(t[0], 88, t[1], 46);
+        });
+        a.strokeStyle = "#A6A6A6"; a.lineWidth = 2;
+        [[96, 300], [430, 300], [764, 300]].forEach(function (t) {
+          a.strokeRect(t[0], 88, t[1], 46);
+        });
+        // the ceiling grid running back, so the top band is built rather than blank
+        a.strokeStyle = "#8E8E8E"; a.lineWidth = 1.6;
+        for (var g = 0; g <= 6; g++) {
+          a.beginPath(); a.moveTo(g * 180, 0); a.lineTo(280 + g * 86, 330); a.stroke();
+        }
+
+        // the front wall and the whiteboard, so the room has a front the instructor stands at
+        a.fillStyle = "#E4E4E4"; a.fillRect(288, 330, 500, 224);
+        a.fillStyle = "#8A8A8A"; a.fillRect(288, 330, 500, 7);
+        a.fillStyle = "#9E9E9E"; a.fillRect(288, 548, 500, 10);   // the pen tray, a lit lip
+
+        // the floor, lit under the grid and falling away at the foot
+        S.ground({ near: 0.7, far: 40, fill: "#646464" });
+        var fg = a.createLinearGradient(0, wb, 0, H);
+        fg.addColorStop(0, "#787878"); fg.addColorStop(1, "#4E4E4E");
+        a.save(); a.beginPath(); a.rect(0, wb, W, H - wb); a.clip(); a.fillStyle = fg; a.fillRect(0, 0, W, H); a.restore();
+
+        // THE INSTRUCTOR at the front, against the lit whiteboard, so the person the dek names
+        // is a person in the frame. The first cut put a near-black figure against a near-black
+        // wall at Z 8.4 and it disappeared.
+        var teach = TXFIG.figure({ pose: "stand", height: 1.70 });
+        S.shadow(teach, { X: 1.35, Z: 8.0, ink: "#000000", alpha: 0.42 });
+        S.sprite(teach, { X: 1.35, Z: 8.0, inks: { ink: "#141414", paper: "#2C2C2C", accent: "#141414" } });
+
+        // THREE RANKS OF DESKS with nine seated figures. FIGURE AND FURNITURE ARE 48 sRGB LEVELS
+        // APART in the twin, about 20 L*, because at 8 levels apart they merged into one mass and
+        // the frame's own acceptance item asks for 8 L*.
+        var dk = TXOBJ.sprite("student_desk", { seed: 5 });
+        var sit = TXFIG.figure({ pose: "sit", height: 1.70, seat: 0.45 });
+        [[6.2, "#6A6A6A"], [4.0, "#5E5E5E"], [2.05, "#4A4A4A"]].forEach(function (rank) {
+          var Z = rank[0], deskInk = rank[1];
+          [-2.05, -0.92, 0.22, 1.36].forEach(function (X, i) {
+            if (Z === 2.05 && i === 3) return;              // the near rank is three, cropped
+            S.shadow(sit, { X: X, Z: Z + 0.55, ink: "#000000", alpha: 0.40 });
+            S.sprite(sit, { X: X, Z: Z + 0.55, inks: { ink: "#1A1A1A", paper: "#303030", accent: "#1A1A1A" } });
+            S.shadow(dk, { X: X, Z: Z, ink: "#000000", alpha: 0.44 });
+            S.sprite(dk, { X: X, Z: Z, inks: { ink: deskInk, paper: "#8E8E8E", accent: deskInk } });
+          });
+        });
+      },
+      over: function (c) {
+        var S2 = TXSCENE.create(c, CAM);
+
+        // THE TABLET, drawn before the accent, because the accent is the light this object
+        // throws and a pool of light with no emitter is a sticker. The first cut had no tablet
+        // anywhere on the frame and the critic read the accent as exactly that.
+        var t0 = S2.project(TABLET.X - 0.13, 0.74, TABLET.Z - 0.09);
+        var t1 = S2.project(TABLET.X + 0.13, 0.74, TABLET.Z - 0.09);
+        var t2 = S2.project(TABLET.X + 0.13, 0.74, TABLET.Z + 0.09);
+        var t3 = S2.project(TABLET.X - 0.13, 0.74, TABLET.Z + 0.09);
+        c.fillStyle = "#E8EAEC";
+        c.beginPath(); c.moveTo(t0[0], t0[1]); c.lineTo(t1[0], t1[1]);
+        c.lineTo(t2[0], t2[1]); c.lineTo(t3[0], t3[1]); c.closePath(); c.fill();
+        c.strokeStyle = "#31363E"; c.lineWidth = 2; c.stroke();
+
+        // THE ACCENT. The pool of light that ONE tablet throws on ONE desktop in the near rank,
+        // as a PERSPECTIVE QUAD on the desktop plane rather than an axis-aligned ellipse floating
+        // in the air. It is the light the machine makes and never the machine's own face, which
+        // is what keeps it small. This is the ink the reader met as a tick in a margin on frame 1.
+        var q0 = S2.project(TABLET.X - 0.42, 0.74, TABLET.Z + 0.06);
+        var q1 = S2.project(TABLET.X + 0.42, 0.74, TABLET.Z + 0.06);
+        var q2 = S2.project(TABLET.X + 0.30, 0.74, TABLET.Z + 0.62);
+        var q3 = S2.project(TABLET.X - 0.30, 0.74, TABLET.Z + 0.62);
+        c.fillStyle = "#00205B";
+        c.beginPath(); c.moveTo(q0[0], q0[1]); c.lineTo(q1[0], q1[1]);
+        c.lineTo(q2[0], q2[1]); c.lineTo(q3[0], q3[1]); c.closePath(); c.fill();
+
+        // bare stock under the furniture rows only, so the mono is ink on paper and never on a
+        // screen. NOT a half-frame scrim: that is what collapsed the value arc two cuts ago.
+        TXINK.reserve(c, { ground: "#BBC0C6", top: 132, topSolid: 108, bottom: 150, bottomSolid: 126 });
+      }
+    });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

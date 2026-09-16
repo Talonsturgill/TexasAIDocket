@@ -1,0 +1,81 @@
+{
+ "calibration": {
+  "n": 20000,
+  "seed": 20260911,
+  "p10": 9.84,
+  "p25": 16.41,
+  "median": 27.82,
+  "p75": 46.95
+ },
+ "pool_size": 65,
+ "tokens": [
+  {
+   "token": "bond",
+   "hex": "#BBC0C6",
+   "nearest_prior": "#DCDCE2",
+   "dE76": 10.59,
+   "L*": 77.5,
+   "verdict": "close",
+   "dE_to_reserved_red": 82.67
+  },
+  {
+   "token": "toner",
+   "hex": "#070016",
+   "nearest_prior": "#141B24",
+   "dE76": 10.56,
+   "L*": 0.9,
+   "verdict": "close",
+   "dE_to_reserved_red": 81.89
+  },
+  {
+   "token": "table",
+   "hex": "#525862",
+   "nearest_prior": "#6B6E80",
+   "dE76": 10.65,
+   "L*": 37.2,
+   "verdict": "close",
+   "dE_to_reserved_red": 74.95
+  },
+  {
+   "token": "block",
+   "hex": "#818C90",
+   "nearest_prior": "#879C90",
+   "dE76": 11.08,
+   "L*": 57.5,
+   "verdict": "close",
+   "dE_to_reserved_red": 78.01
+  },
+  {
+   "token": "shade",
+   "hex": "#343C46",
+   "nearest_prior": "#20262B",
+   "dE76": 10.65,
+   "L*": 25.0,
+   "verdict": "close",
+   "dE_to_reserved_red": 77.35
+  },
+  {
+   "token": "flag_blue",
+   "hex": "#00205B",
+   "nearest_prior": "#1B1830",
+   "dE76": 24.32,
+   "L*": 14.3,
+   "verdict": "clear",
+   "dE_to_reserved_red": 88.92
+  },
+  {
+   "token": "lamp",
+   "hex": "#D9A45E",
+   "nearest_prior": "#C08A5A",
+   "dE76": 13.84,
+   "L*": 70.9,
+   "verdict": "close",
+   "dE_to_reserved_red": 61.98
+  }
+ ],
+ "closest_pair_inside_deck": {
+  "a": "table",
+  "b": "shade",
+  "dE76": 12.29
+ }
+}

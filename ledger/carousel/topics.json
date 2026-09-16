@@ -782,6 +782,34 @@
     "ERCOT"
    ],
    "prose_note": "Every count above is written in digits. ledger_check compares spelled-out number words against the run's own figure keys, and this run's keys are not the vocabulary that check carries."
+  },
+  {
+   "date": "2026-09-16",
+   "carousel_no": 26,
+   "docket_item": "tx-2026-0161",
+   "instrument": "a university release read against the federal award record that funds it",
+   "topic": "a federally funded AI tutor built to withhold the answer, and the same method pointed at police de-escalation training",
+   "angle": "the same machine in a second room, paid for by a different agency",
+   "angle_note": "The surprising fact is not the tutor. It is that the same researcher's method is already being tested with the Fort Worth Police Department under a SEPARATE Department of Justice grant, disclosed only in a footnote, while the NSF award that pays for the classroom half had not started. TWO JUDGES THIS RUN NAMED THE SAME BLIND SPOT: the INSTRUMENT here, reading an NSF abstract against the university's own release, is the same instrument carousel 11 used eighteen days ago on a robotics award. dedupe_check compares topic, entities and keywords and all three differ, so it cannot see an instrument repeat. That is the field to watch and nothing reads it yet.",
+   "entities": [
+    "University of Texas at Arlington",
+    "Shuchi Deb",
+    "National Science Foundation",
+    "U.S. Department of Justice",
+    "Fort Worth Police Department"
+   ],
+   "entities_note": "The researcher is printed as Shuchi Deb, the release's own form. The federal record calls her Shuchisnigdha Deb (c28) and the deck does not reconcile the two.",
+   "keywords": [
+    "AI tutor",
+    "NSF award 2539663",
+    "IUSE",
+    "de-escalation training",
+    "industrial engineering",
+    "Arlington",
+    "Fort Worth",
+    "withheld answer"
+   ],
+   "prose_note": "The deck never puts the university's $750,000 and the federal $749,999.00 in one frame, and never implies one grant behind both uses. The Department of Justice record for 15PBJA-23-GG-06172-NTCP was not reached this run (a4) and frame 7 draws that gap as an empty lit field rather than filling it."
   }
  ]
 }

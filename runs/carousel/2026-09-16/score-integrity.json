@@ -1,0 +1,15 @@
+{
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.28, "score": 7.5, "why": "Image on every frame, nine genuinely different layouts, a real print register (stipple S1, line S2/S4, halftone S3/S6/S8, dimensional type S5), and a deliberate pale mid-value break from seven near-black decks. S1 and S8 are screenshot-grade concepts. Held back because S3's nine students merge into a dark halftone mass and the fed_blue classroom tick is a barely-visible sliver, S4/S6 silhouettes read generic behind the diagonal screen, and machine_qa flags a canvas edge running through 'teaches,' on S5 as a feed-width strikethrough (marked overlap-ok)."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 9.0, "why": "Near-flawless. Two money strings kept five frames apart with only the federal one shown, bound to award 2539663; two funders never blurred (NSF tutor up top, DOJ police footnote); the unreached DOJ record drawn as an honest empty lit field (a4); no performance implied (a3); Deb named in one source's form with attribution; every source primary_official. Every numeral computes or quotes. The only tension is S1 'It was built to' against an award that starts 10/01/2026, which the deck itself defuses on S9."},
+    {"name": "story_and_stakes", "weight": 0.18, "score": 7.5, "why": "A Texan learns UTA (Arlington) built an answer-withholding AI tutor on an NSF grant and that the same system is being tested with Fort Worth police under a separate DOJ grant. Names the university, both cities, the researcher, both agencies and the dates. Capped below 9 because there is no county, no deadline and no action a reader can take, which the deck honestly concedes rather than inventing."},
+    {"name": "sequence_and_momentum", "weight": 0.12, "score": 7.5, "why": "Cover hooks, a clear turn at S6 (the second room, same camera as S3), and a close that lands. The two-rooms spine with a migrating accent gives real motion. Docked slightly because S7 already carries c8's three readings verbatim and S8 then re-diagrams the same three, a mild redundancy."},
+    {"name": "voice", "weight": 0.12, "score": 7.5, "why": "Crisp and plain without boosterism or doom. 'The courses do not change.' 'The police half is thin.' 'An asterisk at the foot of the page.' On register and honest about the thin DOJ record, a little flat and not distinctively regional beyond place names."},
+    {"name": "variety", "weight": 0.10, "score": 8.0, "why": "A mid-value pale-stock deck where seven of the last nine ran under L* 20, a cool palette measured against 65 recent hexes, an object cover rather than the house absence-hook, and no county Albers map after decks 23-25 all drew one. Distinct in palette, value and opening move."}
+  ],
+  "weighted_score": 7.850,
+  "hard_fails": [],
+  "ship": true,
+  "lens": "integrity",
+  "one_sentence_fix": "Raise the size and contrast of the fed_blue accent on S3 and S6 so the one mark migrating from a margin into the room between two people is actually legible at 432px feed size, because that migration is the deck's entire non-verbal argument and it currently vanishes in the thumbnail."
+}
