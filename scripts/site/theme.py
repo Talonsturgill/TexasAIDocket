@@ -368,33 +368,15 @@ def home_css() -> str:
   text-align:left; min-height:44px; width:fit-content; color:var(--ink-bright);
   background:var(--surface); box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent);
   transition:border-color .18s,background .18s; }
-/* A RETIRED CHIP KEEPS ITS SPACE, AND THIS IS WHAT TURNED `main` RED ON 2026-09-12.
-   EXPIRY_JS in news_headlines.py sets `hidden` on the chip the moment its expires_at passes,
-   which is right, because a stale top story should stop being readable. This rule then
-   collapsed the box, and collapsing the box is a second decision that nobody made.
-   MEASURED, at 900px tall with the mark forced on. With the chip live the hero headline's box
-   top sits at 291 at 1440px, 304 at 1024 and 293 at 768. With the chip retired it rises to
-   212, 203 and 191, while the Lone Star's bottom edge stays at 273, 273 and 224. So the
-   headline passes THROUGH the mark at every desktop width from 768 to 1440, for as long as a
-   page sits between the chip's expiry and the news cron's next refresh, and the glyph ink
-   overlaps rather than only the boxes.
-   THE MARK WAS NOT WRONG AND IS NOT WHAT MOVED. Its placement was measured against the hero
-   as the hero is built, and the comments further down this file are emphatic that the
-   position follows the earliest observed position of the thing below it. What was missing is
-   that the thing below it has a second position nobody measured, reached by a CLOCK rather
-   than by a viewport width. That is why a width sweep never caught it and why it is not
-   reproducible from the markup alone: the same file is correct before 14:00 UTC and wrong
-   after.
-   VISIBILITY RATHER THAN DISPLAY. The chip stops being seen, stops being tabbable and stops
-   being announced, which is everything `hidden` is for, and the hero keeps the height it was
-   composed at. It also removes a silent hundred pixel reflow under any reader who has the
-   front page open when the clock passes the expiry. */
-.home .news-chip[hidden] { visibility:hidden; }
+/* Expiry replaces the stale link with an honest empty state. The browser preserves the
+   existing height so the hero and the Lone Star do not collide when a long title retires. */
+.home .news-chip .news-source[hidden],.home .news-chip .news-arrow[hidden] { display:none; }
+.home .news-chip.news-empty { grid-template-columns:1fr; }
 .home .news-chip .news-label { font:500 .66rem/1.3 var(--mono); color:var(--accent);
   letter-spacing:.12em; text-transform:uppercase; }
 .home .news-chip .news-meta { display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
 .home .news-chip .news-meta::before,.home .news-chip .news-label::before,
-.home .news-chip::after { content:none; }
+.home .news-chip::after,.home .news-chip .news-title::before { content:none; }
 .home .news-chip .news-title { grid-column:1; font:500 var(--s0)/1.4 var(--body);
   font-style:normal; overflow-wrap:anywhere; max-width:70ch; }
 .home .news-chip .news-source { font:400 var(--s-2)/1.3 var(--mono);
@@ -402,7 +384,7 @@ def home_css() -> str:
 .home .news-chip .news-arrow { grid-column:2; grid-row:1/3; align-self:center; color:var(--accent); }
 .home .news-chip:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
 @media (hover:hover) and (pointer:fine) {
-  .home .news-chip:hover { border-color:var(--accent); background:var(--raised); }
+  .home .news-chip[href]:hover { border-color:var(--accent); background:var(--raised); }
 }
 
 /* The computed door count is a route now, not only a readout. */

@@ -256,8 +256,24 @@ for (const [where, w] of Object.entries(darkest)) {
 // THE WARMTH STILL HAS TO BE THERE. A page that passes the checks above by having no
 // atmosphere at all has failed differently: the whole point is a dusk sky, not a black
 // rectangle. So the bottom of the sky must be measurably warmer than the top.
+// The news bar moves the Ask field across the lower sample. Hide foreground content without
+// changing layout before measuring the sky, just as the seam check below already does.
+// Freeze the atmosphere and average a patch so animation timing and film grain are not votes.
+await p.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
+                               ' body::before { display: none }' });
+await p.evaluate(() => document.querySelectorAll('.sky *').forEach(el => {
+  el.style.animationDelay = '0s';
+  el.getAnimations().forEach(animation => { animation.pause(); animation.currentTime = 0; });
+}));
 const im = decodePNG(await p.screenshot({ fullPage: false }));
-const top = px(im, 720, 60), low = px(im, 720, 880);
+const meanPatch = (cx, cy) => {
+  const sum = [0, 0, 0];
+  for (let y = cy - 4; y <= cy + 4; y++) for (let x = cx - 4; x <= cx + 4; x++) {
+    px(im, x, y).forEach((value, i) => sum[i] += value);
+  }
+  return sum.map(value => value / 81);
+};
+const top = meanPatch(720, 60), low = meanPatch(720, 880);
 const warmth = c => c[0] - c[2];             // red minus blue, so positive is warm
 ok('the horizon is warmer than the sky above it',
    warmth(low) > warmth(top),
@@ -289,8 +305,7 @@ const SEAM_STEP = 12;              // summed across channels, on the row average
 // chrome and a deliberate hard edge, so it comes off. The grain STAYS: it is part of the surface
 // and it is what makes the averaging necessary in the first place, so hiding it would be testing a
 // page nobody sees.
-await p.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
-                               ' body::before { display: none }' });
+// Foreground content is already hidden by the warmth check above.
 await p.evaluate(() => window.scrollTo({ top: 500, behavior: 'instant' }));
 await p.waitForTimeout(600);
 
