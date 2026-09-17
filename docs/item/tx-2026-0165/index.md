@@ -45,3 +45,9 @@ Source (primary_official): https://news.unt.edu/news/2026/unt-receives-20-millio
 
 Source (primary_official): https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html
 
+### The university states the size of the gift and names the donors.
+
+> A $20 million gift from Anuradha and Vikas Sinha will accelerate the University of North Texas' work in artificial intelligence and advanced analytics, creating new opportunities for students and faculty in fields rapidly reshaping industries, professions and society.
+
+Source (primary_official): https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html
+

@@ -3337,11 +3337,11 @@
           "anc": []
         },
         {
-          "text": "If a disclosure is owed under Section 552.051, the statute's own timing is not later than the date the service or treatment is first provided.",
+          "text": "If a disclosure is owed under Section 552.051, the statute's timing is not later than the date the service or treatment is first provided. In an emergency it moves to as soon as reasonably possible.",
           "x": 84,
-          "y": 600,
+          "y": 560,
           "w": 372,
-          "h": 194,
+          "h": 272,
           "font_px": 27,
           "weight": "400",
           "family": "Manrope",
@@ -3351,32 +3351,44 @@
           "lines": [
             [
               84,
-              600,
+              560,
               348,
               37
             ],
             [
               84,
-              639,
+              599,
               368,
               37
             ],
             [
               84,
-              678,
-              336,
+              638,
+              326,
               37
             ],
             [
               84,
-              717,
-              280,
+              677,
+              364,
               37
             ],
             [
               84,
-              756,
-              329,
+              716,
+              261,
+              37
+            ],
+            [
+              84,
+              754,
+              315,
+              37
+            ],
+            [
+              84,
+              793,
+              356,
               37
             ]
           ],
@@ -3502,7 +3514,7 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 5853,
+      "render_ms": 6184,
       "ok": true,
       "canvases": [
         {
@@ -3515,8 +3527,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 98.6,
-          "variance": 3004.9
+          "mean": 98.4,
+          "variance": 2997.5
         }
       ],
       "breather": false,

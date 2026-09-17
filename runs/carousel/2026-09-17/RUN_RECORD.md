@@ -98,6 +98,71 @@ repaired. They are the next run's first work, in this order.
    y 392 never makes. The declaration and the gate agree with each other and not with what a judge
    sees, which is the worst shape a check can have.
 
+## THE REVIEW BOT FOUND EIGHT THINGS AND ALL EIGHT WERE REAL
+
+Every one was the same shape, which is why they are one section rather than eight notes. **The
+copy made a claim its own evidence did not carry.** Never a fabricated fact and never a wrong
+number. A qualifier dropped, a subject detached from its verb, an exception left off a deadline,
+a definition slid one noun to the left. Each survived a five round panel, a scorer and every gate
+in `guards.yml`, because nothing here reads a published sentence back against the quote under it
+and asks whether the sentence is what the quote says.
+
+These were repaired past the round cap, deliberately. **The cap governs the design loop and not
+truthfulness.** A deck that ships under the bar is a craft outcome the rubric allows. A deck that
+publishes a stricter statutory deadline than the statute carries is a different kind of thing.
+
+1. **A source's `can` published as a guarantee.** The announcement says clinicians *can* review,
+   edit and personalize the draft. The record said they do, on every draft. The run's own `c4`
+   note had already recorded that the source does not establish it.
+2. **`Nothing is deployed`, which no source says.** The abstract says the deployments *will
+   increase in complexity*, which is compatible with deployments already existing. Removed.
+3. **$20 million whose only trace was the source URL slug.** The item's title made the amount its
+   central fact and no claim carried it. Fetched from `news.unt.edu` after confirming robots
+   permits `/news/`, and added as `c4` with the verbatim sentence.
+4. **The definition of `health care services` rewritten into a definition of `the provider`.**
+   Subsection (a) requires the SERVICES to be provided by a licensed, registered or certified
+   individual. It never defines `provider`, the term (f) actually uses, and the claim's own note
+   said so. This one was a regression THIS RUN INTRODUCED while splitting a long sentence for
+   `house_style`, which is worth more than the fix: a sentence split is an edit to meaning.
+5. **Three statutory clauses published headless.** Frame 7 sets each duty holder in display type
+   above its clause, which reads correctly on the slide. The text-only article extractor drops the
+   short labels as furniture and kept the long fragments, so a screen reader got `that makes
+   available`, `is required` and `shall provide` with no subject, in a deck whose entire argument
+   is WHICH subject. Fixed in `copy.json` and NOT by a re-render, because `copy_sync_check`
+   compares the concatenation of a slide's strings against the concatenation of its rendered text
+   nodes under a skeleton that strips everything non-alphanumeric. Merging a duty holder into the
+   clause it already sits above is identical under that comparison.
+6. **Frame 9 published a stricter deadline than the statute.** It gave (f)'s `not later than the
+   date the service or treatment is first provided` and dropped `except in the case of emergency,
+   in which case ... as soon as reasonably possible`, for exactly the emergency-care scenario the
+   statute treats differently. Re-rendered with both, and MEASURED rather than eyeballed: the dek
+   runs y 560 to 832 and the accent card's face begins at 846.
+7. **The caption dropped `average`.** Nine seconds is an average over clinicians who chose to work
+   from a draft, not a per-comment figure. Restored.
+
+## CHECKING THOSE FINDINGS FOUND A WORSE ONE THE BOT DID NOT SEE
+
+Two NSF claims carried `verbatim_quote` strings **that are not in the source at all.**
+
+- `c5` quoted `"startDate":"09\/01\/2026","expDate":"08\/31\/2031"`. The API escapes no slashes,
+  and the two fields sit about 1,300 characters apart. The quote was assembled, not copied.
+- `c4` swapped the source's curly apostrophe in `the Center's duration` for a straight one. House
+  rules say straight quotes only, and house rules also say a verbatim quote is never touched.
+
+Neither was caught by anything, because **no gate tests a claim's quote for literal containment in
+the document it names.** `verbatim_check` proves the SLIDE's fragments are substrings of their
+claim's quote, which is one link further down the chain and takes the quote itself on trust.
+
+The repair was to re-fetch the award record and test every NSF quote with `q in raw`. Two failed.
+`c5` is now the start date alone, `c7` carries the expiration date, and `c8` and `c9` carry the
+awardee and the principal investigator, which is what the bot had asked for and what the summary
+had been asserting with nothing under it. `c6` claimed the university named the center's director
+and quoted a sentence naming nobody, so it now quotes the sentence that does.
+
+**The next run's first gate is this one**, ahead of everything in the list above. A quote that
+cannot be found in its own source is the only defect class here that makes the record worthless
+rather than merely worse.
+
 ## THE ONE GATE THAT WOULD HAVE CAUGHT MOST OF THIS
 
 A round 5 craft judge's own words, and it is the best upgrade proposal the panel produced:
