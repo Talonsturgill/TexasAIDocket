@@ -104,6 +104,16 @@ RESIDUE_ALLOW = {
     # and nothing else: any OTHER file naming that domain is still a residue failure, which is
     # what keeps the address in the two places it belongs.
     "scripts/carousel/gmail_draft.py",
+    # THE DECK COHERENCE THRESHOLDS, and this one is a measurement record rather than a design
+    # record. Every ceiling in it was derived from a 58 deck corpus, and the file states which
+    # corpus, how it was measured and what the subject measured against it, because the law this
+    # project publishes is that a figure here can be RECOMPUTED from the same inputs. A
+    # derivation that will not name its inputs is not a derivation, it is a number with a story,
+    # and the next context that wants a looser ceiling talks itself into one in an afternoon.
+    # "the sibling product" would not do: this repo has four siblings and two of them are Texan.
+    # Listed by exact path, same as the instrument design records above, so the exemption cannot
+    # spread to the ledgers, which is what the residue rule actually protects.
+    "config/carousel/deck_coherence.json",
 }
 
 # Scripts that are legitimately entry points nobody imports: run by hand, or by a human
