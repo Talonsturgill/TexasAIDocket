@@ -22,25 +22,31 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import urllib.robotparser
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 STATE = ROOT / 'ledger/news/latest.json'
-SOURCES = json.loads((ROOT / 'config/news_sources.json').read_text())['sources']
+CONFIG = json.loads((ROOT / 'config/news_sources.json').read_text())
+SOURCES = CONFIG['sources']
+RSS_FEEDS = tuple(CONFIG['feeds'])
 UTC = dt.timezone.utc
 MAX_AGE = dt.timedelta(hours=36)
+MAX_CHECK_AGE = dt.timedelta(hours=18)
 QUERY = ('(Texas OR Dallas OR Austin OR Houston OR "San Antonio" OR "Fort Worth") '
          '("artificial intelligence" OR AI OR "data center" OR technology OR semiconductor '
          'OR robotics) sourcelang:english')
 FEED = 'https://api.gdeltproject.org/api/v2/doc/doc?' + urllib.parse.urlencode({
     'query': QUERY, 'mode': 'artlist', 'format': 'json', 'maxrecords': 250,
     'timespan': '24h', 'sort': 'HybridRel'})
-RSS = 'https://dallasinnovates.com/feed/'
 UA = 'TexasAIDocket/1.0 (+https://texasaidocket.com)'
 TEXAS = re.compile(r'\b(?:texas|texans|dallas|houston|fort worth|san antonio|el paso|'
                    r'round rock|abilene|amarillo|lubbock|corpus christi|dfw|txdot|'
-                   r'ut austin|texas a&m|unt)\b', re.I)
+                   r'ut austin|ut dallas|ut arlington|texas a&m|unt|'
+                   r'southern methodist university)\b', re.I)
 AUSTIN = re.compile(r'^(?:Austin[’\x27]s|Austin[- ]based|Austin (?:AI|tech|startup|data|city|council|robot|software|chip))\b', re.I)
+# Initialisms are unambiguous in this Dallas newsroom's local reporting, but not worldwide.
+DALLAS_INSTITUTIONS = re.compile(r'\b(?:SMU|UTD|UTA)\b')
 TECH = re.compile(r'\b(?:AI|artificial intelligence|machine learning|data[- ]cent[er]+s?|'
                   r'tech(?:nology|nologies)?|semiconductors?|microchips?|robot\w*|'
                   r'autonomous|self[- ]driving|cyber\w*|software|quantum|computing|'
@@ -108,7 +114,10 @@ def eligible(article: dict, now: dt.datetime) -> bool:
         title = article['title']
         if not isinstance(title, str) or not 20 <= len(title) <= 220 or len(title.split()) > 32:
             return False
-        if (not source(article['url']) or not (TEXAS.search(title) or AUSTIN.search(title))
+        newsroom = source(article['url'])
+        texas = (TEXAS.search(title) or AUSTIN.search(title) or
+                 (newsroom and newsroom[1] == 'dallasinnovates' and DALLAS_INSTITUTIONS.search(title)))
+        if (not newsroom or not texas
                 or not TECH.search(title) or JUNK.search(title)):
             return False
         age = now - instant(article['first_seen_at'])
@@ -209,12 +218,17 @@ def markup(today: str, data: dict | None = None) -> str:
     data = load() if data is None else data
     selected = data.get('selected')
     build_start = dt.datetime.combine(dt.date.fromisoformat(today), dt.time(), UTC)
-    if not selected or build_start >= instant(data['expires_at']):
-        return ''
     e = html.escape
+    checked = e(data.get('checked_at', ''), quote=True)
+    if not selected or build_start >= instant(data['expires_at']):
+        return (f'<div class="tele news-chip news-empty" data-news-status="empty" '
+                f'data-checked-at="{checked}"><span class="news-meta">'
+                '<span class="news-label">Texas tech and AI</span></span>'
+                '<span class="news-title">Fresh headlines are temporarily unavailable.</span></div>')
     title = ('Selected from recent Texas tech and AI coverage, ranked by coverage and freshness. '
              'Discovery by The GDELT Project and publisher RSS. The source headline opens in a new tab.')
-    return (f'<a class="tele news-chip" href="{e(selected["url"], quote=True)}" '
+    return (f'<a class="tele news-chip" data-news-status="current" data-checked-at="{checked}" '
+            f'href="{e(selected["url"], quote=True)}" '
             f'target="_blank" rel="noopener noreferrer" data-expires-at="{e(data["expires_at"])}" '
             f'title="{title}"><span class="news-meta"><span class="news-label">Top story</span>'
             f'<cite class="news-source">{e(selected["publisher"])}</cite></span>'
@@ -230,7 +244,19 @@ EXPIRY_JS = """(function(){
   var chip=document.querySelector('.news-chip');
   if(!chip)return;
   var expires=Date.parse(chip.dataset.expiresAt);
-  function retire(){if(!Number.isFinite(expires)||Date.now()>=expires)chip.hidden=true;}
+  function retire(){
+    if(chip.dataset.newsStatus==='empty')return;
+    if(Number.isFinite(expires)&&Date.now()<expires)return;
+    chip.style.minHeight=chip.getBoundingClientRect().height+'px';
+    chip.removeAttribute('href');chip.removeAttribute('target');chip.removeAttribute('rel');
+    chip.removeAttribute('title');chip.dataset.newsStatus='empty';
+    chip.classList.add('news-empty');
+    chip.querySelector('.news-label').textContent='Texas tech and AI';
+    chip.querySelector('.news-title').textContent='Fresh headlines are temporarily unavailable.';
+    chip.querySelector('.news-source').hidden=true;
+    chip.querySelector('.news-arrow').hidden=true;
+    if(document.activeElement===chip)chip.blur();
+  }
   retire();
   if(expires>Date.now())setTimeout(retire,Math.min(expires-Date.now()+100,2147483647));
   document.addEventListener('visibilitychange',retire);
@@ -308,10 +334,10 @@ def collect() -> int:
                  enddatetime=end.strftime('%Y%m%d%H%M%S'))
     feed_url = 'https://api.gdeltproject.org/api/v2/doc/doc?' + urllib.parse.urlencode(query)
     combined, feeds = [], []
-    for url in (feed_url, RSS):
+    for url in (feed_url, *RSS_FEEDS):
         try:
             body = checked_fetch(url)
-            if url == RSS:
+            if url in RSS_FEEDS:
                 rows = rss_articles(body)
             else:
                 payload = json.loads(body)
@@ -340,6 +366,100 @@ def collect() -> int:
     return 0
 
 
+def health_problems(data: dict, now: dt.datetime) -> list[str]:
+    """Operational health is separate from the reproducible snapshot/schema check."""
+    problems = []
+    if not data.get('selected') or instant(data['expires_at']) <= now:
+        problems.append('no current Texas tech headline is available')
+    if not dt.timedelta(minutes=-5) <= now - instant(data['checked_at']) <= MAX_CHECK_AGE:
+        problems.append('news collection is overdue or its clock is invalid')
+    if sum(feed.get('status') == 'ok' for feed in data.get('feeds', [])) < 2:
+        problems.append('fewer than two independent news feeds are available')
+    return problems
+
+
+class PublishedHeadline(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.chips = []
+        self.current = None
+        self.field = None
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if 'news-chip' in attrs.get('class', '').split():
+            self.current = {'title': '', 'source': ''}
+            self.chips.append((tag, attrs, self.current))
+        if self.current is not None:
+            for name in ('title', 'source'):
+                if 'news-' + name in attrs.get('class', '').split():
+                    self.field = (tag, name)
+
+    def handle_data(self, data):
+        if self.current is not None and self.field:
+            self.current[self.field[1]] += data
+
+    def handle_endtag(self, tag):
+        if self.field and self.field[0] == tag:
+            self.field = None
+        if self.current is not None and tag == self.chips[-1][0]:
+            self.current = None
+
+
+def live_problems(body: str, now: dt.datetime, expected_check: str | None = None) -> list[str]:
+    """Inspect what Pages actually serves, without trusting the collection job's status."""
+    parser = PublishedHeadline()
+    parser.feed(body)
+    if len(parser.chips) != 1:
+        return ['the published homepage does not contain exactly one news bar']
+    tag, chip, text = parser.chips[0]
+    problems = []
+    try:
+        checked = instant(chip.get('data-checked-at', ''))
+        if not dt.timedelta(minutes=-5) <= now - checked <= MAX_CHECK_AGE:
+            problems.append('the published headline refresh is overdue or its clock is invalid')
+        if expected_check and checked < instant(expected_check):
+            problems.append('the collected headline has not reached the live homepage')
+    except ValueError:
+        problems.append('the published news bar has no valid refresh timestamp')
+    newsroom = source(chip.get('href', ''))
+    if tag != 'a' or chip.get('data-news-status') != 'current' or not newsroom:
+        problems.append('the published news bar has no current publisher link')
+    if not text['title'].strip() or not newsroom or text['source'].strip() != newsroom[0]:
+        problems.append('the published headline or its publisher attribution is missing')
+    try:
+        if instant(chip.get('data-expires-at', '')) <= now:
+            problems.append('the published headline has expired')
+    except ValueError:
+        problems.append('the published headline has no valid expiry')
+    return problems
+
+
+def check_live(wait_seconds: int = 0, expected_check: str | None = None) -> int:
+    url = 'https://' + (ROOT / 'docs/CNAME').read_text().strip() + '/'
+    deadline = time.monotonic() + wait_seconds
+    previous = None
+    while True:
+        try:
+            request = urllib.request.Request(url, headers={'User-Agent': UA, 'Cache-Control': 'no-cache'})
+            with urllib.request.urlopen(request, timeout=20) as response:
+                body = response.read(4_000_001)
+                if len(body) > 4_000_000:
+                    raise ValueError('homepage exceeded response limit')
+            problems = live_problems(body.decode('utf-8'), dt.datetime.now(UTC), expected_check)
+        except (OSError, ValueError) as error:
+            problems = [f'could not verify the published headline: {error}']
+        if not problems:
+            print('news live: a current attributed headline is published')
+            return 0
+        if problems != previous:
+            print('news live: ' + '; '.join(problems), flush=True)
+            previous = problems
+        if time.monotonic() >= deadline:
+            return 1
+        time.sleep(min(20, max(0, deadline - time.monotonic())))
+
+
 def self_test() -> int:
     import copy
     import unittest
@@ -350,6 +470,8 @@ def self_test() -> int:
         def test_relevance_and_sources(self):
             self.assertTrue(eligible(row(), now))
             self.assertTrue(eligible(row('Austin startup opens an AI research lab'), now))
+            self.assertTrue(eligible(row('SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining', 'dallasinnovates.com'), now))
+            self.assertFalse(eligible(row('SMU opens an AI research laboratory', 'reuters.com'), now))
             self.assertFalse(eligible(row("Steve Austin's new AI wrestling game"), now))
             for title in ['Texas Tech wins college football game with AI prediction', 'Austin Butler talks artificial intelligence',
                           'Texas stock shares rise as AI earnings beat estimates', 'AI startup opens an office in Boston',
@@ -407,6 +529,56 @@ def self_test() -> int:
             self.assertEqual(articles[0]['seendate'], '20260911T180000Z')
             self.assertIsNotNone(snapshot({'articles': articles}, now)['selected'])
 
+        def test_partial_feed_failure(self):
+            from unittest.mock import patch
+            import tempfile
+            published = email.utils.format_datetime(dt.datetime.now(UTC) - dt.timedelta(hours=1))
+            body = ('<rss><channel><item><title>Texas AI research laboratory opens</title>'
+                    '<link>https://dallasinnovates.com/research/</link><pubDate>' + published +
+                    '</pubDate></item></channel></rss>').encode()
+            def read(url):
+                if url not in RSS_FEEDS:
+                    raise urllib.error.HTTPError(url, 429, 'Too Many Requests', {}, None)
+                return body
+            with tempfile.TemporaryDirectory() as directory:
+                state = Path(directory) / 'latest.json'
+                with patch(__name__ + '.STATE', state), patch(__name__ + '.checked_fetch', side_effect=read):
+                    self.assertEqual(collect(), 0)
+                    result = load()
+                self.assertEqual(result['selected']['title'], 'Texas AI research laboratory opens')
+                self.assertEqual(sum(f['status'] == 'ok' for f in result['feeds']), len(RSS_FEEDS))
+                self.assertEqual(health_problems(result, dt.datetime.now(UTC)), [])
+
+        def test_empty_refresh_is_not_operational_success(self):
+            s = snapshot({'articles': []}, now)
+            s['feeds'] = [{'status': 'ok'}, {'status': 'ok'}]
+            validate(s)  # An honest empty snapshot is publishable, but needs attention.
+            self.assertIn('no current Texas tech headline is available', health_problems(s, now))
+            self.assertIn('news-empty', markup('2026-09-11', s))
+
+        def test_operational_health(self):
+            s = snapshot({'articles': []}, now, {'articles': [row()]})
+            s['feeds'] = [{'status': 'ok'}, {'status': 'ok'}]
+            self.assertEqual(health_problems(s, now), [])
+            self.assertIn('news collection is overdue or its clock is invalid',
+                          health_problems(s, now + dt.timedelta(hours=19)))
+            self.assertIn('no current Texas tech headline is available',
+                          health_problems(s, now + dt.timedelta(hours=36)))
+            s['feeds'][1]['status'] = 'unavailable'
+            self.assertIn('fewer than two independent news feeds are available', health_problems(s, now))
+
+        def test_live_health(self):
+            s = snapshot({'articles': []}, now, {'articles': [row()]})
+            page = markup('2026-09-11', s)
+            self.assertEqual(live_problems(page, now, s['checked_at']), [])
+            self.assertTrue(live_problems('<main>Unchanged homepage</main>', now))
+            self.assertTrue(live_problems(page, now, stamp(now + dt.timedelta(hours=6))))
+            self.assertTrue(live_problems(page, now + dt.timedelta(hours=36)))
+            self.assertTrue(live_problems(page.replace('data-checked-at', 'missing-stamp'), now))
+            self.assertTrue(live_problems(page.replace('https://nbcdfw.com/story', 'https://evil.example/story'), now))
+            self.assertTrue(live_problems(page.replace(s['selected']['title'], ''), now))
+            self.assertTrue(live_problems(page.replace(s['selected']['publisher'], 'Unrelated outlet'), now))
+
         def test_markup(self):
             r = row('Texas AI lab announces <script> & "new" tools')
             s = snapshot({'articles': []}, now, {'articles':[r]})
@@ -414,8 +586,9 @@ def self_test() -> int:
             self.assertIn('&lt;script&gt; &amp; &quot;new&quot;', out)
             self.assertIn('<cite class="news-title">', out)
             self.assertIn('rel="noopener noreferrer"', out)
-            self.assertEqual(markup('2026-09-15', s), '')
-            self.assertEqual(markup('2026-09-11', {}), '')
+            self.assertIn('news-empty', markup('2026-09-15', s))
+            self.assertNotIn('href=', markup('2026-09-15', s))
+            self.assertIn('Fresh headlines are temporarily unavailable.', markup('2026-09-11', {}))
     return 0 if unittest.TextTestRunner().run(unittest.defaultTestLoader.loadTestsFromTestCase(Cases)).wasSuccessful() else 1
 
 
@@ -425,12 +598,24 @@ if __name__ == '__main__':
     action.add_argument('--collect', action='store_true')
     action.add_argument('--check', action='store_true')
     action.add_argument('--self-test', action='store_true')
+    action.add_argument('--health', action='store_true')
+    action.add_argument('--live-check', action='store_true')
+    parser.add_argument('--wait-seconds', type=int, default=0)
+    parser.add_argument('--expected-check')
     args = parser.parse_args()
     try:
         if args.self_test:
             sys.exit(self_test())
         if args.collect:
             sys.exit(collect())
+        if args.live_check:
+            if not 0 <= args.wait_seconds <= 2400:
+                parser.error('--wait-seconds must be between zero and 2400')
+            sys.exit(check_live(args.wait_seconds, args.expected_check))
+        if args.health:
+            problems = health_problems(load(), dt.datetime.now(UTC))
+            print('news health: ' + ('; '.join(problems) if problems else 'current headline and multiple feeds available'))
+            sys.exit(1 if problems else 0)
         validate(load())
         print('news_headlines: recorded selection and expiry verified')
     except (ValueError, KeyError, OSError) as error:

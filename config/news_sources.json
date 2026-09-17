@@ -1,5 +1,10 @@
 {
   "description": "Editorial newsrooms eligible for the homepage link. Group identifies shared ownership, so syndicated sister sites do not multiply coverage.",
+  "feeds": [
+    "https://dallasinnovates.com/feed/",
+    "https://feeds.texastribune.org/feeds/main/",
+    "https://www.datacenterdynamics.com/en/rss/"
+  ],
   "sources": {
     "dallasinnovates.com": ["Dallas Innovates", "dallasinnovates"],
     "culturemap.com": ["CultureMap", "culturemap"],

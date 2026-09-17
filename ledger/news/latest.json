@@ -1,9 +1,9 @@
 {
   "_spec": 1,
-  "checked_at": "2026-09-16T22:16:09Z",
+  "checked_at": "2026-09-17T01:14:17Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260915221443&enddatetime=20260916221443",
-  "response_sha256": "a25092b461c8ffefa35048ac40948d10b6b70ff11a5a475e3cc898bfc44bb60a",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916011340&enddatetime=20260917011340",
+  "response_sha256": "59c6857add124552eb8b290ad62578acb6aa77859706b83c69649fb0e143c5f3",
   "articles": [
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
@@ -19,6 +19,11 @@
       "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
       "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
       "first_seen_at": "2026-09-15T22:28:12Z"
+    },
+    {
+      "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+      "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+      "first_seen_at": "2026-09-16T10:28:58Z"
     },
     {
       "title": "UNT to Launch $20M Sinha College of AI and Advanced Analytics",
@@ -37,17 +42,17 @@
     }
   ],
   "selected": {
-    "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
-    "url": "https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/",
-    "first_seen_at": "2026-09-15T22:28:12Z",
+    "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
+    "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
+    "first_seen_at": "2026-09-16T10:28:58Z",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.502909
+    "score": 0.653019
   },
-  "expires_at": "2026-09-17T10:28:12Z",
+  "expires_at": "2026-09-17T22:28:58Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260915221443&enddatetime=20260916221443",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916011340&enddatetime=20260917011340",
       "status": "unavailable"
     },
     {
@@ -55,6 +60,18 @@
       "status": "ok",
       "items": 20,
       "sha256": "ba853d3691a9d44778122bc6a0466748d14811c7a2677eeaf062c8f6f10d5a97"
+    },
+    {
+      "url": "https://feeds.texastribune.org/feeds/main/",
+      "status": "ok",
+      "items": 20,
+      "sha256": "c694d8d3cfe15da230e6ce674f95dd5d95642bd85e99172cc1634b8a16e6843d"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/rss/",
+      "status": "ok",
+      "items": 20,
+      "sha256": "03bb9c0996e3ba26c96ca8cb5abdaf809e5d775937f097fc98f21c63ae8b39ed"
     }
   ]
 }
