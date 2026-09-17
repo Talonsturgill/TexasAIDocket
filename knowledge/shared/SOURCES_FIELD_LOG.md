@@ -1382,3 +1382,27 @@ on this showing, per the registry's standing rule that a 402 or a 403 is not a r
 JSON in its final message and reported no Write tool, so the showrunner wrote all five
 `out/research/*.json` by hand from the replies. It costs a round trip per scout and it is a
 faithful copy rather than the agent's own artifact. It is in the upgrade backlog.
+
+## 2026-09-17
+
+**`gov.texas.gov` NOW SERVES A robots.txt AND IT DISALLOWS ClaudeBot ACROSS THE WHOLE HOST.**
+`SOURCES_REGISTRY.md` records that this host serves none, which was true when it was written and
+is not true today. The registry is `human` lane and carries the crawl boundary, so this run does
+not touch it and writes what it saw here instead. **Nothing was fetched from that host this run.**
+The rule this obeys is the registry's own: a run that can edit its own boundary does not have one,
+and a disallow that appears between two runs is exactly the case the split was built for. A
+maintainer folding this up should note that the governor's office is a first-party publisher of
+executive orders and proclamations, so losing it is a real narrowing rather than a nuisance, and
+the answer is a maintainer-set policy rather than a route around.
+
+**`dhs.gov` 403s this container's egress under every User-Agent tried and answers WebFetch.** The
+same URL, in the same session, minutes apart. That makes the 403 a property of the client path
+rather than of the host, and per the registry's standing rule a 403 is not a robots decision, so
+nothing here goes on a blocked list. What it does mean in practice is that a scout reporting this
+host unreachable has measured its own fetcher. Try the other path before recording an absence
+against a federal publisher.
+
+**The statute itself, `statutes.capitol.texas.gov`, served Chapter 552 of the Business and Commerce
+Code in full and cleanly**, section headings included, which is what let this run count 16 sections
+and establish that none is headed Applicability or Scope. An absence about a statute is only worth
+publishing when the whole chapter came down in one document, and this host gives that.
