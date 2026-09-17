@@ -181,6 +181,56 @@ FIELD_SECTION = {"opening_move": "Opening moves",
 EXCLUSIONS_BIND_AFTER = "2026-09-03"
 
 
+DERIVED_KEYS = ("opening_moves_recent", "structures_recent", "closing_moves_recent")
+
+
+def derived_lists(entries: list[dict], wins: dict[str, int]) -> dict[str, list[str]]:
+    """The three exclusion lists, from the entries and the doctrine's own windows.
+
+    ONE DEFINITION, USED BY BOTH DIRECTIONS. Check 2 compares the stored lists against this and
+    `--derive` writes this, so the thing that judges the ledger and the thing that produces it
+    cannot be two derivations that happen to agree.
+    """
+    newest = entries[-1]["date"]
+    prior = [e for e in entries if e["date"] < newest]
+    return {"opening_moves_recent": [e["opening_move"] for e in prior[-wins["opening_move"]:]],
+            "structures_recent":    [e["structure"]    for e in prior[-wins["structure"]:]],
+            "closing_moves_recent": [e["closing_move"] for e in prior[-wins["closing_move"]:]]}
+
+
+def derive_text(cap_text: str, doctrine: str) -> str:
+    """captions.json with the three derived lists rewritten, in the file's own formatting.
+
+    THE DEFECT THIS EXISTS FOR (2026-09-17, and it is the fourth run in a row)
+
+    The three lists drifted again. `ledger_check` caught it, as it has every time since
+    2026-08-26, and the run then recomputed them BY HAND from the entries. That hand step is the
+    drift: the ledger's own `_derived_note` points at `out/<date>/update_ledgers.py`, a scratch
+    file each run writes fresh and which dies with the container, so every run re-derives a
+    derivation and one of them is eventually wrong. A gate that reports the same drift four runs
+    running is reporting a defect in the machine rather than in those runs.
+
+    So the derivation the gate already performs to JUDGE the file is the one that WRITES it.
+
+    THE FORMATTING IS ASSERTED, NOT ASSUMED. The file is `json.dumps(indent=1)` plus a trailing
+    newline today, and the self-test proves that deriving a file that is already correct returns
+    it byte for byte. A rewriter that reflows a 40 kB append-only-in-spirit ledger would bury one
+    real change in a thousand cosmetic ones.
+
+    IT WRITES THE THREE KEYS AND NOTHING ELSE. Every other finding this gate has is left standing
+    and still fails, because a repair tool that can clear a check it was not written for is the
+    move CLAUDE.md forbids in as many words.
+    """
+    cap = json.loads(cap_text)
+    entries = cap.get("entries") or []
+    if not entries:
+        return cap_text
+    want = derived_lists(entries, windows(doctrine))
+    for key in DERIVED_KEYS:
+        cap[key] = want[key]
+    return json.dumps(cap, indent=1, ensure_ascii=False) + "\n"
+
+
 def windows(text: str) -> dict[str, int]:
     """How many runs each move is off the menu for, READ OFF THE DOCTRINE.
 
@@ -313,9 +363,7 @@ def check_captions(cap: dict, menu: dict[str, set[str]], doctrine: str) -> list[
     except ValueError as exc:
         problems.append(f"ledger_check cannot read an exclusion window. {exc}")
         return problems
-    want = {"opening_moves_recent": [e["opening_move"] for e in prior[-wins["opening_move"]:]],
-            "structures_recent":    [e["structure"]    for e in prior[-wins["structure"]:]],
-            "closing_moves_recent": [e["closing_move"] for e in prior[-wins["closing_move"]:]]}
+    want = derived_lists(entries, wins)
     for key, expect in want.items():
         got = cap.get(key)
         if got != expect:
@@ -550,6 +598,33 @@ def self_test() -> int:
     ok("...and names the one that is in an entry and unlisted",
        any("question and answer" in x for x in p), str(p))
 
+    # ---- --derive, ADDED 2026-09-17 BECAUSE THE SAME DRIFT HAD BEEN REPORTED FOUR RUNS RUNNING.
+    # Every assertion here is on `bad`, which is the 2026-08-25 corruption, so the repair is
+    # replayed against the defect it exists for rather than against a fixture written beside it.
+    fmt = lambda o: json.dumps(o, indent=1, ensure_ascii=False) + "\n"      # noqa: E731
+    _cap = REPO_ROOT / "ledger" / "carousel" / "captions.json"
+    _raw = _cap.read_text(encoding="utf-8") if _cap.exists() else None
+    ok("the ledger this file writes is still json.dumps(indent=1) plus a newline",
+       _raw is not None and fmt(json.loads(_raw)) == _raw,
+       "the real captions.json no longer round-trips, so --derive would reflow the whole file")
+    derived = json.loads(derive_text(fmt(bad), doc))
+    ok("--derive rewrites the corrupt structures list to what the entries derive",
+       derived["structures_recent"] == good["structures_recent"], derived["structures_recent"])
+    ok("...and the derived file then PASSES the check that was red on it",
+       not check_captions(derived, M, doc), str(check_captions(derived, M, doc)))
+    ok("...and it is a no-op, byte for byte, on a ledger that is already right",
+       derive_text(fmt(good), doc) == fmt(good))
+    ok("...and it touched nothing outside the three derived keys",
+       {k: v for k, v in derived.items() if k not in DERIVED_KEYS}
+       == {k: v for k, v in bad.items() if k not in DERIVED_KEYS})
+    # A REPAIR TOOL THAT CAN CLEAR A CHECK IT WAS NOT WRITTEN FOR IS THE MOVE THAT IS FORBIDDEN.
+    cannot = json.loads(json.dumps(good))
+    cannot["entries"][-1]["structure"] = "a shape nobody put on a menu"
+    still = json.loads(derive_text(fmt(cannot), doc))
+    ok("--derive does NOT clear a freehand move name, which is a different finding",
+       any("on no" in x for x in check_captions(still, M, doc)),
+       str(check_captions(still, M, doc)))
+
     free = json.loads(json.dumps(good))
     free["entries"][-1]["opening_move"] = "the procedural fact nobody expects"
     p = check_captions(free, M, doc)
@@ -783,6 +858,9 @@ def main() -> int:
     ap.add_argument("--date", help="run date, to read out/<date>/figures.json")
     ap.add_argument("--ledger-dir", default="ledger/carousel")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--derive", action="store_true",
+                    help="rewrite captions.json's three derived exclusion lists from its own "
+                         "entries, then check. Writes nothing else and clears no other finding")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
@@ -793,6 +871,19 @@ def main() -> int:
         if not p.exists():
             print(f"ledger_check: {p} does not exist", file=sys.stderr)
             return 2
+    if a.derive:
+        before = cp.read_text(encoding="utf-8")
+        after = derive_text(before, (REPO_ROOT / DOCTRINE).read_text(encoding="utf-8"))
+        if after == before:
+            print(f"ledger_check --derive: {cp.name}'s three exclusion lists already agree with "
+                  f"its entries. Nothing was written")
+        else:
+            cp.write_text(after, encoding="utf-8")
+            old, new = json.loads(before), json.loads(after)
+            for k in DERIVED_KEYS:
+                if old.get(k) != new.get(k):
+                    print(f"ledger_check --derive: {k} was {old.get(k)!r} and the entries derive "
+                          f"{new.get(k)!r}")
     figures = None
     if a.date:
         fp = REPO_ROOT / "out" / a.date / "figures.json"
@@ -812,7 +903,11 @@ def main() -> int:
         for p in problems:
             print("  - " + p, file=sys.stderr)
         print("\n  These lists and this prose are DERIVED. Recompose them from the entries and "
-              "from figures.json rather than editing them beside it.", file=sys.stderr)
+              "from figures.json rather than editing them beside it.\n"
+              "  The three exclusion lists have one committed derivation and it is this file's:\n"
+              "      python3 scripts/carousel/ledger_check.py --derive\n"
+              "  Writing a fresh derivation into out/<date>/ instead is what has put those three "
+              "lists\n  one entry behind on four runs running.", file=sys.stderr)
         return 1
     print("ledger_check: the variety ledgers agree with their own entries and with the run's "
           "computed counts")

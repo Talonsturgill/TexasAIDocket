@@ -322,6 +322,35 @@ def check_scene_bounds(base: Path) -> list[str]:
     return m.problems(base)
 
 
+def check_bleed_witness(base: Path) -> list[str]:
+    """A DECLARED BLEED IS DRAWN, read back out of the frame's own source.
+
+    WIRED HERE ON 2026-09-17 AND THIS IS THE PHASE THAT EARNS IT, for the same reason
+    `check_scene_bounds` above does. Carousel no. 27 declared a bleed on four frames that none of
+    them makes: three sheets stopping 148 to 250 px above the bottom edge, and a panel whose
+    declared top bleed is a hard edge 392 px inside the frame. `layout_check` measured the
+    declaration against the declared rect and passed, both being typed into the same yaml block.
+    Two craft judges found all four by reading the `N.sheet` call and subtracting, across four
+    scoring rounds on a deck that shipped at 6.856 against an 8.0 bar, and a round 5 judge asked
+    for this gate in one sentence.
+
+    A FAILURE TO LOAD IS A FINDING, not an empty list. A gate that cannot run and reports clean
+    is GATE_LESSONS 37, and this phase's whole promise is that nothing on this list reaches a
+    judge.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    try:
+        import bleed_witness as m
+    except Exception as exc:                                         # noqa: BLE001
+        return [f"bleed_witness could not be loaded, so the drawn geometry was not read at all: "
+                f"{exc}"]
+    probs = m.problems(base)
+    if probs is None:
+        return [f"{base}/slides archives no slide HTML, so no frame's drawn geometry could be "
+                f"read. That is a check that CANNOT RUN rather than a check that passed"]
+    return probs
+
+
 def scene_band_notes(base: Path) -> list[str]:
     """The acceptance bands a frame's own camera cannot reach. Read, never failed on."""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -745,6 +774,7 @@ def run(date: str, out_root: Path | None = None) -> int:
         ("every dossier describes the frame the run made", check_plan_matches(base)),
         ("every ground a dossier calls worked is worked", check_ground(base)),
         ("every figure the plan placed is inside its own frame", check_scene_bounds(base)),
+        ("every bleed a dossier declares is one the frame draws", check_bleed_witness(base)),
         ("every published address traces to a claim", check_contacts(base)),
         (f"the deck comes out within one Munsell step ({MUNSELL_STEP_L:g} L*) of its own "
          f"planned value arc", check_value_arc(base)),
@@ -1115,6 +1145,32 @@ def self_test() -> int:
             (_b / "slides" / "slide-01.html").read_text(encoding="utf-8")
             .replace("X: -13, Z: 9", "X: -9.2, Z: 27"), encoding="utf-8")
         ok("...and the repair that shipped is clean", not check_scene_bounds(_b))
+
+        # THE CHECK WIRED IN ON 2026-09-17, replayed on carousel no. 27's own frame 4 numbers.
+        # Without a storyboard this returns nothing, so the first assertion is that the check
+        # is reading the plan at all rather than reporting clean on an absence.
+        _bb = Path(_t) / "2026-09-17"
+        (_bb / "slides").mkdir(parents=True)
+        _plan = ("# Storyboard\n\n```yaml\nslide: 4\nlayout: CLOSE_CROP\njob: a job\n"
+                 "primary_image:\n  subject: \"a printed announcement\"\n"
+                 "  rect: [0, 396, 1080, 954]\n  bleeds: [left, right, bottom]\naccent: none\n```\n")
+        (_bb / "storyboard.md").write_text(_plan, encoding="utf-8")
+        (_bb / "slides" / "slide-04.html").write_text(
+            "<script>N.sheet(cx, { x: -112, y: 366, w: 1304, h: 832, rot: 0.005 });</script>",
+            encoding="utf-8")
+        ok("carousel no. 27's bottom bleed that stops 152 px short is CAUGHT before the panel",
+           any("declares bottom" in p for p in check_bleed_witness(_bb)),
+           str(check_bleed_witness(_bb)))
+        (_bb / "slides" / "slide-04.html").write_text(
+            "<script>N.sheet(cx, { x: -112, y: 366, w: 1304, h: 984, rot: 0.005 });</script>",
+            encoding="utf-8")
+        ok("...and a sheet drawn to the bottom edge is clean on the SAME declaration",
+           not check_bleed_witness(_bb), str(check_bleed_witness(_bb)))
+        for _f in (_bb / "slides").glob("*.html"):
+            _f.unlink()
+        ok("...and a run with no slide HTML is a check that CANNOT RUN, never a clean one",
+           any("CANNOT RUN" in p for p in check_bleed_witness(_bb)),
+           str(check_bleed_witness(_bb)))
 
         (_b / "claims.json").write_text(
             json.dumps({"claims": [{"id": "c25", "text": "the notice names no load",

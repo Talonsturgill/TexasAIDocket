@@ -40,6 +40,8 @@ frames are ONE DECK, which is a property a machine can read off the source:
     no template  the chassis exposes primitives, never a whole frame. A shared projection helper
                  is house furniture. A shared drawTheWholeSlide is a template
     no plate     no opaque rect behind display type
+    reserve      nothing a TXDECK.lineBoxes call reserved is repositioned after it. The reserve
+                 is live geometry, so an element that moves afterwards was never measured
 
 EXIT CODES
     0  the nine frames are one deck
@@ -257,6 +259,149 @@ def finish_problems(name: str, html: str) -> list[str]:
     return []
 
 
+# --------------------------------------------------------------------------- the type reserve
+POSITION_RE = re.compile(
+    r"(?<![\w$.])([A-Za-z_$][\w$]*)\s*\.\s*style\s*\.\s*(left|top|right|bottom|transform)\s*=(?!=)")
+BIND_RE = re.compile(
+    r"(?<![\w$.])([A-Za-z_$][\w$]*)\s*=\s*document\.(?:getElementById|querySelector)\("
+    r"\s*[\"']([^\"']+)[\"']")
+LINEBOXES_RE = re.compile(r"TXDECK\.lineBoxes\(\s*[\"']([^\"']*)[\"']")
+ELEMENT_RE = re.compile(r"<[a-zA-Z][^>]*>")
+ATTR_RE = re.compile(r"\b(id|class)\s*=\s*[\"']([^\"']*)[\"']")
+
+
+def _code_only(html: str) -> str:
+    """Inline script bodies with COMMENTS blanked and STRING BODIES KEPT, offsets preserved.
+
+    `scene_bounds.strip_js` blanks strings too, which is right for reading numbers and wrong
+    here: the selector a `lineBoxes` call names IS a string, and so is the id a binding reads.
+    Blanking rather than deleting keeps the line numbers in the findings honest, and a `//`
+    inside a string ("https://...") does not open a comment, which a regex would get wrong in
+    the direction of a silent miss.
+    """
+    out = list(html)
+    for i, c in enumerate(out):
+        out[i] = "\n" if c == "\n" else " "
+    for blk in re.finditer(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script\s*>", html, re.S | re.I):
+        s, e = blk.start(1), blk.end(1)
+        i, mode = s, None
+        while i < e:
+            c = html[i]
+            if mode is None:
+                if html.startswith("//", i):
+                    mode, i = "line", i + 2
+                    continue
+                if html.startswith("/*", i):
+                    mode, i = "block", i + 2
+                    continue
+                out[i] = c
+                if c in "\"'`":
+                    mode = c
+                i += 1
+            elif mode == "line":
+                if c == "\n":
+                    mode = None
+                i += 1
+            elif mode == "block":
+                if html.startswith("*/", i):
+                    mode, i = None, i + 2
+                    continue
+                i += 1
+            else:
+                out[i] = c
+                if c == "\\":
+                    out[i + 1] = html[i + 1] if i + 1 < e else " "
+                    i += 2
+                    continue
+                if c == mode:
+                    mode = None
+                i += 1
+    return "".join(out)
+
+
+def _selectors_of(html: str) -> dict[str, set[str]]:
+    """Every element's id, mapped to the selectors that reach it. `#card` AND `.card`.
+
+    The whole reason this reads the markup instead of the script is that `.card` and `#card` are
+    the same element only because one div carries both, and a checker that assumed the variable
+    name equals the class name would be right on carousel no. 27 by luck and silent on the next
+    deck that names its variable anything else.
+    """
+    out: dict[str, set[str]] = {}
+    for tag in ELEMENT_RE.finditer(html):
+        attrs = dict((m.group(1), m.group(2)) for m in ATTR_RE.finditer(tag.group(0)))
+        eid = attrs.get("id")
+        if not eid:
+            continue
+        sel = {"#" + eid}
+        sel.update("." + c for c in (attrs.get("class") or "").split() if c)
+        out[eid] = sel
+    return out
+
+
+def reserve_order_problems(name: str, html: str) -> list[str]:
+    """THE TYPE RESERVE IS MEASURED AFTER THE TYPE IS PLACED, and nothing checked the order.
+
+    THE DEFECT THIS EXISTS FOR (2026-09-17, carousel no. 27, frame 9)
+
+    The deck's one screen ran its halftone straight under five lines of mono type on the accent
+    card, against `txdeck.js`'s own oldest rule. A judge found it in round 4, the run added
+    `.card` to the `lineBoxes` selector, reported it fixed, and A ROUND 5 JUDGE FOUND IT AGAIN
+    by reading the source and the render together. The string was right and the pixels were
+    unchanged, because the card is positioned twenty lines LATER:
+
+        var boxes = TXDECK.lineBoxes(".hook, .dek, .card, .kick, .ctr, .src, .tx-site", 18);
+        ...
+        var card = document.getElementById("card");
+        card.style.left = (CX0 + 26) + "px";
+        card.style.top  = (CY0 + 24) + "px";
+
+    `lineBoxes` measures LIVE geometry through `getClientRects`, so it reserved the card's
+    STATIC coordinates and protected a region of the frame no type was ever in. Its own docstring
+    says "Measure AFTER document.fonts.ready and AFTER fitText, or the boxes are the wrong size",
+    which is the same rule one step short: an element that MOVES after the measurement is as
+    unmeasured as one whose font had not loaded.
+
+    A repair that changes a selector string and never moves a pixel is the exact shape this
+    project keeps meeting, and the only thing that separates it from a real fix is a measurement.
+
+    WHAT IT DOES NOT ASK. Whether the reserve was big enough, whether the selector names every
+    type block, or whether the mask was used. Those are questions about the picture. This is one
+    question about ORDER, which is a fact about the source and has a right answer.
+    """
+    code = _code_only(html)
+    calls = list(LINEBOXES_RE.finditer(code))
+    if not calls:
+        return []
+    reach = _selectors_of(html)
+    bound: dict[str, set[str]] = {}
+    for m in BIND_RE.finditer(code):
+        target = m.group(2)
+        if target.startswith("#") or not target.startswith("."):
+            bound[m.group(1)] = reach.get(target.lstrip("#"), {target if target.startswith("#")
+                                                               else "#" + target})
+        else:
+            bound[m.group(1)] = {target}
+    out = []
+    for call in calls:
+        named = {s.strip() for s in call.group(1).split(",") if s.strip()}
+        line_of_call = code.count("\n", 0, call.start()) + 1
+        for move in POSITION_RE.finditer(code):
+            if move.start() < call.end():
+                continue
+            hit = named & bound.get(move.group(1), set())
+            if not hit:
+                continue
+            line = code.count("\n", 0, move.start()) + 1
+            out.append(
+                f"{name}: TXDECK.lineBoxes at line {line_of_call} reserves "
+                f"{', '.join(sorted(hit))} and `{move.group(1)}.style.{move.group(2)}` moves that "
+                f"element at line {line}. lineBoxes reads LIVE geometry, so the reserve was taken "
+                f"at the element's static position and protects a region the type is not in. "
+                f"Position, then measure")
+    return sorted(set(out))
+
+
 def check_deck(slides_dir: Path, repo_root: Path = REPO_ROOT) -> list[str]:
     """Every way the nine frames fail to be one deck. Empty means they are."""
     problems: list[str] = []
@@ -292,6 +437,7 @@ def check_deck(slides_dir: Path, repo_root: Path = REPO_ROOT) -> list[str]:
                     f"so re-checking or reproducing it would render the later deck's light")
 
         problems.extend(finish_problems(name, html))
+        problems.extend(reserve_order_problems(name, html))
 
         # A frame grading itself is a frame holding its own opinion about the deck's look.
         direct = [m for m in re.finditer(r"TXPOST\.grade\s*\(", html)]
@@ -402,8 +548,11 @@ def self_test() -> int:
     """Replays the 2026-09-16 deck's four defects and proves a clean deck passes."""
     fails = []
 
+    ran: list[str] = []
+
     def case(label: str, slides: dict[str, str], chassis: dict[str, str],
              want_problem: str | None) -> None:
+        ran.append(label)
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             sd = _write_deck(root, slides, chassis)
@@ -473,6 +622,47 @@ def self_test() -> int:
         "TXDECK.finish(cx, { w: 1080, h: 1350 });", "/* TXDECK.finish(cx, {}) one day */")
     case("a finish call inside a block comment fails", blockc, good_ch, "only in a comment")
 
+    # 2c. THE TYPE RESERVE ORDER, replayed on carousel no. 27's frame 9 as it shipped. The card
+    # carries `id="card" class="card"` and the selector names `.card`, so a checker that matched
+    # the VARIABLE name against the selector would pass this and pass the buggy version too.
+    # The variable is deliberately named something else here for exactly that reason.
+    _CARD = ('<div class="card" id="card">FIVE LINES</div>\n'
+             '<script>var boxes = TXDECK.lineBoxes(".hook, .card, .src", 18);\n'
+             'var mask = TXDECK.reserveMask(boxes, 24);\n')
+    moved = dict(nine)
+    moved["slide-09.html"] = _GOOD_SLIDE.replace(
+        "<script>TXCAPROCK", _CARD + "var el = document.getElementById('card');\n"
+        "el.style.left = (CX0 + 26) + 'px';\nel.style.top = (CY0 + 24) + 'px';</script>\n"
+        "<script>TXCAPROCK")
+    case("an element the reserve names, repositioned after it, fails", moved, good_ch,
+         "Position, then measure")
+
+    ordered = dict(nine)
+    ordered["slide-09.html"] = _GOOD_SLIDE.replace(
+        "<script>TXCAPROCK",
+        '<div class="card" id="card">FIVE LINES</div>\n'
+        "<script>var el = document.getElementById('card');\n"
+        "el.style.left = (CX0 + 26) + 'px';\nel.style.top = (CY0 + 24) + 'px';\n"
+        'var boxes = TXDECK.lineBoxes(".hook, .card, .src", 18);\n'
+        "var mask = TXDECK.reserveMask(boxes, 24);</script>\n<script>TXCAPROCK")
+    case("...and the SAME frame with the two steps in the right order passes", ordered,
+         good_ch, None)
+
+    unnamed = dict(nine)
+    unnamed["slide-09.html"] = _GOOD_SLIDE.replace(
+        "<script>TXCAPROCK", _CARD.replace('".hook, .card, .src"', '".hook, .src"')
+        + "var el = document.getElementById('card');\nel.style.left = '20px';</script>\n"
+        "<script>TXCAPROCK")
+    case("an element the reserve does NOT name may be moved freely", unnamed, good_ch, None)
+
+    commentmove = dict(nine)
+    commentmove["slide-09.html"] = _GOOD_SLIDE.replace(
+        "<script>TXCAPROCK", _CARD + "var el = document.getElementById('card');\n"
+        "// el.style.left = '20px';\nvar u = 'https://texasaidocket.com';</script>\n"
+        "<script>TXCAPROCK")
+    case("a commented move is not a move, and a // inside a URL does not hide a real one",
+         commentmove, good_ch, None)
+
     drawafter = dict(nine)
     drawafter["slide-08.html"] = _GOOD_SLIDE.replace(
         "TXDECK.finish(cx, { w: 1080, h: 1350 });",
@@ -509,7 +699,10 @@ def self_test() -> int:
         for f in fails:
             print(f"  - {f}", file=sys.stderr)
         return 1
-    print("deck_chassis --self-test: ok, 16 cases")
+    # COUNTED, NEVER TYPED. This line read "16 cases" while nineteen ran, having been written
+    # when sixteen did, so the one number the suite prints about itself was three behind and a
+    # reader could not tell a case that had been added from one that had been deleted.
+    print(f"deck_chassis --self-test: ok, {len(ran)} cases")
     return 0
 
 
