@@ -979,14 +979,23 @@ def load_runs() -> list:
     base = REPO_ROOT / "runs" / "carousel"
     if not base.is_dir():
         return out
-    bar, cap = run_complete.threshold(), run_complete.max_rounds()
+    # THE BAR IS PER RUN, NEVER ONE BAR FOR THE WHOLE BUILD.
+    #
+    # This read `run_complete.threshold()` once and applied today's bar to every deck ever
+    # published. That is fine while the bar falls and silently unpublishes the archive when it
+    # rises: raising it to 8.0 on 2026-09-16 dropped every deck between 7.09 and 7.58, fifteen
+    # article pages and about three hundred media files, and `site_fresh_check` reported it as a
+    # rebuild that wanted to DELETE them. A deck answers to the bar it was judged against, which
+    # `run_complete.bar_for_run` reads from the deck's own score.json and falls back to the bar
+    # that was in force on its date.
+    cap = run_complete.max_rounds()
     for d in sorted((x for x in base.iterdir() if x.is_dir()), key=lambda x: x.name,
                     reverse=True):
         # BEFORE READING THE COPY. Failed runs archive the same files as shipped runs so that
         # their evidence survives the container. Presence therefore proves a run happened, not
         # that the panel cleared it. Reuse the gate that already knows about cap and owner paths
         # so the site cannot invent a second definition of shipped.
-        if (d / "score.json").exists() and run_complete.check(d, bar, cap):
+        if (d / "score.json").exists() and run_complete.check(d, run_complete.bar_for_run(d), cap):
             continue
         # AND A RUN WITH NO SCORE AT ALL IS NOT AUTOMATICALLY LEGACY. The clause above only
         # refuses a run whose score FAILS, so a run that was never scored fell through it and

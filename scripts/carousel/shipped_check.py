@@ -769,44 +769,12 @@ def g_completion(d: Path):
     except json.JSONDecodeError:
         bar = None
     if not isinstance(bar, (int, float)) or isinstance(bar, bool):
-        bar = bar_in_force(d.name)   # a deck that recorded no bar answers to the one that applied
+        bar = m.bar_in_force(d.name)  # a deck that recorded no bar answers to the one that applied
     return list(m.check(d, float(bar), m.max_rounds()) or [])
 
 
-# WHAT THE BAR WAS, BY DATE, for the decks that did not record their own.
-#
-# The paragraph above already settled the principle on 2026-09-13: a deck answers to the bar it
-# was judged against, and a number this project moves must not reach back and reclassify history.
-# It was implemented for decks that WROTE `threshold` into score.json and fell through to "the
-# current one" for the decks that did not, which was fine while the bar only ever went down.
-#
-# On 2026-09-16 the bar went UP, 6.7 to 8.0, with the artwork upgrade. Three already published
-# decks that recorded no threshold went red the same minute: 2026-08-20 and 2026-08-21 at 7.42
-# and 2026-08-22 at 7.09. All three cleared the 7.0 in force when they shipped. None of them
-# changed. The fallback was the half of the fix that had never been tested, because no bar had
-# ever risen before.
-#
-# Dates are the LAST date each bar applied to. Read from the rubric's own git history, plus
-# run_complete.py's docstring for the pre-rubric bar ("never reached the 7.0 threshold", the
-# 2026-08-19 run), because config/carousel/scoring_rubric.yaml was only created on 2026-09-13
-# when this product stopped inheriting the sibling's copy.
-BAR_HISTORY = (
-    ("2026-09-12", 7.0),   # before this repo carried its own rubric
-    ("2026-09-15", 6.7),   # rubric created 2026-09-13 at 6.8 and lowered to 6.7 the same day
-)
-
-
-def bar_in_force(deck_date: str) -> float:
-    """The threshold a deck of this date was actually held to.
-
-    Anything after the last entry answers to the rubric as it stands, which is correct: a deck
-    shipped under today's bar is answerable to today's bar.
-    """
-    import run_complete as m
-    for last_date, bar in BAR_HISTORY:
-        if deck_date <= last_date:
-            return bar
-    return m.threshold()
+# The bar a deck answers to now lives in `run_complete.BAR_HISTORY`, because the site builder
+# needs the same answer and two copies of a rule about history is how history gets two versions.
 
 
 def g_verbatim(d: Path):
