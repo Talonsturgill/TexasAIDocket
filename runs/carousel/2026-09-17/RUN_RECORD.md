@@ -204,8 +204,35 @@ exists for, and a word moving 0.14 percent of a frame is a fact that can be stat
 
 ## Permissions
 
-`prompt_audit` measured **1,379 tool calls and none waited on a human.** Nothing in this run
-stopped for a permission, and no setting had to be changed to keep it going.
+`prompt_audit` measured **1,673 tool calls and none waited on a human**, on the final reading
+taken after the upgrade worker and every commit. Nothing in this run stopped for a permission, and
+no setting had to be changed to keep it going.
+
+## THIS BRANCH IS PUSHED BY SOMETHING THAT IS NOT THIS SESSION
+
+Recorded as a MEASUREMENT with no explanation attached, because the push defect above is the
+precedent for what a confident wrong explanation costs.
+
+Earlier today `push.sh` reported `remote rejected ... cannot lock ref` with the commit already on
+the remote, which is the documented defect, and later the remote was found carrying a SECOND
+commit no push had been issued for. One push issued, two landed. That is in the notes as an
+observation.
+
+It went one step further. Commit `cb477dca` was committed locally and **never pushed by any
+command this session ran.** Within two minutes `git ls-remote` returned it as the branch head,
+`git rev-list --left-right --count` returned `0  0`, and GitHub had already started a six job CI
+run against it. Zero pushes issued, one landed.
+
+**The consequence is not the mystery, it is the ordering.** The routine's model is commit, then
+run the gates, then push when the verdict is green. If a commit reaches the remote on its own, CI
+starts against work the local suite has not finished judging, and the session no longer chooses
+what lands or when. It happened to be harmless here: the verdict came back GREEN on
+`cb477dcabc39`, 142 steps passed and 3 skipped, and CI was green on the same SHA. On a run whose
+gates go red it would mean the red work was already public.
+
+Nothing was done about it, deliberately. The merge rule is unaffected, because it keys on CI green
+on the head SHA and not on who pushed it. **What a future run must not do is conclude from a
+`push.sh` failure that its work did not land.** Ask the remote.
 
 ## Record
 
