@@ -257,11 +257,30 @@ for (const [where, w] of Object.entries(darkest)) {
 // atmosphere at all has failed differently: the whole point is a dusk sky, not a black
 // rectangle. So the bottom of the sky must be measurably warmer than the top.
 const im = decodePNG(await p.screenshot({ fullPage: false }));
-const top = px(im, 720, 60), low = px(im, 720, 880);
 const warmth = c => c[0] - c[2];             // red minus blue, so positive is warm
+
+// SAMPLE THE SKY IN THE GUTTER, for the reason stated at the top of this block: these checks
+// sample where content is NOT. This pair used to read the CENTRE column at x 720, and the front
+// page grew an ask box into exactly that column: at 1440 x 900 the horizon sample landed on the
+// box's own input, which paints its own cool fill, and the check reported the sky as cold when
+// the sky was fine. Measured down the centre column the warm band peaks at y 770 and the ask box
+// starts around y 800; measured down the right gutter the same band is +3 against the top's -8.
+//
+// The gutter x is the one the spots table already uses, so a failure here names the same place
+// on the page as every other failure in this file.
+const SKY_X = spots['top right gutter'][0];
+const onSky = await p.evaluate(([x, y]) => {
+  const el = document.elementFromPoint(x, y);
+  return !el || !el.closest('main, .masthead, footer.site, .askbox');
+}, [SKY_X, 870]);
+ok('the horizon sample is on sky rather than on content',
+   onSky,
+   `something in the page is under (${SKY_X}, 870), so this pair would measure it instead of the sky`);
+
+const top = px(im, SKY_X, 60), low = px(im, SKY_X, 870);
 ok('the horizon is warmer than the sky above it',
    warmth(low) > warmth(top),
-   `top r-b ${warmth(top)}, horizon r-b ${warmth(low)}`);
+   `at x ${SKY_X}: top r-b ${warmth(top)}, horizon r-b ${warmth(low)}`);
 
 /* ---------- and it must not have a visible edge ---------- */
 //
