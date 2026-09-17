@@ -98,13 +98,18 @@ seven configurations on this deck's own ground and ink at feed scale, and halfto
 **THE PALETTE, computed rather than chosen.** `out/2026-09-17/palette_measured.json` carries the
 arithmetic, against the 59 hexes of the last eight decks with the line at dE 10.09.
 
-    ground     #051F21  L* 10.0  dE  8.51   the unlit room, a cool dark
-    ink        #C8DDD7  L* 86.5  dE  9.39   display type, 12.07 to 1 on the ground
-    dek        #8CADA7  L* 68.2  dE 15.39   7.07 to 1
-    furniture  #6A929A  L* 58.0  dE 13.52   one pale ink on all nine frames, 5.06 to 1
-    page       #BFCBBD  L* 80.4  dE 10.22   the drawn documents' own stock
-    toner      #272310  L* 13.7  dE 11.19   the type printed on them, 9.36 to 1 on the page
-    accent     #EFA31D  L* 72.7  dE 39.95   standby amber, and the accent law above
+    ground     L* 10.0  #051F21  dE  8.51   the unlit room, a cool dark
+    ink        L* 86.5  #C8DDD7  dE  9.39   display type, 12.07 to 1 on the ground
+    dek        L* 68.2  #8CADA7  dE 15.39   7.07 to 1
+    furniture  L* 58.0  #6A929A  dE 13.52   one pale ink on all nine frames, 5.06 to 1
+    page       L* 80.4  #BFCBBD  dE 10.22   the drawn documents' own stock
+    toner      L* 13.7  #272310  dE 11.19   the type printed on them, 9.36 to 1 on the page
+    accent     L* 72.7  #EFA31D  dE 39.95   standby amber, and the accent law above
+
+Every luminance in that table is computed from its own hex by `measure.py` and lives in
+`measurements.json`. THE COLUMN ORDER IS NOT A STYLE CHOICE: the `measured figures` gate reads a
+number written beside the `L*` token, and with the hex first it read the tail of `#051F21` as a
+luminance of 21. The figures were right and the layout put digits where the gate looks.
 
 Flag red is UNSPENT and that is deliberate. There is no comment window, no hearing and no
 deadline anywhere in this record, so a reserved red would be a false urgency.
