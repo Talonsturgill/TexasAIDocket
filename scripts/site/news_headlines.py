@@ -8,6 +8,7 @@ headline verbatim. Only headline metadata is retained; article pages are never f
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import email.utils
 import xml.etree.ElementTree as ET
 import datetime as dt
@@ -24,6 +25,7 @@ import urllib.request
 import urllib.robotparser
 from html.parser import HTMLParser
 from pathlib import Path
+from csp import NEWS_FEED_URL
 
 ROOT = Path(__file__).resolve().parents[2]
 STATE = ROOT / 'ledger/news/latest.json'
@@ -31,8 +33,11 @@ CONFIG = json.loads((ROOT / 'config/news_sources.json').read_text())
 SOURCES = CONFIG['sources']
 RSS_FEEDS = tuple(CONFIG['feeds'])
 UTC = dt.timezone.utc
-MAX_AGE = dt.timedelta(hours=36)
+MAX_AGE = dt.timedelta(days=7)
+TRENDING_AGE = dt.timedelta(hours=72)
 MAX_CHECK_AGE = dt.timedelta(hours=18)
+AI_FEEDS = frozenset(CONFIG.get('ai_feeds', []))
+GLOBAL_GROUPS = frozenset(CONFIG.get('global_groups', []))
 QUERY = ('(Texas OR Dallas OR Austin OR Houston OR "San Antonio" OR "Fort Worth") '
          '("artificial intelligence" OR AI OR "data center" OR technology OR semiconductor '
          'OR robotics) sourcelang:english')
@@ -51,6 +56,9 @@ TECH = re.compile(r'\b(?:AI|artificial intelligence|machine learning|data[- ]cen
                   r'tech(?:nology|nologies)?|semiconductors?|microchips?|robot\w*|'
                   r'autonomous|self[- ]driving|cyber\w*|software|quantum|computing|'
                   r'chatbots?|air[- ]tax(?:i|is)|air taxis|evtol|broadband)\b', re.I)
+AI = re.compile(r'\b(?:AI|artificial intelligence|machine learning|neural networks?|'
+                r'LLMs?|large language models?|OpenAI|ChatGPT|GPT[- ]?\d|'
+                r'generative|deep learning|inference|MLPerf)\b', re.I)
 JUNK = re.compile(r'\b(?:stock|shares|price target|earnings|buy rating|sponsored|press release|'
                   r'scholarship|obituary|football|basketball|baseball|betting|\w+ vs\.? \w+)\b', re.I)
 STOP = set('a an and are as at be by for from has in into is it of on or over s that the their '
@@ -109,16 +117,24 @@ def related(a: dict, b: dict) -> bool:
     return len(common) >= 3 and len(common) / math.sqrt(len(left) * len(right)) >= .45
 
 
+def topics(article: dict) -> tuple[bool, bool]:
+    title = article['title']
+    newsroom = source(article['url'])
+    texas = bool(TEXAS.search(title) or AUSTIN.search(title) or
+                 (newsroom and newsroom[1] == 'dallasinnovates' and DALLAS_INSTITUTIONS.search(title)))
+    ai = bool(AI.search(title) or article.get('feed') in AI_FEEDS)
+    return texas, ai
+
+
 def eligible(article: dict, now: dt.datetime) -> bool:
     try:
         title = article['title']
         if not isinstance(title, str) or not 20 <= len(title) <= 220 or len(title.split()) > 32:
             return False
         newsroom = source(article['url'])
-        texas = (TEXAS.search(title) or AUSTIN.search(title) or
-                 (newsroom and newsroom[1] == 'dallasinnovates' and DALLAS_INSTITUTIONS.search(title)))
-        if (not newsroom or not texas
-                or not TECH.search(title) or JUNK.search(title)):
+        texas, ai = topics(article)
+        if (not newsroom or not article['url'].startswith('https://') or not ((ai and newsroom[1] in GLOBAL_GROUPS) or
+                                  (texas and TECH.search(title))) or JUNK.search(title)):
             return False
         age = now - instant(article['first_seen_at'])
         if not dt.timedelta(0) <= age < MAX_AGE:
@@ -128,7 +144,7 @@ def eligible(article: dict, now: dt.datetime) -> bool:
         date = re.search(r'/(20\d{2})/(\d{2})/(\d{2})/', article['url'])
         if date:
             day = dt.date(*(int(n) for n in date.groups()))
-            if not dt.timedelta(0) <= now.date() - day <= dt.timedelta(days=2):
+            if not dt.timedelta(0) <= now.date() - day <= MAX_AGE:
                 return False
         return True
     except (KeyError, TypeError, ValueError, OverflowError):
@@ -153,9 +169,11 @@ def rank(articles: list[dict], now: dt.datetime) -> list[dict]:
         coverage = min(len(groups), len(distinct))
         age = (now - instant(article['first_seen_at'])).total_seconds() / 3600
         score = round((1 + math.log2(coverage)) * 2 ** (-age / 24), 6)
+        texas, ai = topics(article)
+        priority = (0 if texas and ai else 1 if ai else 2) + (3 if age >= 72 else 0)
         scored.append({**article, 'publisher': source(article['url'])[0],
-                       'coverage': coverage, 'score': score})
-    return sorted(scored, key=lambda a: (-a['score'], a['first_seen_at'], a['url']))
+                       'coverage': coverage, 'score': score, 'priority': priority})
+    return sorted(scored, key=lambda a: (a['priority'], -a['score'], a['first_seen_at'], a['url']))
 
 
 def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> dict:
@@ -172,6 +190,8 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
             seen = dt.datetime.strptime(raw['seendate'], '%Y%m%dT%H%M%SZ').replace(tzinfo=UTC)
             row = {'title': html.unescape(' '.join(raw['title'].split())), 'url': url,
                    'first_seen_at': min(known.get(url, stamp(seen)), stamp(seen))}
+            if raw.get('feed') in AI_FEEDS:
+                row['feed'] = raw['feed']
             if raw.get('language') == 'English' and eligible(row, now):
                 rows.append(row)
         except (KeyError, TypeError, ValueError):
@@ -187,14 +207,14 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
     rows = sorted(unique.values(), key=lambda a: a['url'])
     ranked = rank(rows, now)
     selected = ranked[0] if ranked else None
-    return {'_spec': 1, 'checked_at': stamp(now), 'provider': 'GDELT and publisher RSS',
+    return {'_spec': 2, 'checked_at': stamp(now), 'provider': 'GDELT and publisher RSS',
             'feed_url': FEED, 'response_sha256': hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest(),
             'articles': rows, 'selected': selected,
             'expires_at': stamp(instant(selected['first_seen_at']) + MAX_AGE) if selected else None}
 
 
 def validate(data: dict) -> None:
-    if data.get('_spec') != 1 or data.get('provider') != 'GDELT and publisher RSS':
+    if data.get('_spec') != 2 or data.get('provider') != 'GDELT and publisher RSS':
         raise ValueError('unknown news snapshot')
     now = instant(data['checked_at'])
     ranked = rank(data['articles'], now)
@@ -214,53 +234,42 @@ def load() -> dict:
     return data
 
 
+def public_snapshot(data: dict) -> dict:
+    return {key: data.get(key) for key in ('_spec', 'checked_at', 'selected', 'expires_at')}
+
+
 def markup(today: str, data: dict | None = None) -> str:
     data = load() if data is None else data
     selected = data.get('selected')
     build_start = dt.datetime.combine(dt.date.fromisoformat(today), dt.time(), UTC)
+    if selected and build_start >= instant(data['expires_at']):
+        selected = None
     e = html.escape
-    checked = e(data.get('checked_at', ''), quote=True)
-    if not selected or build_start >= instant(data['expires_at']):
-        return (f'<div class="tele news-chip news-empty" data-news-status="empty" '
-                f'data-checked-at="{checked}"><span class="news-meta">'
-                '<span class="news-label">Texas tech and AI</span></span>'
-                '<span class="news-title">Fresh headlines are temporarily unavailable.</span></div>')
-    title = ('Selected from recent Texas tech and AI coverage, ranked by coverage and freshness. '
-             'Discovery by The GDELT Project and publisher RSS. The source headline opens in a new tab.')
-    return (f'<a class="tele news-chip" data-news-status="current" data-checked-at="{checked}" '
-            f'href="{e(selected["url"], quote=True)}" '
-            f'target="_blank" rel="noopener noreferrer" data-expires-at="{e(data["expires_at"])}" '
-            f'title="{title}"><span class="news-meta"><span class="news-label">Trending</span>'
-            f'<cite class="news-source">{e(selected["publisher"])}</cite></span>'
-            f'<cite class="news-title">{e(selected["title"])}</cite>'
+    recent = selected and (build_start - instant(selected['first_seen_at']) >= TRENDING_AGE or
+                           build_start - instant(data['checked_at']) > MAX_CHECK_AGE)
+    status = ('recent' if recent else 'current') if selected else 'empty'
+    label = 'Recent' if recent else 'Trending'
+    title = (selected['title'] if selected else 'Explore the latest AI reporting')
+    publisher = selected['publisher'] if selected else ''
+    date = (instant(selected['first_seen_at']).strftime('%b ') + str(instant(selected['first_seen_at']).day)) if selected else ''
+    url = selected['url'] if selected else '/articles/'
+    first_seen = selected['first_seen_at'] if selected else ''
+    description = ('Headlines ranked by coverage and freshness, with Texas AI first. '
+                   'The date is the publisher feed date or first observation. Opens the source in a new tab.')
+    return (f'<a class="tele news-chip" data-news-status="{status}" '
+            f'data-news-feed="{NEWS_FEED_URL}" '
+            f'data-news-sources="{e(json.dumps(SOURCES), quote=True)}" '
+            f'data-news-initial="{e(json.dumps(public_snapshot(data)), quote=True)}" '
+            f'data-checked-at="{e(data.get("checked_at", ""), quote=True)}" '
+            f'data-first-seen-at="{e(first_seen)}" data-expires-at="{e(data.get("expires_at") or "")}" '
+            f'href="{e(url, quote=True)}" target="_blank" rel="noopener noreferrer" '
+            f'title="{description}"><span class="news-meta"><span class="news-label">{label}</span>'
+            f'<cite class="news-source">{e(publisher)}</cite>'
+            f'<time class="news-date" datetime="{e(first_seen)}">{date}</time></span>'
+            f'<cite class="news-title">{e(title)}</cite>'
             '<svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" '
             'fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg>'
-            '</a><script>' + EXPIRY_JS + '</script>')
-
-
-# The build handles missing data; this handles a cached page surviving a missed cron or deploy.
-# No network request, model call, tracking, ticker or carousel in the reader's browser.
-EXPIRY_JS = """(function(){
-  var chip=document.querySelector('.news-chip');
-  if(!chip)return;
-  var expires=Date.parse(chip.dataset.expiresAt);
-  function retire(){
-    if(chip.dataset.newsStatus==='empty')return;
-    if(Number.isFinite(expires)&&Date.now()<expires)return;
-    chip.style.minHeight=chip.getBoundingClientRect().height+'px';
-    chip.removeAttribute('href');chip.removeAttribute('target');chip.removeAttribute('rel');
-    chip.removeAttribute('title');chip.dataset.newsStatus='empty';
-    chip.classList.add('news-empty');
-    chip.querySelector('.news-label').textContent='Texas tech and AI';
-    chip.querySelector('.news-title').textContent='Fresh headlines are temporarily unavailable.';
-    chip.querySelector('.news-source').hidden=true;
-    chip.querySelector('.news-arrow').hidden=true;
-    if(document.activeElement===chip)chip.blur();
-  }
-  retire();
-  if(expires>Date.now())setTimeout(retire,Math.min(expires-Date.now()+100,2147483647));
-  document.addEventListener('visibilitychange',retire);
-})();"""
+            '</a><script>' + (ROOT / 'scripts/site/news_runtime.js').read_text() + '</script>')
 
 
 def fetch(url: str) -> bytes:
@@ -271,20 +280,20 @@ def fetch(url: str) -> bytes:
                 raise ValueError('unexpected feed redirect')
             return super().redirect_request(req, fp, code, msg, headers, newurl)
     opener = urllib.request.build_opener(SameHost())
-    for attempt in range(3):
+    for attempt in range(2):
         try:
-            with opener.open(urllib.request.Request(url, headers={'User-Agent': UA, 'Cache-Control': 'no-cache'}), timeout=50) as response:
+            with opener.open(urllib.request.Request(url, headers={'User-Agent': UA, 'Cache-Control': 'no-cache'}), timeout=15) as response:
                 body = response.read(2_000_001)
                 if len(body) > 2_000_000:
                     raise ValueError('feed exceeded response limit')
                 return body
         except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == 1:
                 raise
         except (TimeoutError, urllib.error.URLError):
-            if attempt == 2:
+            if attempt == 1:
                 raise
-        time.sleep(10 * (attempt + 1))
+        time.sleep(2 * (attempt + 1))
     raise RuntimeError('feed unavailable')
 
 
@@ -333,27 +342,35 @@ def collect() -> int:
     query.update(startdatetime=(end-dt.timedelta(days=1)).strftime('%Y%m%d%H%M%S'),
                  enddatetime=end.strftime('%Y%m%d%H%M%S'))
     feed_url = 'https://api.gdeltproject.org/api/v2/doc/doc?' + urllib.parse.urlencode(query)
-    combined, feeds = [], []
-    for url in (feed_url, *RSS_FEEDS):
+    def read_feed(url):
         try:
             body = checked_fetch(url)
             if url in RSS_FEEDS:
                 rows = rss_articles(body)
+                if url in AI_FEEDS:
+                    rows = [{**row, 'feed': url} for row in rows]
             else:
                 payload = json.loads(body)
                 if not isinstance(payload, dict) or not isinstance(payload.get('articles'), list):
                     raise ValueError('GDELT did not return an article list')
                 rows = payload['articles']
-            combined.extend(rows)
-            feeds.append({'url': url, 'status': 'ok', 'items': len(rows),
-                          'sha256': hashlib.sha256(body).hexdigest()})
+            return rows, {'url': url, 'status': 'ok', 'items': len(rows),
+                          'sha256': hashlib.sha256(body).hexdigest()}
         except (OSError, ValueError, ET.ParseError) as error:
-            feeds.append({'url': url, 'status': 'unavailable'})
             print(f'::warning::news feed unavailable: {urllib.parse.urlsplit(url).hostname}: {error}',
                   file=sys.stderr)
+            return [], {'url': url, 'status': 'unavailable'}
+    combined, feeds = [], []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+        for rows, feed in pool.map(read_feed, (feed_url, *RSS_FEEDS)):
+            combined.extend(rows)
+            feeds.append(feed)
     if not any(feed['status'] == 'ok' for feed in feeds):
         raise OSError('all news feeds failed; previous snapshot preserved')
-    result = snapshot({'articles': combined}, dt.datetime.now(UTC), load())
+    # The old schema is accepted only as observation history during this migration. Every
+    # candidate is filtered and ranked again; an old selected headline is never trusted.
+    previous = json.loads(STATE.read_text()) if STATE.exists() else {}
+    result = snapshot({'articles': combined}, dt.datetime.now(UTC), previous)
     result['feed_url'] = feed_url
     result['feeds'] = feeds
     validate(result)
@@ -369,12 +386,12 @@ def collect() -> int:
 def health_problems(data: dict, now: dt.datetime) -> list[str]:
     """Operational health is separate from the reproducible snapshot/schema check."""
     problems = []
-    if not data.get('selected') or instant(data['expires_at']) <= now:
-        problems.append('no current Texas tech headline is available')
+    if not data.get('selected') or now - instant(data['selected']['first_seen_at']) >= TRENDING_AGE:
+        problems.append('no fresh AI or Texas tech headline is available')
     if not dt.timedelta(minutes=-5) <= now - instant(data['checked_at']) <= MAX_CHECK_AGE:
         problems.append('news collection is overdue or its clock is invalid')
-    if sum(feed.get('status') == 'ok' for feed in data.get('feeds', [])) < 2:
-        problems.append('fewer than two independent news feeds are available')
+    if sum(feed.get('status') == 'ok' for feed in data.get('feeds', [])) < 1:
+        problems.append('no news feed is available')
     return problems
 
 
@@ -406,33 +423,26 @@ class PublishedHeadline(HTMLParser):
             self.current = None
 
 
-def live_problems(body: str, now: dt.datetime, expected_check: str | None = None) -> list[str]:
-    """Inspect what Pages actually serves, without trusting the collection job's status."""
+def live_problems(body: str, now: dt.datetime, expected_check: str | None = None,
+                  feed_data: dict | None = None) -> list[str]:
+    """Check the shipped integration and its separately published feed. Browser QA runs too."""
     parser = PublishedHeadline()
     parser.feed(body)
     if len(parser.chips) != 1:
         return ['the published homepage does not contain exactly one news bar']
     tag, chip, text = parser.chips[0]
-    problems = []
+    if tag != 'a' or chip.get('data-news-feed') != NEWS_FEED_URL:
+        return ['the published homepage is not connected to the independent news feed']
+    if not feed_data:
+        return ['the public headline feed is unavailable']
     try:
-        checked = instant(chip.get('data-checked-at', ''))
-        if not dt.timedelta(minutes=-5) <= now - checked <= MAX_CHECK_AGE:
-            problems.append('the published headline refresh is overdue or its clock is invalid')
-        if expected_check and checked < instant(expected_check):
-            problems.append('the collected headline has not reached the live homepage')
-    except ValueError:
-        problems.append('the published news bar has no valid refresh timestamp')
-    newsroom = source(chip.get('href', ''))
-    if tag != 'a' or chip.get('data-news-status') != 'current' or not newsroom:
-        problems.append('the published news bar has no current publisher link')
-    if not text['title'].strip() or not newsroom or text['source'].strip() != newsroom[0]:
-        problems.append('the published headline or its publisher attribution is missing')
-    try:
-        if instant(chip.get('data-expires-at', '')) <= now:
-            problems.append('the published headline has expired')
-    except ValueError:
-        problems.append('the published headline has no valid expiry')
-    return problems
+        validate(feed_data)
+        problems = health_problems(feed_data, now)
+        if expected_check and instant(feed_data['checked_at']) < instant(expected_check):
+            problems.append('the collected headline has not reached the public feed')
+        return problems
+    except (KeyError, TypeError, ValueError) as error:
+        return ['invalid public headline feed: ' + str(error)]
 
 
 def check_live(wait_seconds: int = 0, expected_check: str | None = None) -> int:
@@ -446,7 +456,14 @@ def check_live(wait_seconds: int = 0, expected_check: str | None = None) -> int:
                 body = response.read(4_000_001)
                 if len(body) > 4_000_000:
                     raise ValueError('homepage exceeded response limit')
-            problems = live_problems(body.decode('utf-8'), dt.datetime.now(UTC), expected_check)
+            feed_request = urllib.request.Request(NEWS_FEED_URL + '?refresh=' + str(int(time.time())),
+                                                  headers={'User-Agent': UA, 'Cache-Control': 'no-cache'})
+            with urllib.request.urlopen(feed_request, timeout=20) as response:
+                feed_body = response.read(500_001)
+                if len(feed_body) > 500_000:
+                    raise ValueError('headline data exceeded response limit')
+            problems = live_problems(body.decode('utf-8'), dt.datetime.now(UTC), expected_check,
+                                     json.loads(feed_body))
         except (OSError, ValueError) as error:
             problems = [f'could not verify the published headline: {error}']
         if not problems:
@@ -482,13 +499,14 @@ def self_test() -> int:
             self.assertFalse(source('https://user:password@nbcdfw.com/a'))
             self.assertFalse(source('javascript:alert(1)'))
         def test_freshness(self):
-            self.assertFalse(eligible(row(hours=36), now))
+            self.assertTrue(eligible(row(hours=36), now))
+            self.assertFalse(eligible(row(hours=168), now))
             self.assertFalse(eligible(row(hours=-1), now))
             self.assertFalse(eligible(row(path='2020/09/11/archive'), now))
             self.assertEqual(rank([], now), [])
         def test_coverage_and_syndication(self):
-            a = row()
-            b = row('Texas launches Project Nexus electric air taxi pilot tests', 'cbs4local.com')
+            a = row('Texas launches Project Nexus to test AI air taxis')
+            b = row('Texas launches Project Nexus AI air taxi pilot tests', 'cbs4local.com')
             c = row('Texas AI startup opens a new robotics laboratory', 'dallasinnovates.com')
             ranked = rank([c, b, a, a], now)
             self.assertEqual(ranked[0]['coverage'], 2)
@@ -505,7 +523,8 @@ def self_test() -> int:
             self.assertEqual(later['expires_at'], s['expires_at'])
             self.assertEqual(later['selected']['title'], p['articles'][0]['title'])
             p['articles'][0]['seendate'] = '20260913T200000Z'
-            self.assertIsNone(snapshot(p, now+dt.timedelta(days=2), later)['selected'])
+            self.assertEqual(snapshot(p, now+dt.timedelta(days=2), later)['expires_at'], s['expires_at'])
+            self.assertIsNone(snapshot({'articles': []}, now+dt.timedelta(days=8), later)['selected'])
             broken = copy.deepcopy(s)
             broken['selected']['title'] = 'invented'
             with self.assertRaises(ValueError): validate(broken)
@@ -553,8 +572,8 @@ def self_test() -> int:
             s = snapshot({'articles': []}, now)
             s['feeds'] = [{'status': 'ok'}, {'status': 'ok'}]
             validate(s)  # An honest empty snapshot is publishable, but needs attention.
-            self.assertIn('no current Texas tech headline is available', health_problems(s, now))
-            self.assertIn('news-empty', markup('2026-09-11', s))
+            self.assertIn('no fresh AI or Texas tech headline is available', health_problems(s, now))
+            self.assertIn('data-news-status="empty"', markup('2026-09-11', s))
 
         def test_operational_health(self):
             s = snapshot({'articles': []}, now, {'articles': [row()]})
@@ -562,22 +581,37 @@ def self_test() -> int:
             self.assertEqual(health_problems(s, now), [])
             self.assertIn('news collection is overdue or its clock is invalid',
                           health_problems(s, now + dt.timedelta(hours=19)))
-            self.assertIn('no current Texas tech headline is available',
-                          health_problems(s, now + dt.timedelta(hours=36)))
+            self.assertIn('no fresh AI or Texas tech headline is available',
+                          health_problems(s, now + dt.timedelta(hours=73)))
             s['feeds'][1]['status'] = 'unavailable'
-            self.assertIn('fewer than two independent news feeds are available', health_problems(s, now))
+            self.assertEqual(health_problems(s, now), [])
+            s['feeds'][0]['status'] = 'unavailable'
+            self.assertIn('no news feed is available', health_problems(s, now))
+
+        def test_global_ai_and_quiet_days(self):
+            global_ai = row('AI researchers develop a safer surgery technique', 'news.mit.edu', path='ai')
+            self.assertTrue(eligible(global_ai, now))
+            self.assertFalse(eligible(row('Cute critters launch on a gaming service', 'blogs.nvidia.com'), now))
+            texas_ai = row('Texas researchers develop a safer AI surgery technique', 'dallasinnovates.com')
+            self.assertEqual(rank([global_ai, texas_ai], now)[0]['url'], texas_ai['url'])
+            self.assertEqual(rank([global_ai, row(hours=40)], now)[0]['url'], global_ai['url'])
+            dated = snapshot({'articles': []}, now, {'articles': [row(hours=100)]})
+            self.assertIsNotNone(dated['selected'])
+            self.assertIn('Recent', markup('2026-09-11', dated))
 
         def test_live_health(self):
             s = snapshot({'articles': []}, now, {'articles': [row()]})
+            s['feeds'] = [{'status': 'ok'}]
             page = markup('2026-09-11', s)
-            self.assertEqual(live_problems(page, now, s['checked_at']), [])
-            self.assertTrue(live_problems('<main>Unchanged homepage</main>', now))
-            self.assertTrue(live_problems(page, now, stamp(now + dt.timedelta(hours=6))))
-            self.assertTrue(live_problems(page, now + dt.timedelta(hours=36)))
-            self.assertTrue(live_problems(page.replace('data-checked-at', 'missing-stamp'), now))
-            self.assertTrue(live_problems(page.replace('https://nbcdfw.com/story', 'https://evil.example/story'), now))
-            self.assertTrue(live_problems(page.replace(s['selected']['title'], ''), now))
-            self.assertTrue(live_problems(page.replace(s['selected']['publisher'], 'Unrelated outlet'), now))
+            self.assertEqual(live_problems(page, now, s['checked_at'], s), [])
+            self.assertTrue(live_problems('<main>Unchanged homepage</main>', now, feed_data=s))
+            self.assertTrue(live_problems(page, now, stamp(now + dt.timedelta(hours=6)), s))
+            self.assertTrue(live_problems(page, now + dt.timedelta(hours=73), feed_data=s))
+            self.assertTrue(live_problems(page.replace('data-news-feed', 'missing-feed'), now, feed_data=s))
+            broken = copy.deepcopy(s)
+            broken['selected']['url'] = 'https://evil.example/story'
+            self.assertTrue(live_problems(page, now, feed_data=broken))
+            self.assertTrue(live_problems(page, now))
 
         def test_markup(self):
             r = row('Texas AI lab announces <script> & "new" tools')
@@ -586,9 +620,9 @@ def self_test() -> int:
             self.assertIn('&lt;script&gt; &amp; &quot;new&quot;', out)
             self.assertIn('<cite class="news-title">', out)
             self.assertIn('rel="noopener noreferrer"', out)
-            self.assertIn('news-empty', markup('2026-09-15', s))
-            self.assertNotIn('href=', markup('2026-09-15', s))
-            self.assertIn('Fresh headlines are temporarily unavailable.', markup('2026-09-11', {}))
+            self.assertIn('Recent', markup('2026-09-15', s))
+            self.assertIn('data-news-status="empty"', markup('2026-09-20', s))
+            self.assertIn('Explore the latest AI reporting', markup('2026-09-11', {}))
     return 0 if unittest.TextTestRunner().run(unittest.defaultTestLoader.loadTestsFromTestCase(Cases)).wasSuccessful() else 1
 
 
@@ -614,7 +648,7 @@ if __name__ == '__main__':
             sys.exit(check_live(args.wait_seconds, args.expected_check))
         if args.health:
             problems = health_problems(load(), dt.datetime.now(UTC))
-            print('news health: ' + ('; '.join(problems) if problems else 'current headline and multiple feeds available'))
+            print('news health: ' + ('; '.join(problems) if problems else 'current headline and a working feed available'))
             sys.exit(1 if problems else 0)
         validate(load())
         print('news_headlines: recorded selection and expiry verified')

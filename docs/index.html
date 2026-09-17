@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-tXZGcp2dX4j3vZcAH74hsTvk0Oi0lmRRWRWb3Ryjwzk=' 'sha256-ogTWxakpgO/aQiw5YKTW1B20Lp9CfR6Zk8XV93pqniw=' 'sha256-iWD7f7NfvuIBzAoBBO6UJ+TfZVEk+icx/5VIc5Z6Mfg=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-tXZGcp2dX4j3vZcAH74hsTvk0Oi0lmRRWRWb3Ryjwzk=' 'sha256-K8TId8ZWxJg2r/0/qXMBGOX35OFjRPFEur5Teg1pQgY=' 'sha256-iWD7f7NfvuIBzAoBBO6UJ+TfZVEk+icx/5VIc5Z6Mfg=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
 <link rel="stylesheet" href="site.css?v=9ac23a8bf2">
-<link rel="stylesheet" href="home.css?v=ce6c1a75b5">
+<link rel="stylesheet" href="home.css?v=08e5432584">
 <link rel="stylesheet" href="voice-input.css?v=449e0422ec22">
 <script defer src="voice-input.js?v=449e0422ec22"></script>
 <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
@@ -44,27 +44,102 @@
 <main id="main" class="wrap">
 
 <section class="hero rise">
-  <a class="tele news-chip" data-news-status="current" data-checked-at="2026-09-17T22:19:16Z" href="https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/" target="_blank" rel="noopener noreferrer" data-expires-at="2026-09-17T22:28:58Z" title="Selected from recent Texas tech and AI coverage, ranked by coverage and freshness. Discovery by The GDELT Project and publisher RSS. The source headline opens in a new tab."><span class="news-meta"><span class="news-label">Trending</span><cite class="news-source">Dallas Innovates</cite></span><cite class="news-title">SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining</cite><svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg></a><script>(function(){
-  var chip=document.querySelector('.news-chip');
-  if(!chip)return;
-  var expires=Date.parse(chip.dataset.expiresAt);
-  function retire(){
-    if(chip.dataset.newsStatus==='empty')return;
-    if(Number.isFinite(expires)&&Date.now()<expires)return;
-    chip.style.minHeight=chip.getBoundingClientRect().height+'px';
-    chip.removeAttribute('href');chip.removeAttribute('target');chip.removeAttribute('rel');
-    chip.removeAttribute('title');chip.dataset.newsStatus='empty';
-    chip.classList.add('news-empty');
-    chip.querySelector('.news-label').textContent='Texas tech and AI';
-    chip.querySelector('.news-title').textContent='Fresh headlines are temporarily unavailable.';
-    chip.querySelector('.news-source').hidden=true;
-    chip.querySelector('.news-arrow').hidden=true;
-    if(document.activeElement===chip)chip.blur();
+  <a class="tele news-chip" data-news-status="current" data-news-feed="https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json" data-news-sources="{&quot;news.mit.edu&quot;: [&quot;MIT News&quot;, &quot;mit&quot;], &quot;openai.com&quot;: [&quot;OpenAI&quot;, &quot;openai&quot;], &quot;blogs.nvidia.com&quot;: [&quot;NVIDIA&quot;, &quot;nvidia&quot;], &quot;blog.google&quot;: [&quot;Google&quot;, &quot;google&quot;], &quot;dallasinnovates.com&quot;: [&quot;Dallas Innovates&quot;, &quot;dallasinnovates&quot;], &quot;culturemap.com&quot;: [&quot;CultureMap&quot;, &quot;culturemap&quot;], &quot;nbcdfw.com&quot;: [&quot;NBC DFW&quot;, &quot;nbc&quot;], &quot;click2houston.com&quot;: [&quot;KPRC&quot;, &quot;graham&quot;], &quot;ksat.com&quot;: [&quot;KSAT&quot;, &quot;graham&quot;], &quot;kxxv.com&quot;: [&quot;KXXV&quot;, &quot;scripps&quot;], &quot;cbs4local.com&quot;: [&quot;CBS4&quot;, &quot;sinclair&quot;], &quot;cbsaustin.com&quot;: [&quot;CBS Austin&quot;, &quot;sinclair&quot;], &quot;foxsanantonio.com&quot;: [&quot;Fox San Antonio&quot;, &quot;sinclair&quot;], &quot;easttexasradio.com&quot;: [&quot;East Texas Radio&quot;, &quot;easttexasradio&quot;], &quot;hppr.org&quot;: [&quot;High Plains Public Radio&quot;, &quot;hppr&quot;], &quot;kut.org&quot;: [&quot;KUT&quot;, &quot;kut&quot;], &quot;texasstandard.org&quot;: [&quot;Texas Standard&quot;, &quot;kut&quot;], &quot;keranews.org&quot;: [&quot;KERA&quot;, &quot;kera&quot;], &quot;tpr.org&quot;: [&quot;Texas Public Radio&quot;, &quot;tpr&quot;], &quot;houstonpublicmedia.org&quot;: [&quot;Houston Public Media&quot;, &quot;hpm&quot;], &quot;texastribune.org&quot;: [&quot;The Texas Tribune&quot;, &quot;texastribune&quot;], &quot;texasobserver.org&quot;: [&quot;Texas Observer&quot;, &quot;texasobserver&quot;], &quot;austinchronicle.com&quot;: [&quot;The Austin Chronicle&quot;, &quot;austinchronicle&quot;], &quot;statesman.com&quot;: [&quot;Austin American-Statesman&quot;, &quot;gannett&quot;], &quot;dallasnews.com&quot;: [&quot;The Dallas Morning News&quot;, &quot;hearst&quot;], &quot;houstonchronicle.com&quot;: [&quot;Houston Chronicle&quot;, &quot;hearst&quot;], &quot;expressnews.com&quot;: [&quot;San Antonio Express-News&quot;, &quot;hearst&quot;], &quot;chron.com&quot;: [&quot;Chron&quot;, &quot;hearst&quot;], &quot;mysanantonio.com&quot;: [&quot;MySA&quot;, &quot;hearst&quot;], &quot;star-telegram.com&quot;: [&quot;Fort Worth Star-Telegram&quot;, &quot;mcclatchy&quot;], &quot;elpasotimes.com&quot;: [&quot;El Paso Times&quot;, &quot;gannett&quot;], &quot;caller.com&quot;: [&quot;Corpus Christi Caller-Times&quot;, &quot;gannett&quot;], &quot;wfaa.com&quot;: [&quot;WFAA&quot;, &quot;tegna&quot;], &quot;kvue.com&quot;: [&quot;KVUE&quot;, &quot;tegna&quot;], &quot;khou.com&quot;: [&quot;KHOU&quot;, &quot;tegna&quot;], &quot;kens5.com&quot;: [&quot;KENS 5&quot;, &quot;tegna&quot;], &quot;kxan.com&quot;: [&quot;KXAN&quot;, &quot;nexstar&quot;], &quot;kcentv.com&quot;: [&quot;KCEN&quot;, &quot;tegna&quot;], &quot;kfox14.com&quot;: [&quot;KFOX14&quot;, &quot;sinclair&quot;], &quot;fox4news.com&quot;: [&quot;Fox 4&quot;, &quot;fox&quot;], &quot;fox7austin.com&quot;: [&quot;Fox 7 Austin&quot;, &quot;fox&quot;], &quot;fox26houston.com&quot;: [&quot;Fox 26 Houston&quot;, &quot;fox&quot;], &quot;cbsnews.com&quot;: [&quot;CBS News&quot;, &quot;cbs&quot;], &quot;abcnews.com&quot;: [&quot;ABC News&quot;, &quot;abc&quot;], &quot;nbcnews.com&quot;: [&quot;NBC News&quot;, &quot;nbc&quot;], &quot;apnews.com&quot;: [&quot;AP News&quot;, &quot;ap&quot;], &quot;reuters.com&quot;: [&quot;Reuters&quot;, &quot;reuters&quot;], &quot;bloomberg.com&quot;: [&quot;Bloomberg&quot;, &quot;bloomberg&quot;], &quot;arstechnica.com&quot;: [&quot;Ars Technica&quot;, &quot;condenast&quot;], &quot;wired.com&quot;: [&quot;Wired&quot;, &quot;condenast&quot;], &quot;theverge.com&quot;: [&quot;The Verge&quot;, &quot;vox&quot;], &quot;techcrunch.com&quot;: [&quot;TechCrunch&quot;, &quot;techcrunch&quot;], &quot;datacenterdynamics.com&quot;: [&quot;Data Center Dynamics&quot;, &quot;dcd&quot;], &quot;datacenterknowledge.com&quot;: [&quot;Data Center Knowledge&quot;, &quot;informa&quot;]}" data-news-initial="{&quot;_spec&quot;: 2, &quot;checked_at&quot;: &quot;2026-09-17T22:54:16Z&quot;, &quot;selected&quot;: {&quot;title&quot;: &quot;Making global data easier to explore&quot;, &quot;url&quot;: &quot;https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/&quot;, &quot;first_seen_at&quot;: &quot;2026-09-17T20:00:00Z&quot;, &quot;feed&quot;: &quot;https://blog.google/technology/ai/rss/&quot;, &quot;publisher&quot;: &quot;Google&quot;, &quot;coverage&quot;: 1, &quot;score&quot;: 0.919538, &quot;priority&quot;: 1}, &quot;expires_at&quot;: &quot;2026-09-24T20:00:00Z&quot;}" data-checked-at="2026-09-17T22:54:16Z" data-first-seen-at="2026-09-17T20:00:00Z" data-expires-at="2026-09-24T20:00:00Z" href="https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/" target="_blank" rel="noopener noreferrer" title="Headlines ranked by coverage and freshness, with Texas AI first. The date is the publisher feed date or first observation. Opens the source in a new tab."><span class="news-meta"><span class="news-label">Trending</span><cite class="news-source">Google</cite><time class="news-date" datetime="2026-09-17T20:00:00Z">Sep 17</time></span><cite class="news-title">Making global data easier to explore</cite><svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg></a><script>(function () {
+  'use strict';
+  var chip = document.querySelector('.news-chip');
+  if (!chip) return;
+  var sources = JSON.parse(chip.dataset.newsSources);
+  var endpoint = chip.dataset.newsFeed;
+  var key = 'texas-ai-news-v2';
+  var hour = 3600000, active = null, pending = false, lastAttempt = 0;
+  function valid(data) {
+    if (!data || data._spec !== 2 || !data.selected) return false;
+    var story = data.selected, now = Date.now();
+    var checked = Date.parse(data.checked_at), seen = Date.parse(story.first_seen_at);
+    if (!Number.isFinite(checked) || !Number.isFinite(seen) || checked > now + 5 * 60000 ||
+        seen > now || now - seen >= 168 * hour || seen > checked ||
+        typeof story.title !== 'string' || story.title.length < 20 || story.title.length > 220) return false;
+    try {
+      var url = new URL(story.url);
+      if (url.protocol !== 'https:' || url.username || url.password || url.port || /[\s\\]/.test(story.url)) return false;
+      return Object.keys(sources).some(function (host) {
+        return (url.hostname === host || url.hostname.endsWith('.' + host)) && story.publisher === sources[host][0];
+      });
+    } catch (_) { return false; }
   }
-  retire();
-  if(expires>Date.now())setTimeout(retire,Math.min(expires-Date.now()+100,2147483647));
-  document.addEventListener('visibilitychange',retire);
-})();</script>
+  function render(data) {
+    if (!valid(data) || (active && Date.parse(data.checked_at) < Date.parse(active.checked_at))) return false;
+    var story = data.selected;
+    var recent = Date.now() - Date.parse(story.first_seen_at) >= 72 * hour ||
+                 Date.now() - Date.parse(data.checked_at) > 18 * hour;
+    if (active && active.selected.url === story.url) {
+      if (chip.dataset.newsStatus !== (recent ? 'recent' : 'current'))
+        chip.style.minHeight = chip.getBoundingClientRect().height + 'px';
+    } else {
+      chip.style.minHeight = '';
+    }
+    active = data;
+    chip.href = story.url;
+    chip.target = '_blank';
+    chip.rel = 'noopener noreferrer';
+    chip.dataset.newsStatus = recent ? 'recent' : 'current';
+    chip.dataset.checkedAt = data.checked_at;
+    chip.dataset.firstSeenAt = story.first_seen_at;
+    chip.dataset.expiresAt = new Date(Date.parse(story.first_seen_at) + 168 * hour).toISOString();
+    chip.querySelector('.news-label').textContent = recent ? 'Recent' : 'Trending';
+    chip.querySelector('.news-title').textContent = story.title;
+    chip.querySelector('.news-source').textContent = story.publisher;
+    var date = chip.querySelector('.news-date');
+    date.dateTime = story.first_seen_at;
+    date.textContent = new Date(story.first_seen_at).toLocaleDateString('en-US', {month:'short', day:'numeric', timeZone:'UTC'});
+    return true;
+  }
+  function fallback() {
+    if (active && render(active)) return;
+    chip.href = '/articles/';
+    chip.dataset.newsStatus = 'empty';
+    chip.querySelector('.news-label').textContent = 'Trending';
+    chip.querySelector('.news-title').textContent = 'Explore the latest AI reporting';
+    chip.querySelector('.news-source').textContent = '';
+    chip.querySelector('.news-date').textContent = '';
+  }
+  try { render(JSON.parse(chip.dataset.newsInitial)); } catch (_) {}
+  try { render(JSON.parse(localStorage.getItem(key))); } catch (_) {}
+  fallback();
+  async function refresh() {
+    if (pending || (lastAttempt && Date.now() - lastAttempt < 60000)) return;
+    pending = true;
+    lastAttempt = Date.now();
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 10000);
+    try {
+      var response = await fetch(endpoint + '?refresh=' + Math.floor(Date.now() / (5 * 60000)), {
+        cache:'no-store', credentials:'omit', referrerPolicy:'no-referrer', redirect:'error', signal:controller.signal
+      });
+      if (!response.ok) throw new Error('News request failed');
+      // The collector stores bounded headline metadata, never article bodies.
+      if (Number(response.headers.get('content-length')) > 500000) throw new Error('News response too large');
+      var text = await response.text();
+      if (text.length > 500000) throw new Error('News response too large');
+      var data = JSON.parse(text);
+      if (render(data)) {
+        try { localStorage.setItem(key, JSON.stringify(data)); } catch (_) {}
+      }
+    } catch (_) {
+      // A timeout, invalid payload or offline tab keeps the dated last good headline.
+    } finally {
+      clearTimeout(timer);
+      pending = false;
+      fallback();
+      chip.dataset.newsLoaded = 'true';
+    }
+  }
+  refresh();
+  setInterval(function () { if (!document.hidden) { fallback(); refresh(); } }, 15 * 60000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) { fallback(); refresh(); } });
+  window.addEventListener('online', refresh);
+})();
+</script>
   <h1>AI is coming <em>South</em>.</h1>
   <p class="herolede">Every AI decision in Texas and the source behind it.</p>
   <div class="statrow"><div class="stat"><span class="n">27</span><span class="l">Articles written</span></div><div class="stat" id="vidstat"><span class="n">15</span><span class="l">Videos published</span></div><div class="stat"><span class="n">141</span><span class="l">Decisions tracked</span></div><div class="stat"><span class="n">789</span><span class="l">Sources cited</span></div><a class="stat" href="#open-now"><span class="n hot">04</span><span class="l">Doors open to you</span></a></div>

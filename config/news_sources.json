@@ -3,9 +3,23 @@
   "feeds": [
     "https://dallasinnovates.com/feed/",
     "https://feeds.texastribune.org/feeds/main/",
-    "https://www.datacenterdynamics.com/en/rss/"
+    "https://www.datacenterdynamics.com/en/rss/",
+    "https://news.mit.edu/rss/topic/artificial-intelligence2",
+    "https://openai.com/news/rss.xml",
+    "https://blogs.nvidia.com/feed/",
+    "https://blog.google/technology/ai/rss/"
   ],
+  "ai_feeds": [
+    "https://news.mit.edu/rss/topic/artificial-intelligence2",
+    "https://openai.com/news/rss.xml",
+    "https://blog.google/technology/ai/rss/"
+  ],
+  "global_groups": ["mit", "openai", "nvidia", "google"],
   "sources": {
+    "news.mit.edu": ["MIT News", "mit"],
+    "openai.com": ["OpenAI", "openai"],
+    "blogs.nvidia.com": ["NVIDIA", "nvidia"],
+    "blog.google": ["Google", "google"],
     "dallasinnovates.com": ["Dallas Innovates", "dallasinnovates"],
     "culturemap.com": ["CultureMap", "culturemap"],
     "nbcdfw.com": ["NBC DFW", "nbc"],

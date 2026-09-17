@@ -1,10 +1,71 @@
 {
-  "_spec": 1,
-  "checked_at": "2026-09-17T22:19:16Z",
+  "_spec": 2,
+  "checked_at": "2026-09-17T22:54:16Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916221753&enddatetime=20260917221753",
-  "response_sha256": "c5fb2751a6f87c0838bd2f6e529dd81931826a59e1dd62247d1d406cd70ad60d",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916225342&enddatetime=20260917225342",
+  "response_sha256": "9518c05cf9024dc4e022846438cc55feea30b7cf1219330e45b20b647dbe3a4c",
   "articles": [
+    {
+      "title": "Building AI to accelerate science and improve lives",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-applications-science-people/",
+      "first_seen_at": "2026-09-15T16:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "New insights from Google’s AI & Economy ATLAS",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/",
+      "first_seen_at": "2026-09-15T13:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "AI for everyone in every language",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/",
+      "first_seen_at": "2026-09-15T16:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "AI for Societal Impact",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-societal-impact/",
+      "first_seen_at": "2026-09-15T16:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "Watch astronaut Christina Koch and Google’s James Manyika discuss space, technology, and discovery.",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch/",
+      "first_seen_at": "2026-09-14T19:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "Making global data easier to explore",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
+      "first_seen_at": "2026-09-17T20:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "Emerald AI, Google and NVIDIA Launch Alliance to Advance Flexible AI Data Centers",
+      "url": "https://blogs.nvidia.com/blog/ai-energy-management-alliance/",
+      "first_seen_at": "2026-09-16T13:00:33Z"
+    },
+    {
+      "title": "AI Infra Summit: NVIDIA Vera Rubin and DSX Platform Advancements Showcase Energy Efficiencies of Optimizing Tokens Per Watt for AI Factories",
+      "url": "https://blogs.nvidia.com/blog/ai-infra-summit-vera-rubin-dsx-energy-efficiencies-tokens-per-watt-ai-factories/",
+      "first_seen_at": "2026-09-15T16:55:40Z"
+    },
+    {
+      "title": "Heart of the Matter: How a Major Children’s Hospital Uses Open Source NVIDIA AI for Cardiac Care",
+      "url": "https://blogs.nvidia.com/blog/childrens-hospital-open-source-ai-cardiac-care/",
+      "first_seen_at": "2026-09-15T09:00:42Z"
+    },
+    {
+      "title": "From Megawatts to Tokens: How NVIDIA Maximizes AI Factory Production",
+      "url": "https://blogs.nvidia.com/blog/from-megawatts-to-tokens-how-nvidia-maximizes-ai-factory-production/",
+      "first_seen_at": "2026-09-15T16:55:59Z"
+    },
+    {
+      "title": "NVIDIA Vera Rubin NVL72 Delivers Leading Performance in MLPerf Inference v6.1 Debut",
+      "url": "https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/",
+      "first_seen_at": "2026-09-16T15:00:48Z"
+    },
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
       "url": "https://cbs4local.com/newsletter-daily/txdot-launches-project-nexus-to-prepare-texas-skies-for-future-air-taxis",
@@ -26,6 +87,101 @@
       "first_seen_at": "2026-09-16T10:28:58Z"
     },
     {
+      "title": "Gov. Greg Abbott orders Texas water agency to penalize data centers that don’t report their water usage",
+      "url": "https://feeds.texastribune.org/link/16799/17461898/texas-data-centers-abbott-water-survey-enforcement",
+      "first_seen_at": "2026-09-14T21:03:02Z"
+    },
+    {
+      "title": "Lifesaving Lincoln Laboratory device wins 2026 Excellence in Technology Transfer Award",
+      "url": "https://news.mit.edu/2026/lifesaving-lincoln-laboratory-technology-wins-tech-transfer-award-0911",
+      "first_seen_at": "2026-09-11T13:45:00Z",
+      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+    },
+    {
+      "title": "MIT spinout turns plastic waste into resilient building materials",
+      "url": "https://news.mit.edu/2026/mit-spinout-turns-plastic-waste-into-resilient-building-materials-0914",
+      "first_seen_at": "2026-09-14T04:00:00Z",
+      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+    },
+    {
+      "title": "New AI technique could make minimally invasive surgeries safer and more precise",
+      "url": "https://news.mit.edu/2026/new-ai-technique-could-make-minimally-invasive-surgeries-safer-more-precise-0916",
+      "first_seen_at": "2026-09-16T15:00:00Z",
+      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+    },
+    {
+      "title": "New method enables AI for safety-critical situations",
+      "url": "https://news.mit.edu/2026/new-method-enables-ai-safety-critical-situations-0914",
+      "first_seen_at": "2026-09-14T04:00:00Z",
+      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+    },
+    {
+      "title": "Measure by measure, studying society accurately",
+      "url": "https://news.mit.edu/2026/studying-society-accurately-naoki-egami-0916",
+      "first_seen_at": "2026-09-16T04:00:00Z",
+      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+    },
+    {
+      "title": "Introducing Astra for Law",
+      "url": "https://openai.com/index/astra-for-law",
+      "first_seen_at": "2026-09-17T00:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
+      "url": "https://openai.com/index/cognition-devin-testing-with-astra",
+      "first_seen_at": "2026-09-11T16:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "How Fyxer built an AI executive assistant people trust",
+      "url": "https://openai.com/index/fyxer",
+      "first_seen_at": "2026-09-14T12:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "Helping older adults use AI in everyday life",
+      "url": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life",
+      "first_seen_at": "2026-09-16T16:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "How to connect AI usage to business value",
+      "url": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
+      "first_seen_at": "2026-09-16T12:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "Our framework for reporting model misalignment",
+      "url": "https://openai.com/index/model-misalignment-reporting-framework",
+      "first_seen_at": "2026-09-16T17:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+      "url": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "first_seen_at": "2026-09-14T00:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "Reimagining advertising with AI",
+      "url": "https://openai.com/index/reimagining-advertising-with-ai",
+      "first_seen_at": "2026-09-16T13:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users",
+      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
+      "first_seen_at": "2026-09-11T10:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
+      "title": "How workers are unlocking new ways of working",
+      "url": "https://openai.com/index/unlocking-new-ways-of-working",
+      "first_seen_at": "2026-09-16T09:00:00Z",
+      "feed": "https://openai.com/news/rss.xml"
+    },
+    {
       "title": "Data centers are driving some conservative Texas voters away from the GOP",
       "url": "https://www.hppr.org/hppr-news/2026-09-11/data-centers-are-driving-some-conservative-texas-voters-away-from-the-gop",
       "first_seen_at": "2026-09-11T14:45:00Z"
@@ -37,17 +193,19 @@
     }
   ],
   "selected": {
-    "title": "SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining",
-    "url": "https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/",
-    "first_seen_at": "2026-09-16T10:28:58Z",
-    "publisher": "Dallas Innovates",
+    "title": "Making global data easier to explore",
+    "url": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
+    "first_seen_at": "2026-09-17T20:00:00Z",
+    "feed": "https://blog.google/technology/ai/rss/",
+    "publisher": "Google",
     "coverage": 1,
-    "score": 0.355208
+    "score": 0.919538,
+    "priority": 1
   },
-  "expires_at": "2026-09-17T22:28:58Z",
+  "expires_at": "2026-09-24T20:00:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916221753&enddatetime=20260917221753",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916225342&enddatetime=20260917225342",
       "status": "unavailable"
     },
     {
@@ -67,6 +225,30 @@
       "status": "ok",
       "items": 20,
       "sha256": "84feedb187b340a01494e3a5e86c52f24eccbfff755856fed7f4ee802dc44943"
+    },
+    {
+      "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+      "status": "ok",
+      "items": 50,
+      "sha256": "81132d66a35e5d8f628df42f9f1889776e4898b84a0d24c94f57924767c67251"
+    },
+    {
+      "url": "https://openai.com/news/rss.xml",
+      "status": "ok",
+      "items": 1207,
+      "sha256": "b55ccb61520fd69c737c57a88e40d87b38fb0d7ce5055b4486575bcf834e0f26"
+    },
+    {
+      "url": "https://blogs.nvidia.com/feed/",
+      "status": "ok",
+      "items": 18,
+      "sha256": "e93ff6c0cd4928ffd341faee5b8dc58236c745c5795918eee0e55fe8ca167492"
+    },
+    {
+      "url": "https://blog.google/technology/ai/rss/",
+      "status": "ok",
+      "items": 20,
+      "sha256": "2948007f9b16dbce43899c7e97abd38dc9a858ef9bd6e301ab849f469889572b"
     }
   ]
 }

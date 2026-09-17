@@ -92,6 +92,7 @@ MEDIA_HOSTS = (
 # copy of the truth is a list that will be wrong.
 ASK_ORIGIN = "https://texas-ask.talon-sturgill.workers.dev"
 SCAN_ORIGIN = "https://texas-scan.talon-sturgill.workers.dev"
+NEWS_FEED_URL = "https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json"
 
 # POST targets. `connect-src` covers fetch/XHR, `form-action` covers a real form submit.
 CONNECT_HOSTS = (
@@ -137,6 +138,9 @@ def policy(html: str) -> str:
     """The policy for exactly this page, from exactly this page's bytes."""
     s_hashes = " ".join(dict.fromkeys(_sha256(b) for b in inline_scripts(html)))
     c_hashes = " ".join(dict.fromkeys(_sha256(b) for b in inline_styles(html)))
+    # Only the homepage may fetch this exact public data file. Feed updates do not require
+    # republishing the site, and this grants no script execution or arbitrary network access.
+    connect = CONNECT_HOSTS + ((NEWS_FEED_URL,) if f'data-news-feed="{NEWS_FEED_URL}"' in html else ())
     return "; ".join(d for d in [
         "default-src 'self'",
         "base-uri 'self'",
@@ -148,7 +152,7 @@ def policy(html: str) -> str:
         f"img-src 'self' data: {' '.join(IMG_HOSTS)}",
         f"media-src 'self' {' '.join(MEDIA_HOSTS)}",
         "font-src 'self'",
-        f"connect-src 'self' {' '.join(CONNECT_HOSTS)}",
+        f"connect-src 'self' {' '.join(connect)}",
         f"frame-src {' '.join(FRAME_HOSTS)}",
         f"form-action 'self' {' '.join(FORM_HOSTS)}",
     ])
@@ -222,7 +226,7 @@ def unaudited_media(manifest: dict | None, site_url: str) -> list[str]:
 #
 # Read from QUOTED STRINGS ONLY, deliberately. A url in a comment is not a url this page calls,
 # and a checker that fails on prose teaches people to allowlist hosts they never contact.
-_CONNECT_ATTR = re.compile(r'data-endpoint="(https?://[^"]+)"')
+_CONNECT_ATTR = re.compile(r'data-(?:endpoint|news-feed)="(https?://[^"]+)"')
 _CONNECT_STR = re.compile(r"""["'](https?://[^"'\s]+)["']""")
 # A FORM ACTION IS A CONNECT TARGET TOO whenever a script intercepts the submit and posts it
 # itself, which is what the feedback dialog does with formsubmit's ajax address. Nothing here
@@ -337,6 +341,11 @@ def self_test() -> int:
             '<img src="https://raw.githubusercontent.com/x/y.png">'
             '<form action="https://formsubmit.co/abc"></form></body></html>')
     out = apply(page)
+    news_page = page.replace('<body>', f'<body><a data-news-feed="{NEWS_FEED_URL}"></a>')
+    ok('the homepage can fetch only its named news data path', NEWS_FEED_URL in policy(news_page))
+    ok('other pages do not gain news network access', NEWS_FEED_URL not in policy(page))
+    ok('an arbitrary news endpoint cannot allowlist itself',
+       'https://evil.example' not in policy(news_page.replace(NEWS_FEED_URL, 'https://evil.example/feed')))
 
     ok("the policy lands first inside the head, before anything it must govern",
        out.index("Content-Security-Policy") < out.index("<title>"))

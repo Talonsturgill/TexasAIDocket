@@ -2570,10 +2570,11 @@ def self_test() -> int:
         # day's move and the length of the record. Deleting prose is only an improvement if
         # none of it was load bearing, so every figure is asked for by name against the page's
         # own final bytes. Capacity now answers from the trend chart's ceiling label rather
-        # than from a sentence, which is why it is no longer on the authorised list above.
+        # than from a sentence. That ceiling is the maximum capacity across the plotted record;
+        # the latest reading may be slightly lower after a source revision.
         L2 = live_f["latest"]
         for label, val in (("storage", maf(L2["storage_af"])),
-                           ("capacity", maf(L2["capacity_af"])),
+                           ("capacity ceiling", maf(max(r["capacity_af"] for r in live_f["series"]))),
                            ("percent full", pct(L2["percent_full"])),
                            ("the reservoir count", af(L2["reservoir_count"])),
                            ("the length of the record", af(live_f["days_held"]))):

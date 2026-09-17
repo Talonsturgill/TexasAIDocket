@@ -1,86 +1,70 @@
-# The homepage news headline
+# Homepage Trending headline
 
-The homepage's former weather chip is one link to a publisher's Texas tech or AI story,
-or a visible availability message when no current story qualifies.
-The weather instruments and their collection remain separate.
+The compact homepage bar links to a real publisher headline and shows its source and date.
+No model calls, keys, article scraping, ticker or rewritten headlines are involved.
 
-## Selection, without a model
+## Selection
 
-`scripts/site/news_headlines.py` reads the free, keyless GDELT DOC API. It requests English
-coverage from the preceding day with Texas place names and technology terms. It also reads the
-public RSS feeds from Dallas Innovates, The Texas Tribune and Data Center Dynamics, configured
-in `config/news_sources.json`. These independently published feeds continue during a GDELT
-outage. Only headline, link and publication timestamp are extracted from RSS. It does
-not fetch article pages, Google News, or model APIs.
+`scripts/site/news_headlines.py` reads GDELT discovery metadata and seven publisher RSS feeds:
+Dallas Innovates, The Texas Tribune, Data Center Dynamics, MIT News, OpenAI, NVIDIA and Google's
+AI feed. Each feed is read only after its host's robots policy permits access. Requests have
+bounded sizes, retries and timeouts and run in parallel; one slow provider cannot hold up all
+other feeds. Only headline metadata is retained.
 
-The returned headline must itself name Texas, a specific Texas city or institution, and a
-technology subject. An Austin possessive or a headline beginning with a clear Austin location phrase is also
-accepted; a bare Austin person name is not.
-SMU, UTD and UTA also identify Texas institutions in Dallas Innovates headlines. Those
-initialisms do not establish Texas relevance in other outlets. Feed descriptions are not used
-to establish location because regional publishers can append local boilerplate to national stories.
-Sports, stock commentary, scholarships and promotional text are excluded. Only newsrooms in
-`config/news_sources.json` may appear. The configuration groups sister outlets together.
+Texas AI stories rank first, followed by broader AI coverage and then Texas technology news.
+Global coverage is limited to the four explicitly configured groups. The three dedicated AI
+feeds can establish subject relevance even when the headline omits the letters AI. The general
+NVIDIA feed still requires an AI term, so gaming headlines do not qualify. Regional feed
+boilerplate never establishes Texas relevance. Stocks, sports and promotional headlines are
+excluded. Publisher attribution and source links come from the allowlist in
+`config/news_sources.json`.
 
-Similar headlines need three shared content words and token cosine similarity of at least 0.45.
-Each candidate's coverage is the smaller of its matching ownership groups and distinct normalized
-headlines. Identical wire copies count once. The score is `(1 + log2(coverage)) * 2^(-age_hours/24)`.
-The highest score wins, with stable timestamp and URL tie breaks. This is a bounded **coverage
-proxy**, not measured reader traffic, a comprehensive census, or a promise of an objective
-statewide number one. Broad keyword filters can miss stories; the allowlist can be expanded.
+Within each category, independent coverage and age determine rank. Sister publishers and
+identical wire headlines cannot inflate coverage. This is a coverage proxy, not audience
+analytics or a claim to measure the entire internet. A headline under 72 hours old outranks
+older coverage. Up to seven days of observations provide a dated last-good fallback. Repeated
+URLs retain their earliest source date or observation; successful fetches never make old
+articles new again.
 
-GDELT's `seendate` is an indexing time, not a verified publication time. We never label it as
-publication. RSS uses the publisher's own timestamp as its freshness anchor. An old dated
-article URL is rejected. A URL's first observation is retained for a
-week, so a repeated result cannot keep refreshing its own expiry. The linked publisher owns the
-headline; the site quotes it unchanged in a `cite`, with visible publisher attribution. Discovery
-is credited to The GDELT Project and publisher RSS in the link's description and the committed snapshot.
+## Publication independent of the website
 
-## Freshness and failure
+`.github/workflows/news.yml` runs every six hours (`23 1,7,13,19 * * *` UTC). It restores the
+previous observations, collects, validates, and publishes **only** `news-data/ledger/news/latest.json` using
+`scripts/site/news_publish.py`. Non-forced updates and a timestamp check prevent older refreshes
+from overwriting newer ones. This data branch contains no site code or workflows. The collector
+never changes `main` or generated `docs/`, and does not dispatch full-site guards or Pages.
 
-Every selected story expires 36 hours after its first observation. The renderer replaces expired
-records with a visible availability message on later builds. A small browser timer retires the
-stale link and shows that same message even if a deployment stalls, preserving its occupied height.
-A successful empty feed retires the story once no eligible previous observation remains. A failed
-feed emits a workflow warning; other feeds and still-fresh previous observations remain eligible.
-If all feeds fail, the last snapshot stays intact and the collector fails visibly, retrying on the
-next scheduled run. An empty bar says "Fresh headlines are temporarily unavailable." It never
-invents a story or calls yesterday's timestamp a new publication date.
+The homepage reads that exact public JSON file from GitHub's raw host. Its CSP permits this
+specific path only on the homepage. The browser validates the payload version, timestamps,
+publisher identity, title and HTTPS link before using textContent to update the existing bar.
+It fetches at page load, every 15 minutes while visible, and when a reader returns to the tab or
+comes online. The request sends no credentials or referrer.
 
-Requests have bounded response size, timeouts, retries, and a robots check on each feed host.
-The source response is represented by its hash and normalized eligible metadata in
-`ledger/news/latest.json`. Selection and expiry are recomputed by `--check`. Builds use this
-committed snapshot without network or wall-clock reads, keeping site reproduction deterministic.
+The generated homepage still embeds a deterministic seed from `ledger/news/latest.json` for
+first paint and offline use. Builds never make network calls. A browser also retains the last
+successful feed in local storage. Network errors, bad data, an empty response or a stale CDN
+response cannot erase a more recent valid headline. Older retained stories use “Latest
+available” with their original date. After seven days, the last-resort link leads to the site's
+AI reporting; it does not pretend an old article is trending.
 
-## Scheduling and release
+## Monitoring and verification
 
-`.github/workflows/news.yml` runs at 01:23, 07:23, 13:23 and 19:23 UTC daily, and has a manual
-GitHub Actions dispatch. No AI routine or API key is involved. The `news` actor can change only
-its snapshot and regenerate `docs/`. Source configuration, scripts and workflow permissions
-remain outside its lane.
+A fresh candidate and at least one working feed are required before publishing. Total feed
+failure preserves the last snapshot and fails the job. The job verifies the public feed's
+refresh timestamp and the deployed homepage integration, then opens the **actual live page**
+in Playwright at desktop and phone widths. It succeeds only when that refresh is visible with
+its source, date and link. Website deployment failures no longer block news-data publication.
 
-The workflow fetches once, rebuilds on the latest main, checks the house style and ownership,
-and pushes one commit. A concurrent main update causes a fresh rebuild, not a generated-file
-rebase. It then dispatches the existing full guards; Pages publishes only an exactly guarded
-main SHA. The news job then checks feed health and waits up to 40 minutes for that refresh (or a
-newer one) to appear on the public homepage. Dispatching guards alone is not success. No current
-headline, fewer than two available feeds, or a collection timestamp over 18 hours old fails the
-health check. An empty snapshot can still publish the honest availability message.
+- `python3 scripts/site/news_headlines.py --self-test`, `--check`, `--health`
+- `python3 scripts/site/news_publish.py --self-test`
+- `python3 scripts/site/news_publish.py --restore` (GitHub read)
+- `python3 scripts/site/news_headlines.py --collect` (source reads, local snapshot write)
+- `python3 scripts/site/news_publish.py --publish` (validated data branch write)
+- `python3 scripts/site/news_headlines.py --live-check` (public feed and integration)
+- `node tests/news_headline.mjs` (offline fixtures under production CSP, responsive layout,
+  fresh data replacing stale/empty HTML, failed requests, reload cache, aging and invalid data)
+- `node tests/news_live.mjs` (production browser check; optional `NEWS_CHECKED_AT` minimum)
 
-The existing six-hour `livecheck` workflow also verifies a current attributed publisher link,
-unexpired headline and recent refresh timestamp on the public homepage. A stalled deployment or
-silent empty result therefore fails monitoring. Review the failed run's feed warnings or
-publication error before rerunning `Texas tech headline`.
-
-## Verification
-
-- `python3 scripts/site/news_headlines.py --self-test`
-- `python3 scripts/site/news_headlines.py --collect` (network; updates snapshot)
-- `python3 scripts/site/news_headlines.py --check` (offline; recomputes selection)
-- `python3 scripts/site/news_headlines.py --health` (current snapshot and multiple feeds)
-- `python3 scripts/site/news_headlines.py --live-check` (public homepage and freshness)
-- `python3 scripts/site/site_build.py --out docs --today YYYY-MM-DD`
-- `node tests/news_headline.mjs` (desktop, phone, source link, empty state and cached expiry)
-
-Both Python checks are wired into full guards. Feed documentation:
-https://blog.gdeltproject.org/gdelt-doc-2-0-api-debuts/
+The failure repaired here on September 17 had two causes: the browser deleted headlines after
+36 hours, and an unrelated Water Watch test blocked the full-site release the news job depended
+on. Neither extending an expiry alone nor adding another empty-state message solves that.
