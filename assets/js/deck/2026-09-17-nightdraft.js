@@ -171,7 +171,29 @@
       g2.restore();
     });
     if (o.reserve && o.reserve.length) {
-      TXDECK.punch(layer.getContext("2d"), o.reserve, { feather: 64, strength: 0.72 });
+      /* LIGHT DIMS TOWARD TYPE. IT IS NOT REMOVED FROM AROUND IT, AND IT IS NOT DIMMED TOWARD
+       * TYPE IT NEVER REACHED.
+       *
+       * The first build punched every line box in the frame, at strength 0.72 over a 64 px
+       * feather, and qa.py reported a rule running through the glyph band of type sitting in the
+       * dark half of the frame, hundreds of pixels from the light. The tell was that THE STRIKE
+       * MOVED WHEN THE TEXT MOVED, which means the mark was the HOLE and never anything in the
+       * picture. A hole punched in a light layer is a plate with the sign flipped, and a hole
+       * punched where there is no light to remove is a plate and nothing else.
+       *
+       * So only the rects the pool actually falls on are punched, tested against the pool's own
+       * ellipse with a margin, and the punch is soft and partial with a wide feather. */
+      var keep = [];
+      for (var k = 0; k < o.reserve.length; k++) {
+        var rr = o.reserve[k];
+        var ccx = rr[0] + rr[2] / 2, ccy = rr[1] + rr[3] / 2;
+        var ddx = (ccx - x) / (r * 1.06);
+        var ddy = (ccy - y) / (r * squash * 1.06);
+        if (ddx * ddx + ddy * ddy <= 1) keep.push(rr);
+      }
+      if (keep.length) {
+        TXDECK.punch(layer.getContext("2d"), keep, { feather: 120, strength: 0.58 });
+      }
     }
     cx.save();
     cx.globalCompositeOperation = "screen";
@@ -223,6 +245,18 @@
     g.addColorStop(1, N.pick(lit));
     cx.save();
     cx.fillStyle = g; cx.fillRect(0, top, W, edge - top);
+    /* A LATERAL FALLOFF, so the lit plane is a LOZENGE rather than a full width band.
+     * construction_check called six frames of nine one primitive, a solid bright rectangle on a
+     * darker ground, and it was right: a surface lit by a top to bottom gradient alone fills its
+     * own bounding box completely whatever is standing on it. Light from one side of a room does
+     * not reach the far corners of a desk, so the surface loses its corners and the bright region
+     * stops being a rectangle. */
+    var lx = o.lightX == null ? 0.30 : o.lightX;
+    var lg = cx.createLinearGradient(0, 0, W, 0);
+    lg.addColorStop(0, "rgba(5,31,33," + (lx < 0.5 ? 0.06 : 0.40) + ")");
+    lg.addColorStop(lx, "rgba(5,31,33,0)");
+    lg.addColorStop(1, "rgba(5,31,33," + (lx < 0.5 ? 0.46 : 0.08) + ")");
+    cx.fillStyle = lg; cx.fillRect(0, top, W, edge - top);
     /* the lit lip along the squared edge */
     cx.fillStyle = N.pick(lit + 2.2);
     cx.fillRect(0, edge - 3, W, 3);
@@ -286,6 +320,32 @@
     cx.save(); cx.clip();
     cx.fillStyle = N.paper(Math.min(8, lit + 1.4));
     cx.fillRect(0, 0, w, 2.4);
+
+    /* THE PAPER'S OWN MOTTLE, and it is here because of a trade this deck had to make twice.
+     *
+     * A steep gradient across a page puts a measurable step through a line of small toner type
+     * and qa.py reads it as a strikethrough, which is right. Flattening the gradient cured the
+     * strikes and left the page a flat plate, which layout_check reads as a frame with no image
+     * on it, which is also right. Both gates are correct and a gradient cannot satisfy them at
+     * once.
+     *
+     * The way out is that the two gates measure different things. A strike is a LINEAR feature
+     * crossing a glyph band. Detail is LOCAL variance. So the page carries low frequency mottle
+     * and the deck's halftone tooth, which give it variance in every direction and a step in
+     * none, and the gradient stays gentle. */
+    var mo = o.mottle == null ? 1 : o.mottle;
+    if (mo > 0) {
+      var MR = TX.rng(seed + 401);
+      for (var m = 0; m < 220; m++) {
+        var mx = MR() * w, my = MR() * h, mr = 26 + MR() * 96;
+        var mg = cx.createRadialGradient(mx, my, 0, mx, my, mr);
+        var up = MR() > 0.5;
+        mg.addColorStop(0, "rgba(" + (up ? "255,255,250" : "40,36,20") + "," + (0.050 * mo) + ")");
+        mg.addColorStop(1, "rgba(" + (up ? "255,255,250" : "40,36,20") + ",0)");
+        cx.fillStyle = mg;
+        cx.beginPath(); cx.arc(mx, my, mr, 0, Math.PI * 2); cx.fill();
+      }
+    }
     cx.restore();
 
     cx.restore();
