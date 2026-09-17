@@ -8717,5 +8717,379 @@
     "note": "Admitted on the university's own release, which names the funder and says the police testing has begun."
    }
   ]
+ },
+ {
+  "title": "Memorial Hermann clinicians send Houston patients an AI drafted explanation of their own test results",
+  "summary": "Memorial Hermann Health System says its clinicians are using an artificial intelligence assistant built into Epic to draft the note a patient receives with a lab or imaging result. The draft is written in plain language rather than clinical terms and the clinician reviews, edits and personalizes it before the patient sees it. The health system reports that patients sent 32% fewer follow up messages about test results when the clinician started from the draft. It reports the tool has helped care teams write over 55,000 messages and that clinicians starting from a draft saved an average of nine seconds per result comment. The feature was piloted in December of 2025 in the system's innovation clinic and use has since expanded across the system. A health system trade publication that read the same announcement noted every one of those figures comes from the software vendor and its customer, with no baseline, control arm or denominator published beside them, and that the share describes only the clinicians who chose to work from a draft. The system's chief medical information officer says the technology is designed to support rather than replace the clinician's judgment.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "Memorial Hermann Health System",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "metro": "Houston-Pasadena-The Woodlands, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-08",
+    "kind": "decided",
+    "note": "Date the health system published the account of the rollout"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A private health system's software rollout carries no comment window and no hearing. The announcement publishes a media contact and a media hotline. A patient of the system sees the drafted note in the message that carries their own result, and the clinician who sent it is the person to ask about it.",
+   "url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "The health system states its clinicians are using an AI tool inside its electronic record to help patients understand test results.",
+    "verbatim_quote": "Clinicians at Memorial Hermann Health System (MHHS) are using a new artificial intelligence (AI) tool built directly into Epic to help patients better understand their test results and to make informed decisions about next steps in their care journey.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c1"
+   },
+   {
+    "text": "The announcement describes what the assistant does and when in the workflow it does it.",
+    "verbatim_quote": "As clinicians review lab and imaging results in Epic's In Basket, Art helps generate an initial draft patient note in real time, using clear, patient-friendly language instead of complex medical terms.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c2"
+   },
+   {
+    "text": "The clinician remains the one who edits and sends.",
+    "verbatim_quote": "Clinicians can then review, edit and personalize the draft, giving them more time to focus on the patient's care and next steps.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c3"
+   },
+   {
+    "text": "The health system reports a fall in follow up messages from patients.",
+    "verbatim_quote": "Since Memorial Hermann began using the feature, patients have sent 32% fewer follow-up messages about test results when clinicians started with Art's draft, reducing the number of return questions while helping patients receive the information they need at the time they receive their results.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c4"
+   },
+   {
+    "text": "The announcement gives the volume of messages the tool has drafted.",
+    "verbatim_quote": "Art has helped Memorial Hermann's care teams write over 55,000 messages to patients.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c5"
+   },
+   {
+    "text": "The announcement gives the time saved per result comment.",
+    "verbatim_quote": "So far, clinicians who have started with Art's draft have saved an average of nine seconds per result comment.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c6"
+   },
+   {
+    "text": "The pilot and the expansion are dated in the announcement.",
+    "verbatim_quote": "Memorial Hermann piloted the feature in December of 2025 in their innovation clinic for clinician feedback and has quickly expanded use across the System.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c7"
+   },
+   {
+    "text": "The chief medical information officer states the intended limit of the tool.",
+    "verbatim_quote": "This technology is designed to support, not replace, the role of the clinician's judgment and relationship with the patient.",
+    "source_url": "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html",
+    "source_title": "Memorial Hermann Health System announcement, Dr. Ryan Walsh",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c8"
+   },
+   {
+    "text": "A trade publication names what the published figures do not establish.",
+    "verbatim_quote": "All three figures come from Epic and its customer. No baseline, control arm or denominator accompanies them.",
+    "source_url": "https://healthsystemcio.com/2026/09/10/in-basket-ai-wrong-metric/",
+    "source_title": "healthsystemCIO, September 10th, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c9"
+   },
+   {
+    "text": "The same publication names who the reported share was measured on.",
+    "verbatim_quote": "Specifically, the 32% describes clinicians who chose to work from a draft.",
+    "source_url": "https://healthsystemcio.com/2026/09/10/in-basket-ai-wrong-metric/",
+    "source_title": "healthsystemCIO, September 10th, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0162-c10"
+   }
+  ],
+  "id": "tx-2026-0162",
+  "last_verified": "2026-09-17",
+  "history": [
+   {
+    "date": "2026-09-17",
+    "note": "Admitted to the record. The health system's own announcement is where the public first learned that a model drafts the sentence a Houston patient reads beside their lab or imaging result. Every figure in it was published by the software vendor and its customer, and a trade publication reading the same announcement two days later named what they leave out."
+   }
+  ]
+ },
+ {
+  "title": "The National Science Foundation funds a UT Austin center to put assistive robots into occupied homes, workplaces and care facilities",
+  "summary": "The National Science Foundation has made a Science and Technology Center award to the University of Texas at Austin for the Center for Human and Robot Co-Adaptation, with Joydeep Biswas as principal investigator. The award record runs from September 1st, 2026 to August 31st, 2031. The center's stated purpose is to work out how robots and the people around them adapt to each other over long periods, so assistive and service robots stay safe and aligned with what people actually want. The award abstract commits the work to a network of always on living laboratories in residential, commercial and healthcare buildings rather than to laboratory testing alone, with deployments the abstract says will grow more complex over the life of the center. Nothing is deployed yet. The abstract describes the facility network as a thing to be built and the award clock started this month.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "U.S. National Science Foundation",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "metro": "Austin-Round Rock-San Marcos, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-25",
+    "kind": "decided",
+    "note": "Award date on the federal award record"
+   },
+   {
+    "date": "2026-09-01",
+    "kind": "effective",
+    "note": "Start date on the federal award record"
+   },
+   {
+    "date": "2031-08-31",
+    "kind": "expires",
+    "note": "Expiration date on the federal award record"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A federal research award carries no comment window. The award record is public and searchable by its own number, and it names the awardee institution and the principal investigator. The university that holds it is a public institution of this state, and its governing board meets in public.",
+   "url": "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "The award record names the center, the awardee and the principal investigator.",
+    "verbatim_quote": "STC: Center for Human and Robot Co-Adaptation",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName",
+    "source_title": "NSF award record 2535195, title",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0163-c1"
+   },
+   {
+    "text": "The abstract opens by naming the buildings the work is aimed at.",
+    "verbatim_quote": "For robots to transition from research laboratories to effective collaborators in homes, hospitals, workplaces, and public spaces, they must be able to understand, interact with, and adapt to people over time.",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName",
+    "source_title": "NSF award record 2535195, abstract",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0163-c2"
+   },
+   {
+    "text": "The abstract commits the research to occupied buildings rather than to a laboratory.",
+    "verbatim_quote": "Research activities will be grounded, tested, and refined through the Human Environment with Robots (HERO) Facility Network, an ecologically valid testing ground comprising always-on, participatory living laboratories in residential, commercial, and healthcare facilities across the partner institution network.",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName",
+    "source_title": "NSF award record 2535195, abstract",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0163-c3"
+   },
+   {
+    "text": "The abstract says the deployments are staged rather than in place.",
+    "verbatim_quote": "These deployments will increase in complexity over the Center's duration, supporting the development of generalizable principles, algorithms, and evaluation methods for long-term human-robot co-adaptation.",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName",
+    "source_title": "NSF award record 2535195, abstract",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0163-c4"
+   },
+   {
+    "text": "The award record carries the start and expiration dates.",
+    "verbatim_quote": "\"startDate\":\"09\\/01\\/2026\",\"expDate\":\"08\\/31\\/2031\"",
+    "source_url": "https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName",
+    "source_title": "NSF award record 2535195, award dates",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0163-c5"
+   },
+   {
+    "text": "The university names the center's director in its own account of the award.",
+    "verbatim_quote": "It is enabling robots to understand the people around them: their needs, preferences, values and constraints, while recognizing that people also adapt their behavior when they integrate robots into their environment.",
+    "source_url": "https://news.utexas.edu/2026/08/27/ut-to-lead-nsf-center-that-will-study-how-robots-and-people-learn-to-live-and-work-together/",
+    "source_title": "University of Texas at Austin announcement, Joydeep Biswas",
+    "source_type": "journalism",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0163-c6"
+   }
+  ],
+  "id": "tx-2026-0163",
+  "last_verified": "2026-09-17",
+  "history": [
+   {
+    "date": "2026-09-17",
+    "note": "Admitted to the record. The federal award record carries the dates, the awardee and the abstract that commits the work to occupied buildings rather than to a laboratory. The award clock started this month and nothing is deployed."
+   }
+  ]
+ },
+ {
+  "title": "Kodiak says 35 driverless trucks were hauling in the Permian Basin with nobody in the cab",
+  "summary": "Kodiak AI reaffirmed on September 8th, 2026 that it intends to launch driverless long haul commercial service by the end of 2026, and published its own readiness measure for that launch. The same release states the long haul safety case builds on the one the company completed for its industrial deployment in the Permian Basin, where 35 driverless trucks were operating commercially with no humans in the cab as of the end of the second quarter. The readiness measure reached 93% at the end of August 2026, up from 91% at the end of July, and the company reported 84% as of February and 86% through April. That measure is the company's own count of how much of its own safety case is materially complete, and the release names no outside auditor. The release names no Texas county and puts the deployment in West Texas and southeastern New Mexico.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Kodiak AI, Inc.",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [],
+   "metro": null,
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-08",
+    "kind": "decided",
+    "note": "Date the company published the readiness measure"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A publicly traded company's operational announcement carries no comment window. The company publishes the release on its own site and through a wire service, and it files with the Securities and Exchange Commission under its own ticker, where an investor may read what it tells shareholders about the same deployment.",
+   "url": "https://kodiak.ai/news/driverless-long-haul-on-track-arm-93",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "The release states how many driverless trucks were running in the Permian and under what conditions.",
+    "verbatim_quote": "Kodiak's long-haul safety case builds on the safety case the company completed for its industrial deployment in the Permian Basin, where 35 driverless trucks were operating commercially with no humans in the cab as of the end of the second quarter.",
+    "source_url": "https://kodiak.ai/news/driverless-long-haul-on-track-arm-93",
+    "source_title": "Kodiak AI, Inc. release, September 8th, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0164-c1"
+   },
+   {
+    "text": "The release gives the company's readiness measure and its recent movement.",
+    "verbatim_quote": "The company's Autonomy Readiness Measure (\"ARM\") for long-haul driverless operations reached 93% at the end of August 2026, up from 91% at the end of July.",
+    "source_url": "https://kodiak.ai/news/driverless-long-haul-on-track-arm-93",
+    "source_title": "Kodiak AI, Inc. release, September 8th, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0164-c2"
+   },
+   {
+    "text": "The release gives the earlier readings on the same measure.",
+    "verbatim_quote": "The company reported an ARM of 84% as of February, 86% through April and 91% as of July.",
+    "source_url": "https://kodiak.ai/news/driverless-long-haul-on-track-arm-93",
+    "source_title": "Kodiak AI, Inc. release, September 8th, 2026",
+    "source_type": "primary_corporate",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0164-c3"
+   }
+  ],
+  "id": "tx-2026-0164",
+  "last_verified": "2026-09-17",
+  "history": [
+   {
+    "date": "2026-09-17",
+    "note": "Staged for the record. The company's own release puts driverless trucks at work in the Permian with nobody in the cab, and names no Texas county for them, so where in the state this happens is still unestablished."
+   }
+  ]
+ },
+ {
+  "title": "The University of North Texas takes a twenty million dollar gift and names a college of artificial intelligence after the donors",
+  "summary": "The University of North Texas announced a gift from Anuradha and Vikas Sinha and will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics. The university describes the college as an academic hub focused on the development, application and responsible use of artificial intelligence, intelligent systems and data analytics. The gift creates six permanent endowments covering college leadership, student scholarships and other purposes the announcement lists. One of the donors holds a doctorate from the university. Nothing in the announcement names a faculty appointment made, a student enrolled in the named college or a research result, so what is decided here is the money and the name rather than a program already running.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "University of North Texas",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Denton"
+   ],
+   "metro": "Dallas-Fort Worth-Arlington, TX",
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-08",
+    "kind": "decided",
+    "note": "Date the university published the announcement"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "A university gift announcement carries no comment window. The University of North Texas System is governed by a board of regents that meets in public and posts its agendas, and a naming of this kind reaches that board. The announcement itself publishes the university's communications office as the contact.",
+   "url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
+   "closes": null
+  },
+  "confidence": "high",
+  "claims": [
+   {
+    "text": "The university states the gift and what it will name.",
+    "verbatim_quote": "In recognition of the Sinhas' commitment, UNT will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics , establishing an academic hub focused on the development, application and responsible use of artificial intelligence, intelligent systems and data analytics.",
+    "source_url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
+    "source_title": "University of North Texas announcement",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0165-c1"
+   },
+   {
+    "text": "The announcement states what the gift funds.",
+    "verbatim_quote": "The gift will create six permanent endowments supporting college leadership, student scholarships",
+    "source_url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
+    "source_title": "University of North Texas announcement",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0165-c2"
+   },
+   {
+    "text": "The donor states what the college is meant to do beyond teaching use of the tools.",
+    "verbatim_quote": "What excites us about UNT's vision is that this college will go beyond teaching students how to use AI.",
+    "source_url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
+    "source_title": "University of North Texas announcement, Vikas Sinha",
+    "source_type": "primary_official",
+    "fetched": "2026-09-17",
+    "id": "tx-2026-0165-c3"
+   }
+  ],
+  "id": "tx-2026-0165",
+  "last_verified": "2026-09-17",
+  "history": [
+   {
+    "date": "2026-09-17",
+    "note": "Admitted to the record. The university's own announcement carries the gift, the name the college will take and the endowments it funds. What is decided is the money and the name."
+   }
+  ]
  }
 ]
