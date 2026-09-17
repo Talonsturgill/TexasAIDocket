@@ -51,8 +51,14 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: news-pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Install the pinned browser runtime
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install playwright install --with-deps chromium
       - name: Verify the headline a reader actually sees
         env:
           NEWS_CHECKED_AT: ${{ steps.collect.outputs.checked_at }}
