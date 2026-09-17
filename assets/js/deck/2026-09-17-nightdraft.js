@@ -348,6 +348,15 @@
     }
     cx.restore();
 
+    /* the light leaving the far corners, so the sheet is a lozenge rather than a slab */
+    cx.save(); cx.clip();
+    var cg = cx.createLinearGradient(0, 0, w, h);
+    cg.addColorStop(0.00, "rgba(5,31,33,0)");
+    cg.addColorStop(0.55, "rgba(5,31,33,0)");
+    cg.addColorStop(1.00, "rgba(5,31,33," + (o.corner == null ? 0.42 : o.corner) + ")");
+    cx.fillStyle = cg; cx.fillRect(0, 0, w, h);
+    cx.restore();
+
     cx.restore();
     return { x: x, y: y, w: w, h: h, rot: rot };
   };
@@ -493,6 +502,12 @@
     cx.fillStyle = g; cx.fillRect(x, y, w, h);
     cx.save(); cx.beginPath(); cx.rect(x, y, w, h); cx.clip();
     o.content(cx, { x: x, y: y, w: w, h: h });
+    /* a screen falls off toward its own far corners too, for the same reason */
+    var pg2 = cx.createLinearGradient(x, y, x + w, y + h);
+    pg2.addColorStop(0.00, "rgba(5,31,33,0)");
+    pg2.addColorStop(0.50, "rgba(5,31,33,0)");
+    pg2.addColorStop(1.00, "rgba(5,31,33," + (o.corner == null ? 0.38 : o.corner) + ")");
+    cx.fillStyle = pg2; cx.fillRect(x, y, w, h);
     cx.restore();
     cx.restore();
     return { x: x, y: y, w: w, h: h };
