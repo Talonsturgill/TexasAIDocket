@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-09-17-after-the-fax-arrives",
+      "date": "2026-09-17",
+      "title": "After the fax arrives",
+      "caption": "A medical fax still has to find the right patient chart. UTHealth Houston says its AI system handles parts of that filing work, extracting details and linking documents to records. Its September 16th report describes staff time saved, but gives no appointment waiting times. Does less filing lead to earlier care? That remains the next question.",
+      "video": "/runs/2026-09-17/dispatch.mp4",
+      "poster": "/runs/2026-09-17/poster.png",
+      "video_mobile": "/runs/2026-09-17/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-09-17/poster-540.jpg",
+      "county": "Harris",
+      "beat": "clinic-and-bench"
+    },
+    {
       "id": "2026-09-16-the-rock-goes-in",
       "date": "2026-09-16",
       "title": "The rock goes in",
