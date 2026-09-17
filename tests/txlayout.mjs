@@ -27,7 +27,11 @@ const check = (label, cond, extra = "") => {
 // the table
 check("ten archetypes", TXLAYOUT.ARCHETYPES.length === 10, String(TXLAYOUT.ARCHETYPES.length));
 check("a clean rotation passes", TXLAYOUT.check(["FULL_BLEED", "DOCUMENT", "FIGURE_SCALE", "OBJECT_AND_CAPTION", "GRID", "DIAGRAM", "CLOSE_CROP", "SPLIT_HORIZON", "FULL_BLEED"]).length === 0);
-check("a consecutive repeat fails", TXLAYOUT.check(["FULL_BLEED", "FULL_BLEED", "GRID", "MAP", "DIAGRAM", "DOCUMENT"]).some(p => p.includes("repeat")));
+// RETARGETED 2026-09-16 with the rotation rebalance. Two of the same archetype in a row is a
+// beat, the same camera with the light moved, and the rule that forbade it is the rule that
+// forbade the deck its strongest continuity move. Three in a row is still a rut.
+check("two of the same archetype in a row PASSES", TXLAYOUT.check(["FULL_BLEED", "FULL_BLEED", "GRID", "MAP", "DIAGRAM", "DOCUMENT"]).every(p => !p.includes("in a row")));
+check("three of the same archetype in a row fails", TXLAYOUT.check(["FULL_BLEED", "FULL_BLEED", "FULL_BLEED", "MAP", "DIAGRAM", "DOCUMENT"]).some(p => p.includes("in a row")));
 check("two TYPE_AS_OBJECT fail", TXLAYOUT.check(["TYPE_AS_OBJECT", "GRID", "TYPE_AS_OBJECT", "MAP", "DIAGRAM", "CLOSE_CROP"]).some(p => p.includes("TYPE_AS_OBJECT")));
 check("too few distinct fails on a long deck", TXLAYOUT.check(["GRID", "MAP", "GRID", "MAP", "GRID", "MAP", "GRID", "MAP", "GRID"]).some(p => p.includes("distinct")));
 check("a name off the list fails", TXLAYOUT.check(["POSTER", "GRID"]).some(p => p.includes("not an archetype")));
