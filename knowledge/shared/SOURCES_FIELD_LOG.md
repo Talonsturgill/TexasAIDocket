@@ -1406,3 +1406,21 @@ against a federal publisher.
 Code in full and cleanly**, section headings included, which is what let this run count 16 sections
 and establish that none is headed Applicability or Scope. An absence about a statute is only worth
 publishing when the whole chapter came down in one document, and this host gives that.
+
+## 2026-09-17, a second note after the deck was scored
+
+**`statutes.capitol.texas.gov` AND `tcss.legis.texas.gov` BOTH SERVE THE SAME CHAPTER AND ONLY ONE
+IS WORTH FETCHING FOR AN ABSENCE.** This run needed to establish that Chapter 552 has NO section
+headed Applicability, which is a claim about a whole chapter and not about a page. The Texas
+Constitution and Statutes host returns the chapter as one document with every section heading in
+order, which is what let `compute.py` extract all sixteen by regex and compute the count rather
+than assert it. **An absence about a statute is only publishable when the whole chapter came down
+in one fetch**, because a per-section fetcher cannot tell the difference between a heading that is
+not there and a page that was not asked for.
+
+**THE SAME FETCH SETTLED A QUESTION THE DECK WAS ABOUT TO GET WRONG.** Three headings the deck
+printed on its exhaustiveness frame sat in no claim's own quote, only in a `source_title` or a
+`notes` field, and two judges found them independently across two rounds. The chapter text was
+already on disk, so closing the gap cost six claims and no new request. **Keep the raw fetch in
+`out/<date>/sources/` for exactly this**: a question about the source arrives after the fetching
+phase has closed, and a run that kept the bytes answers it without going back out.
