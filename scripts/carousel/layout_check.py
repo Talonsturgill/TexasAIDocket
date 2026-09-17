@@ -97,7 +97,15 @@ JS_TABLE = REPO_ROOT / "assets" / "js" / "txlayout.js"
 # THE TWO TABLES, copied from assets/js/txlayout.js. The self-test parses that file and asserts
 # these agree with it. Edit both or neither.
 ARCHETYPES = ["FULL_BLEED", "SPLIT_HORIZON", "TYPE_AS_OBJECT", "OBJECT_AND_CAPTION", "DIAGRAM", "GRID", "DOCUMENT", "MAP", "CLOSE_CROP", "FIGURE_SCALE"]
-ROTATION = {"max_consecutive": 1, "min_distinct": 5, "max_type_as_object": 1, "min_full_bleed_or_close_crop": 2, "min_primary_area": 0.30, "min_bleed_frames": 4}
+# REBALANCED 2026-09-16, and the JS copy in assets/js/txlayout.js carries the reasoning. The
+# layout counts came down and the image law (`min_primary_area`, `min_bleed_frames`) did not
+# move, because the defect this table was written for was never "too few layouts", it was "no
+# image". Two frames in a row sharing an archetype is a beat. Three is a rut.
+# The five continuity devices, from ILLUSTRATION_SYSTEM.md "THE CONTINUITY MANDATE". The JS copy
+# is in assets/js/txlayout.js and `agreement()` asserts the two lists match.
+DEVICES = ["PANORAMA_SPINE", "EDGE_TEASE", "MOTIF_EVOLUTION", "CAMERA_MOVE", "VALUE_ARC"]
+
+ROTATION = {"max_consecutive": 2, "min_distinct": 3, "max_type_as_object": 1, "min_full_bleed_or_close_crop": 2, "min_primary_area": 0.30, "min_bleed_frames": 4, "min_continuity_devices": 2}
 
 W, H = 1080, 1350
 LONG_DECK = 6            # the distinct and the inside rules bind from this many frames up
@@ -146,7 +154,81 @@ def js_tables(js_path: Path = JS_TABLE):
     return json.loads(m1.group(1)), json.loads(m2.group(1))
 
 
-def agreement(js_path: Path = JS_TABLE, archetypes=None, rotation=None) -> list[str]:
+# The prose surfaces that state the rotation rule in WORDS. Each is a place a session reads the
+# rule from, and each has kept its own copy of the numbers.
+PROSE_SURFACES = (
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md",
+    "knowledge/carousel/DESIGN_DOCTRINE.md",
+    ".claude/agents/carousel-flow-critic.md",
+    ".claude/agents/carousel-treatment-director.md",
+    ".claude/agents/carousel-pixel-critic.md",
+    "prompts/daily_routine.md",
+)
+
+# What the SUPERSEDED rule said, in the words these surfaces used. A surface still saying any of
+# these is a surface enforcing the rule this product changed on 2026-09-16.
+SUPERSEDED_PHRASES = (
+    "no two frames in a row",
+    "no archetype twice in a row",
+    "at least five layouts",
+    "at least five distinct",
+    "twice in a row",
+    "a different layout on every frame",
+    "varies with the layout",
+    "the print register varies",
+)
+
+
+def prose_agreement(root: Path = REPO_ROOT) -> list[str]:
+    """Prose surfaces still carrying the superseded rotation rule.
+
+    WHY THIS EXISTS (2026-09-16). `agreement()` above proves the JS table and the Python table
+    say the same thing, and both were changed together. Neither of them is what an AGENT reads.
+    The flow critic carried its own sentence copy of the rule, "no two frames in a row laid out
+    the same way, at least five layouts across nine", and a critic enforcing a superseded rule
+    is worse than no critic, because it argues the deck back toward the defect.
+
+    This is GATE_LESSONS' oldest shape and the third time this product has hit it: a rule stated
+    in config, a surface that keeps its own copy, and nothing in between checking they agree.
+    The site line got a gate for it. The rotation rule gets one here.
+
+    A finding is NOT fixed by editing this list. It is fixed by editing the surface.
+    """
+    # A surface is allowed to QUOTE the old rule while saying it is history. One of these words
+    # near the quote is what does that work. EVERY occurrence is checked, not the first, because
+    # a file that marks its first quote and forgets its third is the drift this gate is for.
+    MARKERS = ("superseded", "used to", "no longer", "rebalanced", "amended", "old rule",
+               "stale", "was wrong", "retargeted", "came down", "until 2026-09-16",
+               "that rule is why", "changed on 2026-09-16", "this rule read")
+    WINDOW = 400
+
+    out = []
+    for rel in PROSE_SURFACES:
+        f = root / rel
+        if not f.exists():
+            continue
+        low = f.read_text(encoding="utf-8", errors="replace").lower()
+        for phrase in SUPERSEDED_PHRASES:
+            start = 0
+            while True:
+                idx = low.find(phrase, start)
+                if idx < 0:
+                    break
+                start = idx + len(phrase)
+                near = low[max(0, idx - WINDOW):idx + WINDOW]
+                if any(w in near for w in MARKERS):
+                    continue
+                line = low.count("\n", 0, idx) + 1
+                out.append(
+                    f"{rel}:{line} states the superseded rotation rule ({phrase!r}) with nothing "
+                    f"nearby marking it as history. The rule changed on 2026-09-16 to at most "
+                    f"{ROTATION['max_consecutive']} in a row and at least "
+                    f"{ROTATION['min_distinct']} distinct, with continuity as the mandate rather "
+                    f"than variety. Fix the surface, never this list")
+    return out
+
+
+def agreement(js_path: Path = JS_TABLE, archetypes=None, rotation=None, devices=None) -> list[str]:
     """Every way the Python copy differs from the JS one. Empty means they agree."""
     archetypes = ARCHETYPES if archetypes is None else archetypes
     rotation = ROTATION if rotation is None else rotation
@@ -367,6 +449,48 @@ def accent_coverage(img, hex_colour: str) -> float:
 
 
 # --------------------------------------------------------------------------- the plan
+CONTINUITY_RE = re.compile(r"CONTINUITY\s*:\s*([A-Z_ ,]+)", re.I)
+
+
+def declared_devices(storyboard: Path | None) -> list[str]:
+    """The continuity devices the deck names, from one line in its storyboard.
+
+        CONTINUITY: CAMERA_MOVE, MOTIF_EVOLUTION
+
+    WHY A DECLARATION RATHER THAN A MEASUREMENT. A panorama spine can be measured off the
+    renders and a motif's change of state cannot, not without knowing what the motif IS. The
+    same reasoning as the rest of this file: the deck says what it is doing, the gate holds it
+    to the count, and the flow critic judges whether the device actually works. A declaration
+    nobody honours is caught by a critic. A device nobody declared is caught here.
+    """
+    if not storyboard or not storyboard.exists():
+        return []
+    out: list[str] = []
+    for m in CONTINUITY_RE.finditer(storyboard.read_text(encoding="utf-8", errors="replace")):
+        for name in m.group(1).replace(",", " ").split():
+            n = name.strip().upper()
+            if n and n not in out:
+                out.append(n)
+    return out
+
+
+def continuity_problems(devices: list[str]) -> list[str]:
+    """The continuity mandate, over the devices a deck declares."""
+    out = []
+    for d in devices:
+        if d not in DEVICES:
+            out.append(f"'{d}' is not a continuity device. The five are {', '.join(DEVICES)}")
+    named = [d for d in devices if d in DEVICES]
+    if len(named) < ROTATION["min_continuity_devices"]:
+        out.append(
+            f"the deck names {len(named)} continuity device(s) and the rule is at least "
+            f"{ROTATION['min_continuity_devices']}. Write 'CONTINUITY: <DEVICE>, <DEVICE>' in the "
+            f"storyboard, from {', '.join(DEVICES)}. A deck that turns the page nine different "
+            f"ways and runs nothing through it is what the owner called slides that do not flow "
+            f"together, and it is what this rule exists to stop")
+    return out
+
+
 def rotation_problems(seq: list[tuple[int, str]]) -> list[str]:
     """The rotation rule over (slide, layout) pairs in slide order."""
     out = []
@@ -380,8 +504,10 @@ def rotation_problems(seq: list[tuple[int, str]]) -> list[str]:
         if names[i] == names[i - 1]:
             run += 1
             if run > ROTATION["max_consecutive"]:
-                out.append(f"frames {seq[i - 1][0]} and {seq[i][0]} repeat {names[i]}. No "
-                           f"archetype twice in a row, because the reader has just seen that page")
+                out.append(f"frames {seq[i - run + 1][0]} to {seq[i][0]} are {run} x "
+                           f"{names[i]}. At most {ROTATION['max_consecutive']} in a row. Two is "
+                           f"a beat, the same camera with the light moved. Three is a rut")
+                run = 0
         else:
             run = 1
     if len(seq) >= LONG_DECK:
@@ -515,6 +641,12 @@ def check(run_dir: Path, require: bool = False):
     # 1. rotation, on every slide that named a layout, whether or not the rest of it parsed
     seq = [(n, str(declared[n].get("layout") or "").strip()) for n in sorted(declared)]
     problems.extend(rotation_problems([(n, a) for n, a in seq if a]))
+
+    # 1b. THE CONTINUITY MANDATE, under --require, for the same reason the layout keys are:
+    # a deck that declares none has not planned its continuity, and `min_continuity_devices`
+    # sitting in the table unread is the defect this clause closes.
+    if require:
+        problems.extend(continuity_problems(declared_devices(board)))
 
     # 2. area and 3. bleed, on the plan
     bleed_frames = []
@@ -741,8 +873,10 @@ def self_test() -> int:
              "slides": slides}))
 
     def board(d: Path, layouts=None, rects=None, bleeds=None, accent_on=ACCENT_ON,
-              accent_hex=ACC, drop=()):
+              accent_hex=ACC, drop=(), continuity="CAMERA_MOVE, MOTIF_EVOLUTION"):
         parts = ["# Storyboard\n\nProse around the plan.\n"]
+        if continuity is not None:
+            parts.append(f"CONTINUITY: {continuity}\n")
         for i, (layout, rect, bl) in enumerate(PLAN, start=1):
             blk = {"slide": i, "job": f"job {i}",
                    "layout": (layouts or {}).get(i, layout),
@@ -786,11 +920,17 @@ def self_test() -> int:
         code, probs, rows = check(d2)
         ok("a deck rendered at 2x measures the same", code == 0 and not probs, probs)
 
-        # (b) a consecutive repeat
+        # (b) a RUN of the same archetype. Retargeted 2026-09-16 with the rule: two in a row
+        # is a beat and passes, three is a rut and fails. This case used to assert that two in
+        # a row failed, which is the rule that forbade the deck its strongest continuity move.
         board(d, layouts={2: "DIAGRAM"})
         code, probs, _ = check(d)
-        ok("a consecutive repeat FAILS and names the frames",
-           code == 1 and any("frames 2 and 3 repeat DIAGRAM" in p for p in probs), probs)
+        ok("two of the same archetype in a row is a beat and PASSES the rotation",
+           not any("in a row" in p for p in probs), probs)
+        board(d, layouts={2: "DIAGRAM", 4: "DIAGRAM"})
+        code, probs, _ = check(d)
+        ok("three of the same archetype in a row FAILS and names the frames",
+           code == 1 and any("3 x DIAGRAM" in p for p in probs), probs)
 
         # the rest of the rotation rule, three breaches on one plan and each named
         board(d, layouts={2: "POSTER", 4: "MAP", 5: "TYPE_AS_OBJECT"})
@@ -799,11 +939,19 @@ def self_test() -> int:
         ok("TYPE_AS_OBJECT twice FAILS", any("TYPE_AS_OBJECT 2 times" in p for p in probs), probs)
         ok("one inside frame on a nine frame deck FAILS",
            any("FULL_BLEED and CLOSE_CROP 1 between them" in p for p in probs), probs)
+        # Three distinct archetypes over nine frames is now the FLOOR rather than a failure,
+        # because a deck that leans on three layouts and runs a spine through them is a deck.
+        # Two is still a rut.
         board(d, layouts={2: "DIAGRAM", 4: "CLOSE_CROP", 5: "DIAGRAM", 6: "FULL_BLEED",
                           7: "DIAGRAM", 8: "CLOSE_CROP", 9: "DIAGRAM"})
         code, probs, _ = check(d)
-        ok("three distinct archetypes on nine frames FAILS",
-           any("only 3 distinct" in p for p in probs), probs)
+        ok("three distinct archetypes on nine frames PASSES the distinct rule",
+           not any("distinct" in p for p in probs), probs)
+        board(d, layouts={2: "CLOSE_CROP", 3: "FULL_BLEED", 4: "CLOSE_CROP", 5: "FULL_BLEED",
+                          6: "CLOSE_CROP", 7: "FULL_BLEED", 8: "CLOSE_CROP", 9: "FULL_BLEED"})
+        code, probs, _ = check(d)
+        ok("two distinct archetypes on nine frames FAILS",
+           any("only 2 distinct" in p for p in probs), probs)
 
         # (c) a rect under the area line, (3) a declared bleed the rect misses, and the count.
         # Slides 3, 6 and 9 are pulled inside the margins, so only 1, 4 and 8 still bleed.
@@ -920,6 +1068,39 @@ def self_test() -> int:
         for p in (d / "render").glob("slide-*.png"):
             p.unlink()
         code, probs, _ = check(d)
+        # ---- THE CONTINUITY MANDATE (2026-09-16) -------------------------------------------
+        # `min_continuity_devices` sat in the rotation table unread when it was added, which is
+        # GATE_LESSONS' oldest shape committed inside a change that added a gate against it.
+        # These cases are what make the key mean something.
+        board(d)
+        code, probs, _ = check(d, require=True)
+        ok("a deck naming two continuity devices PASSES",
+           not any("continuity device" in p for p in probs), probs)
+
+        board(d, continuity="CAMERA_MOVE")
+        code, probs, _ = check(d, require=True)
+        # The EXIT CODE is asserted by the rotation cases above. These assert the FINDING,
+        # because by this point in the walk the fixture's renders have been removed and check()
+        # correctly reports could-not-run (2) rather than a violation (1).
+        ok("a deck naming ONE continuity device is refused under --require",
+           any("names 1 continuity device" in p for p in probs), probs)
+
+        board(d, continuity=None)
+        code, probs, _ = check(d, require=True)
+        ok("a deck naming NONE is refused and told where to write them",
+           any("CONTINUITY: <DEVICE>" in p for p in probs), probs)
+
+        board(d, continuity="CAMERA_MOVE, VIBES")
+        code, probs, _ = check(d, require=True)
+        ok("a device that is not one of the five is named as such",
+           any("not a continuity device" in p for p in probs), probs)
+
+        board(d, continuity=None)
+        code, probs, _ = check(d, require=False)
+        ok("...and without --require the mandate does not bind",
+           not any("continuity device" in p for p in probs), probs)
+        board(d)
+
         ok("no renders is could-not-run, never a pass", code == 2, (code, probs))
         (d / "storyboard.md").unlink()
         code, probs, _ = check(d)
@@ -946,9 +1127,51 @@ def main() -> int:
     ap.add_argument("--require", action="store_true",
                     help="a deck with no layouts declared is a fail rather than a note")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--prose", action="store_true",
+                    help="report prose surfaces still carrying the superseded rotation rule")
     a = ap.parse_args()
     if a.self_test:
         return self_test()
+
+    if a.prose:
+        probs = prose_agreement()
+        if not probs:
+            print("layout_check --prose: ok, no surface carries the superseded rotation rule")
+            return 0
+
+        # OWNERSHIP AND REACHABILITY ARE DIFFERENT QUESTIONS, and CLAUDE.md draws that line
+        # already. `ownership.yaml` gives the agent definitions to `upgrade`. The HOST treats
+        # everything under `.claude/` as a sensitive file class and prompts on every write
+        # whatever the permission mode says, so no routine can reach them unattended and no
+        # amount of CI red will change that. Failing the build on a path nothing in this repo
+        # can fix would stop every run for a defect no run can close, which is the exact shape
+        # of the rule CLAUDE.md spent six wedged days learning: a rule that makes an unattended
+        # run depend on a permission it can't grant itself is not fixable by restating it.
+        #
+        # So: the surfaces a run OWNS AND CAN REACH are a FAIL. The ones under `.claude/` are
+        # REPORTED, loudly, with the backlog item that closes them named. Move one of those
+        # files out from under `.claude/` and this turns into a fail for it automatically.
+        reachable = [x for x in probs if not x.startswith(".claude/")]
+        blocked = [x for x in probs if x.startswith(".claude/")]
+
+        if blocked:
+            print(f"layout_check --prose: {len(blocked)} statement(s) on surfaces no routine "
+                  f"may write (the host prompts on every edit under .claude/). Reported, not "
+                  f"failed. knowledge/carousel/UPGRADE_BACKLOG.md carries the fix, and "
+                  f"prompts/daily_routine.md Phase 12 hands the critics the current rule at "
+                  f"spawn time until a maintainer makes it:", file=sys.stderr)
+            for pr in blocked:
+                print(f"  ~ {pr}", file=sys.stderr)
+
+        if not reachable:
+            print("layout_check --prose: ok, every surface this repo can write is current")
+            return 0
+
+        print(f"\nlayout_check --prose: FAIL, {len(reachable)} surface statement(s) out of "
+              f"date on paths this repo can write\n", file=sys.stderr)
+        for pr in reachable:
+            print(f"  - {pr}", file=sys.stderr)
+        return 1
     if not (a.run_dir or a.date):
         print("layout_check: pass --run-dir, --date or --self-test", file=sys.stderr)
         return 2

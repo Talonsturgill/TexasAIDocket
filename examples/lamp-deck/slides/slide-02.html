@@ -1,0 +1,117 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 2 of 9. Archetype DOCUMENT.
+     THE FEDERAL RECORD, on the same desk, under the same lamp, the camera lifted a little and
+     swung left. The award page is the subject and its own typography is the image. The quote is
+     the government's words, verbatim, and the two lines around it are set in the page's own
+     face rather than the deck's, because type ON a document is image and not caption.
+     Planned frame median L* 20. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:840px; font-size:96px; }
+  .dek  { left:84px; top:404px; width:700px; }
+  .doc  { position:absolute; font-family:"Instrument Serif", serif; color:#2B211A; z-index:9; }
+  .doc.t{ left:282px; top:700px; width:576px; font-size:27px; line-height:1.34; color:#3A2E24; }
+  .doc.q{ left:282px; top:868px; width:576px; font-size:31px; line-height:1.36; color:#1C1510; }
+  .doc.m{ left:282px; top:598px; font-family:"JetBrains Mono", monospace; font-size:17px;
+          letter-spacing:.10em; color:#5A4636; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">The problem, in the government's words.</h1>
+<p class="dek">The award that paid for the tutor says why it exists.</p>
+<div class="doc m" data-decorative>AWARD 2539663 . STANDARD GRANT . IUSE</div>
+<div class="doc t">Context-Aware Conversational Tutors for Longitudinal Learning in Engineering Education</div>
+<div class="doc q">"students frequently use them to obtain answers rather than develop the reasoning and problem-solving skills that define engineering competence"</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'The federal award record', counter: "02 / 09", src: 'c31 c22 c30   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 96, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the desk, darker here because the page carries the light
+    Lm.desk(cx, { y: 0, mask: mask, seed: 55, lampX: 300, lampY: 240 });
+
+    // the award page, stood almost square to the camera, cropped at the foot
+    var DX = 196, DY = 556, DW = 712, DH = 632;
+    Lm.sheet(cx, { x: DX, y: DY, w: DW, h: DH, rot: 0.008, seed: 62, lit: 7, shade: 4 });
+
+    // the pool, from the upper LEFT this frame because the camera swung, not the lamp.
+    // The cast still runs down and right of every object, which is what keeps it one lamp.
+    Lm.pool(cx, { x: 470, y: 856, r: 940, squash: 0.74, rot: 0.22, strength: 0.86, reserve: lit });
+
+    // the page's own rules: a head rule under the award line, a foot rule above the crop
+    Lm.quiet(cx, lit, function (g) {
+      g.save();
+      g.strokeStyle = "rgba(200,182,158,0.34)"; g.lineWidth = 1.6;
+      g.beginPath(); g.moveTo(DX + 54, DY + 92); g.lineTo(DX + DW - 54, DY + 92); g.stroke();
+      g.strokeStyle = "rgba(200,182,158,0.20)";
+      g.beginPath(); g.moveTo(DX + 54, DY + 268); g.lineTo(DX + DW - 54, DY + 268); g.stroke();
+      g.restore();
+    });
+
+    // the body of the abstract below the quote, as token strokes, falling off into the dark
+    Lm.working(cx, { x: DX + 56, y: DY + 528, lines: 3, step: 32, min: 320, jitter: 220,
+                     weight: 2.0, ink: "rgba(44,34,26,0.40)", seed: 404 });
+
+    // the quote's own mark in the margin, the same 9 mm tick, now beside the government's words
+    Lm.tick(cx, { x: DX + 14, y: DY + 268, w: 8, h: 132, glow: 12 });
+
+    // the lamp's arm entering top left, the continuity object
+    Lm.shade(cx, { x: 108, y: 118, s: 0.74, rot: -0.22 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

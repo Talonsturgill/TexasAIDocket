@@ -8,9 +8,30 @@
 # The hard fails are not weighted at all. They are conditions, and any one of them makes the
 # deck unshippable whatever the weighted score says, because each one is a promise this product
 # has made in public.
+#
+# THE THRESHOLD MOVED TO 8.0 AND THE ART WEIGHTS WERE SPLIT, 2026-09-16, on the owner's report
+# that the artwork is not good enough and the frames do not flow together.
+#
+# 6.7 was doing nothing. The last fourteen runs scored 6.56, 6.76, 6.68, 6.92, 6.95, 6.96, 6.71,
+# 6.58, 6.94, 6.92, 6.78, 7.12, 7.58, 7.49. The bar sat BELOW the mean of the thing it was
+# supposed to be judging, so it never once asked a run for another round. A threshold under the
+# observed distribution is a number in a file, not a standard. The sibling product holds 8.3 with
+# the same agents and the same engine, which is what says 8.0 is reachable here rather than
+# aspirational. `max_rounds` still bounds the SEARCH, so this does not risk a run that cannot
+# ship: past the cap the deck ships at whatever it got, with the shortfall stated in the email
+# and in the run record. What changes is that a 7.5 now costs a round instead of passing.
+#
+# THE ART SPLIT. `artwork_craft` went 0.28 to 0.22 and the 0.06, plus 0.06 taken from story and
+# sequence and voice, funds `deck_coherence` at 0.12. Art now carries 0.34 between the two,
+# UP from 0.28, and `claim_integrity` did not move because it is this product's spine. The split
+# exists because one number could not hold both questions: the old criterion asked whether each
+# FRAME was drawn and rewarded a deck for "a different layout on every frame", which is a
+# per-frame question answered per frame, and nothing at all asked whether the nine frames were
+# one deck. That is why a deck whose value track jumped 43 points between frames 6 and 7 was
+# described by its own judge as having "a genuine value arc" and given credit for the amplitude.
 
 version: 1
-threshold: 6.7          # below this the deck does not ship
+threshold: 8.0          # below this the deck does not ship
 max_rounds: 5           # and after this many scoring rounds it ships anyway, see below
 
 # THE THRESHOLD MOVED AND A ROUND CAP WENT IN, on the owner's instruction, 2026-08-26.
@@ -77,23 +98,49 @@ scale: "0 to 10, where 7 is acceptable and 9 is the best thing shipped this mont
 
 criteria:
   - name: artwork_craft
-    weight: 0.28
+    weight: 0.22
     asks: >
+      This is the PER FRAME question. `deck_coherence` below is the whole deck, and a judge that
+      answers one here and calls it both is the defect that made this split necessary.
       Is there an IMAGE on every frame, a drawn subject that owns the frame, reads as one
       silhouette at feed size and runs off an edge on most frames, or is there a headline with
       a small drawing under it? Is the subject a thing at true scale, with a size a reader can
-      check against a person, or a slab in a void? Does the surface read as a print, paper and
-      ink and a visible screen and a drawn edge, or as a gradient with shapes on it? Does the
-      deck turn the page, a different layout on every frame, or is it one skeleton nine times?
-      Does each frame have a real light and a real dark rather than one mid band? Is the detail
-      budgeted where the argument lands rather than where it starts? Would a designer look at
-      this and want to know how it was drawn? knowledge/carousel/ILLUSTRATION_SYSTEM.md is the
-      standard, and examples/editorial-deck/contact_sheet.jpg is what a 7 looks like.
+      check against a person, or a slab in a void? Is the frame FINISHED, meaning graded rather
+      than left as flat fills, with a real light and a real dark rather than one mid band? Does
+      the type sit in quiet the picture actually has, or on a plate that was put there because
+      the art was drawn without knowing where the type goes? Is the detail budgeted where the
+      argument lands rather than where it starts? Would a designer look at this and want to know
+      how it was drawn? knowledge/carousel/ILLUSTRATION_SYSTEM.md is the standard.
+      A DIFFERENT LAYOUT ON EVERY FRAME IS NOT AN ANSWER TO THIS QUESTION and this criterion no
+      longer asks for one. It used to, and it is the reason the decks stopped hanging together.
     scoring:
-      9: "A frame a reader would screenshot. A subject drawn at true scale in a print register, the technique serving the claim, and no other frame in the deck laid out the same way."
-      7: "An image on every frame, the rotation held, competent and consistent. Nothing wrong with it, nothing memorable in it."
-      5: "One drawing with different arguments, a template with the story poured in, or a headline over a small object floating in a gradient."
-      3: "Decoration that would fit any story."
+      9: "A frame a reader would screenshot. A subject drawn at true scale, graded, the technique serving the claim, and type seated in quiet the composition made for it."
+      7: "An image on every frame, graded, competent and consistent. Nothing wrong with it, nothing memorable in it."
+      5: "One drawing with different arguments, a template with the story poured in, a headline over a small object floating in a gradient, or a frame that shipped ungraded."
+      3: "Decoration that would fit any story, or a plate with words on it."
+
+  - name: deck_coherence
+    weight: 0.12
+    asks: >
+      Do the nine frames read as ONE DECK, cut from one piece of stock, or as nine pictures that
+      arrived in the same envelope? Look at the contact sheet as a FILMSTRIP and answer in the
+      reader's order, because a reader swipes and never sees a frame alone.
+      Does one light run through the whole deck, every cast the same way? One ground, one screen,
+      one grade, one ramp? Does the VALUE hold from frame to frame, or does the deck strobe light
+      to dark to light? Are at least two continuity devices actually working and named in the
+      storyboard, a spine, an edge tease, a motif that changes state, a camera that moves, a
+      value arc that goes one way? When the deck cuts, is the cut the argument's turn and did
+      somebody declare it?
+      `scripts/carousel/deck_coherence.py` measures the value track and `deck_chassis.py` reads
+      the source. A judge may not score this above 7 on a deck either one of them refuses.
+      A SPREAD IS A PROPERTY OF A SET AND A DECK IS A SEQUENCE. Judge adjacency, not range. On
+      2026-09-16 a judge called a track of 77.8, 77.4, 32.5, 36.1, 54.9, 34.4, 77.4, 44.3, 17.9
+      "a genuine value arc" and gave it credit. Four of those eight steps are hard cuts.
+    scoring:
+      9: "A filmstrip. One world, one light, one grade, and a spine a reader could describe without being told to look for it. Any frame is unmistakably from this deck and no other."
+      7: "Clearly one deck. One ground and one light held, with a continuity device or two doing real work, and one frame that sits slightly outside."
+      5: "A shared wordmark and a shared furniture strip over nine unrelated pictures. The value track jumps more than once."
+      3: "Nine different print jobs. The reader can see the seams from the feed."
 
   - name: claim_integrity
     weight: 0.20
@@ -106,7 +153,7 @@ criteria:
       5: "A claim that stretches its source."
 
   - name: story_and_stakes
-    weight: 0.18
+    weight: 0.16
     asks: >
       Does a Texan reading this understand what happened, who decided it, where, and whether
       they can still act on it? Is the stake concrete rather than abstract?
@@ -116,7 +163,7 @@ criteria:
       5: "A topic rather than a story."
 
   - name: sequence_and_momentum
-    weight: 0.12
+    weight: 0.10
     asks: >
       Does the deck move? Is there a turn, a place where understanding changes? Does the cover
       earn a swipe and the close land?
@@ -126,7 +173,7 @@ criteria:
       5: "Nine slides in a row."
 
   - name: voice
-    weight: 0.12
+    weight: 0.10
     asks: >
       Does this sound like a person from Texas wrote it? Texas First without boosterism, honest
       about costs without doom. Regional specificity over state-level abstraction.

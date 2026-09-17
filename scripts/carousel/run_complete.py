@@ -80,6 +80,57 @@ def threshold() -> float:
     return float(t)
 
 
+# WHAT THE BAR WAS, BY DATE, for a deck that did not record its own.
+#
+# A BAR THAT RISES MUST NOT RECLASSIFY THE DECKS IT WAS RAISED OVER, and on 2026-09-16 that
+# principle had to be learned twice in one change. `shipped_check` implemented it for decks
+# that WROTE `threshold` into score.json and fell through to "the current one" otherwise, which
+# was harmless while the bar only ever went down. The bar went up, 6.7 to 8.0, and three
+# published decks at 7.42, 7.42 and 7.09 were reported as never having shipped.
+#
+# The second place was worse and nearly shipped. `scripts/site/site_context.py` decides which
+# runs become ARTICLES by calling `threshold()` here, so raising the bar silently unpublished
+# every deck between 7.09 and 7.58: fifteen article pages and about three hundred media files,
+# the last three decks among them. It surfaced as `site_fresh_check` wanting to DELETE them, and
+# the first reading of that was that the builder had a pre-existing bug.
+#
+# So the history lives HERE, once, and both readers ask it. Dates are the LAST date each bar
+# applied to. Read from `config/carousel/scoring_rubric.yaml`'s own git history, plus this
+# file's docstring for the pre-rubric bar ("never reached the 7.0 threshold", the 2026-08-19
+# run), because the rubric was only created on 2026-09-13.
+BAR_HISTORY = (
+    ("2026-09-12", 7.0),   # before this repo carried its own rubric
+    ("2026-09-15", 6.7),   # rubric created 2026-09-13 at 6.8 and lowered to 6.7 the same day
+)
+
+
+def bar_in_force(deck_date: str) -> float:
+    """The threshold a deck of this date was actually held to.
+
+    Anything after the last entry answers to the rubric as it stands, which is correct: a deck
+    scored today is answerable to today's bar. A deck that RECORDED its own threshold should be
+    read from that instead, and both callers do that first.
+    """
+    for last_date, bar in BAR_HISTORY:
+        if deck_date <= last_date:
+            return bar
+    return threshold()
+
+
+def bar_for_run(run_dir) -> float:
+    """The bar this run answers to: its own recorded one, else the one in force on its date."""
+    from pathlib import Path as _P
+    p = _P(run_dir) / "score.json"
+    if p.exists():
+        try:
+            got = json.loads(p.read_text(encoding="utf-8")).get("threshold")
+        except (OSError, json.JSONDecodeError):
+            got = None
+        if isinstance(got, (int, float)) and not isinstance(got, bool):
+            return float(got)
+    return bar_in_force(_P(run_dir).name)
+
+
 def max_rounds() -> int | None:
     """The round cap, from the rubric. None when the rubric declares none."""
     import yaml
@@ -320,8 +371,10 @@ def self_test() -> int:
     # PINNED ON PURPOSE, so the bar cannot drift a tenth at a time with nobody able to name the
     # run that moved it. That is the same failure `scoring_rubric.yaml` describes craft drifting
     # under, and it is why changing this number costs a commit here as well as there. It moved
-    # from 6.8 to 6.7 on the owner's instruction, 2026-09-13.
-    ok("...and it is the 6.7 this product is held to", bar == 6.7, str(bar))
+    # from 6.8 to 6.7 on the owner's instruction, 2026-09-13, and from 6.7 to 8.0 on 2026-09-16
+    # with the artwork upgrade. The pin did its job that day: the rubric edit alone went red here
+    # and the bar could not move without a second deliberate commit naming it.
+    ok("...and it is the 8.0 this product is held to", bar == 8.0, str(bar))
     cap = max_rounds()
     ok("...and the rubric declares the round cap beside it", cap == 5, str(cap))
 

@@ -775,6 +775,13 @@ Say in writing why this story and not the others.
 
 ## PHASE 9 — DIRECTORS ROOM (the planning phase that earns the deck)
 
+**BEFORE ANY DIRECTOR IS SPAWNED, hand each one the current rotation rule.** Their own definition
+under `.claude/` is stale as of 2026-09-16 and no routine may edit it, and these agents run before
+everything else, so a stale pitch here is a deck the later phases can only argue with. The
+paragraph is in Phase 12 under the flow critic and is the same one. **They also name the deck's
+continuity devices**, at least two from `ILLUSTRATION_SYSTEM.md`, because `layout_check --require`
+refuses a storyboard that declares fewer and the directors are who decide them.
+
 First, ask the machine what it has learned:
 
 ```
@@ -860,30 +867,80 @@ Spawn 2 `carousel-caption-director` agents with different assigned opening moves
 python3 scripts/carousel/caption_check.py --file out/<date>/caption.txt
 ```
 
+## PHASE 10.5 — THE DECK CHASSIS (new 2026-09-16, and nothing is drawn before it)
+
+**Write `assets/js/deck/<date>-<world>.js` before a single frame exists.** One module, named for this
+deck's world, loaded by all nine frames. It is what makes nine frames one deck rather than nine
+pictures, and it is the whole answer to the owner's report that the artwork does not flow
+together. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`, "THE DECK IS THE UNIT", is the standard
+and it outranks every per frame rule in that file.
+
+It holds three things and nothing else:
+
+1. **One light**, an azimuth and an elevation, stated in the header in words a frame author can
+   check a drawing against ("the key is upper right and every cast runs to the lower left"),
+   not only as numbers.
+2. **One material vocabulary**, the ramp and the primitives this deck's world is made of.
+3. **One way of seating type**, which is `TXDECK.lineBoxes` plus `reserveMask` and is never a
+   plate.
+
+It calls `TXDECK.declare` exactly once, with the deck's light, ground, material, accent and
+grade. That is the only declaration in the deck, so nine frames **can't** hold nine lights.
+
+**There is no `drawFrame()` in it and there never will be.** A shared projection helper is house
+furniture. A shared draw-the-whole-slide is a template, `deck_chassis.py` refuses one by name,
+and the per frame composition is this machine's whole strength. The chassis hands a frame
+primitives. The frame decides what to build from them.
+
+**Then render ONE probe frame against it before writing the other eight**, because a chassis
+that is wrong is wrong nine times and finding that out on frame nine costs the run.
+
+```bash
+python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render --only 1
+python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
+```
+
+The run owns `assets/js/deck/**` and nothing else under `assets/`. It may build a world. It may
+not edit the workshop.
+
 ## PHASE 11 — ART BUILD
 
 Write the slides. `out/<date>/slides/slide-01.html` and so on, 1080x1350, bespoke per the
-dossiers. **The order of work is the craft, and it is in `ILLUSTRATION_SYSTEM.md` under that
-heading. Four rules from it bind here:**
+dossiers, every one of them loading the chassis Phase 10.5 wrote. **The order of work is the
+craft, and it is in `ILLUSTRATION_SYSTEM.md` under that heading. Five rules from it bind here:**
 
 1. **Frames 7, 8 and 9 are built first.** Every judged deck was thinnest where the argument
    lands, because the budget ran out there. The close, then the turn, then the open.
-2. **Image before type, on every frame.** Draw the scene on the bench (`TXSCENE`, `TXFIG`,
-   `TXOBJ`), print it (`TXINK.print`), render it, and read it at 432 px with NO type on it. If
-   it is not an image yet, no headline will make it one. Then fit the type into the reserve the
-   image left, and mount the furniture with `TXLAYOUT.mount`.
-3. **One subject, one screen, one light per frame**, each the one the dossier declared. Nine
-   halftones is one drawing nine times in a new way, so the screen varies with the layout.
-4. **A slab is never a subject.** A thing not in the catalogue is drawn in metres from parts
+2. **Image before type, on every frame.** Draw the image, render it, and read it at 432 px with
+   NO type on it. If it is not an image yet, no headline will make it one. Then fit the type,
+   measure the line boxes, and hand the reserve to the art.
+3. **The deck's light, the deck's ramp, the deck's screen, the deck's grade.** Not one per
+   frame. What varies between frames is the SUBJECT and the CAMERA. What does not vary is the
+   paper, the ink, the screen, the light and the grade. This rule read "one screen per frame,
+   the screen varies with the layout" until 2026-09-16 and that is half of why the value track
+   strobed.
+4. **`TXDECK.finish(cx)` is the last line that touches the art canvas, on every frame.** One
+   line, the deck's own grade. It was missing from 204 of 205 shipped slides and that is the
+   single largest measured cause of the flat look. A frame may move bloom and aberration and
+   nothing else.
+5. **No plate, ever.** Type sits in a reserve the art left. If the type needs a box to be
+   readable, the art under it was drawn without knowing where the type goes, and the fix is the
+   art. A wash under 0.55 alpha is atmosphere and is allowed. `deck_chassis.py` measures it.
+6. **A slab is never a subject.** A thing not in the catalogue is drawn in metres from parts
    with `TXSCENE.sprite`, and goes in `knowledge/carousel/UPGRADE_BACKLOG.md` as a proposal for
-   the catalogue.
+   the catalogue. The bench serves the chassis, never the other way round.
 
 ```bash
 python3 .claude/skills/carousel-engine/render.py --slides-dir out/<date>/slides --out-dir out/<date>/render
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<date>/render
+python3 scripts/carousel/deck_chassis.py --slides-dir out/<date>/slides
+python3 scripts/carousel/deck_coherence.py --render-dir out/<date>/render --storyboard out/<date>/storyboard.md
 python3 scripts/carousel/layout_check.py --date <date> --require
 python3 scripts/carousel/bespoke_check.py --slides-dir out/<date>/slides
 ```
+
+**`deck_coherence` red is a rebuild, not a note.** It means the deck strobes, which is the thing
+the owner asked to have fixed, and a deck that strobes is not a deck.
 
 Never ship a FAIL. Re-render only what changed with `--only 3,7`. **`layout_check --require`
 runs here, before any critic sees a frame**, because a critic's round costs more than a gate's
@@ -901,8 +958,31 @@ visible word and grade against the dossier's own checklist, **and against the pr
 is the subject the dossier named actually there, at the size it declared, readable as one thing
 at 432 px, printed rather than placed.** Fix what they find, re-render, re-review. Then 1
 `carousel-flow-critic` on the contact sheet, which judges the deck as a sequence rather than as
-nine slides, and now also as a ROTATION: nine layouts that turn the page, screens that vary,
-the accent on three to six frames and no more. **Both critics run on every round, never only the
+nine slides.
+
+**TELL THE FLOW CRITIC THE ROTATION RULE CHANGED, IN THE SPAWN PROMPT, EVERY ROUND.** Its own
+definition under `.claude/agents/` still says "no two frames in a row laid out the same way, at
+least five layouts across nine" and "the print register varies with the layout". Those are the
+SUPERSEDED rule as of 2026-09-16, no routine may edit a file under `.claude/`, and a critic
+enforcing a superseded rule argues the deck back toward the defect it was changed to fix. So
+hand it the current rule with the deck:
+
+> The rotation rule changed on 2026-09-16. Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md`,
+> "THE DECK IS THE UNIT", and judge against that. Any copy of the rotation rule in your own
+> definition is stale. At most TWO of the same archetype in a row and at least THREE distinct,
+> not five. ONE screen, ONE light, ONE grade for the whole deck, not one per frame. Judge
+> whether the nine frames read as one deck and whether at least two continuity devices are
+> doing real work, and treat a deck that turns the page nine different ways as a FAULT.
+
+**AND THE SAME OVERRIDE GOES TO THE TREATMENT DIRECTORS IN PHASE 9, WHICH MATTERS MORE.** They
+run FIRST and their pitches become the dossiers, so a director still planning to the old rule
+seeds a deck the flow critic can only complain about afterwards. `carousel-treatment-director.md`
+says "at least five distinct" and that the register "varies with the layout", both superseded.
+Hand every director the same paragraph above with its pitch brief.
+
+`scripts/carousel/layout_check.py --prose` reports every surface still carrying the old wording,
+and `knowledge/carousel/UPGRADE_BACKLOG.md` carries the proposal to fix the two agent files,
+which needs a maintainer at a keyboard because the host prompts on every write under `.claude/`. **Both critics run on every round, never only the
 first**, because a repair pass is where a frame quietly becomes the skeleton again.
 
 When the last round settles, before anything is assembled:

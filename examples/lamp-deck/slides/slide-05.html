@@ -1,0 +1,131 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 5 of 9. Archetype TYPE_AS_OBJECT.
+     THE METHOD, and the deck's one TYPE_AS_OBJECT. The university's own two words are CUT INTO
+     the desk, not laid on it. The cut catches the lamp on its upper right lip and goes black on
+     the lower left, which is the same light as every other frame and is the whole reason the
+     words read as carved rather than as a font choice. The type here is DOM on top of a carved
+     shadow drawn beneath it, so the glyphs stay vector in the PDF.
+     Planned frame median L* 24. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:78px; top:566px; width:940px; font-size:170px; line-height:0.92;
+          font-family:"Archivo", sans-serif; font-variation-settings:"wdth" 116,"wght" 800;
+          letter-spacing:-0.035em; color:#F6EEE0; text-transform:lowercase; }
+  .dek  { left:84px; top:1016px; width:720px; }
+  .lab  { position:absolute; left:84px; top:158px; width:820px;
+          font-family:"Instrument Serif", serif; font-size:44px; line-height:1.24;
+          color:#C9B9A6; z-index:10; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<div class="lab">The university's own words for what it built.</div>
+<h1 class="hook" id="hook">teaches,<br>not tells</h1>
+<p class="dek">From the headline of the university's own release, September 10th, 2026.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260920);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'The method', counter: "05 / 09", src: 'c1 c32   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 132, max: 170, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the desk surface, and this frame is nothing but the desk
+    Lm.desk(cx, { y: 0, mask: mask, seed: 220, lampX: 880, lampY: 460 });
+
+    // THE CUT. For each line box of the headline, a dark trough offset down and left (the cast)
+    // and a lit lip offset up and right (the lamp), so the words sit IN the wood.
+    // THE CUT IS DONE IN CSS, ON THE TYPE ITSELF, AND TWO EARLIER BUILDS OF THIS FRAME WERE
+    // WRONG IN TWO DIFFERENT WAYS BEFORE THAT.
+    //
+    // Build one drew a blurred rect per line box, which at thumb size reads as a highlighter
+    // pen. A rect behind type is a plate however it is shaded, which is the defect this whole
+    // deck exists to remove.
+    //
+    // Build two drew the words again on the canvas, offset either side of the cast direction.
+    // That ghosted, and the reason is worth keeping: the headline is Archivo with
+    // `font-variation-settings: "wdth" 116`, and `cx.font` HAS NO WIDTH AXIS. Canvas rendered
+    // the same string at width 100, so the two copies agreed at the first letter and drifted
+    // further apart with every glyph after it. A canvas copy of DOM variable-font text cannot
+    // be registered to it, at any offset.
+    //
+    // A text-shadow pair is the same carve, it is applied to the glyphs themselves so it can
+    // never drift, and the type stays vector in the PDF. The offsets below ARE the deck's cast
+    // direction, computed rather than eyeballed, so the cut is lit by the same lamp as
+    // everything else in the deck.
+    var dir = TXDECK.castDir();
+    document.getElementById("hook").style.textShadow =
+        (dir[0] * 9).toFixed(1) + "px " + (dir[1] * 9).toFixed(1) + "px 11px rgba(2,1,5,0.95), " +
+        (dir[0] * 3).toFixed(1) + "px " + (dir[1] * 3).toFixed(1) + "px 2px rgba(2,1,5,0.80), " +
+        (-dir[0] * 2.5).toFixed(1) + "px " + (-dir[1] * 2.5).toFixed(1) +
+        "px 1px rgba(250,214,168,0.40)";
+
+    // the pool, wide and low, raking across the cut from the upper right
+    Lm.pool(cx, { x: 872, y: 700, r: 940, squash: 0.62, rot: -0.16, strength: 1.0, reserve: lit });
+
+    // the grain again ON TOP of the cut, at low alpha, so the wood runs THROUGH the letters
+    // rather than stopping at them. A cut that the grain respects is a sticker.
+    var R2 = TX.rng(931);
+    cx.save();
+    for (var g2 = 0; g2 < 2600; g2++) {
+      var gx = R2() * W, gy = 480 + R2() * 700;
+      cx.fillStyle = R2() > 0.5 ? "rgba(226,190,150,0.030)" : "rgba(4,3,8,0.055)";
+      cx.fillRect(gx, gy, 9 + R2() * 26, 0.9);
+    }
+    cx.restore();
+
+    Lm.shade(cx, { x: 1002, y: 300, s: 0.68, rot: 0.20 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

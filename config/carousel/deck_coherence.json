@@ -1,0 +1,43 @@
+{
+  "what": "The ceilings a deck's value track must hold to read as ONE deck rather than nine pictures. Thresholds are MEASURED off a reference corpus, never chosen, so a refit is a data change with its own commit and never a code change.",
+  "derived": {
+    "when": "2026-09-16",
+    "why": "Owner's report that the carousel artwork does not flow together and reads as text boxes thrown on a page. The complaint has a number under it and this file is that number.",
+    "method": "Every shipped nine frame deck in both products was resized to 216x270, converted to relative luminance and then to CIE L*, and each frame reduced to its MEDIAN L*. A deck is then a track of nine values. Two statistics were taken over the track: the mean absolute difference between adjacent frames (the strobe measure) and the count of adjacent differences above 25 L* (a hard cut).",
+    "corpus": {
+      "reference": {"product": "alaskaaicarousels", "decks": 58, "note": "the standard the owner named as the one that does this well"},
+      "subject": {"product": "TexasAIDocket", "decks": 19}
+    },
+    "measured": {
+      "mean_adjacent_jump_Lstar": {
+        "reference": {"p50": 2.60, "p75": 6.45, "p90": 14.87, "p95": 18.29},
+        "subject": {"min": 14.80, "p25": 18.20, "p50": 21.00, "p75": 25.30}
+      },
+      "hard_cuts_per_deck": {
+        "reference": {"p50": 0, "p75": 0, "p90": 1, "max": 4, "share_with_0_or_1": 0.90},
+        "subject": {"min": 2, "p50": 2, "max": 6, "share_with_0_or_1": 0.00}
+      }
+    },
+    "reading": "The reference product's median deck moves 2.6 L* between adjacent frames. The subject's median deck moves 21.0, which is eight times as far, and the subject's BEST deck of nineteen sits at 14.80, which is the reference product's ninetieth percentile, meaning its own worst decile. Ninety percent of reference decks carry at most one hard cut. Not one subject deck does."
+  },
+  "thresholds": {
+    "mean_adjacent_jump_Lstar": {
+      "max": 14.9,
+      "from": "reference p90, rounded to one decimal",
+      "why": "A ceiling at the reference median would refuse nine reference decks in ten on their own corpus, which is a gate calibrated to an ideal rather than to practice. The ninetieth percentile is what the reference product actually holds nine times in ten, and it refuses eighteen of nineteen subject decks, so it is binding without being unreachable."
+    },
+    "hard_cut_Lstar": {
+      "value": 25.0,
+      "from": "the knee in the reference distribution",
+      "why": "Below this an adjacent pair reads as the same deck in different light. Above it the reader sees a cut."
+    },
+    "max_hard_cuts": {
+      "max": 1,
+      "from": "reference p90",
+      "why": "One deliberate cut is a turn in the argument and the deck is allowed one. Two or more is a strobe, which is what every subject deck shipped."
+    },
+    "declared_cut_required": true,
+    "declared_cut_note": "The one permitted hard cut is DECLARED in the storyboard as the deck's turn, the same way a rest beat is declared rather than discovered. An undeclared cut is a fail even when there is only one, because the point is that somebody decided."
+  },
+  "not_measured_here": "Hue and chroma drift across a deck. A first cut of this file carried a warm/cool drift ceiling taken from the same corpus, and it was removed before shipping because the statistic it used, a mean red minus blue over the whole frame, moves with SUBJECT as much as with grade and would have refused a legitimate frame that is mostly sky. A wrong measurement in a config file is worse than none, because the next session inherits it and stops looking. If hue coherence needs a gate it needs its own derivation."
+}

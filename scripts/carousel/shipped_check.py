@@ -688,6 +688,47 @@ def g_quantifiers(d: Path):
     return out
 
 
+# THE CHASSIS AND THE COHERENCE GATES ARRIVED ON 2026-09-16 and no deck on or before that date
+# has a chassis, because the system did not exist. Same reasoning as CONSTRUCTION_SINCE and
+# LAYOUT_SINCE, stated for the third time because it keeps being the right answer: a gate does
+# not judge the work that produced it.
+DECK_SINCE = "2026-09-16"
+
+
+def g_deck_chassis(d: Path):
+    """The nine frames were cut from one piece of stock.
+
+    REGISTERED BECAUSE CI WAS ONLY EXERCISING THE FIXTURE (2026-09-16, review). `guards.yml` ran
+    this gate's self-test and ran it against `examples/lamp-deck/`, which is a deck that cannot
+    change. Neither asked it about the deck a run had just shipped, so a run that skipped or
+    misapplied its Phase 11 commands could ship a chassis-less deck and CI would still report
+    green, on the strength of a fixture and an example. That is `gate_wiring.py`'s own finding
+    in a new place: a gate nothing points at the real subject of.
+    """
+    if d.name <= DECK_SINCE:
+        return ("the chassis system did not exist when this deck shipped, so it loads no "
+                "chassis and could not have")
+    sd = d / "slides"
+    if not sd.is_dir() or not sorted(sd.glob("slide-*.html")):
+        return None
+    return _by_module("deck_chassis", d).check_deck(sd)
+
+
+def g_deck_coherence(d: Path):
+    """The rendered frames read as one deck rather than nine pictures."""
+    if d.name <= DECK_SINCE:
+        return ("the coherence thresholds were derived on " + DECK_SINCE + " and every deck on "
+                "or before it strobes by them, which is the finding rather than a fault to fix "
+                "in published work")
+    m = _by_module("deck_coherence", d)
+    if not m.frames_in(d):
+        return None
+    got = m.measure(d, d / "storyboard.md")
+    if "error" in got:
+        return [got["error"]]
+    return list(got.get("problems") or [])
+
+
 def g_completion(d: Path):
     """`check(run_dir, bar, cap)`, and the cap is the whole point of the third argument.
 
@@ -728,8 +769,12 @@ def g_completion(d: Path):
     except json.JSONDecodeError:
         bar = None
     if not isinstance(bar, (int, float)) or isinstance(bar, bool):
-        bar = m.threshold()          # a deck that recorded no bar answers to the current one
+        bar = m.bar_in_force(d.name)  # a deck that recorded no bar answers to the one that applied
     return list(m.check(d, float(bar), m.max_rounds()) or [])
+
+
+# The bar a deck answers to now lives in `run_complete.BAR_HISTORY`, because the site builder
+# needs the same answer and two copies of a rule about history is how history gets two versions.
 
 
 def g_verbatim(d: Path):
@@ -818,6 +863,8 @@ GATES = [
     ("dossiers", g_dossiers, CURRENT),
     ("coherence", g_coherence, CURRENT),
     ("craft floor", g_craft_floor, CURRENT),
+    ("deck chassis", g_deck_chassis, CURRENT),
+    ("deck coherence", g_deck_coherence, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
     ("absences", g_absences, HISTORY),
     ("nouns", g_nouns, HISTORY),

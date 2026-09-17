@@ -1,0 +1,143 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 7 of 9. Archetype DOCUMENT.
+     THE FOOT OF THE PAGE. Frame 2's document again and deliberately so, cropped this time to
+     its last inch, where the second funder is a footnote under a rule. Two ticks in the margin,
+     one per agency, and they are the same mark the machine has been making since frame 1.
+     The award number is set in mono because it is a record and not prose.
+     Planned frame median L* 20. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:800px; font-size:104px; }
+  .dek  { left:84px; top:400px; width:700px; }
+  .doc  { position:absolute; font-family:"Instrument Serif", serif; color:#2B211A; z-index:9; }
+  .doc.f{ left:238px; top:900px; width:640px; font-size:25px; line-height:1.36; color:#17100B; }
+  .doc.g{ left:238px; top:1064px; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:.09em; color:#5E2A0A; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two agencies pay for this.</h1>
+<p class="dek">The release names the National Science Foundation up top. The Department of Justice is a footnote.</p>
+<div class="doc f">This work is sponsored by the Fort Worth Police Department and funded by the U.S. Department of Justice under Grant No.</div>
+<div class="doc g">15PBJA-23-GG-06172-NTCP</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-16-lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260922);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'The foot of the page', counter: "07 / 09", src: 'c7 c8 c9 c19 c24 c2   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 78, max: 104, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    Lm.desk(cx, { y: 0, mask: mask, seed: 310, lampX: 820, lampY: 700 });
+
+    // the page's LAST INCH, running off the left, right and bottom edges. The reader is at the
+    // foot of a document whose top they have already seen on frame 2.
+    var FX = -96, FY = 700, FW = 1280, FH = 502;
+    Lm.sheet(cx, { x: FX, y: FY, w: FW, h: FH, rot: -0.007, seed: 322, lit: 7, shade: 6 });
+
+    Lm.pool(cx, { x: 640, y: 940, r: 760, squash: 0.62, rot: -0.14, strength: 1.0, reserve: lit });
+
+    // the body above the footnote, token strokes, so the eye goes to the rule and not the words
+    Lm.working(cx, { x: FX + 330, y: FY + 62, lines: 3, step: 38, min: 380, jitter: 300,
+                     weight: 2.2, ink: "rgba(44,34,26,0.38)", seed: 3311 });
+
+    // THE FOOTNOTE RULE. A short rule, a third of the measure, which is how a footnote is set.
+    Lm.quiet(cx, lit, function (g) {
+      g.save();
+      g.strokeStyle = "rgba(206,188,164,0.46)"; g.lineWidth = 2;
+      g.beginPath(); g.moveTo(FX + 330, FY + 158); g.lineTo(FX + 700, FY + 158); g.stroke();
+      g.restore();
+    });
+
+    // TWO TICKS, one per funder, at the two heights the two agencies sit at on the page.
+    // The upper is NSF, named at the top and off this crop. The lower is the footnote.
+    Lm.tick(cx, { x: FX + 272, y: FY + 34, w: 9, h: 84, glow: 14 });
+    Lm.tick(cx, { x: FX + 272, y: FY + 188, w: 9, h: 148, glow: 16 });
+
+    // the rest of the award's body below the grant number, so the bottom third of the frame
+    // carries the page rather than trailing off into blank stock
+    // THE BOTTOM THIRD OF FRAME 7, which measured 23 percent of the frame's own craft density.
+    // Blank stock is not a composition. The page below the grant number now carries the rest of
+    // the award's body over the page's own ruled bed, which is what the rest of a real award
+    // page has on it.
+    Lm.quiet(cx, boxes, function (g) {
+      for (var fr = FY + 178; fr < FY + FH - 14; fr += 40) {
+        Lm.rule(g, { x0: FX + 286, x1: FX + 1044, y: fr });
+      }
+      Lm.working(g, { x: FX + 316, y: FY + 196, lines: 5, step: 40, min: 420, jitter: 440,
+                      weight: 3.2, ink: "rgba(30,23,17,0.60)", seed: 7788 });
+      /* the signature block a federal award page ends on: two short rules and a dated line */
+      g.save();
+      g.strokeStyle = "rgba(48,37,28,0.52)"; g.lineWidth = 2;
+      g.beginPath(); g.moveTo(FX + 316, FY + 392); g.lineTo(FX + 610, FY + 392); g.stroke();
+      g.beginPath(); g.moveTo(FX + 700, FY + 392); g.lineTo(FX + 940, FY + 392); g.stroke();
+      g.restore();
+      Lm.working(g, { x: FX + 330, y: FY + 358, lines: 1, step: 30, min: 190, jitter: 70,
+                      weight: 3.4, ink: "rgba(30,23,17,0.62)", seed: 991 });
+      Lm.working(g, { x: FX + 714, y: FY + 358, lines: 1, step: 30, min: 150, jitter: 60,
+                      weight: 3.0, ink: "rgba(30,23,17,0.58)", seed: 992 });
+    });
+
+    // the desk the page ends on, with its grain, so the band below the document is a surface
+    // rather than a flat plane. A falloff that removes the detail it is quieting has not
+    // quieted the frame, it has deleted the bottom of it.
+    Lm.desk(cx, { y: FY + FH - 4, mask: mask, seed: 7303, lampX: 560, lampY: FY + FH + 40 });
+    TXDECK.contact(cx, { x: 540, y: FY + FH + 8, w: 1080, h: 22, height: 10,
+                         ambient: 0.42, contact: 0.66, ambientBlur: 26, contactBlur: 6 });
+
+    Lm.shade(cx, { x: 892, y: 402, s: 0.64, rot: 0.14 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

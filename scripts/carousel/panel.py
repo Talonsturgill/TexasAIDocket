@@ -97,6 +97,20 @@ def criteria_of(j: dict) -> dict:
 RUBRIC = REPO_ROOT / "config" / "carousel" / "scoring_rubric.yaml"
 
 
+def rubric_criteria() -> dict:
+    """{name: weight} exactly as `scoring_rubric.yaml` declares them."""
+    import yaml
+    try:
+        doc = yaml.safe_load(RUBRIC.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError):
+        return {}
+    out = {}
+    for c in (doc.get("criteria") or []):
+        if isinstance(c, dict) and c.get("name") is not None:
+            out[str(c["name"])] = float(c.get("weight") or 0)
+    return out
+
+
 def threshold() -> float:
     """The bar, read from the rubric the judges are graded against, never carried here.
 
@@ -111,7 +125,7 @@ def threshold() -> float:
     return float(t)
 
 
-def combine(judges: list, bar: float | None = None) -> tuple:
+def combine(judges: list, bar: float | None = None, want: dict | None = None) -> tuple:
     """Returns (verdict dict, problems list).
 
     PER-CRITERION MEDIAN, THEN WEIGHTED, whenever the judges supply criteria. That is what
@@ -130,6 +144,7 @@ def combine(judges: list, bar: float | None = None) -> tuple:
     probs = []
     scores, fails, dissents = [], [], []
     per = {}
+    card_weights: dict = {}
     for i, j in enumerate(judges):
         s = score_of(j)
         if s is None:
@@ -141,6 +156,9 @@ def combine(judges: list, bar: float | None = None) -> tuple:
             per[name]["scores"].append(sc)
             if w:
                 per[name]["weight"] = w
+            # PER CARD, because the merged weight is whatever the LAST judge said and a single
+            # judge reweighting a criterion is invisible in it. The weights are the rubric's.
+            card_weights.setdefault(i + 1, {})[name] = w
         for hf in (j.get("hard_fails") or []):
             fails.append({"judge": i + 1, "fail": hf})
         # WHICH KIND OF NO IT IS. 2026-08-28.
@@ -219,8 +237,38 @@ def combine(judges: list, bar: float | None = None) -> tuple:
         probs.append(f"only {len(scores)} judge(s) scored. The panel is three, because a median "
                      f"of two is a mean and one outlier moves it")
 
+    # EVERY CRITERION THE RUBRIC DECLARES, AND ONLY THOSE (2026-09-16, review).
+    #
+    # `complete` used to mean "the judges agree with each other", which trusts the judges to
+    # supply the schema. Three judges all returning the PREVIOUS six criterion card agree
+    # perfectly, so the panel weighted a six criterion rubric, reported a clean per-criterion
+    # median, and never noticed `deck_coherence` was missing. A criterion nobody scores is a
+    # criterion that does not exist, and the one just added is the one this product most needs
+    # scored. Agreement between judges is not the same question as agreement with the rubric,
+    # and the panel now asks both.
+    # `want` is injectable for the same reason `bar` is: the historical replays below assert
+    # real numbers from real panels judged under the rubric OF THEIR DAY, and the rubric is
+    # allowed to move without those assertions being rewritten. A live run passes neither and
+    # is held to the rubric as it stands.
+    want = rubric_criteria() if want is None else want
+    if per and want:
+        for jn, ws in sorted(card_weights.items()):
+            for k, w in ws.items():
+                if k in want and w and abs(float(w) - float(want[k])) > 1e-9:
+                    probs.append(f"judge {jn} weighted '{k}' at {w} and the rubric says "
+                                 f"{want[k]}. The weights are the rubric's, never a judge's")
+        missing = sorted(set(want) - set(per))
+        extra = sorted(set(per) - set(want))
+        if missing:
+            probs.append(f"no judge scored {', '.join(missing)}, which the rubric declares. A "
+                         f"criterion nobody scores is a criterion that does not exist")
+        for k in extra:
+            probs.append(f"the judges scored '{k}', which the rubric does not declare. A card "
+                         f"invents no criteria")
+
     complete = per and all(len(v["scores"]) == len(scores) for v in per.values()) \
-        and all(v["weight"] for v in per.values())
+        and all(v["weight"] for v in per.values()) \
+        and (not want or set(per) == set(want))
     if complete:
         merged = {k: {"score": round(statistics.median(v["scores"]), 3), "weight": v["weight"],
                       "judges": v["scores"]}
@@ -413,6 +461,9 @@ def self_test() -> int:
     # THE REAL FINAL ROUND of 2026-08-19, with the real per-criterion scores. The three judges
     # totalled 8.09, 8.17 and 7.70. A median of TOTALS is 8.09. The per-criterion medians weight
     # out to 8.034, which is what actually shipped, and this asserts the finer method is used.
+    # THE RUBRIC OF THAT DAY, six criteria, which is what those judges were scoring against.
+    # Passed to `combine` as `want` so the replay stays a replay: `deck_coherence` did not exist
+    # on 2026-08-19 and a case asserting a 2026-08-19 number must not require it.
     W = {"artwork_craft": 0.28, "claim_integrity": 0.20, "story_and_stakes": 0.18,
          "sequence_and_momentum": 0.12, "voice": 0.12, "variety": 0.10}
 
@@ -426,7 +477,30 @@ def self_test() -> int:
                   "sequence_and_momentum": 8.2, "voice": 7.8, "variety": 9.0})
     C = jc(7.70, {"artwork_craft": 7.5, "claim_integrity": 8.5, "story_and_stakes": 7.8,
                   "sequence_and_momentum": 7.8, "voice": 7.5, "variety": 8.0})
-    v, _ = combine([A, B, C])
+    # ---- THE RUBRIC'S OWN SCHEMA IS REQUIRED (2026-09-16, review) ----------------------
+    # Three judges all returning the SAME stale card agree perfectly with each other, and the
+    # panel used to take that as completeness and weight a rubric that was missing a criterion.
+    SEVEN = dict(W, deck_coherence=0.12)
+    v, probs = combine([A, B, C], want=SEVEN)
+    ok("a criterion the rubric declares and no judge scored is named",
+       any("deck_coherence" in p and "no judge scored" in p for p in probs), str(probs))
+    ok("...and the panel does NOT report a per-criterion result it could not compute",
+       not v.get("criteria"), str(v.get("criteria")))
+
+    FIVE = {k: w for k, w in W.items() if k != "variety"}
+    v, probs = combine([A, B, C], want=FIVE)
+    ok("a criterion the judges invented is named",
+       any("'variety'" in p and "does not declare" in p for p in probs), str(probs))
+
+    heavy = jc(8.09, {"artwork_craft": 8.0, "claim_integrity": 8.5, "story_and_stakes": 8.0,
+                      "sequence_and_momentum": 8.0, "voice": 7.5, "variety": 8.5})
+    heavy["criteria"]["artwork_craft"]["weight"] = 0.40
+    v, probs = combine([heavy, B, C], want=W)
+    ok("a judge reweighting a criterion is named",
+       any("weighted 'artwork_craft' at 0.4" in p and "rubric says 0.28" in p
+           for p in probs), str(probs))
+
+    v, _ = combine([A, B, C], want=W)
     ok("the real round-five panel weights to the 8.034 that shipped",
        v["weighted_score"] == 8.034, str(v.get("weighted_score")))
     ok("...by per-criterion median rather than a median of totals",
@@ -440,7 +514,7 @@ def self_test() -> int:
                  "sequence_and_momentum": 8.0, "voice": 7.5, "variety": 8.5})
     E = jc(7.5, {"artwork_craft": 5.0, "claim_integrity": 8.5, "story_and_stakes": 8.0,
                  "sequence_and_momentum": 8.0, "voice": 7.5, "variety": 8.5})
-    v, _ = combine([D, E, A])
+    v, _ = combine([D, E, A], want=W)
     ok("a criterion the judges split on by 1.5 or more is named",
        "artwork_craft" in (v.get("contested") or []), str(v.get("contested")))
 
@@ -470,7 +544,11 @@ def self_test() -> int:
 
     # A refusal with no hard fail named, from a judge whose own score CLEARS the bar, describes
     # neither a fault nor the number, and is still a refusal.
-    v, _ = combine([j(7.5), j(7.5), j(7.5, ship=False)])
+    # The scores here must CLEAR the rubric's bar for the case to be the one under test, which
+    # is a refusal that names neither a fault nor the number. They were 7.5 against a 6.7 bar
+    # until 2026-09-16, when the bar went to 8.0 and 7.5 stopped clearing it, which turned this
+    # case into an ordinary threshold dissent and took the assertion below with it.
+    v, _ = combine([j(8.6), j(8.6), j(8.6, ship=False)])
     ok("a judge returning ship:false with no hard fail still stops the deck",
        v["ship"] is False, str(v))
 
