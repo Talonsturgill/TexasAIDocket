@@ -256,31 +256,28 @@ for (const [where, w] of Object.entries(darkest)) {
 // THE WARMTH STILL HAS TO BE THERE. A page that passes the checks above by having no
 // atmosphere at all has failed differently: the whole point is a dusk sky, not a black
 // rectangle. So the bottom of the sky must be measurably warmer than the top.
+// The news bar moves the Ask field across the lower sample. Hide foreground content without
+// changing layout before measuring the sky, just as the seam check below already does.
+// Freeze the atmosphere and average a patch so animation timing and film grain are not votes.
+await p.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
+                               ' body::before { display: none }' });
+await p.evaluate(() => document.querySelectorAll('.sky *').forEach(el => {
+  el.style.animationDelay = '0s';
+  el.getAnimations().forEach(animation => { animation.pause(); animation.currentTime = 0; });
+}));
 const im = decodePNG(await p.screenshot({ fullPage: false }));
+const meanPatch = (cx, cy) => {
+  const sum = [0, 0, 0];
+  for (let y = cy - 4; y <= cy + 4; y++) for (let x = cx - 4; x <= cx + 4; x++) {
+    px(im, x, y).forEach((value, i) => sum[i] += value);
+  }
+  return sum.map(value => value / 81);
+};
+const top = meanPatch(720, 60), low = meanPatch(720, 880);
 const warmth = c => c[0] - c[2];             // red minus blue, so positive is warm
-
-// SAMPLE THE SKY IN THE GUTTER, for the reason stated at the top of this block: these checks
-// sample where content is NOT. This pair used to read the CENTRE column at x 720, and the front
-// page grew an ask box into exactly that column: at 1440 x 900 the horizon sample landed on the
-// box's own input, which paints its own cool fill, and the check reported the sky as cold when
-// the sky was fine. Measured down the centre column the warm band peaks at y 770 and the ask box
-// starts around y 800; measured down the right gutter the same band is +3 against the top's -8.
-//
-// The gutter x is the one the spots table already uses, so a failure here names the same place
-// on the page as every other failure in this file.
-const SKY_X = spots['top right gutter'][0];
-const onSky = await p.evaluate(([x, y]) => {
-  const el = document.elementFromPoint(x, y);
-  return !el || !el.closest('main, .masthead, footer.site, .askbox');
-}, [SKY_X, 870]);
-ok('the horizon sample is on sky rather than on content',
-   onSky,
-   `something in the page is under (${SKY_X}, 870), so this pair would measure it instead of the sky`);
-
-const top = px(im, SKY_X, 60), low = px(im, SKY_X, 870);
 ok('the horizon is warmer than the sky above it',
    warmth(low) > warmth(top),
-   `at x ${SKY_X}: top r-b ${warmth(top)}, horizon r-b ${warmth(low)}`);
+   `top r-b ${warmth(top)}, horizon r-b ${warmth(low)}`);
 
 /* ---------- and it must not have a visible edge ---------- */
 //
@@ -308,8 +305,7 @@ const SEAM_STEP = 12;              // summed across channels, on the row average
 // chrome and a deliberate hard edge, so it comes off. The grain STAYS: it is part of the surface
 // and it is what makes the averaging necessary in the first place, so hiding it would be testing a
 // page nobody sees.
-await p.addStyleTag({ content: 'body > header, body > main, body > footer { visibility: hidden }' +
-                               ' body::before { display: none }' });
+// Foreground content is already hidden by the warmth check above.
 await p.evaluate(() => window.scrollTo({ top: 500, behavior: 'instant' }));
 await p.waitForTimeout(600);
 

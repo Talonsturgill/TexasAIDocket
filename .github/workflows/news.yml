@@ -2,7 +2,7 @@ name: Texas tech headline
 
 on:
   schedule:
-    # Four small feed reads per day; offset from the top-of-hour collector traffic.
+    # Four refreshes per day; offset from the top-of-hour collector traffic.
     - cron: "23 1,7,13,19 * * *"
   workflow_dispatch:
 
@@ -17,7 +17,7 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,9 +32,11 @@ jobs:
       - name: Check selection rules before reading the feed
         run: python3 scripts/site/news_headlines.py --self-test
       - name: Collect the latest Texas tech coverage
+        id: collect
         run: |
           python3 scripts/site/news_headlines.py --collect
           cp ledger/news/latest.json "$RUNNER_TEMP/news-latest.json"
+          python3 -c 'import json, os; print("checked_at=" + json.load(open("ledger/news/latest.json"))["checked_at"], file=open(os.environ["GITHUB_OUTPUT"], "a"))'
 
       # This is an ephemeral checkout. Rebuild on current main on each attempt, instead of
       # rebasing generated HTML across another collector's update. Never overwrite trunk.
@@ -65,3 +67,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run guards.yml --ref main
+
+      # Dispatch is not publication. A later snapshot is acceptable when another refresh
+      # overtakes this one, but a missing, empty or expired live bar is never a successful run.
+      - name: Verify feed health and the published headline
+        env:
+          NEWS_CHECKED_AT: ${{ steps.collect.outputs.checked_at }}
+        run: |
+          python3 scripts/site/news_headlines.py --health
+          python3 scripts/site/news_headlines.py --live-check --wait-seconds 2400 --expected-check "$NEWS_CHECKED_AT"

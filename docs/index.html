@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-hYw5sAejxMM27LSHzW9qsApJ3MC8upNskTZ76XldqPA=' 'sha256-F69eKyZ3zp6lzZwi6fZZw4s314xttjYQRVolWPEYGvA=' 'sha256-k5fMVbB7hswfJMwOuRb2sCSNaYiC0J8sRwuPm/ZbR+g=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-hYw5sAejxMM27LSHzW9qsApJ3MC8upNskTZ76XldqPA=' 'sha256-ogTWxakpgO/aQiw5YKTW1B20Lp9CfR6Zk8XV93pqniw=' 'sha256-k5fMVbB7hswfJMwOuRb2sCSNaYiC0J8sRwuPm/ZbR+g=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-3CAuRT0pF1/aSdSplwZNbmz08NsljAcSgTrubOOlfGo=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#00205B">
 <link rel="stylesheet" href="site.css?v=9ac23a8bf2">
-<link rel="stylesheet" href="home.css?v=ca1a69d833">
+<link rel="stylesheet" href="home.css?v=ce6c1a75b5">
 <link rel="stylesheet" href="voice-input.css?v=449e0422ec22">
 <script defer src="voice-input.js?v=449e0422ec22"></script>
 <link rel="preload" href="fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
@@ -44,11 +44,23 @@
 <main id="main" class="wrap">
 
 <section class="hero rise">
-  <a class="tele news-chip" href="https://dallasinnovates.com/air-taxi-pilot-program-takes-off-at-fort-worth-alliance-airport/" target="_blank" rel="noopener noreferrer" data-expires-at="2026-09-17T10:28:12Z" title="Selected from recent Texas tech and AI coverage, ranked by coverage and freshness. Discovery by The GDELT Project and publisher RSS. The source headline opens in a new tab."><span class="news-meta"><span class="news-label">Top story</span><cite class="news-source">Dallas Innovates</cite></span><cite class="news-title">Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport</cite><svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg></a><script>(function(){
+  <a class="tele news-chip" data-news-status="current" data-checked-at="2026-09-17T01:14:17Z" href="https://dallasinnovates.com/smu-gets-19-3m-from-doe-to-adapt-oil-and-gas-tech-for-critical-minerals-mining/" target="_blank" rel="noopener noreferrer" data-expires-at="2026-09-17T22:28:58Z" title="Selected from recent Texas tech and AI coverage, ranked by coverage and freshness. Discovery by The GDELT Project and publisher RSS. The source headline opens in a new tab."><span class="news-meta"><span class="news-label">Top story</span><cite class="news-source">Dallas Innovates</cite></span><cite class="news-title">SMU Gets $19.3M from DOE to Adapt Oil-and-Gas Tech for Critical Minerals Mining</cite><svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg></a><script>(function(){
   var chip=document.querySelector('.news-chip');
   if(!chip)return;
   var expires=Date.parse(chip.dataset.expiresAt);
-  function retire(){if(!Number.isFinite(expires)||Date.now()>=expires)chip.hidden=true;}
+  function retire(){
+    if(chip.dataset.newsStatus==='empty')return;
+    if(Number.isFinite(expires)&&Date.now()<expires)return;
+    chip.style.minHeight=chip.getBoundingClientRect().height+'px';
+    chip.removeAttribute('href');chip.removeAttribute('target');chip.removeAttribute('rel');
+    chip.removeAttribute('title');chip.dataset.newsStatus='empty';
+    chip.classList.add('news-empty');
+    chip.querySelector('.news-label').textContent='Texas tech and AI';
+    chip.querySelector('.news-title').textContent='Fresh headlines are temporarily unavailable.';
+    chip.querySelector('.news-source').hidden=true;
+    chip.querySelector('.news-arrow').hidden=true;
+    if(document.activeElement===chip)chip.blur();
+  }
   retire();
   if(expires>Date.now())setTimeout(retire,Math.min(expires-Date.now()+100,2147483647));
   document.addEventListener('visibilitychange',retire);
