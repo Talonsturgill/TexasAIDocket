@@ -61,6 +61,9 @@
 (function (global) {
   "use strict";
 
+  // The five continuity devices, from ILLUSTRATION_SYSTEM.md "THE CONTINUITY MANDATE". A deck
+  // names at least `min_continuity_devices` of these in its storyboard.
+  var DEVICES = ["PANORAMA_SPINE", "EDGE_TEASE", "MOTIF_EVOLUTION", "CAMERA_MOVE", "VALUE_ARC"];
   var ARCHETYPES = ["FULL_BLEED", "SPLIT_HORIZON", "TYPE_AS_OBJECT", "OBJECT_AND_CAPTION", "DIAGRAM", "GRID", "DOCUMENT", "MAP", "CLOSE_CROP", "FIGURE_SCALE"];
   // ROTATION, REBALANCED 2026-09-16. The layout counts came DOWN and the image law stayed put,
   // because the defect this table was written for in September was never "too few layouts".
@@ -89,7 +92,7 @@
   // A primary image may run under them only where it is kept quiet (see TXINK.reserve).
   var BANDS = { top: 130, bottom: 130 };
 
-  function check(seq) {
+  function check(seq, devices) {
     var problems = [];
     if (!seq || !seq.length) return ["no sequence"];
     for (var i = 0; i < seq.length; i++) {
@@ -115,6 +118,27 @@
     var inside = seq.filter(function (a) { return a === "FULL_BLEED" || a === "CLOSE_CROP"; }).length;
     if (inside < ROTATION.min_full_bleed_or_close_crop && seq.length >= 6)
       problems.push("FULL_BLEED and CLOSE_CROP " + inside + " between them; at least " + ROTATION.min_full_bleed_or_close_crop);
+
+    // THE CONTINUITY DEVICES, and this clause is why `min_continuity_devices` is not decoration.
+    //
+    // The key was added to the table on 2026-09-16 with the continuity mandate and NOTHING READ
+    // IT, which is the oldest shape in GATE_LESSONS (a rule stated in config, a surface that
+    // keeps its own copy, and nothing in between) committed in the same change that added a gate
+    // against that very shape. `devices` is the list the storyboard declares; a caller that does
+    // not pass it is asking only about the sequence and is told so by `check`'s second argument
+    // being optional, while `layout_check --require` passes it and makes the mandate bind.
+    if (devices != null) {
+      var named = (devices || []).filter(function (d) { return DEVICES.indexOf(d) >= 0; });
+      var unknown = (devices || []).filter(function (d) { return DEVICES.indexOf(d) < 0; });
+      unknown.forEach(function (d) {
+        problems.push("'" + d + "' is not a continuity device; the five are " + DEVICES.join(", "));
+      });
+      if (named.length < ROTATION.min_continuity_devices)
+        problems.push("the deck names " + named.length + " continuity device(s); the rule is at " +
+                      "least " + ROTATION.min_continuity_devices + ". A deck that turns the page " +
+                      "nine different ways and runs nothing through it is what the owner called " +
+                      "slides that do not flow together");
+    }
     return problems;
   }
 
@@ -171,5 +195,5 @@
     return { x: pad, y: 150, w: W - 2 * pad, h: 360 };
   }
 
-  global.TXLAYOUT = { ARCHETYPES: ARCHETYPES, ROTATION: ROTATION, FURNITURE: FURNITURE, BANDS: BANDS, check: check, mount: mount, reserve: reserve };
+  global.TXLAYOUT = { ARCHETYPES: ARCHETYPES, DEVICES: DEVICES, ROTATION: ROTATION, FURNITURE: FURNITURE, BANDS: BANDS, check: check, mount: mount, reserve: reserve };
 })(typeof window !== "undefined" ? window : globalThis);

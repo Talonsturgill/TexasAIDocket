@@ -245,7 +245,7 @@ rules:
   # is the property that makes handing it over safe.
   # THE DECK CHASSIS, and this is the one directory under assets/ a run may create files in.
   #
-  # A run writes ONE module per deck at `assets/js/deck/<world>.js`: that deck's light, its
+  # A run writes ONE module per deck at `assets/js/deck/<date>-<world>.js`: that deck's light, its
   # material vocabulary and its way of seating type, and nothing else. All nine frames load it,
   # which is what makes nine frames one deck instead of nine pictures. The sibling product has
   # done this since it started and this product had never done it once in twenty six decks,
@@ -258,6 +258,14 @@ rules:
   # may not edit the workshop. Without this carve-out the pre-commit hook refuses the commit
   # and the whole upgrade fails silently in production, which is the failure this project has
   # shipped before: a rule stated in prose with nothing in between checking a run can obey it.
+  #
+  # THE FILENAME CARRIES THE RUN'S DATE, and that is archive reproducibility rather than tidiness.
+  # A name derived from the world alone collides: a second deck about a desk lamp would overwrite
+  # the first one's chassis, and the archived slides under `runs/carousel/<earlier-date>/slides`
+  # still point at that exact path. `shipped_check.py` re-runs the gates against every deck this
+  # project has published, so the earlier run would be re-checked, and anybody reproducing it
+  # would render, against a different light, a different ramp and a different grade.
+  # `deck_chassis.py` refuses an undated name for that reason.
   #
   # WHAT IT DOES NOT WIDEN. It is one directory and it holds chassis modules only.
   # `scripts/carousel/deck_chassis.py` refuses a chassis that draws a whole frame, so a run

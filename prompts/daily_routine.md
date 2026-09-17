@@ -775,6 +775,13 @@ Say in writing why this story and not the others.
 
 ## PHASE 9 — DIRECTORS ROOM (the planning phase that earns the deck)
 
+**BEFORE ANY DIRECTOR IS SPAWNED, hand each one the current rotation rule.** Their own definition
+under `.claude/` is stale as of 2026-09-16 and no routine may edit it, and these agents run before
+everything else, so a stale pitch here is a deck the later phases can only argue with. The
+paragraph is in Phase 12 under the flow critic and is the same one. **They also name the deck's
+continuity devices**, at least two from `ILLUSTRATION_SYSTEM.md`, because `layout_check --require`
+refuses a storyboard that declares fewer and the directors are who decide them.
+
 First, ask the machine what it has learned:
 
 ```
@@ -862,7 +869,7 @@ python3 scripts/carousel/caption_check.py --file out/<date>/caption.txt
 
 ## PHASE 10.5 — THE DECK CHASSIS (new 2026-09-16, and nothing is drawn before it)
 
-**Write `assets/js/deck/<world>.js` before a single frame exists.** One module, named for this
+**Write `assets/js/deck/<date>-<world>.js` before a single frame exists.** One module, named for this
 deck's world, loaded by all nine frames. It is what makes nine frames one deck rather than nine
 pictures, and it is the whole answer to the owner's report that the artwork does not flow
 together. `knowledge/carousel/ILLUSTRATION_SYSTEM.md`, "THE DECK IS THE UNIT", is the standard
@@ -966,6 +973,12 @@ hand it the current rule with the deck:
 > not five. ONE screen, ONE light, ONE grade for the whole deck, not one per frame. Judge
 > whether the nine frames read as one deck and whether at least two continuity devices are
 > doing real work, and treat a deck that turns the page nine different ways as a FAULT.
+
+**AND THE SAME OVERRIDE GOES TO THE TREATMENT DIRECTORS IN PHASE 9, WHICH MATTERS MORE.** They
+run FIRST and their pitches become the dossiers, so a director still planning to the old rule
+seeds a deck the flow critic can only complain about afterwards. `carousel-treatment-director.md`
+says "at least five distinct" and that the register "varies with the layout", both superseded.
+Hand every director the same paragraph above with its pitch brief.
 
 `scripts/carousel/layout_check.py --prose` reports every surface still carrying the old wording,
 and `knowledge/carousel/UPGRADE_BACKLOG.md` carries the proposal to fix the two agent files,

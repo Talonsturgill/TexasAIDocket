@@ -401,13 +401,30 @@ def _finish(failures: int) -> int:
     return 0
 
 
+def rubric_threshold() -> float:
+    """The ship bar, from `config/carousel/scoring_rubric.yaml` and nowhere else."""
+    import yaml
+    rubric = Path(__file__).resolve().parents[2] / "config" / "carousel" / "scoring_rubric.yaml"
+    doc = yaml.safe_load(rubric.read_text(encoding="utf-8"))
+    t = doc.get("threshold")
+    if not isinstance(t, (int, float)) or isinstance(t, bool):
+        raise SystemExit(f"gmail_draft: {rubric} declares no numeric threshold")
+    return float(t)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--run")
     ap.add_argument("--n", type=int, default=1)
     ap.add_argument("--title", default="")
     ap.add_argument("--score", type=float)
-    ap.add_argument("--threshold", type=float, default=7.0)
+    # THE BAR IS READ, NEVER DEFAULTED (2026-09-16, review). This carried `default=7.0` while
+    # the rubric said 6.7 and then 8.0, and the file's own usage example omits the flag, so a
+    # repair or a manual invocation would print "Shipped" beside a 7.4 that missed the bar by
+    # six tenths. An email is the owner's one look at a run, and a number beside the wrong word
+    # in it is worse than no number. Same reasoning as run_complete: the threshold comes from
+    # the rubric and nowhere else, and a caller may still override it deliberately.
+    ap.add_argument("--threshold", type=float, default=None)
     # NO DEFAULT. Nine was the default and nine is the usual deck, so a run that shipped eight
     # would have been emailed as nine with one dead image. Left unset the count is measured
     # from the thumbnails on disk, which is the only number that describes what actually
@@ -453,7 +470,8 @@ def main() -> int:
         return 1
 
     p = payload(run=a.run, n=a.n, title=a.title, caption=caption,
-                first_comment=first_comment, score=a.score, threshold=a.threshold,
+                first_comment=first_comment, score=a.score,
+                threshold=a.threshold if a.threshold is not None else rubric_threshold(),
                 slides=a.slides,
                 gates=json.loads(read(a.gates_file) or "{}"),
                 degraded=json.loads(read(a.degraded_file) or "[]"),

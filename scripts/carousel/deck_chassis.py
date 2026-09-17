@@ -32,7 +32,7 @@ rather than a matter of taste:
 WHAT THIS CHECKS. Not whether a frame is beautiful, which is the scorer's job. Whether the nine
 frames are ONE DECK, which is a property a machine can read off the source:
 
-    chassis      all nine load txdeck.js and the SAME deck/<world>.js, and nothing else claims
+    chassis      all nine load txdeck.js and the SAME deck/<date>-<world>.js, and nothing else claims
                  to be a chassis
     declaration  the chassis calls TXDECK.declare exactly once, so nine frames cannot hold nine
                  lights. Coherence by construction rather than by nine acts of care
@@ -75,11 +75,39 @@ TEMPLATE_NAMES = (
     "buildframe", "drawscene", "composeframe", "layoutslide", "paintslide",
 )
 
-# An opaque fill behind display type. Three ways it has been written here.
-PLATE_CSS_RE = re.compile(
-    r"\.(?:plate|hookbox|headbox|titlebox|textbox|knockout)\b[^{}]*\{[^{}]*background", re.I)
-PLATE_RGBA_RE = re.compile(
-    r"background\s*:\s*rgba\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*(0?\.\d+|1(?:\.0+)?)\s*\)", re.I)
+# AN OPAQUE FILL BEHIND DISPLAY TYPE, FOUND BY WHAT THE RULE DOES RATHER THAN BY ITS NAME.
+#
+# The first cut of this gate matched six class names plus an `rgba()` fallback, and a reviewer
+# pointed out what that misses: `.hook { background: #08060F }` is a plate, an inline
+# `style="background:#08060F"` is a plate, and neither carries one of the six names. A gate that
+# recognises a defect by the name somebody happened to give it catches only the defects written
+# by people who were not trying to get past it.
+#
+# So every CSS RULE is parsed, and a rule is a finding when its selector reaches display type and
+# its background is opaque enough to read as a box. `data-decorative` and the deck's own
+# furniture are not display type, and a wash is not a plate, so the alpha line stays.
+CSS_RULE_RE = re.compile(r"([^{}]+)\{([^{}]*)\}", re.S)
+BG_RE = re.compile(r"(?:^|;)\s*background(?:-color)?\s*:\s*([^;]+)", re.I)
+INLINE_BG_RE = re.compile(r"style\s*=\s*[\"']([^\"']*background[^\"']*)[\"']", re.I)
+
+# The selectors that carry a frame's own words. A plate behind the site line is a different
+# (and smaller) sin than a plate behind the headline, and the furniture is excluded because
+# TXLAYOUT owns its own treatment.
+# TWO LISTS, because replacing the names with the behaviour lost a real catch. The first cut of
+# this rewrite dropped the class names for a selector-reaches-display-type test, and the very
+# defect the gate was built for, `.plate { background: rgba(9,10,15,0.97) }` on the 2026-09-16
+# deck, stopped being found: `.plate` carries no display type of its own, it sits BEHIND some.
+# The behaviour test catches what the names miss and the names catch what the behaviour misses,
+# so both run.
+DISPLAY_SEL = ("hook", "dek", "lab", "doc", "headline", "title", "quote", "big", "hed")
+
+# A class whose whole job is to sit behind words. Its name is the confession.
+PLATE_SEL = ("plate", "hookbox", "headbox", "titlebox", "textbox", "knockout", "backdrop",
+             "textbg", "typebg", "scrim", "lozenge")
+
+# Below this a fill is atmosphere. Measured against the six plates of the 2026-09-16 deck, whose
+# lightest was 0.86, and against the wash frames of the reference build, whose heaviest was 0.22.
+PLATE_ALPHA = 0.55
 
 
 def slide_files(slides_dir: Path) -> list[Path]:
@@ -90,28 +118,143 @@ def scripts_of(html: str) -> list[str]:
     return SCRIPT_RE.findall(html)
 
 
+# A CHASSIS FILENAME CARRIES ITS RUN'S DATE, and the reason is archive reproducibility
+# (2026-09-16, review). A name derived from the world alone collides: a later deck about a desk
+# lamp would overwrite `assets/js/deck/lamp.js`, and the archived slides under
+# `runs/carousel/<earlier-date>/slides` still reference that exact path. `shipped_check.py`
+# re-runs the gates against every deck this project has published, so the earlier run would be
+# re-checked, and anyone reproducing it would render, against the LATER deck's world: a
+# different light, a different ramp, a different grade. The date makes the path unique by
+# construction, which is cheaper than a create-only rule somebody has to remember.
+CHASSIS_NAME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-([a-z0-9][a-z0-9_-]*)$")
+
+
 def chassis_of(html: str) -> list[str]:
-    """The deck chassis modules a frame loads, as bare world names."""
+    """The deck chassis modules a frame loads, as bare file stems."""
     return [s.split("/", 1)[1][:-3] for s in scripts_of(html)
             if s.startswith("deck/") and s.endswith(".js")]
 
 
+def _alpha_of(value: str) -> float:
+    """How opaque a CSS colour is. A hex or a named colour is fully opaque."""
+    v = value.strip().lower()
+    m = re.match(r"rgba?\(([^)]*)\)", v)
+    if m:
+        parts = [x.strip() for x in m.group(1).replace("/", ",").split(",")]
+        if len(parts) >= 4:
+            try:
+                a = parts[3]
+                return float(a[:-1]) / 100 if a.endswith("%") else float(a)
+            except ValueError:
+                return 1.0
+        return 1.0
+    if v.startswith("#"):
+        h = v[1:]
+        if len(h) == 8:                       # #rrggbbaa
+            try:
+                return int(h[6:8], 16) / 255
+            except ValueError:
+                return 1.0
+        if len(h) == 4:                       # #rgba
+            try:
+                return int(h[3] * 2, 16) / 255
+            except ValueError:
+                return 1.0
+        return 1.0
+    if v in ("transparent", "none", "inherit", "initial", "unset"):
+        return 0.0
+    if v.startswith(("linear-gradient", "radial-gradient", "var(")):
+        # A gradient or a token can't be judged from the source. The RENDER gate is what sees
+        # those, and saying so is better than a guess in either direction.
+        return 0.0
+    return 1.0                                 # a hex, a named colour, anything else opaque
+
+
+def _reaches_display_type(selector: str) -> bool:
+    sel = selector.lower()
+    if any(("." + d) in sel or sel.strip().startswith(d) for d in DISPLAY_SEL):
+        return True
+    return any(("." + d) in sel or ("#" + d) in sel for d in PLATE_SEL)
+
+
 def opaque_plates(html: str) -> list[str]:
-    """Opaque or near opaque fills behind display type, as reported strings."""
+    """Fills opaque enough to read as a box, on a selector that carries display type."""
     out = []
-    for m in PLATE_CSS_RE.finditer(html):
-        out.append(m.group(0).split("{")[0].strip())
-    for m in PLATE_RGBA_RE.finditer(html):
-        try:
-            alpha = float(m.group(1))
-        except ValueError:
+    for m in CSS_RULE_RE.finditer(html):
+        selector, body = m.group(1), m.group(2)
+        if "@" in selector or not _reaches_display_type(selector):
             continue
-        # A wash is legitimate. A plate is not. 0.55 is where a fill stops reading as atmosphere
-        # and starts reading as a box, measured against the six plates of the 2026-09-16 deck,
-        # whose lightest was 0.86.
-        if alpha >= 0.55:
-            out.append(m.group(0).strip())
+        for bg in BG_RE.finditer(body):
+            value = bg.group(1)
+            if _alpha_of(value) >= PLATE_ALPHA:
+                out.append(f"{selector.strip().splitlines()[-1].strip()} {{ background: "
+                           f"{value.strip()} }}")
+    for m in INLINE_BG_RE.finditer(html):
+        for bg in BG_RE.finditer(";" + m.group(1)):
+            if _alpha_of(bg.group(1)) >= PLATE_ALPHA:
+                out.append(f"inline style background: {bg.group(1).strip()}")
     return out
+
+
+# Canvas calls that MUTATE the art. A frame that runs any of these after the grade has shipped
+# artwork the grade never saw, which is the contract's whole point and not a technicality: the
+# grade is what makes the deck one deck.
+DRAW_AFTER_RE = re.compile(
+    r"\b(?:fill|stroke|fillRect|strokeRect|clearRect|fillText|strokeText|drawImage|putImageData"
+    r"|ellipse|arc|rect|beginPath|moveTo|lineTo|bezierCurveTo|quadraticCurveTo|createLinearGradient"
+    r"|createRadialGradient)\s*\(")
+
+# `TXDECK.finish(` with nothing commenting it out. Crude by design: a full JS parse is not worth
+# it here, and a line whose finish call sits after `//` is the case that actually occurs.
+FINISH_CALL_RE = re.compile(r"^(?P<before>[^\n]*?)TXDECK\.finish\s*\(", re.M)
+
+
+def _executable_finish_lines(script: str) -> list[int]:
+    """Character offsets of every TXDECK.finish call that is not commented out."""
+    out = []
+    for m in FINISH_CALL_RE.finditer(script):
+        before = m.group("before")
+        if "//" in before or "*" == before.strip()[:1]:
+            continue
+        out.append(m.end())
+    return out
+
+
+def _strip_block_comments(js: str) -> str:
+    """Block comments blanked out, keeping length so offsets stay meaningful."""
+    return re.sub(r"/\*.*?\*/", lambda m: " " * len(m.group(0)), js, flags=re.S)
+
+
+def finish_problems(name: str, html: str) -> list[str]:
+    """The grade runs, it is executable, and NOTHING draws on the art canvas after it.
+
+    WHY THIS IS NOT A SUBSTRING TEST (2026-09-16, review). The first cut asked whether the string
+    `TXDECK.finish(` appeared anywhere in the file, which passes when the call sits in a comment
+    and passes when a frame calls it and then keeps drawing. Both ship artwork the deck's grade
+    never touched, which is exactly the defect the contract exists to prevent, and a gate that
+    reports clean on the thing it was written to catch is worse than no gate.
+    """
+    scripts = re.findall(r"<script(?![^>]*\bsrc=)[^>]*>(.*?)</script>", html, re.S | re.I)
+    body = _strip_block_comments("\n".join(scripts))
+
+    calls = _executable_finish_lines(body)
+    if not calls:
+        if "TXDECK.finish(" in html:
+            return [f"{name}: mentions TXDECK.finish only in a comment, so it ships ungraded. "
+                    f"This is the call that was missing from 204 of 205 shipped slides"]
+        return [f"{name}: never calls TXDECK.finish, so it ships ungraded. This is the call that "
+                f"was missing from 204 of 205 shipped slides"]
+
+    # After the LAST finish call, nothing may touch the art canvas again.
+    tail = body[calls[-1]:]
+    # the finish call's own argument list is not drawing
+    tail = tail[tail.find(")") + 1:] if ")" in tail[:400] else tail
+    drawn = sorted({m.group(0)[:-1].strip() for m in DRAW_AFTER_RE.finditer(tail)})
+    if drawn:
+        return [f"{name}: draws on the canvas AFTER TXDECK.finish ({', '.join(drawn[:4])}). The "
+                f"grade is the last thing that touches the art canvas, so anything after it "
+                f"ships ungraded on a frame that reports itself graded"]
+    return []
 
 
 def check_deck(slides_dir: Path, repo_root: Path = REPO_ROOT) -> list[str]:
@@ -141,11 +284,14 @@ def check_deck(slides_dir: Path, repo_root: Path = REPO_ROOT) -> list[str]:
             problems.append(f"{name}: loads {len(ch)} chassis modules {ch}. One deck, one world")
         else:
             seen_chassis.setdefault(ch[0], []).append(name)
+            if not CHASSIS_NAME_RE.match(ch[0]):
+                problems.append(
+                    f"{name}: loads chassis '{ch[0]}', which is not <date>-<world>. A chassis "
+                    f"named for its world alone collides with a later deck that picks the same "
+                    f"world, and the archived slides of the earlier run point at that same path, "
+                    f"so re-checking or reproducing it would render the later deck's light")
 
-        if "TXDECK.finish(" not in html:
-            problems.append(
-                f"{name}: never calls TXDECK.finish, so it ships ungraded. This is the call that "
-                f"was missing from 204 of 205 shipped slides")
+        problems.extend(finish_problems(name, html))
 
         # A frame grading itself is a frame holding its own opinion about the deck's look.
         direct = [m for m in re.finditer(r"TXPOST\.grade\s*\(", html)]
@@ -235,7 +381,7 @@ _GOOD_SLIDE = """<!doctype html><html><body>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
 <script src="@@ASSETS@@/js/txpost.js"></script>
 <script src="@@ASSETS@@/js/txdeck.js"></script>
-<script src="@@ASSETS@@/js/deck/caprock.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-16-caprock.js"></script>
 <script>TXCAPROCK.mesa(cx, {}); TXDECK.finish(cx, { w: 1080, h: 1350 });</script>
 </body></html>"""
 
@@ -271,7 +417,7 @@ def self_test() -> int:
                                  f"got {got}")
 
     nine = {f"slide-0{i}.html": _GOOD_SLIDE for i in range(1, 10)}
-    good_ch = {"caprock.js": _GOOD_CHASSIS}
+    good_ch = {"2026-09-16-caprock.js": _GOOD_CHASSIS}
 
     case("a clean deck passes", nine, good_ch, None)
 
@@ -283,14 +429,15 @@ def self_test() -> int:
     # 2. no chassis at all, which is every Texas deck to date
     nochassis = dict(nine)
     nochassis["slide-02.html"] = _GOOD_SLIDE.replace(
-        '<script src="@@ASSETS@@/js/deck/caprock.js"></script>', "")
+        '<script src="@@ASSETS@@/js/deck/2026-09-16-caprock.js"></script>', "")
     case("a frame with no chassis fails", nochassis, good_ch, "loads no deck chassis")
 
     # 3. two worlds in one deck
     split = dict(nine)
-    split["slide-07.html"] = _GOOD_SLIDE.replace("deck/caprock.js", "deck/bayou.js")
+    split["slide-07.html"] = _GOOD_SLIDE.replace("deck/2026-09-16-caprock.js", "deck/2026-09-16-bayou.js")
     case("two chassis in one deck fails", split,
-         {"caprock.js": _GOOD_CHASSIS, "bayou.js": _GOOD_CHASSIS.replace("caprock", "bayou")},
+         {"2026-09-16-caprock.js": _GOOD_CHASSIS,
+          "2026-09-16-bayou.js": _GOOD_CHASSIS.replace("caprock", "bayou")},
          "different chassis modules")
 
     # 4. the opaque plate behind the headline, six of nine on 2026-09-16
@@ -313,13 +460,48 @@ def self_test() -> int:
     case("a frame grading itself fails", selfgrade, good_ch, "calls TXPOST.grade directly")
 
     # a chassis that draws whole frames is a template
+    # 2b. THE FINISH CONTRACT, structurally (2026-09-16 review). A substring test passes on a
+    # commented-out call and on a frame that grades and then keeps drawing, and both ship
+    # artwork the grade never saw.
+    commented = dict(nine)
+    commented["slide-06.html"] = _GOOD_SLIDE.replace(
+        "TXDECK.finish(cx, { w: 1080, h: 1350 });", "// TXDECK.finish(cx, { w: 1080, h: 1350 });")
+    case("a finish call that is commented out fails", commented, good_ch, "only in a comment")
+
+    blockc = dict(nine)
+    blockc["slide-06.html"] = _GOOD_SLIDE.replace(
+        "TXDECK.finish(cx, { w: 1080, h: 1350 });", "/* TXDECK.finish(cx, {}) one day */")
+    case("a finish call inside a block comment fails", blockc, good_ch, "only in a comment")
+
+    drawafter = dict(nine)
+    drawafter["slide-08.html"] = _GOOD_SLIDE.replace(
+        "TXDECK.finish(cx, { w: 1080, h: 1350 });",
+        "TXDECK.finish(cx, { w: 1080, h: 1350 }); cx.fillRect(0, 0, 80, 80);")
+    case("drawing after the grade fails", drawafter, good_ch, "AFTER TXDECK.finish")
+
+    # 4b. A PLATE FOUND BY BEHAVIOUR RATHER THAN BY ITS CLASS NAME
+    hexplate = dict(nine)
+    hexplate["slide-02.html"] = _GOOD_SLIDE.replace(
+        "<body>", "<body><style>.hook{position:absolute;background:#08060F}</style>")
+    case("an opaque HEX background on display type fails", hexplate, good_ch, "opaque plate")
+
+    inlineplate = dict(nine)
+    inlineplate["slide-02.html"] = _GOOD_SLIDE.replace(
+        "<body>", '<body><h1 class="hook" style="background:#08060F">x</h1>')
+    case("an inline opaque background fails", inlineplate, good_ch, "opaque plate")
+
+    gradient = dict(nine)
+    gradient["slide-02.html"] = _GOOD_SLIDE.replace(
+        "<body>", "<body><style>.hook{background:linear-gradient(#000,#fff)}</style>")
+    case("a gradient is left to the render gate, not guessed at", gradient, good_ch, None)
+
     case("a chassis that draws a whole frame fails", nine,
-         {"caprock.js": _GOOD_CHASSIS.replace("C.mesa = function", "C.drawSlide = function")},
+         {"2026-09-16-caprock.js": _GOOD_CHASSIS.replace("C.mesa = function", "C.drawSlide = function")},
          "which draws a whole frame")
 
     # a chassis that forgets to declare
     case("a chassis with no declaration fails", nine,
-         {"caprock.js": _GOOD_CHASSIS.replace("TXDECK.declare(", "noop(")},
+         {"2026-09-16-caprock.js": _GOOD_CHASSIS.replace("TXDECK.declare(", "noop(")},
          "never calls TXDECK.declare")
 
     if fails:
@@ -327,7 +509,7 @@ def self_test() -> int:
         for f in fails:
             print(f"  - {f}", file=sys.stderr)
         return 1
-    print("deck_chassis --self-test: ok, 9 cases")
+    print("deck_chassis --self-test: ok, 16 cases")
     return 0
 
 

@@ -75,7 +75,7 @@ rewarded the amplitude of the strobe. `scripts/carousel/deck_coherence.py` measu
 
 ### THE CHASSIS LAW
 
-**Every run writes ONE module at `assets/js/deck/<world>.js`, named for that deck's world, and
+**Every run writes ONE module at `assets/js/deck/<date>-<world>.js`, named for that deck's world, and
 every one of the nine frames loads it.** It holds three things and nothing else:
 
 - **one light**, as an azimuth and an elevation, so every cast in the deck runs the same way
@@ -336,7 +336,7 @@ All under `assets/js/`, all deterministic per seed, all loaded with `@@ASSETS@@/
 missing dependency:**
 
 ```
-noise.js  txtype.js  txcolor.js  txpost.js  txdeck.js  deck/<world>.js  [txscene.js txfig.js
+noise.js  txtype.js  txcolor.js  txpost.js  txdeck.js  deck/<date>-<world>.js  [txscene.js txfig.js
 txobjects.js txink.js]  txlayout.js
 ```
 

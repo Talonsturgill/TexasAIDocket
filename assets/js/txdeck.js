@@ -18,7 +18,7 @@
  *     "a genuine value arc" and gave it credit, because nothing measured adjacency.
  *
  * WHAT THIS IS. The three invariants a deck cannot hold by good intentions, in one file that
- * every frame loads. A run writes its own chassis at `assets/js/deck/<world>.js`, that chassis
+ * every frame loads. A run writes its own chassis at `assets/js/deck/<date>-<world>.js`, that chassis
  * calls `TXDECK.declare` exactly once, and the nine frames then share a light, a ramp, a
  * reserve discipline and a grade BY CONSTRUCTION rather than by nine separate acts of care.
  *
@@ -28,7 +28,7 @@
  * difference. This file hands a frame primitives. The frame decides what to build from them.
  *
  * LOAD ORDER, stated rather than discovered:
- *     noise.js, txcolor.js, txpost.js, txdeck.js, deck/<world>.js, then the frame's own code.
+ *     noise.js, txcolor.js, txpost.js, txdeck.js, deck/<date>-<world>.js, then the frame's own code.
  * txdeck throws on load if txcolor or txpost is missing, because the failure it prevents is a
  * frame that renders ungraded and looks fine in isolation.
  *

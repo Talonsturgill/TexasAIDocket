@@ -101,6 +101,10 @@ ARCHETYPES = ["FULL_BLEED", "SPLIT_HORIZON", "TYPE_AS_OBJECT", "OBJECT_AND_CAPTI
 # layout counts came down and the image law (`min_primary_area`, `min_bleed_frames`) did not
 # move, because the defect this table was written for was never "too few layouts", it was "no
 # image". Two frames in a row sharing an archetype is a beat. Three is a rut.
+# The five continuity devices, from ILLUSTRATION_SYSTEM.md "THE CONTINUITY MANDATE". The JS copy
+# is in assets/js/txlayout.js and `agreement()` asserts the two lists match.
+DEVICES = ["PANORAMA_SPINE", "EDGE_TEASE", "MOTIF_EVOLUTION", "CAMERA_MOVE", "VALUE_ARC"]
+
 ROTATION = {"max_consecutive": 2, "min_distinct": 3, "max_type_as_object": 1, "min_full_bleed_or_close_crop": 2, "min_primary_area": 0.30, "min_bleed_frames": 4, "min_continuity_devices": 2}
 
 W, H = 1080, 1350
@@ -224,7 +228,7 @@ def prose_agreement(root: Path = REPO_ROOT) -> list[str]:
     return out
 
 
-def agreement(js_path: Path = JS_TABLE, archetypes=None, rotation=None) -> list[str]:
+def agreement(js_path: Path = JS_TABLE, archetypes=None, rotation=None, devices=None) -> list[str]:
     """Every way the Python copy differs from the JS one. Empty means they agree."""
     archetypes = ARCHETYPES if archetypes is None else archetypes
     rotation = ROTATION if rotation is None else rotation
@@ -445,6 +449,48 @@ def accent_coverage(img, hex_colour: str) -> float:
 
 
 # --------------------------------------------------------------------------- the plan
+CONTINUITY_RE = re.compile(r"CONTINUITY\s*:\s*([A-Z_ ,]+)", re.I)
+
+
+def declared_devices(storyboard: Path | None) -> list[str]:
+    """The continuity devices the deck names, from one line in its storyboard.
+
+        CONTINUITY: CAMERA_MOVE, MOTIF_EVOLUTION
+
+    WHY A DECLARATION RATHER THAN A MEASUREMENT. A panorama spine can be measured off the
+    renders and a motif's change of state cannot, not without knowing what the motif IS. The
+    same reasoning as the rest of this file: the deck says what it is doing, the gate holds it
+    to the count, and the flow critic judges whether the device actually works. A declaration
+    nobody honours is caught by a critic. A device nobody declared is caught here.
+    """
+    if not storyboard or not storyboard.exists():
+        return []
+    out: list[str] = []
+    for m in CONTINUITY_RE.finditer(storyboard.read_text(encoding="utf-8", errors="replace")):
+        for name in m.group(1).replace(",", " ").split():
+            n = name.strip().upper()
+            if n and n not in out:
+                out.append(n)
+    return out
+
+
+def continuity_problems(devices: list[str]) -> list[str]:
+    """The continuity mandate, over the devices a deck declares."""
+    out = []
+    for d in devices:
+        if d not in DEVICES:
+            out.append(f"'{d}' is not a continuity device. The five are {', '.join(DEVICES)}")
+    named = [d for d in devices if d in DEVICES]
+    if len(named) < ROTATION["min_continuity_devices"]:
+        out.append(
+            f"the deck names {len(named)} continuity device(s) and the rule is at least "
+            f"{ROTATION['min_continuity_devices']}. Write 'CONTINUITY: <DEVICE>, <DEVICE>' in the "
+            f"storyboard, from {', '.join(DEVICES)}. A deck that turns the page nine different "
+            f"ways and runs nothing through it is what the owner called slides that do not flow "
+            f"together, and it is what this rule exists to stop")
+    return out
+
+
 def rotation_problems(seq: list[tuple[int, str]]) -> list[str]:
     """The rotation rule over (slide, layout) pairs in slide order."""
     out = []
@@ -595,6 +641,12 @@ def check(run_dir: Path, require: bool = False):
     # 1. rotation, on every slide that named a layout, whether or not the rest of it parsed
     seq = [(n, str(declared[n].get("layout") or "").strip()) for n in sorted(declared)]
     problems.extend(rotation_problems([(n, a) for n, a in seq if a]))
+
+    # 1b. THE CONTINUITY MANDATE, under --require, for the same reason the layout keys are:
+    # a deck that declares none has not planned its continuity, and `min_continuity_devices`
+    # sitting in the table unread is the defect this clause closes.
+    if require:
+        problems.extend(continuity_problems(declared_devices(board)))
 
     # 2. area and 3. bleed, on the plan
     bleed_frames = []
@@ -821,8 +873,10 @@ def self_test() -> int:
              "slides": slides}))
 
     def board(d: Path, layouts=None, rects=None, bleeds=None, accent_on=ACCENT_ON,
-              accent_hex=ACC, drop=()):
+              accent_hex=ACC, drop=(), continuity="CAMERA_MOVE, MOTIF_EVOLUTION"):
         parts = ["# Storyboard\n\nProse around the plan.\n"]
+        if continuity is not None:
+            parts.append(f"CONTINUITY: {continuity}\n")
         for i, (layout, rect, bl) in enumerate(PLAN, start=1):
             blk = {"slide": i, "job": f"job {i}",
                    "layout": (layouts or {}).get(i, layout),
@@ -1014,6 +1068,39 @@ def self_test() -> int:
         for p in (d / "render").glob("slide-*.png"):
             p.unlink()
         code, probs, _ = check(d)
+        # ---- THE CONTINUITY MANDATE (2026-09-16) -------------------------------------------
+        # `min_continuity_devices` sat in the rotation table unread when it was added, which is
+        # GATE_LESSONS' oldest shape committed inside a change that added a gate against it.
+        # These cases are what make the key mean something.
+        board(d)
+        code, probs, _ = check(d, require=True)
+        ok("a deck naming two continuity devices PASSES",
+           not any("continuity device" in p for p in probs), probs)
+
+        board(d, continuity="CAMERA_MOVE")
+        code, probs, _ = check(d, require=True)
+        # The EXIT CODE is asserted by the rotation cases above. These assert the FINDING,
+        # because by this point in the walk the fixture's renders have been removed and check()
+        # correctly reports could-not-run (2) rather than a violation (1).
+        ok("a deck naming ONE continuity device is refused under --require",
+           any("names 1 continuity device" in p for p in probs), probs)
+
+        board(d, continuity=None)
+        code, probs, _ = check(d, require=True)
+        ok("a deck naming NONE is refused and told where to write them",
+           any("CONTINUITY: <DEVICE>" in p for p in probs), probs)
+
+        board(d, continuity="CAMERA_MOVE, VIBES")
+        code, probs, _ = check(d, require=True)
+        ok("a device that is not one of the five is named as such",
+           any("not a continuity device" in p for p in probs), probs)
+
+        board(d, continuity=None)
+        code, probs, _ = check(d, require=False)
+        ok("...and without --require the mandate does not bind",
+           not any("continuity device" in p for p in probs), probs)
+        board(d)
+
         ok("no renders is could-not-run, never a pass", code == 2, (code, probs))
         (d / "storyboard.md").unlink()
         code, probs, _ = check(d)
