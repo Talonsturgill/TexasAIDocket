@@ -30,7 +30,12 @@ def restore() -> None:
     if data is None:
         print('news data: first publication will use the committed seed')
         return
-    snapshot = json.loads(base64.b64decode(data['content']))
+    previous = json.loads(base64.b64decode(data['content']))
+    # Rules and schema can change between runs. Preserve the observation clock, but derive
+    # selection and expiry again; an old score or publisher label must not block collection.
+    snapshot = news.snapshot({'articles': []}, news.instant(previous['checked_at']),
+                             news.observation_history(previous))
+    snapshot['feeds'] = previous.get('feeds', [])
     news.validate(snapshot)
     news.STATE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + '\n')
     print('news data: restored observation history')
@@ -73,12 +78,32 @@ def publish() -> str:
 
 
 def self_test() -> int:
+    import copy
+    import tempfile
+    from pathlib import Path
     from unittest.mock import patch
     now = news.dt.datetime.now(news.UTC).replace(microsecond=0)
     row = {'title': 'Texas AI researchers open a new laboratory',
            'url': 'https://dallasinnovates.com/test/', 'first_seen_at': news.stamp(now)}
     snapshot = news.snapshot({'articles': []}, now, {'articles': [row]})
     snapshot['feeds'] = [{'status': 'ok'}]
+    old_schema = copy.deepcopy(snapshot)
+    old_schema['_spec'] = 1
+    old_schema['selected']['publisher'] = 'Former publisher name'
+    old_schema['selected']['score'] = -1
+    old_schema['expires_at'] = None
+    old_schema['articles'] += [None, {'title': 'Broken observation without a source'},
+                              {**row, 'url': 'https://evil.example/story'},
+                              {**row, 'first_seen_at': 'invalid'}]
+    restored_data = {'content': base64.b64encode(json.dumps(old_schema).encode()).decode()}
+    with tempfile.TemporaryDirectory() as directory:
+        with patch.object(news, 'STATE', Path(directory) / 'latest.json'), \
+                patch(__name__ + '.api', return_value=restored_data):
+            restore()
+            restored = news.load()
+            assert restored['selected'] == snapshot['selected']
+            assert restored['checked_at'] == snapshot['checked_at']
+            assert restored['articles'] == snapshot['articles']
     calls = []
     def fake(method, path, data=None):
         calls.append((method, path, data))
@@ -109,7 +134,7 @@ def self_test() -> int:
         assert publish() == 'test-sha'
     assert calls[-1] == ('PATCH', 'git/refs/heads/news-data', {'sha': 'test-sha', 'force': False})
     assert next(c[2] for c in calls if c[1] == 'git/commits')['parents'] == ['old']
-    print('news publish: isolated data branch and no older overwrite passed')
+    print('news publish: observation migration, isolated data branch and no older overwrite passed')
     return 0
 
 

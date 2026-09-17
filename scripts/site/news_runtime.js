@@ -45,7 +45,10 @@
     chip.querySelector('.news-source').textContent = story.publisher;
     var date = chip.querySelector('.news-date');
     date.dateTime = story.first_seen_at;
-    date.textContent = new Date(story.first_seen_at).toLocaleDateString('en-US', {month:'short', day:'numeric', timeZone:'UTC'});
+    var observed = new Date(story.first_seen_at), day = observed.getUTCDate();
+    var suffix = day % 100 >= 10 && day % 100 <= 20 ? 'th' : ({1:'st', 2:'nd', 3:'rd'}[day % 10] || 'th');
+    date.textContent = observed.toLocaleDateString('en-US', {month:'long', timeZone:'UTC'}) +
+      ' ' + day + suffix + ', ' + observed.getUTCFullYear();
     return true;
   }
   function fallback() {

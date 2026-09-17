@@ -213,6 +213,28 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
             'expires_at': stamp(instant(selected['first_seen_at']) + MAX_AGE) if selected else None}
 
 
+def observation_history(data: dict) -> dict:
+    """Import source observations without trusting an older schema's derived ranking."""
+    if not isinstance(data, dict) or not isinstance(data.get('articles'), list):
+        raise ValueError('news history must contain an article list')
+    rows = []
+    for raw in data['articles']:
+        try:
+            if not isinstance(raw, dict) or not isinstance(raw.get('title'), str):
+                continue
+            url = canonical(raw['url'])
+            if not url.startswith('https://') or not source(url) or not 20 <= len(raw['title']) <= 220:
+                continue
+            row = {'title': raw['title'], 'url': url,
+                   'first_seen_at': stamp(instant(raw['first_seen_at']))}
+            if raw.get('feed') in AI_FEEDS:
+                row['feed'] = raw['feed']
+            rows.append(row)
+        except (KeyError, TypeError, ValueError, AttributeError):
+            continue
+    return {'articles': rows}
+
+
 def validate(data: dict) -> None:
     if data.get('_spec') != 2 or data.get('provider') != 'GDELT and publisher RSS':
         raise ValueError('unknown news snapshot')
@@ -251,7 +273,12 @@ def markup(today: str, data: dict | None = None) -> str:
     label = 'Recent' if recent else 'Trending'
     title = (selected['title'] if selected else 'Explore the latest AI reporting')
     publisher = selected['publisher'] if selected else ''
-    date = (instant(selected['first_seen_at']).strftime('%b ') + str(instant(selected['first_seen_at']).day)) if selected else ''
+    date = ''
+    if selected:
+        observed = instant(selected['first_seen_at'])
+        day = observed.day
+        suffix = 'th' if 10 <= day % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(day % 10, 'th')
+        date = f'{observed:%B} {day}{suffix}, {observed.year}'
     url = selected['url'] if selected else '/articles/'
     first_seen = selected['first_seen_at'] if selected else ''
     description = ('Headlines ranked by coverage and freshness, with Texas AI first. '
@@ -369,7 +396,7 @@ def collect() -> int:
         raise OSError('all news feeds failed; previous snapshot preserved')
     # The old schema is accepted only as observation history during this migration. Every
     # candidate is filtered and ranked again; an old selected headline is never trusted.
-    previous = json.loads(STATE.read_text()) if STATE.exists() else {}
+    previous = observation_history(json.loads(STATE.read_text())) if STATE.exists() else {}
     result = snapshot({'articles': combined}, dt.datetime.now(UTC), previous)
     result['feed_url'] = feed_url
     result['feeds'] = feeds
@@ -618,6 +645,7 @@ def self_test() -> int:
             s = snapshot({'articles': []}, now, {'articles':[r]})
             out = markup('2026-09-11', s)
             self.assertIn('&lt;script&gt; &amp; &quot;new&quot;', out)
+            self.assertIn('September 11th, 2026</time>', out)
             self.assertIn('<cite class="news-title">', out)
             self.assertIn('rel="noopener noreferrer"', out)
             self.assertIn('Recent', markup('2026-09-15', s))

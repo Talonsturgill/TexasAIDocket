@@ -54,11 +54,14 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: news-pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - name: Install the pinned browser runtime
+        timeout-minutes: 8
         run: |
           npm ci --ignore-scripts --no-audit --no-fund
-          npx --no-install playwright install --with-deps chromium
+          npx --no-install playwright install chromium
+          node -e "require('playwright').chromium.launch().then(b=>b.close()).then(
+            ()=>console.log('chromium launches'), e=>{console.error(e); process.exit(1)})"
       - name: Verify the headline a reader actually sees
         env:
           NEWS_CHECKED_AT: ${{ steps.collect.outputs.checked_at }}

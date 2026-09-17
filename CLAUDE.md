@@ -199,10 +199,11 @@ python3 scripts/shared/merge_ready.py --fetch
 ```
 
 **AND IT ARRIVES ON A TIMER, which is why no run catches it by being careful.** `docs/` is
-generated wholesale, about a thousand files, and this routine is not its only writer. Measured,
-then CORRECTED the same evening when a review bot checked the inventory: **four cron workflows
-run `site_build` and commit `docs/` to `main`, eight pushes a day between them.** `news.yml` four
-times daily, `gridwatch.yml` twice, `datacenters.yml` and `generators.yml` once each. A branch cut
+generated wholesale, about a thousand files, and this routine is not its only writer. As of
+September 17th, 2026, **three cron workflows run `site_build` and commit `docs/` to `main`,
+four scheduled runs a day between them:** `gridwatch.yml` twice, `datacenters.yml` and
+`generators.yml` once each. `news.yml` runs four times daily but publishes only its independent
+`news-data` branch; it no longer writes `main` or generated site output. A branch cut
 at wake collides with `main` within hours, every day, with nobody doing anything wrong. Phase 16
 merges `main` before the rebuild for this reason.
 

@@ -80,7 +80,7 @@ try {
       assert.equal(await chip.locator('.news-source').textContent(),state.selected.publisher);
       assert.equal(await chip.locator('.news-title').textContent(),state.selected.title);
       assert.equal(await chip.locator('.news-label').textContent(),'Trending');
-      assert.ok(await chip.locator('.news-date').textContent());
+      assert.match(await chip.locator('.news-date').textContent(),/^[A-Z][a-z]+ \d{1,2}(st|nd|rd|th), \d{4}$/);
       await chip.focus();
       assert.equal(await chip.evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
       const before=await page.locator('.hero h1').evaluate(el=>el.getBoundingClientRect().top);

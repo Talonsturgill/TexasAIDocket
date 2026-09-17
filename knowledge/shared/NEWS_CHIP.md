@@ -43,8 +43,8 @@ comes online. The request sends no credentials or referrer.
 The generated homepage still embeds a deterministic seed from `ledger/news/latest.json` for
 first paint and offline use. Builds never make network calls. A browser also retains the last
 successful feed in local storage. Network errors, bad data, an empty response or a stale CDN
-response cannot erase a more recent valid headline. Older retained stories use “Latest
-available” with their original date. After seven days, the last-resort link leads to the site's
+response cannot erase a more recent valid headline. Older retained stories use “Recent”
+with their original date. After seven days, the last-resort link leads to the site's
 AI reporting; it does not pretend an old article is trending.
 
 ## Monitoring and verification
