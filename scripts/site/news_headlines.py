@@ -230,7 +230,7 @@ def markup(today: str, data: dict | None = None) -> str:
     return (f'<a class="tele news-chip" data-news-status="current" data-checked-at="{checked}" '
             f'href="{e(selected["url"], quote=True)}" '
             f'target="_blank" rel="noopener noreferrer" data-expires-at="{e(data["expires_at"])}" '
-            f'title="{title}"><span class="news-meta"><span class="news-label">Top story</span>'
+            f'title="{title}"><span class="news-meta"><span class="news-label">Trending</span>'
             f'<cite class="news-source">{e(selected["publisher"])}</cite></span>'
             f'<cite class="news-title">{e(selected["title"])}</cite>'
             '<svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" '
