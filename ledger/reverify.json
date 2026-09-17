@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-16",
+    "generated": "2026-09-17",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -883,7 +883,7 @@
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
-      "hash": "8105c85b44a76439131e4a07c4a9851154b8a27f97f8d534bd5fa6ac98182c92",
+      "hash": "bac130ab9b9f96ff3be1e462d64c2eb5b2853cf15623042f54878b6a54a1fb81",
       "proven": [
         "tx-2026-0002-c12",
         "tx-2026-0002-c4",
@@ -965,7 +965,7 @@
     },
     "https://senate.texas.gov/cmte.php?c=525": {
       "etag": null,
-      "last_modified": "Tue, 15 Sep 2026 12:00:00 GMT",
+      "last_modified": "Wed, 16 Sep 2026 12:00:00 GMT",
       "hash": "8dea91edb1817c65c0be830b24e01718b47c6f837cfff4da13eea5b32db64ef7",
       "proven": [
         "tx-2026-0109-c1",
@@ -1483,6 +1483,12 @@
         "tx-2026-0148-c2"
       ]
     },
+    "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf": {
+      "etag": "\"11aed4-65b38d6c8cf3d\"",
+      "last_modified": "Fri, 11 Sep 2026 17:59:00 GMT",
+      "hash": "7f6357ca664844bcffa326f86fc0528a0f19157bb8be17af24f6153ac8266ae9",
+      "proven": []
+    },
     "https://www.ercot.com/mktrules/issues/NOGRR289": {
       "etag": null,
       "last_modified": null,
@@ -1573,6 +1579,14 @@
       "last_modified": "Wed, 16 Sep 2026 04:44:43 GMT",
       "hash": "b9bd2113e7a31ebcbeac3fcae1c9905fc4ea73ec36b86b8395c6ee4608828869",
       "proven": []
+    },
+    "https://www.galaxy.com/data-centers": {
+      "etag": null,
+      "last_modified": "Thu, 17 Sep 2026 02:01:20 GMT",
+      "hash": "ca12c8c27025d08f5830893eeff534536edcc387e5849b6d1c80c62d297eb692",
+      "proven": [
+        "tx-2026-0157-c7"
+      ]
     },
     "https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm": {
       "etag": null,
@@ -1808,6 +1822,18 @@
         "tx-2026-0042-c2",
         "tx-2026-0042-c3",
         "tx-2026-0042-c4"
+      ]
+    },
+    "https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html": {
+      "etag": null,
+      "last_modified": "Tue, 15 Sep 2026 20:48:16 GMT",
+      "hash": "3cd7f44b3fad288d4d00b65d15071d3ae28afa614bbec3cd6cc187484374294b",
+      "proven": [
+        "tx-2026-0157-c2",
+        "tx-2026-0157-c3",
+        "tx-2026-0157-c4",
+        "tx-2026-0157-c5",
+        "tx-2026-0157-c6"
       ]
     },
     "https://www.sanangelo.gov/803/Data-Center-Information": {

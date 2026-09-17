@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the who",
   "the before and after",
   "the plain question",
   "the number that is wrong",
   "the deadline",
-  "the correction"
+  "the correction",
+  "the object"
  ],
  "entries": [
   {
@@ -453,15 +453,30 @@
    "hashtags": 3,
    "critic_note": "Two candidates, the object on a Ledger and the quiet decision on a Clock. The object won with SEVEN imposed repairs. The load bearing one: the first cut's close asked how much reaches the public 'before the award starts on October 1st, 2026', which welds the NSF start date to the Fort Worth police half, and claims.json REJECTS that link in as many words because the police work runs on a separate Department of Justice grant and is not governed by the NSF award's dates. Second: the losing candidate opened 'The homework can't leave the platform', converting c16's future-tense design intent into a flat present-tense fact about a running system, which is the fourth recurrence of that defect in this ledger.",
    "move_note": "A DATE IN THE POST'S OWN YEAR CARRIES NO YEAR and the gate enforces it. caption_check.post_shape_problems hard fails any 'Month Nth, YYYY' whose year equals the post's year, so 'October 1st' is bare and 'September 30th, 2029' keeps its year. The winning candidate was submitted with 'October 1st, 2026' twice and would have gone red; it had never been run through the gate before it reached the critic."
+  },
+  {
+   "date": "2026-09-17",
+   "carousel_no": 27,
+   "opening_move": "the place",
+   "structure": "Ladder",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "At Memorial Hermann in Houston, software writes the note before the clinician does.",
+   "words": 144,
+   "commas": 4,
+   "commas_per_100w": 2.78,
+   "chars": 900,
+   "hashtags": 3,
+   "critic_note": "THE OPENING WAS REPLACED TWICE AND BOTH REPLACEMENTS WERE JUDGE-DRIVEN. The shipped caption opened 'Over 55,000 messages. No baseline beside them.' for four rounds. A round 4 reader judge found two faults in one line: it put NO TEXAS, no place and no hospital above the fold, which is the exact defect this ledger records being repaired on 2026-09-13; and its figure-then-absence shape sits close to 'the number that is wrong', which this run's own caption_exclusions.md puts OFF the menu as spent on 09-13. The first replacement, 'In Houston, software writes the first draft.', fixed the Texas problem and created a new one: it was frame 1's headline VERBATIM with a place prefix, so a phone reader saw the same sentence twice in two sizes in the only two slots above the fold. A round 5 judge called it half-fixed and was right. The shipped line names the system, the city and a finding the cover does not carry, that the software goes FIRST.",
+   "move_note": "The close is the house default and the ledger should say so plainly: 'ask the one question the decision leaves open' is 13 of 27 shipped captions and was last spent two runs ago on 09-15. It is LEGAL, because caption_exclusions computes a one-run window and only 09-16's close is windowed out, and it is still the reflex. Three reader judges across three rounds have now said so. The reason it survived here is that the fact-checker REJECTED the finding that the statute requires this hospital to disclose, so an open question is the only honest close available: any of the other three would have had to assert something the record does not carry. THE ACTION IS IN THE CAPTION NOW and it was not: a round 4 judge found the caption POINTING at the deck's one instruction instead of carrying it, so the deck-summary line ends 'Ask who wrote the note, before a first visit.' A round 5 judge notes it still sits in paragraph five, below the fold. That is true and it is the next lever."
   }
  ],
  "structures_recent": [
-  "Zoom out",
   "Two columns",
-  "Pivot"
+  "Pivot",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "Ask the one question the decision leaves open"
+  "name what is still not public, and how big that is"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

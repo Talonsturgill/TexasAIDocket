@@ -1,0 +1,169 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 6 of 9. Archetype GRID.
+     52 figures as an ISOTYPE, in four ranks of eleven and a fifth of eight, every one at the
+     same depth and therefore the same size, the rows separated by lift rather than by distance.
+     NOTHING IN THIS FRAME CASTS, and that is the isotype's own honesty. Three earlier builds put
+     the ranks on the ground plane in receding rows under the deck's light and layout_check
+     refused all three, because ranks at different depths overlap and a reader cannot count what
+     they cannot separate. A chart is not a room, so it gets no room's light.
+     THE SUPERLATIVE BELONGS TO THE PUBLICATION AND THE HOOK NOW SAYS SO. "The first controlled
+     test" is c14's own phrase, written by healthsystemCIO, and the earlier hook stated it flat in
+     the deck's voice with the attribution only in the dek underneath. Two judges read that as the
+     docket asserting a superlative it had not established. The kicker names the publication and
+     the hook now names it too, so the claim and its owner arrive together.
+     THE CONNECTIVE IS IN THE HOOK AND THE DEK, AND ITS ABSENCE WAS THIS DEFECT'S FOURTH RUN.
+     ledger/carousel/topics.json records it in capitals against carousel 23 on September 13th:
+     three reader judges asked for the bridge in three consecutive rounds, and the entry says to
+     put the connective where the detour starts. A frame that shows 52 doctors under a
+     healthsystemCIO kicker, with the institution in footer type, has a fast read of "Memorial
+     Hermann's own tool was tested and it failed". The hook now says the test was not in Texas and
+     the dek says the trade publication is what points to it, so the detour explains itself before
+     a reader has to infer it.
+     THE LAST RANK IS THREE SHORT ON PURPOSE. A block of 52 in even ranks reads as a round number
+     and this one is not round, so the count stops being a shape and becomes a count. It is also
+     what makes the silhouette come apart into pieces rather than merging into one mass.
+     NOT ONE FIGURE IS DISTINGUISHED FROM ANOTHER, because the source gives a randomized pilot
+     of 52 doctors and gives no arm sizes, and drawing two arms would invent them.
+     NO ACCENT ON THIS FRAME, and the absence is load bearing: this is the one number in the
+     deck with a population you can count, so there is no empty rule on it to mark.
+     Planned frame median L* 46. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:1.00; letter-spacing:-0.020em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:14; }
+  .dek { position:absolute; font-weight:500; font-size:26px; line-height:1.42; color:#F4FAF8; z-index:14; }
+  .loc { position:absolute; font-family:"JetBrains Mono", monospace; font-size:25px;
+         color:#FFFFFF; letter-spacing:0.04em; line-height:1.5; z-index:14; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#A8C6C2;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:132px; width:900px; font-size:84px; }
+  .dek  { left:84px; top:340px; width:780px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The test healthsystemCIO points to was not in Texas.</h1>
+<p class="dek">A randomized pilot of fifty two doctors at UC San Diego Health in 2023. Reply time moved less than 6% and missed statistical significance.</p>
+<div class="loc" id="loc" style="left:84px; top:1146px;">UC SAN DIEGO HEALTH, 2023<br>DRAFT REPLIES TO PATIENT MESSAGES</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* THE RANKS. Four of eleven and a fifth of eight, so the block is 52 and the last rank is SHORT.
+ * The count is the sum of this array and nothing in this frame types the number 52.
+ *
+ * IT WAS FOUR ROWS OF THIRTEEN AND ALL THREE JUDGES REFUSED IT, FOR TWO SEPARATE REASONS.
+ * Four equal ranks is exactly the round grid this frame's own plan forbids, and it left the
+ * declared focal, "the short last rank, because it is where the count stops being round", with
+ * nothing in the picture to point at. The second reason was worse: the ranks alternated between
+ * two values while the ground brightens downward, so rows two and three sank into it and the
+ * block became uncountable at 432px. An isotype that cannot be counted has no job left. */
+var RANKS = [11, 11, 11, 11, 8];
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'healthsystemCIO, September 10th', counter: "06 / 09",
+      src: 'c13 c14   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 62, max: 78, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .loc, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the room, dark
+    cx.fillStyle = N.pick(5.0);
+    cx.fillRect(0, 0, W, H);
+
+    // the floor the ranks stand on, the deck's constant front edge
+    /* THE PLANE IS NEARLY LEVEL ON THIS FRAME AND NOWHERE ELSE IN THE DECK, ON PURPOSE.
+     * `shade` is the far end and `lit` the near one, so every other surface here brightens toward
+     * the reader, which is what a lit desk does. An isotype has no near end: the rows are lifts,
+     * so a plane that brightens downward hands the bottom rows a brighter ground than the top
+     * rows and their separation falls from 137 to 64 while the figures are all one value. Level
+     * ground gives all five ranks the same contrast, which is the only thing this frame owes. */
+    N.surface(cx, { edge: N.EDGE, top: 462, lit: 5.0, shade: 5.2, lightX: 0.32 });
+
+    /* ONE SOFT POOL, HELD BACK TO 0.34, AND THE REASON IS THAT A CHART HAS NO NEAR RANK.
+     * At 0.80 it was written to light the near ranks and let the far ones fall away, which is
+     * what a pool is for in a ROOM. Every figure here sits at the same depth, so all the pool
+     * did was brighten the ground under the bottom two rows until those rows washed out against
+     * it, and the frame lost its count exactly where the short rank has to be read. */
+    N.pool(cx, { x: 360, y: 880, r: 760, squash: 0.44, rot: 0.16, strength: 0.34,
+                 reserve: boxes });
+
+    // THE 52, AS AN ISOTYPE RATHER THAN AS A CROWD IN A ROOM.
+    // The first three builds put them on the ground plane in receding ranks and layout_check
+    // refused all three: at thumb scale the block came apart into ONE piece, because ranks at
+    // different depths overlap and a reader cannot count what they cannot separate. A GRID is a
+    // count, and a count wants the isotype. So every figure sits at the SAME depth, which makes
+    // them the same size, and the rows are LIFTS rather than distances. Nothing recedes, nothing
+    // overlaps, and the gaps survive the five times reduction to a feed thumbnail.
+    var S = TXSCENE.create(cx, { w: W, h: H, eye: 1.62, horizon: 980, f: 900,
+                                 sky: "transparent", fogZ: 1e9, light: { az: -28, el: 22 } });
+    var fig = TXFIG.figure({ view: "front", height: 1.70 });
+    /* A FIFTH RANK NEEDS A SMALLER BLOCK, AND THE LEVER IS Z RATHER THAN LIFT. Five ranks at
+     * the old depth put the top one through the headline's glyph band. Pushing the whole chart
+     * back from 12 to 16 shrinks the figures and the row spacing by the same quarter, so the
+     * block loses a quarter of its height while the GAPS between rows stay the same fraction of
+     * a figure. Compressing LIFT instead would have shortened the gaps alone and taken back the
+     * countability this rebuild was for. PITCH rises with Z so the rows keep their width. */
+    var Z = 16, PITCH = 0.72, LIFT = 2.24, drawn = 0;
+    for (var r = 0; r < RANKS.length; r++) {
+      var n = RANKS[r];
+      /* ONE VALUE FOR ALL 52, because the rows are LIFTS rather than distances and nothing here
+       * is further away than anything else. Alternating the tone was drawing a depth cue into a
+       * chart that has no depth, and it cost the frame its count at feed size. */
+      var tone = 8.6;
+      for (var i = 0; i < n; i++) {
+        var X = (i - (n - 1) / 2) * PITCH;
+        var lift = (RANKS.length - 1 - r) * LIFT;
+        // the deck's light, kept visible on a flat chart as a ghost along the cast direction
+        S.sprite(fig, { X: X, Z: Z, y: lift, fade: false,
+                        inks: { ink: N.pick(tone), paper: N.pick(tone + 0.9),
+                                accent: N.pick(tone) } });
+        drawn++;
+      }
+    }
+    if (drawn !== 52) throw new Error("frame 6 drew " + drawn + " figures, not 52");
+
+    // THE DECK'S ONE SCREEN, and it never runs under a glyph
+    N.tooth(cx, { x: 40, y: 462, w: 1000, h: 638, cell: 6, angle: 22, strength: 0.15, mask: mask });
+
+    /* THE FALLOFF STARTS AT THE FRONT EDGE ON THIS FRAME, not 172px below it. Levelling the
+     * plane raised `shade`, and the face below the edge is drawn from `shade` too, so the band
+     * the kicker, the locator and the source line sit on came up with it and three furniture
+     * lines fell to 2.6 against the rubric's 4.5. The chart wanted level ground; the furniture
+     * band underneath it did not. */
+    N.falloff(cx, { from: 1096, end: 0.60 });
+    N.falloffTop(cx, { to: 226, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

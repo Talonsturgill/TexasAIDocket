@@ -1,0 +1,172 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 3 of 9. Archetype FIGURE_SCALE.
+     The same clinician, now in profile at true scale at the same desk, with a SECOND CHAIR
+     BESIDE IT, EMPTY, because the patient is not in this room. The camera steps back and round
+     from frames 1 and 2 without leaving the world, which is the deck's camera move.
+     THE RECORD'S OWN WORD IS THE POINT OF THIS FRAME. The announcement says clinicians CAN
+     review, edit and personalize. It does not say every draft is reviewed, and this deck may
+     not upgrade can to does. The hook says can, and the dek says can, and nothing on the frame
+     says always. Planned frame median L* 45. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:1.00; letter-spacing:-0.020em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:14; }
+  .dek { position:absolute; font-weight:500; font-size:27px; line-height:1.42; color:#FFFFFF; z-index:14; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#A8C6C2;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:166px; width:880px; font-size:96px; }
+  .dek  { left:84px; top:412px; width:660px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The clinician can edit it first.</h1>
+<p class="dek">Memorial Hermann's chief medical information officer calls the draft a starting point clinicians can review, edit and personalize before sharing with the patient.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'The chief medical information officer', counter: "03 / 09",
+      src: 'c4 c8 c9   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 96, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the room, dark
+    cx.fillStyle = N.pick(5.0);
+    cx.fillRect(0, 0, W, H);
+
+    // the desk, seen side on, the deck's constant front edge
+    N.surface(cx, { edge: N.EDGE, top: 560, lit: 6.8, shade: 4.8, lightX: 0.18 });
+
+    /* EVERY OBJECT IN THIS FRAME IS AT ONE DEPTH'S ARITHMETIC, AND THREE ROUNDS EACH FIXED A
+     * DIFFERENT SYMPTOM OF ITS NOT BEING SO.
+     *
+     * Round 2: there was no desk, so a correctly sized monitor stood on a plane that a chair and
+     * a seated person made read as the floor, and it read as a lamp.
+     * Round 3: there was a desk with no top FACE, a flat band whose base missed the figures'
+     * own ground line, and it read as a lamp.
+     * Round 4 measured the rebuild and named the thing under all three. The top face's near edge
+     * sat at y 1004, which on this bench is depth Z 1.96, while its front face ran down to y 1076,
+     * which is the floor at Z 3.05. So the drawn object was a 0.17 m plinth rather than a 0.75 m
+     * desk. And the monitor was sized with PXM for Z 3.35 while standing at Z 2.05, which made it
+     * 39 percent undersized for where it stood. Every symptom was one cause: MIXED DEPTHS.
+     *
+     * The bench is y = horizon + (eye - h) * f / Z, with horizon 640, eye 1.62, f 820. So:
+     *   the desk top's NEAR edge is pinned to the deck's constant at y 1096, which is Z 1.564,
+     *   and the floor at that depth is y 1489, off the bottom of a 1350 frame, which is why the
+     *   front face runs off the near edge exactly as a desk the reader stands at does;
+     *   the desk top's FAR edge is the clinician's own depth, Z 3.05, which is y 874;
+     *   the monitor stands at Z 2.40, where the plane is y 937 and one metre is 341.7 px.
+     * Nothing here is a number anybody chose by eye. */
+    var DTOP_FAR = 873.9, DTOP_NEAR = 1096;          // Z 3.05 and Z 1.564, the deck's constant
+    var MZ = 2.40, PXM = 820 / MZ, MBASE = 640 + 0.87 * 820 / MZ;   // the desk top at the monitor's depth
+    var PH = 0.34 * PXM, PW = 0.085 * PXM;           // a 24 inch panel, nearly edge on
+    var COL = 0.11 * PXM, BASE_R = 0.115 * PXM;
+
+    var S = TXSCENE.create(cx, { w: W, h: H, eye: 1.62, horizon: 640, f: 820,
+                                 sky: "transparent", fogZ: 1e9, light: { az: -28, el: 22 } });
+
+    /* THE CLINICIAN, at Z 3.05, BEHIND the desk. The desk is drawn after them because its near
+     * edge is nearer to the camera than they are, so it occludes them from the desk line down,
+     * which is what sitting at a desk looks like. */
+    var seated = TXFIG.figure({ pose: "sit", seat: 0.45, height: 1.70 });
+    S.shadow(seated, { X: 0.86, Z: 3.05, ink: "#000", alpha: 0.40 });
+    S.sprite(seated, { X: 0.86, Z: 3.05,
+                       inks: { ink: N.pick(2.4), paper: N.pick(6.6), accent: N.pick(2.4) } });
+
+    /* THE EMPTY CHAIR SITS AT THE DESK, AND PINNING THE DESK TO y 1096 IS WHAT DECIDES THAT.
+     *
+     * A full width desk whose near edge is the deck's own constant cuts everything behind it at
+     * y 874, so a chair at the clinician's depth shows only its back above the surface. The
+     * alternative was tried first and measured: at Z 2.00 the chair is nearer than the desk and
+     * fully drawn, and it STRADDLES the near edge, so its upper half is a dark slab against the
+     * lit desk top and its lower half disappears into the dark front face. Half a chair read as
+     * a slab is worse than a chair back read as a chair.
+     *
+     * So it sits where a patient's chair sits, at the desk, and what a reader sees of it is what
+     * you see of an empty chair at a desk. It is drawn before the desk and occluded by it, which
+     * is the occlusion doing the work of saying which is nearer. */
+    var chair = TXOBJ.sprite("office_chair");
+    S.shadow(chair, { X: -0.35, Z: 3.05, ink: "#000", alpha: 0.34 });
+    S.sprite(chair, { X: -0.35, Z: 3.05,
+                      inks: { ink: N.pick(2.6), paper: N.pick(5.4), accent: N.pick(2.6) } });
+
+    // THE DESK, one slab, drawn over the clinician's lower half
+    cx.save();
+    var topg = cx.createLinearGradient(0, DTOP_FAR, 0, DTOP_NEAR);
+    topg.addColorStop(0, N.pick(5.2));
+    topg.addColorStop(1, N.pick(6.9));
+    cx.fillStyle = topg; cx.fillRect(0, DTOP_FAR, W, DTOP_NEAR - DTOP_FAR);
+    cx.fillStyle = N.pick(3.4); cx.fillRect(0, DTOP_FAR, W, 3);        // the far edge
+    var faceg = cx.createLinearGradient(0, DTOP_NEAR, 0, H);
+    faceg.addColorStop(0, N.pick(3.2));
+    faceg.addColorStop(1, N.pick(1.7));
+    cx.fillStyle = faceg; cx.fillRect(0, DTOP_NEAR, W, H - DTOP_NEAR);
+    cx.fillStyle = N.pick(7.6); cx.fillRect(0, DTOP_NEAR - 3, W, 3);   // the lit near arris
+    cx.restore();
+
+    // THE DISPLAY, standing on the desk top at Z 2.40, every dimension metres times PXM
+    var PX = 236, PY = MBASE - COL - PH;
+    cx.save();
+    var pg = cx.createLinearGradient(PX, PY, PX + PW, PY + PH);
+    pg.addColorStop(0, N.paper(6.6));
+    pg.addColorStop(1, N.paper(4.0));
+    cx.fillStyle = pg; cx.fillRect(PX, PY, PW, PH);
+    cx.fillStyle = N.pick(2.2); cx.fillRect(PX + PW - 0.016 * PXM, PY, 0.016 * PXM, PH);
+    cx.fillStyle = N.pick(2.6); cx.fillRect(PX - 0.01 * PXM, PY - 0.01 * PXM, PW + 0.02 * PXM, 0.01 * PXM);
+    cx.fillStyle = N.pick(2.0);
+    cx.fillRect(PX + PW * 0.30, PY + PH, 0.035 * PXM, COL);
+    TXDECK.contact(cx, { x: PX + PW * 0.42, y: MBASE, w: BASE_R * 2.2, h: 0.05 * PXM, height: 0.35 });
+    cx.fillStyle = N.pick(3.0);
+    cx.beginPath();
+    cx.ellipse(PX + PW * 0.42, MBASE, BASE_R, BASE_R * 0.20, 0, 0, Math.PI * 2);
+    cx.fill();
+    cx.restore();
+
+    // THE LIGHT, thrown sideways out of the panel across the desk and onto everything on it
+    N.pool(cx, { x: PX + PW * 0.5, y: PY + PH * 0.62, r: 660, squash: 0.56, rot: 0.22,
+                 strength: 0.94, reserve: boxes });
+
+    // THE DECK'S ONE SCREEN, and it never runs under a glyph
+    N.tooth(cx, { x: 40, y: 560, w: 1000, h: 540, cell: 6, angle: 22, strength: 0.21, mask: mask });
+
+    N.falloff(cx, { from: 1230, end: 0.88 });
+    N.falloffTop(cx, { to: 226, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

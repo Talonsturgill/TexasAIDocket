@@ -1,0 +1,52 @@
+{
+ "lens": "craft",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Frame 1 is genuinely good: a real room, a silhouette that owns the frame, a lit display, a keyboard breaking the plane, subject off both edges. Frame 7 is a well-set page with real mottle and three hollow bars at three brightnesses. But the deck's most-repaired frame still fails what it was repaired for: frame 3's bench arithmetic now checks (1096.1, 1489.4, 873.9, 937.25, PXM 341.67 all verified) while the monitor is drawn 29px by 116px on a 12px column, a white slab on a stick, and the declared argument (the empty chair) is 80px of flat translucent grey, 32px at feed size. Frame 2 is a plate with a headline above it: the panel is y 392..1096 so the declared top bleed was never built, its declared desk surface is fully occluded, and the cast shadow its bands prose describes is drawn nowhere in the file. Frames 4 and 5 carry the reserve as VISIBLE soft-edged plates, nine or ten on frame 5, which is the negative-plate artifact txdeck.js:192 exists to prevent."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.3,
+   "why": "MOTIF_EVOLUTION is real and readable across the filmstrip. Adjacency is measured and honest (mean jump 8.32, max 13.0). Against that, the declared PANORAMA_SPINE does not read: N.EDGE 1096 is buried under the sheet on frames 4 (near edge 1198), 7 (1202) and 8 (off-frame), so the contact sheet shows four different horizontals. The declared ONE LIGHT is not applied on four of nine frames, which all carry 'NO POOL ON A DOCUMENT FRAME' and draw no cast at all, so the raking key that is the deck's stated signature is absent from the entire middle of the deck. And the ground under the type band is near black on 4/5/7/8 against mid teal on 1/2/3/6/9, which the whole-frame median hides and a swiping reader does not."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.2,
+   "why": "The strongest axis and it earns it. Every figure in the source's own form, 52 recorded as 11+11+11+11+8, the section list and the count of 16 computed by compute.py, 0 headed Applicability computed rather than asserted. The glyph law holds in the pixels: no fillText anywhere in frames 1, 2 or 3 and the draft is N.ruleRun hairlines. Frame 7 sets (b) as one contiguous run with the limiting clause and puts BOTH readings on the page, which is the harder and honest choice; frame 5 drops its fourth verbatim rather than declare a string nobody drew; frame 9 keeps the paraphrase out of a verbatim slot. Caption is clean. Short of 9 because the frames' own acceptance lists assert things their source refutes on four frames."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.6,
+   "why": "Names Memorial Hermann, Houston, Epic, Sec. 552.051, its January 1st effective date, the three duty-holder texts, and the one controlled test with its population and its null result. It states what it cannot resolve and refuses the disclosure finding the fact-checker rejected. No county, no body, no deadline, and the storyboard is right that there is none to name. The next step is thin: 'ask who wrote it' is weak, and the AG complaint route sits on the card with no explanation of how a Texan uses it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The build works: room, screen, the human check, the method, the figures, the counter-evidence, the statute turn at 7, the exhaustive list, the morning inversion at 9. Frame 7 is a genuine turn and frame 9 lands. Frame 2 is cuttable on this deck's own precedent: it adds no claim frame 1 does not already cite, its hook restates frame 1's at another zoom, and its declared focal is a 6x46px tick, 2.4px wide at feed size."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.4,
+   "why": "'Three figures. No denominator.' and 'One says agency. One says provider.' are plain and unhedged, and 'The test healthsystemCIO points to was not in Texas' is the best line in the deck, doing the Texas-First work with no boosterism and no doom. 'The draft appears as the result opens' is flat, and the regional specificity stops at the word Houston."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Night interior at cell-6 halftone measured against screen_ceilings.json rather than chosen, teal-and-amber, a scene bench, an isotype and four drawn documents is a distinct register. But the separation cited from the September 13th hospital deck is a light DIRECTION, not a different world, and both are clinical interiors. The palette line is not cleared by every token: ground 8.51 is stated honestly and ink 9.39 is also under 10.09 and the prose names only the ground."
+  }
+ ],
+ "weighted_score": 7.052,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Add one gate that reads each frame's drawn geometry back out of its own source and fails the build when it disagrees with the dossier, because the same defect shape produced all four of this round's findings and four rounds of judges have now been spent finding by eye what that check finds for free."
+}

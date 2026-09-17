@@ -1,0 +1,58 @@
+{
+ "date": "2026-09-17",
+ "_note": "Every number this deck states by counting rather than by quoting. The figures the SOURCES wrote, 32%, over 55,000, less than 6%, 2023 and the section numbers of Chapter 552, are quoted verbatim on their frames and are traced in claims.json rather than declared here. THE TWO PRINTED FORMS OF THE TIME SAVING ARE NOT RECONCILED ANYWHERE: the announcement spells it nine seconds and the trade publication sets it as a numeral, and only the announcement's form appears on any frame.",
+ "aggregates": [
+  {
+   "phrase": "Eight words",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 8,
+   "computed_by": "out/2026-09-17/compute.py, the length of the TERMS list frame 4 iterates to draw its own boxes",
+   "from_claims": [
+    "c1"
+   ],
+   "note": "The frame's headline counts the terms the frame itself draws, so the headline and the boxes can't disagree. The eight are the eight named in claims.json absences[0] as the search that established the announcement's silence on disclosure."
+  },
+  {
+   "phrase": "Three figures",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-09-17/compute.py is not the source of this one. It is the count of the three figures the announcement published, which the trade publication itself counts in c12 when it writes All three figures",
+   "from_claims": [
+    "c5",
+    "c6",
+    "c7",
+    "c12"
+   ],
+   "note": "Three distinct figures appear in the announcement and the frame sets all three. The trade publication's own sentence counts them the same way, so the deck's count and the source's count agree without the deck having to assert a number the source did not."
+  },
+  {
+   "phrase": "nine seconds",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 9,
+   "quoted_from": "c7",
+   "quote": "have saved an average of nine seconds per result comment",
+   "note": "SPELLED OUT, because that is the form the announcement uses. The trade publication sets the same figure as a numeral, and the fact-checker recorded that the numeral form was never seen inside a verbatim sentence, so the numeral form appears nowhere on this deck."
+  },
+  {
+   "phrase": "two doctors",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 52,
+   "quoted_from": "c14",
+   "quote": "a randomized pilot of 52 doctors in 2023",
+   "note": "The figure is the source's own, printed spelled out as Fifty two. The COUNT OF FIGURES DRAWN on the frame is this deck's own arithmetic and is in figures.json, and frame 6 throws at render time if its rows do not sum to it, so the drawing and the claim can't drift apart. The locator naming UC San Diego Health and 2023 is inside the image, because these are not Texas doctors and the frame must never read as though they were."
+  },
+  {
+   "phrase": "Nine slides",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 9,
+   "computed_by": "out/2026-09-17/copy.json, the number of entries under slides, which is the number of frames the run rendered and shipped",
+   "note": "THE ONE NUMBER IN THE CAPTION THAT IS ABOUT THE POST RATHER THAN ABOUT TEXAS. It counts the deck itself, so it re-derives from the copy file rather than from any claim, and it can't drift from what a reader receives because the same file is what the renderer read."
+  }
+ ],
+ "_removed_2026_09_17_round4": "The declaration for \"55,000 messages\" was removed when the caption's opening move changed. The old first line was \"Over 55,000 messages. No baseline beside them.\", which put no Texas above the fold and sat close to \"the number that is wrong\", an opening this run's own caption_exclusions.md puts off the menu. The figure is still on frame 5 in the source's own form and still traces to c6; it is simply no longer a number the CAPTION states, so a declaration for it would be a promise about a string nobody prints."
+}

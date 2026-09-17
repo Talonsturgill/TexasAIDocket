@@ -2728,3 +2728,108 @@ current rule in its spawn prompt every round, explicitly telling it that any cop
 definition is stale. That works, and it is a workaround rather than a fix: it costs tokens every
 round and it depends on a phase remembering to do it. The fix is four lines in two files and one
 approved prompt.
+
+---
+
+## 2026-09-17, carousel no. 27. Four proposals this lane could not make itself
+
+Three upgrades shipped this run and are in `ledger/carousel/upgrades.json`. What follows is what
+the same evidence asked for and the `upgrade` lane does not own.
+
+### 1. A GATE_LESSONS entry, drafted, because `knowledge/shared/**` is `human`
+
+`ownership.yaml` puts `knowledge/shared/GATE_LESSONS.md` in the human lane, and the rule that a
+new gate belongs in that file is one this lane can satisfy only by drafting. The entry, ready to
+paste as the next numbered item:
+
+> ## A declaration and the gate that reads it can agree with each other and not with the picture
+>
+> `layout_check` reads `primary_image.bleeds` and measures it against `primary_image.rect`. Both
+> are typed by the planner into the same yaml block, one screen apart, so the gate was asking the
+> declaration whether the declaration was true. Carousel no. 27 declared a bleed on four frames of
+> nine that none of them draws: three sheets stopping 148, 152 and 250 px above the bottom edge,
+> and a panel whose declared top bleed is a hard edge 392 px inside the frame.
+>
+> The harm is mechanical rather than aesthetic. `ROTATION["min_bleed_frames"]` requires four
+> bleeding frames on a deck and counts them off the declarations, so a deck can satisfy the image
+> law with declarations alone and draw no bleed at all. This one came within one frame of it.
+>
+> Two craft judges found all four by reading the `N.sheet` call and subtracting, across four
+> scoring rounds on a deck that shipped at 6.856 against an 8.0 bar.
+>
+> **What to check instead.** When a gate reads a declaration, ask what independent artifact could
+> falsify it, and read THAT. `bleed_witness.py` reads the drawn geometry out of each slide's own
+> source and compares. The pixels cannot answer this one: the bottom row of the frame in question
+> is a drawn table, so a pixel reading of that edge says "something is drawn here" and is correct,
+> while the claim under test is that THE PRIMARY IMAGE runs off it.
+>
+> **And the half that is about writing gates.** The first cut of that gate was run over all 27
+> shipped decks before it was wired to anything, and it invented three failures, reporting
+> carousels 22, 24 and 25 as missing a declared bleed by 1078.75, 1079.70 and 1348.48 px. The
+> engine draws scenes in METRES, so a 2.50 m gantry part and a 0.60 m desk screen parse as boxes
+> two pixels across sitting off the left edge. Every one of those numbers is confident and wrong,
+> which is the most persuasive shape a false finding takes. **A gate is not finished when its
+> self-test passes. It is finished when it has been run over every artifact the project owns and
+> every finding has been read by hand.** The corpus carries the shapes nobody thinks to write into
+> a fixture, and here it carried a whole second coordinate system.
+
+### 2. `prompts/daily_routine.md` never names `ledger_check`, and the derivation it needs (human)
+
+The routine mentions neither `ledger_check.py` nor `update_ledgers.py`. The three derived
+exclusion lists in `captions.json` have now drifted on four runs and been recomputed by hand each
+time, because the ledger's own `_derived_note` points at `out/<date>/update_ledgers.py`, a scratch
+file each run writes fresh and which dies with the container. A run re-deriving a derivation is
+how one of them eventually comes out one entry behind.
+
+`ledger_check.py --derive` now exists and is the one committed derivation, shares its code with
+the check that judges the file, and is proved against the 2026-08-25 corruption. **Two lines in
+the ship phase are what it is waiting for:**
+
+```
+python3 scripts/carousel/ledger_check.py --derive
+python3 scripts/carousel/ledger_check.py --date <date>
+```
+
+Until then it is reachable only through the gate's own failure advice, which names the command.
+That works and it is a workaround: it costs a run a round trip through a red gate to learn a
+thing the phase could have told it.
+
+### 3. Two live-run gates the routine does not call (human)
+
+`bleed_witness.py` and the reserve-order rule inside `deck_chassis.py` both run in anger this
+lane's two ways: `panel_ready.py` before the panel, and `shipped_check.py` for CI. The routine's
+Phase 11 already calls `deck_chassis.py --slides-dir` twice, so the reserve rule is in force on a
+live run today. `bleed_witness` is not named anywhere in the routine. A third line beside the
+`layout_check --require` calls at Phase 11 and Phase 14 would put it where the planner can still
+act on it rather than where the panel gate reports it:
+
+```
+python3 scripts/carousel/bleed_witness.py --date <date>
+```
+
+### 4. Nothing measures whether a drawn object is RECOGNISABLE, and this lane says so honestly
+
+Frame 3 was rebuilt four times, each round repairing a different symptom, its bench now checks to
+the pixel at 1096.1, 1489.4, 873.9, 937.25 and PXM 341.67, and two round 5 judges still called the
+monitor a floor lamp and the empty chair unreadable. **Correct projection is necessary and is not
+sufficient.**
+
+This was considered for a gate and refused, and the refusal is the useful part. Every route this
+lane could design was one of three, and each is a way of writing down taste and calling it a
+measurement:
+
+- a silhouette-similarity score against a reference drawing of a monitor. There is no corpus to
+  calibrate it on, 27 decks is not one, and a threshold picked to make today's frame fail is the
+  typed numeral the compute-not-generate law forbids.
+- a part-count or edge-density floor at 432 px. `craft_floor` already measures ink density and
+  passed this frame at a median of 4044 against a floor of 728. Density is not recognition and a
+  second density gate would be a second wrong answer.
+- asking a model. A judge already does, three of them, which is how this was found. Moving that
+  into a build gate makes the build non-deterministic and makes a re-run a coin toss.
+
+**The honest disposition is that this is the scorer's job and the pixel critics', and the machine
+improvement available is upstream rather than a new gate.** The treatment director could be asked
+to name, per object, the two silhouette facts that make it that object and not another, so the
+critic has something to check rather than a feeling. That is an agent-definition change under
+`.claude/agents/`, which is `upgrade` lane and is a sensitive path no unattended run can write.
+It waits on a maintainer answering one prompt.

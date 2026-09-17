@@ -1,0 +1,381 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ In Basket AI: Why Seconds Saved Is the Wrong Metric 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+
+
+
+
+
+ 
+ 
+ 
+ 
+
+ 
+ healthsystemcio.com Interviews & Webinars with Health System IT Leaders About 
+ 
+ Our Community 
+ Privacy & Data Protection Policy 
+ healthsystemCIO Policies 
+ Terms of Service 
+ 
+ 
+ Advertise 
+ hsCIO Show 
+ Subscribe 
+ Webinars 
+ 
+ 9/29-Managing AI Token Budgets 
+ 10/16-Monitoring the AI Inside 
+ 10/27-Modernizing the Patient Contact Center 
+ Streaming 
+ 
+ 
+ Topics 
+ 
+ Cybersecurity 
+ AI in Health Systems 
+ EHR & Application Strategy 
+ Data & Interoperability 
+ Clinical Informatics 
+ Infrastructure & Cloud 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ 
+ Our Community 
+ Privacy & Data Protection Policy 
+ healthsystemCIO Policies 
+ Terms of Service 
+ 
+ 
+ Advertise 
+ hsCIO Show 
+ Subscribe 
+ Webinars 
+ 
+ 9/29-Managing AI Token Budgets 
+ 10/16-Monitoring the AI Inside 
+ 10/27-Modernizing the Patient Contact Center 
+ Streaming 
+ 
+ 
+ Topics 
+ 
+ Cybersecurity 
+ AI in Health Systems 
+ EHR & Application Strategy 
+ Data & Interoperability 
+ Clinical Informatics 
+ Infrastructure & Cloud 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ Memorial Hermann’s Epic AI Rollout Shows Why Seconds Saved Is the Wrong Test for In Basket AI 
+ 09/10/2026 By Anthony Guerra Leave a Comment 
+ Clinicians at Memorial Hermann Health System save about nine seconds each time they start a test-result comment from an AI draft. That return would sink most business cases. The same rollout, however, cut patient follow-up questions about those results by nearly a third. 
+ Epic published both numbers on Sept. 8, in an announcement about the Houston system’s use of Art. For executives weighing an expansion of the same capability, in fact, the second number carries the business case. The first shows that clinician time returned has been a weak measure for this category since it shipped. 
+ Two Numbers Pointing in Opposite Directions 
+ Art is the clinician-facing assistant Epic branded at its 2025 Users Group Meeting. On result comments, it drafts the note a patient receives alongside a lab or imaging study, writing in plain language instead of clinical terminology. The clinician then reviews, edits and personalizes that draft before it goes out, which keeps the message in the clinician’s voice and under their name. 
+ The underlying capability has been in the field for three years. Epic shipped In Basket draft replies in 2023 as Augmented Response Technology, and many organizations already run it. What changed is the branding and the reach into result comments specifically. Memorial Hermann piloted the feature in an innovation clinic in December 2025 and has since extended it across the system. 
+ Art has helped Memorial Hermann care teams write more than 55,000 patient messages since the pilot began, according to figures Epic published. Patients also sent 32% fewer follow-up messages about results when the clinician started from an Art draft. Ryan Walsh, MD, associate VP and CMIO at Memorial Hermann, said the draft gives clinicians a more thorough starting point. He added that it supports clinical judgment instead of replacing it. 
+ All three figures come from Epic and its customer. No baseline, control arm or denominator accompanies them. Specifically, the 32% describes clinicians who chose to work from a draft. Still, the shape of the result matches what independent researchers keep finding, and that consistency is telling. 
+ The Research Already Settled the Time Question 
+ Physicians at UC San Diego Health tested Epic’s AI draft replies in a randomized pilot of 52 doctors in 2023. Reply time moved less than 6% and missed statistical significance, so the efficiency case failed on its own terms in the first controlled test. Read time, meanwhile, climbed almost 22%. Replies also grew longer and warmer, and physicians described the drafts as a compassionate starting point that still needed work. 
+ A year-long evaluation at Children’s Hospital of Philadelphia followed 323 clinicians and support staff across 13 ambulatory specialties. Clinicians there saved four seconds per message, a difference that also missed significance. Support staff, in particular, saved 24 seconds, a gap pointing to where this class of tool actually returns labor inside an ambulatory practice. In addition, a systematic review of 23 studies published in npj Health Systems in July 2025 reached a similar place. It found quality and empathy comparable to human drafts, thin evidence of time returned, and limited use. 
+ Memorial Hermann’s nine seconds sits squarely inside that record. Reading it as a disappointment misreads the mechanism. The drafts change what the patient receives at the moment of release, and the patient’s behavior is where the effect surfaces. 
+ Providence , for example, screens every Epic AI release with two questions. Does it meet safety standards? Will it give clinicians time back? On result-comment drafting, the second question misfires. This feature returns time later and elsewhere, as messages that never arrive in the In Basket, so a stopwatch held over any single comment records almost nothing. 
+ Washington and the States Are Working the Same Problem 
+ Policy created the problem Art addresses. Information-blocking rules under the 21st Century Cures Act push results into the patient portal as soon as they are final, often before the ordering clinician has seen them. Patients then read pathology and radiology language written for clinicians. Consequently, they send a message asking what it means. 
+ Provider groups have pushed back for years. Kentucky and California passed laws in 2022 giving physicians a short window to review and deliver life-changing results personally. Similarly, the American Medical Association has circulated model legislation for other states. In July 2026, moreover, the Novant Health Center for Public Policy Solutions issued a report asking federal regulators to widen the Cures Act preventing-harm exception to cover psychological harm. It also seeks permission to delay certain results by up to 72 hours. 
+ Two fixes are competing. One delays the result so a clinician can call the patient first. The other sends an explanation with the result. Turning on Art for result comments buys the second fix. If a delay becomes law, clinicians will reach patients before the portal does, and the drafting tool will be worth less. That risk belongs in the expansion decision alongside the cost. 
+ Take It Away 
+ 
+ Score In Basket AI on inbound patient message volume; seconds returned per message is a weak proxy. 
+ Ask for the denominator behind any customer-reported percentage before it enters a business case. 
+ Expect single-digit per-message time savings for clinicians, with larger gains in support staff. 
+ Treat result-comment drafting as a patient-communication investment and route it through the governance reviewing other Epic AI modules. 
+ Track state and federal movement on delayed result release, since a mandated pause changes what the capability is worth. 
+ 
+ Memorial Hermann moved from one innovation clinic to system-wide use in roughly nine months, which shows how fast a well-received Epic module travels once clinicians accept it. Epic’s R&D leadership points to that speed as the model for other organizations. For a technology executive, however, the more durable lesson concerns measurement, because the number that made this rollout work was never on the clinician’s side of the exchange. 
+ 
+ Get the next one in your inbox. 
+ New interviews and webinars with health system IT, security and informatics leaders. 
+ Subscribe 
+ Listen on Apple Podcasts · Spotify | Watch on YouTube | Connect on LinkedIn 
+ Looking to reach health system technology leadership? See sponsorship options. 
+ 
+ Related Articles 
+ 
+ ChatGPT’s Epic Integration Stacks a Third AI Layer on the Chart, Leaving CIOs to Sort the Overlap — Sept. 1, 2026 
+ Most Health Systems Validate AI Without a Testing Environment, Find KLAS and CCM at UPMC — Aug. 6, 2026 
+ Providence Onboards Epic AI Tools in Project Pixel; Smitherman Says Some Stay on the Watch List — July 29, 2026 
+ Health System CIOs: Anecdotal ROI from Key Stakeholders Punches Above Its Weight — May 19, 2026 
+ Providence’s Goswami Says Health Systems Celebrate AI Adoption Too Early, Need Evolved Metrics — March 17, 2026 
+ 
+ Filed Under: AI/Machine Learning , Clinical Documentation , Columns , Information Blocking , Patient Engagement Tagged With: 21st Century Cures Act , American Medical Association , Children’s Hospital of Philadelphia , Epic , Epic Art , Memorial Hermann Health System , Novant Health , npj Health Systems , Providence , Ryan Walsh , UC San Diego Health 
+ Share Your Thoughts Cancel reply You must be logged in to post a comment. 
+ To register, click here . 
+
+ 
+ 
+ 
+
+ 
+ 
+ 
+
+ 
+ 
+ Partners 
+ 
+ 
+   
+ Sponsors 
+ 
+   
+ 
+   
+   
+ 
+ 
+ 
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+ 
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+   
+ 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+ 
+ 
+ 
+ 
+ Copyright © 2026 HealthsystemCIO.com. 
+ 
+
+
+
+ 
+
+ tag.
+ *
+ * If you do not want to deal with the intricities of the noscript
+ * section, delete the tag (from ... to ). On
+ * average, the noscript tag is called from less than 1% of internet
+ * users.
+ */-->
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+ 

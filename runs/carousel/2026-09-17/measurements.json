@@ -1,0 +1,138 @@
+{
+ "_note": "Computed by runs/carousel/2026-09-17/measure.py from the renders at 432 px, the size a reader receives. Nothing here is typed. The bands are parsed out of each dossier's own acceptance sentence, so the prose, the gate and this file cannot drift apart.",
+ "frames": {
+  "slide-01": {
+   "median_L": 41.1,
+   "p05_L": 3.9,
+   "p95_L": 85.5,
+   "accent_share_pct": 0.0
+  },
+  "slide-02": {
+   "median_L": 52.0,
+   "p05_L": 7.5,
+   "p95_L": 81.5,
+   "accent_share_pct": 0.0
+  },
+  "slide-03": {
+   "median_L": 44.9,
+   "p05_L": 4.8,
+   "p95_L": 84.0,
+   "accent_share_pct": 0.0
+  },
+  "slide-04": {
+   "median_L": 56.5,
+   "p05_L": 3.3,
+   "p95_L": 79.0,
+   "accent_share_pct": 0.55
+  },
+  "slide-05": {
+   "median_L": 54.5,
+   "p05_L": 3.3,
+   "p95_L": 75.7,
+   "accent_share_pct": 1.02
+  },
+  "slide-06": {
+   "median_L": 44.2,
+   "p05_L": 15.5,
+   "p95_L": 85.4,
+   "accent_share_pct": 0.0
+  },
+  "slide-07": {
+   "median_L": 53.9,
+   "p05_L": 3.2,
+   "p95_L": 72.1,
+   "accent_share_pct": 0.46
+  },
+  "slide-08": {
+   "median_L": 58.9,
+   "p05_L": 3.9,
+   "p95_L": 75.5,
+   "accent_share_pct": 2.0
+  },
+  "slide-09": {
+   "median_L": 45.1,
+   "p05_L": 6.4,
+   "p95_L": 88.0,
+   "accent_share_pct": 4.76
+  }
+ },
+ "per_frame_median_lstar": [
+  41.1,
+  52.0,
+  44.9,
+  56.5,
+  54.5,
+  44.2,
+  53.9,
+  58.9,
+  45.1
+ ],
+ "adjacent_jumps_L": [
+  10.9,
+  7.1,
+  11.6,
+  2.0,
+  10.3,
+  9.7,
+  5.0,
+  13.8
+ ],
+ "deck": {
+  "median_L": 52.0,
+  "spread_L": 17.8,
+  "lightest_L": 58.9,
+  "darkest_L": 41.1,
+  "mean_adjacent_jump_L": 8.8,
+  "max_adjacent_jump_L": 13.8,
+  "jump_ceiling_L": 14.9,
+  "hard_cut_L": 25.0,
+  "hard_cuts": 0
+ },
+ "bands": {
+  "slide-01": [
+   37,
+   49
+  ],
+  "slide-02": [
+   46,
+   58
+  ],
+  "slide-03": [
+   39,
+   51
+  ],
+  "slide-04": [
+   50,
+   62
+  ],
+  "slide-05": [
+   50,
+   62
+  ],
+  "slide-06": [
+   40,
+   52
+  ],
+  "slide-07": [
+   48,
+   60
+  ],
+  "slide-08": [
+   54,
+   66
+  ],
+  "slide-09": [
+   39,
+   51
+  ]
+ },
+ "palette": {
+  "ground": 10.0,
+  "ink": 86.5,
+  "dek": 68.2,
+  "furniture": 58.0,
+  "page": 80.4,
+  "toner": 13.7,
+  "accent": 72.7
+ }
+}

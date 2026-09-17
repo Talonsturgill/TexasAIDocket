@@ -1,0 +1,124 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 2 of 9. Archetype DOCUMENT.
+     The display at screen scale, emissive, its bottom edge sitting on the desk at the deck's
+     constant y 1096 and its left and right edges bleeding the frame, so the reader is AT the screen rather
+     than looking at a monitor in a room. The camera dollies in from frame 1 without changing
+     the world, which is the deck's camera move.
+     THE GLYPH LAW. The result list and the open row's draft are ruled hairlines at true line
+     lengths and carry NO letterform, because no document this run read publishes one word of
+     what a draft says. NO LOGO, NO PRODUCT COLOUR, NO BUTTON AND NO CONTROL: an interface this
+     run never saw is one it may not draw. Planned frame median L* 34. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:1.00; letter-spacing:-0.020em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:14; }
+  .dek { position:absolute; font-size:26px; line-height:1.42; color:#CFE2DD; z-index:14; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#A8C6C2;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:130px; width:900px; font-size:80px; }
+  .dek  { left:84px; top:300px; width:756px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The draft appears as the result opens.</h1>
+<p class="dek">Art helps generate an initial draft patient note in real time while clinicians review lab and imaging results in Epic's In Basket.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'The queue, as the announcement describes it', counter: "02 / 09",
+      src: 'c2 c3   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 64, max: 80, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the room, dark
+    cx.fillStyle = N.pick(4.0);
+    cx.fillRect(0, 0, W, H);
+
+    // the desk the panel stands on, the deck's constant front edge
+    N.surface(cx, { edge: N.EDGE, top: 1010, lit: 6.4, shade: 5.0, lightX: 0.5 });
+
+    // THE PANEL at screen scale, bleeding the top edge. A panel may never glow without content,
+    // so the chassis refuses one: this is the queue, and the one row that is open.
+    var PX = -60, PY = 392, PW = 1200, PH = 704;
+    N.panel(cx, { x: PX, y: PY, w: PW, h: PH, content: function (g, r) {
+      // THE GLASS IS THE ONLY LIGHT IN THIS DECK'S WORLD AND THE FIRST BUILD MADE IT DARKER
+      // THAN THE DESK IT WAS LIGHTING, so the frame read as an empty dark rectangle at feed
+      // size. A screen's own field is the brightest thing in a dark room.
+      var gg = g.createLinearGradient(r.x, r.y, r.x + r.w * 0.5, r.y + r.h);
+      gg.addColorStop(0, N.paper(6.2));
+      gg.addColorStop(1, N.paper(4.2));
+      g.fillStyle = gg; g.fillRect(r.x, r.y, r.w, r.h);
+
+      var listX = r.x + 160, listTop = 470, step = 74, rowW = 300;
+      // the result list, eight rows of equal length because a queue is a queue
+      for (var i = 0; i < 8; i++) {
+        var y = listTop + i * step;
+        var open = (i === 3);
+        g.fillStyle = N.paper(open ? 0.6 : 2.0);
+        g.fillRect(listX, y, rowW, open ? 4.4 : 3.2);
+        // the date field, shorter, to the right of each entry
+        g.fillStyle = N.paper(open ? 1.4 : 3.0);
+        g.fillRect(listX + rowW + 30, y, 104, 2.8);
+        // the row's own rule, so a queue reads as rows rather than as marks
+        g.fillStyle = N.paper(4.6);
+        g.fillRect(listX - 24, y + 30, rowW + 158, 1.2);
+      }
+      // THE ONE ROW OPEN, marked by a bar in the margin rather than by a filled block
+      g.fillStyle = N.paper(0.4);
+      g.fillRect(listX - 24, listTop + 3 * step - 16, 6, 46);
+
+      // THE DRAFT, beside the open row. Hairlines at true line lengths with a ragged right,
+      // never letterforms, because nothing this run read publishes one word of it.
+      N.ruleRun(g, { x: r.x + 700, y: 478, w: 388, n: 7, leading: 56, seed: 9,
+                     ink: N.paper(0.8), lip: N.paper(5.0), weight: 3.6 });
+      // a rule separating the queue from the draft, placed clear of both
+      g.fillStyle = N.paper(3.4);
+      g.fillRect(r.x + 660, 440, 1.8, 476);
+    }});
+
+    // THE LIGHT the panel throws back into the room, landing on the desk under it
+    N.pool(cx, { x: 540, y: 1010, r: 700, squash: 0.40, rot: 0.10, strength: 0.80,
+                 reserve: boxes });
+
+    // THE DECK'S ONE SCREEN, and it never runs under a glyph
+    N.tooth(cx, { x: 0, y: 392, w: 1080, h: 704, cell: 6, angle: 22, strength: 0.22, mask: mask });
+
+    N.falloff(cx, { from: 1210, end: 0.88 });
+    N.falloffTop(cx, { to: 330, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

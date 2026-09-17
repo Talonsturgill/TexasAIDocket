@@ -1,0 +1,64 @@
+{
+ "ground": {
+  "hex": "#051F21",
+  "Lstar": 10.0,
+  "dE_to_window": 8.51,
+  "nearest_in_window": "#171C18",
+  "contrast_on_ground": null,
+  "clears_line": false
+ },
+ "ink": {
+  "hex": "#C8DDD7",
+  "Lstar": 86.5,
+  "dE_to_window": 9.39,
+  "nearest_in_window": "#CCF2E4",
+  "contrast_on_ground": 12.07,
+  "clears_line": false
+ },
+ "dek": {
+  "hex": "#8CADA7",
+  "Lstar": 68.2,
+  "dE_to_window": 15.39,
+  "nearest_in_window": "#BBC0C6",
+  "contrast_on_ground": 7.07,
+  "clears_line": true
+ },
+ "furniture": {
+  "hex": "#6A929A",
+  "Lstar": 58.0,
+  "dE_to_window": 13.52,
+  "nearest_in_window": "#5E8578",
+  "contrast_on_ground": 5.06,
+  "clears_line": true
+ },
+ "page": {
+  "hex": "#BFCBBD",
+  "Lstar": 80.4,
+  "dE_to_window": 10.22,
+  "nearest_in_window": "#E3DED0",
+  "contrast_on_ground": 10.2,
+  "clears_line": true
+ },
+ "toner": {
+  "hex": "#272310",
+  "Lstar": 13.7,
+  "dE_to_window": 11.19,
+  "nearest_in_window": "#1D140D",
+  "contrast_on_ground": 1.09,
+  "clears_line": true
+ },
+ "accent": {
+  "hex": "#EFA31D",
+  "Lstar": 72.7,
+  "dE_to_window": 39.95,
+  "nearest_in_window": "#C08A5A",
+  "contrast_on_ground": 8.11,
+  "clears_line": true
+ },
+ "_note": {
+  "calibrated_line_p10": 10.09,
+  "how": "20,000 random colours' nearest neighbour in the 59 hexes of the last eight decks, p10. A hex under this line is closer to the recent window than nine tenths of all colours are.",
+  "ground_and_ink_sit_under_it": "and they do so BY CONSTRUCTION. Eight decks each carry one near-black ground and one pale ink, so that corner of the space is spent and no dark ground can clear a p10 line against it. The separation this deck does carry is in the four roles that clear, and in an accent at dE 39.95.",
+  "toner_on_page": 9.36
+ }
+}

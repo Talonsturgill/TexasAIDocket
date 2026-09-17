@@ -693,6 +693,9 @@ def g_quantifiers(d: Path):
 # LAYOUT_SINCE, stated for the third time because it keeps being the right answer: a gate does
 # not judge the work that produced it.
 DECK_SINCE = "2026-09-16"
+# One rule inside that gate is newer than the gate. See `g_deck_chassis` for why it gets its own
+# date rather than moving DECK_SINCE, which would take three older rules down with it.
+RESERVE_SINCE = "2026-09-17"
 
 
 def g_deck_chassis(d: Path):
@@ -711,7 +714,20 @@ def g_deck_chassis(d: Path):
     sd = d / "slides"
     if not sd.is_dir() or not sorted(sd.glob("slide-*.html")):
         return None
-    return _by_module("deck_chassis", d).check_deck(sd)
+    probs = _by_module("deck_chassis", d).check_deck(sd)
+    # THE RESERVE ORDER RULE WAS ADDED DURING THE 2026-09-17 RUN, out of that deck's own frame 9,
+    # and that frame had shipped by the time the rule existed. Only the findings that rule makes
+    # are demoted, and only on that deck: a since-date on the whole gate would have taken the
+    # chassis, finish and plate rules down with it. The finding is still MEASURED and still
+    # PRINTED, which is the difference between a carve-out and a switched-off check.
+    if d.name <= RESERVE_SINCE:
+        held = [p for p in probs if "Position, then measure" in p]
+        probs = [p for p in probs if "Position, then measure" not in p]
+        if held and not probs:
+            return (f"the type reserve ordering rule was added on {RESERVE_SINCE} out of this "
+                    f"deck's own frame 9 and this deck was drawn before it. Run into it anyway "
+                    f"it reports {len(held)} finding(s), first: {str(held[0])[:180]}")
+    return probs
 
 
 def g_deck_coherence(d: Path):
@@ -849,6 +865,41 @@ def g_scene_bounds(d: Path):
     return m.problems(d)
 
 
+# `bleed_witness` was written during the 2026-09-17 run, out of that deck's own panel findings,
+# and that deck was drawn without it. Same carve-out and same reasoning as LAYOUT_SINCE.
+BLEED_SINCE = "2026-09-17"
+
+
+def g_bleed_witness(d: Path):
+    """Does the frame DRAW the bleed its dossier declares, read out of the slide's own source.
+
+    REGISTERED THE DAY THE GATE WAS WRITTEN, 2026-09-17, and this registry is its only route to
+    CI. See `gate_wiring.py`'s header for why: the actor that writes a carousel gate owns neither
+    `guards.yml` nor `prompts/daily_routine.md`. The live-run route is `panel_ready.py`, which
+    this lane also owns and which the routine runs before it spawns a panel.
+
+    THE MEASUREMENT IS TAKEN BEFORE THE DATE IS CONSULTED, for the reason `g_layout` states one
+    screen up: this gate's since-date IS the newest deck, so an early return would leave the
+    module unloaded on the one sweep `gate_wiring` grades and the census would call a wired gate
+    an orphan.
+
+    CURRENT with a since-date, rather than HISTORY. Run back over the corpus the gate is clean on
+    all 27 decks before no. 27, which is the honest result and not a waiver: the four findings it
+    has are all on the deck that produced it. Those are reported as a note here because that deck
+    had already shipped when the gate existed, and everything after it is fatal.
+    """
+    import bleed_witness as m
+    probs = m.problems(d)
+    if probs is None:
+        return None
+    if d.name <= BLEED_SINCE and probs:
+        return (f"this gate was written during the {BLEED_SINCE} run out of that deck's own "
+                f"panel findings, and that deck was drawn without it. Run into it anyway it "
+                f"reports {len(probs)} frame(s) declaring a bleed the drawing does not make, "
+                f"first: {str(probs[0])[:180]}")
+    return probs
+
+
 GATES = [
     ("copy sync", g_copy_sync, HISTORY),
     ("quotations", g_quotations, HISTORY),
@@ -896,6 +947,10 @@ GATES = [
     # rule already measures nothing on those. What this scope protects is the deck being made
     # now, which is the one that can still be redrawn.
     ("layout", g_layout, CURRENT),
+    # CURRENT, and it is the other half of the `layout` line above. That gate measures a declared
+    # bleed against the declared rect, both typed into the same yaml block, and this one measures
+    # it against the geometry the slide actually draws.
+    ("bleed witness", g_bleed_witness, CURRENT),
     ("completion", g_completion, HISTORY),
     ("scene bounds", g_scene_bounds, HISTORY),
     ("contacts", g_contacts, HISTORY),

@@ -1,0 +1,52 @@
+{
+ "lens": "reader",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Frames 1, 6 and 9 are real: a true-scale figure at a lit monitor, a 52-person isogram that counts correctly at thumb size, and a walker toward a window with a long cast shadow. Five of nine (2, 4, 5, 7, 8) are type on a graded field. Frame 2 is ruled lines on a pale panel with no subject and no scale. On 4 and 5 the copy sits on translucent plates plainly added because the art was drawn without knowing where the type goes, and frames 3, 4 and 7 each leave a dead lower third. Grading and halftone are genuinely there; the drawn-subject count is not."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.0,
+   "why": "One teal-caliche world, one chassis, and a real motif: the empty orange box changes state across 4, 5, 7 and 8. Against that, the contact sheet read as a filmstrip alternates register six times in eight cuts. The dark/light split maps to human/document, which is defensible, but frames 1 to 3 flip twice with no argumentative turn. No five-pointed star mark is visible on any frame, and the footer carries claim ids where brand.yaml's constellation calls county-plus-coordinates fixed."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "42 claims, 5 absence records that state their method, 8 rejected findings. Every slide numeral traces: 32% to c5, 55,000 to c6, nine seconds to c7 spelled out per c7's own note, fifty two and 6% to c14, all 19 section and subchapter headings to c24 through c42 after three rounds of repair. Frame 6 honors c14's warning by printing 'DRAFT REPLIES TO PATIENT MESSAGES' in its footer strip so the different feature is named. Two small compressions hold it off 9: frame 9's body drops c15's emergency carve-out, and the caption's 'The system reports 32% fewer follow-up messages' loses c5's 'patients have sent'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A reader knows the entity, the city, the tool, that this is an announcement rather than a regulator's finding, and that the enforcement door is the attorney general with no private suit. 'Your lab result note' makes the stake personal rather than abstract. Short of 9 because no county is named anywhere, because frame 9's card says complaints are directed to the AG without naming the online mechanism c18 establishes and the first comment carries no AG link, and because the caption never tells the reader what asking actually gets them."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns a swipe and the turn is real and declared at frame 4, reinforced at 6 and 7. Frame 9 lands, and is the best-composed frame after the cover. But frame 2 restates the cover in mechanism terms and sits in position two, and frame 3 already carries what it is reaching for; frame 8 is a second consecutive document frame after 7. The rubric's 9 requires nothing cuttable and two frames are."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "'The test healthsystemCIO points to was not in Texas.' is the deck's best line and is exactly the brand's register, Texas-first without boosterism. No banned phrases in the deck's own prose; 'care journey' on frame 4 is inside a verbatim quote the frame exists to transcribe. Dates are month-first ordinal and correctly bare in the post's own year. Flat where frames 2 and 3 read like product documentation, and the caption's second paragraph is functional rather than voiced."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "New palette, new chassis, and an unspent opening move. Against it: third health-care AI deck in nine days, second Houston hospital in nine; the close is 'ask the one question the decision leaves open', 12 of 26 shipped captions and spent two runs ago; and the spine is a printed absence for the sixth time after this ledger's own angle_notes on decks 11, 14, 15, 16 and 23 each asked the next run to stop."
+  }
+ ],
+ "weighted_score": 6.89,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Spend the caption's first line, the only text every reader is guaranteed to see, on the stake or the instruction rather than on a paraphrase of the cover headline sitting directly above it."
+}

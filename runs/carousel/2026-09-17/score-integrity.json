@@ -1,0 +1,52 @@
+{
+ "lens": "integrity",
+ "round": 5,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Frame 1 is genuinely good (true scale, keyboard, monitor reading as a monitor, real glow on the desk) and frames 4, 5, 7, 8 are drawn sheets with real edges, contact shadows, paper grain and type seated in quiet the picture made. But frame 3 is an almost empty pale field in which the monitor reads as a floor lamp, which is the exact defect the dossier says three rounds fixed by arithmetic, and the 'empty chair' it calls the frame's whole argument is an untextured grey quadrilateral with no chair geometry. Frame 2's declared emissive panel renders as a pale ruled sheet indistinguishable in stock from the statute pages on 7 and 8. Frame 9's standing figure is a stick-man with a flipper arm and merged legs. And three acceptance lists (frames 4, 7, 8) assert the sheet is cropped by the BOTTOM frame edge; in all three renders it has a visible bottom edge well inside the frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One halftone screen on all nine, one computed palette at dE 10.09, one furniture strip, and the constant front edge at y 1096 is verifiable in the pixels on frames 1, 2, 3 and 9. The value track has a mean adjacent jump of 8.32 against a 14.9 ceiling and no hard cut, so adjacency genuinely holds. The empty-rule motif is legible in the filmstrip. Against that: the accent lives on two materials by the deck's own admission; the three-material plan is not readable, since 2, 4, 5, 7 and 8 all render as the same pale stock; and frame 9's daylight window is the declared lightest passage yet casts nothing."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "I checked all nineteen lines of frame 8 against c24 to c42 individually and every one is a literal substring of a claim's own quote, and the statute source file confirms 16 sections with none headed Applicability. compute.py genuinely re-derives the section list, the term list and the rank sum by regex over fetched text. The rejected finding is respected on every frame. Every numeral traces. But three places stretch a source: frame 7 sets (f) from mid-sentence at 'the provider of the service or treatment' with no ellipsis, in the same typographic form as (b) and (c) which ARE quoted from their openings, silently dropping 'If an artificial intelligence system is used in relation to health care service or treatment'; frame 4's eight empty boxes under a column headed FOUND carry none of absences[0]'s own qualification; and the caption's opening drops the word draft that every claim and every frame keeps, while its 'nine seconds saved per result comment' drops c7's 'on average'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "Names the system, the city, the vendor, the statute section, the effective date, the enforcement route and gives one thing to do that is timed to the statute's own trigger. Frame 9's card is the most usable thing in the deck. What is missing is a county, any deadline, and any body that will resolve the ambiguity, so the reader leaves with a question rather than a decision. The deck is honest that this is a question, which is the right call, but it caps the stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe with second person and a concrete object, the turn at 4 into 5 is real, and 7 turns again onto the statute. The close lands. But two of nine frames are slack: frame 2 restates what frame 1's dek already said, and frame 3's hook is a qualifier rather than a move. Both are cuttable, which the rubric's 9 band forbids."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and declarative, no boosterism, no doom, honest about what it can't settle. 'Read the other way, (f) sets only the timing for a duty (b) gives to an agency' is the best line in the deck and is exactly this product's register. But nothing here is specifically Texan: Houston is a word in a kicker, there is no regional detail and no vernacular anywhere in nine frames or the caption."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Third clinical deck inside nine days: no. 19 on September 9th, no. 23 on September 13th, this one on the 17th. The instrument, a corporate release read against an official record, is what no. 26 shipped ONE DAY earlier. topics.json's own angle_notes on decks 17, 19, 23 and 26 each record that dedupe_check cannot see an instrument repeat; this is the fourth. Credit for a genuinely new palette and for the isotype on frame 6, but the beat and the instrument are both recognisably last week."
+  }
+ ],
+ "weighted_score": 6.66,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 3 so the empty chair is a chair a reader recognises at feed size and the monitor stops reading as a floor lamp, because four consecutive rounds have repaired that frame's projection arithmetic without once changing what the pixels show."
+}
