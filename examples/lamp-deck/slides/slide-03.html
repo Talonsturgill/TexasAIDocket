@@ -1,0 +1,134 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 3 of 9. Archetype FULL_BLEED.
+     ROOM ONE, ARLINGTON. The camera pulls all the way back off the desk for the first time.
+     The desk and its pool are now the FOREGROUND, cropped at the bottom edge, and the room
+     recedes into dark behind it: four rows of empty student desks, each row closer to the
+     ground colour than the last, so distance reads as light and not merely as size.
+     This is the establishing frame and frame 6 is its answer. Planned frame median L* 14. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:800px; font-size:100px; }
+  .dek  { left:84px; top:408px; width:640px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">The courses do not change.</h1>
+<p class="dek">The instructor still teaches. The machine lives in the homework, across four undergraduate courses.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Room one, Arlington', counter: "03 / 09", src: 'c13 c33   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 100, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // THE ROOM, four rows receding, each mixed further toward the ground colour.
+    // Overlap and value carry the depth. Nothing is drawn smaller and called far away.
+    var rows = [];
+    for (var r = 0; r < 4; r++) {
+      (function (r) {
+        rows.push(function (c) {
+          var t = r / 4;
+          var y = 612 + r * 104;
+          var sc = 1 - t * 0.30;
+          for (var d = -1; d < 5; d++) {
+            var x = 96 + d * 214 * sc + r * 58;
+            c.beginPath();
+            c.rect(x, y, 168 * sc, 13 * sc);                 // the desk top
+            c.rect(x + 16 * sc, y + 13 * sc, 10 * sc, 58 * sc); // near leg
+            c.rect(x + 140 * sc, y + 13 * sc, 10 * sc, 58 * sc);
+            c.fill();
+            // a chair back behind each, a second silhouette so the row is not a fence
+            c.beginPath();
+            c.rect(x + 52 * sc, y - 46 * sc, 66 * sc, 9 * sc);
+            c.rect(x + 80 * sc, y - 46 * sc, 9 * sc, 46 * sc);
+            c.fill();
+          }
+        });
+      })(r);
+    }
+    Lm.room(cx, { layers: rows });
+
+    // the far wall, the darkest thing in the deck, with the doorway's thin spill
+    // the far wall, with the lamp's own falloff across it rather than a flat black fill
+    cx.save();
+    var wg = cx.createLinearGradient(1080, 300, 180, 596);
+    wg.addColorStop(0, "#14101F"); wg.addColorStop(1, "#06040C");
+    cx.fillStyle = wg; cx.fillRect(0, 0, W, 596);
+    cx.fillStyle = "rgba(224,149,106,0.16)"; cx.fillRect(884, 388, 22, 208);
+    cx.restore();
+
+    // THE FOREGROUND DESK, cropped by the bottom edge, the reader's own seat
+    Lm.desk(cx, { y: 1088, mask: mask, seed: 77, lampX: 858, lampY: 1140 });
+    // clear of the site line's own band at right 80, because the cure for art under furniture
+    // is to move the art, never to carve a hole in the light where the furniture sits
+    var SX = 286, SY = 1088, SW = 448, SH = 300;
+    Lm.sheet(cx, { x: SX, y: SY, w: SW, h: SH, rot: -0.02, seed: 90 });
+    Lm.quiet(cx, boxes, function (g) {
+      for (var q = SY + 44; q < SY + SH - 120; q += 46) {
+        Lm.rule(g, { x0: SX + 26, x1: SX + SW - 24, y: q });
+      }
+    });
+    // the pool, tight on the near page only, so the room stays dark
+    Lm.pool(cx, { x: 536, y: 1104, r: 540, squash: 0.46, rot: -0.10, strength: 1.05, reserve: lit });
+
+    // the lamp dying before the frame edge, which quiets the furniture band
+    Lm.falloff(cx, { from: 1150, mid: 0.70, end: 0.95 });
+
+    // no tick in this frame. The room is where the machine is not.
+    Lm.shade(cx, { x: 946, y: 858, s: 0.62, rot: 0.10 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 4 of 9. Archetype CLOSE_CROP.
+     THE ORIGIN. Two pages on one desk under the one lamp: a child's working on the left and a
+     student's on the right, the same hand-height apart a kitchen table puts them. Two ticks,
+     one on each page, because the thing she saw was the same thing twice. The camera is back
+     down at page height, which is frame 1's height, so the deck returns to where it began
+     before it leaves for good. Planned frame median L* 19. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:830px; font-size:100px; }
+  .dek  { left:84px; top:412px; width:720px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">It started with her own children.</h1>
+<p class="dek">Shuchi Deb is an associate professor at the University of Texas at Arlington. She watched her own children and her students use AI without learning.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260919);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'The origin', counter: "04 / 09", src: 'c5 c11   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 100, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    Lm.desk(cx, { y: 0, mask: mask, seed: 140, lampX: 540, lampY: 210 });
+
+    // the LEFT page, the child's: larger letters, fewer lines, closer to the frame edge
+    var AX = -54, AY = 700, AW = 560, AH = 640;
+    Lm.sheet(cx, { x: AX, y: AY, w: AW, h: AH, rot: 0.022, seed: 151 });
+    for (var a = AY + 78; a < AY + AH - 30; a += 74) {
+      Lm.rule(cx, { x0: AX + 30, x1: AX + AW - 26, y: a });
+    }
+    Lm.working(cx, { x: AX + 92, y: AY + 132, lines: 4, step: 74, min: 180, jitter: 230,
+                     weight: 5.2, seed: 1611 });
+
+    // the RIGHT page, the student's: tighter, denser, running off the right edge
+    var BX = 566, BY = 762, BW = 610, BH = 588;
+    Lm.sheet(cx, { x: BX, y: BY, w: BW, h: BH, rot: -0.016, seed: 172 });
+    for (var b = BY + 58; b < BY + BH - 20; b += 50) {
+      Lm.rule(cx, { x0: BX + 26, x1: BX + BW - 20, y: b });
+    }
+    Lm.working(cx, { x: BX + 74, y: BY + 106, lines: 6, step: 50, min: 240, jitter: 300,
+                     weight: 3.2, seed: 1733 });
+
+    // ONE POOL over both, because it is one lamp and one kitchen table
+    Lm.pool(cx, { x: 552, y: 792, r: 720, squash: 0.50, rot: -0.06, strength: 0.98, reserve: lit });
+
+    // THE MOTIF DOUBLES. One tick per page, the same mark on two different hands.
+    Lm.tick(cx, { x: AX + 54, y: AY + 250, w: 10, h: 52, glow: 30 });
+    Lm.tick(cx, { x: BX + 42, y: BY + 214, w: 9, h: 44, glow: 26 });
+
+    // the lamp dying at the near edge of the desk, which is what lets the furniture read
+    Lm.falloff(cx, { from: 1178, mid: 0.72, end: 0.94 });
+
+    Lm.shade(cx, { x: 596, y: 168, s: 0.70, rot: -0.04 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

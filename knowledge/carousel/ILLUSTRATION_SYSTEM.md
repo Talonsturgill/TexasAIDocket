@@ -166,6 +166,69 @@ behind display type.
 
 A wash under 0.55 is atmosphere and is allowed. The distinction is measured, not argued.
 
+### WHAT THE FIRST CHASSIS DECK COST TO BUILD, and every line here was paid for
+
+`examples/lamp-deck/` is the reference build, nine frames of the 2026-09-16 story rebuilt in
+this system with the same claims and the same copy. It went from 34 machine QA failures to 0.
+These are the things that cost rounds, so the next deck does not pay for them again.
+
+**A hole punched in a light layer is a plate with the sign flipped.** The reserve was punched
+out of the lamp's pool at full strength, and it put a visible dark rounded rect behind the site
+line and the footnote. This file's own paragraph above had already called that "a plate drawn in
+the negative" and the code did it anyway. Light DIMS toward type. It is not removed from around
+it. Soft and partial, and a wide feather.
+
+**A frame has two kinds of type and they want OPPOSITE things from the light.** Light on dark
+(the headline, the dek, the furniture) needs the light dimmed toward it or the wash destroys the
+contrast. Dark on light (type printed ON a drawn document) NEEDS the light, and punching the
+pool away from it put a dark blob behind the footnote and took its contrast DOWN. One reserve
+list for both is wrong twice. Keep two, and reserve BOTH from drawn edges, because a rule
+through a glyph is a strike whichever way the values run.
+
+**A MID GROUND IS THE WORST GROUND, and no choice of ink fixes it.** Measured off the renders,
+the band behind the furniture on three frames sat at Y 0.086 to 0.193. Dark ink measured 1.7 to
+3.0 against it and pale ink would have measured 1.4. Three rounds went into choosing an ink and
+all three were wasted, because nothing contrasts against a mid tone. **Move the GROUND, not the
+ink.** The lamp's falloff takes the band to the deck's own dark and the furniture is then one
+pale ink across all nine frames, which is what it should have been from the start.
+
+**Canvas text cannot be registered to DOM text in a variable font.** TYPE_AS_OBJECT was carved
+by drawing the headline again on the canvas, offset either side of the cast direction. It
+ghosted, and not by a fixable amount: the headline is Archivo at `"wdth" 116` and `cx.font` has
+no width axis, so the two copies agreed at the first letter and drifted further apart with every
+glyph after it. **Carve with a `text-shadow` pair** computed from `TXDECK.castDir()`. It is
+applied to the glyphs themselves so it can never drift, and the type stays vector in the PDF.
+
+**A rim light is a clip, never a stroke.** Stroking a layer's whole path outlines every rect on
+all four sides and turns a room of furniture into a wireframe diagram of a room of furniture,
+which is the "diagram of a place" the judges named, drawn by the call meant to cure it. Clip to
+the shapes and paint a band along the lit edge.
+
+**Atmospheric perspective can delete the subject.** The first room frame mixed every row so far
+toward the ground colour that the near row was within 3 L* of the wall, and the room read as an
+empty black rectangle. A depth cue that takes the nearest object to within noise of the
+background has not created depth.
+
+**A page's own rules do not dodge that page's own type.** Quieting a document's rules against
+its own text punches a feathered hole whose boundary lands inside the glyph band, and the QA
+harness reads the repair as a strike. The tell is that the reported strike MOVES when the text
+moves. Place the rules clear of the blocks, which is how a document is set anyway.
+
+**Bisect before theorising.** One strike survived four different fixes. Removing the pool made
+the frame pass, which named the cause in one render: the title sat on the steepest part of the
+falloff. The four fixes before that were aimed at the tooth, the dither, the reserve and the
+leading, and every one of them was a guess. **Never reason from an absence to a cause without
+first asking something that can answer**, which is the rule CLAUDE.md already states about
+empty CI check lists and is the same rule here.
+
+**When a frame's QA goes sideways across rounds, recompose it rather than tune it.** Frame 7
+went 45, 53, 52 and back on the same measure while the falloff and the ruled bed were moved
+around. Its real problem was that the subject sat in the middle with blank stock under it.
+Moving the page down so the document occupies the lower two thirds cleared it in one render.
+This is the repro of the round rule in `prompts/daily_routine.md`: every round closing what the
+last one named and naming a new one is the signal to stop repairing and start over on that
+frame.
+
 ### The order of work, amended
 
 The chassis comes before any frame. Phase 10.5 builds it and renders ONE probe frame against

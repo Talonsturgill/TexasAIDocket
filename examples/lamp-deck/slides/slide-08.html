@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 8 of 9. Archetype GRID.
+     THREE READINGS, NO SCORE. Three pages side by side in one pool, the isotype: a count the
+     reader can count. Each page carries ONE tick at a different height, because the machine
+     reads three things and reports each separately. The pages are the same stock and the same
+     size, which is what makes them a count rather than three pictures. Planned frame median
+     L* 22. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:800px; font-size:104px; }
+  .dek  { left:84px; top:392px; width:700px; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:19px;
+          letter-spacing:.08em; line-height:1.4; color:#B6A594; width:270px; z-index:10; }
+  .lab.a{ left:66px;  top:1148px; }
+  .lab.b{ left:404px; top:1148px; }
+  .lab.c{ left:742px; top:1148px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">It reads three things.</h1>
+<p class="dek">Kind and listening. Following what the person wants to talk about. Not connecting.</p>
+<div class="lab a">KIND AND<br>LISTENING</div>
+<div class="lab b">FOLLOWS THAT<br>CONVERSATION</div>
+<div class="lab c">DOESN'T CONNECT<br>WITH THE PERSON</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260923);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Three readings, no score', counter: "08 / 09", src: 'c8 c9   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 78, max: 104, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    Lm.desk(cx, { y: 0, mask: mask, seed: 360, lampX: 540, lampY: 480 });
+
+    // ONE POOL over all three, drawn BEFORE the pages so it lights the desk they sit on
+    Lm.pool(cx, { x: 540, y: 820, r: 880, squash: 0.60, rot: 0.0, strength: 1.02, reserve: lit });
+
+    // THE THREE, identical stock at identical size. Only the tick's height differs, which is
+    // the whole reading. A varying page size here would make it a chart of something else.
+    var tickY = [232, 342, 452];
+    for (var i = 0; i < 3; i++) {
+      var x = 66 + i * 338, y = 690, w = 272, h = 404;
+      Lm.sheet(cx, { x: x, y: y, w: w, h: h, rot: (i - 1) * 0.012, seed: 371 + i * 17 });
+      Lm.quiet(cx, boxes, function (g) {
+        for (var rl2 = y + 46; rl2 < y + h - 24; rl2 += 44) {
+          Lm.rule(g, { x0: x + 22, x1: x + w - 20, y: rl2 });
+        }
+      });
+      Lm.working(cx, { x: x + 52, y: y + 74, lines: 3, step: 44, min: 96, jitter: 120,
+                       weight: 2.6, ink: "rgba(40,31,24,0.46)", seed: 3711 + i * 29 });
+      // ONE tick per page, each at its own height
+      Lm.tick(cx, { x: x + 28, y: y + tickY[i] - 190, w: 9, h: 40, glow: 24 });
+    }
+
+    // the pool again, at low strength, OVER the pages so the light is on them and not under
+    Lm.pool(cx, { x: 540, y: 880, r: 640, squash: 0.40, rot: 0.0, strength: 0.34, reserve: lit });
+
+    // the lamp dying at the near edge of the desk, which is what lets the furniture read
+    Lm.falloff(cx, { from: 1178, mid: 0.72, end: 0.94 });
+
+    Lm.shade(cx, { x: 556, y: 486, s: 0.56, rot: 0.02 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

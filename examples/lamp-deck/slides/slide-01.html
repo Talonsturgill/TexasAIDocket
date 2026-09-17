@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 1 of 9. Archetype CLOSE_CROP.
+     THE COVER. The camera is 0.32 m above a student's own page, cropped by three edges so the
+     reader is inside it. The lamp is up and to the right and the pool falls across the working.
+     THE RULED ANSWER LINE IS EMPTY and it stays empty for nine frames. The machine's entire
+     contribution is ONE 9 mm tick in the margin beside line seven, and you have to look for it.
+     The working is TOKEN STROKES and never letterforms, so the frame prints no word and no
+     numeral that no source contains. Planned frame median L* 22. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:158px; width:880px; font-size:118px; }
+  .dek  { left:84px; top:454px; width:760px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">It was built to not tell you.</h1>
+<p class="dek">A federal grant is paying for a tutor that answers a student with a hint.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260916);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'The hint, at its actual size', counter: "01 / 09", src: 'c15 c10 c4   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 84, max: 118, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the desk the page lies on, running off all three lower edges
+    Lm.desk(cx, { y: 0, mask: mask, seed: 12, lampX: 880, lampY: 190 });
+
+    // THE SHEET, bigger than the frame on three sides. The reader is inside it.
+    var PX = -70, PY = 560, PW = 1290, PH = 980;
+    Lm.sheet(cx, { x: PX, y: PY, w: PW, h: PH, rot: -0.013, seed: 31 });
+
+    // the lamp's pool, landing on the page from the upper right
+    Lm.pool(cx, { x: 905, y: 505, r: 760, squash: 0.60, rot: -0.20, strength: 1.0, reserve: lit });
+
+    // the pad's ruled lines, and the margin rule the one mark sits outside of
+    Lm.quiet(cx, boxes, function (g) {
+      for (var rl = PY + 96; rl < PY + PH - 40; rl += 58) {
+        Lm.rule(g, { x0: PX + 34, x1: PX + PW - 30, y: rl });
+      }
+    });
+    cx.save();
+    cx.strokeStyle = "rgba(196,110,96,0.30)"; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.moveTo(PX + 196, PY); cx.lineTo(PX + 196, PY + PH); cx.stroke();
+    cx.restore();
+
+    // the student's own working, seven lines of it, thinning as it goes down the page
+    Lm.working(cx, { x: PX + 232, y: PY + 152, lines: 7, step: 58,
+                     min: 300, jitter: 470, weight: 3.6, seed: 811 });
+
+    // THE ANSWER LINE, heavier than the rules above it, and nothing on it
+    Lm.rule(cx, { x0: PX + 196, x1: PX + 1050, y: PY + 806, answer: true });
+
+    // THE ONE MARK THE MACHINE MADE, in the margin beside line seven
+    Lm.tick(cx, { x: PX + 168, y: PY + 486, w: 9, h: 46, glow: 30 });
+
+    // the lamp dying at the near edge of the desk, which is what lets the furniture read
+    Lm.falloff(cx, { from: 1178, mid: 0.72, end: 0.94 });
+
+    // the lamp itself, top right, telling the reader where the light is
+    Lm.shade(cx, { x: 1016, y: 132, s: 0.82, rot: 0.16 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

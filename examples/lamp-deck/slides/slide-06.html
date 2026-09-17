@@ -1,0 +1,140 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 6 of 9. Archetype FULL_BLEED.
+     ROOM TWO, FORT WORTH. THE TURN, AND IT IS FRAME 3's CAMERA WITH THE LAMP MOVED. Same
+     geometry, same rows, same foreground desk, and the reader feels the second room before the
+     headline argues it. The one new element is a terminal's cool glow, because a police
+     training station is a lit thing and the lamp is not the only emitter here. Cool against
+     warm is how the two rooms differ without the deck changing stock. Planned frame median
+     L* 16. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:860px; font-size:100px; }
+  .dek  { left:84px; top:446px; width:660px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">The same machine is in a second room.</h1>
+<p class="dek">Testing with the Fort Worth Police Department has already begun.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260921);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Room two, Fort Worth', counter: "06 / 09", src: 'c7 c8 c9   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 76, max: 100, maxLines: 3 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // THE SAME ROWS AS FRAME 3, same pitch, same scale ladder, mirrored about the centre so
+    // the room reads as its twin rather than its copy.
+    var rows2 = [];
+    for (var r = 0; r < 4; r++) {
+      (function (r) {
+        rows2.push(function (c) {
+          var t = r / 4, y = 612 + r * 104, sc = 1 - t * 0.30;
+          for (var d = -1; d < 5; d++) {
+            var x = W - (96 + d * 214 * sc + r * 58) - 168 * sc;
+            c.beginPath();
+            c.rect(x, y, 168 * sc, 13 * sc);
+            c.rect(x + 16 * sc, y + 13 * sc, 10 * sc, 58 * sc);
+            c.rect(x + 140 * sc, y + 13 * sc, 10 * sc, 58 * sc);
+            c.fill();
+            c.beginPath();
+            c.rect(x + 52 * sc, y - 46 * sc, 66 * sc, 9 * sc);
+            c.rect(x + 80 * sc, y - 46 * sc, 9 * sc, 46 * sc);
+            c.fill();
+          }
+        });
+      })(r);
+    }
+    Lm.room(cx, { layers: rows2 });
+
+    cx.save();
+    var wg2 = cx.createLinearGradient(0, 300, 900, 596);
+    wg2.addColorStop(0, "#121524"); wg2.addColorStop(1, "#06040C");
+    cx.fillStyle = wg2; cx.fillRect(0, 0, W, 596);
+    cx.restore();
+
+    // THE TERMINAL, the one cool emitter, standing on the far side of the room
+    Lm.quiet(cx, boxes, function (g) { Lm.glow(g, { x: 214, y: 470, r: 330 }); }, { feather: 40 });
+    Lm.quiet(cx, boxes, function (g) {
+      g.save();
+      g.fillStyle = "#0B0A18";
+      g.fillRect(140, 384, 168, 112);          // the screen's bezel, dark against its own light
+      g.fillStyle = "rgba(150,186,226,0.30)";
+      g.fillRect(150, 394, 148, 92);
+      g.fillStyle = "#0E0C1C";
+      g.fillRect(196, 496, 56, 46);            // the stand
+      g.restore();
+    });
+
+    // the foreground desk, the lamp now on the LEFT, which is the whole turn
+    Lm.desk(cx, { y: 1088, mask: mask, seed: 260, lampX: 262, lampY: 1140 });
+    var TX2 = 346, TY2 = 1088, TW2 = 448, TH2 = 300;
+    Lm.sheet(cx, { x: TX2, y: TY2, w: TW2, h: TH2, rot: 0.018, seed: 271 });
+    Lm.quiet(cx, boxes, function (g) {
+      for (var q2 = TY2 + 44; q2 < TY2 + TH2 - 120; q2 += 46) {
+        Lm.rule(g, { x0: TX2 + 26, x1: TX2 + TW2 - 24, y: q2 });
+      }
+    });
+    Lm.pool(cx, { x: 544, y: 1104, r: 540, squash: 0.46, rot: 0.12, strength: 1.02, reserve: lit });
+
+    // ONE TICK, on the second room's page. The machine arrived here too.
+    Lm.tick(cx, { x: TX2 + 30, y: TY2 + 84, w: 9, h: 44, glow: 26 });
+
+    Lm.falloff(cx, { from: 1150, mid: 0.70, end: 0.95 });
+
+    Lm.shade(cx, { x: 126, y: 864, s: 0.62, rot: -0.12 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

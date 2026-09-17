@@ -1,0 +1,108 @@
+<!doctype html>
+<!-- CAROUSEL 26R, frame 9 of 9. Archetype CLOSE_CROP.
+     THE CLOSE, AND IT IS FRAME 1's CAMERA EXACTLY. Same height above the same page, same crop,
+     same ruled answer line, and the lamp has burned down to its lowest strength in the deck.
+     THERE IS NO TICK. The motif resolves to absence, because the award has not started and
+     nothing has been graded, and the one mark the machine has made on every frame since the
+     cover is simply not there. That is the argument drawn rather than captioned, and it is why
+     this frame carries no new object at all. Planned frame median L* 13. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#08060F; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F2E9DA;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:30px; line-height:1.42; color:#BEB2A4; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#6E6376;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:840px; font-size:104px; }
+  .dek  { left:84px; top:404px; width:720px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="color:#A99CB2">texasaidocket.com</div>
+<h1 class="hook" id="hook">Nothing has been graded yet.</h1>
+<p class="dek">The award starts October 1st, 2026 and runs to September 30th, 2029. Neither the university nor the federal record publishes a result.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/lamp.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260924);
+    TXLAYOUT.mount(document.body, {
+      kicker: "The record's own dates", counter: "09 / 09", src: 'c27 c25 c13   TEXAS AI DOCKET', ink: '#A99CB2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 78, max: 104, maxLines: 2 });
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, Lm = TXLAMP;
+
+    // TYPE RESERVES, measured off the real fitted type, handed to the art BEFORE it draws.
+    // No plate. The quiet the type sits in is quiet the picture actually has.
+    // TWO RESERVES, because the two kinds of type on this deck want OPPOSITE things from the
+    // lamp, and the third build of this frame set used one list for both and was wrong twice.
+    //
+    //   LIGHT ON DARK (.hook, .dek, .lab and the furniture) sits on the dark desk. The pool
+    //   washing across it destroys the contrast, so the LIGHT is dimmed toward those words.
+    //
+    //   DARK ON LIGHT (.doc) is ink printed ON a lit sheet. It NEEDS the light. Punching the
+    //   pool away from it is what put a dark blob behind the footnote on frame 7 and took its
+    //   contrast DOWN, which is the same mistake as a plate with the sign flipped.
+    //
+    // Both lists are reserved from the drawn EDGES (rules, bezels, sheet edges) via Lm.quiet,
+    // because a line through a glyph is a strike whichever way round the values run.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .doc, .tx-site", 18);
+    var lit   = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .lab, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // frame 1's desk and frame 1's seed, so the grain is the same grain
+    Lm.desk(cx, { y: 0, mask: mask, seed: 12, lampX: 880, lampY: 190 });
+
+    // FRAME 1's SHEET, at frame 1's rect and frame 1's rotation
+    var PX = -70, PY = 560, PW = 1290, PH = 980;
+    Lm.sheet(cx, { x: PX, y: PY, w: PW, h: PH, rot: -0.013, seed: 31 });
+
+    // the lamp at its lowest in the deck. Same place, less of it.
+    Lm.pool(cx, { x: 905, y: 505, r: 660, squash: 0.60, rot: -0.20, strength: 0.66, reserve: lit });
+
+    Lm.quiet(cx, boxes, function (g) {
+      for (var rl3 = PY + 96; rl3 < PY + PH - 40; rl3 += 58) {
+        Lm.rule(g, { x0: PX + 34, x1: PX + PW - 30, y: rl3 });
+      }
+    });
+    cx.save();
+    cx.strokeStyle = "rgba(196,110,96,0.22)"; cx.lineWidth = 2.4;
+    cx.beginPath(); cx.moveTo(PX + 196, PY); cx.lineTo(PX + 196, PY + PH); cx.stroke();
+    cx.restore();
+
+    // THE ANSWER LINE, still empty, nine frames later
+    Lm.rule(cx, { x0: PX + 196, x1: PX + 1050, y: PY + 806, answer: true });
+
+    // AND NO TICK. Deliberately. The margin beside line seven is bare.
+
+    Lm.falloff(cx, { from: 1178, mid: 0.72, end: 0.94 });
+
+    Lm.shade(cx, { x: 1016, y: 132, s: 0.82, rot: 0.16 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

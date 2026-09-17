@@ -215,17 +215,34 @@
     opts = opts || {};
     var feather = opts.feather == null ? 30 : opts.feather;
     var strength = opts.strength == null ? 1 : opts.strength;
+    /* A BLURRED ROUNDED RECT PER BOX, NOT A RADIAL GRADIENT.
+     *
+     * The first build used a radial sized from the rect's diagonal, and it under-covered every
+     * WIDE FLAT box, which is the shape a line of text actually is. A 200x30 site line got a
+     * radial whose falloff began well inside its own ends, so the middle was punched and the
+     * ends were not, and the QA harness correctly reported a ruled line striking the glyphs it
+     * was supposed to have been cleared from. A hole for a line of type has to be the shape of
+     * a line of type.
+     */
     ctx.save();
     ctx.globalCompositeOperation = "destination-out";
+    ctx.filter = "blur(" + feather * 0.5 + "px)";
+    ctx.fillStyle = "rgba(0,0,0," + strength + ")";
     for (var i = 0; i < rects.length; i++) {
       var r = rects[i];
-      var cx = r[0] + r[2] / 2, cy = r[1] + r[3] / 2;
-      var rad = Math.hypot(r[2], r[3]) / 2 + feather;
-      var g = ctx.createRadialGradient(cx, cy, Math.max(1, rad - feather * 2), cx, cy, rad);
-      g.addColorStop(0, "rgba(0,0,0," + strength + ")");
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(r[0] - feather, r[1] - feather, r[2] + feather * 2, r[3] + feather * 2);
+      var x = r[0] - feather * 0.4, y = r[1] - feather * 0.4;
+      var w = r[2] + feather * 0.8, h = r[3] + feather * 0.8;
+      var rad = Math.min(h / 2, 18);
+      ctx.beginPath();
+      if (ctx.roundRect) { ctx.roundRect(x, y, w, h, rad); }
+      else {
+        ctx.moveTo(x + rad, y);
+        ctx.arcTo(x + w, y, x + w, y + h, rad);
+        ctx.arcTo(x + w, y + h, x, y + h, rad);
+        ctx.arcTo(x, y + h, x, y, rad);
+        ctx.arcTo(x, y, x + w, y, rad);
+      }
+      ctx.fill();
     }
     ctx.restore();
   };
