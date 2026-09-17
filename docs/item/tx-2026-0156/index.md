@@ -9,7 +9,7 @@ ERCOT published the user guide for the Verification RFI on September 11th, 2026,
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf
 
-- Last checked: 2026-09-14
+- Last checked: 2026-09-17
 
 ## Dates
 
@@ -21,6 +21,7 @@ ERCOT published the user guide for the Verification RFI on September 11th, 2026,
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-14 · Admitted to the record. The grid operator has published the guide to the questionnaire every conditionally classified large load must answer. A notarized attestation from each of the three parties is part of a complete response. A load entity that does not supply what its provider needs may be taken off the process.
+- 2026-09-17 · The guide to the verification questionnaire is still posted where the record found it and still sets the same terms. Ten business days to answer, a notarized attestation from each participating party and the transmission provider as the only one able to send the finished response to the grid operator.
 
 ## Evidence
 

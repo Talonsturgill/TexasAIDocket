@@ -1,0 +1,44 @@
+{
+ "measured": "2026-09-17",
+ "at": "432px wide, median L*",
+ "ground": "#0F0C1C",
+ "ink": "#EDE6D6",
+ "note": "On a DARK ground the screen bounds how LIGHT a frame can get. This is the mirror of the screen FLOOR the 2026-09-16 run measured on a pale stock, and it is measured rather than reasoned about for the same reason.",
+ "configs": {
+  "halftone_c6": {
+   "floor_at_tone0": 4.0,
+   "mid": 53.6,
+   "ceiling_at_tone1": 87.0
+  },
+  "halftone_c8": {
+   "floor_at_tone0": 4.0,
+   "mid": 53.6,
+   "ceiling_at_tone1": 88.0
+  },
+  "line_c4": {
+   "floor_at_tone0": 4.0,
+   "mid": 45.3,
+   "ceiling_at_tone1": 84.1
+  },
+  "line_c5": {
+   "floor_at_tone0": 4.0,
+   "mid": 44.2,
+   "ceiling_at_tone1": 83.3
+  },
+  "hatch_c6": {
+   "floor_at_tone0": 4.0,
+   "mid": 19.8,
+   "ceiling_at_tone1": 42.6
+  },
+  "hatch_c7": {
+   "floor_at_tone0": 4.0,
+   "mid": 21.2,
+   "ceiling_at_tone1": 46.6
+  },
+  "stipple_c5": {
+   "floor_at_tone0": 4.0,
+   "mid": 9.4,
+   "ceiling_at_tone1": 25.2
+  }
+ }
+}

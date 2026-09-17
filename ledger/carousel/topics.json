@@ -810,6 +810,34 @@
     "withheld answer"
    ],
    "prose_note": "The deck never puts the university's $750,000 and the federal $749,999.00 in one frame, and never implies one grant behind both uses. The Department of Justice record for 15PBJA-23-GG-06172-NTCP was not reached this run (a4) and frame 7 draws that gap as an empty lit field rather than filling it."
+  },
+  {
+   "date": "2026-09-17",
+   "carousel_no": 27,
+   "docket_item": "tx-2026-0162",
+   "instrument": "a corporate release read against the statute that may or may not reach it",
+   "topic": "an Epic-built assistant drafting the patient-facing note that comes with a lab result at a Houston health system, and a Texas disclosure statute whose reach over a private hospital the chapter does not settle",
+   "angle": "the statute names the duty holder differently in different subsections and the chapter never reconciles them",
+   "angle_note": "The finding is textual rather than numeric. Sec. 552.051(b) puts the disclosure duty on a GOVERNMENTAL AGENCY and (f) puts one on THE PROVIDER OF THE SERVICE OR TREATMENT without saying whether that provider must be governmental, and Chapter 552 has no section headed Applicability. The fact-checker REJECTED the finding that the statute requires this hospital to disclose, and the deck's hardest editorial work was honouring that rejection in the ARRANGEMENT and not only in the strings. Two rounds of judges caught it leaning anyway: round 2 found subsection (b) spliced from two non-adjacent spans with no mark (a hard fail), and round 3 found (c) truncated exactly where it stopped helping, which made an obviousness rule read as a second duty holder. Both are now set in full and the frame carries BOTH readings. THE INSTRUMENT BLIND SPOT IS RECORDED FOR THE FIFTH CONSECUTIVE RUN AND IT IS NOW WORSE THAN A NOTE. Four separate round 5 judges named it independently: this is the third clinical AI deck in nine days (no. 19 September 9th, no. 23 September 13th, this one), the second Houston hospital in nine, and the instrument, a corporate release read against an official record, is what no. 26 shipped ONE DAY EARLIER. dedupe_check compares topic, entities and keywords and all three genuinely differ, so it is clean and it is clean about the wrong thing. Decks 17, 19, 23 and 26 each wrote this field; nothing reads it.",
+   "entities": [
+    "Memorial Hermann Health System",
+    "Epic Systems",
+    "healthsystemCIO",
+    "UC San Diego Health",
+    "Texas Attorney General"
+   ],
+   "entities_note": "UC San Diego Health appears only inside frame 6's image as a locator, because the 52 doctors are a California pilot of a DIFFERENT feature (draft replies to patient messages, not result notes) and c14's note forbids presenting it as a test of the same thing. Three reader judges over three rounds asked for the bridge before the hook and dek carried it.",
+   "keywords": [
+    "Epic Art",
+    "In Basket",
+    "patient result note",
+    "Sec. 552.051",
+    "HB 149",
+    "disclosure duty",
+    "Houston",
+    "no private right of action"
+   ],
+   "prose_note": "The deck never says the hospital must disclose or is in violation, on any frame, in the caption, or cumulatively across the 4-7-8-9 run, which two integrity judges checked explicitly. Frame 7 prints the reading that cuts AGAINST the deck in its own type. The one thing it still does not print is (f)'s opening trigger clause, which is what makes (f) the health care provision, and a round 5 judge named that as an omission rather than a falsehood. It is the first item for the next run."
   }
  ]
 }

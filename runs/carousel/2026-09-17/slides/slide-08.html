@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 8 of 9. Archetype DOCUMENT.
+     Chapter 552's COMPLETE section list, transcribed from the statutes page, as one column on a page
+     that runs off the left, the right and the bottom edges. The accent keyline CLOSES here for the
+     only time in the deck, around a list that is complete, so the emptiness moves from inside
+     the box to outside it.
+     WHY THIS FRAME EXISTS. The deck refuses to resolve whether Subsection (f) reaches a private
+     provider. This is the frame that makes that refusal a FINDING rather than a shrug: the
+     chapter was read end to end and no section in it is headed Applicability or Scope.
+     EVERY HEADING IS VERBATIM and every section number was extracted from the fetched statute
+     text by out/2026-09-17/compute.py rather than typed. The count is computed from the list's
+     own length and appears in figures.json. Planned frame median L* 40. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:1.00; letter-spacing:-0.020em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:14; }
+  .dek { position:absolute; font-size:25px; line-height:1.42; color:#CFE2DD; z-index:14; }
+  #col { position:absolute; left:126px; top:334px; width:846px; z-index:12; }
+  .sec { font-family:"JetBrains Mono", monospace; font-size:24px; color:#141105;
+         letter-spacing:0.005em; line-height:1.28; margin:0 0 4px 26px; }
+  .subh { font-family:"JetBrains Mono", monospace; font-size:24px; color:#1C1910;
+          letter-spacing:0.09em; line-height:1.28; margin:14px 0 7px 0; }
+  #closed { position:absolute; left:100px; top:314px; width:898px; height:800px;
+            border:10px solid #EFA31D; background:transparent; z-index:13; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#A8C6C2;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:142px; width:912px; font-size:54px; }
+  .dek  { left:84px; top:1256px; width:0px; font-size:0px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div id="col"></div>
+<div id="closed"></div>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Every section, and none headed Applicability.</h1>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+// CHAPTER 552, EVERY SECTION, transcribed from the fetched statute text. Two headings carry a
+// semicolon because the statute carries one, and a verbatim quote is never touched.
+var LIST = [
+  ["SUBCHAPTER A. GENERAL PROVISIONS", null],
+  [null, "Sec. 552.001. DEFINITIONS"],
+  [null, "Sec. 552.002. CONSTRUCTION OF CHAPTER"],
+  [null, "Sec. 552.003. LOCAL PREEMPTION"],
+  ["SUBCHAPTER B. DUTIES AND PROHIBITIONS ON USE OF ARTIFICIAL INTELLIGENCE", null],
+  [null, "Sec. 552.051. DISCLOSURE TO CONSUMERS"],
+  [null, "Sec. 552.052. MANIPULATION OF HUMAN BEHAVIOR"],
+  [null, "Sec. 552.053. SOCIAL SCORING"],
+  [null, "Sec. 552.054. CAPTURE OF BIOMETRIC DATA"],
+  [null, "Sec. 552.055. CONSTITUTIONAL PROTECTION"],
+  [null, "Sec. 552.056. UNLAWFUL DISCRIMINATION"],
+  [null, "Sec. 552.057. CERTAIN SEXUALLY EXPLICIT CONTENT AND CHILD PORNOGRAPHY"],
+  ["SUBCHAPTER C. ENFORCEMENT", null],
+  [null, "Sec. 552.101. ENFORCEMENT AUTHORITY"],
+  [null, "Sec. 552.102. INFORMATION AND COMPLAINTS"],
+  [null, "Sec. 552.103. INVESTIGATIVE AUTHORITY"],
+  [null, "Sec. 552.104. NOTICE OF VIOLATION; OPPORTUNITY TO CURE"],
+  [null, "Sec. 552.105. CIVIL PENALTY; INJUNCTION"],
+  [null, "Sec. 552.106. ENFORCEMENT ACTIONS BY STATE AGENCIES"]
+];
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    var col = document.getElementById("col");
+    LIST.forEach(function (row) {
+      var d = document.createElement("div");
+      d.className = row[0] ? "subh" : "sec";
+      d.textContent = row[0] || row[1];
+      col.appendChild(d);
+    });
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Texas Business and Commerce Code, Chapter 552', counter: "08 / 09",
+      src: 'c15 c16 c23 c24 to c42   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 44, max: 54, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    var lit = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .tx-site", 18);
+    var toner = TXDECK.lineBoxes("#col .sec, #col .subh", 10);
+    var all = lit.concat(toner);
+    var mask = TXDECK.reserveMask(all, 22);
+
+    // the counter, dark, the deck's constant front edge
+    cx.fillStyle = N.pick(1.8);
+    cx.fillRect(0, 0, W, H);
+    N.surface(cx, { edge: N.EDGE, top: 96, lit: 3.0, shade: 1.7, lightX: 0.28 });
+
+    // THE COLUMN. One narrow strip of paper running off the top and the bottom edges, so the
+    // list is something the reader is going down rather than a block placed on a page.
+    var SX = -62, SW = 1204;
+    N.sheet(cx, { x: SX, y: 296, w: SW, h: 1200, rot: 0.003, seed: 51,
+                  lit: 4.8, shade: 3.6, thick: 3 });
+
+    // THE LIGHT, raking down the column from the upper left, so the far end falls into shade
+    /* NO POOL ON A DOCUMENT FRAME. A radial falloff crossing a block of small
+     * toner type reads as a rule through the glyph band, which is what the bisect
+     * found after four tuning passes. The sheet\'s own monotonic gradient lights it. */
+
+    // THE CLOSED KEYLINE, and it CLOSES on this frame alone. Everywhere else in the deck the
+    // accent outlines an empty rule. Here it goes round a list that is complete, so what is
+    // missing is outside the box rather than inside it.
+
+
+    // THE DECK'S ONE SCREEN, and it never runs under a glyph
+    N.tooth(cx, { x: 0, y: 296, w: 1080, h: 820, cell: 6, angle: 22, strength: 0.44, mask: mask });
+
+    N.falloff(cx, { from: 1090, end: 0.88 });
+    N.falloffTop(cx, { to: 300, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

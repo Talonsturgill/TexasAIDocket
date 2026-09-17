@@ -1790,6 +1790,54 @@
     "OBJECT_AND_CAPTION"
    ],
    "machine_qa": "WARN, 0 fails across nine frames. layout_check --require exit 0, bespoke_check median pairwise 0.2976, craft_floor exit 0, panel_ready READY."
+  },
+  {
+   "date": "2026-09-17",
+   "carousel_no": 27,
+   "written_from": "runs/carousel/2026-09-17/storyboard.md",
+   "register": "a clinic at 6:40 in the evening. One screen is the only light in the building, and the deck's one daylight arrives on the last frame as the next morning.",
+   "structural_laws": [
+    "THE GLYPH LAW. A drawn line of type gets glyphs if and only if this run fetched those glyphs. The release, the article and the statute are set verbatim because they are in claims.json. THE PATIENT'S OWN DRAFT IS THE ONE UNGLYPHED DOCUMENT, drawn with N.ruleRun as hairlines at true line lengths, because no document this run read publishes one word of what such a draft says. Nothing anywhere is a filled bar, a strike or a smudge, because a black field says something was REMOVED and the record says nothing was ever written. A round 5 craft judge verified it in the pixels and found no fillText in frames 1, 2 or 3.",
+    "THE EMPTY RULE, and it changes state in reader order: eight hollow boxes on f4, a blank field table on f5, three hollow margin marks on f7, the keyline CLOSES on f8, and the accent is FILLED exactly once on f9. Frames 1, 2, 3 and 6 carry no accent at all, and f6's absence is load bearing because it is the one number in the deck with a population a reader can count.",
+    "THE ACCENT LIVES ON TWO MATERIALS AND THE SPLIT IS DECLARED RATHER THAN DENIED. Hollow keylines are DOM above the canvas because a thin keyline does not survive TXDECK.finish, which is measured: the first build's canvas keylines were crushed and layout_check read the accent at 0.0000 on five frames. The one FILLED mark is canvas, through N.fillCard, because a filled card does survive and reads as pasted on when it is outside the grade. Closing it belongs in the chassis and is in the upgrade backlog."
+   ],
+   "techniques": [
+    "scene bench at true scale (f1)",
+    "emissive panel with an unglyphed draft (f2)",
+    "scene bench, one depth's arithmetic (f3)",
+    "drawn sheet, close crop (f4)",
+    "drawn sheet with a blank field table (f5)",
+    "isotype, no casts (f6)",
+    "drawn statute page (f7)",
+    "drawn page, closed keyline (f8)",
+    "scene bench with the deck's one daylight (f9)"
+   ],
+   "palette": "cool dark teal. ground #051F21, ink #C8DDD7, page #BFCBBD, toner #272310, accent #EFA31D. Measured by CIELAB dE against 59 hexes from the last eight decks with the line at 10.09. FIVE ROLES CLEAR IT AND TWO DO NOT: ground at 8.51 and ink at 9.39. Both are printed in the storyboard's own table and the chassis prose named only the ground, which two judges caught.",
+   "value": {
+    "measured_arc": [
+     41.4,
+     51.2,
+     44.8,
+     57.9,
+     55.7,
+     44.6,
+     51.8,
+     57.1,
+     45.5
+    ],
+    "mean_adjacent_jump": 8.31,
+    "max_adjacent_jump": 13.0,
+    "spread": 16.5,
+    "hard_cuts": 0,
+    "note": "RE-PLANNED FROM MEASUREMENT FOUR TIMES AND THE HISTORY IS THE ENTRY. The directors planned a deck in the high twenties. The probe frame rendered at 2.3 against a planned 30 and named two chassis faults. The first full render alternated dark rooms at 8 to 15 with bright pages at 38 to 60, a mean adjacent jump of 22.0 against a 14.9 ceiling and four hard cuts. The cure was not a gradient: it was bringing the two populations together, lighting the rooms and darkening the paper stock until the deck sat in one band.",
+    "deck_median_L": 51.2
+   },
+   "machine_qa": "PASS, 0 fails, 0 warns",
+   "judge_findings_not_repaired": [
+    "FRAME 9's HALFTONE RESERVE DID NOT TAKE. `.card` was added to the lineBoxes selector, but lineBoxes measures LIVE geometry through getClientRects and the card is positioned AFTER the canvas work, so the reserve was computed at the card's static position, outside the tooth region. The screen still runs under its five mono lines, against the chassis's own oldest rule. Found by a round 5 craft judge reading the code AND the render; the run reported it fixed and it was fixed in the string only. THE ORDERING IS THE LESSON: position, then measure.",
+    "FRAME 3 IS ARITHMETICALLY CORRECT AND STILL DOES NOT READ. Four rounds each repaired a different symptom (no desk, no top face, a base that missed the ground line, mixed depths) and the bench now checks to the pixel at 1096.1, 1489.4, 873.9, 937.25 and PXM 341.67. Two round 5 judges still called the monitor a floor lamp and the empty chair unreadable at feed size. Correct projection is necessary and is not sufficient, and no gate measures whether a drawn object is RECOGNISABLE.",
+    "FOUR `bleeds` DECLARATIONS DISAGREE WITH THE DRAWN SHEETS. layout_check measures the primary_image RECT and passes; two craft judges measured the N.sheet CALL and found frames 4, 5 and 7 ending 100 to 250px inside the frame and frame 2 declaring a top bleed its panel at y 392 never makes. The declaration and the gate agree with each other and not with what a judge sees."
+   ]
   }
  ]
 }

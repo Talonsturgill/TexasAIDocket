@@ -1,0 +1,153 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 4 of 9. Archetype CLOSE_CROP. THE DECK'S ONE IMAGE.
+     The bottom of the printed announcement at one to one on a reading table at night, cropped
+     by the left, the right and the bottom edges so the reader is inside the paper rather than
+     looking at a sheet. Down the right margin, the EIGHT SEARCH TERMS that established the
+     absence, each with a box beside it, and ALL EIGHT BOXES ARE EMPTY.
+     THIS IS THE METHOD DRAWN RATHER THAN A METAPHOR FOR IT. A reader is not told the
+     announcement is silent about disclosure. They are shown the search that found nothing, in
+     the margin of the page it was run on, at the size it would be if you printed it.
+     NOTHING IS FILLED, STRUCK OR BLACKED OUT. A filled field asserts a removal, and the record
+     says nothing was ever written. Every box is a hairline with a lit lip on the page's own
+     light. Planned frame median L* 40. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:1.00; letter-spacing:-0.020em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:14; }
+  .para { position:absolute; width:596px; font-size:25px; line-height:1.46; color:#141105; z-index:11; }
+  .term { position:absolute; font-family:"JetBrains Mono", monospace; font-size:25px;
+          color:#141105; letter-spacing:0.02em; z-index:12; white-space:nowrap; }
+  .boxlab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+            color:#141105; letter-spacing:0.07em; z-index:12; }
+  /* 48px BOX ON A 7px BORDER, AND THE OLD ONE WAS 32 ON 9. Under the file's global
+     box-sizing:border-box a 9px border on a 32px box leaves a 14px hole, which is 5.6px once the
+     feed takes it to 432. All three judges read the eight marks as FILLED amber chips sitting in
+     a column headed FOUND, directly under a hook that says None on the page, so at feed size the
+     picture asserted the opposite of its own headline. 48 on 7 leaves a 34px hole, 13.6px at feed
+     size, which is what frame 5's cells already do and why those read correctly as empty. */
+  .gap { display:inline-block; width:44px; }
+  .abox { position:absolute; width:48px; height:48px; border:7px solid #EFA31D;
+          background:transparent; z-index:13; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#A8C6C2;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:142px; width:880px; font-size:92px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Eight words searched. None on the page.</h1>
+<p class="para" id="para" style="left:92px; top:470px;">Clinicians at Memorial Hermann Health System (MHHS) are using a new artificial intelligence (AI) tool built directly into Epic to help patients better understand their test results and to make informed decisions about next steps in their care journey.</p>
+<!-- THE GAP IS CSS AND NOT &nbsp;. copy.json records this line as "SEARCHED FOUND" and the
+     render agreed, because a browser collapses the entities to one space in the text node.
+     shipped_check reads the SHIPPED SOURCE rather than the render and saw a string the copy
+     file does not have, which is the right answer: the file a reader can open has to say what
+     the record says it says. -->
+<div class="boxlab" id="boxlab" style="left:728px; top:428px;">SEARCHED<span class="gap"></span>FOUND</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+// THE EIGHT TERMS, and they are the eight this run actually searched. They are listed in
+// claims.json under absences[0].how_established, and nothing here may add a ninth.
+var TERMS = ["disclose", "disclosure", "notify", "notified",
+             "inform patients", "told", "transparen", "label"];
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    // the eight terms and their eight boxes, set as DOM so every glyph stays vector
+    var TOP = 484, STEP = 62, LX = 728, BX = 974;
+    TERMS.forEach(function (t, i) {
+      var d = document.createElement("div");
+      d.className = "term";
+      d.style.left = LX + "px";
+      d.style.top = (TOP + i * STEP) + "px";
+      d.textContent = t;
+      document.body.appendChild(d);
+    });
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Memorial Hermann announcement, September 8th', counter: "04 / 09",
+      src: 'c1   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 92, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    var lit = TXDECK.lineBoxes(".hook, .kick, .ctr, .src, .tx-site", 18);
+    var toner = TXDECK.lineBoxes(".para, .term, .boxlab", 12);
+    var all = lit.concat(toner);
+    var mask = TXDECK.reserveMask(all, 24);
+
+    // the reading table, dark, the deck's constant front edge
+    cx.fillStyle = N.pick(1.6);
+    cx.fillRect(0, 0, W, H);
+    N.surface(cx, { edge: N.EDGE, top: 250, lit: 3.2, shade: 1.6, lightX: 0.3 });
+
+    // THE SHEET at one to one, wider than the frame on both sides and running past its near
+    // edge. Its top edge is inside the frame at 366, which leaves the dark band the display
+    // type sits in.
+    N.sheet(cx, { x: -112, y: 366, w: 1304, h: 832, rot: 0.005, seed: 29,
+                  lit: 5.0, shade: 3.8, thick: 3 });
+
+    // THE LIGHT, raking from the upper left, so the paragraph is in the bright half and the
+    // column of boxes sits where the key has begun to fall away.
+    /* NO POOL ON A DOCUMENT FRAME. A radial falloff crossing a block of small
+     * toner type reads as a rule through the glyph band, which is what the bisect
+     * found after four tuning passes. The sheet\'s own monotonic gradient lights it. */
+
+    // the page's own rules, clear of every type block
+    N.quiet(cx, all, function (g) {
+      g.fillStyle = N.paper(2.6);
+      g.fillRect(92, 430, 560, 1.6);
+      g.fillRect(92, 1002, 844, 1.6);
+    });
+
+    // THE EIGHT BOXES, one per term, EVERY ONE EMPTY. A hairline with a lit lip on the page's
+    // own light, never a filled field, because a filled field asserts a removal and the record
+    // says nothing was ever written.
+    // the boxes are DOM, above the canvas, so the deck's grade can never take the accent off
+    // them and layout_check can read the accent off the pixels it actually receives
+    var TOPB = 484, STEPB = 62, BXX = 974;
+    for (var i = 0; i < TERMS.length; i++) {
+      var b = document.createElement("div");
+      b.className = "abox";
+      b.style.left = BXX + "px";
+      b.style.top = (TOPB + i * STEPB - 12) + "px";   // same centre, taller box
+      document.body.appendChild(b);
+    }
+    // one closing rule under the column, so the eight read as a set that ends
+    N.quiet(cx, all, function (g) {
+      g.fillStyle = N.paper(3.2);
+      g.fillRect(728, TOPB + TERMS.length * STEPB - 16, 280, 1.4);
+    });
+
+    // THE DECK'S ONE SCREEN, and it never runs under a glyph
+    N.tooth(cx, { x: 0, y: 366, w: 1080, h: 730, cell: 6, angle: 22, strength: 0.44, mask: mask });
+
+    N.falloff(cx, { from: 1060, end: 0.88 });
+    N.falloffTop(cx, { to: 392, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

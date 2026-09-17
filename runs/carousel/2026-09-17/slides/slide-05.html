@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 5 of 9. Archetype DOCUMENT.
+     The announcement sheet lying at an oblique on the reading table, carrying the three figures
+     the health system published, and directly under them a three column field table with its
+     heads set and EVERY CELL BLANK, keylined in the accent.
+     THE READER DOES THE SUBTRACTION. The claim and the hole in the claim are on the same sheet,
+     a hand's breadth apart, so nobody has to be told what is missing.
+     EVERY FIGURE IS RENDERED AS ITS OWN SOURCE RENDERS IT. 32% with the percent sign, over
+     55,000 with the thousands comma and the word over, and NINE SECONDS SPELLED OUT, because
+     that is the form the announcement uses and the numeral form was never seen inside a
+     verbatim sentence. Planned frame median L* 56. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:1.00; letter-spacing:-0.020em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:14; }
+  .fig { position:absolute; font-family:"JetBrains Mono", monospace; font-weight:700;
+         font-size:46px; color:#141105; letter-spacing:-0.012em; z-index:12; white-space:nowrap;
+         font-variant-numeric:tabular-nums; }
+  .figlab { position:absolute; font-family:"Manrope", sans-serif; font-size:24px;
+            line-height:1.34; color:#1A1708; z-index:12; }
+  .attrib { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+            color:#141105; letter-spacing:0.03em; z-index:12; white-space:nowrap; }
+  .cellhead { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+              color:#141105; letter-spacing:0.04em; z-index:12; white-space:nowrap; }
+  .acell { position:absolute; border:9px solid #EFA31D; background:transparent; z-index:13; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#A8C6C2;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:880px; font-size:88px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three figures. No denominator.</h1>
+
+<div class="fig" id="f1" style="left:140px; top:404px;">32%</div>
+<div class="figlab" style="left:404px; top:410px; width:470px;">fewer follow-up messages when clinicians started from the draft</div>
+<div class="fig" id="f2" style="left:140px; top:510px;">over 55,000</div>
+<div class="figlab" style="left:472px; top:516px; width:402px;">messages the tool has helped care teams write</div>
+<div class="fig" id="f3" style="left:140px; top:616px;">nine seconds</div>
+<div class="figlab" style="left:510px; top:622px; width:364px;">saved on average per result comment</div>
+
+<div class="attrib" id="attrib" style="left:140px; top:736px;">PUBLISHED BY THE HEALTH SYSTEM AND ITS VENDOR</div>
+
+<div class="cellhead" style="left:150px; top:808px;">baseline</div>
+<div class="cellhead" style="left:418px; top:808px;">control arm</div>
+<div class="cellhead" style="left:686px; top:808px;">denominator</div>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Memorial Hermann announcement, September 8th', counter: "05 / 09",
+      src: 'c5 c6 c7 c12   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 88, maxLines: 3 });
+    
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    var lit = TXDECK.lineBoxes(".hook, .kick, .ctr, .src, .tx-site", 18);
+    var toner = TXDECK.lineBoxes(".fig, .figlab, .attrib, .cellhead", 12);
+    var all = lit.concat(toner);
+    var mask = TXDECK.reserveMask(all, 24);
+
+    // the reading table, dark, the deck's constant front edge
+    cx.fillStyle = N.pick(1.7);
+    cx.fillRect(0, 0, W, H);
+    N.surface(cx, { edge: N.EDGE, top: 300, lit: 3.2, shade: 1.7, lightX: 0.28 });
+
+    // THE SHEET at a slight oblique, so it has thickness and a cast and its near corner lifts.
+    // A sheet square to the frame is a rectangle, which is the plate this system was rebuilt to
+    // stop drawing.
+    N.sheet(cx, { x: -58, y: 352, w: 1210, h: 748, rot: -0.021, seed: 61,
+                  lit: 5.0, shade: 3.8, thick: 5 });
+
+    // THE LIGHT, raking from the upper left so the three figures sit in the bright half and the
+    // blank field table sits where the key has begun to fall away.
+    /* NO POOL ON A DOCUMENT FRAME. A radial falloff crossing a block of small
+     * toner type reads as a rule through the glyph band, which is what the bisect
+     * found after four tuning passes. The sheet\'s own monotonic gradient lights it. */
+
+    // the page's own rules, clear of every type block. The foot rule under the three figures is
+    // one continuous line, so the attribution reads as belonging to all three.
+    N.quiet(cx, all, function (g) {
+      g.fillStyle = N.paper(2.8);
+      g.fillRect(140, 712, 736, 2.2);
+      
+    });
+
+    // THE BLANK FIELD TABLE. Three heads set, and every cell under them EMPTY. Hairlines with a
+    // lit lip on the page's own light, never filled, because a filled cell asserts a value that
+    // was published and none was.
+    var CY = 846, CH = 108, CW = 236;
+    for (var c = 0; c < 3; c++) {
+      var d = document.createElement("div");
+      d.className = "acell";
+      d.style.left = (146 + c * 268) + "px";
+      d.style.top = CY + "px";
+      d.style.width = CW + "px";
+      d.style.height = CH + "px";
+      document.body.appendChild(d);
+    }
+
+    // THE DECK'S ONE SCREEN, and it never runs under a glyph
+    N.tooth(cx, { x: 0, y: 342, w: 1080, h: 754, cell: 6, angle: 22, strength: 0.44, mask: mask });
+
+    N.falloff(cx, { from: 1046, end: 0.88 });
+    N.falloffTop(cx, { to: 378, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 1 of 9. Archetype FULL_BLEED.
+     THE COVER. The reader is behind a clinician's shoulder in a clinic bay at 6:40 in the
+     evening. The display is the only light in the building and it is the only light in the
+     frame. The desk's squared front edge is at y 1096, which is the constant the whole deck
+     keeps, and it runs off both sides.
+     THE HOOK CARRIES THE PATIENT AND THE LAB RESULT, AND IT DID NOT. "Software writes the first
+     draft." was true, traced and generic: a round 4 reader judge read the cover at feed speed and
+     got an office software story, because the words patient and lab result lived in an 11px mono
+     kicker and a small sans dek while the display type said only "software". This frame is the
+     one most readers will ever see, and the thing that makes the deck matter to a Texan is whose
+     note it is. The dossier's own job line already said so, that the first version of a sentence
+     a patient will read ABOUT THEIR OWN BODY was written by software, and the headline was not
+     carrying it.
+     THE GLYPH LAW APPLIES HERE FIRST. The draft on the display is drawn with ruleRun as
+     hairlines at true line lengths, never as letterforms, because no document this run read
+     publishes one word of what such a draft says. Planned frame median L* 41. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:0.99; letter-spacing:-0.022em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-weight:500; font-size:29px; line-height:1.42; color:#F4FAF8; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#A8C6C2;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:150px; width:912px; font-size:112px; }
+  /* THE DEK STOPS ABOVE THE FIGURE'S HEAD, AND THAT IS A MEASUREMENT RATHER THAN A MARGIN.
+     At 392px wide the sentence ran to five lines ending at y 610, and the clinician's lit
+     shoulder rises into the frame at y 535 in the x band 84 to 176. qa.py read the last two
+     lines as struck: a contiguous dark run of 92px, growing row by row, which is a silhouette
+     edge and not a rule. It is still a real defect, because those two lines start on a black
+     figure and finish on a desk at L* 43, and a line that changes ground halfway is the thing
+     the worst-point contrast rule exists for. Wider and shorter puts every line on one ground. */
+  .dek  { left:84px; top:404px; width:440px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Software drafts your lab result note.</h1>
+<p class="dek">Memorial Hermann clinicians in Houston draft a patient's result note with an assistant in Epic.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Memorial Hermann Health System, Houston', counter: "01 / 09",
+      src: 'c1 c2 c3   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 80, max: 112, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    /* THE DEK IS HANDED TO THE POOL AS ONE BLOCK, NOT AS FOUR LINES, AND THAT IS THE WHOLE FIX.
+     *
+     * Measured off the render rather than reasoned about: the wall behind the dek brightens
+     * from rgb(63,113,116) at its left margin to rgb(74,128,130) at its right, because the
+     * display's pool is over there. Worst-cell contrast therefore fell along every line, 5.2 at
+     * the margin down to 4.23 at the far end, under the rubric's 4.5. Pure white ink buys 4.47
+     * and still misses, so the ink was never the lever. The ground was.
+     *
+     * The pool punches only the reserve rects whose centre lies inside its own ellipse, which is
+     * right and which left the dek's first two lines unpunched while punching the last two. One
+     * merged rect has one centre, so the block is dimmed once, evenly, over a 120px feather, and
+     * there is no step between line two and line three for the strike detector to find. */
+    var dekLines = TXDECK.lineBoxes(".dek", 18), reserve = [];
+    for (var b = 0; b < boxes.length; b++) {
+      var isDek = false;
+      for (var d = 0; d < dekLines.length; d++) {
+        if (boxes[b][1] === dekLines[d][1] && boxes[b][0] === dekLines[d][0]) { isDek = true; break; }
+      }
+      if (!isDek) reserve.push(boxes[b]);
+    }
+    if (dekLines.length) {
+      var dx0 = Infinity, dy0 = Infinity, dx1 = -Infinity, dy1 = -Infinity;
+      for (var d2 = 0; d2 < dekLines.length; d2++) {
+        var L = dekLines[d2];
+        dx0 = Math.min(dx0, L[0]); dy0 = Math.min(dy0, L[1]);
+        dx1 = Math.max(dx1, L[0] + L[2]); dy1 = Math.max(dy1, L[1] + L[3]);
+      }
+      /* THREE TIMES, AND THE NUMBER IS NOT A TASTE. `punch` fills one rounded rect per entry at
+       * `strength` under destination-out, so overlapping entries COMPOUND: the per-line reserve
+       * this replaced was four boxes padded until each overlapped its neighbours, which reached
+       * 1 - 0.42^4, about 0.97, without anybody choosing it. One merged rect at 0.58 dimmed a
+       * third as hard and the measured contrast got WORSE than the defect it was sent to fix,
+       * 3.9 against 4.23. The same rect three times is 1 - 0.42^3, about 0.93, which restores
+       * what the old build was doing by accident and now does it evenly and on purpose. */
+      var dekBlock = [dx0, dy0, dx1 - dx0, dy1 - dy0];
+      reserve.push(dekBlock); reserve.push(dekBlock); reserve.push(dekBlock);
+    }
+
+    // THE ROOM. Dark, and it stays dark. Nothing in this deck is lit from above.
+    cx.fillStyle = N.pick(5.0);
+    cx.fillRect(0, 0, W, H);
+
+    // THE DESK. Clinic laminate, squared front edge on the deck's constant at y 1096, and it
+    // carries the frame's tone: the surface runs from the far edge at 614 to the near edge, so
+    // the lit plane is 36 percent of the frame rather than a strip at the bottom.
+    N.surface(cx, { edge: N.EDGE, top: 616, lit: 6.8, shade: 4.8, lightX: 0.6 });
+
+    // THE DISPLAY, 0.60 x 0.34 m at 0.9 m, the only light in the frame. A panel may never glow
+    // without content, so the chassis refuses one: this is the draft, unglyphed.
+    var PX = 540, PY = 430, PW = 500, PH = 284;
+    N.panel(cx, { x: PX, y: PY, w: PW, h: PH, content: function (g, r) {
+      // the result list down the left, as ruled entries of equal length
+      N.ruleRun(g, { x: r.x + 22, y: r.y + 30, w: 128, n: 8, leading: 32, seed: 41,
+                     ink: N.paper(1.0), lip: N.paper(4.2), weight: 2.6, ragged: false });
+      // ONE ROW OPEN, and the draft beside it. Hairlines at true line lengths, never glyphs,
+      // because nothing this run read publishes one word of what a draft says.
+      g.fillStyle = N.paper(5.0);
+      g.fillRect(r.x + 16, r.y + 148, 142, 28);
+      N.ruleRun(g, { x: r.x + 196, y: r.y + 40, w: 322, n: 7, leading: 33, seed: 9,
+                     ink: N.paper(1.4), lip: N.paper(5.4), weight: 2.8 });
+    }});
+
+    // THE CLINICIAN, at true scale, cropped by the left edge, lit down their right side by the
+    // display. A figure gives every object beside it a size and gives the reader a body.
+    var S = TXSCENE.create(cx, { w: W, h: H, eye: 1.10, horizon: 705, f: 820,
+                                 sky: "transparent", fogZ: 1e9, light: { az: -28, el: 22 } });
+    var seated = TXFIG.figure({ pose: "sit", seat: 0.45, height: 1.70 });
+    S.shadow(seated, { X: -0.62, Z: 1.18, ink: "#000", alpha: 0.44 });
+    S.sprite(seated, { X: -0.62, Z: 1.18,
+                       inks: { ink: N.pick(1.9), paper: N.pick(3.4), accent: N.pick(1.9) } });
+
+    // an empty chair at the next bay, so the reader knows this is a bay and not an office
+    var chair = TXOBJ.sprite("office_chair");
+    S.shadow(chair, { X: 2.05, Z: 3.10, ink: "#000", alpha: 0.30 });
+    S.sprite(chair, { X: 2.05, Z: 3.10,
+                      inks: { ink: N.pick(1.3), paper: N.pick(2.2), accent: N.pick(1.3) } });
+
+    /* THE KEYBOARD, AND IT IS THERE BECAUSE THE DESK WAS MEASURED AS A PLATE.
+     *
+     * construction_check reads the largest bright region of the thumbnail and asks what
+     * fraction of its own bounding box it fills. The lit desk filled 0.719 of a box running
+     * x 220 to 1075 and y 545 to 1095, over the gate's 0.68, and five of nine frames plated is
+     * the deck 13 finding the gate exists for. The dek block's punch is what tipped it: cutting
+     * the wall's bright half left the desk alone in the box and the blob went from ragged to
+     * rectangular.
+     *
+     * So the fix is an OBJECT rather than a threshold. A clinician drafting in Epic is typing,
+     * the bay has a keyboard, and the keyboard is the one thing that can sit in the middle of
+     * this desk without being decoration. It is drawn in the desk's own perspective with the
+     * deck's one light on its top lip, and it takes a hole out of the middle of the lit plane
+     * rather than a bite out of its edge, which is what actually moves fill. */
+    (function () {
+      var FAR_Y = 898, NEAR_Y = 1002, FAR_L = 604, FAR_R = 958, NEAR_L = 572, NEAR_R = 992;
+      TXDECK.contact(cx, { x: (NEAR_L + NEAR_R) / 2, y: NEAR_Y - 4,
+                           w: (NEAR_R - NEAR_L) * 1.06, h: 34, height: 0.30 });
+      cx.save();
+      cx.beginPath();
+      cx.moveTo(FAR_L, FAR_Y); cx.lineTo(FAR_R, FAR_Y);
+      cx.lineTo(NEAR_R, NEAR_Y); cx.lineTo(NEAR_L, NEAR_Y);
+      cx.closePath();
+      var kg = cx.createLinearGradient(0, FAR_Y, 0, NEAR_Y);
+      kg.addColorStop(0, N.pick(2.9));
+      kg.addColorStop(1, N.pick(1.6));
+      cx.fillStyle = kg; cx.fill();
+      // the far lip catching the display, which is the only thing in the frame lighting it
+      cx.fillStyle = N.pick(4.6);
+      cx.fillRect(FAR_L, FAR_Y - 4, FAR_R - FAR_L, 4);
+      // FIVE ROWS OF KEY GAPS, as the gaps rather than as the keys, so nothing here is a chip of
+      // bright furniture competing with the display
+      cx.clip();
+      for (var row = 0; row < 5; row++) {
+        var t = (row + 0.7) / 5.4;
+        var ry = FAR_Y + (NEAR_Y - FAR_Y) * t;
+        var lx = FAR_L + (NEAR_L - FAR_L) * t, rx = FAR_R + (NEAR_R - FAR_R) * t;
+        cx.fillStyle = N.pick(0.9);
+        cx.fillRect(lx + 14, ry, rx - lx - 28, 2.4);
+      }
+      cx.restore();
+    })();
+
+    // THE LIGHT. One pool, from the display, landing across the desk and the shoulder.
+    N.pool(cx, { x: PX + PW * 0.46, y: PY + PH * 1.02, r: 690, squash: 0.50, rot: 0.18,
+                 strength: 1.0, reserve: reserve });
+
+    // THE DECK'S ONE SCREEN, at cell 6, over the lit plane only, and never under type.
+    N.tooth(cx, { x: 60, y: 600, w: 1020, h: 500, cell: 6, angle: 22, strength: 0.17, mask: mask });
+
+    // the light dying at the near edge and at the kicker band, so the furniture reads without a
+    // rectangle being laid over the art
+    N.falloff(cx, { from: 1236, end: 0.88 });
+    N.falloffTop(cx, { to: 212, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

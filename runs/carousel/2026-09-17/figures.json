@@ -1,0 +1,70 @@
+{
+ "sections_in_chapter_552": {
+  "value": 16,
+  "unit": "sections",
+  "basis": "measured",
+  "from": [
+   "absences[3]"
+  ],
+  "how": "every distinct 'Sec. 552.NNN. HEADING' in the fetched statute text, deduplicated in order",
+  "members": [
+   "Sec. 552.001. DEFINITIONS",
+   "Sec. 552.002. CONSTRUCTION OF CHAPTER",
+   "Sec. 552.003. LOCAL PREEMPTION",
+   "Sec. 552.051. DISCLOSURE TO CONSUMERS",
+   "Sec. 552.052. MANIPULATION OF HUMAN BEHAVIOR",
+   "Sec. 552.053. SOCIAL SCORING",
+   "Sec. 552.054. CAPTURE OF BIOMETRIC DATA",
+   "Sec. 552.055. CONSTITUTIONAL PROTECTION",
+   "Sec. 552.056. UNLAWFUL DISCRIMINATION",
+   "Sec. 552.057. CERTAIN SEXUALLY EXPLICIT CONTENT AND CHILD PORNOGRAPHY",
+   "Sec. 552.101. ENFORCEMENT AUTHORITY",
+   "Sec. 552.102. INFORMATION AND COMPLAINTS",
+   "Sec. 552.103. INVESTIGATIVE AUTHORITY",
+   "Sec. 552.104. NOTICE OF VIOLATION; OPPORTUNITY TO CURE",
+   "Sec. 552.105. CIVIL PENALTY; INJUNCTION",
+   "Sec. 552.106. ENFORCEMENT ACTIONS BY STATE AGENCIES"
+  ]
+ },
+ "sections_headed_applicability_or_scope": {
+  "value": 0,
+  "unit": "sections",
+  "basis": "measured",
+  "from": [
+   "absences[3]"
+  ],
+  "how": "of the sections above, those whose heading contains APPLICABILIT or SCOPE",
+  "members": []
+ },
+ "terms_searched_on_the_announcement": {
+  "value": 8,
+  "unit": "search terms",
+  "basis": "measured",
+  "from": [
+   "absences[0]"
+  ],
+  "how": "the length of the TERMS list frame 4 iterates to draw its boxes",
+  "members": [
+   "disclose",
+   "disclosure",
+   "notify",
+   "notified",
+   "inform patients",
+   "told",
+   "transparen",
+   "label"
+  ]
+ },
+ "figures_drawn_for_the_pilot": {
+  "value": 52,
+  "unit": "figures",
+  "basis": "measured",
+  "from": [
+   "c14"
+  ],
+  "how": "the sum of the RANKS array frame 6 draws, asserted against the source's own 52 by the slide itself",
+  "members": [
+   "5 ranks of 11, 11, 11, 11, 8"
+  ]
+ }
+}

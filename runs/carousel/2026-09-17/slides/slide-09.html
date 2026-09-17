@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- CAROUSEL 27, frame 9 of 9. Archetype FULL_BLEED.
+     THE CLOSE, AND IT IS BUILT FIRST because every judged deck has been thinnest where the
+     argument lands. A clinic check in counter at 8:15 in the morning, the counter running off
+     both edges on the deck's constant at y 1096 for the last time. The service window behind
+     carries the ONLY daylight in nine frames, which is the deck's one value inversion and the
+     reason the close feels like a different time of day.
+     THE ACCENT IS FILLED HERE AND NOWHERE ELSE IN THE DECK. Hollow everywhere the door is not,
+     solid at the one place it is. Planned frame median L* 22. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#051F21; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; font-family:"Fraunces", serif; font-weight:700;
+          line-height:1.00; letter-spacing:-0.020em; color:#F0F7F4;
+          font-variation-settings:"opsz" 144; z-index:10; }
+  .dek { position:absolute; font-size:27px; line-height:1.44; color:#FFFFFF; z-index:10; }
+  .card { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+          line-height:1.48; color:#1A1304; letter-spacing:0.01em; z-index:12;
+          transform:rotate(-2.0deg); }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D8E8E5;
+             white-space:nowrap; z-index:20; }
+  .hook { left:84px; top:180px; width:436px; font-size:80px; }
+  .dek  { left:84px; top:600px; width:372px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Ask before the first visit, not after.</h1>
+<p class="dek">If a disclosure is owed under Section 552.051, the statute's own timing is not later than the date the service or treatment is first provided.</p>
+<div class="card" id="card">ASK WHO WROTE IT<br>NO PRIVATE SUIT<br>THE CHAPTER DIRECTS<br>COMPLAINTS TO THE<br>ATTORNEY GENERAL</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-17-nightdraft.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260917);
+    TXLAYOUT.mount(document.body, {
+      kicker: 'Texas Business and Commerce Code, Chapter 552', counter: "09 / 09",
+      src: 'c15 c18 c19 c20   TEXAS AI DOCKET', ink: '#A8C6C2'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 60, max: 80, maxLines: 4 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, N = TXND;
+
+    /* `.card` IS IN THE MASK NOW AND IT WAS NOT, WHICH BROKE THE CHASSIS'S OLDEST RULE.
+     * The chassis says the screen NEVER runs under type, and this frame's reserve named six
+     * selectors and left out the five mono lines on the accent card, so the halftone ran straight
+     * under the one thing on the frame a reader is meant to act on. It only became visible when
+     * the card moved onto the canvas, where the tooth could reach it. */
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .card, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the room behind the counter, a shade lighter than the night frames because it is morning
+    cx.fillStyle = N.pick(4.6);
+    cx.fillRect(0, 0, W, H);
+
+    // THE SERVICE WINDOW. The deck's ONLY daylight, and the lightest passage in nine frames.
+    // Broken by two mullions and partly occluded by the person, so it is an opening in a wall
+    // rather than a bright rectangle laid on the frame.
+    var WX = 600, WY = 250, WW = 430, WH = 404;
+    (function () {
+      var g = cx.createLinearGradient(WX, WY, WX + WW * 0.35, WY + WH);
+      g.addColorStop(0, N.paper(8.0));
+      g.addColorStop(1, N.paper(5.6));
+      cx.save();
+      cx.fillStyle = g; cx.fillRect(WX, WY, WW, WH);
+      // the reveal, so the opening has a depth rather than being a hole cut in a flat
+      cx.fillStyle = N.pick(4.6); cx.fillRect(WX - 10, WY - 10, WW + 20, 10);
+      cx.fillStyle = N.pick(1.6); cx.fillRect(WX - 10, WY, 10, WH + 10);
+      // two mullions
+      cx.fillStyle = N.pick(2.0);
+      cx.fillRect(WX + WW * 0.34 - 5, WY, 10, WH);
+      cx.fillRect(WX + WW * 0.68 - 5, WY, 10, WH);
+      // a transom, and the light falling away from the opening's far side, so the daylight is an
+      // opening with structure in it rather than one bright rectangle
+      cx.fillRect(WX, WY + WH * 0.30 - 5, WW, 10);
+      var wg = cx.createLinearGradient(WX, WY, WX + WW, WY + WH);
+      wg.addColorStop(0, "rgba(5,31,33,0)");
+      wg.addColorStop(0.45, "rgba(5,31,33,0)");
+      wg.addColorStop(1, "rgba(5,31,33,0.46)");
+      cx.fillStyle = wg; cx.fillRect(WX, WY, WW, WH);
+      cx.restore();
+      // the light spilling out of it onto the wall and the counter
+      N.pool(cx, { x: WX + WW * 0.46, y: WY + WH * 1.02, r: 560, squash: 0.50, rot: 0.14,
+                   strength: 0.70, reserve: boxes });
+    })();
+
+    // THE COUNTER. The deck's constant front edge, for the last time.
+    N.surface(cx, { edge: N.EDGE, top: 760, lit: 6.4, shade: 4.6, lightX: 0.62 });
+
+    // THE PERSON AT THE COUNTER, at true scale, three quarter back so the reader can stand
+    // where they are. Against the window they are a silhouette, which is what a person in front
+    // of a lit opening is.
+    var S = TXSCENE.create(cx, { w: W, h: H, eye: 1.62, horizon: 640, f: 820,
+                                 sky: "transparent", fogZ: 1e9, light: { az: -28, el: 22 } });
+    /* THE PERSON STANDS BACK, AND THE REASON IS ARITHMETIC RATHER THAN COMPOSITION.
+     * At Z 1.72 this bench puts their base at y 1412, which is 62px BELOW the frame, so their
+     * feet were never in the picture and their leg ran straight through the cite line at the
+     * bottom. At Z 2.40 the base lands at 1194, below the counter's front edge at 1096 so they
+     * still read as standing in FRONT of the counter, and clear of the furniture band. They are
+     * smaller, which is right: this frame's subject is the notice, not them. */
+    var person = TXFIG.figure({ pose: "stand", height: 1.70 });
+    S.shadow(person, { X: 0.30, Z: 2.40, ink: "#000", alpha: 0.40 });
+    S.sprite(person, { X: 0.30, Z: 2.40,
+                       inks: { ink: N.pick(1.5), paper: N.pick(3.0), accent: N.pick(1.5) } });
+
+    /* THE ONE FILLED ACCENT IN THE DECK, AND IT IS AT READING DISTANCE RATHER THAN ON THE
+     * COUNTER. This is the second thing this frame got wrong and the more interesting one.
+     *
+     * The dossier called it "a 0.10 x 0.15 m card lying on the counter" and the build drew it
+     * 424px wide. At the person's old depth this bench runs 477 px per metre, so the card was
+     * drawn 0.89 m across beside a 1.70 m person, about six times its declared size, which a
+     * judge caught by measuring rather than by eye. The card could not simply be shrunk: a
+     * 0.15 m card at counter depth is 42px and five lines of mono do not go in 42px. And it
+     * could not stay on the counter at any size, because the bench's ground plane here IS the
+     * counter top, so an object near enough to be legible has its base far below the frame.
+     *
+     * So the frame declares TWO PLANES instead of pretending there is one. The scene is beyond
+     * the counter. The notice is at reading distance, overlapping the counter's near edge, which
+     * is where a thing you are about to ask about actually is. The hook says ask before the first
+     * visit, so the reader is holding the thing they are being told to ask about.
+     *
+     * AND IT IS DRAWN ON THE CANVAS THROUGH `N.fillCard` RATHER THAN AS A DOM DIV. The chassis
+     * wrote that primitive "so it can be called EXACTLY ONCE in the deck, on frame 9" and the
+     * build never called it, so the deck's payoff mark was the one thing in nine frames carrying
+     * neither the halftone tooth nor the grade. That is why it read pasted on. The FACE is canvas
+     * and takes both; the TYPE stays DOM, because type is DOM in this engine and never canvas. */
+    var CX0 = 84, CY0 = 846, CW = 356, CH = 236;
+    cx.save();
+    cx.translate(CX0 + CW / 2, CY0 + CH / 2); cx.rotate(-0.035);
+    cx.translate(-CW / 2, -CH / 2);
+    cx.save();
+    cx.globalAlpha = 0.34; cx.fillStyle = "#000";
+    cx.filter = "blur(11px)";
+    cx.fillRect(14, 20, CW, CH);
+    cx.restore();
+    N.fillCard(cx, { x: 0, y: 0, w: CW, h: CH, radius: 4 });
+    cx.restore();
+
+    // the light dying at the near edge and at the kicker band
+    N.tooth(cx, { x: 60, y: 300, w: 1020, h: 800, cell: 6, angle: 22, strength: 0.15, mask: mask });
+    N.falloff(cx, { from: 1180, end: 0.88 });
+    N.falloffTop(cx, { to: 214, end: 0.86 });
+
+    // THE LAST LINE THAT TOUCHES THE ART CANVAS, ON EVERY FRAME, WITH THE DECK'S ONE GRADE.
+    TXDECK.finish(cx, { w: W, h: H });
+
+    // the card's type, mounted over the filled card after the art, because type is DOM in this
+    // engine and never canvas
+    var card = document.getElementById("card");
+    card.style.left = (CX0 + 26) + "px";
+    card.style.top  = (CY0 + 24) + "px";
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>
