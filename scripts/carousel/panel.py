@@ -470,7 +470,11 @@ def self_test() -> int:
 
     # A refusal with no hard fail named, from a judge whose own score CLEARS the bar, describes
     # neither a fault nor the number, and is still a refusal.
-    v, _ = combine([j(7.5), j(7.5), j(7.5, ship=False)])
+    # The scores here must CLEAR the rubric's bar for the case to be the one under test, which
+    # is a refusal that names neither a fault nor the number. They were 7.5 against a 6.7 bar
+    # until 2026-09-16, when the bar went to 8.0 and 7.5 stopped clearing it, which turned this
+    # case into an ordinary threshold dissent and took the assertion below with it.
+    v, _ = combine([j(8.6), j(8.6), j(8.6, ship=False)])
     ok("a judge returning ship:false with no hard fail still stops the deck",
        v["ship"] is False, str(v))
 

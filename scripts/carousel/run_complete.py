@@ -320,8 +320,10 @@ def self_test() -> int:
     # PINNED ON PURPOSE, so the bar cannot drift a tenth at a time with nobody able to name the
     # run that moved it. That is the same failure `scoring_rubric.yaml` describes craft drifting
     # under, and it is why changing this number costs a commit here as well as there. It moved
-    # from 6.8 to 6.7 on the owner's instruction, 2026-09-13.
-    ok("...and it is the 6.7 this product is held to", bar == 6.7, str(bar))
+    # from 6.8 to 6.7 on the owner's instruction, 2026-09-13, and from 6.7 to 8.0 on 2026-09-16
+    # with the artwork upgrade. The pin did its job that day: the rubric edit alone went red here
+    # and the bar could not move without a second deliberate commit naming it.
+    ok("...and it is the 8.0 this product is held to", bar == 8.0, str(bar))
     cap = max_rounds()
     ok("...and the rubric declares the round cap beside it", cap == 5, str(cap))
 
