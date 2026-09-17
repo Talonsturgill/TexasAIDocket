@@ -1,9 +1,9 @@
 {
   "_spec": 1,
-  "checked_at": "2026-09-17T12:40:25Z",
+  "checked_at": "2026-09-17T17:42:15Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916123948&enddatetime=20260917123948",
-  "response_sha256": "5fd2a4c17ece6a970bc722021dac94c40726c7b37168c42525d924c6d575cd74",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916174052&enddatetime=20260917174052",
+  "response_sha256": "90ed60c6174a402cf9fcba5080877a87243b1b9532186142ee4ba29517a2e4b0",
   "articles": [
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
@@ -26,11 +26,6 @@
       "first_seen_at": "2026-09-16T10:28:58Z"
     },
     {
-      "title": "UNT to Launch $20M Sinha College of AI and Advanced Analytics",
-      "url": "https://dallasinnovates.com/unt-to-launch-20m-sinha-college-of-ai-and-advanced-analytics/",
-      "first_seen_at": "2026-09-10T17:26:27Z"
-    },
-    {
       "title": "Data centers are driving some conservative Texas voters away from the GOP",
       "url": "https://www.hppr.org/hppr-news/2026-09-11/data-centers-are-driving-some-conservative-texas-voters-away-from-the-gop",
       "first_seen_at": "2026-09-11T14:45:00Z"
@@ -47,12 +42,12 @@
     "first_seen_at": "2026-09-16T10:28:58Z",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.469343
+    "score": 0.405875
   },
   "expires_at": "2026-09-17T22:28:58Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916123948&enddatetime=20260917123948",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916174052&enddatetime=20260917174052",
       "status": "unavailable"
     },
     {
@@ -65,13 +60,13 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "8d35875ad0a1be7802ef162d80e6bc68f3d091a3c2ec5d75af4245e242c24720"
+      "sha256": "36cf60ed4941f720cacfeaf585ac74e1f8310d56ef304966b1505c5f684fc559"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "bcaf236fb0165b597c4c2518a8f0f01a4f05de7cd95e747426eff44038d5d4ae"
+      "sha256": "84feedb187b340a01494e3a5e86c52f24eccbfff755856fed7f4ee802dc44943"
     }
   ]
 }
