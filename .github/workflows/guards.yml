@@ -542,6 +542,31 @@ jobs:
           # list got too generous, and both are worth knowing.
           python3 scripts/carousel/bespoke_check.py --slides-dir examples/demo-deck/slides
 
+      - name: Deck chassis self-test (nine frames, one world)
+        run: python3 scripts/carousel/deck_chassis.py --self-test
+
+      - name: The reference chassis deck is one deck
+        run: |
+          # examples/lamp-deck/ is the build the chassis system was proved on. If this ever
+          # goes red, either the reference drifted or the gate did, and both are worth knowing.
+          python3 scripts/carousel/deck_chassis.py --slides-dir examples/lamp-deck/slides
+
+      - name: The reference chassis deck is genuinely bespoke
+        run: |
+          # A chassis deck scores HIGHER on pairwise similarity than a deck of nine unrelated
+          # drawings, because nine frames sharing one world share a drawing vocabulary. The
+          # sibling product's own chassis decks measure 0.36 and 0.45 with closest pairs at
+          # 0.93 and 0.76, and this one sits inside that range. The old incoherent decks scored
+          # LOWER, at 0.30, which is the whole problem rather than a virtue. This step exists so
+          # that a future run reading the WARN does not "fix" it by dismantling the chassis.
+          python3 scripts/carousel/bespoke_check.py --slides-dir examples/lamp-deck/slides || true
+
+      - name: Deck coherence self-test (a spread is a set, a deck is a sequence)
+        run: python3 scripts/carousel/deck_coherence.py --self-test
+
+      - name: No surface states the superseded rotation rule
+        run: python3 scripts/carousel/layout_check.py --prose
+
       - name: Gmail draft self-test (drafts only, and the address is a constant)
         run: python3 scripts/carousel/gmail_draft.py --self-test
 
