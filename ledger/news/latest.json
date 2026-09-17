@@ -1,9 +1,9 @@
 {
   "_spec": 1,
-  "checked_at": "2026-09-17T01:14:17Z",
+  "checked_at": "2026-09-17T06:17:23Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916011340&enddatetime=20260917011340",
-  "response_sha256": "59c6857add124552eb8b290ad62578acb6aa77859706b83c69649fb0e143c5f3",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916061620&enddatetime=20260917061620",
+  "response_sha256": "fa68347597b09a3d713f198886e7e8cef0926cd190738bd7a22b28d914315109",
   "articles": [
     {
       "title": "TxDOT launches Project Nexus to prepare Texas skies for future air taxis",
@@ -47,12 +47,12 @@
     "first_seen_at": "2026-09-16T10:28:58Z",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.653019
+    "score": 0.564369
   },
   "expires_at": "2026-09-17T22:28:58Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916011340&enddatetime=20260917011340",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260916061620&enddatetime=20260917061620",
       "status": "unavailable"
     },
     {
@@ -65,7 +65,7 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "c694d8d3cfe15da230e6ce674f95dd5d95642bd85e99172cc1634b8a16e6843d"
+      "sha256": "2ffda2acdc812dd3b174f3c814269d3582a8a706b880a3324bf5e835b89b5332"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
