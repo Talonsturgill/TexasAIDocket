@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-09-16",
+ "read": "2026-09-17",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "4d105f96134f6625",
+ "digest": "1cb019850bd8faf7",
  "facilities": [
   {
    "name": "NADC",
@@ -2143,6 +2143,19 @@
    ],
    "operators": [
     "Montera Infrastructure II, LLC"
+   ]
+  },
+  {
+   "name": "Project Dorothy 3A",
+   "effective": "2026-09-08",
+   "owners": [
+    "STX-01 LLC"
+   ],
+   "occupants": [
+    "Chronoscale Corporation"
+   ],
+   "operators": [
+    "STX-01 LLC"
    ]
   },
   {
