@@ -1,9 +1,9 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-18T06:07:05Z",
+  "checked_at": "2026-09-18T12:18:43Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917060628&enddatetime=20260918060628",
-  "response_sha256": "0cdd6504cfc5cbd526680f7b260f4a3ddb315f7c5e7df83149974a19889bd6dc",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917121802&enddatetime=20260918121802",
+  "response_sha256": "499ade9d8dc53b3de3cfbc0c9fb32ca2800bab4ae50c338740e60125779aa018",
   "articles": [
     {
       "title": "Building AI to accelerate science and improve lives",
@@ -171,12 +171,6 @@
       "feed": "https://openai.com/news/rss.xml"
     },
     {
-      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users",
-      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
-      "first_seen_at": "2026-09-11T10:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
       "title": "How workers are unlocking new ways of working",
       "url": "https://openai.com/index/unlocking-new-ways-of-working",
       "first_seen_at": "2026-09-16T09:00:00Z",
@@ -195,13 +189,13 @@
     "feed": "https://blog.google/technology/ai/rss/",
     "publisher": "Google",
     "coverage": 1,
-    "score": 0.746604,
+    "score": 0.624311,
     "priority": 1
   },
   "expires_at": "2026-09-24T20:00:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917060628&enddatetime=20260918060628",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917121802&enddatetime=20260918121802",
       "status": "unavailable"
     },
     {
@@ -214,13 +208,13 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "1d2dcb1f8b3afdc1fa112d00ebb1c609909f69e061bb7f1497233ba0092b3a48"
+      "sha256": "229a639a0d0aa9503d1965d92bb6e0a2b772947af0bc37aefc28c755a6aa1448"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "84feedb187b340a01494e3a5e86c52f24eccbfff755856fed7f4ee802dc44943"
+      "sha256": "811c581445701a64847e7eeae1b11ba84af990164940d9777d1ea495ecb91325"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -232,7 +226,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1208,
-      "sha256": "2ff9496d73410dfd0cd4381a980e80ccabafd6c40cea31420eb616534f78827a"
+      "sha256": "a5a4d70d7e8ceb91ac342d01ca2970fcae673f79e89d8e64b74c97a94df55a76"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
