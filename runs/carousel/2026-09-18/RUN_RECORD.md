@@ -201,8 +201,8 @@ that the Court Minutes 2026 archive carries nothing later than July 28th.
 | aggregates     | PASS   | 7 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 14.81 MB, vector |
 | score          | FAIL   | 6.8, below threshold |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 86 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 15 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 1 slot note(s) |
 | dossiers       | PASS   | 39,231 chars planned |
 | caption        | PASS   | 131 words |
