@@ -435,11 +435,22 @@
     var x = o.x, w = o.w, h = o.h;
     var base = o.base == null ? N.SHELF : o.base;
     cx.save();
-    /* the board under it reads brighter, because nothing is standing there to shade it */
-    var g = cx.createLinearGradient(x, base - h, x, base);
-    g.addColorStop(0, "rgba(255,238,224,0)");
-    g.addColorStop(1, "rgba(255,238,224,0.10)");
-    cx.fillStyle = g; cx.fillRect(x, base - h, w, h);
+    /* the board under it reads brighter, because nothing is standing there to shade it.
+     *
+     * THE WASH IS AN OPTION BECAUSE THE RUN AROUND IT MOVED. At 0.10 this beat spines drawn from
+     * ROOM steps 1.7 to 3.4, which is L* 7 to 24. Round 2 lifted that run to steps 3.9 to 5.4,
+     * L* 28 to 45, to make frame 1's declared focal the frame's brightest mass, and the same
+     * lift would have left frame 9's gap DARKER than the volumes it is supposed to be an absence
+     * of. A focal made of value has to be remade whenever the value under it changes, which is
+     * the whole reason this is a parameter and not a constant. A second call passes 0 so the
+     * accent redraw does not lay the wash down twice. */
+    var wash = o.wash == null ? 0.10 : o.wash;
+    if (wash > 0) {
+      var g = cx.createLinearGradient(x, base - h, x, base);
+      g.addColorStop(0, "rgba(255,238,224,0)");
+      g.addColorStop(1, "rgba(255,238,224," + wash + ")");
+      cx.fillStyle = g; cx.fillRect(x, base - h, w, h);
+    }
     /* the keyline, hollow */
     cx.strokeStyle = o.ink || N.MINT;
     cx.lineWidth = o.weight == null ? 13 : o.weight;
