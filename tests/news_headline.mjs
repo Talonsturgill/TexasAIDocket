@@ -123,11 +123,26 @@ try {
     {...fresh,selected:{...fresh.selected,url:'https://news.mit.edu.evil.example/story'}},
     {...fresh,selected:{...fresh.selected,publisher:'Fake publisher'}},
     {...fresh,selected:null},
+    {...fresh,selected:{...fresh.selected,title:'A new chapter for MIT Reads',
+      url:'https://news.mit.edu/2026/new-chapter-mit-reads-0918',publisher:'MIT News',
+      feed:'https://news.mit.edu/rss/topic/artificial-intelligence2'}},
+    {...fresh,selected:{...fresh.selected,title:'A community reading program opens today',
+      url:'https://openai.com/index/community-reading',publisher:'OpenAI',feed:'https://openai.com/news/rss.xml'}},
   ];
   for(const bad of badStates) {
     const page=await pageFor(base,390,bad);
     await loaded(page,'/__news_current.html');
     assert.equal(await page.locator('.news-title').textContent(),base.selected.title,'invalid or older data must not replace a good headline');
+    await page.close();checked++;
+  }
+  const offTopic=badStates[badStates.length-2];
+  for(const initial of ['current','empty']) {
+    const page=await pageFor(base,390,offTopic);
+    await page.addInitScript(data=>localStorage.setItem('texas-ai-news-v2',JSON.stringify(data)),offTopic);
+    await loaded(page,`/__news_${initial}.html`);
+    assert.notEqual(await page.locator('.news-title').textContent(),offTopic.selected.title,
+      'an off-topic cached story and live response must not override relevant reporting');
+    assert.equal(await page.locator('.news-chip').getAttribute('href'),initial==='current'?base.selected.url:'/articles/');
     await page.close();checked++;
   }
   console.log(`news headline: ${checked} layouts and feed recovery, outage, cached expiry, date, attribution and unsafe-payload cases passed`);

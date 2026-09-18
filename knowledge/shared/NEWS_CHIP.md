@@ -12,10 +12,10 @@ bounded sizes, retries and timeouts and run in parallel; one slow provider canno
 other feeds. Only headline metadata is retained.
 
 Texas AI stories rank first, followed by broader AI coverage and then Texas technology news.
-Global coverage is limited to the four explicitly configured groups. The three dedicated AI
-feeds can establish subject relevance even when the headline omits the letters AI. The general
-NVIDIA feed still requires an AI term, so gaming headlines do not qualify. Regional feed
-boilerplate never establishes Texas relevance. Stocks, sports and promotional headlines are
+Global coverage is limited to the four explicitly configured groups. Every candidate must state
+its AI relevance or its Texas technology relevance in the headline itself. A feed's name,
+publisher, URL category or regional boilerplate never establishes subject relevance. This
+deliberately rejects vague titles, even from an AI publisher. Stocks, sports and promotional headlines are
 excluded. Publisher attribution and source links come from the allowlist in
 `config/news_sources.json`.
 
@@ -37,6 +37,8 @@ never changes `main` or generated `docs/`, and does not dispatch full-site guard
 The homepage reads that exact public JSON file from GitHub's raw host. Its CSP permits this
 specific path only on the homepage. The browser validates the payload version, timestamps,
 publisher identity, title and HTTPS link before using textContent to update the existing bar.
+The browser applies the collector's headline relevance patterns to the embedded seed, local
+cache and live responses, so a previously cached off-topic story cannot reappear after repair.
 It fetches at page load, every 15 minutes while visible, and when a reader returns to the tab or
 comes online. The request sends no credentials or referrer.
 

@@ -3,21 +3,33 @@
   var chip = document.querySelector('.news-chip');
   if (!chip) return;
   var sources = JSON.parse(chip.dataset.newsSources);
+  var relevance = JSON.parse(chip.dataset.newsRelevance), topic = {};
+  ['texas', 'austin', 'local', 'tech', 'ai', 'junk'].forEach(function (name) {
+    topic[name] = new RegExp(relevance[name], name === 'local' ? '' : 'i');
+  });
   var endpoint = chip.dataset.newsFeed;
   var key = 'texas-ai-news-v2';
   var hour = 3600000, active = null, pending = false, lastAttempt = 0;
+  function relevant(title, group) {
+    var texas = topic.texas.test(title) || topic.austin.test(title) ||
+                (group === 'dallasinnovates' && topic.local.test(title));
+    return !topic.junk.test(title) &&
+      ((topic.ai.test(title) && relevance.global_groups.indexOf(group) >= 0) || (texas && topic.tech.test(title)));
+  }
   function valid(data) {
     if (!data || data._spec !== 2 || !data.selected) return false;
     var story = data.selected, now = Date.now();
     var checked = Date.parse(data.checked_at), seen = Date.parse(story.first_seen_at);
     if (!Number.isFinite(checked) || !Number.isFinite(seen) || checked > now + 5 * 60000 ||
         seen > now || now - seen >= 168 * hour || seen > checked ||
-        typeof story.title !== 'string' || story.title.length < 20 || story.title.length > 220) return false;
+        typeof story.title !== 'string' || story.title.length < 20 || story.title.length > 220 ||
+        story.title.trim().split(/\s+/).length > 32) return false;
     try {
       var url = new URL(story.url);
       if (url.protocol !== 'https:' || url.username || url.password || url.port || /[\s\\]/.test(story.url)) return false;
       return Object.keys(sources).some(function (host) {
-        return (url.hostname === host || url.hostname.endsWith('.' + host)) && story.publisher === sources[host][0];
+        return (url.hostname === host || url.hostname.endsWith('.' + host)) &&
+          story.publisher === sources[host][0] && relevant(story.title, sources[host][1]);
       });
     } catch (_) { return false; }
   }

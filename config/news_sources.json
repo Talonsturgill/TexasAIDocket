@@ -9,11 +9,6 @@
     "https://blogs.nvidia.com/feed/",
     "https://blog.google/technology/ai/rss/"
   ],
-  "ai_feeds": [
-    "https://news.mit.edu/rss/topic/artificial-intelligence2",
-    "https://openai.com/news/rss.xml",
-    "https://blog.google/technology/ai/rss/"
-  ],
   "global_groups": ["mit", "openai", "nvidia", "google"],
   "sources": {
     "news.mit.edu": ["MIT News", "mit"],

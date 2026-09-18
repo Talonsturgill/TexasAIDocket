@@ -36,7 +36,6 @@ UTC = dt.timezone.utc
 MAX_AGE = dt.timedelta(days=7)
 TRENDING_AGE = dt.timedelta(hours=72)
 MAX_CHECK_AGE = dt.timedelta(hours=18)
-AI_FEEDS = frozenset(CONFIG.get('ai_feeds', []))
 GLOBAL_GROUPS = frozenset(CONFIG.get('global_groups', []))
 QUERY = ('(Texas OR Dallas OR Austin OR Houston OR "San Antonio" OR "Fort Worth") '
          '("artificial intelligence" OR AI OR "data center" OR technology OR semiconductor '
@@ -122,7 +121,8 @@ def topics(article: dict) -> tuple[bool, bool]:
     newsroom = source(article['url'])
     texas = bool(TEXAS.search(title) or AUSTIN.search(title) or
                  (newsroom and newsroom[1] == 'dallasinnovates' and DALLAS_INSTITUTIONS.search(title)))
-    ai = bool(AI.search(title) or article.get('feed') in AI_FEEDS)
+    # Feed names and publisher identity establish provenance, never subject relevance.
+    ai = bool(AI.search(title))
     return texas, ai
 
 
@@ -190,7 +190,7 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
             seen = dt.datetime.strptime(raw['seendate'], '%Y%m%dT%H%M%SZ').replace(tzinfo=UTC)
             row = {'title': html.unescape(' '.join(raw['title'].split())), 'url': url,
                    'first_seen_at': min(known.get(url, stamp(seen)), stamp(seen))}
-            if raw.get('feed') in AI_FEEDS:
+            if raw.get('feed') in RSS_FEEDS:
                 row['feed'] = raw['feed']
             if raw.get('language') == 'English' and eligible(row, now):
                 rows.append(row)
@@ -198,7 +198,7 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
             continue
     # Retain observations for a week to keep a repeated URL from resetting its own clock.
     for old in (previous or {}).get('articles', []):
-        if dt.timedelta(0) <= now - instant(old['first_seen_at']) < dt.timedelta(days=7):
+        if eligible(old, now):
             rows.append(old)
     unique = {}
     for article in rows:
@@ -227,7 +227,7 @@ def observation_history(data: dict) -> dict:
                 continue
             row = {'title': raw['title'], 'url': url,
                    'first_seen_at': stamp(instant(raw['first_seen_at']))}
-            if raw.get('feed') in AI_FEEDS:
+            if raw.get('feed') in RSS_FEEDS:
                 row['feed'] = raw['feed']
             rows.append(row)
         except (KeyError, TypeError, ValueError, AttributeError):
@@ -283,9 +283,14 @@ def markup(today: str, data: dict | None = None) -> str:
     first_seen = selected['first_seen_at'] if selected else ''
     description = ('Headlines ranked by coverage and freshness, with Texas AI first. '
                    'The date is the publisher feed date or first observation. Opens the source in a new tab.')
+    relevance = {name: pattern.pattern for name, pattern in
+                 [('texas', TEXAS), ('austin', AUSTIN), ('local', DALLAS_INSTITUTIONS),
+                  ('tech', TECH), ('ai', AI), ('junk', JUNK)]}
+    relevance['global_groups'] = sorted(GLOBAL_GROUPS)
     return (f'<a class="tele news-chip" data-news-status="{status}" '
             f'data-news-feed="{NEWS_FEED_URL}" '
             f'data-news-sources="{e(json.dumps(SOURCES), quote=True)}" '
+            f'data-news-relevance="{e(json.dumps(relevance), quote=True)}" '
             f'data-news-initial="{e(json.dumps(public_snapshot(data)), quote=True)}" '
             f'data-checked-at="{e(data.get("checked_at", ""), quote=True)}" '
             f'data-first-seen-at="{e(first_seen)}" data-expires-at="{e(data.get("expires_at") or "")}" '
@@ -374,8 +379,7 @@ def collect() -> int:
             body = checked_fetch(url)
             if url in RSS_FEEDS:
                 rows = rss_articles(body)
-                if url in AI_FEEDS:
-                    rows = [{**row, 'feed': url} for row in rows]
+                rows = [{**row, 'feed': url} for row in rows]
             else:
                 payload = json.loads(body)
                 if not isinstance(payload, dict) or not isinstance(payload.get('articles'), list):
@@ -625,6 +629,23 @@ def self_test() -> int:
             dated = snapshot({'articles': []}, now, {'articles': [row(hours=100)]})
             self.assertIsNotNone(dated['selected'])
             self.assertIn('Recent', markup('2026-09-11', dated))
+
+        def test_feed_membership_never_establishes_relevance(self):
+            for title in ['A new chapter for MIT Reads',
+                          'MIT spinout turns plastic waste into resilient building materials',
+                          'Measure by measure, studying society accurately']:
+                article = {**row(title, 'news.mit.edu'),
+                           'feed': 'https://news.mit.edu/rss/topic/artificial-intelligence2'}
+                self.assertFalse(eligible(article, now), title)
+                # Restored observations must not resurrect the same irrelevant story.
+                repaired = snapshot({'articles': []}, now, {'articles': [article]})
+                self.assertEqual(repaired['articles'], [])
+                self.assertIsNone(repaired['selected'])
+            for host, feed in [('openai.com', 'https://openai.com/news/rss.xml'),
+                               ('blog.google', 'https://blog.google/technology/ai/rss/')]:
+                self.assertFalse(eligible({**row('A community reading program opens today', host), 'feed': feed}, now))
+            self.assertTrue(eligible({**row('New AI technique makes surgery safer and more precise', 'news.mit.edu'),
+                                      'feed': 'https://news.mit.edu/rss/topic/artificial-intelligence2'}, now))
 
         def test_live_health(self):
             s = snapshot({'articles': []}, now, {'articles': [row()]})
