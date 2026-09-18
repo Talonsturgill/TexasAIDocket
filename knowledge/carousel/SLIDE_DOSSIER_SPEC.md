@@ -72,8 +72,13 @@ holds the deck to them with `--require`: a deck with no `layout` keys did not pl
 and a deck with the keys on some frames and not others is not in the system.
 
 - `layout` is one of the ten names in `assets/js/txlayout.js`. The nine values in slide order
-  must pass `TXLAYOUT.check`: no repeat in a row, at least five distinct, TYPE_AS_OBJECT at
-  most once, FULL_BLEED and CLOSE_CROP at least two between them.
+  must pass `TXLAYOUT.check`, which is where the rotation rule LIVES. This line carried its own
+  copy of it until 2026-09-18 and the copy was the superseded one, "no repeat in a row, at least
+  five distinct", nine days after the rule was rebalanced on 2026-09-16 toward continuity. A
+  planning spec that states a rule the checker does not hold is a spec that argues the deck back
+  toward the defect, so the rule is not restated here. `TXLAYOUT.check` and
+  `ILLUSTRATION_SYSTEM.md` "The rotation, rebalanced" are the two places it is written, and
+  `layout_check.py --prose` fails the build on any surface that keeps a third.
 - `primary_image.subject` names a THING. `rect` is where it lives, in frame px, at least thirty
   percent of the frame. `bleeds` lists the edges the rect actually touches. The gate measures
   detail and a silhouette inside that rect at thumb scale, so a rect drawn around a flat plate

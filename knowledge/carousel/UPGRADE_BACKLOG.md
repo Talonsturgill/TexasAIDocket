@@ -2833,3 +2833,182 @@ to name, per object, the two silhouette facts that make it that object and not a
 critic has something to check rather than a feeling. That is an agent-definition change under
 `.claude/agents/`, which is `upgrade` lane and is a sensitive path no unattended run can write.
 It waits on a maintainer answering one prompt.
+
+---
+
+## 2026-09-18, carousel no. 28. Three gates that could not see what they were pointed at
+
+Shipped this run, each with a self-test that replays the defect: `noun_trace` can now go red,
+`absence_check` no longer accepts the absent document as its own scope, and `layout_check
+--prose` discovers its surfaces instead of listing them. What follows is what this lane
+measured and did NOT build, and why each stopped where it did.
+
+### 1. THE L* SHAPE GATE THE ROUND-5 CRAFT JUDGE ASKED FOR. Measured twice, not built.
+
+The ask, verbatim: *"measure, for each frame, the internal L* range of the largest
+non-background shape and fail a frame whose largest shape carries no lit edge and no dark
+side."* Three judges named frames 3, 5 and 7 every round for five rounds with `craft_floor`,
+`layout_check`, `qa` and `plan_render_check` green over all three, so the hole is real. Two
+implementations were written against this deck's own pixels and both measured something other
+than what the sentence says. The numbers are here so the next attempt starts from evidence.
+
+**Route A, the largest connected non-background region.** Sampled at 540px, sRGB to CIE L*,
+background taken as the modal L*, ink as any pixel more than one JND (ΔL* 1.0) from it, eroded
+by two to drop hairlines and type, then run-length connected components.
+
+    the largest component covered 70.6 to 83.9 percent of the frame, on all nine frames
+
+It is not a shape. Every drawn thing, every wash and every rule touches something else, so the
+component is the frame. Its internal 10th to 90th percentile L* spread ran 34.2 (frame 7) to
+85.3 (frame 8), and frame 5, one of the three the judges called a flat fill, measured 81.3 while
+frame 6, which nobody called out, measured 44.4. **A threshold there would rank the wrong
+frames.**
+
+**Route B, the largest FLAT region.** Same sampling, tones binned at 2 L* units, largest
+connected single-tone region excluding the modal tone.
+
+    nine of the eighteen frames measured across carousels 28 and 26 resolved to a light
+    document facsimile, base L* above 70. A printed page is flat and is supposed to be.
+
+Frames 3, 5 and 7 measured 0.73, 2.32 and 0.71 percent of frame against a deck range of 0.27 to
+6.95 percent, so they sit inside the spread of the frames nobody complained about.
+
+**Why both fail the same way.** The art is drawn into a `<canvas>` by imperative JS. There is no
+declarative shape list to read, unlike the SVG route `scene_bounds` and `bleed_witness` use, so
+"the largest non-background shape" has to be recovered by segmentation, and segmentation of a
+drawing is the recognition problem this backlog already refused a gate for under 2026-09-17 item
+4. **A gate that scored the whole frame while its docstring said "the largest shape" would be
+the exact fault this lane shipped three fixes for today**, one level of ambition higher.
+
+**What might actually work, for whoever picks this up.** Not a pixel reading. The frames declare
+their planned median L* in the dossier and `measurements.json` records what rendered, so the
+tractable version is per-OBJECT rather than per-frame: have the dossier name each primary
+object's lit-plane and shadow-plane L*, the way it already names the frame median, and check the
+drawn object against its own declaration. That is a plan format change plus a gate, it is two
+runs of work rather than one phase, and it asks a question the artifacts can answer.
+
+### 2. CONNECTIVE PROSE STILL HAS NO GATE, and here is the measurement that says why
+
+Five hard fails across seven scoring rounds. Not one was in a quote, a numeral or a claim. All
+five were ordinary declarative sentences between the quotes.
+
+`quantifier_check` is the nearest thing standing, and its `UNIVERSAL` pattern pairs a quantifier
+with a set noun off a hardcoded list: step, item, action, record, source, door, body, them,
+these, five, fifteen, seventeen. Round 2's hard fail was *"the court posts an agenda before
+every meeting"*. **`meeting` is not on that list, so the sentence was invisible.** That is
+GATE_LESSONS 39 in a second file.
+
+The obvious repair was measured before being proposed. Widening the noun to any word, over every
+published surface of all 27 shipped decks:
+
+    the current pattern matches            17 times
+    the widened pattern adds              107 more, about four per deck
+
+and the additions are overwhelmingly legitimate: "all fetched September 18th" in every sources
+block, `&DocumentType=ALL` inside a URL, "Neither release names a room", "All 28 cameras will be
+turned off". **A gate that raises four findings a deck teaches the run to scroll past the fifth**,
+which is the argument this repo has already made twice for warning rather than failing, and it
+would be worse here because the declaration route (`quantifiers.json`) would have to absorb every
+one of them.
+
+**And the shape test cannot separate the honest sentence from the invented one.** Carousel no. 21
+printed *"Agendas post eight days ahead and none of the four left this year has one"*, supported,
+and it is the same grammar as round 2's fabrication about what the court posts before every
+meeting. One was fetched and one was not, and nothing in the sentence says which.
+
+**So the honest disposition is that this is a DECLARATION problem, not a parsing problem.** The
+route with a chance is the one `aggregate_check` and `quantifier_check` already use for numerals
+and sets: a run declares, per published sentence that asserts an institutional PRACTICE, the
+claim id whose fetched text supports it, and the gate checks the declaration rather than the
+grammar. That is a copy-format change reaching the whole pipeline, and it is the largest item in
+this file. It is not three hours of work and it should not be attempted as a side effect of a
+scoring round.
+
+### 3. MAINTAINER ONLY, both under `.claude/`, both measured this run
+
+- **`render.py` line 806 collects `window.__akLeaders`**, the Alaska prefix, while every Texas
+  frame sets `window.__txLeaders`. Consequence measured on this run's `render_report.json`:
+  `leaders`, `rules`, `contacts`, `encodings`, `svg_plates` and `canvas_text` are all `[]` on all
+  nine slides. **The declarative half of every acceptance list this repo writes has never been
+  machine-checked**, so a `qa.py` PASS certifies something narrower than it appears to. One word.
+- **`SKILL.md` documents `fetch` for geodata.** `--allow-file-access-from-files` covers
+  `XMLHttpRequest` only, so a frame built to the documented pattern fails with `URL scheme "file"
+  is not supported`. One line plus the reason.
+
+Ownership gives both to `upgrade`; the host prompts on every write under `.claude/` whatever the
+map says, which is CLAUDE.md's stated case for writing it here and stopping.
+
+### 4. TWO GATES WERE NOT RUNNING AT ALL MID-RUN, and only a reachability assertion saw it
+
+Measured at the start of this phase, `shipped_check --self-test` was RED on this run's own
+artifacts:
+
+    reached 24 registered gates, missing ['measured figures', 'ledgers']
+
+`runs/carousel/2026-09-18/` carried no `figures.json` and no `measurements.json`, and neither
+existed under `out/2026-09-18/` either, so at that moment the deck had never been measured into
+the file those two gates read. `g_measured` guards the highest-recurrence defect in this repo, an
+L* figure in prose disagreeing with the one that rendered, and `g_ledgers` is the only caller of
+`ledger_check`. Both returned `None`, which is **"not applicable" rather than "failed"**.
+
+**It cleared during this phase, by the daily lane writing the two files**, and `--self-test` is
+green on them now. The entry stays because the lesson does not depend on how long the window was
+open: a gate handed a missing input reports the same colour as a gate handed a clean one, and the
+only thing in the whole suite that can tell those two apart is the assertion that every
+registered gate actually RAN on the newest deck. Watch that assertion. It is the reason this was
+visible at all rather than a green sweep over two absent gates.
+
+Not an upgrade-lane fix either way: the artifacts are `daily`, and an adapter that invented a
+pass for a missing input would be the loosening this phase may never make.
+
+### 5. Small and real, left undone because three is the ceiling
+
+- **`aggregate_check` cannot see an article-form span.** Frame 6's "A week" is a computed span
+  (`days_first_to_mid`, exactly 7) and the extractor's patterns read a numeral, so the run had to
+  disclose it in prose under `_undeclared_but_computed`. The same extractor fired correctly on
+  "two items", so it is one asymmetry rather than two bugs. The fix is a word-form table for the
+  small integers and the articles that stand for one, in the extractor only.
+- **`ledger/carousel/captions.json` recent lists lag by one shipped entry.** A variety ledger that
+  lags permits the repeat it exists to refuse. That file is `daily` lane.
+
+### PROPOSED GATE_LESSONS ENTRIES, which this lane may not write
+
+`knowledge/shared/GATE_LESSONS.md` is `human`. Both entries describe gates changed this run and
+belong in that file by its own rule. Paste as is.
+
+> ## A gate whose fail list is a literal `[]`
+>
+> `noun_trace.py` ended its check `return [], warns, {...}`, so its exit code was 0 for every
+> input that has ever existed or could exist. The 2026-09-18 run cited "noun_trace exit=0" as
+> evidence in four separate gate sweeps. `gate_wiring.py` exists for this shape and could not see
+> it, because the gate IS wired, IS invoked and DOES run; what is empty is the only channel by
+> which running could change an outcome. A round-3 judge found it by reading the source.
+>
+> **The warn-only design was right and is unchanged.** What was wrong was that nothing in the
+> gate's output stopped a caller reading exit 0 as a verdict. Two repairs, neither of which
+> promotes a warning: the report line now names the contract in the same breath as the count, and
+> the two states in which the scan measures NOTHING, a gazetteer that loaded no place and claims
+> carrying no text, are hard fails. A check that CANNOT RUN is red, never green (entry 37).
+>
+> **What to check instead.** For every gate, ask what input would make it exit non-zero and write
+> that input down. If none exists, the gate is a report, and its own stdout has to say so, because
+> the next run will quote the exit code and not the docstring.
+
+> ## An absence scoped to the document it says does not exist
+>
+> `absence_check` requires a negative to name the document somebody opened, and it tested that by
+> noun shape: a doc word with a definite article, a possessive or a proper noun in front of it.
+> Frame 9 of carousel no. 28 shipped *"The minutes that would record an outcome are not
+> published"* into round 3, and the gate passed it, because "The minutes" is a doc word with a
+> definite article. It is also the absent thing itself, the subject of the very negation the
+> sentence makes. The gate's own docstring warned about this for the INDEFINITE case, "the absent
+> thing, not the source", and the article was never what distinguished them.
+>
+> A doc word is now disqualified when the sentence's negation attaches to it as its subject, and a
+> locator preposition governing it ("in the minutes", "on the calendar") settles the case first.
+> Sweeping 27 shipped decks raised three new warnings, all of the intended shape, and one false
+> positive that was fixed rather than accepted: a negation past "and" belongs to the second clause.
+>
+> **What to check instead.** When a gate tests for a NOUN SHAPE, ask what role that noun plays in
+> the sentence. The shapes that mark a source and the shapes that mark the missing thing are the
+> same words, and only the grammar around them separates the two.
