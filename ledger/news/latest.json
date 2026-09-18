@@ -1,9 +1,9 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-18T17:09:00Z",
+  "checked_at": "2026-09-18T21:46:13Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917170821&enddatetime=20260918170821",
-  "response_sha256": "1f2cf371100f8f058aeb7f1d2d5bdbed5c4129650395a07282aaacb365f49617",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917214531&enddatetime=20260918214531",
+  "response_sha256": "c05d801fed9982e48ee600a81896a11868b814d27823eb00c04ddd9f15a330e0",
   "articles": [
     {
       "title": "Building AI to accelerate science and improve lives",
@@ -77,11 +77,6 @@
       "title": "NVIDIA Vera Rubin NVL72 Delivers Leading Performance in MLPerf Inference v6.1 Debut",
       "url": "https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/",
       "first_seen_at": "2026-09-16T15:00:48Z"
-    },
-    {
-      "title": "Air taxis are taking test flights over Dallas - Fort Worth",
-      "url": "https://dallas.culturemap.com/news/innovation/air-taxi-testing-project-nexus/",
-      "first_seen_at": "2026-09-11T21:30:00Z"
     },
     {
       "title": "Air Taxi Pilot Program Takes Off at Fort Worth Alliance Airport",
@@ -190,13 +185,13 @@
     "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2",
     "publisher": "MIT News",
     "coverage": 1,
-    "score": 0.981402,
+    "score": 0.858807,
     "priority": 1
   },
   "expires_at": "2026-09-25T16:30:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917170821&enddatetime=20260918170821",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917214531&enddatetime=20260918214531",
       "status": "unavailable"
     },
     {
@@ -209,7 +204,7 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "f3b439d0b7872a7067f9ddcc7ccadc141adc27da71dd24af495668e9f3824859"
+      "sha256": "959a306f73ec13cf884996bb2bddcf75495afb6c7455cbdecb7dd24d2efd184e"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
@@ -227,13 +222,13 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1208,
-      "sha256": "065be2bea7b22c89faac6758f2ab10f9d5ee3c11c41d8ac440c03b516fe2e012"
+      "sha256": "bb71ba5b0e65867f41a24aeba4f68dbefc4611807b616f3912582ee8b0323490"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "e93ff6c0cd4928ffd341faee5b8dc58236c745c5795918eee0e55fe8ca167492"
+      "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
