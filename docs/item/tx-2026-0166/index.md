@@ -10,7 +10,7 @@ A feasibility trial registered on the federal clinical trials registry is recrui
   - Houston-Pasadena-The Woodlands, TX
 - Status: decided
 - Public access: Write to the decider
-- Take part: https://clinicaltrials.gov/api/v2/studies/NCT07626112
+- Take part: https://clinicaltrials.gov/study/NCT07626112
 
 - Last checked: 2026-09-18
 
@@ -24,6 +24,7 @@ A feasibility trial registered on the federal clinical trials registry is recrui
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-18 · Admitted on the trial's own registration. The study is recruiting at three Texas academic campuses, and what it is registered to measure is whether the application can be used rather than whether it changes any outcome.
+- 2026-09-18 · A code review found that the summary published the recruitment status, the sponsor's role and two dates with no claim behind any of them. The registry was re-fetched and four claims were added, quoting the status, the start date, the last update date and the responsible party's title. The reader-facing link pointed at the JSON API and now points at the human study page. This is a recruiting trial and that field is the route a prospective participant would follow.
 
 ## Evidence
 
@@ -62,6 +63,30 @@ Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 ### It names the Houston site.
 
 > McGovern Medical School - UTHealth Houston
+
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
+
+### The registration states the trial's recruitment status.
+
+> RECRUITING
+
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
+
+### The registration states the study start date.
+
+> 2026-08-06
+
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
+
+### The registration states when the record was last updated.
+
+> 2026-09-14
+
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
+
+### The registration states the responsible party's title and affiliation.
+
+> Professor of Women's Health
 
 Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 
