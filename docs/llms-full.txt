@@ -9101,6 +9101,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-10 · The university's account is published and names the researchers, the sensing package, where the model runs and the federal program that funded the work. It is a prototype and no installation site is named.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The UT San Antonio flood sensor that runs its model on the chip is still described that way by the university. Nothing has moved the work off the device.
+- 2026-09-18 · Re-verified against the university's own account and two quotes were added, the off-grid description and the definition of the compression method that lets the model run on a microcontroller. This decision was also admitted a second time on the same day. That duplicate came off the same article reached over http rather than https, and it was removed before it reached the record. A code review caught it. Nothing in the admission phase did, because the dedupe compares entities and keywords rather than normalised source URLs.
 
 ## Evidence
 
@@ -9151,6 +9152,18 @@ Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-research
 ### The announcement names the problem the existing gauges have.
 
 > Existing commercial flood-monitoring stations also come with drawbacks, from prohibitively high costs to reliance on grid power or frequent battery replacements, which leaves them vulnerable during multi-day storms or power outages.
+
+Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
+
+### The researcher states what the system does without outside power or a network.
+
+> Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.
+
+Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
+
+### The account describes the method that lets the model run on the node.
+
+> a branch of computer science that compresses machine learning algorithms so they can run directly on small, low-power microcontrollers
 
 Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
 
@@ -9398,9 +9411,9 @@ Source (primary_official): https://www.federalregister.gov/documents/full_text/t
 
 ---
 
-# El Paso City Council votes to strip the police plate reader cameras off city property and bar the next contract
+# El Paso City Council approves two plate reader items as revised, with the amendment text unpublished
 
-The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting and approved both. The first directs the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware goes with it, whoever owns the equipment. The second bars the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gives the City Attorney 30 days to draft a resolution carrying that out. The council's own record marks each item approved as revised, so both carry amendments made from the floor. The minutes are marked final and their text is not published yet. What those revisions changed is not on the record a reader can read today. El Paso sits outside the ERCOT region.
+The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting. The council's own record marks each one approved as revised. The amendments were made from the floor and their text is not published. The minutes are marked final and are not posted yet. What the revisions changed is not on a record a reader can reach today. As filed, the first item directed the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware went with it, whoever owned the equipment. As filed, the second barred the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gave the City Attorney 30 days to draft a resolution carrying that out. Whether those terms survived the amendments is unconfirmed. El Paso sits outside the ERCOT region.
 
 - Topic: surveillance-and-policing
 - Decided by: El Paso City Council (city)
@@ -9426,6 +9439,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-14 · Both items are still posted to the council's own agenda and neither has been voted on. Nothing has been added to the agenda that narrows what the two would do to the fixed plate reader cameras.
 - 2026-09-15 · Both items are still posted to the council's own agenda and the meeting they are set for is today. Neither has been voted on and nothing has been filed against either.
 - 2026-09-18 · The council voted and both items carried. The meeting record now marks each one approved as revised. That moves this from two posted agenda items to a direction the City Manager has been given. What the amendments changed is unconfirmed. The minutes are marked final and their text is not published yet.
+- 2026-09-18 · Reworded after a code review. The title and the opening stated the items as filed as though they were what the council enacted, and the approved-as-revised fact arrived fifth. The vote is confirmed and the amendment text is not published, so every directive is now marked as filed and the revision is the first thing a reader meets. No claim changed and nothing was added.
 
 ## Evidence
 
@@ -10397,7 +10411,7 @@ A feasibility trial registered on the federal clinical trials registry is recrui
   - Houston-Pasadena-The Woodlands, TX
 - Status: decided
 - Public access: Write to the decider
-- Take part: https://clinicaltrials.gov/api/v2/studies/NCT07626112
+- Take part: https://clinicaltrials.gov/study/NCT07626112
 
 - Last checked: 2026-09-18
 
@@ -10411,6 +10425,7 @@ A feasibility trial registered on the federal clinical trials registry is recrui
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-18 · Admitted on the trial's own registration. The study is recruiting at three Texas academic campuses, and what it is registered to measure is whether the application can be used rather than whether it changes any outcome.
+- 2026-09-18 · A code review found that the summary published the recruitment status, the sponsor's role and two dates with no claim behind any of them. The registry was re-fetched and four claims were added, quoting the status, the start date, the last update date and the responsible party's title. The reader-facing link pointed at the JSON API and now points at the human study page. This is a recruiting trial and that field is the route a prospective participant would follow.
 
 ## Evidence
 
@@ -10452,60 +10467,29 @@ Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 
 Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 
----
+### The registration states the trial's recruitment status.
 
-# UT San Antonio builds a solar powered flood sensor that runs its model on the device instead of a server
+> RECRUITING
 
-The University of Texas at San Antonio published an account on September 8th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined solar energy harvesting, environmental sensing and long range radio. The machine learning model is compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server. It keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 
-- Topic: research-and-science
-- Decided by: The University of Texas at San Antonio (state-agency)
-- Where: Bexar
-- Statistical areas:
-  - San Antonio-New Braunfels, TX
-- Status: decided
-- Public access: Write to the decider
-- Take part: http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
+### The registration states the study start date.
 
-- Last checked: 2026-09-18
+> 2026-08-06
 
-## Dates
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 
-- 2026-09-08 · filed: Date the university published the account
+### The registration states when the record was last updated.
 
-## How this decision moved
+> 2026-09-14
 
-One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 
-- 2026-09-18 · Admitted on the university's own account. What exists is a prototype, and the accuracy figure the account gives comes from assessment after training rather than from a flood.
+### The registration states the responsible party's title and affiliation.
 
-## Evidence
+> Professor of Women's Health
 
-Every fact above rests on one of these. The words are the source's own.
-
-### The researcher states what the system does without outside power or a network.
-
-> Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.
-
-Source (primary_official): http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
-
-### The account describes the method that lets the model run on the node.
-
-> a branch of computer science that compresses machine learning algorithms so they can run directly on small, low-power microcontrollers
-
-Source (primary_official): http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
-
-### The university states the accuracy figure and what stage it comes from.
-
-> So far, the AI has performed well, achieving 98.82% validation accuracy in initial assessments post-training.
-
-Source (primary_official): http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
-
-### It names who paid for the work.
-
-> This project was funded in part by a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration (NOAA).
-
-Source (primary_official): http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
+Source (primary_official): https://clinicaltrials.gov/api/v2/studies/NCT07626112
 
 ---
 

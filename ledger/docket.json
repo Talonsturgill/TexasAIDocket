@@ -17324,6 +17324,24 @@
      "source_type": "primary_official",
      "fetched": "2026-09-10",
      "id": "tx-2026-0141-c8"
+    },
+    {
+     "text": "The researcher states what the system does without outside power or a network.",
+     "verbatim_quote": "Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.",
+     "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+     "source_title": "UT San Antonio Today",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0141-c9"
+    },
+    {
+     "text": "The account describes the method that lets the model run on the node.",
+     "verbatim_quote": "a branch of computer science that compresses machine learning algorithms so they can run directly on small, low-power microcontrollers",
+     "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+     "source_title": "UT San Antonio Today",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0141-c10"
     }
    ],
    "id": "tx-2026-0141",
@@ -17341,6 +17359,11 @@
     {
      "date": "2026-09-16",
      "note": "The UT San Antonio flood sensor that runs its model on the chip is still described that way by the university. Nothing has moved the work off the device.",
+     "checked": true
+    },
+    {
+     "date": "2026-09-18",
+     "note": "Re-verified against the university's own account and two quotes were added, the off-grid description and the definition of the compression method that lets the model run on a microcontroller. This decision was also admitted a second time on the same day. That duplicate came off the same article reached over http rather than https, and it was removed before it reached the record. A code review caught it. Nothing in the admission phase did, because the dedupe compares entities and keywords rather than normalised source URLs.",
      "checked": true
     }
    ]
@@ -17750,8 +17773,8 @@
    ]
   },
   {
-   "title": "El Paso City Council votes to strip the police plate reader cameras off city property and bar the next contract",
-   "summary": "The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting and approved both. The first directs the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware goes with it, whoever owns the equipment. The second bars the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gives the City Attorney 30 days to draft a resolution carrying that out. The council's own record marks each item approved as revised, so both carry amendments made from the floor. The minutes are marked final and their text is not published yet. What those revisions changed is not on the record a reader can read today. El Paso sits outside the ERCOT region.",
+   "title": "El Paso City Council approves two plate reader items as revised, with the amendment text unpublished",
+   "summary": "The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting. The council's own record marks each one approved as revised. The amendments were made from the floor and their text is not published. The minutes are marked final and are not posted yet. What the revisions changed is not on a record a reader can reach today. As filed, the first item directed the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware went with it, whoever owned the equipment. As filed, the second barred the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gave the City Attorney 30 days to draft a resolution carrying that out. Whether those terms survived the amendments is unconfirmed. El Paso sits outside the ERCOT region.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "El Paso City Council",
@@ -17806,6 +17829,11 @@
     {
      "date": "2026-09-18",
      "note": "The council voted and both items carried. The meeting record now marks each one approved as revised. That moves this from two posted agenda items to a direction the City Manager has been given. What the amendments changed is unconfirmed. The minutes are marked final and their text is not published yet."
+    },
+    {
+     "date": "2026-09-18",
+     "note": "Reworded after a code review. The title and the opening stated the items as filed as though they were what the council enacted, and the approved-as-revised fact arrived fifth. The vote is confirmed and the amendment text is not published, so every directive is now marked as filed and the revision is the first thing a reader meets. No claim changed and nothing was added.",
+     "checked": true
     }
    ],
    "claims": [
@@ -19276,8 +19304,8 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The registration is public and carries the study design, the sponsor and every participating site. Enrollment is through the campuses themselves rather than through any public window.",
-    "url": "https://clinicaltrials.gov/api/v2/studies/NCT07626112",
+    "how": "The registration is public and carries the study design, the sponsor and every participating site. Enrollment is through the campuses themselves rather than through any public window. The study page carries the registry record in readable form, with the eligibility criteria and the contact for enquiries.",
+    "url": "https://clinicaltrials.gov/study/NCT07626112",
     "closes": null
    },
    "confidence": "high",
@@ -19335,6 +19363,42 @@
      "source_type": "primary_official",
      "fetched": "2026-09-18",
      "id": "tx-2026-0166-c6"
+    },
+    {
+     "text": "The registration states the trial's recruitment status.",
+     "verbatim_quote": "RECRUITING",
+     "source_url": "https://clinicaltrials.gov/api/v2/studies/NCT07626112",
+     "source_title": "ClinicalTrials.gov, NCT07626112",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0166-c7"
+    },
+    {
+     "text": "The registration states the study start date.",
+     "verbatim_quote": "2026-08-06",
+     "source_url": "https://clinicaltrials.gov/api/v2/studies/NCT07626112",
+     "source_title": "ClinicalTrials.gov, NCT07626112",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0166-c8"
+    },
+    {
+     "text": "The registration states when the record was last updated.",
+     "verbatim_quote": "2026-09-14",
+     "source_url": "https://clinicaltrials.gov/api/v2/studies/NCT07626112",
+     "source_title": "ClinicalTrials.gov, NCT07626112",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0166-c9"
+    },
+    {
+     "text": "The registration states the responsible party's title and affiliation.",
+     "verbatim_quote": "Professor of Women's Health",
+     "source_url": "https://clinicaltrials.gov/api/v2/studies/NCT07626112",
+     "source_title": "ClinicalTrials.gov, NCT07626112",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0166-c10"
     }
    ],
    "id": "tx-2026-0166",
@@ -19343,84 +19407,11 @@
     {
      "date": "2026-09-18",
      "note": "Admitted on the trial's own registration. The study is recruiting at three Texas academic campuses, and what it is registered to measure is whether the application can be used rather than whether it changes any outcome."
-    }
-   ]
-  },
-  {
-   "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the device instead of a server",
-   "summary": "The University of Texas at San Antonio published an account on September 8th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined solar energy harvesting, environmental sensing and long range radio. The machine learning model is compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server. It keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.",
-   "topic": "research-and-science",
-   "decider": {
-    "name": "The University of Texas at San Antonio",
-    "type": "state-agency"
-   },
-   "geography": {
-    "statewide": false,
-    "counties": [
-     "Bexar"
-    ],
-    "metro": "San Antonio-New Braunfels, TX",
-    "on_ercot": true
-   },
-   "status": "decided",
-   "key_dates": [
-    {
-     "date": "2026-09-08",
-     "kind": "filed",
-     "note": "Date the university published the account"
-    }
-   ],
-   "public_access": {
-    "room": "contact_only",
-    "how": "The university's own account is public and names the lead researcher and the laboratory. No comment window or public proceeding attaches to a research prototype.",
-    "url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
-    "closes": null
-   },
-   "confidence": "high",
-   "claims": [
-    {
-     "text": "The researcher states what the system does without outside power or a network.",
-     "verbatim_quote": "Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.",
-     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
-     "source_title": "UT San Antonio Today",
-     "source_type": "primary_official",
-     "fetched": "2026-09-18",
-     "id": "tx-2026-0167-c1"
     },
-    {
-     "text": "The account describes the method that lets the model run on the node.",
-     "verbatim_quote": "a branch of computer science that compresses machine learning algorithms so they can run directly on small, low-power microcontrollers",
-     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
-     "source_title": "UT San Antonio Today",
-     "source_type": "primary_official",
-     "fetched": "2026-09-18",
-     "id": "tx-2026-0167-c2"
-    },
-    {
-     "text": "The university states the accuracy figure and what stage it comes from.",
-     "verbatim_quote": "So far, the AI has performed well, achieving 98.82% validation accuracy in initial assessments post-training.",
-     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
-     "source_title": "UT San Antonio Today",
-     "source_type": "primary_official",
-     "fetched": "2026-09-18",
-     "id": "tx-2026-0167-c3"
-    },
-    {
-     "text": "It names who paid for the work.",
-     "verbatim_quote": "This project was funded in part by a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration (NOAA).",
-     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
-     "source_title": "UT San Antonio Today",
-     "source_type": "primary_official",
-     "fetched": "2026-09-18",
-     "id": "tx-2026-0167-c4"
-    }
-   ],
-   "id": "tx-2026-0167",
-   "last_verified": "2026-09-18",
-   "history": [
     {
      "date": "2026-09-18",
-     "note": "Admitted on the university's own account. What exists is a prototype, and the accuracy figure the account gives comes from assessment after training rather than from a flood."
+     "note": "A code review found that the summary published the recruitment status, the sponsor's role and two dates with no claim behind any of them. The registry was re-fetched and four claims were added, quoting the status, the start date, the last update date and the responsible party's title. The reader-facing link pointed at the JSON API and now points at the human study page. This is a recruiting trial and that field is the route a prospective participant would follow.",
+     "checked": true
     }
    ]
   },

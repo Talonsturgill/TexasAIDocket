@@ -1,6 +1,6 @@
-# El Paso City Council votes to strip the police plate reader cameras off city property and bar the next contract
+# El Paso City Council approves two plate reader items as revised, with the amendment text unpublished
 
-The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting and approved both. The first directs the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware goes with it, whoever owns the equipment. The second bars the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gives the City Attorney 30 days to draft a resolution carrying that out. The council's own record marks each item approved as revised, so both carry amendments made from the floor. The minutes are marked final and their text is not published yet. What those revisions changed is not on the record a reader can read today. El Paso sits outside the ERCOT region.
+The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting. The council's own record marks each one approved as revised. The amendments were made from the floor and their text is not published. The minutes are marked final and are not posted yet. What the revisions changed is not on a record a reader can reach today. As filed, the first item directed the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware went with it, whoever owned the equipment. As filed, the second barred the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gave the City Attorney 30 days to draft a resolution carrying that out. Whether those terms survived the amendments is unconfirmed. El Paso sits outside the ERCOT region.
 
 - Topic: surveillance-and-policing
 - Decided by: El Paso City Council (city)
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-14 · Both items are still posted to the council's own agenda and neither has been voted on. Nothing has been added to the agenda that narrows what the two would do to the fixed plate reader cameras.
 - 2026-09-15 · Both items are still posted to the council's own agenda and the meeting they are set for is today. Neither has been voted on and nothing has been filed against either.
 - 2026-09-18 · The council voted and both items carried. The meeting record now marks each one approved as revised. That moves this from two posted agenda items to a direction the City Manager has been given. What the amendments changed is unconfirmed. The minutes are marked final and their text is not published yet.
+- 2026-09-18 · Reworded after a code review. The title and the opening stated the items as filed as though they were what the council enacted, and the approved-as-revised fact arrived fifth. The vote is confirmed and the amendment text is not published, so every directive is now marked as filed and the revision is the first thing a reader meets. No claim changed and nothing was added.
 
 ## Evidence
 

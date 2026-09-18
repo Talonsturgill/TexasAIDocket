@@ -15,9 +15,21 @@ was never built from a record half a run old.
 |---|---|
 | worklist | 9 due, 0 rotten, 0 deferred, cleared |
 | re-verified | 8 stamped, **2 moved** |
-| admitted | 5 items (tx-2026-0166, 0167, 0168, 0169, 0170) |
+| admitted | **4** items (tx-2026-0166, 0168, 0169, 0170) |
 | backlog | empty |
-| docket | 141 to 146 items, 789 to 823 claims, `docket_build --validate` clean |
+| docket | 141 to 145 items, 789 to 825 claims, `docket_build --validate` clean |
+
+**A code review caught a duplicate this run's own admission phase did not.** `tx-2026-0167` was
+the UT San Antonio flood sensor already published as `tx-2026-0141`, off the same article reached
+over `http` rather than `https`. Its two genuinely new quotes were folded into the existing item
+and the duplicate was removed before it reached `main`. **The dedupe compares entities and
+keywords and does not normalise source URLs**, which is why nothing here saw it. Two further
+findings on the same review are fixed and are the same defect family as the deck's: `tx-2026-0147`
+stated the items as filed as though they were what the council enacted, with the
+approved-as-revised fact arriving fifth, and `tx-2026-0166` published a recruitment status, a
+sponsor role and two dates with no claim behind any of them. The registry was re-fetched and four
+claims were added, and that item's reader-facing link pointed at a JSON API rather than the human
+study page a prospective participant would follow.
 
 **Two movements a string test would have missed, and that is the whole argument for this phase.**
 
