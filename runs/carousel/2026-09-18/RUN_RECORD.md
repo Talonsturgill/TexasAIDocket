@@ -211,6 +211,37 @@ reviewed the rendered deck and directed it to ship. The construction measurement
 visible as an advisory while `bespoke_check` and the scoring panel remain the gates for genuinely
 repeated artwork. Pull request no. 326 must still pass exact-head CI before it merges.
 
+## ONE PROPOSAL FOR A MAINTAINER, and it is the only thing between this branch and green CI
+
+`port_audit`'s **residue** check fails the `gates` job on one line:
+
+    ledger/carousel/upgrades.json:1779
+    "what": "render.py collects `window.__akLeaders`, the Alaska prefix, while every Texas frame ..."
+
+**This run wrote that line and cannot fix it.** The phrase appeared in five places today, all
+describing the same defect, and four are already reworded to "a prefix left behind by a port",
+which says everything the sibling repo's name said and satisfies the rule. The fifth is in
+`ledger/carousel/upgrades.json`, which `ownership.yaml` marks **append only**, on the stated
+ground that *an upgrade that can edit its own history can hide one*. That guard is right, and it
+is right even here, where the edit is four words of description with the logged upgrade's
+substance untouched, because the checker cannot tell those cases apart and is not supposed to try.
+
+`ownership_check` says a maintainer may write anything. No actor this run may stamp can.
+
+**Two ways to close it, and the first is better.**
+
+1. **A maintainer reruns the same substitution** on that one line, `the Alaska prefix` to
+   `a prefix left behind by a port`. One line, no meaning changes, `port_audit` goes green.
+2. Add `ledger/carousel/upgrades.json` to `RESIDUE_ALLOW` in `scripts/shared/port_audit.py`.
+   **Not recommended.** That list's own comment says it is kept to exact paths so the exemption
+   "cannot spread to the ledgers, which is what the residue rule actually protects", so this
+   would contradict the rule's stated design to spare four words.
+
+**The lesson worth keeping either way.** A run describing a defect quoted the thing the defect is
+made of, and the quote itself tripped a guard. `__akLeaders` is unavoidable in the description and
+carries no residue, because it is a variable name in another file. The sibling repo's NAME was
+avoidable and carried all of it.
+
 ## Discoverability signoff
 
 All seven surfaces exit 0 on the built site: `media_check`, `schema_check`, `seo_check`,
