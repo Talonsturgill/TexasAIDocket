@@ -2926,7 +2926,7 @@ scoring round.
 
 ### 3. MAINTAINER ONLY, both under `.claude/`, both measured this run
 
-- **`render.py` line 806 collects `window.__akLeaders`**, the Alaska prefix, while every Texas
+- **`render.py` line 806 collects `window.__akLeaders`**, a prefix left behind by a port, while every Texas
   frame sets `window.__txLeaders`. Consequence measured on this run's `render_report.json`:
   `leaders`, `rules`, `contacts`, `encodings`, `svg_plates` and `canvas_text` are all `[]` on all
   nine slides. **The declarative half of every acceptance list this repo writes has never been
