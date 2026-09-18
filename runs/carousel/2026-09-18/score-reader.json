@@ -1,0 +1,45 @@
+{
+  "judge": "reader",
+  "round": 6,
+  "criteria": [
+    {
+      "name": "artwork_craft",
+      "weight": 0.22,
+      "score": 6.5
+    },
+    {
+      "name": "deck_coherence",
+      "weight": 0.12,
+      "score": 7.5
+    },
+    {
+      "name": "claim_integrity",
+      "weight": 0.2,
+      "score": 7.5
+    },
+    {
+      "name": "story_and_stakes",
+      "weight": 0.16,
+      "score": 5.5
+    },
+    {
+      "name": "sequence_and_momentum",
+      "weight": 0.1,
+      "score": 6.0
+    },
+    {
+      "name": "voice",
+      "weight": 0.1,
+      "score": 7.0
+    },
+    {
+      "name": "variety",
+      "weight": 0.1,
+      "score": 7.5
+    }
+  ],
+  "weighted_score": 6.76,
+  "hard_fails": [],
+  "ship": false,
+  "note": "hard fail cleared. Scored 0.055 DOWN from 6.815 and said so plainly: the repair removed a false label without supplying what it stood for. NOT ACCEPTED: its charge that frame 9 prints a truncated c4 fragment whose negating clause is hidden. Verified against render_report, frame 9 prints c4's quote in full character for character; that was the round-3 state and was repaired in round 4"
+}

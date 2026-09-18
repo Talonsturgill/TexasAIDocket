@@ -1,0 +1,165 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 6 of 9. Archetype OBJECT_AND_CAPTION.
+     THE DECK'S POPULATED FRAME, and it is the only one that shows the body itself. Five seated
+     figures behind a 9 m dais and one standing at a 1.25 m podium, every one of them at 1.70 m,
+     so a procurement line becomes a person asking five people for something.
+     TWO QUOTED ITEMS AND NOTHING BETWEEN THEM. A reader joins two stacked blocks whether or not
+     a line is drawn, so nothing is drawn: no rule, no arrow, no bracket, no shared plate and no
+     accent runs between the surveillance item and the Tyler item. The dek says so in words.
+     NO SEAL, NO BADGE, NO LIVERY, NO NAME. Four commissioners appear on two sponsor lines in the
+     record and none of them is drawn.
+     Planned frame median L* 24. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:152px; width:880px; font-size:76px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.020em; color:#E4D3CE; font-variation-settings:"opsz" 144; z-index:12; }
+  .dek  { position:absolute; left:84px; top:420px; width:470px; font-size:26px;
+          line-height:1.42; color:#CFB9B3; z-index:12; }
+  .q1   { position:absolute; left:576px; top:452px; width:424px;
+          font-family:"JetBrains Mono", monospace; font-size:24px; line-height:1.56;
+          color:#D9C6BD; z-index:12; }
+  .q1b  { position:absolute; left:576px; top:540px; width:424px;
+          font-family:"JetBrains Mono", monospace; font-size:24px; line-height:1.56;
+          color:#D9C6BD; z-index:12; }
+  .q2   { position:absolute; left:576px; top:688px; width:424px;
+          font-family:"JetBrains Mono", monospace; font-size:24px; line-height:1.56;
+          color:#EDDFD8; z-index:12; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:0.09em; color:#C6AFA6; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A week after September 1st, a policy put to the same court.</h1>
+<p class="dek">The September 8th agenda took up how the county governs AI in surveillance. The item listed straight after it is a Tyler Technologies amendment for report writing services. Nothing on the page joins the two.</p>
+<div class="lab" id="labA" style="left:576px; top:412px;">SEPTEMBER 8TH</div>
+<div class="lab" id="labB" style="left:576px; top:648px;">LISTED NEXT</div>
+<p class="q1">"possible adoption of a policy statement"</p>
+<p class="q1b">"AI-enabled surveillance technologies by Hays County"</p>
+<p class="q2">"one for report writing services"</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "The third item", counter: "06 / 09",
+      src: 'c11 c12 c13 c14   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 62, max: 76, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .q1, .q1b, .q2, .lab, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // THE ROOM, at seated public eye. The reader is in the gallery, not at the dais.
+    // THE HORIZON SITS AT 860 AND THAT NUMBER IS THE FRAME'S WHOLE COMPOSITION. The first build
+    // put it at 742, which raised the dais top to 715 and drove the seated figures' heads up
+    // into the caption block, and it left the bottom third as empty floor. At 860 the dais top
+    // lands at 815, every head clears the type, and the floor below the dais is the furniture
+    // band the falloff was always going to take.
+    var S = M.scene(cx, { eye: 1.12, horizon: 860, f: 850, sky: M.pick(1.4) });
+
+    // the back wall of the chamber, above the horizon, so the room has a ceiling and a far side
+    cx.save();
+    var wg = cx.createLinearGradient(0, 0, 0, 860);
+    wg.addColorStop(0, M.pick(2.3));
+    wg.addColorStop(1, M.pick(4.8));
+    cx.fillStyle = wg; cx.fillRect(0, 0, W, 860);
+    cx.restore();
+
+    S.ground({ near: 1.2, far: 220, fill: M.pick(4.6) });
+
+    // FAR THINGS FIRST. The bench does not sort.
+    // Five seated figures behind the dais, lifted 0.35 m onto the platform a dais seats people on,
+    // so heads and shoulders clear the 1.3 m front. Different greys from the furniture, because
+    // figures at the same tone as the objects beside them merge into one pale mass.
+    var seatXs = [-3.9, -2.0, -0.1, 1.8, 3.7];
+    for (var i = 0; i < 5; i++) {
+      var f = TXFIG.figure({ pose: "sit", height: 1.70, seat: 0.45 });
+      S.sprite(f, { X: seatXs[i], Z: 7.0, y: 0.35,
+                    inks: { ink: M.pick(1.4), paper: M.pick(2.8), accent: M.pick(1.4) } });
+    }
+
+    // THE DAIS, 9 m across at Z 6.0, so it runs off both edges of the frame and still reads as
+    // one object. The first build had it at Z 3.4, which made it 2000 px wide and turned a piece
+    // of furniture into three pale slabs with no modelling in them.
+    var dais = TXOBJ.sprite("dais");
+    S.shadow(dais, { X: 0, Z: 6.0, ink: "#0E0509", alpha: 0.42 });
+    S.sprite(dais, { X: 0, Z: 6.0,
+                     inks: { ink: M.pick(2.9), paper: M.pick(4.6), accent: M.pick(2.9) } });
+
+    // THE PODIUM AND THE PERSON AT IT sit on the RIGHT, where no caption is set, so a 1.70 m
+    // figure can stand at its full height without a single glyph behind it.
+    // A CLIPPED RIM ALONG THE DAIS LIP, never a stroked path. Stroking a layer's whole path
+    // outlines every rect on four sides and turns a room of furniture into a wireframe diagram
+    // of a room of furniture, which is the "diagram of a place" three judges have named.
+    //
+    // IT IS DRAWN BEFORE THE PODIUM AND THE FIGURE AND THAT IS THE FIX FOR A REAL BUG.
+    // The rim is a full width band at y 834.5 and the podium and the speaker stand at Z 4.2,
+    // nearer than the dais at Z 6.0, so they are IN FRONT of it. Drawn after them the band
+    // painted straight through the podium and through the speaker's torso and legs, at the
+    // same value on both sides of each, which reads as the two foreground objects being
+    // translucent while the five seated figures behind them are solid. Nothing reports it:
+    // qa.py sees canvas art rather than a rule, and the frame's acceptance items ask where
+    // the objects are rather than what is drawn over them.
+    var daisTopY = S.groundY(6.0) - 1.3 * 850 / 6.0;
+    cx.save();
+    cx.beginPath(); cx.rect(0, daisTopY - 3, W, 5); cx.clip();
+    var rg = cx.createLinearGradient(0, 0, W, 0);
+    rg.addColorStop(0, "rgba(255,238,224,0.05)");
+    rg.addColorStop(0.74, "rgba(255,238,224,0.40)");
+    rg.addColorStop(1, "rgba(255,238,224,0.16)");
+    cx.fillStyle = rg; cx.fillRect(0, daisTopY - 3, W, 5);
+    cx.restore();
+
+    var podium = TXOBJ.sprite("podium");
+    S.shadow(podium, { X: 1.15, Z: 4.2, ink: "#0E0509", alpha: 0.46 });
+    S.sprite(podium, { X: 1.15, Z: 4.2,
+                       inks: { ink: M.pick(2.4), paper: M.pick(4.4), accent: M.pick(2.4) } });
+
+    var asker = TXFIG.figure({ pose: "stand", height: 1.70, hold: "clipboard" });
+    S.shadow(asker, { X: 1.90, Z: 4.2, ink: "#0E0509", alpha: 0.46 });
+    S.sprite(asker, { X: 1.90, Z: 4.2,
+                      inks: { ink: M.pick(1.1), paper: M.paper(6.2), accent: M.pick(1.1) } });
+
+    M.pool(cx, { x: 872, y: 880, r: 800, squash: 0.52, rot: -0.20, strength: 1.00,
+                 reserve: boxes, reserveStrength: 0.60, reserveFeather: 110 });
+
+    M.tooth(cx, { x: 0, y: 0, w: W, h: H, cell: 6, angle: 26, strength: 0.15, mask: mask });
+
+    M.falloff(cx, { from: 1184, mid: 0.86, end: 0.97 });
+    M.falloffTop(cx, { to: 232, start: 0.68 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

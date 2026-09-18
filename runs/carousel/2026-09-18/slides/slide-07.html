@@ -1,0 +1,153 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 7 of 9. Archetype MAP.
+     THE FRAME THAT ANSWERS WHERE. All three September items sit with one commissioners court, and
+     this is the only frame that puts that court on the ground.
+     ONE COUNTY AT ONE VALUE, NO SEVERITY RAMP AND NO DIAL. A filled colour on a county implies a
+     judgement about that county, and this product does not publish one. Hays carries a single
+     value step above the mesh and nothing else on the map carries any value at all.
+     THE COUNT OF AGENDA DATES IS AN AGGREGATE and it is declared in aggregates.json against
+     c1, c11 and c6, because an undeclared count is how a wrong number reaches the largest type
+     on a page.
+     Planned frame median L* 22. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  svg#map { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:6; }
+  .hook { position:absolute; left:84px; top:158px; width:800px; font-size:86px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.020em; color:#E4D3CE; font-variation-settings:"opsz" 144; z-index:12; }
+  .dek  { position:absolute; left:84px; top:372px; width:640px; font-size:26px;
+          line-height:1.44; color:#CFB9B3; z-index:12; }
+  .key  { position:absolute; left:84px; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:0.07em; color:#D9C6BD; z-index:12; }
+  .cty  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:34px;
+          font-weight:700; letter-spacing:0.12em; color:#F2E6E0; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="map" viewBox="0 0 1080 1350"></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">One county. One court. Three agendas.</h1>
+<p class="dek">The September 1st, September 8th and September 15th meetings were all the same commissioners court.</p>
+<div class="cty" id="cty" style="left:640px; top:704px;">HAYS</div>
+<div class="key" id="k1" style="top:1074px;">SEPTEMBER 1ST</div>
+<div class="key" id="k2" style="top:1114px;">SEPTEMBER 8TH</div>
+<div class="key" id="k3" style="top:1154px;">SEPTEMBER 15TH</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "Where all three sit", counter: "07 / 09",
+      src: 'c1 c11 c6   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 86, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .key, .cty, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // the room behind the map, so the deck's own paper is under the cartography rather than a
+    // flat field nobody decided
+    M.wall(cx, { join: 1290, lit: 3.8, shade: 1.9 });
+
+    // XHR RATHER THAN fetch, AND THE REASON IS MEASURED. render.py launches Chromium with
+    // --allow-file-access-from-files, which lifts the same origin rule for XHR and does NOT
+    // lift it for the Fetch API. A fetch() of the committed geodata comes back
+    // "URL scheme file is not supported" and fails the whole frame, which is what the first
+    // render of this slide did.
+    var topo = await new Promise(function (ok, bad) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json");
+      xhr.onload = function () {
+        try { ok(JSON.parse(xhr.responseText)); } catch (e) { bad(e); }
+      };
+      xhr.onerror = function () { bad(new Error("geodata XHR failed")); };
+      xhr.send();
+    });
+    var counties = TXGeo.counties(topo);
+    var state    = TXGeo.outline(topo);
+    var proj = TXGeo.texasProjection(state, [[56, 506], [1024, 1152]]);
+    var path = d3.geoPath(proj);
+
+    var svg = d3.select("#map");
+
+    // THE MESH, at one weight, no fill carrying any value. Interior county lines are thinner
+    // than the state outline so the band reads as a gradient of line density rather than as a
+    // flat field of texture.
+    svg.append("g").selectAll("path").data(counties.features).enter()
+      .append("path")
+      .attr("d", path)
+      .attr("fill", "none")
+      .attr("stroke", "#6A5148")
+      .attr("stroke-width", 1.6)
+      .attr("stroke-opacity", 0.92);
+
+    // HAYS, lifted ONE value step. Not a colour, not a ramp, not a dial.
+    var hays = counties.features.filter(function (f) {
+      return f.properties && f.properties.name === "Hays";
+    });
+    svg.append("g").selectAll("path").data(hays).enter()
+      .append("path")
+      .attr("d", path)
+      .attr("fill", "#E8D6CE")
+      .attr("fill-opacity", 0.97)
+      .attr("stroke", "#F6EDE8")
+      .attr("stroke-width", 3.0);
+
+    svg.append("path")
+      .attr("d", path(state))
+      .attr("fill", "none")
+      .attr("stroke", "#B9A39E")
+      .attr("stroke-width", 3.4)
+      .attr("stroke-opacity", 0.95);
+
+    // the leader from the county's own centroid to its label, terminating ON the centroid
+    var c = path.centroid(hays[0]);
+    svg.append("path")
+      .attr("d", "M " + c[0] + " " + c[1] + " L " + (c[0] + 58) + " " + (c[1] - 42) +
+                 " L 632 " + (c[1] - 42))
+      .attr("fill", "none").attr("stroke", "#9A8079").attr("stroke-width", 1.5);
+    window.__txLeaders = [{ target: "the Hays County centroid on the projected mesh",
+                            at: [c[0], c[1]], to: [c[0], c[1]] }];
+    document.getElementById("cty").style.top = (c[1] - 78) + "px";
+
+    M.pool(cx, { x: 880, y: 640, r: 780, squash: 0.60, rot: -0.20, strength: 0.80,
+                 reserve: boxes, reserveStrength: 0.60, reserveFeather: 110 });
+
+    M.tooth(cx, { x: 0, y: 0, w: W, h: H, cell: 6, angle: 26, strength: 0.14, mask: mask });
+
+    M.falloff(cx, { from: 1256, mid: 0.86, end: 0.97 });
+    M.falloffTop(cx, { to: 232, start: 0.80 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

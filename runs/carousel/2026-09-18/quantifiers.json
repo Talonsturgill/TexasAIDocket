@@ -1,0 +1,24 @@
+{
+  "_note": "A quantifier is a claim about a SET, so the set is named and counted here the same way every numeral names its computation. quantifier_check caught frame 9's 'Every source' undeclared at ship time, which is the correct catch: the sentence was true and nothing said why.",
+  "quantifiers": [
+    {
+      "phrase": "every source",
+      "surface": "slide-09.html",
+      "sentence": "Every source behind this deck is linked in the first comment.",
+      "set": "the distinct `document` values across all 18 verified claims in claims.json",
+      "members": [
+        "Hays County Commissioners Court agenda, September 1st, 2026",
+        "Hays County Commissioners Court agenda, September 8th, 2026",
+        "Hays County Commissioners Court agenda, September 15th, 2026",
+        "Hays County Archive Center, Court Minutes 2026",
+        "Axon, Draft One product page",
+        "Govably, AI Minutes"
+      ],
+      "size": 6,
+      "links_in_first_comment": 6,
+      "computed_by": "the set of claims.json `document` values, each matched against first_comment.txt, and the count of https URLs in that file",
+      "verified": "all 6 present, 6 links, no member unlinked and no link without a member",
+      "about": "the deck's own first comment rather than a docket item set, so no `from_items` applies"
+    }
+  ]
+}

@@ -1,0 +1,2462 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Who writes the county's record?",
+          "x": 84,
+          "y": 176,
+          "w": 840,
+          "h": 205,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              163,
+              609,
+              127
+            ],
+            [
+              84,
+              265,
+              676,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Hays County took up AI on three separate September agendas. No answer appears on them or in the county's minutes archive.",
+          "x": 84,
+          "y": 490,
+          "w": 650,
+          "h": 125,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              490,
+              551,
+              40
+            ],
+            [
+              84,
+              532,
+              577,
+              40
+            ],
+            [
+              84,
+              574,
+              528,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Hays County, Texas",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c6 c11 c15 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 466,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              466,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5426,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 58.3,
+          "variance": 2457.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "First, a promise not to switch it on.",
+          "x": 84,
+          "y": 158,
+          "w": 820,
+          "h": 163,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              148,
+              688,
+              101
+            ],
+            [
+              84,
+              230,
+              373,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The September 1st agenda records what the sheriff's office committed to, and what would have to happen before that changes.",
+          "x": 84,
+          "y": 360,
+          "w": 640,
+          "h": 112,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              360,
+              628,
+              36
+            ],
+            [
+              84,
+              397,
+              622,
+              36
+            ],
+            [
+              84,
+              435,
+              251,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HAYS COUNTY COMMISSIONERS COURT",
+          "x": 246,
+          "y": 598,
+          "w": 513,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 52, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              246,
+              598,
+              513,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Acknowledgement of the Hays County Sheriff's Office's commitment to not activate or implement Axon Draft One\"",
+          "x": 250,
+          "y": 660,
+          "w": 496,
+          "h": 164,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 28, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              250,
+              662,
+              454,
+              36
+            ],
+            [
+              250,
+              703,
+              405,
+              36
+            ],
+            [
+              250,
+              744,
+              470,
+              36
+            ],
+            [
+              250,
+              785,
+              405,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"an AI-enabled report-writing feature within the Axon AI Era platform\"",
+          "x": 250,
+          "y": 884,
+          "w": 512,
+          "h": 112,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(62, 45, 38)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              250,
+              887,
+              418,
+              31
+            ],
+            [
+              250,
+              924,
+              432,
+              31
+            ],
+            [
+              250,
+              962,
+              130,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AT THE FOOT OF THE ITEM",
+          "x": 250,
+          "y": 1022,
+          "w": 381,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 52, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              250,
+              1022,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"BECERRA/HIPOLITO\"",
+          "x": 250,
+          "y": 1058,
+          "w": 292,
+          "h": 36,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 28, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              250,
+              1058,
+              292,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 1st",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c4 c5 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 482,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              482,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5458,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 83.2,
+          "variance": 6822.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It drafts from what the camera heard.",
+          "x": 84,
+          "y": 158,
+          "w": 820,
+          "h": 175,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              147,
+              763,
+              108
+            ],
+            [
+              84,
+              235,
+              493,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The vendor's own page says the narrative is produced in seconds, and that one can't be submitted without an officer reviewing and approving it.",
+          "x": 84,
+          "y": 378,
+          "w": 660,
+          "h": 112,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              378,
+              637,
+              36
+            ],
+            [
+              84,
+              415,
+              655,
+              36
+            ],
+            [
+              84,
+              453,
+              401,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AXON, ON ITS OWN PRODUCT PAGE",
+          "x": 84,
+          "y": 534,
+          "w": 480,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 175, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              534,
+              480,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"body-worn camera audio\" / \"officer review and approval\"",
+          "x": 84,
+          "y": 566,
+          "w": 640,
+          "h": 76,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              569,
+              605,
+              31
+            ],
+            [
+              84,
+              607,
+              187,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What Draft One works from",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c17 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 370,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              370,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5404,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 54.3,
+          "variance": 1850.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two weeks later, a request to buy one.",
+          "x": 84,
+          "y": 158,
+          "w": 840,
+          "h": 163,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              148,
+              832,
+              101
+            ],
+            [
+              84,
+              230,
+              342,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The county clerk's office asked the same court for a product whose maker says it writes official meeting minutes.",
+          "x": 84,
+          "y": 362,
+          "w": 620,
+          "h": 112,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              362,
+              610,
+              36
+            ],
+            [
+              84,
+              399,
+              610,
+              36
+            ],
+            [
+              84,
+              437,
+              104,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "GOVABLY, ON ITS OWN SITE",
+          "x": 84,
+          "y": 534,
+          "w": 397,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 175, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              534,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"write official meeting minutes from any source\"",
+          "x": 84,
+          "y": 566,
+          "w": 470,
+          "h": 76,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              569,
+              446,
+              31
+            ],
+            [
+              84,
+              607,
+              230,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 15TH",
+          "x": 352,
+          "y": 706,
+          "w": 232,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 52, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              352,
+              706,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"authorize the County Clerk's Office to obtain AI Minutes through Govably, Inc.\"",
+          "x": 356,
+          "y": 762,
+          "w": 500,
+          "h": 119,
+          "font_px": 26,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 28, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              356,
+              764,
+              452,
+              35
+            ],
+            [
+              356,
+              804,
+              421,
+              35
+            ],
+            [
+              356,
+              843,
+              343,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$19,200.00",
+          "x": 356,
+          "y": 952,
+          "w": 276,
+          "h": 61,
+          "font_px": 46,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(35, 23, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              356,
+              952,
+              276,
+              61
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "AT THE FOOT OF THE ITEM",
+          "x": 356,
+          "y": 1046,
+          "w": 381,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 52, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              356,
+              1046,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"BECERRA/CARDENAS/HUNT\"",
+          "x": 356,
+          "y": 1082,
+          "w": 373,
+          "h": 36,
+          "font_px": 27,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(35, 23, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              356,
+              1082,
+              373,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "September 15th",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7 c8 c10 c18 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 515,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              515,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5689,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 81.8,
+          "variance": 6990.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 15TH AGENDA",
+          "x": 126,
+          "y": 362,
+          "w": 353,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(74, 52, 44)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              362,
+              353,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"authorize a waiver to the purchasing policy of obtaining three quotes\"",
+          "x": 126,
+          "y": 426,
+          "w": 828,
+          "h": 170,
+          "font_px": 40,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(36, 23, 19)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              126,
+              427,
+              620,
+              53
+            ],
+            [
+              126,
+              484,
+              715,
+              53
+            ],
+            [
+              126,
+              541,
+              310,
+              53
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "County purchasing policy asks for three quotes. The item asks the court to set that aside for this one.",
+          "x": 84,
+          "y": 1128,
+          "w": 760,
+          "h": 77,
+          "font_px": 27,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1128,
+              705,
+              37
+            ],
+            [
+              84,
+              1166,
+              538,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The clause under the ask",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5078,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 91.3,
+          "variance": 7545.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A week after September 1st, a policy put to the same court.",
+          "x": 84,
+          "y": 152,
+          "w": 880,
+          "h": 151,
+          "font_px": 75.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              143,
+              857,
+              93
+            ],
+            [
+              84,
+              219,
+              818,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The September 8th agenda took up how the county governs AI in surveillance. The item listed straight after it is a Tyler Technologies amendment for report writing services. Nothing on the page joins the two.",
+          "x": 84,
+          "y": 420,
+          "w": 470,
+          "h": 221,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              420,
+              420,
+              36
+            ],
+            [
+              84,
+              457,
+              342,
+              36
+            ],
+            [
+              84,
+              494,
+              430,
+              36
+            ],
+            [
+              84,
+              531,
+              354,
+              36
+            ],
+            [
+              84,
+              568,
+              463,
+              36
+            ],
+            [
+              84,
+              605,
+              409,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 8TH",
+          "x": 576,
+          "y": 412,
+          "w": 215,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 175, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              576,
+              412,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "LISTED NEXT",
+          "x": 576,
+          "y": 648,
+          "w": 182,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(198, 175, 166)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              576,
+              648,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"possible adoption of a policy statement\"",
+          "x": 576,
+          "y": 452,
+          "w": 424,
+          "h": 75,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              576,
+              455,
+              331,
+              31
+            ],
+            [
+              576,
+              492,
+              245,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"AI-enabled surveillance technologies by Hays County\"",
+          "x": 576,
+          "y": 540,
+          "w": 424,
+          "h": 75,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              576,
+              543,
+              346,
+              31
+            ],
+            [
+              576,
+              580,
+              403,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"one for report writing services\"",
+          "x": 576,
+          "y": 688,
+          "w": 424,
+          "h": 75,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 223, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              576,
+              691,
+              331,
+              31
+            ],
+            [
+              576,
+              728,
+              130,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The third item",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c12 c13 c14 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 498,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              498,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6459,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 57.1,
+          "variance": 1383.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One county. One court. Three agendas.",
+          "x": 84,
+          "y": 158,
+          "w": 800,
+          "h": 171,
+          "font_px": 85.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              147,
+              771,
+              106
+            ],
+            [
+              84,
+              233,
+              515,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The September 1st, September 8th and September 15th meetings were all the same commissioners court.",
+          "x": 84,
+          "y": 372,
+          "w": 640,
+          "h": 112,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              372,
+              603,
+              36
+            ],
+            [
+              84,
+              409,
+              569,
+              36
+            ],
+            [
+              84,
+              447,
+              71,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HAYS",
+          "x": 640,
+          "y": 820,
+          "w": 98,
+          "h": 45,
+          "font_px": 34,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(242, 230, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              640,
+              820,
+              98,
+              45
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 1ST",
+          "x": 84,
+          "y": 1074,
+          "w": 209,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1074,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 8TH",
+          "x": 84,
+          "y": 1114,
+          "w": 209,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1114,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SEPTEMBER 15TH",
+          "x": 84,
+          "y": 1154,
+          "w": 225,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1154,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where all three sit",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c11 c6 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 402,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              402,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5475,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 37.6,
+          "variance": 643.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The newest minutes are dated July 28th.",
+          "x": 84,
+          "y": 150,
+          "w": 900,
+          "h": 155,
+          "font_px": 77.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              140,
+              897,
+              96
+            ],
+            [
+              84,
+              218,
+              302,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The county's own Court Minutes 2026 archive lists newest first. Nothing later appears on it, so no disposition for any of the three September items is published there.",
+          "x": 84,
+          "y": 318,
+          "w": 620,
+          "h": 140,
+          "font_px": 25,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              318,
+              577,
+              35
+            ],
+            [
+              84,
+              353,
+              526,
+              35
+            ],
+            [
+              84,
+              388,
+              578,
+              35
+            ],
+            [
+              84,
+              423,
+              187,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "COURT MINUTES 2026",
+          "x": 330,
+          "y": 506,
+          "w": 298,
+          "h": 31,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(92, 70, 62)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              330,
+              506,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 28 2026",
+          "x": 352,
+          "y": 832,
+          "w": 238,
+          "h": 48,
+          "font_px": 36,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 28, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              352,
+              832,
+              238,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 07 2026",
+          "x": 352,
+          "y": 900,
+          "w": 238,
+          "h": 48,
+          "font_px": 36,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 28, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              352,
+              900,
+              238,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 23 2026",
+          "x": 352,
+          "y": 968,
+          "w": 238,
+          "h": 48,
+          "font_px": 36,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(42, 28, 24)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              352,
+              968,
+              238,
+              48
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The county's own archive",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c15 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 4996,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 91.4,
+          "variance": 7801.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It has to come back to this court.",
+          "x": 84,
+          "y": 188,
+          "w": 800,
+          "h": 197,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(228, 211, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              176,
+              730,
+              122
+            ],
+            [
+              84,
+              275,
+              478,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The commitment reaches any new AI feature the platform may later offer.",
+          "x": 84,
+          "y": 452,
+          "w": 660,
+          "h": 84,
+          "font_px": 29,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(207, 185, 179)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              452,
+              644,
+              40
+            ],
+            [
+              84,
+              494,
+              316,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"any new AI-based features the Axon AI Era platform may make available under the related contract without returning to the Hays County Commissioners Court for approval\"",
+          "x": 84,
+          "y": 570,
+          "w": 700,
+          "h": 154,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              573,
+              615,
+              31
+            ],
+            [
+              84,
+              611,
+              659,
+              31
+            ],
+            [
+              84,
+              650,
+              659,
+              31
+            ],
+            [
+              84,
+              688,
+              483,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Every source behind this deck is linked in the first comment.",
+          "x": 84,
+          "y": 756,
+          "w": 700,
+          "h": 74,
+          "font_px": 26,
+          "weight": "400",
+          "family": "Manrope",
+          "color": "rgb(237, 223, 216)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              756,
+              583,
+              36
+            ],
+            [
+              84,
+              793,
+              121,
+              36
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What happens next",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c4 TEXAS AI DOCKET",
+          "x": 80,
+          "y": 1234,
+          "w": 338,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 198, 189)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              338,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 6136,
+      "ok": true,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 57.6,
+          "variance": 1929.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

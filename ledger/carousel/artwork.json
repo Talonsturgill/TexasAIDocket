@@ -1838,6 +1838,69 @@
     "FRAME 3 IS ARITHMETICALLY CORRECT AND STILL DOES NOT READ. Four rounds each repaired a different symptom (no desk, no top face, a base that missed the ground line, mixed depths) and the bench now checks to the pixel at 1096.1, 1489.4, 873.9, 937.25 and PXM 341.67. Two round 5 judges still called the monitor a floor lamp and the empty chair unreadable at feed size. Correct projection is necessary and is not sufficient, and no gate measures whether a drawn object is RECOGNISABLE.",
     "FOUR `bleeds` DECLARATIONS DISAGREE WITH THE DRAWN SHEETS. layout_check measures the primary_image RECT and passes; two craft judges measured the N.sheet CALL and found frames 4, 5 and 7 ending 100 to 250px inside the frame and frame 2 declaring a top bleed its panel at y 392 never makes. The declaration and the gate agree with each other and not with what a judge sees."
    ]
+  },
+  {
+   "date": "2026-09-18",
+   "carousel_no": 28,
+   "written_from": "runs/carousel/2026-09-18/storyboard.md",
+   "register": "a county records room at night. One key upper right at 26 degrees, so every cast in nine frames runs down and to the left, and the deck's one exterior is the only horizon in it.",
+   "structural_laws": [
+    "THE GLYPH LAW. The three agendas and the minutes archive are set verbatim because this run fetched them. Every disposition and every unread entry is N.ruleRun hairlines at true line lengths, never a filled bar, because a filled bar says something was removed and the record says nothing was ever set down.",
+    "THE GAP IS NEVER A MARK AND NEVER A DARK FIELD. Frame 9's empty slot is lit board, brighter than the board around it, because a dark field reads as a volume REMOVED. When round 4 lifted the volume run to fix frame 1's focal, the gap's own wash had to be lifted with it, which is why N.gap's wash became a parameter: a focal built out of value must be rebuilt whenever the value under it moves.",
+    "NO SEAL, NO BADGE, NO LIVERY. The sedan on frame 3 is unmarked. The NO NAME half of this law was REVERSED at round 5 and the reversal is bounded: a name appears only where the fetched document prints it, on the item it belongs to, quoted as the county's own type. That bound was broken in the same round it was written, by a SPONSOR LINE label that read a role off bold type, and the integrity judge hard-failed it."
+   ],
+   "techniques": [
+    "a records-room shelf of bound minute book volumes at true size, 0.32 by 0.42 m at 620 px per metre",
+    "drawn letter sheets at true page proportion with two-part contacts",
+    "a bounded band of genuinely unscreened stock as the declared turn",
+    "a 254 county Albers mesh with one county lifted"
+   ],
+   "palette": "ground #361D27 oxblood, ROOM and STOCK ramps, accent #4FC79A hollow only. Measured at dE76 against all 53 hexes of the last eight decks; two roles declared spent rather than hidden.",
+   "value": {
+    "grid": "432px thumbs, median L* per frame",
+    "planned_arc": [
+     16,
+     18,
+     20,
+     17,
+     20,
+     25,
+     14,
+     21,
+     17
+    ],
+    "measured_arc": [
+     17.5,
+     16.6,
+     21.6,
+     15.6,
+     23.4,
+     24.5,
+     13.1,
+     21.2,
+     19.7
+    ],
+    "deck_median_L": 19.7,
+    "mean_adjacent_jump": 5.23,
+    "max_adjacent_jump": 11.4,
+    "spread": 11.4,
+    "hard_cuts": 0,
+    "canvas_means": [
+     58.3,
+     83.2,
+     54.3,
+     81.8,
+     91.3,
+     57.1,
+     37.6,
+     91.4,
+     57.6
+    ],
+    "canvas_max_adjacent_jump": 53.8,
+    "note": "TWO METRICS DISAGREE AND BOTH ARE REPORTED, because the disagreement is the finding. On median L* at 432px, which is what the storyboard plans against and what plan_render_check and panel_ready gate on, the track holds: max adjacent jump 11.4, mean 5.2, zero jumps over the 43 the rubric names. On canvas MEAN, which is what all three judges measured and what a swiping reader sees, it strobes: 37.6 to 91.4 between frames 7 and 8, six of eight adjacent steps over 19. A median is blind to a white plate covering a third of a frame. The single cause is that four of nine frames solve their problem with a cream sheet on a dark board, so the track is bright wherever one is present and dark wherever it is not. The deck was NOT flattened to chase the mean, because the document frames are bright by design; the fix the judges converged on is capping the deck at three document frames."
+   },
+   "machine_qa": "PASS, 0 fails and 0 warns on all nine.",
+   "judge_findings_not_repaired": "FRAMES 3, 5 AND 7 ARE THE NEXT RUN'S FIRST JOB and all three judges named them across three rounds. They are the only frames whose largest shape is a flat fill: frame 3's sedan has no dark side and no contact at either tyre, frame 5's under sheet is a trapezoid belonging to no object, frame 7 is outline cartography at canvas variance 643.8 against the deck's next-flattest 1383.9. They were not redrawn because three earlier art repairs in this run each introduced a defect the next round caught, and a redraw in the final round has no reviewer after it. Both the craft and reader judges were told that reasoning, both said it was right, and both charged the deck for the frames anyway. THE GATE THAT WOULD HAVE CAUGHT THEM does not exist and is the run's leading upgrade candidate: measure per frame the internal L* range of the largest non-background shape and fail a frame whose largest shape has no lit edge and no dark side. craft_floor, layout_check, qa and plan_render_check all exited 0 on these three frames through seven rounds. The value track also strobes on canvas MEAN (37.6 to 91.4 between frames 7 and 8) while holding on the median L* the gates read, and the single cause is that four of nine frames solve their problem with a cream sheet on a dark board."
   }
  ]
 }

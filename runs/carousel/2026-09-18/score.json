@@ -1,0 +1,109 @@
+{
+ "weighted_score": 6.8,
+ "judges": [
+  6.67,
+  6.92,
+  6.76
+ ],
+ "spread": 0.25,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.2,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    5.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.6,
+    6.5,
+    6.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.2,
+    7.0,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.67 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.92 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.76 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.67,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.67 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.92,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.92 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.76,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.76 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "hold_reason": "no judge found a hard fail, and the median 6.8 is under the rubric's 8.0 bar. This is a HOLD. Keep working the deck",
+ "contested": [
+  "deck_coherence",
+  "story_and_stakes"
+ ],
+ "rounds": 6,
+ "rounds_note": "2 of 3 judge card(s) in this invocation had already been scored, so this was a re-combination rather than a scoring round and the round count did not advance. Re-run the judges to score again"
+}
