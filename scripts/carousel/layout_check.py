@@ -154,16 +154,47 @@ def js_tables(js_path: Path = JS_TABLE):
     return json.loads(m1.group(1)), json.loads(m2.group(1))
 
 
-# The prose surfaces that state the rotation rule in WORDS. Each is a place a session reads the
-# rule from, and each has kept its own copy of the numbers.
-PROSE_SURFACES = (
-    "knowledge/carousel/ILLUSTRATION_SYSTEM.md",
-    "knowledge/carousel/DESIGN_DOCTRINE.md",
-    ".claude/agents/carousel-flow-critic.md",
-    ".claude/agents/carousel-treatment-director.md",
-    ".claude/agents/carousel-pixel-critic.md",
-    "prompts/daily_routine.md",
+# WHERE A SESSION READS THE ROTATION RULE FROM. A SWEEP, NOT A LIST (2026-09-18).
+#
+# This was six hand-written paths and it missed one. `knowledge/carousel/SLIDE_DOSSIER_SPEC.md`
+# line 75 has said "at least five distinct" since the rule changed on 2026-09-16, the phrase was
+# already in SUPERSEDED_PHRASES below, and the gate could not see it because nobody had added the
+# FILE. The planning spec is the surface the dossier phase reads, so the one surface that decides
+# what gets drawn was the one surface outside the gate.
+#
+# GATE_LESSONS 39: when a gate selects what to examine, the default must be EXAMINE with named
+# exemptions. An allowlist fails silent, because a file nobody thought of is a file nobody checks
+# and nothing reports the omission. Ask of any selector: if tomorrow somebody adds a doctrine
+# file, does this gate read it or skip it?
+PROSE_GLOBS = (
+    "knowledge/carousel/*.md",
+    "knowledge/shared/*.md",
+    "prompts/*.md",
+    ".claude/agents/*.md",
 )
+
+# THE ONLY EXEMPTIONS, each with the reason it is not a surface a session takes the rule from.
+# A finding is never fixed by adding a file here. It is fixed by editing the surface.
+PROSE_EXEMPT = {
+    # The backlog and the gate record are HISTORY of this defect. They quote the superseded
+    # wording on purpose, with the date it was superseded, which is the MARKERS mechanism's job
+    # below; these two are named as well because a record of a phrase is not an instruction to
+    # follow it, and an entry that outlives its marker window would otherwise turn the gate red
+    # for remembering correctly.
+    "knowledge/carousel/UPGRADE_BACKLOG.md": "the backlog records findings verbatim",
+    "knowledge/shared/GATE_LESSONS.md": "the record of faults quotes the rules they broke",
+}
+
+
+def prose_surfaces(root: Path = REPO_ROOT) -> list[str]:
+    """Every prose surface a session could read the rotation rule from, discovered not listed."""
+    out = []
+    for pat in PROSE_GLOBS:
+        for f in sorted(root.glob(pat)):
+            rel = f.relative_to(root).as_posix()
+            if rel not in PROSE_EXEMPT:
+                out.append(rel)
+    return out
 
 # What the SUPERSEDED rule said, in the words these surfaces used. A surface still saying any of
 # these is a surface enforcing the rule this product changed on 2026-09-16.
@@ -176,6 +207,11 @@ SUPERSEDED_PHRASES = (
     "a different layout on every frame",
     "varies with the layout",
     "the print register varies",
+    # ILLUSTRATION_SYSTEM.md line 502 said this in the imperative while the rest of the file
+    # carried the one-screen chassis law. Found 2026-09-18 by reading, not by this gate: the
+    # phrase list held the declarative forms and not the instruction that tells a session to do
+    # it, which is the form that actually changes a deck.
+    "vary the screen with the",
 )
 
 
@@ -203,7 +239,7 @@ def prose_agreement(root: Path = REPO_ROOT) -> list[str]:
     WINDOW = 400
 
     out = []
-    for rel in PROSE_SURFACES:
+    for rel in prose_surfaces(root):
         f = root / rel
         if not f.exists():
             continue
@@ -802,6 +838,39 @@ def self_test() -> int:
     ok("a mutated ARCHETYPES list is CAUGHT", agreement(archetypes=ARCHETYPES[:-1]))
     ok("a missing JS file is a fail rather than a skip",
        agreement(js_path=REPO_ROOT / "assets" / "js" / "no-such-file.js"))
+
+    # (h2) THE PROSE SWEEP IS A SWEEP (2026-09-18). It was six hand-written paths and
+    # `SLIDE_DOSSIER_SPEC.md` was not among them, so the one surface the dossier phase reads
+    # carried the superseded rule for nine days with the phrase already in the gate's own list.
+    # These four assertions are about the SELECTOR, which is the part that failed silent.
+    swept = prose_surfaces()
+    for must in ("knowledge/carousel/SLIDE_DOSSIER_SPEC.md",
+                 "knowledge/carousel/TECHNIQUE_LIBRARY.md",
+                 "knowledge/carousel/ILLUSTRATION_SYSTEM.md"):
+        ok(f"the sweep reaches {must.split('/')[-1]}", must in swept, swept[:12])
+    ok("an exempt surface is NOT swept (the backlog quotes findings verbatim)",
+       "knowledge/carousel/UPGRADE_BACKLOG.md" not in swept)
+
+    # ...and the sweep can still go red. A doctrine file nobody has written yet, carrying the
+    # superseded rule, is found because it was DISCOVERED rather than listed. Delete the glob
+    # and this goes green, which is how to prove the selector is what is doing the work.
+    scratch0 = REPO_ROOT / "out" / "layout_check"
+    scratch0.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=scratch0) as td0:
+        fake = Path(td0)
+        (fake / "knowledge" / "carousel").mkdir(parents=True)
+        (fake / "knowledge" / "carousel" / "A_FILE_INVENTED_TOMORROW.md").write_text(
+            "Rotate the archetypes so no two frames in a row share one.\n", encoding="utf-8")
+        found = prose_agreement(fake)
+        ok("a doctrine file NOBODY LISTED, carrying the old rule, is CAUGHT",
+           any("A_FILE_INVENTED_TOMORROW" in x for x in found), found)
+
+        # ...and the marker exemption still works, so a file recording the history stays green.
+        (fake / "knowledge" / "carousel" / "A_FILE_INVENTED_TOMORROW.md").write_text(
+            "The rule was rebalanced on 2026-09-16. It used to say no two frames in a row "
+            "share one.\n", encoding="utf-8")
+        ok("...and the same phrase marked as history is not a finding",
+           not prose_agreement(fake), prose_agreement(fake))
 
     ACC = "#D8731F"
     GROUND, INK = (28, 36, 48), (150, 140, 120)

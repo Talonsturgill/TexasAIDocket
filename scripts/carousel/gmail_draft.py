@@ -141,13 +141,26 @@ def body(*, run: str, n: int, title: str, caption: str, first_comment: str,
          score: float | None, threshold: float, slides: int, gates: dict,
          degraded: list, upgrades: list, notes: str = "") -> str:
     """The email, written so the first screen answers the only two questions that matter."""
-    shipped = score is not None and score >= threshold
+    # DELIVERY STATE COMES FROM THE REF, NOT THE SCORE. The routine merges before building a
+    # shipped email, so `main` is the durable fact that the deck landed. A branch ref is the
+    # durable fact that it held. Using `score >= threshold` made a below-target deck that shipped
+    # on the round cap read as a failure, and would call a high-scoring deck held on a factual
+    # hard fail "Shipped". Score is quality evidence. It is not deployment state.
+    shipped = _REF == DEFAULT_REF
 
-    # THE VERDICT LINE COMES FIRST AND IS NEVER SOFTENED. A reader who stops after one line
-    # should still know whether this is postable and how good it is.
-    verdict = (f"Shipped at {score}" if shipped else
-               f"Did NOT meet the bar: {score} against {threshold}" if score is not None else
-               "No score recorded")
+    # THE VERDICT LINE COMES FIRST. It states delivery and quality separately so a reader who
+    # stops after one line knows whether this is postable without mistaking a target shortfall
+    # for a failed release.
+    if shipped and score is not None and score >= threshold:
+        verdict = f"Shipped at {score}"
+    elif shipped and score is not None:
+        verdict = f"Shipped under target at {score} against {threshold}"
+    elif shipped:
+        verdict = "Shipped with no score recorded"
+    elif score is not None:
+        verdict = f"Held at {score} against {threshold}"
+    else:
+        verdict = "Held with no score recorded"
 
     gate_rows = "".join(
         f"<tr><td>{e(k)}</td><td><strong>{e(v)}</strong></td></tr>"
@@ -292,19 +305,23 @@ def self_test() -> int:
        [m for m in ("\u2014", "\u2013", "&mdash;", "&ndash;", "&#8212;") if m in p["body"]])
     ok("the date in the subject is house style, not ISO", "2026-08-11" not in p["subject"])
 
-    # THE VERDICT IS NEVER SOFTENED.
+    # DELIVERY AND SCORE ARE SEPARATE FACTS.
     ok("a passing score is stated plainly", "Shipped at 7.4" in p["body"])
     low = payload(**{**base, "score": 6.9})
-    ok("a failing score says so first, and says read before posting",
-       "Did NOT meet the bar: 6.9" in low["body"] and "Read before posting" in low["body"])
+    ok("a below-target deck on main says it shipped under target",
+       "Shipped under target at 6.9 against 7.0" in low["body"]
+       and "Read before posting" not in low["body"])
     # A HELD RUN'S IMAGES ARE NOT ON MAIN, because a held run does not merge. This shipped
     # pointing at main regardless, so every image in the email would have been a broken box.
     try:
         set_ref("claude/daily-2026-08-19")
-        held = payload(**{**base, "score": 6.8})
+        held = payload(**{**base, "score": 7.4})
         ok("a held run's images point at the ref it was given, not at main",
            "/claude/daily-2026-08-19/runs/" in held["body"]
            and "/main/runs/" not in held["body"])
+        ok("...and a passing score cannot relabel a held branch as shipped",
+           "Held at 7.4 against 7.0" in held["body"] and "Read before posting" in held["body"]
+           and "Shipped at 7.4" not in held["body"])
         ok("...and the email says so rather than leaving the reader to find out",
            "did not merge" in held["body"] and "claude/daily-2026-08-19" in held["body"])
     finally:
@@ -314,7 +331,7 @@ def self_test() -> int:
 
     none = payload(**{**base, "score": None})
     ok("a missing score is reported, not silently omitted",
-       "No score recorded" in none["body"])
+       "Shipped with no score recorded" in none["body"])
 
     deg = payload(**{**base, "degraded": ["six slides instead of nine"]})
     ok("what degraded is named", "six slides instead of nine" in deg["body"])

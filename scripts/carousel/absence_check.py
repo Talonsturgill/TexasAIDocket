@@ -20,6 +20,10 @@ WHAT WENT THROUGH THAT HOLE
                   survived four scoring passes, every gate in the suite, and a pixel review
   2026-08-19  s6  "The Data Center Coalition has not published a statement of its own", which
                   nothing was fetched to support, INTRODUCED BY THE FIX for the one above
+  2026-09-18  s9  "The minutes that would record an outcome are not published." An unscoped
+                  universal negative that this gate PASSED, because the document it fails to
+                  scope itself to is the same document it says does not exist, and a definite
+                  article in front of it satisfied the old test. See SUBJECT_OF_NEGATION below
 
 THE TELL, which is what makes this checkable at all.
 
@@ -77,17 +81,60 @@ _DOC = (r"source|sources|release|notice|letter|calendar|filing|filings|record|re
 DOC_WORD = re.compile(r"\b(?:" + _DOC + r")\b", re.I)
 INDEFINITE = re.compile(r"\b(?:a|an|any|some|no|another)\s+(?:[a-z]+\s+){0,2}$", re.I)
 
+# THE DEFINITE ARTICLE HALF OF THE SAME DEFECT (2026-09-18, frame 9, into round 3).
+#
+#     "The minutes that would record an outcome are not published."
+#
+# That passed. "The minutes" carries a definite article, so the `yes` test above accepted it as a
+# place somebody looked, and it is not: it is THE ABSENT THING, the subject of the very negation
+# the sentence makes. The docstring one block up already warns against exactly this mistake for
+# the indefinite case, "the absent thing, not the source", and the indefinite article was only
+# ever the cheaper half of the tell.
+#
+# Frame 8, one swipe earlier in the same deck, says the correct version: the absence is scoped
+# with "is published there". The defect is a MISSING LOCATOR and the old test was a test for a
+# noun shape, so a definite article on the missing document satisfied it.
+#
+# A doc word is disqualified when the sentence's own negation attaches to it as its subject. The
+# aux list is what makes that checkable: "are not published", "is never named", "has not been
+# posted". Six intervening words cover a relative clause ("that would record an outcome") and
+# stop the match running into the next clause.
+#
+# A COORDINATING CONJUNCTION ENDS THE SUBJECT'S REACH, measured rather than assumed. Sweeping the
+# 27 shipped decks raised four new warnings and one of them was "The Department of Transportation
+# keeps the state's crash records and is not one of them", where the negation belongs to the
+# SECOND clause and its subject is the Department. A negation past "and" is a different clause's
+# negation, so the intervening words stop there.
+SUBJECT_OF_NEGATION = re.compile(
+    r"^(?:\s+(?!(?:and|or|but|nor|then|while|because)\b)[A-Za-z'’\-]+){0,6}?"
+    r"\s+(?:is|are|was|were|has|have|had|do|does|did|would|will|"
+    r"can|could|may|might|remains?|stays?)\s+(?:been\s+|ever\s+|yet\s+|still\s+)?"
+    r"(?:not|never|no)\b", re.I)
+
+# A locator preposition governing the doc word is the strongest scoping there is, and it settles
+# the case before the subject test can fire: "in the release", "on the commission's own calendar".
+LOCATOR = re.compile(
+    r"\b(?:in|on|at|from|under|inside|within|against|across|through|throughout|per|via|"
+    r"alongside|beside)\s+(?:[a-z]+\s+){0,3}$", re.I)
+
 
 def scoped(text: str) -> bool:
     """True when the text names a document somebody actually opened."""
-    for m in DOC_WORD.finditer(text or ""):
-        before = text[max(0, m.start() - 40):m.start()]
-        if INDEFINITE.search(before):
-            continue          # "a statement", "no docket" -- the absent thing, not the source
-        yes = re.search(r"\b(?:the|its|this|that|their|our|each)\s+(?:[a-z]+\s+){0,3}$", before, re.I)
-        poss = re.search(r"[A-Za-z]+'s\s+(?:[a-z]+\s+){0,2}$", before)
-        named = re.search(r"\b[A-Z][A-Za-z]{1,}\s+(?:[a-z]+\s+){0,2}$", before)
-        if yes or poss or named:
+    for sent in sentences(text or "") or [text or ""]:
+        for m in DOC_WORD.finditer(sent):
+            before = sent[max(0, m.start() - 40):m.start()]
+            if INDEFINITE.search(before):
+                continue      # "a statement", "no docket" -- the absent thing, not the source
+            yes = re.search(r"\b(?:the|its|this|that|their|our|each)\s+(?:[a-z]+\s+){0,3}$",
+                            before, re.I)
+            poss = re.search(r"[A-Za-z]+'s\s+(?:[a-z]+\s+){0,2}$", before)
+            named = re.search(r"\b[A-Z][A-Za-z]{1,}\s+(?:[a-z]+\s+){0,2}$", before)
+            if not (yes or poss or named):
+                continue
+            if LOCATOR.search(before):
+                return True
+            if SUBJECT_OF_NEGATION.match(sent[m.end():]):
+                continue      # "The minutes ... are not published" -- the absent thing again
             return True
     return False
 
@@ -225,6 +272,26 @@ def self_test() -> int:
                  "The campus page lists these pairings. It states no total."):
         f, w, s = check(deck(good), None)
         ok(f"a scoped absence passes: {good[:44]!r}", not w and not f, str(w + f))
+
+    # THE 2026-09-18 FRAME 9 SENTENCE, character for character as it shipped into round 3.
+    # Before the SUBJECT_OF_NEGATION test this passed, and it is the whole reason that test
+    # exists: the definite article was on the ABSENT DOCUMENT rather than on a place anybody
+    # looked. Deleting that test puts this back to green, which is how to prove it is live.
+    f, w, s = check(deck("The minutes that would record an outcome are not published."), None)
+    ok("a doc word that is the SUBJECT of the negation does not scope it",
+       any("names the document it looked in" in x for x in w), str(w))
+
+    # ...and the same fact scoped the way frame 8 one swipe earlier scoped it: the document
+    # somebody opened is named in a sentence that is not the negation.
+    f, w, s = check(deck("The court's agenda records the purchase. No disposition is "
+                         "published there."), None)
+    ok("a neighbouring sentence naming the opened document still scopes it", not w and not f,
+       str(w + f))
+
+    # ...and a LOCATOR governing the same doc word scopes it even inside the negated sentence,
+    # which is what separates "in the minutes" from "the minutes ... are not published".
+    f, w, s = check(deck("Nothing in the minutes records an outcome."), None)
+    ok("a locator preposition on the doc word still scopes it", not w and not f, str(w + f))
 
     # A frame asserting an absence while citing nothing at all.
     f, w, s = check(deck("Nobody was told.", ids=()), None)

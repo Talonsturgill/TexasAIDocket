@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-09-17",
+    "generated": "2026-09-18",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -384,7 +384,7 @@
     "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=": {
       "etag": null,
       "last_modified": null,
-      "hash": "397c7e0980e47e3448f77822b1198f79cefd3916b84e6b66e6bca95b976d9539",
+      "hash": "fcb2ab89d70e7f0272e86e32a268869f3b10b2edd5a51d68da6704e39b030421",
       "proven": [
         "tx-2026-0147-c1",
         "tx-2026-0147-c2",
@@ -719,6 +719,16 @@
       "hash": "f22a8e815eaacabdf8337994404b78ea6e54d4d4ba135b859de58801d9bb43ea",
       "proven": []
     },
+    "https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/": {
+      "etag": null,
+      "last_modified": "Fri, 18 Sep 2026 01:05:20 GMT",
+      "hash": "9f8dfaa26e4013c01cbb700e6bc06622d6a1394885097488b24c2b9b7bc7be86",
+      "proven": [
+        "tx-2026-0160-c1",
+        "tx-2026-0160-c2",
+        "tx-2026-0160-c3"
+      ]
+    },
     "https://news.engineering.tamu.edu/news/2026/08/03/texas-am-to-build-first-national-self-driving-laboratory-for-metals-open-to-researchers-nationwide/": {
       "etag": null,
       "last_modified": "Wed, 16 Sep 2026 06:12:17 GMT",
@@ -894,6 +904,7 @@
         "tx-2026-0024-c6",
         "tx-2026-0024-c7",
         "tx-2026-0024-c8",
+        "tx-2026-0024-c9",
         "tx-2026-0072-c7",
         "tx-2026-0107-c8"
       ]
@@ -965,7 +976,7 @@
     },
     "https://senate.texas.gov/cmte.php?c=525": {
       "etag": null,
-      "last_modified": "Wed, 16 Sep 2026 12:00:00 GMT",
+      "last_modified": "Thu, 17 Sep 2026 12:00:00 GMT",
       "hash": "8dea91edb1817c65c0be830b24e01718b47c6f837cfff4da13eea5b32db64ef7",
       "proven": [
         "tx-2026-0109-c1",
@@ -1475,13 +1486,19 @@
       ]
     },
     "https://www.energy.gov/articles/does-office-critical-minerals-and-energy-innovation-announces-73-million-advance-domestic": {
-      "etag": "W/\"1789419067:dtagent10341260622154106Gjdi\"",
-      "last_modified": "Mon, 14 Sep 2026 20:51:06 GMT",
-      "hash": "3dc77a461b7e2b584139932897c701a4f96f7d66d2573d0bd398dcc705454870",
+      "etag": "W/\"1789695921:dtagent10343260715123811GX5J\"",
+      "last_modified": "Fri, 18 Sep 2026 01:45:20 GMT",
+      "hash": "18b5bffd8409a3308c637933e64ead0cec0a4ef6431417ecfc5603dba6f74f91",
       "proven": [
         "tx-2026-0148-c1",
         "tx-2026-0148-c2"
       ]
+    },
+    "https://www.ercot.com/files/docs/2026/09/07/10-Interconnection-and-Grid-Analysis-Update.pdf": {
+      "etag": "\"81a80-65ae9f71d881b\"",
+      "last_modified": "Mon, 07 Sep 2026 19:53:00 GMT",
+      "hash": "a76ddcdaca45722e61dadacf8142080e84818e717f26c850f8155b8c48a90991",
+      "proven": []
     },
     "https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf": {
       "etag": "\"11aed4-65b38d6c8cf3d\"",
@@ -1496,6 +1513,16 @@
       "proven": [
         "tx-2026-0114-c1",
         "tx-2026-0114-c2"
+      ]
+    },
+    "https://www.ercot.com/mktrules/issues/PGRR144": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "448dbed0ee5822afdf309f7026890df19326071828fa1f0b65e87f604a223da1",
+      "proven": [
+        "tx-2026-0159-c11",
+        "tx-2026-0159-c12",
+        "tx-2026-0159-c13"
       ]
     },
     "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04": {
@@ -2016,6 +2043,17 @@
       "hash": "6f955af616d1d6d4a94080582c9e1631e3f0796b32041bfc3db1c1d672242762",
       "proven": [
         "tx-2026-0103-c2"
+      ]
+    },
+    "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "9ab09a72f765bb02b9699c3af27f84a5b8dbf9f36e3e496f256abc22482cc52a",
+      "proven": [
+        "tx-2026-0161-c1",
+        "tx-2026-0161-c2",
+        "tx-2026-0161-c3",
+        "tx-2026-0161-c4"
       ]
     },
     "https://www.utep.edu/cs/opportunities/sfs_program.html": {

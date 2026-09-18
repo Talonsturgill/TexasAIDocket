@@ -1,0 +1,137 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 3 of 9. Archetype FIGURE_SCALE.
+     THE DECK'S ONLY EXTERIOR AND ITS ONLY HORIZON. A person at 1.70 m standing at the open door
+     of an unmarked sedan at 4.70 m, so the thing the first ask is about has a size and a place.
+     THE VENDOR SPEAKS IN ITS OWN WORDS HERE AND THE LABEL SAYS SO. Both quoted lines are Axon's
+     description of its own product, which is a claim rather than a finding, and the label names
+     whose words they are.
+     NO SEAL, NO BADGE, NO LIVERY, NO ROOF BAR. The car is unmarked and the figure is nobody.
+     Planned frame median L* 27. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:158px; width:820px; font-size:88px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.020em; color:#E4D3CE; font-variation-settings:"opsz" 144; z-index:12; }
+  .dek  { position:absolute; left:84px; top:378px; width:660px; font-size:26px;
+          line-height:1.44; color:#CFB9B3; z-index:12; }
+  .lab  { position:absolute; left:84px; top:534px; font-family:"JetBrains Mono", monospace;
+          font-size:24px; letter-spacing:0.09em; color:#C6AFA6; z-index:12; }
+  .q    { position:absolute; left:84px; top:566px; width:640px;
+          font-family:"JetBrains Mono", monospace; font-size:24px; line-height:1.58;
+          color:#D9C6BD; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">It drafts from what the camera heard.</h1>
+<p class="dek">The vendor's own page says the narrative is produced in seconds, and that one can't be submitted without an officer reviewing and approving it.</p>
+<div class="lab" id="lab">AXON, ON ITS OWN PRODUCT PAGE</div>
+<p class="q">"body-worn camera audio" / "officer review and approval"</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "What Draft One works from", counter: "03 / 09",
+      src: 'c16 c17   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 70, max: 88, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .lab, .q, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // THE DECK'S ONE HORIZON, at standing eye. Everything else in this deck is an interior.
+    var S = M.scene(cx, { eye: 1.62, horizon: 700, f: 850, sky: M.pick(0.8) });
+
+    // the night sky above the horizon, going to the room's own dark at the top
+    cx.save();
+    var sg = cx.createLinearGradient(0, 0, 0, 700);
+    sg.addColorStop(0, M.pick(1.9));
+    sg.addColorStop(1, M.pick(4.4));
+    // THE SKY FILLS PAST THE HORIZON, TO 707, AND THAT IS THE WHOLE OF THE LAVENDER SEAM.
+    // Round 3 "fixed" this by matching the sky's bottom stop to the ground fill, which was a
+    // repair to a colour mismatch that was never the cause, and the seam duly survived. The
+    // cause is measurable and was measured: S.ground draws from groundY(far), and at f 850,
+    // eye 1.62, horizon 700 and far 260 that is 700 + 850*1.62/260 = 705.3. The sky was filled
+    // to 700. So five and a third pixels of frame belonged to neither fill and showed the raw
+    // page background #361D27, whose BLUE channel (39) is above its GREEN (29) while every
+    // other pixel in this warm deck has green above blue. That is the cool band a judge saw
+    // running edge to edge, and it is a hole rather than a join.
+    cx.fillStyle = sg; cx.fillRect(0, 0, W, 707);
+    cx.restore();
+
+    S.ground({ near: 1.0, far: 260, fill: M.pick(4.4) });
+
+    // THE SEDAN at 4.70 m, at Z 5.8 so the WHOLE car reads at 689 px long and still runs off the
+    // frame. Unmarked, because no claim in this run names a department or a vehicle.
+    // THE INKS ARE THE OTHER WAY UP FROM THE FIRST BUILD, and this is the frame's focal fix.
+    // In this sprite the BODY polygon takes the `ink` role and the glass takes `paper`. The first
+    // build ran ink 4.2 against a ground of 4.4, so the flank the storyboard declares as the focal
+    // was the same value as the dirt under it and the car read as a hollow greenhouse on two wheel
+    // rings. Body at 6.9 and glass at 2.2 is also what a car under a high key at night actually
+    // looks like: a lit flank and dark windows.
+    var car = TXOBJ.sprite("sedan");
+    S.shadow(car, { X: 1.9, Z: 5.8, ink: "#0E0509", alpha: 0.48 });
+    S.sprite(car, { X: 1.9, Z: 5.8,
+                    inks: { ink: M.pick(6.9), paper: M.pick(2.2), accent: M.pick(6.9) } });
+
+    // THE PERSON STANDS AT THE CAR NOW, at X 0.35 Z 5.2, which is the near end of a 4.7 m sedan
+    // sitting at X 1.9. The first build put them at Z 3.4, four hundred pixels clear of it, and
+    // that broke the frame two ways at once. The scale read the storyboard asks for, 1.70 m
+    // against 4.70 m, needs the two things in contact to work at all, and a figure two metres
+    // nearer the camera than the car casts across ground so close to the lens that its shadow
+    // runs off the bottom edge as a stub while the car's lies flat and long. Same light, same
+    // cot(26 degrees) in S.shadowVec, and it still READ as two suns, which is the thing that
+    // matters. At one Z the two casts are the same rake and the deck has one light again.
+    // X -1.15 AND NOT 0.35. The sedan sits at X 1.9 and its wheels are at local -1.45 and 1.5,
+    // so world X 0.45 and 3.40. Round 3 put the figure at X 0.35, which is ten centimetres from
+    // the REAR WHEEL'S CENTRE, and at 432px the wheel read as a bicycle between the figure's
+    // legs. The car body spans world X -0.45 to 4.25, so -1.15 stands the figure seven tenths
+    // of a metre off its near end: beside the car, touching nothing, with the 1.70 m against
+    // 4.70 m comparison still made by adjacency rather than asserted.
+    var officer = TXFIG.figure({ pose: "stand", height: 1.70 });
+    S.shadow(officer, { X: -1.15, Z: 5.4, ink: "#0E0509", alpha: 0.50 });
+    S.sprite(officer, { X: -1.15, Z: 5.4,
+                        inks: { ink: M.pick(1.2), paper: M.pick(2.4), accent: M.pick(1.2) } });
+
+    M.pool(cx, { x: 906, y: 812, r: 820, squash: 0.44, rot: -0.20, strength: 1.02,
+                 reserve: boxes, reserveStrength: 0.60, reserveFeather: 110 });
+
+    M.tooth(cx, { x: 0, y: 0, w: W, h: H, cell: 6, angle: 26, strength: 0.15, mask: mask });
+
+    M.falloff(cx, { from: 1178, mid: 0.86, end: 0.97 });
+    M.falloffTop(cx, { to: 236, start: 0.66 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

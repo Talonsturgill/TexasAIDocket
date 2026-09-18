@@ -1,0 +1,137 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 4 of 9. Archetype DOCUMENT.
+     THE SECOND ASK, and it is the one that says a machine MAY write. It must NOT be drawn as the
+     answer to frame 2. That page turns +0.011 and sits at 2760 px per metre. This one turns the
+     other way at -0.014 and sits nearer at 3180 px per metre, so the pair reads as two different
+     sheets on one board rather than as a before and an after of one sheet.
+     THE AMOUNT IS QUOTED, NEVER COMPUTED, and it is set in mono with tabular figures because a
+     figure on this product is a measurement.
+     NOTHING ON THIS FRAME SAYS THE COURT GRANTED IT.
+     Planned frame median L* 29. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:158px; width:840px; font-size:82px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.020em; color:#E4D3CE; font-variation-settings:"opsz" 144; z-index:12; }
+  .dek  { position:absolute; left:84px; top:362px; width:620px; font-size:26px;
+          line-height:1.44; color:#CFB9B3; z-index:12; }
+  .pt   { position:absolute; font-family:"JetBrains Mono", monospace; color:#2A1C18;
+          z-index:12; }
+  .amt  { position:absolute; font-family:"JetBrains Mono", monospace; font-weight:700;
+          font-variant-numeric: tabular-nums; color:#231713; z-index:12; }
+  .ph   { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:0.09em; color:#4A342C; z-index:12; }
+  .lab  { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:0.09em; color:#C6AFA6; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two weeks later, a request to buy one.</h1>
+<p class="dek">The county clerk's office asked the same court for a product whose maker says it writes official meeting minutes.</p>
+<div class="lab" id="labV" style="left:84px; top:534px;">GOVABLY, ON ITS OWN SITE</div>
+<div class="pt" id="ptV" style="left:84px; top:566px; width:470px; font-size:24px; line-height:1.58; color:#D9C6BD;">"write official meeting minutes from any source"</div>
+<div class="ph" id="phHead" style="left:352px; top:706px;">SEPTEMBER 15TH</div>
+<div class="pt" id="ptA" style="left:356px; top:762px; width:500px; font-size:26px; line-height:1.52;">"authorize the County Clerk's Office to obtain AI Minutes through Govably, Inc."</div>
+<div class="amt" id="amt" style="left:356px; top:952px; font-size:46px;">$19,200.00</div>
+<div class="ph" id="phSpon" style="left:356px; top:1046px;">AT THE FOOT OF THE ITEM</div>
+<div class="pt" id="ptSpon" style="left:356px; top:1082px; font-size:27px; color:#231713;">"BECERRA/CARDENAS/HUNT"</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "September 15th", counter: "04 / 09",
+      src: 'c6 c7 c8 c10 c18   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 66, max: 82, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    var litType = TXDECK.lineBoxes(".hook, .dek, .lab, #ptV, .kick, .ctr, .src, .tx-site", 18);
+    var allType = TXDECK.lineBoxes(".hook, .dek, .lab, .ph, .pt, .amt, .kick, .ctr, .src, .tx-site", 16);
+
+    M.wall(cx, { join: M.SHELF, lit: 4.8, shade: 2.4 });
+
+    // the same board and the same volumes, at the same y, so the room carries through
+    var PPM = 620, BW = 0.32 * PPM, BH = 0.42 * PPM, PITCH = BW + 7;
+    var x = -40;
+    for (var i = 0; i < 6; i++) {
+      M.spine(cx, { x: x, base: M.SHELF, w: BW, h: BH * (0.90 + (i % 3) * 0.05),
+                    tone: 1.8 + (i % 4) * 0.35, seed: 103 + i * 11, labelTone: 4.4, lean: 0 });
+      x += PITCH;
+    }
+    M.board(cx, { y: M.SHELF });
+
+    // THE PAGE, nearer than frame 2's and turned the OTHER way. 0.216 by 0.279 m at 3180 px per
+    // metre gives 687 by 887 px. The opposite rotation is deliberate: a mirrored pair is one
+    // composition away from asserting the opposite answers the record does not carry.
+    var SX = 286, SY = 640, SW = 687, SH = 887;
+    var sheet = M.sheet(cx, { x: SX, y: SY, w: SW, h: SH, rot: -0.014, seed: 47,
+                              lit: 7.8, shade: 5.2, thickness: 7 });
+    var box = M.pageBox(sheet, 0.052);
+
+    M.rule(cx, { x0: box.x, x1: box.x + box.w, y: 740, weight: 2.0,
+                 ink: "rgba(42,28,24,0.32)" });
+    M.rule(cx, { x0: box.x, x1: box.x + box.w, y: 928, weight: 1.4 });
+    
+
+
+    M.ruleRun(cx, { x: box.x, y: 1152, w: box.w, n: 3, leading: 32, weight: 2.4,
+                    seed: 29, ink: "rgba(42,28,24,0.22)" });
+
+    M.pool(cx, { x: 820, y: 742, r: 800, squash: 0.60, rot: -0.20, strength: 0.92,
+                 reserve: litType, reserveStrength: 0.60, reserveFeather: 110 });
+
+    // ARRAYS, NOT OBJECTS. TXDECK.reserveMask reads a rect as r[0..3], which is the shape
+    // lineBoxes returns. An {x,y,w,h} literal here indexes to undefined, every distance comes
+    // back NaN, no comparison is ever true and the mask silently returns 1 everywhere. The
+    // screen then prints straight over the page it was supposed to skip and nothing reports it.
+    var pageOut = TXDECK.reserveMask(
+      allType.concat([[SX - 6, SY - 6, SW + 12, SH + 12]]), 22);
+    M.tooth(cx, { x: 0, y: 0, w: W, h: H, cell: 6, angle: 26, strength: 0.15, mask: pageOut });
+
+    // THE PAGE'S OWN TOOTH, low, so the sheet has a surface. Holding the page perfectly flat
+    // read as 0.12 of the cells carrying any detail against a 0.25 line, and layout_check was
+    // right to call a flat plate a flat plate. This is the paper's grain, not the room's screen.
+    M.tooth(cx, { x: 286, y: 640, w: 687, h: 710, cell: 5, angle: 26, strength: 0.13,
+                  mask: TXDECK.reserveMask(allType, 20) });
+
+    // THE ACCENT IS PAINTED LAST, after every screen pass. The page tooth is an overlay
+    // composite and its white dots lift a mint keyline out of the 12 Lab window the gate
+    // matches in, which is how a keyline plainly drawn on frame 8 measured 0.0000.
+    // THE ACCENT, hollow, bounding the request itself, which is the thing with no answer
+    M.keyline(cx, { x: box.x - 6, y: 744, w: box.w + 12, h: 164,
+                    dash: true, dashPattern: [20, 9] });
+
+    M.falloff(cx, { from: 1150, mid: 0.86, end: 0.97 });
+    M.falloffTop(cx, { to: 226, start: 0.78 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

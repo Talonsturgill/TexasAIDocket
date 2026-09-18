@@ -11,7 +11,7 @@ UT Physicians is the clinical practice of McGovern Medical School at UTHealth Ho
 - Public access: Write to the decider
 - Take part: https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/
 
-- Last checked: 2026-09-15
+- Last checked: 2026-09-18
 
 ## Dates
 
@@ -22,6 +22,7 @@ UT Physicians is the clinical practice of McGovern Medical School at UTHealth Ho
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-15 · Admitted on the medical school's own published account of the meeting at which the practice described the move.
+- 2026-09-18 · The account of the meeting still reads as a direction rather than a contract. One unified ambient listening platform is still the stated aim after the two pilots ran, no vendor is named, and no completion date has been added.
 
 ## Evidence
 

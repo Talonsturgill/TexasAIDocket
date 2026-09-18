@@ -510,8 +510,30 @@ def _score(s) -> Row:
     hard = s.get("hard_fails") or []
     if hard:
         return Row("score", FAIL, f"{val}, hard fail: {', '.join(map(str, hard))}")
-    return Row("score", PASS if ship is not False else FAIL,
-               f"{val}" + ("" if ship is not False else ", below threshold"))
+
+    # THE PANEL'S `ship` FIELD ANSWERS WHETHER THE SCORE CLEARED THE TARGET. `run_complete`
+    # answers whether the bounded search is finished. After the round cap, a below-target deck
+    # with no hard fail ships honestly at its measured score. Calling that row FAIL while the
+    # completion row says PASS produced the contradictory email the owner was seeing every day.
+    threshold = s.get("threshold")
+    rounds = next((int(s[k]) for k in ("rounds", "round", "scoring_rounds", "panel_rounds")
+                   if isinstance(s.get(k), (int, float))), None)
+    try:
+        import run_complete
+        cap = run_complete.max_rounds()
+    except Exception:                              # noqa: BLE001
+        cap = None
+    under_target = (isinstance(val, (int, float)) and
+                    isinstance(threshold, (int, float)) and float(val) < float(threshold))
+    override = s.get("owner_override") or {}
+    owner_finished = bool(override.get("instruction") and override.get("date"))
+    capped = bool(under_target and cap is not None and rounds is not None and rounds >= cap)
+    if owner_finished or capped:
+        why = "owner ended the search" if owner_finished else f"{rounds} round(s), cap {cap}"
+        return Row("score", WARN, f"{val} against {threshold} target; {why}; not a ship failure")
+    if ship is False or under_target:
+        return Row("score", FAIL, f"{val}, below threshold")
+    return Row("score", PASS, f"{val}")
 
 
 def block(rows: list[Row]) -> str:
@@ -765,8 +787,13 @@ def self_test() -> int:
     ok("the score row reads this repo's own weighted_score field",
        "6.82" in _score({"weighted_score": 6.82, "ship": False}).detail,
        _score({"weighted_score": 6.82, "ship": False}).detail)
-    ok("...and a held run still says it is below the threshold",
+    ok("...and a run below the target before the cap still says it is below the threshold",
        "below threshold" in _score({"weighted_score": 6.82, "ship": False}).detail)
+    ok("...while a below-target run at the cap is an honest warning, not a ship failure",
+       _score({"weighted_score": 6.82, "threshold": 8.0, "rounds": 5,
+               "ship": False}).status == WARN,
+       _score({"weighted_score": 6.82, "threshold": 8.0, "rounds": 5,
+               "ship": False}).line())
     ok("...and a shipped run reads PASS",
        _score({"weighted_score": 7.4, "ship": True}).status == PASS)
     ok("...and the older field names still work",

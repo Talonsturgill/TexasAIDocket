@@ -1,0 +1,152 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 9 of 9. Archetype FULL_BLEED.
+     THE CLOSE, AND IT IS FRAME 1's CAMERA EXACTLY. Same room, same board at N.SHELF, same pitch
+     of volumes, same pixels per metre. Two things have changed. The figure who stood at the shelf on
+     frame 1 is gone, and where the newest volume would stand there is lit board with nothing on
+     it, keylined hollow in the deck's accent.
+     THE GAP IS LIGHTER THAN THE BOARD AROUND IT AND THAT IS THE WHOLE POINT. A dark field would
+     say a volume was removed. The record says nothing was ever set down.
+
+     THE ACTION LINE SAYS ONLY WHAT THIS RUN FETCHED, and round 2 is why it is worded this way.
+     Round 1 asked this frame for something a reader could do and the answer written here was
+     "The court posts one before every meeting, and an activation has to appear on it". The first
+     half is a universal about the court's posting practice and the second is a legal consequence,
+     and NEITHER is in claims.json: c4 is the returning-for-approval quote and c15 is the minutes
+     archive, and no open meetings statute was fetched by anybody on this run. A repair asked for
+     by a judge is still a claim, and it gets a source like every other claim.
+     What is left is what the run can show: it read three agendas off the county's own portal
+     (c1, c6, c11) and the minutes that would carry an outcome are not published (c15).
+
+     THE LINE IS ALSO TWO LINES RATHER THAN THREE ON PURPOSE. The gap keyline spans y 863 to 1118
+     across x 503 to 725, and the act block is left 84 by 660 wide, so a third line at 26px lands
+     its descenders on the keyline's top stroke. Nothing reports that, because both are inside
+     their own boxes.
+     Planned frame median L* 18. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:188px; width:800px; font-size:100px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.99;
+          letter-spacing:-0.022em; color:#E4D3CE; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:84px; top:452px; width:660px; font-size:29px;
+          line-height:1.44; color:#CFB9B3; z-index:10; }
+  .quote { position:absolute; left:84px; top:570px; width:700px;
+           font-family:"JetBrains Mono", monospace; font-size:24px; line-height:1.60;
+           letter-spacing:0.01em; color:#D9C6BD; z-index:10; }
+  .act  { position:absolute; left:84px; top:756px; width:700px; font-size:26px;
+          line-height:1.42; color:#EDDFD8; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">It has to come back to this court.</h1>
+<p class="dek">The commitment reaches any new AI feature the platform may later offer.</p>
+<p class="quote">"any new AI-based features the Axon AI Era platform may make available under the related contract without returning to the Hays County Commissioners Court for approval"</p>
+<p class="act" id="act">Every source behind this deck is linked in the first comment.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "What happens next", counter: "09 / 09",
+      src: 'c2 c4   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 74, max: 100, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    // The type reserve, measured off the real fitted type, handed to the art BEFORE it draws.
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .quote, .act, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // THE SAME WALL AS FRAME 1, to the step. CAMERA_MOVE only pays if the reader can register
+    // one frame against the other, and two walls a step apart read as two rooms.
+    M.wall(cx, { join: M.SHELF, lit: 5.0, shade: 2.6 });
+    M.board(cx, { y: M.SHELF });
+
+    // THE RUN, at true scale, the same scale and pitch as frame 1.
+    // 1 metre = 620 px, so a 0.32 m spine is 198 px and a 0.42 m volume is 260 px. The run
+    // stands from y 858 to the board at 1118, which puts it in the lower third where the first
+    // render left a dead band.
+    var PPM = 620, BW = 0.32 * PPM, BH = 0.42 * PPM, PITCH = BW + 7;
+
+    // The volumes the archive DOES publish, drawn left of the gap. Tones and heights step across
+    // the run so it reads as bound books rather than as one striped block.
+    var HT = [0.94, 1.00, 0.91, 0.97, 0.89];
+    var TN = [4.0, 5.0, 4.3, 5.4, 4.6];
+    var x = -525;
+    for (var i = 0; i < 5; i++) {
+      // each volume's own cast, running down and to the LEFT from the deck's upper right key
+      var cdir = TXDECK.castDir();
+      cx.save();
+      cx.fillStyle = "rgba(14,5,9,0.40)";
+      cx.beginPath();
+      cx.moveTo(x, M.SHELF);
+      cx.lineTo(x + cdir[0] * 26, M.SHELF - 4);
+      cx.lineTo(x + BW + cdir[0] * 26, M.SHELF - 4);
+      cx.lineTo(x + BW, M.SHELF);
+      cx.closePath(); cx.fill();
+      cx.restore();
+      M.spine(cx, { x: x, base: M.SHELF, w: BW, h: BH * HT[i], tone: TN[i],
+                    seed: 41 + i * 7, labelTone: 5.4 + (i % 2) * 0.7,
+                    lean: i === 3 ? 0.012 : 0 });
+      x += PITCH;
+    }
+
+    // THE GAP. One volume's worth of board with nothing standing on it. It is LIGHTER than the
+    // board because nothing is shading it, and it is the only place on the run with no cast.
+    var gapRect = M.gap(cx, { x: x + 3, w: BW * 1.12, h: BH * 0.98, base: M.SHELF, wash: 0.26 });
+    x += PITCH * 1.12;
+
+    // the run resumes past the gap and leaves the frame, so the shelf is not a row that ended
+    for (var k = 0; k < 3; k++) {
+      M.spine(cx, { x: x, base: M.SHELF, w: BW, h: BH * (0.90 + (k % 2) * 0.06),
+                    tone: 3.9 + k * 0.35, seed: 88 + k * 5, labelTone: 4.8, lean: 0 });
+      x += PITCH;
+    }
+
+    // THE KEY AT ITS LOWEST IN THE DECK. Frame 1 runs this at 0.98 and the close runs it at 0.70,
+    // which is the value arc drawn rather than graded in afterwards.
+    M.pool(cx, { x: 902, y: 742, r: 740, squash: 0.50, rot: -0.20, strength: 0.70,
+                 reserve: boxes, reserveStrength: 0.60, reserveFeather: 110 });
+
+    // a second, much smaller pool sitting IN the gap, so the empty board is the lit thing
+    M.pool(cx, { x: gapRect.x + gapRect.w / 2, y: M.SHELF - 52, r: 210, squash: 0.66,
+                 rot: -0.20, strength: 0.86 });
+
+    M.tooth(cx, { x: 0, y: 0, w: W, h: H, cell: 6, angle: 26, strength: 0.14, mask: mask });
+
+    // THE ACCENT, REDRAWN LAST over the screened frame, so the keyline the reader sees is the
+    // declared hex rather than the declared hex with an overlay pass on top of it.
+    M.gap(cx, { x: gapRect.x, w: gapRect.w, h: gapRect.h, base: M.SHELF, wash: 0 });
+
+    M.falloff(cx, { from: 1168, mid: 0.86, end: 0.97 });
+    M.falloffTop(cx, { to: 226, start: 0.80 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

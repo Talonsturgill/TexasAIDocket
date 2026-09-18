@@ -1,0 +1,133 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 2 of 9. Archetype DOCUMENT.
+     THE FIRST ASK, IN THE COUNTY'S OWN WORDS, and it is the one that says a machine may NOT
+     write. The page is drawn at true letter proportion resting on the same board the volumes
+     stand on, so the deck's one horizontal carries through from frame 1.
+     THE PAGE'S TYPE IS TONER ON STOCK AND OURS IS INK ON THE ROOM. Opposite value directions, so
+     a reader can tell the county's words from ours without being told which is which.
+     THE SCREEN SKIPS THE PAGE. The room is screened and the page is flat.
+     Planned frame median L* 30. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:158px; width:820px; font-size:82px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.020em; color:#E4D3CE; font-variation-settings:"opsz" 144; z-index:12; }
+  .dek  { position:absolute; left:84px; top:360px; width:640px; font-size:26px;
+          line-height:1.44; color:#CFB9B3; z-index:12; }
+  /* set ON the drawn page, dark on light */
+  .pt   { position:absolute; font-family:"JetBrains Mono", monospace; color:#2A1C18;
+          z-index:12; }
+  .ph   { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px;
+          letter-spacing:0.09em; color:#4A342C; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">First, a promise not to switch it on.</h1>
+<p class="dek">The September 1st agenda records what the sheriff's office committed to, and what would have to happen before that changes.</p>
+<div class="ph" id="phHead" style="left:246px; top:598px;">HAYS COUNTY COMMISSIONERS COURT</div>
+<div class="pt" id="ptA" style="left:250px; top:660px; width:496px; font-size:27px; line-height:1.52;">"Acknowledgement of the Hays County Sheriff's Office's commitment to not activate or implement Axon Draft One"</div>
+<div class="pt" id="ptB" style="left:250px; top:884px; width:512px; font-size:24px; line-height:1.56; color:#3E2D26;">"an AI-enabled report-writing feature within the Axon AI Era platform"</div>
+<div class="ph" id="phSpon" style="left:250px; top:1022px;">AT THE FOOT OF THE ITEM</div>
+<div class="pt" id="ptSpon" style="left:250px; top:1058px; font-size:27px; color:#2A1C18;">"BECERRA/HIPOLITO"</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "September 1st", counter: "02 / 09",
+      src: 'c1 c2 c3 c4 c5   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 66, max: 82, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    // two lists, because the page's own type wants the key and the room's type wants it dimmed
+    var litType = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .tx-site", 18);
+    var allType = TXDECK.lineBoxes(".hook, .dek, .pt, .ph, .kick, .ctr, .src, .tx-site", 16);
+
+    M.wall(cx, { join: M.SHELF, lit: 4.6, shade: 2.2 });
+
+    // THE SHELF BEHIND, the same board at the same y as frames 1 and 9, with the heads of four
+    // volumes showing above it so the room is the same room.
+    var PPM = 620, BW = 0.32 * PPM, BH = 0.42 * PPM, PITCH = BW + 7;
+    var x = -120;
+    for (var i = 0; i < 6; i++) {
+      M.spine(cx, { x: x, base: M.SHELF, w: BW, h: BH * (0.88 + (i % 4) * 0.04),
+                    tone: 1.6 + (i % 3) * 0.4, seed: 61 + i * 9, labelTone: 4.2, lean: 0 });
+      x += PITCH;
+    }
+    M.board(cx, { y: M.SHELF });
+
+    // THE PAGE, at true letter proportion. 0.216 by 0.279 m at 2760 px per metre gives 596 by
+    // 770 px, and it rests against the board so the deck's horizontal runs through the frame.
+    var SX = 196, SY = 540, SW = 596, SH = 770;
+    var sheet = M.sheet(cx, { x: SX, y: SY, w: SW, h: SH, rot: 0.011, seed: 31,
+                              lit: 7.6, shade: 5.0, thickness: 6 });
+    var box = M.pageBox(sheet, 0.058);
+
+    // the page's own rules, PLACED CLEAR of its type blocks rather than dodged around them
+    M.rule(cx, { x0: box.x, x1: box.x + box.w, y: 632, weight: 2.0,
+                 ink: "rgba(42,28,24,0.32)" });
+    M.rule(cx, { x0: box.x, x1: box.x + box.w, y: 856, weight: 1.4 });
+
+
+    // the rest of the item, unread by this run, as hairlines at true line lengths
+    M.ruleRun(cx, { x: box.x, y: 1152, w: box.w, n: 2, leading: 34, weight: 2.4,
+                    seed: 19, ink: "rgba(42,28,24,0.22)" });
+
+    M.pool(cx, { x: 836, y: 640, r: 780, squash: 0.58, rot: -0.20, strength: 0.94,
+                 reserve: litType, reserveStrength: 0.60, reserveFeather: 110 });
+
+    // ARRAYS, NOT OBJECTS. TXDECK.reserveMask reads a rect as r[0..3], which is the shape
+    // lineBoxes returns. An {x,y,w,h} literal here indexes to undefined, every distance comes
+    // back NaN, no comparison is ever true and the mask silently returns 1 everywhere. The
+    // screen then prints straight over the page it was supposed to skip and nothing reports it.
+    var pageOut = TXDECK.reserveMask(
+      allType.concat([[SX - 6, SY - 6, SW + 12, SH + 12]]), 22);
+    M.tooth(cx, { x: 0, y: 0, w: W, h: H, cell: 6, angle: 26, strength: 0.15, mask: pageOut });
+
+    // THE PAGE'S OWN TOOTH, low, so the sheet has a surface. Holding the page perfectly flat
+    // read as 0.12 of the cells carrying any detail against a 0.25 line, and layout_check was
+    // right to call a flat plate a flat plate. This is the paper's grain, not the room's screen.
+    M.tooth(cx, { x: 196, y: 540, w: 596, h: 770, cell: 5, angle: 26, strength: 0.13,
+                  mask: TXDECK.reserveMask(allType, 20) });
+
+    // THE ACCENT IS PAINTED LAST, after every screen pass. The page tooth is an overlay
+    // composite and its white dots lift a mint keyline out of the 12 Lab window the gate
+    // matches in, which is how a keyline plainly drawn on frame 8 measured 0.0000.
+    // THE ACCENT, hollow, bounding the clause that is still unanswered and nothing else
+    M.keyline(cx, { x: box.x - 8, y: 648, w: box.w + 16, h: 196,
+                    dash: true, dashPattern: [20, 9] });
+
+    M.falloff(cx, { from: 1140, mid: 0.86, end: 0.97 });
+    M.falloffTop(cx, { to: 224, start: 0.78 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

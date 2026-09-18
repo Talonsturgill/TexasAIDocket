@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 5 of 9. Archetype CLOSE_CROP.
+     THE READER IS INSIDE THE PARAGRAPH. The page is cropped by the top, the left and the right,
+     so the frame IS the sentence rather than a picture of a page with a sentence on it. That is
+     the whole difference between this and the two DOCUMENT frames, and it is why the clause gets
+     its own frame at all.
+     THIS FRAME CARRIES NO HOOK, so the county's own sentence is the largest type on it.
+     THE PAGE'S RULES ARE PLACED CLEAR OF THE TYPE BLOCK rather than dodged around it. A rule
+     dodged around its own page's type punches a feathered hole whose boundary lands inside the
+     glyph band, and the QA harness reads the repair as a strike. The lamp deck paid four rounds
+     for that lesson.
+     Planned frame median L* 27. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .ph   { position:absolute; left:126px; top:362px; font-family:"JetBrains Mono", monospace;
+          font-size:24px; letter-spacing:0.10em; color:#4A342C; z-index:12; }
+  .clause { position:absolute; left:126px; top:426px; width:828px;
+            font-family:"JetBrains Mono", monospace; font-size:40px; line-height:1.42;
+            letter-spacing:-0.004em; color:#241713; z-index:12; }
+  .dek  { position:absolute; left:84px; top:1128px; width:760px; font-size:27px;
+          line-height:1.42; color:#CFB9B3; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<div class="ph" id="ph">SEPTEMBER 15TH AGENDA</div>
+<div class="clause" id="clause">"authorize a waiver to the purchasing policy of obtaining three quotes"</div>
+<p class="dek">County purchasing policy asks for three quotes. The item asks the court to set that aside for this one.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "The clause under the ask", counter: "05 / 09",
+      src: 'c9   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    var litType = TXDECK.lineBoxes(".dek, .kick, .ctr, .src, .tx-site", 18);
+    var allType = TXDECK.lineBoxes(".dek, .clause, .ph, .kick, .ctr, .src, .tx-site", 16);
+
+    // THE ROOM, AND ON THIS FRAME IT IS HALF THE PICTURE. Every earlier build darkened the sheet
+    // with an overlay gradient to bring the frame's value into the deck, and every one of them
+    // BANDED, which qa.py correctly read as rules struck through the clause. A bisect render with
+    // the overlay removed came back with zero strikes and named the cause in one step. So the
+    // value is made by the COMPOSITION instead. The page takes the top of the frame and the board
+    // it lies on takes the bottom, and nothing is painted over the paper at all.
+    M.wall(cx, { join: 792, lit: 4.6, shade: 2.6 });
+
+    // THE BOARD BELOW THE PAGE, which is what makes this frame sit in the deck's value range.
+    // It carries the board's own grain and the page's contact, so the bottom is modelled rather
+    // than a flat dark band.
+    M.board(cx, { y: 792, thickness: 30 });
+
+    // THE SHEET UNDER THE SHEET. Round 2's craft judge called this frame's lower 40 percent
+    // "empty ground with one unexplained dark ellipse" and it was right twice over: there was no
+    // object down there and no depth cue, so the one frame in the deck with no room in it also
+    // had no floor. At this crop the page runs 1228 px for 0.216 m, which is 5685 px per metre,
+    // so a 0.32 m volume would be 1819 px and nothing from the shelf can fit in shot. What DOES
+    // belong at this scale is the rest of the stack the quoted page is sitting on. A second
+    // sheet's corner, offset and turned a little the other way, gives the near ground an edge,
+    // a contact and a reason to be lit, and it says the item runs past what is quoted here.
+    // IT IS DRAWN BEFORE THE QUOTED PAGE AND AFTER THE BOARD, which is the order the three are
+    // stacked in. Drawn last it painted over the quoted page's own bottom edge, which is the
+    // one thing a sheet UNDER another sheet must never do.
+    var under = M.sheet(cx, { x: 206, y: 742, w: 980, h: 344, rot: 0.009, seed: 89,
+                              lit: 5.4, shade: 3.6, thickness: 6, wobble: 2.6 });
+
+    // THE PAGE AT 0.09 m ACROSS THE FRAME, the closest camera in the deck, cropped by the top,
+    // the left and the right so the reader is inside it.
+    var SX = -74, SY = 330, SW = 1228, SH = 462;
+    var sheet = M.sheet(cx, { x: SX, y: SY, w: SW, h: SH, rot: 0.003, seed: 53,
+                              lit: 7.8, shade: 5.6, thickness: 9, wobble: 3.4 });
+
+    // the page's own rules, PLACED CLEAR of the clause block rather than dodged around it
+    M.rule(cx, { x0: 126, x1: 958, y: 404, weight: 2.6, ink: "rgba(36,23,19,0.50)" });
+    for (var rb = 632; rb <= 772; rb += 24) {
+      M.rule(cx, { x0: 126, x1: 958, y: rb, weight: 1.8, ink: "rgba(36,23,19,0.42)" });
+    }
+    // the page's own left margin rule, which is what a ruled form has and a plate does not
+    M.rule(cx, { x0: 168, x1: 168, y: 232, weight: 0 });
+    cx.save();
+    cx.strokeStyle = "rgba(36,23,19,0.40)"; cx.lineWidth = 1.8;
+    cx.beginPath(); cx.moveTo(168, 408); cx.lineTo(168, 778); cx.stroke();
+    cx.restore();
+
+    // the rest of the item, unread by this run, as hairlines at true line lengths
+    M.ruleRun(cx, { x: 126, y: 640, w: 832, n: 6, leading: 24, weight: 2.4,
+                    seed: 71, ink: "rgba(36,23,19,0.52)" });
+
+    // THE PAPER'S OWN TOOTH, kept off the clause and off the page's own set lines
+    M.tooth(cx, { x: 0, y: 330, w: W, h: 460, cell: 5, angle: 26, strength: 0.26,
+                  mask: TXDECK.reserveMask(allType, 44) });
+
+
+    M.tooth(cx, { x: 0, y: 820, w: W, h: 260, cell: 5, angle: 26, strength: 0.30,
+                  mask: TXDECK.reserveMask(allType, 40) });
+
+    M.pool(cx, { x: 936, y: 500, r: 700, squash: 0.72, rot: -0.20, strength: 0.86,
+                 reserve: litType, reserveStrength: 0.60, reserveFeather: 110 });
+
+    // THE FALLOFF STARTED AT 920 AND THAT IS WHAT KILLED THE LOWER THIRD. Crushing everything
+    // below 920 to 0.96 turned 430 px of frame into one flat brown with no information in it,
+    // which is the "dead ground" finding. It starts at 1078 now, below the second sheet's edge,
+    // so the near stack keeps its modelling and the dek still lands on a ground dark enough to
+    // carry light type.
+    M.falloff(cx, { from: 1006, mid: 0.87, end: 0.96 });
+    M.falloffTop(cx, { to: 318, start: 0.52 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+{
+ "weighted_score": 6.792,
+ "judges": [
+  5.99,
+  7.176,
+  6.815
+ ],
+ "spread": 1.186,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.7,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.6,
+   "weight": 0.12,
+   "judges": [
+    6.0,
+    6.6,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    4.5,
+    7.8,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.25
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "the SPONSOR LINE label on frames 2 and 4 and the caption's 'both sponsor lines': no fetched string in claims.json contains the word sponsor, c5 and c10 are confidence medium and their evidence is a note about bold type after the item's closing full stop, so a role was read off typography and printed unhedged about four named living people"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "the SPONSOR LINE label on frames 2 and 4 and the caption's 'both sponsor lines': no fetched string in claims.json contains the word sponsor, c5 and c10 are confidence medium and their evidence is a note about bold type after the item's closing full stop, so a role was read off typography and printed unhedged about four named living people"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.176 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.815 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.176,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.176 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.815,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.815 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 1.19, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity"
+ ],
+ "rounds": 5
+}

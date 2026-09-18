@@ -11,7 +11,7 @@ The National Science Foundation made a standard grant to William Marsh Rice Univ
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2616828.json
 
-- Last checked: 2026-09-15
+- Last checked: 2026-09-18
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-14 · The award record still reads as it did. The requirement that a proof assistant certify a proposed algorithm before it counts is still part of what was funded rather than a step offered afterwards.
 - 2026-09-15 · The award stands as made and the start date the award record gives has now arrived. The requirement that a proof assistant certify an algorithm before it counts is still written into the record's own account of the work.
+- 2026-09-18 · The award record reads as it did. A proof assistant still has to certify a proposed algorithm for correctness and cost before it counts, which is the condition that makes this grant unusual. The funding term the foundation published is unamended.
 
 ## Evidence
 

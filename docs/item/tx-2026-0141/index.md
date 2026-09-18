@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-10 · The university's account is published and names the researchers, the sensing package, where the model runs and the federal program that funded the work. It is a prototype and no installation site is named.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The UT San Antonio flood sensor that runs its model on the chip is still described that way by the university. Nothing has moved the work off the device.
+- 2026-09-18 · Re-verified against the university's own account and two quotes were added, the off-grid description and the definition of the compression method that lets the model run on a microcontroller. This decision was also admitted a second time on the same day. That duplicate came off the same article reached over http rather than https, and it was removed before it reached the record. A code review caught it. Nothing in the admission phase did, because the dedupe compares entities and keywords rather than normalised source URLs.
 
 ## Evidence
 
@@ -74,6 +75,18 @@ Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-research
 ### The announcement names the problem the existing gauges have.
 
 > Existing commercial flood-monitoring stations also come with drawbacks, from prohibitively high costs to reliance on grid power or frequent battery replacements, which leaves them vulnerable during multi-day storms or power outages.
+
+Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
+
+### The researcher states what the system does without outside power or a network.
+
+> Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.
+
+Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
+
+### The account describes the method that lets the model run on the node.
+
+> a branch of computer science that compresses machine learning algorithms so they can run directly on small, low-power microcontrollers
 
 Source (primary_official): https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
 

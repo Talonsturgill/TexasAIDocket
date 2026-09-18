@@ -11,7 +11,7 @@ The University of Texas at Arlington published an account on September 10th, 202
 - Public access: Write to the decider
 - Take part: https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
 
-- Last checked: 2026-09-15
+- Last checked: 2026-09-18
 
 ## Dates
 
@@ -22,6 +22,7 @@ The University of Texas at Arlington published an account on September 10th, 202
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-15 · Admitted on the university's own release, which names the funder and says the researchers are helping to develop the police training.
+- 2026-09-18 · The university's account is unchanged. The tutor is still described as one built to withhold the answer, and the Fort Worth police training work still sits beside it in the same account. No evaluation result has been published for either.
 
 ## Evidence
 
