@@ -16,6 +16,21 @@ never behind a word, and it bounds only what is UNANSWERED. Carried on frames 2,
 absent from 1, 3, 5, 6 and 7. Frame 6 is the room rather than a document and bounds no clause,
 so it carries none.
 
+## Palette
+
+| token | hex | role |
+|---|---|---|
+| `room_ground` | `#361D27` | the records-room ground present in every frame |
+| `shelf_material` | `#4F3D2F` | the shelf board and bindings |
+| `display_ink` | `#E4D3CE` | display type and light-on-dark marks |
+| `paper_stock` | `#EDDFD4` | the drawn document stock |
+| `signal_open` | `#4FC79A` | the hollow unanswered-state accent |
+
+The ROOM and STOCK ramps and their measured candidate sets live in
+`assets/js/deck/2026-09-18-minutebook.js` and `palette_measured.json`. These are the five fixed
+roles the chassis declares; the intermediate ramp steps are computed rather than second-copied
+here.
+
 CONTINUITY: MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC
 
 **Continuity devices, three, named here because `layout_check --require` refuses a storyboard

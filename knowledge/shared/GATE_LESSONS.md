@@ -2630,3 +2630,31 @@ proposing to give up. Two artifacts can share a constraint, a growth rate and a 
 still need opposite treatments, because one of them is read by a retriever and the other is not.
 The cheap check is to name every consumer of the artifact before choosing the rung, which is one
 question and would have caught this in a minute.
+
+## 77. A bounding box was called an object, and a craft signal stopped publication
+
+The September 18th carousel was complete after six scoring rounds, with zero hard fails, and the
+round-cap rule licensed it to ship at 6.8 against the 8.0 target. CI still stopped the release.
+`construction_check` reported that six of nine frames shared one primitive, a bright rectangle.
+
+Four frames did carry the deck's document-page register. Two did not. One was a lit field of
+record cabinets and wall, and one was a car scene. At thumbnail scale each scene produced one
+connected bright region whose pixels filled more than 68 percent of its bounding box. The gate
+turned that geometric fact into an identity claim: the regions were the same object.
+
+The detector had been calibrated against deck 13, where its five reported frames exactly matched
+one panel's five repeated plates. That was useful evidence that the measurement could describe
+that deck. It was not independent validation that the measurement classified objects. The next
+deck with a different scene shape exposed the difference, and three attempts to tune the pixels
+made the rendered work worse without changing the category error.
+
+**What to check instead.** Keep the measurement and name its boundary. Connected bright-region
+fill is a craft advisory that can direct a reviewer to six frames. It cannot decide that those
+frames depict the same object, so it cannot decide whether a release lands. `bespoke_check` still
+blocks a genuinely repeated drawing and the three-judge panel still scores craft and deck
+coherence. The factual, source, numeral, quotation, machine-QA and completion gates remain hard.
+
+**Generalises to.** Any vision heuristic that reports a measurable proxy with the noun of the
+thing it hopes to recognise. A filled bounding box is not an object. Edge density is not detail.
+Colour variance is not finish. Calibrating a proxy on the example that inspired it shows that it
+can agree once; only a different example can show what it means.

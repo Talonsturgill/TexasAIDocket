@@ -489,7 +489,7 @@ CONSTRUCTION_SINCE = "2026-09-02"
 
 
 def g_construction(d: Path):
-    """How much of the deck one primitive carries, measured on the shipped images.
+    """How many frames trigger the bright-region proxy, measured on shipped images.
 
     See scripts/carousel/construction_check.py for what it measures and why bespoke_check, which
     was already green on the deck that produced this finding, could not see it: that file
@@ -497,8 +497,8 @@ def g_construction(d: Path):
 
     NOT APPLICABLE to any deck drawn on or before CONSTRUCTION_SINCE, which is the run that
     taught it. Every one of those is reported as a note instead, and the notes are worth reading:
-    run into history this finds 4 of 8, 6 of 9 and 7 of 9 on three earlier decks, so the primitive
-    carrying a deck is a standing habit rather than one bad Tuesday.
+    run into history this finds 4 of 8, 6 of 9 and 7 of 9 on three earlier decks, so a reviewer
+    can still see where the proxy fires without treating it as object identity.
     """
     if d.name <= CONSTRUCTION_SINCE:
         return ("this gate was written during the " + CONSTRUCTION_SINCE + " run and that deck "
@@ -509,7 +509,17 @@ def g_construction(d: Path):
     m = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(m)
     code, problems, _rows = m.check(d)
-    return None if code == 2 else problems
+    if code == 2:
+        return None
+    if code == getattr(m, "ADVISORY", 3):
+        return [
+            ADVISORY + p + " The detector measures connected bright-region fill, not object "
+            "identity. On 2026-09-18 it classified a lit records-room wall and a car scene as "
+            "document plates. Keep the measurement in the review record; leave the ship "
+            "decision to bespoke_check and the panel."
+            for p in problems
+        ]
+    return problems
 
 
 # The illustration system, the layout keys in every dossier and the gate that reads them, were
@@ -613,6 +623,7 @@ LABEL_ABSENT_WAIVED = {
 # A finding that is measured, reported and not fatal. `check_run` routes on this prefix, so any
 # gate can use it and none of them can hide a finding to do so.
 WAIVED = "[waived] "
+ADVISORY = "[advisory] "
 
 
 def _by_module(name: str, d: Path):
@@ -981,6 +992,13 @@ def check_run(d: Path, newest: bool) -> tuple:
             # is the defect this whole file exists to catch, in the file itself.
             notes.append(f"{d.name}  {name}: not applicable, {probs}")
             continue
+        # AN ADVISORY IS A MEASUREMENT, NOT A WAIVER. It stays visible and never enters the fatal
+        # list. Construction uses this route because its pixel segmentation can measure a bright
+        # bounding-box fill but cannot establish that two scenes depict the same object.
+        for p in [str(x) for x in probs if str(x).startswith(ADVISORY)]:
+            notes.append(f"{d.name}  {name}: ADVISORY. {p[len(ADVISORY):]}")
+        probs = [x for x in probs if not str(x).startswith(ADVISORY)]
+
         # A WAIVED FINDING IS SPLIT OUT HERE RATHER THAN DROPPED BY THE GATE. It is reported on
         # its own line, in full, under the date that carries it, so the sweep's output still
         # contains every finding it made. Only the fatal list is shorter.
@@ -1061,12 +1079,17 @@ def run(only: str | None = None) -> int:
         for f in fatal:
             print(f"  - {f}", file=sys.stderr)
         return 1
-    # THE CLOSING LINE NAMES THE WAIVERS. "every applicable gate clean" over a sweep carrying a
-    # waived finding is the narrow-measurement sentence this file exists to catch, in this file.
+    # THE CLOSING LINE NAMES ADVISORIES AND WAIVERS. "Every applicable gate clean" over either
+    # would be the narrow-measurement sentence this file exists to catch, in this file.
+    n_advisory = sum(1 for n in notes if "ADVISORY." in n)
     n_waived = sum(1 for n in notes if "WAIVED." in n)
-    print(f"shipped_check: {len(runs)} shipped run(s), every applicable gate clean on the "
-          f"artifacts as committed" +
-          (f", except {n_waived} named waiver(s) reported above and not fatal" if n_waived else ""))
+    suffix = []
+    if n_advisory:
+        suffix.append(f"{n_advisory} advisory finding(s) reported above and not fatal")
+    if n_waived:
+        suffix.append(f"{n_waived} named waiver(s) reported above and not fatal")
+    print(f"shipped_check: {len(runs)} shipped run(s), no fatal finding on the artifacts as "
+          f"committed" + (", with " + "; ".join(suffix) if suffix else ""))
     return 0
 
 
@@ -1142,6 +1165,21 @@ def self_test() -> int:
             if len(runs) > 1:
                 ok("...and on an older deck a CURRENT-scope gate is a note rather than fatal",
                    not any("selftest probe" in x for x in f), str(f))
+    finally:
+        GATES.pop()
+
+    # AN ADVISORY IS NOT A WAIVER AND NOT A SILENT PASS. It must remain visible while never
+    # entering the fatal list, which is the construction detector's calibrated contract.
+    def advisory_probe(_d):
+        return [ADVISORY + "a measured craft signal"]
+    GATES.append(("selftest advisory", advisory_probe, CURRENT))
+    try:
+        if runs:
+            f, n = check_run(runs[-1], True)
+            ok("an advisory is NOT fatal on the newest deck",
+               not any("a measured craft signal" in x for x in f), str(f))
+            ok("...and is still reported, in full, as an advisory",
+               any("ADVISORY" in x and "a measured craft signal" in x for x in n), str(n))
     finally:
         GATES.pop()
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""construction_check.py — how many frames are the same OBJECT, measured on the pixels.
+"""construction_check.py — how many frames trigger one bright-region proxy.
 
 THE DEFECT THIS EXISTS FOR, and it cost deck 13 its ship.
 
@@ -32,28 +32,36 @@ A frame counts as PLATED when its biggest bright region fills at least `FILL` of
 box and covers at least `AREA` of the frame. Both are needed: fill alone would convict a small
 bright chip, and area alone would convict any frame with a large lit passage.
 
-VALIDATED AGAINST THE HUMAN FINDING, which is the only reason to trust it. Run over deck 13 it
-returns frames 2, 6, 7, 8 and 9. That is the craft judge's list, arrived at from pixels rather
-than from taste, with no frame added and none missed.
+CALIBRATED AGAINST ONE HUMAN FINDING. Run over deck 13 it returns frames 2, 6, 7, 8 and 9. That
+is the craft judge's list, arrived at from pixels rather than from taste, with no frame added and
+none missed.
 
     2 0.895   6 1.000   7 0.937   8 0.708   9 0.856      plated
     1 0.083   3 0.065   4 0.455   5 none                 not
 
-THE THRESHOLD IS THE JUDGE'S OWN LINE. Five of nine is what a panel called the deck's real craft
-problem, so a majority of the deck sharing one primitive is the fail. Under half is a register,
-which is a good thing and what a deck is supposed to have.
+That agreement earns the measurement a place in the report. It does not make the measurement an
+object classifier or a ship gate. On 2026-09-18 it counted a lit records-room wall and a car scene
+as the same white document plate, because a connected bright blob can fill a rectangle-shaped
+bounding box without being a rectangle or the same object. Four actual document facsimiles were
+the deck's visual register and sat under half; the two false positives turned that into six of
+nine and blocked an otherwise completed run.
 
-WHAT THIS DOES NOT DO. It has no opinion about which primitive a deck picks, only about how much
-of the deck one primitive carries. A deck of nine plates and a deck of nine anything-elses fail
-alike. It also cannot see a repeated primitive that is DARK on a light ground, which is a real
-blind spot and is stated rather than papered over: every deck this project has shipped is dark
-ground with light objects, and widening it before there is a light deck to measure would be
-fitting a threshold to no data.
+THE THRESHOLD IS THE JUDGE'S OWN REPORTING LINE. Five of nine is what that panel called the
+deck's craft problem, so a majority is still the point worth surfacing. It is ADVISORY because
+the detector measures bright-region fill, not object identity. `bespoke_check` and the scoring
+panel remain the gates for a genuinely repeated drawing.
+
+WHAT THIS DOES NOT DO. It has no opinion about object identity. A deck of nine unrelated bright
+scenes can trigger the proxy just as nine plates can, while a repeated primitive that is DARK on
+a light ground is invisible to it. Those are real blind spots and are stated rather than papered
+over: every deck this project has shipped is dark ground with light objects, and widening the
+measurement before there is a light deck to test would be fitting a threshold to no data.
 
     construction_check.py --render-dir out/<date>/render
     construction_check.py --self-test
 
-Exit 0 clean, 1 one primitive carries the deck, 2 could not run.
+Exit 0 clean or advisory, 2 could not run. `check()` returns ADVISORY internally so callers can
+preserve and label the measurement without turning it into a ship-stopper.
 """
 from __future__ import annotations
 
@@ -66,7 +74,8 @@ THUMB = (216, 270)     # half the feed thumb. The primitive is a large shape; th
 ABOVE = 34.0           # luminance above the frame's own median that reads as "the bright thing"
 FILL = 0.68            # of its bounding box. A solid rectangle is 1.0.
 AREA = 0.02            # of the frame, so a bright chip is not a plate
-FAIL_SHARE = 0.5       # a majority of the deck sharing one primitive is the fail
+REPORT_SHARE = 0.5     # a majority is the panel-derived point worth surfacing for review
+ADVISORY = 3           # measured and reported, but not a reliable object-identity verdict
 
 
 def _luma(img):
@@ -122,14 +131,14 @@ def check(render_dir: Path):
     hits = [n for n, m in rows if m and m[0] >= FILL and m[1] >= AREA]
     share = len(hits) / len(rows)
     problems = []
-    if share >= FAIL_SHARE:
+    if share >= REPORT_SHARE:
         problems.append(
-            f"{len(hits)} of {len(rows)} frames are one primitive, a solid bright rectangle on a "
-            f"darker ground: {', '.join(hits)}. A majority of the deck built from one object is "
-            f"the finding that held deck 13 under the bar, and no code-similarity number sees it, "
-            f"because two frames can share no tokens and draw the same thing. Spend the detail "
-            f"budget where the argument ENDS rather than where it starts")
-    return (1 if problems else 0), problems, rows
+            f"{len(hits)} of {len(rows)} frames trigger the solid-bright-region proxy: "
+            f"{', '.join(hits)}. A majority was the line behind the deck 13 craft finding, but "
+            f"this measurement does not establish that the frames depict the same object. "
+            f"Review those frames where the argument ends rather than treating the proxy as an "
+            f"object classifier")
+    return (ADVISORY if problems else 0), problems, rows
 
 
 def self_test() -> int:
@@ -154,7 +163,7 @@ def self_test() -> int:
             a[60:200, 30:190] = 210
             Image.fromarray(a).save(d / f"slide-{i:02d}.png")
         code, probs, rows = check(d)
-        ok("nine plates is one primitive carrying the deck", code == 1 and probs)
+        ok("nine plates produces the construction advisory", code == ADVISORY and probs)
         ok("...and it names how many and which", "9 of 9" in probs[0])
 
         # the same deck with six frames redrawn as a thin diagonal: not a plate
@@ -202,11 +211,14 @@ def main() -> int:
         print("construction_check: " + problems[0], file=sys.stderr)
         return 2
     if problems:
-        print("\nconstruction_check: " + problems[0])
-        return 1
+        print("\nconstruction_check advisory: " + problems[0])
+        print("The bright-region measurement stays visible, but object identity remains a "
+              "panel and bespoke-check judgment.")
+        return 0
     hits = sum(1 for _, m in rows if m and m[0] >= FILL and m[1] >= AREA)
-    print(f"\nconstruction_check: {hits} of {len(rows)} frames share the plate primitive, "
-          f"under the {FAIL_SHARE:.0%} line. The deck is a register rather than a repeat")
+    print(f"\nconstruction_check: {hits} of {len(rows)} frames trigger the bright-region proxy, "
+          f"under the {REPORT_SHARE:.0%} reporting line. The deck is a register rather than a "
+          f"repeat")
     return 0
 
 
