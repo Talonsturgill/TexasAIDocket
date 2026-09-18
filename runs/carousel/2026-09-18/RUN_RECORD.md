@@ -147,7 +147,7 @@ the body's own page in discovery, not only the documents it published.**
 1. **`noun_trace` returns a hardcoded empty fails list.** `return [], warns, {...}`. Every named
    thing goes to `warns` and nothing ever goes to fails, so it exits 0 on every input by
    construction. This run cited its exit 0 as evidence in four gate sweeps.
-2. **The render harness collects `window.__akLeaders`** — the Alaska prefix — while this repo's
+2. **The render harness collects `window.__akLeaders`**, a prefix left behind by a port, while this repo's
    frames set `window.__txLeaders`.
 3. **And it is not only leaders.** `leaders`, `rules`, `contacts`, `encodings`, `svg_plates` and
    `canvas_text` are ALL `[]` on all nine slides. **The declarative half of every acceptance list

@@ -928,7 +928,7 @@
       "id": "exit-zero-is-not-evidence-until-you-read-the-checker",
       "learned": "2026-09-18",
       "instinct": "Read what a gate CAN return before citing its exit 0 as evidence, because a checker that cannot fail passes everything.",
-      "evidence": "Three gates in this repo cannot fail and one run found all three. noun_trace ends with 'return [], warns, {...}', a hardcoded empty fails list, and its exit 0 was cited as evidence in four gate sweeps. The render harness collects window.__akLeaders, the Alaska prefix, while these frames set window.__txLeaders. And leaders, rules, contacts, encodings, svg_plates and canvas_text are all empty on all nine slides of every deck this repo has shipped, so the declarative half of every acceptance list has never been machine checked. gate_wiring.py exists for exactly this shape and caught none of them.",
+      "evidence": "Three gates in this repo cannot fail and one run found all three. noun_trace ends with 'return [], warns, {...}', a hardcoded empty fails list, and its exit 0 was cited as evidence in four gate sweeps. The render harness collects window.__akLeaders, a prefix left behind by a port, while these frames set window.__txLeaders. And leaders, rules, contacts, encodings, svg_plates and canvas_text are all empty on all nine slides of every deck this repo has shipped, so the declarative half of every acceptance list has never been machine checked. gate_wiring.py exists for exactly this shape and caught none of them.",
       "confirmed": [],
       "contradicted": []
     },
