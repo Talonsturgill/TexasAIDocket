@@ -1,9 +1,9 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-18T12:18:43Z",
+  "checked_at": "2026-09-18T17:09:00Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917121802&enddatetime=20260918121802",
-  "response_sha256": "499ade9d8dc53b3de3cfbc0c9fb32ca2800bab4ae50c338740e60125779aa018",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917170821&enddatetime=20260918170821",
+  "response_sha256": "1f2cf371100f8f058aeb7f1d2d5bdbed5c4129650395a07282aaacb365f49617",
   "articles": [
     {
       "title": "Building AI to accelerate science and improve lives",
@@ -33,6 +33,18 @@
       "title": "Watch astronaut Christina Koch and Google’s James Manyika discuss space, technology, and discovery.",
       "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch/",
       "first_seen_at": "2026-09-14T19:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "New experts join Google’s AI & Economy team",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/",
+      "first_seen_at": "2026-09-18T14:00:00Z",
+      "feed": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "title": "Co-creating the future of fashion with Google",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/",
+      "first_seen_at": "2026-09-18T13:00:00Z",
       "feed": "https://blog.google/technology/ai/rss/"
     },
     {
@@ -87,12 +99,6 @@
       "first_seen_at": "2026-09-14T21:03:02Z"
     },
     {
-      "title": "Lifesaving Lincoln Laboratory device wins 2026 Excellence in Technology Transfer Award",
-      "url": "https://news.mit.edu/2026/lifesaving-lincoln-laboratory-technology-wins-tech-transfer-award-0911",
-      "first_seen_at": "2026-09-11T13:45:00Z",
-      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
-    },
-    {
       "title": "MIT spinout turns plastic waste into resilient building materials",
       "url": "https://news.mit.edu/2026/mit-spinout-turns-plastic-waste-into-resilient-building-materials-0914",
       "first_seen_at": "2026-09-14T04:00:00Z",
@@ -102,6 +108,12 @@
       "title": "New AI technique could make minimally invasive surgeries safer and more precise",
       "url": "https://news.mit.edu/2026/new-ai-technique-could-make-minimally-invasive-surgeries-safer-more-precise-0916",
       "first_seen_at": "2026-09-16T15:00:00Z",
+      "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
+    },
+    {
+      "title": "A new chapter for MIT Reads",
+      "url": "https://news.mit.edu/2026/new-chapter-mit-reads-0918",
+      "first_seen_at": "2026-09-18T16:30:00Z",
       "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2"
     },
     {
@@ -120,12 +132,6 @@
       "title": "Introducing Astra for Law",
       "url": "https://openai.com/index/astra-for-law",
       "first_seen_at": "2026-09-17T00:00:00Z",
-      "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
-      "url": "https://openai.com/index/cognition-devin-testing-with-astra",
-      "first_seen_at": "2026-09-11T16:00:00Z",
       "feed": "https://openai.com/news/rss.xml"
     },
     {
@@ -175,58 +181,53 @@
       "url": "https://openai.com/index/unlocking-new-ways-of-working",
       "first_seen_at": "2026-09-16T09:00:00Z",
       "feed": "https://openai.com/news/rss.xml"
-    },
-    {
-      "title": "Data centers are driving some conservative Texas voters away from the GOP",
-      "url": "https://www.hppr.org/hppr-news/2026-09-11/data-centers-are-driving-some-conservative-texas-voters-away-from-the-gop",
-      "first_seen_at": "2026-09-11T14:45:00Z"
     }
   ],
   "selected": {
-    "title": "Making global data easier to explore",
-    "url": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
-    "first_seen_at": "2026-09-17T20:00:00Z",
-    "feed": "https://blog.google/technology/ai/rss/",
-    "publisher": "Google",
+    "title": "A new chapter for MIT Reads",
+    "url": "https://news.mit.edu/2026/new-chapter-mit-reads-0918",
+    "first_seen_at": "2026-09-18T16:30:00Z",
+    "feed": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+    "publisher": "MIT News",
     "coverage": 1,
-    "score": 0.624311,
+    "score": 0.981402,
     "priority": 1
   },
-  "expires_at": "2026-09-24T20:00:00Z",
+  "expires_at": "2026-09-25T16:30:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917121802&enddatetime=20260918121802",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917170821&enddatetime=20260918170821",
       "status": "unavailable"
     },
     {
       "url": "https://dallasinnovates.com/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "1cc0b34f4f866963ce6a0ab6de1a6e145bac99087931c90fa03da0b8f319cb16"
+      "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "229a639a0d0aa9503d1965d92bb6e0a2b772947af0bc37aefc28c755a6aa1448"
+      "sha256": "f3b439d0b7872a7067f9ddcc7ccadc141adc27da71dd24af495668e9f3824859"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "811c581445701a64847e7eeae1b11ba84af990164940d9777d1ea495ecb91325"
+      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "81132d66a35e5d8f628df42f9f1889776e4898b84a0d24c94f57924767c67251"
+      "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1208,
-      "sha256": "a5a4d70d7e8ceb91ac342d01ca2970fcae673f79e89d8e64b74c97a94df55a76"
+      "sha256": "065be2bea7b22c89faac6758f2ab10f9d5ee3c11c41d8ac440c03b516fe2e012"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -238,7 +239,7 @@
       "url": "https://blog.google/technology/ai/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "2948007f9b16dbce43899c7e97abd38dc9a858ef9bd6e301ab849f469889572b"
+      "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     }
   ]
 }
