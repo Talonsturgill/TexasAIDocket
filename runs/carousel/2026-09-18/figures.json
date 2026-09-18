@@ -1,0 +1,127 @@
+{
+ "_note": "Every count and span this run's prose narrates, computed rather than typed. The date arithmetic is re-run from compute.py at build time rather than copied, and the document set is derived from claims.json. shipped_check's `ledgers` gate reads this file against the topics and captions ledgers, so a number in the ledger prose that is not here is a number somebody typed.",
+ "september_agendas": {
+  "value": 3,
+  "unit": "agendas",
+  "basis": "measured",
+  "from": [
+   "c1",
+   "c11",
+   "c6"
+  ],
+  "how": "the length of the set of distinct meeting dates parsed out of the agenda headers quoted in c1, c11 and c6, by compute.py",
+  "members": [
+   "2026-09-01",
+   "2026-09-08",
+   "2026-09-15"
+  ]
+ },
+ "days_first_to_last_agenda": {
+  "value": 14,
+  "unit": "days",
+  "basis": "measured",
+  "from": [
+   "c1",
+   "c6"
+  ],
+  "how": "the September 15th header date minus the September 1st header date, by compute.py",
+  "members": [
+   "2026-09-01",
+   "2026-09-15"
+  ]
+ },
+ "days_first_to_middle_agenda": {
+  "value": 7,
+  "unit": "days",
+  "basis": "measured",
+  "from": [
+   "c1",
+   "c11"
+  ],
+  "how": "the September 8th header date minus the September 1st header date, by compute.py",
+  "members": [
+   "2026-09-01",
+   "2026-09-08"
+  ]
+ },
+ "documents_behind_the_deck": {
+  "value": 6,
+  "unit": "documents",
+  "basis": "measured",
+  "from": [
+   "c1",
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "c6",
+   "c7",
+   "c8",
+   "c9",
+   "c10",
+   "c11",
+   "c12",
+   "c13",
+   "c14",
+   "c15",
+   "c16",
+   "c17",
+   "c18"
+  ],
+  "how": "the distinct `document` values across all verified claims in claims.json, each matched against first_comment.txt",
+  "members": [
+   "Axon, Draft One product page",
+   "Govably, AI Minutes",
+   "Hays County Archive Center, Court Minutes 2026",
+   "Hays County Commissioners Court agenda, September 15th, 2026",
+   "Hays County Commissioners Court agenda, September 1st, 2026",
+   "Hays County Commissioners Court agenda, September 8th, 2026"
+  ]
+ },
+ "verified_claims": {
+  "value": 18,
+  "unit": "claims",
+  "basis": "measured",
+  "from": [
+   "c1",
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "c6",
+   "c7",
+   "c8",
+   "c9",
+   "c10",
+   "c11",
+   "c12",
+   "c13",
+   "c14",
+   "c15",
+   "c16",
+   "c17",
+   "c18"
+  ],
+  "how": "the length of claims.json's verified list",
+  "members": [
+   "c1",
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "c6",
+   "c7",
+   "c8",
+   "c9",
+   "c10",
+   "c11",
+   "c12",
+   "c13",
+   "c14",
+   "c15",
+   "c16",
+   "c17",
+   "c18"
+  ]
+ }
+}
