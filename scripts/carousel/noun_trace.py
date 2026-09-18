@@ -38,6 +38,31 @@ WARN, NEVER FAIL, for the same reason as `absence_check`. A copywriter legitimat
 short form the claim spells out in full, and a gate that fires on a correct decision gets
 switched off. What it does is put the list in front of a reader who can check it in seconds.
 
+**SO EXIT 0 IS NOT A VERDICT ON THE DECK, AND THIS GATE SAYS SO ON EVERY RUN (2026-09-18).**
+
+The warn-only decision above is deliberate and it stands. What did not stand is what a caller was
+allowed to make of it. `check()` ended `return [], warns, ...` with the fails list a hardcoded
+empty literal, `run()` then computed `1 if fails`, and the 2026-09-18 run recorded "noun_trace
+exit=0" as evidence in four separate gate sweeps. It was evidence of nothing: no input in the
+history of this file could have produced any other code. The round-3 integrity judge found it by
+reading the source, which is the only way it could have been found, and `gate_wiring.py` exists
+for this exact shape and did not catch it because the gate IS wired, it is invoked, and it runs.
+
+Two things changed and neither of them promotes a warn to a fail.
+
+  1. The report line names the contract. A transcript that quotes this gate's stdout now carries
+     "ADVISORY" and "exit 0 is not a verdict" in the same breath as the exit code.
+  2. **A gate that CANNOT RUN is red rather than green.** GATE_LESSONS 37: a skip and an
+     unavailable check are not the same event and must not share a report line. Two conditions
+     leave this scan measuring nothing at all and both were silent before.
+
+       the gazetteer is missing or empty   the ALL CAPS arm is dead, so HARRIS COUNTY, the
+                                           2026-08-18 slide 2 defect, cannot be seen at all
+       the claims carry no text            every name on every frame is compared against an
+                                           empty corpus, so the test is vacuous either way
+
+     Both now populate `fails` and exit 1, and the self-test drives each of them.
+
 MEASURED ON THE THREE SHIPPED DECKS
 
     2026-08-16   Elon Musk, The House Committee, State Affairs
@@ -103,10 +128,27 @@ def candidates(text: str, gaz: set) -> list:
     return out
 
 
-def check(copy: dict, claims) -> tuple:
-    gaz = places()
+def check(copy: dict, claims, gaz=None) -> tuple:
+    """(fails, warns, stats).
+
+    `fails` carries ONLY the conditions under which this scan did not happen. A named thing with
+    no claim behind it is a warn by the design written at the top of this file, and a caller may
+    not read exit 0 as a verdict on the deck. `gaz` is injectable so the self-test can drive the
+    dead-gazetteer branch without deleting a committed asset.
+    """
+    gaz = places() if gaz is None else gaz
     corp = corpus(claims)
-    seen, warns = set(), []
+    fails, seen, warns = [], set(), []
+    if not gaz:
+        fails.append(
+            f"the gazetteer at {PLACES} loaded no place, so the ALL CAPS arm of this gate did "
+            f"not run and an all-caps county name cannot be seen. A check that CANNOT RUN is a "
+            f"failure and not a skip")
+    if not corp.strip():
+        fails.append(
+            "the claims carry no text, quote, publisher or document to compare a name against, "
+            "so every name on every frame was measured against an empty corpus. A pass here "
+            "would mean the deck named nothing, and it means the gate read nothing")
     for sid, s in (copy.get("slides") or {}).items():
         if not isinstance(s, dict):
             continue
@@ -127,7 +169,7 @@ def check(copy: dict, claims) -> tuple:
                         f"the world in the way a number is. Either it traces to a source or "
                         f"it is the deck's own words for something the source called "
                         f"differently, and only a reader can tell which")
-    return [], warns, {"named": len(seen)}
+    return fails, warns, {"named": len(seen)}
 
 
 def load(date: str, shipped: bool):
@@ -143,7 +185,14 @@ def run(date: str, shipped: bool = False) -> int:
     fails, warns, stats = check(copy, claims)
     for w in warns:
         print(f"  warn  {w}", file=sys.stderr)
-    print(f"noun_trace: {len(warns)} named thing(s) with no claim behind them")
+    for f in fails:
+        print(f"  FAIL  {f}", file=sys.stderr)
+    # THE CONTRACT IS PRINTED BESIDE THE COUNT. A run that records this gate's exit code in a
+    # sweep has to carry the sentence saying what that code does and does not mean.
+    print(f"noun_trace: ADVISORY. {len(warns)} named thing(s) with no claim behind them, "
+          f"{stats['named']} examined. Exit 0 means the scan RAN and is not a verdict on the "
+          f"deck: a finding here is a warn by design and only a reader can settle it. Exit 1 "
+          f"means the scan could not run at all")
     return 1 if fails else 0
 
 
@@ -197,6 +246,34 @@ def self_test() -> int:
         ok(f"{date}: never a hard fail", not _f, str(_f))
 
     ok("the gazetteer loaded", bool(places()))
+
+    # ------------------------------------------------------------------ IT CAN GO RED (2026-09-18)
+    # Before this date the fails list was a hardcoded `[]`, so every assertion above was about a
+    # gate whose exit code was 0 by construction. These four drive the only two states in which
+    # this scan measures nothing, and the last one drives the real exit code end to end.
+    f, w, _s = check(deck("The Data Center Coalition said so."), CL, gaz=set())
+    ok("A DEAD GAZETTEER IS A HARD FAIL, not a quiet half-scan",
+       any("CANNOT RUN" in x for x in f), str(f))
+
+    f, w, _s = check(deck("The Data Center Coalition said so."), [], gaz={"Harris County"})
+    ok("CLAIMS WITH NO TEXT are a hard fail", any("empty corpus" in x for x in f), str(f))
+
+    f, w, _s = check(deck("The Data Center Coalition said so."), CL, gaz={"Harris County"})
+    ok("...and a scan that CAN run still raises no fail on a normal deck", not f, str(f))
+    ok("...while still reporting the untraced name as a warn", len(w) == 1, str(w))
+
+    if (REPO_ROOT / "runs" / "carousel" / "2026-08-19" / "copy.json").exists():
+        global PLACES
+        keep = PLACES
+        PLACES = REPO_ROOT / "assets" / "geo" / "no-such-gazetteer.json"
+        try:
+            rc = run("2026-08-19", shipped=True)
+        finally:
+            PLACES = keep
+        ok("run() EXITS 1 when the gazetteer is gone (the exit code is real now)", rc == 1,
+           f"rc={rc}")
+        ok("...and exits 0 on the same deck with the gazetteer back",
+           run("2026-08-19", shipped=True) == 0)
 
     print("\nnoun_trace self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0

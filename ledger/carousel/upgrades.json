@@ -1727,4 +1727,85 @@
    "discarded": "Provenance hashing, where the spec's digest is recorded at generation time and compared later. It answers whether the artifact is STALE and this project's defect was that the artifact was never DERIVED from the thing it claims to describe. `site_fresh_check` already covers the staleness question for the surface that has it."
   }
  }
+ ,
+ "2026-09-18 upgrade": {
+  "run": "carousel no. 28, three gates that could not see what they were pointed at",
+  "actor": "upgrade",
+  "branch": "claude/daily-2026-09-18",
+  "diagnosis": "Seven scoring rounds produced five hard fails and not one was in a quote, a numeral or a claim. All five were ordinary declarative sentences between the quotes, and three separate gate-shaped holes were found by READING rather than by anything red. `noun_trace` ended its check `return [], warns, ...` with the fails list a hardcoded empty literal, so its exit code was 0 for every input that could exist, and this run recorded 'noun_trace exit=0' as evidence in four gate sweeps. `absence_check` passed frame 9's \"The minutes that would record an outcome are not published\" into round 3, because the document it fails to scope itself to is the same document it says does not exist and a definite article in front of it satisfied the test. `layout_check --prose` was six hand-written paths and could not see SLIDE_DOSSIER_SPEC.md, the surface the dossier phase reads, which had carried the superseded rotation rule since 2026-09-16 with the phrase already in the gate's own list. Two of the three are the same disease: a selector that fails silent and a fail path that cannot be reached.",
+  "upgrades": [
+   {
+    "what": "`noun_trace` can go red. The report line states its advisory contract, and the two states in which the scan measures nothing at all, a gazetteer that loaded no place and claims carrying no text, are hard fails.",
+    "why": "The fails list was `[]` written as a literal, so no input in this gate's history could have produced exit 1. The 2026-09-18 run cited its exit 0 as evidence four times and it was evidence of nothing. `gate_wiring.py` exists for a checker connected to nothing and could not see this one, because this gate IS wired, IS invoked and DOES run: what was empty is the only channel by which running could change an outcome. A round-3 judge found it by reading the source.",
+    "the_warn_only_design_was_not_touched": "A copywriter legitimately writes a short form the claim spells out in full, and a gate that fires on a correct decision gets switched off. That reasoning stands and no warning was promoted. What changed is that a caller can no longer read exit 0 as a verdict, and that a check which CANNOT RUN is red rather than green, which is GATE_LESSONS 37 applied to a gate rather than to a hook.",
+    "files": [
+     "scripts/carousel/noun_trace.py"
+    ],
+    "verification": "`noun_trace.py --self-test` exit 0, with four new assertions: a dead gazetteer is a hard fail, claims with no text are a hard fail, a scan that CAN run raises no fail on a normal deck, and the untraced name is still reported as a warn. The last pair drives the real exit code end to end on a shipped deck: `run('2026-08-19')` returns 1 with PLACES pointed at a file that does not exist and 0 with it restored. `--all` across 27 shipped decks exits 0.",
+    "revert": "the commit named below, alone",
+    "how_i_would_know_this_was_wrong": "If a run ever goes red here for a reason that is not 'the gate could not run'. The two fail conditions are about the gate's own inputs, never about the deck, so a deck-shaped finding arriving on the fail channel means the boundary moved and the warn-only design has been eroded."
+   },
+   {
+    "what": "`absence_check` no longer accepts the absent document as its own scope. A doc word is disqualified when the sentence's negation attaches to it as its subject, and a locator preposition governing it settles the case first.",
+    "why": "Frame 9 shipped \"The minutes that would record an outcome are not published.\" into round 3 and this gate passed it. Frame 8, one swipe earlier, carries the correct scope. The gate's own docstring already warned about this for the INDEFINITE case, 'the absent thing, not the source', so the article was never what separated a source from a missing thing. The test was for a noun shape and the defect was a missing scope.",
+    "no_threshold_was_typed": "There is no number in this change. The six-word reach of the subject test is a clause length, not a threshold, and the conjunction guard below was added because a sweep measured it rather than because a number needed choosing.",
+    "measured_not_assumed": "Sweeping all 27 shipped decks raised four new warnings. One was false, 'The Department of Transportation keeps the state's crash records and is not one of them', where the negation belongs to the second clause, so a coordinating conjunction now ends the subject's reach. Three remain, all of the intended shape, and no shipped deck turns red.",
+    "files": [
+     "scripts/carousel/absence_check.py"
+    ],
+    "verification": "`absence_check.py --self-test` exit 0, carrying the shipped sentence character for character as a fixture, plus the two cases that must stay green: a neighbouring sentence naming the opened document still scopes an absence, and a locator preposition on the same doc word still scopes it. The mutant was run: replacing SUBJECT_OF_NEGATION with a pattern matching nothing takes the frame 9 fixture from one warning to zero, which is the pre-2026-09-18 behaviour. `--all` exits 0.",
+    "revert": "the commit named below, alone",
+    "how_i_would_know_this_was_wrong": "If the warning count on shipped decks climbs past the calibration ceilings in the self-test, or if a run starts rewording a correctly scoped absence to satisfy the gate. Three new warnings across 27 decks is the measurement to compare against."
+   },
+   {
+    "what": "`layout_check --prose` discovers its surfaces instead of listing them, and the three stale statements that discovery found were fixed.",
+    "why": "The list was six paths and `knowledge/carousel/SLIDE_DOSSIER_SPEC.md` was not one of them, so the surface the dossier phase reads stated 'no repeat in a row, at least five distinct' for nine days after the 2026-09-16 rebalance, with that exact phrase already in the gate's own SUPERSEDED_PHRASES. GATE_LESSONS 39: when a gate selects what to examine the default must be EXAMINE with named exemptions, because an allowlist fails silent and nothing reports the omission.",
+    "the_sweep_found_one_nobody_knew_about": "Switching it on turned up a third surface the run had not named, `knowledge/carousel/TECHNIQUE_LIBRARY.md:323`, still saying 'no two frames in a row share one and at least five appear'. Same shape as `ownership_check --self-test` finding a second dead rule the moment it was switched on.",
+    "files": [
+     "scripts/carousel/layout_check.py",
+     "knowledge/carousel/ILLUSTRATION_SYSTEM.md",
+     "knowledge/carousel/SLIDE_DOSSIER_SPEC.md",
+     "knowledge/carousel/TECHNIQUE_LIBRARY.md"
+    ],
+    "the_fix_removes_a_copy_rather_than_correcting_it": "SLIDE_DOSSIER_SPEC.md does not restate the rebalanced rule. It points at `TXLAYOUT.check` and at ILLUSTRATION_SYSTEM.md, because a surface keeping its own copy of a rule is the defect, and a corrected copy is the same defect with a later expiry date.",
+    "verification": "`layout_check.py --prose` exits 1 before the surface fixes, naming all three, and 0 after, with the six statements under `.claude/` still reported and not failed. `layout_check.py --self-test` exit 0 with six new assertions: the sweep reaches the three knowledge files the old list missed, the exempt backlog is not swept, a doctrine file nobody has listed carrying the old rule IS caught in a fixture tree under out/, and the same phrase marked as history is not a finding.",
+    "revert": "the commit named below, alone",
+    "how_i_would_know_this_was_wrong": "If the sweep starts reporting a file that quotes the old rule as history and the answer taken is to add it to PROSE_EXEMPT. The exemption list has two entries, both records rather than instructions, and a third arriving to silence a finding means the MARKERS window is what needs looking at."
+   }
+  ],
+  "what_was_not_done_and_why": "The round-5 craft judge's L* shape gate was the strongest candidate on the board and it was measured twice and not built. Route A, the largest connected non-background region at one JND, resolved to 70.6 to 83.9 percent of the frame on all nine frames: it is the frame, not a shape, and its spread ranks frame 5 high and frame 6 low, which is the wrong order against what three judges said. Route B, the largest flat single-tone region, resolved to a light document facsimile on nine of the eighteen frames measured across two decks, and a printed page is flat because it is a page. The art is drawn imperatively into a canvas, so there is no declarative shape list to read the way `bleed_witness` reads SVG boxes. Shipping either route under a docstring saying 'the largest shape' would have been today's own lesson committed one level of ambition higher. The full measurement and the route that might work, per-object declared lit and shadow planes checked against the render, are in UPGRADE_BACKLOG.md.",
+  "proposals_out_of_lane": [
+   {
+    "what": "render.py collects `window.__akLeaders`, a sibling-project prefix, while every Texas frame sets `window.__txLeaders`. Measured on this run's render_report.json, `leaders`, `rules`, `contacts`, `encodings`, `svg_plates` and `canvas_text` are [] on all nine slides, so the declarative half of every acceptance list this repo writes has never been machine-checked and a qa.py PASS certifies something narrower than it appears.",
+    "owner": "upgrade owns the path and no routine can reach it: the host prompts on every write under .claude/",
+    "why": "one word, and it is the difference between a checked acceptance list and a written one"
+   },
+   {
+    "what": "SKILL.md documents `fetch` for geodata. `--allow-file-access-from-files` covers XMLHttpRequest only, and a frame built to the documented pattern failed this run with `URL scheme \"file\" is not supported`.",
+    "owner": "upgrade owns the path, the host blocks the write",
+    "why": "the documentation is wrong rather than the engine, so one line plus the reason"
+   },
+   {
+    "what": "Two GATE_LESSONS entries, drafted in full in UPGRADE_BACKLOG.md, for the two gates changed here: a gate whose fail list is a literal [], and an absence scoped to the document it says does not exist.",
+    "owner": "human. knowledge/shared/** is the human actor's",
+    "why": "this run's own rule says a gate change belongs in that file, and this lane may not write it"
+   },
+   {
+    "what": "`shipped_check --self-test` was RED at the start of this phase: 'missing [measured figures, ledgers]'. runs/carousel/2026-09-18/ carried no figures.json and no measurements.json, and neither existed under out/2026-09-18/ either, so the gate guarding the highest-recurrence defect in this repo and the only caller of ledger_check both returned 'not applicable' on this deck. It CLEARED during this phase, by the daily lane writing the two files, and the self-test is green on them now. Recorded because the window was open and nothing but the reachability assertion could see it: a gate handed a missing input reports the same colour as a gate handed a clean one.",
+    "owner": "daily. The artifacts are the run's, not the machine's",
+    "why": "an adapter that invented a pass for a missing input would be the loosening this phase may never make. The run writes measurements.json or the two gates do not run"
+   },
+   {
+    "what": "`aggregate_check` cannot see an article-form span ('A week', a computed days_first_to_mid of exactly 7) and `ledger/carousel/captions.json` recent lists lag one shipped entry.",
+    "owner": "the first is upgrade lane and was left undone because three is the ceiling; the second is daily",
+    "why": "both are written up in UPGRADE_BACKLOG.md with the measurement that produced them"
+   }
+  ],
+  "frontier_scan": {
+   "focus": "gates that cannot fail, and how the industry finds them. Timeboxed, four searches.",
+   "kept": "Mutation testing's discipline, not its tooling. A surviving mutant is a change to the code under test that no assertion noticed, and that is precisely what happened here three times: deleting SUBJECT_OF_NEGATION, deleting the prose glob, or hollowing the gazetteer each had to be shown to flip a result. So every check added today carries its mutant in a comment at the assertion, in the form 'delete X and this goes green', and each was run rather than asserted. The tautological-test literature names the same failure from the other end: a test whose expected value comes from the code it tests passes whatever the code does, which is GATE_LESSONS 16 in this repo's words.",
+   "discarded": "Running mutmut or cosmic-ray over this repo's gates in CI. These gates take run artifacts rather than pure arguments, so most mutants would be equivalent or uncompilable against a fixture, the runtime is minutes per gate against a suite already measured in tens of minutes, and the per-check hand mutant recorded above buys the part that matters at no CI cost. A tool that is too slow to run is a tool nobody runs, which is GATE_LESSONS 33's argument for one command."
+  },
+  "lane": "upgrade. Nothing here writes ledger/docket.json, seed/, docs/, prompts/, the workflows or anything under .claude/. The two GATE_LESSONS entries this change earns are drafted as proposals because knowledge/shared/** belongs to the human actor."
+ }
 }
