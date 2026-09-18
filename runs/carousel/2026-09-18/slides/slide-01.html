@@ -67,6 +67,15 @@ window.renderReady = new Promise(async function (resolve, reject) {
 
     // 1 metre = 620 px. A 0.32 m spine is 198 px, a 0.42 m volume is 260 px, and the board sits
     // at 1.10 m above a floor that is off the bottom of the frame at y 1800.
+    // THE PITCH IS 7 px AND THREE ATTEMPTS TO MOVE IT MADE construction_check WORSE.
+    // That gate measures the largest connected BRIGHT region and asks whether it is a solid
+    // rectangle. On this frame the region is not the volume run at all: its bounding box is
+    // y 0.35 to 0.84 and x 0.33 to 1.00 of the frame, which is the KEY POOL's lit field with
+    // the wall and the volumes inside it. Widening the pitch to 22 px let more lit wall through
+    // and took fill from 0.705 to 0.765; darkening the wall to separate them took it to 0.780
+    // and dropped the frame to median L* 8.6 against its own declared band of 9 to 23.
+    // So this is the deck the panel scored, unchanged, and the finding is recorded rather than
+    // chased. Fixing it means redrawing, which is the next run's first job and is named as such.
     var PPM = 620, BW = 0.32 * PPM, BH = 0.42 * PPM, PITCH = BW + 7;
     var FLOOR = M.SHELF + 1.10 * PPM;
 

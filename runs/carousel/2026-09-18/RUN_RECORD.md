@@ -160,6 +160,50 @@ warns against. The test is for a noun shape; the defect was a missing scope.
 
 ---
 
+## THIS RUN DOES NOT MERGE, and this section is why
+
+`scripts/carousel/shipped_check.py`, which CI runs on every pull request, **exits 1** on a
+`construction` finding against this deck:
+
+> 6 of 9 frames are one primitive, a solid bright rectangle on a darker ground.
+
+**That gate is not arbitrary and it is not new.** `construction_check` was written after deck 13
+lost its ship on exactly this, it was validated by replaying that deck and returning the craft
+judge's own five-frame list with none added and none missed, and its threshold is a panel's line
+rather than a chosen number: a majority of the deck sharing one primitive fails, under half is a
+register. It is measuring, in pixels, the same thing the round-5 craft judge said in words, and
+the round-5 reader judge too.
+
+**Measured, per frame, `fill` of the largest bright region against a 0.68 line:**
+
+    PLATE 01 0.705   PLATE 02 0.725   PLATE 03 0.782
+    PLATE 04 0.756   PLATE 05 0.936     .   06 0.433
+      .   07 0.332   PLATE 08 0.890     .   09 0.592
+
+Frames 2, 4, 5 and 8 are the four drawn document pages, which is the deck's central device and
+four of nine, under half, and would pass. The failure turns on frames 1 and 3.
+
+**Three attempts to bring those two under the line, and each made it worse.** The bright region on
+frame 1 is not the volume run at all: its bounding box is y 0.35 to 0.84 and x 0.33 to 1.00, which
+is the KEY POOL's lit field with the wall and the volumes inside it. Widening the volume pitch
+from 7 px to 22 px let more lit wall through and took fill from 0.705 to **0.765**. Darkening the
+wall to separate the run from it took fill to **0.780** and dropped the frame to median L* 8.6
+against its own declared band of 9 to 23.
+
+So the deck was **reverted to exactly what the panel scored**, and the render was proved
+deterministic first: two renders of the reverted source produce byte-identical PNGs
+(`52453e9b73c4fa2670e71cd9b54284cc`), so the shipped pixels are the judged pixels.
+
+**Why it was not fixed properly.** Fixing it means redrawing frames 3, 5 and 7, which is the work
+this run already named as the next run's first job, for a reason that now has a fourth data point:
+every art repair attempted after the scoring rounds closed made something worse. There is no
+scoring round left to catch what a redraw breaks, and `CLAUDE.md` is unambiguous that a run merges
+only when its quality gates pass and that **a failed run commits its evidence to its branch and
+does not merge**. Waiving the finding to get green would be disabling a test to get green, which
+this repo forbids outright.
+
+The branch and pull request no. 326 carry the whole of it and a human decides.
+
 ## Discoverability signoff
 
 All seven surfaces exit 0 on the built site: `media_check`, `schema_check`, `seo_check`,
