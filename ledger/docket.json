@@ -1971,7 +1971,7 @@
           "fetched": "2026-09-17"
         }
       ],
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-18",
       "confidence": "high",
       "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
       "history": [
@@ -2087,6 +2087,11 @@
         {
           "date": "2026-09-17",
           "note": "The September 11th open meeting has come off the feed now that its date has passed. The next one the public may attend is Friday, September 18th in the commissioners hearing room. A comment deadline for Project 59086 has appeared, closing October 15th, and the commission is still publishing meeting dates into the summer of 2027."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The feed is still live and still carries the commission's open meetings with the comment deadlines attached to them. The open meeting the record named for today stands on it, in the commissioners hearing room, and the project deadlines listed after it have not moved.",
+          "checked": true
         }
       ]
     },
@@ -10718,7 +10723,7 @@
           "fetched": "2026-08-23"
         }
       ],
-      "last_verified": "2026-09-15",
+      "last_verified": "2026-09-18",
       "confidence": "high",
       "notes_for_editor": "Award number 2616828, principal investigator Hengrui Luo. The abstract states training activities anchored outside Texas, and the collaborating institution is not named here.",
       "history": [
@@ -10789,6 +10794,11 @@
         {
           "date": "2026-09-15",
           "note": "The award stands as made and the start date the award record gives has now arrived. The requirement that a proof assistant certify an algorithm before it counts is still written into the record's own account of the work.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The award record reads as it did. A proof assistant still has to certify a proposed algorithm for correctness and cost before it counts, which is the condition that makes this grant unusual, and the funding term the foundation published is unamended.",
           "checked": true
         }
       ]
@@ -13918,7 +13928,7 @@
         }
       ],
       "id": "tx-2026-0109",
-      "last_verified": "2026-09-17",
+      "last_verified": "2026-09-18",
       "history": [
         {
           "date": "2026-08-29",
@@ -13973,6 +13983,11 @@
         {
           "date": "2026-09-17",
           "note": "The reset hearing on artificial intelligence and the Texas workforce is still set for September 22nd in hearing room E1.016. Nothing has been posted that would move it a second time.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The reset date is holding. The Legislature's own upcoming meetings listing still carries the committee for later this month in the same Capitol hearing room and still marks it a public hearing. Nothing has been posted that cancels it a second time.",
           "checked": true
         }
       ]
@@ -17735,8 +17750,8 @@
       ]
     },
     {
-      "title": "El Paso City Council posts two items to strip the police plate reader cameras off city property and bar the next contract",
-      "summary": "The El Paso City Council's agenda for September 15th, 2026 carries two items filed by members of the council. The first would direct the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware goes with it, whoever owns the equipment. The second would bar the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It would give the City Attorney 30 days to draft a resolution carrying that out. The agenda's status is final and neither item has been voted on. El Paso sits outside the ERCOT region, and the city's cameras were bought with a state grant from the authority whose funding the Governor paused in August.",
+      "title": "El Paso City Council votes to strip the police plate reader cameras off city property and bar the next contract",
+      "summary": "The El Paso City Council took up two items filed by members of the council at its September 15th, 2026 meeting and approved both. The first directs the City Manager to remove every Flock Safety fixed automated license plate reader camera from city property and right of way within 60 days. The hardware goes with it, whoever owns the equipment. The second bars the City Manager from entering, renewing or extending any contract for fixed networked plate reader cameras or similar technology without a further council vote. It gives the City Attorney 30 days to draft a resolution carrying that out. The council's own record marks each item approved as revised, so both carry amendments made from the floor. The minutes are marked final and their text is not published yet. What those revisions changed is not on the record a reader can read today. El Paso sits outside the ERCOT region.",
       "topic": "surveillance-and-policing",
       "decider": {
         "name": "El Paso City Council",
@@ -17749,8 +17764,13 @@
         ],
         "on_ercot": false
       },
-      "status": "pending",
+      "status": "decided",
       "key_dates": [
+        {
+          "date": "2026-09-15",
+          "kind": "decided",
+          "note": "Council approved both items as revised"
+        },
         {
           "date": "2026-09-15",
           "kind": "hearing",
@@ -17758,13 +17778,13 @@
         }
       ],
       "public_access": {
-        "room": "open_meeting",
-        "how": "The council meets in Council Chambers at City Hall at 9:00 AM on September 15th, 2026 and the agenda carrying both items is published in full.",
+        "room": "contact_only",
+        "how": "The meeting has been held and the council's own page for it stays public. That page lists both items, the action taken on each and the result. The written minutes are marked final and are not published there yet. The text of the amendments can't be read from that page today. The meeting video is linked from the same page.",
         "url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
         "closes": null
       },
       "id": "tx-2026-0147",
-      "last_verified": "2026-09-15",
+      "last_verified": "2026-09-18",
       "confidence": "high",
       "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.",
       "history": [
@@ -17782,6 +17802,10 @@
           "date": "2026-09-15",
           "note": "Both items are still posted to the council's own agenda and the meeting they are set for is today. Neither has been voted on and nothing has been filed against either.",
           "checked": true
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The council voted and both items carried. The meeting record now marks each one approved as revised. That moves this from two posted agenda items to a direction the City Manager has been given. What the amendments changed is unconfirmed. The minutes are marked final and their text is not published yet."
         }
       ],
       "claims": [
@@ -17808,6 +17832,42 @@
           "source_type": "primary_official",
           "retrieved_at": "2026-09-12",
           "id": "tx-2026-0147-c3"
+        },
+        {
+          "text": "The council's own meeting record carries the action taken on the removal item.",
+          "verbatim_quote": "coordinating its removal by the appropriate party. Approved as Revised Pass",
+          "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+          "source_title": "El Paso City Council, meeting detail for September 15th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-09-18",
+          "id": "tx-2026-0147-c4"
+        },
+        {
+          "text": "The same record carries the action taken on the contract item.",
+          "verbatim_quote": "resolution to further effectuate this direction. Approved as Revised Pass",
+          "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+          "source_title": "El Paso City Council, meeting detail for September 15th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-09-18",
+          "id": "tx-2026-0147-c5"
+        },
+        {
+          "text": "The minutes are marked final while their text is still unpublished.",
+          "verbatim_quote": "Minutes status: Final",
+          "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+          "source_title": "El Paso City Council, meeting detail for September 15th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-09-18",
+          "id": "tx-2026-0147-c6"
+        },
+        {
+          "text": "The page states that the written minutes are not yet available.",
+          "verbatim_quote": "Published minutes: Not available",
+          "source_url": "https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=",
+          "source_title": "El Paso City Council, meeting detail for September 15th, 2026",
+          "source_type": "primary_official",
+          "fetched": "2026-09-18",
+          "id": "tx-2026-0147-c7"
         }
       ]
     },
@@ -17841,7 +17901,7 @@
         "closes": null
       },
       "id": "tx-2026-0148",
-      "last_verified": "2026-09-15",
+      "last_verified": "2026-09-18",
       "confidence": "high",
       "notes_for_editor": "Grimes County because the announcement names Navasota as the project location and Navasota is the Grimes County seat. The university's own Dallas headquarters is a decider address and is deliberately not carried as a county.",
       "history": [
@@ -17853,6 +17913,11 @@
         {
           "date": "2026-09-15",
           "note": "The department's announcement still stands as published and still gives Navasota as the project location for the award it made to Southern Methodist University. Its description of the site as a synthetic pit inside an existing instrumented drilling and sensing facility has not changed.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The department's announcement is unchanged. The Navasota site is still named among the proving grounds, still described as a synthetic pit inside an existing instrumented facility, and still carries no dollar figure and no mention of artificial intelligence.",
           "checked": true
         }
       ],
@@ -17910,7 +17975,7 @@
         "closes": null
       },
       "id": "tx-2026-0149",
-      "last_verified": "2026-09-15",
+      "last_verified": "2026-09-18",
       "confidence": "high",
       "notes_for_editor": "Brazos County because the award record gives College Station as the performing city and College Station sits in Brazos County. No dollar figure is carried in reader copy because the amount appears in the award record rather than in a quoted sentence.\n\ntx-2026-0149-c3's quote named only the awardee while the claim asserted the performing city, which a code review caught on 2026-09-12. The city is load bearing, because it is what places this item in Brazos County, so the quote now carries the NSF API's own contiguous perfCity run. It is quoted as JSON rather than prose because that is the form the document is served in.",
       "history": [
@@ -17922,6 +17987,11 @@
         {
           "date": "2026-09-15",
           "note": "The award record still stands as obligated and still gives College Station as the performing site. It still names no Texas utility whose water system the digital twins would model.",
+          "checked": true
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The award record still stands as obligated to the engineering experiment station, with the same College Station performing site and the same end date. The abstract still names no Texas utility, so which water system's data this work reaches is still unstated.",
           "checked": true
         }
       ],
@@ -18474,7 +18544,7 @@
     },
     {
       "title": "ERCOT tells its board that AI training loads can fatigue grid generators and drafts a limit on how fast their power draw may swing",
-      "summary": "The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force, a model quality rule went to the board this month, and the third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation was for information only and the board was asked to take no action on it.",
+      "summary": "The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force. The model quality rule cleared the board on September 15th and now waits on the Public Utility Commission of Texas. The third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation itself was for information only and the board was asked to take no action on it.",
       "topic": "power-and-the-grid",
       "decider": {
         "name": "Electric Reliability Council of Texas",
@@ -18489,6 +18559,11 @@
       "status": "pending",
       "key_dates": [
         {
+          "date": "2026-09-15",
+          "kind": "passed",
+          "note": "Board of Directors recommended PGRR144 for approval and sent it to the Public Utility Commission of Texas"
+        },
+        {
           "date": "2026-09-14",
           "kind": "hearing",
           "note": "Board of Directors meeting at which the risk list was presented"
@@ -18501,7 +18576,7 @@
       ],
       "public_access": {
         "room": "contact_only",
-        "how": "The board meeting the presentation was made to is open to the public and it has now been held. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it and what body takes it next. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted, so there is no window a reader can act in today.",
+        "how": "The board meeting the presentation was made to is open to the public and it has now been held. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it and what body takes it next, which is now the Public Utility Commission of Texas. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted, so there is no window a reader can act in today.",
         "url": "https://www.ercot.com/mktrules/issues/PGRR144",
         "closes": null
       },
@@ -18624,14 +18699,36 @@
           "source_type": "primary_official",
           "fetched": "2026-09-15",
           "id": "tx-2026-0159-c13"
+        },
+        {
+          "text": "The revision request's own page records the board vote and names the body that considers it next.",
+          "verbatim_quote": "09/15/2026 BOARD Recommended for Approval PUCT for consideration",
+          "source_url": "https://www.ercot.com/mktrules/issues/PGRR144",
+          "source_title": "ERCOT Market Rules, PGRR144",
+          "source_type": "primary_official",
+          "fetched": "2026-09-18",
+          "id": "tx-2026-0159-c14"
+        },
+        {
+          "text": "The voting record states the motion the board passed and what it rested on.",
+          "verbatim_quote": "To recommend approval of PGRR144 as recommended by TAC in the 8/26/26 TAC Report",
+          "source_url": "https://www.ercot.com/mktrules/issues/PGRR144",
+          "source_title": "ERCOT Market Rules, PGRR144",
+          "source_type": "primary_official",
+          "fetched": "2026-09-18",
+          "id": "tx-2026-0159-c15"
         }
       ],
       "id": "tx-2026-0159",
-      "last_verified": "2026-09-15",
+      "last_verified": "2026-09-18",
       "history": [
         {
           "date": "2026-09-15",
           "note": "Admitted on the grid operator's own presentation to its board. Three Large Load risks are named with a mitigation each, and the three mitigations sit at three different stages."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The model quality rule moved and the other two did not. The market rules page for PGRR144 now carries a September 15th board vote recommending approval, and it names the Public Utility Commission of Texas as the body that takes it next. The draft rule on how fast a large load may swing its power draw still carries no number and no filing date."
         }
       ]
     },
@@ -18697,11 +18794,16 @@
         }
       ],
       "id": "tx-2026-0160",
-      "last_verified": "2026-09-15",
+      "last_verified": "2026-09-18",
       "history": [
         {
           "date": "2026-09-15",
           "note": "Admitted on the medical school's own published account of the meeting at which the practice described the move."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The account of the meeting still reads as a direction rather than a contract. One unified ambient listening platform is still the stated aim after the two pilots ran, no vendor is named, and no completion date has been added.",
+          "checked": true
         }
       ]
     },
@@ -18776,11 +18878,16 @@
         }
       ],
       "id": "tx-2026-0161",
-      "last_verified": "2026-09-15",
+      "last_verified": "2026-09-18",
       "history": [
         {
           "date": "2026-09-15",
           "note": "Admitted on the university's own release, which names the funder and says the researchers are helping to develop the police training."
+        },
+        {
+          "date": "2026-09-18",
+          "note": "The university's account is unchanged. The tutor is still described as one built to withhold the answer, the Fort Worth police training work still sits beside it in the same account, and no evaluation result has been published for either.",
+          "checked": true
         }
       ]
     },
