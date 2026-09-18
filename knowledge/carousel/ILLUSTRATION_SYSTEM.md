@@ -499,7 +499,10 @@ which is the finding the judges made in words and the number that says the gate 
 - **Rotated DOM text.** The QA's line boxes are axis aligned and rotated lines overlap. Rotate
   the drawn sheet a degree if you must, never the type by more than that.
 - **The accent everywhere.** One object, one stroke, one window. Three to six frames.
-- **Nine halftones.** Vary the screen with the layout.
+- **Nine halftones.** One screen for the deck, chosen in the chassis. This line read "vary the
+  screen with the layout" until 2026-09-18 and it was the old variety mandate surviving in the
+  imperative, three hundred lines under the paragraph that amended it. What varies between
+  frames is the subject and the camera.
 - **A slab where a thing should be.** If it is not in the catalogue, draw it in metres from
   parts, and put it in the backlog.
 - **Nine frames that are one call.** `bespoke_check` compares slide CODE and fails a deck at a

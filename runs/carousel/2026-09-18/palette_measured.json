@@ -1,0 +1,203 @@
+{
+  "method": "CIELAB dE76 nearest neighbour against every hex in the last 8 decks of ledger/carousel/artwork.json",
+  "compared_against": {
+    "decks": [
+      "2026-09-10",
+      "2026-09-11",
+      "2026-09-12",
+      "2026-09-13",
+      "2026-09-14",
+      "2026-09-15",
+      "2026-09-16",
+      "2026-09-17"
+    ],
+    "hex_count": 53
+  },
+  "candidates": {
+    "ground": [
+      {
+        "hex": "#2C1721",
+        "L": 11.0,
+        "chroma": 12.6,
+        "dE": 9.26,
+        "nearest_prior": "#241512"
+      },
+      {
+        "hex": "#361D27",
+        "L": 14.5,
+        "chroma": 14.0,
+        "dE": 10.13,
+        "nearest_prior": "#2A2233"
+      },
+      {
+        "hex": "#091F2E",
+        "L": 10.8,
+        "chroma": 12.8,
+        "dE": 9.35,
+        "nearest_prior": "#20262B"
+      },
+      {
+        "hex": "#241019",
+        "L": 7.4,
+        "chroma": 12.1,
+        "dE": 8.35,
+        "nearest_prior": "#241512"
+      },
+      {
+        "hex": "#311A24",
+        "L": 12.7,
+        "chroma": 13.3,
+        "dE": 9.55,
+        "nearest_prior": "#2A2233"
+      }
+    ],
+    "material": [
+      {
+        "hex": "#4F3D2F",
+        "L": 27.3,
+        "chroma": 12.9,
+        "dE": 14.76,
+        "nearest_prior": "#584049"
+      },
+      {
+        "hex": "#5A3A33",
+        "L": 27.9,
+        "chroma": 16.6,
+        "dE": 11.74,
+        "nearest_prior": "#584049"
+      },
+      {
+        "hex": "#63473A",
+        "L": 32.8,
+        "chroma": 16.1,
+        "dE": 14.33,
+        "nearest_prior": "#584049"
+      },
+      {
+        "hex": "#4A3330",
+        "L": 23.8,
+        "chroma": 11.6,
+        "dE": 9.87,
+        "nearest_prior": "#584049"
+      },
+      {
+        "hex": "#553C32",
+        "L": 27.8,
+        "chroma": 14.2,
+        "dE": 12.35,
+        "nearest_prior": "#584049"
+      }
+    ],
+    "ink": [
+      {
+        "hex": "#E8D8CF",
+        "L": 87.4,
+        "chroma": 7.6,
+        "dE": 4.95,
+        "nearest_prior": "#E3DED0"
+      },
+      {
+        "hex": "#EFDED3",
+        "L": 89.5,
+        "chroma": 8.5,
+        "dE": 4.81,
+        "nearest_prior": "#E3DED0"
+      },
+      {
+        "hex": "#E4D3CE",
+        "L": 85.8,
+        "chroma": 6.8,
+        "dE": 6.97,
+        "nearest_prior": "#E3DED0"
+      },
+      {
+        "hex": "#F1E2D6",
+        "L": 90.8,
+        "chroma": 8.3,
+        "dE": 3.64,
+        "nearest_prior": "#EDE6D6"
+      },
+      {
+        "hex": "#EADCD4",
+        "L": 88.7,
+        "chroma": 6.6,
+        "dE": 4.53,
+        "nearest_prior": "#E3DED0"
+      }
+    ],
+    "stock": [
+      {
+        "hex": "#F2E6DA",
+        "L": 91.9,
+        "chroma": 7.6,
+        "dE": 2.72,
+        "nearest_prior": "#EFE9DA"
+      },
+      {
+        "hex": "#EFE0D2",
+        "L": 90.0,
+        "chroma": 9.1,
+        "dE": 3.45,
+        "nearest_prior": "#EDE6D6"
+      },
+      {
+        "hex": "#F4EADF",
+        "L": 93.2,
+        "chroma": 6.7,
+        "dE": 2.62,
+        "nearest_prior": "#EFE9DA"
+      },
+      {
+        "hex": "#EDDFD4",
+        "L": 89.6,
+        "chroma": 7.7,
+        "dE": 3.83,
+        "nearest_prior": "#E3DED0"
+      }
+    ],
+    "accent": [
+      {
+        "hex": "#8FE0F0",
+        "L": 84.7,
+        "chroma": 25.9,
+        "dE": 20.56,
+        "nearest_prior": "#C8DDD7"
+      },
+      {
+        "hex": "#2A7A9E",
+        "L": 48.1,
+        "chroma": 28.8,
+        "dE": 20.85,
+        "nearest_prior": "#12486C"
+      },
+      {
+        "hex": "#4FC79A",
+        "L": 72.8,
+        "chroma": 46.0,
+        "dE": 23.3,
+        "nearest_prior": "#98CDB4"
+      },
+      {
+        "hex": "#E0956A",
+        "L": 68.3,
+        "chroma": 41.5,
+        "dE": 10.81,
+        "nearest_prior": "#C08A5A"
+      },
+      {
+        "hex": "#B4664F",
+        "L": 51.6,
+        "chroma": 39.4,
+        "dE": 0.0,
+        "nearest_prior": "#B4664F"
+      },
+      {
+        "hex": "#6E7A5A",
+        "L": 49.5,
+        "chroma": 19.2,
+        "dE": 10.74,
+        "nearest_prior": "#5C6552"
+      }
+    ]
+  }
+}

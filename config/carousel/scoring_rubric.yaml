@@ -31,7 +31,7 @@
 # described by its own judge as having "a genuine value arc" and given credit for the amplitude.
 
 version: 1
-threshold: 8.0          # below this the deck does not ship
+threshold: 8.0          # below this triggers another round; the bounded-search rule below may ship
 max_rounds: 5           # and after this many scoring rounds it ships anyway, see below
 
 # THE THRESHOLD MOVED AND A ROUND CAP WENT IN, on the owner's instruction, 2026-08-26.

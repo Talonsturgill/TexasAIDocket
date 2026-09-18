@@ -1,6 +1,6 @@
 # ERCOT tells its board that AI training loads can fatigue grid generators and drafts a limit on how fast their power draw may swing
 
-The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force, a model quality rule went to the board this month, and the third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation was for information only and the board was asked to take no action on it.
+The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force. The model quality rule cleared the board on September 15th and now waits on the Public Utility Commission of Texas. The third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation itself was for information only and the board was asked to take no action on it.
 
 - Topic: power-and-the-grid
 - Decided by: Electric Reliability Council of Texas (state-agency)
@@ -9,18 +9,20 @@ The Electric Reliability Council of Texas put a list of emerging Large Load risk
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/mktrules/issues/PGRR144
 
-- Last checked: 2026-09-15
+- Last checked: 2026-09-18
 
 ## Dates
 
 - 2026-08-26 · passed: Technical Advisory Committee recommended PGRR144 for approval
 - 2026-09-14 · hearing: Board of Directors meeting at which the risk list was presented
+- 2026-09-15 · passed: Board of Directors recommended PGRR144 for approval and sent it to the Public Utility Commission of Texas
 
 ## How this decision moved
 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-09-15 · Admitted on the grid operator's own presentation to its board. Three Large Load risks are named with a mitigation each, and the three mitigations sit at three different stages.
+- 2026-09-18 · The model quality rule moved and the other two did not. The market rules page for PGRR144 now carries a September 15th board vote recommending approval. It names the Public Utility Commission of Texas as the body that takes it next. The draft rule on how fast a large load may swing its power draw still carries no number and no filing date.
 
 ## Evidence
 
@@ -101,6 +103,18 @@ Source (primary_official): https://www.ercot.com/mktrules/issues/PGRR144
 ### The same page records the committee vote that sent it to the board.
 
 > 08/26/2026 TAC Recommended for Approval Board for consideration
+
+Source (primary_official): https://www.ercot.com/mktrules/issues/PGRR144
+
+### The revision request's own page records the board vote and names the body that considers it next.
+
+> 09/15/2026 BOARD Recommended for Approval PUCT for consideration
+
+Source (primary_official): https://www.ercot.com/mktrules/issues/PGRR144
+
+### The voting record states the motion the board passed and what it rested on.
+
+> To recommend approval of PGRR144 as recommended by TAC in the 8/26/26 TAC Report
 
 Source (primary_official): https://www.ercot.com/mktrules/issues/PGRR144
 

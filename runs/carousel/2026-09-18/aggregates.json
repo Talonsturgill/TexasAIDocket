@@ -1,0 +1,105 @@
+{
+ "date": "2026-09-18",
+ "_note": "Every number this deck states by counting or by date arithmetic rather than by quoting, plus the one quoted numeral that reads like a count. out/2026-09-18/compute.py parses the three meeting dates out of the agenda headers in c1, c11 and c6 and does the subtraction, so no span on any frame was typed. $19,200.00 is quoted verbatim from c8 and is traced in claims.json.",
+ "aggregates": [
+  {
+   "phrase": "Three agendas",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-09-18/compute.py, the length of the set of distinct meeting dates parsed out of the agenda headers quoted in c1, c11 and c6",
+   "from_claims": [
+    "c1",
+    "c11",
+    "c6"
+   ],
+   "note": "The same computation reaches three surfaces and they can't disagree."
+  },
+  {
+   "phrase": "three separate September agendas",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-09-18/compute.py, the length of the set of distinct meeting dates parsed out of the agenda headers quoted in c1, c11 and c6",
+   "from_claims": [
+    "c1",
+    "c11",
+    "c6"
+   ]
+  },
+  {
+   "phrase": "three September items",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-09-18/compute.py, the length of the set of distinct meeting dates parsed out of the agenda headers quoted in c1, c11 and c6",
+   "from_claims": [
+    "c1",
+    "c11",
+    "c6"
+   ]
+  },
+  {
+   "phrase": "Two weeks",
+   "slide": "slide-04.html",
+   "kind": "span",
+   "value": 2,
+   "computed_by": "out/2026-09-18/compute.py, the September 15th header date minus the September 1st header date, 14 days, floor divided by 7",
+   "from_claims": [
+    "c1",
+    "c6"
+   ],
+   "unit": "weeks",
+   "note": "Exactly 14 days, so the frame says two weeks rather than about two weeks.",
+   "from_date": "2026-09-01",
+   "to_date": "2026-09-15"
+  },
+  {
+   "phrase": "three quotes",
+   "slide": "slide-05.html",
+   "kind": "quoted",
+   "value": 3,
+   "computed_by": "NOT COMPUTED. The numeral is inside a verbatim quotation of the agenda's own words in c9, 'authorize a waiver to the purchasing policy of obtaining three quotes'. It is declared here because the phrase reads like a count, and a reader can't tell a quoted number from a counted one by looking at it.",
+   "from_claims": [
+    "c9"
+   ]
+  },
+  {
+   "phrase": "three quotes",
+   "slide": "caption.txt",
+   "kind": "quoted",
+   "value": 3,
+   "computed_by": "NOT COMPUTED. The numeral is inside a verbatim quotation of the agenda's own words in c9, 'authorize a waiver to the purchasing policy of obtaining three quotes'. It is declared here because the phrase reads like a count, and a reader can't tell a quoted number from a counted one by looking at it.",
+   "from_claims": [
+    "c9"
+   ]
+  },
+  {
+   "phrase": "four official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "scripts/carousel/sources_block.py, the number of distinct primary_official documents among the claims the deck prints",
+   "from_claims": [
+    "c1",
+    "c6",
+    "c11",
+    "c15"
+   ],
+   "note": "The other two documents in the block are primary_corporate and the line names them separately as first party accounts."
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the number of distinct primary_corporate documents among the claims the deck prints",
+   "from_claims": [
+    "c16",
+    "c18"
+   ],
+   "note": "Axon's product page and Govably's site. A company describing its own product is a claim rather than a finding, which is why the source block counts them apart from the four official records."
+  }
+ ],
+ "_undeclared_but_computed": "Frame 6's hook reads 'A week after September 1st'. That is a real span and it is computed in out/2026-09-18/compute.py as days_first_to_mid, the September 8th header date minus the September 1st header date, which is exactly 7. aggregate_check's extractor does not name it, because its patterns read a numeral and this phrase uses an article, so a declaration for it is refused as unmatched. It is written down here rather than left out, because the rule is that every computed number is traceable and the gate not asking for one is not the same as the number not existing."
+}

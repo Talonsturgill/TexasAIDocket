@@ -1,0 +1,109 @@
+{
+ "weighted_score": 6.73,
+ "judges": [
+  6.67,
+  6.404,
+  6.76
+ ],
+ "spread": 0.356,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.2,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    6.5,
+    6.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.2,
+   "weight": 0.2,
+   "judges": [
+    7.2,
+    5.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    5.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.6,
+   "weight": 0.1,
+   "judges": [
+    6.6,
+    7.0,
+    6.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.2,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.2,
+    6.8,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "caption line 'Becerra's name is printed at the foot of both items.' Three items are described in consecutive paragraphs above it, so 'both' has three antecedents and cannot resolve; no claim puts any name on the September 8th item"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 2,
+   "fail": "caption line 'Becerra's name is printed at the foot of both items.' Three items are described in consecutive paragraphs above it, so 'both' has three antecedents and cannot resolve; no claim puts any name on the September 8th item"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.67 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.76 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.67,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.67 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.76,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.76 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "deck_coherence",
+  "claim_integrity",
+  "story_and_stakes"
+ ],
+ "rounds": 6
+}

@@ -320,8 +320,11 @@ with `TXINK.reserve`), the cell drops under 4 and becomes texture, or nine frame
 screen.
 
 **The ten layouts** — `TXLAYOUT`. FULL_BLEED, SPLIT_HORIZON, TYPE_AS_OBJECT, OBJECT_AND_CAPTION,
-DIAGRAM, GRID, DOCUMENT, MAP, CLOSE_CROP, FIGURE_SCALE, rotated so no two frames in a row share
-one and at least five appear. *Fails when:* the sequence is not checked before the dossiers,
+DIAGRAM, GRID, DOCUMENT, MAP, CLOSE_CROP, FIGURE_SCALE, rotated under the rule `TXLAYOUT.check`
+holds. This entry said "no two frames in a row share one and at least five appear" until
+2026-09-18, which was the mandate the 2026-09-16 rebalance replaced with continuity, and a
+technique library stating a superseded rule is worse than one saying nothing, because a session
+reads it as the current one. *Fails when:* the sequence is not checked before the dossiers,
 which is why `TXLAYOUT.check` runs in Node before a dossier exists, and when a layout is
 declared and the rect it names turns out to hold a plate, which is what `layout_check.py`
 measures.

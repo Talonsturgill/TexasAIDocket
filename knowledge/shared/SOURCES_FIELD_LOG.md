@@ -1424,3 +1424,34 @@ printed on its exhaustiveness frame sat in no claim's own quote, only in a `sour
 already on disk, so closing the gap cost six claims and no new request. **Keep the raw fetch in
 `out/<date>/sources/` for exactly this**: a question about the source arrives after the fetching
 phase has closed, and a run that kept the bytes answers it without going back out.
+
+## 2026-09-18, three agendas off a vendor portal, and the page the run never asked for
+
+**`public.destinyhosted.com/agenda_publish.cfm` IS THE COUNTY'S AGENDA SYSTEM AND IT IS NOT THE
+COUNTY.** All three Hays County Commissioners Court agendas came off that host. The only
+`hayscountytx.gov` page this run opened was the Court Minutes 2026 archive. That distinction is
+not pedantry: the deck twice tried to close on a sentence about who publishes these agendas, and
+the second attempt, *"The county publishes these agendas itself"*, was hard-failed by a scoring
+judge partly because **the evidence cuts against the word "itself".** A document served by a
+vendor's agenda system supports nothing about the body's own publishing practice.
+
+**THE `seq` PARAMETER IS NOT THE MEETING DATE AND DOES NOT ORDER BY IT.** Measured on this run:
+`seq=135` is September 1st, `seq=136` is September 15th, and `seq=141` is September 8th, which
+sits between them by date and after them by sequence. Anything reading this portal takes the date
+off the agenda's own header, which is what `compute.py` does here, and never off the sequence.
+
+**THE PAGE THIS RUN SHOULD HAVE FETCHED AND DID NOT, and it is the run's biggest single miss.**
+The Commissioners Court's own landing page carries the meeting day, the hour, the address and the
+members' precincts. Every scoring round from the first asked the deck for something a reader could
+do; three answers were written to fill that hole and two of them hard-failed for being unsourced.
+**The run had already reached that domain** for the minutes archive and never asked for the body's
+own page. When a deck is about a public body, the body's own page is the cheapest fetch in the run
+and the one that turns a record into something a reader can act on.
+
+**`faa.gov` returned 403 on four attempts** for the Zipline environmental assessment, the fourth
+consecutive run with a 403 from this host. The story was dropped rather than sourced to journalism
+about a document nobody here read.
+
+**Axon and Govably product pages both fetched clean.** Both are first party claims about the
+vendors' own products rather than findings, and every frame that sets their words carries a label
+naming whose words they are.

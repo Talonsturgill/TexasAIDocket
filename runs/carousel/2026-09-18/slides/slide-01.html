@@ -1,0 +1,143 @@
+<!doctype html>
+<!-- CAROUSEL 28, frame 1 of 9. Archetype FULL_BLEED.
+     THE OPEN, AND FRAME 9 IS THIS CAMERA AGAIN. Same room, same board at N.SHELF, same 620 px per
+     metre. Here the run is unbroken and a person is standing at it. On frame 9 the person is gone
+     and one volume's worth of board is empty.
+     THE FIGURE IS CUT BY THE BOTTOM EDGE, because the board sits at chest height and a 1.70 m
+     person standing at it runs off the frame. That is what gives every volume beside them a size
+     before a word is read.
+     Planned frame median L* 32. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#361D27; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:84px; top:176px; width:840px; font-size:104px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.99;
+          letter-spacing:-0.022em; color:#E4D3CE; font-variation-settings:"opsz" 144; z-index:12; }
+  .dek  { position:absolute; left:84px; top:490px; width:650px; font-size:29px;
+          line-height:1.44; color:#CFB9B3; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#D9C6BD;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Who writes the county's record?</h1>
+<p class="dek">Hays County took up AI on three separate September agendas. No answer appears on them or in the county's minutes archive.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-18-minutebook.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TX.reseed(20260918);
+    TXLAYOUT.mount(document.body, {
+      kicker: "Hays County, Texas", counter: "01 / 09",
+      src: 'c1 c6 c11 c15   TEXAS AI DOCKET', ink: '#D9C6BD'
+    });
+    TX.fitText(document.getElementById("hook"), { min: 80, max: 104, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var W = 1080, H = 1350, M = TXMB;
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .ctr, .src, .tx-site", 18);
+    var mask  = TXDECK.reserveMask(boxes, 30);
+
+    // THE WALL IS DARKER THAN THE VOLUMES NOW, which is the frame's declared focal made out of
+    // VALUE rather than declared in the storyboard and left to the keyline. At lit 5.4 this wall
+    // measured L* 44.7 on the ROOM ramp and the brightest point on any spine was L* 35.4, so the
+    // run of volumes was the darker mass and the eye went to the hook and the glow behind it.
+    M.wall(cx, { join: M.SHELF, lit: 5.0, shade: 2.6 });
+    M.board(cx, { y: M.SHELF });
+
+    // 1 metre = 620 px. A 0.32 m spine is 198 px, a 0.42 m volume is 260 px, and the board sits
+    // at 1.10 m above a floor that is off the bottom of the frame at y 1800.
+    // THE PITCH IS 7 px AND THREE ATTEMPTS TO MOVE IT MADE construction_check WORSE.
+    // That gate measures the largest connected BRIGHT region and asks whether it is a solid
+    // rectangle. On this frame the region is not the volume run at all: its bounding box is
+    // y 0.35 to 0.84 and x 0.33 to 1.00 of the frame, which is the KEY POOL's lit field with
+    // the wall and the volumes inside it. Widening the pitch to 22 px let more lit wall through
+    // and took fill from 0.705 to 0.765; darkening the wall to separate them took it to 0.780
+    // and dropped the frame to median L* 8.6 against its own declared band of 9 to 23.
+    // So this is the deck the panel scored, unchanged, and the finding is recorded rather than
+    // chased. Fixing it means redrawing, which is the next run's first job and is named as such.
+    var PPM = 620, BW = 0.32 * PPM, BH = 0.42 * PPM, PITCH = BW + 7;
+    var FLOOR = M.SHELF + 1.10 * PPM;
+
+    // THE RUN, UNBROKEN. Nine volumes, edge to edge, no gap anywhere. The heights and tones step
+    // across so it reads as bound books rather than as one striped block, and the sequence is its
+    // own rather than frame 9's.
+    var HT = [0.90, 0.97, 1.00, 0.93, 0.99, 0.91, 0.96, 1.00, 0.94];
+    var TN = [4.6, 3.9, 5.2, 4.2, 5.5, 4.0, 4.9, 4.4, 5.1];
+    var cdir = TXDECK.castDir();
+    var x = -78;
+    for (var i = 0; i < 9; i++) {
+      cx.save();
+      cx.fillStyle = "rgba(14,5,9,0.38)";
+      cx.beginPath();
+      cx.moveTo(x, M.SHELF);
+      cx.lineTo(x + cdir[0] * 24, M.SHELF - 4);
+      cx.lineTo(x + BW + cdir[0] * 24, M.SHELF - 4);
+      cx.lineTo(x + BW, M.SHELF);
+      cx.closePath(); cx.fill();
+      cx.restore();
+      M.spine(cx, { x: x, base: M.SHELF, w: BW, h: BH * HT[i], tone: TN[i],
+                    seed: 7 + i * 13, labelTone: 5.0 + (i % 3) * 0.6,
+                    lean: (i === 2 || i === 7) ? -0.010 : 0 });
+      x += PITCH;
+    }
+
+    // THE PERSON AT THE SHELF, at 1.70 m, standing on a floor below the frame, so they are cut by
+    // the bottom edge and their reach is at the board. Drawn AFTER the run, in front of it.
+    // THE FIGURE IS A SCALE DEVICE AND IS LEFT AS A SILHOUETTE, after two attempts to break it
+    // up made it worse. `hold: "box"` grew the blob rather than articulating it, because every
+    // part TXFIG emits takes the `ink` role including the prop's own body. Drawing the box at
+    // the sprite's returned `hand` put it at design y 1304, which is a records box sitting on
+    // top of the cite line. A clean silhouette does the one job this figure has, which is to
+    // give the volumes beside it a size before a word is read.
+    //
+    // WHAT DID CHANGE IS ITS VALUE. At pick(1.2) against a wall near L* 40 the figure was the
+    // maximum contrast shape in the frame and it took the focal off the run of volumes, which
+    // is the defect round 2 raised about the wall and which the wall fix alone did not settle.
+    // At 2.4 it reads as a person in a dark room and the volumes keep the frame.
+    var reader = TXFIG.figure({ pose: "stand", height: 1.70 });
+    cx.save();
+    cx.globalAlpha = 0.30;
+    cx.translate(268, FLOOR);
+    cx.transform(1, 0, cdir[0] * 0.9, 0.26, 0, 0);
+    cx.translate(-268, -FLOOR);
+    M.elevation(cx, reader, { x: 268, base: FLOOR, ppm: PPM, ink: "#0E0509" });
+    cx.restore();
+    M.elevation(cx, reader, { x: 268, base: FLOOR, ppm: PPM,
+                              ink: M.pick(2.4), paper: M.paper(6.4) });
+
+    M.pool(cx, { x: 902, y: 742, r: 740, squash: 0.50, rot: -0.20, strength: 0.98,
+                 reserve: boxes, reserveStrength: 0.60, reserveFeather: 110 });
+
+    M.tooth(cx, { x: 0, y: 0, w: W, h: H, cell: 6, angle: 26, strength: 0.15, mask: mask });
+
+    M.falloff(cx, { from: 1178, mid: 0.86, end: 0.97 });
+    M.falloffTop(cx, { to: 232, start: 0.78 });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

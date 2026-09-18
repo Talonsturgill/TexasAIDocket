@@ -135,7 +135,8 @@
       "confirmed": [
         "2026-08-21",
         "2026-08-26",
-        "2026-09-03"
+        "2026-09-03",
+        "2026-09-18"
       ],
       "contradicted": []
     },
@@ -187,7 +188,8 @@
       "confirmed": [
         "2026-08-25",
         "2026-08-26",
-        "2026-09-03"
+        "2026-09-03",
+        "2026-09-18"
       ],
       "contradicted": []
     },
@@ -222,7 +224,9 @@
       "learned": "2026-08-22",
       "instinct": "Put the quotation marks on the FRAME whenever a slide prints a source's own string, because the site treats an unmarked row as this project's own sentence.",
       "evidence": "2026-08-22. Slide 7 printed three PUCT index rows unmarked. house_style_check failed the built article on the source's own abbreviation Sept. 4, a string this project never wrote. Slides 2, 3, 8 and 9 wore their marks and were exempt.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-18"
+      ],
       "contradicted": []
     },
     {
@@ -230,7 +234,9 @@
       "learned": "2026-09-03",
       "instinct": "Re-read the WHOLE frame after repairing part of it, not the part that was repaired.",
       "evidence": "Deck no. 14, slide 4. Round 1 extended and darkened the plate so a lost sentence would read, and nobody re-read the attribution two inches above it. Round 2 stopped the deck on that line. A repair verified against the defect it was written for, on a frame carrying a different defect the whole time.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-18"
+      ],
       "contradicted": []
     },
     {
@@ -411,7 +417,8 @@
       "instinct": "Draw every ground plane BEFORE the objects standing on it, and stop every drawn element above the footer band, because a plane painted last erases the object and leaves its shadow behind.",
       "evidence": "2026-08-22. Slide 7 drew a lit spine and its foot, then painted plane(1010,1350) over both. The spine died at the console line, the foot vanished, and a redrawn cast shadow ran through the texasaidocket.com glyph band. Slide 6 had the same defect the same run, three rods drawn and two shipped.",
       "confirmed": [
-        "2026-08-26"
+        "2026-08-26",
+        "2026-09-18"
       ],
       "contradicted": [
         "2026-08-25"
@@ -566,7 +573,8 @@
       "evidence": "2026-09-09, carousel 18. A lit sill slab was added under the cover's doorway to stop it reading as a bare hole; a sill is the most window-defining element in architecture and all three judges then read the cover as a window. The same round's ambient-shadow fix on slide 6 clipped its own radial gradient and rendered two translucent boxes with hard vertical edges. Both passed machine QA.",
       "confirmed": [
         "2026-09-15",
-        "2026-09-16"
+        "2026-09-16",
+        "2026-09-18"
       ],
       "contradicted": []
     },
@@ -623,7 +631,9 @@
       "learned": "2026-08-29",
       "instinct": "A claim's text field is the run's own prose and only its quote is evidence, so a frame may print nothing the quote does not carry.",
       "evidence": "Round 3 hard failed frame 8 for printing JOYDEEP BISWAS, THE CENTER'S DIRECTOR. Both halves came from the text fields of c24 and c25, which read the fetched page correctly, and neither quote contains the word director. The frame was repaired to attribute to the document. Nothing mechanical caught it, because both ids resolved and both claims existed.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-18"
+      ],
       "contradicted": []
     },
     {
@@ -651,7 +661,8 @@
         "2026-08-25",
         "2026-08-26",
         "2026-09-04",
-        "2026-09-13"
+        "2026-09-13",
+        "2026-09-18"
       ],
       "contradicted": []
     },
@@ -755,7 +766,8 @@
       "instinct": "Run house_style_check straight after admitting anything to the record, because the Phase 7 instrument sweep does not carry it and a run's attention is on the deck by the time Phase 16 finds it.",
       "evidence": "Carousel 22 reached Phase 16 with 12 sentences over the 30 word backstop, every one of them in the record's own prose rather than in the deck, across three admitted items, two re-verify movement lines and one claim text.",
       "confirmed": [
-        "2026-09-15"
+        "2026-09-15",
+        "2026-09-18"
       ],
       "contradicted": []
     },
@@ -780,7 +792,9 @@
       "learned": "2026-09-13",
       "instinct": "Merge origin/main into the run branch immediately before the Phase 16 site rebuild, so docs/ regenerates on top of current main and the branch does not go un-mergeable while its pull request sits open.",
       "evidence": "Measured 2026-09-13 and corrected the same evening when a review bot checked the inventory. Four cron workflows run site_build and commit docs/ to main, eight pushes a day between them: news.yml four times daily, gridwatch.yml twice, datacenters.yml and generators.yml once each. A daily run regenerates the whole of docs/, so a run branch and main collide on generated files within hours, every day, with nobody doing anything wrong. The first cut of this evidence also named pages.yml and queuewatch.yml and neither writes to main. Rebuilding after the base merge resolves every generated conflict at once.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-09-18"
+      ],
       "contradicted": []
     },
     {
@@ -891,6 +905,38 @@
       "learned": "2026-09-17",
       "instinct": "Make the shipped slide source contain, as literal text, the strings copy.json says it prints, because entities a browser collapses pass the render check and fail the file.",
       "evidence": "2026-09-17 frame 4. 'SEARCHED &nbsp;&nbsp; FOUND' rendered as 'SEARCHED FOUND', so copy_sync_check passed off the render's text nodes and shipped_check read the source and refused it. The fix cost a re-render after the scoring cap had closed, which is why this run's score row is stale.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "connective-prose-has-no-gate",
+      "learned": "2026-09-18",
+      "instinct": "Run every sentence that CONNECTS two claims through the same test the quotes already pass, because no gate reads the prose between the quotes.",
+      "evidence": "Carousel no. 28 took seven scoring rounds and produced five hard fails. Not one was in a quote, a numeral or a claim: the claims file was exact in every round. All five were ordinary declarative sentences between the quotes. copy_sync_check asks whether a frame's words are declared, verbatim_check whether a quote matches, claims_check whether the claims file is sound, aggregate_check whether a numeral is computed. Nothing asks whether a sentence with no numeral and no quotation marks is supported, so 'the court posts one before every meeting', 'the county publishes these agendas itself' and a SPONSOR LINE label all passed the entire suite.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "delete-a-surface-that-failed-twice",
+      "learned": "2026-09-18",
+      "instinct": "When a surface has hard-failed twice, DELETE the sentence rather than rewrite it, and name the gap in the run record instead.",
+      "evidence": "Four of carousel no. 28's five hard fails were sentences added to give a reader something the run had not fetched, and each rewording produced the next failure. Rounds 2 and 3 are the same frame 9 line twice. Rounds 5 and 6 are the same addition twice, the second one written by the repair for the first. The fifth attempt is not better than the fourth. Round 6's repair deleted the caption line, and the deck shipped with the gap named rather than filled.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "exit-zero-is-not-evidence-until-you-read-the-checker",
+      "learned": "2026-09-18",
+      "instinct": "Read what a gate CAN return before citing its exit 0 as evidence, because a checker that cannot fail passes everything.",
+      "evidence": "Three gates in this repo cannot fail and one run found all three. noun_trace ends with 'return [], warns, {...}', a hardcoded empty fails list, and its exit 0 was cited as evidence in four gate sweeps. The render harness collects window.__akLeaders, a sibling-project prefix, while these frames set window.__txLeaders. And leaders, rules, contacts, encodings, svg_plates and canvas_text are all empty on all nine slides of every deck this repo has shipped, so the declarative half of every acceptance list has never been machine checked. gate_wiring.py exists for exactly this shape and caught none of them.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "fetch-the-body-not-only-its-documents",
+      "learned": "2026-09-18",
+      "instinct": "When a deck is about a public body, fetch the BODY'S OWN PAGE in discovery, not only the documents it published.",
+      "evidence": "Every scoring round of carousel no. 28 asked for something a reader could do. Three answers were written to fill that hole and two of them hard-failed for being unsourced. One fetch of the Hays County Commissioners Court's own landing page would have returned the meeting day, the hour, the address and the members' precincts. The run fetched the minutes archive on that same county domain and never asked for it.",
       "confirmed": [],
       "contradicted": []
     }

@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the before and after",
   "the plain question",
   "the number that is wrong",
   "the deadline",
   "the correction",
-  "the object"
+  "the object",
+  "the place"
  ],
  "entries": [
   {
@@ -468,15 +468,30 @@
    "hashtags": 3,
    "critic_note": "THE OPENING WAS REPLACED TWICE AND BOTH REPLACEMENTS WERE JUDGE-DRIVEN. The shipped caption opened 'Over 55,000 messages. No baseline beside them.' for four rounds. A round 4 reader judge found two faults in one line: it put NO TEXAS, no place and no hospital above the fold, which is the exact defect this ledger records being repaired on 2026-09-13; and its figure-then-absence shape sits close to 'the number that is wrong', which this run's own caption_exclusions.md puts OFF the menu as spent on 09-13. The first replacement, 'In Houston, software writes the first draft.', fixed the Texas problem and created a new one: it was frame 1's headline VERBATIM with a place prefix, so a phone reader saw the same sentence twice in two sizes in the only two slots above the fold. A round 5 judge called it half-fixed and was right. The shipped line names the system, the city and a finding the cover does not carry, that the software goes FIRST.",
    "move_note": "The close is the house default and the ledger should say so plainly: 'ask the one question the decision leaves open' is 13 of 27 shipped captions and was last spent two runs ago on 09-15. It is LEGAL, because caption_exclusions computes a one-run window and only 09-16's close is windowed out, and it is still the reflex. Three reader judges across three rounds have now said so. The reason it survived here is that the fact-checker REJECTED the finding that the statute requires this hospital to disclose, so an open question is the only honest close available: any of the other three would have had to assert something the record does not carry. THE ACTION IS IN THE CAPTION NOW and it was not: a round 4 judge found the caption POINTING at the deck's one instruction instead of carrying it, so the deck-summary line ends 'Ask who wrote the note, before a first visit.' A round 5 judge notes it still sits in paragraph five, below the fold. That is true and it is the next lever."
+  },
+  {
+   "date": "2026-09-18",
+   "carousel_no": 28,
+   "opening_move": "the quiet decision",
+   "structure": "Clock",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "One agenda line carries the sheriff's no.",
+   "words": 131,
+   "commas": 1,
+   "commas_per_100w": 0.76,
+   "chars": 839,
+   "hashtags": 3,
+   "critic_note": "THE CAPTION LOST A LINE AT ROUND 6 AND IT WAS A HARD FAIL. It read 'Becerra's name is printed at the foot of both items', written in round 5's own repair to match a new frame label. Three items are described in consecutive paragraphs above it, so 'both' had three antecedents and the nearest available pair was the two the sentence does not mean; no claim puts any name on the September 8th item. The integrity judge read the same line and declined to fail it as ambiguity rather than fabrication, which is a genuine split between two judges. It was DELETED rather than reworded, because four of this run's five earlier hard fails were rewordings of the same surface: each was a sentence added to give a reader something the run had not fetched, and each rewording produced the next failure. Two earlier caption repairs stand: 'the agenda acknowledged' became c2's own 'carried an item acknowledging', and an unscoped 'No outcome is published for any of them' took back the locator frame 8 always held.",
+   "move_note": "THE FIRST LABELS WRITTEN HERE WERE FREEHAND AND ledger_check REFUSED THEM, correctly. They read \"the document's own line\", \"Ledger\" and \"ask what a resident can actually read\", and two of the three were on no menu at all, which is the exact failure mode the gate exists for: a freehand name cannot be excluded by a list of real ones, and that is how three excluded moves shipped on 2026-08-25. The third, Ledger, WAS on the menu and was used on 2026-09-16, inside the three run window. These are not a relabelling to dodge that. The caption's three middle paragraphs are strictly date ordered, September 1st then 8th then 15th, which is Clock as the doctrine defines it and was never Ledger. The hook is a decision recorded quietly on an agenda line, which is the quiet decision. The close names what is not public and its size, the archive stopping at July 28th, and the question mark on it is the FORM rather than the substance, which the doctrine separates explicitly. All three are on the menu and none is inside its window."
   }
  ],
  "structures_recent": [
-  "Two columns",
   "Pivot",
-  "Ledger"
+  "Ledger",
+  "Ladder"
  ],
  "closing_moves_recent": [
-  "name what is still not public, and how big that is"
+  "ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -1,0 +1,213 @@
+{
+ "_note": "Computed by runs/carousel/2026-09-18/measure.py from the renders at 432 px, the size a reader receives. Nothing here is typed. The bands are parsed out of each dossier's own acceptance sentence, so the prose, the gate and this file cannot drift apart.",
+ "frames": {
+  "slide-01": {
+   "median_L": 17.5,
+   "mean_L": 25.9,
+   "p05_L": 1.8,
+   "p95_L": 70.2,
+   "accent_share_pct": 0.0
+  },
+  "slide-02": {
+   "median_L": 16.6,
+   "mean_L": 34.6,
+   "p05_L": 1.5,
+   "p95_L": 91.8,
+   "accent_share_pct": 0.7
+  },
+  "slide-03": {
+   "median_L": 21.9,
+   "mean_L": 24.9,
+   "p05_L": 2.0,
+   "p95_L": 73.2,
+   "accent_share_pct": 0.0
+  },
+  "slide-04": {
+   "median_L": 15.6,
+   "mean_L": 33.9,
+   "p05_L": 1.7,
+   "p95_L": 92.3,
+   "accent_share_pct": 0.67
+  },
+  "slide-05": {
+   "median_L": 23.4,
+   "mean_L": 37.2,
+   "p05_L": 1.5,
+   "p95_L": 87.0,
+   "accent_share_pct": 0.0
+  },
+  "slide-06": {
+   "median_L": 24.5,
+   "mean_L": 27.0,
+   "p05_L": 2.2,
+   "p95_L": 61.2,
+   "accent_share_pct": 0.0
+  },
+  "slide-07": {
+   "median_L": 13.2,
+   "mean_L": 17.8,
+   "p05_L": 1.7,
+   "p95_L": 47.5,
+   "accent_share_pct": 0.0
+  },
+  "slide-08": {
+   "median_L": 21.3,
+   "mean_L": 37.9,
+   "p05_L": 1.7,
+   "p95_L": 93.4,
+   "accent_share_pct": 0.64
+  },
+  "slide-09": {
+   "median_L": 19.7,
+   "mean_L": 26.2,
+   "p05_L": 1.8,
+   "p95_L": 71.1,
+   "accent_share_pct": 0.83
+  }
+ },
+ "per_frame_median_lstar": [
+  17.5,
+  16.6,
+  21.9,
+  15.6,
+  23.4,
+  24.5,
+  13.2,
+  21.3,
+  19.7
+ ],
+ "per_frame_mean_lstar": [
+  25.9,
+  34.6,
+  24.9,
+  33.9,
+  37.2,
+  27.0,
+  17.8,
+  37.9,
+  26.2
+ ],
+ "adjacent_jumps_L": [
+  0.9,
+  5.3,
+  6.3,
+  7.8,
+  1.1,
+  11.3,
+  8.1,
+  1.6
+ ],
+ "adjacent_jumps_mean_L": [
+  8.7,
+  9.7,
+  9.0,
+  3.3,
+  10.2,
+  9.2,
+  20.1,
+  11.7
+ ],
+ "deck": {
+  "median_L": 19.7,
+  "spread_L": 11.3,
+  "lightest_L": 24.5,
+  "darkest_L": 13.2,
+  "mean_adjacent_jump_L": 5.3,
+  "max_adjacent_jump_L": 11.3,
+  "jump_ceiling_L": 14.9,
+  "hard_cut_L": 25.0,
+  "hard_cuts": 0,
+  "max_adjacent_jump_mean_L": 20.1,
+  "_two_track_note": "All three scoring judges measured this deck's arc on the MEAN and called it a strobe. The storyboard plans, and plan_render_check and panel_ready gate, on the MEDIAN, where it holds. Both tracks are here because the disagreement is the finding: a median cannot see a white plate covering a third of a frame, and four of nine frames in this deck are a cream sheet on a dark board."
+ },
+ "bands": {
+  "slide-01": [
+   9,
+   23
+  ],
+  "slide-02": [
+   11,
+   25
+  ],
+  "slide-03": [
+   13,
+   27
+  ],
+  "slide-04": [
+   10,
+   24
+  ],
+  "slide-05": [
+   13,
+   27
+  ],
+  "slide-06": [
+   18,
+   32
+  ],
+  "slide-07": [
+   8,
+   21
+  ],
+  "slide-08": [
+   14,
+   28
+  ],
+  "slide-09": [
+   10,
+   24
+  ]
+ },
+ "declared_separations": {
+  "slide-03": {
+   "ink_indices": [
+    1.2,
+    6.9
+   ],
+   "ink_lstar": [
+    3.4,
+    60.5
+   ],
+   "measured_separation_L": 57.1,
+   "declared_floor_L": 12,
+   "holds": true
+  },
+  "slide-06": {
+   "ink_indices": [
+    1.1,
+    1.4,
+    2.4,
+    2.9
+   ],
+   "ink_lstar": [
+    2.6,
+    4.8,
+    13.5,
+    18.9
+   ],
+   "measured_separation_L": 16.3,
+   "declared_floor_L": 12,
+   "holds": true
+  }
+ },
+ "room_ramp_lstar": [
+  0.1,
+  1.9,
+  9.2,
+  20.0,
+  30.2,
+  40.5,
+  51.0,
+  61.6,
+  71.9
+ ],
+ "palette": {
+  "ground": 14.5,
+  "material": 27.3,
+  "accent": 72.8,
+  "ink": 85.8,
+  "dek": 76.8,
+  "furniture": 81.2,
+  "stock": 89.6
+ }
+}
