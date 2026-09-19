@@ -10,7 +10,7 @@ The Nuclear Regulatory Commission has proposed a wholesale revision of its react
 - Comment closes: 2026-08-31
 - Take part: https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · The federal comment window on reactor licensing and siting modernization is still shut. The notice that closed it carries the same closing date it did.
 - 2026-09-13 · The federal window on reactor licensing and siting is still shut, and the notice's own close date has not moved.
 - 2026-09-16 · The federal comment window on reactor licensing and siting is still shut and the proposal is still where the closing left it. No final rule has been published.
+- 2026-09-19 · The comment window is still shut and the agency has published no next step out of it.
 
 ## Evidence
 

@@ -8,7 +8,7 @@ Chapter 552 of the Business and Commerce Code supersedes and preempts any local 
 - Status: decided
 - Public access: Closed
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The preemption still stands. A Texas city or county still has no room of its own to regulate artificial intelligence, and nothing has carved one back out.
+- 2026-09-19 · Cities and counties are still preempted from regulating artificial intelligence, which is why the local measures on this subject are resolutions and zoning rather than rules about the technology.
 
 ## Evidence
 

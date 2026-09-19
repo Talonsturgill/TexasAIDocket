@@ -11,7 +11,7 @@ On June 9th, 2026 Brazoria County Commissioners Court adopted a measure on data 
 - Public access: Public meeting
 - Take part: https://brazoriacountytx.legistar.com/MainBody.aspx
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Brazoria County's statement of the conditions it would want on a data center is still the county's published position and still binds nobody.
 - 2026-09-13 · Brazoria County's statement of the conditions it wants on a data center is still adopted and still the county's published position.
 - 2026-09-16 · Brazoria County's resolution still states the conditions it wants on a data center, and it still binds nobody. Nothing has converted it into a rule.
+- 2026-09-19 · The conditions the court named are unchanged, and they are still a resolution rather than anything a developer has to meet.
 
 ## Evidence
 

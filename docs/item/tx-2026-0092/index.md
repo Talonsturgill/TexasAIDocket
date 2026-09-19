@@ -11,7 +11,7 @@ The National Science Foundation made two matched standard grants on August 14th,
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2619079.json
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The award to UT San Antonio and Texas A&M for adapting large language models on constrained machines is still in force as made. No change has been posted.
+- 2026-09-19 · The award stands, and the problem it is aimed at is still adapting large models on machines too small to run them comfortably.
 
 ## Evidence
 

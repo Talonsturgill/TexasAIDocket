@@ -11,7 +11,7 @@ The National Science Foundation announced on September 1st, 2026 that it is esta
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-11 · The agency page putting the Austin supercomputing center in an operating role has not changed. What the pilot handed over is still described the same way, and no further institution has been added to the collaboration.
 - 2026-09-13 · The agency page putting the Austin computing center in an operating role for the national resource still reads as it did. The leadership class facility is still named as its responsibility.
 - 2026-09-16 · UT Austin's supercomputing center is still in the operating role the foundation gave it for the national AI research resource. The role has not been reassigned.
+- 2026-09-19 · The supercomputing center still holds its operating role in the national resource.
 
 ## Evidence
 

@@ -16,7 +16,7 @@
   },
   "introduction": [
     {
-      "text": "On {{date:c1}} the Office of the Texas Governor [directed the Texas Water Development Board](c1) to compel major water users including data centers to report their water use, and to impose legal consequences for past and future failures. The instruction names two penalties. Neither of them is new.",
+      "text": "On {{date:c1}} the Office of the Texas Governor [directed the Texas Water Development Board](c1) to compel major water users including data centers to report their water use. It also told the board to impose legal consequences for past and future failures. The instruction names two penalties. Neither of them is new.",
       "claims": [
         "c1",
         "c4"
@@ -35,14 +35,15 @@
       "heading": "The penalties were already on the books",
       "paragraphs": [
         {
-          "text": "The directive states that a data center failing to complete and return the survey [commits an offense punishable as a crime](c6). A data center that returns it late is [ineligible for TCEQ permits, amendments or renewals](c7) under Chapter {{number:c7}} of the Texas Water Code. Both consequences sit in a statute the Legislature wrote before this instruction existed.",
+          "text": "The directive states that a data center failing to complete and return the survey [commits an offense punishable as a crime](c6). A data center that returns it late is [ineligible for TCEQ permits, amendments or renewals](c7) under Chapter {{number:c7}} of the Texas Water Code. Neither consequence is new. The [Code already requires the survey](c4), in its own present tense, and the permit bar sits in that chapter.",
           "claims": [
+            "c4",
             "c6",
             "c7"
           ]
         },
         {
-          "text": "The board was told to [use its enforcement authority against past failures](c4) as well as future ones, and to [refer noncompliant data centers](c8) to the County or District Attorney while notifying TCEQ for possible permit disqualification. The Governor's office states that major water users [appear to have already committed civil and criminal violations](c2) by withholding required usage information.",
+          "text": "The board was told to [use its enforcement authority against past failures](c4) as well as future ones. It must [refer noncompliant data centers](c8) to the County or District Attorney and notify TCEQ for possible permit disqualification. The Governor's office states that major water users [appear to have already committed civil and criminal violations](c2) by withholding required usage information.",
           "claims": [
             "c2",
             "c4",
@@ -82,7 +83,7 @@
           ]
         },
         {
-          "text": "Responses are due on {{date:c15}}. A complete response has to carry [a notarized attestation from the developer](c16), and [failing to answer any part of it](c17) is reported to the utility commission and the Office of the Governor. The notice also warns that under Texas Water Code {{number:c14}}, a recipient that does not fully answer Section C [may face criminal penalties](c14). That wording is conditional and it is not a statement that charges follow automatically.",
+          "text": "Responses are due on {{date:c15}}. A complete response has to carry [a notarized attestation from the developer](c16). [Failing to answer any part of it](c17) is reported to the utility commission and the Office of the Governor. The notice also warns that under Texas Water Code {{number:c14}}, a recipient that does not fully answer Section C [may face criminal penalties](c14). That wording is conditional and it is not a statement that charges follow automatically.",
           "claims": [
             "c14",
             "c15",
@@ -110,14 +111,14 @@
           ]
         },
         {
-          "text": "No enforcement action has been announced. The directive creates a reporting deadline for the board rather than a docket a member of the public can read, so the first visible test is whether the {{date:c10}} update names anything the board actually did.",
+          "text": "No enforcement action has been announced. The directive creates a reporting deadline for the board rather than a docket a member of the public can read. The first visible test is whether the {{date:c10}} update names anything the board actually did.",
           "claims": [
             "c8",
             "c10"
           ]
         },
         {
-          "text": "The grid operator [expects to publish a report](c19) on what the responses show no later than {{date:c19}}. Until then the water numbers sit with the companies that hold them. A state that wrote the penalty years ago has spent this month deciding to use it.",
+          "text": "The grid operator [expects to publish a report](c19) on what the responses show no later than {{date:c19}}. Until then the water numbers sit with the companies that hold them. Neither the directive nor the market notice says how long the penalty has been on the books. What both of them say is that the state spent this month deciding to use it.",
           "claims": [
             "c19"
           ]

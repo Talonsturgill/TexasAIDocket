@@ -9,7 +9,7 @@ The State Board of Education took the new Applied Personal Financial Literacy st
 - Public access: Closed
 - Take part: https://sboe.texas.gov/state-board-of-education/sboe-2026/sboe-2026-september/august-31-2026-committee-of-the-full-board-item-3
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-11 · Corrected on the day it was admitted. The title had said Texas writes AI tools into a required course, which states what the adopted rule contains. What is established is the action and the text the item publishes, and the attachment heads itself as proposed text. The title now says so. The status still reads decided because the adoption itself is confirmed by the board's own release.
 - 2026-09-13 · The board's item still stands as second reading and final adoption, and the published text still carries the expectations that name a machine.
 - 2026-09-16 · The board's final adoption of the money course still stands, and the standards it adopted still name a machine in the places the record quotes. Nothing has reopened the rule.
+- 2026-09-19 · The course is still adopted for final reading and the published text still names a machine among the things a student is expected to do.
 
 ## Evidence
 

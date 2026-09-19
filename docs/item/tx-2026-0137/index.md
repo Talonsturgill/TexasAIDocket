@@ -11,7 +11,7 @@ JAMA Network Open published a quality improvement study on September 3rd, 2026. 
 - Public access: Write to the decider
 - Take part: https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-13 · Checked and unchanged. The decision still stands as decided.
 - 2026-09-16 · The Houston Methodist result still reads the way it was published, with the case managers ahead of the tool where the date matters most. No correction has been issued.
+- 2026-09-19 · The finding stands as published, and the hospital has said nothing further about what it did with the tool afterwards.
 
 ## Evidence
 

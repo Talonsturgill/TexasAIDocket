@@ -8,7 +8,7 @@ Every state agency and local government that deploys a public facing AI system m
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-09-16
+- Last checked: 2026-09-19
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-12 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-13 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-09-16 · The standardized notice the statute requires is still not appearing. A Texan looking for a posted statement of which systems an agency runs still has nowhere reliable to look.
+- 2026-09-19 · The standardized notice the statute requires is still not being posted in a form a resident could look up.
 
 ## Evidence
 
