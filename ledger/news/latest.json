@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-19T13:36:50Z",
+  "checked_at": "2026-09-19T14:04:42Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "3927b365f8e9523ec3714b8eb3731ffc89e0899cfc0db6ec4920cf485f8f6bc6",
+  "response_sha256": "2142cfcb83393b3ba23ea84d3ea2a5309b4821bd258dd1e3c138b4b18c5f672d",
   "articles": [
     {
       "title": "Building AI to accelerate science and improve lives",
@@ -323,7 +323,7 @@
     "feed": "https://siliconangle.com/feed/",
     "publisher": "SiliconANGLE",
     "coverage": 1,
-    "score": 0.681028,
+    "score": 0.671954,
     "priority": 1
   },
   "expires_at": "2026-09-26T00:18:46Z",
@@ -338,7 +338,7 @@
         "feed": "https://siliconangle.com/feed/",
         "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.681028,
+        "score": 0.671954,
         "priority": 1
       }
     },
@@ -387,26 +387,25 @@
       "url": "https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/",
       "title": "New experts join Google’s AI & Economy team",
       "shown_at": "2026-09-19T11:59:50Z"
+    },
+    {
+      "url": "https://siliconangle.com/2026/09/18/data-center-builder-nscale-files-for-ipo-after-multibillion-dollar-anthropic-deal/",
+      "title": "Data center builder Nscale files for IPO after multibillion-dollar Anthropic deal",
+      "shown_at": "2026-09-19T13:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f"
+      "status": "not_modified"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe"
+      "status": "not_modified"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
+      "status": "not_modified"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -418,13 +417,11 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1210,
-      "sha256": "64449c7709671e3f2b0482ded32b6fb3b9fdb654c800fef859eaf61e0bf6c9ce"
+      "sha256": "212fe7dbdf8e80d586477f0c063188fd3eb67e3fdc52fbcb1ad219cd6b2141f3"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "ok",
-      "items": 18,
-      "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047"
+      "status": "not_modified"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -434,109 +431,100 @@
     },
     {
       "url": "https://siliconangle.com/feed/",
-      "status": "ok",
-      "items": 30,
-      "sha256": "d816288250a60d927b134ad4735825d5db3b619cca34c1719e4194e22e346778"
+      "status": "not_modified"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-09-19T19:36:48Z",
-      "reason": "not well-formed (invalid token): line 1, column 119"
+      "status": "backoff",
+      "retry_at": "2026-09-19T19:36:48Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "4fb5f1d993544563e52c410b3b855b28a20067a43a94b69286e60d379d09a2f3"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "ok",
-      "items": 30,
-      "sha256": "ef71d5c513307e8064d19041e32670bcd6991d06f26a8630b5b6433bd6ad8109"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "8e595ab095c71f830adec97e698d323074537ad3f92d1e4ebd02c6bf18021b0c"
+      "status": "not_modified"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-09-19T13:36:48Z",
-      "failures": 0,
-      "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f",
       "etag": "\"5f9c2811e64a7bab329c342764151fb2\"",
-      "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT"
+      "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT",
+      "failures": 0,
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-09-19T13:36:48Z",
-      "failures": 0,
-      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe",
       "etag": "\"6aae8d55-a282\"",
-      "last_modified": "Sat, 19 Sep 2026 13:25:41 GMT"
+      "last_modified": "Sat, 19 Sep 2026 13:25:41 GMT",
+      "failures": 0,
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-09-19T13:36:48Z",
+      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT",
       "failures": 0,
-      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2",
-      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT"
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-19T13:36:48Z",
+      "ok_at": "2026-09-19T14:04:40Z",
       "failures": 0,
       "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a",
       "etag": "\"1789824331\"",
       "last_modified": "Sat, 19 Sep 2026 13:25:31 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-19T13:36:48Z",
+      "ok_at": "2026-09-19T14:04:40Z",
       "failures": 0,
-      "sha256": "64449c7709671e3f2b0482ded32b6fb3b9fdb654c800fef859eaf61e0bf6c9ce"
+      "sha256": "212fe7dbdf8e80d586477f0c063188fd3eb67e3fdc52fbcb1ad219cd6b2141f3"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-09-19T13:36:48Z",
-      "failures": 0,
-      "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047",
       "etag": "\"ee0000357d65c75de25a4e5416971761-gzip\"",
-      "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT"
+      "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT",
+      "failures": 0,
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-19T13:36:48Z",
+      "ok_at": "2026-09-19T14:04:40Z",
       "failures": 0,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-09-19T13:36:48Z",
-      "failures": 0,
-      "sha256": "d816288250a60d927b134ad4735825d5db3b619cca34c1719e4194e22e346778",
       "etag": "\"81dabd12a0bf6e24c0c24d62637cc857\"",
-      "last_modified": "Sat, 19 Sep 2026 05:50:57 GMT"
+      "last_modified": "Sat, 19 Sep 2026 05:50:57 GMT",
+      "failures": 0,
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "d816288250a60d927b134ad4735825d5db3b619cca34c1719e4194e22e346778"
     },
     "https://www.artificialintelligence-news.com/feed/": {
-      "failures": 1,
-      "retry_at": "2026-09-19T19:36:48Z"
+      "retry_at": "2026-09-19T19:36:48Z",
+      "failures": 1
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-09-19T13:36:48Z",
-      "failures": 0,
-      "sha256": "4fb5f1d993544563e52c410b3b855b28a20067a43a94b69286e60d379d09a2f3",
       "etag": "W/\"2d025ec46915a3edd48a32a5f27a49f4\"",
-      "last_modified": "Sat, 19 Sep 2026 01:45:53 GMT"
+      "last_modified": "Sat, 19 Sep 2026 01:45:53 GMT",
+      "failures": 0,
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "4fb5f1d993544563e52c410b3b855b28a20067a43a94b69286e60d379d09a2f3"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-19T13:36:48Z",
+      "etag": "W/\"39f304569dbf760fb8e1e63ed415384c\"",
       "failures": 0,
-      "sha256": "ef71d5c513307e8064d19041e32670bcd6991d06f26a8630b5b6433bd6ad8109",
-      "etag": "W/\"39f304569dbf760fb8e1e63ed415384c\""
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "ef71d5c513307e8064d19041e32670bcd6991d06f26a8630b5b6433bd6ad8109"
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-09-19T13:36:48Z",
+      "last_modified": "Fri, 18 Sep 2026 12:49:49 GMT",
       "failures": 0,
-      "sha256": "8e595ab095c71f830adec97e698d323074537ad3f92d1e4ebd02c6bf18021b0c",
-      "last_modified": "Fri, 18 Sep 2026 12:49:49 GMT"
+      "ok_at": "2026-09-19T14:04:40Z",
+      "sha256": "8e595ab095c71f830adec97e698d323074537ad3f92d1e4ebd02c6bf18021b0c"
     }
   }
 }
