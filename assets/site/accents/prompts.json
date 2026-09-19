@@ -1,0 +1,29 @@
+{
+  "generator": "built-in image_gen",
+  "created": "2026-09-18",
+  "assets": [
+    {
+      "name": "balcones-relief",
+      "master": "masters/balcones-relief-v2.png",
+      "web_export": "balcones-relief-v2-960.avif",
+      "initial_prompt": "Use case: stylized-concept.\nAsset type: subtle decorative raster accent for the existing Texas AI Docket website, not a website mockup.\nPrimary request: an exquisite small geological landscape relief of the Balcones Escarpment as a quiet marginal illustration. Layered pale limestone ledges, gently rolling Central Texas hills with a few low spreading live-oak silhouettes, and a narrow sinuous dry-cut valley. Regional inspiration rather than a depiction of an identifiable site or map. The relief should feel like a precise intaglio engraving crossed with a finely carved architectural model, with fine warm limestone edge light and tiny restrained copper highlights.\nComposition: landscape 3:2. One low asymmetric floating land fragment across the lower-middle and right of the frame. Plenty of true empty space above and to the left. All outer edges naturally disappear into an absolutely black background, no border or rectangular panel. Approximately 55 percent of image empty black. Terrain legible at 350 CSS pixels wide. Keep the piece shallow and elegant, no towering mountains, no desert mesas.\nPalette: warm limestone, muted copper #b4664f, shadowy violet charcoal. Very restrained edge highlights, most surfaces nearly black. No strong orange saturation. No sky gradient.\nMood: thoughtful civic editorial publication, crafted and understated, beautiful material detail. Clean intact material, not vintage/distressed.\nConstraints: ARTWORK ONLY, no words, letters, numbers, legends, survey lines, labels, maps, graphs, grid overlay, stars, moon, logo, watermark, frames, people, buildings, cactus, cowboy objects, glowing sci-fi effects. Do not draw interface or text. Opaque pure black background intended for CSS screen blending.",
+      "transparency_edit": "Use case: background-extraction. Edit target: the attached limestone landscape artwork. Change ONLY the background to a genuinely transparent alpha channel. Remove the black empty background surrounding the land fragment and its negative spaces, with beautifully soft natural silhouette edges. Preserve all of the limestone geology, trees, composition, framing, foreground colors, brightness, detail and exact 1536 by 1024 canvas. Keep the dark surfaces within the land fragment dark. Do not add anything. No checkerboard painted into the image; actual PNG transparency. This is a subtle website decoration that must float over the site's existing dark violet background with no rectangular black image boundary.",
+      "use": "Decorative regional illustration, not a real site or geographic record."
+    },
+    {
+      "name": "studio-assembly",
+      "master": "masters/studio-assembly-v2.png",
+      "web_export": "studio-assembly-v2-960.avif",
+      "initial_prompt": "Use case: stylized-concept.\nAsset type: a small decorative raster accent for the quiet right margin of the Texas AI Docket Services hero. Artwork only, not a website mockup.\nPrimary request: a beautifully crafted abstract assembly study, like a small object made by an architect and an instrument maker. Three thin square horizontal plates in a loose, precise exploded stack, slightly offset. Bottom plate is finely cut warm Central Texas limestone, middle plate very dark matte graphite with just a few inlaid hairline copper paths, top plate a thin folded translucent drafting vellum with softly lit edges. A few short fine brass pins link the layers. The pins and sparse paths should suggest the care of connecting practical systems. No recognizable consumer electronics, no computer chip, no text or pseudo writing on the vellum. The arrangement should feel material, useful, and calm.\nComposition: one compact object, 3:2 landscape image, object mainly in the right half with generous black margin all around, left third empty. Oblique three-quarter overhead view. Floating minimally, shallow separation, fine clean edges, no pedestal. Legible when used only 280 to 380 CSS pixels wide, sophisticated architectural editorial still-life.\nLighting and palette: a low warm side light catching limestone #c9b393 and patinated copper #b4664f, graphite violet shadows. Low saturation, modest contrast, exquisite tactile detail. Surrounding background pure solid black with shadows dissolving naturally, suitable for CSS screen blending. Preserve abundant negative space.\nConstraints: no words, letters, numbers, logo, watermark, labels, diagrams, charts, grid, stars, neon, glowing circuitry, blue light, sparks, sci-fi holograms, gears, robot imagery, plants, hands or people. No distressed vintage texture. Opaque black background, no border.",
+      "transparency_edit": "Use case: background-extraction. Edit target: the attached architectural assembly artwork. Change ONLY the surrounding black background to a genuinely transparent alpha channel. Keep the entire limestone, graphite, copper pins and folded drafting vellum object. Preserve its overall design, angle, colors, light, relative dimensions, composition and 1536 by 1024 canvas with abundant empty space on the left. Cut out the black empty gaps between the suspended layers as well as the space around the object. Keep graphite surfaces black. Natural clean edges, no glow, no halo. No additions and no text. Actual RGBA transparency, not a drawn checkerboard. The object must float over an existing dark violet webpage without any rectangular image boundary.",
+      "use": "Decorative material study, not product photography or a technical diagram."
+    }
+  ],
+  "export": {
+    "format": "AVIF",
+    "width": 960,
+    "encoder": "macOS sips",
+    "quality": 65,
+    "alpha": true
+  }
+}

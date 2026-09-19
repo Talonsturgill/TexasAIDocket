@@ -344,6 +344,44 @@ def css() -> str:
     return strip_comments(annotated())
 
 
+def finishing_css() -> str:
+    """Decorative artwork for the home, Services and About pages only."""
+    return strip_comments("""/* Decorative material studies. They add no content, layout height or hit targets.
+   The image exports retain real alpha transparency. Constrain the art to the
+   empty right margin and omit it where the reading measure needs that space. */
+@media (min-width:68rem) {
+  .home .hero, .studio-hero { position:relative; isolation:isolate; }
+  .home .hero::after, .studio-hero::after { content:""; position:absolute;
+    pointer-events:none; z-index:-1;
+    background-repeat:no-repeat; background-size:contain; background-position:center;
+    mask-image:linear-gradient(to right,transparent,#000 25%,#000 95%,transparent); }
+  .home .hero::after { right:-.6rem; top:7.4rem; width:44%; aspect-ratio:3/2;
+    background-image:url("balcones-relief-v2-960.avif"); opacity:.42; }
+  .studio-hero::after { right:-1rem; top:8.4rem; width:47%; aspect-ratio:3/2;
+    background-image:url("studio-assembly-v2-960.avif"); opacity:.32; }
+}
+/* The footer's location line gets a quiet material signature only where it clears
+   the navigation. It shares the homepage image and never increases footer height. */
+@media (min-width:74rem) {
+  footer.site::after { content:""; position:absolute; pointer-events:none;
+    left:clamp(10rem,18vw,18rem); bottom:1.25rem; width:13rem; height:8.66rem; z-index:-1;
+    background:url("balcones-relief-v2-960.avif") center/contain no-repeat;
+    opacity:.32;
+    mask-image:linear-gradient(to right,transparent,#000 30%); }
+}
+/* On a phone the signature sits beside the existing footer star, above the links. */
+@media (max-width:34rem) {
+  footer.site::after { content:""; position:absolute; pointer-events:none;
+    right:1rem; top:-.5rem; width:10rem; height:6.66rem; z-index:-1;
+    background:url("balcones-relief-v2-960.avif") center/contain no-repeat; opacity:.4; }
+}
+@media print, (forced-colors:active) {
+  .home .hero::after, .studio-hero::after, footer.site::after { display:none; }
+}
+
+""")
+
+
 def home_css() -> str:
     """The live deadline panel, served only to the page that has one.
 
@@ -528,7 +566,7 @@ a.stat:hover { background:color-mix(in srgb,var(--accent) 8%,transparent);
   a.stat, .open-now-item, .open-now-go, .open-now-more::after { transition:none; }
   a.stat:hover, .open-now-item:hover .open-now-go, .open-now-more:hover::after { transform:none; }
 }
-""")
+""") + finishing_css()
 
 
 def facility_css() -> str:
