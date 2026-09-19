@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-19T16:37:02Z",
+  "checked_at": "2026-09-19T17:05:47Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "14659dce690679c9f314d04c73ddcde9b710cd1c1101c5fb821ceaf1c3fcd667",
+  "response_sha256": "67d8b542c1d9d92863668100546957005db868604d1a3d1176dc441616355149",
   "articles": [
     {
       "title": "Building AI to accelerate science and improve lives",
@@ -314,6 +314,12 @@
       "url": "https://www.techspot.com/news/113898-most-world-expects-ai-shrink-job-market-americans.html",
       "first_seen_at": "2026-09-18T12:12:00Z",
       "feed": "https://www.techspot.com/backend.xml"
+    },
+    {
+      "title": "An AI hallucination nearly started a war between the US and China",
+      "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
+      "first_seen_at": "2026-09-19T16:43:00Z",
+      "feed": "https://www.techspot.com/backend.xml"
     }
   ],
   "selected": {
@@ -323,11 +329,12 @@
     "feed": "https://siliconangle.com/feed/",
     "publisher": "SiliconANGLE",
     "coverage": 1,
-    "score": 0.624446,
+    "score": 0.615864,
     "priority": 1
   },
   "expires_at": "2026-09-26T00:18:46Z",
   "rotation_version": 1,
+  "carousel_version": 1,
   "editions": [
     {
       "starts_at": "2026-09-19T13:23:00Z",
@@ -338,48 +345,256 @@
         "feed": "https://siliconangle.com/feed/",
         "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.624446,
+        "score": 0.615864,
         "priority": 1
-      }
+      },
+      "stories": [
+        {
+          "title": "Data center builder Nscale files for IPO after multibillion-dollar Anthropic deal",
+          "url": "https://siliconangle.com/2026/09/18/data-center-builder-nscale-files-for-ipo-after-multibillion-dollar-anthropic-deal/",
+          "first_seen_at": "2026-09-19T00:18:46Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.615864,
+          "priority": 1
+        },
+        {
+          "title": "Almost 86% of Japanese game developers are using AI in their workflows, up from 51% in 2025",
+          "url": "https://www.techspot.com/news/113892-nearly-86-japanese-game-developers-using-generative-ai.html",
+          "first_seen_at": "2026-09-18T18:40:00Z",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.523198,
+          "priority": 1
+        },
+        {
+          "title": "Cybersecurity researchers gain access to OpenAI’s GitHub repository using Claude",
+          "url": "https://siliconangle.com/2026/09/18/cybersecurity-researchers-gain-access-to-openais-github-repository-using-claude/",
+          "first_seen_at": "2026-09-18T22:25:06Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.583073,
+          "priority": 1
+        },
+        {
+          "title": "This startup believes smaller, modular data centers can solve AI's infrastructure bottleneck",
+          "url": "https://www.techspot.com/news/113897-startup-believes-smaller-modular-data-centers-can-solve.html",
+          "first_seen_at": "2026-09-18T16:28:00Z",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.490989,
+          "priority": 1
+        },
+        {
+          "title": "Nvidia, Google and Emerald AI launch flexible data center consortium",
+          "url": "https://siliconangle.com/2026/09/17/nvidia-google-and-emerald-ai-launch-flexible-data-center-consortium/",
+          "first_seen_at": "2026-09-17T20:37:36Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 2,
+          "score": 0.553669,
+          "priority": 1
+        }
+      ]
     },
     {
       "starts_at": "2026-09-19T19:23:00Z",
       "selected": {
-        "title": "Almost 86% of Japanese game developers are using AI in their workflows, up from 51% in 2025",
-        "url": "https://www.techspot.com/news/113892-nearly-86-japanese-game-developers-using-generative-ai.html",
-        "first_seen_at": "2026-09-18T18:40:00Z",
+        "title": "An AI hallucination nearly started a war between the US and China",
+        "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
+        "first_seen_at": "2026-09-19T16:43:00Z",
         "feed": "https://www.techspot.com/backend.xml",
         "publisher": "TechSpot",
         "coverage": 1,
-        "score": 0.489757,
+        "score": 0.925875,
         "priority": 1
-      }
+      },
+      "stories": [
+        {
+          "title": "An AI hallucination nearly started a war between the US and China",
+          "url": "https://www.techspot.com/news/113906-ai-hallucination-nearly-started-war-between-us-china.html",
+          "first_seen_at": "2026-09-19T16:43:00Z",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.925875,
+          "priority": 1
+        },
+        {
+          "title": "Anthropic opens AI-powered biology research lab",
+          "url": "https://siliconangle.com/2026/09/18/anthropic-opens-ai-powered-biology-research-lab/",
+          "first_seen_at": "2026-09-18T20:15:41Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.512842,
+          "priority": 1
+        },
+        {
+          "title": "Microsoft exec says AI training might be the \"largest labor theft in human history\"",
+          "url": "https://www.techspot.com/news/113891-microsoft-exec-ai-training-might-largest-labor-theft.html",
+          "first_seen_at": "2026-09-18T14:51:00Z",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.438641,
+          "priority": 1
+        },
+        {
+          "title": "PrismML launches Bonsai 2 27B, a high-intelligence AI model so small it fits on consumer hardware",
+          "url": "https://siliconangle.com/2026/09/18/prismml-launches-bonsai-2-27b-a-high-intelligence-ai-model-so-small-it-fits-on-consumer-hardware/",
+          "first_seen_at": "2026-09-18T16:10:08Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.455671,
+          "priority": 1
+        },
+        {
+          "title": "Enabling the next generation of AI data centers",
+          "url": "https://www.datacenterdynamics.com/en/opinions/enabling-the-next-generation-of-ai-data-centers/",
+          "first_seen_at": "2026-09-18T14:45:00Z",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.437376,
+          "priority": 1
+        }
+      ]
     },
     {
       "starts_at": "2026-09-20T01:23:00Z",
       "selected": {
-        "title": "Cybersecurity researchers gain access to OpenAI’s GitHub repository using Claude",
-        "url": "https://siliconangle.com/2026/09/18/cybersecurity-researchers-gain-access-to-openais-github-repository-using-claude/",
-        "first_seen_at": "2026-09-18T22:25:06Z",
+        "title": "For AI agents, it’s the best of times, it’s the worst of times",
+        "url": "https://siliconangle.com/2026/09/18/for-ai-agents-its-the-best-of-times-its-the-worst-of-times/",
+        "first_seen_at": "2026-09-18T14:00:35Z",
         "feed": "https://siliconangle.com/feed/",
         "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.458966,
+        "score": 0.360008,
         "priority": 1
-      }
+      },
+      "stories": [
+        {
+          "title": "For AI agents, it’s the best of times, it’s the worst of times",
+          "url": "https://siliconangle.com/2026/09/18/for-ai-agents-its-the-best-of-times-its-the-worst-of-times/",
+          "first_seen_at": "2026-09-18T14:00:35Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.360008,
+          "priority": 1
+        },
+        {
+          "title": "Air traffic control assisted by AI could arrive as soon as next week",
+          "url": "https://www.techspot.com/news/113893-air-traffic-control-assisted-ai-could-arrive-soon.html",
+          "first_seen_at": "2026-09-18T12:57:00Z",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.349156,
+          "priority": 1
+        },
+        {
+          "title": "Bitdeer AI to lease 65MW data center in Johor, Malaysia",
+          "url": "https://www.datacenterdynamics.com/en/news/bitdeer-ai-to-lease-65mw-data-center-in-johor-malaysia/",
+          "first_seen_at": "2026-09-18T10:46:00Z",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.327819,
+          "priority": 1
+        },
+        {
+          "title": "Most of the world thinks AI is going to kill jobs, a new Pew survey finds",
+          "url": "https://www.techspot.com/news/113898-most-world-expects-ai-shrink-job-market-americans.html",
+          "first_seen_at": "2026-09-18T12:12:00Z",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.341674,
+          "priority": 1
+        },
+        {
+          "title": "Full speed ahead: Despite calls to slow AI down, its support structure is on the fast track",
+          "url": "https://siliconangle.com/2026/09/17/full-speed-ahead-despite-calls-to-slow-ai-down-its-support-structure-is-on-the-fast-track/",
+          "first_seen_at": "2026-09-18T03:38:59Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.266911,
+          "priority": 1
+        }
+      ]
     },
     {
       "starts_at": "2026-09-20T07:23:00Z",
       "selected": {
-        "title": "This startup believes smaller, modular data centers can solve AI's infrastructure bottleneck",
-        "url": "https://www.techspot.com/news/113897-startup-believes-smaller-modular-data-centers-can-solve.html",
-        "first_seen_at": "2026-09-18T16:28:00Z",
-        "feed": "https://www.techspot.com/backend.xml",
-        "publisher": "TechSpot",
+        "title": "AI data center builder Crusoe valued at $30.9B in $3.9B round",
+        "url": "https://siliconangle.com/2026/09/17/ai-data-center-builder-crusoe-valued-at-30-9b-in-3-9b-round/",
+        "first_seen_at": "2026-09-18T00:45:02Z",
+        "feed": "https://siliconangle.com/feed/",
+        "publisher": "SiliconANGLE",
         "coverage": 1,
-        "score": 0.324991,
+        "score": 0.206417,
         "priority": 1
-      }
+      },
+      "stories": [
+        {
+          "title": "AI data center builder Crusoe valued at $30.9B in $3.9B round",
+          "url": "https://siliconangle.com/2026/09/17/ai-data-center-builder-crusoe-valued-at-30-9b-in-3-9b-round/",
+          "first_seen_at": "2026-09-18T00:45:02Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.206417,
+          "priority": 1
+        },
+        {
+          "title": "Anthropic details practical metrics to help monitor the speed of AI development",
+          "url": "https://siliconangle.com/2026/09/17/anthropic-details-practical-metrics-to-help-monitor-the-speed-of-ai-development/",
+          "first_seen_at": "2026-09-17T23:44:57Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.200533,
+          "priority": 1
+        },
+        {
+          "title": "OpenAI launches Astra for Law, a GPT-6 configuration for legal research",
+          "url": "https://siliconangle.com/2026/09/17/openai-launches-astra-for-law-a-gpt-6-configuration-for-legal-research/",
+          "first_seen_at": "2026-09-17T23:17:25Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.197893,
+          "priority": 1
+        },
+        {
+          "title": "Google expands CC into a shared AI agent for up to six family members",
+          "url": "https://siliconangle.com/2026/09/17/google-expands-cc-into-a-shared-ai-agent-for-up-to-six-family-members/",
+          "first_seen_at": "2026-09-17T22:42:08Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.19456,
+          "priority": 1
+        },
+        {
+          "title": "Mind raises $72M to stop sensitive data leaking into AI tools",
+          "url": "https://siliconangle.com/2026/09/17/mind-raises-72m-to-stop-sensitive-data-leaking-into-ai-tools/",
+          "first_seen_at": "2026-09-17T22:17:36Z",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.192276,
+          "priority": 1
+        }
+      ]
     }
   ],
   "history": [
@@ -407,9 +622,7 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
+      "status": "not_modified"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -450,7 +663,7 @@
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "76b1115d151c39346a477f390cc8efb62a4245d2e25d99df93f33dfb046fa719"
+      "sha256": "f317707022d52651d2eeb326116edb8832367edc9a2a722bc07c10f4c94c4b4a"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -462,31 +675,31 @@
       "etag": "\"5f9c2811e64a7bab329c342764151fb2\"",
       "last_modified": "Fri, 18 Sep 2026 14:09:16 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "sha256": "f4d740d9d983ea853c018d27f585e7b6d040eedd750384ecf7bfbdcd7aefa87f"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "failures": 0,
       "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe",
-      "etag": "\"6aaeac29-a282\"",
-      "last_modified": "Sat, 19 Sep 2026 15:37:13 GMT"
+      "etag": "\"6aaebbc0-a282\"",
+      "last_modified": "Sat, 19 Sep 2026 16:43:44 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-09-19T16:37:00Z",
+      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT",
       "failures": 0,
-      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2",
-      "last_modified": "Fri, 18 Sep 2026 16:21:31 GMT"
+      "ok_at": "2026-09-19T17:05:45Z",
+      "sha256": "3aef8aab5389f1274ad7a13150e087d0145f0843fd1b16ef1779b834161a3ce2"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "failures": 0,
       "sha256": "02e674205b8374de998fd0bbc57c2152009fb1daf86bb8af087836c420caa77a",
-      "etag": "\"1789835156\"",
-      "last_modified": "Sat, 19 Sep 2026 16:25:56 GMT"
+      "etag": "\"1789836960\"",
+      "last_modified": "Sat, 19 Sep 2026 16:56:00 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "failures": 0,
       "sha256": "8a00e969b58d56cd730bb9fd27b272b1c532a696111e099883cb078bd3779ebb"
     },
@@ -494,11 +707,11 @@
       "etag": "\"ee0000357d65c75de25a4e5416971761-gzip\"",
       "last_modified": "Fri, 18 Sep 2026 20:12:59 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "sha256": "5c057ba58c21e92a5af1cb2f6d27f4f4c9270eb6c87648d0581538891375a047"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "failures": 0,
       "sha256": "4d58c03ef7a53a360fd950bb6cec908ed502c5a2d091ca6701dd94ccfed67930"
     },
@@ -506,7 +719,7 @@
       "etag": "\"81dabd12a0bf6e24c0c24d62637cc857\"",
       "last_modified": "Sat, 19 Sep 2026 05:50:57 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "sha256": "d816288250a60d927b134ad4735825d5db3b619cca34c1719e4194e22e346778"
     },
     "https://www.artificialintelligence-news.com/feed/": {
@@ -517,19 +730,19 @@
       "etag": "W/\"2d025ec46915a3edd48a32a5f27a49f4\"",
       "last_modified": "Sat, 19 Sep 2026 01:45:53 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "sha256": "4fb5f1d993544563e52c410b3b855b28a20067a43a94b69286e60d379d09a2f3"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "failures": 0,
-      "sha256": "76b1115d151c39346a477f390cc8efb62a4245d2e25d99df93f33dfb046fa719",
-      "etag": "W/\"9d81a1bd42d5aab08c341b6fb822c654\""
+      "sha256": "f317707022d52651d2eeb326116edb8832367edc9a2a722bc07c10f4c94c4b4a",
+      "etag": "W/\"47056aebdb31650071879dc5752eb406\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Fri, 18 Sep 2026 12:49:49 GMT",
       "failures": 0,
-      "ok_at": "2026-09-19T16:37:00Z",
+      "ok_at": "2026-09-19T17:05:45Z",
       "sha256": "8e595ab095c71f830adec97e698d323074537ad3f92d1e4ebd02c6bf18021b0c"
     }
   }
