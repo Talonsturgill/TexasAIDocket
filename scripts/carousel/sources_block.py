@@ -300,9 +300,80 @@ def computed_span(agg: dict) -> bool:
 # same call email_check made on the 2026-08-18 caption's missing hashtags the same day.
 SHIPPED_BEFORE_THE_RULE = {"2026-08-16"}
 
+# THE OTHER DIRECTION, ADDED 2026-09-19, AND THE ASYMMETRY COST ONE RUN TWO FINDINGS IN MIRROR
+# IMAGE IN CONSECUTIVE SCORING ROUNDS.
+#
+# `check` asked one question for thirteen months of decks: does every id the DECK prints appear in
+# the block. It never asked whether every id the BLOCK lists is one the deck prints, so a SUPERSET
+# passed.
+#
+#   round 1   a hard fail was repaired by moving frame 1 onto `c4` and frame 5 off `c17` and
+#             `c21`, and nothing re-ran the builder. The block lacked `c4`, this gate went red
+#             exactly as designed, and it took a scoring judge to run it rather than the run.
+#   round 2   that repair moved `c14` off frame 8. The block went on listing `c14` and this gate
+#             exited 0, because every printed id still resolved. An integrity judge read the
+#             block against the nine footers and found it.
+#
+# A block listing an id no frame prints is wrong in a way a reader can see. The first comment is
+# where somebody goes to turn a citation on a slide back into a document, and an id that is on no
+# slide is a receipt for a purchase nobody made. It is also the only VISIBLE evidence of the
+# larger fault underneath it, which is that the block was not rebuilt after the deck moved.
+#
+# THE COMPARISON IS AGAINST EVERY SURFACE THAT CITES, NOT AGAINST THE FRAMES ALONE. A caption may
+# legitimately carry a claim id, so `caption.txt` is read into the same set. No caption this
+# project has shipped carries one (measured across all 29 shipped decks, zero), which is exactly
+# why it is read: a gate that can only see the surface it was written against is GATE_LESSONS 39,
+# and this file has already been the subject of that entry once.
+#
+# THE MESSAGE NAMES THE DIRECTION. "The block and the deck disagree" sends the next run to the
+# wrong file, and the two directions have different cures: an absent id means rebuild the block,
+# an extra id means the block is stale.
+
+# SIX SHIPPED DECKS CARRY AN EXTRA ID, MEASURED 2026-09-19 BEFORE A LINE OF THE CHECK WAS WRITTEN,
+# across all 29 run directories under `runs/carousel/`, against `copy.json` AND against every
+# claim id in each deck's own `render_report.json` text nodes, so none of these is a frame that
+# printed an id `copy.json` failed to record:
+#
+#   2026-08-25  c23
+#   2026-08-27  c4 c5 c12 c14 c16 c18 c19
+#   2026-08-28  c1 c11 c14 c16 c20 c21 c23 c25
+#   2026-09-03  c1 c15 c17
+#   2026-09-04  c5 c10 c11 c16 c17
+#   2026-09-09  c13
+#
+# Those blocks were posted as comments under published decks. Rewriting the files here would not
+# reach a single reader; it would only make a gate green about a comment that still says what it
+# says. That is the identical argument, and the identical disposition, as `SHIPPED_BEFORE_THE_RULE`
+# one constant up, and it is deliberately a SECOND constant rather than an entry added to that one:
+# these runs did not predate the rule, they broke it, and folding them together would lose that.
+#
+# EXEMPT BY NAME, one date at a time, never a range and never a "before" comparison, so a new run
+# cannot fall into it by accident. `self_test` asserts that the newest directory under
+# `runs/carousel/` is NOT in this set, which is the assertion that stops a run under scoring
+# pressure adding its own date to make itself green. `email_check --all` runs this gate over every
+# shipped deck in CI, so without the exemption CI would be red on six artifacts this lane does not
+# own and may not amend, and the check would never have shipped at all.
+BLOCK_LISTS_AN_UNPRINTED_ID = {"2026-08-25", "2026-08-27", "2026-08-28",
+                               "2026-09-03", "2026-09-04", "2026-09-09"}
+
+
+def cited_ids(run_dir: Path, copy: dict) -> list[str]:
+    """Every claim id the run PUBLISHES outside the block: the frames, plus the caption.
+
+    The first comment is excluded on purpose, because the first comment IS the block, and reading
+    the thing under test as evidence for itself would make the reverse comparison vacuous.
+    """
+    out = list(deck_claim_ids(copy))
+    cap = run_dir / "caption.txt"
+    if cap.exists():
+        for cid in ID_LINE.findall(cap.read_text(encoding="utf-8")):
+            if cid not in out:
+                out.append(cid)
+    return sorted(out, key=lambda c: int(c[1:]))
+
 
 def check(run_dir: Path) -> list[str]:
-    """Every id the deck prints must resolve in the block on disk. This is the whole gate.
+    """Every id the deck prints must resolve in the block, and the block may list no other.
 
     THE EXISTENCE TEST COMES BEFORE THE EXEMPTION, deliberately. The exemption is keyed on the
     directory NAME, so checking it first meant any path at all ending in the exempt date passed
@@ -338,7 +409,17 @@ def check(run_dir: Path) -> list[str]:
     absent = [c for c in wanted if c not in listed]
     if absent:
         problems.append("the deck prints " + " ".join(absent) + " and the sources block does not "
-                        "list them, so a reader cannot reach the document")
+                        "list them, so a reader cannot reach the document. REBUILD THE BLOCK")
+    if run_dir.name not in BLOCK_LISTS_AN_UNPRINTED_ID:
+        cited = cited_ids(run_dir, copy)
+        extra = sorted((c for c in listed if c not in cited), key=lambda c: int(c[1:]))
+        if extra:
+            problems.append(
+                "the sources block lists " + " ".join(extra) + " and no frame and no caption "
+                "prints " + ("them" if len(extra) > 1 else "it") + ", so the block is a receipt "
+                "for a citation no reader can see. THE BLOCK IS STALE: it was built before the "
+                "deck moved. Round 2 of 2026-09-19 moved c14 off frame 8 and this gate exited 0, "
+                "because a superset satisfied the one direction it asked about")
     by_id = {c["id"]: c for c in claims}
     for cid in sorted(listed, key=lambda c: int(c[1:])):
         if cid not in by_id:
@@ -468,6 +549,59 @@ def self_test() -> int:
         probs = check(d)
         ok("an id in the block that is not a verified claim is CAUGHT",
            any("c99" in p for p in probs), str(probs))
+
+        # ---- THE OTHER DIRECTION, 2026-09-19 -----------------------------------------
+        # ROUND 2's DEFECT, REPLAYED IN ITS OWN SHAPE. The block is built while the deck prints
+        # c1..c4, then a repair takes c4 off its frame and nothing rebuilds the block. Every id
+        # the deck prints still resolves, so the check as it stood exited 0 and an integrity
+        # judge found it by reading the block against the nine footers.
+        (d / "first_comment.txt").write_text(build(d))                 # block holds c1..c4
+        ok("the freshly built block is clean in both directions", check(d) == [], str(check(d)))
+        (d / "copy.json").write_text(json.dumps(
+            {"slides": {"S1": {"claims": ["c1", "c2"]}, "S2": {"claims": ["c3"]}}}))
+        probs = check(d)
+        ok("a block listing an id NO frame prints is CAUGHT", any("c4" in p for p in probs),
+           str(probs))
+        ok("...and the message names the direction, because the two cures differ",
+           any("STALE" in p for p in probs), str(probs))
+        ok("...and the old one-directional check exited 0 on exactly this input",
+           all(c in set(ID_LINE.findall((d / 'first_comment.txt').read_text()))
+               for c in deck_claim_ids(json.loads((d / 'copy.json').read_text()))))
+
+        # A CAPTION MAY CITE. The comparison is against every surface that cites and not against
+        # the frames alone, so an id the caption carries is not an extra.
+        (d / "caption.txt").write_text("A line about the notice. c4\n")
+        ok("...while an id the CAPTION cites is legitimately in the block", check(d) == [],
+           str(check(d)))
+        (d / "caption.txt").unlink()
+        ok("...and removing the caption makes it a finding again", check(d) != [])
+
+        # THE SECOND EXEMPTION IS SIX NAMED DATES AND A RUN CANNOT JOIN IT.
+        ok("the stale-block exemption names exactly the six decks measured on 2026-09-19",
+           BLOCK_LISTS_AN_UNPRINTED_ID == {"2026-08-25", "2026-08-27", "2026-08-28",
+                                           "2026-09-03", "2026-09-04", "2026-09-09"},
+           str(BLOCK_LISTS_AN_UNPRINTED_ID))
+        ok("...and the two exemptions stay apart, because one predates the rule and six broke it",
+           not (SHIPPED_BEFORE_THE_RULE & BLOCK_LISTS_AN_UNPRINTED_ID))
+        # THE ASSERTION THAT STOPS A RUN EXEMPTING ITSELF. A date added to the set above to make
+        # today green turns this red in the same commit.
+        shipped = sorted(p.name for p in (REPO_ROOT / "runs" / "carousel").iterdir()
+                         if p.is_dir() and (p / "first_comment.txt").exists())
+        ok("the newest shipped deck is not in either exemption, so no run can exempt itself",
+           bool(shipped) and shipped[-1] not in (SHIPPED_BEFORE_THE_RULE
+                                                 | BLOCK_LISTS_AN_UNPRINTED_ID),
+           str(shipped[-1:]))
+        # AND THE EXEMPTION IS MEASURED AGAINST THE ARTIFACTS RATHER THAN TRUSTED. An exempt deck
+        # that no longer needs the exemption is a line to delete, and one that was exempted on a
+        # reading nobody checked is the hole this whole file is a record of.
+        for name in sorted(BLOCK_LISTS_AN_UNPRINTED_ID):
+            rd = REPO_ROOT / "runs" / "carousel" / name
+            if not (rd / "copy.json").exists() or not (rd / "first_comment.txt").exists():
+                continue
+            cp = json.loads((rd / "copy.json").read_text(encoding="utf-8"))
+            listed_ = set(ID_LINE.findall((rd / "first_comment.txt").read_text(encoding="utf-8")))
+            ok(f"...and {name} really does list an id no surface prints",
+               bool(listed_ - set(cited_ids(rd, cp))), "the exemption is stale, delete it")
 
         # THE EXEMPTION IS ONE NAMED DATE, and a run outside it still fails.
         ok("the exemption names exactly the one run that predates the rule",

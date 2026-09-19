@@ -85,6 +85,56 @@ def _hashtags(text: str) -> list:
     return HASHTAG.findall(re.sub(r"https?://\S+", " ", text))
 
 
+# THE DECK HAS TO FIT THROUGH THE DOOR IT IS POSTED THROUGH. 2026-09-19.
+#
+# THE MEASUREMENT. Carousel no. 29's vector PDF shipped at 61,765,403 bytes. Every deck before it,
+# all 28 of them, sits between 6 and 21.6 MB, and the median is near 10. The cause was diagnosed
+# the same day and is not in dispute: a full halftone across all nine frames, about 5 MB from a
+# coarser screen cell, about 9 MB from film grain and dither, and the rest residual halftone.
+#
+# NOTHING IN THE SUITE MEASURED IT. This file checks that `carousel.pdf` EXISTS and that the email
+# LINKS it, which is two thirds of "the owner can post this" and silently not the third. A run is
+# free to quadruple the file with a render decision, and the first thing that would have reported
+# it is the upload failing in front of the one human this routine has.
+#
+# THE THRESHOLD IS NOT OURS AND IT CANNOT CREEP. LinkedIn's own help page for document posts says,
+# in these words: "The file size cannot exceed 100MB and 300 pages." That is the door. A ceiling
+# measured off our own decks would be a number this project typed, and worse, re-deriving it from
+# a corpus it had already tightened is the ratchet `GATE_LESSONS.md` names under "The rule for
+# setting a threshold". This one was published by somebody else, for the surface the file is
+# actually posted to, and it is checked rather than asserted:
+#
+#   https://www.linkedin.com/help/linkedin/answer/a518909   read 2026-09-19
+#
+# MB HERE IS 10^6, NOT 2^20, and the difference is 4.9 MB of headroom at this limit. The platform
+# writes "100MB" beside a page count and states no base, so the interpretation that REFUSES MORE
+# is the one taken: a gate that guesses the generous reading and is wrong fails in front of the
+# owner at upload time, which is the failure this exists to prevent.
+LINKEDIN_DOCUMENT_BYTES = 100 * 1000 * 1000
+LINKEDIN_DOCUMENT_PAGES = 300
+
+
+def pdf_postable(run: str, pdf: Path) -> list:
+    """Why LinkedIn would refuse this document, or an empty list.
+
+    THE SIZE IS PRINTED ON SUCCESS AS WELL AS ON FAILURE, by the caller's report line, because a
+    gate that only speaks when it fails cannot show a run walking towards a cliff. Carousel no. 29
+    used 62 percent of the platform's allowance and every gate in the suite was silent, which is
+    the state this is here to end. `text_contrast.mjs` prints the count it declined for the same
+    reason: a run that covered almost nothing must not read as a run that found nothing.
+    """
+    out = []
+    size = pdf.stat().st_size
+    if size > LINKEDIN_DOCUMENT_BYTES:
+        out.append(
+            f"{run}: carousel.pdf is {size:,} bytes, over the {LINKEDIN_DOCUMENT_BYTES:,} "
+            f"LinkedIn states as the limit for a document post. The owner cannot upload this, so "
+            f"the email is not postable whatever else it says. The lever with the most give is "
+            f"the halftone: carousel no. 29 measured 61.8 MB against a 6 to 21.6 MB corpus and "
+            f"the residual was the full screen across all nine frames")
+    return out
+
+
 def check_run(d: Path) -> list:
     """Every way this run's email fails to be a postable email. Empty means clean."""
     bad = []
@@ -153,8 +203,11 @@ def check_run(d: Path) -> list:
     pdf = d / "carousel.pdf"
     if not pdf.exists():
         bad.append(f"{run}: carousel.pdf is missing, so there is nothing to upload")
-    elif "carousel.pdf" not in body:
-        bad.append(f"{run}: the email does not link the PDF, which is the thing being posted")
+    else:
+        if "carousel.pdf" not in body:
+            bad.append(f"{run}: the email does not link the PDF, which is the thing being posted")
+        for p_ in pdf_postable(run, pdf):
+            bad.append(p_)
 
     thumbs = sorted(x for x in (d / "thumbs").glob("slide-*-thumb.*")
                     if x.suffix.lower() in THUMB_EXTS)
@@ -281,6 +334,36 @@ def self_test() -> int:
         ok("a thumbnail the email misses is caught",
            any("shipped but is not in the email" in b for b in bad), str(bad))
 
+    # ---- THE DOOR THE DECK IS POSTED THROUGH, 2026-09-19 -------------------------------
+    # A SPARSE FILE, because the assertion is about `st_size` and writing 100 MB of zeroes to
+    # prove it would put a hundred megabytes of scratch through every CI run of this suite.
+    # `os.truncate` gives the size without the bytes, which is what the check reads.
+    import os                                                        # noqa: PLC0415
+    with tempfile.TemporaryDirectory() as t:
+        d = build(t)
+        os.truncate(d / "carousel.pdf", LINKEDIN_DOCUMENT_BYTES + 1)
+        bad = check_run(d)
+        ok("a PDF over LinkedIn's stated document limit is CAUGHT",
+           any("over the" in b and "LinkedIn" in b for b in bad), str(bad))
+        os.truncate(d / "carousel.pdf", LINKEDIN_DOCUMENT_BYTES)
+        ok("...and a PDF exactly at the limit passes, because the platform says CANNOT EXCEED",
+           not check_run(d), str(check_run(d)))
+    # THE LIMIT IS THE PLATFORM'S AND NOT OURS. If this ever gets edited to a number measured off
+    # our own decks it stops being external, and an external threshold is the only kind that
+    # cannot creep. The page it came from is in the comment above the constant.
+    ok("the limit is LinkedIn's published figure in decimal MB, not a corpus measurement",
+       LINKEDIN_DOCUMENT_BYTES == 100 * 1000 * 1000 and LINKEDIN_DOCUMENT_PAGES == 300,
+       str(LINKEDIN_DOCUMENT_BYTES))
+    # AND THE RUN THAT PROMPTED IT IS STILL UNDER THE LIMIT, which is the honest statement of
+    # what this gate does and does not claim. It would not have failed carousel no. 29. What it
+    # does is make the headroom visible, on every run, before the cliff rather than at it.
+    _29 = RUNS / "2026-09-19" / "carousel.pdf"
+    if _29.exists():
+        ok("carousel no. 29, the deck that prompted this, is reported as postable and is large",
+           not pdf_postable("2026-09-19", _29)
+           and _29.stat().st_size > 3 * LINKEDIN_DOCUMENT_BYTES // 10,
+           f"{_29.stat().st_size:,}")
+
     if failures:
         print(f"\nemail_check self-test: {failures} FAILED", file=sys.stderr)
         return 1
@@ -309,6 +392,18 @@ def main() -> int:
             print(f"email_check: {d} is not a run directory", file=sys.stderr)
             return 1
         bad += check_run(d)
+
+    # THE HEADROOM IS PRINTED WHETHER OR NOT ANYTHING FAILED, and it is the half of this check
+    # that would have spoken on 2026-09-19. That deck was postable at 61.8 MB and it was four
+    # times the previous largest, so a pass/fail line alone says nothing about a run walking at
+    # the door. Newest run first, because that is the one a reader is about to act on.
+    for d in sorted(targets, key=lambda p: p.name, reverse=True)[:1]:
+        p_ = d / "carousel.pdf"
+        if p_.exists():
+            sz = p_.stat().st_size
+            print(f"  pdf   {d.name}: carousel.pdf is {sz / 1e6:.1f} MB, "
+                  f"{sz / LINKEDIN_DOCUMENT_BYTES:.0%} of the {LINKEDIN_DOCUMENT_BYTES / 1e6:.0f} "
+                  f"MB LinkedIn states as its document limit")
 
     for line in bad:
         print(f"  {line}")

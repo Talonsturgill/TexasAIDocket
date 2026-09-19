@@ -43,6 +43,7 @@ to 320 and turned an unchanged 2026-08-16 deck red. So each gate is registered w
 from __future__ import annotations
 
 import argparse
+import html
 import io
 import json
 import contextlib
@@ -278,7 +279,28 @@ def g_shipped_fresh(d: Path):
                 problems.append(f"copy.json describes {key} and {src.name} is not in slides/")
                 continue
             body = src.read_text(encoding="utf-8", errors="replace")
-            flat = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body))
+            # AN ENTITY IS MARKUP AND THE PROBE IS DISPLAY COPY. 2026-09-19.
+            #
+            # THE DEFECT. This flattened tags and collapsed whitespace and left the literal
+            # `&nbsp;` standing in the text. Frame 3 of carousel no. 29 sets its letterhead as
+            # `OFFICE OF THE TEXAS GOVERNOR &nbsp; SEPTEMBER 14TH, 2026`, `copy.json` records the
+            # string a reader sees with one space, and the gate reported that the shipped source
+            # was not the deck beside it. The source WAS the deck beside it. CI went red on a
+            # correct artifact, which is the most expensive shape a gate failure takes, because
+            # the obvious cure is to put markup into the copy record and that would make the
+            # record describe the HTML rather than the page.
+            #
+            # This gate's own docstring says its subject is "every display string `copy.json`
+            # records is in the slide source of the frame it names", and a display string is what
+            # the browser renders. `&nbsp;`, `&amp;` and every numeric entity are the same trap,
+            # so the fix is the general one rather than a special case for one entity.
+            #
+            # THE ORDER MATTERS AND GETTING IT BACKWARDS INVENTS TAGS. Unescaping BEFORE the tag
+            # strip would turn an escaped `&lt;div&gt;` in visible copy into `<div>` and then
+            # delete it, so a frame that legitimately displays angle brackets would lose them.
+            # Decode AFTER the tags are gone and BEFORE the whitespace collapse: U+00A0 is matched
+            # by `\s` in str mode, so the collapse does the rest.
+            flat = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body)))
             for want in (blk.get("strings") or []):
                 probe = re.sub(r"\s+", " ", str(want)).strip()
                 if len(probe) >= 12 and probe not in flat:
@@ -911,8 +933,61 @@ def g_bleed_witness(d: Path):
     return probs
 
 
+# THE CRAWL BOUNDARY, WIRED HERE ON 2026-09-19 BECAUSE THE LANE THAT WROTE IT CANNOT WIRE IT.
+#
+# `scripts/shared/crawl_boundary.py` reads this project's disallow list out of
+# `SOURCES_REGISTRY.md`, which is `human` owned on purpose: an unattended run that can edit its own
+# boundary does not have one. It was written after a run's own research helper carried the boundary
+# as a tuple of HOSTS and fetched a `capitol.texas.gov/TLODOCS/` url, which is a disallowed PATH on
+# an allowed host.
+#
+# WHAT THIS ADAPTER ASKS, AND IT IS A QUESTION ABOUT PUBLISHED WORK RATHER THAN ABOUT THE PARSER.
+# Every claim a shipped deck stands on names a url. A deck citing a url inside the boundary has
+# published evidence this project said it would not fetch, which is a promise broken on the one
+# surface a sceptic checks. That is exactly the kind of fact this file exists to find, and nothing
+# else in the suite could see it: `claims_check` proves a claim is fetched and quoted and has no
+# opinion about where from.
+#
+# AND IT IS ALSO THE WIRING. `gate_wiring` accepts three routes and the only one inside this lane
+# is a registry entry here, so a gate the upgrade actor writes is otherwise structurally unable to
+# be connected. The alternative was an import for its own sake, which is the mention-is-not-a-
+# reference fault GATE_LESSONS 14 is about, wearing the fix's clothes.
+#
+# A PARSE THAT CANNOT RUN IS A FAILURE, NEVER AN EMPTY BOUNDARY. `rules()` raises rather than
+# returning a short list, and that exception is allowed to reach the sweep's `could not run` note
+# rather than being swallowed into a clean result.
+#
+# CURRENT SCOPE, AND THE THREE DECKS IT HOLDS BACK ARE A REAL FINDING RATHER THAN A WAIVER.
+# Measured 2026-09-19 over every shipped deck: 2026-08-16 cites `lrl.texas.gov` on c28, c29 and
+# c31, and 2026-08-21 cites it on c3 through c8, both BEFORE that host was decided off limits on
+# August 25th. 2026-09-07 cites `docs.tacc.utexas.edu` on eighteen claims, which is a SUBDOMAIN of
+# the host the registry names, and whether the registry's domain-wide statement reaches a
+# subdomain with its own robots.txt is a question for the maintainer who owns that file rather
+# than for this lane. All three are printed as notes under their own dates, so nothing is hidden,
+# and none of them can be repaired from here: those artifacts are published and `daily` owned.
+def g_crawl_boundary(d: Path):
+    sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
+    import crawl_boundary as m
+    raw = _load(d / "claims.json")
+    rows = raw.get("claims") if isinstance(raw, dict) else raw
+    if not isinstance(rows, list) or not rows:
+        return None
+    b = m.rules()
+    out, seen = [], set()
+    for c in rows:
+        if not isinstance(c, dict):
+            continue
+        url = str(c.get("source_url") or c.get("url") or "")
+        why = m.forbidden(url, b) if url else None
+        if why and url not in seen:
+            seen.add(url)
+            out.append(f"{c.get('id', '?')} cites {url[:90]}, and {why[:150]}")
+    return out
+
+
 GATES = [
     ("copy sync", g_copy_sync, HISTORY),
+    ("crawl boundary", g_crawl_boundary, CURRENT),
     ("quotations", g_quotations, HISTORY),
     # CURRENT, not HISTORY, and the reason is the lesson this whole file is built on.
     # aggregate_check gained the `quoted_from` route AFTER 2026-08-18 shipped. That deck
@@ -1132,6 +1207,62 @@ def self_test() -> int:
             encoding="utf-8")
         ok("a deck recording no threshold falls back to the rubric", bool(g_completion(_d)),
            "an absent threshold must not read as no bar at all")
+
+    # ---- AN ENTITY IS MARKUP, AND THE DECODE MAY NOT BECOME A WAY TO PASS. 2026-09-19 --------
+    #
+    # The real artifact, replayed: frame 3 of carousel no. 29 sets its letterhead with `&nbsp;`
+    # between the two halves and `copy.json` records the string a reader sees. The gate reported
+    # that the shipped source was not the deck beside it and CI went red on a correct artifact.
+    #
+    # The adversarial half is the one that matters. A decode that quietly widened the comparison
+    # would be a loosening, so the case below proves a string the frame genuinely does NOT carry
+    # still fails, with the SAME entity sitting in the same place. Delete the `html.unescape` call
+    # in `g_shipped_fresh` and the first assertion goes red; delete the substring test instead of
+    # decoding and the second one does.
+    with _tempfile.TemporaryDirectory() as _t:
+        _d = Path(_t) / "2026-09-19"
+        (_d / "slides").mkdir(parents=True)
+        (_d / "copy.json").write_text(_json.dumps({"slides": {"S3": {
+            "n": 3, "strings": ["OFFICE OF THE TEXAS GOVERNOR SEPTEMBER 14TH, 2026"]}}}),
+            encoding="utf-8")
+        (_d / "slides" / "slide-03.html").write_text(
+            '<p class="sheethead">OFFICE OF THE TEXAS GOVERNOR &nbsp; SEPTEMBER 14TH, 2026</p>',
+            encoding="utf-8")
+        ok("a display string the frame prints through `&nbsp;` is found, not reported missing",
+           not g_shipped_fresh(_d), str(g_shipped_fresh(_d)))
+        (_d / "slides" / "slide-03.html").write_text(
+            '<p class="sheethead">OFFICE OF THE TEXAS GOVERNOR &nbsp; SEPTEMBER 41ST, 2026</p>',
+            encoding="utf-8")
+        ok("...and a string the frame does NOT carry still fails, with the entity still there",
+           bool(g_shipped_fresh(_d)),
+           "the entity decode became a way to pass, which is a loosening rather than a repair")
+        # THE ORDER GUARD. `copy.json` records what a reader SEES, so a frame displaying angle
+        # brackets records them bare and the html escapes them. Unescaping before the tag strip
+        # would turn `&lt;section&gt;` into `<section>` and then delete it as markup, and the
+        # frame would be reported as not carrying copy it plainly displays.
+        (_d / "copy.json").write_text(_json.dumps({"slides": {"S3": {
+            "n": 3, "strings": ["the tag <section> is shown to the reader"]}}}),
+            encoding="utf-8")
+        (_d / "slides" / "slide-03.html").write_text(
+            "<p>the tag &lt;section&gt; is shown to the reader</p>", encoding="utf-8")
+        ok("...and an escaped angle bracket a frame DISPLAYS is not eaten as a tag",
+           not g_shipped_fresh(_d), str(g_shipped_fresh(_d)))
+
+    # ---- THE CRAWL BOUNDARY ADAPTER HAS TO BITE, 2026-09-19 ---------------------------------
+    #
+    # The registry is read live, so the assertion names the defect rather than a host: a claim
+    # citing the disallowed PATH on the allowed host that a run's helper actually fetched.
+    with _tempfile.TemporaryDirectory() as _t:
+        _d = Path(_t) / "2026-09-19"
+        _d.mkdir()
+        (_d / "claims.json").write_text(_json.dumps({"claims": [
+            {"id": "c1", "source_url": "https://capitol.texas.gov/TLODOCS/89R/HB1.pdf"},
+            {"id": "c2", "source_url": "https://www.ercot.com/services/notices/x"}]}),
+            encoding="utf-8")
+        probs = g_crawl_boundary(_d)
+        ok("a claim citing the 2026-09-19 disallowed path is CAUGHT",
+           probs and any("c1" in p for p in probs), str(probs))
+        ok("...and the permitted claim beside it is not", probs and len(probs) == 1, str(probs))
 
     # EVERY GATE MUST BE REACHABLE. The failure this guards against is a registry entry whose
     # loader silently returns None on every run, which reports clean forever. Same shape as
