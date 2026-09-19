@@ -48,9 +48,18 @@ const executable=process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser=await chromium.launch(fs.existsSync(executable)?{executablePath:executable}:{});
 const feed='https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json*';
 let checked=0;
-async function pageFor(state,width=390,payload=null) {
+const activeLink = page => page.locator('.news-slide[aria-hidden="false"] .news-link');
+async function pageFor(state,width=390,payload=null,realTime=false) {
   const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
-  await page.clock.install({time:new Date(state.checked_at)});
+  // Freeze only source-date selection. Cadence and compositor checks use real timers.
+  if(realTime) await page.addInitScript(fixed=>{
+    const OriginalDate=Date;
+    window.Date=class extends OriginalDate {
+      constructor(...args) { super(...(args.length?args:[fixed])); }
+      static now() { return fixed; }
+    };
+  },Date.parse(state.checked_at));
+  else await page.clock.install({time:new Date(state.checked_at)});
   await page.route(feed,route=>payload ? route.fulfill({json:payload,headers:{'access-control-allow-origin':'*'}}) : route.abort());
   return page;
 }
@@ -77,17 +86,22 @@ try {
       height:el.getBoundingClientRect().height,overflow:document.documentElement.scrollWidth>innerWidth}));
     assert.ok(size.inside && size.height>=44 && size.right<=width && !size.overflow,JSON.stringify({width,...size}));
     if(state.selected) {
-      assert.equal(await chip.getAttribute('href'),state.selected.url);
-      assert.equal(await chip.locator('.news-source').textContent(),state.selected.publisher);
-      assert.equal(await chip.locator('.news-title').textContent(),state.selected.title);
+      assert.equal(await activeLink(page).getAttribute('href'),state.selected.url);
+      assert.equal(await activeLink(page).locator('.news-source').textContent(),state.selected.publisher);
+      assert.equal(await activeLink(page).locator('.news-title').textContent(),state.selected.title);
       assert.equal(await chip.locator('.news-label').textContent(),'Trending');
-      assert.match(await chip.locator('.news-date').textContent(),/^[A-Z][a-z]+ \d{1,2}(st|nd|rd|th), \d{4}$/);
-      await chip.focus();
-      assert.equal(await chip.evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
+      assert.match(await activeLink(page).locator('.news-date').textContent(),/^[A-Z][a-z]+ \d{1,2}(st|nd|rd|th), \d{4}$/);
+      await activeLink(page).focus();
+      assert.equal(await activeLink(page).evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
+      await activeLink(page).evaluate(el=>el.blur());
+      if(await chip.locator('.news-controls').isVisible()) {
+        await chip.locator('.news-toggle').click();
+        await page.mouse.move(0,0);
+      }
       const before=await page.locator('.hero h1').evaluate(el=>el.getBoundingClientRect().top);
       await page.clock.fastForward(37*3600000);
       const retained=(state.editions?.at(-1)?.selected || state.selected).url;
-      assert.equal(await chip.getAttribute('href'),retained,'a missed refresh must use the reserve queue, then keep its dated last headline');
+      assert.equal(await activeLink(page).getAttribute('href'),retained,'a missed refresh must use the reserve queue, then keep its dated last headline');
       assert.equal(await chip.locator('.news-label').textContent(),'Recent');
       const after=await page.locator('.hero h1').evaluate(el=>el.getBoundingClientRect().top);
       // Aging the same headline must not shift the page. A different queued headline can
@@ -98,12 +112,12 @@ try {
         el.getBoundingClientRect().height>=44 && document.documentElement.scrollWidth<=innerWidth));
       await page.reload();
       await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
-      assert.equal(await chip.getAttribute('href'),retained,'cached HTML must retain the last scheduled story');
+      assert.equal(await activeLink(page).getAttribute('href'),retained,'cached HTML must retain the last scheduled story');
       await page.clock.fastForward(8*24*3600000);
-      assert.equal(await chip.getAttribute('href'),'/articles/','week-old data is not passed off as fresh news');
+      assert.equal(await activeLink(page).getAttribute('href'),'/articles/','week-old data is not passed off as fresh news');
     } else {
       assert.equal(await chip.getAttribute('data-news-status'),'empty');
-      assert.equal(await chip.getAttribute('href'),'/articles/');
+      assert.equal(await activeLink(page).getAttribute('href'),'/articles/');
     }
     assert.deepEqual(errors,[]);
     await page.close();checked++;
@@ -132,12 +146,12 @@ try {
   for(const initial of ['current','empty']) {
     const page=await pageFor(base,390,fresh);
     await loaded(page,`/__news_${initial}.html`);
-    assert.equal(await page.locator('.news-title').textContent(),fresh.selected.title,'fresh data must replace old or empty HTML');
+    assert.equal(await activeLink(page).locator('.news-title').textContent(),fresh.selected.title,'fresh data must replace old or empty HTML');
     await page.unroute(feed);
     await page.route(feed,route=>route.abort());
     await page.reload();
     await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
-    assert.equal(await page.locator('.news-title').textContent(),fresh.selected.title,'offline reload retains last successful data');
+    assert.equal(await activeLink(page).locator('.news-title').textContent(),fresh.selected.title,'offline reload retains last successful data');
     await page.close();checked++;
   }
   const badStates=[
@@ -156,7 +170,7 @@ try {
   for(const bad of badStates) {
     const page=await pageFor(base,390,bad);
     await loaded(page,'/__news_current.html');
-    assert.equal(await page.locator('.news-title').textContent(),base.selected.title,'invalid or older data must not replace a good headline');
+    assert.equal(await activeLink(page).locator('.news-title').textContent(),base.selected.title,'invalid or older data must not replace a good headline');
     await page.close();checked++;
   }
   const offTopic=badStates[badStates.length-2];
@@ -164,9 +178,9 @@ try {
     const page=await pageFor(base,390,offTopic);
     await page.addInitScript(data=>localStorage.setItem('texas-ai-news-v2',JSON.stringify(data)),offTopic);
     await loaded(page,`/__news_${initial}.html`);
-    assert.notEqual(await page.locator('.news-title').textContent(),offTopic.selected.title,
+    assert.notEqual(await activeLink(page).locator('.news-title').textContent(),offTopic.selected.title,
       'an off-topic cached story and live response must not override relevant reporting');
-    assert.equal(await page.locator('.news-chip').getAttribute('href'),initial==='current'?base.selected.url:'/articles/');
+    assert.equal(await activeLink(page).getAttribute('href'),initial==='current'?base.selected.url:'/articles/');
     await page.close();checked++;
   }
   // An unchanged feed and a complete network outage must still change what readers see
@@ -175,17 +189,17 @@ try {
     for(const width of [1440,390]) {
       const page=await pageFor(state,width,state);
       await loaded(page,'/');
-      const initial=await page.locator('.news-chip').getAttribute('href');
+      const initial=await activeLink(page).getAttribute('href');
       await page.unroute(feed);
       await page.route(feed,route=>route.abort());
       for(const edition of state.editions.slice(1)) {
         const delta=Date.parse(edition.starts_at)-await page.evaluate(()=>Date.now())+100;
         await page.clock.fastForward(delta);
-        assert.equal(await page.locator('.news-chip').getAttribute('href'),edition.selected.url);
+        assert.equal(await activeLink(page).getAttribute('href'),edition.selected.url);
         assert.notEqual(edition.selected.url,initial);
         await page.reload();
         await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
-        assert.equal(await page.locator('.news-chip').getAttribute('href'),edition.selected.url,'reload retains current edition');
+        assert.equal(await activeLink(page).getAttribute('href'),edition.selected.url,'reload retains current edition');
         assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
       }
       await page.close();checked++;
@@ -200,6 +214,128 @@ try {
       const page=await pageFor(state,390,bad);
       await loaded(page,'/');
       assert.equal(await page.locator('.news-chip').getAttribute('data-checked-at'),state.checked_at,'invalid reserve must be rejected');
+      await page.close();checked++;
+    }
+  }
+  if(state.carousel_version===1) {
+    for(const width of [1440,390]) {
+      const page=await pageFor(state,width,state,true);
+      await page.emulateMedia({reducedMotion:'no-preference',colorScheme:width===1440?'light':'dark'});
+      let requests=0;
+      await page.unroute(feed);
+      await page.route(feed,route=>{requests++;return route.fulfill({json:state,headers:{'access-control-allow-origin':'*'}});});
+      await loaded(page,'/');
+      const chip=page.locator('.news-chip');
+      const stories=state.editions[0].stories;
+      assert.equal(await chip.getAttribute('data-news-cadence'),'5000');
+      assert.equal(await chip.locator('.news-slide').count(),stories.length);
+      assert.equal(stories.length,5,'release seed must demonstrate all five stories');
+      const height=(await chip.boundingBox()).height;
+      let last=await activeLink(page).getAttribute('href'), changedAt=null;
+      const seen=new Set([last]);
+      for(let i=0;i<stories.length;i++) {
+        await page.waitForFunction(previous=>document.querySelector('.news-slide[aria-hidden="false"] .news-link').href!==previous,last,{timeout:7000});
+        const time=await page.evaluate(()=>performance.now());
+        if(changedAt!==null) assert.ok(Math.abs(time-changedAt-5000)<650,`cadence ${time-changedAt}ms`);
+        changedAt=time;
+        last=await activeLink(page).getAttribute('href');seen.add(last);
+        const story=stories.find(s=>s.url===last);
+        assert.ok(story,'only an edition member may be shown');
+        assert.equal(await activeLink(page).locator('.news-title').textContent(),story.title);
+        assert.equal(await activeLink(page).locator('.news-source').textContent(),story.publisher);
+        assert.equal(await activeLink(page).locator('.news-date').getAttribute('datetime'),story.first_seen_at);
+        assert.ok(Math.abs((await chip.boundingBox()).height-height)<1,'headline rotation must not move the page');
+        assert.equal(await chip.locator('.news-slide:not([inert])').count(),1,'only the active link belongs in keyboard navigation');
+      }
+      assert.equal(seen.size,5);
+      assert.equal(requests,1,'headline rotation must make no additional feed or publisher requests');
+      await page.clock.install({time:new Date(state.checked_at)});
+      await chip.hover();
+      last=await activeLink(page).getAttribute('href');
+      await page.clock.fastForward(16000);
+      assert.equal(await activeLink(page).getAttribute('href'),last,'hover freezes the visible story');
+      await chip.locator('.news-next').click();
+      const next=await activeLink(page).getAttribute('href');
+      assert.notEqual(next,last);
+      assert.equal(await chip.locator('.news-toggle').getAttribute('aria-label'),'Play headlines');
+      await page.mouse.move(0,0);
+      await page.clock.fastForward(16000);
+      assert.equal(await activeLink(page).getAttribute('href'),next,'manual browsing stays paused');
+      assert.equal(await chip.locator('.news-slides').getAttribute('aria-live'),'polite');
+      await chip.locator('.news-prev').click();
+      assert.equal(await activeLink(page).getAttribute('href'),last);
+      await activeLink(page).focus();
+      await page.mouse.move(0,0);
+      await page.clock.fastForward(16000);
+      assert.equal(await activeLink(page).getAttribute('href'),last,'keyboard focus freezes the link');
+      // Crossing an edition while a reader has paused must not replace their active link.
+      const following=state.editions[1];
+      await page.clock.fastForward(Date.parse(following.starts_at)-await page.evaluate(()=>Date.now())+100);
+      assert.equal(await activeLink(page).getAttribute('href'),last);
+      await chip.locator('.news-next').click();
+      assert.equal(await activeLink(page).getAttribute('href'),following.stories[0].url,'manual navigation safely installs a pending edition');
+      assert.equal(await chip.locator('.news-slide').count(),following.stories.length);
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      await page.close();checked++;
+    }
+    {
+      const page=await pageFor(state,390,state);
+      await loaded(page,'/');
+      const chip=page.locator('.news-chip');
+      const first=await activeLink(page).getAttribute('href');
+      await page.clock.fastForward(16000);
+      assert.equal(await activeLink(page).getAttribute('href'),first,'reduced motion starts paused');
+      assert.equal(await chip.locator('.news-toggle').getAttribute('aria-label'),'Play headlines');
+      await chip.locator('.news-toggle').click();
+      await page.mouse.move(0,0);
+      await page.clock.runFor(4000);
+      assert.equal(await activeLink(page).getAttribute('href'),first,'headlines must not advance before the five-second interval');
+      await page.clock.runFor(1100);
+      const second=await activeLink(page).getAttribute('href');
+      assert.notEqual(second,first,'explicit play can rotate without animation');
+      await page.evaluate(()=>{
+        Object.defineProperty(document,'hidden',{configurable:true,value:true});
+        document.dispatchEvent(new Event('visibilitychange'));
+      });
+      await page.clock.fastForward(16000);
+      assert.equal(await activeLink(page).getAttribute('href'),second,'background tabs do not rotate');
+      await page.evaluate(()=>{
+        Object.defineProperty(document,'hidden',{configurable:true,value:false});
+        document.dispatchEvent(new Event('visibilitychange'));
+      });
+      await page.clock.runFor(5001);
+      assert.notEqual(await activeLink(page).getAttribute('href'),second);
+      await page.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));
+      await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsPlaying==='false');
+      const offscreen=await activeLink(page).getAttribute('href');
+      await page.clock.fastForward(16000);
+      assert.equal(await activeLink(page).getAttribute('href'),offscreen,'offscreen headlines do not rotate');
+      await chip.scrollIntoViewIfNeeded();
+      await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsPlaying==='true');
+      await chip.locator('.news-toggle').click();
+      assert.equal(await chip.locator('.news-toggle').getAttribute('aria-label'),'Play headlines','pointer click really pauses an autoplaying carousel');
+      await chip.locator('.news-toggle').click();
+      await page.mouse.move(0,0);
+      await activeLink(page).dispatchEvent('pointerdown',{pointerType:'touch'});
+      const pressed=await activeLink(page).getAttribute('href');
+      await page.clock.fastForward(16000);
+      assert.equal(await activeLink(page).getAttribute('href'),pressed,'touch presses freeze the destination');
+      await page.close();checked++;
+    }
+    for(const mutation of ['irrelevant','unsafe','duplicate','empty','oversized','missing-version','legacy-version']) {
+      const bad=structuredClone(state);
+      bad.checked_at=new Date(Date.parse(state.checked_at)+60000).toISOString();
+      const stories=bad.editions[0].stories;
+      if(mutation==='irrelevant') stories[2].title='A new chapter for MIT Reads';
+      if(mutation==='unsafe') stories[2].url='javascript:alert(1)';
+      if(mutation==='duplicate') stories[2]=structuredClone(stories[1]);
+      if(mutation==='empty') stories.length=0;
+      if(mutation==='oversized') stories.push(structuredClone(stories[1]));
+      if(mutation==='missing-version') delete bad.carousel_version;
+      if(mutation==='legacy-version') delete bad.rotation_version;
+      const page=await pageFor(state,390,bad);
+      await loaded(page,'/');
+      assert.equal(await page.locator('.news-chip').getAttribute('data-checked-at'),state.checked_at,'every supporting story must be validated');
       await page.close();checked++;
     }
   }

@@ -39,6 +39,7 @@ MAX_CHECK_AGE = dt.timedelta(hours=18)
 GLOBAL_GROUPS = frozenset(CONFIG.get('global_groups', []))
 FIRST_PARTY_GROUPS = frozenset(CONFIG.get('first_party_groups', []))
 EDITION_LENGTH = dt.timedelta(hours=6)
+STORIES_PER_EDITION = 5
 # Matches the existing 01:23, 07:23, 13:23, 19:23 UTC collection schedule.
 EDITION_ANCHOR = dt.datetime(1970, 1, 1, 1, 23, tzinfo=UTC)
 UA = 'TexasAIDocket/1.0 (+https://texasaidocket.com)'
@@ -250,7 +251,53 @@ def rotation(articles: list[dict], now: dt.datetime, previous: dict) -> dict:
             break
         editions.append({'starts_at': stamp(begins), 'selected': chosen})
         used.append({'url': chosen['url'], 'title': chosen['title'], 'shown_at': stamp(begins)})
-    return {'rotation_version': 1, 'editions': editions, 'history': history}
+    # Keep the single-story schedule readable by already-open older homepages. Each
+    # edition now also carries a bounded carousel. Reserve leads stay distinct even
+    # when a quiet news day requires reusing some supporting stories.
+    seen = [story for entry in old_editions if instant(entry['starts_at']) <= now
+            for story in entry.get('stories', [entry['selected']])]
+    scheduled = []
+    for position, entry in enumerate(editions):
+        at = max(now, instant(entry['starts_at']))
+        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < TRENDING_AGE]
+        if position and any(entry['selected']['url'] == old['url'] or related(entry['selected'], old) for old in scheduled):
+            # Filling the current batch takes priority over a speculative future lead.
+            # Move that future lead to an unused subject whenever the pool allows it.
+            alternatives = [row for row in candidates if not any(
+                row['url'] == old['url'] or related(row, old) for old in scheduled) and not any(
+                row['url'] == other['selected']['url'] or related(row, other['selected'])
+                for other in editions if other is not entry) and not any(
+                (row['url'] == old['url'] or related(row, old)) and
+                at - instant(old['shown_at']) < TRENDING_AGE for old in history)]
+            if alternatives:
+                entry['selected'] = alternatives[0]
+        previous_pool = next((old.get('stories') for old in old_editions
+                              if old['starts_at'] == entry['starts_at']), None)
+        pool = [entry['selected']]
+        if (entry is editions[0] and previous_pool and previous.get('checked_at') and
+                edition_start(instant(previous['checked_at'])) == start and
+                previous_pool[0]['url'] == entry['selected']['url']):
+            # A retry must not reshuffle the five links a reader is already using.
+            by_url = {row['url']: row for row in candidates}
+            pool = [by_url[story['url']] for story in previous_pool if story['url'] in by_url]
+        else:
+            while len(pool) < STORIES_PER_EDITION:
+                available = [row for row in candidates if not any(
+                    row['url'] == story['url'] or related(row, story) for story in pool)]
+                if not available:
+                    break
+                unseen = [row for row in available if not any(
+                    row['url'] == story['url'] or related(row, story) for story in seen)]
+                choices = unseen or available
+                # Alternate newsrooms within the same relevance tier when possible.
+                diverse = [row for row in choices if row['priority'] == choices[0]['priority'] and
+                           source(row['url'])[1] not in FIRST_PARTY_GROUPS | {source(pool[-1]['url'])[1]}]
+                pool.append((diverse or choices)[0])
+                seen.append(pool[-1])
+        entry['stories'] = pool
+        seen.extend(pool)
+        scheduled.extend(pool)
+    return {'rotation_version': 1, 'carousel_version': 1, 'editions': editions, 'history': history}
 
 
 def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None, *, rotate=False) -> dict:
@@ -315,7 +362,7 @@ def observation_history(data: dict) -> dict:
         except (KeyError, TypeError, ValueError, AttributeError):
             continue
     history = {'articles': rows}
-    for key in ('checked_at', 'selected', 'rotation_version', 'editions', 'history', 'feed_state'):
+    for key in ('checked_at', 'selected', 'rotation_version', 'carousel_version', 'editions', 'history', 'feed_state'):
         if key in data:
             history[key] = data[key]
     return history
@@ -325,6 +372,8 @@ def validate(data: dict) -> None:
     if data.get('_spec') != 2 or data.get('provider') not in ('GDELT and publisher RSS', 'Publisher RSS and Atom'):
         raise ValueError('unknown news snapshot')
     now = instant(data['checked_at'])
+    if data.get('carousel_version') not in (None, 1) or (data.get('carousel_version') == 1 and data.get('rotation_version') != 1):
+        raise ValueError('unknown carousel snapshot')
     ranked = rank(data['articles'], now)
     selected = ranked[0] if ranked else None
     if data.get('rotation_version') == 1:
@@ -340,6 +389,16 @@ def validate(data: dict) -> None:
                 raise ValueError('rotation contains an invalid or stale headline')
             if any(story['url'] == old['selected']['url'] or related(story, old['selected']) for old in editions[:offset]):
                 raise ValueError('rotation repeats a headline or story')
+            if data.get('carousel_version') == 1:
+                pool = entry.get('stories')
+                if not isinstance(pool, list) or not 1 <= len(pool) <= STORIES_PER_EDITION or pool[0] != story:
+                    raise ValueError('invalid edition story pool')
+                ranked_at = rank(data['articles'], at)
+                for index, candidate in enumerate(pool):
+                    if candidate not in ranked_at or at - instant(candidate['first_seen_at']) >= TRENDING_AGE:
+                        raise ValueError('carousel contains an invalid or stale headline')
+                    if any(candidate['url'] == old['url'] or related(candidate, old) for old in pool[:index]):
+                        raise ValueError('carousel repeats a headline or story')
         selected = editions[0]['selected'] if editions else None
     if selected != data['selected']:
         raise ValueError('selected story disagrees with the recorded candidates and ranking')
@@ -357,7 +416,7 @@ def load() -> dict:
 
 
 def public_snapshot(data: dict) -> dict:
-    keys = ('_spec', 'checked_at', 'selected', 'expires_at', 'rotation_version', 'editions')
+    keys = ('_spec', 'checked_at', 'selected', 'expires_at', 'rotation_version', 'carousel_version', 'editions')
     return {key: data[key] for key in keys if key in data}
 
 
@@ -382,27 +441,41 @@ def markup(today: str, data: dict | None = None) -> str:
         date = f'{observed:%B} {day}{suffix}, {observed.year}'
     url = selected['url'] if selected else '/articles/'
     first_seen = selected['first_seen_at'] if selected else ''
-    description = ('AI headlines rotate every six hours, with Texas AI first. '
+    description = ('AI headlines rotate every five seconds and refresh every six hours. '
                    'The date is the publisher feed date or first observation. Opens the source in a new tab.')
     relevance = {name: pattern.pattern for name, pattern in
                  [('texas', TEXAS), ('austin', AUSTIN), ('local', DALLAS_INSTITUTIONS),
                   ('tech', TECH), ('ai', AI), ('junk', JUNK)]}
     relevance['global_groups'] = sorted(GLOBAL_GROUPS)
-    return (f'<a class="tele news-chip" data-news-status="{status}" '
+    return (f'<div class="tele news-chip" role="region" aria-roledescription="carousel" '
+            f'aria-label="Trending headlines" data-news-status="{status}" '
             f'data-news-feed="{NEWS_FEED_URL}" '
             f'data-news-sources="{e(json.dumps(SOURCES), quote=True)}" '
             f'data-news-relevance="{e(json.dumps(relevance), quote=True)}" '
             f'data-news-initial="{e(json.dumps(public_snapshot(data)), quote=True)}" '
             f'data-checked-at="{e(data.get("checked_at", ""), quote=True)}" '
             f'data-first-seen-at="{e(first_seen)}" data-expires-at="{e(data.get("expires_at") or "")}" '
-            f'href="{e(url, quote=True)}" target="_blank" rel="noopener noreferrer" '
-            f'title="{description}"><span class="news-meta"><span class="news-label">{label}</span>'
+            f'title="{description}"><div class="news-header"><span class="news-label">{label}</span>'
+            '<div class="news-controls" hidden>'
+            '<button type="button" class="news-toggle" aria-label="Pause headlines" title="Pause headlines">'
+            '<svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="currentColor">'
+            '<path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg></button>'
+            '<button type="button" class="news-prev" aria-label="Previous headline" title="Previous headline">'
+            '<svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5">'
+            '<path d="m10 3-5 5 5 5"/></svg></button>'
+            '<span class="news-count" aria-hidden="true"></span>'
+            '<button type="button" class="news-next" aria-label="Next headline" title="Next headline">'
+            '<svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5">'
+            '<path d="m6 3 5 5-5 5"/></svg></button></div></div>'
+            '<div class="news-slides" aria-live="off">'
+            '<div class="news-slide" role="group" aria-roledescription="slide" aria-hidden="false">'
+            f'<a class="news-link" href="{e(url, quote=True)}" target="_blank" rel="noopener noreferrer">'
+            f'<cite class="news-title">{e(title)}</cite><span class="news-meta">'
             f'<cite class="news-source">{e(publisher)}</cite>'
             f'<time class="news-date" datetime="{e(first_seen)}">{date}</time></span>'
-            f'<cite class="news-title">{e(title)}</cite>'
             '<svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" '
             'fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg>'
-            '</a><script>' + (ROOT / 'scripts/site/news_runtime.js').read_text() + '</script>')
+            '</a></div></div></div><script>' + (ROOT / 'scripts/site/news_runtime.js').read_text() + '</script>')
 
 
 def rss_articles(body: bytes) -> list[dict]:
@@ -499,7 +572,7 @@ def live_problems(body: str, now: dt.datetime, expected_check: str | None = None
     if len(parser.chips) != 1:
         return ['the published homepage does not contain exactly one news bar']
     tag, chip, text = parser.chips[0]
-    if tag != 'a' or chip.get('data-news-feed') != NEWS_FEED_URL:
+    if tag not in ('a', 'div') or chip.get('data-news-feed') != NEWS_FEED_URL:
         return ['the published homepage is not connected to the independent news feed']
     if not feed_data:
         return ['the public headline feed is unavailable']
@@ -769,6 +842,45 @@ def self_test() -> int:
             result['feeds'] = [{'url': RSS_FEEDS[0], 'status': 'ok'}, {'url': RSS_FEEDS[1], 'status': 'not_modified'}]
             self.assertEqual(health_problems(result, now), [])
             self.assertTrue(health_problems(result, now + dt.timedelta(hours=12)))
+
+        def test_five_story_editions_validate_every_link_and_hold_on_retry(self):
+            # Independent subjects, including a syndicated duplicate and irrelevant feed item.
+            titles = ['AI diagnoses pancreatic cancer in screening trials', 'ChatGPT faces new school privacy rules',
+                      'Anthropic releases smaller coding models', 'Texas deploys AI for hurricane forecasts',
+                      'AI accelerators reduce electricity consumption', 'Robots use AI to sort textile waste',
+                      'AI video raises election security concerns', 'AI deciphers ancient manuscripts',
+                      'AI forecasts volcanic eruptions from seismic signals', 'AI optimizes freight delivery routes',
+                      'AI helps astronomers map distant galaxies', 'AI restores hearing through implants',
+                      'AI detects deepfake telephone scams', 'AI predicts protein structures for vaccines',
+                      'AI improves semiconductor lithography precision', 'AI identifies invasive forest pests',
+                      'AI translates endangered Indigenous languages', 'AI detects bridge corrosion using drones',
+                      'AI compresses satellite imagery for transmission', 'AI personalizes physical rehabilitation']
+            rows = [row(title, 'siliconangle.com', hours=i / 2, path=str(i)) for i, title in enumerate(titles)]
+            rows.append(row('A new chapter for MIT Reads', 'news.mit.edu'))
+            first = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
+            validate(first)
+            pools = [entry['stories'] for entry in first['editions']]
+            self.assertEqual([len(pool) for pool in pools], [5, 5, 5, 5])
+            self.assertEqual(len({story['url'] for pool in pools for story in pool}), 20)
+            retry = snapshot({'articles': []}, now + dt.timedelta(minutes=5), first, rotate=True)
+            self.assertEqual([s['url'] for s in pools[0]], [s['url'] for s in retry['editions'][0]['stories']])
+            for mutation in ('irrelevant', 'unsafe', 'duplicate', 'stale', 'oversized', 'empty'):
+                broken = copy.deepcopy(first)
+                pool = broken['editions'][0]['stories']
+                if mutation == 'irrelevant': pool[2]['title'] = 'A new chapter for MIT Reads'
+                if mutation == 'unsafe': pool[2]['url'] = 'javascript:alert(1)'
+                if mutation == 'duplicate': pool[2] = copy.deepcopy(pool[1])
+                if mutation == 'stale': pool[2]['first_seen_at'] = stamp(now - dt.timedelta(days=4))
+                if mutation == 'oversized': pool.append(copy.deepcopy(pool[1]))
+                if mutation == 'empty': pool.clear()
+                with self.assertRaises(ValueError, msg=mutation): validate(broken)
+            # A fresh collector run can add newly published reporting to the new edition.
+            later = edition_start(now) + EDITION_LENGTH + dt.timedelta(minutes=1)
+            new = {'title': 'Texas AI satellite network monitors coastal erosion',
+                   'url': 'https://dallasinnovates.com/coastal-erosion', 'first_seen_at': stamp(later)}
+            second = snapshot({'articles': []}, later, {**first, 'articles': first['articles'] + [new]}, rotate=True)
+            validate(second)
+            self.assertIn(new['url'], [s['url'] for s in second['editions'][0]['stories']])
 
         def test_rate_limit_is_not_retried_and_retry_after_survives_restart(self):
             from unittest.mock import patch

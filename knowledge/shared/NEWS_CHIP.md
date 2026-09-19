@@ -1,7 +1,8 @@
 # Homepage Trending headline
 
 The compact homepage strip links to an attributed publisher headline and its original feed date.
-Headlines rotate in six-hour editions. No model calls, article scraping or rewritten titles are used.
+Up to five distinct headlines rotate every five seconds, with a gentle fade. Six-hour editions
+refresh the story pool. No model calls, article scraping or rewritten titles are used.
 
 ## Sources and relevance
 
@@ -29,14 +30,17 @@ proxy, not audience analytics or a claim to measure the entire internet.
 ## Six-hour editions
 
 The edition boundaries match the collector schedule, at 01:23, 07:23, 13:23 and 19:23 UTC.
-Each successful collection prepares the current edition and up to three reserve editions.
-The current published edition stays stable on retries. The next edition uses a different story,
+Each successful collection prepares up to five stories for the current edition and each of up to
+three reserve editions. The new collection can bring freshly published reporting into the current
+batch. Already-open pages keep the active link stable during reading or interaction.
+The current published story pool stays stable on retries within the same six-hour slot. The next edition uses a different story,
 not another outlet's version of the same story. Previously displayed topics are avoided for
 72 hours when another qualifying story is available. A quiet-day fallback chooses the least
 recently shown eligible topic and still refuses consecutive repeats.
 
 Every queued story must be under 72 hours old at its scheduled start. The browser advances the
-queue at the edition boundary, on reload and when returning to the tab. This works even if
+queue at the edition boundary, on reload and when returning to the tab. A paused or hovered
+carousel waits for play or explicit navigation before replacing its links. This works even if
 GitHub starts a scheduled collection late or a feed request fails. The browser checks for a
 new published queue on load and every 15 minutes while visible. Collection timestamps never
 replace the original story date or make an old article appear new.
@@ -44,6 +48,22 @@ replace the original story date or make an old article appear new.
 An exhausted queue retains a dated last-good headline labelled Recent. Nothing invents news
 when sources fail. A snapshot without a distinct next edition or two independent working feeds
 fails the publishing health check and does not replace the last published snapshot.
+
+## Five-second reading experience
+
+The complete headline, publisher and source date fade together. Each story occupies the same
+grid cell and the tallest story reserves the height. No headline is truncated. The transition
+takes 700 milliseconds, included in the five-second cadence. No request is made per transition.
+
+The compact controls provide pause, previous and next buttons plus a position count. Hovering
+pauses temporarily. Keyboard focus, a press on the story or manual navigation pauses until the
+reader chooses play. Reduced-motion preferences start paused and remove the fade. Background
+tabs and offscreen carousels stop their timers. Automatic changes are not live announcements.
+Only the visible story is accessible to the keyboard and assistive technology.
+
+The feed preserves the original single-story fields for older pages during rollout. Both the
+collector and the browser validate every member of every new story pool. Quiet periods use fewer
+stories or reuse qualified reporting rather than pad the carousel with unrelated or stale links.
 
 ## Publication and verification
 
@@ -57,7 +77,8 @@ valid queue. Publisher attribution, dates, HTTPS links, relevance, queue bounds 
 are checked before display. The homepage CSP permits only the exact public data path.
 
 Each production run checks the public snapshot and opens the actual homepage at desktop and
-phone widths. It verifies the current edition, then advances that browser's clock with feed
+phone widths. It observes a full five-second rotation through the current story pool, including attribution and
+stable height, then advances that browser's clock with feed
 requests blocked to prove the next edition changes the headline. Local tests also cover
 restarts, unchanged feeds, duplicate stories, exhausted queues, 304, 429 and malicious reserves.
 

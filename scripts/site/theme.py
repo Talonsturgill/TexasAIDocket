@@ -400,25 +400,39 @@ def home_css() -> str:
   font-size:clamp(.72rem,1.15vw,.9rem); font-weight:500; line-height:1.25;
   letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
 
-/* One complete, attributed headline. A fixed ticker or ellipsis can hide the actual story. */
-.home .hero .news-chip { display:grid; grid-template-columns:1fr auto; gap:.3rem .75rem;
-  padding:.65rem .85rem; border-radius:.6rem; text-transform:none; letter-spacing:normal;
-  text-align:left; min-height:44px; width:fit-content; color:var(--ink-bright);
-  background:var(--surface); box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent);
-  transition:border-color .18s,background .18s; }
+/* Every full headline shares a grid cell, so the tallest reserves the carousel height. */
+.home .hero .news-chip { display:grid; gap:.2rem; padding:.45rem .8rem .65rem;
+  border-radius:.6rem; text-transform:none; letter-spacing:normal; text-align:left;
+  min-height:44px; width:min(100%,48rem); color:var(--ink-bright);
+  background:var(--surface); box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent); }
+.home .news-chip .news-header { display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 .home .news-chip .news-label { font:500 .66rem/1.3 var(--mono); color:var(--accent);
   letter-spacing:.12em; text-transform:uppercase; }
-.home .news-chip .news-meta { display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
+.home .news-chip .news-controls { display:flex; align-items:center; gap:.1rem; }
+.home .news-chip .news-controls[hidden] { display:none; }
+.home .news-chip .news-controls button { display:grid; place-items:center; width:28px; height:28px;
+  min-width:28px; min-height:28px; padding:0; margin:0; border:0; border-radius:.3rem;
+  color:var(--ink-mute); background:transparent; cursor:pointer; box-shadow:none; }
+.home .news-chip .news-count { font:400 .6rem/1 var(--mono); color:var(--ink-mute);
+  min-width:3.5ch; text-align:center; font-variant-numeric:tabular-nums; }
+.home .news-chip .news-slides { display:grid; min-width:0; }
+.home .news-chip .news-slide { grid-area:1/1; min-width:0; }
+.home .news-chip .news-slide[aria-hidden="true"] { visibility:hidden; pointer-events:none; }
+.home .news-chip .news-link { display:grid; grid-template-columns:minmax(0,1fr) auto;
+  gap:.3rem .7rem; height:100%; min-height:44px; color:inherit; text-decoration:none; border-radius:.2rem; }
+.home .news-chip .news-meta { grid-column:1; display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
 .home .news-chip .news-meta::before,.home .news-chip .news-label::before,
 .home .news-chip::after,.home .news-chip .news-title::before { content:none; }
 .home .news-chip .news-title { grid-column:1; font:500 .94rem/1.35 var(--body);
-  font-style:normal; overflow-wrap:anywhere; max-width:70ch; }
+  font-style:normal; overflow-wrap:anywhere; }
 .home .news-chip .news-source,.home .news-chip .news-date { font:400 var(--s-2)/1.3 var(--mono);
   font-style:normal; color:var(--ink-mute); }
 .home .news-chip .news-arrow { grid-column:2; grid-row:1/3; align-self:center; color:var(--accent); }
-.home .news-chip:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+.home .news-chip .news-link:focus-visible,.home .news-chip button:focus-visible {
+  outline:2px solid var(--accent); outline-offset:3px; }
 @media (hover:hover) and (pointer:fine) {
-  .home .news-chip[href]:hover { border-color:var(--accent); background:var(--raised); }
+  .home .news-chip .news-link:hover .news-title { color:var(--accent); }
+  .home .news-chip .news-controls button:hover { color:var(--ink-bright); background:var(--raised); }
 }
 
 /* The computed door count is a route now, not only a readout. */
