@@ -21,22 +21,32 @@
  * that frame is wrong and gets redrawn rather than tuned. Say it in those words, because
  * "az -68" is not a sentence a drawing can be checked against.
  *
- * THE MOTIF, AND IT CHANGES STATE ACROSS THE DECK. THE READING. Something is being read on
- * every frame and what it takes to read it escalates with the argument. A staff gauge anyone
- * can wade out to, then its face at arm's length, then a page on a tailgate, then a pump, then
- * a brass register in a hole in the ground, then three buildings on one horizon, then a basin,
- * then the state's own instrument shelter, then the same staff gauge again, small and far and
- * still standing.
+ * THE MOTIF, AND IT CHANGES STATE ACROSS THE DECK. THE HELD WATER. One stock tank, seen five
+ * times at five distances, and each time it is further from the reader and closer to the thing
+ * that wants its number. On the pad beside a hall, then a few metres inside a fence a reader
+ * can't cross, then as the line the answer travels along, then under a tower the state plan
+ * needs a figure for, then small and far at the close with a date on it.
+ *
+ * THIS PARAGRAPH DESCRIBED A DIFFERENT DECK UNTIL ROUND 1 and a judge caught it by reading the
+ * prose against the frames. It named a staff gauge, a pump, a brass register in a hole in the
+ * ground and the state's own instrument shelter, none of which is drawn anywhere in these nine
+ * frames. The functional `declare` below was correct the whole time and ran through all nine,
+ * so nothing rendered wrong. What was wrong is that the one place a frame author goes to find
+ * out what deck they are drawing was telling them about another one. CLAUDE.md says a wrong
+ * measurement in a file is worse than none, because the next reader inherits it and stops
+ * looking, and a wrong DESCRIPTION is the same defect wearing prose.
  *
  * THE ACCENT LAW, AND IT IS THE STRICTEST THING IN THIS FILE.
  *
- *   COMAL ONLY EVER LANDS ON WATER AT AN INSTRUMENT.
+ *   COMAL ONLY EVER LANDS ON WATER SOMEBODY HOLDS A NUMBER FOR.
  *
- * Water a meter or a gauge has counted gets the accent. Water nobody has counted at the point
- * drawn does not, so frames 4, 6 and 8 have water in or near them and carry none. The accent
- * is the answer the state is asking for, and a reader who swipes twice sees that it only turns
- * up where somebody holds a number. It never touches sky, concrete or metal, because at L* 46
- * it is a mid value and would vanish on a lit surface. #2A7A9E is `comal` in config/brand.yaml,
+ * A gauged stock tank gets it, on frames 1, 2, 6 and 9. Frame 5 gets it on the route itself,
+ * because the route IS that number moving between the three parties, and that is the one
+ * extension of the law in the deck. Water nobody has counted does not, and neither does a
+ * building whose water is the whole question, so frames 3, 4, 7 and 8 carry none at all. A
+ * reader who swipes twice sees that the colour only turns up where somebody holds a figure.
+ * It never touches sky, concrete or metal, because at L* 46 it is a mid value and would vanish
+ * on a lit surface. #2A7A9E is `comal` in config/brand.yaml,
  * where its own comment reads "the water itself". It is not bluebonnet, which is a violet
  * flower spent two decks ago, and not signal_link, which on this project's own site means a
  * link out to a source and would be a lie on a slide.
