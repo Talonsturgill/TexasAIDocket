@@ -1,9 +1,9 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-18T23:56:38Z",
+  "checked_at": "2026-09-19T06:06:37Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917235602&enddatetime=20260918235602",
-  "response_sha256": "68003da15c7a2b969949d5d287e73ac0cfdc72e0c00217b91175f518fc97108b",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260918060550&enddatetime=20260919060550",
+  "response_sha256": "d6b27f031f1969cb59dcbbfc60547efd817c8d37366876a0f55d70341f8a8756",
   "articles": [
     {
       "title": "Building AI to accelerate science and improve lives",
@@ -138,13 +138,13 @@
     "feed": "https://blog.google/technology/ai/rss/",
     "publisher": "Google",
     "coverage": 1,
-    "score": 0.750369,
+    "score": 0.627957,
     "priority": 1
   },
   "expires_at": "2026-09-25T14:00:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260917235602&enddatetime=20260918235602",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260918060550&enddatetime=20260919060550",
       "status": "unavailable"
     },
     {
@@ -157,7 +157,7 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "2cb8d3834d03f0134924f414fbf68ef185de381869e4db1e224b802c5b81b853"
+      "sha256": "4bf8c5f642af4c98b055dd75bd5275ab09c195a57917d781444a66b333846cfe"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
@@ -174,8 +174,8 @@
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1209,
-      "sha256": "34973c933fd75b6323395c6125bb6cb7e712a8510483d35c9fb53a3473921ba6"
+      "items": 1210,
+      "sha256": "4ea22e65caf332523c323bb475731b4d726ed4fce6f013a4143d123e26479c4e"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
