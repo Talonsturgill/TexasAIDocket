@@ -5,13 +5,20 @@
  * nobody reads. Nine frames share one light, one stock and one way of seating type, and this
  * file is those three things and nothing else. Every frame's COMPOSITION is written per frame.
  *
- * THE WORLD. A HILL COUNTRY WATER SUPPLY RESERVOIR ON THE EDWARDS PLATEAU AND THE FORTY
- * MINUTES THAT FOLLOW IT DOWNSTREAM. First light, clear, no wind on the water yet. Limestone
- * ledges, ashe juniper on the far ridge, a galvanized windmill on the skyline, caliche dust on
- * every horizontal surface. It is DAYLIGHT and that is argued rather than defaulted: the last
- * six decks are dark interiors at night, and this story's subject is a thing a person stands
- * beside in the open. The stock stays dark. What changes across nine frames is how much lit
- * sky is in them.
+ * THE WORLD. A GRADED CALICHE PAD ON THE EDWARDS PLATEAU AT FIRST LIGHT, AND THE PLACES THE
+ * ANSWER TRAVELS BETWEEN. Clear, no heat in the air yet. Ashe juniper on the far ridge, chain
+ * link at the property line, caliche dust on every horizontal surface, and a gauged stock tank
+ * standing where somebody already counts the water. It is DAYLIGHT and that is argued rather
+ * than defaulted: the last six decks are dark interiors at night, and this story's subject is
+ * a thing a person stands beside in the open. The stock stays dark. What changes across nine
+ * frames is how much lit sky is in them.
+ *
+ * THIS PARAGRAPH DESCRIBED A RESERVOIR, A WINDMILL AND FORTY MINUTES DOWNSTREAM UNTIL ROUND 2,
+ * and none of those is drawn anywhere in these nine frames. Round 1 corrected the motif and the
+ * accent law three paragraphs down and left the WORLD sentence, which is the first thing a
+ * frame author reads, still describing the deck that was pitched rather than the one that was
+ * built. Fixing half a stale description is how the other half survives a round of everybody
+ * looking straight at it.
  *
  * THE LIGHT, IN WORDS A FRAME AUTHOR CAN CHECK A DRAWING AGAINST. THE KEY IS LOW IN THE EAST
  * OFF THE CAMERA'S LEFT SHOULDER, AT 14 DEGREES ABOVE THE PLANE. So every lit face in this
@@ -204,9 +211,17 @@
 
   /* ---------------------------------------------------------------------- sky
    *
-   * THE LIT SKY ABOVE THE HORIZON, drawn into the twin in greys. This is the deck's value arc
-   * made of one thing: the amount of light in the sky rises monotonically across nine frames
-   * and nothing else about the stock moves. `t` runs 0 at first light to 1 at full morning.
+   * THE LIT SKY ABOVE THE HORIZON, drawn into the twin in greys. `t` runs 0 at first light to 1
+   * at full morning, and the deck's six sky frames take 0.34, 0.56, 0.66, 0.86, 0.80 and 1.00
+   * in frame order.
+   *
+   * THAT IS NOT MONOTONIC AND THIS COMMENT CLAIMED IT WAS UNTIL ROUND 2. Frame 7 takes 0.86 and
+   * frame 8 takes 0.80, deliberately, because the pair shares a camera and a hall has one plane
+   * where a portico has three, so the later frame is given less sky to keep the two within a
+   * step of each other. The claim of monotonicity was doing real damage rather than sitting
+   * harmlessly wrong: this deck also DECLARES a value arc in its storyboard, and a frame author
+   * reading "the sky rises monotonically" here had no reason to check whether the arc the plan
+   * asked for was the arc the press could print. It was not, by up to thirty points.
    *
    * THE LIGHT IS PUSHED INTO THE LAST FIFTH OF THE GRADIENT, AND THAT IS MEASURED RATHER THAN
    * STYLED. The first cut ran a smooth ramp from the top of the frame to the horizon, and the
@@ -286,6 +301,68 @@
    * reserve and a frame passes only how deep it goes. A frame whose scene already keeps its
    * type zone dark by construction passes `bottom: 0` and uses nothing.
    */
+  /* -------------------------------------------------------------------- tank
+   *
+   * THE DECK'S MOTIF, DRAWN ONCE. Four frames carry a gauged stock tank and until round 2 each
+   * drew it as a bare comal ellipse in `over`. Two judges reported the same thing in the same
+   * words: a flat blue lozenge with no gauge, no vessel and no contact, so the motif registered
+   * as "a blue shape recurs" rather than as the one object on the frame somebody holds a number
+   * for. The accent law in this file turns on that word GAUGED and the drawing never carried it.
+   *
+   * This is a PRIMITIVE and not a frame. It takes a centre, a radius and a scale, and every
+   * frame decides where its own tank stands and how big it is. `deck_chassis.py` refuses a
+   * shared whole-frame draw and is right to; a shared way of drawing one recurring object is
+   * the house furniture this file exists to hand out.
+   *
+   * Four parts, because three of them are what make it a vessel rather than a disc. The contact
+   * sits under and right, where this deck's one key puts every shadow. The rim is metal and is
+   * lit on its far edge and dark on its near one. The water is the accent and is inset, so the
+   * rim reads around it. The staff gauge stands in the water with its own ticks and its own
+   * cast on the surface, and it is the part that means the number exists.
+   */
+  N.tank = function (c, o) {
+    var x = o.x, y = o.y, rx = o.rx, ry = o.ry;
+    var s = o.scale == null ? rx / 130 : o.scale;
+    c.save();
+    /* the contact, under and right */
+    c.fillStyle = "rgba(0,0,0,0.46)";
+    c.beginPath(); c.ellipse(x + 10 * s, y + 13 * s, rx * 1.06, ry * 1.5, 0, 0, Math.PI * 2); c.fill();
+    /* the rim, a ring rather than a disc */
+    c.fillStyle = N.G.metal;
+    c.beginPath(); c.ellipse(x, y, rx * 1.10, ry * 1.34, 0, 0, Math.PI * 2); c.fill();
+    c.fillStyle = "rgba(0,0,0,0.42)";
+    c.beginPath(); c.ellipse(x, y + ry * 0.30, rx * 1.10, ry * 1.10, 0, 0, Math.PI * 2); c.fill();
+    c.fillStyle = N.G.glare;
+    c.beginPath(); c.ellipse(x - rx * 0.06, y - ry * 0.34, rx * 0.98, ry * 0.72, 0, 0, Math.PI * 2); c.fill();
+    /* THE WATER, ON ITS OWN DARK BASE FIRST. Each frame passes the accent at its own alpha, and
+     * those alphas were written when the ellipse sat straight on the deck's dark ground. Laying
+     * the same partly transparent ink over the LIT rim this primitive now draws under it shifts
+     * the rendered colour off `#2A7A9E`, and `layout_check` matches the accent by colour rather
+     * than by intent: it went from finding the accent on five frames to finding it on one, with
+     * the ink strings unchanged. The base restores the surface the alpha was chosen against. */
+    c.fillStyle = N.G.void;
+    c.beginPath(); c.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); c.fill();
+    c.fillStyle = o.ink || "rgba(42,122,158,0.88)";
+    c.beginPath(); c.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); c.fill();
+    /* the staff gauge, if this frame is close enough to carry one */
+    if (o.gauge !== false && rx > 34) {
+      var gx = x - rx * 0.46, gh = ry * 7.4 + rx * 0.30;
+      c.fillStyle = "rgba(0,0,0,0.38)";
+      c.beginPath();
+      c.moveTo(gx + 2, y); c.lineTo(gx + 2 + gh * 0.52, y + ry * 0.72);
+      c.lineTo(gx + 8 + gh * 0.52, y + ry * 0.72); c.lineTo(gx + 8, y);
+      c.closePath(); c.fill();
+      c.fillStyle = N.G.glare;
+      c.fillRect(gx, y - gh, 6 * s * 6 < 3 ? 3 : Math.max(3, 5 * s * 6), gh);
+      c.fillStyle = N.G.void;
+      var tw = Math.max(3, 5 * s * 6);
+      for (var i = 1; i * (gh / 7) < gh; i++) {
+        c.fillRect(gx, y - i * (gh / 7), tw, Math.max(1.4, gh * 0.022));
+      }
+    }
+    c.restore();
+  };
+
   N.reserve = function (c, o) {
     o = o || {};
     TXINK.reserve(c, {
