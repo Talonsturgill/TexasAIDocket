@@ -1009,6 +1009,14 @@
       "evidence": "2026-09-19 carousel 29. Round 2 rebuilt frame 5's three casts because a 7px sliver was invisible at every size. Round 3 then added a raking ground apron across the same band and drew it after the elevations, so the hatch covered the wedges and the cast was invisible again for a new reason. Round 4's craft judge found it by reading slide-05.html's draw order against the render rather than by looking at the cast code, which was correct.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "command-substitution-eats-the-exit-code",
+      "learned": "2026-09-19",
+      "instinct": "Never put a command substitution between a command and the read of its exit code, because the substitution replaces it.",
+      "evidence": "2026-09-19 carousel 29. The Phase 16 verification suite ran as a loop printing 'printf ... $(basename $g .py) $?' after each gate. Bash evaluates the substitution first and it CLOBBERS $?, so every exit code printed was basename's rather than the gate's, and basename was erroring on a two-operand call at the same time. The suite reported nine green gates and house_style_check was actually exiting 1 with 33 violations, most of them sentences this run had just written. It was caught only because a later rebuild happened to surface the same gate's stdout. This repo already has read-the-exit-code-of-the-thing-that-writes; that instinct is about WHICH command, and this one is about the shell losing the answer between the command and the read.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
