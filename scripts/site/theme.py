@@ -363,8 +363,8 @@ def home_css() -> str:
   letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
 
 /* One complete, attributed headline. A fixed ticker or ellipsis can hide the actual story. */
-.home .hero .news-chip { display:grid; grid-template-columns:1fr auto; gap:.38rem .85rem;
-  padding:.8rem 1rem; border-radius:.6rem; text-transform:none; letter-spacing:normal;
+.home .hero .news-chip { display:grid; grid-template-columns:1fr auto; gap:.3rem .75rem;
+  padding:.65rem .85rem; border-radius:.6rem; text-transform:none; letter-spacing:normal;
   text-align:left; min-height:44px; width:fit-content; color:var(--ink-bright);
   background:var(--surface); box-shadow:inset 0 1px 0 color-mix(in srgb,var(--ink-bright) 7%,transparent);
   transition:border-color .18s,background .18s; }
@@ -373,7 +373,7 @@ def home_css() -> str:
 .home .news-chip .news-meta { display:flex; align-items:center; gap:.65rem; flex-wrap:wrap; }
 .home .news-chip .news-meta::before,.home .news-chip .news-label::before,
 .home .news-chip::after,.home .news-chip .news-title::before { content:none; }
-.home .news-chip .news-title { grid-column:1; font:500 var(--s0)/1.4 var(--body);
+.home .news-chip .news-title { grid-column:1; font:500 .94rem/1.35 var(--body);
   font-style:normal; overflow-wrap:anywhere; max-width:70ch; }
 .home .news-chip .news-source,.home .news-chip .news-date { font:400 var(--s-2)/1.3 var(--mono);
   font-style:normal; color:var(--ink-mute); }

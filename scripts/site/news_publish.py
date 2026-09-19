@@ -34,8 +34,14 @@ def restore() -> None:
     # Rules and schema can change between runs. Preserve the observation clock, but derive
     # selection and expiry again; an old score or publisher label must not block collection.
     snapshot = news.snapshot({'articles': []}, news.instant(previous['checked_at']),
-                             news.observation_history(previous))
+                             news.observation_history(previous), rotate=previous.get('rotation_version') == 1)
     snapshot['feeds'] = previous.get('feeds', [])
+    snapshot['feed_state'] = previous.get('feed_state', {})
+    if not previous.get('rotation_version') and previous.get('selected'):
+        selected = previous['selected']
+        if news.source(selected.get('url', '')) and isinstance(selected.get('title'), str):
+            snapshot['history'] = [{'url': selected['url'], 'title': selected['title'],
+                                    'shown_at': previous['checked_at']}]
     news.validate(snapshot)
     news.STATE.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + '\n')
     print('news data: restored observation history')
@@ -43,6 +49,8 @@ def restore() -> None:
 
 def publish() -> str:
     snapshot = news.load()
+    if snapshot.get('rotation_version') != 1:
+        raise ValueError('publication requires six-hour headline rotation')
     problems = news.health_problems(snapshot, news.dt.datetime.now(news.UTC))
     if problems:
         raise ValueError('; '.join(problems))
@@ -85,8 +93,10 @@ def self_test() -> int:
     now = news.dt.datetime.now(news.UTC).replace(microsecond=0)
     row = {'title': 'Texas AI researchers open a new laboratory',
            'url': 'https://dallasinnovates.com/test/', 'first_seen_at': news.stamp(now)}
-    snapshot = news.snapshot({'articles': []}, now, {'articles': [row]})
-    snapshot['feeds'] = [{'status': 'ok'}]
+    second = {'title': 'AI improves breast cancer screening accuracy',
+              'url': 'https://news.mit.edu/research/', 'first_seen_at': news.stamp(now)}
+    snapshot = news.snapshot({'articles': []}, now, {'articles': [row, second]}, rotate=True)
+    snapshot['feeds'] = [{'url': news.RSS_FEEDS[0], 'status': 'ok'}, {'url': news.RSS_FEEDS[1], 'status': 'ok'}]
     old_schema = copy.deepcopy(snapshot)
     old_schema['_spec'] = 1
     old_schema['selected']['publisher'] = 'Former publisher name'

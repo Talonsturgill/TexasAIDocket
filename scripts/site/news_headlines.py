@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""One attributed Texas tech headline, selected without a language model.
+"""Rotating, attributed AI headlines, selected without a language model.
 
-GDELT provides discovery metadata, not readership counts or a verified publication date.
-We rank recent coverage from named newsrooms, group sister outlets, and retain the publisher's
-headline verbatim. Only headline metadata is retained; article pages are never fetched. See knowledge/shared/NEWS_CHIP.md.
+Publisher feeds provide titles and source dates. We rank recent coverage from named newsrooms,
+group sister outlets, and retain the publisher's headline verbatim. Only headline metadata is retained; article pages are never fetched. See knowledge/shared/NEWS_CHIP.md.
 """
 from __future__ import annotations
 
@@ -23,6 +22,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import urllib.robotparser
+import news_feeds
 from html.parser import HTMLParser
 from pathlib import Path
 from csp import NEWS_FEED_URL
@@ -37,12 +37,10 @@ MAX_AGE = dt.timedelta(days=7)
 TRENDING_AGE = dt.timedelta(hours=72)
 MAX_CHECK_AGE = dt.timedelta(hours=18)
 GLOBAL_GROUPS = frozenset(CONFIG.get('global_groups', []))
-QUERY = ('(Texas OR Dallas OR Austin OR Houston OR "San Antonio" OR "Fort Worth") '
-         '("artificial intelligence" OR AI OR "data center" OR technology OR semiconductor '
-         'OR robotics) sourcelang:english')
-FEED = 'https://api.gdeltproject.org/api/v2/doc/doc?' + urllib.parse.urlencode({
-    'query': QUERY, 'mode': 'artlist', 'format': 'json', 'maxrecords': 250,
-    'timespan': '24h', 'sort': 'HybridRel'})
+FIRST_PARTY_GROUPS = frozenset(CONFIG.get('first_party_groups', []))
+EDITION_LENGTH = dt.timedelta(hours=6)
+# Matches the existing 01:23, 07:23, 13:23, 19:23 UTC collection schedule.
+EDITION_ANCHOR = dt.datetime(1970, 1, 1, 1, 23, tzinfo=UTC)
 UA = 'TexasAIDocket/1.0 (+https://texasaidocket.com)'
 TEXAS = re.compile(r'\b(?:texas|texans|dallas|houston|fort worth|san antonio|el paso|'
                    r'round rock|abilene|amarillo|lubbock|corpus christi|dfw|txdot|'
@@ -57,9 +55,10 @@ TECH = re.compile(r'\b(?:AI|artificial intelligence|machine learning|data[- ]cen
                   r'chatbots?|air[- ]tax(?:i|is)|air taxis|evtol|broadband)\b', re.I)
 AI = re.compile(r'\b(?:AI|artificial intelligence|machine learning|neural networks?|'
                 r'LLMs?|large language models?|OpenAI|ChatGPT|GPT[- ]?\d|'
-                r'generative|deep learning|inference|MLPerf)\b', re.I)
+                r'Anthropic|DeepSeek|Claude Code|generative|deep learning|inference|MLPerf)\b', re.I)
 JUNK = re.compile(r'\b(?:stock|shares|price target|earnings|buy rating|sponsored|press release|'
-                  r'scholarship|obituary|football|basketball|baseball|betting|\w+ vs\.? \w+)\b', re.I)
+                  r'scholarship|obituary|football|basketball|baseball|betting|webinar|'
+                  r'register now|join theCUBE|\w+ vs\.? \w+)\b', re.I)
 STOP = set('a an and are as at be by for from has in into is it of on or over s that the their '
            'this to with texas texans dallas houston austin fort worth san antonio new'.split())
 
@@ -140,7 +139,7 @@ def eligible(article: dict, now: dt.datetime) -> bool:
         if not dt.timedelta(0) <= age < MAX_AGE:
             return False
         # A newly indexed archive article is not new coverage. Reject old dates when the
-        # publisher exposes one in the URL. GDELT's seendate is never labelled "published".
+        # publisher exposes one in the URL. A discovery observation is not a publication date.
         date = re.search(r'/(20\d{2})/(\d{2})/(\d{2})/', article['url'])
         if date:
             day = dt.date(*(int(n) for n in date.groups()))
@@ -173,13 +172,91 @@ def rank(articles: list[dict], now: dt.datetime) -> list[dict]:
         priority = (0 if texas and ai else 1 if ai else 2) + (3 if age >= 72 else 0)
         scored.append({**article, 'publisher': source(article['url'])[0],
                        'coverage': coverage, 'score': score, 'priority': priority})
-    return sorted(scored, key=lambda a: (a['priority'], -a['score'], a['first_seen_at'], a['url']))
+    return sorted(scored, key=lambda a: (a['priority'], source(a['url'])[1] in FIRST_PARTY_GROUPS,
+                                         -a['score'], a['first_seen_at'], a['url']))
 
 
-def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> dict:
+def edition_start(now: dt.datetime) -> dt.datetime:
+    return EDITION_ANCHOR + ((now - EDITION_ANCHOR) // EDITION_LENGTH) * EDITION_LENGTH
+
+
+def edition_story(data: dict, now: dt.datetime) -> dict | None:
+    started = [entry for entry in data.get('editions', []) if instant(entry['starts_at']) <= now]
+    return started[-1]['selected'] if started else data.get('selected')
+
+
+def rotation(articles: list[dict], now: dt.datetime, previous: dict) -> dict:
+    """Schedule distinct six-hour editions, keeping an already published current slot stable."""
+    start = edition_start(now)
+    history = []
+    for entry in previous.get('history', [])[-32:]:
+        try:
+            if (isinstance(entry.get('title'), str) and source(entry['url']) and
+                    now - MAX_AGE <= instant(entry['shown_at']) <= now):
+                history.append({key: entry[key] for key in ('url', 'title', 'shown_at')})
+        except (KeyError, TypeError, ValueError):
+            continue
+    old_editions = []
+    for entry in previous.get('editions', [])[:4]:
+        try:
+            if not eligible(entry['selected'], now):
+                continue
+            instant(entry['starts_at'])
+            old_editions.append(entry)
+            if instant(entry['starts_at']) <= now:
+                history.append({'url': entry['selected']['url'], 'title': entry['selected']['title'],
+                                'shown_at': entry['starts_at']})
+        except (KeyError, TypeError, ValueError):
+            continue
+    if not old_editions and not history and previous.get('selected') and previous.get('checked_at'):
+        history.append({'url': previous['selected']['url'], 'title': previous['selected']['title'],
+                        'shown_at': previous['checked_at']})
+    history = sorted({(entry['shown_at'], entry['url']): entry for entry in history}.values(),
+                     key=lambda entry: (entry['shown_at'], entry['url']))[-32:]
+    editions, used = [], list(history)
+    for offset in range(4):
+        begins = start + offset * EDITION_LENGTH
+        at = max(now, begins)
+        candidates = [row for row in rank(articles, at) if at - instant(row['first_seen_at']) < TRENDING_AGE]
+        # Hold only a real previously published rotation slot, never the legacy stuck winner.
+        locked = next((entry['selected']['url'] for entry in old_editions
+                       if entry.get('starts_at') == stamp(begins)), None) if offset == 0 else None
+        chosen = next((row for row in candidates if row['url'] == locked), None)
+        if chosen is None:
+            # Distinct topics throughout the reserve queue. A sister outlet is not a rotation.
+            candidates = [row for row in candidates if not any(
+                row['url'] == entry['selected']['url'] or related(row, entry['selected']) for entry in editions)]
+            if used:
+                last = used[-1]
+                candidates = [row for row in candidates if row['url'] != last['url'] and not related(row, last)]
+            unseen = [row for row in candidates if not any(
+                (row['url'] == old['url'] or related(row, old)) and
+                at - instant(old['shown_at']) < TRENDING_AGE for old in used)]
+            if unseen:
+                chosen = unseen[0]
+                if used:
+                    last_group = source(used[-1]['url'])[1]
+                    alternatives = [row for row in unseen if row['priority'] == chosen['priority'] and
+                                    source(row['url'])[1] not in FIRST_PARTY_GROUPS | {last_group} and
+                                    at - instant(row['first_seen_at']) < dt.timedelta(hours=48)]
+                    if alternatives:
+                        chosen = alternatives[0]
+            elif candidates:
+                # Quiet-day fallback chooses the least recently displayed qualifying topic.
+                def last_shown(row):
+                    return max((old['shown_at'] for old in used if old['url'] == row['url'] or related(row, old)), default='')
+                chosen = min(candidates, key=last_shown)
+        if chosen is None:
+            break
+        editions.append({'starts_at': stamp(begins), 'selected': chosen})
+        used.append({'url': chosen['url'], 'title': chosen['title'], 'shown_at': stamp(begins)})
+    return {'rotation_version': 1, 'editions': editions, 'history': history}
+
+
+def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None, *, rotate=False) -> dict:
     now = instant(stamp(now))
     if not isinstance(payload, dict) or not isinstance(payload.get('articles'), list):
-        raise ValueError('GDELT did not return an article list')
+        raise ValueError('news source did not return an article list')
     known = {a['url']: a['first_seen_at'] for a in (previous or {}).get('articles', [])}
     rows = []
     for raw in payload['articles']:
@@ -207,10 +284,15 @@ def snapshot(payload: dict, now: dt.datetime, previous: dict | None = None) -> d
     rows = sorted(unique.values(), key=lambda a: a['url'])
     ranked = rank(rows, now)
     selected = ranked[0] if ranked else None
-    return {'_spec': 2, 'checked_at': stamp(now), 'provider': 'GDELT and publisher RSS',
-            'feed_url': FEED, 'response_sha256': hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest(),
+    result = {'_spec': 2, 'checked_at': stamp(now), 'provider': 'Publisher RSS and Atom',
+            'response_sha256': hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest(),
             'articles': rows, 'selected': selected,
             'expires_at': stamp(instant(selected['first_seen_at']) + MAX_AGE) if selected else None}
+    if rotate:
+        result.update(rotation(rows, now, previous or {}))
+        result['selected'] = result['editions'][0]['selected'] if result['editions'] else None
+        result['expires_at'] = stamp(instant(result['selected']['first_seen_at']) + MAX_AGE) if result['selected'] else None
+    return result
 
 
 def observation_history(data: dict) -> dict:
@@ -232,15 +314,33 @@ def observation_history(data: dict) -> dict:
             rows.append(row)
         except (KeyError, TypeError, ValueError, AttributeError):
             continue
-    return {'articles': rows}
+    history = {'articles': rows}
+    for key in ('checked_at', 'selected', 'rotation_version', 'editions', 'history', 'feed_state'):
+        if key in data:
+            history[key] = data[key]
+    return history
 
 
 def validate(data: dict) -> None:
-    if data.get('_spec') != 2 or data.get('provider') != 'GDELT and publisher RSS':
+    if data.get('_spec') != 2 or data.get('provider') not in ('GDELT and publisher RSS', 'Publisher RSS and Atom'):
         raise ValueError('unknown news snapshot')
     now = instant(data['checked_at'])
     ranked = rank(data['articles'], now)
     selected = ranked[0] if ranked else None
+    if data.get('rotation_version') == 1:
+        editions = data.get('editions')
+        if not isinstance(editions, list) or len(editions) > 4:
+            raise ValueError('invalid rotation queue')
+        for offset, entry in enumerate(editions):
+            begins = edition_start(now) + offset * EDITION_LENGTH
+            at = max(now, begins)
+            story = entry['selected']
+            if (entry['starts_at'] != stamp(begins) or story not in rank(data['articles'], at) or
+                    at - instant(story['first_seen_at']) >= TRENDING_AGE):
+                raise ValueError('rotation contains an invalid or stale headline')
+            if any(story['url'] == old['selected']['url'] or related(story, old['selected']) for old in editions[:offset]):
+                raise ValueError('rotation repeats a headline or story')
+        selected = editions[0]['selected'] if editions else None
     if selected != data['selected']:
         raise ValueError('selected story disagrees with the recorded candidates and ranking')
     expected = stamp(instant(selected['first_seen_at']) + MAX_AGE) if selected else None
@@ -257,7 +357,8 @@ def load() -> dict:
 
 
 def public_snapshot(data: dict) -> dict:
-    return {key: data.get(key) for key in ('_spec', 'checked_at', 'selected', 'expires_at')}
+    keys = ('_spec', 'checked_at', 'selected', 'expires_at', 'rotation_version', 'editions')
+    return {key: data[key] for key in keys if key in data}
 
 
 def markup(today: str, data: dict | None = None) -> str:
@@ -281,7 +382,7 @@ def markup(today: str, data: dict | None = None) -> str:
         date = f'{observed:%B} {day}{suffix}, {observed.year}'
     url = selected['url'] if selected else '/articles/'
     first_seen = selected['first_seen_at'] if selected else ''
-    description = ('Headlines ranked by coverage and freshness, with Texas AI first. '
+    description = ('AI headlines rotate every six hours, with Texas AI first. '
                    'The date is the publisher feed date or first observation. Opens the source in a new tab.')
     relevance = {name: pattern.pattern for name, pattern in
                  [('texas', TEXAS), ('austin', AUSTIN), ('local', DALLAS_INSTITUTIONS),
@@ -304,125 +405,61 @@ def markup(today: str, data: dict | None = None) -> str:
             '</a><script>' + (ROOT / 'scripts/site/news_runtime.js').read_text() + '</script>')
 
 
-def fetch(url: str) -> bytes:
-    """One modest feed request with bounded retries. Never follow a cross-host redirect."""
-    class SameHost(urllib.request.HTTPRedirectHandler):
-        def redirect_request(self, req, fp, code, msg, headers, newurl):
-            if urllib.parse.urlsplit(newurl).hostname != urllib.parse.urlsplit(url).hostname:
-                raise ValueError('unexpected feed redirect')
-            return super().redirect_request(req, fp, code, msg, headers, newurl)
-    opener = urllib.request.build_opener(SameHost())
-    for attempt in range(2):
-        try:
-            with opener.open(urllib.request.Request(url, headers={'User-Agent': UA, 'Cache-Control': 'no-cache'}), timeout=15) as response:
-                body = response.read(2_000_001)
-                if len(body) > 2_000_000:
-                    raise ValueError('feed exceeded response limit')
-                return body
-        except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 1:
-                raise
-        except (TimeoutError, urllib.error.URLError):
-            if attempt == 1:
-                raise
-        time.sleep(2 * (attempt + 1))
-    raise RuntimeError('feed unavailable')
-
-
-def checked_fetch(url: str) -> bytes:
-    """Read the host's policy before reading its feed; never route around a disallow."""
-    parts = urllib.parse.urlsplit(url)
-    robots_url = urllib.parse.urlunsplit((parts.scheme, parts.netloc, '/robots.txt', '', ''))
-    try:
-        robots = fetch(robots_url).decode()
-    except urllib.error.HTTPError as error:
-        if error.code != 404:
-            raise
-        robots = ''
-    policy = urllib.robotparser.RobotFileParser()
-    policy.parse(robots.splitlines())
-    if robots and not all(policy.can_fetch(agent, url) for agent in (UA, 'GPTBot', 'ClaudeBot')):
-        raise ValueError('feed disallowed by source robots policy')
-    if parts.hostname == 'api.gdeltproject.org':
-        time.sleep(6)  # GDELT asks for at least five seconds between requests.
-    return fetch(url)
-
-
 def rss_articles(body: bytes) -> list[dict]:
-    rows = []
-    root = ET.fromstring(body)
-    if root.tag != 'rss' or root.find('channel') is None:
-        raise ValueError('publisher did not return an RSS feed')
-    for item in root.findall('./channel/item'):
-        try:
-            published = email.utils.parsedate_to_datetime(item.findtext('pubDate'))
-            if published.tzinfo is None:
-                raise ValueError('RSS publication time has no timezone')
-            published = published.astimezone(UTC)
-            rows.append({'title': item.findtext('title'), 'url': item.findtext('link'),
-                         'language': 'English', 'seendate': published.strftime('%Y%m%dT%H%M%SZ')})
-        except (TypeError, ValueError, AttributeError):
-            continue
-    return rows
+    return news_feeds.articles(body)
 
 
 def collect() -> int:
-    # Explicit bounds record which day of coverage this observation requested.
-    end = dt.datetime.now(UTC).replace(microsecond=0)
-    query = dict(urllib.parse.parse_qsl(urllib.parse.urlsplit(FEED).query))
-    query.pop('timespan')
-    query.update(startdatetime=(end-dt.timedelta(days=1)).strftime('%Y%m%d%H%M%S'),
-                 enddatetime=end.strftime('%Y%m%d%H%M%S'))
-    feed_url = 'https://api.gdeltproject.org/api/v2/doc/doc?' + urllib.parse.urlencode(query)
-    def read_feed(url):
+    now = dt.datetime.now(UTC).replace(microsecond=0)
+    previous = {}
+    if STATE.exists():
         try:
-            body = checked_fetch(url)
-            if url in RSS_FEEDS:
-                rows = rss_articles(body)
-                rows = [{**row, 'feed': url} for row in rows]
-            else:
-                payload = json.loads(body)
-                if not isinstance(payload, dict) or not isinstance(payload.get('articles'), list):
-                    raise ValueError('GDELT did not return an article list')
-                rows = payload['articles']
-            return rows, {'url': url, 'status': 'ok', 'items': len(rows),
-                          'sha256': hashlib.sha256(body).hexdigest()}
-        except (OSError, ValueError, ET.ParseError) as error:
-            print(f'::warning::news feed unavailable: {urllib.parse.urlsplit(url).hostname}: {error}',
-                  file=sys.stderr)
-            return [], {'url': url, 'status': 'unavailable'}
-    combined, feeds = [], []
+            previous = observation_history(json.loads(STATE.read_text()))
+        except (ValueError, KeyError, TypeError):
+            pass
+    saved = previous.get('feed_state', {})
+    def read_feed(url):
+        return url, news_feeds.read(url, saved.get(url, {}), now)
+    combined, feeds, feed_state = [], [], {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        for rows, feed in pool.map(read_feed, (feed_url, *RSS_FEEDS)):
+        for url, (rows, report, state) in pool.map(read_feed, RSS_FEEDS):
             combined.extend(rows)
-            feeds.append(feed)
-    if not any(feed['status'] == 'ok' for feed in feeds):
-        raise OSError('all news feeds failed; previous snapshot preserved')
-    # The old schema is accepted only as observation history during this migration. Every
-    # candidate is filtered and ranked again; an old selected headline is never trusted.
-    previous = observation_history(json.loads(STATE.read_text())) if STATE.exists() else {}
-    result = snapshot({'articles': combined}, dt.datetime.now(UTC), previous)
-    result['feed_url'] = feed_url
-    result['feeds'] = feeds
+            feeds.append(report)
+            feed_state[url] = state
+    if not any(feed['status'] in ('ok', 'not_modified') for feed in feeds):
+        raise OSError('all news feeds failed; previous published snapshot preserved')
+    result = snapshot({'articles': combined}, dt.datetime.now(UTC), previous, rotate=True)
+    result['feeds'], result['feed_state'] = feeds, feed_state
     validate(result)
     STATE.parent.mkdir(parents=True, exist_ok=True)
     temp = STATE.with_suffix('.tmp')
     temp.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     temp.replace(STATE)
-    print(json.dumps({'eligible': len(rank(result['articles'], instant(result['checked_at']))),
-                      'selected': result['selected'], 'expires_at': result['expires_at']}, ensure_ascii=False))
+    print(json.dumps({'eligible': len(result['articles']), 'working_feeds': sum(
+        feed['status'] in ('ok', 'not_modified') for feed in feeds),
+        'editions': [{'starts_at': entry['starts_at'], 'title': entry['selected']['title'],
+                      'publisher': entry['selected']['publisher']} for entry in result['editions']]}, ensure_ascii=False))
     return 0
 
 
 def health_problems(data: dict, now: dt.datetime) -> list[str]:
     """Operational health is separate from the reproducible snapshot/schema check."""
     problems = []
-    if not data.get('selected') or now - instant(data['selected']['first_seen_at']) >= TRENDING_AGE:
+    selected = edition_story(data, now)
+    if not selected or now - instant(selected['first_seen_at']) >= TRENDING_AGE:
         problems.append('no fresh AI or Texas tech headline is available')
     if not dt.timedelta(minutes=-5) <= now - instant(data['checked_at']) <= MAX_CHECK_AGE:
         problems.append('news collection is overdue or its clock is invalid')
-    if sum(feed.get('status') == 'ok' for feed in data.get('feeds', [])) < 1:
+    if sum(feed.get('status') in ('ok', 'not_modified') for feed in data.get('feeds', [])) < 1:
         problems.append('no news feed is available')
+    if data.get('rotation_version') == 1:
+        editions = data['editions']
+        if len(editions) < 2 or instant(editions[-1]['starts_at']) <= now:
+            problems.append('no distinct fresh headline is ready for the next six-hour edition')
+        groups = {source(feed['url'])[1] for feed in data.get('feeds', [])
+                  if feed.get('status') in ('ok', 'not_modified') and source(feed.get('url', ''))}
+        if len(groups) < 2:
+            problems.append('fewer than two independent publisher feeds are available')
     return problems
 
 
@@ -566,7 +603,7 @@ def self_test() -> int:
             with tempfile.TemporaryDirectory() as directory:
                 state = Path(directory) / 'latest.json'
                 state.write_text('last known snapshot')
-                with patch(__name__ + '.STATE', state), patch(__name__ + '.fetch', side_effect=TimeoutError()):
+                with patch(__name__ + '.STATE', state), patch.object(news_feeds, 'request', side_effect=TimeoutError()):
                     with self.assertRaises(OSError): collect()
                 self.assertEqual(state.read_text(), 'last known snapshot')
 
@@ -586,18 +623,19 @@ def self_test() -> int:
             body = ('<rss><channel><item><title>Texas AI research laboratory opens</title>'
                     '<link>https://dallasinnovates.com/research/</link><pubDate>' + published +
                     '</pubDate></item></channel></rss>').encode()
-            def read(url):
-                if url not in RSS_FEEDS:
-                    raise urllib.error.HTTPError(url, 429, 'Too Many Requests', {}, None)
-                return body
+            def read(url, previous, checked):
+                if url == RSS_FEEDS[-1]:
+                    return [], {'url': url, 'status': 'unavailable'}, {}
+                return [{**a, 'feed': url} for a in rss_articles(body)], {'url': url, 'status': 'ok'}, {}
             with tempfile.TemporaryDirectory() as directory:
                 state = Path(directory) / 'latest.json'
-                with patch(__name__ + '.STATE', state), patch(__name__ + '.checked_fetch', side_effect=read):
+                with patch(__name__ + '.STATE', state), patch.object(news_feeds, 'read', side_effect=read):
                     self.assertEqual(collect(), 0)
                     result = load()
                 self.assertEqual(result['selected']['title'], 'Texas AI research laboratory opens')
-                self.assertEqual(sum(f['status'] == 'ok' for f in result['feeds']), len(RSS_FEEDS))
-                self.assertEqual(health_problems(result, dt.datetime.now(UTC)), [])
+                self.assertEqual(sum(f['status'] == 'ok' for f in result['feeds']), len(RSS_FEEDS) - 1)
+                self.assertIn('no distinct fresh headline is ready for the next six-hour edition',
+                              health_problems(result, dt.datetime.now(UTC)))
 
         def test_empty_refresh_is_not_operational_success(self):
             s = snapshot({'articles': []}, now)
@@ -672,6 +710,85 @@ def self_test() -> int:
             self.assertIn('Recent', markup('2026-09-15', s))
             self.assertIn('data-news-status="empty"', markup('2026-09-20', s))
             self.assertIn('Explore the latest AI reporting', markup('2026-09-11', {}))
+
+        def test_six_hour_rotation_survives_unchanged_feeds_and_restart(self):
+            titles = ['Texas deploys AI for hurricane forecasts', 'AI improves breast cancer screening accuracy',
+                      'ChatGPT faces new privacy rules in schools', 'Anthropic releases smaller coding models',
+                      'AI accelerators reduce electricity consumption', 'Teachers evaluate AI tutors for mathematics',
+                      'AI-generated video raises election security concerns', 'New AI method deciphers ancient manuscripts']
+            rows = [row(title, 'siliconangle.com', hours=i + 1, path=str(i)) for i, title in enumerate(titles)]
+            previous = {'articles': rows, 'selected': rows[0], 'checked_at': stamp(now - EDITION_LENGTH)}
+            first = snapshot({'articles': []}, now, previous, rotate=True)
+            validate(first)
+            self.assertEqual(len(first['editions']), 4)
+            self.assertNotEqual(first['selected']['url'], rows[0]['url'])
+            # A retry in this slot stays stable. A delayed next run retains the queued story
+            # readers have already seen, and replenishes future slots rather than repeating it.
+            same = snapshot({'articles': []}, now + dt.timedelta(minutes=15), first, rotate=True)
+            self.assertEqual(first['selected']['url'], same['selected']['url'])
+            next_time = instant(first['editions'][1]['starts_at']) + dt.timedelta(hours=2)
+            restored = observation_history(json.loads(json.dumps(first)))
+            second = snapshot({'articles': []}, next_time, restored, rotate=True)
+            validate(second)
+            self.assertEqual(second['selected']['url'], first['editions'][1]['selected']['url'])
+            self.assertNotEqual(first['selected']['url'], second['selected']['url'])
+            shown = {first['selected']['url'], second['selected']['url']}
+            for _ in range(4):
+                next_time += EDITION_LENGTH
+                second = snapshot({'articles': []}, next_time, second, rotate=True)
+                validate(second)
+                self.assertNotIn(second['selected']['url'], shown)
+                shown.add(second['selected']['url'])
+
+        def test_rotation_rejects_repeats_stale_and_off_topic_reserves(self):
+            rows = [row('Texas deploys AI for hurricane forecasts', 'siliconangle.com', path='weather'),
+                    row('AI improves breast cancer screening accuracy', 'techspot.com', path='medicine')]
+            result = snapshot({'articles': []}, now, {'articles': rows}, rotate=True)
+            self.assertEqual(len(result['editions']), 2)
+            for field, value in [('title', 'A new chapter for MIT Reads'), ('url', 'https://evil.example/news'),
+                                 ('first_seen_at', stamp(now - dt.timedelta(days=4)))]:
+                broken = copy.deepcopy(result)
+                broken['editions'][1]['selected'][field] = value
+                with self.assertRaises(ValueError): validate(broken)
+            broken = copy.deepcopy(result)
+            broken['editions'][1]['selected'] = broken['editions'][0]['selected']
+            with self.assertRaises(ValueError): validate(broken)
+            result['feeds'] = [{'url': RSS_FEEDS[0], 'status': 'ok'}, {'url': RSS_FEEDS[1], 'status': 'not_modified'}]
+            self.assertEqual(health_problems(result, now), [])
+            self.assertTrue(health_problems(result, now + dt.timedelta(hours=12)))
+
+        def test_rate_limit_is_not_retried_and_retry_after_survives_restart(self):
+            from unittest.mock import patch
+            url = RSS_FEEDS[0]
+            error = urllib.error.HTTPError(url, 429, 'Too Many Requests', {'Retry-After': '43200'}, None)
+            with patch.object(news_feeds, 'allowed'), patch.object(news_feeds, 'request', side_effect=error) as request:
+                rows, report, state = news_feeds.read(url, {}, now)
+                self.assertEqual(request.call_count, 1)
+                self.assertEqual(rows, [])
+                self.assertEqual(report['http_status'], 429)
+                self.assertEqual(state['retry_at'], stamp(now + dt.timedelta(hours=12)))
+            with patch.object(news_feeds, 'request') as request:
+                _, report, _ = news_feeds.read(url, json.loads(json.dumps(state)), now + EDITION_LENGTH)
+                self.assertEqual(report['status'], 'backoff')
+                request.assert_not_called()
+
+        def test_conditional_feed_refresh_and_atom_dates(self):
+            from unittest.mock import patch
+            url = RSS_FEEDS[0]
+            previous = {'etag': '"v1"', 'last_modified': 'Fri, 11 Sep 2026 18:00:00 GMT', 'ok_at': stamp(now - EDITION_LENGTH)}
+            error = urllib.error.HTTPError(url, 304, 'Not Modified', {}, None)
+            with patch.object(news_feeds, 'allowed'), patch.object(news_feeds, 'request', side_effect=error) as request:
+                _, report, state = news_feeds.read(url, previous, now)
+                self.assertEqual(report['status'], 'not_modified')
+                self.assertEqual(state['ok_at'], stamp(now))
+                self.assertEqual(request.call_args.args[1]['If-None-Match'], '"v1"')
+            body = b'<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>New AI research improves surgery</title><link href="https://news.mit.edu/surgery"/><published>2026-09-11T18:00:00Z</published><updated>2026-09-12T18:00:00Z</updated></entry></feed>'
+            self.assertEqual(rss_articles(body)[0]['seendate'], '20260911T180000Z')
+
+        def test_company_blog_does_not_displace_independent_reporting(self):
+            company = row('New experts join Google AI research team', 'blog.google', hours=1)
+            report = row('AI researchers test safety of driverless taxis', 'siliconangle.com', hours=12)
+            self.assertEqual(rank([company, report], now)[0]['url'], report['url'])
     return 0 if unittest.TextTestRunner().run(unittest.defaultTestLoader.loadTestsFromTestCase(Cases)).wasSuccessful() else 1
 
 

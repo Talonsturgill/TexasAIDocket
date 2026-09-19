@@ -85,13 +85,14 @@ try {
       assert.equal(await chip.evaluate(el=>getComputedStyle(el).outlineStyle),'solid');
       const before=await page.locator('.hero h1').evaluate(el=>el.getBoundingClientRect().top);
       await page.clock.fastForward(37*3600000);
-      assert.equal(await chip.getAttribute('href'),state.selected.url,'a missed refresh must keep the dated headline');
+      const retained=(state.editions?.at(-1)?.selected || state.selected).url;
+      assert.equal(await chip.getAttribute('href'),retained,'a missed refresh must use the reserve queue, then keep its dated last headline');
       assert.equal(await chip.locator('.news-label').textContent(),'Recent');
       const after=await page.locator('.hero h1').evaluate(el=>el.getBoundingClientRect().top);
       assert.ok(Math.abs(before-after)<1,JSON.stringify({pathname,width,before,after,chip:await chip.boundingBox()}));
       await page.reload();
       await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
-      assert.equal(await chip.getAttribute('href'),state.selected.url,'cached HTML must not erase a 36-hour-old story');
+      assert.equal(await chip.getAttribute('href'),retained,'cached HTML must retain the last scheduled story');
       await page.clock.fastForward(8*24*3600000);
       assert.equal(await chip.getAttribute('href'),'/articles/','week-old data is not passed off as fresh news');
     } else {
@@ -144,6 +145,40 @@ try {
       'an off-topic cached story and live response must not override relevant reporting');
     assert.equal(await page.locator('.news-chip').getAttribute('href'),initial==='current'?base.selected.url:'/articles/');
     await page.close();checked++;
+  }
+  // An unchanged feed and a complete network outage must still change what readers see
+  // at the six-hour boundary. A reload must choose the same edition as an already-open tab.
+  if(state.rotation_version===1) {
+    for(const width of [1440,390]) {
+      const page=await pageFor(state,width,state);
+      await loaded(page,'/');
+      const initial=await page.locator('.news-chip').getAttribute('href');
+      await page.unroute(feed);
+      await page.route(feed,route=>route.abort());
+      for(const edition of state.editions.slice(1)) {
+        const delta=Date.parse(edition.starts_at)-await page.evaluate(()=>Date.now())+100;
+        await page.clock.fastForward(delta);
+        assert.equal(await page.locator('.news-chip').getAttribute('href'),edition.selected.url);
+        assert.notEqual(edition.selected.url,initial);
+        await page.reload();
+        await page.waitForFunction(()=>document.querySelector('.news-chip').dataset.newsLoaded==='true');
+        assert.equal(await page.locator('.news-chip').getAttribute('href'),edition.selected.url,'reload retains current edition');
+        assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+      }
+      await page.close();checked++;
+    }
+    for(const mutation of ['irrelevant','unsafe','repeat','wrong-slot']) {
+      const bad=structuredClone(state);
+      bad.checked_at=new Date(Date.parse(state.checked_at)+60000).toISOString();
+      if(mutation==='irrelevant') bad.editions[1].selected.title='A new chapter for MIT Reads';
+      if(mutation==='unsafe') bad.editions[1].selected.url='javascript:alert(1)';
+      if(mutation==='repeat') bad.editions[1].selected=structuredClone(bad.selected);
+      if(mutation==='wrong-slot') bad.editions[1].starts_at=bad.editions[0].starts_at;
+      const page=await pageFor(state,390,bad);
+      await loaded(page,'/');
+      assert.equal(await page.locator('.news-chip').getAttribute('data-checked-at'),state.checked_at,'invalid reserve must be rejected');
+      await page.close();checked++;
+    }
   }
   console.log(`news headline: ${checked} layouts and feed recovery, outage, cached expiry, date, attribution and unsafe-payload cases passed`);
 } finally {await browser.close();await new Promise(resolve=>server.close(resolve));}

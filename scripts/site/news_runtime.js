@@ -9,19 +9,17 @@
   });
   var endpoint = chip.dataset.newsFeed;
   var key = 'texas-ai-news-v2';
-  var hour = 3600000, active = null, pending = false, lastAttempt = 0;
+  var hour = 3600000, active = null, pending = false, lastAttempt = 0, rotationTimer;
   function relevant(title, group) {
     var texas = topic.texas.test(title) || topic.austin.test(title) ||
                 (group === 'dallasinnovates' && topic.local.test(title));
     return !topic.junk.test(title) &&
       ((topic.ai.test(title) && relevance.global_groups.indexOf(group) >= 0) || (texas && topic.tech.test(title)));
   }
-  function valid(data) {
-    if (!data || data._spec !== 2 || !data.selected) return false;
-    var story = data.selected, now = Date.now();
-    var checked = Date.parse(data.checked_at), seen = Date.parse(story.first_seen_at);
-    if (!Number.isFinite(checked) || !Number.isFinite(seen) || checked > now + 5 * 60000 ||
-        seen > now || now - seen >= 168 * hour || seen > checked ||
+  function validStory(story, checked, now) {
+    if (!story) return false;
+    var seen = Date.parse(story.first_seen_at);
+    if (!Number.isFinite(seen) || seen > now || now - seen >= 168 * hour || seen > checked ||
         typeof story.title !== 'string' || story.title.length < 20 || story.title.length > 220 ||
         story.title.trim().split(/\s+/).length > 32) return false;
     try {
@@ -33,12 +31,38 @@
       });
     } catch (_) { return false; }
   }
+  function valid(data) {
+    if (!data || data._spec !== 2 || !data.selected) return false;
+    var now = Date.now(), checked = Date.parse(data.checked_at);
+    if (!Number.isFinite(checked) || checked > now + 5 * 60000 || !validStory(data.selected, checked, now)) return false;
+    if (data.rotation_version === undefined) return true;
+    if (data.rotation_version !== 1 || !Array.isArray(data.editions) || !data.editions.length || data.editions.length > 4) return false;
+    var anchor = 83 * 60000, slot = Math.floor((checked - anchor) / (6 * hour)) * 6 * hour + anchor, urls = [];
+    return data.editions.every(function (entry, i) {
+      if (!entry || !entry.selected) return false;
+      var start = Date.parse(entry.starts_at), story = entry.selected;
+      if (start !== slot + i * 6 * hour || !validStory(story, checked, now) ||
+          Math.max(start, checked) - Date.parse(story.first_seen_at) >= 72 * hour ||
+          urls.indexOf(story.url) >= 0 || (i === 0 && JSON.stringify(story) !== JSON.stringify(data.selected))) return false;
+      urls.push(story.url);
+      return true;
+    });
+  }
+  function currentEdition(data) {
+    var edition = {selected:data.selected, starts_at:null};
+    (data.editions || []).forEach(function (entry) {
+      if (Date.parse(entry.starts_at) <= Date.now()) edition = entry;
+    });
+    return edition;
+  }
   function render(data) {
     if (!valid(data) || (active && Date.parse(data.checked_at) < Date.parse(active.checked_at))) return false;
-    var story = data.selected;
+    if (active && active.rotation_version === 1 && data.rotation_version !== 1) return false;
+    var edition = currentEdition(data), story = edition.selected;
     var recent = Date.now() - Date.parse(story.first_seen_at) >= 72 * hour ||
-                 Date.now() - Date.parse(data.checked_at) > 18 * hour;
-    if (active && active.selected.url === story.url) {
+                 Date.now() - Date.parse(data.checked_at) > 18 * hour ||
+                 (edition.starts_at && Date.now() >= Date.parse(edition.starts_at) + 6 * hour);
+    if (active && chip.href === story.url) {
       if (chip.dataset.newsStatus !== (recent ? 'recent' : 'current'))
         chip.style.minHeight = chip.getBoundingClientRect().height + 'px';
     } else {
@@ -50,6 +74,7 @@
     chip.rel = 'noopener noreferrer';
     chip.dataset.newsStatus = recent ? 'recent' : 'current';
     chip.dataset.checkedAt = data.checked_at;
+    chip.dataset.editionAt = edition.starts_at || '';
     chip.dataset.firstSeenAt = story.first_seen_at;
     chip.dataset.expiresAt = new Date(Date.parse(story.first_seen_at) + 168 * hour).toISOString();
     chip.querySelector('.news-label').textContent = recent ? 'Recent' : 'Trending';
@@ -61,6 +86,9 @@
     var suffix = day % 100 >= 10 && day % 100 <= 20 ? 'th' : ({1:'st', 2:'nd', 3:'rd'}[day % 10] || 'th');
     date.textContent = observed.toLocaleDateString('en-US', {month:'long', timeZone:'UTC'}) +
       ' ' + day + suffix + ', ' + observed.getUTCFullYear();
+    clearTimeout(rotationTimer);
+    var next = (data.editions || []).find(function (entry) { return Date.parse(entry.starts_at) > Date.now(); });
+    if (next) rotationTimer = setTimeout(fallback, Date.parse(next.starts_at) - Date.now() + 50);
     return true;
   }
   function fallback() {

@@ -7,9 +7,25 @@
     "https://news.mit.edu/rss/topic/artificial-intelligence2",
     "https://openai.com/news/rss.xml",
     "https://blogs.nvidia.com/feed/",
-    "https://blog.google/technology/ai/rss/"
+    "https://blog.google/technology/ai/rss/",
+    "https://siliconangle.com/feed/",
+    "https://www.artificialintelligence-news.com/feed/",
+    "https://www.geekwire.com/tag/artificial-intelligence/feed/",
+    "https://www.techspot.com/backend.xml",
+    "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml"
   ],
-  "global_groups": ["mit", "openai", "nvidia", "google"],
+  "global_groups": [
+    "mit",
+    "openai",
+    "nvidia",
+    "google",
+    "siliconangle",
+    "techforge",
+    "geekwire",
+    "techspot",
+    "sciencedaily",
+    "dcd"
+  ],
   "sources": {
     "news.mit.edu": ["MIT News", "mit"],
     "openai.com": ["OpenAI", "openai"],
@@ -64,6 +80,16 @@
     "theverge.com": ["The Verge", "vox"],
     "techcrunch.com": ["TechCrunch", "techcrunch"],
     "datacenterdynamics.com": ["Data Center Dynamics", "dcd"],
-    "datacenterknowledge.com": ["Data Center Knowledge", "informa"]
-  }
+    "datacenterknowledge.com": ["Data Center Knowledge", "informa"],
+    "siliconangle.com": ["SiliconANGLE", "siliconangle"],
+    "artificialintelligence-news.com": ["AI News", "techforge"],
+    "geekwire.com": ["GeekWire", "geekwire"],
+    "techspot.com": ["TechSpot", "techspot"],
+    "sciencedaily.com": ["ScienceDaily", "sciencedaily"]
+  },
+  "first_party_groups": [
+    "openai",
+    "nvidia",
+    "google"
+  ]
 }
