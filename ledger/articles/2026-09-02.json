@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Work and education",
+  "dek": {"text": "A Senate hearing on AI and the Texas workforce was canceled and relisted. The change in schedule did not answer the committee's questions about adoption and its effects.", "claims": ["c1", "c3", "c4", "c5", "c6"]},
+  "introduction": [
+    {"text": "The Texas Senate's [meeting listing](c1) marked the Economic Development Committee's early September hearing canceled. It also listed the same committee later in the month without a cancellation note.", "claims": ["c1", "c2", "c3", "c25"]},
+    {"text": "The committee's charge still asks how AI affects the Texas workforce. It names resilience, education, innovation and opportunities to learn new skills. A rescheduled hearing does not establish what the committee will conclude.", "claims": ["c4", "c5", "c6", "c7"]}
+  ],
+  "sections": [
+    {"heading": "Adoption is not a single status", "paragraphs": [
+      {"text": "Northside ISD described a planned staff rollout of ChatGPT for Teachers while withholding immediate student access. Fort Worth ISD's own statement described evaluation and guardrails, despite a published headline characterizing its activity as a launch.", "claims": ["c8", "c9", "c11", "c12", "c13"]},
+      {"text": "Texas Tech's teaching guidance leaves generative AI rules to instructors. These are different decisions about different users. Combining them into a count of institutions that have adopted AI would conceal the conditions that matter.", "claims": ["c8", "c9", "c12", "c14", "c15"]}
+    ]},
+    {"heading": "An allegation needs its attribution", "paragraphs": [
+      {"text": "At an Austin protest, a nurses' union member criticized an AI scheduling tool used by HCA Healthcare. The report did not name a Central Texas hospital using it. HCA's local presence does not establish local deployment of that tool.", "claims": ["c16", "c17", "c18", "c19"]}
+    ]},
+    {"heading": "What the hearing still owes the record", "paragraphs": [
+      {"text": "The charge calls for evidence and recommendations about the labor market. Planned rollouts, evaluations and worker objections provide questions to examine. They are not equivalent proof of realized benefits or harms across Texas workplaces.", "claims": ["c4", "c5", "c6", "c7", "c8", "c12", "c16"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0109", "label": "The Senate's AI and workforce hearing"}]
+}

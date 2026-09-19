@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Research and consent",
+  "dek": {"text": "A federally funded UT Austin center plans to study robots in occupied homes, workplaces and care settings. Its consent and opt-out procedures were still to be developed.", "claims": ["c1", "c2", "c15", "c21", "c22"]},
+  "introduction": [
+    {"text": "UT Austin's new human-and-robot research center is designed to move beyond the laboratory. The [federal award abstract](c15) describes participatory living laboratories inside residential, commercial and healthcare facilities.", "claims": ["c1", "c2", "c14", "c15"]},
+    {"text": "The university's account names houses, dorms, cafes, a museum and care facilities as deployment settings. These are places where people already live or work. The same account says an internal ethics board will develop consent and opt-out procedures.", "claims": ["c21", "c22"]}
+  ],
+  "sections": [
+    {"heading": "An award is not a deployment result", "paragraphs": [
+      {"text": "The federal instrument is a cooperative agreement. Its record distinguishes an estimated total from funds already obligated. The university's rounded description of the award should not erase that distinction or imply all funding has already been spent.", "claims": ["c3", "c4", "c10", "c20"]},
+      {"text": "The research concerns how people and robots adapt to one another. The Texas Advanced Computing Center is assigned simulation, machine learning, storage and digital twins of the deployment sites. These are described research roles, not reported findings.", "claims": ["c24", "c27", "c32", "c34"]}
+    ]},
+    {"heading": "The consent question is concrete", "paragraphs": [
+      {"text": "The [university says](c23) community members will be able to influence where and how robots are deployed. Its future-tense description does not establish an operating consent process or show how someone in a shared space would decline participation.", "claims": ["c22", "c23"]}
+    ]},
+    {"heading": "The next document that matters", "paragraphs": [
+      {"text": "Published consent and opt-out procedures would make that promise inspectable. Until those procedures are available, the named settings establish the scope of the plan, not the protections already in place at each site.", "claims": ["c15", "c21", "c22", "c23"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0104", "label": "The human-and-robot co-adaptation center"}]
+}

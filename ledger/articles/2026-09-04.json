@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Border technology",
+  "dek": {"text": "Federal officials tested facial-image capture on pedestrians leaving Texas at Progreso. Their account describes the equipment and an opt-out lane, but publishes no accuracy or error rates.", "claims": ["c1", "c5", "c13", "c14", "c18"]},
+  "introduction": [
+    {"text": "Pedestrians walking out of the United States at Progreso became part of a federal biometric technology assessment. The [Homeland Security account](c1) describes work performed for Customs and Border Protection at the international bridge in Texas.", "claims": ["c1", "c2", "c5"]},
+    {"text": "The goal was to capture facial images as people walked past, without requiring them to stop. Officials praised the results. The published account does not give the measurements needed to independently assess that praise.", "claims": ["c6", "c7", "c17", "c18", "c19"]}
+  ],
+  "sections": [
+    {"heading": "What was tested", "paragraphs": [
+      {"text": "Selected systems from NEC and a Paravision-AiFi partnership moved from demonstrations in Maryland to operational data collection at Progreso. The assessment included different camera configurations and testing after dark with external lighting.", "claims": ["c3", "c4", "c5", "c16", "c28", "c30"]},
+      {"text": "The account credits AI and other technologies with modeling the capture area, observing pedestrian movement and assessing facial images for matching. It does not isolate the contribution of AI from the other components.", "claims": ["c15"]}
+    ]},
+    {"heading": "Who could decline", "paragraphs": [
+      {"text": "Signs in English and Spanish told United States citizens they could opt out. A separate lane served citizens who declined image collection. The account describes that option specifically for citizens, not as a universal opt-out for every traveler.", "claims": ["c13", "c14"]}
+    ]},
+    {"heading": "The missing results", "paragraphs": [
+      {"text": "The account publishes no match rate, error rate or participant count. It also gives no image-retention or deletion timeline. Its praise therefore can't be translated into a measured reliability or privacy result.", "claims": ["c18", "c19", "c20"]},
+      {"text": "No purchase or deployment decision is announced. The evidence establishes an assessment, not permanent adoption of a system at the crossing.", "claims": ["c21", "c32"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0120", "label": "The Progreso biometric assessment"}]
+}

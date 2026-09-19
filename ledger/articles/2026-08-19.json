@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Power and data centers",
+  "dek": {"text": "ERCOT suspended a Batch Zero notification deadline after the governor ordered a data center audit. The signed directive and its press release describe the gate differently.", "claims": ["c1", "c2", "c11", "c12"]},
+  "introduction": [
+    {"text": "ERCOT's large-load connection process lost a scheduled milestone when Governor Greg Abbott ordered an audit of data centers seeking grid access. The grid operator's [market notice](c2) said service providers would not receive Batch Zero classifications by the announced deadline.", "claims": ["c1", "c2", "c5"]},
+    {"text": "ERCOT said it would seek an exception to the planning timelines and update the notice after filing with the Public Utility Commission. That is a stated next step, not evidence that a replacement schedule had been approved.", "claims": ["c3", "c4"]}
+  ],
+  "sections": [
+    {"heading": "Read the signed condition", "paragraphs": [
+      {"text": "The governor's [signed letter](c12) conditions further approvals on completion of the audit. The accompanying press release describes a halt to projects moving forward. Those formulations aren't interchangeable when describing what ERCOT may do during the pause.", "claims": ["c10", "c11", "c12"]},
+      {"text": "The audit demands information on tax incentives and water supplies. The governor tied it to projects that had not answered the state's existing water and power survey. These are verification requirements, not a finding that every proposed project failed them.", "claims": ["c13", "c14", "c15"]}
+    ]},
+    {"heading": "Compliance claims are not audit results", "paragraphs": [
+      {"text": "The governor's office later said the Data Center Coalition would comply with the standards. It also said an unnamed project ended operations before construction because it could not comply. The release did not identify that project.", "claims": ["c16", "c17", "c18"]}
+    ]},
+    {"heading": "The missing date", "paragraphs": [
+      {"text": "The commission's calendar and ERCOT's notice named different meeting dates. A calendar entry alone doesn't establish the disposition of an exception request. The filing and a subsequent official scheduling record are needed to close that gap.", "claims": ["c3", "c4", "c19"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0072", "label": "The governor's data center audit directive"}]
+}

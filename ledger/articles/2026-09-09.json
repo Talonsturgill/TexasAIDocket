@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Health research",
+  "dek": {"text": "A Houston Methodist study found case managers estimated discharge dates better as patients neared departure. The comparison also had limits that prevent a simple verdict on all discharge AI.", "claims": ["c2", "c3", "c6", "c8", "c11"]},
+  "introduction": [
+    {"text": "Predicting a discharge date is most useful when a hospital needs to plan the next move. In a [Houston Methodist quality-improvement study](c6), case managers outperformed a commercial AI tool as patients approached discharge.", "claims": ["c1", "c2", "c3", "c5", "c6"]},
+    {"text": "At admission, the methods were closer on error. The results changed as the stay progressed. A headline describing similar performance at admission would miss the later comparison that matters for immediate bed planning.", "claims": ["c4", "c6", "c7"]}
+  ],
+  "sections": [
+    {"heading": "What the study compared", "paragraphs": [
+      {"text": "The AI estimates came from a clinician-assisted commercial tool integrated with the electronic health record. The study compared estimates at different points before discharge, with different encounter counts at each point.", "claims": ["c5", "c10"]},
+      {"text": "The authors caution that a strong correlation at admission does not establish that the tool captured clinicians' evolving knowledge throughout the stay. Performance at one moment should not stand in for performance across the entire hospitalization.", "claims": ["c7"]}
+    ]},
+    {"heading": "The comparison was not symmetrical", "paragraphs": [
+      {"text": "Case manager estimates were visible to care teams and may have influenced the actual discharge date. The AI estimates were present in the record without automatic activation. The authors identify that difference as a limitation.", "claims": ["c8"]},
+      {"text": "The comparison also lacked baseline patient demographics. That prevents this dataset from answering every question about which patients each method served well.", "claims": ["c11"]}
+    ]},
+    {"heading": "What the findings support", "paragraphs": [
+      {"text": "The study supports a specific comparison at this hospital, not a universal judgment about discharge prediction. The authors call for prospective, outcome-based evaluation before judging whether subgroup benefits justify the work required to operate the tool.", "claims": ["c1", "c6", "c9"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0137", "label": "Houston Methodist's discharge prediction study"}]
+}

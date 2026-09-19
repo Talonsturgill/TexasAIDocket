@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Local government",
+  "dek": {"text": "League City's camera referendum asks for voters' preferences without binding the council. Pflugerville's proposed AI charter language would create a different kind of obligation.", "claims": ["c1", "c9", "c10"]},
+  "introduction": [
+    {"text": "League City voters are being asked whether police should continue using fixed license plate reader cameras on public roads. The [published question](c1) says at its opening that the result will be a nonbinding statement of voter preference.", "claims": ["c1", "c2"]},
+    {"text": "That qualification is the central fact. The referendum can record what voters want. Its own wording does not transfer the decision from the council to the ballot.", "claims": ["c1"]}
+  ],
+  "sections": [
+    {"heading": "A different instrument in Pflugerville", "paragraphs": [
+      {"text": "Pflugerville's charter review commission proposed a section on artificial intelligence protections. Its [recommendation](c10) would require the council to adopt safeguards for data and surveillance technologies and require a responsible AI framework.", "claims": ["c9", "c10", "c17"]},
+      {"text": "The council approved an ordinance ordering a charter amendment election. That establishes an election, not adoption of the proposed charter language. This edition's record does not include verification of the final ballot wording.", "claims": ["c12", "c13"]}
+    ]},
+    {"heading": "The camera contract is another decision", "paragraphs": [
+      {"text": "Pflugerville also scheduled consideration of a Flock camera lease. At the reporting date, that item remained unvoted. A contract decision and a charter amendment may concern the same technology while carrying different legal effects.", "claims": ["c14", "c15"]},
+      {"text": "League City's next posted council agenda carried no item naming Flock or license plate reader cameras. It did include a general public comment period. An opportunity to speak is not a scheduled camera vote.", "claims": ["c18", "c19", "c20"]}
+    ]},
+    {"heading": "What the votes would establish", "paragraphs": [
+      {"text": "The League City result would express a preference under the question as published. Pflugerville's final ballot and election outcome would determine the charter question. Neither should be described as a camera ban already in force.", "claims": ["c1", "c9", "c10", "c12"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0048", "label": "League City's camera referendum"}, {"id": "tx-2026-0075", "label": "Pflugerville's charter amendment election"}]
+}

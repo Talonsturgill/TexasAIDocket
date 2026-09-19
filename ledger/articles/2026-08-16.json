@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Grimes County",
+  "dek": {"text": "SpaceX's proposed semiconductor plant brings state money and school district agreements to Grimes County. The announcements are clearer than the public agreement register.", "claims": ["c1", "c3", "c9", "c26"]},
+  "introduction": [
+    {"text": "SpaceX plans to put chip fabrication, memory production and advanced packaging inside a single Grimes County building. The [state's announcement](c1) describes a semiconductor plant intended to produce AI chips at scale.", "claims": ["c1", "c5", "c6", "c7"]},
+    {"text": "The state describes a first-phase investment exceeding ${{number:c2}} billion and a ${{number:c3}} million Texas Enterprise Fund grant. It also gives the plant qualified status under its JETI tax incentive program. The Iola school board voted to enter an agreement with TeraFab AI.", "claims": ["c2", "c3", "c4", "c9"]}
+  ],
+  "sections": [
+    {"heading": "An announcement is not the agreement", "paragraphs": [
+      {"text": "The Iola superintendent said the board judged the incentives to be in the district's interest. Anderson-Shiro's superintendent also described a district agreement. Those statements establish the officials' positions, not the complete terms a reader could inspect.", "claims": ["c10", "c12"]},
+      {"text": "On this edition's reporting date, the [Comptroller's public JETI register](c26) named neither the company nor either school district. That gap limits verification of the agreements. It doesn't establish that the announced agreements don't exist.", "claims": ["c26"]}
+    ]},
+    {"heading": "Power and water need their own evidence", "paragraphs": [
+      {"text": "[Local reporting](c22) attributed the site's selection to water storage and described plans for its own gas generation. Those are reported project claims. They aren't measurements of the plant's eventual water consumption or electricity demand.", "claims": ["c22", "c23", "c24", "c25"]},
+      {"text": "Separately, the governor ordered an audit before further data center approvals. ERCOT's queue describes proposed large electricity users, not operating demand. Neither record alone establishes this semiconductor plant's connection status.", "claims": ["c13", "c14", "c15", "c17", "c18"]}
+    ]},
+    {"heading": "The record to follow", "paragraphs": [
+      {"text": "The next useful evidence is the agreement itself and the documents establishing the site's water and power arrangements. The public register remains the place to check the incentive terms against the announcements.", "claims": ["c9", "c22", "c24", "c26"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0071", "label": "The Terafab announcement and incentive record"}]
+}

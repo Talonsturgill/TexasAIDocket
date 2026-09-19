@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Health research",
+  "dek": {"text": "Radiologists with Texas affiliations warn that pediatric imaging is underrepresented in AI research. A separate MRI study illustrates why performance must be tested beyond the original patient group.", "claims": ["c4", "c11", "c12", "c20", "c22", "c26"]},
+  "introduction": [
+    {"text": "An AI model built around adults does not automatically meet children's needs. An [expert panel review](c4) argues that pediatric imaging remains underrepresented in AI development, validation, regulation and implementation.", "claims": ["c1", "c4", "c5"]},
+    {"text": "The panel includes radiologists affiliated with Texas Children's Hospital and UT Southwestern. Its document is a narrative review with recommendations, not a new trial measuring a pediatric product's safety or effectiveness.", "claims": ["c9", "c11", "c12"]}
+  ],
+  "sections": [
+    {"heading": "Children require their own evidence", "paragraphs": [
+      {"text": "The review identifies scarce public datasets, fragmented institutional records and insufficient external validation among the obstacles. It also raises concerns about consent, off-label use of adult-trained models and surveillance after deployment.", "claims": ["c6", "c7"]},
+      {"text": "Its proposed response is dedicated pediatric infrastructure and standards. That recommendation identifies work still needed. It is not a finding that every existing imaging tool is unsuitable for every child.", "claims": ["c4", "c9", "c10"]}
+    ]},
+    {"heading": "A separate test of generalization", "paragraphs": [
+      {"text": "A separate [MRI radiomics study](c20) developed a survival model in one patient cohort and tested it without refitting in another. Performance was lower in the independent cohort. The authors described limited standalone discrimination and urged cautious use.", "claims": ["c16", "c20", "c22", "c24", "c25"]},
+      {"text": "That paper is not a pediatric trial. It illustrates a related evidence problem without resolving the review's child-specific questions. Stronger results in the development group do not guarantee the same performance elsewhere.", "claims": ["c1", "c16", "c20", "c22"]}
+    ]},
+    {"heading": "What remains to be demonstrated", "paragraphs": [
+      {"text": "Evidence needs to match the intended patient population and use. The review's priorities and the separate study's limitations both point toward validation, not an assumption that a successful model travels unchanged between settings.", "claims": ["c6", "c10", "c20", "c24", "c25", "c27"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0150", "label": "The pediatric imaging AI review"}, {"id": "tx-2026-0151", "label": "The externally tested MRI survival model"}]
+}

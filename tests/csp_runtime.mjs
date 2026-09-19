@@ -150,4 +150,7 @@ for (const file of all) {
 say(missing === 0, `every declared endpoint is allowed by its own page (${checked} page(s) declare one)`);
 
 console.log(`\ncsp_runtime: ${failures ? `${failures} FAILED` : 'all passed'}`);
+// Articles have their own inline gallery and correction controls. Exercise their behavior
+// through this existing runtime CI entry point, not an optional disconnected local suite.
+await import('./article_edition.mjs');
 process.exit(failures ? 1 : 0);

@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Local government",
+  "dek": {"text": "Texas communities are using ordinances, resolutions and incentive votes to respond to data centers. Similar headlines can conceal very different powers and outcomes.", "claims": ["c8", "c9", "c22", "c30", "c34", "c35"]},
+  "introduction": [
+    {"text": "A vote against a tax break does not necessarily stop a data center. A resolution asking for new powers does not create those powers. Across Texas, the document a local government adopts matters as much as the direction of its vote.", "claims": ["c5", "c8", "c9", "c10"]},
+    {"text": "The records assembled for this edition show different mechanisms at work. Some governments changed enforceable rules. Others began a process, denied an incentive or asked staff to return with options.", "claims": ["c22", "c30", "c34", "c35"]}
+  ],
+  "sections": [
+    {"heading": "Rules that change the conditions", "paragraphs": [
+      {"text": "[San Angelo's ordinance](c34) places limits on data center cooling water and requires separate metering. Its zoning rules make new data centers a conditional use. San Marcos went further by making data centers ineligible under its citywide zoning rules.", "claims": ["c32", "c33", "c34", "c35", "c41"]},
+      {"text": "Wichita Falls approved a conditional use request with a prohibition on evaporative cooling. That is an approval with a specific condition, not an unconditional endorsement of every operating arrangement.", "claims": ["c37", "c44"]}
+    ]},
+    {"heading": "Votes that begin or withhold something", "paragraphs": [
+      {"text": "Fort Worth's resolution began the statutory process toward a moratorium. Public hearings and a later adoption vote still mattered. Corpus Christi directed staff to bring back options rather than adopting a data center ban through that motion.", "claims": ["c22", "c23", "c24", "c30", "c46"]},
+      {"text": "Brazoria County denied a reinvestment zone. The dependent abatement items then received no action. Archer County denied an incentive without thereby halting the underlying project. Withholding public support and prohibiting development are separate actions.", "claims": ["c3", "c5", "c9", "c10"]}
+    ]},
+    {"heading": "Read the operative document", "paragraphs": [
+      {"text": "These records do not support a single statewide count of equivalent bans. The useful question is what each instrument changes and what still requires another decision. The linked Docket records retain those distinctions as the proceedings develop.", "claims": ["c8", "c22", "c30", "c34", "c35"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0065", "label": "San Angelo's cooling-water ordinance"}, {"id": "tx-2026-0061", "label": "San Marcos's zoning action"}, {"id": "tx-2026-0062", "label": "Fort Worth's moratorium process"}]
+}

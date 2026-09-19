@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Education",
+  "dek": {"text": "Texas's financial literacy standards include AI-assisted career research and scrutiny of algorithmic recommendations. Students are asked to question the tools as well as use them.", "claims": ["c14", "c15", "c16", "c23"]},
+  "introduction": [
+    {"text": "AI enters Texas's personal financial literacy course through ordinary decisions about careers, spending and investing. The [published course text](c14) asks students to research career pathways using AI alongside labor-market data and other resources.", "claims": ["c14", "c19"]},
+    {"text": "Other expectations turn the attention back on the tools. Students are asked to explain how algorithm-driven recommendations influence spending and to examine the limitations of automated investment platforms.", "claims": ["c15", "c16", "c20", "c21"]}
+  ],
+  "sections": [
+    {"heading": "Use and scrutiny sit together", "paragraphs": [
+      {"text": "The investment expectation includes fees, strategies, algorithmic limitations and suitability for different investor profiles. It is not an endorsement of a particular automated product. The consumer-economics section similarly treats recommendations as an influence to understand.", "claims": ["c15", "c16", "c17"]},
+      {"text": "The careers section also asks students to consider work that may emerge as technology changes. AI is embedded in broader financial decision-making, not described as a stand-alone technical qualification.", "claims": ["c14", "c18", "c19"]}
+    ]},
+    {"heading": "Proposal text and adoption evidence", "paragraphs": [
+      {"text": "The board item and its attachment describe proposed text for final adoption. A separate [board news release](c23) reports adoption of the personal financial literacy standards. The adoption claim rests on that release, not on the proposed motion alone.", "claims": ["c1", "c2", "c4", "c11", "c23"]}
+    ]},
+    {"heading": "What the standards do not show", "paragraphs": [
+      {"text": "The published expectations describe what students should learn. They do not establish which classroom products districts will use or how instruction will be delivered. Those implementation choices require evidence beyond the curriculum text.", "claims": ["c12", "c14", "c15", "c16"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0142", "label": "The personal financial literacy standards"}]
+}

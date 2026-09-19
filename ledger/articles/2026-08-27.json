@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Austin",
+  "dek": {"text": "Amazon and Texas announced an Austin robotics factory. The releases describe jobs and investment, but they are not a local approval record or a hearing notice.", "claims": ["c1", "c2", "c3", "c6", "c7", "c8"]},
+  "introduction": [
+    {"text": "Amazon plans an Austin manufacturing facility to build the robotics used alongside its warehouse staff. The [company announcement](c1) and the governor's release identify the city and describe the expected economic activity.", "claims": ["c1", "c2", "c3", "c7", "c8"]},
+    {"text": "Austin's mayor is quoted in Amazon's release saying the company sought no public incentives. That is an attributed statement in the company's announcement. It is not a substitute for a complete project approval file.", "claims": ["c6"]}
+  ],
+  "sections": [
+    {"heading": "An investment announcement is one kind of record", "paragraphs": [
+      {"text": "The state describes the investment as multibillion-dollar and repeats the job range. Both releases also cite Amazon's existing Texas presence. Existing employment and cumulative investment should not be counted as new results from the announced factory.", "claims": ["c3", "c4", "c5", "c8", "c9"]}
+    ]},
+    {"heading": "Other projects arrive through a public vote", "paragraphs": [
+      {"text": "Elsewhere, Texas governments were considering identifiable instruments. Archer County rejected a data center abatement. Brazoria County denied a reinvestment zone, leaving the dependent incentive applications without separate action.", "claims": ["c11", "c13", "c14"]},
+      {"text": "Brazos County considered reassignment of an existing abatement after a developer's failure. Taylor posted notice of an amended agreement. These records expose a decision and a responsible public body in a way a corporate siting announcement does not.", "claims": ["c15", "c16", "c18", "c19"]}
+    ]},
+    {"heading": "What can be followed next", "paragraphs": [
+      {"text": "The Amazon releases establish an announced factory, not construction completion or realized hiring. For the other projects, the relevant agreement and vote establish what public support changed. Those are the records to follow beyond the announcement.", "claims": ["c1", "c3", "c13", "c16", "c18"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0084", "label": "Amazon's Austin robotics factory announcement"}, {"id": "tx-2026-0088", "label": "The RELLIS abatement reassignment"}]
+}

@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Transportation research",
+  "dek": {"text": "Texas State is moving an AI pavement-inspection project into another phase. The method pairs images with depth data, while the research still calls for human verification.", "claims": ["c1", "c6", "c17"]},
+  "introduction": [
+    {"text": "Texas State University describes its pavement-inspection research as moving closer to statewide use. The [TxDOT-funded project](c3) combines ordinary photographs with depth data to distinguish damage from stains and prioritize serious hazards.", "claims": ["c1", "c3", "c6"]},
+    {"text": "That is a description of a developing method, not confirmation of statewide deployment. The university lists further work on hairline cracks, severity scoring and adaptation to other surfaces without attaching delivery dates.", "claims": ["c1", "c7"]}
+  ],
+  "sections": [
+    {"heading": "What the model is trying to replace", "paragraphs": [
+      {"text": "The research describes manual inspection of sampled pavement sections as costly and exposed to human error, traffic and weather. Automated assessment aims to reduce that burden. The team's published work nevertheless says pavement engineers must verify inaccurate automated results.", "claims": ["c4", "c15", "c16", "c17"]},
+      {"text": "Related papers report detection and segmentation results under specific test conditions. Those metrics measure model tasks. They are not the same thing as TxDOT's combined pavement condition score, which includes ride quality and surface distress.", "claims": ["c8", "c18", "c19", "c20"]}
+    ]},
+    {"heading": "The road total needs a definition", "paragraphs": [
+      {"text": "The university's release gives an unsourced statewide lane-mile figure and calls the network highways. Federal tables count all functional systems, including local roads. Similar-looking totals do not establish that the documents measure the same network.", "claims": ["c2", "c12", "c13"]}
+    ]},
+    {"heading": "What deployment would need to show", "paragraphs": [
+      {"text": "The next evidence would identify where the method is used, how its results are checked and how they affect maintenance decisions. A research-phase announcement and benchmark gains do not establish those operational outcomes.", "claims": ["c1", "c7", "c10", "c17", "c18", "c19"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0131", "label": "Texas State's pavement assessment project"}]
+}

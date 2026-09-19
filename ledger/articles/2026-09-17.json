@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Healthcare",
+  "dek": {"text": "Memorial Hermann clinicians use AI drafts to explain test results. The system reports fewer follow-up messages, but its published figures do not establish a controlled comparison.", "claims": ["c1", "c3", "c5", "c12", "c13"]},
+  "introduction": [
+    {"text": "A patient-friendly explanation of a lab or imaging result may now begin as an AI draft at Memorial Hermann. The [health system says](c1) its clinicians use Epic's Art while reviewing results inside the electronic health record.", "claims": ["c1", "c2", "c3"]},
+    {"text": "The clinician can review, edit and personalize the draft before it reaches the patient. The health system describes the tool as a starting point that supports clinical judgment, not a replacement for the clinician's relationship with the patient.", "claims": ["c4", "c8", "c9"]}
+  ],
+  "sections": [
+    {"heading": "The reported benefit has a boundary", "paragraphs": [
+      {"text": "Memorial Hermann reports {{number:c5}} fewer follow-up messages when clinicians start from Art's draft. It also reports time saved and the volume of messages written with the tool. Those figures come from the vendor and its customer.", "claims": ["c5", "c6", "c7", "c12"]},
+      {"text": "A [trade publication's examination](c12) notes that the figures lack a baseline, control arm and denominator. The follow-up message result concerns clinicians who chose to use a draft. It should not be presented as a randomized finding about all clinicians.", "claims": ["c12", "c13"]}
+    ]},
+    {"heading": "Disclosure is a separate question", "paragraphs": [
+      {"text": "Texas's [AI disclosure provisions](c15) address healthcare recipients and require plain-language, conspicuous notice under the cited subsection. The statute and the deployment announcement answer different questions. The announcement alone does not establish how each patient receives notice.", "claims": ["c1", "c15", "c16", "c17", "c21", "c22"]},
+      {"text": "The chapter provides a complaint mechanism and assigns enforcement authority. Nothing in this edition establishes a violation by the health system. Describing the applicable disclosure text is not a finding about compliance in an individual encounter.", "claims": ["c18", "c19", "c20", "c39"]}
+    ]},
+    {"heading": "What would make the benefit clearer", "paragraphs": [
+      {"text": "A defined comparison group and published measurement method would help distinguish the tool's effects from the characteristics of clinicians choosing it. For now, the record establishes reported use and customer-reported benefits, with clinician review built into the described workflow.", "claims": ["c4", "c5", "c8", "c10", "c12", "c13"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0162", "label": "Memorial Hermann's AI-drafted test-result explanations"}]
+}

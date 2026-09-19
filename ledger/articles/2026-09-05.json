@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Materials research",
+  "dek": {"text": "A Houston-led team will use AI to search for new magnet materials. The supply-chain case is real, but an award to search is not evidence of a better magnet.", "claims": ["c4", "c6", "c11", "c18"]},
+  "introduction": [
+    {"text": "A University of Houston-led research team is searching for magnetic materials that could outperform a widely used industry standard. Rice's role is to use AI, atomistic modeling and high-throughput computing to select candidates for testing.", "claims": ["c4", "c5", "c6", "c11"]},
+    {"text": "The supply-chain context is specific. The [United States Geological Survey](c18) attributes {{number:c18:1}} of American imports of rare earth compounds and metals in its reported period to China. That statistic is not a measure of every finished magnet sold in the United States.", "claims": ["c17", "c18"]}
+  ],
+  "sections": [
+    {"heading": "The model chooses what to test", "paragraphs": [
+      {"text": "The team describes AI as a way to identify new materials while considering supply constraints. Candidate selection comes before experimental proof. A material proposed by a model still needs evidence that it has the desired magnetic properties.", "claims": ["c6", "c9", "c11", "c14"]},
+      {"text": "The [ARPA-E program description](c9) sets ambitious performance objectives. Those objectives describe what the research seeks, not performance already demonstrated by this team.", "claims": ["c8", "c9", "c10"]}
+    ]},
+    {"heading": "Read the award figures at their precision", "paragraphs": [
+      {"text": "Rice rounds the award more broadly than the University of Houston does. Both describe the same federally funded project. Their different numerical precision should not be treated as evidence of separate awards.", "claims": ["c2", "c3", "c4"]}
+    ]},
+    {"heading": "What would count as progress", "paragraphs": [
+      {"text": "Measured properties of tested materials would show whether the search is producing a stronger magnet. Manufacturing and supply evidence would answer a different question about practical availability. The award announcements establish neither result yet.", "claims": ["c6", "c9", "c11", "c12", "c14"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0124", "label": "The Houston-led magnetic materials project"}]
+}

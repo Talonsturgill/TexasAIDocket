@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Research infrastructure",
+  "dek": {"text": "Texas A&M's VISION has a measured world ranking. Its own documentation still limits access to an invitation-only beta, separating demonstrated computing power from general availability.", "claims": ["c1", "c2", "c3", "c11", "c12", "c16"]},
+  "introduction": [
+    {"text": "VISION's place on the world supercomputer list is a measured result. The [machine's access documentation](c11) describes a different fact about its present use. Researchers still need an invitation and approval through Texas A&M System governance.", "claims": ["c1", "c2", "c3", "c11", "c12"]},
+    {"text": "The System says the machine will support researchers across its institutions. That future-tense promise does not mean every eligible researcher can use it now. Performance and access are separate parts of the story.", "claims": ["c7", "c9", "c13"]}
+  ],
+  "sections": [
+    {"heading": "What the ranking measures", "paragraphs": [
+      {"text": "The list reports measured Linpack performance beside a theoretical peak. Those are different quantities. The System credits its governing board's investment and places the computer at Texas A&M's West Campus Data Center.", "claims": ["c3", "c4", "c7", "c8"]},
+      {"text": "The machine's use-case page describes a large compound-screening run. A separate university account reports a screening project completed in about a week. These examples demonstrate described research use, not unrestricted availability.", "claims": ["c18", "c19"]}
+    ]},
+    {"heading": "The beta has its own conditions", "paragraphs": [
+      {"text": "The front page still recruits beta participants while the testing page says the beta is being finalized. The latter expects wider onboarding to begin with institutions that have completed the necessary technical integration.", "claims": ["c14", "c15", "c16"]},
+      {"text": "The documentation also warns that support and capacity are not fully guaranteed during the beta. That qualification belongs beside any invitation to use the system.", "claims": ["c20"]}
+    ]},
+    {"heading": "What would establish wider access", "paragraphs": [
+      {"text": "An updated access policy or confirmed onboarding record would establish the move to general availability. The ranking announcement alone can't answer who has actually received access.", "claims": ["c2", "c11", "c12", "c16"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0119", "label": "VISION's ranking and access record"}]
+}

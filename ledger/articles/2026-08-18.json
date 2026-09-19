@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Education",
+  "dek": {"text": "Houston ISD's Future 2 model puts AI literacy beside screen-free experiences. The school schedule and the district's unfinished AI policy answer different questions.", "claims": ["c5", "c6", "c16"]},
+  "introduction": [
+    {"text": "Houston ISD is reorganizing the school day around a distinction between academic foundations and hands-on learning. Its [Future 2 model](c7) keeps the district's standard curriculum in the morning and places experiences and workshops in the afternoon.", "claims": ["c3", "c7"]},
+    {"text": "AI appears in that model in different ways. The schedule names coursework in AI literacy and design thinking. An optional AI-driven reading and math platform is available to students who meet the district's testing criteria.", "claims": ["c5", "c8"]}
+  ],
+  "sections": [
+    {"heading": "Screen-free does not mean AI-free", "paragraphs": [
+      {"text": "The district describes its afternoon experiences as [screen-free](c6). That statement applies to those experiences, not every activity in the school day. It can coexist with the separately described AI coursework and accelerated learning platform.", "claims": ["c5", "c6", "c8"]},
+      {"text": "The campus page lists schools in pairings. The launch announcement described an initial conversion, while later reporting described a wider rollout. Those documents should not be treated as identical snapshots of the program.", "claims": ["c2", "c10", "c11"]}
+    ]},
+    {"heading": "The policy was still a separate matter", "paragraphs": [
+      {"text": "Houston ISD's [board policy on artificial intelligence](c16) reached a second reading in August. The record checked for this edition did not establish passage. A published school model is not proof that the board adopted the policy governing AI use.", "claims": ["c16"]},
+      {"text": "Katy ISD's separate framework explicitly places responsibility for lessons and evaluation with educators. Temple ISD described a phased student rollout after staff training. Neither district's approach establishes Houston's rules.", "claims": ["c13", "c14", "c17"]}
+    ]},
+    {"heading": "What remains unresolved", "paragraphs": [
+      {"text": "The schedule explains the proposed learning model. A final board action would settle the status of the AI policy. Until that action is verified, the program description and the policy's approval status need to remain separate.", "claims": ["c4", "c5", "c16"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0053", "label": "Houston ISD's AI policy record"}]
+}

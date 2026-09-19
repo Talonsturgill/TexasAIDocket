@@ -62,6 +62,12 @@ def _remove_output_tree(out: Path) -> None:
 def build(out: Path, today: str) -> dict:
     items = dk.load(LEDGER)
     runs = load_runs()
+    # Validate authored web editions before deleting or generating any output. A shipped
+    # carousel without its story must never silently revert to the legacy archive page.
+    from site_pages.article_edition import load_edition, validate as validate_edition
+    for run in runs:
+        run["edition"] = load_edition(run)
+        validate_edition(run, run["edition"])
     # blocking_only: a stale record still rebuilds, loudly. See NON_BLOCKING_FOR_BUILD in
     # docket_build. Refusing to rebuild because the input is old leaves the reader with an
     # even older page, which is the wrong party paying for the run's debt.
@@ -681,6 +687,7 @@ def build(out: Path, today: str) -> dict:
 
 def self_test() -> int:
     import tempfile
+    import unittest
     import site_context as _context
     failures = 0
 
@@ -689,6 +696,13 @@ def self_test() -> int:
         print(f"  {'ok  ' if cond else 'FAIL'}  {label}{'' if cond else '  ' + extra}")
         if not cond:
             failures += 1
+
+    # The existing build CI entry point owns the article contract too. Do not rely on a
+    # developer remembering to run a disconnected test file before publishing a new day.
+    article_tests = unittest.defaultTestLoader.discover(
+        str(REPO_ROOT / "tests"), pattern="test_article_edition.py")
+    article_result = unittest.TextTestRunner(verbosity=1).run(article_tests)
+    check("authored article regression tests", article_result.wasSuccessful())
 
     # EVERY PAGE WEARS THE SAME STYLESHEET HASH. A 510 page profile found that page() rebuilt
     # the generated theme 510 times only to produce the same ten characters. This assertion

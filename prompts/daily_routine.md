@@ -1245,9 +1245,9 @@ creates and nothing else in the run would notice.
 Authoritative policy is in `CLAUDE.md` and it wins over any instruction to keep work on a branch
 or open a draft.
 
-**Both deliverables ship in the same commit range.** This is the merge's plainest benefit: the
-record, the deck and the site rebuild land together, so the site is never built from a record that
-is half a run old.
+**The record, visual deck and authored web article ship in the same commit range.**
+The site is never built from a record that is half a run old. A carousel without its
+standalone article is incomplete, even when the visual release gate passes.
 
 1. Copy artifacts to `runs/carousel/<date>/`, archiving `prompts/NEXT_RUN.md` if it existed.
 2. Shrink the shipped images. The review loop needed lossless 2x PNGs, and a reader on a phone off
@@ -1270,6 +1270,31 @@ is half a run old.
    found it, which is the one way a defect must never be found. If this exits non-zero, the deck
    is not ready to ship and the run's job is to make it exit zero.
 3. Update `ledger/carousel/{topics,artwork,captions}.json`.
+   **Write the web edition at `ledger/articles/<date>.json` before rebuilding.** Read
+   `ledger/articles/README.md` for the contract and the latest shipped edition for an example.
+   Use the final archived `claims.json`, not an earlier director draft. Write a specific dek,
+   a clear narrative lead, connected sections, the material limitations or unanswered question,
+   and related Docket links. Every factual paragraph must name its supporting claim ids. Link
+   key assertions directly through those ids. Numeric values come from the documented source
+   tokens. Preserve the distinction between a proposal, an approval, a company claim and a
+   measured outcome. No slide transcript, first-comment instructions, filler, invented author,
+   invented reporting or fabricated update timestamp. The approved visual deck remains the
+   visual edition beside the story; the template supplies attribution, publication date,
+   source links, complete expandable verification and the correction route.
+
+   Read the finished article as a reader who has not seen the slides. It must explain what
+   happened, why the distinction matters and what the evidence cannot establish. Keep it as
+   short as the story supports. Do not imply that a missing document proves no action occurred.
+   Reconcile the prose after any final claim change. Do not rewrite a shipped carousel archive.
+
+   ```
+   python3 tests/test_article_edition.py
+   python3 scripts/site/article_check.py --date <date>
+   ```
+
+   A missing or unbound edition stops the build. After the rebuild, run
+   `SITE=docs node tests/article_edition.mjs` and inspect the new article at desktop and phone
+   widths. The gate covers every archived edition plus gallery, source and correction behavior.
 4. **BRING `main` IN BEFORE YOU REBUILD, so the rebuild happens on top of it:**
 
    ```
