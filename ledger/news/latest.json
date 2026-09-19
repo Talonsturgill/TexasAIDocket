@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-09-19T06:06:37Z",
+  "checked_at": "2026-09-19T11:59:50Z",
   "provider": "GDELT and publisher RSS",
-  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260918060550&enddatetime=20260919060550",
+  "feed_url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260918115916&enddatetime=20260919115916",
   "response_sha256": "d6b27f031f1969cb59dcbbfc60547efd817c8d37366876a0f55d70341f8a8756",
   "articles": [
     {
@@ -138,13 +138,13 @@
     "feed": "https://blog.google/technology/ai/rss/",
     "publisher": "Google",
     "coverage": 1,
-    "score": 0.627957,
+    "score": 0.529774,
     "priority": 1
   },
   "expires_at": "2026-09-25T14:00:00Z",
   "feeds": [
     {
-      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260918060550&enddatetime=20260919060550",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28Texas+OR+Dallas+OR+Austin+OR+Houston+OR+%22San+Antonio%22+OR+%22Fort+Worth%22%29+%28%22artificial+intelligence%22+OR+AI+OR+%22data+center%22+OR+technology+OR+semiconductor+OR+robotics%29+sourcelang%3Aenglish&mode=artlist&format=json&maxrecords=250&sort=HybridRel&startdatetime=20260918115916&enddatetime=20260919115916",
       "status": "unavailable"
     },
     {
@@ -175,7 +175,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1210,
-      "sha256": "4ea22e65caf332523c323bb475731b4d726ed4fce6f013a4143d123e26479c4e"
+      "sha256": "baea2771c1cbcacd80363becb3950850c7bf94aa320304915d4b7759f641e93c"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
