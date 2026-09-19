@@ -3072,3 +3072,35 @@ every fetcher, including a run's scratch helpers, calls it instead of writing a 
 a checker that allows everything while exiting 0. The count of parsed entries has to be asserted
 against a floor, and a registry that parses to nothing has to be a HARD FAIL rather than an empty
 allow list. That is the same shape as `noun_trace`'s "a check that cannot run is red, never green".
+
+---
+
+### `sources_block.check()` tests one direction and that is how a stale block passes
+
+`scripts/carousel/sources_block.py` `check()` asks whether every id the DECK prints appears in the
+published block. It does not ask the other question, whether every id the BLOCK lists is one the
+deck prints.
+
+On 2026-09-19 that asymmetry cost a run two separate findings in mirror image. Round 1 repaired a
+hard fail by moving frame 1 onto `c4` and frame 5 off `c17` and `c21`, and nothing re-ran the
+builder, so the block lacked `c4` and `--check` went red: the gate caught the missing-id direction
+exactly as designed, and it took a scoring judge to find it rather than the run. Then round 2's
+repair moved `c14` off frame 8, and the same file went on listing `c14` while `--check` exited 0,
+because a SUPERSET passes. An integrity judge read the block against the nine footers and found it.
+
+**A block listing an id no frame prints is wrong in a way a reader can see.** The first comment is
+where somebody goes to reach the document behind a citation on a slide, and an id that is on no
+slide is a receipt for a purchase nobody made. It is also the only visible evidence that the block
+was not rebuilt after the deck changed, which is the far more important fault underneath it.
+
+**The proposal, and it is small.** Add the reverse comparison to `check()` and fail on a listed id
+the deck does not print. Two cautions. The block legitimately lists ids from a run's own
+`first_comment` prose that no FRAME prints, if a future run writes one, so the comparison is
+against the union of the deck's printed ids plus anything the caption or the comment body cites,
+not against the frames alone. And the failure message has to name the direction, because "the
+block and the deck disagree" sends the next run looking at the wrong file.
+
+Its `--self-test` should replay both directions: a block missing a printed id, and a block
+carrying an id no surface prints.
+
+Lane: `scripts/carousel/**` is `upgrade`.
