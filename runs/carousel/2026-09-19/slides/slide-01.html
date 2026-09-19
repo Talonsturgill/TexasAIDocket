@@ -1,0 +1,257 @@
+<!doctype html>
+<!-- CAROUSEL 29, frame 1 of 9. Archetype FULL_BLEED.
+     THE OPEN. Put the reader on the ground beside the class of building the two consequences
+     reach, before a single document is named. A 130 m hall at Z 74 on a graded caliche pad at
+     first light, a property fence at Z 40 between the reader and it, a person on the near pad at
+     true scale, and a gauged stock tank out to the left carrying the deck's FIRST comal.
+
+     THE LIGHT IS ESTABLISHED HERE AND NEVER MOVES. Key low in the east off the camera's left
+     shoulder at 14 degrees, so every lit face is a left face and every cast runs right at about
+     four times the object's height. Eight frames check themselves against what this one sets.
+
+     THE ACCENT'S FIRST STATE. Comal on the stock tank, which is water somebody holds a number
+     for. The hall beside it holds water nobody has a number for, and it gets none. That contrast
+     is the deck's whole argument stated in colour on the first swipe.
+
+     THE FENCE IS THE MOTIF'S FIRST STATE and it returns on frame 8, where the reader is on the
+     other side of it.
+
+     NOTHING IS DRAWN AS HAVING HAPPENED. The gate is open, the pad is working, nothing is tagged.
+     Planned frame median L* 16. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#18222B; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:150px; width:800px; font-size:104px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:0.98;
+          letter-spacing:-0.023em; color:#E6DFCC; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:430px; width:620px; font-size:26px;
+          line-height:1.42; color:#C6C6B8; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9C9C90;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Texas already had the power to ask.</h1>
+<p class="dek">The Texas Water Code already requires a complete and accurate water use survey.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-19-firstlight.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "The state and the data centers", counter: "01 / 09",
+      src: "c4   TEXAS AI DOCKET", ink: "#9C9C90"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 72, max: 104, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXFL, W = M.W, H = M.H;
+    TX.reseed(20260901);
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+    var HORIZON = 676;
+
+    M.print(cx, {
+      seed: 11,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: HORIZON, f: 820, eye: 1.65 });
+
+        /* t = 0.34. The deck OPENS closest to night and the light arrives across nine frames. */
+        M.sky(a, S, 0.34);
+
+        /* the far ridge, ashe juniper, the same skyline frame 9 closes on */
+        a.fillStyle = M.G.void;
+        a.beginPath(); a.moveTo(0, HORIZON);
+        var RR = TX.rng(101);
+        for (var rx = 0; rx <= W; rx += 8) {
+          a.lineTo(rx, HORIZON - (10 + TX.fbm2(rx * 0.0021, 2.3, 4) * 24 + (RR() < 0.1 ? 12 : 0)));
+        }
+        a.lineTo(W, HORIZON); a.closePath(); a.fill();
+
+        /* THE PAD. Graded caliche raking toward the reader, dark at both ends of the frame. */
+        S.ground({ near: 0.8, far: 400, fill: M.G.shade });
+        var gg = a.createLinearGradient(0, HORIZON, 0, H);
+        gg.addColorStop(0.00, "rgba(255,255,255,0.07)");
+        gg.addColorStop(0.30, "rgba(255,255,255,0.03)");
+        gg.addColorStop(1.00, "rgba(0,0,0,0.70)");
+        a.fillStyle = gg; a.fillRect(0, HORIZON, W, H - HORIZON);
+        S.gridZ({ dz: 12, from: 10, to: 260, ink: "rgba(0,0,0,0.22)", width: 1.0 });
+
+        /* THE STOCK TANK, far left at Z 120. The deck's first water anybody has counted. */
+        (function () {
+          var tank = TXOBJ.sprite("stock_tank");
+          S.shadow(tank, { X: -21.5, Z: 52, ink: "#000", alpha: 0.34 });
+          S.sprite(tank, { X: -21.5, Z: 52,
+                           inks: { ink: M.G.stone, paper: M.G.deep, accent: M.G.stone } });
+        })();
+
+        /* THE HALL, 130 m at Z 74, AND ROUND 1 DREW IT RATHER THAN STAMPING IT. This was
+         * `TXOBJ.sprite("data_center")` and at 130 m across a 74 m distance the catalogue's
+         * parapet renders as square merlons on one cream fill. A judge's word for it was
+         * "a crenellated battlement" and a second judge charged the same shape on two more
+         * frames. The catalogue is right at the size it was drawn for and this is not that size.
+         *
+         * WHAT A DATA HALL ACTUALLY SHOWS FROM 74 m AT FIRST LIGHT. A long low mass, a fascia
+         * band along the top taking the key, a dark eaves shadow under it, roller doors at the
+         * base where the trucks come in, and a stair head standing above an otherwise flat roof. */
+        (function () {
+          var ZH = 74, XL = -63.2, XR = 66.8;
+          function hx(X) { return 540 + 820 * X / ZH; }
+          function hy(h) { return HORIZON + 820 * (1.65 - h) / ZH; }
+          var L = hx(XL), R = hx(XR);
+          var TOP = hy(16.0), FASC = hy(13.8), BASE = hy(0);
+
+          a.fillStyle = M.G.mid;  a.fillRect(L, FASC, R - L, BASE - FASC);
+          var wl = a.createLinearGradient(0, FASC, 0, BASE);
+          wl.addColorStop(0.00, "rgba(255,255,255,0.24)");
+          wl.addColorStop(0.70, "rgba(255,255,255,0.08)");
+          wl.addColorStop(1.00, "rgba(0,0,0,0.30)");
+          a.fillStyle = wl;       a.fillRect(L, FASC, R - L, BASE - FASC);
+
+          a.fillStyle = M.G.bright; a.fillRect(L, TOP, R - L, FASC - TOP);
+          a.fillStyle = M.G.dark;   a.fillRect(L, FASC - 2, R - L, 4);
+
+          /* the roller doors, every 18 m, dark openings with a lit head */
+          for (var X = XL + 9; X < XR - 6; X += 18) {
+            var d0 = hx(X), d1 = hx(X + 5.4);
+            a.fillStyle = "rgba(0,0,0,0.58)";
+            a.fillRect(d0, hy(5.2), d1 - d0, BASE - hy(5.2));
+            a.fillStyle = M.G.glare;
+            a.fillRect(d0 - 2, hy(5.2) - 3, d1 - d0 + 4, 4);
+          }
+
+          /* the stair head, one tall element, and three low plant runs. Nothing regular. */
+          var sh0 = hx(28.0), sh1 = hx(36.4);
+          a.fillStyle = M.G.glare; a.fillRect(sh0, hy(21.4), sh1 - sh0, TOP - hy(21.4));
+          a.fillStyle = M.G.shade; a.fillRect(sh1 - 8, hy(21.4), 8, TOP - hy(21.4));
+          var low = [[-52, 21, 1.6], [-14, 13, 2.3], [46, 17, 1.4]];
+          for (var i = 0; i < low.length; i++) {
+            var p0 = hx(low[i][0]), p1 = hx(low[i][0] + low[i][1]), pt = hy(16.0 + low[i][2]);
+            a.fillStyle = M.G.bright; a.fillRect(p0, pt, p1 - p0, TOP - pt);
+            a.fillStyle = M.G.dark;   a.fillRect(p1 - 3, pt, 3, TOP - pt);
+          }
+
+          /* the hall's cast on the pad */
+          var hc = a.createLinearGradient(0, BASE, 0, BASE + 30);
+          hc.addColorStop(0.00, "rgba(0,0,0,0.44)");
+          hc.addColorStop(1.00, "rgba(0,0,0,0.00)");
+          a.fillStyle = hc; a.fillRect(L, BASE, R - L, 30);
+        })();
+
+        /* THE FENCE at Z 40, between the reader and the property. The motif's first state. */
+        TXOBJ.fence(S, [-70, 40], [70, 40],
+                    { step: 6, wires: 4, ink: "rgba(230,223,204,0.42)",
+                      inks: { ink: M.G.metal, paper: M.G.deep, accent: M.G.metal },
+                      shadowAlpha: 0.22 });
+
+        /* MESQUITE on the near ground, so the pad's edge is a place. */
+        (function () {
+          var spots = [[-15.0, 30, 7], [15.4, 30, 2]];
+          for (var i = 0; i < spots.length; i++) {
+            var mq = TXOBJ.sprite("mesquite", { seed: spots[i][2] });
+            S.shadow(mq, { X: spots[i][0], Z: spots[i][1], ink: "#000", alpha: 0.30 });
+            S.sprite(mq, { X: spots[i][0], Z: spots[i][1],
+                           inks: { ink: M.G.dark, paper: M.G.void, accent: M.G.dark } });
+          }
+        })();
+
+        /* A PICKUP AT Z 7, the near ground's second known size. */
+        (function () {
+          var tk = TXOBJ.sprite("pickup");
+          S.shadow(tk, { X: 4.83, Z: 18, ink: "#000", alpha: 0.44 });
+          S.sprite(tk, { X: 4.83, Z: 18,
+                         inks: { ink: M.G.bright, paper: M.G.deep, accent: M.G.bright },
+                         fade: false });
+        })();
+
+        /* THE PERSON, on the near pad at Z 9. Everything above takes its size from this, and
+         * ROUND 1 INKED IT DARK. It was bright, standing in front of a hall that is also bright,
+         * and the integrity judge could not find a figure on this frame at all. The cover's whole
+         * job is to establish the scale the other eight frames borrow, so a figure nobody can
+         * find here is the deck's argument missing from the only frame most readers see. */
+        (function () {
+          var fig = TXFIG.figure({ pose: "stand", height: 1.7, hold: "clipboard", hat: "hard" });
+          S.shadow(fig, { X: -2.41, Z: 9, ink: "#000", alpha: 0.50 });
+          S.sprite(fig, { X: -2.41, Z: 9,
+                          inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+
+        /* THE NEAR PAD, DRAWN. The bottom of this frame was a gradient with two hairlines in it,
+         * which a judge counted as 45 percent of the cover carrying nothing. Caliche is gravel
+         * and a graded pad carries the tracks of whatever graded it. */
+        (function () {
+          var top = 980;
+          a.save();
+          a.beginPath(); a.rect(0, top, W, H - top); a.clip();
+          for (var k = 0; k < 3; k++) {
+            var x0 = 150 + k * 330;
+            a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 16 + k * 5;
+            a.beginPath(); a.moveTo(x0 + 250, top); a.lineTo(x0 - 120 + k * 200, H); a.stroke();
+            a.strokeStyle = "rgba(230,223,204,0.09)"; a.lineWidth = 5;
+            a.beginPath(); a.moveTo(x0 + 259, top); a.lineTo(x0 - 111 + k * 200, H); a.stroke();
+          }
+          var GR = TX.rng(1041);
+          for (var g = 0; g < 320; g++) {
+            var gy = top + Math.pow(GR(), 0.58) * (H - top);
+            var gx = GR() * W;
+            var gr = 1.2 + (gy - top) / (H - top) * 5.6 * (0.4 + GR());
+            a.fillStyle = "rgba(0,0,0,0.44)";
+            a.beginPath(); a.ellipse(gx + gr * 0.5, gy + gr * 0.5, gr * 1.1, gr * 0.48, 0, 0, Math.PI * 2); a.fill();
+            a.fillStyle = "rgba(230,223,204,0.24)";
+            a.beginPath(); a.ellipse(gx, gy, gr, gr * 0.7, 0, 0, Math.PI * 2); a.fill();
+          }
+          a.restore();
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 0, topSolid: 0, bottom: 160, bottomSolid: 96 });
+
+        /* KNOCK THE SCREEN OUT FROM UNDER THE TYPE, AND DO IT LAST. The print lays its
+         * halftone and its contour across the whole frame and can't consult a mask as it goes,
+         * so the reserve is punched afterwards, which is the mechanism txdeck.js documents for
+         * exactly this. It runs AFTER the furniture band because the band re-composites, and a
+         * punch that anything paints over afterwards is not a punch.
+         * It DIMS toward the type with a wide feather rather than removing the screen from
+         * around it, because a hole punched at full strength is a plate with the sign flipped,
+         * and that is a defect this project has already paid to find out about once. */
+        TXDECK.punch(c, boxes, { feather: 66, strength: 0.78 });
+
+
+        /* THE ACCENT'S FIRST STATE. The stock tank's water, and nothing else on the frame. */
+        /* DRAWN WITH THE CHASSIS'S `N.tank` FROM ROUND 2. It was a bare comal ellipse, and two
+         * judges independently reported the same thing: a flat blue lozenge with no gauge, no
+         * vessel and no contact. The deck's accent law turns on the word GAUGED and the drawing
+         * never carried it, so the recurring object registered as a colour rather than as the
+         * one thing on the frame somebody holds a number for. */
+        M.tank(c, { x: 186, y: 702, rx: 104, ry: 12, ink: "rgba(42,122,158,0.80)" });
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

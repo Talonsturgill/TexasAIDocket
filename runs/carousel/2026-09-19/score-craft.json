@@ -1,0 +1,30 @@
+{
+  "lens": "craft",
+  "round": 5,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.4, "why": "A real drawn image on every frame, all nine graded, and the scene-bench frames put a 1.7 m figure beside a 130 m hall so size is checkable. Frame 7 is a genuinely good picture. Frame 4's transformer does read as a cylinder with a soft terminator at thumb size. Against that: frame 3's sheet is an axis-aligned rectangle laid on a plane that visibly converges and its cast does not follow the ribs, so two of its five acceptance items fail. Frame 8 at 432px is texture rather than a subject. Frames 1, 4, 8 and 9 spend 30 to 45 percent of the canvas on empty graded caliche with nothing standing in it, and frame 1's plane keeps one halftone cell size from Z 12 to the horizon, so the texture contradicts the depth grid drawn over it."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 6.8, "why": "Unmistakably one deck: one stock, one ground, one ink, one light with every cast running right, one furniture strip, and an accent law a reader can see working. Two continuity devices do real work. Adjacency is not strobing, max 15.8, mean 7.2. But the third declared device was not printed and the storyboard admits it: the plan says light arrives across nine frames and the render is a V that collapses to 9.3 at frame 5. The deck chose halftone over stipple by arithmetic specifically to reach the forties and paid a 62 MB PDF for it. And six of nine frames sit on one skeleton, so the sixth swipe delivers the first frame's composition again."},
+    {"name": "claim_integrity", "weight": 0.2, "score": 8.5, "why": "Twenty one verified claims, both source pages fetched twice and quotes checked character for character, and an eight-entry rejection list that is genuinely disciplined rather than decorative. Every numeral on every frame traces. Frame 3's two quotes are set character for character. One small stretch: frame 9's 'expected in December' where c19 says 'no later than December 10, 2026', though the exact date is stamped directly beneath it."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "A Texan gets the Governor's office, the Texas Water Development Board, ERCOT, TCEQ and the County or District Attorney all named, two dated deadlines and the December report. Frame 5 earns this score: it draws the mechanism and its dek now names both bodies in full instead of leaning on initials. What a reader can't do is act, and no frame tells them where the December report will appear."},
+    {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.2, "why": "The turn is in the right place and nothing is cuttable. Two drags: frames 4 and 6 both explain rather than advance, so the middle sags, and frame 9's dek restates October 12th which frame 8's headline already landed one swipe earlier."},
+    {"name": "voice", "weight": 0.1, "score": 7.8, "why": "'The audit rides on the queue' is the best line in the deck and no press office writes it. The hooks are plain and flat in the right way. The caption obeys every house rule checkable by eye. The deks are the flat part, several near-transcriptions of a quote with the verb changed."},
+    {"name": "variety", "weight": 0.1, "score": 7.5, "why": "First deck here to run the full halftone across all nine frames, and first light in the open is argued against six consecutive night interiors rather than defaulted. bespoke_check median 0.3471 clears. The cost is internal rather than external: five frames repeat one camera and one foreground."}
+  ],
+  "weighted_score": 7.374,
+  "hard_fails": [],
+  "ship": false,
+  "frame_5_casts": "Fixed in the mechanism, still failing in the eye. The draw order repair is real and the occlusion is gone. But the geometry was never the part that worked: the wedge is 28px tall at the base tapering to 16px, and the 3px ground rule is painted over its top. At 432px that is a 5px smear under a bright rule. A cast rebuilt in round 2 because 7px was invisible is now 16px and still invisible.",
+  "unswept_siblings": "Frame 6's focal was NOT rewritten and the brief said it was. Frame 5's focal calls the route's turn 'the only direction change in the frame' on a route with five corners, and its value_structure claims the three buildings step down in value while the loop gives all three lit faces the same token. Three of four focals were repaired and the run reported four, which is worse than the defect it was fixing.",
+  "per_frame": {
+    "1": "6.5, one halftone cell from Z 12 to the horizon fights the depth grid drawn over it",
+    "2": "7.0, the most graphically arresting frame in the deck",
+    "3": "5.5, weakest against its own plan, two of five acceptance items fail",
+    "4": "6.3, the lattice tower is the best-drawn object here",
+    "5": "6.5, legible and undone by a sliver cast and two declarations the drawing does not contain",
+    "6": "6.0, the most argument per square inch and its declared focal is not drawn",
+    "7": "7.5, STRONGEST",
+    "8": "5.5, WEAKEST PICTURE, a 130 m hall drawn as repeating pilasters is texture rather than a silhouette",
+    "9": "6.5, three type sizes crowd into three inches"
+  },
+  "one_sentence_fix": "Put a near-field object in the bottom third of every scene-bench frame, because the empty lower 30 to 45 percent on frames 1, 4, 8 and 9, the flat depth read on frame 1's caliche and the five-frames-one-skeleton monotony are all one defect: the camera never has anything close to it."
+}

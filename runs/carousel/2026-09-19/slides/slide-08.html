@@ -1,0 +1,248 @@
+<!doctype html>
+<!-- CAROUSEL 29, frame 8 of 9. Archetype OBJECT_AND_CAPTION.
+     THE BEAT. The identical eye, the identical distance and the identical light as frame 7, with
+     the party that OWES the answer standing where the party OWED it stood. Frame 7 is the
+     building the report goes to. This is the building the report comes from. The rhyme is the
+     whole content of the frame and it is the deck's camera-move continuity device.
+
+     HORIZON 452 and EYE 1.65 are copied from frame 7 deliberately and neither frame may move
+     them alone. THE SENTENCE HERE USED TO SAY HORIZON 648 AND IT WAS NEVER TRUE, which a judge
+     found by reading the code against the prose. A comment that states a number the file does
+     not hold is worse than no comment, because the next reader checks the comment.
+
+     WHAT DIFFERS IS THE SUBJECT'S DISTANCE, and it differs because round 1 made it. Frame 7's
+     courthouse stands at Z 34 and this hall now stands at Z 48, since a 130 m building at 34 m
+     projects to a mass from y 106 to y 492 with no sky above it. What differs besides is the
+     ground furniture and the light budget.
+
+     THE FENCE IS THE DECK'S OPENING FENCE. Frame 1 met this property from outside the wire and
+     the deck returns to it here, which is the motif's second to last state.
+
+     NOTHING IS DRAWN AS HAVING HAPPENED. No chained gate, no stop-work tag, no dark hall. The
+     deadline has not passed on the record's own dates. Planned frame median L* 40. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#18222B; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:884px; width:720px; font-size:78px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#E6DFCC; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:1116px; width:640px; font-size:24px;
+          line-height:1.40; color:#C6C6B8; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9C9C90;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The answer is due October 12th.</h1>
+<p class="dek">A complete response carries a notarized attestation from the data center developer.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-19-firstlight.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "Where the answer comes from", counter: "08 / 09",
+      src: "c15 c16   TEXAS AI DOCKET", ink: "#9C9C90"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 78, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXFL, W = M.W, H = M.H;
+    TX.reseed(20260908);
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE CAMERA IS FRAME 7's AND THAT IS WHAT THE PAIR IS. Same horizon, same eye, same focal.
+     * THE SUBJECT'S DISTANCE IS NOT, AND ROUND 1 IS WHY. Frame 7 puts a courthouse at Z 34 and
+     * this frame put a 130 m hall at the same Z, which projects to a mass from y 106 to y 492:
+     * half the frame in one value, no sky above it and no skyline to read it against. The craft
+     * judge called it the weakest frame in the deck and named the cause exactly. A pair rhymes on
+     * the CAMERA. Standing two objects an order of magnitude apart in size at one distance is not
+     * a rhyme, it is a mistake with a rule in front of it. */
+    var HORIZON = 452, EYE = 1.65, ZOBJ = 48, F = 820;
+    function px(X, Z) { return 540 + F * X / Z; }
+    function py(hgt, Z) { return HORIZON + F * (EYE - hgt) / Z; }
+
+    M.print(cx, {
+      seed: 31,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: HORIZON, f: 820, eye: EYE });
+
+        M.sky(a, S, 0.80);
+
+        /* no treeline here. A pad is cleared, which is part of what tells the pair apart */
+        a.fillStyle = M.G.deep;
+        a.fillRect(0, HORIZON - 5, W, 5);
+
+        S.ground({ near: 0.8, far: 320, fill: M.G.stone });
+        var gg = a.createLinearGradient(0, HORIZON, 0, H);
+        gg.addColorStop(0.00, "rgba(255,255,255,0.11)");
+        gg.addColorStop(0.30, "rgba(0,0,0,0.40)");
+        gg.addColorStop(1.00, "rgba(0,0,0,0.80)");
+        a.fillStyle = gg; a.fillRect(0, HORIZON, W, H - HORIZON);
+        S.gridZ({ dz: 6, from: 5, to: 160, ink: "rgba(0,0,0,0.19)", width: 1.0 });
+
+        /* THE NEAR GROUND, DRAWN. A cattle guard across the approach and the tyre ruts that
+         * lead into it. Frame 7 answers the same dead lower zone with a kerb and a trunk, and
+         * the two are deliberately different objects because the pair rhymes on CAMERA, not on
+         * furniture. */
+        (function () {
+          var gy = 1228;
+          /* the guard's pit, dark, then its rails each with a lit crown and a dark belly */
+          a.fillStyle = "rgba(0,0,0,0.62)";
+          a.beginPath(); a.moveTo(0, gy + 40); a.lineTo(W, gy - 30); a.lineTo(W, gy + 96);
+          a.lineTo(0, gy + 178); a.closePath(); a.fill();
+          for (var r = 0; r < 5; r++) {
+            var off = r * 20;
+            a.strokeStyle = M.G.metal; a.lineWidth = 7;
+            a.beginPath(); a.moveTo(0, gy + 44 + off); a.lineTo(W, gy - 26 + off); a.stroke();
+            a.strokeStyle = "rgba(0,0,0,0.60)"; a.lineWidth = 3;
+            a.beginPath(); a.moveTo(0, gy + 50 + off); a.lineTo(W, gy - 20 + off); a.stroke();
+          }
+          /* the ruts leading into it, two pairs, each a dark trough with a lit shoulder */
+          for (var k = 0; k < 2; k++) {
+            var x0 = 330 + k * 300;
+            a.strokeStyle = "rgba(0,0,0,0.42)"; a.lineWidth = 22;
+            a.beginPath(); a.moveTo(x0 + 430, 900); a.lineTo(x0 + 330 + k * 160, gy + 30); a.stroke();
+            a.strokeStyle = "rgba(230,223,204,0.10)"; a.lineWidth = 6;
+            a.beginPath(); a.moveTo(x0 + 443, 900); a.lineTo(x0 + 343 + k * 160, gy + 30); a.stroke();
+          }
+        })();
+
+        /* THE SUBJECT, BUILT RATHER THAN BILLBOARDED. A 130 m hall running off both edges, drawn
+         * from the frame's own projection so every part of it is at a stated height in metres.
+         * It is four values and not one: a fascia that takes first light along the top, a mid
+         * flank, a dark shadow line where the wall meets its own base, and roof plant standing
+         * against the sky so the building has a SKYLINE to be read against. The judge's own
+         * sentence for what was wrong is "one flat cream plane", and a plane is what a wall is
+         * until something on it catches the light at a different angle from the rest. */
+        (function () {
+          var L = px(-65, ZOBJ), R = px(65, ZOBJ);
+          var TOP = py(16.0, ZOBJ), FASCIA = py(14.6, ZOBJ), BASE = py(0, ZOBJ);
+
+          /* the flank, mid, with its own falloff toward the base */
+          var wall = a.createLinearGradient(0, FASCIA, 0, BASE);
+          wall.addColorStop(0.00, "rgba(255,255,255,0.30)");
+          wall.addColorStop(0.62, "rgba(255,255,255,0.13)");
+          wall.addColorStop(1.00, "rgba(0,0,0,0.26)");
+          a.fillStyle = M.G.mid;  a.fillRect(L, FASCIA, R - L, BASE - FASCIA);
+          a.fillStyle = wall;     a.fillRect(L, FASCIA, R - L, BASE - FASCIA);
+
+          /* the fascia band, the one surface up here angled to take the key */
+          a.fillStyle = M.G.glare; a.fillRect(L, TOP, R - L, FASCIA - TOP);
+          a.fillStyle = M.G.dark;  a.fillRect(L, FASCIA - 3, R - L, 4);
+
+          /* THE BAY RHYTHM, every 6.5 m, each pilaster a lit edge with its own shadow to the
+           * right, because the key is upper left and that is the only direction a shadow on this
+           * wall can fall. Drawn in metres so the spacing converges the way the wall does. */
+          for (var X = -65; X <= 65; X += 6.5) {
+            var x0 = px(X, ZOBJ), x1 = px(X + 0.5, ZOBJ), x2 = px(X + 1.9, ZOBJ);
+            a.fillStyle = "rgba(230,223,204,0.34)"; a.fillRect(x0, FASCIA, x1 - x0, BASE - FASCIA);
+            a.fillStyle = "rgba(0,0,0,0.30)";       a.fillRect(x1, FASCIA, x2 - x1, BASE - FASCIA);
+          }
+
+          /* the louvre band, low on the wall, where a hall takes its air */
+          for (var Xv = -63; Xv <= 63; Xv += 3.1) {
+            var v0 = px(Xv, ZOBJ), v1 = px(Xv + 1.6, ZOBJ);
+            a.fillStyle = "rgba(0,0,0,0.34)";
+            a.fillRect(v0, py(6.2, ZOBJ), v1 - v0, py(3.4, ZOBJ) - py(6.2, ZOBJ));
+          }
+
+          /* ROOF PLANT AGAINST THE SKY. Eight units at 3.2 m, each a lit left face and a dark
+           * right return, so the top edge of this building is a profile rather than a rule. */
+          /* WIDTHS AND HEIGHTS VARY, and the reason is that eight identical blocks on a roofline
+           * are merlons. A judge read frame 1's louvre teeth as "a crenellated battlement" and
+           * the same shape was about to appear up here. Plant on a hall roof is chillers and
+           * fans and a stair head, which are different sizes because they do different jobs. */
+          var plant = [[-58, 9.4, 4.1], [-45, 5.2, 2.6], [-33, 11.0, 3.4], [-19, 4.0, 5.2],
+                       [-6, 8.6, 2.9], [10, 5.8, 3.8], [25, 12.2, 2.4], [43, 6.4, 4.6]];
+          for (var i = 0; i < plant.length; i++) {
+            var P = plant[i][0], w = plant[i][1], h = 16.0 + plant[i][2];
+            var a0 = px(P, ZOBJ), a1 = px(P + w * 0.58, ZOBJ), a2 = px(P + w, ZOBJ);
+            var ph = py(h, ZOBJ);
+            a.fillStyle = M.G.glare;  a.fillRect(a0, ph, a1 - a0, TOP - ph);
+            a.fillStyle = M.G.shade;  a.fillRect(a1, ph, a2 - a1, TOP - ph);
+            a.fillStyle = M.G.dark;   a.fillRect(a0 - 2, ph - 3, a2 - a0 + 4, 4);
+          }
+
+          /* the hall's own shadow laid on the pad in front of it, running right under the key */
+          var sh = a.createLinearGradient(0, BASE, 0, BASE + 46);
+          sh.addColorStop(0.00, "rgba(0,0,0,0.52)");
+          sh.addColorStop(1.00, "rgba(0,0,0,0.00)");
+          a.fillStyle = sh; a.fillRect(L, BASE, R - L, 46);
+        })();
+
+        /* A PICKUP ON THE PAD, so the middle band carries a second known size between the
+         * person and a 130 m hall. */
+        (function () {
+          var tk = TXOBJ.sprite("pickup");
+          S.shadow(tk, { X: 6.8, Z: 13.0, ink: "#000", alpha: 0.44 });
+          S.sprite(tk, { X: 6.8, Z: 13.0,
+                         inks: { ink: M.G.bright, paper: M.G.deep, accent: M.G.bright },
+                         fade: false });
+        })();
+
+        /* THE DECK'S OPENING FENCE, returning. Its posts cast into the dust at four times their
+         * height, which is the same rule every cast in the deck obeys. */
+        TXOBJ.fence(S, [-44, 19], [44, 19],
+                    { step: 5, wires: 4, ink: "rgba(230,223,204,0.50)",
+                      inks: { ink: M.G.metal, paper: M.G.deep, accent: M.G.metal },
+                      shadowAlpha: 0.26 });
+
+        /* THE PERSON, ON FRAME 7's MARK. Same X, same Z, same pose family, outside the wire.
+         * INKED DARK, AND THAT IS THE ROUND 1 REPAIR. It was `ink: M.G.bright` standing against
+         * a hall inked bright, so a judge looking for the deck's only human-scale reference
+         * could not find it on the frame whose whole job is scale. A figure is read against what
+         * is behind it, never against the palette. */
+        (function () {
+          var fig = TXFIG.figure({ pose: "stand", height: 1.7, hold: "clipboard", hat: "hard" });
+          S.shadow(fig, { X: -3.4, Z: 8.4, ink: "#000", alpha: 0.46 });
+          S.sprite(fig, { X: -3.4, Z: 8.4,
+                          inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 132, topSolid: 74, bottom: 170, bottomSolid: 96 });
+
+        /* KNOCK THE SCREEN OUT FROM UNDER THE TYPE, AND DO IT LAST. The print lays its
+         * halftone and its contour across the whole frame and can't consult a mask as it goes,
+         * so the reserve is punched afterwards, which is the mechanism txdeck.js documents for
+         * exactly this. It runs AFTER the furniture band because the band re-composites, and a
+         * punch that anything paints over afterwards is not a punch.
+         * It DIMS toward the type with a wide feather rather than removing the screen from
+         * around it, because a hole punched at full strength is a plate with the sign flipped,
+         * and that is a defect this project has already paid to find out about once. */
+        TXDECK.punch(c, boxes, { feather: 66, strength: 0.78 });
+
+        /* No accent, matching frame 7 exactly. The pair is a pair in colour too. */
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

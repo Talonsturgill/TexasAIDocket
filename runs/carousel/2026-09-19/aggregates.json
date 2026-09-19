@@ -1,0 +1,90 @@
+{
+ "date": "2026-09-19",
+ "_note": "Three numerals this run publishes are not simply lifted from a source sentence, and each is declared here with what it came from. Every other numeral on every frame is quoted verbatim and traced in claims.json. Nothing was summed, converted between units, ranked or rounded.",
+ "aggregates": [
+  {
+   "phrase": "Three bodies",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-09-19/compute.py, the number of distinct parties matched by name in the quotes of c13 and c16, which are the two sentences describing the chain",
+   "from_claims": [
+    "c13",
+    "c16"
+   ],
+   "note": "The three are the water board and the grid operator, both named in c13 along with the direction the answer travels, and the developer, named in c16 as the party that signs. The count is the length of that set rather than a number anybody typed."
+  },
+  {
+   "phrase": "Twenty five megawatts",
+   "slide": "slide-02.html",
+   "kind": "quoted_figure_spelled",
+   "value": 25,
+   "computed_by": "NOT COMPUTED. This is c12's own figure, which the source prints as '25 MW' in its intended audience line and the frame spells in words because the house sets a display headline in words. No arithmetic was done to it.",
+   "from_claims": [
+    "c12"
+   ],
+   "note": "Declared here rather than left silent because a spelled numeral in display type is still a numeral a reader has to be able to trace, and the gate is right to ask."
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the number of distinct source documents the printed claim ids resolve to. The block is BUILT by that script rather than written, so the count and the list it heads cannot disagree.",
+   "from_claims": [
+    "c1",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c12",
+    "c13",
+    "c15",
+    "c16",
+    "c19"
+   ],
+   "note": "Caught by aggregate_check in round 1. The number was correct and computed, and it was undeclared, which is exactly the state the gate exists to refuse. A computed count nobody declared is indistinguishable from one somebody typed. Round 2 found the block itself stale: three cite lines were repaired and nothing re-derived the one published surface whose whole job is resolving them, so it listed c17 and c21 and omitted the cover's own c4. The list here is now READ off the built block rather than kept beside it."
+  }
+ ],
+ "quoted_not_computed": [
+  {
+   "phrase": "October 12th",
+   "slide": "slide-08.html, slide-09.html",
+   "claim": "c15"
+  },
+  {
+   "phrase": "October 14th",
+   "slide": "slide-07.html",
+   "claim": "c10"
+  },
+  {
+   "phrase": "December 10th",
+   "slide": "slide-09.html",
+   "claim": "c19"
+  },
+  {
+   "phrase": "September 14th, 2026",
+   "slide": "slide-03.html",
+   "claim": "c1"
+  },
+  {
+   "phrase": "August 3rd",
+   "slide": "slide-04.html",
+   "claim": "c9"
+  },
+  {
+   "phrase": "Chapter 11",
+   "slide": "slide-03.html",
+   "claim": "c7"
+  },
+  {
+   "phrase": "5 p.m. Central Prevailing Time",
+   "slide": "slide-09.html",
+   "claim": "c15",
+   "note": "This list claims to enumerate and had omitted a clock time printed on a frame. A clock time is a numeral a reader has to be able to trace like any other."
+  }
+ ]
+}

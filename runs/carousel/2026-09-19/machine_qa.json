@@ -1,0 +1,106 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2311,
+        0.8929,
+        0.9651
+      ],
+      "band_ratio": 1.362
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.6933,
+        0.9853,
+        0.8382
+      ],
+      "band_ratio": 0.9992
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3887,
+        0.3046,
+        0.5974
+      ],
+      "band_ratio": 1.3645
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3845,
+        0.937,
+        0.9632
+      ],
+      "band_ratio": 1.2498
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.2038,
+        0.4496,
+        0.5809
+      ],
+      "band_ratio": 1.386
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.3739,
+        0.8571,
+        0.6912
+      ],
+      "band_ratio": 1.0748
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.7269,
+        0.9853,
+        0.7629
+      ],
+      "band_ratio": 0.9278
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.8298,
+        0.9979,
+        0.7941
+      ],
+      "band_ratio": 0.9124
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [],
+      "bands": [
+        0.542,
+        0.916,
+        0.9669
+      ],
+      "band_ratio": 1.1857
+    }
+  ],
+  "fails": 0,
+  "warns": 0,
+  "verdict": "PASS"
+}

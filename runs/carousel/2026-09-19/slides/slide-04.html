@@ -1,0 +1,194 @@
+<!doctype html>
+<!-- CAROUSEL 29, frame 4 of 9. Archetype FIGURE_SCALE.
+     THE PROCESS THE WHOLE THING HANGS OFF. The September 14th directive builds on an August 3rd
+     one, and that earlier directive's condition is on advancing through the interconnection
+     process. A process has no picture. The yard a project must physically connect to does, so
+     the yard is what gets drawn.
+
+     THE PERSON IS OUTSIDE THE FENCE, at the frame's left, and the yard runs away to the right.
+     The eye travels from the human scale into the equipment rather than the other way, which is
+     what a FIGURE_SCALE frame is for. A yard drawn with nobody outside it is a diagram of a
+     substation.
+
+     THE ONE CURVED LIT FORM IN THE DECK. Eight frames are flat planes at an angle. The nearest
+     transformer tank is a cylinder with a terminator down it, and that is this frame's whole
+     separation from the gables either side of it.
+
+     NOTHING IS DRAWN AS HAVING HAPPENED. The yard is energised, the gate is shut because a
+     substation gate always is, and nothing has been refused. Planned frame median L* 26. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#18222B; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:140px; width:740px; font-size:90px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.022em; color:#E6DFCC; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:396px; width:600px; font-size:25px;
+          line-height:1.40; color:#C6C6B8; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9C9C90;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The audit rides on the queue.</h1>
+<p class="dek">An August 3rd directive ordered an audit of all data centers that advance through the grid operator's interconnection process.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-19-firstlight.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "What the audit is a condition on", counter: "04 / 09",
+      src: "c9   TEXAS AI DOCKET", ink: "#9C9C90"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 68, max: 90, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXFL, W = M.W, H = M.H;
+    TX.reseed(20260904);
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+    var HORIZON = 620;
+
+    M.print(cx, {
+      seed: 23,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: HORIZON, f: 820, eye: 1.65 });
+        M.sky(a, S, 0.56);
+
+        /* THE GRAVEL YARD, lit and raking, falling to the deck's dark at the foot. */
+        S.ground({ near: 0.7, far: 280, fill: M.G.stone });
+        var gg = a.createLinearGradient(0, HORIZON, 0, H);
+        gg.addColorStop(0.00, "rgba(255,255,255,0.10)");
+        gg.addColorStop(0.32, "rgba(0,0,0,0.12)");
+        gg.addColorStop(1.00, "rgba(0,0,0,0.76)");
+        a.fillStyle = gg; a.fillRect(0, HORIZON, W, H - HORIZON);
+        S.gridZ({ dz: 5, from: 4, to: 120, ink: "rgba(0,0,0,0.20)", width: 1.0 });
+
+        /* transmission towers walking out behind the yard, so the queue has a direction */
+        (function () {
+          var ZZ = [58, 96, 150];
+          for (var i = 0; i < ZZ.length; i++) {
+            var tw = TXOBJ.sprite("transmission_tower");
+            S.shadow(tw, { X: 12 + i * 9, Z: ZZ[i], ink: "#000", alpha: 0.26 });
+            S.sprite(tw, { X: 12 + i * 9, Z: ZZ[i],
+                           inks: { ink: M.G.dark, paper: M.G.void, accent: M.G.dark } });
+          }
+        })();
+
+        /* THE YARD ITSELF at Z 22, off to the right so the person on the left has room. */
+        (function () {
+          var sub = TXOBJ.sprite("substation");
+          S.shadow(sub, { X: 8.6, Z: 22, ink: "#000", alpha: 0.42 });
+          S.sprite(sub, { X: 8.6, Z: 22,
+                          inks: { ink: M.G.metal, paper: M.G.deep, accent: M.G.metal },
+                          fade: false });
+        })();
+
+        /* THE NEAREST TANK, drawn as a lit cylinder in front of the rack. The deck's one curved
+         * lit form, with a terminator down its right flank and a two-part contact under it. */
+        (function () {
+          var Zt = 13, Xt = 3.4;
+          var base = S.project(Xt, 0, Zt), top = S.project(Xt, 3.4, Zt);
+          var r = Math.abs(S.project(Xt + 1.5, 0, Zt)[0] - base[0]);
+          var hh = base[1] - top[1];
+          TXDECK.contact(a, { x: base[0], y: base[1], w: r * 2.0, h: r * 0.42,
+                              height: 3.4, ambient: 0.34, contact: 0.60 });
+          /* THE TERMINATOR RUNS UNDER THE BLOOM THRESHOLD NOW, AND ROUND 3 IS WHY. The deck's
+           * grade blooms anything over 0.78 at strength 0.26, and this cylinder put `glare` a
+           * third of the way across its own width with a `glare` lid on top of it. The result
+           * was the frame's declared focal, the only curved lit form in the deck, going to one
+           * undifferentiated white mass inside a halo, with a veil smeared up the tower behind
+           * it. A judge called it the worst thing in the deck and read the acceptance item it
+           * fails. The cylinder is one step down at its brightest, which is all the bloom
+           * needed, and the terminator it was drawn to have is now visible rather than blown. */
+          var cy = a.createLinearGradient(base[0] - r, 0, base[0] + r, 0);
+          cy.addColorStop(0.00, M.G.stone);
+          cy.addColorStop(0.34, M.G.bright);
+          cy.addColorStop(0.62, M.G.metal);
+          cy.addColorStop(1.00, M.G.deep);
+          a.fillStyle = cy;
+          a.fillRect(base[0] - r, top[1], r * 2, hh);
+          /* the tank's top ellipse, so it is a drum rather than a rectangle */
+          a.fillStyle = M.G.bright;
+          a.beginPath(); a.ellipse(base[0], top[1], r, r * 0.30, 0, 0, Math.PI * 2); a.fill();
+          a.strokeStyle = "rgba(0,0,0,0.42)"; a.lineWidth = 1.6;
+          a.beginPath(); a.ellipse(base[0], top[1], r, r * 0.30, 0, 0, Math.PI * 2); a.stroke();
+          /* three bushings on the lid, each with its own short cast across the lid */
+          for (var b = -1; b <= 1; b++) {
+            var bx = base[0] + b * r * 0.52, by = top[1] - r * 0.10;
+            a.fillStyle = M.G.bright;
+            a.fillRect(bx - r * 0.06, by - hh * 0.20, r * 0.12, hh * 0.20);
+            a.fillStyle = "rgba(0,0,0,0.34)";
+            a.fillRect(bx + r * 0.06, by - 3, r * 0.22, 5);
+          }
+          /* the radiator fins down the lit flank, which is what makes it a transformer */
+          a.fillStyle = "rgba(0,0,0,0.26)";
+          for (var f = 0; f < 7; f++) {
+            a.fillRect(base[0] - r * 0.92 + f * r * 0.22, top[1] + hh * 0.30, r * 0.07, hh * 0.56);
+          }
+        })();
+
+        /* THE FENCE the person stands outside of. */
+        TXOBJ.fence(S, [-26, 9], [40, 9],
+                    { step: 3.5, wires: 5, ink: "rgba(230,223,204,0.52)",
+                      inks: { ink: M.G.metal, paper: M.G.deep, accent: M.G.metal },
+                      shadowAlpha: 0.28 });
+
+        /* THE PERSON, outside the wire at the frame's left. Everything takes its size from this.
+         * INKED DARK IN ROUND 1. A judge's word for it was A BOLLARD, and that is what a bright
+         * figure becomes standing on lit caliche: the silhouette that tells a reader it is a
+         * person, the gap under the pointing arm and the break at the knee, all sit at the same
+         * value as the ground behind them and the screen closes them up. Dark against a lit pad
+         * is the same reading the deck's other two figures now take, for the same reason. */
+        (function () {
+          var fig = TXFIG.figure({ pose: "point", height: 1.7, hat: "hard" });
+          S.shadow(fig, { X: -2.05, Z: 7.0, ink: "#000", alpha: 0.50 });
+          S.sprite(fig, { X: -2.05, Z: 7.0,
+                          inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 0, topSolid: 0, bottom: 150, bottomSolid: 92 });
+
+        /* KNOCK THE SCREEN OUT FROM UNDER THE TYPE, AND DO IT LAST. The print lays its
+         * halftone and its contour across the whole frame and can't consult a mask as it goes,
+         * so the reserve is punched afterwards, which is the mechanism txdeck.js documents for
+         * exactly this. It runs AFTER the furniture band because the band re-composites, and a
+         * punch that anything paints over afterwards is not a punch.
+         * It DIMS toward the type with a wide feather rather than removing the screen from
+         * around it, because a hole punched at full strength is a plate with the sign flipped,
+         * and that is a defect this project has already paid to find out about once. */
+        TXDECK.punch(c, boxes, { feather: 66, strength: 0.78 });
+
+        /* No accent. A substation holds no water anybody has counted. */
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -248,6 +248,52 @@ October 14th report slipping to December.
 
 ---
 
+## Release decision: SHIP AT 6.966, UNDER THE BAR, AT THE ROUND CAP
+
+`config/carousel/scoring_rubric.yaml` sets the threshold at 8.0 and `max_rounds` at 5. The panel
+ran all five. Its medians, per round, are **6.398, 6.88, 7.12, 6.95 and 6.966**, and the final
+per-judge scores are [6.89, 7.374, 6.87] with a spread of 0.504, which is the tightest agreement of the run.
+
+**No judge raised a hard fail in rounds 3, 4 or 5.** Two were raised earlier and both were cured
+and verified by the judge who raised them: round 1's cover overclaim about who receives the
+request, and round 2's sources block that had gone stale against round 1's own repair. Every
+judge this round stated plainly that `ship: false` was a threshold dissent rather than a veto and
+that they had looked for a hard fail and refused to manufacture one.
+
+**So the bounded-search rule applies and the deck ships at 6.966.** The routine's own words:
+past the cap the run ships at whatever the median is, stated honestly in the email, with the run
+record saying it shipped under the bar and by how much. It is 1.034 under.
+
+**Where the deck lost its points, in the judges' own weighting.** `artwork_craft` at 0.22 is the
+heaviest criterion and it scored 6.4 to 6.8 in every round. The single sentence three judges wrote
+in three different rounds is the same one: **four frames give 30 to 55 percent of the canvas to
+empty graded ground, so the detail budget sits where the frame starts rather than where the
+argument lands.** That was round 1's finding and it is still true at the cap, and it is the reason
+the value arc the deck DECLARED could never print: a frame whose lower half is dark caliche cannot
+reach a planned median in the forties whatever is drawn in its upper half.
+
+**What was repaired across five rounds**, and it is a long list because the panel earned it: the
+cover's audience claim, a stale sources block, three flattened modals, four miscited frames, a
+letterhead block sitting on its own first glyph, a catalogue sprite that rendered a 130 m building
+as battlements on three frames, four figures inked invisible against their own grounds, six column
+casts that were never drawn, a scale bar that was decoration pretending to be rigour, a stock tank
+motif that was a flat lozenge on four frames, a tailgate with no edges, a cut that read as three,
+a chassis describing a different deck, and eleven separate assertions in the plan that named parts
+the drawings do not have.
+
+**What ships unfixed and goes to the next run:** the empty lower thirds, the unprinted value arc,
+frame 4 as a detour, frames 7 and 8 running their dates backwards, the deck naming no Texas place,
+and a 61.8 MB vector PDF. Each is in Degraded below or in `knowledge/carousel/UPGRADE_BACKLOG.md`.
+
+**Four planning corrections landed AFTER the round 5 panel read the deck**, and they are recorded
+here rather than hidden: seven sibling assertions of the gable falsehood in frames 1 and 8's
+dossiers, frame 6's focal, frame 5's focal and value_structure, and frame 2's cite line gaining
+`c1`, which is the one that touched a rendered frame. **Only that last one changed a pixel**, by
+three characters in a footer, and every gate was re-run and the deck re-assembled after it. The
+judges' scores are reported as they were given.
+
+---
+
 ## Gate status
 
 ## Gate status
@@ -261,15 +307,29 @@ October 14th report slipping to December.
 | aggregates     | PASS   | 3 declaration(s), 3 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 61.77 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | PASS   | 32 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| labels         | PASS   | 34 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 62 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 2 declared fragment(s) over 1 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 39,838 chars planned |
+| dossiers       | PASS   | 41,444 chars planned |
 | caption        | PASS   | 139 words |
 | craft floor    | PASS   | 9 frame(s), median 6841, floor 1231 |
 | plan vs render | WARN   | 9 of 48 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
 | absences       | PASS   | 0 of 0 scoped to a named document |
 | numerals       | PASS   | 3 numeral(s) over 9 frame(s), every one reachable |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
+
+**THE `score` ROW READS STALE AND IT IS TELLING THE TRUTH.** `score.json` was written when the
+round 5 panel reported, and `render/slide-02.png` was re-rendered after it, so the file predates
+the newest frame exactly as the row says. What changed in that re-render is **three characters in
+a footer**: frame 2's cite line gained `c1`, because the round 5 integrity judge found that the
+frame's dek draws its first sentence from c1 while its footer printed only c12 and c13. Every
+other pixel in the deck is the one the panel scored, the three report cards are reported as they
+were given, and the deck was re-assembled and every gate re-run after the change.
+
+The row is not softened and the file is not touched to clear it. `gate_status` exists to notice a
+re-render that nothing else in a run would, it noticed one, and the honest answer is to say what
+it was rather than to make the row green.
+
+

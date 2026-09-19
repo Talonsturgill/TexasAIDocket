@@ -1,0 +1,135 @@
+{
+ "_note": "Measured at 432px, the size a reader receives. Planned values are parsed from the slide dossiers, never retyped.",
+ "grid": "432x540, the feed thumb",
+ "frames": {
+  "slide-01": {
+   "median_L": 12.4,
+   "mean_L": 29.1,
+   "p05_L": 4.8,
+   "p95_L": 89.6,
+   "accent_share_pct": 0.24
+  },
+  "slide-02": {
+   "median_L": 26.7,
+   "mean_L": 39.6,
+   "p05_L": 4.9,
+   "p95_L": 93.2,
+   "accent_share_pct": 0.44
+  },
+  "slide-03": {
+   "median_L": 32.5,
+   "mean_L": 40.5,
+   "p05_L": 4.9,
+   "p95_L": 82.8,
+   "accent_share_pct": 0.0
+  },
+  "slide-04": {
+   "median_L": 16.7,
+   "mean_L": 32.6,
+   "p05_L": 4.6,
+   "p95_L": 91.8,
+   "accent_share_pct": 0.0
+  },
+  "slide-05": {
+   "median_L": 9.3,
+   "mean_L": 17.6,
+   "p05_L": 4.1,
+   "p95_L": 82.5,
+   "accent_share_pct": 0.15
+  },
+  "slide-06": {
+   "median_L": 11.8,
+   "mean_L": 26.2,
+   "p05_L": 4.5,
+   "p95_L": 87.8,
+   "accent_share_pct": 0.2
+  },
+  "slide-07": {
+   "median_L": 18.6,
+   "mean_L": 34.6,
+   "p05_L": 4.3,
+   "p95_L": 91.1,
+   "accent_share_pct": 0.0
+  },
+  "slide-08": {
+   "median_L": 21.3,
+   "mean_L": 34.4,
+   "p05_L": 4.6,
+   "p95_L": 90.7,
+   "accent_share_pct": 0.0
+  },
+  "slide-09": {
+   "median_L": 19.1,
+   "mean_L": 33.8,
+   "p05_L": 3.9,
+   "p95_L": 92.1,
+   "accent_share_pct": 0.26
+  }
+ },
+ "per_frame_median_lstar": [
+  12.4,
+  26.7,
+  32.5,
+  16.7,
+  9.3,
+  11.8,
+  18.6,
+  21.3,
+  19.1
+ ],
+ "planned_median_lstar": [
+  16,
+  22,
+  32,
+  26,
+  38,
+  34,
+  44,
+  40,
+  26
+ ],
+ "plan_minus_measured": [
+  3.6,
+  -4.7,
+  -0.5,
+  9.3,
+  28.7,
+  22.2,
+  25.4,
+  18.7,
+  6.9
+ ],
+ "adjacent_deltas": [
+  14.3,
+  5.8,
+  15.8,
+  7.4,
+  2.5,
+  6.8,
+  2.7,
+  2.2
+ ],
+ "deck": {
+  "median_of_frame_medians": 18.6,
+  "mean_of_frame_medians": 18.7,
+  "spread_L": 23.2,
+  "max_adjacent_delta": 15.8,
+  "mean_adjacent_delta": 7.2
+ },
+ "accent_share_pct": {
+  "slide-01": 0.24,
+  "slide-02": 0.44,
+  "slide-03": 0.0,
+  "slide-04": 0.0,
+  "slide-05": 0.15,
+  "slide-06": 0.2,
+  "slide-07": 0.0,
+  "slide-08": 0.0,
+  "slide-09": 0.26
+ },
+ "screen_ceilings": {
+  "stipple_c5": 26.7,
+  "hatch": 45.5,
+  "halftone_c6": 82.7
+ }
+}

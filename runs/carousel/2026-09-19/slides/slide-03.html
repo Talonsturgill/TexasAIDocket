@@ -1,0 +1,261 @@
+<!doctype html>
+<!-- CAROUSEL 29, frame 3 of 9. Archetype DOCUMENT.
+     THE DECK'S ONLY CREAM SHEET, AND IT LIES ON A LIT TAILGATE. Yesterday's deck strobed on
+     canvas mean from 37.6 to 91.4 and the single measured cause was four frames solving their
+     problem with a cream sheet on a dark board. There is one sheet in this deck, it sits on
+     ribbed steel that is itself lit, and the step from page to ground is small by construction.
+
+     WHY A TAILGATE. A directive photographed on a desk is a document about government. A
+     directive lying on a tailgate is a document about the people it reaches, and this one
+     reaches a construction pad.
+
+     THE TWO SENTENCES ARE THE WHOLE STORY and both are set character for character from
+     claims.json. Nothing was legislated on September 14th. Both consequences were already in
+     the Texas Water Code, which is why this frame carries no verb about passing anything.
+
+     THE SHEET'S TYPE IS DARK ON LIGHT and the rest of the deck's is light on dark. Those two
+     want opposite things from the light, so the page is lit and the frame around it is not.
+     Planned frame median L* 32. The first render measured 63.5 and strobed 49 points
+     against frame 2. The sheet and the gate under it were both brought down a step, which is
+     the cure this deck's own structural law names rather than a new one. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#18222B; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:128px; width:700px; font-size:88px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.022em; color:#E6DFCC; font-variation-settings:"opsz" 144; z-index:10; }
+  /* 24px is the mobile floor `qa.py` measures against and this letterhead sat at 21. A reader
+   * meets this frame at 432px wide, where 21px of 1080 is eight screen pixels. Widened to 700
+   * so the letterhead still breaks inside the drawn sheet at the larger size, and so the break
+   * falls after the body's name rather than in the middle of its date. */
+  .sheethead { position:absolute; left:196px; top:494px; width:700px;
+          font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.04em;
+          color:#1B242B; z-index:12; }
+  .q1 { position:absolute; left:196px; top:586px; width:690px; font-size:29px;
+        font-family:"Fraunces", serif; font-weight:600; line-height:1.30;
+        color:#141C22; z-index:12; }
+  .q2 { position:absolute; left:196px; top:768px; width:690px; font-size:25px;
+        line-height:1.34; color:#141C22; z-index:12; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9C9C90;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">It was already a crime.</h1>
+<p class="sheethead">OFFICE OF THE TEXAS GOVERNOR &nbsp; SEPTEMBER 14TH, 2026</p>
+<p class="q1">"A data center that fails to complete and return the survey commits an offense punishable as a crime."</p>
+<p class="q2">"A data center that fails to timely complete and return the survey is ineligible for TCEQ permits, amendments, or renewals under Chapter 11 of the Texas Water Code."</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-19-firstlight.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "September 14th", counter: "03 / 09",
+      src: "c1 c6 c7   TEXAS AI DOCKET", ink: "#9C9C90"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 66, max: 88, maxLines: 2 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXFL, W = M.W, H = M.H;
+    TX.reseed(20260903);
+
+    var boxes = TXDECK.lineBoxes(".hook, .kick, .count, .src, .tx-site", 18);
+
+    /* The sheet's own rect. The DOM type above sits inside it and nothing here moves after the
+     * lineBoxes call, which is the order deck_chassis.py checks. */
+    var SX = 150, SY = 452, SW = 800, SH = 620;
+
+    M.print(cx, {
+      seed: 17,
+      draw: function (a) {
+        /* NO HORIZON ON THIS FRAME. The camera is looking DOWN at a tailgate, so there is no
+         * sky and no ground plane, which is what separates this frame from the eight around it. */
+        a.fillStyle = M.G.void;
+        a.fillRect(0, 0, W, H);
+
+        /* THE TAILGATE, AND ROUND 1 REBUILT IT. It was a full-width rectangle with rules running
+         * edge to edge, which a judge read as "horizontal wallpaper stripes" and was right about:
+         * a stripe that reaches both frame edges belongs to the FRAME and not to an object, so
+         * the gate had no shape to be a gate. It is a trapezoid now, narrower at the far lip and
+         * wider at the reader, with its own side edges inside the frame, its ribs converging on
+         * the same vanishing point and the bed walls standing up behind it. Everything below is
+         * drawn from EDGE(y), so nothing can go back to being a full-width band by accident. */
+        var TGY = 372, TGL0 = 96, TGR0 = 984, TGL1 = -54, TGR1 = 1134;
+        function edge(y) {                          /* the gate's left and right at a given y */
+          var t = (y - TGY) / (H - TGY);
+          return [TGL0 + (TGL1 - TGL0) * t, TGR0 + (TGR1 - TGR0) * t];
+        }
+
+        /* the bed walls behind the gate, dark, converging the other way so the gate sits IN a
+         * vehicle rather than floating on one */
+        a.fillStyle = "rgba(0,0,0,0.74)";
+        a.beginPath();
+        a.moveTo(0, TGY - 210); a.lineTo(TGL0, TGY); a.lineTo(TGL0, TGY - 6);
+        a.lineTo(0, TGY - 6); a.closePath(); a.fill();
+        a.beginPath();
+        a.moveTo(W, TGY - 210); a.lineTo(TGR0, TGY); a.lineTo(TGR0, TGY - 6);
+        a.lineTo(W, TGY - 6); a.closePath(); a.fill();
+
+        /* THE GATE FACE */
+        a.save();
+        a.beginPath();
+        a.moveTo(TGL0, TGY); a.lineTo(TGR0, TGY); a.lineTo(TGR1, H); a.lineTo(TGL1, H);
+        a.closePath();
+        a.clip();
+
+        var tg = a.createLinearGradient(0, TGY, 0, H);
+        tg.addColorStop(0.00, "rgba(255,255,255,0.18)");
+        tg.addColorStop(0.46, "rgba(255,255,255,0.06)");
+        tg.addColorStop(1.00, "rgba(0,0,0,0.70)");
+        a.fillStyle = M.G.shade;
+        a.fillRect(0, TGY, W, H - TGY);
+        a.fillStyle = tg;
+        a.fillRect(0, TGY, W, H - TGY);
+
+        /* THE RIBS, converging with the gate. Spacing opens toward the reader because the gate
+         * rakes away from level, and each rib is a lit crown over a dark belly. */
+        var y = TGY + 26, step = 26;
+        while (y < H + 40) {
+          var e = edge(y);
+          a.fillStyle = "rgba(255,255,255,0.14)";
+          a.fillRect(e[0], y, e[1] - e[0], 3);
+          a.fillStyle = "rgba(0,0,0,0.32)";
+          a.fillRect(e[0], y + 3, e[1] - e[0], 4);
+          step *= 1.055;
+          y += step;
+        }
+
+        /* the two pressed swages that run down a gate's face, at the bed's rail lines */
+        for (var s = 0; s < 2; s++) {
+          var xt = TGL0 + (TGR0 - TGL0) * (s ? 0.80 : 0.20);
+          var xb = TGL1 + (TGR1 - TGL1) * (s ? 0.80 : 0.20);
+          a.strokeStyle = "rgba(230,223,204,0.20)"; a.lineWidth = 5;
+          a.beginPath(); a.moveTo(xt, TGY); a.lineTo(xb, H); a.stroke();
+          a.strokeStyle = "rgba(0,0,0,0.34)"; a.lineWidth = 3;
+          a.beginPath(); a.moveTo(xt + 6, TGY); a.lineTo(xb + 7, H); a.stroke();
+        }
+        a.restore();
+
+        /* THE GATE'S OWN EDGES, which is what makes it an object. A lit top lip, then a lit left
+         * edge and a dark right return, each following the same taper. */
+        a.fillStyle = M.G.glare;
+        a.beginPath();
+        a.moveTo(TGL0 - 4, TGY - 7); a.lineTo(TGR0 + 4, TGY - 7);
+        a.lineTo(TGR0 + 4, TGY + 5); a.lineTo(TGL0 - 4, TGY + 5); a.closePath(); a.fill();
+        a.strokeStyle = "rgba(230,223,204,0.46)"; a.lineWidth = 6;
+        a.beginPath(); a.moveTo(TGL0, TGY); a.lineTo(TGL1, H); a.stroke();
+        a.strokeStyle = "rgba(0,0,0,0.60)"; a.lineWidth = 7;
+        a.beginPath(); a.moveTo(TGR0, TGY); a.lineTo(TGR1, H); a.stroke();
+
+        /* the two latch bezels on the lip, small, so the gate has hardware */
+        for (var b = 0; b < 2; b++) {
+          var bx = TGL0 + (TGR0 - TGL0) * (b ? 0.86 : 0.14);
+          a.fillStyle = M.G.dark;
+          a.fillRect(bx - 22, TGY - 5, 44, 15);
+          a.fillStyle = M.G.metal;
+          a.fillRect(bx - 18, TGY - 3, 36, 6);
+        }
+
+        /* the cab's shadow falling down the gate from above */
+        var lip = a.createLinearGradient(0, TGY - 96, 0, TGY + 34);
+        lip.addColorStop(0, "rgba(0,0,0,0.62)");
+        lip.addColorStop(1, "rgba(0,0,0,0.00)");
+        a.fillStyle = lip;
+        a.fillRect(0, TGY - 96, W, 130);
+
+      },
+      over: function (c) {
+        M.reserve(c, { top: 320, topSolid: 210, bottom: 130, bottomSolid: 80 });
+
+        /* the frame's own light-on-dark furniture gets the screen knocked out from under it */
+        TXDECK.punch(c, boxes, { feather: 66, strength: 0.78 });
+
+        /* THE SHEET. A true page proportion, turned a degree, with a two-part contact under it
+         * and a curl lifting its near right corner off the steel. */
+        c.save();
+        c.translate(SX + SW / 2, SY + SH / 2);
+        c.rotate(-0.012);
+        c.translate(-(SX + SW / 2), -(SY + SH / 2));
+
+        TXDECK.contact(c, { x: SX + SW / 2, y: SY + SH + 8, w: SW * 0.96, h: 16,
+                            height: 0.02, ambient: 0.40, contact: 0.62 });
+
+        c.fillStyle = M.G.metal;
+        c.fillRect(SX, SY, SW, SH);
+        /* the page's own tone falls away from the key, so the sheet is not one flat fill */
+        var pg = c.createLinearGradient(SX, SY, SX + SW, SY + SH);
+        pg.addColorStop(0.00, "rgba(255,255,255,0.22)");
+        pg.addColorStop(1.00, "rgba(0,0,0,0.26)");
+        c.fillStyle = pg;
+        c.fillRect(SX, SY, SW, SH);
+
+        /* THE CURL, at the near right corner, which the header comment has promised since the
+         * frame was written and the drawing never had. A sheet lying on steel lifts at the
+         * corner the wind gets under. Three parts, because two would read as a torn corner: the
+         * shadow the lifted flap throws back onto the page, the flap's own underside taking the
+         * key at a different angle from the page, and the crease it turns on. */
+        (function () {
+          var cx0 = SX + SW, cy0 = SY + SH, r = 108;
+          c.fillStyle = "rgba(20,28,34,0.34)";
+          c.beginPath();
+          c.moveTo(cx0 - r, cy0); c.lineTo(cx0, cy0 - r);
+          c.quadraticCurveTo(cx0 - r * 0.34, cy0 - r * 0.34, cx0 - r, cy0);
+          c.closePath(); c.fill();
+          c.fillStyle = M.G.glare;
+          c.beginPath();
+          c.moveTo(cx0 - r, cy0); c.lineTo(cx0, cy0 - r);
+          c.quadraticCurveTo(cx0 - r * 0.62, cy0 - r * 0.62, cx0 - r, cy0);
+          c.closePath(); c.fill();
+          c.strokeStyle = "rgba(20,28,34,0.52)"; c.lineWidth = 2;
+          c.beginPath(); c.moveTo(cx0 - r, cy0); c.lineTo(cx0, cy0 - r); c.stroke();
+        })();
+
+        /* the rules that frame the two quoted sentences. Placed CLEAR of the type blocks, because
+         * a page's own rules dodging its own text punches a hole the QA reads as a strike. */
+        c.fillStyle = "rgba(20,28,34,0.46)";
+        c.fillRect(SX + 46, SY + 114, SW - 92, 2);
+        c.fillRect(SX + 46, SY + 286, SW - 92, 1);
+        c.fillRect(SX + 46, SY + SH - 74, SW - 92, 2);
+
+        /* THE LETTERHEAD'S STAR BLOCK, MOVED TO THE SHEET'S RIGHT MARGIN. It was drawn at
+         * SX+46, which is the sheet's LEFT margin and therefore the exact origin of the
+         * letterhead line, so it printed over the first glyph and the frame read
+         * "FFICE OF THE TEXAS GOVERNOR". A reader judge found it by looking; `qa.py` is
+         * structurally blind to it, because it is canvas ink at the type's own value drawn as
+         * the label's own furniture, which is the one thing that gate cannot separate from a
+         * letterform. On the right margin it sits where a seal sits and clears the two lines
+         * of letterhead, which end at x 816. */
+        c.fillStyle = "rgba(20,28,34,0.82)";
+        c.fillRect(SX + SW - 72, SY + 40, 26, 26);
+        c.restore();
+
+        /* No accent. A page is not water. */
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<!-- CAROUSEL 29, frame 7 of 9. Archetype OBJECT_AND_CAPTION.
+     THE BUILDING THE ANSWER IS OWED TO. A county civic facade with a dome, square on at Z 34,
+     its east elevation lit and its north return at the deck's dark, six portico columns each
+     laying a shadow across the steps.
+     THIS FRAME OPENS THE DECK'S ONLY REPEATED CAMERA. Frame 8 uses the identical eye, the
+     identical distance and the identical rect, and swaps the object. That pair is the argument
+     said twice and it is the deck's camera-move continuity device. Nothing about this camera may
+     move without moving frame 8's too.
+     THE PORTICO IS THE DECK'S DARKEST ENCLOSED AREA and it is the one place in nine frames a
+     reader looks INTO rather than at.
+     NOTHING IS DRAWN AS HAVING HAPPENED. The door is open, the steps are clear, and no referral
+     has been made. Planned frame median L* 44. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; background:#18222B; }
+  body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }
+  canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }
+  .hook { position:absolute; left:80px; top:884px; width:760px; font-size:78px;
+          font-family:"Fraunces", serif; font-weight:700; line-height:1.00;
+          letter-spacing:-0.021em; color:#E6DFCC; font-variation-settings:"opsz" 144; z-index:10; }
+  .dek  { position:absolute; left:80px; top:1116px; width:620px; font-size:24px;
+          line-height:1.40; color:#C6C6B8; z-index:10; }
+  .tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace;
+             font-size:24px; letter-spacing:0.07em; line-height:1.5; color:#9C9C90;
+             white-space:nowrap; z-index:20; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The board reports back by October 14th.</h1>
+<p class="dek">The board must refer noncompliance to the appropriate County or District Attorney.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-09-19-firstlight.js"></script>
+<script src="@@ASSETS@@/js/txscene.js"></script>
+<script src="@@ASSETS@@/js/txfig.js"></script>
+<script src="@@ASSETS@@/js/txobjects.js"></script>
+<script src="@@ASSETS@@/js/txink.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = new Promise(async function (resolve, reject) {
+  try {
+    await document.fonts.ready;
+    TXLAYOUT.mount(document.body, {
+      kicker: "Where the answer is owed", counter: "07 / 09",
+      src: "c8 c10   TEXAS AI DOCKET", ink: "#9C9C90"
+    });
+    TX.fitText(document.getElementById("hook"), { min: 58, max: 78, maxLines: 3 });
+
+    var cv = document.getElementById("art"), cx = cv.getContext("2d");
+    cx.scale(2, 2);
+    var M = TXFL, W = M.W, H = M.H;
+    TX.reseed(20260907);
+
+    var boxes = TXDECK.lineBoxes(".hook, .dek, .kick, .count, .src, .tx-site", 18);
+
+    /* THE PAIR'S CAMERA. Frame 8 repeats all three of these numbers exactly. */
+    var HORIZON = 452, EYE = 1.65, ZOBJ = 34;
+
+    M.print(cx, {
+      seed: 27,
+      draw: function (a) {
+        var S = M.scene(a, { horizon: HORIZON, f: 820, eye: EYE });
+
+        M.sky(a, S, 0.86);
+
+        /* a low treeline behind the square, so the facade stands against something */
+        a.fillStyle = M.G.deep;
+        a.beginPath(); a.moveTo(0, HORIZON);
+        var RR = TX.rng(707);
+        for (var rx = 0; rx <= W; rx += 6) {
+          a.lineTo(rx, HORIZON - (6 + TX.fbm2(rx * 0.0031, 7.7, 4) * 16 + (RR() < 0.07 ? 8 : 0)));
+        }
+        a.lineTo(W, HORIZON); a.closePath(); a.fill();
+
+        /* THE SQUARE. Lit caliche and walk, graded down into the deck's dark at the foot. */
+        S.ground({ near: 0.8, far: 320, fill: M.G.stone });
+        var gg = a.createLinearGradient(0, HORIZON, 0, H);
+        gg.addColorStop(0.00, "rgba(255,255,255,0.11)");
+        gg.addColorStop(0.30, "rgba(0,0,0,0.40)");
+        gg.addColorStop(1.00, "rgba(0,0,0,0.80)");
+        a.fillStyle = gg; a.fillRect(0, HORIZON, W, H - HORIZON);
+        S.gridZ({ dz: 6, from: 5, to: 160, ink: "rgba(0,0,0,0.19)", width: 1.0 });
+
+        /* THE LIVE OAKS at the frame's edges, rooted on the same ground and casting their own
+         * mass into the walk. They are what make this a square rather than a plaza. */
+        (function () {
+          var spots = [[-21, 40, 4], [23, 46, 9]];
+          for (var i = 0; i < spots.length; i++) {
+            var oak = TXOBJ.sprite("live_oak", { seed: spots[i][2] });
+            S.shadow(oak, { X: spots[i][0], Z: spots[i][1], ink: "#000", alpha: 0.32 });
+            S.sprite(oak, { X: spots[i][0], Z: spots[i][1],
+                            inks: { ink: M.G.dark, paper: M.G.void, accent: M.G.dark } });
+          }
+        })();
+
+        /* THE NEAR GROUND, DRAWN. A kerb and gutter running across the square's foot with the
+         * walk's own joints in it, and a live oak trunk cropped by the bottom right corner. The
+         * bottom third of a frame is a place, and a frame whose bottom third is a gradient has
+         * an empty third with a caption on it. */
+        (function () {
+          var ky = 1272;
+          /* the gutter's shadow line, then the kerb face lit, then its top taking the key */
+          a.fillStyle = "rgba(0,0,0,0.52)";
+          a.beginPath(); a.moveTo(0, ky + 26); a.lineTo(W, ky - 44); a.lineTo(W, ky - 22);
+          a.lineTo(0, ky + 48); a.closePath(); a.fill();
+          a.fillStyle = M.G.shade;
+          a.beginPath(); a.moveTo(0, ky); a.lineTo(W, ky - 70); a.lineTo(W, ky - 44);
+          a.lineTo(0, ky + 26); a.closePath(); a.fill();
+          a.fillStyle = M.G.stone;
+          a.beginPath(); a.moveTo(0, ky - 12); a.lineTo(W, ky - 82); a.lineTo(W, ky - 70);
+          a.lineTo(0, ky); a.closePath(); a.fill();
+          /* the walk's expansion joints above the kerb, each a dark line with a lit lip */
+          for (var jx = -120; jx < W + 200; jx += 168) {
+            a.strokeStyle = "rgba(0,0,0,0.40)"; a.lineWidth = 2.2;
+            a.beginPath(); a.moveTo(jx, ky - 16); a.lineTo(jx + 84, 996); a.stroke();
+            a.strokeStyle = "rgba(230,223,204,0.16)"; a.lineWidth = 1.2;
+            a.beginPath(); a.moveTo(jx + 3, ky - 16); a.lineTo(jx + 87, 996); a.stroke();
+          }
+          /* an oak trunk cropped by the corner, so the near ground has a body standing in it */
+          a.fillStyle = "rgba(0,0,0,0.55)";
+          a.fillRect(898, 902, 152, H - 902);
+          a.fillStyle = M.G.dark;
+          a.fillRect(912, 886, 112, H - 886);
+          a.fillStyle = M.G.shade;
+          a.fillRect(912, 886, 40, H - 886);
+        })();
+
+        /* THE SUBJECT. The facade with its dome, square on at the pair's Z. Its own parts carry
+         * the lit east elevation, the columns, the portico behind them and the return. */
+        (function () {
+          var civic = TXOBJ.sprite("civic_facade", { dome: true });
+          S.shadow(civic, { X: 0.4, Z: ZOBJ, ink: "#000", alpha: 0.40 });
+          S.sprite(civic, { X: 0.4, Z: ZOBJ,
+                            inks: { ink: M.G.glare, paper: M.G.void, accent: M.G.glare },
+                            fade: false });
+
+          /* THE SIX COLUMN CASTS, DRAWN IN ROUND 2. This frame's dossier has promised them since
+           * it was planned and the sprite does not lay them, because `civic_facade` marks its
+           * colonnade `noShadow` so the columns do not darken the portico behind them. That is
+           * right inside the object and wrong on the steps in front of it, where six columns
+           * standing in a low key have to put six bars on the stone. A judge counted them and
+           * found none.
+           *
+           * The positions are READ OFF THE CATALOGUE rather than eyeballed. `civic_facade` is
+           * 30 m wide, its colonnade spans 0.42 of that, and its six columns sit evenly across
+           * the span, so the local x of column i is -6.3 + i * 2.52, and the frame's own
+           * projection puts each one on screen. The steps run from the plinth top at 1.6 m down
+           * to grade, which is a band of about 39 px at this distance. */
+          (function () {
+            var cw = 30 * 0.42, x0 = -cw / 2, n = 6;
+            var topY = HORIZON + 820 * (EYE - 1.6) / ZOBJ;
+            var botY = HORIZON + 820 * EYE / ZOBJ;
+            for (var i = 0; i < n; i++) {
+              var X = 0.4 + x0 + i * cw / (n - 1);
+              var sx = 540 + 820 * X / ZOBJ, sw = 820 * 0.9 / ZOBJ;
+              var run = (botY - topY) * 1.15;
+              a.fillStyle = "rgba(0,0,0,0.46)";
+              a.beginPath();
+              a.moveTo(sx, topY);
+              a.lineTo(sx + sw, topY);
+              a.lineTo(sx + sw + run, botY + 5);
+              a.lineTo(sx + run, botY + 5);
+              a.closePath(); a.fill();
+            }
+          })();
+        })();
+
+        /* A SECOND PERSON ON THE STEPS, at a second depth, which is the scale ladder this
+         * frame uses where frame 8 uses a vehicle. */
+        (function () {
+          /* INKED DARK IN ROUND 2, and this frame is the last place the run carried the rule
+           * to. Two judges looked for this figure and one called it a white smudge. It stands
+           * on lit caliche in front of a lit facade, so bright on bright is bright on bright
+           * whichever frame it happens on, and the cure applied to 1, 4, 8 and 9 in round 1
+           * simply was not carried across to the frame everybody agreed was the strongest. */
+          var up = TXFIG.figure({ pose: "walk", height: 1.72, hold: "box" });
+          S.shadow(up, { X: 4.2, Z: 26.0, ink: "#000", alpha: 0.40 });
+          S.sprite(up, { X: 4.2, Z: 26.0,
+                         inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                         fade: false });
+        })();
+
+        /* THE PERSON, on the near walk. Frame 8 stands one on the same mark. */
+        (function () {
+          var fig = TXFIG.figure({ pose: "walk", height: 1.7, hold: "briefcase" });
+          S.shadow(fig, { X: -3.4, Z: 8.4, ink: "#000", alpha: 0.46 });
+          S.sprite(fig, { X: -3.4, Z: 8.4,
+                          inks: { ink: M.G.void, paper: M.G.deep, accent: M.G.dark },
+                          fade: false });
+        })();
+      },
+      over: function (c) {
+        M.reserve(c, { top: 132, topSolid: 74, bottom: 170, bottomSolid: 96 });
+
+        /* KNOCK THE SCREEN OUT FROM UNDER THE TYPE, AND DO IT LAST. The print lays its
+         * halftone and its contour across the whole frame and can't consult a mask as it goes,
+         * so the reserve is punched afterwards, which is the mechanism txdeck.js documents for
+         * exactly this. It runs AFTER the furniture band because the band re-composites, and a
+         * punch that anything paints over afterwards is not a punch.
+         * It DIMS toward the type with a wide feather rather than removing the screen from
+         * around it, because a hole punched at full strength is a plate with the sign flipped,
+         * and that is a defect this project has already paid to find out about once. */
+        TXDECK.punch(c, boxes, { feather: 66, strength: 0.78 });
+
+        /* No accent. A courthouse holds no water anybody has counted. */
+      }
+    });
+
+    TXDECK.finish(cx, { w: W, h: H });
+    resolve();
+  } catch (e) { reject(e); }
+});
+</script>
+</body>
+</html>
