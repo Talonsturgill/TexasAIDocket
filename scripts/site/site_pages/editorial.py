@@ -806,7 +806,7 @@ def articles_page(runs: list, today: str) -> str:
     body = f"""
 <h1>Articles</h1>
 <div class="prose">
-  <p>One verified Texas and AI story at a time, drawn as a carousel. Newest first.</p>
+  <p>Texas and AI, reported through the public record. Read the story, explore the visual edition, follow the sources.</p>
 </div>
 {f'<div class="deckgrid">{cards}</div>' if runs else
  '<p class="gap">No article has shipped yet. The first one appears here the day it does.</p>'}
@@ -818,184 +818,10 @@ def articles_page(runs: list, today: str) -> str:
 
 
 def article_page(r: dict, today: str, items: list) -> str:
-    """One shipped carousel, as TEXT first and pictures second.
+    """A complete web story with its original visual edition and source record."""
+    from site_pages.article_edition import render
+    return render(r, today, items)
 
-    THIS PAGE USED TO BE EIGHT IMAGES AND A TITLE. Everything the deck said was locked inside
-    PNGs, so the page published nothing a search engine could index, nothing a screen reader
-    could read, and nothing a reader with images off could see. The words were never missing:
-    `copy.json` is the manifest `copy_sync_check` proves the render against, and `claims.json`
-    holds every source those words rest on. They were simply never written into the page.
-
-    The shape follows the sibling product's archive, which solved this first. The deck, then the
-    story in the deck's own words, then every claim with the source it was checked against, then
-    the beats. A reader who never loads an image still gets the whole thing.
-    """
-    d = _dt.date.fromisoformat(r["date"])
-    # BY FILENAME, NEVER BY INDEX. See `load_runs`: generating `slide-{i:02d}.webp` from a count
-    # published two broken images and dropped two slides entirely the first time the surviving
-    # files were not a contiguous run.
-    slides = "".join(
-        f'<img {article_media.image_attrs(r, name, 2)}'
-        f' loading="lazy" alt="Slide {i} of {r["slides"]}">'
-        for i, name in enumerate(r["files"], start=1))
-
-    def say(block):
-        # AN ADDRESS IS A CITATION, NOT PROSE, and each line ends.
-        #
-        # A slide's citation line names the state motor vehicles department's own page and prints
-        # the path claim c40 was fetched from. house_style_check read the `about-us` segment of
-        # that path as the first person plural, and then ran the line into the two paragraphs
-        # beside it, because a slide's set lines carry no terminal punctuation and the sentence
-        # splitter had nothing to stop on. Three short labels were reported as one 36 word
-        # sentence. Nobody here wrote that address.
-        #
-        # TWO WRONG INSTRUMENTS WERE TRIED FIRST and both are worth recording, because both look
-        # like exemptions and neither is. `data-prose="data"` exempts ONLY the comma density
-        # rule, in `our_sentences`; every other rule reads the page through `our_prose`, which
-        # never consults it. And `<code>` is not what the checker's CODE pattern means: that
-        # pattern is `script` and `style`, the two elements whose CONTENT would otherwise be
-        # linted as prose. A mark that looks like an exemption and is not one is worse than no
-        # mark, because it reads as handled.
-        #
-        # `<cite>` is the mechanism, because `_stripped` removes QUOTED, which is blockquote and
-        # cite. Only the address is wrapped, never the sentence around it, so every word the deck
-        # wrote is still checked.
-        addr = re.compile(r"(?<![\w/])((?:https?://|www\.)?[\w.-]+\.(?:gov|com|org|net|edu)"
-                          r"(?:/[\w./%-]*)?)")
-
-        def mark(t):
-            return addr.sub(lambda m: f"<cite>{m.group(1)}</cite>", e(t))
-
-        def stopped(t):
-            # A TERMINATOR INSIDE A CLOSING QUOTE STILL STOPS THE SENTENCE. The test read the
-            # last character only, so a line ending on a quoted sentence came out of the story
-            # section as `... pavement engineers.".` with two full stops, one of them the
-            # source's and one of them this function's. Carousel no. 22 put three quoted
-            # fragments on its frames and the article page printed the double on every one.
-            t = t.rstrip()
-            if not t:
-                return t
-            tail = t[-1]
-            if tail in '"\'' + chr(39) and len(t) > 1:
-                tail = t[-2]
-            return t if tail in ".!?:;" else t + "."
-
-        return "".join(
-            f"<blockquote>{e(s['text'])}</blockquote>" if s["quote"]
-            else f"<p>{mark(stopped(str(s['text'])))}</p>" for s in block)
-
-    story = "".join(say(b) for b in r.get("prose") or [])
-    if not story:
-        story = f'<p>{e(r["hook"] or r["title"])}</p>'
-
-    # EVERY CLAIM, WITH WHAT IT WAS CHECKED AGAINST. The site's promise is that a fact traces to
-    # a source a reader can open, and this is the page where the deck's facts live, so this is
-    # where that promise has to be redeemable.
-    def claim_row(i, c):
-        kind = ("PRIMARY" if str(c.get("source_type", "")).startswith("primary") else "REPORT")
-        url, title = str(c.get("url") or ""), str(c.get("source_title") or "")
-        shown = e(title or url)
-        cite = (f'<cite><a href="{e(url)}" rel="nofollow noopener">{shown}</a></cite>'
-                if url else f"<cite>{shown}</cite>")
-        quote = str(c.get("quote") or "").strip()
-        block = f"<blockquote>{e(quote)}</blockquote>" if quote else ""
-        checked = ""
-        try:
-            if c.get("retrieved"):
-                checked = f' · checked {e(ordinal(_dt.date.fromisoformat(str(c["retrieved"]))))}'
-        except ValueError:
-            checked = ""
-        return (f'<li><p>{e(str(c.get("text") or ""))}</p>{block}'
-                f'<p class="meta" data-prose="data"><span class="tag">{kind}</span> {cite}'
-                f'{checked}</p></li>')
-
-    claims = r.get("claims") or []
-    claims_html = ""
-    if claims:
-        rows = "".join(claim_row(i, c) for i, c in enumerate(claims, start=1))
-        claims_html = f"""
-<h2>What was verified</h2>
-<p class="meta" data-prose="data"><span class="num">{len(claims)}</span> claims, each re-fetched
-  from its source before this deck shipped.</p>
-<ol class="claims">{rows}</ol>"""
-
-    beats, entry = "", ""
-    for it in items:
-        if it.get("id") == r.get("story"):
-            beats = (f'<h2>Beats</h2><p class="meta" data-prose="data">'
-                     f'<span class="tag">{e(it.get("topic", ""))}</span></p>')
-            entry = (f'<p class="meta" data-prose="data">The record entry for this decision is '
-                     f'<a href="../../item/{e(it["id"])}/">{e(it["title"])}</a>.</p>')
-            break
-
-    body = f"""
-<article>
-<h1>{e(r["title"])}</h1>
-<p class="meta" data-prose="data"><span class="tag">Published {e(ordinal(d))}</span>
-  <span>{r["slides"]} slides</span></p>
-
-<h2>The deck</h2>
-<div class="slides">{slides}</div>
-
-<h2>The story</h2>
-<div class="prose">{story}{entry}</div>
-{claims_html}
-{beats}
-<p class="meta" data-prose="data"><a href="../">Every article</a></p>
-</article>
-"""
-    flat = [s["text"] for b in (r.get("prose") or []) for s in b if not s["quote"]]
-    # THE FIRST SENTENCE IS NOT A DESCRIPTION. This took `flat[0]` and stopped, so an article
-    # opening "August 7th came and went." shipped a twenty-five character description, which
-    # is what a search result then had to sell itself with. Sentences are added until there is
-    # enough to read, and the cut lands on a sentence boundary rather than mid-word.
-    #
-    # AND A SENTENCE BOUNDARY IS NOT ALWAYS REACHABLE. 2026-09-04. The loop above breaks on the
-    # first sentence that would carry it past 160 and keeps what it already had, which is right
-    # when it already had enough. When it does not, the break throws away the only material
-    # there was: carousel 15 opened on a 32 character hook followed by a 230 character dek, so
-    # the article shipped a description of "Tested on the faces walking out." and `seo_check`
-    # refused the build against its own 50 to 200 band.
-    #
-    # The two rules are not in tension, they are ordered. PREFER a sentence boundary. Take a
-    # word boundary out of the sentence that overflowed only when stopping would leave the
-    # description under the band, because a description cut mid-clause still tells a reader what
-    # the page is and a seven word one does not.
-    desc, overflow = "", ""
-    for sentence in (flat or [r["title"]]):
-        one = " ".join(sentence.split())
-        nxt = (desc + " " + one).strip()
-        if desc and len(nxt) > 160:
-            overflow = one
-            break
-        desc = nxt
-        if len(desc) >= 110:
-            break
-    if len(desc) < 110 and overflow:
-        room = 176 - len(desc) - 1
-        if room > 24:
-            cut = overflow[:room].rsplit(" ", 1)[0].rstrip(" ,;:")
-            if len(cut) > 24:
-                desc = (desc + " " + cut).strip()
-    desc = desc[:180]
-
-    # THE ARTICLE SAYS WHAT IT IS. These three pages are the only reporting on the site and
-    # they were the only pages with no schema of their own, no article date, and the generic
-    # site card on every share. They are also the pages most likely to answer a topical
-    # question, which is exactly the case where a crawler needs to be told what it is holding.
-    art_url = f'{SITE_URL}/articles/{r["date"]}/'
-    story_item = next((i for i in items if i.get("id") == r.get("story")), None)
-    item_url = f'{SITE_URL}/item/{story_item["id"]}/' if story_item else None
-    card = f'og/article-{r["date"]}.png'
-    extra_ld = [
-        schema.article_node(SCHEMA_CTX, r, desc, f"{SITE_URL}/{card}", item_url),
-        schema.breadcrumbs(SCHEMA_CTX, [("Texas AI Docket", ""), ("Articles", "articles/"),
-                                        (r["title"], f'articles/{r["date"]}/')]),
-    ]
-    return page(title=f'{r["title"]} · {SITE_NAME}', depth=2, active="articles/",
-                desc=desc, body=body, today=today, extra_ld=extra_ld,
-                og_image=card, og_alt=r["title"], og_type="article",
-                canonical=f'articles/{r["date"]}/')
 
 
 def deck_preview(r: dict, sentences: int = 2, budget: int = 210, floor: int = 12) -> str:
@@ -1032,6 +858,9 @@ def deck_preview(r: dict, sentences: int = 2, budget: int = 210, floor: int = 12
     the cap was throwing away. `budget` is still the only ceiling, so a deck that genuinely has
     little to say gets a short card rather than a long one padded out of the next slide.
     """
+    if r.get("claims"):
+        from site_pages.article_edition import description
+        return description(r)
     picked: list[str] = []
     for slide in (r.get("prose") or []):
         for block in slide or []:

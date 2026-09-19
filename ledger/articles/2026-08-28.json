@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Power and data centers",
+  "dek": {"text": "Texas approved an Armstrong County net-metering arrangement with full-curtailment conditions. Ensign challenged those conditions, but its rehearing request is not an amended order.", "claims": ["c2", "c5", "c8", "c17", "c22"]},
+  "introduction": [
+    {"text": "An approved power arrangement can still carry a consequential dispute. The [Public Utility Commission's order](c2) allows the Armstrong County net-metering arrangement while requiring the Crusoe Two load to stop consuming electricity when ERCOT directs it.", "claims": ["c2", "c5", "c8"]},
+    {"text": "Ensign, the intended future operator, asked the commission to remove the conditions. Its motion argues that the order exceeds the statute. That is a party's legal position, not a commission finding that the order is invalid.", "claims": ["c4", "c17", "c19", "c22"]}
+  ],
+  "sections": [
+    {"heading": "The conditions on the approval", "paragraphs": [
+      {"text": "The order requires full curtailment of the second load and sets a response window. It also bars that load from the demand-response programs it names. The commission considered both loads because they share the generator's point of interconnection.", "claims": ["c6", "c7", "c8", "c9", "c11"]},
+      {"text": "The order records the applicants' contention about the combined curtailment burden without adopting it. Commission staff and ERCOT also argued against including an unbuilt wind resource. Describing those arguments as findings would change what the decision says.", "claims": ["c12", "c13"]}
+    ]},
+    {"heading": "What the rehearing asks", "paragraphs": [
+      {"text": "The [motion for rehearing](c20) argues that the obligation should be calibrated to the existing generator. Its requested remedy is deletion of the conditions, not merely a smaller curtailment requirement.", "claims": ["c18", "c20", "c22"]}
+    ]},
+    {"heading": "What has not changed in this record", "paragraphs": [
+      {"text": "The filed challenge does not itself change the approved conditions. The order also notes uncertainty over the intended transfer of ownership and control. A subsequent commission action would be needed to establish a different outcome.", "claims": ["c2", "c16", "c22", "c26"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0108", "label": "The Armstrong County curtailment order and challenge"}]
+}

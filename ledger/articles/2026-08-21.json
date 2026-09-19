@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Driverless transport",
+  "dek": {"text": "Texas created a required authorization for commercial driverless vehicles after autonomous freight was already operating. A Senate hearing asks what deployment has meant for safety.", "claims": ["c3", "c9", "c10", "c22", "c23"]},
+  "introduction": [
+    {"text": "Texas senators are preparing to examine driverless vehicles that are already on the road. The [Transportation Committee's charge](c3) asks how deployment has proceeded under the state's authorization law and what it has meant for traffic collisions.", "claims": ["c3", "c4", "c5"]},
+    {"text": "The Department of Motor Vehicles says the law created a required authorization for commercial driverless operation. That requirement took effect after Aurora announced regular driverless freight deliveries between Dallas and Houston.", "claims": ["c9", "c10", "c22", "c23"]}
+  ],
+  "sections": [
+    {"heading": "Different roads, different operations", "paragraphs": [
+      {"text": "[Waymo announced](c11) that its Houston robotaxi service had opened to the general public. Kodiak described driverless hauling for Atlas Energy Solutions in Permian Basin oil fields. Aurora described a network of driverless freight routes.", "claims": ["c11", "c15", "c16", "c29"]},
+      {"text": "These are company accounts of distinct services. A passenger trip, an oil-field load and a highway freight delivery are not interchangeable measures of deployment. The companies' mileage and load figures don't establish comparative safety by themselves.", "claims": ["c12", "c17", "c24", "c28"]}
+    ]},
+    {"heading": "The safety question needs a denominator", "paragraphs": [
+      {"text": "The federal automated-driving incident dataset identifies reporting entities and report types. Texas DPS publishes first-responder interaction information without an incident count on that page. The state's crash-data page does not name a separate automated-driving category.", "claims": ["c31", "c34", "c35"]},
+      {"text": "Those records do not, on their own, answer the committee's request to quantify collision effects. Counting deployments and counting incident reports are different tasks. A safety comparison needs evidence that links the relevant operations to the outcomes being measured.", "claims": ["c4", "c31", "c34", "c35"]}
+    ]},
+    {"heading": "What the hearing can add", "paragraphs": [
+      {"text": "The Legislature lists a public hearing and asks for recommendations on continued deployment and public safety. The charge is a request for findings. It is not itself a finding that the existing authorization system has made travel safer.", "claims": ["c5", "c36"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0077", "label": "The Senate's driverless deployment hearing"}]
+}

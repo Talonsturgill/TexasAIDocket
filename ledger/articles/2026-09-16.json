@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Education and public safety",
+  "dek": {"text": "UT Arlington is developing an AI tutor designed to prompt reasoning instead of supply answers. Related police training has separate funding, and reported capabilities are not yet outcome measurements.", "claims": ["c4", "c7", "c8", "c10", "c19", "c32"]},
+  "introduction": [
+    {"text": "UT Arlington's planned AI tutor is built around withholding the answer. The [federal project abstract](c32) describes structured reasoning conversations, personalized feedback and revision intended to help engineering students work through a problem.", "claims": ["c22", "c31", "c32"]},
+    {"text": "The university also describes testing related technology with Fort Worth police on de-escalation scenarios. The shared account connects the methods, but its footnote identifies separate Justice Department funding for the police work.", "claims": ["c2", "c7", "c19", "c20"]}
+  ],
+  "sections": [
+    {"heading": "A tutor inside the homework", "paragraphs": [
+      {"text": "Instructors would continue teaching the courses. The AI tutor would be integrated into assignments, offering instructions and hints within simulated workplace settings. Students would receive performance analysis and opportunities to revise their work.", "claims": ["c13", "c14", "c15", "c16"]},
+      {"text": "The federal abstract describes language models grounded in course material and an assessment process requiring students to critique AI-generated drafts. The stated educational objective is reasoning, not simply faster assignment completion.", "claims": ["c31", "c32", "c34", "c35"]}
+    ]},
+    {"heading": "Police testing is not a measured result", "paragraphs": [
+      {"text": "The [university release](c8) says the police system can recognize listening and other conversational behavior, then steer the interaction. Those are descriptions of intended or reported capabilities. They do not supply an independent measure of better field outcomes.", "claims": ["c7", "c8", "c9"]}
+    ]},
+    {"heading": "Keep the projects and dates distinct", "paragraphs": [
+      {"text": "The engineering education award's start date follows the university's announcement. Police testing had already begun under its separate funding. Neither timing establishes that the federal education project had already completed the learning outcomes it proposes to study.", "claims": ["c3", "c7", "c19", "c27", "c33"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0161", "label": "UT Arlington's conversational tutor and police-training work"}]
+}

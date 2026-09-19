@@ -305,6 +305,11 @@ rules:
       Owned by daily because the routine writes it, and COMMITTED because a cache a container
       throws away is a slower first request wearing a cache's name.
 
+  - path: "ledger/articles/**"
+    owner: daily
+    note: >
+      Standalone web editions authored from each shipped run's verified claims. Kept outside
+      immutable carousel archives, and required by the site build before publication.
   - path: "ledger/docket.json"
     owner: daily
     note: >

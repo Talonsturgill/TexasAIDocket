@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Research infrastructure",
+  "dek": {"text": "TACC announced a permanent closure of Frontera's computing queues. Its guide preserves access for moving data out, but does not promise an allocation transfer to a successor.", "claims": ["c1", "c6", "c18", "c19"]},
+  "introduction": [
+    {"text": "The Texas Advanced Computing Center's [Frontera guide](c1) begins with a consequential warning. Its computing queues will close permanently on {{date:c1}}. The same guide says researchers will still be able to access file systems to transfer their data.", "claims": ["c1", "c6", "c19", "c23"]},
+    {"text": "Those are different permissions. Access to retrieve files is not access to keep submitting computing jobs. It also does not establish that an unused allocation moves automatically to another machine.", "claims": ["c1", "c6", "c18"]}
+  ],
+  "sections": [
+    {"heading": "The successor has its own access rule", "paragraphs": [
+      {"text": "Horizon, the successor machine, has a separate [user guide](c4). Its notice still limits use to internal users, and the guide identifies itself as a work in progress. The allocation routes it lists are not proof that general access has opened.", "claims": ["c4", "c5", "c13", "c20"]},
+      {"text": "The federal construction award identifies TACC as the project lead. An award period describes the funded construction project. It is not a promise that every Frontera workload will have a ready replacement when the queues close.", "claims": ["c10", "c11", "c12", "c21"]}
+    ]},
+    {"heading": "AI work still consumes an allocation", "paragraphs": [
+      {"text": "The center requires AI-assisted workloads to run on compute nodes. It also says the service units they consume are charged against the user's allocation. Delegating work to an AI agent does not remove those operating conditions.", "claims": ["c16", "c17"]}
+    ]},
+    {"heading": "The unanswered migration question", "paragraphs": [
+      {"text": "The closing guide does not explain what happens to allocations after the shutdown or name a destination for unfinished work. That is a gap in this guide, not proof that no migration arrangements exist elsewhere.", "claims": ["c18"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0125", "label": "Frontera's closure and successor-access record"}]
+}

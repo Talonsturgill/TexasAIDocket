@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Surveillance",
+  "dek": {"text": "A statewide funding pause put Flock cameras back in question. Reporting on the camera network and Pflugerville's shutdown shows why funding, access and operation are separate issues.", "claims": ["c11", "c14", "c19", "c20", "c21", "c41"]},
+  "introduction": [
+    {"text": "Governor Greg Abbott ordered state agencies to pause funding for Flock cameras, according to the reporting assembled for this edition. A spokesperson said agencies were clarifying that their funds could not be used for the cameras.", "claims": ["c11", "c12"]},
+    {"text": "The [governor's own news index](c41) carried no release on the order when checked. The funding action is therefore attributed to the reported account, not to a public directive independently retrieved from that index.", "claims": ["c11", "c12", "c41"]}
+  ],
+  "sections": [
+    {"heading": "The fee behind the network", "paragraphs": [
+      {"text": "Reporting traced part of the statewide camera network to an auto-insurance fee increase intended to combat catalytic converter theft. It described grants and a state contract used to install cameras across Texas.", "claims": ["c13", "c14", "c15", "c16", "c17"]},
+      {"text": "The authority's reported search and cleared-case figures measure different things. A search count is not a count of crimes solved, and those totals alone do not establish what each camera contributed.", "claims": ["c18"]}
+    ]},
+    {"heading": "Who could search a local network", "paragraphs": [
+      {"text": "[Pflugerville's council](c19) voted to end its Flock agreement and turn off and cover the contracted cameras. Records described extensive searches by outside organizations touching the city's network. Local ownership of cameras did not mean exclusively local access to their data.", "claims": ["c19", "c20", "c21"]}
+    ]},
+    {"heading": "A pause is not a shutdown order", "paragraphs": [
+      {"text": "A restriction on state funding and a city's decision to stop operating cameras are distinct actions. The reporting does not establish that every funded camera was switched off. The underlying directive and agency implementation records would clarify the statewide effect.", "claims": ["c11", "c12", "c19", "c20", "c41"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0111", "label": "The reported state funding pause for Flock cameras"}]
+}

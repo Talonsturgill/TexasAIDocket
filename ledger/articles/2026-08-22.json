@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Power and data centers",
+  "dek": {"text": "A proposed Texas grid service would buy demand reductions from large electricity users. Its definition turns on a site's power demand, not whether it is called a data center.", "claims": ["c5", "c6", "c20"]},
+  "introduction": [
+    {"text": "The Public Utility Commission's proposed [Large Load Demand Management Service](c1) addresses a problem larger than a single industry. It would require ERCOT to procure demand reductions from qualifying electricity users when an emergency is anticipated.", "claims": ["c1", "c5", "c22"]},
+    {"text": "The published proposal does not use the words data center. It defines a large load customer by total non-coincident peak demand at a single site. That definition determines the proposed service's reach.", "claims": ["c6", "c20"]}
+  ],
+  "sections": [
+    {"heading": "What the proposal would do", "paragraphs": [
+      {"text": "ERCOT would competitively procure demand reductions under an annual budget limit. The proposal also calls for a protocol allowing transmission-voltage customers to be curtailed during firm load shedding. A proposed service is not yet an adopted operating rule.", "claims": ["c5", "c21", "c23"]},
+      {"text": "The distinction matters for reading the docket. The proposal is about demand management. The presence of data center companies among the filers does not rewrite the published customer definition.", "claims": ["c6", "c15", "c17", "c20"]}
+    ]},
+    {"heading": "A filing list is not a position summary", "paragraphs": [
+      {"text": "The [Interchange index](c7) identifies parties, filing dates and short descriptions. It includes companies, individuals and a university-affiliated filer. Those entries establish that documents were submitted, not everything their authors argued.", "claims": ["c7", "c11", "c12", "c13", "c14", "c19"]},
+      {"text": "The proposal directs electronic comments through the commission's interchange and requires the project number. Its notice sets the comment deadline at {{date:c2}}. That was the participation window as published for this edition.", "claims": ["c2", "c3", "c4"]}
+    ]},
+    {"heading": "What remains open", "paragraphs": [
+      {"text": "The final rule would establish which proposed requirements survive the comment process. Until adoption is verified, the definition, budget and curtailment provisions should be read as proposed terms.", "claims": ["c1", "c6", "c21", "c23"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0002", "label": "The large-load demand management rulemaking"}]
+}

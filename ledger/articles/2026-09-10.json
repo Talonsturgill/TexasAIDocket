@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Driverless transport",
+  "dek": {"text": "Federal regulators opened an audit of Tesla's Cybercab certification as commercial deployment began in Austin. The inquiry examines the basis for certification, not an announced recall.", "claims": ["c1", "c2", "c3", "c6", "c7"]},
+  "introduction": [
+    {"text": "Tesla began commercial Cybercab deployment in Austin on the same day federal regulators opened an audit query into its certification. The [NHTSA document](c6) says the agency will examine the process and technical data Tesla relied on.", "claims": ["c1", "c2", "c6", "c7", "c12"]},
+    {"text": "Tesla told the agency its vehicles complied with applicable federal safety standards. That is the manufacturer's certification position. The audit is the regulator's examination of the basis for that position.", "claims": ["c6", "c8"]}
+  ],
+  "sections": [
+    {"heading": "The controls are part of the question", "paragraphs": [
+      {"text": "NHTSA records that the vehicles lack permanently attached conventional controls, including pedals and a steering wheel. The agency says it will examine whether Tesla's certification depended on treating some standards as inapplicable.", "claims": ["c10", "c11"]},
+      {"text": "Proposed changes to manual-control requirements do not themselves replace existing standards. The agency's account says the current requirements remain applicable while that work proceeds.", "claims": ["c18", "c19"]}
+    ]},
+    {"heading": "An audit is not a recall", "paragraphs": [
+      {"text": "The document identifies an open audit query. It does not announce a recall or a defect finding. The estimated population in the query should also not be confused with the small number of vehicles initially deployed in Austin.", "claims": ["c3", "c5", "c7"]},
+      {"text": "Zoox's separate exemption process provides context, not proof that Tesla has the same authorization. Each manufacturer's certification or exemption needs to be read through its own record.", "claims": ["c8", "c20", "c21", "c22", "c23"]}
+    ]},
+    {"heading": "The unanswered compliance question", "paragraphs": [
+      {"text": "The audit's findings would establish what regulators conclude about Tesla's technical basis. Opening the inquiry establishes scrutiny, not its outcome. The commercial rollout and the unresolved federal examination coexist in this record.", "claims": ["c3", "c6", "c7", "c11"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0140", "label": "The federal Cybercab certification audit"}]
+}

@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Power and data centers",
+  "dek": {"text": "ERCOT says some large loads have finished every process except approval to energize. Batch Zero classifications still depend on verification and model requirements.", "claims": ["c11", "c13", "c23", "c24"]},
+  "introduction": [
+    {"text": "Finishing a grid study is not permission to switch on. ERCOT identified {{number:c12}} large loads that had completed every process except approval to energize. Their combined peak demand over the stated period was {{number:c12:1}} megawatts.", "claims": ["c11", "c12", "c13"]},
+    {"text": "The [Batch Zero verification process](c1) creates another distinction. A conditional classification is a place in the process subject to requirements, not an unconditional promise of capacity or an operating authorization.", "claims": ["c1", "c2", "c22", "c23", "c24"]}
+  ],
+  "sections": [
+    {"heading": "The questionnaire has consequences", "paragraphs": [
+      {"text": "ERCOT requires information and documents through the transmission service provider, with notarized attestations from participating parties. A load may be removed if its entity fails to provide what the provider needs to respond on time.", "claims": ["c3", "c4", "c5", "c7"]},
+      {"text": "The required evidence varies with the project's classification and the respondent's role. Conditional inclusion can also depend on correcting dynamic-model deficiencies or receiving a commission exception. Verification is not the only remaining condition.", "claims": ["c8", "c9", "c10", "c23"]}
+    ]},
+    {"heading": "Company disclosures add detail, not certainty", "paragraphs": [
+      {"text": "[Galaxy's disclosure](c26) identifies its projects and their conditional classifications. It says Caspian was submitted as base load but classified as studied load. The company also discloses the risk that a project could be removed.", "claims": ["c26", "c27", "c30", "c33"]},
+      {"text": "ERCOT's public classification notice names no individual load and gives no capacity total. The company account supplies project-specific information that the public market notice itself does not verify by name.", "claims": ["c25", "c26"]}
+    ]},
+    {"heading": "What would establish readiness", "paragraphs": [
+      {"text": "The relevant next records are completion of applicable conditions and explicit approval to energize. A queue label, a completed study and an operating approval describe different stages. This edition does not collapse them into a single cleared status.", "claims": ["c11", "c13", "c23", "c24"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0156", "label": "ERCOT's verification questionnaire"}, {"id": "tx-2026-0157", "label": "Galaxy's conditional project classifications"}]
+}

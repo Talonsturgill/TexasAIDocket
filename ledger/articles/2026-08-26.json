@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Health and research",
+  "dek": {"text": "The first funded phase of UT Dell Medical Center is early work and site preparation. Its building-cost line is zero, and the AI language comes from a separate university account.", "claims": ["c1", "c6", "c23", "c32"]},
+  "introduction": [
+    {"text": "The first phase of UT Dell Medical Center is not the hospital building. The [regents' agenda book](c1) describes early work and site preparation, with a cost table that assigns nothing to building construction in this phase.", "claims": ["c1", "c6"]},
+    {"text": "The proposed phase carries a ${{number:c3}} total cost. A dated meeting report establishes that the regents approved adding it to the capital program. The agenda book establishes what they were asked to approve. Those documents do different jobs.", "claims": ["c3", "c32"]}
+  ],
+  "sections": [
+    {"heading": "What the first phase pays for", "paragraphs": [
+      {"text": "Site development is the largest cost line. The table also provides for equipment, design services, project management and contingency. The financing description says clinical revenues are expected to repay the bond debt.", "claims": ["c5", "c7", "c8", "c9"]},
+      {"text": "The finished center is described as a hospital with inpatient, outpatient and clinical support space. MD Anderson is named as the oncology partner. Those plans describe the eventual facility, not a completed building purchased by this phase.", "claims": ["c15", "c16", "c26"]}
+    ]},
+    {"heading": "Where the AI claim comes from", "paragraphs": [
+      {"text": "The board item names digital technology, robotics and automation. A separate [UT Austin release](c23) explicitly describes AI embedded in care delivery. The AI characterization belongs to that university account rather than to words inserted into the board item.", "claims": ["c12", "c13", "c23", "c24"]}
+    ]},
+    {"heading": "The approval record has a limit", "paragraphs": [
+      {"text": "At the reporting date, UT System had not published minutes or a record of action for the meeting. The approval therefore rests on the dated meeting report. The agenda's recommendations should not be presented as the missing minutes.", "claims": ["c32"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0095", "label": "UT Dell Medical Center's capital-program decision"}]
+}

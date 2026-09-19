@@ -1,0 +1,81 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Hays County",
+  "dek": {
+    "text": "AI appeared on the county's agendas for police reports, surveillance and official minutes. The published minutes leave the outcomes unresolved.",
+    "claims": ["c2", "c7", "c12", "c15"]
+  },
+  "introduction": [
+    {
+      "text": "The same commissioners court faced different questions about who writes the county's record. The sheriff's office committed to hold off on an AI report-writing tool. The county clerk sought permission to buy software for official meeting minutes. A separate agenda raised rules for AI in surveillance.",
+      "claims": ["c2", "c7", "c12"]
+    },
+    {
+      "text": "The agendas document those items. They don't establish how the court disposed of them. When the [county minutes archive](c15) was checked on {{checked:c15}}, its newest entry was {{date:c15}}. The September outcomes remain unverified in that archive.",
+      "claims": ["c1", "c6", "c11", "c15"]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Police reports await the court's approval",
+      "paragraphs": [
+        {
+          "text": "The [{{date:c1}} agenda](c1) recorded the sheriff's commitment not to activate Axon Draft One. The item describes it as an AI report-writing feature within the Axon AI Era platform.",
+          "claims": ["c1", "c2", "c3"]
+        },
+        {
+          "text": "[Axon describes](c16) a tool that turns body-camera audio into draft report narratives. The company says an officer must review and approve a narrative before it can be submitted. Those are the vendor's descriptions of the product.",
+          "claims": ["c16", "c17"]
+        },
+        {
+          "text": "The county's [commitment extends to new AI features](c4) the platform may offer under the contract. Their operational use would require a return to the commissioners court for approval. An officer's review and the court's authorization are separate conditions in these documents.",
+          "claims": ["c4", "c17"]
+        }
+      ]
+    },
+    {
+      "heading": "A separate question about surveillance",
+      "paragraphs": [
+        {
+          "text": "The [{{date:c11}} agenda](c11) then put the governance of AI in surveillance before the same court. The item contemplated guidelines, safeguards and limits for county use of those technologies.",
+          "claims": ["c11", "c12", "c13"]
+        },
+        {
+          "text": "The next item concerned Tyler Technologies contract amendments, including report-writing services. Their placement beside each other doesn't establish a connection. The agenda identifies separate items and doesn't settle whether the court adopted the proposed AI policy.",
+          "claims": ["c12", "c13", "c14"]
+        }
+      ]
+    },
+    {
+      "heading": "AI for the minutes themselves",
+      "paragraphs": [
+        {
+          "text": "By the [{{date:c6}} agenda](c6), the clerk's office was seeking authorization to obtain AI Minutes from Govably. The listed first-year amount was {{money:c8}}. The same item requested a waiver of the county's requirement to obtain competing quotes.",
+          "claims": ["c6", "c7", "c8", "c9"]
+        },
+        {
+          "text": "[Govably says](c18) its software writes official meeting minutes from recordings, live sessions or pasted transcripts. The agenda establishes a request to buy that product. It doesn't establish an approved purchase or show the software in use.",
+          "claims": ["c7", "c18"]
+        }
+      ]
+    },
+    {
+      "heading": "What the record still needs",
+      "paragraphs": [
+        {
+          "text": "The missing September minutes leave a gap in the public record checked for this edition. That absence doesn't mean the court took no action. It means the archive doesn't supply the dispositions needed to report those actions as confirmed.",
+          "claims": ["c15"]
+        },
+        {
+          "text": "Minutes or another official record of the court's actions could resolve the proposals. Until then, the distinction matters. A commitment is documented. A purchase was requested. A policy was placed on an agenda. Which of those became the county's operating rules?",
+          "claims": ["c2", "c7", "c12", "c13", "c15"]
+        }
+      ]
+    }
+  ],
+  "related": [
+    {"id": "tx-2026-0168", "label": "The sheriff's AI report-writing commitment"},
+    {"id": "tx-2026-0170", "label": "The proposed AI surveillance policy"},
+    {"id": "tx-2026-0169", "label": "The clerk's request for AI meeting minutes"}
+  ]
+}

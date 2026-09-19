@@ -1,0 +1,22 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Austin",
+  "dek": {"text": "Austin directed new parks security equipment while adding an AI restriction. That resolution also points back to the city's broader surveillance review and privacy requirements.", "claims": ["c3", "c6", "c7", "c8", "c9", "c16"]},
+  "introduction": [
+    {"text": "Austin's parks security resolution authorizes a plan and equipment, but it is not an unrestricted technology purchase. The [adopted measure](c6) names potential equipment and requires compliance with the city's existing surveillance ordinance.", "claims": ["c3", "c6", "c7", "c12"]},
+    {"text": "The city manager may not consider buying a camera or drone system that depends on AI for surveillance or analysis. That specific prohibition sits alongside the separate approval and privacy process the resolution incorporates.", "claims": ["c7", "c8", "c9"]}
+  ],
+  "sections": [
+    {"heading": "A plan with named responsibilities", "paragraphs": [
+      {"text": "The city manager must use the parks department's security audit to develop the implementation plan. It must identify improvements, priority locations, responsible parties, funding and timelines. Parks with a history of violent crime receive priority for initial deployment.", "claims": ["c3", "c4", "c5", "c10"]}
+    ]},
+    {"heading": "The surveillance ordinance still applies", "paragraphs": [
+      {"text": "The [surveillance ordinance](c16) requires a privacy impact assessment for technology a department seeks to acquire. The assessment must be public when delivered to the council. The chapter also specifies exceptions to its ordinary approval requirement.", "claims": ["c14", "c16", "c28", "c36", "c37", "c38"]},
+      {"text": "Potential use of collected data to train AI is part of that risk assessment. It weighs against a finding of minimal privacy risk. That factor is distinct from the ordinance's separate list of prohibited technologies and its policy exceptions.", "claims": ["c21", "c22", "c23", "c24", "c33", "c34", "c35"]}
+    ]},
+    {"heading": "Approval without an invented tally", "paragraphs": [
+      {"text": "The council's action notes mark the item approved but publish no vote count beside it. They say vote details will appear in approved minutes. The available record supports approval, not a tally supplied by inference.", "claims": ["c19", "c40", "c41"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0129", "label": "Austin's parks security resolution"}, {"id": "tx-2026-0030", "label": "The city's surveillance technology ordinance"}]
+}

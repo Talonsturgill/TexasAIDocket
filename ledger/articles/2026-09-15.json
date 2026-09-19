@@ -1,0 +1,23 @@
+{
+  "_spec": {"version": 1, "purpose": "A standalone web edition of the archived visual story.", "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.", "written_by": "daily"},
+  "section": "Grid reliability",
+  "dek": {"text": "ERCOT warns that rapid changes in AI training loads could fatigue generators. Its proposed limit on power swings was still a draft, distinct from reliability requirements already in force.", "claims": ["c18", "c21", "c27", "c29", "c35"]},
+  "introduction": [
+    {"text": "A data center can affect the grid through the speed of its changing demand, not just its maximum draw. ERCOT's [board presentation](c27) warns that fluctuations associated with AI training can disturb generator shafts and potentially cause fatigue or damage.", "claims": ["c19", "c27", "c35"]},
+    {"text": "The presentation identifies a risk, not a named Texas generator already damaged by a named data center. It supplies neither company's identity. Its proposed response was a draft operating-guide revision, not an adopted rule.", "claims": ["c20", "c21", "c33", "c34", "c35"]}
+  ],
+  "sections": [
+    {"heading": "Different risks have different rule statuses", "paragraphs": [
+      {"text": "Ride-through requirements address equipment disconnecting during normal grid events. ERCOT described those requirements as already effective. The oscillation limit, by contrast, had not yet been filed and carried only a planned submission window.", "claims": ["c16", "c17", "c18", "c19", "c20", "c21"]},
+      {"text": "The grid operator also identified inaccurate models as an obstacle to studying large-load impacts. It described work with Texas A&M and a separate model-quality revision headed for board consideration.", "claims": ["c22", "c23", "c24", "c25", "c26"]}
+    ]},
+    {"heading": "Models must describe the actual facility", "paragraphs": [
+      {"text": "The [model-quality proposal](c40) calls for compatible data formats and quality tests. It also requires updated models before initial energization, documenting differences from earlier studies and attesting that the data reflect actual field settings.", "claims": ["c40", "c41", "c42", "c43"]},
+      {"text": "A technical committee recommendation is part of that proposal's history. The revision record still marked it pending board consideration when checked. A recommendation should not be reported as the board's final approval.", "claims": ["c37", "c39", "c44"]}
+    ]},
+    {"heading": "The next decision is still ahead", "paragraphs": [
+      {"text": "The draft would limit power variation to {{number:c29}} megawatts per {{number:c29:1}} seconds. The presentation asked the board for no action. Filing the proposal and recording subsequent approvals would establish its operative terms. Until then, the planned limit is not an enforceable rule.", "claims": ["c3", "c21", "c29", "c30", "c34"]}
+    ]}
+  ],
+  "related": [{"id": "tx-2026-0159", "label": "ERCOT's AI-load reliability warning"}]
+}
