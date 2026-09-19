@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-09-18",
+  "generated": "2026-09-19",
   "gates": [
    "claims",
    "cross references",
@@ -20333,6 +20333,377 @@
    ],
    "last_verified": "2026-09-18",
    "id": "tx-2026-0170"
+  },
+  {
+   "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the device instead of a server",
+   "summary": "The University of Texas at San Antonio published an account on September 8th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined solar energy harvesting, environmental sensing, long range radio and a machine learning model compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server, so it keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "The University of Texas at San Antonio",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Bexar"
+    ],
+    "metro": "San Antonio-New Braunfels, TX",
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-08",
+     "kind": "filed",
+     "note": "Date the university published the account"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The university's own account is public and names the lead researcher and the laboratory. No comment window or public proceeding attaches to a research prototype.",
+    "url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "The researcher states what the system does without outside power or a network.",
+     "verbatim_quote": "Our system is an off-grid solution. It generates its own power, evaluates flood risk locally right on the device and sends timely warnings without needing external electricity or expensive network lines.",
+     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+     "source_title": "UT San Antonio Today",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0167-c1"
+    },
+    {
+     "text": "The account describes the method that lets the model run on the node.",
+     "verbatim_quote": "a branch of computer science that compresses machine learning algorithms so they can run directly on small, low-power microcontrollers",
+     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+     "source_title": "UT San Antonio Today",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0167-c2"
+    },
+    {
+     "text": "The university states the accuracy figure and what stage it comes from.",
+     "verbatim_quote": "So far, the AI has performed well, achieving 98.82% validation accuracy in initial assessments post-training.",
+     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+     "source_title": "UT San Antonio Today",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0167-c3"
+    },
+    {
+     "text": "It names who paid for the work.",
+     "verbatim_quote": "This project was funded in part by a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration (NOAA).",
+     "source_url": "http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/",
+     "source_title": "UT San Antonio Today",
+     "source_type": "primary_official",
+     "fetched": "2026-09-18",
+     "id": "tx-2026-0167-c4"
+    }
+   ],
+   "id": "tx-2026-0167",
+   "last_verified": "2026-09-18",
+   "history": [
+    {
+     "date": "2026-09-18",
+     "note": "Admitted on the university's own account. What exists is a prototype, and the accuracy figure the account gives comes from assessment after training rather than from a flood."
+    }
+   ]
+  },
+  {
+   "title": "Governor directs the water board to prosecute data centers that did not return the state water use survey",
+   "summary": "The Office of the Governor issued a directive to the Texas Water Development Board on September 14th, 2026 telling it to enforce the water use survey requirement against major water users, naming data centers. The directive covers failures already made as well as future ones. The board's stated reason for needing the numbers is that it writes the state water plan and can't do that without knowing what is consumed now and what will be. Under the Texas Water Code a recipient who does not complete and return the survey commits an offense punishable as a crime, and becomes ineligible for TCEQ permits, amendments or renewals under Chapter 11. The board is told to refer noncompliance to the County or District Attorney and to notify TCEQ for possible permit disqualification. It is also told to partner with the grid operator on the data center audit the Governor ordered on August 3rd, 2026, and to report back on its enforcement by October 14th, 2026.",
+   "topic": "land-water-and-permitting",
+   "decider": {
+    "name": "Office of the Texas Governor",
+    "type": "governor"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": false
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-14",
+     "kind": "ordered",
+     "note": "Directive issued to the Texas Water Development Board"
+    },
+    {
+     "date": "2026-10-14",
+     "kind": "statutory_deadline",
+     "note": "Board must report to the Office of the Governor on its enforcement activities"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The directive is published in full on the Governor's own newsroom, with a link to the letter it was sent under. No comment window attaches to a directive. The Texas Water Development Board is the reachable party on how it will enforce, and its board meetings are posted on its own calendar.",
+    "url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "The Governor states what the board is being told to do.",
+     "verbatim_quote": "I direct the Texas Water Development Board to use its enforcement authority to penalize past failures and to impose legal consequences for any future failure to comply.",
+     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+     "source_title": "Office of the Texas Governor, Governor Abbott Directs TWDB To Penalize Data Center Reporting Failures",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0171-c1"
+    },
+    {
+     "text": "The directive states the duty the Governor says data centers share.",
+     "verbatim_quote": "Data centers must share the duty to protect Texas water",
+     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+     "source_title": "Office of the Texas Governor, Governor Abbott Directs TWDB To Penalize Data Center Reporting Failures",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0171-c2"
+    },
+    {
+     "text": "The directive states why the board needs the figures at all.",
+     "verbatim_quote": "TWDB is charged with developing a state water plan that meets the needs of Texans and cannot perform that task if it is denied detailed information on existing and anticipated water consumption.",
+     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+     "source_title": "Office of the Texas Governor, Governor Abbott Directs TWDB To Penalize Data Center Reporting Failures",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0171-c3"
+    },
+    {
+     "text": "The directive states the criminal consequence of not returning the survey.",
+     "verbatim_quote": "A data center that fails to complete and return the survey commits an offense punishable as a crime.",
+     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+     "source_title": "Office of the Texas Governor, Governor Abbott Directs TWDB To Penalize Data Center Reporting Failures",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0171-c4"
+    },
+    {
+     "text": "The directive states the permitting consequence of not returning it on time.",
+     "verbatim_quote": "A data center that fails to timely complete and return the survey is ineligible for TCEQ permits, amendments, or renewals under Chapter 11 of the Texas Water Code.",
+     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+     "source_title": "Office of the Texas Governor, Governor Abbott Directs TWDB To Penalize Data Center Reporting Failures",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0171-c5"
+    },
+    {
+     "text": "The directive states what the Governor says has already happened.",
+     "verbatim_quote": "Major water users, including data centers, appear to have committed civil and criminal violations through failure to provide TWDB with required information about water usage.",
+     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+     "source_title": "Office of the Texas Governor, Governor Abbott Directs TWDB To Penalize Data Center Reporting Failures",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0171-c6"
+    },
+    {
+     "text": "The directive sets the date the board has to report back on.",
+     "verbatim_quote": "TWDB shall update the Office of the Governor by October 14, 2026, on the progress of its enforcement activities",
+     "source_url": "https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures",
+     "source_title": "Office of the Texas Governor, Governor Abbott Directs TWDB To Penalize Data Center Reporting Failures",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0171-c7"
+    }
+   ],
+   "id": "tx-2026-0171",
+   "last_verified": "2026-09-19",
+   "history": [
+    {
+     "date": "2026-09-19",
+     "note": "The directive is published and the board has not yet said how it will enforce. The date it has to report back on has not arrived.",
+     "checked": true
+    }
+   ]
+  },
+  {
+   "title": "UT Arlington replaces its business analytics degrees with artificial intelligence degrees",
+   "summary": "The University of Texas at Arlington College of Business announced on September 14th, 2026 that it has launched a Bachelor of Science and a Master of Science in Artificial Intelligence for Business. The new degrees take the place of the college's existing Business Analytics programs rather than sitting beside them. The college describes a redesigned curriculum aimed at using the technology for business strategy, productivity and decision making. Certificate offerings accompany the degrees. No start term or first cohort size is stated in the announcement.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "University of Texas at Arlington College of Business",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Tarrant"
+    ],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-14",
+     "kind": "decided",
+     "note": "Announcement date on the university's own newsroom"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The announcement is published on the university's own newsroom. A prospective student reaches the college through the degree pages the announcement links to. No comment window attaches to a curriculum change a university makes for itself.",
+    "url": "https://www.uta.edu/news/news-releases/2026/09/14/uta-launches-ai-degree-programs-for-business",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "The university states that the new degrees replace the old ones rather than joining them.",
+     "verbatim_quote": "Artificial Intelligence for Business replaces Business Analytics",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/09/14/uta-launches-ai-degree-programs-for-business",
+     "source_title": "University of Texas at Arlington, UTA launches AI degree programs for business",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0173-c1"
+    }
+   ],
+   "id": "tx-2026-0173",
+   "last_verified": "2026-09-19",
+   "history": [
+    {
+     "date": "2026-09-19",
+     "note": "The degrees are launched and the analytics programs they replace are closed to new entry.",
+     "checked": true
+    }
+   ]
+  },
+  {
+   "title": "Grid operator issues the water questions on the water board's behalf, with criminal exposure attached and a October 12th deadline",
+   "summary": "ERCOT issued Market Notice M-B091426-01 on September 14th, 2026, opening a Request for Information on the state and community impacts of data centers. It goes to developers of data centers of 25 MW and larger, and it is issued jointly with the Public Utility Commission of Texas and the Texas Water Development Board. Section C carries the water questions. The water board's Executive Administrator authorised the grid operator to ask them on the board's behalf, and the grid operator forwards the answers back. A developer does not file its own response. Its transmission or distribution provider files it, with a notarized attestation, through the operator's own web platform. Responses are due at 5 p.m. Central Prevailing Time on October 12th, 2026. Not responding is reported to the commission and to the Office of the Governor, and under Texas Water Code 16.012 an incomplete answer to Section C carries criminal exposure. The notice states in its own words that this is a separate request from the Batch Zero eligibility one issued on September 9th, 2026. A report on what the answers show is expected by December 10th, 2026.",
+   "topic": "land-water-and-permitting",
+   "decider": {
+    "name": "Electric Reliability Council of Texas",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "metro": null,
+    "on_ercot": true
+   },
+   "status": "open",
+   "key_dates": [
+    {
+     "date": "2026-09-14",
+     "kind": "filed",
+     "note": "Market Notice M-B091426-01 issued"
+    },
+    {
+     "date": "2026-10-12",
+     "kind": "statutory_deadline",
+     "note": "Complete responses due at 5 p.m. Central Prevailing Time"
+    },
+    {
+     "date": "2026-12-10",
+     "kind": "expires",
+     "note": "Date by which the operator expects to publish a report on the responses"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The notice is published in full on the grid operator's own market notice archive and names an address for questions about the request. The window is not a public comment window. It is a response requirement on named data center developers, filed for them by their transmission or distribution provider. A member of the public reads the notice and waits for the report the operator says it will publish.",
+    "url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "id": "tx-2026-0172-c1",
+     "text": "The notice carries its own number and subject.",
+     "verbatim_quote": "M-B091426-01 Issuance of Request for Information Regarding Data Center State and Community Impacts",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19"
+    },
+    {
+     "text": "The notice names who has to answer it.",
+     "verbatim_quote": "Developers of Data Centers 25 MW and Larger",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c2"
+    },
+    {
+     "text": "The notice states the criminal exposure attached to the water questions.",
+     "verbatim_quote": "In accordance with Texas Water Code 16.012, any failure to fully respond to the questions in Section C may subject an RFI recipient to criminal penalties and other potential consequences.",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c3"
+    },
+    {
+     "text": "The notice sets the hour and the date responses are due.",
+     "verbatim_quote": "5 p.m. Central Prevailing Time (CPT) on October 12, 2026",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c4"
+    },
+    {
+     "text": "The notice states who a silence is reported to.",
+     "verbatim_quote": "Failure to respond to the RFI or any part thereof will be reported to the PUC and the Office of the Governor.",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c5"
+    },
+    {
+     "text": "The notice states that the water questions are asked for the water board and answered back to it.",
+     "verbatim_quote": "The Executive Administrator of the TWDB has authorized ERCOT to issue the questions in Section C on TWDB's behalf, and ERCOT will forward the responses to these questions to TWDB.",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c6"
+    },
+    {
+     "text": "The notice states in its own words that this is not the earlier eligibility request.",
+     "verbatim_quote": "This RFI is separate from the Batch Zero Eligibility RFI issued on September 9, 2026.",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c7"
+    },
+    {
+     "text": "The notice names what a complete response has to carry.",
+     "verbatim_quote": "a notarized attestation from the data center developer",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c8"
+    },
+    {
+     "text": "The notice gives the date a reader can expect to learn what the answers showed.",
+     "verbatim_quote": "ERCOT expects to publish this report no later than December 10, 2026.",
+     "source_url": "https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+     "source_title": "ERCOT Market Notice M-B091426-01",
+     "source_type": "primary_official",
+     "fetched": "2026-09-19",
+     "id": "tx-2026-0172-c9"
+    }
+   ],
+   "id": "tx-2026-0172",
+   "last_verified": "2026-09-19",
+   "history": [
+    {
+     "date": "2026-09-19",
+     "note": "The request is open and the answers are not due yet. Nothing about what the water questions return is known today.",
+     "checked": true
+    }
+   ]
   }
  ]
 }
