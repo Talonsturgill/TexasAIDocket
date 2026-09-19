@@ -1,0 +1,249 @@
+# Run record — carousel no. 29, September 19th, 2026
+
+**Deck.** The law did not change and the enforcement did. On September 14th the Office of the
+Texas Governor told the Texas Water Development Board to enforce the state water use survey
+against data centers, naming a criminal offense and a TCEQ permit ineligibility that the Texas
+Water Code already carried, and ERCOT issued a market notice the same day carrying the board's
+own water questions with a deadline on them.
+
+**Both deliverables shipped in one commit range**, the record and the deck together, so the site
+was never built from a record half a run old.
+
+---
+
+## THE RECORD, which is the first deliverable and the one that matters most
+
+| | |
+|---|---|
+| worklist | 126 due at wake, cleared to 0 |
+| re-verified | 87 items read against their own sources, movement lines written for all of them |
+| admitted | 3 new items (tx-2026-0171, 0172, 0173) plus one folded in |
+| backlog | empty at wake and empty at close |
+| docket | 145 to 149 items, 846 claims, `docket_build --validate` clean |
+
+**One claim had MOVED and the movement was in the quote's own shape rather than in the facts.**
+`tx-2026-0078`'s claim quoted a span that ran from a committee page's heading into its first
+meeting row, and two new September sittings pushed the row out from under it. The August 19th
+hearing is still listed and nothing about the item changed. The claim was narrowed to
+`"August 19, 2026 8:00 AM"`, which is the sentence the record actually needs and the one a future
+sitting cannot break.
+
+**The fact checker caught two attribution defects that had already reached the ledger**, and both
+were corrected in `ledger/docket.json` before anything was built.
+
+- The state water plan sentence is the **Governor's office describing the board's position**, not
+  the board speaking. Every surface that carries it, the record, frame 6 and the caption, now says
+  "The release states" in front of it.
+- The ERCOT notice's stated AUDIENCE is broader than its body's recipient rule. The record no
+  longer says every developer of 25 MW and larger receives the request, and neither does the deck,
+  which is the subject of the deck's own round 1 hard fail below.
+
+**A COMPLIANCE SLIP, THIS RUN'S OWN, AND IT IS THE FIRST THING IN THIS RECORD FOR A REASON.**
+`out/2026-09-19/recheck.py` is a helper this run wrote to fetch what `reverify.py` can't read, and
+its copy of the crawl boundary was a tuple of HOSTS. Three entries on that boundary are hosts and
+one is a PATH, `capitol.texas.gov/TLODOCS/`, on a host that is otherwise allowed, so a host-level
+guard passes it by construction. One `/TLODOCS/` URL was fetched before the shape of the guard was
+noticed. **Nothing from that fetch reached a claim, the record or a frame.** The guard now checks
+paths as well as hosts, case-insensitively, and the finding is in
+`knowledge/shared/SOURCES_FIELD_LOG.md`.
+
+The lesson is not "read the boundary more carefully". A boundary with two KINDS of entry needs a
+checker that knows there are two kinds, and a run that re-implements the boundary in a scratch
+script will re-implement whichever kind it looked at first. The durable answer is one shared
+checker every fetcher calls, and it is a proposal rather than a change this run made, because the
+fetchers it would reach across belong to more than one lane.
+
+---
+
+## THE DECK
+
+**Nine frames, world FIRSTLIGHT. A caliche pad on the Edwards Plateau at first light.**
+One light, low in the east off the camera's left shoulder at 14 degrees, so every lit face is a
+left face and every cast runs right. One halftone at cell 7 and angle 22 across all nine frames.
+One accent, comal `#2A7A9E`, which lands only on water somebody holds a number for.
+
+### Round 1 stopped the deck on two hard fails, from two different judges
+
+**The integrity judge's, and it was an editorial fault rather than a drawing one.** The cover's dek
+read "The request goes to developers of data centers 25 MW and larger." and frame 2 asked "Who the
+request reaches" over "Twenty five megawatts and larger." This run's own `claims.json` rejects
+exactly that and supplies the permitted wording: copy may say the request is AIMED AT developers
+of that size and may not say every one of them receives it. The notice's body restricts its
+recipients to two narrower conditional groups, so the claim was wrong in both directions at once.
+**The rejection named the word "every" and the copy dropped the word while keeping the assertion.**
+`SELECTION.md` had the safe phrasing in it the whole time.
+
+The cure moved the cover onto c4, the Texas Water Code's own requirement, which also put the word
+WATER on a deck whose nine headlines had not carried it once, and changed frame 2's kicker to the
+fact checker's own permitted wording.
+
+**The craft judge's, and no gate in this suite could have seen it.** Frame 3's letterhead read
+`FFICE OF THE TEXAS GOVERNOR`, because a drawn block sat at the sheet's left margin, which is the
+exact origin of the letterhead line. `machine_qa` raised a tiny-text warn on that same string and
+never saw it was occluded, because it reads the DOM and a reader reads pixels. The block moved to
+the sheet's right margin, where a seal sits.
+
+### What the panel converged on, and it was the same sentence three ways
+
+Three judges, three lenses, and all three named flat drawing where the deck's argument needed a
+modeled one. **`TXOBJ.sprite("data_center")` carried a 130 m hall on frames 1, 6 and 8 at three
+different distances and rendered at all three as tall square merlons on a single cream fill.** The
+words used for it were "a crenellated battlement", "one flat cream plane" and "the weakest frame
+in the deck". A catalogue sprite is a good object at the size it was drawn for and a silhouette at
+any other. Each of the three frames now builds its own hall from the frame's own projection, and
+each differently.
+
+**Four figures at true scale were inked bright while standing against bright halls and lit
+caliche**, and one judge reported that no figure was findable on the cover at all. They were all
+present in the code and all the right size. A figure is read against what is behind it, never
+against the palette. Frames 1, 4, 8 and 9 ink theirs dark now. Frame 7's stayed bright because its
+ground is dark, which is the same rule rather than an exception to it.
+
+**Frame 3's tailgate was "horizontal wallpaper stripes".** Its ribs were drawn as full-width
+rules, and a stripe that reaches both frame edges belongs to the FRAME rather than to an object,
+so nothing in the drawing said where the gate stopped. It is a trapezoid now with its own side
+edges inside the picture, converging ribs, pressed swages, latch bezels and the bed walls behind
+it, and the sheet on it has the corner curl its own header comment had been promising since the
+frame was written.
+
+### What the plan got wrong, said plainly rather than edited away
+
+**The planned value arc came in systematically high and the plan was NOT rewritten to match the
+render.** The dossiers asked for frames in the thirties and forties and the deck measured
+`[12.4, 35.7, 32.5, 16.7, 8.3, 10.7, 19.1, 21.3, 18.5]` at 432px against a planned
+`[16, 22, 32, 26, 38, 34, 44, 40, 26]`, a miss of thirty points on frame 5 and twenty five on
+frames 7 and 8. `panel_ready` passes because its check is on the deck's MEDIAN rather than per
+frame, so nothing stopped it and nothing should have. Editing nine dossiers to match nine renders
+is the inversion `measure.py`'s own docstring exists to prevent. Both tracks are in
+`measurements.json` and the gap is the finding.
+
+**Frame 2's dossier described a frame that had been thrown away.** The frame was redrawn as the
+property line after `bespoke_check` measured the deck as "one drawing repeated", and only its
+subject line was updated, so two judges graded a picture against a plan belonging to another one.
+The dossier is rewritten, including the two things about that frame that are deliberate and read
+as defects against the old plan: it carries the accent, and it is the only frame in the deck with
+no person in it.
+
+**The chassis prose described a different deck entirely.** `2026-09-19-firstlight.js` named a
+staff gauge, a pump, a brass register in a hole in the ground and the state's own instrument
+shelter, none of which is drawn anywhere in these nine frames, and its accent law named the wrong
+frames. The functional `declare` was correct the whole time, so nothing rendered wrong. What was
+wrong is that the one place a frame author goes to find out what deck they are drawing was telling
+them about another one.
+
+### Frames 7 and 8 still run the calendar backwards, and that is a decision
+
+Frame 7 carries October 14th and frame 8 carries October 12th. A judge named it in round 1 and the
+order was not changed, because swapping the two would renumber the deck, move the archetype
+rotation and relocate the continuity device for a gain measured in one reader's reading order.
+What was changed is the frame that made the pair fail: frame 8's hall stood at the courthouse's
+own distance, and a 130 m building at 34 m is half the frame in one value with no sky above it.
+It stands at 48 m now.
+
+### Round 2 found a second hard fail, and it was made by round 1's own repair
+
+`first_comment.txt` did not list `c4` while the cover printed `c4 TEXAS AI DOCKET`. Round 1 moved
+frame 1 onto c4 and frame 5 off c17 and c21, and nothing re-derived the one published surface
+whose entire job is resolving the ids a reader sees. `sources_block.py` exists for exactly this
+defect, its docstring opens on a deck that printed sixteen ids over a block listing seven, and it
+would have gone red the moment it was asked. It was not asked. `run_state.json` went on reporting
+that gate as exit 0, which was true of the deck before the repair and false of the deck that would
+have shipped.
+
+**The lesson is the judge's own sentence and it is going in the backlog rather than into prose
+here.** A cite-line edit has to invalidate every artifact derived from it. This run applied that by
+hand in round 3 and the mechanism is a proposal.
+
+Round 2 also found two modals flattened on frame 7, "reports back October 14th" where c10 says
+shall update BY that date, and "noncompliance is referred" where c8 says the board MUST ENFORCE
+those remedies INCLUDING referral. The same run had repaired that exact defect on frame 9 one
+round earlier and left these standing, and the caption had it right on the same day. Both are the
+source's wording now.
+
+### Round 3 drew what round 1 had answered with a comment
+
+Frame 5's three elevations laid casts 7 px tall on a 1350 px frame. Round 1 was told and rewrote
+the COMMENT above them. That is the worst available response to a drawing note and a judge said
+so in as many words. Round 3 drew the casts, moved the route off the mast it was crossing against
+the frame's own stated rule, corrected a scale comment that declared 0.19 metres per pixel over
+code holding 0.058, and filled the 55 percent of that frame a judge had measured as empty with a
+raking ground apron and the three leaders the dossier had been promising since planning.
+
+The same round inked frame 7's two figures dark, which is the cure round 1 applied to four other
+frames and did not carry across, and drew the six column casts that frame's acceptance list has
+always required, at positions read off the catalogue's own geometry rather than eyeballed.
+
+**The deck's own motif was a flat blue ellipse on four frames.** Two judges used almost the same
+words for it. The accent law in this deck turns on the word GAUGED and the drawing never carried
+it, so the recurring object registered as a colour rather than as the one thing on the frame
+somebody holds a number for. The chassis hands out `N.tank` now, with a contact, a rim, the water
+inset and a staff gauge standing in it, and all four frames call it.
+
+### On publishing the size of the gap, which a judge asked for twice and the deck does not do
+
+The reader judge's one fix was a line saying nobody publicly knows how much water these sites use.
+**The deck already publishes the gap and does not publish a size for it, and that is deliberate.**
+Frame 6 carries c5, which is the state's own sentence that the board can't write a state water
+plan while it is denied detail on existing and anticipated water consumption. That is the gap, in
+the voice of the party that has it.
+
+What the deck does not say is HOW BIG. Neither fetched document publishes a count or a share of
+unreturned surveys, which the fact checker established and wrote into the rejections, and the
+house law asks for the size of a gap to be COMPUTED rather than asserted. There is nothing here to
+compute it from. Publishing an unscoped negative would also fail `absence_check`, correctly, since
+this run registered no absence claim for it. **The miss is at Phase 6 rather than at Phase 12**: an
+absence worth publishing is worth registering as a claim with its own id while the documents are
+open, and this run did not.
+
+---
+
+## Degraded
+
+- **The vector PDF is 61.5 MB against 6 to 14 MB for every deck before it.** Three hypotheses were
+  MEASURED rather than argued: a coarser screen cell was worth about 5 MB, a raised screen floor
+  and a higher gamma were worth nothing at all, and cutting the film grain and the dither was
+  worth about 9 MB, which is why the grain runs at 0.012 against the house 0.044. What is left is
+  that this is the first deck to run the full halftone across the whole of all nine frames, and
+  round 1's repairs added drawing to six of them. It ships DISCLOSED rather than cured.
+- **`texan_check` reads "places NONE".** Neither document names a county, a city or a volume of
+  water, so the deck names none either and carries its place on art alone.
+- **The Supabase scanner ceiling check did not run.** No connector for it exists in this
+  environment. It is not a failure of the check and it is not evidence the ceiling is fine.
+- **`ledger/carousel/captions.json`'s exclusion lists are one shipped entry behind**, for the third
+  recorded time. The caption room was handed a structure list omitting September 18th's Clock and a
+  director was assigned Clock two days after Clock shipped. The critic caught it at the judging step
+  rather than the briefing step, which is the one place `CAPTION_CRAFT.md` says the room must never
+  be told no, and it cost the room's one rewrite. The fix is one change in two lanes at once and
+  stays in `UPGRADE_BACKLOG.md` until a maintainer lands both halves.
+- **This is the fifth ERCOT request in the dedupe window and `dedupe_check` cannot see that.** It
+  compares entities and keywords, and an INSTRUMENT repeat is invisible to both. Four earlier run
+  records have each written this in capitals. `c18` separates this notice from the Batch Zero
+  request in the notice's own words and is printed on no frame.
+
+---
+
+## Gate status
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 21 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | PASS   | 9 slide(s), zero fails, zero warns |
+| aggregates     | PASS   | 3 declaration(s), 3 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 62.38 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| labels         | PASS   | 32 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 61 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 2 declared fragment(s) over 1 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 36,813 chars planned |
+| caption        | PASS   | 143 words |
+| craft floor    | PASS   | 9 frame(s), median 6898, floor 1242 |
+| plan vs render | WARN   | 9 of 47 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step yes |
+| absences       | PASS   | 0 of 0 scoped to a named document |
+| numerals       | PASS   | 3 numeral(s) over 9 frame(s), every one reachable |
+| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+<!-- gate-status:end -->

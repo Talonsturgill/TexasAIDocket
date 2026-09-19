@@ -969,6 +969,30 @@
       "evidence": "2026-09-19 carousel 29. Frame 3's tailgate was a full-width rectangle with its ribs drawn as full-width rules. A judge read it as horizontal wallpaper stripes with no tailgate, no vehicle and no perspective, and was right: nothing in the drawing said where the gate stopped. Rebuilt as a trapezoid with its own side edges, converging ribs, swages and the bed walls behind it, the same object reads as a tailgate at 432px without a single new element being named.",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "an-absence-is-registered-while-the-documents-are-open",
+      "learned": "2026-09-19",
+      "instinct": "Register an absence as a claim with its own id while the documents are still open, because by the art phase it cannot be published at all.",
+      "evidence": "2026-09-19 carousel 29. Both fetched documents establish that no count of unreturned water surveys is published, and the fact checker wrote that into the rejections rather than into a claim. Two scoring rounds later the reader judge's single fix was a line publishing the size of that gap, and it could not be written: an unscoped negative fails absence_check correctly, and there was no absence claim to scope it to. The deck publishes the gap in the state's own voice via c5 and publishes no size for it. The miss is at the claims phase, not at the art phase.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-cite-edit-invalidates-every-derived-artifact",
+      "learned": "2026-09-19",
+      "instinct": "Re-run every builder that reads a cite line the moment a cite line changes.",
+      "evidence": "2026-09-19 carousel 29. Round 1 moved frame 1 onto c4 and frame 5 off c17 and c21 to repair a hard fail. first_comment.txt is BUILT from those ids by sources_block.py and nothing re-ran it, so the published sources block lacked the cover's own id and still carried two the deck no longer printed. sources_block --check exits 1 on exactly that and was not asked. run_state.json went on reporting it as exit 0, which was true of the deck before the repair. It cost a second hard fail and a whole scoring round.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "answering-a-drawing-note-with-a-comment",
+      "learned": "2026-09-19",
+      "instinct": "When a judge reports a DRAWING defect, change the drawing rather than the comment beside it.",
+      "evidence": "2026-09-19 carousel 29. Round 1 was told frame 5's casts were 7px slivers against a comment claiming four times the height, and it rewrote the comment to describe the sliver honestly. Round 2 returned the same finding, called the repair out by name, and made frame 5 its one-sentence fix. Round 3 drew the casts. The honest comment was worth writing and it was never what the note was about.",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }
