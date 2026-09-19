@@ -3012,3 +3012,63 @@ belong in that file by its own rule. Paste as is.
 > **What to check instead.** When a gate tests for a NOUN SHAPE, ask what role that noun plays in
 > the sentence. The shapes that mark a source and the shapes that mark the missing thing are the
 > same words, and only the grammar around them separates the two.
+
+---
+
+### The rejected array is written every run and read by nothing
+
+`out/<date>/claims.json` carries a `rejected` list. The fact checker writes it as a set of precise
+refusals, and on 2026-09-19 it went further than usual and supplied the PERMITTED WORDING for the
+one that mattered: *"Copy may say the request is aimed at developers 25 MW and larger. It may not
+say every one of them receives it."*
+
+**Two frames departed from it and no gate noticed**, because no gate in `scripts/carousel/` opens
+that array at all. `claims_check` validates the verified claims. `noun_trace`, `label_guard`,
+`quantifier_check` and `absence_check` each read the published strings against the claims that
+WERE accepted. Nothing reads the ones that were refused. The integrity judge found it in round 1
+and hard-failed the deck on it, which is the right outcome and an expensive one: a panel round
+costs three agents, a repair pass and a re-render, and the finding was sitting in a file the run
+wrote itself before a single frame existed.
+
+**The proposal.** Give each entry in `rejected` an optional `forbids` field holding one or more
+patterns, and add a gate that fails the build when any shipped slide string, the caption or the
+first comment matches one. The fact checker already writes the sentence; what it lacks is a
+machine-readable form of it. Keep the field OPTIONAL, because a rejection that cannot be reduced
+to a pattern is still worth writing in prose and must not be pushed into a bad regex to satisfy a
+schema.
+
+**What to be careful about, and it is the reason this is a proposal rather than a patch.** A
+pattern that is too broad refuses the correct sentence as well as the wrong one. "25 MW" appears
+in the permitted wording and in the forbidden one, so the pattern has to carry the VERB, and a
+verb pattern is exactly the kind of check that passes a paraphrase. The honest version of this
+gate reports a MATCH for a human to read rather than claiming to have understood the sentence, and
+its own report line has to say so, or the next run will quote its exit 0 as evidence the copy is
+clean. `exit-zero-is-not-evidence-until-you-read-the-checker` is already an instinct here.
+
+Lane: `scripts/carousel/**` is `upgrade` and `out/<date>/**` is scratch, so the gate itself is one
+lane. Wiring it into `guards.yml` is `human`.
+
+---
+
+### The crawl boundary is re-implemented by every fetcher that needs it
+
+`knowledge/shared/SOURCES_REGISTRY.md` states the boundary and is `human` owned, correctly, since
+an unattended run that can edit its own boundary does not have one. What is not stated anywhere is
+a CHECKER, so every script that fetches carries its own copy of the rule.
+
+On 2026-09-19 a run's own helper carried the boundary as a tuple of HOSTS and fetched one
+`capitol.texas.gov/TLODOCS/` URL, which is a disallowed PATH on an allowed host. Nothing from it
+reached a claim. The guard in that script was fixed the same hour and the script is scratch, so
+the fix dies with the container and the next run writes the guard again from scratch.
+
+**The proposal.** One function in `scripts/shared/`, `crawl_boundary.forbidden(url)`, that parses
+the registry's own disallow list rather than restating it, handles hosts and paths as two kinds,
+normalises case and trailing slashes, and carries a `--self-test` that replays the
+`capitol.texas.gov/TLODOCS/` URL and the lowercase `/tlodocs/` form and watches both go red. Then
+every fetcher, including a run's scratch helpers, calls it instead of writing a tuple.
+
+**The part that needs care.** Parsing the registry means the checker's correctness depends on a
+`human` owned prose file's formatting, and a parse that silently finds zero entries would produce
+a checker that allows everything while exiting 0. The count of parsed entries has to be asserted
+against a floor, and a registry that parses to nothing has to be a HARD FAIL rather than an empty
+allow list. That is the same shape as `noun_trace`'s "a check that cannot run is red, never green".
