@@ -177,6 +177,7 @@ def build(out: Path, today: str) -> dict:
     # PAGE-SPECIFIC INSTRUMENTS. Each stays out of the sheet every other page waits on. See the
     # corresponding function in theme.py for the measured reason behind each split.
     w("home.css", theme.home_css())
+    w("finishing.css", theme.finishing_css())
     w("record.css", theme.record_css())
     w("facility.css", theme.facility_css())
 
@@ -188,6 +189,13 @@ def build(out: Path, today: str) -> dict:
         raise SystemExit("site_build: the data center atlas plate is missing")
     shutil.copyfile(datacenter_plate, out / "datacenter-atlas-relief.webp")
     written.append("datacenter-atlas-relief.webp")
+
+    # Selected decorative artwork is an input, copied byte for byte on every build.
+    # Only the web exports ship. Masters and prompts stay with the authored assets.
+    for name in ("balcones-relief-v2-960.avif", "studio-assembly-v2-960.avif"):
+        artwork = REPO_ROOT / "assets" / "site" / "accents" / name
+        shutil.copyfile(artwork, out / name)
+        written.append(name)
 
     # THE CUSTOM DOMAIN, told to GitHub Pages. Derived from SITE_URL rather than typed, so the
     # domain the pages claim as canonical and the domain Pages actually serves cannot disagree.
