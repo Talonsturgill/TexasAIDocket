@@ -430,6 +430,31 @@ def home_css() -> str:
 .home .news-chip .news-arrow { grid-column:2; grid-row:1/3; align-self:center; color:var(--accent); }
 .home .news-chip .news-link:focus-visible,.home .news-chip button:focus-visible {
   outline:2px solid var(--accent); outline-offset:3px; }
+/* Share the header row with each story's attribution while keeping it inside its link.
+   Subgrids retain the tallest story's height and fade the source with its headline. */
+@supports (grid-template-columns:subgrid) {
+  .home .hero .news-chip { grid-template-columns:auto minmax(0,1fr) auto;
+    grid-template-rows:auto auto; gap:.2rem .5rem; padding:.35rem .8rem .5rem; }
+  .home .news-chip .news-header { display:contents; }
+  .home .news-chip .news-label,.home .news-chip .news-controls {
+    grid-row:1; align-self:center; position:relative; z-index:1; }
+  .home .news-chip .news-label { grid-column:1; min-width:calc(8ch + .96em); }
+  .home .news-chip .news-controls { grid-column:3; }
+  .home .news-chip .news-slides,.home .news-chip .news-slide,.home .news-chip .news-link {
+    display:grid; grid-area:1/1/-1/-1; grid-template-columns:subgrid;
+    grid-template-rows:subgrid; gap:normal; }
+  .home .news-chip .news-slides { pointer-events:none; }
+  .home .news-chip .news-link { pointer-events:auto; }
+  .home .news-chip .news-meta { grid-column:2; grid-row:1; align-self:center;
+    min-width:0; gap:.15rem .65rem; }
+  .home .news-chip .news-title { grid-column:1/-1; grid-row:2; padding-right:1.8rem; }
+  .home .news-chip .news-arrow { grid-column:3; grid-row:2; justify-self:end; }
+  @media (max-width:389px) {
+    .home .hero .news-chip { grid-template-rows:auto auto auto; }
+    .home .news-chip .news-meta { grid-column:1/-1; grid-row:2; }
+    .home .news-chip .news-title,.home .news-chip .news-arrow { grid-row:3; }
+  }
+}
 @media (hover:hover) and (pointer:fine) {
   .home .news-chip .news-link:hover .news-title { color:var(--accent); }
   .home .news-chip .news-controls button:hover { color:var(--ink-bright); background:var(--raised); }
