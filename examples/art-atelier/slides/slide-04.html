@@ -1,0 +1,145 @@
+<!doctype html>
+<!-- ATELIER 04 — Data sculpture.
+     Construction study: a small declared series drives physical height in an oblique gallery
+     scene. Values are explicitly illustrative so the mapping cannot be mistaken for a claim. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body { position: relative; }
+  .atelier-label { position: absolute; left: 82px; top: 82px; z-index: 20;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700;
+    letter-spacing: .13em; text-transform: uppercase; }
+  .atelier-id { position: absolute; right: 82px; top: 78px; z-index: 20;
+    font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 760; letter-spacing: -.04em; }
+  .atelier-footer { position: absolute; left: 82px; right: 82px; bottom: 82px; z-index: 30;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 500; letter-spacing: .05em; }
+  .atelier-footer::before { content: ""; position: absolute; left: 0; right: 0; top: -18px;
+    height: 1px; background: currentColor; opacity: .32; }
+  .atelier-footer .mode { opacity: .68; }
+</style>
+<style>
+  body { background: #1e32d8; color: #efffd5; font-family: "Bricolage Grotesque", sans-serif; }
+  .atelier-label, .atelier-id, .atelier-footer { color: #efffd5; }
+  .title {
+    position: absolute; left: 82px; top: 145px; z-index: 10; width: 840px;
+    font-family: "Bricolage Grotesque", sans-serif; font-size: 108px; line-height: .82;
+    font-weight: 780; letter-spacing: -.068em; text-transform: uppercase;
+  }
+  .title .physical { color: #ffd36b; }
+  .series {
+    position: absolute; right: 82px; top: 360px; z-index: 10; width: 380px;
+    font-family: "JetBrains Mono", monospace; font-size: 25px; line-height: 1.55;
+    text-align: right; letter-spacing: .05em; text-transform: uppercase; color: #ffffff;
+  }
+  svg.scene { position: absolute; inset: 0; width: 1080px; height: 1350px; }
+</style>
+</head>
+<body>
+  <div class="atelier-label">Code atelier · bound geometry</div>
+  <div class="atelier-id">04</div>
+  <h1 class="title" data-overlap-ok>Make the<br><span class="physical">number physical</span></h1>
+  <div class="series">Illustrative study values<br>18 · 32 · 27 · 47 · 39</div>
+
+  <svg class="scene" viewBox="0 0 1080 1350" aria-hidden="true">
+    <defs>
+      <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#1e32d8"/><stop offset=".57" stop-color="#334de7"/><stop offset="1" stop-color="#1725a0"/>
+      </linearGradient>
+      <radialGradient id="pool" cx="50%" cy="35%" r="68%">
+        <stop offset="0" stop-color="#bdeeff" stop-opacity=".88"/><stop offset=".5" stop-color="#5269f2" stop-opacity=".28"/><stop offset="1" stop-color="#142394" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="plinthTop" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".42" stop-color="#cde2ff"/><stop offset="1" stop-color="#8aa0e7"/>
+      </linearGradient>
+      <linearGradient id="plinthSide" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8da1df"/><stop offset="1" stop-color="#34469c"/>
+      </linearGradient>
+      <linearGradient id="barFront" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffd36b"/><stop offset=".42" stop-color="#ff855c"/><stop offset="1" stop-color="#f23575"/>
+      </linearGradient>
+      <linearGradient id="barSide" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#b1227f"/><stop offset="1" stop-color="#5e1aa4"/>
+      </linearGradient>
+      <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#65f7ff"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#ff8fd1"/>
+      </linearGradient>
+      <filter id="soft" x="-40%" y="-80%" width="180%" height="260%"><feGaussianBlur stdDeviation="23"/></filter>
+      <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <clipPath id="floor"><path d="M40 575 L1040 498 L1080 1280 L0 1280Z"/></clipPath>
+    </defs>
+
+    <rect width="1080" height="1350" fill="url(#room)"/>
+    <ellipse cx="610" cy="880" rx="590" ry="570" fill="url(#pool)"/>
+
+    <!-- Perspective floor: converging lines declare the camera before the sculpture arrives. -->
+    <g clip-path="url(#floor)" stroke="#a6bcff" stroke-width="2" opacity=".16">
+      <path d="M90 1280 L520 500"/><path d="M255 1280 L555 500"/><path d="M430 1280 L590 500"/>
+      <path d="M610 1280 L625 500"/><path d="M790 1280 L660 500"/><path d="M970 1280 L695 500"/>
+      <path d="M0 679 L1080 620"/><path d="M0 792 L1080 746"/><path d="M0 923 L1080 892"/>
+      <path d="M0 1078 L1080 1064"/><path d="M0 1240 L1080 1240"/>
+    </g>
+
+    <!-- Lit pool and contact shadow, then the fabricated plinth. -->
+    <ellipse cx="606" cy="1112" rx="398" ry="105" fill="#b8ecff" opacity=".42"/>
+    <ellipse cx="612" cy="1122" rx="355" ry="68" fill="#08125e" opacity=".48" filter="url(#soft)"/>
+    <path d="M257 1067 A356 91 0 0 0 965 1067 L965 1174 A356 91 0 0 1 257 1174Z" fill="url(#plinthSide)"/>
+    <ellipse cx="611" cy="1067" rx="354" ry="91" fill="url(#plinthTop)" stroke="#f8ffff" stroke-width="4"/>
+    <ellipse cx="611" cy="1067" rx="291" ry="66" fill="#2033b9" opacity=".18"/>
+
+    <!-- Five prisms: height is bound to the declared values [18,32,27,47,39]. -->
+    <g stroke="#ffdbb5" stroke-width="2">
+      <g>
+        <path d="M341 1006 L395 991 L395 812 L341 827Z" fill="url(#barFront)"/>
+        <path d="M395 991 L421 1002 L421 823 L395 812Z" fill="url(#barSide)"/>
+        <path d="M341 827 L395 812 L421 823 L366 840Z" fill="#ffe198"/>
+      </g>
+      <g>
+        <path d="M440 1017 L498 1001 L498 684 L440 700Z" fill="url(#barFront)"/>
+        <path d="M498 1001 L526 1014 L526 696 L498 684Z" fill="url(#barSide)"/>
+        <path d="M440 700 L498 684 L526 696 L467 714Z" fill="#ffe7a8"/>
+      </g>
+      <g>
+        <path d="M551 1027 L612 1011 L612 743 L551 759Z" fill="url(#barFront)"/>
+        <path d="M612 1011 L641 1025 L641 756 L612 743Z" fill="url(#barSide)"/>
+        <path d="M551 759 L612 743 L641 756 L579 774Z" fill="#ffd68b"/>
+      </g>
+      <g>
+        <path d="M674 1019 L739 1001 L739 534 L674 551Z" fill="url(#barFront)"/>
+        <path d="M739 1001 L770 1017 L770 549 L739 534Z" fill="url(#barSide)"/>
+        <path d="M674 551 L739 534 L770 549 L704 568Z" fill="#fff0b9"/>
+      </g>
+      <g>
+        <path d="M809 991 L876 973 L876 586 L809 604Z" fill="url(#barFront)"/>
+        <path d="M876 973 L908 990 L908 602 L876 586Z" fill="url(#barSide)"/>
+        <path d="M809 604 L876 586 L908 602 L840 622Z" fill="#ffdd95"/>
+      </g>
+    </g>
+
+    <!-- A glass spline connects values without replacing the quantitative geometry. -->
+    <path d="M366 807 C429 748 449 666 498 665 S571 737 612 724 S696 513 739 515 S826 564 876 567"
+          fill="none" stroke="#74eaff" stroke-width="35" opacity=".16" filter="url(#glow)"/>
+    <path d="M366 807 C429 748 449 666 498 665 S571 737 612 724 S696 513 739 515 S826 564 876 567"
+          fill="none" stroke="url(#glass)" stroke-width="9" stroke-linecap="round" filter="url(#glow)"/>
+    <g fill="#efffd5" stroke="#1e32d8" stroke-width="4">
+      <circle cx="366" cy="807" r="10"/><circle cx="498" cy="665" r="10"/><circle cx="612" cy="724" r="10"/>
+      <circle cx="739" cy="515" r="10"/><circle cx="876" cy="567" r="10"/>
+    </g>
+
+    <!-- Labels stay small in number, close to the geometry and explicitly illustrative. -->
+    <g font-family="JetBrains Mono" font-size="25" font-weight="700" fill="#ffffff"
+       stroke="#1e32d8" stroke-width="10" paint-order="stroke" text-anchor="middle">
+      <text x="342" y="805">18</text><text x="474" y="658">32</text><text x="588" y="718">27</text>
+      <text x="715" y="507">47</text><text x="851" y="559">39</text>
+    </g>
+  </svg>
+
+  <div class="atelier-footer"><span>Texas AI Docket</span><span class="mode">VALUES DECLARED · FORM BOUND</span></div>
+</body>
+</html>
